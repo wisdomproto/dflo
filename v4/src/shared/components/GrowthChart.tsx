@@ -139,7 +139,7 @@ export function GrowthChart({
 
   // 왼쪽 더블클릭 → zoom in (애니메이션), 우클릭 → 3~18세 전체 보기
   const handleDblClick = useCallback(() => {
-    chartRef.current?.zoom({ x: 1.5, y: 1.5 }, 'zoom', 'default');
+    chartRef.current?.zoom({ x: 1.5, y: 1.5 });
   }, []);
 
   const handleContextMenu = useCallback((e: MouseEvent) => {
