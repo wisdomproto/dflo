@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 초기화</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #14b8a6;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #6b7280;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        button {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+        .success {
+            color: #10b981;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .list {
+            text-align: left;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        .list li {
+            margin: 8px 0;
+            color: #374151;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🗑️ 데이터 초기화</h1>
+        <p>기존 localStorage 데이터를 모두 삭제하고<br>JSON 파일에서 새로 불러옵니다.</p>
+        
+        <div class="list">
+            <strong>삭제될 데이터:</strong>
+            <ul>
+                <li>FAQ 데이터 (adminFaqs)</li>
+                <li>치료 사례 (adminCases)</li>
+            </ul>
+        </div>
+        
+        <div class="list">
+            <strong>새로 로드될 데이터:</strong>
+            <ul>
+                <li>data/faqs.json → FAQ 12개</li>
+                <li>data/cases.json → 치료 사례 4개</li>
+            </ul>
+        </div>
+        
+        <button onclick="resetData()">🔄 초기화 및 새로고침</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function resetData() {
+            // localStorage에서 FAQ와 사례 데이터 삭제
+            localStorage.removeItem('adminFaqs');
+            localStorage.removeItem('adminCases');
+            
+            console.log('✅ localStorage 데이터 삭제 완료');
+            
+            document.getElementById('result').innerHTML = '<div class="success">✅ 데이터가 초기화되었습니다!<br>페이지를 새로고침합니다...</div>';
+            
+            // 1초 후 새로고침
+            setTimeout(() => {
+                location.href = 'index.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

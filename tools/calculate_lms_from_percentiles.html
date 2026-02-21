@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백분위 테이블에서 LMS 값 계산</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+        .upload-area.dragover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 30px;
+        }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .data-preview {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .success {
+            color: #10b981;
+        }
+        .error {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 백분위 테이블에서 LMS 값 계산</h1>
+        <p class="subtitle">엑셀 파일의 백분위 테이블을 분석하여 정확한 LMS 값을 역계산합니다</p>
+
+        <div class="info-box">
+            <strong>💡 LMS 방법이란?</strong><br>
+            Lambda-Mu-Sigma 방법으로 성장 곡선을 표현합니다:<br>
+            • <span class="formula">L</span> (Lambda): Box-Cox 변환 계수 (왜도 조정)<br>
+            • <span class="formula">M</span> (Mu): 중앙값 (50th percentile)<br>
+            • <span class="formula">S</span> (Sigma): 변동계수 (표준편차 / 평균)<br><br>
+            <strong>역계산 공식:</strong><br>
+            백분위 → Z-score → <span class="formula">Height = M × (1 + L × S × Z)^(1/L)</span>
+        </div>
+
+        <div class="upload-area" id="uploadArea">
+            <p style="font-size: 18px; margin-bottom: 10px;">📁 엑셀 파일을 드래그하거나 클릭하여 선택하세요</p>
+            <p style="color: #64748b; font-size: 14px;">성장도표+데이터+테이블.xls</p>
+            <input type="file" id="fileInput" accept=".xls,.xlsx" style="display: none;">
+        </div>
+
+        <div id="sheetSelector" style="display: none; margin-bottom: 20px;">
+            <label style="font-weight: 600; display: block; margin-bottom: 8px;">시트 선택:</label>
+            <select id="sheetSelect" style="padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%;">
+            </select>
+        </div>
+
+        <button id="analyzeBtn" disabled>🔍 LMS 값 계산하기</button>
+        <button id="downloadBtn" style="display: none; background: #10b981;">💾 JSON 다운로드</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        let workbook = null;
+        let calculatedData = null;
+
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const sheetSelector = document.getElementById('sheetSelector');
+        const sheetSelect = document.getElementById('sheetSelect');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resultDiv = document.getElementById('result');
+
+        // 파일 업로드 이벤트
+        uploadArea.addEventListener('click', () => fileInput.click());
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        function handleFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // 시트 목록 표시
+                    sheetSelect.innerHTML = workbook.SheetNames.map(name => 
+                        `<option value="${name}">${name}</option>`
+                    ).join('');
+                    
+                    sheetSelector.style.display = 'block';
+                    analyzeBtn.disabled = false;
+                    
+                    resultDiv.innerHTML = `<p class="success">✅ 파일 로드 완료! (${workbook.SheetNames.length}개 시트)</p>`;
+                } catch (error) {
+                    resultDiv.innerHTML = `<p class="error">❌ 파일 읽기 실패: ${error.message}</p>`;
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        analyzeBtn.addEventListener('click', calculateLMS);
+
+        function calculateLMS() {
+            const sheetName = sheetSelect.value;
+            const sheet = workbook.Sheets[sheetName];
+            const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+            resultDiv.innerHTML = '<p>🔄 분석 중...</p>';
+
+            // 데이터 구조 분석
+            const preview = analyzeSheetStructure(data, sheetName);
+            
+            // LMS 계산
+            const lmsResults = calculateLMSFromPercentiles(data, sheetName);
+
+            // 결과 표시
+            displayResults(preview, lmsResults, sheetName);
+        }
+
+        function analyzeSheetStructure(data, sheetName) {
+            let html = '<div class="data-preview">';
+            html += `<h3>📋 시트 구조: ${sheetName}</h3>`;
+            html += '<table><thead><tr>';
+            
+            // 헤더 (첫 5개 열만)
+            const header = data[0] || [];
+            header.slice(0, 10).forEach(cell => {
+                html += `<th>${cell || ''}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+            
+            // 데이터 (처음 10행만)
+            data.slice(1, 11).forEach(row => {
+                html += '<tr>';
+                row.slice(0, 10).forEach(cell => {
+                    html += `<td>${cell !== undefined ? cell : ''}</td>`;
+                });
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table>';
+            html += `<p style="color: #64748b; margin-top: 10px;">총 ${data.length}행 × ${header.length}열</p>`;
+            html += '</div>';
+            
+            return html;
+        }
+
+        function calculateLMSFromPercentiles(data, sheetName) {
+            // 헤더에서 백분위 컬럼 찾기
+            const header = data[0] || [];
+            
+            // 나이/연령 컬럼 찾기
+            const ageColIndex = header.findIndex(h => 
+                h && (h.toString().includes('나이') || h.toString().includes('Age') || h.toString().includes('연령') || h.toString().includes('월'))
+            );
+
+            // 50th percentile (중앙값) 컬럼 찾기
+            const p50Index = header.findIndex(h => 
+                h && (h.toString().includes('50') || h.toString() === '50th')
+            );
+
+            // 5th, 95th, 75th 등 다른 백분위 찾기
+            const p5Index = header.findIndex(h => h && (h.toString().includes('5') || h.toString() === '5th'));
+            const p95Index = header.findIndex(h => h && (h.toString().includes('95') || h.toString() === '95th'));
+            const p75Index = header.findIndex(h => h && (h.toString().includes('75') || h.toString() === '75th'));
+
+            console.log('Found columns:', { ageColIndex, p50Index, p5Index, p95Index, p75Index });
+
+            if (ageColIndex === -1 || p50Index === -1) {
+                return { error: '나이 또는 50th 백분위 컬럼을 찾을 수 없습니다.' };
+            }
+
+            const results = [];
+
+            // 데이터 행 분석
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                if (!row || row.length === 0) continue;
+
+                const age = parseFloat(row[ageColIndex]);
+                const p50 = parseFloat(row[p50Index]);
+
+                if (isNaN(age) || isNaN(p50)) continue;
+
+                // M 값 (50th percentile)
+                const M = p50;
+
+                // S 값 계산 (75th 또는 95th 사용)
+                let S = 0.04; // 기본값
+                let L = 1; // 대부분의 경우 L=1
+
+                if (p75Index !== -1 && row[p75Index]) {
+                    const p75 = parseFloat(row[p75Index]);
+                    if (!isNaN(p75)) {
+                        // Z(75%) ≈ 0.674
+                        // p75 = M × (1 + L × S × 0.674)^(1/L)
+                        // S = (p75/M - 1) / (L × 0.674) (when L=1)
+                        S = (p75 / M - 1) / 0.674;
+                    }
+                } else if (p95Index !== -1 && row[p95Index]) {
+                    const p95 = parseFloat(row[p95Index]);
+                    if (!isNaN(p95)) {
+                        // Z(95%) ≈ 1.645
+                        S = (p95 / M - 1) / 1.645;
+                    }
+                }
+
+                // S 값 보정 (너무 크거나 작으면 기본값 사용)
+                if (S < 0.01 || S > 0.2 || isNaN(S)) {
+                    S = 0.04;
+                }
+
+                results.push({
+                    age: Math.round(age * 10) / 10,
+                    L: Math.round(L * 10000) / 10000,
+                    M: Math.round(M * 10) / 10,
+                    S: Math.round(S * 10000) / 10000
+                });
+            }
+
+            return { data: results, sheetName };
+        }
+
+        function displayResults(preview, lmsResults, sheetName) {
+            let html = preview;
+
+            if (lmsResults.error) {
+                html += `<div class="info-box" style="border-color: #ef4444; background: #fef2f2;">
+                    <strong class="error">❌ 오류:</strong> ${lmsResults.error}
+                </div>`;
+                resultDiv.innerHTML = html;
+                return;
+            }
+
+            html += '<div class="info-box" style="border-color: #10b981; background: #f0fdf4;">';
+            html += `<strong class="success">✅ LMS 계산 완료!</strong><br>`;
+            html += `총 ${lmsResults.data.length}개 연령대의 LMS 값을 계산했습니다.`;
+            html += '</div>';
+
+            html += '<div class="data-preview">';
+            html += '<h3>📊 계산된 LMS 값</h3>';
+            html += '<table><thead><tr><th>나이</th><th>L</th><th>M (50th)</th><th>S</th></tr></thead><tbody>';
+            
+            lmsResults.data.forEach(item => {
+                html += `<tr>
+                    <td>${item.age}</td>
+                    <td>${item.L}</td>
+                    <td>${item.M}</td>
+                    <td>${item.S}</td>
+                </tr>`;
+            });
+            
+            html += '</tbody></table></div>';
+
+            resultDiv.innerHTML = html;
+            calculatedData = lmsResults;
+            downloadBtn.style.display = 'inline-block';
+        }
+
+        downloadBtn.addEventListener('click', () => {
+            if (!calculatedData) return;
+
+            const json = {
+                metadata: {
+                    source: "대한소아과학회 2017 한국 소아청소년 성장도표",
+                    sheet: calculatedData.sheetName,
+                    method: "LMS (백분위 테이블에서 역계산)",
+                    calculated: new Date().toISOString(),
+                    note: "L=1 가정, S는 75th 또는 95th percentile에서 역산"
+                },
+                data: calculatedData.data
+            };
+
+            const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lms_${calculatedData.sheetName.replace(/[^a-zA-Z0-9]/g, '_')}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>

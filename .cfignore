@@ -1,0 +1,17 @@
+# Cloudflare Pages 설정
+/functions
+/node_modules
+/.git
+/.vscode
+*.log
+.DS_Store
+Thumbs.db
+
+# 백업 파일
+*-backup.*
+*-old.*
+
+# 문서 (선택적으로 제외)
+# /docs
+# README.md
+# PRD*.html

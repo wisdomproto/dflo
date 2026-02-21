@@ -1,0 +1,271 @@
+/* 날짜 선택 모달 */
+.date-picker-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-picker-modal.active {
+    display: flex;
+}
+
+.date-picker-content {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.date-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.date-picker-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 4px 8px;
+    line-height: 1;
+}
+
+.modal-close-btn:hover {
+    color: #1f2937;
+}
+
+/* 연도/월 선택 섹션 */
+.year-month-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.selector-group {
+    flex: 1;
+}
+
+.selector-group label {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.selector-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.selector-btn {
+    background: none;
+    border: none;
+    color: #14b8a6;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.selector-btn:hover {
+    background: rgba(20, 184, 166, 0.1);
+}
+
+.selector-display {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    padding: 8px;
+}
+
+/* 달력 그리드 */
+.picker-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.picker-calendar-weekday {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 8px 4px;
+}
+
+.picker-calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+    position: relative;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.picker-calendar-day:hover {
+    background: #f0fdfa;
+}
+
+.picker-calendar-day.empty {
+    cursor: default;
+    pointer-events: none;
+}
+
+.picker-calendar-day.today {
+    background: #ccfbf1;
+    font-weight: 600;
+    color: #0f766e;
+}
+
+.picker-calendar-day.selected {
+    background: #14b8a6;
+    color: white;
+    font-weight: 600;
+}
+
+.picker-calendar-day.selected:hover {
+    background: #0d9488;
+}
+
+.picker-calendar-day.other-month {
+    color: #d1d5db;
+}
+
+/* 데이터 있는 날짜 스타일 */
+.picker-calendar-day.has-data {
+    font-weight: 600;
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    border-color: #0ea5e9;
+}
+
+.picker-calendar-day.has-data:hover {
+    background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%);
+}
+
+/* 선택된 날짜가 데이터 있는 경우 */
+.picker-calendar-day.has-data.selected {
+    background: #14b8a6;
+    border-color: #14b8a6;
+}
+
+/* 오늘 날짜가 데이터 있는 경우 */
+.picker-calendar-day.has-data.today {
+    background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+    border-color: #14b8a6;
+}
+
+/* 데이터 인디케이터 (작은 점) */
+.data-indicator {
+    position: absolute;
+    bottom: 3px;
+    width: 4px;
+    height: 4px;
+    background: #0ea5e9;
+    border-radius: 50%;
+}
+
+.picker-calendar-day.selected .data-indicator {
+    background: white;
+}
+
+.picker-calendar-day.today .data-indicator {
+    background: #14b8a6;
+}
+
+/* 액션 버튼 */
+.date-picker-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.picker-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.picker-btn-cancel {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.picker-btn-cancel:hover {
+    background: #e5e7eb;
+}
+
+.picker-btn-today {
+    background: #14b8a6;
+    color: white;
+}
+
+.picker-btn-today:hover {
+    background: #0d9488;
+}
+
+.picker-btn-confirm {
+    background: #14b8a6;
+    color: white;
+}
+
+.picker-btn-confirm:hover {
+    background: #0d9488;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 600px) {
+    .date-picker-content {
+        width: 95%;
+        max-width: none;
+        padding: 20px;
+    }
+    
+    .picker-calendar-day {
+        font-size: 13px;
+    }
+    
+    .selector-display {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,190 @@
+[
+  {
+    "chartNumber": "27376",
+    "name": "여하원",
+    "gender": "male",
+    "birthDate": "2011-01-18",
+    "fatherHeight": 170,
+    "motherHeight": 156,
+    "targetHeight": "180",
+    "memo": "알레르기 비염 있음\n1년전 타병원 PAH 176cm",
+    "measurements": [
+      { "date": "2023-04-25", "height": 155.7, "weight": 58.6, "age": "12세3개월", "boneAge": "13세2개월", "pah": "172", "memo": "" },
+      { "date": "2023-11-07", "height": 161.6, "weight": 63.1, "age": "12세9개월", "boneAge": "13세3-4개월", "pah": "", "memo": "" },
+      { "date": "2023-12-05", "height": 162.6, "weight": 63.8, "age": "", "boneAge": "", "pah": "", "memo": "아리미덱스 처방 시작" },
+      { "date": "2024-04-13", "height": 166.4, "weight": 70.1, "age": "13세2개월", "boneAge": "13세5개월", "pah": "175.6", "memo": "" },
+      { "date": "2024-10-19", "height": 172, "weight": 76.9, "age": "13세9개월", "boneAge": "13세6-7개월", "pah": "", "memo": "채소섭취량 늘리도록 권장" },
+      { "date": "2025-01-20", "height": 174.8, "weight": 78.5, "age": "14세0개월", "boneAge": "13세6개월", "pah": "185", "memo": "" },
+      { "date": "2025-07-25", "height": 177.9, "weight": 87.2, "age": "14세6개월", "boneAge": "13세6개월", "pah": "", "memo": "체중조절 권유" }
+    ],
+    "createdAt": "2023-04-25T00:00:00.000Z",
+    "updatedAt": "2025-07-25T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "22120",
+    "name": "이동윤",
+    "gender": "male",
+    "birthDate": "2007-08-08",
+    "fatherHeight": 181,
+    "motherHeight": 161,
+    "targetHeight": "184",
+    "memo": "",
+    "measurements": [
+      { "date": "2018-10-22", "height": 145.8, "weight": 40, "age": "11세2개월", "boneAge": "12세2개월", "pah": "170", "memo": "" },
+      { "date": "2019-07-15", "height": 152.9, "weight": 43, "age": "11세11개월", "boneAge": "12세5개월", "pah": "", "memo": "" },
+      { "date": "2020-01-28", "height": 159.5, "weight": 47, "age": "12세6개월", "boneAge": "12세10개월", "pah": "", "memo": "" },
+      { "date": "2021-01-25", "height": 168.9, "weight": 59, "age": "13세5개월", "boneAge": "13세2-3개월", "pah": "", "memo": "" },
+      { "date": "2021-12-07", "height": 175.9, "weight": 61, "age": "14세3개월", "boneAge": "13세10개월", "pah": "", "memo": "아리미덱스 처방 시작" },
+      { "date": "2022-03-30", "height": 176.8, "weight": 63, "age": "14세7개월", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2022-09-28", "height": 178.5, "weight": 65.8, "age": "", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2023-04-24", "height": "", "weight": "", "age": "", "boneAge": "", "pah": "183", "memo": "치료종료" }
+    ],
+    "createdAt": "2018-10-22T00:00:00.000Z",
+    "updatedAt": "2023-04-24T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "26007",
+    "name": "구본철",
+    "gender": "male",
+    "birthDate": "2006-12-08",
+    "fatherHeight": 183,
+    "motherHeight": 156,
+    "targetHeight": "180",
+    "memo": "",
+    "measurements": [
+      { "date": "2021-08-10", "height": 167.5, "weight": 65, "age": "14세8개월", "boneAge": "14세2개월", "pah": "176", "memo": "" },
+      { "date": "2021-12-06", "height": 169.6, "weight": 66, "age": "", "boneAge": "", "pah": "", "memo": "아리미덱스 처방 시작" },
+      { "date": "2022-03-05", "height": 171.7, "weight": 69, "age": "15세3개월", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2022-09-17", "height": 174.7, "weight": 74.5, "age": "15세9개월", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2023-02-28", "height": 175.5, "weight": 74.2, "age": "", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2023-05-23", "height": 177.5, "weight": 80.4, "age": "", "boneAge": "", "pah": "", "memo": "" }
+    ],
+    "createdAt": "2021-08-10T00:00:00.000Z",
+    "updatedAt": "2023-05-23T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "25465",
+    "name": "권시현",
+    "gender": "female",
+    "birthDate": "2008-10-17",
+    "fatherHeight": 169,
+    "motherHeight": 159,
+    "targetHeight": "165",
+    "memo": "",
+    "measurements": [
+      { "date": "2020-11-27", "height": 157.1, "weight": 45, "age": "12세1개월", "boneAge": "13세1개월", "pah": "162", "memo": "20년 12월 초경 시작" },
+      { "date": "2021-04-03", "height": 159.6, "weight": 43, "age": "12세5개월", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2021-06-05", "height": 160.9, "weight": 44, "age": "", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2021-10-04", "height": 162.4, "weight": 45, "age": "13세1개월", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2022-06-11", "height": 164, "weight": 45, "age": "", "boneAge": "", "pah": "", "memo": "갑상선기능항진이 있었다." }
+    ],
+    "createdAt": "2020-11-27T00:00:00.000Z",
+    "updatedAt": "2022-06-11T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "27803",
+    "name": "강제인",
+    "gender": "female",
+    "birthDate": "2012-06-17",
+    "fatherHeight": 176,
+    "motherHeight": 162,
+    "targetHeight": "163",
+    "memo": "2년전 타병원서 뼈나이 +8개월 진단\n수면이 좋지 못한 편",
+    "measurements": [
+      { "date": "2024-01-30", "height": 148, "weight": 36.4, "age": "11세0개월", "boneAge": "12세3개월", "pah": "157", "memo": "지난 주 초경시작\n루프린 병행 바로 시작" },
+      { "date": "2024-07-30", "height": 151.3, "weight": 38.5, "age": "12세1개월", "boneAge": "12세6개월", "pah": "158", "memo": "" },
+      { "date": "2025-01-17", "height": 153.4, "weight": 40.9, "age": "", "boneAge": "12세8개월", "pah": "159~160", "memo": "" },
+      { "date": "2025-06-21", "height": 155.4, "weight": 39.5, "age": "", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2025-07-16", "height": 154.4, "weight": 39.3, "age": "13세0개월", "boneAge": "13세4개월", "pah": "160", "memo": "오후 측정 키" },
+      { "date": "2025-08-05", "height": 155.8, "weight": 39, "age": "", "boneAge": "", "pah": "", "memo": "해외 체류 중 감기몸살로 주사 못맞음\n생리 아직 없어요" }
+    ],
+    "createdAt": "2024-01-30T00:00:00.000Z",
+    "updatedAt": "2025-08-05T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "23660",
+    "name": "전하윤",
+    "gender": "female",
+    "birthDate": "2009-02-11",
+    "fatherHeight": 172,
+    "motherHeight": 159,
+    "targetHeight": "167",
+    "memo": "",
+    "measurements": [
+      { "date": "2019-06-28", "height": 146.6, "weight": 51, "age": "10세4개월", "boneAge": "11세6개월", "pah": "158", "memo": "" },
+      { "date": "2020-02-15", "height": 153.5, "weight": 59, "age": "11세0개월", "boneAge": "11세6-8개월", "pah": "", "memo": "" },
+      { "date": "2020-08-29", "height": 158.6, "weight": 62, "age": "11세6개월", "boneAge": "12세3개월", "pah": "", "memo": "" },
+      { "date": "2021-02-20", "height": 161, "weight": 67, "age": "12세0개월", "boneAge": "12세0개월", "pah": "", "memo": "" },
+      { "date": "2021-12-03", "height": 164.2, "weight": 70, "age": "", "boneAge": "", "pah": "", "memo": "병원기록상 165cm까지만 진행하기로" },
+      { "date": "2021-12-31", "height": 165.2, "weight": 70.9, "age": "", "boneAge": "", "pah": "", "memo": "" }
+    ],
+    "createdAt": "2019-06-28T00:00:00.000Z",
+    "updatedAt": "2021-12-31T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "27734",
+    "name": "민엘리사하은",
+    "gender": "female",
+    "birthDate": "2011-01-07",
+    "fatherHeight": 182,
+    "motherHeight": 166,
+    "targetHeight": "168",
+    "memo": "어렸을때 리듬체조,스키 함",
+    "measurements": [
+      { "date": "2023-12-13", "height": 158.7, "weight": 43.8, "age": "12세11개월", "boneAge": "13세8개월", "pah": "162", "memo": "" },
+      { "date": "2024-06-03", "height": 160.5, "weight": 47.8, "age": "13세4개월", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2024-11-02", "height": 163, "weight": 52.4, "age": "", "boneAge": "", "pah": "", "memo": "엑스레이>무릎성장판 오케이" },
+      { "date": "2025-04-05", "height": 164.1, "weight": 52.5, "age": "", "boneAge": "", "pah": "", "memo": "한달먼저 검사 시행" },
+      { "date": "2025-12-13", "height": 165.6, "weight": 50.9, "age": "", "boneAge": "", "pah": "", "memo": "" }
+    ],
+    "createdAt": "2023-12-13T00:00:00.000Z",
+    "updatedAt": "2025-12-13T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "27120",
+    "name": "박은율",
+    "gender": "female",
+    "birthDate": "2011-03-10",
+    "fatherHeight": 173,
+    "motherHeight": 163,
+    "targetHeight": "165",
+    "memo": "타병원 진단 예상키 155cm\n만성비염 있음",
+    "measurements": [
+      { "date": "2022-11-14", "height": 136.5, "weight": 32, "age": "11세8개월", "boneAge": "11세8개월", "pah": "153", "memo": "루프린 병행 바로 시작" },
+      { "date": "2023-05-06", "height": 140.8, "weight": 53.4, "age": "12세1개월", "boneAge": "11세8개월", "pah": "", "memo": "" },
+      { "date": "2023-10-21", "height": 144, "weight": 35.5, "age": "12세7개월", "boneAge": "11세10개월", "pah": "", "memo": "비염이 심해져, 장 제균작업 후\n유산균, 채소 과일 많이 섭취하도록 권장" },
+      { "date": "2024-04-09", "height": 146.9, "weight": 39, "age": "13세6개월", "boneAge": "11세10개월", "pah": "", "memo": "" },
+      { "date": "2024-10-05", "height": 150.3, "weight": 40.2, "age": "13세6개월", "boneAge": "11세7개월", "pah": "", "memo": "" },
+      { "date": "2025-03-15", "height": 153, "weight": 42.5, "age": "", "boneAge": "", "pah": "", "memo": "" },
+      { "date": "2025-04-12", "height": 154.2, "weight": 42.6, "age": "14세1개월", "boneAge": "11세7개월", "pah": "164", "memo": "" },
+      { "date": "2025-10-18", "height": 156.8, "weight": 46.1, "age": "14세7개월", "boneAge": "12세1개월", "pah": "", "memo": "가슴,음모 발달 시작함" }
+    ],
+    "createdAt": "2022-11-14T00:00:00.000Z",
+    "updatedAt": "2025-10-18T00:00:00.000Z"
+  },
+  {
+    "chartNumber": "27205",
+    "name": "전서우",
+    "gender": "male",
+    "birthDate": "2013-09-18",
+    "fatherHeight": 168,
+    "motherHeight": 158,
+    "targetHeight": "180",
+    "memo": "야구종목 하고 싶어함",
+    "measurements": [
+      { "date": "2023-01-13", "height": 132.5, "weight": 27.9, "age": "9세3개월", "boneAge": "10세0개월", "pah": "168", "memo": "최초 내원일" },
+      { "date": "2023-07-05", "height": 138.2, "weight": 31, "age": "9세9개월", "boneAge": "10세6개월", "pah": "171.1", "memo": "" },
+      { "date": "2024-01-02", "height": 145, "weight": 34.3, "age": "10세3개월", "boneAge": "11세7개월", "pah": "171.1", "memo": "외부에서 별도 측정해옴" },
+      { "date": "2024-01-12", "height": "", "weight": "", "age": "", "boneAge": "", "pah": "", "memo": "아리미덱스 처방 시작" },
+      { "date": "2024-06-29", "height": 147.2, "weight": 36.2, "age": "10세9개월", "boneAge": "12세2개월", "pah": "172", "memo": "" },
+      { "date": "2024-09-07", "height": 148.8, "weight": 37.5, "age": "", "boneAge": "", "pah": "", "memo": "종종 배가 아프다고 하여\n식사때 1-2회 복용 안내" },
+      { "date": "2024-10-12", "height": 149.1, "weight": 39.5, "age": "", "boneAge": "", "pah": "", "memo": "배가 아프다는 이야기를 하여하여\n채소,과일 섭취량을 늘리도록 권장" },
+      { "date": "2024-12-17", "height": 150.3, "weight": 41.7, "age": "11세2개월", "boneAge": "12세5개월", "pah": "173.5", "memo": "" },
+      { "date": "2025-06-28", "height": 155.5, "weight": 46, "age": "11세9개월", "boneAge": "12세7개월", "pah": "173.5", "memo": "" },
+      { "date": "2025-08-23", "height": 157.7, "weight": 46.7, "age": "", "boneAge": "", "pah": "", "memo": "루프린 주사 시작" },
+      { "date": "2025-12-27", "height": 161, "weight": 46.6, "age": "12세3개월", "boneAge": "13세1개월", "pah": "176cm", "memo": "" }
+    ],
+    "createdAt": "2023-01-13T00:00:00.000Z",
+    "updatedAt": "2025-12-27T00:00:00.000Z"
+  }
+]

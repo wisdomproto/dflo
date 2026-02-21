@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 187 성장케어</title>
+    
+    <!-- 설정 파일 (API 키 포함 - .gitignore에 추가됨) -->
+    <script src="config.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .kakao-info {
+            background: #FFF9E6;
+            border-left: 4px solid #FEE500;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .kakao-info svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .kakao-info-text {
+            flex: 1;
+        }
+
+        .kakao-info-text p {
+            color: #333;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .kakao-info-text strong {
+            color: #000;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group input:disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-signup:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-signup:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="logo">
+            <img src="images/lpcare-logo.png" alt="LPCare" style="width: 80px; height: 80px; margin: 0 auto 15px; display: block; border-radius: 16px;">
+            <h1>LPCare</h1>
+            <p>회원가입</p>
+        </div>
+
+        <div class="kakao-info" id="kakaoInfo" style="display: none;">
+            <svg viewBox="0 0 24 24" fill="#FEE500">
+                <path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/>
+            </svg>
+            <div class="kakao-info-text">
+                <strong>카카오톡 간편 가입</strong>
+                <p>카카오 계정 정보로 빠르게 가입하세요.</p>
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">
+                    이름<span class="required">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="이름을 입력하세요"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    이메일
+                </label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="example@example.com"
+                >
+                <div class="help-text">선택사항 - 비밀번호 찾기에 사용됩니다</div>
+            </div>
+
+            <div class="form-group" id="passwordGroup">
+                <label for="password">
+                    비밀번호<span class="required">*</span>
+                </label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="비밀번호를 입력하세요 (최소 4자)"
+                    minlength="4"
+                    required
+                >
+            </div>
+
+            <div class="form-group" id="passwordConfirmGroup">
+                <label for="passwordConfirm">
+                    비밀번호 확인<span class="required">*</span>
+                </label>
+                <input 
+                    type="password" 
+                    id="passwordConfirm" 
+                    name="passwordConfirm" 
+                    placeholder="비밀번호를 다시 입력하세요"
+                    minlength="4"
+                    required
+                >
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">
+                        연락처
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="010-1234-5678"
+                        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="role">
+                        역할<span class="required">*</span>
+                    </label>
+                    <select id="role" name="role" required>
+                        <option value="parent">부모</option>
+                        <option value="doctor">의사</option>
+                        <option value="admin">관리자</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-signup" id="signupBtn">
+                회원가입 완료
+            </button>
+        </form>
+
+        <div class="back-link">
+            <a href="login.html">← 로그인 페이지로 돌아가기</a>
+        </div>
+    </div>
+
+    <script>
+        // ================================================
+        // 설정 파일 확인
+        // ================================================
+        
+        if (typeof CONFIG === 'undefined') {
+            alert('⚠️ 설정 파일이 없습니다!\n\n1. config.example.js를 복사하여 config.js 생성\n2. config.js에 실제 API 키 입력\n3. 페이지 새로고침');
+            throw new Error('config.js 파일이 필요합니다.');
+        }
+
+        // ================================================
+        // Supabase 클라이언트 초기화
+        // ================================================
+        
+        var supabase = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+
+        // ================================================
+        // 카카오 데이터 확인 및 폼 자동 완성
+        // ================================================
+        
+        const kakaoData = sessionStorage.getItem('kakao_signup_data');
+        let isKakaoSignup = false;
+        
+        if (kakaoData) {
+            try {
+                const data = JSON.parse(kakaoData);
+                isKakaoSignup = true;
+                
+                // 카카오 정보 표시
+                document.getElementById('kakaoInfo').style.display = 'flex';
+                
+                // 폼 자동 완성
+                if (data.name) document.getElementById('name').value = data.name;
+                if (data.email) document.getElementById('email').value = data.email;
+                
+                // 카카오 가입의 경우 비밀번호 필드 숨김
+                document.getElementById('passwordGroup').style.display = 'none';
+                document.getElementById('passwordConfirmGroup').style.display = 'none';
+                
+                console.log('✅ 카카오 가입 모드:', data);
+            } catch (error) {
+                console.error('카카오 데이터 파싱 오류:', error);
+            }
+        }
+
+        // ================================================
+        // 회원가입 폼 제출
+        // ================================================
+        
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim() || null;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+            const phone = document.getElementById('phone').value.trim() || null;
+            const role = document.getElementById('role').value;
+            
+            const signupBtn = document.getElementById('signupBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // 에러 메시지 초기화
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // 카카오 가입이 아닌 경우 비밀번호 확인
+            if (!isKakaoSignup) {
+                if (password !== passwordConfirm) {
+                    errorMessage.textContent = '비밀번호가 일치하지 않습니다.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                if (password.length < 4) {
+                    errorMessage.textContent = '비밀번호는 최소 4자 이상이어야 합니다.';
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+            }
+
+            // 버튼 비활성화
+            signupBtn.disabled = true;
+            signupBtn.textContent = '가입 처리 중...';
+
+            try {
+                // 사용자 정보 객체 생성
+                const userData = {
+                    name: name,
+                    email: email,
+                    password: isKakaoSignup ? null : password,
+                    phone: phone,
+                    role: role,
+                    login_type: isKakaoSignup ? 'kakao' : 'email',
+                    created_at: new Date().toISOString()
+                };
+
+                // 카카오 가입인 경우 kakao_id 추가
+                if (isKakaoSignup) {
+                    const kakaoSignupData = JSON.parse(kakaoData);
+                    userData.kakao_id = kakaoSignupData.kakao_id;
+                    userData.profile_image = kakaoSignupData.profile_image;
+                    
+                    // 이메일이 비어있으면 카카오 데이터에서 가져오기
+                    if (!userData.email && kakaoSignupData.email) {
+                        userData.email = kakaoSignupData.email;
+                    }
+                } else {
+                    // 일반 가입인 경우 이메일 형식 생성
+                    if (!userData.email) {
+                        // 임시 이메일 생성
+                        const randomId = Math.floor(Math.random() * 10000);
+                        userData.email = `user${randomId}@example.com`;
+                    }
+                }
+
+                // DB에 사용자 등록
+                const { data: newUser, error: insertError } = await supabase
+                    .from('users')
+                    .insert([userData])
+                    .select()
+                    .single();
+
+                if (insertError) {
+                    console.error('❌ 회원가입 실패:', insertError);
+                    
+                    // 중복 에러 처리
+                    if (insertError.code === '23505') {
+                        if (insertError.message.includes('email')) {
+                            throw new Error('이미 사용 중인 이메일입니다.');
+                        } else if (insertError.message.includes('kakao_id')) {
+                            throw new Error('이미 가입된 카카오 계정입니다.');
+                        } else {
+                            throw new Error('중복된 정보가 있습니다.');
+                        }
+                    }
+                    
+                    throw insertError;
+                }
+
+                console.log('✅ 회원가입 성공:', newUser);
+
+                // 카카오 임시 데이터 삭제
+                if (isKakaoSignup) {
+                    sessionStorage.removeItem('kakao_signup_data');
+                }
+
+                // 성공 메시지
+                successMessage.textContent = '회원가입이 완료되었습니다! 로그인 페이지로 이동합니다...';
+                successMessage.style.display = 'block';
+
+                // 2초 후 로그인 페이지로 이동
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+
+            } catch (error) {
+                console.error('❌ 회원가입 오류:', error);
+                errorMessage.textContent = error.message || '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.';
+                errorMessage.style.display = 'block';
+                
+                // 버튼 활성화
+                signupBtn.disabled = false;
+                signupBtn.textContent = '회원가입 완료';
+            }
+        });
+
+        console.log('✅ 회원가입 페이지 로드 완료');
+    </script>
+</body>
+</html>

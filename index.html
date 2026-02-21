@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>187 성장케어 - 로그인</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        .logo .subtitle {
+            color: #666;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .logo p {
+            color: #999;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-box li {
+            padding: 6px 0;
+            color: #555;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box li::before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .info-box code {
+            background: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .quick-login {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .quick-login h4 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .quick-btn {
+            padding: 10px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+
+            .logo h1 {
+                font-size: 28px;
+            }
+
+            .quick-buttons {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+
+            .quick-btn {
+                padding: 8px;
+                font-size: 13px;
+            }
+        }
+        
+        /* 관리자 페이지 아이콘 */
+        .admin-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .admin-icon:hover {
+            background: white;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .admin-icon:active {
+            transform: scale(0.95) rotate(90deg);
+        }
+        
+        @media (max-width: 480px) {
+            .admin-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 관리자 페이지 아이콘 -->
+    <div class="admin-icon" onclick="openAdminPage()" title="관리자 페이지">
+        ⚙️
+    </div>
+    
+    <div class="login-container">
+        <div class="logo">
+            <h1>🌱 187 성장케어</h1>
+            <p class="subtitle">연세새봄의원</p>
+            <p>우리 아이 성장 관리 시작</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="parentId">부모 ID</label>
+                <input 
+                    type="number" 
+                    id="parentId" 
+                    name="parentId" 
+                    placeholder="숫자 입력 (예: 1, 46, 100)"
+                    min="1"
+                    required
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="기본값: 1234"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button type="submit" class="btn-login" id="loginBtn">
+                로그인
+            </button>
+        </form>
+
+        <div class="quick-login">
+            <h4>⚡ 빠른 로그인</h4>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="quickLogin(1)">1</button>
+                <button class="quick-btn" onclick="quickLogin(2)">2</button>
+                <button class="quick-btn" onclick="quickLogin(3)">3</button>
+                <button class="quick-btn" onclick="quickLogin(4)">4</button>
+                <button class="quick-btn" onclick="quickLogin(5)">5</button>
+                <button class="quick-btn" onclick="quickLogin(10)">10</button>
+                <button class="quick-btn" onclick="quickLogin(15)">15</button>
+                <button class="quick-btn" onclick="quickLogin(20)">20</button>
+                <button class="quick-btn" onclick="quickLogin(25)">25</button>
+                <button class="quick-btn" onclick="quickLogin(30)">30</button>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 로그인 안내</h3>
+            <ul>
+                <li>부모 ID: 1 이상의 숫자 (예: <code>1</code>, <code>46</code>, <code>100</code>)</li>
+                <li>기본 비밀번호: <code>1234</code></li>
+                <li>빠른 로그인 버튼으로 간편하게!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Supabase 클라이언트 초기화
+        const SUPABASE_URL = 'https://mufjnulwnppgvibmmbfo.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_3hm8ooVxIZvENDh-D_lWNA_sdPHg9xk';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // 세션 키
+        const SESSION_KEY = 'growth_care_user';
+        const CHILDREN_KEY = 'growth_care_children';
+
+        // 이미 로그인되어 있는지 확인
+        const existingUser = sessionStorage.getItem(SESSION_KEY);
+        if (existingUser) {
+            try {
+                const user = JSON.parse(existingUser);
+                if (user.role === 'admin' || user.role === 'doctor') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'home.html';
+                }
+            } catch (error) {
+                console.error('세션 파싱 오류:', error);
+            }
+        }
+
+        // 빠른 로그인
+        function quickLogin(parentId) {
+            document.getElementById('parentId').value = parentId;
+            document.getElementById('password').value = '1234';
+            document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        }
+
+        // 로그인 폼 제출
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const parentId = parseInt(document.getElementById('parentId').value);
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // 유효성 검사 - 숫자만 확인 (상한 제거)
+            if (!parentId || parentId < 1) {
+                errorMessage.textContent = '부모 ID는 1 이상의 숫자를 입력해주세요.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // 버튼 비활성화
+            loginBtn.disabled = true;
+            loginBtn.textContent = '로그인 중...';
+            errorMessage.style.display = 'none';
+
+            try {
+                // 부모 ID를 이메일로 변환 (0001@example.com 형식)
+                const email = `${String(parentId).padStart(4, '0')}@example.com`;
+
+                console.log('로그인 시도:', email);
+
+                // Supabase에서 사용자 찾기
+                const { data: users, error: userError } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('email', email);
+
+                if (userError || !users || users.length === 0) {
+                    console.error('사용자 찾기 실패:', userError);
+                    throw new Error('부모 ID를 찾을 수 없습니다.');
+                }
+
+                const user = users[0];
+
+                // 디버깅: 비밀번호 확인
+                console.log('🔍 DB 비밀번호:', user.password, '(타입:', typeof user.password, ')');
+                console.log('🔍 입력 비밀번호:', password, '(타입:', typeof password, ')');
+                console.log('🔍 비교 결과:', user.password === password);
+
+                // 비밀번호 확인 (문자열로 변환 후 비교)
+                if (String(user.password).trim() !== String(password).trim()) {
+                    console.error('❌ 비밀번호 불일치!');
+                    throw new Error('비밀번호가 올바르지 않습니다.');
+                }
+
+                console.log('✅ 사용자 찾기 성공:', user.name);
+
+                // 세션에 저장
+                sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+
+                // 아이 데이터 로딩
+                console.log('아이 데이터 및 측정 기록 로딩 중...');
+                const { data: children, error: childrenError } = await supabaseClient
+                    .from('children')
+                    .select(`
+                        *,
+                        child_required_info (
+                            father_height,
+                            mother_height,
+                            target_height
+                        )
+                    `)
+                    .eq('parent_id', user.id);
+
+                if (childrenError) {
+                    console.error('❌ 아이 데이터 로딩 실패:', childrenError);
+                } else {
+                    console.log('✅ 아이 데이터 로딩 완료:', children ? children.length : 0, '명');
+                    console.log('📋 아이 데이터 상세:', children);
+                    
+                    // 각 아이의 측정 기록도 함께 로딩
+                    if (children && children.length > 0) {
+                        console.log('📊 각 아이의 측정 기록 로딩 중...');
+                        
+                        for (const child of children) {
+                            console.log(`  🔍 ${child.name} (ID: ${child.id})의 측정 기록 조회 중...`);
+                            
+                            const { data: measurements, error: measurementsError } = await supabaseClient
+                                .from('measurements')
+                                .select('*')
+                                .eq('child_id', child.id)
+                                .order('measured_date', { ascending: true });
+                            
+                            if (measurementsError) {
+                                console.error(`  ❌ ${child.name}: 측정 기록 로딩 오류:`, measurementsError);
+                                child.measurements = [];
+                            } else if (measurements && measurements.length > 0) {
+                                child.measurements = measurements;
+                                console.log(`  ✅ ${child.name}: 측정 기록 ${measurements.length}개 로드 완료`);
+                                console.log(`    첫 번째 측정:`, measurements[0]);
+                            } else {
+                                child.measurements = [];
+                                console.log(`  ⚠️ ${child.name}: 측정 기록 0개 (DB에 데이터 없음)`);
+                            }
+                        }
+                        
+                        console.log('📋 최종 아이 데이터 (measurements 포함):', children);
+                        
+                        // 아이 데이터를 세션에 저장
+                        sessionStorage.setItem(CHILDREN_KEY, JSON.stringify(children));
+                        console.log('✅ 아이 데이터 및 측정 기록 저장 완료:', CHILDREN_KEY);
+                        
+                        // 저장 후 즉시 확인
+                        const saved = JSON.parse(sessionStorage.getItem(CHILDREN_KEY));
+                        console.log('🔍 저장 확인:', saved.map(c => `${c.name}(${c.measurements?.length || 0}개)`).join(', '));
+                    } else {
+                        console.warn('⚠️ 아이 데이터가 비어있습니다.');
+                    }
+                }
+
+                // 로그인 성공
+                console.log('✅ 로그인 성공!');
+
+                // 역할에 따라 리다이렉트
+                if (user.role === 'admin' || user.role === 'doctor') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    // 부모는 home.html로
+                    window.location.href = 'home.html';
+                }
+
+            } catch (error) {
+                console.error('로그인 실패:', error);
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                
+                // 버튼 활성화
+                loginBtn.disabled = false;
+                loginBtn.textContent = '로그인';
+            }
+        });
+
+        // 관리자 페이지 열기
+        function openAdminPage() {
+            const password = prompt('관리자 비밀번호를 입력하세요:');
+            
+            if (password === null) {
+                // 취소 버튼 클릭
+                return;
+            }
+            
+            if (password === '1234') {
+                // 비밀번호 일치
+                console.log('✅ 관리자 인증 성공');
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                // 비밀번호 불일치
+                alert('❌ 비밀번호가 올바르지 않습니다.');
+            }
+        }
+
+        console.log('✅ 로그인 페이지 로드 완료');
+    </script>
+</body>
+</html>

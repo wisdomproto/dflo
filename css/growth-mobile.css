@@ -1,0 +1,325 @@
+/* 성장 진단 모바일 스타일 */
+
+/* 차트 섹션 고정 */
+.chart-section-fixed {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.chart-wrapper-fixed {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 300px;
+    max-height: 400px;
+    position: relative;
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+.chart-wrapper-fixed canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+.child-info-display {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 2px;
+}
+
+.info-row {
+    display: flex;
+    gap: 4px;
+}
+
+.info-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.chart-tab {
+    padding: 8px 16px;
+    background: var(--bg-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.chart-tab.active {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.gender-tab {
+    flex: 1;
+    padding: 10px 16px;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gender-tab.active {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.gender-tab:active {
+    transform: scale(0.98);
+}
+
+.chart-modal-content {
+    max-height: 95vh;
+    border-radius: 24px 24px 0 0;
+}
+
+.chart-modal-content .modal-header {
+    border-radius: 24px 24px 0 0;
+}
+
+.chart-modal-content .modal-body {
+    max-height: calc(95vh - 80px);
+    overflow-y: auto;
+}
+
+.record-item {
+    padding: 16px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.record-item.highlighted {
+    border-color: #14b8a6;
+    background: #f0fdfa;
+    box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15);
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.record-date {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.record-badge {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    background: var(--white);
+    border-radius: 12px;
+    color: var(--text-light);
+}
+
+.record-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.record-stat {
+    text-align: center;
+}
+
+.record-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+    line-height: 1.2;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.record-stat-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-color);
+    word-break: keep-all;
+}
+
+.percentile-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.percentile-low {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.percentile-normal {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.percentile-high {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.btn-delete {
+    width: 100%;
+    padding: 10px;
+    background: #fee2e2;
+    color: #dc2626;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.btn-delete:active {
+    background: #fecaca;
+}
+
+/* 입력 탭 스타일 */
+.input-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    background: var(--bg-color);
+    padding: 4px;
+    border-radius: 12px;
+}
+
+.input-tab {
+    flex: 1;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.input-tab.active {
+    background: var(--white);
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-content {
+    display: none;
+}
+
+.input-content.active {
+    display: block;
+}
+
+/* 컴팩트한 폼 스타일 */
+.form-row {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.form-row:has(.form-group.compact:nth-child(2)) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-row:has(.form-group.compact:nth-child(3)) {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-group.compact {
+    margin-bottom: 0;
+}
+
+.form-group.compact label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.form-group.compact input,
+.form-group.compact select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    background: var(--white);
+}
+
+.form-group.compact input:focus,
+.form-group.compact select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* 예상키 결과 스타일 */
+.prediction-result {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    border-radius: 16px;
+    color: var(--white);
+    text-align: center;
+}
+
+.result-header {
+    font-size: 0.875rem;
+    font-weight: 600;
+    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+.result-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.result-range {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin-bottom: 16px;
+}
+
+.result-note {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: left;
+}

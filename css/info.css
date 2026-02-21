@@ -1,0 +1,1323 @@
+/* ===== 정보 페이지 전용 스타일 ===== */
+
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(to bottom, #f0f9ff 0%, #e0f2fe 100%);
+    color: #333;
+}
+
+/* 헤더 */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.header-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* 메인 컨텐츠 */
+.main-content {
+    padding: 20px 16px 100px 16px;
+    background: transparent;
+    min-height: 100vh;
+}
+
+/* 섹션 탭 */
+.section-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.section-tab {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.section-tab:hover {
+    background: #f8f9fa;
+}
+
+.section-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* 컨텐츠 섹션 */
+.content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* 카테고리 필터 */
+.category-filter {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0 0 16px 0;
+    margin-bottom: 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.category-filter::-webkit-scrollbar {
+    display: none;
+}
+
+.category-btn {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.category-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.category-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+    color: white;
+}
+
+/* 섹션 헤더 */
+.section-header {
+    margin-bottom: 16px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    color: #333;
+}
+
+.section-header p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* 성장 가이드 카드 */
+.guide-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.guide-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.guide-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.guide-card-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.guide-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.guide-card-subtitle {
+    font-size: 12px;
+    color: #999;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.guide-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.guide-card-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+    background: #f0f0f0;
+    color: #666;
+    border-radius: 10px;
+}
+
+.guide-card-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 레시피 카드 */
+.recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.recipe-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.recipe-image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.recipe-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.recipe-card:hover .recipe-image img {
+    transform: scale(1.05);
+}
+
+.recipe-content {
+    padding: 16px;
+}
+
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.recipe-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.recipe-number {
+    font-size: 11px;
+    color: #667eea;
+    background: #f0f3ff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 8px;
+}
+
+.recipe-benefit {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+    margin: 8px 0 12px 0;
+}
+
+.recipe-nutrients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.nutrient-tag {
+    font-size: 11px;
+    color: #667eea;
+    background: #f0f3ff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* 레시피 상세 모달 */
+.recipe-detail {
+    padding: 20px;
+}
+
+.recipe-detail-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.recipe-detail-image {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    margin: 0 auto 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.recipe-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recipe-detail-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.recipe-number-badge {
+    display: inline-block;
+    font-size: 12px;
+    color: #667eea;
+    background: #f0f3ff;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-weight: 600;
+}
+
+.recipe-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.recipe-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.recipe-benefit-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.recipe-nutrients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.nutrient-badge {
+    font-size: 13px;
+    color: #667eea;
+    background: white;
+    padding: 8px 14px;
+    border-radius: 16px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.recipe-ingredients {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recipe-ingredients li {
+    font-size: 14px;
+    color: #666;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.recipe-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: step-counter;
+}
+
+.recipe-steps li {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.recipe-steps li strong {
+    color: #667eea;
+    margin-right: 4px;
+}
+
+.recipe-tips {
+    background: linear-gradient(135deg, #fff5e6 0%, #ffe6f0 100%);
+    border-left: 4px solid #ffb84d;
+}
+
+.recipe-tips h3 {
+    color: #ff8c00;
+}
+
+.recipe-tips p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.recipe-science {
+    background: linear-gradient(135deg, #e6f3ff 0%, #f0e6ff 100%);
+    border-left: 4px solid #667eea;
+}
+
+.recipe-science h3 {
+    color: #667eea;
+}
+
+/* FAQ 섹션 */
+.faq-section {
+    margin-top: 32px;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 16px;
+    background: white;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.faq-question:hover {
+    background: #f8f9fa;
+}
+
+.faq-icon {
+    font-size: 18px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    padding: 0 16px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 16px 16px 16px;
+}
+
+.faq-answer-content {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+    white-space: pre-line;
+}
+
+/* 사례 모달 - 전체 화면 */
+#caseDetailModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: #ffffff !important;
+}
+
+#caseDetailModal.active {
+    display: block;
+}
+
+#caseDetailModal .modal-close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #ffffff !important;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+#caseDetailModal .modal-body {
+    height: 100vh;
+    overflow-y: auto;
+    padding: 0;
+    padding-bottom: 40px;
+}
+
+/* 차트 영역 - 상단 고정 */
+.chart-section-fixed {
+    position: sticky;
+    top: 0;
+    background: #ffffff !important;
+    z-index: 50;
+    padding: 16px;
+    border-bottom: 2px solid #e5e7eb;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.chart-section-fixed h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.chart-wrapper-fixed {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: 300px;
+    max-height: 400px;
+    position: relative;
+    background: #ffffff !important;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.chart-wrapper-fixed canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+/* 모달 섹션 */
+.modal-section {
+    padding: 20px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #ffffff !important;
+}
+
+.modal-section:last-child {
+    border-bottom: none;
+}
+
+.modal-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+/* 일반 모달 (성장 가이드, 레시피) */
+.modal:not(#caseDetailModal) {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.modal:not(#caseDetailModal).active {
+    display: block;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal:not(#caseDetailModal) .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 16px;
+    max-width: 90%;
+    max-height: 80vh;
+    width: 500px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.modal:not(#caseDetailModal) .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: white;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.modal:not(#caseDetailModal) .modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+/* 모달 내용 스타일 */
+.modal-header {
+    padding: 20px 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.modal-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin: 8px 0 0 0;
+}
+
+.modal-header p {
+    font-size: 14px;
+    color: #999;
+    margin: 8px 0 0 0;
+}
+
+.modal-header p span {
+    margin-right: 12px;
+}
+
+.modal-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 8px 0;
+}
+
+.modal-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
+
+.modal-thumbnail {
+    width: 100%;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.modal-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.modal-meta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 16px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.modal-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #666;
+}
+
+.modal-summary {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.modal-summary p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+}
+
+.modal-key-points {
+    margin-bottom: 24px;
+}
+
+.modal-key-points h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.modal-key-points ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.modal-key-points li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.modal-detail-section {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.modal-detail-section h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.modal-detail-section p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+}
+
+.modal-cta {
+    text-align: center;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    margin-top: 24px;
+}
+
+.modal-cta-button {
+    display: inline-block;
+    padding: 12px 32px;
+    background: white;
+    color: #667eea;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.modal-cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .guide-cards {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        max-height: 90vh;
+    }
+}
+
+/* 하단 네비게이션 */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0 12px 0;
+    z-index: 1001;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #999;
+    padding: 4px 0;
+    transition: all 0.3s;
+}
+
+.nav-item.active {
+    color: #667eea;
+}
+
+.nav-icon {
+    font-size: 24px;
+    transition: transform 0.3s;
+}
+
+.nav-item.active .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-label {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* 카카오톡 상담하기 스타일 */
+#kakaoConsult {
+    color: #3c1e1e;
+}
+
+#kakaoConsult .nav-icon {
+    background: linear-gradient(135deg, #fee500 0%, #ffd500 100%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 2px 8px rgba(254, 229, 0, 0.4);
+}
+
+#kakaoConsult:hover .nav-icon {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.6);
+}
+
+#kakaoConsult .nav-label {
+    color: #3c1e1e;
+    font-weight: 700;
+}
+
+/* 사례 카드 */
+.cases-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.case-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.15);
+}
+
+.case-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.case-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.case-gender-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-male {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-female {
+    background: #fce7f3;
+    color: #be123c;
+}
+
+.case-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.case-stat {
+    text-align: center;
+}
+
+.case-stat-label {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.case-stat-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+}
+
+.case-stat-value.highlight {
+    color: #667eea;
+}
+
+.case-stat-value.success {
+    color: #10b981;
+}
+
+.case-summary {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* 사례 상세 모달 */
+.case-detail {
+    padding: 20px;
+}
+
+.case-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.case-detail-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.case-detail-summary {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.summary-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.summary-value.highlight {
+    color: #667eea;
+}
+
+.case-detail-section {
+    margin-bottom: 20px;
+}
+
+.case-detail-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.record-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.record-number {
+    font-size: 13px;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.record-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.record-data {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.record-memo {
+    font-size: 12px;
+    color: #999;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.case-detail-footer {
+    margin-top: 24px;
+}
+
+.btn-full-case {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.2s;
+}
+
+.btn-full-case:hover {
+    transform: scale(1.02);
+}
+
+.case-modal-content {
+    max-width: 700px;
+}
+
+/* 사례 모달 상세 스타일 */
+.modal-header {
+    background: #ffffff !important;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 60px 16px 20px 16px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.case-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin: 8px 0;
+}
+
+.modal-header p {
+    font-size: 14px;
+    color: #666;
+}
+
+.modal-header p span {
+    margin: 0 8px;
+}
+
+.modal-section {
+    margin-bottom: 24px;
+}
+
+.modal-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+
+.chart-section .chart-wrapper {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.measurements-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.measurement-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.measurement-card:hover {
+    background: #e9ecef;
+}
+
+.measurement-card.highlight {
+    background: #fff5e6;
+    border: 2px solid #ff9500;
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.measurement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.measurement-number {
+    font-size: 14px;
+    font-weight: 700;
+    color: #667eea;
+    background: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.measurement-date {
+    font-size: 13px;
+    color: #999;
+}
+
+.measurement-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.measurement-data div {
+    padding: 8px;
+    background: white;
+    border-radius: 8px;
+}
+
+.measurement-memo {
+    margin-top: 12px;
+    padding: 12px;
+    background: white;
+    border-left: 3px solid #667eea;
+    border-radius: 6px;
+}
+
+.measurement-memo strong {
+    font-size: 13px;
+    color: #667eea;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.measurement-memo p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.patient-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.patient-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #999;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.info-value.highlight {
+    color: #667eea;
+}
+
+.memo-box {
+    background: #fff9e6;
+    border-left: 4px solid #ffb84d;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.memo-box p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+

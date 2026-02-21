@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>187 성장케어 - 데이터베이스 설계</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin: 30px 0 15px 0;
+            font-size: 1.4rem;
+        }
+        
+        /* ERD 스타일 */
+        .erd-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            overflow-x: auto;
+            margin-bottom: 40px;
+        }
+        
+        .erd {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            min-width: 1200px;
+        }
+        
+        .erd-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        
+        .table-box {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            min-width: 320px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .table-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+        }
+        
+        .table-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 9px 9px 0 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .table-body {
+            padding: 0;
+        }
+        
+        .field {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .field:last-child {
+            border-bottom: none;
+        }
+        
+        .field-name {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+        
+        .field-type {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-family: 'Courier New', monospace;
+            background: #f0f3ff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        
+        .field-required {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        
+        .field-key {
+            color: #f39c12;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        /* 관계선 */
+        .relationship {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #764ba2;
+            font-weight: bold;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .relationship::before,
+        .relationship::after {
+            content: '';
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .relationship span {
+            padding: 8px 20px;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 20px;
+            margin: 0 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* 테이블 설명 */
+        .table-description {
+            background: #f0f3ff;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .table-description strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* 설문지 매핑 */
+        .survey-mapping {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .survey-mapping h4 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        
+        .mapping-item {
+            padding: 10px;
+            background: white;
+            margin: 8px 0;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mapping-item code {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+        }
+        
+        /* SQL 예제 */
+        .sql-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .sql-keyword {
+            color: #c678dd;
+            font-weight: bold;
+        }
+        
+        .sql-type {
+            color: #e5c07b;
+        }
+        
+        .sql-string {
+            color: #98c379;
+        }
+        
+        .sql-comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+        
+        /* 범례 */
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .pk { background: #f39c12; }
+        .fk { background: #3498db; }
+        .required { background: #e74c3c; }
+        .optional { background: #95a5a6; }
+        
+        /* 반응형 */
+        @media (max-width: 1200px) {
+            .erd {
+                min-width: 100%;
+            }
+            
+            .erd-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .table-box {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗄️ 187 성장케어 데이터베이스 설계</h1>
+        <p class="subtitle">연세새봄의원 성장 클리닉 - 회원 및 환자 관리 시스템</p>
+        
+        <!-- 범례 -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-icon pk"></div>
+                <span>🔑 Primary Key (PK)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon fk"></div>
+                <span>🔗 Foreign Key (FK)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon required"></div>
+                <span>⚠️ Required (필수)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon optional"></div>
+                <span>✅ Optional (선택)</span>
+            </div>
+        </div>
+        
+        <!-- ERD -->
+        <div class="section">
+            <h2>📊 Entity Relationship Diagram (ERD)</h2>
+            
+            <div class="erd-container">
+                <div class="erd">
+                    <!-- 첫 번째 줄: 회원 -->
+                    <div class="erd-row">
+                        <div class="table-box">
+                            <div class="table-header">
+                                👤 users (회원)
+                            </div>
+                            <div class="table-body">
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔑 PK</span>
+                                        id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        email
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        password_hash
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">parent_name</span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">phone</span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">role</span>
+                                    <span class="field-type">ENUM</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">created_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">updated_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relationship">
+                        <span>1 : N (한 회원이 여러 아이를 가질 수 있음)</span>
+                    </div>
+                    
+                    <!-- 두 번째 줄: 아이(환자) -->
+                    <div class="erd-row">
+                        <div class="table-box">
+                            <div class="table-header">
+                                👶 children (아이/환자)
+                            </div>
+                            <div class="table-body">
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔑 PK</span>
+                                        id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔗 FK</span>
+                                        user_id
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        name
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        gender
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">ENUM</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        birth_date
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DATE</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">chart_number</span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">created_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">updated_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relationship">
+                        <span>1 : 1 (한 아이는 하나의 필수 정보를 가짐)</span>
+                    </div>
+                    
+                    <!-- 세 번째 줄: 필수 정보 -->
+                    <div class="erd-row">
+                        <div class="table-box">
+                            <div class="table-header">
+                                📋 child_required_info (필수 정보)
+                            </div>
+                            <div class="table-body">
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔑 PK</span>
+                                        id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔗 FK</span>
+                                        child_id
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        birth_weeks
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        birth_weight
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">birth_notes</span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        current_height
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        current_weight
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">last_year_growth</span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">created_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">updated_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relationship">
+                        <span>1 : 1 (한 아이는 성별에 따라 하나의 선택 정보를 가짐)</span>
+                    </div>
+                    
+                    <!-- 네 번째 줄: 선택 정보 (남아/여아) -->
+                    <div class="erd-row">
+                        <div class="table-box">
+                            <div class="table-header">
+                                🚹 child_optional_male (남아 선택 정보)
+                            </div>
+                            <div class="table-body">
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔑 PK</span>
+                                        id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔗 FK</span>
+                                        child_id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">recent_rapid_growth</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">recent_slow_growth</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">voice_change</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">voice_change_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">armpit_hair</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">armpit_hair_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">pubic_hair</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">pubic_hair_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">genital_development</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">genital_development_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="table-box">
+                            <div class="table-header">
+                                🚺 child_optional_female (여아 선택 정보)
+                            </div>
+                            <div class="table-body">
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔑 PK</span>
+                                        id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔗 FK</span>
+                                        child_id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">recent_rapid_growth</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">recent_slow_growth</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">breast_development</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">breast_development_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">armpit_hair</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">armpit_hair_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">pubic_hair</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">pubic_hair_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">menarche</span>
+                                    <span class="field-type">BOOLEAN</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">menarche_age</span>
+                                    <span class="field-type">INTEGER</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 다섯 번째 줄: 성장 기록 -->
+                    <div class="relationship">
+                        <span>1 : N (한 아이는 여러 성장 기록을 가질 수 있음)</span>
+                    </div>
+                    
+                    <div class="erd-row">
+                        <div class="table-box">
+                            <div class="table-header">
+                                📈 growth_records (성장 기록)
+                            </div>
+                            <div class="table-body">
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔑 PK</span>
+                                        id
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        <span class="field-key">🔗 FK</span>
+                                        child_id
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">UUID</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        measured_date
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DATE</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        age_at_measurement
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">
+                                        height
+                                        <span class="field-required">*</span>
+                                    </span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">weight</span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">height_percentile</span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">predicted_adult_height</span>
+                                    <span class="field-type">DECIMAL</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">notes</span>
+                                    <span class="field-type">TEXT</span>
+                                </div>
+                                <div class="field">
+                                    <span class="field-name">created_at</span>
+                                    <span class="field-type">TIMESTAMP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 설문지 매핑 -->
+        <div class="section">
+            <h2>📝 설문지 필드 매핑</h2>
+            
+            <div class="survey-mapping">
+                <h4>🔹 필수 정보 (남아/여아 공통)</h4>
+                <div class="mapping-item">
+                    <span>1. 이름</span> → <code>children.name</code>
+                </div>
+                <div class="mapping-item">
+                    <span>2. 생년월일</span> → <code>children.birth_date</code>
+                </div>
+                <div class="mapping-item">
+                    <span>3. 출생 당시 임신 주수</span> → <code>child_required_info.birth_weeks</code>
+                </div>
+                <div class="mapping-item">
+                    <span>3. 출생 당시 몸무게</span> → <code>child_required_info.birth_weight</code>
+                </div>
+                <div class="mapping-item">
+                    <span>3. 출생시 특이사항</span> → <code>child_required_info.birth_notes</code>
+                </div>
+                <div class="mapping-item">
+                    <span>4. 현재 키</span> → <code>child_required_info.current_height</code>
+                </div>
+                <div class="mapping-item">
+                    <span>4. 현재 몸무게</span> → <code>child_required_info.current_weight</code>
+                </div>
+                <div class="mapping-item">
+                    <span>4. 작년 한해 동안 성장한 키</span> → <code>child_required_info.last_year_growth</code>
+                </div>
+            </div>
+            
+            <div class="survey-mapping">
+                <h4>🔹 선택 정보 - 남아</h4>
+                <div class="mapping-item">
+                    <span>최근 키가 부쩍 많이 자란다</span> → <code>child_optional_male.recent_rapid_growth</code>
+                </div>
+                <div class="mapping-item">
+                    <span>최근 키가 크는 속도가 급격히 느려졌다</span> → <code>child_optional_male.recent_slow_growth</code>
+                </div>
+                <div class="mapping-item">
+                    <span>목소리가 변성되기 시작했다</span> → <code>child_optional_male.voice_change</code>
+                </div>
+                <div class="mapping-item">
+                    <span>목소리 변성 나이</span> → <code>child_optional_male.voice_change_age</code>
+                </div>
+                <div class="mapping-item">
+                    <span>겨드랑이 털이 생겼다</span> → <code>child_optional_male.armpit_hair</code>
+                </div>
+                <div class="mapping-item">
+                    <span>겨드랑이 털 나이</span> → <code>child_optional_male.armpit_hair_age</code>
+                </div>
+                <div class="mapping-item">
+                    <span>음모가 생겼다</span> → <code>child_optional_male.pubic_hair</code>
+                </div>
+                <div class="mapping-item">
+                    <span>음모 나이</span> → <code>child_optional_male.pubic_hair_age</code>
+                </div>
+                <div class="mapping-item">
+                    <span>고환 및 음경이 커지기 시작했다</span> → <code>child_optional_male.genital_development</code>
+                </div>
+                <div class="mapping-item">
+                    <span>고환/음경 발달 나이</span> → <code>child_optional_male.genital_development_age</code>
+                </div>
+            </div>
+            
+            <div class="survey-mapping">
+                <h4>🔹 선택 정보 - 여아</h4>
+                <div class="mapping-item">
+                    <span>최근 키가 부쩍 많이 자란다</span> → <code>child_optional_female.recent_rapid_growth</code>
+                </div>
+                <div class="mapping-item">
+                    <span>최근 키가 크는 속도가 급격히 느려졌다</span> → <code>child_optional_female.recent_slow_growth</code>
+                </div>
+                <div class="mapping-item">
+                    <span>가슴 발달이 시작되었다</span> → <code>child_optional_female.breast_development</code>
+                </div>
+                <div class="mapping-item">
+                    <span>가슴 발달 나이</span> → <code>child_optional_female.breast_development_age</code>
+                </div>
+                <div class="mapping-item">
+                    <span>겨드랑이 털이 생겼다</span> → <code>child_optional_female.armpit_hair</code>
+                </div>
+                <div class="mapping-item">
+                    <span>겨드랑이 털 나이</span> → <code>child_optional_female.armpit_hair_age</code>
+                </div>
+                <div class="mapping-item">
+                    <span>음모가 생겼다</span> → <code>child_optional_female.pubic_hair</code>
+                </div>
+                <div class="mapping-item">
+                    <span>음모 나이</span> → <code>child_optional_female.pubic_hair_age</code>
+                </div>
+                <div class="mapping-item">
+                    <span>초경을 시작했다</span> → <code>child_optional_female.menarche</code>
+                </div>
+                <div class="mapping-item">
+                    <span>초경 나이</span> → <code>child_optional_female.menarche_age</code>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 테이블 상세 설명 -->
+        <div class="section">
+            <h2>📚 테이블 상세 설명</h2>
+            
+            <h3>1. users (회원)</h3>
+            <div class="table-description">
+                <strong>목적:</strong>
+                부모(보호자) 회원 정보 관리
+            </div>
+            <div class="table-description">
+                <strong>주요 기능:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>이메일/비밀번호 기반 로그인</li>
+                    <li>역할 구분: 'parent' (부모), 'admin' (관리자), 'doctor' (의사)</li>
+                    <li>한 회원이 여러 아이를 등록 가능</li>
+                </ul>
+            </div>
+            
+            <h3>2. children (아이/환자)</h3>
+            <div class="table-description">
+                <strong>목적:</strong>
+                치료받는 아이(환자)의 기본 정보
+            </div>
+            <div class="table-description">
+                <strong>주요 기능:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>user_id로 부모와 연결</li>
+                    <li>성별에 따라 다른 선택 정보 테이블 참조</li>
+                    <li>차트 번호로 병원 내부 관리</li>
+                </ul>
+            </div>
+            
+            <h3>3. child_required_info (필수 정보)</h3>
+            <div class="table-description">
+                <strong>목적:</strong>
+                남아/여아 공통 필수 정보 (설문지 1~4번)
+            </div>
+            <div class="table-description">
+                <strong>주요 기능:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>출생 정보: 임신 주수, 출생 체중, 특이사항</li>
+                    <li>현재 상태: 키, 몸무게, 작년 성장량</li>
+                    <li>child_id와 1:1 관계 (필수)</li>
+                </ul>
+            </div>
+            
+            <h3>4. child_optional_male / child_optional_female (선택 정보)</h3>
+            <div class="table-description">
+                <strong>목적:</strong>
+                성별에 따른 사춘기 발달 정보
+            </div>
+            <div class="table-description">
+                <strong>주요 차이점:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li><strong>남아:</strong> 목소리 변성, 고환/음경 발달</li>
+                    <li><strong>여아:</strong> 가슴 발달, 초경</li>
+                    <li><strong>공통:</strong> 겨드랑이 털, 음모, 성장 속도 변화</li>
+                </ul>
+            </div>
+            
+            <h3>5. growth_records (성장 기록)</h3>
+            <div class="table-description">
+                <strong>목적:</strong>
+                시간에 따른 키/몸무게 변화 추적
+            </div>
+            <div class="table-description">
+                <strong>주요 기능:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>측정 일자별 키, 몸무게 기록</li>
+                    <li>한국 표준 성장도표 기반 백분위 자동 계산</li>
+                    <li>18세 예상 최종 키 예측</li>
+                    <li>성장 곡선 차트 데이터 소스</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Supabase SQL -->
+        <div class="section">
+            <h2>💾 Supabase SQL 스키마</h2>
+            
+            <div class="sql-block">
+<span class="sql-comment">-- 1. users 테이블 (회원)</span>
+<span class="sql-keyword">CREATE TABLE</span> users (
+  id <span class="sql-type">UUID</span> <span class="sql-keyword">PRIMARY KEY DEFAULT</span> uuid_generate_v4(),
+  email <span class="sql-type">TEXT</span> <span class="sql-keyword">UNIQUE NOT NULL</span>,
+  password_hash <span class="sql-type">TEXT</span> <span class="sql-keyword">NOT NULL</span>,
+  parent_name <span class="sql-type">TEXT</span>,
+  phone <span class="sql-type">TEXT</span>,
+  role <span class="sql-type">TEXT</span> <span class="sql-keyword">CHECK</span> (role <span class="sql-keyword">IN</span> (<span class="sql-string">'parent'</span>, <span class="sql-string">'admin'</span>, <span class="sql-string">'doctor'</span>)) <span class="sql-keyword">DEFAULT</span> <span class="sql-string">'parent'</span>,
+  created_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW(),
+  updated_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW()
+);
+
+<span class="sql-comment">-- 2. children 테이블 (아이/환자)</span>
+<span class="sql-keyword">CREATE TABLE</span> children (
+  id <span class="sql-type">UUID</span> <span class="sql-keyword">PRIMARY KEY DEFAULT</span> uuid_generate_v4(),
+  user_id <span class="sql-type">UUID</span> <span class="sql-keyword">REFERENCES</span> users(id) <span class="sql-keyword">ON DELETE CASCADE NOT NULL</span>,
+  name <span class="sql-type">TEXT</span> <span class="sql-keyword">NOT NULL</span>,
+  gender <span class="sql-type">TEXT</span> <span class="sql-keyword">CHECK</span> (gender <span class="sql-keyword">IN</span> (<span class="sql-string">'male'</span>, <span class="sql-string">'female'</span>)) <span class="sql-keyword">NOT NULL</span>,
+  birth_date <span class="sql-type">DATE</span> <span class="sql-keyword">NOT NULL</span>,
+  chart_number <span class="sql-type">TEXT</span> <span class="sql-keyword">UNIQUE</span>,
+  created_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW(),
+  updated_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW()
+);
+
+<span class="sql-comment">-- 3. child_required_info 테이블 (필수 정보)</span>
+<span class="sql-keyword">CREATE TABLE</span> child_required_info (
+  id <span class="sql-type">UUID</span> <span class="sql-keyword">PRIMARY KEY DEFAULT</span> uuid_generate_v4(),
+  child_id <span class="sql-type">UUID</span> <span class="sql-keyword">REFERENCES</span> children(id) <span class="sql-keyword">ON DELETE CASCADE UNIQUE NOT NULL</span>,
+  birth_weeks <span class="sql-type">INTEGER</span> <span class="sql-keyword">NOT NULL</span>,
+  birth_weight <span class="sql-type">DECIMAL</span>(5,2) <span class="sql-keyword">NOT NULL</span>,
+  birth_notes <span class="sql-type">TEXT</span>,
+  current_height <span class="sql-type">DECIMAL</span>(5,2) <span class="sql-keyword">NOT NULL</span>,
+  current_weight <span class="sql-type">DECIMAL</span>(5,2) <span class="sql-keyword">NOT NULL</span>,
+  last_year_growth <span class="sql-type">DECIMAL</span>(5,2),
+  created_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW(),
+  updated_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW()
+);
+
+<span class="sql-comment">-- 4. child_optional_male 테이블 (남아 선택 정보)</span>
+<span class="sql-keyword">CREATE TABLE</span> child_optional_male (
+  id <span class="sql-type">UUID</span> <span class="sql-keyword">PRIMARY KEY DEFAULT</span> uuid_generate_v4(),
+  child_id <span class="sql-type">UUID</span> <span class="sql-keyword">REFERENCES</span> children(id) <span class="sql-keyword">ON DELETE CASCADE UNIQUE</span>,
+  recent_rapid_growth <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  recent_slow_growth <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  voice_change <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  voice_change_age <span class="sql-type">INTEGER</span>,
+  armpit_hair <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  armpit_hair_age <span class="sql-type">INTEGER</span>,
+  pubic_hair <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  pubic_hair_age <span class="sql-type">INTEGER</span>,
+  genital_development <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  genital_development_age <span class="sql-type">INTEGER</span>
+);
+
+<span class="sql-comment">-- 5. child_optional_female 테이블 (여아 선택 정보)</span>
+<span class="sql-keyword">CREATE TABLE</span> child_optional_female (
+  id <span class="sql-type">UUID</span> <span class="sql-keyword">PRIMARY KEY DEFAULT</span> uuid_generate_v4(),
+  child_id <span class="sql-type">UUID</span> <span class="sql-keyword">REFERENCES</span> children(id) <span class="sql-keyword">ON DELETE CASCADE UNIQUE</span>,
+  recent_rapid_growth <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  recent_slow_growth <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  breast_development <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  breast_development_age <span class="sql-type">INTEGER</span>,
+  armpit_hair <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  armpit_hair_age <span class="sql-type">INTEGER</span>,
+  pubic_hair <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  pubic_hair_age <span class="sql-type">INTEGER</span>,
+  menarche <span class="sql-type">BOOLEAN</span> <span class="sql-keyword">DEFAULT</span> FALSE,
+  menarche_age <span class="sql-type">INTEGER</span>
+);
+
+<span class="sql-comment">-- 6. growth_records 테이블 (성장 기록)</span>
+<span class="sql-keyword">CREATE TABLE</span> growth_records (
+  id <span class="sql-type">UUID</span> <span class="sql-keyword">PRIMARY KEY DEFAULT</span> uuid_generate_v4(),
+  child_id <span class="sql-type">UUID</span> <span class="sql-keyword">REFERENCES</span> children(id) <span class="sql-keyword">ON DELETE CASCADE NOT NULL</span>,
+  measured_date <span class="sql-type">DATE</span> <span class="sql-keyword">NOT NULL</span>,
+  age_at_measurement <span class="sql-type">DECIMAL</span>(4,2) <span class="sql-keyword">NOT NULL</span>,
+  height <span class="sql-type">DECIMAL</span>(5,2) <span class="sql-keyword">NOT NULL</span>,
+  weight <span class="sql-type">DECIMAL</span>(5,2),
+  height_percentile <span class="sql-type">DECIMAL</span>(5,2),
+  predicted_adult_height <span class="sql-type">DECIMAL</span>(5,2),
+  notes <span class="sql-type">TEXT</span>,
+  created_at <span class="sql-type">TIMESTAMP</span> <span class="sql-keyword">DEFAULT</span> NOW()
+);
+
+<span class="sql-comment">-- 인덱스 생성 (성능 최적화)</span>
+<span class="sql-keyword">CREATE INDEX</span> idx_children_user_id <span class="sql-keyword">ON</span> children(user_id);
+<span class="sql-keyword">CREATE INDEX</span> idx_growth_records_child_id <span class="sql-keyword">ON</span> growth_records(child_id);
+<span class="sql-keyword">CREATE INDEX</span> idx_growth_records_measured_date <span class="sql-keyword">ON</span> growth_records(measured_date);
+
+<span class="sql-comment">-- Row Level Security (RLS) 설정</span>
+<span class="sql-keyword">ALTER TABLE</span> users <span class="sql-keyword">ENABLE ROW LEVEL SECURITY</span>;
+<span class="sql-keyword">ALTER TABLE</span> children <span class="sql-keyword">ENABLE ROW LEVEL SECURITY</span>;
+<span class="sql-keyword">ALTER TABLE</span> child_required_info <span class="sql-keyword">ENABLE ROW LEVEL SECURITY</span>;
+<span class="sql-keyword">ALTER TABLE</span> child_optional_male <span class="sql-keyword">ENABLE ROW LEVEL SECURITY</span>;
+<span class="sql-keyword">ALTER TABLE</span> child_optional_female <span class="sql-keyword">ENABLE ROW LEVEL SECURITY</span>;
+<span class="sql-keyword">ALTER TABLE</span> growth_records <span class="sql-keyword">ENABLE ROW LEVEL SECURITY</span>;
+
+<span class="sql-comment">-- 사용자는 자신의 데이터만 조회 가능</span>
+<span class="sql-keyword">CREATE POLICY</span> <span class="sql-string">"Users can view own children"</span>
+  <span class="sql-keyword">ON</span> children
+  <span class="sql-keyword">FOR SELECT</span>
+  <span class="sql-keyword">USING</span> (auth.uid() = user_id);
+
+<span class="sql-comment">-- 관리자/의사는 모든 데이터 조회 가능</span>
+<span class="sql-keyword">CREATE POLICY</span> <span class="sql-string">"Admins can view all children"</span>
+  <span class="sql-keyword">ON</span> children
+  <span class="sql-keyword">FOR SELECT</span>
+  <span class="sql-keyword">USING</span> (
+    EXISTS (
+      <span class="sql-keyword">SELECT</span> 1 <span class="sql-keyword">FROM</span> users
+      <span class="sql-keyword">WHERE</span> users.id = auth.uid()
+      <span class="sql-keyword">AND</span> users.role <span class="sql-keyword">IN</span> (<span class="sql-string">'admin'</span>, <span class="sql-string">'doctor'</span>)
+    )
+  );
+            </div>
+        </div>
+        
+        <!-- 다음 단계 -->
+        <div class="section">
+            <h2>🚀 다음 단계</h2>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin: 20px 0;">
+                <h3 style="color: white; border: none; margin-bottom: 20px;">구현 순서</h3>
+                <ol style="line-height: 2; font-size: 1.1rem; padding-left: 20px;">
+                    <li><strong>Supabase 프로젝트 생성</strong> - 무료 계정 가입</li>
+                    <li><strong>SQL 스키마 실행</strong> - 위 SQL 코드를 Supabase SQL Editor에 복사/실행</li>
+                    <li><strong>JavaScript SDK 설치</strong> - npm install @supabase/supabase-js</li>
+                    <li><strong>환경 변수 설정</strong> - Supabase URL/Key 추가</li>
+                    <li><strong>API 연동</strong> - 로그인/회원가입/CRUD 구현</li>
+                    <li><strong>어드민 페이지 개발</strong> - 환자 관리/통계 대시보드</li>
+                    <li><strong>LocalStorage 마이그레이션</strong> - 기존 데이터 이전</li>
+                </ol>
+            </div>
+            
+            <div class="table-description" style="background: #fff3cd; border-left-color: #ffc107;">
+                <strong>📌 참고:</strong>
+                이 설계는 설문지를 기반으로 작성되었으며, 실제 구현 시 추가 필드가 필요할 수 있습니다.
+                <br><br>
+                <strong>추가 고려사항:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>과거 키 기록 테이블 (8세~16세 각 학년별)</li>
+                    <li>부모 키 정보 (유전적 키 예측용)</li>
+                    <li>치료 이력 테이블 (약물, 주사 기록)</li>
+                    <li>예약 관리 테이블</li>
+                    <li>진료 기록 테이블</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding: 40px 0; color: #666;">
+            <p style="font-size: 1.2rem; margin-bottom: 10px;">
+                💡 <strong>187 성장케어 데이터베이스 설계서</strong>
+            </p>
+            <p>연세새봄의원 성장 클리닉</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">
+                문서 생성일: 2026-01-13
+            </p>
+        </div>
+    </div>
+</body>
+</html>

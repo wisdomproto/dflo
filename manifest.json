@@ -1,0 +1,24 @@
+{
+  "name": "LPCare - 아이 성장 케어 플랫폼",
+  "short_name": "LPCare",
+  "description": "아이의 성장을 과학적으로 관리하는 스마트 헬스케어 플랫폼",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

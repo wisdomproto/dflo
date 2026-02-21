@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체형 분석 - LPCare</title>
+    
+    <!-- 설정 파일 -->
+    <script src="config.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- MediaPipe Pose (안정적인 Legacy API) -->
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js"></script>
+    
+    <link rel="stylesheet" href="css/body-analysis.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <button class="btn-back" onclick="goBack()">
+            ← 뒤로
+        </button>
+        <h1>체형 분석</h1>
+        <div class="header-spacer"></div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- 안내 섹션 -->
+            <div class="info-box">
+                <h3>📸 촬영 가이드</h3>
+                <ul>
+                    <li><strong>정면 사진:</strong> 어깨와 골반 기울기 분석</li>
+                    <li><strong>측면 사진:</strong> 거북목 및 자세 분석</li>
+                    <li><strong>밝은 곳</strong>에서 촬영하세요</li>
+                    <li><strong>전신</strong>이 보이도록 촬영하세요</li>
+                    <li><strong>몸 라인</strong>이 보이는 옷을 입어주세요</li>
+                </ul>
+            </div>
+
+            <!-- 브라우저 권장 안내 -->
+            <div class="info-box" style="background-color: #fff3cd; border-left: 4px solid #ffc107;">
+                <h3>💡 카메라 오류 시 확인 사항</h3>
+                <ul style="margin: 0; font-size: 14px;">
+                    <li><strong>권장 브라우저:</strong> 크롬(Chrome) 또는 사파리(Safari)</li>
+                    <li><strong>다른 앱 종료:</strong> Zoom, 카톡 영상통화 등</li>
+                    <li><strong>브라우저 탭:</strong> 카메라 사용 중인 다른 탭 닫기</li>
+                    <li><strong>재시작:</strong> 오류 발생 시 브라우저 또는 기기 재시작</li>
+                </ul>
+            </div>
+
+            <!-- 촬영 방향 선택 -->
+            <div class="direction-selector">
+                <h3>촬영 방향을 선택하세요</h3>
+                <div class="direction-buttons">
+                    <button class="btn-direction" data-direction="front" onclick="selectDirection('front')">
+                        <div class="direction-icon">👤</div>
+                        <div class="direction-label">정면</div>
+                        <div class="direction-desc">어깨/골반 분석</div>
+                    </button>
+                    <button class="btn-direction" data-direction="side" onclick="selectDirection('side')">
+                        <div class="direction-icon">🧍</div>
+                        <div class="direction-label">측면</div>
+                        <div class="direction-desc">거북목/자세 분석</div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 카메라 섹션 -->
+            <div class="camera-section" id="cameraSection" style="display: none;">
+                <div class="camera-container">
+                    <video id="videoElement" autoplay playsinline muted></video>
+                    <canvas id="canvasElement"></canvas>
+                    
+                    <!-- 가이드 라인 오버레이 -->
+                    <div class="guide-overlay" id="guideOverlay">
+                        <div class="guide-line horizontal" style="top: 30%"></div>
+                        <div class="guide-line horizontal" style="top: 50%"></div>
+                        <div class="guide-line horizontal" style="top: 70%"></div>
+                        <div class="guide-text">가이드 라인에 맞춰 서주세요</div>
+                    </div>
+                    
+                    <!-- 로딩 오버레이 -->
+                    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>분석 중...</p>
+                    </div>
+                </div>
+
+                <!-- 카메라 컨트롤 -->
+                <div class="camera-controls">
+                    <button class="btn-secondary" onclick="switchCamera()" style="margin-bottom: 10px;">
+                        🔄 카메라 전환
+                    </button>
+                    <button class="btn-primary" id="captureBtn" onclick="capturePhoto()">
+                        📸 사진 촬영
+                    </button>
+                    <button class="btn-secondary" onclick="retakePhoto()">
+                        ↩️ 취소
+                    </button>
+                </div>
+            </div>
+
+            <!-- 분석 결과 섹션 -->
+            <div class="result-section" id="resultSection" style="display: none;">
+                <h2>📊 분석 결과</h2>
+                
+                <!-- 캡처된 이미지 -->
+                <div class="captured-image">
+                    <img id="capturedImage" alt="캡처된 사진">
+                    <canvas id="resultCanvas"></canvas>
+                </div>
+
+                <!-- 분석 항목별 결과 -->
+                <div class="result-cards" id="resultCards"></div>
+
+                <!-- 종합 의견 -->
+                <div class="summary-box" id="summaryBox"></div>
+
+                <!-- 액션 버튼 -->
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="saveResult()">
+                        💾 결과 저장
+                    </button>
+                    <button class="btn-secondary" onclick="shareResult()">
+                        📤 결과 공유
+                    </button>
+                    <button class="btn-secondary" onclick="newAnalysis()">
+                        🔄 새로 분석
+                    </button>
+                </div>
+            </div>
+
+            <!-- 법적 고지 -->
+            <div class="disclaimer">
+                <p>⚠️ <strong>중요 안내</strong></p>
+                <p>본 체형 분석은 <strong>참고용</strong>이며, 의학적 진단이 아닙니다.</p>
+                <p>정확한 진단은 전문 의료기관에서 받으시기 바랍니다.</p>
+            </div>
+
+            <!-- 이전 분석 기록 -->
+            <div class="history-section" id="historySection">
+                <h3>📋 이전 분석 기록</h3>
+                <div id="historyList"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">홈</span>
+        </a>
+        <a href="growth.html" class="nav-item">
+            <span class="nav-icon">📈</span>
+            <span class="nav-label">성장</span>
+        </a>
+        <a href="routine.html" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">루틴</span>
+        </a>
+        <a href="info.html" class="nav-item">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">정보</span>
+        </a>
+        <a href="cases.html" class="nav-item">
+            <span class="nav-icon">🌟</span>
+            <span class="nav-label">사례</span>
+        </a>
+    </nav>
+
+    <script src="js/body-analysis.js"></script>
+</body>
+</html>

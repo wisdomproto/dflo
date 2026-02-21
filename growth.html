@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#14b8a6">
+    <!-- iOS PWA 지원 (iOS 13+에서 자동 지원됨) -->
+    <title>성장 진단 - 187 성장케어</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/growth-mobile.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 로그인 체크 및 아이 데이터 로딩 -->
+    <script>
+        // 세션 키 (전역)
+        window.SESSION_KEY = 'growth_care_user';
+        window.CHILDREN_KEY = 'growth_care_children';
+        
+        const SESSION_KEY = window.SESSION_KEY;
+        const CHILDREN_KEY = window.CHILDREN_KEY;
+        
+        // 로그아웃 함수
+        function logout() {
+            if (confirm('로그아웃하시겠습니까?')) {
+                console.log('🚪 로그아웃 중...');
+                sessionStorage.clear();
+                localStorage.removeItem('children');
+                localStorage.removeItem('selectedChildId');
+                console.log('✅ 로그아웃 완료');
+                window.location.href = 'home.html';
+            }
+        }
+        
+        // 로그인 확인
+        const userJson = sessionStorage.getItem(SESSION_KEY);
+        if (!userJson) {
+            // 로그인하지 않은 경우 로그인 페이지로
+            alert('로그인이 필요합니다.');
+            window.location.href = 'index.html';
+        } else {
+            // 사용자 정보 파싱
+            try {
+                const user = JSON.parse(userJson);
+                console.log('✅ 로그인 사용자:', user.name);
+                
+                // 아이 데이터 확인 및 localStorage에 저장
+                const childrenJson = sessionStorage.getItem(CHILDREN_KEY);
+                console.log('🔍 [growth.html] sessionStorage 아이 데이터:', childrenJson ? '있음' : '없음');
+                
+                if (childrenJson) {
+                    const children = JSON.parse(childrenJson);
+                    console.log('✅ [growth.html] 로드된 아이 데이터:', children.length, '명');
+                    console.log('📋 [growth.html] 아이 데이터 상세:', children);
+                    
+                    // birth_date를 birthDate로 정규화 (호환성)
+                    children.forEach(child => {
+                        if (child.birth_date && !child.birthDate) {
+                            child.birthDate = child.birth_date;
+                        }
+                        console.log(`  🔍 [growth.html] ${child.name}: birth_date=${child.birth_date}, birthDate=${child.birthDate}`);
+                    });
+                    
+                    // localStorage에 저장 (StorageManager가 사용)
+                    localStorage.setItem('children', JSON.stringify(children));
+                    console.log('✅ [growth.html] localStorage에 저장 완료');
+                    
+                    // 측정 기록을 growthRecords에 저장
+                    const growthRecords = {};
+                    children.forEach(child => {
+                        if (child.measurements && child.measurements.length > 0) {
+                            growthRecords[child.id] = child.measurements.map(m => ({
+                                date: m.measured_date,
+                                height: parseFloat(m.height),
+                                weight: parseFloat(m.weight),
+                                age: parseFloat(m.actual_age || 0),
+                                gender: child.gender,
+                                notes: m.notes || ''  // 메모 추가
+                            }));
+                            console.log(`  ✅ [growth.html] ${child.name}: 측정 기록 ${child.measurements.length}개`);
+                        } else {
+                            growthRecords[child.id] = [];
+                            console.log(`  ⚠️ [growth.html] ${child.name}: 측정 기록 없음`);
+                        }
+                    });
+                    localStorage.setItem('growthRecords', JSON.stringify(growthRecords));
+                    console.log('✅ [growth.html] 측정 기록 저장 완료:', Object.keys(growthRecords).length, '명');
+                    
+                    // 첫 번째 아이를 선택된 아이로 설정
+                    if (children.length > 0 && !localStorage.getItem('selectedChildId')) {
+                        localStorage.setItem('selectedChildId', children[0].id);
+                        console.log('✅ [growth.html] 선택된 아이:', children[0].name);
+                    }
+                } else {
+                    console.warn('⚠️ [growth.html] 아이 데이터가 없습니다.');
+                    localStorage.setItem('children', '[]');
+                }
+            } catch (error) {
+                console.error('세션 파싱 오류:', error);
+                sessionStorage.clear();
+                window.location.href = 'home.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 앱 헤더 -->
+    <header class="app-header">
+        <div class="app-header-content" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="app-logo">📊</div>
+                <div class="app-title">
+                    <h1>성장 진단</h1>
+                    <p>키와 몸무게를 기록하고 성장곡선을 확인하세요</p>
+                </div>
+            </div>
+            <button onclick="logout()" style="display: flex; align-items: center; gap: 4px; padding: 6px 10px; background: #ef4444; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 500;">
+                <span>🚪</span>
+                <span>로그아웃</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 아이 선택 영역 -->
+    <div class="child-selector-container" style="background: white; padding: 12px 16px; border-bottom: 1px solid #e5e7eb;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+            <div style="font-size: 0.875rem; font-weight: 600; color: #374151;">👶 아이 선택</div>
+            <button onclick="location.href='index.html'" style="background: transparent; border: none; color: #6b7280; font-size: 0.875rem; cursor: pointer; padding: 4px 8px;">
+                + 아이 추가
+            </button>
+        </div>
+        <div id="childrenListGrowth" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px;">
+            <!-- 아이 칩들이 여기에 표시됩니다 -->
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 입력 탭 -->
+            <div class="card">
+                <div class="input-tabs">
+                    <button class="input-tab active" data-tab="record" onclick="switchInputTab('record')">📝 성장 기록</button>
+                    <button class="input-tab" data-tab="prediction" onclick="switchInputTab('prediction')">📏 예상키 측정</button>
+                </div>
+
+                <!-- 성장 기록 입력 -->
+                <div class="input-content active" id="record-input">
+                    <form id="growthForm" onsubmit="handleSubmit(event)">
+                        <div class="form-row" style="align-items: flex-end;">
+                            <div class="form-group compact">
+                                <label for="date">날짜</label>
+                                <input type="date" id="date" required onchange="updateAgeByDate()">
+                            </div>
+                            <div class="form-group compact">
+                                <label for="height">키 (cm)</label>
+                                <input type="number" id="height" min="50" max="200" step="0.1" placeholder="125.5" required>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="weight">몸무게 (kg)</label>
+                                <input type="number" id="weight" min="5" max="100" step="0.1" placeholder="25.3" required>
+                            </div>
+                            <div class="child-info-display">
+                                <div class="info-row">
+                                    <span id="childGenderDisplay" class="info-badge">-</span>
+                                    <span id="childAgeDisplay" class="info-badge">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="gender">
+                        <input type="hidden" id="age">
+
+                        <button type="submit" class="btn btn-primary">✅ 기록 추가</button>
+                    </form>
+                </div>
+
+                <!-- 예상키 측정 입력 -->
+                <div class="input-content" id="prediction-input">
+                    <form id="predictionForm" onsubmit="handlePrediction(event)">
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label for="child-gender">아이 성별</label>
+                                <select id="child-gender" required>
+                                    <option value="">선택</option>
+                                    <option value="male">남아 👦</option>
+                                    <option value="female">여아 👧</option>
+                                </select>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="child-age">아이 나이 (만)</label>
+                                <input type="number" id="child-age" min="4" max="17" step="0.1" placeholder="7.5" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label for="child-height">아이 키 (cm)</label>
+                                <input type="number" id="child-height" min="50" max="200" step="0.1" placeholder="125.5" required>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="child-weight">아이 몸무게 (kg)</label>
+                                <input type="number" id="child-weight" min="5" max="100" step="0.1" placeholder="25.3" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label for="father-height">아버지 키 (cm)</label>
+                                <input type="number" id="father-height" min="140" max="220" step="0.1" placeholder="175" required>
+                            </div>
+                            <div class="form-group compact">
+                                <label for="mother-height">어머니 키 (cm)</label>
+                                <input type="number" id="mother-height" min="140" max="200" step="0.1" placeholder="162" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary">🔮 예상키 계산하기</button>
+                    </form>
+
+                    <!-- 예상키 결과 -->
+                    <div id="predictionResult" class="prediction-result" style="display: none;">
+                        <div class="result-header">📊 예상 최종 키</div>
+                        <div class="result-value" id="predictedHeight"></div>
+                        <div class="result-range" id="predictedRange"></div>
+                        <div class="result-note">
+                            <strong>※ 주의:</strong> Khamis-Roche 방법은 4-17세 아동에게 적용되며, 예측값은 참고용입니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 성장 곡선 (성장 기록 탭에서만 표시) -->
+            <div class="chart-section-fixed">
+                <div style="padding: 16px; background: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 class="card-title" style="margin: 0;">성장 곡선</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="chart-tab active" data-chart="height" onclick="switchChart('height')">키</button>
+                            <button class="chart-tab" data-chart="weight" onclick="switchChart('weight')">몸무게</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 성별 선택 -->
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                        <button class="gender-tab active" data-gender="male" onclick="switchGender('male')">👦 남아</button>
+                        <button class="gender-tab" data-gender="female" onclick="switchGender('female')">👧 여아</button>
+                    </div>
+                    
+                    <div class="chart-wrapper-fixed">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 성장 기록 목록 (성장 기록 탭에서만 표시) -->
+            <div class="card records-section" style="padding: 20px 16px;">
+                <h3 class="card-title">📝 성장 기록</h3>
+                <div id="recordsList">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📊</div>
+                        <div>기록이 없습니다</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 예측 방법 설명 모달 -->
+    <div class="modal" id="predictionMethodModal" style="display: none;">
+        <div class="modal-content" style="max-width: 95vw; width: 500px; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h3 id="predictionMethodTitle">📊 예측키 산정 방법</h3>
+                <button class="modal-close" onclick="closePredictionMethodModal()">✕</button>
+            </div>
+            <div id="predictionMethodContent"></div>
+            <div style="display: flex; gap: 8px; margin-top: 20px; padding: 0 16px 16px;">
+                <button type="button" class="btn btn-primary" onclick="closePredictionMethodModal()" style="flex: 1;">
+                    확인
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 탭 네비게이션 -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="tab-item">
+            <div class="tab-icon">🏠</div>
+            <div class="tab-label">홈</div>
+        </a>
+        <a href="growth.html" class="tab-item active">
+            <div class="tab-icon">📊</div>
+            <div class="tab-label">성장진단</div>
+        </a>
+        <a href="routine.html" class="tab-item">
+            <div class="tab-icon">📝</div>
+            <div class="tab-label">데일리루틴</div>
+        </a>
+        <a href="info.html" class="tab-item">
+            <div class="tab-icon">📚</div>
+            <div class="tab-label">성장가이드</div>
+        </a>
+        <a href="https://pf.kakao.com/_ZxneSb" target="_blank" class="tab-item" id="kakaoConsult">
+            <div class="tab-icon">💬</div>
+            <div class="tab-label">상담하기</div>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script src="js/growth-data.js"></script>
+    <script src="js/korea-growth-standard.js"></script>
+    <script src="js/growth-mobile.js"></script>
+</body>
+</html>

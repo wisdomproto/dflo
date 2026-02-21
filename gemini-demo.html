@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI 챗봇 - 빠른 시작</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 10px; }
+        .warning { background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 8px; margin: 16px 0; }
+        .warning strong { color: #856404; }
+        .chat-box { height: 400px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px; padding: 16px; background: #f9f9f9; margin-bottom: 12px; }
+        .message { margin-bottom: 12px; padding: 10px 14px; border-radius: 8px; max-width: 85%; }
+        .user { background: #14b8a6; color: white; margin-left: auto; text-align: right; }
+        .ai { background: white; border: 1px solid #ddd; }
+        .input-group { display: flex; gap: 8px; }
+        input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+        button { padding: 12px 24px; background: #14b8a6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        button:hover { background: #0d9488; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .config { background: #e8f5e9; padding: 12px; border-radius: 8px; margin-bottom: 16px; }
+        .config input { width: 100%; }
+        .setup-steps { background: #f0f9ff; padding: 16px; border-radius: 8px; border-left: 4px solid #14b8a6; }
+        .setup-steps ol { margin-left: 20px; margin-top: 8px; }
+        .setup-steps li { margin: 8px 0; line-height: 1.6; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>🤖 Gemini AI 챗봇 - 빠른 시작</h1>
+            <p style="color: #666; margin-top: 8px;">Google Gemini API를 사용한 간단한 AI 챗봇</p>
+        </div>
+
+        <div class="card setup-steps">
+            <strong>📋 설정 방법 (1분):</strong>
+            <ol>
+                <li><a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #14b8a6;">Google AI Studio</a>에서 API 키 발급</li>
+                <li>"Create API Key" 클릭 → API 키 복사</li>
+                <li>아래 입력란에 API 키 붙여넣기</li>
+                <li>⚠️ <strong>HTTP 리퍼러 제한 설정 필수!</strong> (Google Cloud Console)</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <div class="config">
+                <label><strong>🔑 API 키 설정:</strong></label>
+                <input type="password" id="apiKeyInput" placeholder="Google AI Studio에서 발급받은 API 키를 입력하세요">
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ 보안 경고:</strong>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li>이 방법은 <strong>테스트/데모용</strong>입니다</li>
+                    <li>API 키가 브라우저에 노출됩니다</li>
+                    <li>프로덕션에서는 <strong>Cloudflare Workers</strong> 사용 권장</li>
+                    <li>Google Cloud Console에서 <strong>리퍼러 제한</strong> 설정 필수</li>
+                </ul>
+            </div>
+
+            <div class="chat-box" id="chatBox">
+                <div class="message ai">
+                    👋 안녕하세요! 연세새봄의원 187 성장 클리닉 AI 상담사입니다.<br>
+                    아이의 성장에 관해 궁금한 점을 질문해주세요!
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="userInput" placeholder="질문을 입력하세요... (예: 우리 아이 키가 작은데 어떻게 해야 하나요?)">
+                <button onclick="sendMessage()" id="sendBtn">전송</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SYSTEM_PROMPT = `당신은 연세새봄의원 187 성장 클리닉의 전문 상담사입니다.
+
+전문 분야:
+- 아이 성장 발달
+- 성장호르몬 치료
+- 성조숙증 진단 및 치료
+- 영양/운동/수면 관리
+
+상담 원칙:
+1. 친절하고 전문적으로 답변
+2. 한국어로 답변
+3. 200자 이내로 간결하게
+4. 필요시 병원 방문 권유
+
+연세새봄의원:
+- 전화: 02-1234-5678
+- 진료: 평일 09:00-18:00`;
+
+        let apiKey = '';
+
+        // API 키 입력 감지
+        document.getElementById('apiKeyInput').addEventListener('input', (e) => {
+            apiKey = e.target.value.trim();
+        });
+
+        // 엔터키 전송
+        document.getElementById('userInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            const sendBtn = document.getElementById('sendBtn');
+
+            if (!message) return;
+
+            if (!apiKey) {
+                alert('⚠️ API 키를 먼저 입력해주세요!');
+                document.getElementById('apiKeyInput').focus();
+                return;
+            }
+
+            // 사용자 메시지 표시
+            addMessage('user', message);
+            input.value = '';
+            sendBtn.disabled = true;
+            sendBtn.textContent = '전송 중...';
+
+            try {
+                // Gemini API 호출
+                const response = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{
+                                    text: `${SYSTEM_PROMPT}\n\n사용자 질문: ${message}`
+                                }]
+                            }],
+                            generationConfig: {
+                                maxOutputTokens: 500,
+                                temperature: 0.7,
+                            }
+                        })
+                    }
+                );
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error?.message || 'API 호출 실패');
+                }
+
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text;
+
+                // AI 응답 표시
+                addMessage('ai', aiResponse);
+
+            } catch (error) {
+                console.error('오류:', error);
+                addMessage('ai', `⚠️ 오류가 발생했습니다: ${error.message}`);
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = '전송';
+            }
+        }
+
+        function addMessage(role, text) {
+            const chatBox = document.getElementById('chatBox');
+            const div = document.createElement('div');
+            div.className = `message ${role}`;
+            div.textContent = role === 'user' ? text : `🤖 ${text}`;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

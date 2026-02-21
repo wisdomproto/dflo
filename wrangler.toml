@@ -1,0 +1,47 @@
+name = "187-growth-care"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "."
+
+# Pages 설정
+pages_build_output_dir = "."
+
+# 환경 변수 (필요시)
+[vars]
+# ENVIRONMENT = "production"
+
+# 커스텀 도메인 (선택사항)
+# routes = [
+#   { pattern = "growth.example.com", custom_domain = true }
+# ]
+
+# 헤더 설정
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "SAMEORIGIN"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# 캐시 설정
+[[headers]]
+for = "/css/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/js/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/data/*"
+[headers.values]
+Cache-Control = "public, max-age=3600"
+
+[[headers]]
+for = "/*.html"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"

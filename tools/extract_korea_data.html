@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국 표준 성장도표 데이터 추출</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #3b82f6;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        #output {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .info {
+            background: #dbeafe;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #1e40af;
+        }
+        .success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        .sheet-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .sheet-btn {
+            padding: 8px 16px;
+            background: #e2e8f0;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #334155;
+        }
+        .sheet-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 11px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: left;
+        }
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 한국 표준 성장도표 데이터 추출 도구</h1>
+        
+        <div id="statusMessage" class="info">
+            ⏳ 엑셀 파일을 로드하는 중...
+        </div>
+
+        <div class="controls">
+            <button onclick="loadExcel()" id="loadBtn">📂 엑셀 파일 다시 로드</button>
+            <button onclick="extractAllData()" id="extractBtn" disabled>🔄 모든 데이터 추출 (JSON)</button>
+            <button onclick="downloadJSON()" id="downloadBtn" disabled>💾 JSON 다운로드</button>
+            <button onclick="copyToClipboard()" id="copyBtn" disabled>📋 JSON 복사</button>
+        </div>
+
+        <div id="sheetList" class="sheet-list"></div>
+        <div id="output" class="loading">데이터를 로드하는 중입니다...</div>
+    </div>
+
+    <script>
+        let workbook = null;
+        let extractedData = null;
+        const EXCEL_URL = 'https://www.genspark.ai/api/files/s/6zJ3vI3e';
+
+        async function loadExcel() {
+            try {
+                updateStatus('⏳ 엑셀 파일을 다운로드하는 중...', 'info');
+                
+                const response = await fetch(EXCEL_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const arrayBuffer = await response.arrayBuffer();
+                workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                
+                console.log('워크북 로드 완료:', workbook.SheetNames);
+                
+                updateStatus(`✅ 엑셀 파일 로드 성공! (${workbook.SheetNames.length}개 시트)`, 'success');
+                document.getElementById('extractBtn').disabled = false;
+                
+                displaySheetList();
+                
+                let output = `총 시트 수: ${workbook.SheetNames.length}\n\n`;
+                output += `시트 목록:\n${workbook.SheetNames.map((name, i) => `  ${i+1}. ${name}`).join('\n')}\n\n`;
+                output += `💡 "모든 데이터 추출" 버튼을 클릭하여 JSON 데이터를 생성하세요.`;
+                
+                document.getElementById('output').textContent = output;
+                
+            } catch (error) {
+                console.error('엑셀 로드 실패:', error);
+                updateStatus('❌ 엑셀 파일 로드 실패: ' + error.message, 'error');
+                document.getElementById('output').textContent = '❌ 오류: ' + error.message;
+            }
+        }
+
+        function updateStatus(message, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = type === 'success' ? 'info success' : 
+                                 type === 'error' ? 'info error' : 'info';
+        }
+
+        function displaySheetList() {
+            const container = document.getElementById('sheetList');
+            container.innerHTML = workbook.SheetNames.map((name, index) => 
+                `<button class="sheet-btn" onclick="showSheet(${index})">${name}</button>`
+            ).join('');
+        }
+
+        function showSheet(index) {
+            const sheetName = workbook.SheetNames[index];
+            const sheet = workbook.Sheets[sheetName];
+            
+            document.querySelectorAll('.sheet-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+            
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+            
+            let html = `<h3>📄 시트: ${sheetName}</h3>`;
+            html += `<p>총 ${jsonData.length}행 × ${jsonData[0]?.length || 0}열</p>`;
+            html += '<div style="overflow-x: auto;"><table><thead><tr>';
+            
+            if (jsonData.length > 0) {
+                jsonData[0].forEach((cell, i) => {
+                    html += `<th>${cell || `Col ${i+1}`}</th>`;
+                });
+                html += '</tr></thead><tbody>';
+                
+                for (let i = 1; i < Math.min(jsonData.length, 201); i++) {
+                    html += '<tr>';
+                    const maxCols = jsonData[0].length;
+                    for (let j = 0; j < maxCols; j++) {
+                        const cell = jsonData[i][j];
+                        html += `<td>${cell !== undefined && cell !== '' ? cell : '-'}</td>`;
+                    }
+                    html += '</tr>';
+                }
+                html += '</tbody></table></div>';
+            }
+            
+            document.getElementById('output').innerHTML = html;
+        }
+
+        function extractAllData() {
+            if (!workbook) {
+                alert('먼저 엑셀 파일을 로드해주세요!');
+                return;
+            }
+
+            updateStatus('🔄 데이터를 추출하는 중...', 'info');
+
+            extractedData = {
+                male: { height: [], weight: [] },
+                female: { height: [], weight: [] },
+                metadata: {
+                    source: '대한소아과학회 2017 한국 소아청소년 성장도표',
+                    method: 'LMS',
+                    extractedAt: new Date().toISOString()
+                }
+            };
+
+            workbook.SheetNames.forEach(sheetName => {
+                const sheet = workbook.Sheets[sheetName];
+                const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: null });
+                
+                console.log(`\n=== 시트: ${sheetName} ===`);
+                
+                const nameLower = sheetName.toLowerCase().replace(/\s+/g, '');
+                let gender = null;
+                let type = null;
+                
+                // 성별 판단
+                if (nameLower.includes('남') || nameLower.includes('boy') || nameLower.includes('male')) {
+                    gender = 'male';
+                } else if (nameLower.includes('여') || nameLower.includes('girl') || nameLower.includes('female')) {
+                    gender = 'female';
+                }
+                
+                // 유형 판단
+                if (nameLower.includes('키') || nameLower.includes('신장') || nameLower.includes('height') || nameLower.includes('stature')) {
+                    type = 'height';
+                } else if (nameLower.includes('몸무게') || nameLower.includes('체중') || nameLower.includes('weight')) {
+                    type = 'weight';
+                }
+                
+                console.log(`감지: 성별=${gender}, 유형=${type}`);
+                
+                if (gender && type && data.length > 1) {
+                    const extracted = extractLMSData(data, sheetName);
+                    if (extracted.length > 0) {
+                        extractedData[gender][type] = extracted;
+                        console.log(`✅ ${sheetName}: ${extracted.length}개 데이터 추출`);
+                    }
+                }
+            });
+
+            // 결과 표시
+            const stats = {
+                maleHeight: extractedData.male.height.length,
+                maleWeight: extractedData.male.weight.length,
+                femaleHeight: extractedData.female.height.length,
+                femaleWeight: extractedData.female.weight.length
+            };
+
+            if (stats.maleHeight === 0 && stats.maleWeight === 0 && 
+                stats.femaleHeight === 0 && stats.femaleWeight === 0) {
+                updateStatus('⚠️ 데이터 추출 실패. 시트 형식을 확인해주세요.', 'error');
+                document.getElementById('output').textContent = 
+                    '❌ 데이터를 찾을 수 없습니다.\n\n' +
+                    '각 시트를 확인하고 다음을 체크하세요:\n' +
+                    '1. 시트 이름에 "남" 또는 "여"가 포함되어 있나요?\n' +
+                    '2. 시트 이름에 "키" 또는 "체중"이 포함되어 있나요?\n' +
+                    '3. 데이터에 Age, L, M, S 컬럼이 있나요?';
+                return;
+            }
+
+            updateStatus('✅ 데이터 추출 완료!', 'success');
+            document.getElementById('downloadBtn').disabled = false;
+            document.getElementById('copyBtn').disabled = false;
+
+            let output = '✅ 데이터 추출 완료!\n\n';
+            output += `📊 통계:\n`;
+            output += `  남아 키 데이터: ${stats.maleHeight}개\n`;
+            output += `  남아 체중 데이터: ${stats.maleWeight}개\n`;
+            output += `  여아 키 데이터: ${stats.femaleHeight}개\n`;
+            output += `  여아 체중 데이터: ${stats.femaleWeight}개\n\n`;
+            
+            if (stats.maleHeight > 0) {
+                output += '📝 샘플 데이터 (남아 키 처음 3개):\n';
+                output += JSON.stringify(extractedData.male.height.slice(0, 3), null, 2) + '\n\n';
+            }
+            
+            if (stats.femaleHeight > 0) {
+                output += '📝 샘플 데이터 (여아 키 처음 3개):\n';
+                output += JSON.stringify(extractedData.female.height.slice(0, 3), null, 2) + '\n\n';
+            }
+            
+            output += '💾 "JSON 다운로드" 버튼을 클릭하여 파일을 저장하세요.';
+            
+            document.getElementById('output').textContent = output;
+        }
+
+        function extractLMSData(data, sheetName) {
+            const result = [];
+            
+            // 헤더 행 찾기
+            let headerRow = -1;
+            for (let i = 0; i < Math.min(data.length, 30); i++) {
+                const row = data[i];
+                if (row && Array.isArray(row)) {
+                    const hasLMS = row.some(cell => 
+                        cell && (cell.toString().trim() === 'L' || 
+                                cell.toString().trim() === 'M' || 
+                                cell.toString().trim() === 'S')
+                    );
+                    if (hasLMS) {
+                        headerRow = i;
+                        break;
+                    }
+                }
+            }
+            
+            if (headerRow === -1) {
+                console.warn(`${sheetName}: 헤더를 찾을 수 없음`);
+                return result;
+            }
+            
+            const headers = data[headerRow].map(h => h ? h.toString().trim() : '');
+            console.log(`헤더 (행 ${headerRow}):`, headers);
+            
+            // 컬럼 찾기
+            const ageCol = findColumnIndex(headers, ['age', 'month', 'months', '나이', '연령', '월령', '개월']);
+            const lCol = findColumnIndex(headers, ['L']);
+            const mCol = findColumnIndex(headers, ['M']);
+            const sCol = findColumnIndex(headers, ['S']);
+            
+            console.log(`컬럼 위치: Age=${ageCol}, L=${lCol}, M=${mCol}, S=${sCol}`);
+            
+            if (ageCol === -1 || lCol === -1 || mCol === -1 || sCol === -1) {
+                console.warn(`${sheetName}: 필수 컬럼을 찾을 수 없음`);
+                return result;
+            }
+            
+            // 데이터 추출
+            for (let i = headerRow + 1; i < data.length; i++) {
+                const row = data[i];
+                if (!row || !Array.isArray(row)) continue;
+                
+                const age = parseFloat(row[ageCol]);
+                const l = parseFloat(row[lCol]);
+                const m = parseFloat(row[mCol]);
+                const s = parseFloat(row[sCol]);
+                
+                if (!isNaN(age) && !isNaN(l) && !isNaN(m) && !isNaN(s)) {
+                    result.push({ age, L: l, M: m, S: s });
+                }
+            }
+            
+            return result;
+        }
+
+        function findColumnIndex(headers, keywords) {
+            for (let i = 0; i < headers.length; i++) {
+                const header = headers[i].toLowerCase();
+                if (keywords.some(kw => header === kw.toLowerCase() || header.includes(kw.toLowerCase()))) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function downloadJSON() {
+            if (!extractedData) {
+                alert('먼저 데이터를 추출해주세요!');
+                return;
+            }
+
+            const dataStr = JSON.stringify(extractedData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'korea_growth_standard.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            updateStatus('✅ JSON 파일이 다운로드되었습니다!', 'success');
+        }
+
+        async function copyToClipboard() {
+            if (!extractedData) {
+                alert('먼저 데이터를 추출해주세요!');
+                return;
+            }
+
+            const dataStr = JSON.stringify(extractedData, null, 2);
+            try {
+                await navigator.clipboard.writeText(dataStr);
+                updateStatus('✅ JSON 데이터가 클립보드에 복사되었습니다!', 'success');
+            } catch (err) {
+                alert('클립보드 복사 실패: ' + err.message);
+            }
+        }
+
+        // 페이지 로드 시 자동으로 엑셀 파일 로드
+        window.addEventListener('DOMContentLoaded', () => {
+            loadExcel();
+        });
+    </script>
+</body>
+</html>

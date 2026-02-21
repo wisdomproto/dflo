@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성장가이드 - 187 성장케어</title>
+    <link rel="stylesheet" href="css/info.css">
+    <link rel="stylesheet" href="css/cases-mobile.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/growth-data.js"></script>
+    
+    <!-- 로그인 체크 및 아이 데이터 로딩 -->
+    <script>
+        const SESSION_KEY = 'growth_care_user';
+        const CHILDREN_KEY = 'growth_care_children';
+        
+        const userJson = sessionStorage.getItem(SESSION_KEY);
+        if (!userJson) {
+            alert('로그인이 필요합니다.');
+            window.location.href = 'index.html';
+        } else {
+            try {
+                const user = JSON.parse(userJson);
+                const childrenJson = sessionStorage.getItem(CHILDREN_KEY);
+                if (childrenJson) {
+                    const children = JSON.parse(childrenJson);
+                    localStorage.setItem('children', JSON.stringify(children));
+                    if (children.length > 0 && !localStorage.getItem('selectedChildId')) {
+                        localStorage.setItem('selectedChildId', children[0].id);
+                    }
+                }
+            } catch (error) {
+                console.error('세션 오류:', error);
+                window.location.href = 'home.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <h1>📚 성장 가이드</h1>
+        <p class="header-subtitle">우리 아이 키 성장의 모든 것</p>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="main-content">
+        <!-- 섹션 탭 -->
+        <div class="section-tabs">
+            <button class="section-tab active" data-section="guide">
+                🌱 성장 가이드
+            </button>
+            <button class="section-tab" data-section="recipe">
+                🍳 레시피북
+            </button>
+            <button class="section-tab" data-section="cases">
+                ⭐ 치료 사례
+            </button>
+            <button class="section-tab" data-section="faq">
+                ❓ FAQ
+            </button>
+        </div>
+
+        <!-- 성장 가이드 섹션 -->
+        <div id="guideSection" class="content-section active">
+            <!-- 카테고리 필터 -->
+            <div class="category-filter">
+                <button class="category-btn active" data-category="all">
+                    전체
+                </button>
+            </div>
+
+            <div class="section-header">
+                <h2>🌱 성장 가이드</h2>
+                <p>전문가가 알려주는 키 성장 가이드</p>
+            </div>
+            <div id="guideCards" class="guide-cards">
+                <!-- 카드가 동적으로 렌더링됩니다 -->
+            </div>
+        </div>
+
+        <!-- 레시피북 섹션 -->
+        <div id="recipeSection" class="content-section">
+            <div class="section-header">
+                <h2>🍳 성장 레시피북</h2>
+                <p>키 성장을 돕는 영양 만점 레시피</p>
+            </div>
+            <div id="recipeCards" class="recipe-cards">
+                <!-- 레시피 카드가 동적으로 렌더링됩니다 -->
+            </div>
+        </div>
+
+        <!-- 사례 섹션 -->
+        <div id="casesSection" class="content-section">
+            <div class="section-header">
+                <h2>⭐ 치료 사례</h2>
+                <p>실제 성장 치료 성공 사례</p>
+            </div>
+            <div id="casesList" class="cases-list">
+                <!-- 사례 카드가 동적으로 렌더링됩니다 -->
+            </div>
+        </div>
+
+        <!-- FAQ 섹션 -->
+        <div id="faqSection" class="content-section">
+            <div class="section-header">
+                <h2>❓ 자주 묻는 질문</h2>
+                <p>부모님들이 가장 궁금해하는 질문들</p>
+            </div>
+            <div id="faqAccordion" class="faq-accordion">
+                <!-- FAQ가 동적으로 렌더링됩니다 -->
+            </div>
+        </div>
+    </main>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="bottom-nav">
+        <a href="home.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">홈</span>
+        </a>
+        <a href="routine.html" class="nav-item">
+            <span class="nav-icon">📝</span>
+            <span class="nav-label">데일리루틴</span>
+        </a>
+        <a href="info.html" class="nav-item active">
+            <span class="nav-icon">📚</span>
+            <span class="nav-label">성장가이드</span>
+        </a>
+        <a href="https://pf.kakao.com/_ZxneSb" target="_blank" class="nav-item" id="kakaoConsult">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">상담하기</span>
+        </a>
+    </nav>
+
+    <!-- 카드 상세 모달 -->
+    <div id="cardDetailModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalBody" class="modal-body">
+                <!-- 상세 내용이 동적으로 렌더링됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 레시피 상세 모달 -->
+    <div id="recipeDetailModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="recipeModalBody" class="modal-body">
+                <!-- 레시피 상세 내용이 동적으로 렌더링됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 사례 상세 모달 -->
+    <div id="caseDetailModal">
+        <button class="modal-close">&times;</button>
+        <div id="caseModalBody" class="modal-body">
+            <!-- 사례 상세 내용이 동적으로 렌더링됩니다 -->
+        </div>
+    </div>
+
+    <script src="js/korea-growth-standard.js"></script>
+    <script>
+        // 한국 표준 성장도표 초기화
+        window.koreaGrowthStandard = new KoreaGrowthStandard();
+    </script>
+    <script src="js/info.js"></script>
+</body>
+</html>

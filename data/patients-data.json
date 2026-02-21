@@ -1,0 +1,41 @@
+[
+  {
+    "parentId": 1,
+    "chartNumber": "27376",
+    "childName": "여하원",
+    "birthDate": "2011-01-18",
+    "gender": "M",
+    "fatherHeight": 170,
+    "motherHeight": 156,
+    "targetHeight": 180,
+    "measurements": [
+      {"date": "2023-04-25", "height": 155.7, "weight": 58.6, "actualAge": "12세3개월", "boneAge": "13세2개월", "pah": 172, "memo": ""},
+      {"date": "2023-11-07", "height": 161.6, "weight": 63.1, "actualAge": "12세9개월", "boneAge": "13세3~4개월", "pah": null, "memo": ""},
+      {"date": "2023-12-05", "height": 162.6, "weight": 63.8, "actualAge": null, "boneAge": null, "pah": null, "memo": "아리미덱스 처방 시작"},
+      {"date": "2024-04-13", "height": 166.4, "weight": 70.1, "actualAge": "13세2개월", "boneAge": "13세5개월", "pah": 175.6, "memo": ""},
+      {"date": "2024-10-19", "height": 172, "weight": 76.9, "actualAge": "13세9개월", "boneAge": "13세6~7개월", "pah": null, "memo": "채소섭취량 늘리도록 권장"},
+      {"date": "2025-01-20", "height": 174.8, "weight": 78.5, "actualAge": "14세0개월", "boneAge": "13세6개월", "pah": 185, "memo": ""},
+      {"date": "2025-07-25", "height": 177.9, "weight": 87.2, "actualAge": "14세6개월", "boneAge": "13세6개월", "pah": null, "memo": "체중조절 권유"}
+    ]
+  },
+  {
+    "parentId": 2,
+    "chartNumber": "22120",
+    "childName": "이동윤",
+    "birthDate": "2007-08-08",
+    "gender": "M",
+    "fatherHeight": 181,
+    "motherHeight": 161,
+    "targetHeight": 184,
+    "measurements": [
+      {"date": "2018-10-22", "height": 145.8, "weight": 40, "actualAge": "11세2개월", "boneAge": "12세2개월", "pah": 170, "memo": ""},
+      {"date": "2019-07-15", "height": 152.9, "weight": 43, "actualAge": "11세11개월", "boneAge": "12세5개월", "pah": null, "memo": ""},
+      {"date": "2020-01-28", "height": 159.5, "weight": 47, "actualAge": "12세6개월", "boneAge": "12세10개월", "pah": null, "memo": ""},
+      {"date": "2021-01-25", "height": 168.9, "weight": 59, "actualAge": "13세5개월", "boneAge": "13세2~3개월", "pah": null, "memo": ""},
+      {"date": "2021-12-07", "height": 175.9, "weight": 61, "actualAge": "14세3개월", "boneAge": "13세10개월", "pah": null, "memo": "아리미덱스 처방 시작"},
+      {"date": "2022-03-30", "height": 176.8, "weight": 63, "actualAge": "14세7개월", "boneAge": null, "pah": null, "memo": ""},
+      {"date": "2022-09-28", "height": 178.5, "weight": 65.8, "actualAge": null, "boneAge": null, "pah": null, "memo": ""},
+      {"date": "2023-04-24", "height": null, "weight": null, "actualAge": null, "boneAge": null, "pah": 183, "memo": "치료종료"}
+    ]
+  }
+]

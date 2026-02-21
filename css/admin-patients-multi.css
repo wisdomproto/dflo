@@ -1,0 +1,302 @@
+/* ================================================
+   환자 상세 모달 - 다중 아이 지원
+   ================================================ */
+
+.patient-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.patient-detail-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1f2937;
+}
+
+.patient-detail-info {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    padding: 8px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #6b7280;
+    min-width: 120px;
+}
+
+.info-value {
+    color: #1f2937;
+}
+
+/* 자녀 목록 */
+.children-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.child-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.child-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+}
+
+.child-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.child-info {
+    flex: 1;
+}
+
+.child-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.child-meta {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.child-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-small.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-small.btn-primary:hover {
+    background: #5568d3;
+}
+
+.btn-small.btn-edit {
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-small.btn-edit:hover {
+    background: #d97706;
+}
+
+.btn-small.btn-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-small.btn-delete:hover {
+    background: #dc2626;
+}
+
+.btn-view {
+    padding: 8px 16px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-view:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.child-latest-measurement {
+    background: #ecfdf5;
+    border-left: 4px solid #10b981;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+}
+
+.measurement-label {
+    font-size: 0.85rem;
+    color: #059669;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.measurement-value {
+    font-size: 0.95rem;
+    color: #1f2937;
+    font-weight: 500;
+}
+
+.child-measurements {
+    margin-top: 16px;
+}
+
+.child-measurements h4 {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.measurement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.measurement-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.measurement-date {
+    font-weight: 600;
+    color: #1f2937;
+    min-width: 100px;
+}
+
+.measurement-values {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    margin: 0 12px;
+}
+
+.measurement-values span {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+/* 인라인 폼 */
+.inline-form {
+    background: #fef3c7;
+    border: 2px solid #f59e0b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.inline-form h3,
+.inline-form h4 {
+    margin: 0 0 16px 0;
+    color: #92400e;
+}
+
+/* 환자 카드 개선 */
+.patient-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.patient-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.patient-contact {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 4px 0;
+}
+
+.patient-children {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #1f2937;
+}
+
+.patient-children .admin-item-badge {
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    margin: 0 4px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .child-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .child-actions {
+        width: 100%;
+    }
+    
+    .btn-small {
+        flex: 1;
+    }
+    
+    .measurement-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .measurement-values {
+        flex-direction: column;
+        gap: 4px;
+        margin: 0;
+    }
+    
+    .patient-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .admin-item-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

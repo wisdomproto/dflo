@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #667eea;
+  --color-primary-dark: #5a67d8;
+  --color-primary-light: #7c8cf0;
+  --color-secondary: #764ba2;
+  --color-accent: #f093fb;
+  --color-success: #48bb78;
+  --color-warning: #ecc94b;
+  --color-danger: #f56565;
+
+  --color-sleep: #9f7aea;
+  --color-water: #4299e1;
+  --color-meal: #48bb78;
+  --color-exercise: #ed8936;
+  --color-supplement: #f56565;
+  --color-injection: #e53e3e;
+}
+
+html {
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply text-gray-900 antialiased;
+  background-color: #f0f0ff;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overscroll-behavior-y: contain;
+  margin: 0;
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Toast 슬라이드 다운 애니메이션 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 바텀시트 슬라이드 업 애니메이션 */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 페이드인 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 가로 스크롤바 숨김 (ChildSelector 등) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

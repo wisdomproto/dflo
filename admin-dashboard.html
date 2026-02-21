@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 - 187 성장케어</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/admin.css?v=2">
+    <link rel="stylesheet" href="css/admin-patients-multi.css?v=2">
+    <link rel="stylesheet" href="css/mobile.css?v=2" media="screen and (max-width: 1023px)">
+    <link rel="stylesheet" href="css/admin-desktop.css?v=2" media="screen and (min-width: 1024px)">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="header-content-new">
+            <div class="header-left">
+                <div class="app-logo-new">🏥</div>
+                <div class="app-title-new">
+                    <h1>관리자 대시보드</h1>
+                    <p id="adminUserName">관리자</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn-icon-header" onclick="location.href='home.html'" title="홈으로">
+                    🏠
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="admin-main">
+        <!-- 탭 네비게이션 -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="patients" onclick="switchAdminTab('patients')">
+                👥 환자 관리
+            </button>
+            <button class="admin-tab" data-tab="recipes" onclick="switchAdminTab('recipes')">
+                🍳 레시피
+            </button>
+            <button class="admin-tab" data-tab="cases" onclick="switchAdminTab('cases')">
+                🌟 사례
+            </button>
+            <button class="admin-tab" data-tab="guides" onclick="switchAdminTab('guides')">
+                📚 가이드
+            </button>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- 환자 관리 탭 -->
+        <!-- ================================================ -->
+        <div id="tab-patients" class="admin-tab-content active">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>👥 환자 관리</h2>
+                    <button class="btn-add-small" onclick="showPatientFormModal()">➕ 환자 추가</button>
+                </div>
+                
+                <!-- 검색 & 필터 -->
+                <div class="search-filter">
+                    <input type="text" id="patientSearch" placeholder="🔍 환자명 또는 아이 이름 검색..." oninput="searchPatients()">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all" onclick="filterPatients('all')">전체</button>
+                        <button class="filter-btn" data-filter="hospital" onclick="filterPatients('hospital')">🏥 병원환자</button>
+                        <button class="filter-btn" data-filter="general" onclick="filterPatients('general')">👤 일반사용자</button>
+                    </div>
+                </div>
+                
+                <!-- 환자 목록 -->
+                <div id="patientList" class="admin-list"></div>
+            </div>
+            
+            <!-- 환자 상세 모달 -->
+            <div id="patientDetailModal" class="modal" style="display: none;">
+                <div class="modal-content large">
+                    <button class="modal-close" onclick="closePatientDetailModal()">✕</button>
+                    <div id="patientDetailBody"></div>
+                </div>
+            </div>
+            
+            <!-- 환자 추가 모달 -->
+            <div id="patientFormModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closePatientFormModal()">✕</button>
+                    <div class="modal-body">
+                        <h3 style="margin-bottom: 24px; font-size: 24px; font-weight: 700; color: #1e293b;">👪 환자(부모) 추가</h3>
+                        <form id="patientForm" class="admin-form">
+                            <input type="hidden" id="patient_id">
+                            
+                            <div class="form-group">
+                                <label>이름 *</label>
+                                <input type="text" id="patient_name" placeholder="홍길동" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>이메일 *</label>
+                                    <input type="email" id="patient_email" placeholder="hong@example.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>전화번호</label>
+                                    <input type="tel" id="patient_phone" placeholder="010-1234-5678">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>비밀번호 *</label>
+                                <input type="password" id="patient_password" placeholder="기본: 1234" value="1234" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>메모</label>
+                                <textarea id="patient_memo" rows="3" placeholder="특이사항, 기타 메모"></textarea>
+                            </div>
+                            
+                            <p style="color: #6b7280; font-size: 0.9rem; margin-top: 10px;">
+                                💡 자녀 정보는 환자 상세 페이지에서 추가할 수 있습니다.
+                            </p>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">저장</button>
+                                <button type="button" class="btn-secondary" onclick="closePatientFormModal()">취소</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- 레시피 관리 탭 -->
+        <!-- ================================================ -->
+        <div id="tab-recipes" class="admin-tab-content">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>🍳 건강 레시피 관리</h2>
+                    <button class="btn-primary" onclick="showRecipeForm()">➕ 새 레시피</button>
+                </div>
+                
+                <!-- 레시피 폼 -->
+                <div id="recipeFormContainer" class="form-container" style="display: none;">
+                    <form id="recipeForm" class="admin-form">
+                        <input type="hidden" id="recipe_id">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>레시피 번호 *</label>
+                                <input type="text" id="recipe_number" placeholder="레시피 01" required>
+                            </div>
+                            <div class="form-group">
+                                <label>순서 *</label>
+                                <input type="number" id="recipe_order" placeholder="1" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>제목 *</label>
+                            <input type="text" id="recipe_title" placeholder="치즈 닭가슴살 볶음밥" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>이미지 URL *</label>
+                            <input type="url" id="recipe_image_url" placeholder="https://..." required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>핵심 효능 *</label>
+                            <textarea id="recipe_key_benefits" rows="3" placeholder="단백질과 칼슘이 풍부해..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>주요 영양소 (쉼표 구분) *</label>
+                            <input type="text" id="recipe_main_nutrients" placeholder="칼슘, 단백질, 비타민 B12" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>재료 (JSON) *</label>
+                            <textarea id="recipe_ingredients" rows="5" placeholder='[{"name":"밥","amount":"2공기"}]' required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>조리 순서 (JSON) *</label>
+                            <textarea id="recipe_steps" rows="5" placeholder='[{"step":1,"description":"..."}]' required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>조리 팁 (쉼표 구분)</label>
+                            <textarea id="recipe_tips" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>영양소 분석 (JSON)</label>
+                            <textarea id="recipe_growth_info" rows="2" placeholder='{"calcium":"450mg","protein":"35g"}'></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">저장</button>
+                            <button type="button" class="btn-secondary" onclick="hideRecipeForm()">취소</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="recipeList" class="admin-list"></div>
+            </div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- 사례 관리 탭 -->
+        <!-- ================================================ -->
+        <div id="tab-cases" class="admin-tab-content">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>🌟 성장 관리 사례</h2>
+                    <button class="btn-primary" onclick="showCaseForm()">➕ 새 사례</button>
+                </div>
+                
+                <!-- 사례 폼 -->
+                <div id="caseFormContainer" class="form-container" style="display: none;">
+                    <form id="caseForm" class="admin-form">
+                        <input type="hidden" id="case_id">
+                        
+                        <div class="form-group">
+                            <label>환자 이름 *</label>
+                            <input type="text" id="case_patient_name" placeholder="김민수" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>성별 *</label>
+                                <select id="case_gender" required>
+                                    <option value="">선택</option>
+                                    <option value="male">남아</option>
+                                    <option value="female">여아</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>생년월일 *</label>
+                                <input type="date" id="case_birth_date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>아버지 키 (cm)</label>
+                                <input type="number" id="case_father_height" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label>어머니 키 (cm)</label>
+                                <input type="number" id="case_mother_height" step="0.1">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>예상 최종 키 (cm)</label>
+                            <input type="number" id="case_target_height" step="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>특이사항</label>
+                            <textarea id="case_special_notes" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>종합 치료 메모</label>
+                            <textarea id="case_treatment_memo" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>측정 기록 (JSON) *</label>
+                            <textarea id="case_measurements" rows="8" placeholder='[{"date":"2025-01-15","height":145,"weight":40,"memo":"첫 방문"}]' required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>순서</label>
+                            <input type="number" id="case_order" placeholder="1">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">저장</button>
+                            <button type="button" class="btn-secondary" onclick="hideCaseForm()">취소</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="caseList" class="admin-list"></div>
+            </div>
+        </div>
+
+        <!-- ================================================ -->
+        <!-- 가이드 관리 탭 -->
+        <!-- ================================================ -->
+        <div id="tab-guides" class="admin-tab-content">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>📚 성장 가이드</h2>
+                    <button class="btn-primary" onclick="showGuideForm()">➕ 새 가이드</button>
+                </div>
+                
+                <!-- 가이드 폼 -->
+                <div id="guideFormContainer" class="form-container" style="display: none;">
+                    <form id="guideForm" class="admin-form">
+                        <input type="hidden" id="guide_id">
+                        
+                        <div class="form-group">
+                            <label>제목 *</label>
+                            <input type="text" id="guide_title" placeholder="성장판 검사" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>부제목</label>
+                            <input type="text" id="guide_subtitle" placeholder="검사 시기와 방법">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>아이콘</label>
+                                <input type="text" id="guide_icon" placeholder="🏥" maxlength="2">
+                            </div>
+                            <div class="form-group">
+                                <label>카테고리</label>
+                                <input type="text" id="guide_category" placeholder="검사">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>이미지 URL</label>
+                            <input type="url" id="guide_image_url">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>내용 *</label>
+                            <textarea id="guide_content" rows="10" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>배너 색상</label>
+                            <input type="text" id="guide_banner_color" placeholder="linear-gradient(...)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>순서 *</label>
+                            <input type="number" id="guide_order" placeholder="1" required>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">저장</button>
+                            <button type="button" class="btn-secondary" onclick="hideGuideForm()">취소</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="guideList" class="admin-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Supabase 클라이언트 초기화
+        const SUPABASE_URL = 'https://mufjnulwnppgvibmmbfo.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_3hm8ooVxIZvENDh-D_lWNA_sdPHg9xk';
+        
+        // supabase 클라이언트 생성 (window.supabase는 라이브러리 객체)
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // admin.js에서 사용할 수 있도록 전역 변수로 설정
+        window.supabase = supabaseClient;
+        
+        console.log('✅ Supabase 클라이언트 초기화 완료');
+    </script>
+    <script src="js/admin.js"></script>
+    <!-- 데일리 루틴 달력 -->
+    <link rel="stylesheet" href="css/admin-daily-routines-calendar.css">
+    <script src="js/admin-daily-routines-calendar.js"></script>
+</body>
+</html>

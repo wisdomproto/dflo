@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV 데이터 일괄 입력 - 187 성장케어</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .file-input-wrapper {
+            margin-bottom: 30px;
+        }
+        
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        input[type="file"]:hover {
+            border-color: #764ba2;
+            background: #f8f9ff;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .progress-container {
+            display: none;
+            margin-top: 30px;
+        }
+        
+        .progress-container.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .log-container {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        
+        .log-entry.success {
+            color: #27ae60;
+        }
+        
+        .log-entry.error {
+            color: #e74c3c;
+            background: #ffebee;
+        }
+        
+        .log-entry.info {
+            color: #3498db;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .alert.warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 연세새봄의원 데이터 일괄 입력</h1>
+        <p class="subtitle">CSV 파일을 선택하고 "데이터 입력 시작" 버튼을 클릭하세요</p>
+        
+        <div class="alert warning">
+            ⚠️ <strong>주의:</strong> 기존 데이터를 모두 삭제하고 새로 입력합니다. 신중하게 진행해주세요.
+        </div>
+        
+        <div class="file-input-wrapper">
+            <input type="file" id="csvFile" accept=".csv" />
+        </div>
+        
+        <button id="startBtn">데이터 입력 시작</button>
+        
+        <div class="progress-container" id="progressContainer">
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="parentCount">0</div>
+                    <div class="stat-label">부모</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="childCount">0</div>
+                    <div class="stat-label">아이</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="measurementCount">0</div>
+                    <div class="stat-label">측정 기록</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+            
+            <div class="log-container" id="logContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // Supabase 클라이언트 초기화
+        const SUPABASE_URL = 'https://mufjnulwnppgvibmmbfo.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_3hm8ooVxIZvENDh-D_lWNA_sdPHg9xk';
+        
+        let supabaseClient;
+        
+        // Supabase 초기화
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('✅ Supabase 클라이언트 초기화 완료');
+            } catch (error) {
+                console.error('❌ Supabase 초기화 실패:', error);
+                alert('Supabase 초기화에 실패했습니다. 페이지를 새로고침해주세요.');
+            }
+        });
+
+        let stats = {
+            parents: 0,
+            children: 0,
+            measurements: 0
+        };
+
+        function log(message, type = 'info') {
+            const logContainer = document.getElementById('logContainer');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            entry.textContent = `[${timestamp}] ${message}`;
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+
+        function updateStats() {
+            document.getElementById('parentCount').textContent = stats.parents;
+            document.getElementById('childCount').textContent = stats.children;
+            document.getElementById('measurementCount').textContent = stats.measurements;
+        }
+
+        function updateProgress(current, total) {
+            const percentage = Math.round((current / total) * 100);
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+        }
+
+        // 나이 문자열을 숫자로 변환 (예: "12세3개월" -> 12.25)
+        function parseAge(ageStr) {
+            if (!ageStr || ageStr.trim() === '') return null;
+            
+            const match = ageStr.match(/(\d+)세(\d+)?개월?/);
+            if (!match) return null;
+            
+            const years = parseInt(match[1]);
+            const months = match[2] ? parseInt(match[2]) : 0;
+            return parseFloat((years + months / 12).toFixed(2));
+        }
+
+        // CSV 파싱
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            const patients = [];
+            let currentPatient = null;
+
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // 멀티라인 처리 (따옴표로 감싸진 필드)
+                let fullLine = line;
+                while ((fullLine.match(/"/g) || []).length % 2 !== 0 && i + 1 < lines.length) {
+                    i++;
+                    fullLine += '\n' + lines[i].trim();
+                }
+
+                const fields = parseCSVLine(fullLine);
+                
+                if (fields[0] && fields[0].trim() !== '') {
+                    // 새 환자
+                    currentPatient = {
+                        parentId: parseInt(fields[0]),
+                        chartNumber: fields[1],
+                        childName: fields[2],
+                        birthDate: fields[3],
+                        gender: fields[4],
+                        fatherHeight: parseFloat(fields[5]) || null,
+                        motherHeight: parseFloat(fields[6]) || null,
+                        targetHeight: parseFloat(fields[7]) || null,
+                        consultMemo: fields[8] || '',
+                        measurements: []
+                    };
+                    patients.push(currentPatient);
+                }
+
+                // 측정 기록 추가
+                if (currentPatient && fields[9]) {
+                    const actualAge = parseAge(fields[12]);
+                    const boneAge = parseAge(fields[13]);
+                    
+                    currentPatient.measurements.push({
+                        date: fields[9],
+                        height: parseFloat(fields[10]) || null,
+                        weight: parseFloat(fields[11]) || null,
+                        actualAge: actualAge,
+                        boneAge: boneAge,
+                        pah: parseFloat(fields[14]) || null,
+                        memo: (fields[15] || '') + (fields[16] ? ' ' + fields[16] : '')
+                    });
+                }
+            }
+
+            return patients;
+        }
+
+        function parseCSVLine(line) {
+            const fields = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    fields.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            fields.push(current.trim());
+
+            return fields;
+        }
+
+        // 버튼 클릭 이벤트
+        document.getElementById('startBtn').addEventListener('click', async function() {
+            const fileInput = document.getElementById('csvFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('CSV 파일을 선택해주세요!');
+                return;
+            }
+
+            if (!supabaseClient) {
+                alert('Supabase가 초기화되지 않았습니다. 페이지를 새로고침해주세요.');
+                return;
+            }
+
+            // UI 초기화
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('progressContainer').classList.add('active');
+            stats = { parents: 0, children: 0, measurements: 0 };
+            updateStats();
+            document.getElementById('logContainer').innerHTML = '';
+
+            try {
+                log('CSV 파일 읽기 중...', 'info');
+                const text = await file.text();
+                
+                log('CSV 파싱 중...', 'info');
+                const patients = parseCSV(text);
+                log(`✅ ${patients.length}명의 환자 데이터 파싱 완료`, 'success');
+
+                // 기존 데이터 삭제는 수동으로 하세요 (Supabase SQL Editor)
+                log('⚠️ 기존 데이터는 Supabase SQL Editor에서 수동으로 삭제해주세요', 'info');
+
+                // 전체 작업 수 계산
+                let totalMeasurements = 0;
+                patients.forEach(p => totalMeasurements += p.measurements.length);
+                const totalSteps = patients.length * 2 + totalMeasurements;
+                let currentStep = 0;
+
+                // 데이터 입력
+                for (const patient of patients) {
+                    log(`👤 [${patient.parentId}] ${patient.childName} 처리 중...`, 'info');
+
+                    try {
+                        // 1. 부모 추가
+                        const email = `${String(patient.parentId).padStart(4, '0')}@example.com`;
+                        const parentData = {
+                            name: `부모${patient.parentId}`,
+                            email: email,
+                            password: '1234',
+                            phone: '010-0000-0000',
+                            role: 'parent'
+                        };
+
+                        let parent;
+                        const { data: insertedParent, error: parentError } = await supabaseClient
+                            .from('users')
+                            .insert(parentData)
+                            .select()
+                            .single();
+
+                        if (parentError) {
+                            if (parentError.code === '23505') {
+                                const { data: existingParent } = await supabaseClient
+                                    .from('users')
+                                    .select('*')
+                                    .eq('email', email)
+                                    .single();
+                                parent = existingParent;
+                                log(`  ℹ️ 부모 ${email} 이미 존재`, 'info');
+                            } else {
+                                throw parentError;
+                            }
+                        } else {
+                            parent = insertedParent;
+                            stats.parents++;
+                            log(`  ✅ 부모 추가: ${email}`, 'success');
+                        }
+
+                        currentStep++;
+                        updateProgress(currentStep, totalSteps);
+                        updateStats();
+
+                        // 2. 아이 추가 (중복 체크)
+                        const { data: existingChildren, error: checkError } = await supabaseClient
+                            .from('children')
+                            .select('*')
+                            .eq('parent_id', parent.id)
+                            .eq('name', patient.childName)
+                            .eq('birth_date', patient.birthDate);
+
+                        let child;
+                        if (existingChildren && existingChildren.length > 0) {
+                            child = existingChildren[0];
+                            log(`  ℹ️ 아이 ${patient.childName} 이미 존재`, 'info');
+                        } else {
+                            const childData = {
+                                parent_id: parent.id,
+                                name: patient.childName,
+                                birth_date: patient.birthDate,
+                                gender: patient.gender === 'M' ? 'male' : 'female'
+                            };
+
+                            const { data: newChild, error: childError } = await supabaseClient
+                                .from('children')
+                                .insert(childData)
+                                .select()
+                                .single();
+
+                            if (childError) throw childError;
+
+                            child = newChild;
+                            stats.children++;
+                            log(`  ✅ 아이 추가: ${patient.childName}`, 'success');
+                        }
+                        currentStep++;
+                        updateProgress(currentStep, totalSteps);
+                        updateStats();
+
+                        // 3. 필수 정보 추가
+                        if (patient.fatherHeight || patient.motherHeight || patient.targetHeight) {
+                            const requiredInfoData = {
+                                child_id: child.id,
+                                father_height: patient.fatherHeight,
+                                mother_height: patient.motherHeight,
+                                target_height: patient.targetHeight
+                            };
+
+                            const { error: infoError } = await supabaseClient
+                                .from('child_required_info')
+                                .insert(requiredInfoData);
+
+                            if (infoError) throw infoError;
+                            log(`  ✅ 필수 정보 추가`, 'success');
+                        }
+
+                        // 4. 측정 기록 추가 (중복 체크)
+                        for (const measurement of patient.measurements) {
+                            // 필수 필드 체크: height가 없으면 스킵
+                            if (!measurement.height || measurement.height <= 0) {
+                                log(`  ⚠️ 키 데이터 없음, 측정 기록 스킵 (${measurement.date})`, 'info');
+                                continue;
+                            }
+
+                            // 중복 체크: 같은 날짜의 측정 기록이 이미 있는지 확인
+                            const { data: existingMeasurements } = await supabaseClient
+                                .from('measurements')
+                                .select('*')
+                                .eq('child_id', child.id)
+                                .eq('measured_date', measurement.date);
+
+                            if (existingMeasurements && existingMeasurements.length > 0) {
+                                log(`  ℹ️ 측정 기록 이미 존재 (${measurement.date})`, 'info');
+                                continue;
+                            }
+                            
+                            // age_at_measurement 계산 (생년월일 기준)
+                            let ageAtMeasurement = measurement.actualAge;
+                            if (!ageAtMeasurement && patient.birthDate && measurement.date) {
+                                try {
+                                    const birthDate = new Date(patient.birthDate);
+                                    const measuredDate = new Date(measurement.date);
+                                    const ageInMonths = (measuredDate - birthDate) / (1000 * 60 * 60 * 24 * 30.44);
+                                    ageAtMeasurement = parseFloat((ageInMonths / 12).toFixed(2));
+                                } catch (e) {
+                                    ageAtMeasurement = 0; // 계산 실패 시 0
+                                }
+                            }
+                            if (!ageAtMeasurement) ageAtMeasurement = 0; // 여전히 null이면 0
+                            
+                            const measurementData = {
+                                child_id: child.id,
+                                measured_date: measurement.date,
+                                height: measurement.height,
+                                weight: measurement.weight || 0,
+                                bone_age: measurement.boneAge,
+                                actual_age: measurement.actualAge || ageAtMeasurement,
+                                age_at_measurement: ageAtMeasurement,
+                                pah: measurement.pah,
+                                notes: measurement.memo.trim()
+                            };
+
+                            const { error: measurementError } = await supabaseClient
+                                .from('measurements')
+                                .insert(measurementData);
+
+                            if (measurementError) {
+                                log(`  ❌ 측정 기록 추가 실패 (${measurement.date}): ${measurementError.message}`, 'error');
+                            } else {
+                                stats.measurements++;
+                                currentStep++;
+                                updateProgress(currentStep, totalSteps);
+                                updateStats();
+                            }
+                        }
+
+                        log(`  ✅ ${patient.childName} 완료 (측정 기록 ${patient.measurements.length}개)`, 'success');
+                    } catch (error) {
+                        log(`  ❌ ${patient.childName} 처리 실패: ${error.message}`, 'error');
+                        console.error('환자 처리 오류 상세:', {
+                            patient: patient.childName,
+                            error: error,
+                            errorMessage: error.message,
+                            errorDetails: error.details,
+                            errorHint: error.hint,
+                            errorCode: error.code
+                        });
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                }
+
+                log('', 'info');
+                log('🎉 모든 데이터 입력이 완료되었습니다!', 'success');
+                log(`📊 최종 통계: 부모 ${stats.parents}명, 아이 ${stats.children}명, 측정 기록 ${stats.measurements}개`, 'success');
+                
+                const container = document.querySelector('.container');
+                const successAlert = document.createElement('div');
+                successAlert.className = 'alert success';
+                successAlert.innerHTML = `
+                    ✅ <strong>입력 완료!</strong><br>
+                    부모 ${stats.parents}명, 아이 ${stats.children}명, 측정 기록 ${stats.measurements}개가 성공적으로 입력되었습니다.<br>
+                    이제 로그인 페이지에서 부모 ID로 로그인할 수 있습니다. (비밀번호: 1234)
+                `;
+                container.insertBefore(successAlert, container.firstChild);
+
+            } catch (error) {
+                log(`❌ 오류 발생: ${error.message}`, 'error');
+                console.error('Import error:', error);
+                alert('데이터 입력 중 오류가 발생했습니다. 콘솔을 확인해주세요.');
+            } finally {
+                document.getElementById('startBtn').disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

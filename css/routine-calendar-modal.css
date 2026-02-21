@@ -1,0 +1,261 @@
+/* ===== 루틴 달력 모달 스타일 ===== */
+
+.routine-calendar-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.routine-calendar-content {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.routine-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.routine-calendar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.modal-close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #f3f4f6;
+    color: #6b7280;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn:hover {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.routine-calendar-body {
+    padding: 20px;
+}
+
+/* 월 선택 */
+.calendar-month-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-month-selector h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+}
+
+.calendar-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #6b7280;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-nav-btn:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+    color: #374151;
+}
+
+/* 범례 */
+.calendar-legend-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.legend-dot {
+    font-size: 0.75rem;
+}
+
+/* 달력 그리드 */
+.routine-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+/* 요일 헤더 */
+.calendar-day-header {
+    text-align: center;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* 날짜 칸 */
+.calendar-day-cell {
+    aspect-ratio: 1;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-day-cell:hover {
+    border-color: #14b8a6;
+    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
+    transform: translateY(-2px);
+}
+
+.calendar-day-cell.empty {
+    background: #f9fafb;
+    cursor: default;
+    pointer-events: none;
+}
+
+.calendar-day-cell.today {
+    border: 2px solid #14b8a6;
+    background: #f0fdfa;
+}
+
+.calendar-day-cell.selected {
+    border: 2px solid #0891b2;
+    background: #cffafe;
+}
+
+.calendar-day-number {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.calendar-day-cell.today .calendar-day-number {
+    color: #14b8a6;
+}
+
+/* 데이터 인디케이터 */
+.calendar-day-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-top: 4px;
+}
+
+.data-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.indicator-sleep {
+    background: #8b5cf6;
+}
+
+.indicator-water {
+    background: #3b82f6;
+}
+
+.indicator-meals {
+    background: #10b981;
+}
+
+.indicator-exercise {
+    background: #f59e0b;
+}
+
+.indicator-supplements {
+    background: #ef4444;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+    .routine-calendar-content {
+        max-width: 100%;
+        max-height: 95vh;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .routine-calendar-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .calendar-month-selector h3 {
+        font-size: 1.1rem;
+    }
+    
+    .calendar-legend-row {
+        gap: 8px;
+    }
+    
+    .legend-item {
+        font-size: 0.75rem;
+    }
+    
+    .routine-calendar-grid {
+        gap: 4px;
+    }
+    
+    .calendar-day-cell {
+        padding: 4px;
+    }
+    
+    .calendar-day-number {
+        font-size: 0.75rem;
+    }
+    
+    .data-indicator {
+        width: 4px;
+        height: 4px;
+    }
+}

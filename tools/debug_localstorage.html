@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로컬스토리지 디버깅 도구</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .data-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .data-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .data-item:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .data-value {
+            color: #1e293b;
+            word-break: break-all;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #f59e0b;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-ok {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.875rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 로컬스토리지 디버깅 도구</h1>
+        <p class="subtitle">저장된 아이 데이터를 확인하고 문제를 진단합니다</p>
+
+        <div id="alert-container"></div>
+
+        <div class="section">
+            <div class="section-title">
+                <span>📋</span>
+                <span>저장된 아이 목록</span>
+            </div>
+            <div id="children-list"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span>🔍</span>
+                <span>데이터 진단 결과</span>
+            </div>
+            <div id="diagnosis-result"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span>⚡</span>
+                <span>빠른 작업</span>
+            </div>
+            <button class="btn btn-primary" onclick="loadData()">🔄 데이터 새로고침</button>
+            <button class="btn btn-success" onclick="fixAllData()">🔧 데이터 자동 수정</button>
+            <button class="btn btn-danger" onclick="clearAllData()">🗑️ 모든 데이터 삭제</button>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span>💾</span>
+                <span>Raw 데이터 (JSON)</span>
+            </div>
+            <pre id="raw-data"></pre>
+        </div>
+    </div>
+
+    <script>
+        function showAlert(message, type = 'success') {
+            const container = document.getElementById('alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            container.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        function calculateAge(birthDate) {
+            if (!birthDate) return null;
+            
+            const today = new Date();
+            const birth = new Date(birthDate);
+            
+            if (isNaN(birth.getTime())) {
+                return null;
+            }
+            
+            let age = today.getFullYear() - birth.getFullYear();
+            const monthDiff = today.getMonth() - birth.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            
+            return age;
+        }
+
+        function validateBirthDate(birthDate) {
+            if (!birthDate) return { valid: false, error: '생년월일이 없습니다' };
+            
+            // 날짜 형식 검사 (YYYY-MM-DD)
+            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+            if (!dateRegex.test(birthDate)) {
+                return { valid: false, error: '날짜 형식이 잘못되었습니다 (YYYY-MM-DD 형식이어야 함)' };
+            }
+            
+            const date = new Date(birthDate);
+            if (isNaN(date.getTime())) {
+                return { valid: false, error: '유효하지 않은 날짜입니다' };
+            }
+            
+            const today = new Date();
+            if (date > today) {
+                return { valid: false, error: '미래 날짜입니다' };
+            }
+            
+            const year = parseInt(birthDate.split('-')[0]);
+            if (year < 1900 || year > today.getFullYear()) {
+                return { valid: false, error: `연도가 유효하지 않습니다 (${year})` };
+            }
+            
+            return { valid: true };
+        }
+
+        function loadData() {
+            const childrenJson = localStorage.getItem('children');
+            
+            console.log('📦 로컬스토리지에서 불러온 데이터:', childrenJson);
+            
+            // Raw 데이터 표시
+            document.getElementById('raw-data').textContent = childrenJson || '데이터가 없습니다';
+            
+            let children = [];
+            try {
+                children = JSON.parse(childrenJson) || [];
+            } catch (e) {
+                showAlert('데이터 파싱 오류: ' + e.message, 'error');
+                document.getElementById('children-list').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <p>데이터를 불러올 수 없습니다</p>
+                        <p style="color: #ef4444; margin-top: 10px;">${e.message}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // 아이 목록 표시
+            const childrenListEl = document.getElementById('children-list');
+            
+            if (children.length === 0) {
+                childrenListEl.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">👶</div>
+                        <p>저장된 아이 정보가 없습니다</p>
+                    </div>
+                `;
+            } else {
+                childrenListEl.innerHTML = children.map((child, index) => {
+                    const age = calculateAge(child.birthDate);
+                    const validation = validateBirthDate(child.birthDate);
+                    const status = validation.valid ? 'ok' : 'error';
+                    const genderText = child.gender === 'male' ? '남아 👦' : '여아 👧';
+                    
+                    return `
+                        <div class="data-box">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <h3 style="color: #1e293b;">${index + 1}. ${child.name} ${genderText}</h3>
+                                <span class="status-badge status-${status}">
+                                    ${validation.valid ? '✅ 정상' : '❌ 오류'}
+                                </span>
+                            </div>
+                            <div class="data-item">
+                                <div class="data-label">ID:</div>
+                                <div class="data-value">${child.id || '없음'}</div>
+                            </div>
+                            <div class="data-item">
+                                <div class="data-label">생년월일:</div>
+                                <div class="data-value">${child.birthDate || '없음'}</div>
+                            </div>
+                            <div class="data-item">
+                                <div class="data-label">계산된 나이:</div>
+                                <div class="data-value">${age !== null ? `만 ${age}세` : '계산 불가 (NaN)'}</div>
+                            </div>
+                            ${!validation.valid ? `
+                            <div class="data-item">
+                                <div class="data-label">오류 내용:</div>
+                                <div class="data-value" style="color: #ef4444; font-weight: 600;">${validation.error}</div>
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }).join('');
+            }
+            
+            // 진단 결과
+            const diagnosisEl = document.getElementById('diagnosis-result');
+            const issues = [];
+            
+            children.forEach((child, index) => {
+                if (!child.id) issues.push(`${index + 1}번 아이: ID가 없습니다`);
+                if (!child.name) issues.push(`${index + 1}번 아이: 이름이 없습니다`);
+                if (!child.gender) issues.push(`${index + 1}번 아이: 성별이 없습니다`);
+                
+                const validation = validateBirthDate(child.birthDate);
+                if (!validation.valid) {
+                    issues.push(`${index + 1}번 ${child.name}: ${validation.error}`);
+                }
+            });
+            
+            if (issues.length === 0) {
+                diagnosisEl.innerHTML = `
+                    <div class="alert alert-success">
+                        ✅ 모든 데이터가 정상입니다!
+                    </div>
+                `;
+            } else {
+                diagnosisEl.innerHTML = `
+                    <div class="alert alert-error">
+                        ⚠️ ${issues.length}개의 문제가 발견되었습니다:
+                    </div>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        ${issues.map(issue => `<li style="margin-bottom: 5px;">${issue}</li>`).join('')}
+                    </ul>
+                `;
+            }
+        }
+
+        function fixAllData() {
+            if (!confirm('데이터를 자동으로 수정하시겠습니까?\n\n잘못된 날짜 형식을 수정하고, 누락된 ID를 추가합니다.')) {
+                return;
+            }
+            
+            const childrenJson = localStorage.getItem('children');
+            let children = [];
+            
+            try {
+                children = JSON.parse(childrenJson) || [];
+            } catch (e) {
+                showAlert('데이터 수정 실패: ' + e.message, 'error');
+                return;
+            }
+            
+            let fixedCount = 0;
+            
+            children = children.map(child => {
+                let fixed = false;
+                
+                // ID가 없으면 추가
+                if (!child.id) {
+                    child.id = 'child_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    fixed = true;
+                }
+                
+                // 날짜 형식 수정 시도
+                if (child.birthDate) {
+                    const validation = validateBirthDate(child.birthDate);
+                    if (!validation.valid) {
+                        // 간단한 수정 시도 (예: "2015-3-1" -> "2015-03-01")
+                        const parts = child.birthDate.split('-');
+                        if (parts.length === 3) {
+                            const year = parts[0].padStart(4, '0');
+                            const month = parts[1].padStart(2, '0');
+                            const day = parts[2].padStart(2, '0');
+                            const fixedDate = `${year}-${month}-${day}`;
+                            
+                            const revalidation = validateBirthDate(fixedDate);
+                            if (revalidation.valid) {
+                                child.birthDate = fixedDate;
+                                fixed = true;
+                            }
+                        }
+                    }
+                }
+                
+                if (fixed) fixedCount++;
+                return child;
+            });
+            
+            // 여전히 잘못된 데이터는 제거할지 물어보기
+            const invalidChildren = children.filter(child => {
+                const validation = validateBirthDate(child.birthDate);
+                return !validation.valid;
+            });
+            
+            if (invalidChildren.length > 0) {
+                if (confirm(`${invalidChildren.length}개의 아이 데이터를 수정할 수 없습니다.\n\n이 데이터를 삭제하시겠습니까?`)) {
+                    children = children.filter(child => {
+                        const validation = validateBirthDate(child.birthDate);
+                        return validation.valid;
+                    });
+                }
+            }
+            
+            // 저장
+            localStorage.setItem('children', JSON.stringify(children));
+            showAlert(`✅ ${fixedCount}개의 데이터를 수정했습니다`, 'success');
+            loadData();
+        }
+
+        function clearAllData() {
+            if (!confirm('⚠️ 경고: 모든 아이 데이터를 삭제하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다!')) {
+                return;
+            }
+            
+            if (!confirm('정말로 삭제하시겠습니까? 다시 한 번 확인해주세요.')) {
+                return;
+            }
+            
+            localStorage.removeItem('children');
+            localStorage.removeItem('selectedChildId');
+            showAlert('모든 데이터가 삭제되었습니다', 'warning');
+            loadData();
+        }
+
+        // 페이지 로드 시 자동 실행
+        window.addEventListener('DOMContentLoaded', () => {
+            loadData();
+        });
+    </script>
+</body>
+</html>

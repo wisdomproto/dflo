@@ -1,0 +1,823 @@
+/* 치료 사례 모바일 스타일 */
+
+.stats-banner {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: var(--white);
+    padding: 20px 16px;
+    display: flex;
+    justify-content: space-around;
+    gap: 12px;
+}
+
+.stat-banner-item {
+    flex: 1;
+    text-align: center;
+}
+
+.stat-banner-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.stat-banner-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.stat-banner-label {
+    font-size: 0.75rem;
+    opacity: 0.95;
+}
+
+.case-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.case-card:active {
+    transform: scale(0.98);
+}
+
+.case-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    color: var(--white);
+    padding: 20px 16px;
+    text-align: center;
+}
+
+/* Measurements Timeline */
+.measurements-timeline {
+    margin-top: 12px;
+}
+
+.measurements-timeline .progress-item {
+    position: relative;
+    padding-left: 24px;
+    padding-bottom: 16px;
+}
+
+.measurements-timeline .progress-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 20px;
+    bottom: -4px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--primary-color), transparent);
+}
+
+.measurements-timeline .progress-item::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+}
+}
+
+.case-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.case-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.case-age {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.case-body {
+    padding: 16px;
+}
+
+.case-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.case-stat {
+    text-align: center;
+    padding: 12px;
+    background: var(--bg-color);
+    border-radius: 12px;
+}
+
+.case-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.case-stat-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.case-stat-value.highlight {
+    color: var(--primary-color);
+}
+
+.case-description {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.case-footer {
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+/* 모달 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    align-items: flex-end;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--white);
+    border-radius: 24px 24px 0 0;
+    width: 100%;
+    max-height: 90vh;
+    z-index: 2001;
+    animation: slideUp 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* modalBody 스크롤 처리 */
+#modalBody {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+#modalBody::-webkit-scrollbar {
+    width: 4px;
+}
+
+#modalBody::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#modalBody::-webkit-scrollbar-thumb {
+    background: rgba(20, 184, 166, 0.3);
+    border-radius: 4px;
+}
+
+#modalBody::-webkit-scrollbar-thumb:hover {
+    background: rgba(20, 184, 166, 0.5);
+}
+
+.modal-close {
+    position: sticky;
+    top: 16px;
+    right: 16px;
+    float: right;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 2002;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    color: var(--white);
+    padding: 48px 20px 32px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-header .case-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+}
+
+.modal-header h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header p {
+    font-size: 1rem;
+    opacity: 0.95;
+    font-weight: 500;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.modal-header p span {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    font-size: 0.9rem;
+}
+
+.modal-header p::before,
+.modal-header p::after {
+    display: none;
+}
+
+.modal-body {
+    padding: 20px 16px;
+}
+
+.modal-section {
+    margin-bottom: 24px;
+}
+
+.modal-section h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.modal-section p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.progress-item {
+    padding: 12px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.progress-date {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    color: var(--text-color);
+}
+
+/* 고정 그래프 영역 */
+.sticky-chart-container {
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 100;
+    padding: 16px 16px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-height: 45vh;
+    overflow-y: auto;
+}
+
+/* 환자 기본 정보 섹션 */
+.patient-info-section {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.04) 100%);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(20, 184, 166, 0.15);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.info-item {
+    background: var(--white);
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.info-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.special-notes {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.notes-icon {
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.notes-text {
+    font-size: 0.875rem;
+    color: #6b21a8;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.chart-section {
+    margin-bottom: 8px !important;
+}
+
+.chart-section h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+.chart-wrapper {
+    background: var(--bg-color);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 0;
+}
+
+/* 스크롤 가능한 컨텐츠 */
+.scrollable-content {
+    padding: 16px;
+    padding-top: 16px;
+    min-height: 50vh;
+}
+
+/* 측정 기록 카드 */
+.measurements-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.measurement-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(20, 184, 166, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 하이라이트된 카드 */
+.measurement-card.highlighted {
+    border-color: #f59e0b;
+    box-shadow: 0 8px 16px rgba(245, 158, 11, 0.25);
+    transform: scale(1.02);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(251, 146, 60, 0.03) 100%);
+}
+
+/* 컴팩트한 한 줄 레이아웃 */
+.measurement-compact {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+}
+
+.compact-badge {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    color: var(--white);
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 60px;
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.measurement-card.highlighted .compact-badge {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+    }
+}
+
+.badge-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.badge-label {
+    font-size: 0.625rem;
+    font-weight: 600;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.compact-info {
+    flex: 1;
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 12px;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.02) 0%, transparent 100%);
+}
+
+.measurement-card.highlighted .compact-info {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, transparent 100%);
+}
+
+.compact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 8px;
+    background: var(--bg-color);
+    border-radius: 6px;
+}
+
+.measurement-card.highlighted .compact-row {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.compact-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.compact-value {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.compact-value.highlight {
+    color: var(--primary-color);
+}
+
+.measurement-card.highlighted .compact-value.highlight {
+    color: #f59e0b;
+}
+
+.compact-value small {
+    font-size: 0.7rem;
+    color: #10b981;
+    font-weight: 600;
+    margin-left: 4px;
+}
+
+/* 회차별 메모 */
+.measurement-memo {
+    border-top: 2px dashed rgba(20, 184, 166, 0.15);
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.04) 0%, rgba(124, 58, 237, 0.02) 100%);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.measurement-card.highlighted .measurement-memo {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(251, 146, 60, 0.04) 100%);
+    border-top-color: rgba(245, 158, 11, 0.3);
+}
+
+.memo-icon {
+    font-size: 1rem;
+    line-height: 1.4;
+    flex-shrink: 0;
+}
+
+.memo-text {
+    font-size: 0.8125rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.measurement-card.highlighted .memo-text {
+    color: #92400e;
+}
+
+/* 성장 진단 스타일 - 3칸 레이아웃 */
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, transparent 100%);
+}
+
+.measurement-card.highlighted .record-header {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, transparent 100%);
+}
+
+.record-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    border-radius: 12px;
+    color: var(--white);
+    min-width: 50px;
+}
+
+.measurement-card.highlighted .record-badge {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+}
+
+.record-info {
+    flex: 1;
+    padding-left: 12px;
+}
+
+.record-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 16px 16px;
+}
+
+.record-stat {
+    text-align: center;
+    padding: 12px 8px;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+.measurement-card.highlighted .record-stat {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.help-icon:hover {
+    background: rgba(245, 158, 11, 0.3);
+    transform: scale(1.1);
+}
+    font-weight: 500;
+}
+
+/* 스크롤 안내 텍스트 */
+.modal-section p {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 이전 스타일 제거 */
+.measurement-header,
+.measurement-date,
+.date-badge,
+.date-text,
+.growth-badge {
+    display: none !important;
+}
+
+.measurement-body {
+    display: none !important;
+}
+
+.measurement-header {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(20, 184, 166, 0.04) 100%);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(20, 184, 166, 0.1);
+}
+
+.measurement-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.date-badge {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.date-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.growth-badge {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.growth-badge.start {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+}
+
+.measurement-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.measurement-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+.measurement-label {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.measurement-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.measurement-value small {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+/* 메모 박스 */
+.memo-box {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+    border-left: 4px solid #8b5cf6;
+    padding: 16px;
+    border-radius: 12px;
+    line-height: 1.8;
+}
+
+.memo-box p {
+    color: var(--text-color);
+    font-size: 0.9375rem;
+    margin: 0;
+}
+
+/* 모달 스크롤 개선 */
+#modalBody {
+    max-height: calc(85vh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 성장 결과 요약 섹션 */
+.modal-section:first-child .case-stats {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(13, 148, 136, 0.05) 100%);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(20, 184, 166, 0.2);
+}
+

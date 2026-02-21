@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>엑셀 LMS 데이터 추출</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-area:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        button:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+        .sheet-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .sheet-card {
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .sheet-card:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+        .sheet-card.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #334155;
+            position: sticky;
+            top: 0;
+        }
+        .data-preview {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background: #f0fdf4;
+            border-left-color: #10b981;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 엑셀 LMS 데이터 직접 추출</h1>
+        <p style="color: #64748b; margin-bottom: 20px;">엑셀 파일에서 LMS 값을 직접 추출하여 JSON으로 변환합니다</p>
+
+        <div class="upload-area" id="uploadArea">
+            <p style="font-size: 18px; margin-bottom: 10px;">📁 엑셀 파일을 드래그하거나 클릭하여 선택하세요</p>
+            <p style="color: #64748b; font-size: 14px;">성장도표+데이터+테이블.xls</p>
+            <input type="file" id="fileInput" accept=".xls,.xlsx" style="display: none;">
+        </div>
+
+        <div id="sheetListContainer" style="display: none;">
+            <h3>📑 시트 목록 (LMS 데이터가 있는 시트를 선택하세요)</h3>
+            <div id="sheetList" class="sheet-list"></div>
+        </div>
+
+        <div id="result"></div>
+        
+        <div style="margin-top: 20px; display: none;" id="actionButtons">
+            <button id="downloadBtn" style="background: #10b981;">💾 JSON 다운로드</button>
+            <button id="copyBtn" style="background: #f59e0b;">📋 JSON 복사</button>
+        </div>
+    </div>
+
+    <script>
+        let workbook = null;
+        let extractedData = null;
+
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const sheetListContainer = document.getElementById('sheetListContainer');
+        const sheetList = document.getElementById('sheetList');
+        const resultDiv = document.getElementById('result');
+        const actionButtons = document.getElementById('actionButtons');
+
+        // 파일 업로드
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        });
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        function handleFile(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    workbook = XLSX.read(data, { type: 'array' });
+                    
+                    displaySheetList();
+                } catch (error) {
+                    resultDiv.innerHTML = `<p class="error">❌ 파일 읽기 실패: ${error.message}</p>`;
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function displaySheetList() {
+            sheetListContainer.style.display = 'block';
+            
+            sheetList.innerHTML = workbook.SheetNames.map(name => `
+                <div class="sheet-card" onclick="analyzeSheet('${name}')">
+                    <div style="font-weight: 600; margin-bottom: 5px;">📄 ${name}</div>
+                    <div style="font-size: 12px; color: #64748b;">클릭하여 분석</div>
+                </div>
+            `).join('');
+        }
+
+        function analyzeSheet(sheetName) {
+            const sheet = workbook.Sheets[sheetName];
+            const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+
+            // 모든 카드 선택 해제
+            document.querySelectorAll('.sheet-card').forEach(card => card.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            // 데이터 미리보기
+            let html = '<div class="data-preview">';
+            html += `<h3>📋 시트: ${sheetName}</h3>`;
+            html += '<p style="color: #64748b; margin-bottom: 15px;">처음 20행을 표시합니다. LMS 컬럼(L, M, S)을 찾고 있습니다...</p>';
+            
+            html += '<table><thead><tr>';
+            const header = data[0] || [];
+            header.slice(0, 15).forEach((cell, idx) => {
+                const cellStr = String(cell).toLowerCase();
+                let highlight = '';
+                if (cellStr === 'l' || cellStr === 'm' || cellStr === 's' || 
+                    cellStr.includes('lambda') || cellStr.includes('mu') || cellStr.includes('sigma')) {
+                    highlight = 'style="background: #fef3c7; font-weight: 700;"';
+                }
+                html += `<th ${highlight}>${cell || `Col${idx+1}`}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+            
+            data.slice(1, 21).forEach(row => {
+                html += '<tr>';
+                row.slice(0, 15).forEach(cell => {
+                    html += `<td>${cell !== undefined && cell !== '' ? cell : '-'}</td>`;
+                });
+                html += '</tr>';
+            });
+            
+            html += '</tbody></table>';
+            html += `<p style="color: #64748b; margin-top: 10px;">총 ${data.length}행 × ${header.length}열</p>`;
+            html += '</div>';
+
+            // LMS 컬럼 자동 감지
+            const lmsInfo = detectLMSColumns(data);
+            if (lmsInfo.found) {
+                html += '<div class="info-box success">';
+                html += '<strong>✅ LMS 컬럼을 찾았습니다!</strong><br>';
+                html += `나이/개월: ${lmsInfo.ageCol}번 컬럼, L: ${lmsInfo.lCol}번, M: ${lmsInfo.mCol}번, S: ${lmsInfo.sCol}번 컬럼<br>`;
+                html += `<button onclick="extractLMSData('${sheetName}')" style="margin-top: 10px;">🔄 LMS 데이터 추출하기</button>`;
+                html += '</div>';
+            } else {
+                html += '<div class="info-box">';
+                html += '<strong>⚠️ LMS 컬럼을 자동으로 찾지 못했습니다</strong><br>';
+                html += '헤더 행에 "L", "M", "S" 또는 "Lambda", "Mu", "Sigma"가 포함되어 있는지 확인하세요.';
+                html += '</div>';
+            }
+
+            resultDiv.innerHTML = html;
+        }
+
+        function detectLMSColumns(data) {
+            if (data.length < 2) return { found: false };
+
+            const header = data[0].map(cell => String(cell).toLowerCase().trim());
+            
+            // 나이/개월 컬럼 찾기
+            let ageCol = header.findIndex(h => 
+                h.includes('age') || h.includes('month') || h.includes('나이') || 
+                h.includes('개월') || h.includes('연령') || h === 'age'
+            );
+
+            // LMS 컬럼 찾기
+            let lCol = header.findIndex(h => h === 'l' || h.includes('lambda'));
+            let mCol = header.findIndex(h => h === 'm' || h.includes('mu') || h.includes('median'));
+            let sCol = header.findIndex(h => h === 's' || h.includes('sigma'));
+
+            // 컬럼 위치로 추정 (보통 연속된 컬럼)
+            if (lCol === -1 || mCol === -1 || sCol === -1) {
+                // 숫자가 있는 컬럼 찾기
+                for (let i = 1; i < header.length - 2; i++) {
+                    const val1 = data[1][i];
+                    const val2 = data[1][i+1];
+                    const val3 = data[1][i+2];
+                    
+                    if (typeof val1 === 'number' && typeof val2 === 'number' && typeof val3 === 'number') {
+                        if (Math.abs(val1) < 3 && val2 > 10 && Math.abs(val3) < 1) {
+                            lCol = i;
+                            mCol = i + 1;
+                            sCol = i + 2;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            const found = lCol >= 0 && mCol >= 0 && sCol >= 0;
+            
+            return { found, ageCol, lCol, mCol, sCol };
+        }
+
+        function extractLMSData(sheetName) {
+            const sheet = workbook.Sheets[sheetName];
+            const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+            
+            const lmsInfo = detectLMSColumns(data);
+            if (!lmsInfo.found) {
+                alert('LMS 컬럼을 찾을 수 없습니다.');
+                return;
+            }
+
+            const results = [];
+            
+            // 데이터 행 추출 (헤더 제외)
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                if (!row || row.length === 0) continue;
+
+                let age = lmsInfo.ageCol >= 0 ? row[lmsInfo.ageCol] : null;
+                const L = row[lmsInfo.lCol];
+                const M = row[lmsInfo.mCol];
+                const S = row[lmsInfo.sCol];
+
+                // 유효성 검사
+                if (typeof L !== 'number' || typeof M !== 'number' || typeof S !== 'number') continue;
+                if (M < 10 || M > 200) continue; // 키 범위
+                if (Math.abs(S) > 1) continue; // S 범위
+
+                // 나이 계산 (개월 → 년)
+                if (typeof age === 'number' && age > 18) {
+                    age = age / 12; // 개월을 년으로 변환
+                }
+                if (!age || age < 0 || age > 20) continue;
+
+                results.push({
+                    age: Math.round(age * 10) / 10,
+                    L: Math.round(L * 10000) / 10000,
+                    M: Math.round(M * 10) / 10,
+                    S: Math.round(S * 10000) / 10000
+                });
+            }
+
+            // 나이순 정렬
+            results.sort((a, b) => a.age - b.age);
+
+            displayExtractedData(sheetName, results);
+        }
+
+        function displayExtractedData(sheetName, results) {
+            extractedData = { sheetName, results };
+
+            let html = '<div class="info-box success">';
+            html += `<strong>✅ ${results.length}개의 LMS 데이터를 추출했습니다!</strong>`;
+            html += '</div>';
+
+            html += '<div class="data-preview">';
+            html += `<h3>📊 추출된 LMS 데이터: ${sheetName}</h3>`;
+            html += '<table><thead><tr><th>나이</th><th>L</th><th>M</th><th>S</th></tr></thead><tbody>';
+            
+            results.forEach(item => {
+                html += `<tr>
+                    <td>${item.age}</td>
+                    <td>${item.L}</td>
+                    <td>${item.M}</td>
+                    <td>${item.S}</td>
+                </tr>`;
+            });
+            
+            html += '</tbody></table></div>';
+
+            resultDiv.innerHTML = html;
+            actionButtons.style.display = 'block';
+        }
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            if (!extractedData) return;
+
+            const json = {
+                metadata: {
+                    source: "대한소아과학회 2017 한국 소아청소년 성장도표",
+                    sheet: extractedData.sheetName,
+                    extracted: new Date().toISOString(),
+                    count: extractedData.results.length
+                },
+                data: extractedData.results
+            };
+
+            const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `lms_${extractedData.sheetName.replace(/[^a-zA-Z0-9]/g, '_')}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            if (!extractedData) return;
+
+            const jsonText = JSON.stringify(extractedData.results, null, 2);
+            navigator.clipboard.writeText(jsonText).then(() => {
+                alert('JSON 데이터가 클립보드에 복사되었습니다!');
+            });
+        });
+    </script>
+</body>
+</html>

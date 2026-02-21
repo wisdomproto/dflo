@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#14b8a6">
+    <title>환자 관리 - 187 성장케어</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/admin-patients.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 앱 헤더 -->
+    <header class="app-header">
+        <button class="btn-back" onclick="location.href='index.html'">← 홈</button>
+        <div class="app-header-content">
+            <div class="app-title">
+                <h1>👥 환자 관리</h1>
+                <p>연세새봄의원 성장 클리닉</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 검색 & 필터 -->
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="patientSearch" placeholder="🔍 환자명 또는 차트번호로 검색..." oninput="searchPatients()">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterPatients('all')">전체</button>
+                    <button class="filter-btn" onclick="filterPatients('male')">남아</button>
+                    <button class="filter-btn" onclick="filterPatients('female')">여아</button>
+                    <button class="filter-btn" onclick="filterPatients('ongoing')">치료중</button>
+                </div>
+            </div>
+
+            <!-- 환자 목록 섹션 -->
+            <div id="patientsSection" class="admin-section active">
+                <div class="card">
+                    <div class="section-header">
+                        <div class="stats-summary">
+                            <div class="stat-item">
+                                <span class="stat-label">전체 환자</span>
+                                <span class="stat-value" id="totalPatients">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">치료중</span>
+                                <span class="stat-value" id="ongoingPatients">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">남아</span>
+                                <span class="stat-value" id="malePatients">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">여아</span>
+                                <span class="stat-value" id="femalePatients">0</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="showAddPatientModal()">
+                            ➕ 새 환자 등록
+                        </button>
+                    </div>
+                    <div id="patientsList" class="patients-list"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 환자 추가/수정 모달 -->
+    <div id="patientModal" class="modal" style="display: none;">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="patientModalTitle">환자 등록</h3>
+                <button class="btn-close" onclick="closePatientModal()">✕</button>
+            </div>
+            <form id="patientForm" onsubmit="savePatient(event)">
+                <input type="hidden" id="patientId">
+                
+                <!-- 기본 정보 -->
+                <div class="form-section">
+                    <h4>👤 기본 정보</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientName"><span class="required">*</span> 이름</label>
+                            <input type="text" id="patientName" required placeholder="홍길동">
+                        </div>
+                        <div class="form-group">
+                            <label for="patientGender"><span class="required">*</span> 성별</label>
+                            <select id="patientGender" required>
+                                <option value="">선택</option>
+                                <option value="male">남아</option>
+                                <option value="female">여아</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientBirthDate"><span class="required">*</span> 생년월일</label>
+                            <input type="date" id="patientBirthDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="chartNumber">차트번호</label>
+                            <input type="text" id="chartNumber" placeholder="자동 생성">
+                        </div>
+                        <div class="form-group">
+                            <label for="parentPhone">연락처</label>
+                            <input type="tel" id="parentPhone" placeholder="010-1234-5678">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 부모 정보 -->
+                <div class="form-section">
+                    <h4>👨‍👩‍👧 부모 정보</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fatherHeight">아버지 키 (cm)</label>
+                            <input type="number" id="fatherHeight" step="0.1" placeholder="175.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="motherHeight">어머니 키 (cm)</label>
+                            <input type="number" id="motherHeight" step="0.1" placeholder="160.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="targetHeight">희망 키 (cm)</label>
+                            <input type="number" id="targetHeight" step="0.1" placeholder="180.0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 특이사항 -->
+                <div class="form-section">
+                    <h4>📝 특이사항</h4>
+                    <div class="form-group">
+                        <textarea id="specialNotes" rows="3" placeholder="알레르기, 과거 병력, 주의사항 등"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closePatientModal()">취소</button>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 환자 상세 보기 모달 -->
+    <div id="patientDetailModal" class="modal" style="display: none;">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3 id="patientDetailTitle">환자 상세 정보</h3>
+                <button class="btn-close" onclick="closePatientDetailModal()">✕</button>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchDetailTab('info')">기본정보</button>
+                <button class="tab-btn" onclick="switchDetailTab('records')">측정기록</button>
+                <button class="tab-btn" onclick="switchDetailTab('chart')">성장차트</button>
+            </div>
+
+            <!-- 기본정보 탭 -->
+            <div id="infoTab" class="tab-content active">
+                <div id="patientDetailInfo"></div>
+            </div>
+
+            <!-- 측정기록 탭 -->
+            <div id="recordsTab" class="tab-content">
+                <div class="records-header">
+                    <h4>📏 측정 기록</h4>
+                    <button class="btn btn-sm btn-primary" onclick="showAddRecordModal()">
+                        ➕ 측정 추가
+                    </button>
+                </div>
+                <div id="recordsList"></div>
+            </div>
+
+            <!-- 성장차트 탭 -->
+            <div id="chartTab" class="tab-content">
+                <h4>📊 성장 곡선</h4>
+                <div class="chart-wrapper">
+                    <canvas id="patientGrowthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closePatientDetailModal()">닫기</button>
+                <button type="button" class="btn btn-primary" onclick="editPatient()">수정</button>
+                <button type="button" class="btn btn-danger" onclick="deletePatient()">삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 측정 기록 추가 모달 -->
+    <div id="recordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>측정 기록 추가</h3>
+                <button class="btn-close" onclick="closeRecordModal()">✕</button>
+            </div>
+            <form id="recordForm" onsubmit="saveRecord(event)">
+                <input type="hidden" id="recordPatientId">
+                <input type="hidden" id="recordId">
+                
+                <div class="form-group">
+                    <label for="recordDate"><span class="required">*</span> 측정일</label>
+                    <input type="date" id="recordDate" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="recordHeight"><span class="required">*</span> 키 (cm)</label>
+                        <input type="number" id="recordHeight" step="0.1" required placeholder="165.0">
+                    </div>
+                    <div class="form-group">
+                        <label for="recordWeight"><span class="required">*</span> 몸무게 (kg)</label>
+                        <input type="number" id="recordWeight" step="0.1" required placeholder="55.0">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="boneAge">뼈나이 (세)</label>
+                        <input type="number" id="boneAge" step="0.1" placeholder="12.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="predictedHeight">예측 최종키 (cm)</label>
+                        <input type="number" id="predictedHeight" step="0.1" placeholder="175.0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="recordMemo">메모</label>
+                    <textarea id="recordMemo" rows="3" placeholder="측정 소견, 특이사항 등"></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeRecordModal()">취소</button>
+                    <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/growth-data.js"></script>
+    <script src="js/admin-patients.js"></script>
+</body>
+</html>

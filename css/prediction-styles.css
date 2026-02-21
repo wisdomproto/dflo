@@ -1,0 +1,27 @@
+/* 예상키 예측 관련 스타일 */
+
+.prediction-record-item {
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.prediction-record-item:active {
+    transform: scale(0.98);
+    background: var(--bg-color);
+    border-color: var(--primary-color);
+}
+
+.touchable {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touchable:active {
+    opacity: 0.7;
+}

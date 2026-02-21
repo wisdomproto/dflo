@@ -1,0 +1,70 @@
+# ================================================
+# 187 성장케어 - Git 무시 파일
+# ================================================
+
+# 환경변수 & 설정 파일 (절대 커밋 금지!)
+config.js
+.env
+.env.local
+.env.production
+
+# API 키 파일
+**/api-keys.js
+**/secrets.js
+
+# 로그 파일
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 의존성 폴더
+node_modules/
+.pnp
+.pnp.js
+
+# 테스트 커버리지
+coverage/
+
+# 빌드 결과물
+dist/
+build/
+.next/
+out/
+
+# IDE 설정
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS 파일
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 임시 파일
+*.tmp
+*.temp
+.cache/
+
+# Supabase
+.supabase/
+
+# Cloudflare
+.wrangler/
+wrangler.toml.backup
+
+# 백업 파일
+*.backup
+*.bak
+*-backup.*
+
+# Claude Code
+.claude/
+
+# Windows artifacts
+nul

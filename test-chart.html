@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js 테스트</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .chart-wrapper {
+            height: 400px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h1 { color: #333; }
+        .info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Chart.js 환자 데이터 테스트</h1>
+        
+        <div class="info">
+            <h3>테스트 목적</h3>
+            <p>환자 데이터 포인트가 백분위선과 함께 제대로 표시되는지 확인</p>
+            <p><strong>빨간 점 (10px)</strong>이 명확히 보여야 합니다!</p>
+        </div>
+        
+        <div class="chart-wrapper">
+            <canvas id="testChart"></canvas>
+        </div>
+        
+        <div id="debug" style="background: #fffacd; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 12px;"></div>
+    </div>
+    
+    <script>
+        console.log('🔵 테스트 시작');
+        
+        // 환자 데이터 (김민준)
+        const patientData = [
+            { x: 12.25, y: 155.7 },
+            { x: 12.79, y: 161.6 },
+            { x: 13.22, y: 166.4 },
+            { x: 13.73, y: 172.0 },
+            { x: 13.99, y: 174.8 }
+        ];
+        
+        console.log('📊 환자 데이터:', patientData);
+        
+        // 백분위 데이터 (간단한 샘플)
+        const ages = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+        const p5 = [128, 132, 137, 144, 152, 159, 163, 165, 166];
+        const p95 = [140, 147, 155, 164, 172, 177, 179, 180, 181];
+        
+        const percentile5 = ages.map((age, i) => ({ x: age, y: p5[i] }));
+        const percentile95 = ages.map((age, i) => ({ x: age, y: p95[i] }));
+        
+        console.log('📊 5th 백분위:', percentile5);
+        console.log('📊 95th 백분위:', percentile95);
+        
+        const ctx = document.getElementById('testChart').getContext('2d');
+        
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                datasets: [
+                    // 환자 데이터
+                    {
+                        type: 'line',
+                        label: '👶 김민준의 성장 기록',
+                        data: patientData,
+                        borderColor: '#dc2626',
+                        backgroundColor: '#dc2626',
+                        borderWidth: 4,
+                        pointRadius: 10,
+                        pointHoverRadius: 12,
+                        pointBackgroundColor: '#dc2626',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 3,
+                        pointStyle: 'circle',
+                        tension: 0.3,
+                        fill: false,
+                        order: 0,
+                        showLine: true
+                    },
+                    // 5th 백분위
+                    {
+                        label: '5th 백분위',
+                        data: percentile5,
+                        borderColor: '#93c5fd',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        tension: 0.4,
+                        order: 100,
+                        fill: false
+                    },
+                    // 95th 백분위
+                    {
+                        label: '95th 백분위',
+                        data: percentile95,
+                        borderColor: '#1e40af',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointRadius: 0,
+                        tension: 0.4,
+                        order: 100,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: {
+                            display: true,
+                            text: '만 나이 (세)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        min: 10,
+                        max: 18
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '키 (cm)',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        min: 120,
+                        max: 185,
+                        ticks: {
+                            stepSize: 10
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15,
+                            font: { size: 12, weight: '600' }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        mode: 'nearest',
+                        intersect: true
+                    }
+                }
+            }
+        });
+        
+        console.log('📊 차트 생성 완료');
+        console.log('📊 전체 데이터셋 수:', chart.data.datasets.length);
+        
+        // 디버그 정보 출력
+        let debugHtml = '<h4>📊 Chart.js 디버그 정보</h4>';
+        chart.data.datasets.forEach((ds, index) => {
+            debugHtml += `<p><strong>Dataset ${index}:</strong> ${ds.label} | order: ${ds.order} | 데이터: ${ds.data.length}개 | pointRadius: ${ds.pointRadius}</p>`;
+            if (ds.order === 0) {
+                debugHtml += `<p style="color: red;">▶ 첫 번째 포인트: x=${ds.data[0].x}, y=${ds.data[0].y}</p>`;
+            }
+        });
+        
+        document.getElementById('debug').innerHTML = debugHtml;
+        
+        console.log('✅ 테스트 완료');
+        
+        // 환자 데이터셋 확인
+        const patientDs = chart.data.datasets.find(d => d.order === 0);
+        if (patientDs) {
+            console.log('✅ 환자 데이터셋:', patientDs);
+            console.log('✅ 포인트 개수:', patientDs.data.length);
+            console.log('✅ 첫 포인트:', patientDs.data[0]);
+        }
+    </script>
+</body>
+</html>

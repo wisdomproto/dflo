@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환자 데이터 일괄 입력 - 187 성장케어</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .progress-container {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e5e7eb;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .log-container {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 15px;
+        }
+        
+        .log-item {
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .log-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .log-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .log-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+    </style>
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 환자 데이터 일괄 입력</h1>
+        
+        <div class="info-box">
+            <h3>📋 데이터 정보</h3>
+            <p>연세새봄의원 환자 데이터를 Supabase DB에 입력합니다.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">환자(부모)</div>
+                    <div class="stat-value" id="totalParents">45</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">자녀</div>
+                    <div class="stat-value" id="totalChildren">45</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">측정 기록</div>
+                    <div class="stat-value" id="totalMeasurements">300+</div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-primary" id="startBtn" onclick="startImport()">
+            🚀 데이터 입력 시작
+        </button>
+        
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+        </div>
+        
+        <div class="log-container" id="logContainer" style="display: none;"></div>
+    </div>
+    
+    <script>
+        // 환자 데이터 (엑셀에서 추출)
+        const patientsData = [
+            {
+                parentId: 1,
+                chartNumber: '27376',
+                parentName: '여하원',
+                parentEmail: null,
+                parentPhone: null,
+                childName: '여하원',
+                gender: 'male',
+                birthDate: '2011-01-18',
+                fatherHeight: 170,
+                motherHeight: 156,
+                targetHeight: 180,
+                memo: '-알레르기 비염 있음\n-1년전 타병원 PAH 176cm',
+                measurements: [
+                    { date: '2023-04-25', height: 155.7, weight: 58.6, boneAge: 13.17, notes: null },
+                    { date: '2023-11-07', height: 161.6, weight: 63.1, boneAge: 13.25, notes: null },
+                    { date: '2023-12-05', height: 162.6, weight: 63.8, boneAge: null, notes: '아리미덱스 처방 시작' },
+                    { date: '2024-04-13', height: 166.4, weight: 70.1, boneAge: 13.42, notes: null },
+                    { date: '2024-10-19', height: 172, weight: 76.9, boneAge: 13.58, notes: '채소섭취량 늘리도록 권장' },
+                    { date: '2025-01-20', height: 174.8, weight: 78.5, boneAge: 13.5, notes: null },
+                    { date: '2025-07-25', height: 177.9, weight: 87.2, boneAge: 13.5, notes: '체중조절 권유' }
+                ]
+            },
+            {
+                parentId: 2,
+                chartNumber: '22120',
+                parentName: '이동윤',
+                parentEmail: null,
+                parentPhone: null,
+                childName: '이동윤',
+                gender: 'male',
+                birthDate: '2007-08-08',
+                fatherHeight: 181,
+                motherHeight: 161,
+                targetHeight: 184,
+                memo: null,
+                measurements: [
+                    { date: '2018-10-22', height: 145.8, weight: 40, boneAge: 12.17, notes: null },
+                    { date: '2019-07-15', height: 152.9, weight: 43, boneAge: 12.42, notes: null },
+                    { date: '2020-01-28', height: 159.5, weight: 47, boneAge: 12.83, notes: null },
+                    { date: '2021-01-25', height: 168.9, weight: 59, boneAge: 13.25, notes: null },
+                    { date: '2021-12-07', height: 175.9, weight: 61, boneAge: 13.83, notes: '아리미덱스 처방 시작' },
+                    { date: '2022-03-30', height: 176.8, weight: 63, boneAge: null, notes: null },
+                    { date: '2022-09-28', height: 178.5, weight: 65.8, boneAge: null, notes: null },
+                    { date: '2023-04-24', height: 183, weight: null, boneAge: null, notes: '치료종료' }
+                ]
+            }
+            // ... (나머지 환자 데이터는 아래에 추가)
+        ];
+        
+        let currentProgress = 0;
+        let totalSteps = 0;
+        
+        function addLog(message, type = 'info') {
+            const logContainer = document.getElementById('logContainer');
+            logContainer.style.display = 'block';
+            
+            const logItem = document.createElement('div');
+            logItem.className = `log-item log-${type}`;
+            logItem.textContent = message;
+            
+            logContainer.appendChild(logItem);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+        
+        function updateProgress(current, total) {
+            const percentage = Math.round((current / total) * 100);
+            const progressFill = document.getElementById('progressFill');
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+        }
+        
+        async function startImport() {
+            const startBtn = document.getElementById('startBtn');
+            startBtn.disabled = true;
+            startBtn.textContent = '⏳ 데이터 입력 중...';
+            
+            document.getElementById('progressContainer').style.display = 'block';
+            
+            addLog('🚀 데이터 입력을 시작합니다...', 'info');
+            
+            totalSteps = patientsData.length;
+            currentProgress = 0;
+            
+            for (const patient of patientsData) {
+                try {
+                    await importPatient(patient);
+                    currentProgress++;
+                    updateProgress(currentProgress, totalSteps);
+                } catch (error) {
+                    addLog(`❌ 환자 ${patient.childName} 입력 실패: ${error.message}`, 'error');
+                }
+            }
+            
+            addLog(`✅ 완료! 총 ${currentProgress}명의 환자 데이터가 입력되었습니다.`, 'success');
+            startBtn.textContent = '✅ 완료!';
+        }
+        
+        async function importPatient(patient) {
+            // 1. 부모 추가
+            addLog(`👪 부모 추가: ${patient.parentName}`, 'info');
+            
+            const { data: parent, error: parentError } = await supabaseClient
+                .from('users')
+                .insert([{
+                    name: patient.parentName,
+                    email: patient.parentEmail,
+                    phone: patient.parentPhone,
+                    role: 'parent'
+                }])
+                .select()
+                .single();
+            
+            if (parentError) throw new Error(`부모 추가 실패: ${parentError.message}`);
+            
+            // 2. 자녀 추가
+            addLog(`  👶 자녀 추가: ${patient.childName} (${patient.gender === 'male' ? '남' : '여'})`, 'info');
+            
+            const { data: child, error: childError } = await supabaseClient
+                .from('children')
+                .insert([{
+                    parent_id: parent.id,
+                    name: patient.childName,
+                    gender: patient.gender,
+                    birth_date: patient.birthDate
+                }])
+                .select()
+                .single();
+            
+            if (childError) throw new Error(`자녀 추가 실패: ${childError.message}`);
+            
+            // 3. 측정 기록 추가
+            if (patient.measurements && patient.measurements.length > 0) {
+                addLog(`  📊 측정 기록 ${patient.measurements.length}개 추가 중...`, 'info');
+                
+                const measurements = patient.measurements.map(m => ({
+                    child_id: child.id,
+                    measured_date: m.date,
+                    height: m.height,
+                    weight: m.weight,
+                    bone_age: m.boneAge,
+                    notes: m.notes
+                }));
+                
+                const { error: measurementsError } = await supabaseClient
+                    .from('measurements')
+                    .insert(measurements);
+                
+                if (measurementsError) throw new Error(`측정 기록 추가 실패: ${measurementsError.message}`);
+            }
+            
+            addLog(`✅ ${patient.childName} 완료 (측정 기록 ${patient.measurements.length}개)`, 'success');
+        }
+    </script>
+</body>
+</html>

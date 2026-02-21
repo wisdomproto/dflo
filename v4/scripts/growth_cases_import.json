@@ -1,0 +1,2663 @@
+[
+  {
+    "patient_name": "27376",
+    "gender": "male",
+    "birth_date": "2011-01-18",
+    "father_height": 170.0,
+    "mother_height": 156.0,
+    "target_height": 180.0,
+    "special_notes": "-알레르기 비염 있음\n-1년전 타병원 PAH 176cm",
+    "measurements": [
+      {
+        "date": "2023-04-25",
+        "height": 155.7,
+        "weight": 58.6,
+        "age": "12세3개월",
+        "bone_age": "13세2개월",
+        "pah": "172"
+      },
+      {
+        "date": "2023-11-07",
+        "height": 161.6,
+        "weight": 63.1,
+        "age": "12세9개월",
+        "bone_age": "13세3~4개월"
+      },
+      {
+        "date": "2023-12-05",
+        "height": 162.6,
+        "weight": 63.8,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2024-04-13",
+        "height": 166.4,
+        "weight": 70.1,
+        "age": "13세2개월",
+        "bone_age": "13세5개월",
+        "pah": "175.6"
+      },
+      {
+        "date": "2024-10-19",
+        "height": 172.0,
+        "weight": 76.9,
+        "age": "13세9개월",
+        "bone_age": "13세6~7개월",
+        "notes": "채소섭취량 늘리도록 권장"
+      },
+      {
+        "date": "2025-01-20",
+        "height": 174.8,
+        "weight": 78.5,
+        "age": "14세0개월",
+        "bone_age": "13세6개월",
+        "pah": "185"
+      },
+      {
+        "date": "2025-07-25",
+        "height": 177.9,
+        "weight": 87.2,
+        "age": "14세6개월",
+        "bone_age": "13세6개월",
+        "notes": "체중조절 권유"
+      }
+    ],
+    "is_published": true,
+    "order_index": 1
+  },
+  {
+    "patient_name": "22120",
+    "gender": "male",
+    "birth_date": "2007-08-08",
+    "father_height": 181.0,
+    "mother_height": 161.0,
+    "target_height": 184.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2018-10-22",
+        "height": 145.8,
+        "weight": 40.0,
+        "age": "11세2개월",
+        "bone_age": "12세2개월",
+        "pah": "170"
+      },
+      {
+        "date": "2019-07-15",
+        "height": 152.9,
+        "weight": 43.0,
+        "age": "11세11개월",
+        "bone_age": "12세5개월"
+      },
+      {
+        "date": "2020-01-28",
+        "height": 159.5,
+        "weight": 47.0,
+        "age": "12세6개월",
+        "bone_age": "12세10개월"
+      },
+      {
+        "date": "2021-01-25",
+        "height": 168.9,
+        "weight": 59.0,
+        "age": "13세5개월",
+        "bone_age": "13세2~3개월"
+      },
+      {
+        "date": "2021-12-07",
+        "height": 175.9,
+        "weight": 61.0,
+        "age": "14세3개월",
+        "bone_age": "13세10개월",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-03-30",
+        "height": 176.8,
+        "weight": 63.0,
+        "age": "14세7개월"
+      },
+      {
+        "date": "2022-09-28",
+        "height": 178.5,
+        "weight": 65.8,
+        "pah": "183",
+        "notes": "치료종료"
+      }
+    ],
+    "is_published": true,
+    "order_index": 2
+  },
+  {
+    "patient_name": "26007",
+    "gender": "male",
+    "birth_date": "2006-12-08",
+    "father_height": 183.0,
+    "mother_height": 156.0,
+    "target_height": 180.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2021-08-10",
+        "height": 167.5,
+        "weight": 65.0,
+        "age": "14세8개월",
+        "bone_age": "14세2개월",
+        "pah": "176"
+      },
+      {
+        "date": "2021-12-06",
+        "height": 169.6,
+        "weight": 66.0,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-03-05",
+        "height": 171.7,
+        "weight": 69.0,
+        "age": "15세3개월"
+      },
+      {
+        "date": "2022-09-17",
+        "height": 174.7,
+        "weight": 74.5,
+        "age": "15세9개월"
+      },
+      {
+        "date": "2023-02-28",
+        "height": 175.5,
+        "weight": 74.2
+      },
+      {
+        "date": "2023-05-23",
+        "height": 177.5,
+        "weight": 80.4
+      }
+    ],
+    "is_published": true,
+    "order_index": 3
+  },
+  {
+    "patient_name": "25465",
+    "gender": "female",
+    "birth_date": "2008-10-17",
+    "father_height": 169.0,
+    "mother_height": 159.0,
+    "target_height": 165.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2020-11-27",
+        "height": 157.1,
+        "weight": 45.0,
+        "age": "12세1개월",
+        "bone_age": "13세1개월",
+        "pah": "162",
+        "notes": "초경 아직 시작안함 / 20년 12월 초경 시작"
+      },
+      {
+        "date": "2021-04-03",
+        "height": 159.6,
+        "weight": 43.0,
+        "age": "12세5개월"
+      },
+      {
+        "date": "2021-06-05",
+        "height": 160.9,
+        "weight": 44.0
+      },
+      {
+        "date": "2021-10-04",
+        "height": 162.4,
+        "weight": 45.0,
+        "age": "13세1개월"
+      },
+      {
+        "date": "2022-06-11",
+        "height": 164.0,
+        "weight": 45.0,
+        "notes": "갑상선기능항진이 있었다."
+      }
+    ],
+    "is_published": true,
+    "order_index": 4
+  },
+  {
+    "patient_name": "27803",
+    "gender": "female",
+    "birth_date": "2012-06-17",
+    "father_height": 176.0,
+    "mother_height": 162.0,
+    "target_height": 163.0,
+    "special_notes": "-2년전 타병원서 뼈나이 +8개월 진단\n-수면이 좋지 못한 편",
+    "measurements": [
+      {
+        "date": "2024-01-30",
+        "height": 148.0,
+        "weight": 36.4,
+        "age": "11세0개월",
+        "bone_age": "12세3개월",
+        "pah": "157",
+        "notes": "-지난 주 초경시작\n-루프린 병행 바로 시작"
+      },
+      {
+        "date": "2024-07-30",
+        "height": 151.3,
+        "weight": 38.5,
+        "age": "12세1개월",
+        "bone_age": "12세6개월",
+        "pah": "158"
+      },
+      {
+        "date": "2025-01-17",
+        "height": 153.4,
+        "weight": 40.9,
+        "bone_age": "12세8개월",
+        "pah": "159~160"
+      },
+      {
+        "date": "2025-06-21",
+        "height": 155.4,
+        "weight": 39.5
+      },
+      {
+        "date": "2025-07-16",
+        "height": 154.4,
+        "weight": 39.3,
+        "age": "13세0개월",
+        "bone_age": "13세4개월",
+        "pah": "160",
+        "notes": "오후 측정 키"
+      },
+      {
+        "date": "2025-08-05",
+        "height": 155.8,
+        "weight": 39.0,
+        "notes": "-해외 체류 중 감기몸살로 주사 못맞음\n-생리 아직 없어요"
+      }
+    ],
+    "is_published": true,
+    "order_index": 5
+  },
+  {
+    "patient_name": "23660",
+    "gender": "female",
+    "birth_date": "2009-02-11",
+    "father_height": 172.0,
+    "mother_height": 159.0,
+    "target_height": 167.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2019-06-28",
+        "height": 146.6,
+        "weight": 51.0,
+        "age": "10세4개월",
+        "bone_age": "11세6개월",
+        "pah": "158"
+      },
+      {
+        "date": "2020-02-15",
+        "height": 153.5,
+        "weight": 59.0,
+        "age": "11세0개월",
+        "bone_age": "11세6~8개월"
+      },
+      {
+        "date": "2020-08-29",
+        "height": 158.6,
+        "weight": 62.0,
+        "age": "11세6개월",
+        "bone_age": "12세3개월"
+      },
+      {
+        "date": "2021-02-20",
+        "height": 161.0,
+        "weight": 67.0,
+        "age": "12세0개월",
+        "bone_age": "12세0개월"
+      },
+      {
+        "date": "2021-12-03",
+        "height": 164.2,
+        "weight": 70.0,
+        "notes": "병원기록상 165cm까지만 진행하기로"
+      },
+      {
+        "date": "2021-12-31",
+        "height": 165.2,
+        "weight": 70.9
+      }
+    ],
+    "is_published": true,
+    "order_index": 6
+  },
+  {
+    "patient_name": "27734",
+    "gender": "female",
+    "birth_date": "2011-01-07",
+    "father_height": 182.0,
+    "mother_height": 166.0,
+    "target_height": 168.0,
+    "special_notes": "-어렸을때 리듬체조,스키 함",
+    "measurements": [
+      {
+        "date": "2023-12-13",
+        "height": 158.7,
+        "weight": 43.8,
+        "age": "12세11개월",
+        "bone_age": "13세8개월",
+        "pah": "162"
+      },
+      {
+        "date": "2024-06-03",
+        "height": 160.5,
+        "weight": 47.8,
+        "age": "13세4개월"
+      },
+      {
+        "date": "2024-11-02",
+        "height": 163.0,
+        "weight": 52.4,
+        "notes": "엑스레이>무릎성장판 오케이"
+      },
+      {
+        "date": "2025-04-05",
+        "height": 164.1,
+        "weight": 52.5,
+        "notes": "한달먼저 검사 시행"
+      },
+      {
+        "date": "2025-12-13",
+        "height": 165.6,
+        "weight": 50.9
+      }
+    ],
+    "is_published": true,
+    "order_index": 7
+  },
+  {
+    "patient_name": "27120",
+    "gender": "female",
+    "birth_date": "2011-03-10",
+    "father_height": 173.0,
+    "mother_height": 163.0,
+    "target_height": 165.0,
+    "special_notes": "-타병원 진단 예상키 155cm\n-만성비염 있음 \n-",
+    "measurements": [
+      {
+        "date": "2022-11-14",
+        "height": 136.5,
+        "weight": 32.0,
+        "age": "11세8개월",
+        "bone_age": "11세8개월",
+        "pah": "153",
+        "notes": "루프린 병행 바로 시작"
+      },
+      {
+        "date": "2023-05-06",
+        "height": 140.8,
+        "weight": 53.4,
+        "age": "12세1개월",
+        "bone_age": "11세8개월"
+      },
+      {
+        "date": "2023-10-21",
+        "height": 144.0,
+        "weight": 35.5,
+        "age": "12세7개월",
+        "bone_age": "11세10개월",
+        "notes": "비염이 심해져, 장 제균작업 후\n유산균, 채소 과일 많이 섭취하도록 권장"
+      },
+      {
+        "date": "2024-04-09",
+        "height": 146.9,
+        "weight": 39.0,
+        "age": "13세6개월",
+        "bone_age": "11세10개월"
+      },
+      {
+        "date": "2024-10-05",
+        "height": 150.3,
+        "weight": 40.2,
+        "age": "13세6개월",
+        "bone_age": "11세7개월"
+      },
+      {
+        "date": "2025-03-15",
+        "height": 153.0,
+        "weight": 42.5
+      },
+      {
+        "date": "2025-04-12",
+        "height": 154.2,
+        "weight": 42.6,
+        "age": "14세1개월",
+        "bone_age": "11세7개월",
+        "pah": "164"
+      },
+      {
+        "date": "2025-10-18",
+        "height": 156.8,
+        "weight": 46.1,
+        "age": "14세7개월",
+        "bone_age": "12세1개월",
+        "notes": "가슴,음모 발달 시작함"
+      }
+    ],
+    "is_published": true,
+    "order_index": 8
+  },
+  {
+    "patient_name": "27205",
+    "gender": "male",
+    "birth_date": "2013-09-18",
+    "father_height": 168.0,
+    "mother_height": 158.0,
+    "target_height": 180.0,
+    "special_notes": "-야구종목 하고 싶어함",
+    "measurements": [
+      {
+        "date": "2023-01-13",
+        "height": 132.5,
+        "weight": 27.9,
+        "age": "9세3개월",
+        "bone_age": "10세0개월",
+        "pah": "168",
+        "notes": "최초 내원일"
+      },
+      {
+        "date": "2023-07-05",
+        "height": 138.2,
+        "weight": 31.0,
+        "age": "9세9개월",
+        "bone_age": "10세6개월",
+        "pah": "171.1"
+      },
+      {
+        "date": "2024-01-02",
+        "height": 145.0,
+        "weight": 34.3,
+        "age": "10세3개월",
+        "bone_age": "11세7개월",
+        "pah": "171.1",
+        "notes": "외부에서 별도 측정해옴"
+      },
+      {
+        "date": "2024-01-12",
+        "height": 145.1,
+        "weight": 34.4,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2024-06-29",
+        "height": 147.2,
+        "weight": 36.2,
+        "age": "10세9개월",
+        "bone_age": "12세2개월",
+        "pah": "172"
+      },
+      {
+        "date": "2024-09-07",
+        "height": 148.8,
+        "weight": 37.5,
+        "notes": "종종 배가 아프다고 하여\n식사때 1-2회 복용 안내"
+      },
+      {
+        "date": "2024-10-12",
+        "height": 149.1,
+        "weight": 39.5,
+        "notes": "배가 아프다는 이야기를 하여하여\n채소,과일 섭취량을 늘리도록 권장"
+      },
+      {
+        "date": "2024-12-17",
+        "height": 150.3,
+        "weight": 41.7,
+        "age": "11세2개월",
+        "bone_age": "12세5개월",
+        "pah": "173.5"
+      },
+      {
+        "date": "2025-06-28",
+        "height": 155.5,
+        "weight": 46.0,
+        "age": "11세9개월",
+        "bone_age": "12세7개월",
+        "pah": "173.5"
+      },
+      {
+        "date": "2025-08-23",
+        "height": 157.7,
+        "weight": 46.7,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2025-12-27",
+        "height": 161.0,
+        "weight": 46.6,
+        "age": "12세3개월",
+        "bone_age": "13세1개월",
+        "pah": "176"
+      }
+    ],
+    "is_published": true,
+    "order_index": 9
+  },
+  {
+    "patient_name": "12740",
+    "gender": "male",
+    "birth_date": "2007-07-26",
+    "father_height": null,
+    "mother_height": null,
+    "target_height": null,
+    "special_notes": "-전에 타 성장클리닉 검사 경험 有",
+    "measurements": [
+      {
+        "date": "2019-08-14",
+        "height": 156.2,
+        "weight": 54.0,
+        "age": "12세",
+        "bone_age": "13세"
+      },
+      {
+        "date": "2019-12-14",
+        "height": 161.4,
+        "weight": 56.0
+      },
+      {
+        "date": "2020-05-30",
+        "height": 166.2,
+        "weight": 57.0,
+        "age": "12세10개월",
+        "bone_age": "13세4개월"
+      },
+      {
+        "date": "2020-10-17",
+        "height": 168.8,
+        "weight": 64.0,
+        "age": "13세3개월",
+        "bone_age": "13세6개월"
+      },
+      {
+        "date": "2021-08-25",
+        "height": 173.5,
+        "weight": 65.0
+      }
+    ],
+    "is_published": true,
+    "order_index": 10
+  },
+  {
+    "patient_name": "22028",
+    "gender": "male",
+    "birth_date": "2011-12-17",
+    "father_height": 170.0,
+    "mother_height": 157.0,
+    "target_height": 182.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2018-10-06",
+        "height": 125.0,
+        "weight": 36.0,
+        "notes": "수면,영양제 관리 시작"
+      },
+      {
+        "date": "2020-08-17",
+        "height": 139.8,
+        "weight": 56.0,
+        "age": "8세8개월",
+        "bone_age": "13세2개월",
+        "notes": "성장호르몬주사+영양제 치료 시작"
+      },
+      {
+        "date": "2021-03-06",
+        "height": 147.8,
+        "weight": 63.3,
+        "age": "9세2개월",
+        "bone_age": "13세3개월"
+      },
+      {
+        "date": "2021-09-25",
+        "height": 155.6,
+        "weight": 72.8,
+        "age": "9세9개월",
+        "bone_age": "13세4개월"
+      },
+      {
+        "date": "2022-01-28",
+        "height": 157.8,
+        "weight": 80.9,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-02-23",
+        "height": 159.1,
+        "weight": 81.0,
+        "age": "10세2개월",
+        "bone_age": "13세4개월"
+      },
+      {
+        "date": "2022-07-23",
+        "height": 164.5,
+        "weight": 84.7,
+        "age": "10세7개월",
+        "bone_age": "13세10개월"
+      },
+      {
+        "date": "2022-08-20",
+        "height": 165.0,
+        "weight": 87.0,
+        "notes": "루프린 주사 시작(아리미덱스 병행)"
+      },
+      {
+        "date": "2022-10-15",
+        "height": 165.0,
+        "weight": 87.0,
+        "age": "10세9개월",
+        "bone_age": "13세4개월",
+        "notes": "채소,과일 섭취량을 늘리도록 권장"
+      },
+      {
+        "date": "2023-04-08",
+        "height": 168.9,
+        "weight": 99.0,
+        "age": "11세3개월",
+        "bone_age": "13세6개월"
+      },
+      {
+        "date": "2023-10-14",
+        "height": 173.2,
+        "weight": 105.0,
+        "age": "11세9개월",
+        "bone_age": "13세6개월"
+      },
+      {
+        "date": "2024-04-27",
+        "height": 174.7,
+        "weight": 106.0,
+        "age": "12세4개월",
+        "bone_age": "13세6개월",
+        "pah": "184"
+      },
+      {
+        "date": "2024-10-12",
+        "height": 177.4,
+        "weight": 113.9,
+        "age": "12세9개월",
+        "bone_age": "13세8개월",
+        "pah": "185",
+        "notes": "치료 종료 계획"
+      },
+      {
+        "date": "2025-10-11",
+        "height": 182.1,
+        "weight": 101.6,
+        "pah": "185"
+      }
+    ],
+    "is_published": true,
+    "order_index": 11
+  },
+  {
+    "patient_name": "22121",
+    "gender": "male",
+    "birth_date": "2009-02-18",
+    "father_height": null,
+    "mother_height": null,
+    "target_height": 190.0,
+    "special_notes": "-체육(축구)특기생",
+    "measurements": [
+      {
+        "date": "2018-11-20",
+        "height": 144.4,
+        "weight": 45.0,
+        "age": "9세8개월",
+        "bone_age": "9세8개월",
+        "pah": "177"
+      },
+      {
+        "date": "2019-05-06",
+        "height": 148.6,
+        "weight": 50.0,
+        "age": "10세2개월",
+        "bone_age": "11세",
+        "notes": "수면,영양제 관리 시작"
+      },
+      {
+        "date": "2020-02-20",
+        "height": 156.0,
+        "weight": 52.0,
+        "notes": "3월 성장치료 시작"
+      },
+      {
+        "date": "2020-04-29",
+        "height": 158.0,
+        "weight": 55.0
+      },
+      {
+        "date": "2020-10-10",
+        "height": 163.8,
+        "weight": 66.0
+      },
+      {
+        "date": "2021-01-25",
+        "height": 166.7,
+        "weight": 66.0,
+        "age": "11세11개월",
+        "bone_age": "13세"
+      },
+      {
+        "date": "2021-12-07",
+        "height": 176.5,
+        "weight": 68.0,
+        "age": "12세9개월",
+        "bone_age": "13세8개월",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-03-30",
+        "height": 178.2,
+        "weight": 65.7,
+        "age": "13세1개월",
+        "bone_age": "13세8개월"
+      },
+      {
+        "date": "2022-09-28",
+        "height": 180.7,
+        "weight": 69.5,
+        "age": "13세7개월",
+        "bone_age": "13세7개월"
+      }
+    ],
+    "is_published": true,
+    "order_index": 12
+  },
+  {
+    "patient_name": "22387",
+    "gender": "male",
+    "birth_date": "2008-01-22",
+    "father_height": 172.0,
+    "mother_height": 167.0,
+    "target_height": 183.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2018-12-01",
+        "height": 150.5,
+        "weight": 41.0,
+        "age": "10세10개월",
+        "bone_age": "11세9개월",
+        "pah": "174",
+        "notes": "수면,영양제 관리 시작"
+      },
+      {
+        "date": "2019-06-07",
+        "height": 154.6,
+        "weight": 44.0,
+        "age": "11세4개월",
+        "bone_age": "11세10개월"
+      },
+      {
+        "date": "2020-02-25",
+        "height": 159.3,
+        "weight": 49.0,
+        "age": "12세",
+        "bone_age": "11세10개월",
+        "notes": "성장호르몬주사+영양제 치료 시작"
+      },
+      {
+        "date": "2020-07-11",
+        "height": 163.8,
+        "weight": 54.0,
+        "age": "12세5개월",
+        "bone_age": "12세5개월"
+      },
+      {
+        "date": "2021-05-29",
+        "height": 172.2,
+        "weight": 63.0,
+        "age": "13세3개월",
+        "bone_age": "13세3개월"
+      },
+      {
+        "date": "2021-12-17",
+        "height": 175.8,
+        "weight": 65.5,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-01-28",
+        "height": 176.5,
+        "weight": 66.0
+      },
+      {
+        "date": "2022-04-09",
+        "height": 176.7,
+        "weight": 68.0,
+        "age": "14세2개월",
+        "bone_age": "13세8개월"
+      },
+      {
+        "date": "2022-11-12",
+        "height": 180.7,
+        "weight": 69.0
+      },
+      {
+        "date": "2023-04-19",
+        "height": 184.0,
+        "weight": 73.0
+      }
+    ],
+    "is_published": true,
+    "order_index": 13
+  },
+  {
+    "patient_name": "23649",
+    "gender": "female",
+    "birth_date": "2010-12-18",
+    "father_height": 175.0,
+    "mother_height": 170.0,
+    "target_height": 173.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2020-07-17",
+        "height": 137.4,
+        "weight": 32.6,
+        "age": "9세6개월",
+        "bone_age": "9세6개월",
+        "pah": "163"
+      },
+      {
+        "date": "2021-01-09",
+        "height": 142.6,
+        "weight": 34.0,
+        "age": "10세",
+        "bone_age": "10세10개월"
+      },
+      {
+        "date": "2021-05-28",
+        "height": 146.0,
+        "weight": 35.0,
+        "age": "10세5개월",
+        "bone_age": "10세5개월"
+      },
+      {
+        "date": "2021-12-13",
+        "height": 149.2,
+        "weight": 39.0,
+        "age": "10세10개월",
+        "bone_age": "10세11개월"
+      },
+      {
+        "date": "2022-06-07",
+        "height": 153.7,
+        "weight": 41.0,
+        "age": "1세5개월",
+        "bone_age": "11세3개월"
+      },
+      {
+        "date": "2022-12-03",
+        "height": 157.4,
+        "weight": 44.0
+      }
+    ],
+    "is_published": true,
+    "order_index": 14
+  },
+  {
+    "patient_name": "23661",
+    "gender": "male",
+    "birth_date": "2010-12-09",
+    "father_height": 172.0,
+    "mother_height": 159.0,
+    "target_height": 172.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2019-06-28",
+        "height": 132.6,
+        "weight": 40.0,
+        "age": "8세6개월",
+        "bone_age": "8세6개월",
+        "notes": "치료X (추적검사만)"
+      },
+      {
+        "date": "2020-03-07",
+        "height": 135.5,
+        "weight": 46.0,
+        "age": "9세2개월",
+        "bone_age": "9세2개월",
+        "notes": "치료X (추적검사만)"
+      },
+      {
+        "date": "2021-10-15",
+        "height": 145.0,
+        "weight": 56.0,
+        "age": "10세10개월",
+        "bone_age": "11세9개월",
+        "pah": "170",
+        "notes": "치료 시작"
+      },
+      {
+        "date": "2022-04-28",
+        "height": 149.7,
+        "weight": 62.0,
+        "age": "11세4개월",
+        "bone_age": "12세5개월"
+      },
+      {
+        "date": "2022-11-16",
+        "height": 156.0,
+        "weight": 68.3,
+        "age": "11세11개월",
+        "bone_age": "13세"
+      },
+      {
+        "date": "2022-12-14",
+        "height": 156.5,
+        "weight": 68.7,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2023-04-03",
+        "height": 159.4,
+        "weight": 68.4,
+        "age": "12세3개월",
+        "bone_age": "13세4개월",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2023-06-09",
+        "height": 161.7,
+        "weight": 70.2,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2023-09-27",
+        "height": 163.1,
+        "weight": 70.0,
+        "age": "12세9개월",
+        "bone_age": "13세4개월"
+      },
+      {
+        "date": "2024-03-20",
+        "height": 166.0,
+        "weight": 77.0,
+        "age": "13세3개월",
+        "bone_age": "13세6개월",
+        "pah": "178"
+      },
+      {
+        "date": "2024-09-06",
+        "height": 167.9,
+        "weight": 81.9,
+        "age": "13세8개월",
+        "bone_age": "13세8개월",
+        "pah": "178~179"
+      },
+      {
+        "date": "2025-01-20",
+        "height": 171.4,
+        "weight": 83.8,
+        "age": "14세1개월",
+        "bone_age": "13세8개월",
+        "pah": "182",
+        "notes": "치료 종료, F/U"
+      },
+      {
+        "date": "2025-10-20",
+        "height": 172.9,
+        "weight": 93.1,
+        "pah": "182",
+        "notes": "아토피 좋아짐, 유산균 관리 권장"
+      }
+    ],
+    "is_published": true,
+    "order_index": 15
+  },
+  {
+    "patient_name": "23744",
+    "gender": "male",
+    "birth_date": "2005-08-30",
+    "father_height": 167.0,
+    "mother_height": 160.0,
+    "target_height": null,
+    "special_notes": "-바이러스뇌염, 1년간 해당 약물사용\n키가 자라지 않아\n-2차 성징이 느리게 나타난다",
+    "measurements": [
+      {
+        "date": "2019-07-09",
+        "height": 161.2,
+        "weight": 74.0,
+        "age": "13세10개월",
+        "bone_age": "13세10개월",
+        "pah": "172",
+        "notes": "수면,영양제 관리 시작"
+      },
+      {
+        "date": "2020-04-03",
+        "height": 170.0,
+        "weight": 81.0,
+        "notes": "치료 시작"
+      },
+      {
+        "date": "2020-06-01",
+        "height": 170.0,
+        "weight": 87.0,
+        "age": "14세9개월",
+        "bone_age": "13세6개월"
+      },
+      {
+        "date": "2021-01-06",
+        "height": 174.7,
+        "weight": 93.0,
+        "age": "15세5개월",
+        "bone_age": "14세1개월"
+      },
+      {
+        "date": "2021-10-13",
+        "height": 178.0,
+        "weight": 93.0
+      }
+    ],
+    "is_published": true,
+    "order_index": 16
+  },
+  {
+    "patient_name": "24784",
+    "gender": "female",
+    "birth_date": "2009-12-10",
+    "father_height": 170.0,
+    "mother_height": 160.0,
+    "target_height": 165.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2020-01-28",
+        "height": 132.9,
+        "weight": 33.0,
+        "age": "10세1개월",
+        "bone_age": "10세5개월"
+      },
+      {
+        "date": "2020-07-08",
+        "height": 138.1,
+        "weight": 36.0,
+        "age": "10세6개월",
+        "bone_age": "10세후반~11세"
+      },
+      {
+        "date": "2021-01-12",
+        "height": 142.2,
+        "weight": 40.0,
+        "age": "11세",
+        "bone_age": "11세3개월"
+      },
+      {
+        "date": "2021-10-13",
+        "height": 148.5,
+        "weight": 46.9,
+        "age": "11세10개월",
+        "bone_age": "12세"
+      }
+    ],
+    "is_published": true,
+    "order_index": 17
+  },
+  {
+    "patient_name": "25094",
+    "gender": "male",
+    "birth_date": "2006-07-13",
+    "father_height": null,
+    "mother_height": null,
+    "target_height": null,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2020-06-22",
+        "height": 157.9,
+        "weight": 57.0,
+        "age": "13세11개월",
+        "bone_age": "13세4개월"
+      },
+      {
+        "date": "2020-12-24",
+        "height": 163.6,
+        "weight": 58.0
+      },
+      {
+        "date": "2021-04-12",
+        "height": 166.8,
+        "weight": 62.0,
+        "age": "14세8개월",
+        "bone_age": "13세6개월"
+      },
+      {
+        "date": "2021-09-15",
+        "height": 169.7,
+        "weight": 67.0,
+        "age": "15세2개월",
+        "bone_age": "13세5개월"
+      },
+      {
+        "date": "2021-12-11",
+        "height": 173.0,
+        "weight": 72.0
+      }
+    ],
+    "is_published": true,
+    "order_index": 18
+  },
+  {
+    "patient_name": "25435",
+    "gender": "female",
+    "birth_date": "2008-05-08",
+    "father_height": 169.0,
+    "mother_height": 158.0,
+    "target_height": 168.0,
+    "special_notes": "-초경 시작",
+    "measurements": [
+      {
+        "date": "2020-11-13",
+        "height": 155.3,
+        "weight": 45.0,
+        "age": "12세8개월",
+        "bone_age": "13세1개월"
+      },
+      {
+        "date": "2021-06-11",
+        "height": 158.5,
+        "weight": 44.0
+      },
+      {
+        "date": "2022-01-15",
+        "height": 161.5,
+        "weight": 48.0,
+        "age": "13세8개월",
+        "bone_age": "13세후반",
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2022-07-02",
+        "height": 162.8,
+        "weight": 47.0,
+        "notes": "치료 종료 계획"
+      },
+      {
+        "date": "2023-02-20",
+        "height": 163.4,
+        "weight": 48.8,
+        "notes": "치료 재시작"
+      },
+      {
+        "date": "2023-03-18",
+        "height": 163.4,
+        "weight": 51.7,
+        "notes": "-척추측만 치료 중\n-치료 임의 중단"
+      }
+    ],
+    "is_published": true,
+    "order_index": 19
+  },
+  {
+    "patient_name": "25438",
+    "gender": "female",
+    "birth_date": "2010-01-11",
+    "father_height": 170.0,
+    "mother_height": 160.0,
+    "target_height": null,
+    "special_notes": "-타원(여의도 성모)에서 160이 안된다고 진단\n-성조숙증 걱정됨",
+    "measurements": [
+      {
+        "date": "2020-11-14",
+        "height": 142.7,
+        "weight": 42.0,
+        "age": "10세10개월",
+        "bone_age": "12세",
+        "pah": "157"
+      },
+      {
+        "date": "2021-05-03",
+        "height": 147.2,
+        "weight": 43.0,
+        "age": "11세3개월",
+        "bone_age": "12세4개월",
+        "notes": "21년1월~2월경사이 주사 제대로 못맞음"
+      },
+      {
+        "date": "2021-10-04",
+        "height": 150.7,
+        "weight": 46.5,
+        "notes": "초경 시작"
+      },
+      {
+        "date": "2021-11-11",
+        "height": 151.0,
+        "weight": 45.0,
+        "age": "11세9개월",
+        "bone_age": "13세8개월"
+      },
+      {
+        "date": "2022-04-04",
+        "height": 152.9,
+        "weight": 48.0,
+        "age": "12세2개월",
+        "bone_age": "13세2개월",
+        "notes": "야채 안먹는다하여, 채소 과일 섭취량 늘리도록 권장"
+      },
+      {
+        "date": "2022-09-19",
+        "height": 154.1,
+        "weight": 50.0,
+        "notes": "추석연휴때 장염으로 아파"
+      },
+      {
+        "date": "2023-02-13",
+        "height": 155.5,
+        "weight": 52.4,
+        "notes": "성장판 닫힘"
+      }
+    ],
+    "is_published": true,
+    "order_index": 20
+  },
+  {
+    "patient_name": "25450",
+    "gender": "male",
+    "birth_date": "2007-04-30",
+    "father_height": 181.0,
+    "mother_height": 162.0,
+    "target_height": null,
+    "special_notes": "-체육(아이스하키)특기생\n-타원(중앙대)에서 비타민D 수치 부족 진단",
+    "measurements": [
+      {
+        "date": "2020-11-20",
+        "height": 169.7,
+        "weight": 63.0,
+        "age": "13세6개월",
+        "bone_age": "13세6개월",
+        "pah": "180"
+      },
+      {
+        "date": "2021-03-20",
+        "height": 172.6,
+        "weight": 64.0,
+        "age": "13세10개월",
+        "bone_age": "14세"
+      },
+      {
+        "date": "2021-04-17",
+        "height": 173.0,
+        "weight": 65.0,
+        "notes": "성장주사 LG→동아 변경"
+      },
+      {
+        "date": "2021-08-07",
+        "height": 175.5,
+        "weight": 68.0
+      },
+      {
+        "date": "2021-11-27",
+        "height": 176.3,
+        "weight": 70.0
+      },
+      {
+        "date": "2021-12-25",
+        "height": 176.8,
+        "weight": 70.0,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-05-21",
+        "height": 179.1,
+        "weight": 75.0
+      },
+      {
+        "date": "2022-09-24",
+        "height": 180.1,
+        "weight": 78.1,
+        "notes": "10월 초 코로나 확진"
+      },
+      {
+        "date": "2022-12-17",
+        "height": 180.9,
+        "weight": 77.4,
+        "notes": "치료 종료 계획"
+      },
+      {
+        "date": "2023-04-22",
+        "height": 181.5,
+        "weight": 80.0,
+        "notes": "F/U"
+      }
+    ],
+    "is_published": true,
+    "order_index": 21
+  },
+  {
+    "patient_name": "25638",
+    "gender": "male",
+    "birth_date": "2007-01-08",
+    "father_height": 176.0,
+    "mother_height": 162.5,
+    "target_height": null,
+    "special_notes": "-타원(서울성모)에서 치료중\nㄴ160중반 예측 진단 받음",
+    "measurements": [
+      {
+        "date": "2021-02-19",
+        "height": 158.4,
+        "weight": 54.0,
+        "age": "14세1개월",
+        "bone_age": "14세1개월",
+        "pah": "168"
+      },
+      {
+        "date": "2021-09-18",
+        "height": 163.3,
+        "weight": 62.6
+      },
+      {
+        "date": "2022-04-30",
+        "height": 164.5,
+        "weight": 60.6,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-08-27",
+        "height": 166.5,
+        "weight": 64.4,
+        "age": "15세7개월",
+        "notes": "-음식섭취 영양학적 불균형\n-채소, 과일 섭취량 늘리도록 권장"
+      },
+      {
+        "date": "2022-10-01",
+        "height": 167.3,
+        "weight": 66.2
+      }
+    ],
+    "is_published": true,
+    "order_index": 22
+  },
+  {
+    "patient_name": "25670",
+    "gender": "male",
+    "birth_date": "2010-10-02",
+    "father_height": 186.0,
+    "mother_height": 165.0,
+    "target_height": 185.0,
+    "special_notes": "-타원(튼튼병원)에서 170초반 예측 진단받음",
+    "measurements": [
+      {
+        "date": "2021-03-03",
+        "height": 148.1,
+        "weight": 48.0,
+        "age": "10세3개월",
+        "bone_age": "11세6개월",
+        "pah": "174"
+      },
+      {
+        "date": "2021-10-22",
+        "height": 155.9,
+        "weight": 58.0,
+        "age": "11세0개월",
+        "bone_age": "11세10개월"
+      },
+      {
+        "date": "2022-10-03",
+        "height": 166.3,
+        "weight": 55.0,
+        "age": "12세",
+        "bone_age": "13세4개월",
+        "notes": "-아리미덱스 처방 시작\n-성장치료 중단 계획 (6개월 뒤 검사)"
+      },
+      {
+        "date": "2023-08-21",
+        "height": 173.0,
+        "weight": 71.3,
+        "pah": "183"
+      },
+      {
+        "date": "2024-02-26",
+        "height": 177.0,
+        "weight": 75.8,
+        "notes": "치료 종료 계획"
+      },
+      {
+        "date": "2024-07-06",
+        "height": 179.5,
+        "weight": 79.0,
+        "age": "13세9개월",
+        "bone_age": "13세8개월",
+        "pah": "188",
+        "notes": "치료종료"
+      }
+    ],
+    "is_published": true,
+    "order_index": 23
+  },
+  {
+    "patient_name": "25801",
+    "gender": "male",
+    "birth_date": "2006-05-09",
+    "father_height": 175.0,
+    "mother_height": 157.5,
+    "target_height": null,
+    "special_notes": "-5개월간 키 성장 없었다\n-비염이 있다",
+    "measurements": [
+      {
+        "date": "2021-04-28",
+        "height": 168.8,
+        "weight": 51.7,
+        "age": "14세11개월",
+        "bone_age": "15세",
+        "pah": "173"
+      },
+      {
+        "date": "2021-08-23",
+        "height": 170.8,
+        "weight": 54.0
+      },
+      {
+        "date": "2021-12-21",
+        "height": 171.4,
+        "weight": 55.0,
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-03-30",
+        "height": 172.7,
+        "weight": 55.2,
+        "notes": "본인 미내원 잦음"
+      },
+      {
+        "date": "2022-07-30",
+        "height": 173.3,
+        "weight": 55.5
+      },
+      {
+        "date": "2022-11-11",
+        "height": 173.5,
+        "weight": 55.5
+      }
+    ],
+    "is_published": true,
+    "order_index": 24
+  },
+  {
+    "patient_name": "25876",
+    "gender": "female",
+    "birth_date": "2013-01-11",
+    "father_height": 170.0,
+    "mother_height": 162.0,
+    "target_height": 165.0,
+    "special_notes": "-타원(이대병원)에서 159 예측 진단받음",
+    "measurements": [
+      {
+        "date": "2021-05-29",
+        "height": 123.0,
+        "weight": 23.7,
+        "age": "8세4개월",
+        "bone_age": "8세4개월",
+        "pah": "158"
+      },
+      {
+        "date": "2022-10-05",
+        "height": 130.9,
+        "weight": 27.6,
+        "age": "9세8개월",
+        "bone_age": "9세 후반"
+      },
+      {
+        "date": "2023-04-08",
+        "height": 136.1,
+        "weight": 29.7,
+        "age": "10세2개월",
+        "bone_age": "10세2개월"
+      },
+      {
+        "date": "2023-10-14",
+        "height": 140.6,
+        "weight": 32.0,
+        "age": "10세9개월",
+        "bone_age": "10세9개월"
+      },
+      {
+        "date": "2023-11-11",
+        "height": 141.4,
+        "weight": 32.5,
+        "pah": "160",
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2024-04-06",
+        "height": 143.7,
+        "weight": 35.0,
+        "age": "11세2개월",
+        "bone_age": "11세1개월",
+        "pah": "160"
+      },
+      {
+        "date": "2024-10-05",
+        "height": 147.7,
+        "weight": 37.5,
+        "age": "11세8개월",
+        "bone_age": "11세2개월",
+        "pah": "162"
+      },
+      {
+        "date": "2025-02-25",
+        "height": 149.2,
+        "weight": 40.5,
+        "age": "12세1개월",
+        "bone_age": "11세2개월",
+        "pah": "163"
+      },
+      {
+        "date": "2025-09-13",
+        "height": 153.9,
+        "weight": 42.3,
+        "age": "12세8개월",
+        "bone_age": "11세7개월",
+        "pah": "164~165"
+      },
+      {
+        "date": "2026-01-10",
+        "height": 156.0,
+        "weight": 45.2,
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 25
+  },
+  {
+    "patient_name": "26482",
+    "gender": "female",
+    "birth_date": "2013-01-17",
+    "father_height": 175.0,
+    "mother_height": 168.0,
+    "target_height": 167.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2022-04-30",
+        "height": 130.0,
+        "weight": 29.2,
+        "age": "9세3개월",
+        "bone_age": "9세3개월",
+        "pah": "161"
+      },
+      {
+        "date": "2022-10-01",
+        "height": 134.1,
+        "weight": 28.9,
+        "age": "9세8개월",
+        "bone_age": "9세8개월"
+      },
+      {
+        "date": "2023-03-11",
+        "height": 137.6,
+        "weight": 32.3,
+        "age": "10세1개월",
+        "bone_age": "10세초반"
+      },
+      {
+        "date": "2023-06-19",
+        "height": 140.2,
+        "weight": 34.0,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2023-10-14",
+        "height": 142.9,
+        "weight": 35.1,
+        "age": "10세8개월",
+        "bone_age": "10세6~7개월",
+        "notes": "수면, 식단 좋아 유지되도록 권장"
+      },
+      {
+        "date": "2024-04-13",
+        "height": 146.2,
+        "weight": 37.3,
+        "age": "11세2개월",
+        "bone_age": "10세8개월",
+        "pah": "164"
+      },
+      {
+        "date": "2024-10-04",
+        "height": 149.0,
+        "weight": 39.8,
+        "age": "11세8개월",
+        "bone_age": "11세3개월",
+        "pah": "164"
+      },
+      {
+        "date": "2024-12-07",
+        "height": 149.5,
+        "weight": 40.7,
+        "notes": "임의중단"
+      }
+    ],
+    "is_published": true,
+    "order_index": 26
+  },
+  {
+    "patient_name": "26744",
+    "gender": "female",
+    "birth_date": "2017-07-23",
+    "father_height": 172.0,
+    "mother_height": 171.0,
+    "target_height": 168.0,
+    "special_notes": "-엄마 초경 중 2",
+    "measurements": [
+      {
+        "date": "2022-07-27",
+        "height": 135.0,
+        "weight": 33.8,
+        "age": "9세",
+        "bone_age": "11세",
+        "pah": "154~157",
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2023-01-10",
+        "height": 140.1,
+        "weight": 36.3,
+        "age": "9세5개월",
+        "bone_age": "11세 초반"
+      },
+      {
+        "date": "2023-06-07",
+        "height": 143.1,
+        "weight": 36.7,
+        "age": "9세10개월",
+        "bone_age": "11세5~6개월"
+      },
+      {
+        "date": "2023-12-12",
+        "height": 146.6,
+        "weight": 37.7,
+        "age": "10세4개월",
+        "bone_age": "11세7개월",
+        "notes": "-피부 가려움증이 많이 올라온다\nㄴ푸드알러지검사 후 제균작업 권장\n-운동 증량"
+      },
+      {
+        "date": "2024-06-19",
+        "height": 151.1,
+        "weight": 43.0,
+        "age": "10세10개월",
+        "bone_age": "11세7개월",
+        "pah": "163~164"
+      },
+      {
+        "date": "2024-12-18",
+        "height": 154.1,
+        "weight": 44.4,
+        "age": "11세4개월",
+        "bone_age": "11세7개월",
+        "pah": "165",
+        "notes": "루프린 주사 종료"
+      },
+      {
+        "date": "2025-06-25",
+        "height": 158.5,
+        "weight": 48.3,
+        "age": "11세11개월",
+        "bone_age": "11세10개월",
+        "pah": "167"
+      },
+      {
+        "date": "2026-01-14",
+        "height": 161.6,
+        "weight": 49.0,
+        "age": "12세5개월",
+        "bone_age": "12세2~3개월",
+        "pah": "168",
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 27
+  },
+  {
+    "patient_name": "27170",
+    "gender": "female",
+    "birth_date": "2011-04-10",
+    "father_height": 173.0,
+    "mother_height": 156.0,
+    "target_height": 165.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2022-12-24",
+        "height": 145.0,
+        "weight": 33.0,
+        "age": "11세8개월",
+        "bone_age": "11세8개월",
+        "pah": "158"
+      },
+      {
+        "date": "2023-05-01",
+        "height": 147.1,
+        "weight": 33.7,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2023-05-29",
+        "height": 147.6,
+        "weight": 33.8,
+        "age": "12세",
+        "bone_age": "12세"
+      },
+      {
+        "date": "2023-11-20",
+        "height": 149.4,
+        "weight": 35.4,
+        "age": "12세7개월",
+        "bone_age": "12세3개월",
+        "notes": "수면, 식단 좋아 유지되도록 권장"
+      },
+      {
+        "date": "2024-06-05",
+        "height": 151.0,
+        "weight": 36.5,
+        "age": "13세1개월",
+        "bone_age": "12세4~5개월",
+        "pah": "160~161",
+        "notes": "낮 피곤함 심해 > 메타AWAD복용 처방"
+      },
+      {
+        "date": "2024-12-07",
+        "height": 152.0,
+        "weight": 37.5,
+        "age": "13세7개월",
+        "bone_age": "12세7개월",
+        "notes": "갑상기능, 부신기능, 대사활동 높히도록\n처방 및 생활 습관 안내"
+      },
+      {
+        "date": "2025-06-21",
+        "height": 154.3,
+        "weight": 42.6,
+        "age": "14세2개월",
+        "bone_age": "13세3개월",
+        "pah": "159~160"
+      },
+      {
+        "date": "2026-01-12",
+        "height": 155.6,
+        "weight": 45.8,
+        "age": "14세9개월",
+        "bone_age": "13세9~10개월",
+        "pah": "160",
+        "notes": "-본원에서 치료 지원 예정\n-치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 28
+  },
+  {
+    "patient_name": "27252",
+    "gender": "male",
+    "birth_date": "2008-11-09",
+    "father_height": 165.0,
+    "mother_height": 160.0,
+    "target_height": 177.5,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2023-02-24",
+        "height": 161.5,
+        "weight": 60.0,
+        "age": "14세3개월",
+        "bone_age": "13세6개월",
+        "pah": "172",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2023-09-06",
+        "height": 166.5,
+        "weight": 70.7,
+        "age": "14세9개월",
+        "bone_age": "13세8개월",
+        "notes": "늦은 저녁 측정 키"
+      },
+      {
+        "date": "2024-07-06",
+        "height": 170.3,
+        "weight": 71.2,
+        "age": "15세7개월",
+        "bone_age": "14세",
+        "pah": "178",
+        "notes": "-운동 늘리도록 권장\n-채소,과일 섭취량 늘리도록 권장"
+      },
+      {
+        "date": "2025-02-19",
+        "height": 172.0,
+        "weight": 84.8,
+        "age": "16세3개월",
+        "bone_age": "14세2개월",
+        "pah": "179~180"
+      },
+      {
+        "date": "2025-04-30",
+        "height": 173.0,
+        "weight": 84.0,
+        "notes": "다음달 X-RAY찍고 치료 종료 계획 후 미내원"
+      }
+    ],
+    "is_published": true,
+    "order_index": 29
+  },
+  {
+    "patient_name": "27292",
+    "gender": "male",
+    "birth_date": "2009-12-11",
+    "father_height": 158.0,
+    "mother_height": 164.0,
+    "target_height": 178.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2023-03-08",
+        "height": 164.4,
+        "weight": 47.4,
+        "age": "13세2개월",
+        "bone_age": "13세6개월",
+        "pah": "176",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2023-07-12",
+        "height": 165.2,
+        "weight": 49.4,
+        "age": "13세6개월",
+        "bone_age": "13세7~8개월",
+        "notes": "-늦은 저녁 측정 키 \n-오전 키 측정 후 안크면 용량 조절 고려"
+      },
+      {
+        "date": "2023-12-15",
+        "height": 171.1,
+        "weight": 54.9,
+        "age": "14세",
+        "bone_age": "13세8개월",
+        "pah": "180",
+        "notes": "오전 측정 키"
+      },
+      {
+        "date": "2024-06-05",
+        "height": 174.8,
+        "weight": 58.0,
+        "age": "14세5개월",
+        "bone_age": "13세8개월",
+        "pah": "185",
+        "notes": "오후 측정 키"
+      },
+      {
+        "date": "2024-12-21",
+        "height": 178.8,
+        "weight": 62.2,
+        "age": "15세",
+        "bone_age": "13세9개월",
+        "pah": "188",
+        "notes": "치료 종료"
+      },
+      {
+        "date": "2025-08-23",
+        "height": 181.0,
+        "weight": 67.7,
+        "age": "15세8개월",
+        "bone_age": "14세6개월",
+        "pah": "186~188"
+      }
+    ],
+    "is_published": true,
+    "order_index": 30
+  },
+  {
+    "patient_name": "27293",
+    "gender": "female",
+    "birth_date": "2013-12-10",
+    "father_height": 158.0,
+    "mother_height": 164.0,
+    "target_height": 165.0,
+    "special_notes": "-체육(무용)특기생",
+    "measurements": [
+      {
+        "date": "2023-03-08",
+        "height": 135.4,
+        "weight": 31.7,
+        "age": "9세2개월",
+        "bone_age": "10세6개월",
+        "pah": "156"
+      },
+      {
+        "date": "2023-04-05",
+        "height": 137.4,
+        "weight": 31.7,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2023-12-15",
+        "height": 141.3,
+        "weight": 33.9,
+        "age": "10세",
+        "bone_age": "11세8개월"
+      },
+      {
+        "date": "2024-06-05",
+        "height": 145.2,
+        "weight": 36.5,
+        "age": "10세5개월",
+        "bone_age": "11세9개월",
+        "pah": "159"
+      },
+      {
+        "date": "2024-12-21",
+        "height": 148.3,
+        "weight": 39.3,
+        "age": "11세",
+        "bone_age": "11세11개월",
+        "pah": "159"
+      },
+      {
+        "date": "2025-07-11",
+        "height": 152.7,
+        "weight": 40.4,
+        "age": "11세7개월",
+        "bone_age": "11세8개월",
+        "pah": "162~163"
+      },
+      {
+        "date": "2025-12-27",
+        "height": 155.0,
+        "weight": 44.5,
+        "notes": "-무용을 안하기로 했다\n-다음 내원 때 X-RAY 점검 예정\n-치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 31
+  },
+  {
+    "patient_name": "27647",
+    "gender": "female",
+    "birth_date": "2013-02-19",
+    "father_height": 171.0,
+    "mother_height": 164.0,
+    "target_height": 165.0,
+    "special_notes": "-비염있고, 면역 치료 병행 중\n-편식이 심하다 (육류 잘 안먹음)",
+    "measurements": [
+      {
+        "date": "2023-10-21",
+        "height": 140.4,
+        "weight": 27.0,
+        "age": "10세8개월",
+        "bone_age": "10세8개월",
+        "pah": "158~159"
+      },
+      {
+        "date": "2024-06-01",
+        "height": 146.4,
+        "weight": 31.4,
+        "age": "11세3개월",
+        "bone_age": "11세1~2개월",
+        "pah": "160",
+        "notes": "채소,과일 섭취량을 늘리도록 권장"
+      },
+      {
+        "date": "2024-07-06",
+        "height": 147.2,
+        "weight": 31.9,
+        "notes": "-루프린 주사 시작\n-24년 6월 초경 시작"
+      },
+      {
+        "date": "2024-12-21",
+        "height": 151.1,
+        "weight": 34.5,
+        "age": "11세10개월",
+        "bone_age": "11세3~4개월",
+        "pah": "163"
+      },
+      {
+        "date": "2025-10-11",
+        "height": 156.8,
+        "weight": 37.1,
+        "age": "12세7개월",
+        "bone_age": "11세7개월",
+        "pah": "166~167",
+        "notes": "치료 종료"
+      }
+    ],
+    "is_published": true,
+    "order_index": 32
+  },
+  {
+    "patient_name": "27164",
+    "gender": "male",
+    "birth_date": "2010-11-28",
+    "father_height": 172.0,
+    "mother_height": 163.0,
+    "target_height": 185.0,
+    "special_notes": "-제주국제학교 재학중\n-타원(백병원) 170초반 예측 진단받음",
+    "measurements": [
+      {
+        "date": "2022-12-17",
+        "height": 148.8,
+        "weight": 43.4,
+        "age": "12세",
+        "bone_age": "12세4개월",
+        "pah": "172"
+      },
+      {
+        "date": "2023-06-19",
+        "height": 157.4,
+        "weight": 45.0,
+        "age": "12세6개월",
+        "bone_age": "12세후반",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2024-01-03",
+        "height": 163.0,
+        "weight": 52.3,
+        "age": "13세1개월",
+        "bone_age": "13세6개월",
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2024-07-24",
+        "height": 164.6,
+        "weight": 53.6,
+        "age": "13세7개월",
+        "bone_age": "13세6개월",
+        "pah": "177"
+      }
+    ],
+    "is_published": true,
+    "order_index": 33
+  },
+  {
+    "patient_name": "27638",
+    "gender": "female",
+    "birth_date": "2013-05-07",
+    "father_height": 168.0,
+    "mother_height": 160.0,
+    "target_height": 165.0,
+    "special_notes": "-계절성 비염 심함\n-타원(고대안양)에서 150초반 예측 진단 받음\n-엄마가 초경이 빨랐음",
+    "measurements": [
+      {
+        "date": "2023-10-14",
+        "height": 138.4,
+        "weight": 35.0,
+        "age": "10세5개월",
+        "bone_age": "11세5개월",
+        "pah": "154"
+      },
+      {
+        "date": "2023-11-11",
+        "height": 139.5,
+        "weight": 35.0,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2024-04-13",
+        "height": 142.6,
+        "weight": 37.0,
+        "age": "10세11개월",
+        "bone_age": "11세6~7개월"
+      },
+      {
+        "date": "2024-10-26",
+        "height": 146.9,
+        "weight": 40.5,
+        "age": "11세5개월",
+        "bone_age": "11세10개월",
+        "pah": "159"
+      },
+      {
+        "date": "2025-04-19",
+        "height": 149.6,
+        "weight": 44.1,
+        "age": "11세11개월",
+        "bone_age": "11세10개월",
+        "pah": "161"
+      },
+      {
+        "date": "2025-10-09",
+        "height": 152.8,
+        "weight": 46.8,
+        "age": "12세5개월",
+        "bone_age": "11세10~11개월",
+        "pah": "162"
+      },
+      {
+        "date": "2026-01-03",
+        "height": 154.4,
+        "weight": 46.9,
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 34
+  },
+  {
+    "patient_name": "27761",
+    "gender": "female",
+    "birth_date": "2013-09-09",
+    "father_height": 169.0,
+    "mother_height": 167.0,
+    "target_height": 162.0,
+    "special_notes": "-먹는양이 너무 적다\n-병치레가 많았다",
+    "measurements": [
+      {
+        "date": "2024-01-02",
+        "height": 138.1,
+        "weight": 25.7,
+        "age": "10세3개월",
+        "bone_age": "11세7개월",
+        "pah": "155"
+      },
+      {
+        "date": "2024-01-30",
+        "height": 138.7,
+        "weight": 26.4,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2024-07-02",
+        "height": 142.0,
+        "weight": 30.3,
+        "age": "10세9개월",
+        "bone_age": "11세7개월"
+      },
+      {
+        "date": "2025-01-24",
+        "height": 146.8,
+        "weight": 34.0,
+        "age": "11세4개월",
+        "bone_age": "11세10개월",
+        "pah": "158"
+      },
+      {
+        "date": "2025-08-04",
+        "height": 150.3,
+        "weight": 36.1,
+        "age": "11세10개월",
+        "bone_age": "11세10개월",
+        "pah": "160~161"
+      },
+      {
+        "date": "2026-01-12",
+        "height": 153.1,
+        "weight": 39.6,
+        "age": "12세4개월",
+        "bone_age": "11세10개월",
+        "pah": "163",
+        "notes": "척추 휨 개선 됨"
+      }
+    ],
+    "is_published": true,
+    "order_index": 35
+  },
+  {
+    "patient_name": "27969",
+    "gender": "male",
+    "birth_date": "2014-03-01",
+    "father_height": 167.0,
+    "mother_height": 160.0,
+    "target_height": 180.0,
+    "special_notes": "-만성비염\n-타원(순천향대)에서 171 예측 진단 받음",
+    "measurements": [
+      {
+        "date": "2024-05-29",
+        "height": 132.9,
+        "weight": 42.3,
+        "age": "10세2개월",
+        "bone_age": "11세7개월",
+        "pah": "160"
+      },
+      {
+        "date": "2024-11-18",
+        "height": 138.0,
+        "weight": 38.5,
+        "age": "10세8개월",
+        "bone_age": "11세8개월",
+        "pah": "173"
+      },
+      {
+        "date": "2024-05-28",
+        "height": 142.3,
+        "weight": 42.1,
+        "age": "11세2개월",
+        "bone_age": "12세",
+        "pah": "168",
+        "notes": "사춘기 관리 예정"
+      },
+      {
+        "date": "2024-06-25",
+        "height": 143.1,
+        "weight": 42.3,
+        "notes": "-아리미덱스 처방 시작\n-루프린 주사 시작"
+      },
+      {
+        "date": "2025-11-12",
+        "height": 146.1,
+        "weight": 45.7,
+        "age": "11세8개월",
+        "bone_age": "12세2~3개월",
+        "pah": "168"
+      },
+      {
+        "date": "2026-01-10",
+        "height": 148.2,
+        "weight": 45.7
+      }
+    ],
+    "is_published": true,
+    "order_index": 36
+  },
+  {
+    "patient_name": "27972",
+    "gender": "female",
+    "birth_date": "2012-03-13",
+    "father_height": 173.0,
+    "mother_height": 174.0,
+    "target_height": 170.0,
+    "special_notes": "-체육(한국무용)특기생\n-타원(아주대)에서 160 초반 예측 진단 받음\n-최근 성장 속도가 줄었다",
+    "measurements": [
+      {
+        "date": "2024-05-31",
+        "height": 155.8,
+        "weight": 38.5,
+        "age": "12세2개월",
+        "bone_age": "11세6개월",
+        "pah": "165",
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2024-11-16",
+        "height": 159.7,
+        "weight": 39.7,
+        "age": "12세8개월",
+        "bone_age": "11세7개월",
+        "pah": "166~167"
+      },
+      {
+        "date": "2025-02-14",
+        "height": 160.0,
+        "weight": 42.5,
+        "notes": "희망키 거의 도달로 루프린 종료"
+      },
+      {
+        "date": "2025-03-15",
+        "height": 161.2,
+        "weight": 43.0,
+        "age": "12세11개월",
+        "bone_age": "11세7개월",
+        "pah": "171~172",
+        "notes": "치료 종료"
+      }
+    ],
+    "is_published": true,
+    "order_index": 37
+  },
+  {
+    "patient_name": "27984",
+    "gender": "male",
+    "birth_date": "2015-09-10",
+    "father_height": 164.0,
+    "mother_height": 162.0,
+    "target_height": 180.0,
+    "special_notes": "-타원(세브란스)에서 추적관찰 경험\nㄴ172 예측 진단 받음",
+    "measurements": [
+      {
+        "date": "2024-06-11",
+        "height": 136.9,
+        "weight": 42.5,
+        "age": "8세9개월",
+        "bone_age": "9세9개월",
+        "pah": "173"
+      },
+      {
+        "date": "2025-01-21",
+        "height": 143.2,
+        "weight": 45.6,
+        "age": "9세4개월",
+        "bone_age": "10세",
+        "pah": "178"
+      },
+      {
+        "date": "2025-12-09",
+        "height": 149.6,
+        "weight": 53.6,
+        "age": "10세2개월",
+        "bone_age": "11세7개월",
+        "pah": "145~176"
+      }
+    ],
+    "is_published": true,
+    "order_index": 38
+  },
+  {
+    "patient_name": "28032",
+    "gender": "female",
+    "birth_date": "2013-01-30",
+    "father_height": 173.0,
+    "mother_height": 164.0,
+    "target_height": 167.0,
+    "special_notes": "-비염 있음",
+    "measurements": [
+      {
+        "date": "2024-07-06",
+        "height": 143.6,
+        "weight": 44.0,
+        "age": "11세5개월",
+        "bone_age": "11세9개월",
+        "pah": "157"
+      },
+      {
+        "date": "2025-01-06",
+        "height": 148.9,
+        "weight": 47.0,
+        "age": "11세11개월",
+        "bone_age": "11세10개월",
+        "pah": "160",
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2025-07-19",
+        "height": 152.0,
+        "weight": 47.6,
+        "age": "12세5개월",
+        "bone_age": "11세10개월",
+        "pah": "162",
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 39
+  },
+  {
+    "patient_name": "28044",
+    "gender": "female",
+    "birth_date": "2014-04-16",
+    "father_height": 170.0,
+    "mother_height": 157.0,
+    "target_height": 167.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2024-07-13",
+        "height": 138.5,
+        "weight": 38.0,
+        "age": "10세2개월",
+        "bone_age": "10세6개월",
+        "pah": "159"
+      },
+      {
+        "date": "2025-01-11",
+        "height": 143.0,
+        "weight": 40.5,
+        "age": "10세8개월",
+        "bone_age": "11세",
+        "pah": "160",
+        "notes": "채소,과일 섭취량을 늘리도록 권장 / 가슴발달 시작"
+      },
+      {
+        "date": "2025-07-05",
+        "height": 147.6,
+        "weight": 40.8,
+        "age": "11세5개월",
+        "bone_age": "11세6개월",
+        "pah": "160~161"
+      },
+      {
+        "date": "2025-08-09",
+        "height": 147.8,
+        "weight": 42.1,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2026-01-10",
+        "height": 150.4,
+        "weight": 47.1,
+        "age": "11세8개월",
+        "bone_age": "11세6개월",
+        "pah": "163",
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 40
+  },
+  {
+    "patient_name": "28093",
+    "gender": "female",
+    "birth_date": "2013-12-27",
+    "father_height": 178.0,
+    "mother_height": 159.0,
+    "target_height": 168.0,
+    "special_notes": "-만성 비염 있음\n-타원에서 BA 13세2개월 진단\n158 예측 진단 받음",
+    "measurements": [
+      {
+        "date": "2024-08-13",
+        "height": 148.6,
+        "weight": 37.9,
+        "age": "10세7개월",
+        "bone_age": "12세3개월",
+        "pah": "157"
+      },
+      {
+        "date": "2024-09-11",
+        "height": 148.9,
+        "weight": 37.6,
+        "notes": "루프린 주사 시작"
+      },
+      {
+        "date": "2025-02-04",
+        "height": 151.5,
+        "weight": 40.3,
+        "age": "11세1개월",
+        "bone_age": "12세3개월",
+        "pah": "158~159"
+      },
+      {
+        "date": "2025-09-09",
+        "height": 154.8,
+        "weight": 47.0,
+        "age": "11세8개월",
+        "bone_age": "12세4~5개월",
+        "pah": "161~162",
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 41
+  },
+  {
+    "patient_name": "28271",
+    "gender": "male",
+    "birth_date": "2012-11-01",
+    "father_height": 183.0,
+    "mother_height": 160.0,
+    "target_height": 183.0,
+    "special_notes": "-타원에서 뼈나이가 2년이상 빠르다 진단 받음",
+    "measurements": [
+      {
+        "date": "2024-12-20",
+        "height": 161.3,
+        "weight": 95.8,
+        "age": "12세1개월",
+        "bone_age": "13세6개월",
+        "pah": "171",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2025-07-02",
+        "height": 166.6,
+        "weight": 100.0,
+        "age": "12세8개월",
+        "bone_age": "13세6개월",
+        "pah": "177"
+      },
+      {
+        "date": "2026-01-07",
+        "height": 171.2,
+        "weight": 105.1,
+        "age": "13세2개월",
+        "bone_age": "13세6개월",
+        "pah": "180",
+        "notes": "치료 진행 중"
+      }
+    ],
+    "is_published": true,
+    "order_index": 42
+  },
+  {
+    "patient_name": "26333",
+    "gender": "male",
+    "birth_date": "2008-01-09",
+    "father_height": null,
+    "mother_height": null,
+    "target_height": 185.0,
+    "special_notes": "-체육(배구)특기생\n-한의원을 다니고 있다.\n-지난한 해 6~7cm 컸다.",
+    "measurements": [
+      {
+        "date": "2022-02-14",
+        "height": 176.5,
+        "weight": 76.9,
+        "age": "14세2개월",
+        "bone_age": "14세후반",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-07-11",
+        "height": 179.5,
+        "weight": 74.9
+      },
+      {
+        "date": "2023-01-20",
+        "height": 182.2,
+        "weight": 81.1
+      }
+    ],
+    "is_published": true,
+    "order_index": 43
+  },
+  {
+    "patient_name": "26442",
+    "gender": "female",
+    "birth_date": "2009-04-22",
+    "father_height": 165.0,
+    "mother_height": 167.0,
+    "target_height": 177.0,
+    "special_notes": null,
+    "measurements": [
+      {
+        "date": "2022-04-13",
+        "height": 151.1,
+        "weight": 51.7,
+        "age": "12세11개월",
+        "bone_age": "13세2개월",
+        "pah": "168",
+        "notes": "아리미덱스 처방 시작"
+      },
+      {
+        "date": "2022-10-22",
+        "height": 156.6,
+        "weight": 53.5,
+        "age": "13세6개월",
+        "bone_age": "13세6개월"
+      },
+      {
+        "date": "2023-01-17",
+        "height": 158.6,
+        "weight": 53.1,
+        "notes": "미국거주 / 임의 내원 중단"
+      }
+    ],
+    "is_published": true,
+    "order_index": 44
+  },
+  {
+    "patient_name": "26567",
+    "gender": "male",
+    "birth_date": "2013-01-30",
+    "father_height": 158.0,
+    "mother_height": 162.0,
+    "target_height": 180.0,
+    "special_notes": "-타원(아산)에서 175cm 예측 진단 받음\n-부계쪽 가족력",
+    "measurements": [
+      {
+        "date": "2022-06-17",
+        "height": 140.7,
+        "weight": 37.4,
+        "age": "9세4개월",
+        "bone_age": "11세초반",
+        "pah": "167"
+      },
+      {
+        "date": "2022-12-05",
+        "height": 146.6,
+        "weight": 39.7,
+        "age": "9세10개월",
+        "bone_age": "11세6개월"
+      },
+      {
+        "date": "2023-06-09",
+        "height": 152.8,
+        "weight": 44.4,
+        "age": "10세4개월",
+        "bone_age": "12세초반"
+      },
+      {
+        "date": "2023-12-04",
+        "height": 158.5,
+        "weight": 50.9,
+        "age": "10세10개월",
+        "bone_age": "12세7개월",
+        "pah": "174",
+        "notes": "제주도 국제학교로 옮긴다"
+      },
+      {
+        "date": "2024-01-02",
+        "height": 160.0,
+        "weight": 53.0,
+        "notes": "-아리미덱스 처방 시작\n-루프린 주사 시작"
+      },
+      {
+        "date": "2024-06-25",
+        "height": 166.0,
+        "weight": 55.2,
+        "age": "11세4개월",
+        "pah": "177~178",
+        "notes": "피부 각화증 관련 상담"
+      },
+      {
+        "date": "2024-10-12",
+        "height": 167.2,
+        "weight": 58.1,
+        "notes": "-루프린 주사 마지막(3개월용)"
+      },
+      {
+        "date": "2024-12-16",
+        "height": 167.9,
+        "weight": 59.8,
+        "age": "11세10개월",
+        "bone_age": "13세3개월",
+        "pah": "180"
+      },
+      {
+        "date": "2025-06-24",
+        "height": 173.1,
+        "weight": 65.4,
+        "age": "12세4개월",
+        "bone_age": "13세6개월",
+        "pah": "183~184",
+        "notes": "방학기간만 치료계획"
+      }
+    ],
+    "is_published": true,
+    "order_index": 45
+  }
+]

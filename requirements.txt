@@ -1,0 +1,17 @@
+# PDF → RAG 자동 구축 스크립트 필수 패키지
+
+# OpenAI API (임베딩 생성)
+openai==1.12.0
+
+# Pinecone (벡터 데이터베이스)
+pinecone-client==3.0.0
+
+# PDF 파일 읽기
+PyPDF2==3.0.1
+
+# 환경 변수 관리
+python-dotenv==1.0.0
+
+# 선택 사항 (더 나은 PDF 파싱)
+# pdfplumber==0.10.3
+# pymupdf==1.23.8

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase 연결 테스트 - 187 성장케어</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 1.75rem;
+        }
+        
+        .test-item {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        
+        .test-item h3 {
+            color: #374151;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .status.loading {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .result {
+            margin-top: 12px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #6b7280;
+            white-space: pre-wrap;
+            word-break: break-all;
+            line-height: 1.6;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+        }
+        
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+        
+        .summary h2 {
+            margin-bottom: 10px;
+        }
+        
+        .summary p {
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Supabase 연결 테스트</h1>
+        
+        <div class="test-item" id="test1">
+            <h3>
+                <span class="icon">🔗</span>
+                1. Supabase 클라이언트 생성
+                <span class="status loading">대기 중...</span>
+            </h3>
+            <div class="result"></div>
+        </div>
+        
+        <div class="test-item" id="test2">
+            <h3>
+                <span class="icon">📊</span>
+                2. 데이터베이스 연결 테스트
+                <span class="status loading">대기 중...</span>
+            </h3>
+            <div class="result"></div>
+        </div>
+        
+        <div class="test-item" id="test3">
+            <h3>
+                <span class="icon">📋</span>
+                3. 테이블 존재 확인
+                <span class="status loading">대기 중...</span>
+            </h3>
+            <div class="result"></div>
+        </div>
+        
+        <div class="test-item" id="test4">
+            <h3>
+                <span class="icon">🔒</span>
+                4. RLS 정책 확인
+                <span class="status loading">대기 중...</span>
+            </h3>
+            <div class="result"></div>
+        </div>
+        
+        <button onclick="runTests()">🚀 테스트 다시 실행</button>
+        
+        <div class="summary" id="summary" style="display: none;">
+            <h2>✅ 연결 성공!</h2>
+            <p>Supabase 데이터베이스가 정상적으로 연결되었습니다.</p>
+        </div>
+    </div>
+    
+    <!-- Supabase JS 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 연결 테스트 스크립트 -->
+    <script src="js/test-connection.js"></script>
+</body>
+</html>

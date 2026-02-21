@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS 데이터 정확도 검증</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #334155;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        .result-box {
+            background: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+        }
+        .result-label {
+            font-weight: 600;
+            color: #475569;
+        }
+        .result-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        .verification {
+            background: #f0fdf4;
+            border-left-color: #10b981;
+            margin-top: 20px;
+        }
+        .error {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+        }
+        .formula {
+            font-family: 'Courier New', monospace;
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 LMS 데이터 정확도 검증</h1>
+        <p style="color: #64748b; margin-bottom: 20px;">현재 JSON 데이터의 LMS 값이 실제 성장도표와 일치하는지 확인합니다</p>
+
+        <div class="section">
+            <h3>📊 테스트 입력</h3>
+            <div class="input-group">
+                <label>성별</label>
+                <select id="gender">
+                    <option value="male">남아</option>
+                    <option value="female">여아</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>나이 (세)</label>
+                <input type="number" id="age" value="10" step="0.1" min="0" max="18">
+            </div>
+            <div class="input-group">
+                <label>키 (cm)</label>
+                <input type="number" id="height" value="140" step="0.1">
+            </div>
+            <button onclick="calculatePercentile()">백분위 계산</button>
+            <button onclick="verifyWith18Years()" style="background: #10b981;">18세 예측키 계산</button>
+        </div>
+
+        <div id="percentileResult"></div>
+        <div id="predictionResult"></div>
+
+        <div class="section">
+            <h3>📋 실제 성장도표 값 입력 (검증용)</h3>
+            <p style="color: #64748b; margin-bottom: 15px;">엑셀 파일의 실제 백분위 테이블 값을 입력하세요</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                <div class="input-group">
+                    <label>나이</label>
+                    <input type="number" id="verifyAge" value="18" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label>50th (cm)</label>
+                    <input type="number" id="verify50th" placeholder="예: 173.9">
+                </div>
+                <div class="input-group">
+                    <label>75th (cm)</label>
+                    <input type="number" id="verify75th" placeholder="예: 178.2">
+                </div>
+            </div>
+            <button onclick="verifyLMSValues()">LMS 값 검증</button>
+        </div>
+
+        <div id="verificationResult"></div>
+
+        <div class="section">
+            <h3>📈 현재 JSON 데이터 (18세)</h3>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>성별</th>
+                        <th>나이</th>
+                        <th>L</th>
+                        <th>M (50th)</th>
+                        <th>S</th>
+                        <th>계산된 75th</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="../data/korea_growth_standard.json"></script>
+    <script>
+        let koreaData = null;
+
+        // JSON 데이터 로드
+        fetch('../data/korea_growth_standard.json')
+            .then(response => response.json())
+            .then(data => {
+                koreaData = data;
+                displayCurrentData();
+            })
+            .catch(error => {
+                console.error('데이터 로드 실패:', error);
+            });
+
+        function normalCDF(z) {
+            const t = 1 / (1 + 0.2316419 * Math.abs(z));
+            const d = 0.3989423 * Math.exp(-z * z / 2);
+            const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+            return z > 0 ? 1 - p : p;
+        }
+
+        function normalInverseCDF(p) {
+            const a1 = -39.6968302866538, a2 = 220.946098424521, a3 = -275.928510446969;
+            const a4 = 138.357751867269, a5 = -30.6647980661472, a6 = 2.50662827745924;
+            const b1 = -54.4760987982241, b2 = 161.585836858041, b3 = -155.698979859887;
+            const b4 = 66.8013118877197, b5 = -13.2806815528857;
+            
+            if (p <= 0 || p >= 1) return p <= 0 ? -10 : 10;
+            
+            const q = p - 0.5;
+            let r, x;
+            
+            if (Math.abs(q) <= 0.425) {
+                r = 0.180625 - q * q;
+                x = q * (((((a1 * r + a2) * r + a3) * r + a4) * r + a5) * r + a6) /
+                    (((((b1 * r + b2) * r + b3) * r + b4) * r + b5) * r + 1);
+            } else {
+                r = q < 0 ? p : 1 - p;
+                r = Math.sqrt(-Math.log(r));
+                x = (((((2.321869364 * r + 2.374693679) * r + 1.531623667) * r + 0.588581570) * r + 0.099348462) * r + 0.000538991) /
+                    ((((2.938163982 * r + 2.872152213) * r + 1.239786328) * r + 0.168489522) * r + 0.000490314);
+                if (q < 0) x = -x;
+            }
+            
+            return x;
+        }
+
+        function interpolateLMS(dataArray, targetAge) {
+            if (targetAge <= dataArray[0].age) return dataArray[0];
+            if (targetAge >= dataArray[dataArray.length - 1].age) return dataArray[dataArray.length - 1];
+
+            for (let i = 0; i < dataArray.length - 1; i++) {
+                if (targetAge >= dataArray[i].age && targetAge <= dataArray[i + 1].age) {
+                    const ratio = (targetAge - dataArray[i].age) / (dataArray[i + 1].age - dataArray[i].age);
+                    return {
+                        L: dataArray[i].L + (dataArray[i + 1].L - dataArray[i].L) * ratio,
+                        M: dataArray[i].M + (dataArray[i + 1].M - dataArray[i].M) * ratio,
+                        S: dataArray[i].S + (dataArray[i + 1].S - dataArray[i].S) * ratio
+                    };
+                }
+            }
+            return dataArray[dataArray.length - 1];
+        }
+
+        function calculatePercentile() {
+            if (!koreaData) {
+                alert('데이터를 로드 중입니다...');
+                return;
+            }
+
+            const gender = document.getElementById('gender').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const height = parseFloat(document.getElementById('height').value);
+
+            const lms = interpolateLMS(koreaData[gender].height, age);
+            const { L, M, S } = lms;
+
+            // Z-score 계산
+            let zScore;
+            if (L !== 0) {
+                zScore = (Math.pow(height / M, L) - 1) / (L * S);
+            } else {
+                zScore = Math.log(height / M) / S;
+            }
+
+            const percentile = normalCDF(zScore) * 100;
+
+            // 다른 백분위 계산
+            const p5 = M * Math.pow(1 + L * S * normalInverseCDF(0.05), 1 / L);
+            const p25 = M * Math.pow(1 + L * S * normalInverseCDF(0.25), 1 / L);
+            const p50 = M;
+            const p75 = M * Math.pow(1 + L * S * normalInverseCDF(0.75), 1 / L);
+            const p95 = M * Math.pow(1 + L * S * normalInverseCDF(0.95), 1 / L);
+
+            document.getElementById('percentileResult').innerHTML = `
+                <div class="result-box">
+                    <h3>📊 백분위 계산 결과</h3>
+                    <div class="result-item">
+                        <span class="result-label">입력 키</span>
+                        <span class="result-value">${height}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">백분위</span>
+                        <span class="result-value">${percentile.toFixed(1)}%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Z-score</span>
+                        <span class="result-value">${zScore.toFixed(3)}</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 10px;">LMS 값 (나이 ${age}세)</h4>
+                    <div class="result-item">
+                        <span class="result-label">L</span>
+                        <span class="result-value">${L.toFixed(4)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">M (50th)</span>
+                        <span class="result-value">${M.toFixed(1)}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">S</span>
+                        <span class="result-value">${S.toFixed(4)}</span>
+                    </div>
+
+                    <h4 style="margin-top: 20px; margin-bottom: 10px;">계산된 백분위 값</h4>
+                    <table>
+                        <tr><th>5th</th><td>${p5.toFixed(1)}cm</td></tr>
+                        <tr><th>25th</th><td>${p25.toFixed(1)}cm</td></tr>
+                        <tr><th>50th</th><td>${p50.toFixed(1)}cm</td></tr>
+                        <tr><th>75th</th><td>${p75.toFixed(1)}cm</td></tr>
+                        <tr><th>95th</th><td>${p95.toFixed(1)}cm</td></tr>
+                    </table>
+                </div>
+            `;
+        }
+
+        function verifyWith18Years() {
+            if (!koreaData) {
+                alert('데이터를 로드 중입니다...');
+                return;
+            }
+
+            const gender = document.getElementById('gender').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const height = parseFloat(document.getElementById('height').value);
+
+            // 현재 백분위 계산
+            const currentLMS = interpolateLMS(koreaData[gender].height, age);
+            let zScore;
+            if (currentLMS.L !== 0) {
+                zScore = (Math.pow(height / currentLMS.M, currentLMS.L) - 1) / (currentLMS.L * currentLMS.S);
+            } else {
+                zScore = Math.log(height / currentLMS.M) / currentLMS.S;
+            }
+            const currentPercentile = normalCDF(zScore) * 100;
+
+            // 18세 예측
+            const lms18 = interpolateLMS(koreaData[gender].height, 18);
+            const predicted18 = lms18.M * Math.pow(1 + lms18.L * lms18.S * zScore, 1 / lms18.L);
+
+            document.getElementById('predictionResult').innerHTML = `
+                <div class="result-box verification">
+                    <h3>🎯 18세 예측키</h3>
+                    <div class="result-item">
+                        <span class="result-label">현재 백분위</span>
+                        <span class="result-value">${currentPercentile.toFixed(1)}%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">예측 최종 키 (18세)</span>
+                        <span class="result-value">${predicted18.toFixed(1)}cm</span>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; margin-bottom: 10px;">18세 LMS 값</h4>
+                    <div class="result-item">
+                        <span class="result-label">L</span>
+                        <span>${lms18.L.toFixed(4)}</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">M (50th)</span>
+                        <span>${lms18.M.toFixed(1)}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">S</span>
+                        <span>${lms18.S.toFixed(4)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function verifyLMSValues() {
+            const age = parseFloat(document.getElementById('verifyAge').value);
+            const p50 = parseFloat(document.getElementById('verify50th').value);
+            const p75 = parseFloat(document.getElementById('verify75th').value);
+
+            if (isNaN(p50) || isNaN(p75)) {
+                alert('50th와 75th 값을 입력하세요');
+                return;
+            }
+
+            // S 값 역계산
+            const L = 1; // 가정
+            const M = p50;
+            const z75 = normalInverseCDF(0.75); // ≈ 0.674
+            
+            // p75 = M * (1 + L * S * z75)^(1/L)
+            // S = (p75/M - 1) / (L * z75)
+            const S = (p75 / M - 1) / (L * z75);
+
+            // 현재 JSON의 값과 비교
+            const gender = document.getElementById('gender').value;
+            const currentLMS = interpolateLMS(koreaData[gender].height, age);
+
+            const diff_M = Math.abs(currentLMS.M - M);
+            const diff_S = Math.abs(currentLMS.S - S);
+
+            const isAccurate = diff_M < 0.5 && diff_S < 0.005;
+
+            document.getElementById('verificationResult').innerHTML = `
+                <div class="result-box ${isAccurate ? 'verification' : 'error'}">
+                    <h3>${isAccurate ? '✅' : '❌'} 검증 결과</h3>
+                    
+                    <h4>실제 성장도표 값</h4>
+                    <div class="result-item">
+                        <span class="result-label">50th (M)</span>
+                        <span>${p50.toFixed(1)}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">75th</span>
+                        <span>${p75.toFixed(1)}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">역계산된 S</span>
+                        <span class="result-value">${S.toFixed(4)}</span>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">현재 JSON 데이터</h4>
+                    <div class="result-item">
+                        <span class="result-label">M</span>
+                        <span>${currentLMS.M.toFixed(1)}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">S</span>
+                        <span>${currentLMS.S.toFixed(4)}</span>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">차이</h4>
+                    <div class="result-item">
+                        <span class="result-label">M 차이</span>
+                        <span style="color: ${diff_M < 0.5 ? '#10b981' : '#ef4444'}">${diff_M.toFixed(2)}cm</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">S 차이</span>
+                        <span style="color: ${diff_S < 0.005 ? '#10b981' : '#ef4444'}">${diff_S.toFixed(4)}</span>
+                    </div>
+
+                    <p style="margin-top: 20px; padding: 15px; background: ${isAccurate ? '#f0fdf4' : '#fef2f2'}; border-radius: 6px;">
+                        ${isAccurate ? 
+                            '<strong>✅ JSON 데이터가 정확합니다!</strong>' : 
+                            '<strong>⚠️ JSON 데이터를 수정해야 합니다!</strong><br>실제 성장도표 값과 차이가 있습니다.'}
+                    </p>
+                </div>
+            `;
+        }
+
+        function displayCurrentData() {
+            if (!koreaData) return;
+
+            const tbody = document.getElementById('dataTableBody');
+            const genders = ['male', 'female'];
+            
+            tbody.innerHTML = genders.map(gender => {
+                const data18 = koreaData[gender].height.find(d => d.age === 18);
+                if (!data18) return '';
+
+                const { L, M, S } = data18;
+                const z75 = normalInverseCDF(0.75);
+                const p75 = M * Math.pow(1 + L * S * z75, 1 / L);
+
+                return `
+                    <tr>
+                        <td>${gender === 'male' ? '남아' : '여아'}</td>
+                        <td>18세</td>
+                        <td>${L.toFixed(4)}</td>
+                        <td>${M.toFixed(1)}</td>
+                        <td>${S.toFixed(4)}</td>
+                        <td>${p75.toFixed(1)}cm</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+    </script>
+</body>
+</html>

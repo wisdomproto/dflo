@@ -1,0 +1,443 @@
+/* 정보 모바일 스타일 */
+
+.category-filter {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+    white-space: nowrap;
+}
+
+.category-btn {
+    padding: 8px 16px;
+    background: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.category-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.faq-item {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.faq-item.hidden {
+    display: none;
+}
+
+.faq-question {
+    padding: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.faq-question:active {
+    background: var(--bg-color);
+}
+
+.faq-q-content {
+    flex: 1;
+}
+
+.faq-category-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.625rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.faq-category-badge.growth {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.faq-category-badge.exercise {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.faq-category-badge.nutrition {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.faq-category-badge.sleep {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.faq-category-badge.posture {
+    background: #fce7f3;
+    color: #831843;
+}
+
+.faq-q-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.faq-icon {
+    font-size: 1.25rem;
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-a-content {
+    padding: 0 16px 16px;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 0.875rem;
+}
+
+.tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--bg-color);
+    border-radius: 12px;
+}
+
+.tip-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.tip-content {
+    flex: 1;
+}
+
+.tip-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 0.875rem;
+}
+
+.tip-text {
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.contact-card {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    color: var(--white);
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    margin-top: 24px;
+    box-shadow: var(--shadow-lg);
+}
+
+.contact-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.contact-card p {
+    margin-bottom: 6px;
+    opacity: 0.95;
+}
+
+/* 성장 시크릿 트리 스타일 */
+.growth-secret {
+    margin-top: 24px;
+}
+
+.secret-section {
+    background: var(--white);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.secret-header {
+    padding: 18px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-bottom: 2px solid #3b82f6;
+    transition: all 0.3s ease;
+}
+
+.secret-header:hover {
+    background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+}
+
+.secret-header:active {
+    opacity: 0.8;
+}
+
+.secret-header-content {
+    flex: 1;
+}
+
+.secret-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    color: var(--white);
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-right: 12px;
+    box-shadow: 0 2px 8px rgba(20, 184, 166, 0.3);
+}
+
+.secret-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.secret-icon {
+    font-size: 1.25rem;
+    transition: transform 0.3s;
+    color: var(--primary-color);
+}
+
+.secret-section.active .secret-icon {
+    transform: rotate(180deg);
+}
+
+.secret-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.secret-section.active .secret-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0d9488 100%);
+    border-bottom-color: var(--primary-color);
+}
+
+.secret-section.active .secret-header .secret-title {
+    color: var(--white);
+}
+
+.secret-section.active .secret-header .secret-number {
+    background: var(--white);
+    color: var(--primary-color);
+}
+
+.secret-section.active .secret-header .secret-icon {
+    color: var(--white);
+}
+
+.secret-section.active .secret-body {
+    max-height: 5000px;
+}
+
+.secret-content {
+    padding: 20px 16px;
+    color: var(--text-light);
+    line-height: 1.7;
+    font-size: 0.9rem;
+    background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+}
+
+.secret-content p {
+    margin-bottom: 12px;
+}
+
+.secret-content h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 16px 0 10px;
+    padding-left: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.secret-content strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.secret-content ul {
+    margin: 12px 0;
+    padding-left: 20px;
+}
+
+.secret-content li {
+    margin-bottom: 8px;
+}
+
+.secret-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.85rem;
+}
+
+.secret-table th {
+    background: #f0f9ff;
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 10px 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.secret-table td {
+    padding: 10px 8px;
+    border: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.secret-table tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.info-box {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-left: 4px solid var(--primary-color);
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.info-box h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.warning-box {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-left: 4px solid #ef4444;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.1);
+}
+
+.warning-box h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #991b1b;
+    margin-bottom: 8px;
+}
+
+.checklist {
+    margin: 8px 0;
+}
+
+.checklist-item {
+    padding: 8px 12px 8px 32px;
+    margin-bottom: 6px;
+    background: var(--white);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+.checklist-item::before {
+    content: '✓';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.text-emphasis {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.warning-box {
+    background: #fff5f5;
+    border-left: 4px solid #ef4444;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+}
+
+.warning-box h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #dc2626;
+    margin-bottom: 8px;
+}
+
+.checklist {
+    margin: 8px 0;
+}
+
+.checklist-item {
+    margin-bottom: 8px;
+    padding-left: 4px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.text-emphasis {
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.text-blue {
+    color: var(--primary-color);
+    font-weight: 600;
+}

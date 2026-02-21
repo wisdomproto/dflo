@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS 데이터 자동 추출 및 생성</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background: #f0fdf4;
+            border-left-color: #10b981;
+        }
+        .data-preview {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 6px 8px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 LMS 데이터 자동 추출 및 JSON 생성</h1>
+        <p style="color: #64748b; margin-bottom: 20px;">엑셀 파일에서 LMS 값을 자동으로 추출하여 완성된 JSON 파일을 생성합니다</p>
+
+        <div class="info-box">
+            <strong>📂 대상 파일:</strong> tools/growth_data_original.xls<br>
+            <strong>🎯 목표:</strong> 남아/여아 신장·체중 LMS 데이터 추출 → korea_growth_standard.json 생성
+        </div>
+
+        <button onclick="startExtraction()" style="font-size: 18px; padding: 15px 30px;">
+            🚀 자동 추출 시작
+        </button>
+
+        <div id="result"></div>
+        <div id="jsonOutput" style="display: none; margin-top: 20px;">
+            <h3>📄 생성된 JSON</h3>
+            <button onclick="downloadJSON()" style="background: #10b981;">💾 JSON 다운로드</button>
+            <button onclick="copyJSON()" style="background: #f59e0b;">📋 복사</button>
+            <pre id="jsonPreview"></pre>
+        </div>
+    </div>
+
+    <script>
+        let finalJSON = null;
+
+        async function startExtraction() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="loading">🔄 엑셀 파일을 로딩하고 있습니다...</div>';
+
+            try {
+                // 엑셀 파일 로드
+                const response = await fetch('growth_data_original.xls');
+                const arrayBuffer = await response.arrayBuffer();
+                const data = new Uint8Array(arrayBuffer);
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                resultDiv.innerHTML = '<div class="info-box success">✅ 파일 로드 완료! 시트 분석 중...</div>';
+
+                // 모든 시트 분석
+                const allSheets = workbook.SheetNames;
+                console.log('발견된 시트:', allSheets);
+
+                resultDiv.innerHTML += `<p>총 ${allSheets.length}개 시트 발견: ${allSheets.join(', ')}</p>`;
+
+                // LMS 데이터 추출
+                const extractedData = {
+                    male: { height: [], weight: [] },
+                    female: { height: [], weight: [] }
+                };
+
+                for (const sheetName of allSheets) {
+                    const sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: '' });
+                    const lmsData = extractLMSFromSheet(sheetName, sheetData);
+                    
+                    if (lmsData) {
+                        const { gender, type, data } = lmsData;
+                        extractedData[gender][type] = data;
+                        resultDiv.innerHTML += `<p class="success">✅ ${sheetName}: ${data.length}개 데이터 추출</p>`;
+                    }
+                }
+
+                // JSON 생성
+                generateFinalJSON(extractedData);
+                displayResults(extractedData);
+
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="info-box" style="border-color: #ef4444; background: #fef2f2;">
+                    ❌ 오류: ${error.message}
+                </div>`;
+                console.error(error);
+            }
+        }
+
+        function extractLMSFromSheet(sheetName, data) {
+            if (data.length < 2) return null;
+
+            const nameLower = sheetName.toLowerCase();
+            
+            // 성별 판단
+            let gender = null;
+            if (nameLower.includes('남') || nameLower.includes('boy') || nameLower.includes('male')) {
+                gender = 'male';
+            } else if (nameLower.includes('여') || nameLower.includes('girl') || nameLower.includes('female')) {
+                gender = 'female';
+            } else {
+                return null; // 성별 불명
+            }
+
+            // 유형 판단 (신장/체중)
+            let type = null;
+            if (nameLower.includes('신장') || nameLower.includes('키') || nameLower.includes('height')) {
+                type = 'height';
+            } else if (nameLower.includes('체중') || nameLower.includes('몸무게') || nameLower.includes('weight')) {
+                type = 'weight';
+            } else {
+                return null; // 유형 불명
+            }
+
+            // LMS 컬럼 찾기
+            const header = data[0].map(cell => String(cell).toLowerCase().trim());
+            
+            let ageCol = -1, lCol = -1, mCol = -1, sCol = -1;
+
+            // 헤더에서 컬럼 찾기
+            for (let i = 0; i < header.length; i++) {
+                const h = header[i];
+                if (h.includes('age') || h.includes('month') || h.includes('나이') || h.includes('개월')) {
+                    ageCol = i;
+                } else if (h === 'l' || h.includes('lambda')) {
+                    lCol = i;
+                } else if (h === 'm' || h.includes('mu')) {
+                    mCol = i;
+                } else if (h === 's' || h.includes('sigma')) {
+                    sCol = i;
+                }
+            }
+
+            // 패턴으로 찾기 (연속된 숫자 컬럼)
+            if (lCol === -1 || mCol === -1 || sCol === -1) {
+                for (let i = 0; i < header.length - 2; i++) {
+                    const row = data[1] || [];
+                    const v1 = row[i], v2 = row[i+1], v3 = row[i+2];
+                    
+                    if (typeof v1 === 'number' && typeof v2 === 'number' && typeof v3 === 'number') {
+                        // L: 보통 -2 ~ 2, M: 키(50~200) 또는 몸무게(3~100), S: 0.01~0.2
+                        if (Math.abs(v1) <= 3 && v2 > 3 && v3 > 0.001 && v3 < 1) {
+                            lCol = i;
+                            mCol = i + 1;
+                            sCol = i + 2;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (lCol === -1 || mCol === -1 || sCol === -1) {
+                console.warn(`${sheetName}: LMS 컬럼을 찾을 수 없음`);
+                return null;
+            }
+
+            // 데이터 추출
+            const results = [];
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                if (!row || row.length === 0) continue;
+
+                let age = ageCol >= 0 ? row[ageCol] : null;
+                const L = row[lCol];
+                const M = row[mCol];
+                const S = row[sCol];
+
+                // 유효성 검사
+                if (typeof L !== 'number' || typeof M !== 'number' || typeof S !== 'number') continue;
+                
+                // 범위 체크
+                if (type === 'height' && (M < 40 || M > 200)) continue;
+                if (type === 'weight' && (M < 2 || M > 100)) continue;
+                if (Math.abs(S) > 1) continue;
+                if (Math.abs(L) > 5) continue;
+
+                // 나이 처리 (개월 → 년)
+                if (typeof age === 'number') {
+                    if (age > 18) age = age / 12; // 개월을 년으로
+                } else {
+                    continue; // 나이 없으면 스킵
+                }
+
+                if (age < 0 || age > 20) continue;
+
+                results.push({
+                    age: Math.round(age * 100) / 100, // 소수점 2자리
+                    L: Math.round(L * 10000) / 10000,
+                    M: Math.round(M * 10) / 10,
+                    S: Math.round(S * 10000) / 10000
+                });
+            }
+
+            // 나이순 정렬 및 중복 제거
+            results.sort((a, b) => a.age - b.age);
+            
+            // 중복 제거 (같은 나이는 첫 번째만)
+            const uniqueResults = [];
+            let lastAge = -1;
+            for (const item of results) {
+                if (item.age !== lastAge) {
+                    uniqueResults.push(item);
+                    lastAge = item.age;
+                }
+            }
+
+            return { gender, type, data: uniqueResults };
+        }
+
+        function generateFinalJSON(extractedData) {
+            finalJSON = {
+                metadata: {
+                    source: "대한소아과학회 2017 한국 소아청소년 성장도표",
+                    method: "LMS",
+                    description: "Lambda-Mu-Sigma 방법을 사용한 한국 표준 성장 데이터",
+                    extracted: new Date().toISOString(),
+                    ageUnit: "years",
+                    heightUnit: "cm",
+                    weightUnit: "kg"
+                },
+                male: {
+                    height: extractedData.male.height,
+                    weight: extractedData.male.weight
+                },
+                female: {
+                    height: extractedData.female.height,
+                    weight: extractedData.female.weight
+                }
+            };
+        }
+
+        function displayResults(extractedData) {
+            const resultDiv = document.getElementById('result');
+            
+            let html = '<div class="info-box success">';
+            html += '<strong>✅ LMS 데이터 추출 완료!</strong><br><br>';
+            html += `남아 신장: ${extractedData.male.height.length}개<br>`;
+            html += `남아 체중: ${extractedData.male.weight.length}개<br>`;
+            html += `여아 신장: ${extractedData.female.height.length}개<br>`;
+            html += `여아 체중: ${extractedData.female.weight.length}개<br>`;
+            html += `<strong>총 ${extractedData.male.height.length + extractedData.male.weight.length + extractedData.female.height.length + extractedData.female.weight.length}개 데이터</strong>`;
+            html += '</div>';
+
+            // 각 데이터 미리보기
+            ['male', 'female'].forEach(gender => {
+                ['height', 'weight'].forEach(type => {
+                    const data = extractedData[gender][type];
+                    if (data.length > 0) {
+                        html += `<div class="data-preview">`;
+                        html += `<h3>${gender === 'male' ? '남아' : '여아'} ${type === 'height' ? '신장' : '체중'} (${data.length}개)</h3>`;
+                        html += '<table><thead><tr><th>나이</th><th>L</th><th>M</th><th>S</th></tr></thead><tbody>';
+                        
+                        // 처음 10개와 마지막 10개만 표시
+                        const preview = [...data.slice(0, 10), ...(data.length > 20 ? data.slice(-10) : [])];
+                        
+                        preview.forEach((item, idx) => {
+                            if (idx === 10 && data.length > 20) {
+                                html += '<tr><td colspan="4" style="text-align: center; color: #64748b;">... (중략) ...</td></tr>';
+                            }
+                            html += `<tr>
+                                <td>${item.age}</td>
+                                <td>${item.L}</td>
+                                <td>${item.M}</td>
+                                <td>${item.S}</td>
+                            </tr>`;
+                        });
+                        
+                        html += '</tbody></table></div>';
+                    }
+                });
+            });
+
+            resultDiv.innerHTML = html;
+
+            // JSON 표시
+            document.getElementById('jsonOutput').style.display = 'block';
+            document.getElementById('jsonPreview').textContent = JSON.stringify(finalJSON, null, 2);
+        }
+
+        function downloadJSON() {
+            if (!finalJSON) return;
+
+            const blob = new Blob([JSON.stringify(finalJSON, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'korea_growth_standard.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copyJSON() {
+            if (!finalJSON) return;
+
+            const jsonText = JSON.stringify(finalJSON, null, 2);
+            navigator.clipboard.writeText(jsonText).then(() => {
+                alert('✅ JSON이 클립보드에 복사되었습니다!\n\ndata/korea_growth_standard.json 파일에 붙여넣으세요.');
+            });
+        }
+    </script>
+</body>
+</html>

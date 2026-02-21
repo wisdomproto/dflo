@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>187 Growth Care Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&amp;family=Noto+Sans+KR:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "warm-beige": "#FDF8F5",
+                        "soft-coral": "#FF9E8D",
+                        "mint-green": "#A8DADC",
+                        "leaf-green": "#82C1A4",
+                        "nurture-brown": "#8D7B6D",
+                        "creamy-white": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        "display": ["Quicksand", "sans-serif"],
+                        "sans": ["Noto Sans KR", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "2xl": "1.5rem",
+                        "3xl": "2rem",
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Quicksand', 'Noto Sans KR', sans-serif;
+            background-color: theme('colors.warm-beige');
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .flower-gauge {
+            background: radial-gradient(circle at center, #FF9E8D 0%, #FF9E8D 60%, transparent 60.1%);
+            position: relative;
+        }
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background-color: #FFB7A1;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            transform-origin: bottom center;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 25px -5px rgba(141, 123, 109, 0.1), 0 8px 10px -6px rgba(141, 123, 109, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-nurture-brown min-h-screen pb-24">
+<header class="bg-warm-beige/90 backdrop-blur-lg sticky top-0 z-50">
+<div class="px-6 pt-6 pb-2 max-w-md mx-auto">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-soft-coral font-bold text-sm mb-1">Good morning!</p>
+<h1 class="text-2xl font-bold tracking-tight text-nurture-brown">Min-su's Mom! 🌸</h1>
+</div>
+<button class="bg-creamy-white p-2.5 rounded-2xl soft-shadow">
+<span class="material-symbols-outlined text-soft-coral">notifications</span>
+</button>
+</div>
+</div>
+<div class="flex gap-4 px-6 py-4 overflow-x-auto hide-scrollbar max-w-md mx-auto">
+<button class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-16 h-16 rounded-3xl bg-soft-coral p-1 ring-4 ring-soft-coral/20">
+<img alt="Min-su" class="w-full h-full rounded-2xl bg-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1qAe1RYWZpC6C-3fLipHuUcOhkdDg365-tsuP5494Ed-Np8r-WiymnNKzXEkuYxRz-2drUMIc8ZsB_ZDEzmSFJ8RV8DcadT9PYSkMEEhb7W8_qKeNQ2YgoUIIOIDjT5w3pKd6Xp9ha2yaQx_FN3s-Tmf9T_YunEq8pEaTpt1NtHgEky8TchXDNKv3gLIUS02BzDxtOuHc1lJSeU1IzVWKNygyKKUlHpAo66oeAl5smz9DAnDr9uMqyaYt_ge_atDARW261B_34U8O"/>
+</div>
+<span class="text-xs font-bold text-soft-coral">Min-su</span>
+</button>
+<button class="flex flex-col items-center gap-2 shrink-0 opacity-60">
+<div class="w-16 h-16 rounded-3xl bg-creamy-white p-1 ring-1 ring-nurture-brown/10">
+<img alt="Ji-won" class="w-full h-full rounded-2xl bg-white object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChEr8yLgfi2ggLTWP9P9S08n1V-85ReOa__qyr-FL0YMtb8AUeD9iIB-RzxJx0UwoD4MHCHGCgex50RyoWZ_q6FA7Bc_6_20-qE2FR51vgj6AQxkROC5eopZ426GsHm32_0jZLN8qV9hIXuPEMw2Fsg0RNtJ2vMQVrIazXBxYUm513CHByLGEFrwVEoZpX0Z7_3Nx19ErUz3k4a71RQ9xvzNVh9ixxO7HZWLO8Frja7WeeVfd8KLdfj8igbyvjTbTE51dwkjco5nxj"/>
+</div>
+<span class="text-xs font-medium text-nurture-brown">Ji-won</span>
+</button>
+<button class="flex flex-col items-center gap-2 shrink-0">
+<div class="w-16 h-16 rounded-3xl border-2 border-dashed border-nurture-brown/20 flex items-center justify-center bg-creamy-white/50">
+<span class="material-symbols-outlined text-nurture-brown/40">add</span>
+</div>
+<span class="text-xs font-medium text-nurture-brown/40">Add</span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto px-6">
+<section class="mt-4">
+<div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4">
+<div class="min-w-[280px] h-40 rounded-3xl overflow-hidden relative snap-center soft-shadow">
+<div class="absolute inset-0 bg-gradient-to-t from-nurture-brown/60 to-transparent z-10"></div>
+<img alt="Sleep Guide" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS69PEDXb4UCK1wLsHhTByM6p8XUQxXpAXIFyYAXOaT4904Sa9thIaUUSwgyuqYS9I-gcpq2ZTua95TpzoKrHNwhDpgl3FbDeWuuUJ0llY0gqhHYZFQ7L0vyWBuwLjtNV8xhxHtveKnpbwp1dlIaAxJBkYsfmNsGLkahb5C49-qoOZ2tQxr2UtoHuMVzqs2Oou780z8amLpgqskQIz4vPISI2b6xgHZeYmRmoYRYCWMsA3BgNVBPvoVpIGFVFkBIl0Xd79yZih5elY"/>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="bg-mint-green text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-1 inline-block">Sweet Dreams</span>
+<h3 class="text-white text-lg font-bold leading-tight">Growth Hormone Secrets</h3>
+</div>
+</div>
+<div class="min-w-[280px] h-40 rounded-3xl overflow-hidden relative snap-center soft-shadow">
+<div class="absolute inset-0 bg-gradient-to-t from-nurture-brown/60 to-transparent z-10"></div>
+<img alt="Nutrition Guide" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1robtO_mmzBxbYiGQ81EFLxdlKhKjH_S1ZU4b4n19wzNMjFNaNmTbrs7-que98n4ci_UBxOGWsrDvJaKT9c9jOs-mNUjrlswo2pZQ5UoGY3rZg4xgKodCqDny7Zyaq2jGxKMMgCn2ODuXyYpzavmVeEs2CGxAaoNgDaqUIc3QjLKDSny-76FqwyWVXVgzhpx8HccArSvE_hn5PCXRmHIpj42CNTJLG2cIcEnzVBZK8zkbQg9Ismasw2dZrDRCndOhg6SqpDtBs7IY"/>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="bg-soft-coral text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-1 inline-block">Nutrition</span>
+<h3 class="text-white text-lg font-bold leading-tight">Daily Calcium Recipe</h3>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-10 mb-8 bg-creamy-white rounded-[2.5rem] p-8 soft-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="text-[10px] font-bold text-mint-green bg-mint-green/10 px-3 py-1 rounded-full uppercase">Update: 2d ago</span>
+</div>
+<h2 class="text-xl font-bold mb-8 flex items-center gap-2">
+                Min-su's Growth <span class="text-soft-coral">Flower</span>
+</h2>
+<div class="flex flex-col items-center">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<div class="absolute w-full h-full animate-pulse-slow">
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-0 bg-soft-coral/30"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[45deg] bg-soft-coral/20"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[90deg] bg-soft-coral/30"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[135deg] bg-soft-coral/20"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[180deg] bg-soft-coral/30"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[225deg] bg-soft-coral/20"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[270deg] bg-soft-coral/30"></div>
+<div class="petal left-1/2 -translate-x-1/2 top-0 rotate-[315deg] bg-soft-coral/20"></div>
+</div>
+<div class="relative w-40 h-40 rounded-full border-[12px] border-warm-beige flex items-center justify-center bg-white shadow-inner">
+<div class="absolute inset-0 rounded-full" style="background: conic-gradient(#FF9E8D 0% 15%, #FDF8F5 15% 100%); mask-image: radial-gradient(transparent 62%, black 63%); -webkit-mask-image: radial-gradient(transparent 62%, black 63%);"></div>
+<div class="text-center z-10">
+<p class="text-[10px] font-bold text-nurture-brown/50 uppercase tracking-widest">Top</p>
+<p class="text-4xl font-black text-soft-coral leading-none py-1">15%</p>
+<p class="text-[10px] font-bold text-nurture-brown/40">PERCENTILE</p>
+</div>
+</div>
+</div>
+<div class="mt-10 grid grid-cols-2 gap-4 w-full">
+<div class="bg-warm-beige/50 p-4 rounded-3xl border border-soft-coral/10">
+<p class="text-[10px] font-bold text-nurture-brown/40 mb-1 uppercase">Height</p>
+<p class="text-lg font-bold text-nurture-brown">128.4 <span class="text-xs font-medium">cm</span></p>
+</div>
+<div class="bg-warm-beige/50 p-4 rounded-3xl border border-soft-coral/10">
+<p class="text-[10px] font-bold text-nurture-brown/40 mb-1 uppercase">Rank</p>
+<p class="text-lg font-bold text-nurture-brown">15 <span class="text-xs font-medium">/ 100</span></p>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-2 text-leaf-green font-bold text-sm bg-leaf-green/10 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-lg">trending_up</span>
+<span>Growing +2.4% faster!</span>
+</div>
+</div>
+</section>
+<section class="pb-12">
+<h2 class="text-xl font-bold mb-6 flex items-center justify-between">
+                Success Stories
+                <span class="text-soft-coral text-xs font-bold">View all</span>
+</h2>
+<div class="flex overflow-x-auto hide-scrollbar gap-4">
+<div class="min-w-[260px] bg-creamy-white rounded-3xl p-6 soft-shadow border border-warm-beige">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-2xl bg-mint-green/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-leaf-green">eco</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-leaf-green uppercase">Case #402</p>
+<p class="text-sm font-bold text-nurture-brown">Ji-ho, 8 years old</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs">
+<span class="text-nurture-brown/40 font-bold">Duration</span>
+<span class="font-bold text-nurture-brown bg-warm-beige px-2 py-1 rounded-lg">12 Months</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-nurture-brown/40 font-bold">Progress</span>
+<div class="text-right">
+<span class="text-[10px] line-through text-nurture-brown/30 mr-1">122.0cm</span>
+<span class="text-xl font-black text-soft-coral">+8.5cm</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[260px] bg-creamy-white rounded-3xl p-6 soft-shadow border border-warm-beige">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 rounded-2xl bg-soft-coral/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-soft-coral">favorite</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-soft-coral uppercase">Case #389</p>
+<p class="text-sm font-bold text-nurture-brown">Su-bin, 6 years old</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-xs">
+<span class="text-nurture-brown/40 font-bold">Duration</span>
+<span class="font-bold text-nurture-brown bg-warm-beige px-2 py-1 rounded-lg">6 Months</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs text-nurture-brown/40 font-bold">Progress</span>
+<div class="text-right">
+<span class="text-[10px] line-through text-nurture-brown/30 mr-1">110.5cm</span>
+<span class="text-xl font-black text-soft-coral">+4.2cm</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-creamy-white/90 backdrop-blur-xl border-t border-warm-beige pb-8 pt-3 z-[100]">
+<div class="flex justify-around max-w-md mx-auto items-center px-4">
+<a class="flex flex-col items-center gap-1 text-soft-coral" href="#">
+<span class="material-symbols-outlined text-[28px] fill-[1]">home_app_logo</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-nurture-brown/40" href="#">
+<span class="material-symbols-outlined text-[28px]">analytics</span>
+<span class="text-[10px] font-medium">Growth</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-nurture-brown/40" href="#">
+<span class="material-symbols-outlined text-[28px]">rewarded_ads</span>
+<span class="text-[10px] font-medium">Challenge</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-nurture-brown/40" href="#">
+<span class="material-symbols-outlined text-[28px]">menu_book</span>
+<span class="text-[10px] font-medium">Library</span>
+</a>
+</div>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-nurture-brown/10 rounded-full"></div>
+</nav>
+
+</body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#14b8a6">
+    <!-- iOS PWA 지원 (iOS 13+에서 자동 지원됨) -->
+    <title>치료 사례 - 187 성장케어</title>
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/cases-mobile.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 앱 헤더 -->
+    <header class="app-header">
+        <div class="app-header-content">
+            <div class="app-logo">⭐</div>
+            <div class="app-title">
+                <h1>치료 사례</h1>
+                <p>실제 성공 스토리를 만나보세요</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 통계 배너 -->
+    <div class="stats-banner">
+        <div class="stat-banner-item">
+            <div class="stat-banner-icon">👨‍👩‍👧‍👦</div>
+            <div class="stat-banner-number">500+</div>
+            <div class="stat-banner-label">치료 완료</div>
+        </div>
+        <div class="stat-banner-item">
+            <div class="stat-banner-icon">📏</div>
+            <div class="stat-banner-number">15.5cm</div>
+            <div class="stat-banner-label">평균 성장</div>
+        </div>
+        <div class="stat-banner-item">
+            <div class="stat-banner-icon">⭐</div>
+            <div class="stat-banner-number">98%</div>
+            <div class="stat-banner-label">만족도</div>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+        <div class="container">
+            <h3 class="section-title">실제 치료 사례</h3>
+            <div id="casesContainer"></div>
+            
+            <!-- 데이터 없을 때만 보이는 로드 버튼 (JS에서 제어) -->
+            <div id="loadSampleDataButton" style="display: none; text-align: center; margin-top: 20px;">
+                <button onclick="loadSampleCasesData()" style="background: var(--primary-color); color: white; padding: 12px 24px; border: none; border-radius: 12px; font-weight: 600; font-size: 1rem; cursor: pointer;">
+                    📊 샘플 사례 데이터 로드하기
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 사례 상세 모달 -->
+    <div class="modal" id="caseModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- 하단 탭 네비게이션 -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="tab-item">
+            <div class="tab-icon">🏠</div>
+            <div class="tab-label">홈</div>
+        </a>
+        <a href="routine.html" class="tab-item">
+            <div class="tab-icon">📝</div>
+            <div class="tab-label">데일리루틴</div>
+        </a>
+        <a href="info.html" class="tab-item">
+            <div class="tab-icon">📚</div>
+            <div class="tab-label">성장가이드</div>
+        </a>
+    </nav>
+
+    <script src="js/main.js"></script>
+    <script src="js/korea-growth-standard.js"></script>
+    <script>
+        // 한국 표준 성장도표 초기화
+        window.koreaGrowthStandard = new KoreaGrowthStandard();
+    </script>
+    <script src="js/growth-data.js"></script>
+    <script src="js/cases-mobile.js"></script>
+</body>
+</html>

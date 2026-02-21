@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - 187 성장케어</title>
+    
+    <!-- 설정 파일 (API 키 포함 - .gitignore에 추가됨) -->
+    <script src="config.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js" 
+            integrity="sha384-TiCUE00h+tXWZx5WANwqEOD5APuaBSHH1pEfZ5Y/yRlnXUJK8WpTI4qR0SQ4r1Xf" 
+            crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .demo-accounts {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .demo-accounts h4 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .demo-accounts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .demo-accounts li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .demo-accounts li:last-child {
+            border-bottom: none;
+        }
+
+        .demo-accounts code {
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: #999;
+            font-size: 13px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-kakao {
+            width: 100%;
+            padding: 15px;
+            background: #FEE500;
+            color: #000000 !important;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-kakao:hover {
+            background: #FDD835;
+            transform: translateY(-2px);
+        }
+
+        .btn-kakao:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .kakao-icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="images/lpcare-logo.png" alt="LPCare" style="width: 80px; height: 80px; margin: 0 auto 15px; display: block; border-radius: 16px;">
+            <h1>LPCare</h1>
+            <p>아이 성장 케어 플랫폼</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <!-- 카카오 로그인 버튼 -->
+        <button type="button" onclick="kakaoLogin()" class="btn-kakao" id="kakaoBtn">
+            <svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/>
+            </svg>
+            카카오톡으로 3초 만에 시작하기
+        </button>
+
+        <div class="divider">
+            <span>또는</span>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="parentId">부모 ID</label>
+                <input 
+                    type="text" 
+                    id="parentId" 
+                    name="parentId" 
+                    placeholder="1, 2, 3..."
+                    required
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="비밀번호를 입력하세요"
+                    required
+                    autocomplete="current-password"
+                >
+            </div>
+
+            <button type="submit" class="btn-login" id="loginBtn">
+                로그인
+            </button>
+        </form>
+
+        <div class="demo-accounts">
+            <h4>📋 테스트 계정</h4>
+            <ul>
+                <li>부모 ID: <code>1</code>, <code>2</code>, <code>3</code> ... <code>45</code></li>
+                <li>비밀번호: <code>1234</code></li>
+                <li>※ 모든 부모 계정의 기본 비밀번호는 <code>1234</code>입니다</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 안내</h3>
+            <p>
+                부모 ID는 1부터 45까지 숫자를 입력하세요.<br>
+                예: 1, 2, 3, 4, 5...
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ================================================
+        // 설정 파일 확인
+        // ================================================
+        
+        if (typeof CONFIG === 'undefined') {
+            alert('⚠️ 설정 파일이 없습니다!\n\n1. config.example.js를 복사하여 config.js 생성\n2. config.js에 실제 API 키 입력\n3. 페이지 새로고침');
+            throw new Error('config.js 파일이 필요합니다.');
+        }
+
+        // ================================================
+        // 카카오 SDK 초기화
+        // ================================================
+        
+        if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
+            if (CONFIG.KAKAO_JS_KEY === 'YOUR_JAVASCRIPT_KEY' || CONFIG.KAKAO_JS_KEY === 'YOUR_KAKAO_JAVASCRIPT_KEY') {
+                console.warn('⚠️ 카카오 JavaScript 키가 설정되지 않았습니다. config.js를 확인하세요.');
+            } else {
+                Kakao.init(CONFIG.KAKAO_JS_KEY);
+                console.log('✅ 카카오 SDK 초기화 완료:', Kakao.isInitialized());
+            }
+        }
+
+        // ================================================
+        // Supabase 클라이언트 초기화
+        // ================================================
+        
+        const supabaseClient = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+
+        // 세션 키
+        const SESSION_KEY = CONFIG.SESSION_KEY;
+        const CHILDREN_KEY = CONFIG.CHILDREN_KEY;
+
+        // ================================================
+        // 카카오 로그인
+        // ================================================
+        
+        async function kakaoLogin() {
+            const kakaoBtn = document.getElementById('kakaoBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            try {
+                // JavaScript 키 확인
+                if (CONFIG.KAKAO_JS_KEY === 'YOUR_JAVASCRIPT_KEY' || CONFIG.KAKAO_JS_KEY === 'YOUR_KAKAO_JAVASCRIPT_KEY') {
+                    alert('카카오 Developers에서 JavaScript 키를 발급받고 config.js의 KAKAO_JS_KEY를 변경하세요.\n\n가이드: docs/guides/KAKAO_LOGIN_GUIDE.md');
+                    return;
+                }
+                
+                // 버튼 비활성화
+                kakaoBtn.disabled = true;
+                kakaoBtn.innerHTML = '<svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/></svg> 카카오톡 로그인 중...';
+                errorMessage.style.display = 'none';
+
+                Kakao.Auth.login({
+                    success: async function(authObj) {
+                        console.log('✅ 카카오 로그인 성공');
+                        
+                        // 사용자 정보 요청
+                        Kakao.API.request({
+                            url: '/v2/user/me',
+                            success: async function(response) {
+                                await handleKakaoUser(response);
+                            },
+                            fail: function(error) {
+                                console.error('❌ 카카오 사용자 정보 요청 실패:', error);
+                                errorMessage.textContent = '카카오 사용자 정보를 가져오는데 실패했습니다.';
+                                errorMessage.style.display = 'block';
+                                kakaoBtn.disabled = false;
+                                kakaoBtn.innerHTML = '<svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/></svg> 카카오톡으로 3초 만에 시작하기';
+                            }
+                        });
+                    },
+                    fail: function(err) {
+                        console.error('❌ 카카오 로그인 실패:', err);
+                        errorMessage.textContent = '카카오 로그인에 실패했습니다. 다시 시도해주세요.';
+                        errorMessage.style.display = 'block';
+                        kakaoBtn.disabled = false;
+                        kakaoBtn.innerHTML = '<svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/></svg> 카카오톡으로 3초 만에 시작하기';
+                    }
+                });
+            } catch (error) {
+                console.error('❌ 카카오 로그인 오류:', error);
+                errorMessage.textContent = '카카오 로그인 중 오류가 발생했습니다.';
+                errorMessage.style.display = 'block';
+                kakaoBtn.disabled = false;
+                kakaoBtn.innerHTML = '<svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/></svg> 카카오톡으로 3초 만에 시작하기';
+            }
+        }
+
+        // ================================================
+        // 카카오 사용자 정보 처리
+        // ================================================
+        
+        async function handleKakaoUser(kakaoUser) {
+            const kakaoBtn = document.getElementById('kakaoBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            try {
+                const kakaoId = kakaoUser.id;
+                const nickname = kakaoUser.properties?.nickname || '카카오 사용자';
+                const email = kakaoUser.kakao_account?.email || null;
+                const profileImage = kakaoUser.properties?.profile_image || null;
+                
+                console.log('📝 카카오 사용자 정보:', {
+                    kakao_id: kakaoId,
+                    nickname: nickname,
+                    email: email
+                });
+
+                // DB에서 기존 사용자 찾기
+                const { data: existingUsers, error: findError } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('kakao_id', kakaoId);
+
+                if (findError) {
+                    console.error('❌ 사용자 조회 실패:', findError);
+                    throw new Error('사용자 정보를 확인하는데 실패했습니다.');
+                }
+
+                if (existingUsers && existingUsers.length > 0) {
+                    // 기존 사용자 로그인
+                    const user = existingUsers[0];
+                    console.log('✅ 기존 사용자 로그인:', user.name);
+                    
+                    // 세션에 저장
+                    sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+                    
+                    // 자녀 정보 가져오기
+                    const { data: children, error: childrenError } = await supabaseClient
+                        .from('children')
+                        .select('*')
+                        .eq('parent_id', user.id);
+                    
+                    if (!childrenError && children) {
+                        sessionStorage.setItem(CHILDREN_KEY, JSON.stringify(children));
+                    }
+                    
+                    // 역할에 따라 리다이렉트
+                    if (user.role === 'admin' || user.role === 'doctor') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                } else {
+                    // 신규 사용자 - 회원가입 필요
+                    console.log('🆕 신규 사용자 - 회원가입 필요');
+                    
+                    // 카카오 정보를 sessionStorage에 임시 저장
+                    sessionStorage.setItem('kakao_signup_data', JSON.stringify({
+                        kakao_id: kakaoId,
+                        name: nickname,
+                        email: email,
+                        profile_image: profileImage,
+                        login_type: 'kakao'
+                    }));
+                    
+                    // 회원가입 페이지로 이동
+                    alert('카카오 계정으로 처음 로그인하셨습니다.\n회원가입 페이지로 이동합니다.');
+                    window.location.href = 'signup.html';
+                }
+            } catch (error) {
+                console.error('❌ 카카오 사용자 처리 실패:', error);
+                errorMessage.textContent = error.message || '카카오 로그인 처리 중 오류가 발생했습니다.';
+                errorMessage.style.display = 'block';
+                kakaoBtn.disabled = false;
+                kakaoBtn.innerHTML = '<svg class="kakao-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.477 2 10.75c0 2.685 1.685 5.033 4.228 6.48l-1.102 4.03a.5.5 0 00.752.562l4.794-3.196c.433.043.874.066 1.328.066 5.523 0 10-3.477 10-7.75S17.523 3 12 3z"/></svg> 카카오톡으로 3초 만에 시작하기';
+            }
+        }
+
+        // ================================================
+        // 기존 로그인 시스템 (부모 ID)
+        // ================================================
+        
+        // 이미 로그인되어 있는지 확인
+        const existingUser = sessionStorage.getItem(SESSION_KEY);
+        if (existingUser) {
+            try {
+                const user = JSON.parse(existingUser);
+                // 역할에 따라 리다이렉트
+                if (user.role === 'admin' || user.role === 'doctor') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'index.html';
+                }
+            } catch (error) {
+                console.error('세션 파싱 오류:', error);
+            }
+        }
+
+        // 로그인 폼 제출
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            console.log('🔐 로그인 시도 시작');
+
+            const parentIdElement = document.getElementById('parentId');
+            const passwordElement = document.getElementById('password');
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // 요소 존재 확인
+            if (!parentIdElement) {
+                console.error('❌ parentId 입력 필드를 찾을 수 없습니다!');
+                alert('페이지 오류: 부모 ID 입력 필드를 찾을 수 없습니다.');
+                return;
+            }
+            
+            if (!passwordElement) {
+                console.error('❌ password 입력 필드를 찾을 수 없습니다!');
+                alert('페이지 오류: 비밀번호 입력 필드를 찾을 수 없습니다.');
+                return;
+            }
+
+            const parentId = parentIdElement.value.trim();
+            const password = passwordElement.value;
+            
+            console.log('📝 입력값:', { parentId, passwordLength: password.length });
+
+            // 부모 ID를 이메일 형식으로 변환
+            const email = `${String(parentId).padStart(4, '0')}@example.com`;
+            console.log('📧 변환된 이메일:', email);
+
+            // 버튼 비활성화
+            loginBtn.disabled = true;
+            loginBtn.textContent = '로그인 중...';
+            errorMessage.style.display = 'none';
+
+            try {
+                console.log('🔍 사용자 조회 중...');
+                
+                // 1단계: 이메일로 사용자 찾기
+                const { data: users, error } = await supabaseClient
+                    .from('users')
+                    .select('*')
+                    .eq('email', email);
+
+                if (error) {
+                    console.error('❌ Supabase 오류:', error);
+                    throw error;
+                }
+                
+                console.log('📊 조회 결과:', users ? users.length : 0, '명');
+
+                if (!users || users.length === 0) {
+                    throw new Error('부모 ID 또는 비밀번호가 올바르지 않습니다.');
+                }
+
+                // 2단계: 비밀번호 확인
+                const user = users[0];
+                console.log('👤 사용자 찾음:', user.name);
+                
+                if (user.password !== password) {
+                    throw new Error('부모 ID 또는 비밀번호가 올바르지 않습니다.');
+                }
+
+                // 세션에 저장
+                sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+                console.log('💾 세션 저장 완료');
+
+                // 로그인 성공
+                console.log('✅ 로그인 성공:', user.name);
+
+                // 역할에 따라 리다이렉트
+                if (user.role === 'admin' || user.role === 'doctor') {
+                    console.log('🏥 관리자 페이지로 이동');
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'index.html';
+                }
+
+            } catch (error) {
+                console.error('로그인 실패:', error);
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                
+                // 버튼 활성화
+                loginBtn.disabled = false;
+                loginBtn.textContent = '로그인';
+            }
+        });
+
+        console.log('✅ 로그인 페이지 로드 완료');
+    </script>
+</body>
+</html>

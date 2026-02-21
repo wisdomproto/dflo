@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한국 성장도표 데이터 추출</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .info {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 한국 성장도표 데이터 추출기</h1>
+    
+    <div class="info">
+        <h3>🎯 목적</h3>
+        <p>한국 소아청소년 표준 성장도표 데이터를 분석하고 JSON 형식으로 변환합니다.</p>
+        <p>LMS 방법 (Lambda-Mu-Sigma)을 사용하여 정확한 백분위 계산과 18세 예측키를 산출합니다.</p>
+    </div>
+
+    <button onclick="loadExcel()">엑셀 파일 로드</button>
+    <button onclick="downloadJSON()">JSON 다운로드</button>
+    <button onclick="copyJSON()">JSON 복사</button>
+
+    <div id="sheetNames"></div>
+    <div id="tableContainer"></div>
+    <div id="jsonContainer"></div>
+
+    <script>
+        let workbook = null;
+        let extractedData = {};
+
+        async function loadExcel() {
+            try {
+                const response = await fetch('data/korea_growth_chart.xls');
+                const arrayBuffer = await response.arrayBuffer();
+                workbook = XLSX.read(arrayBuffer, { type: 'array' });
+                
+                console.log('✅ 엑셀 파일 로드 완료');
+                console.log('📋 시트 목록:', workbook.SheetNames);
+                
+                displaySheetNames();
+                extractGrowthData();
+            } catch (error) {
+                console.error('❌ 엑셀 파일 로드 실패:', error);
+                alert('엑셀 파일을 로드할 수 없습니다: ' + error.message);
+            }
+        }
+
+        function displaySheetNames() {
+            const container = document.getElementById('sheetNames');
+            container.innerHTML = '<h3>📑 시트 목록</h3>';
+            
+            const ul = document.createElement('ul');
+            workbook.SheetNames.forEach((name, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${index + 1}. ${name}</strong>
+                    <button onclick="showSheet('${name}')">보기</button>
+                `;
+                ul.appendChild(li);
+            });
+            container.appendChild(ul);
+        }
+
+        function showSheet(sheetName) {
+            const sheet = workbook.Sheets[sheetName];
+            const html = XLSX.utils.sheet_to_html(sheet);
+            
+            const container = document.getElementById('tableContainer');
+            container.innerHTML = `<h3>📊 시트: ${sheetName}</h3>${html}`;
+        }
+
+        function extractGrowthData() {
+            console.log('🔍 성장도표 데이터 추출 시작...');
+            
+            extractedData = {
+                version: '2017 소아청소년 성장도표',
+                source: '질병관리청',
+                male: {
+                    height: extractHeightData('male'),
+                    weight: extractWeightData('male')
+                },
+                female: {
+                    height: extractHeightData('female'),
+                    weight: extractWeightData('female')
+                }
+            };
+            
+            displayJSON();
+            console.log('✅ 데이터 추출 완료:', extractedData);
+        }
+
+        function extractHeightData(gender) {
+            // 시트 이름 찾기 (남아 키, 여아 키 등)
+            const sheetNames = workbook.SheetNames;
+            let targetSheet = null;
+            
+            if (gender === 'male') {
+                targetSheet = sheetNames.find(name => 
+                    name.includes('남아') && name.includes('키') || 
+                    name.includes('남') && name.includes('신장')
+                );
+            } else {
+                targetSheet = sheetNames.find(name => 
+                    name.includes('여아') && name.includes('키') || 
+                    name.includes('여') && name.includes('신장')
+                );
+            }
+            
+            if (!targetSheet) {
+                console.warn(`⚠️ ${gender} 키 데이터 시트를 찾을 수 없습니다.`);
+                return [];
+            }
+            
+            console.log(`📊 ${gender} 키 데이터 시트: ${targetSheet}`);
+            
+            const sheet = workbook.Sheets[targetSheet];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            
+            return parseGrowthSheet(jsonData, 'height');
+        }
+
+        function extractWeightData(gender) {
+            const sheetNames = workbook.SheetNames;
+            let targetSheet = null;
+            
+            if (gender === 'male') {
+                targetSheet = sheetNames.find(name => 
+                    name.includes('남아') && name.includes('체중') || 
+                    name.includes('남') && name.includes('몸무게')
+                );
+            } else {
+                targetSheet = sheetNames.find(name => 
+                    name.includes('여아') && name.includes('체중') || 
+                    name.includes('여') && name.includes('몸무게')
+                );
+            }
+            
+            if (!targetSheet) {
+                console.warn(`⚠️ ${gender} 체중 데이터 시트를 찾을 수 없습니다.`);
+                return [];
+            }
+            
+            console.log(`📊 ${gender} 체중 데이터 시트: ${targetSheet}`);
+            
+            const sheet = workbook.Sheets[targetSheet];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            
+            return parseGrowthSheet(jsonData, 'weight');
+        }
+
+        function parseGrowthSheet(data, type) {
+            // 데이터 파싱 로직
+            // LMS 데이터 형식: 월령/연령, L, M, S, P3, P5, P10, P25, P50, P75, P90, P95, P97
+            
+            const result = [];
+            
+            // 헤더 찾기
+            let headerRow = -1;
+            for (let i = 0; i < Math.min(10, data.length); i++) {
+                const row = data[i];
+                if (row && (
+                    row.some(cell => String(cell).includes('월령') || String(cell).includes('연령')) ||
+                    row.some(cell => String(cell).includes('Age') || String(cell).includes('Month'))
+                )) {
+                    headerRow = i;
+                    break;
+                }
+            }
+            
+            if (headerRow === -1) {
+                console.warn('⚠️ 헤더를 찾을 수 없습니다.');
+                return result;
+            }
+            
+            console.log(`📋 헤더 행: ${headerRow}`, data[headerRow]);
+            
+            // 데이터 추출
+            for (let i = headerRow + 1; i < data.length; i++) {
+                const row = data[i];
+                if (!row || row.length === 0) continue;
+                
+                const age = parseFloat(row[0]);
+                if (isNaN(age)) continue;
+                
+                // LMS 값 추출
+                const dataPoint = {
+                    age: age,
+                    L: parseFloat(row[1]) || 1,
+                    M: parseFloat(row[2]) || 0,
+                    S: parseFloat(row[3]) || 0.1,
+                    P3: parseFloat(row[4]) || 0,
+                    P5: parseFloat(row[5]) || 0,
+                    P10: parseFloat(row[6]) || 0,
+                    P25: parseFloat(row[7]) || 0,
+                    P50: parseFloat(row[8]) || 0,
+                    P75: parseFloat(row[9]) || 0,
+                    P90: parseFloat(row[10]) || 0,
+                    P95: parseFloat(row[11]) || 0,
+                    P97: parseFloat(row[12]) || 0
+                };
+                
+                result.push(dataPoint);
+            }
+            
+            console.log(`✅ ${type} 데이터 ${result.length}개 추출`);
+            return result;
+        }
+
+        function displayJSON() {
+            const container = document.getElementById('jsonContainer');
+            const jsonStr = JSON.stringify(extractedData, null, 2);
+            
+            container.innerHTML = `
+                <h3>📄 추출된 JSON 데이터</h3>
+                <p>남아 키: ${extractedData.male.height.length}개 데이터</p>
+                <p>남아 체중: ${extractedData.male.weight.length}개 데이터</p>
+                <p>여아 키: ${extractedData.female.height.length}개 데이터</p>
+                <p>여아 체중: ${extractedData.female.weight.length}개 데이터</p>
+                <pre id="jsonOutput">${jsonStr}</pre>
+            `;
+        }
+
+        function downloadJSON() {
+            if (!extractedData.male || !extractedData.female) {
+                alert('먼저 "엑셀 파일 로드" 버튼을 클릭하세요.');
+                return;
+            }
+            
+            const jsonStr = JSON.stringify(extractedData, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'korea_growth_data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            alert('✅ JSON 파일이 다운로드되었습니다!');
+        }
+
+        function copyJSON() {
+            const jsonOutput = document.getElementById('jsonOutput');
+            if (!jsonOutput) {
+                alert('먼저 "엑셀 파일 로드" 버튼을 클릭하세요.');
+                return;
+            }
+            
+            navigator.clipboard.writeText(jsonOutput.textContent).then(() => {
+                alert('✅ JSON이 클립보드에 복사되었습니다!');
+            }).catch(err => {
+                alert('❌ 복사 실패: ' + err.message);
+            });
+        }
+
+        // 페이지 로드 시 자동 실행
+        window.addEventListener('load', () => {
+            console.log('📊 한국 성장도표 데이터 추출기 시작');
+        });
+    </script>
+</body>
+</html>
