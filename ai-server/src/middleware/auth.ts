@@ -18,12 +18,7 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseServiceKey) {
-  if (process.env.NODE_ENV === 'production') {
-    throw new Error(
-      'SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables are required',
-    );
-  }
-  console.warn('⚠️  Supabase 환경변수 미설정 — authMiddleware 사용 불가');
+  console.warn('⚠️  SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY 미설정 — authMiddleware 비활성화');
 }
 
 const supabase = supabaseUrl && supabaseServiceKey
