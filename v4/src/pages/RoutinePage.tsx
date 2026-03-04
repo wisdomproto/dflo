@@ -15,16 +15,14 @@ import { useUIStore } from '@/stores/uiStore';
 import { MealCard } from '@/features/meal/components/MealCard';
 import { MealAnalysisSection } from '@/features/meal/components/MealAnalysisSection';
 import { ExerciseCard } from '@/features/exercise/components/ExerciseCard';
-import { CalendarView, routineToFlags } from '@/features/routine/components/CalendarView';
-import type { DayFlags } from '@/features/routine/components/CalendarView';
-import { supabase } from '@/shared/lib/supabase';
+import { MonthStatsView } from '@/features/routine/components/MonthStatsView';
 import { GrowthModalContent } from '@/features/routine/components/GrowthModalContent';
 import {
   fetchMealsByRoutine,
   fetchPhotosByRoutine,
   fetchAnalysesByRoutine,
 } from '@/features/meal/services/mealService';
-import { fetchRoutine, upsertRoutine, fetchRoutinesByMonth, fetchExerciseLogsByRoutine } from '@/features/routine/services/routineService';
+import { fetchRoutine, upsertRoutine, fetchExerciseLogsByRoutine } from '@/features/routine/services/routineService';
 import { fetchMeasurements } from '@/features/growth/services/measurementService';
 import { toDateString, formatDate } from '@/shared/utils/date';
 import { calculateAgeAtDate, formatAge } from '@/shared/utils/age';
@@ -37,9 +35,20 @@ import type { DailyRoutine, ExerciseLog, Meal, MealAnalysis, MealPhoto, MealType
 import type { MeasurementRow } from '@/shared/components/MeasurementTable';
 import type { GrowthPoint } from '@/shared/components/GrowthChart';
 
-const SUPPLEMENTS = ['비타민D', '칼슘', '아연', '유산균', '오메가3'] as const;
+const DEFAULT_SUPPLEMENTS = ['비타민D', '칼슘', '아연', '유산균', '오메가3'];
+const SUPPL_STORAGE_KEY = '187_supplement_list';
+
+function loadSupplementList(): string[] {
+  try {
+    const saved = localStorage.getItem(SUPPL_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : DEFAULT_SUPPLEMENTS;
+  } catch { return DEFAULT_SUPPLEMENTS; }
+}
+function saveSupplementList(list: string[]) {
+  localStorage.setItem(SUPPL_STORAGE_KEY, JSON.stringify(list));
+}
 const SLEEP_OPTS: { value: SleepQuality; label: string }[] = [
-  { value: 'good', label: '좋음' }, { value: 'normal', label: '보통' }, { value: 'bad', label: '나쁨' },
+  { value: 'good', label: '깊게 잘잤다' }, { value: 'bad', label: '종종 깨거나 설친다' },
 ];
 const MOOD_OPTS: { value: Mood; emoji: string; label: string }[] = [
   { value: 'happy', emoji: '😊', label: '좋음' }, { value: 'normal', emoji: '😐', label: '보통' },
@@ -80,6 +89,9 @@ export default function RoutinePage() {
   const [sleepQuality, setSleepQuality] = useState<SleepQuality | ''>('');
   const [waterIntake, setWaterIntake] = useState(0);
   const [supplements, setSupplements] = useState<string[]>([]);
+  const [supplList, setSupplList] = useState<string[]>(loadSupplementList);
+  const [showSupplSettings, setShowSupplSettings] = useState(false);
+  const [newSupplName, setNewSupplName] = useState('');
   const [growthInjection, setGrowthInjection] = useState(false);
   const [injectionTime, setInjectionTime] = useState('');
   const [mood, setMood] = useState<Mood | ''>('');
@@ -88,10 +100,9 @@ export default function RoutinePage() {
   // 캘린더 상태
   const [calYear, setCalYear] = useState(new Date().getFullYear());
   const [calMonth, setCalMonth] = useState(new Date().getMonth() + 1);
-  const [monthRoutines, setMonthRoutines] = useState<DailyRoutine[]>([]);
-  const [dayFlagsMap, setDayFlagsMap] = useState<Map<string, DayFlags>>(new Map());
 
   // 현재 루틴 ID
+  const dateRef = useRef<HTMLInputElement>(null);
   const [routineId, setRoutineId] = useState<string | null>(null);
   const [mealList, setMealList] = useState<Meal[]>([]);
   const [mealPhotos, setMealPhotos] = useState<(MealPhoto & { meal_type: MealType })[]>([]);
@@ -162,27 +173,6 @@ export default function RoutinePage() {
     return () => { cancelled = true; };
   }, [selectedChildId]);
 
-  useEffect(() => {
-    if (!selectedChildId || tab !== 'calendar') return;
-    let cancelled = false;
-    fetchRoutinesByMonth(selectedChildId, calYear, calMonth).then(async (routines) => {
-      if (cancelled) return;
-      setMonthRoutines(routines);
-      if (routines.length === 0) { setDayFlagsMap(new Map()); return; }
-      const ids = routines.map((r) => r.id);
-      const [mealsRes, exRes] = await Promise.all([
-        supabase.from('meals').select('daily_routine_id').in('daily_routine_id', ids),
-        supabase.from('exercise_logs').select('daily_routine_id').in('daily_routine_id', ids),
-      ]);
-      if (cancelled) return;
-      const mealIds = new Set((mealsRes.data ?? []).map((m) => m.daily_routine_id));
-      const exIds = new Set((exRes.data ?? []).map((e) => e.daily_routine_id));
-      const map = new Map<string, DayFlags>();
-      routines.forEach((r) => map.set(r.routine_date, routineToFlags(r, mealIds, exIds)));
-      setDayFlagsMap(map);
-    }).catch(() => {});
-    return () => { cancelled = true; };
-  }, [selectedChildId, calYear, calMonth, tab]);
 
   /** 루틴이 아직 없으면 자동 생성 후 id 반환 */
   const ensureRoutineId = useCallback(async (): Promise<string | null> => {
@@ -235,7 +225,8 @@ export default function RoutinePage() {
     setExerciseLogs(await fetchExerciseLogsByRoutine(routineId));
   }, [routineId]);
 
-  const shiftDate = (d: number) => setDate((p) => { const n = new Date(p); n.setDate(n.getDate() + d); return n; });
+  const isToday = toDateString(date) === toDateString(new Date());
+  const shiftDate = (d: number) => { if (d > 0 && isToday) return; setDate((p) => { const n = new Date(p); n.setDate(n.getDate() + d); if (n > new Date()) return p; return n; }); };
   const shiftMonth = (d: number) => { let m = calMonth + d, y = calYear; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } setCalMonth(m); setCalYear(y); };
 
   // 병원 데이터
@@ -283,24 +274,50 @@ export default function RoutinePage() {
   const measPred = measAge && h && child ? predictAdultHeightLMS(h, measAge.decimal, child.gender) : null;
 
   return (
-    <Layout title="루틴 기록">
+    <Layout title="데일리 루틴 기록">
       <div className="flex items-center justify-between px-4 pt-2">
         <ChildSelector />
       </div>
 
-      {/* 탭 전환 */}
-      <div className="flex mx-4 mt-2 p-1 bg-white/60 backdrop-blur-sm rounded-xl gap-1">
-        {(['input', 'calendar'] as const).map((t) => (
-          <button key={t} onClick={() => setTab(t)}
-            className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
-              tab === t
-                ? 'bg-white text-primary shadow-sm'
-                : 'text-gray-400 active:text-gray-600'
-            }`}>
-            {t === 'input' ? '📝 입력' : '📅 캘린더'}
+      {/* 탭 바: 왼쪽=입력+날짜 바, 오른쪽=통계 */}
+      <div className="flex mx-4 mt-2 p-1 bg-white/60 backdrop-blur-sm rounded-xl gap-1 relative">
+        {/* 입력 탭 */}
+        <div onClick={() => { if (tab !== 'input') setTab('input'); }}
+          className={`w-1/2 flex-shrink-0 flex items-center justify-center gap-0 rounded-lg px-1 py-1 transition-all cursor-pointer ${
+            tab === 'input' ? 'bg-white shadow-sm' : 'opacity-60'
+          }`}>
+          <span className={`text-xs font-semibold pl-0.5 pr-0.5 whitespace-nowrap ${tab === 'input' ? 'text-primary' : 'text-gray-400'}`}>📝 입력</span>
+          <button onClick={(e) => { e.stopPropagation(); if (tab !== 'input') setTab('input'); shiftDate(-1); }} className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="left" /></button>
+          <button onClick={(e) => { e.stopPropagation(); if (tab !== 'input') setTab('input'); dateRef.current?.showPicker?.(); }} className={`text-center text-sm font-bold whitespace-nowrap active:opacity-70 transition-colors ${tab === 'input' ? 'text-primary' : 'text-gray-500'}`}>
+            {formatDate(date, 'month')}
           </button>
-        ))}
+          <button onClick={(e) => { e.stopPropagation(); if (tab !== 'input') setTab('input'); shiftDate(1); }} disabled={isToday} className={`w-6 h-6 flex items-center justify-center rounded-full transition-colors ${isToday ? 'text-gray-200' : 'text-gray-400 active:bg-gray-100'}`}><Chevron dir="right" /></button>
+          {toDateString(date) !== toDateString(new Date()) && (
+            <button onClick={(e) => { e.stopPropagation(); setDate(new Date()); if (tab !== 'input') setTab('input'); }} className="px-1.5 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold active:bg-primary/20">
+              오늘
+            </button>
+          )}
+          <input ref={dateRef} type="date" value={toDateString(date)} max={toDateString(new Date())}
+            onChange={(e) => { if (e.target.value) { setDate(new Date(e.target.value + 'T00:00:00')); if (tab !== 'input') setTab('input'); } }}
+            className="absolute opacity-0 w-0 h-0 pointer-events-none" />
+        </div>
+        {/* 통계 탭 */}
+        <button onClick={() => setTab(tab === 'calendar' ? 'input' : 'calendar')}
+          className={`w-1/2 flex-shrink-0 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+            tab === 'calendar' ? 'bg-white text-primary shadow-sm' : 'text-gray-400 active:text-gray-600'
+          }`}>
+          📊 통계
+        </button>
       </div>
+
+      {/* 통계 활성 시 년월 네비게이션 */}
+      {tab === 'calendar' && (
+        <div className="flex items-center justify-center gap-2 mx-4 mt-1">
+          <button onClick={() => shiftMonth(-1)} className="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="left" /></button>
+          <span className="text-sm font-bold text-gray-700">{calYear}년 {calMonth}월</span>
+          <button onClick={() => shiftMonth(1)} className="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="right" /></button>
+        </div>
+      )}
 
       <div className="flex flex-col gap-4 px-4 py-4">
         {!selectedChildId ? (
@@ -308,12 +325,6 @@ export default function RoutinePage() {
         ) : tab === 'input' ? (
           loading ? <LoadingSpinner message="불러오는 중..." /> : (
             <>
-              <div className="flex items-center justify-between rounded-2xl bg-white px-5 py-3.5 shadow-sm">
-                <button onClick={() => shiftDate(-1)} className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 active:bg-gray-100 active:text-gray-700 transition-colors"><Chevron dir="left" /></button>
-                <span className="text-sm font-bold text-gray-800">{formatDate(date, 'full')}</span>
-                <button onClick={() => shiftDate(1)} className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 active:bg-gray-100 active:text-gray-700 transition-colors"><Chevron dir="right" /></button>
-              </div>
-
               {/* 키·체중 */}
               <Card>
                 <SectionTitle icon="📏" text="키·체중 측정"
@@ -369,9 +380,23 @@ export default function RoutinePage() {
               </Card>
 
               <Card>
-                <SectionTitle icon="💊" text="영양제" />
+                <SectionTitle icon="💊" text="영양제" right={
+                  <div className="flex items-center gap-2">
+                    <button onClick={() => { const allOn = supplList.every((s) => supplements.includes(s)); setSupplements(allOn ? [] : [...supplList]); }}
+                      className="text-[10px] font-medium text-primary active:text-primary/70">
+                      {supplList.every((s) => supplements.includes(s)) ? '전체 해제' : '전체 선택'}
+                    </button>
+                    <button onClick={() => setShowSupplSettings(true)}
+                      className="w-7 h-7 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 active:bg-gray-200 transition-colors">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </button>
+                  </div>
+                } />
                 <div className="flex flex-wrap gap-2">
-                  {SUPPLEMENTS.map((s) => { const on = supplements.includes(s); return (<button key={s} onClick={() => setSupplements((p) => on ? p.filter((x) => x !== s) : [...p, s])} className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${on ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-600'}`}>{on ? '✓ ' : ''}{s}</button>); })}
+                  {supplList.map((s) => { const on = supplements.includes(s); return (<button key={s} onClick={() => setSupplements((p) => on ? p.filter((x) => x !== s) : [...p, s])} className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${on ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-600'}`}>{on ? '✓ ' : ''}{s}</button>); })}
                 </div>
               </Card>
 
@@ -402,12 +427,50 @@ export default function RoutinePage() {
             </>
           )
         ) : (
-          <CalendarView calYear={calYear} calMonth={calMonth} date={date} monthRoutines={monthRoutines} dayFlagsMap={dayFlagsMap} onShiftMonth={shiftMonth} onSelectDate={(d) => { setDate(d); setTab('input'); }} />
+          <MonthStatsView childId={selectedChildId} year={calYear} month={calMonth}
+            selectedDate={date}
+            onSelectDate={(d: Date) => { setDate(d); setTab('input'); }} />
         )}
       </div>
 
       <Modal isOpen={showGrowthModal} onClose={() => setShowGrowthModal(false)} title="성장 기록" size="lg">
         {child && latestMeas && <GrowthModalContent latestHeight={latestMeas.height} latestWeight={latestMeas.weight} gender={child.gender} latestLMS={latestLMS} bpPrediction={bpPrediction} mph={mph} chartPoints={chartPoints} tableRows={tableRows} />}
+      </Modal>
+
+      <Modal isOpen={showSupplSettings} onClose={() => { setShowSupplSettings(false); setNewSupplName(''); }} title="영양제 설정">
+        <div className="space-y-4">
+          <div className="flex gap-2">
+            <input type="text" value={newSupplName} onChange={(e) => setNewSupplName(e.target.value)}
+              placeholder="영양제 이름 입력" maxLength={20}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && newSupplName.trim() && !supplList.includes(newSupplName.trim())) {
+                  const updated = [...supplList, newSupplName.trim()];
+                  setSupplList(updated); saveSupplementList(updated); setNewSupplName('');
+                }
+              }}
+              className="flex-1 rounded-lg border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary" />
+            <button onClick={() => {
+              if (!newSupplName.trim() || supplList.includes(newSupplName.trim())) return;
+              const updated = [...supplList, newSupplName.trim()];
+              setSupplList(updated); saveSupplementList(updated); setNewSupplName('');
+            }} className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white active:scale-95 transition-transform">
+              추가
+            </button>
+          </div>
+          <div className="space-y-1">
+            {supplList.map((s) => (
+              <div key={s} className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2.5">
+                <span className="text-sm text-gray-700">{s}</span>
+                <button onClick={() => {
+                  const updated = supplList.filter((x) => x !== s);
+                  setSupplList(updated); saveSupplementList(updated);
+                  setSupplements((p) => p.filter((x) => x !== s));
+                }} className="text-xs text-red-400 active:text-red-600 font-medium">삭제</button>
+              </div>
+            ))}
+          </div>
+          {supplList.length === 0 && <p className="text-center text-sm text-gray-400 py-4">등록된 영양제가 없습니다</p>}
+        </div>
       </Modal>
     </Layout>
   );

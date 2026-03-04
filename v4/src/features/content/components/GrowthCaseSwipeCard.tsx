@@ -33,7 +33,7 @@ export function GrowthCaseSwipeCard({ caseData, onClick }: Props) {
         <div className="flex items-center gap-2.5 relative">
           <GenderIcon gender={c.gender} size="sm" />
           <div>
-            <h4 className="text-sm font-bold text-gray-900">차트 #{c.patient_name}</h4>
+            <h4 className="text-sm font-bold text-gray-900">{c.patient_name}</h4>
             <p className="text-[10px] text-gray-400">{measurements.length}회 측정</p>
           </div>
         </div>

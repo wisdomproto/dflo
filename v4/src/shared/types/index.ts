@@ -30,6 +30,7 @@ export interface Child {
   id: string;
   parent_id: string;
   name: string;
+  name_en?: string;
   gender: Gender;
   birth_date: string;
   birth_week?: number;

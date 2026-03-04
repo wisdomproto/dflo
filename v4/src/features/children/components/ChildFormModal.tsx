@@ -41,6 +41,7 @@ function isValidHeight(v: string) {
 export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalProps) {
   const addChild = useChildrenStore((s) => s.addChild);
   const updateChild = useChildrenStore((s) => s.updateChild);
+  const children = useChildrenStore((s) => s.children);
   const addToast = useUIStore((s) => s.addToast);
 
   const [form, setForm] = useState<FormState>(initialForm);
@@ -58,10 +59,16 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
         mother_height: editChild.mother_height?.toString() ?? '',
       });
     } else if (isOpen) {
-      setForm(initialForm);
+      // 새 자녀 등록 시 기존 자녀의 부모 키 가져오기
+      const existing = children.find((c) => c.father_height || c.mother_height);
+      setForm({
+        ...initialForm,
+        father_height: existing?.father_height?.toString() ?? '',
+        mother_height: existing?.mother_height?.toString() ?? '',
+      });
     }
     setErrors({});
-  }, [isOpen, editChild]);
+  }, [isOpen, editChild, children]);
 
   const setField = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -99,6 +106,15 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
       } else {
         await addChild({ ...payload, parent_id: '' });
         addToast('success', '자녀가 등록되었습니다');
+      }
+
+      // 부모 키가 변경되면 다른 자녀에도 동기화
+      if (payload.father_height || payload.mother_height) {
+        const heightUpdate: Partial<Child> = {};
+        if (payload.father_height) heightUpdate.father_height = payload.father_height;
+        if (payload.mother_height) heightUpdate.mother_height = payload.mother_height;
+        const siblings = children.filter((c) => c.id !== editChild?.id);
+        await Promise.all(siblings.map((c) => updateChild(c.id, heightUpdate)));
       }
       onClose();
     } catch {

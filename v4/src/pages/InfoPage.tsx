@@ -100,7 +100,7 @@ export default function InfoPage() {
               <div className="flex items-center gap-2">
                 <GenderIcon gender={c.gender} />
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-900 text-sm">차트 #{c.patient_name}</h3>
+                  <h3 className="font-semibold text-gray-900 text-sm">{c.patient_name}</h3>
                   {c.special_notes && <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">{c.special_notes}</p>}
                 </div>
                 <CasePredictionBadge measurements={(c.measurements ?? []) as CaseMeasurementRow[]} />
@@ -146,7 +146,7 @@ export default function InfoPage() {
   };
 
   const detailTitle = detail?.type === 'recipe' ? detail.data.title
-    : detail?.type === 'case' ? `차트 #${detail.data.patient_name} 성장 사례`
+    : detail?.type === 'case' ? `${detail.data.patient_name} 성장 사례`
     : detail?.type === 'guide' ? detail.data.title : '';
 
   return (

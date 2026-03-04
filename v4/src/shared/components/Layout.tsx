@@ -66,6 +66,7 @@ export default function Layout({ title, showBack = false, children }: LayoutProp
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setShowMenu(false)} />
                 <div className="absolute right-0 top-full mt-1 z-50 bg-white rounded-xl shadow-lg border border-gray-100 py-1 min-w-[120px]">
+
                   {isAdmin() && (
                     <button
                       onClick={() => { setShowMenu(false); navigate('/admin'); }}

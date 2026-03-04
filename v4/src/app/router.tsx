@@ -18,6 +18,9 @@ const RoutinePage = lazy(() => import('@/pages/RoutinePage'));
 // GrowthPage removed: merged into RoutinePage
 const BodyAnalysisPage = lazy(() => import('@/pages/BodyAnalysisPage'));
 const InfoPage = lazy(() => import('@/pages/InfoPage'));
+const GuidesListPage = lazy(() => import('@/pages/GuidesListPage'));
+const RecipesListPage = lazy(() => import('@/pages/RecipesListPage'));
+const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 
 // Admin pages
 const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout'));
@@ -83,6 +86,30 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <InfoPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/info/guides',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <GuidesListPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/info/recipes',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <RecipesListPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/info/cases',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <CasesListPage />
           </Suspense>
         ),
       },
