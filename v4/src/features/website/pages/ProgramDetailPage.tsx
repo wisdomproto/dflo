@@ -40,7 +40,7 @@ export default function ProgramDetailPage() {
           </button>
           <span className="text-4xl mb-4 block">{program.emoji}</span>
           <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-3">{program.title}</h1>
-          <p className="text-base text-gray-600 leading-relaxed">{program.description}</p>
+          <p className="text-base text-gray-600 leading-relaxed">{program.detailDescription}</p>
         </div>
       </section>
 
