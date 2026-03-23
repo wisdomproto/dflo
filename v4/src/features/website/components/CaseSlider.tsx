@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { SwipeableSection } from '@/shared/components/SwipeableSection';
+import { WebsiteSlider } from './WebsiteSlider';
 import { fetchGrowthCases } from '@/features/content/services/contentService';
 import type { GrowthCase } from '@/shared/types';
 
@@ -7,54 +7,54 @@ const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.co
 
 export function CaseSlider() {
   const [cases, setCases] = useState<GrowthCase[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchGrowthCases()
-      .then(setCases)
-      .catch(() => {})
-      .finally(() => setLoading(false));
+    fetchGrowthCases().then(setCases).catch(() => {});
   }, []);
 
+  if (!cases.length) return null;
+
   return (
-    <section id="cases" className="py-8 bg-gray-50">
-      <SwipeableSection title="치료 사례" emoji="📋" isLoading={loading}>
+    <>
+      <WebsiteSlider tag="치료 사례" title="실제 성장 치료 성공 사례" desktopCards={3}>
         {cases.map((c) => {
           const first = c.measurements?.[0];
           const last = c.measurements?.[c.measurements.length - 1];
           const growth = first && last ? (last.height - first.height).toFixed(1) : null;
 
           return (
-            <div key={c.id} className="rounded-xl bg-white p-4 space-y-3 shadow-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">{c.gender === 'male' ? '👦' : '👧'}</span>
+            <div key={c.id} className="rounded-2xl bg-white p-5 border border-gray-100 shadow-sm h-full space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-lg">
+                  {c.gender === 'male' ? '👦' : '👧'}
+                </div>
                 <div>
-                  <p className="text-sm font-bold text-gray-800">{c.patient_name}</p>
+                  <p className="text-base font-bold text-gray-800">{c.patient_name}</p>
                   <p className="text-xs text-gray-400">{c.gender === 'male' ? '남아' : '여아'}</p>
                 </div>
               </div>
               {growth && (
-                <div className="bg-[#E8F5F0] rounded-lg px-3 py-2 text-center">
+                <div className="bg-[#E8F5F0] rounded-xl px-4 py-3 text-center">
                   <p className="text-xs text-[#0F6E56] font-medium">성장 변화</p>
-                  <p className="text-lg font-black text-[#0F6E56]">+{growth}cm</p>
+                  <p className="text-2xl font-black text-[#0F6E56]">+{growth}cm</p>
                 </div>
               )}
               {c.special_notes && (
-                <p className="text-xs text-gray-500 line-clamp-2">{c.special_notes}</p>
+                <p className="text-sm text-gray-500 line-clamp-2">{c.special_notes}</p>
               )}
             </div>
           );
         })}
-      </SwipeableSection>
+      </WebsiteSlider>
 
       {/* Final CTA */}
-      <div className="px-4 mt-4">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
         <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 w-full rounded-2xl bg-[#0F6E56] py-4
                      text-white font-bold text-base hover:bg-[#0D5A47] active:scale-[0.98] transition-all shadow-lg">
           <span>💬</span> 우리 아이도 상담 받아보기
         </a>
       </div>
-    </section>
+    </>
   );
 }
