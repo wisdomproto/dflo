@@ -56,6 +56,7 @@ export const PROGRAMS: Program[] = [
       '또래보다 빠른 신체 발달을 보이는 아이',
     ],
     color: '#7C3AED',
+    pageImage: '/images/programs/precocious-puberty.jpg',
   },
   {
     slug: 'body-proportion',
@@ -76,6 +77,7 @@ export const PROGRAMS: Program[] = [
       '골든타임에 맞춤 관리가 필요한 아이',
     ],
     color: '#EC4899',
+    pageImage: '/images/programs/body-proportion.jpg',
   },
   {
     slug: 'obesity-growth',
@@ -97,6 +99,7 @@ export const PROGRAMS: Program[] = [
       '성장 부진 아동',
     ],
     color: '#F59E0B',
+    pageImage: '/images/programs/obesity-growth.jpg',
   },
   {
     slug: 'posture-exercise',
@@ -120,6 +123,7 @@ export const PROGRAMS: Program[] = [
       '앉는 자세가 안 좋은 아이',
     ],
     color: '#14B8A6',
+    pageImage: '/images/programs/posture-exercise.jpg',
   },
   {
     slug: 'feet-care',
@@ -143,6 +147,7 @@ export const PROGRAMS: Program[] = [
       '걸음걸이가 불편한 아이',
     ],
     color: '#6366F1',
+    pageImage: '/images/programs/feet-care.jpg',
   },
   {
     slug: 'late-growth',
@@ -165,5 +170,6 @@ export const PROGRAMS: Program[] = [
       '마지막 성장 기회를 잡고 싶은 아이',
     ],
     color: '#EF4444',
+    pageImage: '/images/programs/late-growth.jpg',
   },
 ];
