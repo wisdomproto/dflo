@@ -22,6 +22,10 @@ const GuidesListPage = lazy(() => import('@/pages/GuidesListPage'));
 const RecipesListPage = lazy(() => import('@/pages/RecipesListPage'));
 const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 
+// Website pages (public, no auth)
+const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomePage'));
+const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
+
 // Admin pages
 const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout'));
 const AdminDashboardPage = lazy(() => import('@/pages/admin/AdminDashboardPage'));
@@ -42,6 +46,24 @@ function SuspenseFallback() {
 }
 
 export const router = createBrowserRouter([
+  // Public website routes (no auth)
+  {
+    path: '/website',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <WebsiteHomePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/website/program/:slug',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <ProgramDetailPage />
+      </Suspense>
+    ),
+  },
+
   // Public routes
   {
     path: '/login',
