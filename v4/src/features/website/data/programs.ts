@@ -8,6 +8,8 @@ export interface Program {
   features: string[];
   targetChildren: string[];
   color: string;
+  /** Full-page image from original website (if available) */
+  pageImage?: string;
 }
 
 export const PROGRAMS: Program[] = [
@@ -32,6 +34,7 @@ export const PROGRAMS: Program[] = [
       '또래보다 키가 작은 아이',
     ],
     color: '#0F6E56',
+    pageImage: '/images/programs/hormone-balance.jpg',
   },
   {
     slug: 'precocious-puberty',

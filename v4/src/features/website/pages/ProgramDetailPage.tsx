@@ -12,6 +12,7 @@ export default function ProgramDetailPage() {
 
   useEffect(() => {
     if (program) document.title = `${program.title} | 187 성장클리닉`;
+    window.scrollTo(0, 0);
   }, [program]);
 
   if (!program) {
@@ -26,18 +27,49 @@ export default function ProgramDetailPage() {
     );
   }
 
+  const backButton = (
+    <button onClick={() => navigate('/website')}
+      className="text-sm text-gray-500 hover:text-gray-700 mb-6 flex items-center gap-1">
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      전체 프로그램
+    </button>
+  );
+
+  // If we have a full-page image from the original website, show it
+  if (program.pageImage) {
+    return (
+      <WebsiteLayout>
+        <div className="max-w-3xl mx-auto px-4 py-8">
+          {backButton}
+          <img
+            src={program.pageImage}
+            alt={program.title}
+            className="w-full rounded-xl shadow-sm"
+            loading="eager"
+          />
+          {/* CTA */}
+          <div className="mt-8">
+            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full rounded-2xl py-4 text-white font-bold text-base
+                         hover:opacity-90 active:scale-[0.98] transition-all shadow-lg"
+              style={{ backgroundColor: program.color }}>
+              <span>💬</span> {program.shortTitle} 상담 받기
+            </a>
+          </div>
+        </div>
+      </WebsiteLayout>
+    );
+  }
+
+  // Fallback: text-based layout
   return (
     <WebsiteLayout>
       {/* Hero */}
       <section className="relative py-16 px-6" style={{ background: `linear-gradient(135deg, ${program.color}15, ${program.color}05)` }}>
         <div className="max-w-3xl mx-auto">
-          <button onClick={() => navigate('/website')}
-            className="text-sm text-gray-500 hover:text-gray-700 mb-6 flex items-center gap-1">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            전체 프로그램
-          </button>
+          {backButton}
           <span className="text-4xl mb-4 block">{program.emoji}</span>
           <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-3">{program.title}</h1>
           <p className="text-base text-gray-600 leading-relaxed">{program.detailDescription}</p>
