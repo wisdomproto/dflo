@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { InfoModal } from './InfoModal';
 
 interface Props {
@@ -14,14 +15,20 @@ const PROFILE = [
   '연세대학교 의과대학원 대학원 졸업',
 ];
 
-const FACILITIES = [
-  { emoji: '🏥', title: '성장 전문 클리닉', desc: '성장호르몬 치료 · 성조숙증 관리 · 체형교정' },
-  { emoji: '💪', title: '부설 GYM (운동센터)', desc: '전문 트레이너의 1:1 성장 운동 지도' },
-  { emoji: '🔬', title: '정밀 검사 시스템', desc: '성장판 검사 · 골연령 측정 · 호르몬 검사' },
-  { emoji: '📊', title: '성장 모니터링', desc: '정기적인 성장 추적 및 맞춤 치료 계획' },
+const FACILITY_IMAGES = [
+  { src: '/images/facility-1.jpg', label: '2층 대기실' },
+  { src: '/images/facility-2.jpg', label: '2층 진료실' },
+  { src: '/images/facility-3.jpg', label: '2층 외관' },
+  { src: '/images/facility-4.jpg', label: '3층 운동센터' },
+  { src: '/images/facility-5.jpg', label: '3층 트레이닝' },
+  { src: '/images/facility-6.jpg', label: '3층 GYM' },
 ];
 
+const YOUTUBE_VIDEO_ID = 'WkBRUFXOGPo';
+
 export function AboutModal({ isOpen, onClose }: Props) {
+  const [facilityIdx, setFacilityIdx] = useState(0);
+
   return (
     <InfoModal isOpen={isOpen} onClose={onClose} title="병원 · 원장님 소개">
       <div className="space-y-6">
@@ -45,30 +52,64 @@ export function AboutModal({ isOpen, onClose }: Props) {
           </div>
         </div>
 
-        {/* Divider */}
         <hr className="border-gray-100" />
 
         {/* Clinic introduction */}
         <div>
           <p className="text-base font-bold text-gray-900 mb-2">연세새봄의원</p>
           <p className="text-sm text-gray-600 leading-relaxed">
-            질병 치료에 국한되었던 기존 병원의 한계를 뛰어넘어, 고객의 정신적, 신체적 능력을 향상시켜주는 호르몬 전문 클리닉을 목표로 진료에 최선을 다하고 있습니다.
+            질병 치료에 국한되었던 기존 병원의 한계를 뛰어넘어, 고객의 정신적, 신체적 능력(Performance &amp; Look)을 향상시켜주는 호르몬 전문 클리닉을 목표로 진료에 최선을 다하고 있습니다.
           </p>
           <p className="text-sm text-gray-600 leading-relaxed mt-2">
             고객에게 젊고 아름다운 신체와 능력 향상을 위해 최상의 의료 서비스를 제공하는 연세새봄의원과 함께 해주셔서 감사합니다.
           </p>
         </div>
 
-        {/* Facilities */}
+        <hr className="border-gray-100" />
+
+        {/* YouTube video */}
+        <div>
+          <p className="text-base font-bold text-gray-900 mb-3">병원 소개 영상</p>
+          <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
+              title="연세새봄의원 소개"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+
+        <hr className="border-gray-100" />
+
+        {/* Facility images */}
         <div>
           <p className="text-base font-bold text-gray-900 mb-3">시설 소개</p>
-          <div className="grid grid-cols-2 gap-2">
-            {FACILITIES.map((f) => (
-              <div key={f.title} className="bg-gray-50 rounded-xl p-3.5 space-y-1">
-                <span className="text-xl">{f.emoji}</span>
-                <p className="text-sm font-semibold text-gray-800">{f.title}</p>
-                <p className="text-xs text-gray-500">{f.desc}</p>
-              </div>
+          <div className="relative rounded-xl overflow-hidden">
+            <img
+              src={FACILITY_IMAGES[facilityIdx].src}
+              alt={FACILITY_IMAGES[facilityIdx].label}
+              className="w-full h-48 sm:h-56 object-cover transition-opacity"
+            />
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent px-4 py-3">
+              <p className="text-sm font-semibold text-white">{FACILITY_IMAGES[facilityIdx].label}</p>
+            </div>
+            {/* Prev/Next */}
+            <button onClick={() => setFacilityIdx((i) => (i - 1 + FACILITY_IMAGES.length) % FACILITY_IMAGES.length)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center text-gray-700 hover:bg-white shadow">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button onClick={() => setFacilityIdx((i) => (i + 1) % FACILITY_IMAGES.length)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center text-gray-700 hover:bg-white shadow">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+          {/* Dots */}
+          <div className="flex justify-center gap-1.5 mt-3">
+            {FACILITY_IMAGES.map((_, i) => (
+              <button key={i} onClick={() => setFacilityIdx(i)}
+                className={`rounded-full transition-all ${i === facilityIdx ? 'w-5 h-1.5 bg-[#0F6E56]' : 'w-1.5 h-1.5 bg-gray-200'}`} />
             ))}
           </div>
         </div>

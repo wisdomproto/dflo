@@ -17,9 +17,9 @@ export function InfoModal({ isOpen, onClose, title, children }: Props) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end md:items-center justify-center" onClick={onClose}>
+    <div className="fixed inset-0 z-[60] flex items-end md:items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
       <div className="relative w-full max-w-lg mx-4 mb-0 md:mb-0 bg-white rounded-t-2xl md:rounded-2xl shadow-2xl
