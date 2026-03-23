@@ -64,6 +64,10 @@ body {
   }
 }
 
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
 /* 페이드인 애니메이션 */
 @keyframes fadeIn {
   from {
