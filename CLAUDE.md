@@ -154,7 +154,4 @@ PORT=3001
 - **RAG chatbot**: DEFERRED
 
 ## Known Issues (from audit)
-- `AdminContentPage.tsx` (479 lines) — needs splitting into sub-components
-- `RoutinePage.tsx` (402 lines) — needs form extraction
-- Dead code: `GrowthPage.tsx` (unreachable from router)
-- Duplicate `fetchMealsByRoutine` in both `routineService.ts` and `mealService.ts`
+- All previously tracked issues have been resolved.
