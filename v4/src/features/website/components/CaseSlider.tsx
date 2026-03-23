@@ -16,7 +16,7 @@ export function CaseSlider() {
 
   return (
     <>
-      <WebsiteSlider tag="치료 사례" title="실제 성장 치료 성공 사례" desktopCards={3}>
+      <WebsiteSlider id="cases" tag="치료 사례" title="실제 성장 치료 성공 사례" desktopCards={3}>
         {cases.map((c) => {
           const first = c.measurements?.[0];
           const last = c.measurements?.[c.measurements.length - 1];

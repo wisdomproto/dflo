@@ -3,7 +3,7 @@ import { EXERCISES } from '@/features/exercise/data/exercises';
 
 export function ExerciseSlider() {
   return (
-    <WebsiteSlider tag="자세 교정 & 운동" title="바른 자세가 키 성장의 시작" desktopCards={3} bgClass="bg-gray-50">
+    <WebsiteSlider id="exercises" tag="자세 교정 & 운동" title="바른 자세가 키 성장의 시작" desktopCards={3} bgClass="bg-gray-50">
       {EXERCISES.map((ex) => (
         <a key={ex.id}
           href={`https://www.youtube.com/watch?v=${ex.videoId}&t=${ex.startSeconds}`}

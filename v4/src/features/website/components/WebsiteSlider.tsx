@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useEffect, type ReactNode } from 'react';
 
 interface Props {
+  id?: string;
   tag: string;
   title: string;
   children: ReactNode[];
@@ -9,7 +10,7 @@ interface Props {
   bgClass?: string;
 }
 
-export function WebsiteSlider({ tag, title, children, desktopCards = 2, bgClass = '' }: Props) {
+export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgClass = '' }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const total = children.length;
@@ -56,7 +57,7 @@ export function WebsiteSlider({ tag, title, children, desktopCards = 2, bgClass 
   const desktopCardCls = desktopWidthMap[desktopCards] ?? desktopWidthMap[3];
 
   return (
-    <section className={`py-8 md:py-12 ${bgClass}`}>
+    <section id={id} className={`py-8 md:py-12 ${bgClass}`}>
       <div className="max-w-5xl mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-5">

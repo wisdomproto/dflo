@@ -13,7 +13,7 @@ export function RecipeSlider() {
   if (!recipes.length) return null;
 
   return (
-    <WebsiteSlider tag="오늘의 성장 레시피" title="키 쑥쑥 영양 만점 식단" desktopCards={3}>
+    <WebsiteSlider id="recipes" tag="오늘의 성장 레시피" title="키 쑥쑥 영양 만점 식단" desktopCards={3}>
       {recipes.map((r) => (
         <div key={r.id} className="rounded-2xl bg-white overflow-hidden shadow-sm border border-gray-100 h-full">
           {r.image_url ? (
