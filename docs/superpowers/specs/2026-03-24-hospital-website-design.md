@@ -14,7 +14,7 @@ Build a conversion-focused hospital landing page inside the existing v4 project,
 
 - Public pages (no auth required)
 - Mobile-first responsive design
-- Landing page + 7 program detail sub-pages + about + contact
+- Landing page + 7 program detail sub-pages (about/contact deferred to phase 2)
 - All content sliders use horizontal swipe pattern (SwipeableSection)
 - Floating KakaoTalk CTA on all pages
 
@@ -90,7 +90,7 @@ Add to `router.tsx` as public routes (no ProtectedRoute wrapper):
 
 ### Input Fields
 - 성별 (male/female toggle)
-- 나이 (number, years)
+- 생년월일 (date input, used with `calculateAgeAtDate` to get decimal age)
 - 현재 키 (cm)
 - 현재 체중 (kg)
 - 아버지 키 (cm)
@@ -110,10 +110,11 @@ Add to `router.tsx` as public routes (no ProtectedRoute wrapper):
 
 ## Slider Pattern
 
-All sliders use the same pattern:
+All sliders use the same pattern. Each slider section has an inline header (tag + title text) followed by `SwipeableSection`:
 ```tsx
-<section>
-  <SectionHeader tag="..." title="..." />
+<section className="py-8 px-6">
+  <p className="text-xs font-semibold text-primary">태그</p>
+  <h2 className="text-xl font-extrabold">제목</h2>
   <SwipeableSection>
     {items.map(item => <Card key={item.id} ... />)}
   </SwipeableSection>
@@ -155,7 +156,7 @@ Use existing v4 Tailwind theme colors where possible. Add website-specific overr
 - Fixed position: `bottom-6 right-6`
 - Yellow (#FEE500) pill with shadow
 - "💬 카카오톡 상담" text
-- Links to: `https://pf.kakao.com/_xjXXXX` (actual channel URL TBD)
+- Links to: env variable `VITE_KAKAO_CHANNEL_URL` (fallback: `https://pf.kakao.com/` — actual channel URL to be configured)
 - `z-50` to stay above all content
 
 ## Responsive Strategy
@@ -163,6 +164,25 @@ Use existing v4 Tailwind theme colors where possible. Add website-specific overr
 - Mobile-first (< 768px): Single column, full-width sliders
 - Tablet (768-1024px): 2-column grids where appropriate
 - Desktop (> 1024px): Max-width 1200px container, larger cards in sliders
+
+## Navigation & Layout Isolation
+
+- Website pages use `WebsiteLayout` (own header/footer), NOT the app's `Layout`/`BottomNav`
+- Website header includes: logo, nav links (프로그램, 소개, 상담), KakaoTalk CTA
+- No link to app login from website (separate concerns)
+- Authenticated users visiting `/website` see the same public page (no special behavior)
+- App's `BottomNav` only renders inside `Layout` component, which website pages don't use
+
+## About & Contact Pages
+
+Deferred to phase 2. For now, the main landing page is the priority. About/Contact can link to the existing Wix pages or be added later. Remove from scope.
+
+## SEO
+
+SPA limitations noted. For phase 1:
+- Set `document.title` per page via `useEffect`
+- Add basic `<meta>` tags via a small `Helmet`-style utility or direct DOM manipulation
+- Full SSR/SSG migration (Next.js) is a future consideration if search traffic becomes important
 
 ## Testing Strategy
 
