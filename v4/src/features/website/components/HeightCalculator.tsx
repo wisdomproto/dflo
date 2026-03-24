@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { calculateHeightPercentileLMS, predictAdultHeightLMS } from '@/shared/data/growthStandard';
 import { calculateMidParentalHeight } from '@/shared/utils/growth';
+import { GrowthChart, type GrowthPoint } from '@/shared/components/GrowthChart';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/';
 
@@ -9,6 +10,9 @@ interface Result {
   predicted: number;
   percentile: number;
   mph: number | null;
+  age: number;
+  currentHeight: number;
+  gender: 'male' | 'female';
 }
 
 export function HeightCalculator() {
@@ -31,8 +35,17 @@ export function HeightCalculator() {
     const mH = parseFloat(motherH);
     const mph = fH && mH ? calculateMidParentalHeight(fH, mH, gender) : null;
 
-    setResult({ predicted: pred, percentile: pct, mph });
+    setResult({ predicted: pred, percentile: pct, mph, age: age.decimal, currentHeight: h, gender });
   };
+
+  // Build chart points: current position + predicted adult height at age 18
+  const chartPoints: GrowthPoint[] = [];
+  if (result && result.predicted > 0) {
+    chartPoints.push({ age: result.age, height: result.currentHeight });
+    if (result.predicted > 0) {
+      chartPoints.push({ age: 18, height: result.predicted });
+    }
+  }
 
   const inputCls = 'w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
   const labelCls = 'text-xs font-medium text-gray-500 mb-1 block';
@@ -105,13 +118,16 @@ export function HeightCalculator() {
 
         {/* Result */}
         {result && result.predicted > 0 && (
-          <div className="mt-6 space-y-4">
+          <div className="mt-6 space-y-5">
+            {/* Summary card */}
             <div className="bg-[#E8F5F0] rounded-2xl p-6 text-center space-y-3">
               <p className="text-sm font-medium text-[#0F6E56]">예상 성인 키</p>
-              <p className="text-5xl font-black text-[#0F6E56] leading-none">{result.predicted.toFixed(1)} <span className="text-2xl">cm</span></p>
-              <div className="flex justify-center gap-3">
+              <p className="text-5xl font-black text-[#0F6E56] leading-none">
+                {result.predicted.toFixed(1)} <span className="text-2xl">cm</span>
+              </p>
+              <div className="flex justify-center gap-3 flex-wrap">
                 <span className="inline-flex items-center gap-1 rounded-full bg-[#0F6E56] text-white text-xs font-semibold px-3 py-1">
-                  상위 {(100 - result.percentile).toFixed(0)}%
+                  현재 상위 {(100 - result.percentile).toFixed(0)}%
                 </span>
                 {result.mph && (
                   <span className="inline-flex items-center gap-1 rounded-full bg-white text-[#0F6E56] text-xs font-semibold px-3 py-1">
@@ -121,6 +137,54 @@ export function HeightCalculator() {
               </div>
             </div>
 
+            {/* Stats grid */}
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <div className="bg-gray-50 rounded-xl py-3 px-2">
+                <p className="text-[10px] text-gray-400 font-medium">현재 나이</p>
+                <p className="text-sm font-bold text-gray-800 mt-0.5">
+                  {Math.floor(result.age)}세 {Math.round((result.age % 1) * 12)}개월
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-xl py-3 px-2">
+                <p className="text-[10px] text-gray-400 font-medium">현재 키</p>
+                <p className="text-sm font-bold text-gray-800 mt-0.5">{result.currentHeight}cm</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl py-3 px-2">
+                <p className="text-[10px] text-gray-400 font-medium">백분위</p>
+                <p className="text-sm font-bold text-gray-800 mt-0.5">{result.percentile.toFixed(1)}%ile</p>
+              </div>
+            </div>
+
+            {/* Growth chart */}
+            <div className="bg-white rounded-2xl border border-gray-100 p-4">
+              <GrowthChart gender={result.gender} points={chartPoints} showTitle={false} />
+              <p className="text-[11px] text-gray-400 text-center mt-2">
+                한국 소아 성장 표준 (2017 질병관리청) 기준 · 5th / 50th / 95th 백분위
+              </p>
+            </div>
+
+            {/* Interpretation */}
+            <div className="bg-amber-50 rounded-xl p-4 space-y-1.5">
+              <p className="text-xs font-bold text-amber-800">📋 해석 가이드</p>
+              <p className="text-xs text-amber-700 leading-relaxed">
+                {result.percentile >= 75
+                  ? '현재 또래 대비 큰 편입니다. 꾸준한 성장 관리로 잠재력을 최대한 발휘할 수 있습니다.'
+                  : result.percentile >= 50
+                    ? '현재 또래 평균 수준입니다. 적절한 영양, 운동, 수면 관리로 더 클 수 있습니다.'
+                    : result.percentile >= 25
+                      ? '또래 평균보다 약간 작은 편입니다. 전문 상담을 통해 성장 가능성을 확인해보세요.'
+                      : '또래 대비 작은 편이므로, 성장판이 열려있는 지금이 성장 치료의 골든타임입니다.'}
+              </p>
+              {result.mph && Math.abs(result.predicted - result.mph) > 3 && (
+                <p className="text-xs text-amber-700 leading-relaxed">
+                  {result.predicted > result.mph
+                    ? `유전적 예측(${result.mph.toFixed(1)}cm)보다 높은 성장이 기대됩니다.`
+                    : `유전적 예측(${result.mph.toFixed(1)}cm)에 도달하려면 적극적인 성장 관리가 필요합니다.`}
+                </p>
+              )}
+            </div>
+
+            {/* CTA */}
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#FEE500] py-3.5
                          text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all">
