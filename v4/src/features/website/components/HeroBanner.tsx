@@ -163,26 +163,29 @@ export function HeroBanner({ slides: propSlides }: Props) {
           )}
         </div>
 
-        {/* CTA button — right side, vertically centered */}
-        {s.ctaText && (
-          <button
-            key={`cta-${s.id}`}
-            onClick={() => {
-              if (s.ctaAction === 'scroll') {
-                document.dispatchEvent(new CustomEvent('open-height-calculator'));
-              } else if (s.ctaAction === 'link') {
-                window.open(s.ctaTarget, '_blank');
-              }
-            }}
-            className="hidden md:flex items-center gap-2 rounded-full
-                       bg-white/95 backdrop-blur-sm px-8 py-4 text-[#0F6E56] font-bold text-base
-                       shadow-xl hover:bg-white hover:scale-105 active:scale-95 transition-all
-                       animate-[fadeUp_0.5s_ease-out_0.2s_both]"
-          >
-            <span>📏</span> {s.ctaText}
-          </button>
-        )}
       </div>
+
+      {/* CTA button — absolute right center */}
+      {s.ctaText && (
+        <button
+          key={`cta-${s.id}`}
+          onClick={() => {
+            if (s.ctaAction === 'scroll') {
+              document.dispatchEvent(new CustomEvent('open-height-calculator'));
+            } else if (s.ctaAction === 'link') {
+              window.open(s.ctaTarget, '_blank');
+            }
+          }}
+          className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-20
+                     flex items-center gap-2 rounded-full
+                     bg-white/95 backdrop-blur-sm px-6 py-3.5 md:px-8 md:py-4
+                     text-[#0F6E56] font-bold text-sm md:text-base
+                     shadow-xl hover:bg-white hover:scale-105 active:scale-95 transition-all
+                     animate-[fadeUp_0.5s_ease-out_0.2s_both]"
+        >
+          <span>📏</span> {s.ctaText}
+        </button>
+      )}
 
       {/* Dots + arrows — bottom center */}
       {total > 1 && (
