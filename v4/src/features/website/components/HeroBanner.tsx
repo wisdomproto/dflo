@@ -46,7 +46,7 @@ const DEFAULT_SLIDES: BannerSlide[] = [
     ctaText: '',
     ctaAction: 'scroll',
     ctaTarget: 'programs',
-    bgGradient: 'linear-gradient(135deg, #0F6E56 0%, #1A5C4A 40%, #2D8B6F 100%)',
+    imageUrl: '/images/banners/banner-5.jpg',
     order: 2,
   },
 ];
