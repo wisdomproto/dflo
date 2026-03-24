@@ -28,10 +28,9 @@ const NAV_ITEMS: NavAction[] = [
     action: 'scroll',
     target: 'guides',
     children: [
-      { label: '성장 가이드', action: 'scroll', target: 'guides' },
-      { label: '성장 레시피', action: 'scroll', target: 'recipes' },
-      { label: '운동 프로그램', action: 'scroll', target: 'exercises' },
-      { label: '치료 사례', action: 'scroll', target: 'cases' },
+      { label: '📝 블로그', action: 'link', target: 'https://blog.naver.com/yssaebom' },
+      { label: '📸 인스타그램', action: 'link', target: 'https://www.instagram.com/yssaebom_187/' },
+      { label: '🎬 유튜브', action: 'link', target: 'https://www.youtube.com/@%EC%97%B0%EC%84%B8%EC%83%88%EB%B4%84%EC%9D%98%EC%9B%90187%EC%84%B1%EC%9E%A5%ED%81%B4%EB%A6%AC%EB%8B%89' },
     ],
   },
 ];
@@ -47,6 +46,8 @@ export function WebsiteHeader() {
     setHoveredMenu(null);
     if (item.action === 'modal' && item.target === 'about') {
       setShowAbout(true);
+    } else if (item.action === 'link') {
+      window.open(item.target, '_blank', 'noopener,noreferrer');
     } else if (item.action === 'scroll') {
       const el = document.getElementById(item.target);
       el?.scrollIntoView({ behavior: 'smooth' });
