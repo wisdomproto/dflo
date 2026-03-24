@@ -8,7 +8,7 @@ export function ExerciseSlider() {
 
   return (
     <>
-      <WebsiteSlider id="exercises" tag="자세 교정 & 운동" title="바른 자세가 키 성장의 시작" desktopCards={3} bgClass="bg-gray-50">
+      <WebsiteSlider id="exercises" title="바른 자세가 키 성장의 시작" desktopCards={3} bgClass="bg-gray-50">
         {EXERCISES.map((ex) => (
           <button key={ex.id} onClick={() => setSelected(ex)}
             className="w-full text-left rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100
