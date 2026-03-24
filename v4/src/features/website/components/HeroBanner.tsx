@@ -172,29 +172,16 @@ export function HeroBanner({ slides: propSlides }: Props) {
         </div>
       </div>
 
-      {/* Navigation arrows */}
+      {/* Dots + arrows — bottom center */}
       {total > 1 && (
-        <>
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
           <button onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/20 text-white
-                       flex items-center justify-center hover:bg-black/40 transition-colors backdrop-blur-sm">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition-colors">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <button onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/20 text-white
-                       flex items-center justify-center hover:bg-black/40 transition-colors backdrop-blur-sm">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </>
-      )}
-
-      {/* Dots */}
-      {total > 1 && (
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <div className="flex gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -204,6 +191,13 @@ export function HeroBanner({ slides: propSlides }: Props) {
               }`}
             />
           ))}
+          </div>
+          <button onClick={next}
+            className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition-colors">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       )}
 
