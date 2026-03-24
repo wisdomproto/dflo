@@ -176,11 +176,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
     responsive: true,
     maintainAspectRatio: true,
     aspectRatio: 1 / 1.4,
-    animation: {
-      // Short duration so each progressive point addition looks smooth left→right
-      duration: 150,
-      easing: 'linear' as const,
-    },
+    animation: false as const,  // Disable — we animate by progressively adding points
     plugins: {
       legend: {
         display: true,
