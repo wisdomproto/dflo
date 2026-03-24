@@ -13,7 +13,7 @@ export function RecipeSlider() {
   if (!recipes.length) return null;
 
   return (
-    <WebsiteSlider id="recipes" title="🥗 키 쑥쑥 영양 만점 식단" desktopCards={3}>
+    <WebsiteSlider id="recipes" title="🥗 키 쑥쑥 영양 만점 식단" desktopCards={3} sideHeader>
       {recipes.map((r) => (
         <div key={r.id} className="rounded-2xl bg-white overflow-hidden shadow-sm border border-gray-100 h-full
                                     hover:shadow-md hover:border-orange-200 transition-all group">

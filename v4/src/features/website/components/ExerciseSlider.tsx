@@ -8,7 +8,7 @@ export function ExerciseSlider() {
 
   return (
     <>
-      <WebsiteSlider id="exercises" title="🏃 바른 자세 · 키 성장 운동" desktopCards={3} bgClass="">
+      <WebsiteSlider id="exercises" title="🏃 바른 자세 · 키 성장 운동" desktopCards={3} sideHeader>
         {EXERCISES.map((ex) => {
           const isStretch = ex.category === '스트레칭';
           return (
