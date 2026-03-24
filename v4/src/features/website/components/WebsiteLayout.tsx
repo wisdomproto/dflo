@@ -9,7 +9,7 @@ interface Props {
 
 export function WebsiteLayout({ children }: Props) {
   return (
-    <div className="min-h-dvh flex flex-col bg-white">
+    <div className="min-h-dvh flex flex-col bg-[#F4F4F0]">
       <WebsiteHeader />
       <main className="flex-1">{children}</main>
       <WebsiteFooter />
