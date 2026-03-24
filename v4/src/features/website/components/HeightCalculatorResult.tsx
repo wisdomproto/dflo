@@ -3,7 +3,7 @@
 // 애니메이션: 카운트업 숫자 + 선 그리기 + 포인트 팝
 // ================================================
 
-import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import {
