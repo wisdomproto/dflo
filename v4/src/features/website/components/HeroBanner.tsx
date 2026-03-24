@@ -42,7 +42,7 @@ const DEFAULT_SLIDES: BannerSlide[] = [
   {
     id: 'default-5',
     title: '187 성장\n통합 프로그램',
-    subtitle: '연세새봄의원은 성장 호르몬만 주는 것이 아니라 아이의 건강한 성장을 위한 토탈 케어를 시행합니다',
+    subtitle: '',
     ctaText: '',
     ctaAction: 'scroll',
     ctaTarget: 'programs',
@@ -138,8 +138,8 @@ export function HeroBanner({ slides: propSlides }: Props) {
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Dark overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10" />
+              {/* Dark overlay for text readability — fades to near-transparent on right */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
             </>
           )}
         </div>
