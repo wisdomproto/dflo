@@ -59,6 +59,16 @@ const DEFAULT_SLIDES: BannerSlide[] = [
     bgGradient: 'linear-gradient(135deg, #0D5A47 0%, #1A4A3A 50%, #0F6E56 100%)',
     order: 3,
   },
+  {
+    id: 'default-5',
+    title: '187 성장\n통합 프로그램',
+    subtitle: '연세새봄의원은 성장 호르몬만 주는 것이 아니라 아이의 건강한 성장을 위한 토탈 케어를 시행합니다',
+    ctaText: '',
+    ctaAction: 'scroll',
+    ctaTarget: 'programs',
+    bgGradient: 'linear-gradient(135deg, #0F6E56 0%, #1A5C4A 40%, #2D8B6F 100%)',
+    order: 4,
+  },
 ];
 
 const AUTO_INTERVAL = 5000;
