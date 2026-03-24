@@ -129,11 +129,6 @@ export function HeightCalculator() {
                 <span className="inline-flex items-center gap-1 rounded-full bg-[#0F6E56] text-white text-xs font-semibold px-3 py-1">
                   현재 상위 {(100 - result.percentile).toFixed(0)}%
                 </span>
-                {result.mph && (
-                  <span className="inline-flex items-center gap-1 rounded-full bg-white text-[#0F6E56] text-xs font-semibold px-3 py-1">
-                    유전적 예측: {result.mph.toFixed(1)}cm
-                  </span>
-                )}
               </div>
             </div>
 
@@ -175,13 +170,6 @@ export function HeightCalculator() {
                       ? '또래 평균보다 약간 작은 편입니다. 전문 상담을 통해 성장 가능성을 확인해보세요.'
                       : '또래 대비 작은 편이므로, 성장판이 열려있는 지금이 성장 치료의 골든타임입니다.'}
               </p>
-              {result.mph && Math.abs(result.predicted - result.mph) > 3 && (
-                <p className="text-xs text-amber-700 leading-relaxed">
-                  {result.predicted > result.mph
-                    ? `유전적 예측(${result.mph.toFixed(1)}cm)보다 높은 성장이 기대됩니다.`
-                    : `유전적 예측(${result.mph.toFixed(1)}cm)에 도달하려면 적극적인 성장 관리가 필요합니다.`}
-                </p>
-              )}
             </div>
 
             {/* CTA */}
