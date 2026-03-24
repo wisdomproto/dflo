@@ -57,24 +57,11 @@ function useCountUp(target: number, duration: number, active: boolean) {
 }
 
 export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
-  const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=star
+  const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=done
+  const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
   const chartRef = useRef<ChartJS<'line'>>(null);
 
-  // Reset phases when modal opens
-  useEffect(() => {
-    if (!isOpen) { setPhase(0); return; }
-    // Phase 1: start count-up immediately
-    setPhase(1);
-    // Phase 2: show chart after count-up (800ms)
-    const t2 = setTimeout(() => setPhase(2), 800);
-    // Phase 3: show star after chart draw animation (800 + 1500ms)
-    const t3 = setTimeout(() => setPhase(3), 2300);
-    return () => { clearTimeout(t2); clearTimeout(t3); };
-  }, [isOpen]);
-
-  const countUp = useCountUp(result.predicted, 1200, phase >= 1);
-
-  const pathPoints = useMemo(() => {
+  const allPathPoints = useMemo(() => {
     const startAge = Math.ceil(result.age * 2) / 2;
     const points: { x: number; y: number }[] = [
       { x: Math.round(result.age * 2) / 2, y: result.currentHeight },
@@ -86,6 +73,38 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
     points.push({ x: 18, y: result.predicted });
     return points;
   }, [result]);
+
+  // Reset phases when modal opens
+  useEffect(() => {
+    if (!isOpen) { setPhase(0); setDrawnPoints(0); return; }
+    // Phase 1: count-up immediately
+    setPhase(1);
+    // Phase 2: show chart background + start progressive line drawing
+    const t2 = setTimeout(() => {
+      setPhase(2);
+      setDrawnPoints(1); // show first point (current height)
+    }, 800);
+    return () => clearTimeout(t2);
+  }, [isOpen]);
+
+  // Progressive line drawing: add one point at a time
+  useEffect(() => {
+    if (phase < 2 || drawnPoints === 0) return;
+    if (drawnPoints >= allPathPoints.length) {
+      // All points drawn → phase 3 (done)
+      const t = setTimeout(() => setPhase(3), 300);
+      return () => clearTimeout(t);
+    }
+    // Add next point after interval (faster for more points)
+    const interval = Math.max(80, 1200 / allPathPoints.length);
+    const t = setTimeout(() => setDrawnPoints((p) => p + 1), interval);
+    return () => clearTimeout(t);
+  }, [phase, drawnPoints, allPathPoints.length]);
+
+  const countUp = useCountUp(result.predicted, 1200, phase >= 1);
+
+  // Currently visible path points
+  const pathPoints = allPathPoints.slice(0, drawnPoints);
 
   const chartData = useMemo(() => {
     const standard = getHeightStandard(result.gender);
@@ -116,49 +135,51 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
           borderWidth: 1.5, borderDash: [4, 4] as number[],
           pointRadius: 0, fill: false, tension: 0.3,
         },
-        // Prediction path — animated via progressive line drawing
-        {
+        // Prediction path — progressive line drawing (points added one by one)
+        ...(pathPoints.length > 0 ? [{
           label: '예상 성장 경로',
           data: pathPoints,
           borderColor: '#0F6E56',
           backgroundColor: 'rgba(15,110,86,0.06)',
           borderWidth: 2.5,
           borderDash: [] as number[],
-          pointRadius: pathPoints.map((_, i) =>
-            i === 0 ? 8 : i === pathPoints.length - 1 ? (phase >= 3 ? 10 : 0) : 2
-          ),
-          pointBackgroundColor: pathPoints.map((_, i) =>
-            i === 0 ? '#0F6E56' : i === pathPoints.length - 1 ? '#F59E0B' : 'rgba(15,110,86,0.3)'
-          ),
-          pointBorderColor: pathPoints.map((_, i) =>
-            i === 0 ? '#0F6E56' : i === pathPoints.length - 1 ? '#D97706' : 'rgba(15,110,86,0.3)'
-          ),
-          pointBorderWidth: pathPoints.map((_, i) => i === pathPoints.length - 1 ? 2 : 0),
-          pointStyle: pathPoints.map((_, i) =>
-            i === pathPoints.length - 1 ? 'star' as const : 'circle' as const
-          ),
+          pointRadius: pathPoints.map((_, i) => {
+            const isFirst = i === 0;
+            const isLast = i === pathPoints.length - 1 && drawnPoints >= allPathPoints.length;
+            return isFirst ? 8 : isLast ? 10 : 2;
+          }),
+          pointBackgroundColor: pathPoints.map((_, i) => {
+            const isFirst = i === 0;
+            const isLast = i === pathPoints.length - 1 && drawnPoints >= allPathPoints.length;
+            return isFirst ? '#0F6E56' : isLast ? '#F59E0B' : 'rgba(15,110,86,0.3)';
+          }),
+          pointBorderColor: pathPoints.map((_, i) => {
+            const isLast = i === pathPoints.length - 1 && drawnPoints >= allPathPoints.length;
+            return isLast ? '#D97706' : 'rgba(15,110,86,0.3)';
+          }),
+          pointBorderWidth: pathPoints.map((_, i) => {
+            const isLast = i === pathPoints.length - 1 && drawnPoints >= allPathPoints.length;
+            return isLast ? 2 : 0;
+          }),
+          pointStyle: pathPoints.map((_, i) => {
+            const isLast = i === pathPoints.length - 1 && drawnPoints >= allPathPoints.length;
+            return isLast ? 'star' as const : 'circle' as const;
+          }),
           fill: true,
           tension: 0.4,
-          // Hidden until phase 2
-          hidden: phase < 2,
-        },
+        }] : []),
       ],
     };
-  }, [result, pathPoints, phase]);
-
-  const onAnimComplete = useCallback(() => {
-    // Force star point to appear after line finishes
-    if (phase === 2) setPhase(3);
-  }, [phase]);
+  }, [result, pathPoints, drawnPoints, allPathPoints.length]);
 
   const options: Parameters<typeof Line>[0]['options'] = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: true,
     aspectRatio: 1 / 1.4,
     animation: {
-      duration: phase === 2 ? 1500 : 300,
-      easing: 'easeInOutCubic' as const,
-      onComplete: onAnimComplete,
+      // Short duration so each progressive point addition looks smooth left→right
+      duration: 150,
+      easing: 'linear' as const,
     },
     plugins: {
       legend: {
@@ -190,7 +211,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
         grid: { color: 'rgba(0,0,0,0.05)' },
       },
     },
-  }), [phase, onAnimComplete]);
+  }), [phase]);
 
   const interpretation = result.percentile >= 75
     ? '현재 또래 대비 큰 편입니다. 꾸준한 성장 관리로 잠재력을 최대한 발휘할 수 있습니다.'
