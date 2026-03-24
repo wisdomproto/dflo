@@ -28,9 +28,9 @@ const NAV_ITEMS: NavAction[] = [
     action: 'scroll',
     target: 'guides',
     children: [
-      { label: '📝 블로그', action: 'link', target: 'https://blog.naver.com/yssaebom' },
-      { label: '📸 인스타그램', action: 'link', target: 'https://www.instagram.com/yssaebom_187/' },
-      { label: '🎬 유튜브', action: 'link', target: 'https://www.youtube.com/@%EC%97%B0%EC%84%B8%EC%83%88%EB%B4%84%EC%9D%98%EC%9B%90187%EC%84%B1%EC%9E%A5%ED%81%B4%EB%A6%AC%EB%8B%89' },
+      { label: '📝 블로그', action: 'link', target: 'https://blog.naver.com/saebom2469' },
+      { label: '📸 인스타그램', action: 'link', target: 'https://www.instagram.com/187growup/' },
+      { label: '🎬 유튜브', action: 'link', target: 'https://www.youtube.com/@187growup' },
     ],
   },
 ];
