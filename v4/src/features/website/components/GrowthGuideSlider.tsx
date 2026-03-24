@@ -21,7 +21,8 @@ export function GrowthGuideSlider() {
             <span className="text-3xl">{g.icon || '📖'}</span>
             <p className="text-2xl font-bold text-gray-800">{g.title}</p>
           </div>
-          {g.subtitle && <p className="text-sm text-gray-500 leading-relaxed">{g.subtitle}</p>}
+          {g.subtitle && <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">{g.subtitle}</p>}
+          <span className="inline-block mt-3 text-xs font-semibold text-[#0F6E56]">자세히 보기 →</span>
         </div>
       ))}
     </WebsiteSlider>
