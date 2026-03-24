@@ -4,8 +4,6 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/';
-
 export interface BannerSlide {
   id: string;
   title: string;
@@ -51,16 +49,12 @@ const DEFAULT_SLIDES: BannerSlide[] = [
   },
 ];
 
-const AUTO_INTERVAL = 5000;
-
 interface Props {
   slides?: BannerSlide[];
 }
 
 export function HeroBanner({ slides: propSlides }: Props) {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
 
   // Load slides from localStorage or use defaults
   const [slides, setSlides] = useState<BannerSlide[]>(DEFAULT_SLIDES);

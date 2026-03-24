@@ -40,9 +40,8 @@ export function ExerciseSlider() {
                   {ex.category}
                 </span>
               </div>
-              <div className="p-4 flex items-center justify-between">
+              <div className="p-4">
                 <p className="text-base font-bold text-gray-800">{ex.name}</p>
-                <span className="text-xs text-gray-400">{ex.sets}세트×{ex.reps}</span>
               </div>
             </button>
           );
@@ -62,21 +61,13 @@ export function ExerciseSlider() {
                 allowFullScreen
               />
             </div>
-            <div className="flex items-center gap-2">
-              <span className={`inline-block text-xs font-semibold rounded-full px-3 py-1 ${
-                selected.category === '스트레칭'
-                  ? 'bg-[#E8F5F0] text-[#0F6E56]'
-                  : 'bg-blue-50 text-blue-600'
-              }`}>
-                {selected.category}
-              </span>
-              <span className="text-xs text-gray-400">
-                {selected.sets}세트 × {selected.reps}
-              </span>
-            </div>
-            {selected.description && (
-              <p className="text-sm text-gray-600 leading-relaxed">{selected.description}</p>
-            )}
+            <span className={`inline-block text-xs font-semibold rounded-full px-3 py-1 ${
+              selected.category === '스트레칭'
+                ? 'bg-[#E8F5F0] text-[#0F6E56]'
+                : 'bg-blue-50 text-blue-600'
+            }`}>
+              {selected.category}
+            </span>
           </div>
         )}
       </InfoModal>
