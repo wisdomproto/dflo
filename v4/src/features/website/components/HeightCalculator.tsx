@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { calculateHeightPercentileLMS, predictAdultHeightLMS, heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
-import { calculateMidParentalHeight } from '@/shared/utils/growth';
 import { InfoModal } from './InfoModal';
 import {
   Chart as ChartJS,
@@ -31,8 +30,6 @@ export function HeightCalculator() {
   const [birthDate, setBirthDate] = useState('');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
-  const [fatherH, setFatherH] = useState('');
-  const [motherH, setMotherH] = useState('');
   const [result, setResult] = useState<Result | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
@@ -44,11 +41,7 @@ export function HeightCalculator() {
     const age = calculateAgeAtDate(birthDate, new Date());
     const pct = calculateHeightPercentileLMS(h, age.decimal, gender);
     const pred = predictAdultHeightLMS(h, age.decimal, gender);
-    const fH = parseFloat(fatherH);
-    const mH = parseFloat(motherH);
-    const mph = fH && mH ? calculateMidParentalHeight(fH, mH, gender) : null;
-
-    setResult({ predicted: pred, percentile: pct, mph, age: age.decimal, currentHeight: h, gender });
+    setResult({ predicted: pred, percentile: pct, mph: null, age: age.decimal, currentHeight: h, gender });
     setShowResult(true);
   };
 
@@ -105,20 +98,6 @@ export function HeightCalculator() {
                 <label className={labelCls}>현재 체중 (kg)</label>
                 <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
                   value={weight} onChange={(e) => setWeight(e.target.value)} className={inputCls} />
-              </div>
-            </div>
-
-            {/* Parent heights */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className={labelCls}>아버지 키 (cm)</label>
-                <input type="number" inputMode="decimal" step="0.1" placeholder="175"
-                  value={fatherH} onChange={(e) => setFatherH(e.target.value)} className={inputCls} />
-              </div>
-              <div>
-                <label className={labelCls}>어머니 키 (cm)</label>
-                <input type="number" inputMode="decimal" step="0.1" placeholder="162"
-                  value={motherH} onChange={(e) => setMotherH(e.target.value)} className={inputCls} />
               </div>
             </div>
 
