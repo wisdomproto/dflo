@@ -28,8 +28,8 @@ export function CaseSlider() {
           return (
             <button key={c.id} onClick={() => setSelected(c)}
               className={`w-full text-left rounded-2xl overflow-hidden shadow-sm h-full
-                         hover:shadow-md active:scale-[0.98] transition-all border
-                         ${isMale ? 'border-blue-100 hover:border-blue-200' : 'border-pink-100 hover:border-pink-200'}`}>
+                         hover:shadow-md active:scale-[0.98] transition-all border border-l-4
+                         ${isMale ? 'border-blue-100 border-l-blue-400 hover:border-blue-200 hover:border-l-blue-400' : 'border-pink-100 border-l-pink-400 hover:border-pink-200 hover:border-l-pink-400'}`}>
               {/* Top gradient header */}
               <div className={`px-5 pt-4 pb-3 ${isMale
                 ? 'bg-gradient-to-r from-blue-50 to-sky-50'
