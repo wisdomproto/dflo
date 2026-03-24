@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LocationModal } from './LocationModal';
 import { HoursModal } from './HoursModal';
 import { HeightCalculator } from './HeightCalculator';
@@ -11,6 +11,13 @@ export function FloatingButtons() {
   const [showLocation, setShowLocation] = useState(false);
   const [showHours, setShowHours] = useState(false);
   const [showCalc, setShowCalc] = useState(false);
+
+  // Listen for banner CTA click
+  useEffect(() => {
+    const handler = () => setShowCalc(true);
+    document.addEventListener('open-height-calculator', handler);
+    return () => document.removeEventListener('open-height-calculator', handler);
+  }, []);
 
   return (
     <>
