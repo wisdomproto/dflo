@@ -43,12 +43,22 @@ features/
   children/       # ChildFormModal, childrenService
   growth/         # measurementService
   routine/        # routineService, CalendarView, GrowthModalContent
+                  # Extracted cards: SleepCard, MealCard, ExerciseCard, SupplementCard
   content/        # contentService, useHomeContent hook
                   # SwipeCards: GrowthGuideSwipeCard, RecipeSwipeCard, GrowthCaseSwipeCard
                   # Details: RecipeDetail, CaseDetail, GuideDetail, CasePredictionBadge
   meal/           # MealCard, MealAnalysisSection, mealService
   exercise/       # ExerciseCard, YouTubeModal, exercises data
   admin/          # AdminLayout, ImageUploader, adminService
+                  # Extracted tabs: AdminRecipeTab, AdminGuideTab, AdminCaseTab, AdminContentShared
+  website/        # Public hospital website (연세새봄의원 리뉴얼)
+    components/   # HeroBanner, WebsiteHeader, WebsiteFooter, WebsiteLayout,
+                  # WebsiteSlider, HeroSection, TrustStats, HeightCalculator,
+                  # ProgramSlider, GrowthGuideSlider, RecipeSlider, ExerciseSlider,
+                  # CaseSlider, CaseDetailModal, InfoModal, AboutModal, FloatingButtons
+    pages/        # WebsiteHomePage, ProgramDetailPage, AdminBannerPage
+    data/         # programs.ts (7 growth programs from yssaebomq.com)
+    assets/       # Downloaded hospital images (facilities, programs)
 pages/            # HomePage, RoutinePage, BodyAnalysisPage, InfoPage
   admin/          # AdminDashboardPage, AdminPatientsPage, AdminPatientDetailPage,
                   # AdminContentPage, AdminImportPage
@@ -86,8 +96,9 @@ middleware/
 - Feature-based directory structure (not technical layers)
 - Lazy-loaded pages via React Router
 - Custom Tailwind theme colors: primary (#667eea), secondary (#764ba2), success, warning, danger
-- Supabase Storage: `content-images` bucket (recipe/guide/case images), `meal-photos` bucket (식단 사진)
+- Supabase Storage: `content-images` bucket (recipe/guide/case/banner images), `meal-photos` bucket (식단 사진)
 - Image compression: Client-side resize to max 1200x1200, JPEG 80% before upload
+- Website banner data stored in localStorage (no DB table needed)
 
 ## Database Tables
 | Table | Key Columns | Notes |
@@ -126,12 +137,12 @@ PORT=3001
 ```
 
 ## Admin Access
-- Admin credentials: `admin@187growth.com` / `admin187!`
-- Admin pages at `/admin/*` (protected by AdminRoute)
+- **App admin**: `admin@187growth.com` / `admin187!` — pages at `/admin/*` (AdminRoute)
+- **Website banner admin**: PIN `8054` — page at `/website/admin/banners` (sessionStorage auth)
 - Content authoring: `/admin/content` (가이드/레시피/사례 CRUD with image upload)
 - Patient management: `/admin/patients`
 
-## App Navigation
+## App Navigation (로그인 필요)
 | Tab | Route | Page | Description |
 |-----|-------|------|-------------|
 | 홈 | `/` | HomePage | 성장 요약 + 콘텐츠 스와이프 카드 |
@@ -139,11 +150,20 @@ PORT=3001
 | 체형 분석 | `/body-analysis` | BodyAnalysisPage | 체형 사진 분석 (mock) |
 | 성장가이드 | `/info` | InfoPage | 가이드/레시피/사례 전체 목록 |
 
+## Website Navigation (공개, 로그인 불필요)
+| Route | Page | Description |
+|-------|------|-------------|
+| `/website` | WebsiteHomePage | 병원 리뉴얼 랜딩페이지 (롤링 배너 + 예상키 측정 + 콘텐츠) |
+| `/website/program/:slug` | ProgramDetailPage | 187 성장프로그램 상세 (7개 프로그램) |
+| `/website/admin/banners` | AdminBannerPage | 배너 관리 (PIN 보호) |
+
 ## Current Progress
 - Phase 0-3: COMPLETE (project setup, auth, shared layer, core pages)
 - Phase 4: COMPLETE (content system, routine, exercise, swipeable home)
 - Phase 5: COMPLETE (admin dashboard, content authoring, image upload, patient management)
 - Phase 6: PARTIAL (AI server running, meal photo analysis working, body analysis mock only)
+- Phase 7: COMPLETE (hospital website redesign — 연세새봄의원 리뉴얼 랜딩페이지)
+- Refactoring: COMPLETE (AdminContentPage split, RoutinePage card extraction)
 
 ## AI Features
 - **Meal photo analysis**: WORKING - Gemini 2.5 Flash via ai-server, results saved to `meal_analyses` table
@@ -153,5 +173,24 @@ PORT=3001
 - **Body posture analysis**: MOCK - placeholder with random data, needs real Gemini integration
 - **RAG chatbot**: DEFERRED
 
-## Known Issues (from audit)
+## Website Features (Phase 7)
+- **Rolling hero banner**: 4 default slides, 5s auto-rotation, fade transitions, arrow/dot navigation
+  - Admin-managed via `/website/admin/banners` (PIN: 8054, localStorage persistence)
+  - Supports image upload (Supabase Storage `banners` folder) or CSS gradient backgrounds
+- **Height predictor**: Interactive calculator (gender, birthdate, current height, parent heights → predicted adult height)
+- **Trust stats**: 15,000+ 누적 치료 아동, 94.7% 성장 목표 달성률, 20년+ 경력
+- **187 성장프로그램**: 7 programs from yssaebomq.com (sliding cards → detail pages with original images)
+- **Content sliders**: Growth guides, recipes, exercises (reuse v4 Supabase data + WebsiteSlider component)
+- **Treatment cases**: Cards with growth stats → modal with GrowthChart + MeasurementTable (reuses v4 CaseDetail)
+- **Hospital info**: Floating buttons (병원 위치 / 진료시간 / 카카오톡 상담), About modal (원장 소개 + 시설 사진)
+- **Header nav**: 병원 소개, 187 성장프로그램, 커뮤니티 (dropdown), 상담 예약, 관리자
+- **Design**: Mobile-first, brand color #0F6E56, desktop max-w-5xl
+
+## Refactoring Completed
+- `AdminContentPage` (479→~130 lines): Extracted AdminRecipeTab, AdminGuideTab, AdminCaseTab, AdminContentShared
+- `RoutinePage` (402→~200 lines): Extracted SleepCard, MealCard, ExerciseCard, SupplementCard
+- Removed dead code: GrowthPage.tsx (unreachable route)
+- Fixed duplicate fetchMealsByRoutine
+
+## Known Issues
 - All previously tracked issues have been resolved.
