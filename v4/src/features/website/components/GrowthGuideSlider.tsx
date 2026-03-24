@@ -13,12 +13,14 @@ export function GrowthGuideSlider() {
   if (!guides.length) return null;
 
   return (
-    <WebsiteSlider id="guides" tag="성장 가이드" title="전문가가 알려주는 키 성장 정보" desktopCards={3} bgClass="bg-gray-50">
+    <WebsiteSlider id="guides" title="전문의가 알려주는 키 성장 가이드" desktopCards={3} bgClass="bg-gray-50">
       {guides.map((g) => (
         <div key={g.id} className="rounded-2xl p-5 h-full border border-gray-100"
           style={{ backgroundColor: g.banner_color ? g.banner_color + '12' : '#EDE9FE' }}>
-          <span className="text-3xl block mb-3">{g.icon || '📖'}</span>
-          <p className="text-base font-bold text-gray-800 mb-1">{g.title}</p>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-3xl">{g.icon || '📖'}</span>
+            <p className="text-2xl font-bold text-gray-800">{g.title}</p>
+          </div>
           {g.subtitle && <p className="text-sm text-gray-500 leading-relaxed">{g.subtitle}</p>}
         </div>
       ))}
