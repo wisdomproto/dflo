@@ -89,11 +89,7 @@ export function HeroBanner({ slides: propSlides }: Props) {
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
   // Auto-play
-  useEffect(() => {
-    if (paused || total <= 1) return;
-    timerRef.current = setInterval(next, AUTO_INTERVAL);
-    return () => clearInterval(timerRef.current);
-  }, [paused, next, total]);
+  // Auto-play disabled — manual navigation only (arrows, dots, swipe)
 
   // Touch swipe
   const touchStartX = useRef(0);
@@ -113,8 +109,6 @@ export function HeroBanner({ slides: propSlides }: Props) {
   return (
     <section
       className="relative overflow-hidden aspect-[16/9] md:aspect-[16/7] max-h-[80vh]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -216,15 +210,6 @@ export function HeroBanner({ slides: propSlides }: Props) {
         </div>
       )}
 
-      {/* Progress bar */}
-      {total > 1 && !paused && (
-        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 z-20">
-          <div
-            className="h-full bg-white/50 animate-[progress_5s_linear]"
-            key={`progress-${current}`}
-          />
-        </div>
-      )}
     </section>
   );
 }
