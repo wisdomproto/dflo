@@ -143,7 +143,7 @@ export function HeroBanner({ slides: propSlides }: Props) {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Dark overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10" />
             </>
           )}
         </div>
@@ -151,19 +151,19 @@ export function HeroBanner({ slides: propSlides }: Props) {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 flex flex-col justify-center h-full py-12 md:py-20">
-        <div className="max-w-lg">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 mb-6">
+        <div className="max-w-lg rounded-3xl bg-black/40 backdrop-blur-sm px-8 py-8 md:px-10 md:py-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 mb-5">
             <span className="text-sm">📏</span>
-            <span className="text-xs font-semibold text-white/80">187 성장클리닉</span>
+            <span className="text-xs font-semibold text-white/90">187 성장클리닉</span>
           </div>
 
           <h1
             key={s.id}
-            className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 whitespace-pre-line animate-[fadeUp_0.5s_ease-out] drop-shadow-lg"
+            className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-3 whitespace-pre-line animate-[fadeUp_0.5s_ease-out]"
           >
             {s.title}
           </h1>
-          <p className="text-base md:text-lg text-white/80 mb-8 animate-[fadeUp_0.5s_ease-out_0.1s_both] drop-shadow-md">
+          <p className="text-base md:text-lg text-white/85 mb-7 animate-[fadeUp_0.5s_ease-out_0.1s_both]">
             {s.subtitle}
           </p>
           <button
