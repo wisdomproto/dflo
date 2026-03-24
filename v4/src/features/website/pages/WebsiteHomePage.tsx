@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { WebsiteLayout } from '../components/WebsiteLayout';
 import { HeroBanner } from '../components/HeroBanner';
 import { TrustStats } from '../components/TrustStats';
-import { HeightCalculator } from '../components/HeightCalculator';
 import { ProgramSlider } from '../components/ProgramSlider';
 import { GrowthGuideSlider } from '../components/GrowthGuideSlider';
 import { RecipeSlider } from '../components/RecipeSlider';
@@ -18,7 +17,6 @@ export default function WebsiteHomePage() {
     <WebsiteLayout>
       <HeroBanner />
       <TrustStats />
-      <HeightCalculator />
       <ProgramSlider />
       <GrowthGuideSlider />
       <RecipeSlider />

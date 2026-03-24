@@ -19,13 +19,17 @@ const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.co
 interface Result {
   predicted: number;
   percentile: number;
-  mph: number | null;
   age: number;
   currentHeight: number;
   gender: 'male' | 'female';
 }
 
-export function HeightCalculator() {
+interface Props {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function HeightCalculator({ isOpen, onClose }: Props) {
   const [gender, setGender] = useState<'male' | 'female'>('male');
   const [birthDate, setBirthDate] = useState('');
   const [height, setHeight] = useState('');
@@ -37,11 +41,10 @@ export function HeightCalculator() {
   const calculate = () => {
     const h = parseFloat(height);
     if (!birthDate || !h) return;
-
     const age = calculateAgeAtDate(birthDate, new Date());
     const pct = calculateHeightPercentileLMS(h, age.decimal, gender);
     const pred = predictAdultHeightLMS(h, age.decimal, gender);
-    setResult({ predicted: pred, percentile: pct, mph: null, age: age.decimal, currentHeight: h, gender });
+    setResult({ predicted: pred, percentile: pct, age: age.decimal, currentHeight: h, gender });
     setShowResult(true);
   };
 
@@ -50,66 +53,65 @@ export function HeightCalculator() {
 
   return (
     <>
-      <section id="calculator" className="bg-white">
-        <div className="max-w-lg mx-auto px-6 py-10">
-          <div className="flex items-center justify-between mb-1">
+      {/* Calculator Form Modal */}
+      <InfoModal isOpen={isOpen} onClose={onClose} title="">
+        <div className="space-y-5">
+          <div className="flex items-center justify-between">
             <div>
               <p className="text-xs font-semibold text-[#0F6E56] mb-1">성장 진단</p>
               <h2 className="text-xl font-extrabold text-gray-900">우리 아이 예상 키 측정</h2>
             </div>
             <button onClick={() => setShowHelp(true)}
-              className="w-7 h-7 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:bg-gray-100 text-xs font-bold">
+              className="w-7 h-7 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:bg-gray-100 text-xs font-bold shrink-0">
               ?
             </button>
           </div>
-          <p className="text-sm text-gray-500 mb-6">간단한 정보만 입력하면 예상 성인 키를 바로 확인할 수 있어요</p>
+          <p className="text-sm text-gray-500 -mt-2">간단한 정보만 입력하면 예상 성인 키를 바로 확인할 수 있어요</p>
 
-          <div className="space-y-4">
-            {/* Gender */}
-            <div>
-              <span className={labelCls}>성별</span>
-              <div className="flex gap-2">
-                {(['male', 'female'] as const).map((g) => (
-                  <button key={g} onClick={() => setGender(g)}
-                    className={`flex-1 rounded-xl py-2.5 text-sm font-semibold transition-colors ${
-                      gender === g ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'
-                    }`}>
-                    {g === 'male' ? '👦 남아' : '👧 여아'}
-                  </button>
-                ))}
-              </div>
+          {/* Gender */}
+          <div>
+            <span className={labelCls}>성별</span>
+            <div className="flex gap-2">
+              {(['male', 'female'] as const).map((g) => (
+                <button key={g} onClick={() => setGender(g)}
+                  className={`flex-1 rounded-xl py-2.5 text-sm font-semibold transition-colors ${
+                    gender === g ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                  {g === 'male' ? '👦 남아' : '👧 여아'}
+                </button>
+              ))}
             </div>
-
-            {/* Birth date */}
-            <div>
-              <label className={labelCls}>생년월일</label>
-              <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
-                className={inputCls} max={new Date().toISOString().split('T')[0]} />
-            </div>
-
-            {/* Height / Weight */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className={labelCls}>현재 키 (cm)</label>
-                <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
-                  value={height} onChange={(e) => setHeight(e.target.value)} className={inputCls} />
-              </div>
-              <div>
-                <label className={labelCls}>현재 체중 (kg)</label>
-                <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
-                  value={weight} onChange={(e) => setWeight(e.target.value)} className={inputCls} />
-              </div>
-            </div>
-
-            {/* Calculate button */}
-            <button onClick={calculate} disabled={!birthDate || !height}
-              className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0F6E56] text-white py-3.5
-                         font-bold text-base disabled:opacity-40 hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
-              <span>📊</span> 예상키 계산하기
-            </button>
           </div>
+
+          {/* Birth date */}
+          <div>
+            <label className={labelCls}>생년월일</label>
+            <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
+              className={inputCls} max={new Date().toISOString().split('T')[0]} />
+          </div>
+
+          {/* Height / Weight */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className={labelCls}>현재 키 (cm)</label>
+              <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
+                value={height} onChange={(e) => setHeight(e.target.value)} className={inputCls} />
+            </div>
+            <div>
+              <label className={labelCls}>현재 체중 (kg)</label>
+              <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
+                value={weight} onChange={(e) => setWeight(e.target.value)} className={inputCls} />
+            </div>
+          </div>
+
+          {/* Calculate button */}
+          <button onClick={calculate} disabled={!birthDate || !height}
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0F6E56] text-white py-3.5
+                       font-bold text-base disabled:opacity-40 hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
+            <span>📊</span> 예상키 계산하기
+          </button>
         </div>
-      </section>
+      </InfoModal>
 
       {/* Result Modal */}
       {result && (
@@ -196,7 +198,7 @@ function ResultModal({ result, isOpen, onClose }: { result: Result; isOpen: bool
         },
         // Prediction path: intermediate points at same percentile
         (() => {
-          const startAge = Math.ceil(result.age * 2) / 2; // snap to nearest 0.5
+          const startAge = Math.ceil(result.age * 2) / 2;
           const pathPoints: { x: number; y: number }[] = [
             { x: Math.round(result.age * 2) / 2, y: result.currentHeight },
           ];
@@ -219,7 +221,7 @@ function ResultModal({ result, isOpen, onClose }: { result: Result; isOpen: bool
             tension: 0.4,
           };
         })(),
-        // Current position (solid dot)
+        // Current position
         {
           label: '현재 키',
           data: [{ x: Math.round(result.age * 2) / 2, y: result.currentHeight }],
@@ -230,7 +232,7 @@ function ResultModal({ result, isOpen, onClose }: { result: Result; isOpen: bool
           pointHoverRadius: 10,
           showLine: false,
         },
-        // Predicted adult height (star dot)
+        // Predicted adult height
         {
           label: '예상 성인 키',
           data: [{ x: 18, y: result.predicted }],

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { WebsiteHeader } from './WebsiteHeader';
 import { WebsiteFooter } from './WebsiteFooter';
-import { FloatingKakao } from './FloatingKakao';
+import { FloatingButtons } from './FloatingButtons';
 
 interface Props {
   children: ReactNode;
@@ -13,7 +13,7 @@ export function WebsiteLayout({ children }: Props) {
       <WebsiteHeader />
       <main className="flex-1">{children}</main>
       <WebsiteFooter />
-      <FloatingKakao />
+      <FloatingButtons />
     </div>
   );
 }
