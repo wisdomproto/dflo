@@ -11,6 +11,10 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // 0.0.0.0 — 같은 네트워크의 모바일에서 접속 가능
+    host: true,
+  },
+  preview: {
+    host: true,
+    allowedHosts: ['dflo-production.up.railway.app'],
   },
 });
