@@ -6,7 +6,7 @@ export function ProgramSlider() {
   const navigate = useNavigate();
 
   return (
-    <WebsiteSlider id="programs" tag="187 성장프로그램" title="우리 아이 맞춤 성장 프로그램" desktopCards={3}>
+    <WebsiteSlider id="programs" title="187 성장 프로그램 소개" desktopCards={3}>
       {PROGRAMS.map((p) => (
         <button key={p.slug} onClick={() => navigate(`/website/program/${p.slug}`)}
           className="w-full h-full text-left rounded-2xl p-5 transition-all hover:shadow-lg active:scale-[0.98] border border-gray-100"
