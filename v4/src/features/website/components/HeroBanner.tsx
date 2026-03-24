@@ -26,7 +26,7 @@ const DEFAULT_SLIDES: BannerSlide[] = [
     ctaText: '예측키 무료 측정하기',
     ctaAction: 'scroll',
     ctaTarget: 'calculator',
-    bgGradient: 'linear-gradient(135deg, #0F6E56 0%, #0D5A47 50%, #1A3A32 100%)',
+    imageUrl: '/images/banners/banner-1.jpg',
     order: 0,
   },
   {
@@ -118,7 +118,7 @@ export function HeroBanner({ slides: propSlides }: Props) {
 
   return (
     <section
-      className="relative overflow-hidden min-h-[360px] md:min-h-[440px]"
+      className="relative overflow-hidden aspect-[16/9] md:aspect-[16/7] max-h-[80vh]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -131,22 +131,26 @@ export function HeroBanner({ slides: propSlides }: Props) {
             opacity: i === current ? 1 : 0,
             pointerEvents: i === current ? 'auto' : 'none',
             background: slide.imageUrl
-              ? `linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 100%)`
+              ? undefined
               : slide.bgGradient || 'linear-gradient(135deg, #0F6E56, #1A3A32)',
           }}
         >
           {slide.imageUrl && (
-            <img
-              src={slide.imageUrl}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover -z-10"
-            />
+            <>
+              <img
+                src={slide.imageUrl}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {/* Dark overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+            </>
           )}
         </div>
       ))}
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-16 pb-14 md:pt-24 md:pb-20 flex flex-col justify-center min-h-[360px] md:min-h-[440px]">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 flex flex-col justify-center h-full py-12 md:py-20">
         <div className="max-w-lg">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 mb-6">
             <span className="text-sm">📏</span>
@@ -155,11 +159,11 @@ export function HeroBanner({ slides: propSlides }: Props) {
 
           <h1
             key={s.id}
-            className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 whitespace-pre-line animate-[fadeUp_0.5s_ease-out]"
+            className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 whitespace-pre-line animate-[fadeUp_0.5s_ease-out] drop-shadow-lg"
           >
             {s.title}
           </h1>
-          <p className="text-base md:text-lg text-white/65 mb-8 animate-[fadeUp_0.5s_ease-out_0.1s_both]">
+          <p className="text-base md:text-lg text-white/80 mb-8 animate-[fadeUp_0.5s_ease-out_0.1s_both] drop-shadow-md">
             {s.subtitle}
           </p>
           <button
