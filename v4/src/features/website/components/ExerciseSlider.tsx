@@ -15,7 +15,7 @@ export function ExerciseSlider() {
             <button key={ex.id} onClick={() => setSelected(ex)}
               className="w-full text-left rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100
                          hover:shadow-md active:scale-[0.98] transition-all h-full group"
-              style={{ borderTop: `3px solid ${isStretch ? '#0F6E56' : '#3B82F6'}` }}>
+              style={{ borderLeft: `4px solid ${isStretch ? '#0F6E56' : '#3B82F6'}` }}>
               <div className="relative">
                 <img
                   src={`https://img.youtube.com/vi/${ex.videoId}/mqdefault.jpg`}

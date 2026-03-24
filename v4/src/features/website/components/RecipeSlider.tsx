@@ -15,8 +15,8 @@ export function RecipeSlider() {
   return (
     <WebsiteSlider id="recipes" title="🥗 키 쑥쑥 영양 만점 식단" desktopCards={3} sideHeader>
       {recipes.map((r) => (
-        <div key={r.id} className="rounded-2xl bg-white overflow-hidden shadow-sm border border-gray-100 h-full
-                                    hover:shadow-md hover:border-orange-200 transition-all group">
+        <div key={r.id} className="rounded-2xl bg-white overflow-hidden shadow-sm border border-gray-100 border-l-4 border-l-orange-400 h-full
+                                    hover:shadow-md hover:border-orange-200 hover:border-l-orange-400 transition-all group">
           <div className="relative">
             {r.image_url ? (
               <img src={r.image_url} alt={r.title} className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300" />
