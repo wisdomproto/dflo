@@ -64,7 +64,7 @@ export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgCl
         <div className="flex items-center justify-between mb-5">
           <div>
             {tag && <p className="text-xs font-semibold text-[#0F6E56] mb-0.5">{tag}</p>}
-            <h2 className="text-xl md:text-2xl font-extrabold text-gray-900">{title}</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#0F6E56]">{title}</h2>
           </div>
           {/* Arrow nav (desktop) */}
           <div className="hidden md:flex items-center gap-2">
