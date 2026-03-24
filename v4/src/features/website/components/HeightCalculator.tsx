@@ -294,7 +294,7 @@ function ResultModal({ result, isOpen, onClose }: { result: Result; isOpen: bool
       },
       y: {
         title: { display: true, text: '키(cm)', font: { size: 12 } },
-        min: 30,
+        min: 70,
         max: 185,
         ticks: { font: { size: 11 }, stepSize: 10 },
         grid: { color: 'rgba(0,0,0,0.05)' },
