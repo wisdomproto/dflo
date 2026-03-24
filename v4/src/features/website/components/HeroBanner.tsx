@@ -105,11 +105,15 @@ export function HeroBanner({ slides: propSlides }: Props) {
     return () => clearInterval(timerRef.current);
   }, [paused, next, total]);
 
-  const handleCta = (slide: BannerSlide) => {
-    if (slide.ctaAction === 'scroll') {
-      document.getElementById(slide.ctaTarget)?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.open(slide.ctaTarget, '_blank');
+  // Touch swipe
+  const touchStartX = useRef(0);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? next() : prev();
     }
   };
 
@@ -121,6 +125,8 @@ export function HeroBanner({ slides: propSlides }: Props) {
       className="relative overflow-hidden aspect-[16/9] md:aspect-[16/7] max-h-[80vh]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Slides */}
       {slides.map((slide, i) => (
@@ -158,17 +164,9 @@ export function HeroBanner({ slides: propSlides }: Props) {
           >
             {s.title}
           </h1>
-          <p className="text-base md:text-lg text-white/85 mb-7 animate-[fadeUp_0.5s_ease-out_0.1s_both]">
+          <p className="text-base md:text-lg text-white/85 animate-[fadeUp_0.5s_ease-out_0.1s_both]">
             {s.subtitle}
           </p>
-          <button
-            onClick={() => handleCta(s)}
-            className="flex items-center justify-center gap-2 w-full md:w-auto rounded-2xl bg-white px-8 py-4
-                       text-[#0F6E56] font-bold text-base hover:bg-gray-50 active:scale-[0.98] transition-all shadow-lg
-                       animate-[fadeUp_0.5s_ease-out_0.2s_both]"
-          >
-            {s.ctaText}
-          </button>
         </div>
       </div>
 
