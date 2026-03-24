@@ -53,12 +53,15 @@ features/
                   # Extracted tabs: AdminRecipeTab, AdminGuideTab, AdminCaseTab, AdminContentShared
   website/        # Public hospital website (연세새봄의원 리뉴얼)
     components/   # HeroBanner, WebsiteHeader, WebsiteFooter, WebsiteLayout,
-                  # WebsiteSlider, HeroSection, TrustStats, HeightCalculator,
+                  # WebsiteSlider, HeroSection, TrustStats,
+                  # HeightCalculator, HeightCalculatorResult (폼/결과 분리),
                   # ProgramSlider, GrowthGuideSlider, RecipeSlider, ExerciseSlider,
-                  # CaseSlider, CaseDetailModal, InfoModal, AboutModal, FloatingButtons
+                  # CaseSlider, CaseDetailModal, YouTubeModal,
+                  # InfoModal, AboutModal, FloatingButtons,
+                  # LocationModal, HoursModal
     pages/        # WebsiteHomePage, ProgramDetailPage, AdminBannerPage
     data/         # programs.ts (7 growth programs from yssaebomq.com)
-    assets/       # Downloaded hospital images (facilities, programs)
+    assets/       # Downloaded hospital images (facilities, programs, banners)
 pages/            # HomePage, RoutinePage, BodyAnalysisPage, InfoPage
   admin/          # AdminDashboardPage, AdminPatientsPage, AdminPatientDetailPage,
                   # AdminContentPage, AdminImportPage
@@ -174,23 +177,45 @@ PORT=3001
 - **RAG chatbot**: DEFERRED
 
 ## Website Features (Phase 7)
-- **Rolling hero banner**: 4 default slides, 5s auto-rotation, fade transitions, arrow/dot navigation
+- **Rolling hero banner**: 3 slides (manual navigation, no auto-play), fade transitions, arrow/dot/swipe
+  - 16:9 aspect ratio with real photo backgrounds (banner-1, banner-2, banner-5)
+  - Slide 1 has CTA button → opens height calculator modal
   - Admin-managed via `/website/admin/banners` (PIN: 8054, localStorage persistence)
-  - Supports image upload (Supabase Storage `banners` folder) or CSS gradient backgrounds
-- **Height predictor**: Interactive calculator (gender, birthdate, current height, parent heights → predicted adult height)
+- **Height predictor**: Floating button → modal calculator (gender, birthdate, height, weight)
+  - LMS-based prediction using Korean 2017 growth standards
+  - Result modal: predicted height, percentile, growth chart (3~18세), interpretation guide
+  - Prediction path: intermediate points at same percentile, smooth curve
+  - HeightCalculator/HeightCalculatorResult split (refactored)
 - **Trust stats**: 15,000+ 누적 치료 아동, 94.7% 성장 목표 달성률, 20년+ 경력
-- **187 성장프로그램**: 7 programs from yssaebomq.com (sliding cards → detail pages with original images)
-- **Content sliders**: Growth guides, recipes, exercises (reuse v4 Supabase data + WebsiteSlider component)
-- **Treatment cases**: Cards with growth stats → modal with GrowthChart + MeasurementTable (reuses v4 CaseDetail)
-- **Hospital info**: Floating buttons (병원 위치 / 진료시간 / 카카오톡 상담), About modal (원장 소개 + 시설 사진)
-- **Header nav**: 병원 소개, 187 성장프로그램, 커뮤니티 (dropdown), 상담 예약, 관리자
-- **Design**: Mobile-first, brand color #0F6E56, desktop max-w-5xl
+- **187 성장프로그램**: 7 programs from yssaebomq.com (sliding cards → detail pages with original images + YouTube)
+- **Content sliders**: All use WebsiteSlider with side headers, left color borders, card shadows
+  - Growth guides: click → modal with GuideDetail (reuses v4)
+  - Recipes: click → modal with RecipeDetail (reuses v4)
+  - Exercises: click → YouTubeModal popup playback
+  - Treatment cases: click → CaseDetailModal with GrowthChart + MeasurementTable (reuses v4)
+- **Hospital info**: Floating buttons (예상키 측정 / 병원 위치 / 진료시간 / 카카오톡 상담)
+  - Location modal (지도 이미지 + 주소 + 전화)
+  - Hours modal (진료시간표)
+  - About modal (원장 소개 + 시설 사진)
+- **Header nav**: 병원 소개, 187 성장프로그램, 커뮤니티 (블로그/인스타/유튜브), 상담 예약, 관리자
+  - Mobile: 햄버거 메뉴 → 오른쪽 슬라이드 서랍
+- **Design**: Mobile-first, brand color #0F6E56, bg-gray-50, desktop max-w-5xl
+  - Section emojis (🏥📋🥗🏃📊) for visual separation
+  - Alternating section backgrounds for content rhythm
 
 ## Refactoring Completed
 - `AdminContentPage` (479→~130 lines): Extracted AdminRecipeTab, AdminGuideTab, AdminCaseTab, AdminContentShared
 - `RoutinePage` (402→~200 lines): Extracted SleepCard, MealCard, ExerciseCard, SupplementCard
+- `HeightCalculator` (336→~120+170 lines): Extracted HeightCalculatorResult (차트/결과 분리)
 - Removed dead code: GrowthPage.tsx (unreachable route)
 - Fixed duplicate fetchMealsByRoutine
+
+## Deployment
+- **Railway**: v4 frontend at `dflo-production.up.railway.app`
+  - Build: `npm install && npm run build`
+  - Start: `npx vite preview --port $PORT --host 0.0.0.0`
+  - Root directory: `v4`
+  - `vite.config.ts`: `preview.allowedHosts` includes Railway domain
 
 ## Known Issues
 - All previously tracked issues have been resolved.
