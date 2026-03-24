@@ -152,11 +152,6 @@ export function HeroBanner({ slides: propSlides }: Props) {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 flex flex-col justify-center h-full py-12 md:py-20">
         <div className="max-w-lg rounded-3xl bg-black/40 backdrop-blur-sm px-8 py-8 md:px-10 md:py-10">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-1.5 mb-5">
-            <span className="text-sm">📏</span>
-            <span className="text-xs font-semibold text-white/90">187 성장클리닉</span>
-          </div>
-
           <h1
             key={s.id}
             className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-3 whitespace-pre-line animate-[fadeUp_0.5s_ease-out]"
