@@ -4,9 +4,11 @@
 // ================================================
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ImageUploader } from '@/features/admin/components/ImageUploader';
 import type { BannerSlide } from '../components/HeroBanner';
+
+const ADMIN_PIN = '8054';
 
 const STORAGE_KEY = 'website-banners';
 
@@ -28,10 +30,28 @@ function emptySlide(order: number): BannerSlide {
 }
 
 export default function AdminBannerPage() {
+  const navigate = useNavigate();
+  const [authed, setAuthed] = useState(false);
   const [slides, setSlides] = useState<BannerSlide[]>([]);
   const [saved, setSaved] = useState(false);
 
+  // Gate: require PIN if not already authenticated this session
   useEffect(() => {
+    if (sessionStorage.getItem('website-admin-auth') === 'true') {
+      setAuthed(true);
+      return;
+    }
+    const input = prompt('관리자 비밀번호를 입력하세요');
+    if (input === ADMIN_PIN) {
+      sessionStorage.setItem('website-admin-auth', 'true');
+      setAuthed(true);
+    } else {
+      navigate('/website');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    if (!authed) return;
     try {
       const data = localStorage.getItem(STORAGE_KEY);
       if (data) {
@@ -39,7 +59,9 @@ export default function AdminBannerPage() {
         setSlides(parsed.sort((a, b) => a.order - b.order));
       }
     } catch { /* ignore */ }
-  }, []);
+  }, [authed]);
+
+  if (!authed) return null;
 
   const save = () => {
     const ordered = slides.map((s, i) => ({ ...s, order: i }));

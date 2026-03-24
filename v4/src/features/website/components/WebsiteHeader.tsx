@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AboutModal } from './AboutModal';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/';
+const ADMIN_PIN = '8054';
 
 interface NavAction {
   label: string;
@@ -36,6 +37,7 @@ const NAV_ITEMS: NavAction[] = [
 ];
 
 export function WebsiteHeader() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
@@ -48,6 +50,22 @@ export function WebsiteHeader() {
     } else if (item.action === 'scroll') {
       const el = document.getElementById(item.target);
       el?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleAdminClick = () => {
+    setMenuOpen(false);
+    // Check if already authenticated this session
+    if (sessionStorage.getItem('website-admin-auth') === 'true') {
+      navigate('/website/admin/banners');
+      return;
+    }
+    const input = prompt('관리자 비밀번호를 입력하세요');
+    if (input === ADMIN_PIN) {
+      sessionStorage.setItem('website-admin-auth', 'true');
+      navigate('/website/admin/banners');
+    } else if (input !== null) {
+      alert('비밀번호가 올바르지 않습니다');
     }
   };
 
@@ -87,11 +105,11 @@ export function WebsiteHeader() {
               className="ml-2 text-sm font-bold text-white bg-[#0F6E56] rounded-full px-4 py-2 hover:bg-[#0D5A47] transition-colors">
               상담 예약
             </a>
-            <Link to="/website/admin/banners"
+            <button onClick={handleAdminClick}
               className="ml-1 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm hover:bg-gray-200 transition-colors"
               title="관리자">
               ⚙️
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile hamburger */}
@@ -130,10 +148,10 @@ export function WebsiteHeader() {
               className="block text-center text-sm font-bold text-white bg-[#0F6E56] rounded-full px-4 py-2.5 mt-3">
               카카오톡 상담
             </a>
-            <Link to="/website/admin/banners" onClick={() => setMenuOpen(false)}
-              className="block text-center text-xs text-gray-400 hover:text-[#0F6E56] py-2 mt-1">
+            <button onClick={handleAdminClick}
+              className="block w-full text-center text-xs text-gray-400 hover:text-[#0F6E56] py-2 mt-1">
               ⚙️ 관리자
-            </Link>
+            </button>
           </div>
         )}
       </header>
