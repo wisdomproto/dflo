@@ -1,8 +1,7 @@
 import { useState, useMemo } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
-import { calculateHeightPercentileLMS, predictAdultHeightLMS } from '@/shared/data/growthStandard';
+import { calculateHeightPercentileLMS, predictAdultHeightLMS, heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
 import { calculateMidParentalHeight } from '@/shared/utils/growth';
-import { getHeightStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import {
   Chart as ChartJS,
@@ -216,14 +215,52 @@ function ResultModal({ result, isOpen, onClose }: { result: Result; isOpen: bool
           fill: false,
           tension: 0.3,
         },
+        // Prediction path: intermediate points at same percentile
+        (() => {
+          const startAge = Math.ceil(result.age * 2) / 2; // snap to nearest 0.5
+          const pathPoints: { x: number; y: number }[] = [
+            { x: Math.round(result.age * 2) / 2, y: result.currentHeight },
+          ];
+          for (let a = startAge + 0.5; a <= 17.5; a += 0.5) {
+            const h = heightAtSamePercentile(result.currentHeight, result.age, a, result.gender);
+            if (h > 0) pathPoints.push({ x: a, y: h });
+          }
+          pathPoints.push({ x: 18, y: result.predicted });
+          return {
+            label: '예상 성장 경로',
+            data: pathPoints,
+            borderColor: 'rgba(15,110,86,0.35)',
+            backgroundColor: 'rgba(15,110,86,0.08)',
+            borderWidth: 2,
+            borderDash: [3, 3] as number[],
+            pointRadius: pathPoints.map((_, i) => (i === 0 || i === pathPoints.length - 1) ? 0 : 2.5),
+            pointBackgroundColor: 'rgba(15,110,86,0.3)',
+            pointBorderColor: 'rgba(15,110,86,0.3)',
+            fill: false,
+            tension: 0.4,
+          };
+        })(),
+        // Current position (solid dot)
         {
-          label: '우리 아이',
+          label: '현재 키',
           data: [{ x: Math.round(result.age * 2) / 2, y: result.currentHeight }],
           borderColor: '#0F6E56',
           backgroundColor: '#0F6E56',
           borderWidth: 0,
           pointRadius: 8,
           pointHoverRadius: 10,
+          showLine: false,
+        },
+        // Predicted adult height (star dot)
+        {
+          label: '예상 성인 키',
+          data: [{ x: 18, y: result.predicted }],
+          borderColor: '#D97706',
+          backgroundColor: '#F59E0B',
+          borderWidth: 2,
+          pointRadius: 8,
+          pointHoverRadius: 10,
+          pointStyle: 'star' as const,
           showLine: false,
         },
       ],

@@ -289,6 +289,29 @@ export function calculateWeightPercentileLMS(
  * 현재 Z-score를 구한 뒤, 18세 기준 같은 Z-score의 키를 역산
  * @returns 예측 성인키(cm, 소수 1자리)
  */
+/**
+ * 특정 나이에서 동일 Z-score의 키를 역산 (예측 경로용)
+ * @param currentHeight 현재 키
+ * @param currentAge 현재 나이
+ * @param targetAge 구하고 싶은 나이
+ * @param gender 성별
+ * @returns 해당 나이에서의 예상 키 (cm)
+ */
+export function heightAtSamePercentile(
+  currentHeight: number,
+  currentAge: number,
+  targetAge: number,
+  gender: 'male' | 'female',
+): number {
+  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const currentLms = interpolateLMS(currentAge, table);
+  const targetLms = interpolateLMS(targetAge, table);
+  if (!currentLms || !targetLms) return 0;
+
+  const z = zScoreFromLMS(currentHeight, currentLms);
+  return heightFromLMS(targetLms, z);
+}
+
 export function predictAdultHeightLMS(
   height: number,
   age: number,
