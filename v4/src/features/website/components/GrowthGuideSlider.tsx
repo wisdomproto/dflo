@@ -13,7 +13,7 @@ export function GrowthGuideSlider() {
   if (!guides.length) return null;
 
   return (
-    <WebsiteSlider id="guides" title="📋 전문의가 알려주는 키 성장 가이드" desktopCards={3} bgClass="bg-gray-50">
+    <WebsiteSlider id="guides" title="📋 전문의가 알려주는 키 성장 가이드" desktopCards={3} bgClass="bg-[#F5F5F0]">
       {guides.map((g) => {
         const color = g.banner_color || '#0F6E56';
         return (

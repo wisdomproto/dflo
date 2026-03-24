@@ -58,8 +58,8 @@ export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgCl
   const desktopCardCls = desktopWidthMap[desktopCards] ?? desktopWidthMap[3];
 
   return (
-    <section id={id} className={`py-8 md:py-12 ${bgClass}`}>
-      <div className="max-w-5xl mx-auto px-4 md:px-6">
+    <section id={id} className={`py-12 md:py-16 ${bgClass}`}>
+      <div className={`max-w-5xl mx-auto px-4 md:px-6 ${!bgClass ? 'md:bg-white md:rounded-2xl md:shadow-sm md:border md:border-gray-100 md:px-8 md:py-10' : ''}`}>
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div>
