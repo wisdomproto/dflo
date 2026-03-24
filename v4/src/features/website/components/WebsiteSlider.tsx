@@ -2,7 +2,7 @@ import { useRef, useState, useCallback, useEffect, type ReactNode } from 'react'
 
 interface Props {
   id?: string;
-  tag: string;
+  tag?: string;
   title: string;
   children: ReactNode[];
   /** Cards per view on desktop. Mobile always shows ~1.15 cards. Default 2. */
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgClass = '' }: Props) {
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const total = children.length;
@@ -62,8 +63,8 @@ export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgCl
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="text-xs font-semibold text-[#0F6E56] mb-0.5">{tag}</p>
-            <h2 className="text-lg md:text-xl font-extrabold text-gray-900">{title}</h2>
+            {tag && <p className="text-xs font-semibold text-[#0F6E56] mb-0.5">{tag}</p>}
+            <h2 className="text-xl md:text-2xl font-extrabold text-gray-900">{title}</h2>
           </div>
           {/* Arrow nav (desktop) */}
           <div className="hidden md:flex items-center gap-2">
