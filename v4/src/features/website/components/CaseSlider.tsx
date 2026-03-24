@@ -18,35 +18,46 @@ export function CaseSlider() {
 
   return (
     <>
-      <WebsiteSlider id="cases" tag="치료 사례" title="실제 성장 치료 성공 사례" desktopCards={3}>
+      <WebsiteSlider id="cases" title="📊 187 성장 클리닉 - 성장 관리 사례" desktopCards={3}>
         {cases.map((c) => {
           const first = c.measurements?.[0];
           const last = c.measurements?.[c.measurements.length - 1];
           const growth = first && last ? (last.height - first.height).toFixed(1) : null;
 
+          const isMale = c.gender === 'male';
           return (
             <button key={c.id} onClick={() => setSelected(c)}
-              className="w-full text-left rounded-2xl bg-white p-5 border border-gray-100 shadow-sm h-full space-y-3
-                         hover:shadow-md hover:border-[#0F6E56]/20 active:scale-[0.98] transition-all">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-lg">
-                  {c.gender === 'male' ? '👦' : '👧'}
-                </div>
-                <div>
-                  <p className="text-base font-bold text-gray-800">{c.patient_name}</p>
-                  <p className="text-xs text-gray-400">{c.gender === 'male' ? '남아' : '여아'}{c.measurements?.length ? ` · 측정 ${c.measurements.length}회` : ''}</p>
+              className={`w-full text-left rounded-2xl overflow-hidden shadow-sm h-full
+                         hover:shadow-md active:scale-[0.98] transition-all border
+                         ${isMale ? 'border-blue-100 hover:border-blue-200' : 'border-pink-100 hover:border-pink-200'}`}>
+              {/* Top gradient header */}
+              <div className={`px-5 pt-4 pb-3 ${isMale
+                ? 'bg-gradient-to-r from-blue-50 to-sky-50'
+                : 'bg-gradient-to-r from-pink-50 to-rose-50'}`}>
+                <div className="flex items-center gap-3">
+                  <div className={`w-11 h-11 rounded-full flex items-center justify-center text-lg shadow-sm
+                    ${isMale ? 'bg-blue-100' : 'bg-pink-100'}`}>
+                    {isMale ? '👦' : '👧'}
+                  </div>
+                  <div>
+                    <p className="text-base font-bold text-gray-800">{c.patient_name}</p>
+                    <p className="text-xs text-gray-400">{isMale ? '남아' : '여아'}{c.measurements?.length ? ` · 측정 ${c.measurements.length}회` : ''}</p>
+                  </div>
                 </div>
               </div>
-              {growth && (
-                <div className="bg-[#E8F5F0] rounded-xl px-4 py-3 text-center">
-                  <p className="text-xs text-[#0F6E56] font-medium">성장 변화</p>
-                  <p className="text-2xl font-black text-[#0F6E56]">+{growth}cm</p>
-                </div>
-              )}
-              {c.special_notes && (
-                <p className="text-sm text-gray-500 line-clamp-2">{c.special_notes}</p>
-              )}
-              <p className="text-xs font-semibold text-[#0F6E56]">상세 보기 →</p>
+              {/* Body */}
+              <div className="px-5 pb-4 pt-3 bg-white space-y-3">
+                {growth && (
+                  <div className={`rounded-xl px-4 py-3 text-center ${isMale ? 'bg-blue-50' : 'bg-pink-50'}`}>
+                    <p className={`text-xs font-medium ${isMale ? 'text-blue-500' : 'text-pink-500'}`}>성장 변화</p>
+                    <p className={`text-2xl font-black ${isMale ? 'text-blue-600' : 'text-pink-600'}`}>+{growth}cm</p>
+                  </div>
+                )}
+                {c.special_notes && (
+                  <p className="text-sm text-gray-500 line-clamp-2">{c.special_notes}</p>
+                )}
+                <p className="text-xs font-semibold text-[#0F6E56]">상세 보기 →</p>
+              </div>
             </button>
           );
         })}
