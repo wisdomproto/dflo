@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { WebsiteLayout } from '../components/WebsiteLayout';
-import { HeroSection } from '../components/HeroSection';
+import { HeroBanner } from '../components/HeroBanner';
 import { TrustStats } from '../components/TrustStats';
 import { HeightCalculator } from '../components/HeightCalculator';
 import { ProgramSlider } from '../components/ProgramSlider';
@@ -16,7 +16,7 @@ export default function WebsiteHomePage() {
 
   return (
     <WebsiteLayout>
-      <HeroSection />
+      <HeroBanner />
       <TrustStats />
       <HeightCalculator />
       <ProgramSlider />

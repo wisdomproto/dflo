@@ -7,7 +7,7 @@
 import { useState, useRef } from 'react';
 import { uploadImage, deleteImage } from '@/shared/lib/storage';
 
-type Folder = 'recipes' | 'guides' | 'cases';
+type Folder = 'recipes' | 'guides' | 'cases' | 'banners';
 
 interface Props {
   folder: Folder;

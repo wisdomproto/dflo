@@ -7,7 +7,7 @@ import { supabase } from './supabase';
 
 const BUCKET = 'content-images';
 
-type Folder = 'recipes' | 'guides' | 'cases';
+type Folder = 'recipes' | 'guides' | 'cases' | 'banners';
 
 /**
  * 이미지 업로드 → public URL 반환

@@ -87,6 +87,11 @@ export function WebsiteHeader() {
               className="ml-2 text-sm font-bold text-white bg-[#0F6E56] rounded-full px-4 py-2 hover:bg-[#0D5A47] transition-colors">
               상담 예약
             </a>
+            <Link to="/website/admin/banners"
+              className="ml-1 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm hover:bg-gray-200 transition-colors"
+              title="관리자">
+              ⚙️
+            </Link>
           </nav>
 
           {/* Mobile hamburger */}
@@ -125,6 +130,10 @@ export function WebsiteHeader() {
               className="block text-center text-sm font-bold text-white bg-[#0F6E56] rounded-full px-4 py-2.5 mt-3">
               카카오톡 상담
             </a>
+            <Link to="/website/admin/banners" onClick={() => setMenuOpen(false)}
+              className="block text-center text-xs text-gray-400 hover:text-[#0F6E56] py-2 mt-1">
+              ⚙️ 관리자
+            </Link>
           </div>
         )}
       </header>
