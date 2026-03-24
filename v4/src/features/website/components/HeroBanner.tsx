@@ -125,10 +125,12 @@ export function HeroBanner({ slides: propSlides }: Props) {
           className="absolute inset-0 transition-opacity duration-700 ease-in-out"
           style={{
             opacity: i === current ? 1 : 0,
+            visibility: i === current ? 'visible' : 'hidden',
             pointerEvents: i === current ? 'auto' : 'none',
             background: slide.imageUrl
               ? undefined
               : slide.bgGradient || 'linear-gradient(135deg, #0F6E56, #1A3A32)',
+            transition: 'opacity 700ms ease-in-out, visibility 700ms ease-in-out',
           }}
         >
           {slide.imageUrl && (
