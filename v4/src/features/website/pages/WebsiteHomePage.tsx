@@ -5,7 +5,7 @@ import { GrowthGuideSlider } from '../components/GrowthGuideSlider';
 import { RecipeSlider } from '../components/RecipeSlider';
 import { ExerciseSlider } from '../components/ExerciseSlider';
 import { CaseSlider } from '../components/CaseSlider';
-import { WebsiteSlider } from '../components/WebsiteSlider';
+import { SectionSlider } from '../components/SectionSlider';
 import { fetchSections } from '../services/websiteSectionService';
 
 interface SectionItem {
@@ -164,39 +164,7 @@ export default function WebsiteHomePage() {
       {sections.length > 0 ? (
         sections.map((section) => (
           <div key={section.id} className={sectionClass} style={snapStyle}>
-            <div className="w-full h-full flex flex-col justify-center items-center">
-              <WebsiteSlider title={section.title} desktopCards={2}>
-                {(section.items || []).map((item) => (
-                  <div
-                    key={item.id}
-                    className="bg-white rounded-2xl p-6 h-full shadow-sm hover:shadow-md transition-shadow flex flex-col"
-                  >
-                    {item.imageUrl && (
-                      <div className="mb-4 rounded-xl overflow-hidden h-40 flex-shrink-0">
-                        <img
-                          src={item.imageUrl}
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    )}
-                    <div className="flex items-start gap-3 flex-1 flex-col">
-                      <div className="flex items-start gap-3 w-full">
-                        <span className="text-3xl flex-shrink-0">{item.emoji}</span>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="font-bold text-gray-900 mb-1 break-words">
-                            {item.title}
-                          </h3>
-                        </div>
-                      </div>
-                      <p className="text-sm text-gray-600 line-clamp-3 flex-1">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </WebsiteSlider>
-            </div>
+            <SectionSlider items={section.items || []} />
           </div>
         ))
       ) : (
