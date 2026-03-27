@@ -70,6 +70,10 @@ export default function AdminBannerPage() {
   const [authed, setAuthed] = useState(false);
   const [activeTab, setActiveTab] = useState(0); // 0 = 섹션1 (배너), 1+ = 섹션2, 3, ...
   
+  // PIN input state
+  const [pinInput, setPinInput] = useState('');
+  const [pinError, setPinError] = useState('');
+  
   // Banner state
   const [slides, setSlides] = useState<BannerSlide[]>([]);
   const [activeBannerTab, setActiveBannerTab] = useState(0);
@@ -92,14 +96,18 @@ export default function AdminBannerPage() {
       setAuthed(true);
       return;
     }
-    const input = prompt('관리자 비밀번호를 입력하세요');
-    if (input === ADMIN_PIN) {
+  }, [user]);
+
+  const handlePinSubmit = () => {
+    if (pinInput === ADMIN_PIN) {
       sessionStorage.setItem('website-admin-auth', 'true');
       setAuthed(true);
+      setPinError('');
     } else {
-      navigate('/website');
+      setPinError('비밀번호가 틀렸습니다');
+      setPinInput('');
     }
-  }, [user, navigate]);
+  };
 
   useEffect(() => {
     if (!authed) return;
@@ -233,6 +241,48 @@ export default function AdminBannerPage() {
 
   const currentSlide = slides[activeBannerTab] || null;
   const currentSection = sections[activeSectionTab] || null;
+
+  // PIN entry screen
+  if (!authed) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl">
+          <h1 className="text-2xl font-bold text-center mb-2">웹사이트 관리</h1>
+          <p className="text-center text-gray-500 text-sm mb-6">관리자 비밀번호를 입력하세요</p>
+          
+          <input
+            type="password"
+            value={pinInput}
+            onChange={(e) => setPinInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handlePinSubmit()}
+            placeholder="비밀번호"
+            className="w-full px-4 py-3 border border-gray-200 rounded-xl mb-4 focus:outline-none focus:border-[#0F6E56] text-center text-lg tracking-widest"
+            maxLength={4}
+            autoFocus
+          />
+          
+          {pinError && (
+            <p className="text-red-500 text-sm text-center mb-4">{pinError}</p>
+          )}
+          
+          <button
+            onClick={handlePinSubmit}
+            disabled={!pinInput}
+            className="w-full bg-[#0F6E56] text-white font-bold py-3 rounded-xl hover:bg-[#0D5A47] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          >
+            확인
+          </button>
+          
+          <button
+            onClick={() => navigate('/website')}
+            className="w-full mt-3 bg-gray-100 text-gray-600 font-bold py-3 rounded-xl hover:bg-gray-200 transition-all"
+          >
+            돌아가기
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
