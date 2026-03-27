@@ -1,6 +1,6 @@
 export function WebsiteFooter() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-100">
+    <footer className="bg-gray-50 border-t border-gray-100 hidden">
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-4 text-center">
         <p className="text-base font-bold text-gray-800">연세새봄의원 187 성장클리닉</p>
         <p className="text-sm text-gray-500">서울특별시 은평구 · 02-3395-0999</p>

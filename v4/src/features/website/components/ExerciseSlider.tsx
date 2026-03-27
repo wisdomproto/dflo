@@ -8,19 +8,20 @@ export function ExerciseSlider() {
 
   return (
     <>
-      <WebsiteSlider id="exercises" title="🏃 바른 자세 · 키 성장 운동" desktopCards={3} sideHeader>
+      <div className="w-full h-full flex items-center justify-center">
+        <WebsiteSlider id="exercises" title="🏃 바른 자세 · 키 성장 운동" desktopCards={3} sideHeader>
         {EXERCISES.map((ex) => {
           const isStretch = ex.category === '스트레칭';
           return (
             <button key={ex.id} onClick={() => setSelected(ex)}
               className="w-full text-left rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100
-                         hover:shadow-md active:scale-[0.98] transition-all h-full group"
+                         hover:shadow-md active:scale-[0.98] transition-all h-full group flex flex-col"
               style={{ borderLeft: `4px solid ${isStretch ? '#0F6E56' : '#3B82F6'}` }}>
-              <div className="relative">
+              <div className="relative flex-1">
                 <img
                   src={`https://img.youtube.com/vi/${ex.videoId}/mqdefault.jpg`}
                   alt={ex.name}
-                  className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {/* Play overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -46,7 +47,8 @@ export function ExerciseSlider() {
             </button>
           );
         })}
-      </WebsiteSlider>
+        </WebsiteSlider>
+      </div>
 
       {/* YouTube Video Modal */}
       <InfoModal isOpen={!!selected} onClose={() => setSelected(null)} title={selected?.name ?? ''}>

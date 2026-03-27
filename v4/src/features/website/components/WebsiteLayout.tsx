@@ -9,9 +9,11 @@ interface Props {
 
 export function WebsiteLayout({ children }: Props) {
   return (
-    <div className="min-h-dvh flex flex-col bg-[#F4F4F0]">
+    <div className="h-dvh flex flex-col bg-[#F4F4F0]">
       <WebsiteHeader />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 overflow-y-scroll scroll-smooth" style={{ scrollSnapType: 'y mandatory' }}>
+        {children}
+      </main>
       <WebsiteFooter />
       <FloatingButtons />
     </div>

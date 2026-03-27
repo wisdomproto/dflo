@@ -1,8 +1,9 @@
 // ================================================
-// HeroBanner - 롤링 배너 (자동 재생 + 수동 조작)
+// HeroBanner - 모바일 풀스크린 배너 (배경 + 아이 이미지 + 하단 텍스트)
 // ================================================
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { fetchBanners } from '../services/bannerService';
 
 export interface BannerSlide {
   id: string;
@@ -11,9 +12,17 @@ export interface BannerSlide {
   ctaText: string;
   ctaAction: 'scroll' | 'link';
   ctaTarget: string;
+  /** Full background image (fills entire slide) */
   imageUrl?: string;
+  /** Child cutout PNG (overlaid on bg, centered top) */
+  childImageUrl?: string;
   bgGradient?: string;
   order: number;
+  /** Text customization */
+  titleSize?: number;   // px, default 36
+  titleColor?: string;  // hex, default #111827 (gray-900)
+  subtitleSize?: number; // px, default 14
+  subtitleColor?: string; // hex, default #6b7280 (gray-500)
 }
 
 const DEFAULT_SLIDES: BannerSlide[] = [
@@ -24,7 +33,8 @@ const DEFAULT_SLIDES: BannerSlide[] = [
     ctaText: '예측키 무료 측정하기',
     ctaAction: 'scroll',
     ctaTarget: 'calculator',
-    imageUrl: '/images/banners/banner-1.jpg',
+    imageUrl: '/images/slide1_bg.jpg',
+    childImageUrl: '/images/slide1_child.png',
     order: 0,
   },
   {
@@ -34,17 +44,19 @@ const DEFAULT_SLIDES: BannerSlide[] = [
     ctaText: '',
     ctaAction: 'scroll',
     ctaTarget: 'programs',
-    imageUrl: '/images/banners/banner-2.jpg',
+    imageUrl: '/images/slide3_bg.jpg',
+    childImageUrl: '/images/slide3_child.png',
     order: 1,
   },
   {
     id: 'default-5',
     title: '187 성장\n통합 프로그램',
-    subtitle: '',
+    subtitle: '체계적인 성장 관리로 아이의 가능성을 키웁니다',
     ctaText: '',
     ctaAction: 'scroll',
     ctaTarget: 'programs',
-    imageUrl: '/images/banners/banner-5.jpg',
+    imageUrl: '/images/slide5_bg.jpg',
+    childImageUrl: '/images/slide5_child.png',
     order: 2,
   },
 ];
@@ -55,8 +67,6 @@ interface Props {
 
 export function HeroBanner({ slides: propSlides }: Props) {
   const [current, setCurrent] = useState(0);
-
-  // Load slides from localStorage or use defaults
   const [slides, setSlides] = useState<BannerSlide[]>(DEFAULT_SLIDES);
 
   useEffect(() => {
@@ -64,13 +74,9 @@ export function HeroBanner({ slides: propSlides }: Props) {
       setSlides(propSlides);
       return;
     }
-    try {
-      const saved = localStorage.getItem('website-banners');
-      if (saved) {
-        const parsed = JSON.parse(saved) as BannerSlide[];
-        if (parsed.length > 0) setSlides(parsed.sort((a, b) => a.order - b.order));
-      }
-    } catch { /* ignore */ }
+    fetchBanners()
+      .then((data) => { if (data.length > 0) setSlides(data); })
+      .catch(() => { /* keep defaults */ });
   }, [propSlides]);
 
   const total = slides.length;
@@ -81,9 +87,6 @@ export function HeroBanner({ slides: propSlides }: Props) {
 
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
-
-  // Auto-play
-  // Auto-play disabled — manual navigation only (arrows, dots, swipe)
 
   // Touch swipe
   const touchStartX = useRef(0);
@@ -100,110 +103,135 @@ export function HeroBanner({ slides: propSlides }: Props) {
   const s = slides[current];
   if (!s) return null;
 
+  const handleCta = () => {
+    if (s.ctaAction === 'scroll') {
+      document.dispatchEvent(new CustomEvent('open-height-calculator'));
+    } else if (s.ctaAction === 'link') {
+      window.open(s.ctaTarget, '_blank');
+    }
+  };
+
   return (
     <section
-      className="relative overflow-hidden aspect-[16/9] md:aspect-[16/7] max-h-[80vh]"
+      className="relative overflow-hidden w-full"
+      style={{ minHeight: '80vh' }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Slides */}
+      {/* ===== Slide backgrounds ===== */}
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+          className="absolute inset-0"
           style={{
             opacity: i === current ? 1 : 0,
             visibility: i === current ? 'visible' : 'hidden',
             pointerEvents: i === current ? 'auto' : 'none',
-            background: slide.imageUrl
-              ? undefined
-              : slide.bgGradient || 'linear-gradient(135deg, #0F6E56, #1A3A32)',
             transition: 'opacity 700ms ease-in-out, visibility 700ms ease-in-out',
           }}
         >
-          {slide.imageUrl && (
-            <>
-              <img
-                src={slide.imageUrl}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              {/* Dark overlay for text readability — fades to near-transparent on right */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
-            </>
+          {/* Background layer */}
+          {slide.imageUrl ? (
+            <img
+              src={slide.imageUrl}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{
+                background: slide.bgGradient || 'linear-gradient(180deg, #EDE8E0 0%, #F5F0EA 100%)',
+              }}
+            />
           )}
+
+          {/* Bottom gradient fade: transparent → cream/white */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(to bottom, transparent 40%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.95) 80%, #fff 100%)',
+            }}
+          />
         </div>
       ))}
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 flex items-center justify-between h-full py-12 md:py-20">
-        <div className="max-w-lg">
+      {/* ===== Text content — bottom area ===== */}
+      <div className="absolute bottom-[12%] md:bottom-[14%] left-0 right-0 z-10 px-6">
+        <div className="max-w-2xl mx-auto text-center">
           <h1
             key={s.id}
-            className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-3 whitespace-pre-line animate-[fadeUp_0.5s_ease-out]"
+            className={`font-extrabold leading-[1.15] mb-3 whitespace-pre-line animate-[fadeUp_0.5s_ease-out] ${
+              !s.titleSize ? 'text-[42px] md:text-[56px]' : ''
+            } ${!s.titleColor ? 'text-gray-900' : ''}`}
+            style={{
+              fontSize: s.titleSize ? `${s.titleSize}px` : undefined,
+              color: s.titleColor || undefined,
+            }}
           >
             {s.title}
           </h1>
           {s.subtitle && (
-            <p className="text-base md:text-lg text-white/85 animate-[fadeUp_0.5s_ease-out_0.1s_both]">
+            <p
+              className={`mb-5 whitespace-pre-line animate-[fadeUp_0.5s_ease-out_0.1s_both] ${
+                !s.subtitleSize ? 'text-[17px] md:text-xl' : ''
+              } ${!s.subtitleColor ? 'text-gray-500' : ''}`}
+              style={{
+                fontSize: s.subtitleSize ? `${s.subtitleSize}px` : undefined,
+                color: s.subtitleColor || undefined,
+              }}
+            >
               {s.subtitle}
             </p>
           )}
+          {s.ctaText && (
+            <button
+              key={`cta-${s.id}`}
+              onClick={handleCta}
+              className="inline-flex items-center gap-2 rounded-full
+                         bg-[#0F6E56] px-7 py-3.5 md:px-8 md:py-4
+                         text-white font-bold text-sm md:text-base
+                         shadow-lg hover:bg-[#0d5e4a] hover:scale-105 active:scale-95
+                         transition-all animate-[fadeUp_0.5s_ease-out_0.2s_both]"
+            >
+              <span>📏</span> {s.ctaText}
+            </button>
+          )}
         </div>
-
       </div>
 
-      {/* CTA button — absolute right center */}
-      {s.ctaText && (
-        <button
-          key={`cta-${s.id}`}
-          onClick={() => {
-            if (s.ctaAction === 'scroll') {
-              document.dispatchEvent(new CustomEvent('open-height-calculator'));
-            } else if (s.ctaAction === 'link') {
-              window.open(s.ctaTarget, '_blank');
-            }
-          }}
-          className="absolute right-8 md:right-16 top-1/2 -translate-y-1/2 z-20
-                     flex items-center gap-2 rounded-full
-                     bg-white/95 backdrop-blur-sm px-6 py-3.5 md:px-8 md:py-4
-                     text-[#0F6E56] font-bold text-sm md:text-base
-                     shadow-xl hover:bg-white hover:scale-105 active:scale-95 transition-all
-                     animate-[fadeUp_0.5s_ease-out_0.2s_both]"
-        >
-          <span>📏</span> {s.ctaText}
-        </button>
-      )}
-
-      {/* Dots + arrows — bottom center */}
+      {/* ===== Navigation dots + arrows — bottom center ===== */}
       {total > 1 && (
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-          <button onClick={prev}
-            className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition-colors">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          <button
+            onClick={prev}
+            className="w-8 h-8 rounded-full bg-gray-200/60 text-gray-600 flex items-center justify-center hover:bg-gray-300/80 transition-colors"
+          >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <div className="flex gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === current ? 'w-6 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
-              }`}
-            />
-          ))}
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  i === current ? 'w-6 bg-[#0F6E56]' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
           </div>
-          <button onClick={next}
-            className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/40 transition-colors">
+          <button
+            onClick={next}
+            className="w-8 h-8 rounded-full bg-gray-200/60 text-gray-600 flex items-center justify-center hover:bg-gray-300/80 transition-colors"
+          >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
       )}
-
     </section>
   );
 }

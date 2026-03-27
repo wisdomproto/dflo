@@ -26,6 +26,7 @@ const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomePage'));
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
 const AdminBannerPage = lazy(() => import('@/features/website/pages/AdminBannerPage'));
+const AdminSectionsPage = lazy(() => import('@/features/website/pages/AdminSectionsPage'));
 
 // Admin pages
 const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout'));
@@ -61,6 +62,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <AdminBannerPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/website/admin/sections',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <AdminSectionsPage />
       </Suspense>
     ),
   },

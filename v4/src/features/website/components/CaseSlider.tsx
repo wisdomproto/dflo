@@ -18,7 +18,8 @@ export function CaseSlider() {
 
   return (
     <>
-      <WebsiteSlider id="cases" title="📊 187 성장 클리닉 - 성장 관리 사례" desktopCards={3} sideHeader>
+      <div className="w-full h-full flex items-center justify-center">
+        <WebsiteSlider id="cases" title="📊 187 성장 클리닉 - 성장 관리 사례" desktopCards={3} sideHeader>
         {cases.map((c) => {
           const first = c.measurements?.[0];
           const last = c.measurements?.[c.measurements.length - 1];
@@ -28,10 +29,10 @@ export function CaseSlider() {
           return (
             <button key={c.id} onClick={() => setSelected(c)}
               className={`w-full text-left rounded-2xl overflow-hidden shadow-sm h-full
-                         hover:shadow-md active:scale-[0.98] transition-all border border-l-4
+                         hover:shadow-md active:scale-[0.98] transition-all border border-l-4 flex flex-col
                          ${isMale ? 'border-blue-100 border-l-blue-400 hover:border-blue-200 hover:border-l-blue-400' : 'border-pink-100 border-l-pink-400 hover:border-pink-200 hover:border-l-pink-400'}`}>
               {/* Top gradient header */}
-              <div className={`px-5 pt-4 pb-3 ${isMale
+              <div className={`px-5 pt-4 pb-3 flex-shrink-0 ${isMale
                 ? 'bg-gradient-to-r from-blue-50 to-sky-50'
                 : 'bg-gradient-to-r from-pink-50 to-rose-50'}`}>
                 <div className="flex items-center gap-3">
@@ -46,7 +47,7 @@ export function CaseSlider() {
                 </div>
               </div>
               {/* Body */}
-              <div className="px-5 pb-4 pt-3 bg-white space-y-3">
+              <div className="px-5 pb-4 pt-3 bg-white space-y-3 flex-1 flex flex-col">
                 {growth && (
                   <div className={`rounded-xl px-4 py-3 text-center ${isMale ? 'bg-blue-50' : 'bg-pink-50'}`}>
                     <p className={`text-xs font-medium ${isMale ? 'text-blue-500' : 'text-pink-500'}`}>성장 변화</p>
@@ -61,7 +62,8 @@ export function CaseSlider() {
             </button>
           );
         })}
-      </WebsiteSlider>
+        </WebsiteSlider>
+      </div>
 
       {/* Final CTA */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">

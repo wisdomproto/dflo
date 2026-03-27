@@ -94,8 +94,6 @@ export default function AdminSectionsPage() {
       .finally(() => setLoading(false));
   }, [authed]);
 
-  if (!authed) return null;
-
   const save = async () => {
     setSaving(true);
     setSaveMsg('');
@@ -189,7 +187,7 @@ export default function AdminSectionsPage() {
         <div className="bg-white rounded-2xl p-8 max-w-sm w-full shadow-2xl">
           <h1 className="text-2xl font-bold text-center mb-2">🔐 섹션 관리</h1>
           <p className="text-center text-gray-500 text-sm mb-6">관리자 비밀번호를 입력하세요</p>
-          
+
           <input
             type="password"
             value={pinInput}
@@ -200,11 +198,11 @@ export default function AdminSectionsPage() {
             maxLength={4}
             autoFocus
           />
-          
+
           {pinError && (
             <p className="text-red-500 text-sm text-center mb-4">{pinError}</p>
           )}
-          
+
           <button
             onClick={handlePinSubmit}
             disabled={!pinInput}
@@ -212,7 +210,7 @@ export default function AdminSectionsPage() {
           >
             확인
           </button>
-          
+
           <button
             onClick={() => navigate('/website')}
             className="w-full mt-3 bg-gray-100 text-gray-600 font-bold py-3 rounded-xl hover:bg-gray-200 transition-all"

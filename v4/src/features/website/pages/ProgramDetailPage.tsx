@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { WebsiteLayout } from '../components/WebsiteLayout';
 import { PROGRAMS } from '../data/programs';
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/';
 
 export default function ProgramDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -49,15 +48,6 @@ export default function ProgramDetailPage() {
             className="w-full rounded-xl shadow-sm"
             loading="eager"
           />
-          {/* CTA */}
-          <div className="mt-8">
-            <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full rounded-2xl py-4 text-white font-bold text-base
-                         hover:opacity-90 active:scale-[0.98] transition-all shadow-lg"
-              style={{ backgroundColor: program.color }}>
-              <span>💬</span> {program.shortTitle} 상담 받기
-            </a>
-          </div>
         </div>
       </WebsiteLayout>
     );
@@ -105,15 +95,6 @@ export default function ProgramDetailPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="max-w-3xl mx-auto px-6 pb-12">
-        <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full rounded-2xl py-4 text-white font-bold text-base
-                     hover:opacity-90 active:scale-[0.98] transition-all shadow-lg"
-          style={{ backgroundColor: program.color }}>
-          <span>💬</span> {program.shortTitle} 상담 받기
-        </a>
-      </section>
     </WebsiteLayout>
   );
 }

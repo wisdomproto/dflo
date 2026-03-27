@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AboutModal } from './AboutModal';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/';
-const ADMIN_PIN = '8054';
+
 
 interface NavAction {
   label: string;
@@ -56,18 +56,7 @@ export function WebsiteHeader() {
 
   const handleAdminClick = () => {
     setMenuOpen(false);
-    // Check if already authenticated this session
-    if (sessionStorage.getItem('website-admin-auth') === 'true') {
-      navigate('/website/admin/banners');
-      return;
-    }
-    const input = prompt('관리자 비밀번호를 입력하세요');
-    if (input === ADMIN_PIN) {
-      sessionStorage.setItem('website-admin-auth', 'true');
-      navigate('/website/admin/banners');
-    } else if (input !== null) {
-      alert('비밀번호가 올바르지 않습니다');
-    }
+    navigate('/website/admin/banners');
   };
 
   return (

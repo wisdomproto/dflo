@@ -79,22 +79,22 @@ export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgCl
   );
 
   const scrollContent = (
-    <>
+    <div className="flex flex-col h-full w-full">
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+        className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory flex-1"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {children.map((child, i) => (
           <div key={i}
-            className={`snap-start flex-shrink-0 w-[85vw] ${desktopCardCls}`}>
+            className={`snap-start flex-shrink-0 w-[85vw] h-full ${desktopCardCls}`}>
             {child}
           </div>
         ))}
       </div>
       {/* Dots */}
       {total > 1 && (
-        <div className="flex justify-center gap-1.5 mt-4">
+        <div className="flex justify-center gap-1.5 py-4 flex-shrink-0">
           {Array.from({ length: total }).map((_, i) => (
             <button key={i} onClick={() => scrollToIndex(i)}
               className={`rounded-full transition-all duration-300 ${
@@ -103,19 +103,19 @@ export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgCl
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 
   // Side header layout (title on left, cards on right)
   if (sideHeader) {
     return (
-      <section id={id} className={`py-6 md:py-10 px-4 md:px-6 ${bgClass}`}>
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+      <section id={id} className={`px-4 md:px-6 ${bgClass} flex items-center`} style={{ minHeight: '100dvh' }}>
+        <div className="max-w-5xl mx-auto w-full h-full bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
           {/* Mobile: top header */}
-          <div className="md:hidden px-5 pt-6 pb-3">
+          <div className="md:hidden px-5 pt-6 pb-3 flex-shrink-0">
             <h2 className="text-2xl font-extrabold text-[#0F6E56]">{title}</h2>
           </div>
-          <div className="md:flex">
+          <div className="md:flex flex-1 w-full h-full">
             {/* Desktop: side header */}
             <div className="hidden md:flex md:flex-col md:justify-between md:w-56 md:flex-shrink-0 md:p-8 md:border-r md:border-gray-100">
               <div>
@@ -125,7 +125,7 @@ export function WebsiteSlider({ id, tag, title, children, desktopCards = 2, bgCl
               <div className="mt-6">{arrowNav}</div>
             </div>
             {/* Cards */}
-            <div className="flex-1 min-w-0 px-5 py-5 md:px-6 md:py-8">
+            <div className="flex-1 min-w-0 px-5 py-5 md:px-6 md:py-8 flex items-stretch justify-center">
               {scrollContent}
             </div>
           </div>
