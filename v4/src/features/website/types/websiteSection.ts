@@ -1,28 +1,30 @@
-// Website section types - for managing homepage sections
-export interface WebsiteSection {
+// Website section types
+// Each section = a collection of banner slides
+// template field allows different render styles in the future
+
+export interface BannerSlide {
   id: string;
-  order: number; // 0 = Section 1, 1 = Section 2, etc.
-  sectionType: 'growthGuide' | 'recipe' | 'exercise' | 'case'; // section content type
-  title: string; // section header 
-  subtitle?: string; // optional section subheader
-  
-  // Cards/content
-  items?: SectionItem[];
-  
-  // Styling
-  bgColor?: string;
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaAction: 'scroll' | 'link';
+  ctaTarget: string;
+  imageUrl?: string;
+  childImageUrl?: string;
+  bgGradient?: string;
+  order: number;
+  titleSize?: number;
   titleColor?: string;
-  
-  // Metadata
-  createdAt?: string;
-  updatedAt?: string;
+  subtitleSize?: number;
+  subtitleColor?: string;
 }
 
-export interface SectionItem {
+export interface WebsiteSection {
   id: string;
-  emoji: string;
-  title: string;
-  description: string;
-  imageUrl?: string;
-  link?: string;
+  order_index: number;
+  template: 'banner'; // future: 'video' | 'cards' etc.
+  title?: string;
+  slides: BannerSlide[];
+  created_at?: string;
+  updated_at?: string;
 }

@@ -39,6 +39,8 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Custom theme: primary (#667eea), secondary (#764ba2)
 - Supabase Storage: `content-images` bucket, `meal-photos` bucket
 - Image compression: 1200x1200 JPEG 80% before upload
+- Website sections: unified model (each section = slides collection, template-based rendering)
+- DB: `website_sections` table (JSONB slides), legacy fallback to `website_banners`
 
 ## Environment Variables
 ```
@@ -56,6 +58,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 0-5: COMPLETE (setup, auth, core pages, content, admin)
 - Phase 6: PARTIAL (meal AI working, body analysis mock)
 - Phase 7: COMPLETE (hospital website redesign)
+- Phase 7.5: IN PROGRESS (unified section system - banner template done, video/cards templates planned)
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`

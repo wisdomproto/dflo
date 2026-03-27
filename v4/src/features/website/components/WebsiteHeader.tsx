@@ -56,7 +56,7 @@ export function WebsiteHeader() {
 
   const handleAdminClick = () => {
     setMenuOpen(false);
-    navigate('/website/admin/banners');
+    navigate('/website/admin');
   };
 
   return (

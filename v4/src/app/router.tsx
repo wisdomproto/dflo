@@ -65,22 +65,6 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/website/admin/banners',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <AdminWebsitePage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/website/admin/sections',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <AdminWebsitePage />
-      </Suspense>
-    ),
-  },
-  {
     path: '/website/program/:slug',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
