@@ -318,7 +318,7 @@ export default function AdminBannerPage() {
           >
             섹션 1
           </button>
-          
+
           {/* 섹션 2, 3, ... */}
           {sections.map((_, idx) => (
             <button
@@ -333,6 +333,19 @@ export default function AdminBannerPage() {
               섹션 {idx + 2}
             </button>
           ))}
+
+          {/* 섹션 추가 버튼 */}
+          <button
+            onClick={() => {
+              const newSections = [...sections, emptySection(sections.length)];
+              setSections(newSections);
+              setActiveTab(newSections.length);
+            }}
+            className="shrink-0 ml-auto px-3 py-2 rounded-t-xl text-sm font-semibold border-b-2 border-transparent text-[#0F6E56] hover:bg-[#E8F5F0] transition-all"
+            title="새 섹션 추가"
+          >
+            + 섹션 추가
+          </button>
         </div>
 
         {loading && (
