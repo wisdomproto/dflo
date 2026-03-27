@@ -68,7 +68,7 @@ export default function AdminBannerPage() {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
   const [authed, setAuthed] = useState(false);
-  const [tab, setTab] = useState<'banners' | 'sections'>('banners');
+  const [activeTab, setActiveTab] = useState(0); // 0 = 섹션1 (배너), 1+ = 섹션2, 3, ...
   
   // Banner state
   const [slides, setSlides] = useState<BannerSlide[]>([]);
@@ -77,7 +77,6 @@ export default function AdminBannerPage() {
   
   // Section state
   const [sections, setSections] = useState<WebsiteSection[]>([]);
-  const [activeSectionTab, setActiveSectionTab] = useState(0);
   
   // Common state
   const [saving, setSaving] = useState(false);
@@ -116,10 +115,12 @@ export default function AdminBannerPage() {
     setSaving(true);
     setSaveMsg('');
     try {
-      if (tab === 'banners') {
+      if (activeTab === 0) {
+        // 섹션 1: 배너
         const result = await saveBanners(slides);
         setSlides(result);
       } else {
+        // 섹션 2, 3, ...: 컨텐츠 섹션
         const result = await saveSections(sections);
         setSections(result);
       }
@@ -162,7 +163,7 @@ export default function AdminBannerPage() {
   const addSection = () => {
     const newSections = [...sections, emptySection(sections.length)];
     setSections(newSections);
-    setActiveSectionTab(newSections.length - 1);
+    setActiveTab(newSections.length); // 새 섹션 탭으로 이동
   };
 
   const updateSection = (id: string, updates: Partial<WebsiteSection>) => {
@@ -172,7 +173,10 @@ export default function AdminBannerPage() {
   const removeSection = (id: string) => {
     const newSections = sections.filter((s) => s.id !== id);
     setSections(newSections);
-    if (activeSectionTab >= newSections.length) setActiveSectionTab(Math.max(0, newSections.length - 1));
+    // activeTab가 범위를 벗어나면 조정
+    if (activeTab > newSections.length) {
+      setActiveTab(Math.max(1, newSections.length));
+    }
   };
 
   const addItem = (sectionId: string) => {
@@ -252,28 +256,34 @@ export default function AdminBannerPage() {
       </header>
 
       <div className="max-w-lg mx-auto px-4 py-4 space-y-4">
-        {/* Management Tabs */}
-        <div className="flex gap-2 border-b border-gray-200">
+        {/* Section Tabs: 섹션 1, 2, 3, ... */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-gray-200">
+          {/* 섹션 1: 배너 */}
           <button
-            onClick={() => setTab('banners')}
-            className={`px-4 py-3 text-sm font-semibold transition-all ${
-              tab === 'banners'
-                ? 'border-b-2 border-[#0F6E56] text-[#0F6E56]'
+            onClick={() => setActiveTab(0)}
+            className={`shrink-0 px-4 py-2 rounded-t-xl text-sm font-semibold transition-all ${
+              activeTab === 0
+                ? 'border-b-2 border-[#0F6E56] text-[#0F6E56] bg-white'
                 : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            배너
+            섹션 1
           </button>
-          <button
-            onClick={() => setTab('sections')}
-            className={`px-4 py-3 text-sm font-semibold transition-all ${
-              tab === 'sections'
-                ? 'border-b-2 border-[#0F6E56] text-[#0F6E56]'
-                : 'text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            섹션
-          </button>
+          
+          {/* 섹션 2, 3, ... */}
+          {sections.map((_, idx) => (
+            <button
+              key={idx + 1}
+              onClick={() => setActiveTab(idx + 1)}
+              className={`shrink-0 px-4 py-2 rounded-t-xl text-sm font-semibold transition-all ${
+                activeTab === idx + 1
+                  ? 'border-b-2 border-[#0F6E56] text-[#0F6E56] bg-white'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              섹션 {idx + 2}
+            </button>
+          ))}
         </div>
 
         {loading && (
@@ -282,8 +292,8 @@ export default function AdminBannerPage() {
           </div>
         )}
 
-        {/* BANNERS TAB */}
-        {tab === 'banners' && !loading && (
+        {/* 섹션 1: 배너 관리 */}
+        {activeTab === 0 && !loading && (
           <BannersContent
             slides={slides}
             activeBannerTab={activeBannerTab}
@@ -298,13 +308,13 @@ export default function AdminBannerPage() {
           />
         )}
 
-        {/* SECTIONS TAB */}
-        {tab === 'sections' && !loading && (
+        {/* 섹션 2, 3, ... 관리 */}
+        {activeTab > 0 && !loading && (
           <SectionsContent
             sections={sections}
-            activeSectionTab={activeSectionTab}
-            setActiveSectionTab={setActiveSectionTab}
-            currentSection={currentSection}
+            activeSectionTab={activeTab - 1}
+            setActiveSectionTab={(idx) => setActiveTab(idx + 1)}
+            currentSection={sections[activeTab - 1] || null}
             addSection={addSection}
             updateSection={updateSection}
             removeSection={removeSection}
