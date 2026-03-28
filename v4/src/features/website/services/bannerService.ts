@@ -24,6 +24,7 @@ interface BannerRow {
 
 function rowToSlide(row: BannerRow): BannerSlide {
   return {
+    template: 'banner',
     id: row.id,
     title: row.title,
     subtitle: row.subtitle,

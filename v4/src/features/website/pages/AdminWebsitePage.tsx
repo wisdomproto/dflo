@@ -171,13 +171,7 @@ export default function AdminWebsitePage() {
     setActiveSlide(0);
   };
 
-  const moveSection = (from: number, to: number) => {
-    if (to < 0 || to >= sections.length) return;
-    const ns = [...sections];
-    [ns[from], ns[to]] = [ns[to], ns[from]];
-    setSections(ns);
-    setActiveSection(to);
-  };
+
 
   // ---- Slide actions ----
   const sec = sections[activeSection];
