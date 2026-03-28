@@ -7,7 +7,7 @@ import { ImageUploader } from '@/features/admin/components/ImageUploader';
 import { useAuthStore } from '@/stores/authStore';
 import { fetchSections, saveSections } from '../services/websiteSectionService';
 import type { WebsiteSection, BannerSlide, VideoSlide, Slide, SlideTemplate } from '../types/websiteSection';
-import { SectionCarousel, extractVideoId } from '../components/SectionCarousel';
+import { SectionCarousel } from '../components/SectionCarousel';
 
 function uid() {
   return `id-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
@@ -418,6 +418,10 @@ export default function AdminWebsitePage() {
                         <div className="flex items-center justify-between mb-1">
                           <label className="text-xs font-semibold text-gray-500">제목</label>
                           <div className="flex items-center gap-1.5">
+                            <button onClick={() => updateSlide(activeSlide, { titleShadow: !(bs.titleShadow ?? true) })}
+                              className={`text-[10px] px-1.5 py-0.5 rounded ${(bs.titleShadow ?? true) ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-400'}`}>
+                              그림자
+                            </button>
                             <input type="color" value={bs.titleColor || '#ffffff'}
                               onChange={(e) => updateSlide(activeSlide, { titleColor: e.target.value })}
                               className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
@@ -437,6 +441,10 @@ export default function AdminWebsitePage() {
                         <div className="flex items-center justify-between mb-1">
                           <label className="text-xs font-semibold text-gray-500">설명</label>
                           <div className="flex items-center gap-1.5">
+                            <button onClick={() => updateSlide(activeSlide, { subtitleShadow: !(bs.subtitleShadow ?? true) })}
+                              className={`text-[10px] px-1.5 py-0.5 rounded ${(bs.subtitleShadow ?? true) ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-400'}`}>
+                              그림자
+                            </button>
                             <input type="color" value={bs.subtitleColor || '#ffffff'}
                               onChange={(e) => updateSlide(activeSlide, { subtitleColor: e.target.value === '#ffffff' ? undefined : e.target.value })}
                               className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
@@ -610,7 +618,7 @@ function SlidePreview({ slides, initialIndex }: { slides: Slide[]; initialIndex:
   return (
     <MobilePreview>
       <div className="w-[351px] h-[439px] rounded-2xl overflow-hidden bg-white">
-        <SectionCarousel slides={slides} initialIndex={initialIndex} />
+        <SectionCarousel key={`${initialIndex}-${slides.length}`} slides={slides} initialIndex={initialIndex} />
       </div>
     </MobilePreview>
   );
