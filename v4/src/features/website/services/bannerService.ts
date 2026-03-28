@@ -3,7 +3,7 @@
 // ================================================
 
 import { supabase } from '@/shared/lib/supabase';
-import type { BannerSlide } from '../components/HeroBanner';
+import type { BannerSlide } from '../types/websiteSection';
 
 interface BannerRow {
   id: string;

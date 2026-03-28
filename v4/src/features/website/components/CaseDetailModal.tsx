@@ -2,7 +2,7 @@ import { InfoModal } from './InfoModal';
 import { CaseDetail } from '@/features/content/components/CaseDetail';
 import type { GrowthCase } from '@/shared/types';
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/';
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_ZxneSb';
 
 interface Props {
   caseData: GrowthCase | null;

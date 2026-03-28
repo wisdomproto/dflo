@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { WebsiteLayout } from '../components/WebsiteLayout';
-import { HeroBanner } from '../components/HeroBanner';
+import { SectionCarousel } from '../components/SectionCarousel';
 import { fetchSections } from '../services/websiteSectionService';
 import type { WebsiteSection } from '../types/websiteSection';
 
@@ -45,10 +45,7 @@ export default function WebsiteHomePage() {
     <WebsiteLayout>
       {sections.map((section, idx) => (
         <div key={section.id || idx} style={snapStyle}>
-          {section.template === 'banner' && (
-            <HeroBanner slides={section.slides} />
-          )}
-          {/* Future templates: 'video', 'cards', etc. */}
+          <SectionCarousel slides={section.slides} />
         </div>
       ))}
     </WebsiteLayout>

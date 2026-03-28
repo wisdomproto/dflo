@@ -58,7 +58,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 0-5: COMPLETE (setup, auth, core pages, content, admin)
 - Phase 6: PARTIAL (meal AI working, body analysis mock)
 - Phase 7: COMPLETE (hospital website redesign)
-- Phase 7.5: IN PROGRESS (unified section system - banner template done, video/cards templates planned)
+- Phase 7.5: COMPLETE (unified section system - per-slide templates, banner+video, dnd-kit reorder, mobile browser preview)
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`
