@@ -43,7 +43,11 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Per-slide templates: banner (image+text) or video (YouTube+text) in same section
 - DB: `website_sections` table (JSONB slides), legacy fallback to `website_banners`
 - Admin preview: actual SectionCarousel component + CSS mobile override + scale
-- Bottom tab bar: 병원 소개, 예상키 측정, 카카오톡 상담 (플로팅 버튼 대체)
+- Bottom tab bar: 예상키 측정, 카카오톡 상담 (플로팅 버튼 대체)
+- Image paste upload: Ctrl+V로 클립보드 이미지 업로드 지원
+- Contain mode: 긴 이미지(인포그래픽) 원본 비율 표시 (4:5 제약 해제)
+- Title/subtitle shadow toggle per slide
+- Website bg: gray-200, 카카오 아이콘: 노란색 SVG
 
 ## Environment Variables
 ```

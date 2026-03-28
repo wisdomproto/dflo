@@ -51,30 +51,37 @@ export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
 
   if (!slides.length) return null;
 
+  // Current slide determines if we use fixed or natural height
+  const currentSlide = slides[current];
+  const isContain = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).imageFit === 'contain';
+
   return (
     <section
-      className="relative overflow-hidden w-full aspect-[4/5]"
+      className={`relative overflow-hidden w-full ${isContain ? '' : 'aspect-[4/5]'}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Slide content - fade transition */}
-      {slides.map((slide, i) => (
-        <div
-          key={slide.id}
-          className="absolute inset-0"
-          style={{
-            opacity: i === current ? 1 : 0,
-            visibility: i === current ? 'visible' : 'hidden',
-            pointerEvents: i === current ? 'auto' : 'none',
-            transition: 'opacity 500ms ease-in-out, visibility 500ms ease-in-out',
-          }}
-        >
-          {slide.template === 'banner'
-            ? <BannerContent slide={slide} />
-            : <VideoContent slide={slide} />
-          }
-        </div>
-      ))}
+      {/* Slide content */}
+      {slides.map((slide, i) => {
+        const slideContain = slide.template === 'banner' && (slide as BannerSlide).imageFit === 'contain';
+        return (
+          <div
+            key={slide.id}
+            className={i === current && slideContain ? 'relative' : 'absolute inset-0'}
+            style={{
+              opacity: i === current ? 1 : 0,
+              visibility: i === current ? 'visible' : 'hidden',
+              pointerEvents: i === current ? 'auto' : 'none',
+              transition: 'opacity 500ms ease-in-out, visibility 500ms ease-in-out',
+            }}
+          >
+            {slide.template === 'banner'
+              ? <BannerContent slide={slide} />
+              : <VideoContent slide={slide} />
+            }
+          </div>
+        );
+      })}
 
       {/* Instagram-style dots at bottom */}
       {total > 1 && (
@@ -89,6 +96,7 @@ export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
           ))}
         </div>
       )}
+
     </section>
   );
 }
@@ -103,12 +111,18 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
     }
   };
 
+  const isContain = s.imageFit === 'contain';
+
   return (
-    <div className="absolute inset-0">
+    <div className={isContain ? 'relative w-full' : 'absolute inset-0'}>
       {s.imageUrl ? (
-        <img src={s.imageUrl} alt="" className={`absolute inset-0 w-full h-full object-center ${s.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`} />
+        isContain ? (
+          <img src={s.imageUrl} alt="" className="w-full h-auto" />
+        ) : (
+          <img src={s.imageUrl} alt="" className="absolute inset-0 w-full h-full object-center object-cover" />
+        )
       ) : (
-        <div className="absolute inset-0 bg-[#F5F0EA]" />
+        <div className={isContain ? 'w-full aspect-[4/5] bg-[#F5F0EA]' : 'absolute inset-0 bg-[#F5F0EA]'} />
       )}
       <div className="absolute left-0 right-0 z-10 px-6" style={{ bottom: `${s.textPositionY ?? 12}%` }}>
         <div className="max-w-2xl mx-auto text-center">
@@ -119,7 +133,7 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
             style={{
               fontSize: s.titleSize ? `${s.titleSize}px` : undefined,
               color: s.titleColor || undefined,
-              textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+              textShadow: (s.titleShadow ?? true) ? '0 2px 8px rgba(0,0,0,0.5)' : 'none',
             }}
           >
             {s.title}
@@ -132,7 +146,7 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
               style={{
                 fontSize: s.subtitleSize ? `${s.subtitleSize}px` : undefined,
                 color: s.subtitleColor || undefined,
-                textShadow: '0 1px 6px rgba(0,0,0,0.5)',
+                textShadow: (s.subtitleShadow ?? true) ? '0 1px 6px rgba(0,0,0,0.5)' : 'none',
               }}
             >
               {s.subtitle}

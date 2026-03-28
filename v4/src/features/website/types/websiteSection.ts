@@ -21,6 +21,8 @@ export interface BannerSlide {
   subtitleSize?: number;
   subtitleColor?: string;
   textPositionY?: number; // bottom % (default 12)
+  titleShadow?: boolean; // default true
+  subtitleShadow?: boolean; // default true
   ctaSize?: 'sm' | 'md' | 'lg';
 }
 

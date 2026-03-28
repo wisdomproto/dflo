@@ -4,7 +4,7 @@
 // 이미지 위에 드래그 앤 드롭으로 교체 가능
 // ================================================
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { uploadImage, deleteImage } from '@/shared/lib/storage';
 
 type Folder = 'recipes' | 'guides' | 'cases' | 'banners';
@@ -24,6 +24,23 @@ export function ImageUploader({ folder, currentUrl, onUploaded, onRemoved, onPre
   const [error, setError] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Clipboard paste support (Ctrl+V anywhere on page)
+  const handlePaste = useCallback((e: ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    for (const item of Array.from(items)) {
+      if (item.type.startsWith('image/')) {
+        e.preventDefault();
+        const file = item.getAsFile();
+        if (file) handleFileRef.current(file);
+        break;
+      }
+    }
+  }, []);
+
+  // Use ref to avoid stale closure in paste handler
+  const handleFileRef = useRef<(f: File) => void>(() => {});
 
   const handleFile = async (file: File) => {
     if (!file.type.startsWith('image/')) {
@@ -53,6 +70,13 @@ export function ImageUploader({ folder, currentUrl, onUploaded, onRemoved, onPre
       setUploading(false);
     }
   };
+
+  handleFileRef.current = handleFile;
+
+  useEffect(() => {
+    document.addEventListener('paste', handlePaste);
+    return () => document.removeEventListener('paste', handlePaste);
+  }, [handlePaste]);
 
   const handleRemove = async () => {
     if (currentUrl && currentUrl.includes('supabase')) {
@@ -148,7 +172,7 @@ export function ImageUploader({ folder, currentUrl, onUploaded, onRemoved, onPre
           ) : (
             <>
               <span className="text-2xl text-gray-300">📷</span>
-              <p className="text-xs text-gray-400 mt-1">클릭 또는 드래그하여 업로드</p>
+              <p className="text-xs text-gray-400 mt-1">클릭, 드래그 또는 붙여넣기(Ctrl+V)</p>
               <p className="text-[10px] text-gray-300">JPG, PNG, WebP (5MB 이하)</p>
             </>
           )}
