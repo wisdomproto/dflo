@@ -39,8 +39,11 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Custom theme: primary (#667eea), secondary (#764ba2)
 - Supabase Storage: `content-images` bucket, `meal-photos` bucket
 - Image compression: 1200x1200 JPEG 80% before upload
-- Website sections: unified model (each section = slides collection, template-based rendering)
+- Website sections: Instagram card-news style (4:5 ratio cards, swipe carousel)
+- Per-slide templates: banner (image+text) or video (YouTube+text) in same section
 - DB: `website_sections` table (JSONB slides), legacy fallback to `website_banners`
+- Admin preview: actual SectionCarousel component + CSS mobile override + scale
+- Bottom tab bar: 병원 소개, 예상키 측정, 카카오톡 상담 (플로팅 버튼 대체)
 
 ## Environment Variables
 ```
@@ -58,7 +61,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 0-5: COMPLETE (setup, auth, core pages, content, admin)
 - Phase 6: PARTIAL (meal AI working, body analysis mock)
 - Phase 7: COMPLETE (hospital website redesign)
-- Phase 7.5: COMPLETE (unified section system - per-slide templates, banner+video, dnd-kit reorder, mobile browser preview)
+- Phase 7.5: COMPLETE (Instagram card-news redesign, per-slide templates, dnd-kit reorder, bottom tab bar, admin live preview)
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`

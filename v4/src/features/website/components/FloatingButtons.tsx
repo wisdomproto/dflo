@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { HeightCalculator } from './HeightCalculator';
+import { AboutModal } from './AboutModal';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_ZxneSb';
 
-const btnBase = 'flex items-center gap-2 rounded-full px-4 py-2.5 shadow-lg text-sm font-bold transition-all hover:scale-105 active:scale-95';
-
 export function FloatingButtons() {
   const [showCalc, setShowCalc] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   // Listen for banner CTA click
   useEffect(() => {
@@ -17,20 +17,32 @@ export function FloatingButtons() {
 
   return (
     <>
-      {/* Floating button group */}
-      <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-2 items-end">
-        <button onClick={() => setShowCalc(true)}
-          className={`${btnBase} bg-[#0F6E56] text-white hover:shadow-xl hover:bg-[#0D5A47]`}>
-          <span>📏</span> 예상키 측정
-        </button>
-        <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-          className={`${btnBase} bg-[#FEE500] text-[#3C1E1E] hover:shadow-xl`}>
-          <span>💬</span> 카카오톡 상담
-        </a>
+      {/* Fixed bottom tab bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.08)]">
+        <div className="max-w-5xl mx-auto flex items-center justify-around h-14">
+          <button onClick={() => setShowAbout(true)}
+            className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-gray-600 hover:text-[#0F6E56] active:scale-95 transition-all">
+            <span className="text-lg">🏥</span>
+            <span className="text-[11px] font-semibold">병원 소개</span>
+          </button>
+          <button onClick={() => setShowCalc(true)}
+            className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-[#0F6E56] hover:text-[#0d5e4a] active:scale-95 transition-all">
+            <span className="text-lg">📏</span>
+            <span className="text-[11px] font-bold">예상키 측정</span>
+          </button>
+          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-gray-600 hover:text-gray-800 active:scale-95 transition-all">
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="#FEE500">
+              <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.86 5.21 4.64 6.59-.15.53-.96 3.41-1 3.56 0 .1.04.2.13.26.06.04.13.06.2.06.09 0 .18-.04.25-.1.93-.68 3.41-2.32 3.95-2.69.58.08 1.18.12 1.83.12 5.52 0 10-3.58 10-7.9S17.52 3 12 3z"/>
+            </svg>
+            <span className="text-[11px] font-semibold">카카오톡 상담</span>
+          </a>
+        </div>
       </div>
 
       {/* Modals */}
       <HeightCalculator isOpen={showCalc} onClose={() => setShowCalc(false)} />
+      <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
     </>
   );
 }

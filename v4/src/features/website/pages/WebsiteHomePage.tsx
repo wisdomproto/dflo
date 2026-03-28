@@ -15,39 +15,15 @@ export default function WebsiteHomePage() {
     fetchSections().then(setSections);
   }, []);
 
-  // Full-page snap scroll
-  useEffect(() => {
-    const main = document.querySelector('main');
-    if (!main) return;
-
-    let isScrolling = false;
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling) return;
-      const delta = e.deltaY;
-      if (Math.abs(delta) < 10) return;
-
-      isScrolling = true;
-      const vh = window.innerHeight;
-      const next = Math.round((main.scrollTop + (delta > 0 ? vh : -vh)) / vh) * vh;
-      main.scrollTo({ top: next, behavior: 'smooth' });
-
-      setTimeout(() => { isScrolling = false; }, 800);
-      e.preventDefault();
-    };
-
-    main.addEventListener('wheel', handleWheel, { passive: false });
-    return () => main.removeEventListener('wheel', handleWheel);
-  }, []);
-
-  const snapStyle = { scrollSnapAlign: 'start' as const, scrollSnapStop: 'always' as const };
-
   return (
     <WebsiteLayout>
-      {sections.map((section, idx) => (
-        <div key={section.id || idx} style={snapStyle}>
-          <SectionCarousel slides={section.slides} />
-        </div>
-      ))}
+      <div className="flex flex-col gap-3 p-3">
+        {sections.map((section, idx) => (
+          <div key={section.id || idx} className="rounded-2xl overflow-hidden shadow-md bg-white">
+            <SectionCarousel slides={section.slides} />
+          </div>
+        ))}
+      </div>
     </WebsiteLayout>
   );
 }

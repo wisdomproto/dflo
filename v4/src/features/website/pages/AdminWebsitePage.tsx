@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DndContext, closestCenter, PointerSensor, TouchSensor, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, horizontalListSortingStrategy, useSortable, arrayMove } from '@dnd-kit/sortable';
@@ -7,7 +7,7 @@ import { ImageUploader } from '@/features/admin/components/ImageUploader';
 import { useAuthStore } from '@/stores/authStore';
 import { fetchSections, saveSections } from '../services/websiteSectionService';
 import type { WebsiteSection, BannerSlide, VideoSlide, Slide, SlideTemplate } from '../types/websiteSection';
-import { extractVideoId } from '../components/SectionCarousel';
+import { SectionCarousel, extractVideoId } from '../components/SectionCarousel';
 
 function uid() {
   return `id-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
@@ -388,8 +388,7 @@ export default function AdminWebsitePage() {
                       )}
                     </div>
                   </div>
-                  {slide.template === 'banner' && <BannerSlidePreview slide={slide as BannerSlide} />}
-                  {slide.template === 'video' && <VideoSlidePreview slide={slide as VideoSlide} />}
+                  <SlidePreview slides={sec.slides} initialIndex={activeSlide} />
                 </div>
 
                 {/* Banner Form */}
@@ -564,113 +563,55 @@ export default function AdminWebsitePage() {
   );
 }
 
-// ============= Mobile Browser Frame =============
-// Pure geometric shapes — no text, scales to any size
-// Proportions: address bar 6% + app header 7% + content 80% + bottom nav 7%
-function MobileFrame({ children }: { children: React.ReactNode }) {
+// ============= Mobile Preview Container =============
+// Forces mobile viewport styles by overriding md: breakpoints via CSS.
+// Wraps content in a 351px container (real mobile card width) and scales to fit.
+function MobilePreview({ children }: { children: React.ReactNode }) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [scale, setScale] = React.useState(1);
+
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new ResizeObserver((entries) => {
+      const w = entries[0]?.contentRect.width ?? 351;
+      setScale(w / 351);
+    });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div className="aspect-[9/16] relative bg-gray-100 overflow-hidden flex flex-col">
-      {/* Browser address bar — 6% */}
-      <div className="flex-shrink-0 bg-gray-100 flex items-center px-[4%] gap-[3%]" style={{ height: '6%' }}>
-        <div className="flex-1 bg-white rounded-full" style={{ height: '45%' }} />
-      </div>
-      {/* App header — 7% */}
-      <div className="flex-shrink-0 bg-white flex items-center justify-between px-[4%] border-b border-gray-100" style={{ height: '7%' }}>
-        <div className="bg-gray-300 rounded" style={{ width: '25%', height: '30%' }} />
-        <div className="bg-gray-200 rounded" style={{ width: '6%', height: '30%' }} />
-      </div>
-      {/* Content area — flex-1 (≈80%) */}
-      <div className="flex-1 relative overflow-hidden">
+    <div ref={containerRef} className="w-full aspect-[4/5] relative overflow-hidden bg-black rounded-lg">
+      {/* force-mobile: CSS overrides to neutralize md: breakpoints */}
+      <div
+        className="force-mobile"
+        style={{
+          width: 351,
+          height: 439,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+        }}
+      >
+        <style>{`
+          .force-mobile h1 { font-size: 36px !important; }
+          .force-mobile .text-\\[15px\\], .force-mobile p[class*="text-"] { font-size: 15px !important; }
+        `}</style>
         {children}
-      </div>
-      {/* Browser bottom nav — 7% */}
-      <div className="flex-shrink-0 bg-gray-100 flex items-center justify-around px-[12%]" style={{ height: '7%' }}>
-        <div className="bg-gray-300 rounded-sm" style={{ width: '8%', height: '30%' }} />
-        <div className="bg-gray-300 rounded-full" style={{ width: '8%', aspectRatio: '1' }} />
-        <div className="bg-gray-300 rounded-sm" style={{ width: '8%', height: '30%' }} />
       </div>
     </div>
   );
 }
 
-// ============= Banner Slide Preview =============
-function BannerSlidePreview({ slide }: { slide: BannerSlide }) {
+// ============= Slide Preview =============
+// Uses the ACTUAL SectionCarousel component inside MobilePreview for 100% match.
+// MobilePreview forces mobile font sizes and scales to fit.
+function SlidePreview({ slides, initialIndex }: { slides: Slide[]; initialIndex: number }) {
   return (
-    <MobileFrame>
-      <div className="absolute inset-0 bg-[#F5F0EA]">
-        {slide.imageUrl ? (
-          <img src={slide.imageUrl} alt="" className={`absolute inset-0 w-full h-full object-center ${slide.imageFit === 'contain' ? 'object-contain' : 'object-cover'}`} />
-        ) : (
-          <div className="absolute inset-0 bg-[#F5F0EA]" />
-        )}
-        <div className="absolute left-0 right-0 z-10 px-5" style={{ bottom: `${slide.textPositionY ?? 12}%` }}>
-          <div className="text-center">
-            <p className="font-extrabold leading-[1.15] whitespace-pre-line mb-1.5"
-              style={{
-                fontSize: slide.titleSize ? `${Math.round(slide.titleSize * 0.7)}px` : '28px',
-                color: slide.titleColor || '#ffffff',
-                textShadow: '0 2px 8px rgba(0,0,0,0.5)',
-              }}>
-              {slide.title || '제목을 입력하세요'}
-            </p>
-            {slide.subtitle && (
-              <p className="mb-2 whitespace-pre-line"
-                style={{
-                  fontSize: slide.subtitleSize ? `${Math.round(slide.subtitleSize * 0.7)}px` : '11px',
-                  color: slide.subtitleColor || 'rgba(255,255,255,0.9)',
-                  textShadow: '0 1px 6px rgba(0,0,0,0.5)',
-                }}>
-                {slide.subtitle}
-              </p>
-            )}
-            {slide.ctaText && (
-              <span className={`inline-flex items-center gap-1 rounded-full bg-[#0F6E56] text-white font-bold ${
-                slide.ctaSize === 'sm' ? 'px-2 py-1 text-[8px]' :
-                slide.ctaSize === 'lg' ? 'px-5 py-2 text-[11px]' :
-                'px-3 py-1.5 text-[9px]'
-              }`}>
-                {slide.ctaText}
-              </span>
-            )}
-          </div>
-        </div>
+    <MobilePreview>
+      <div className="w-[351px] h-[439px] rounded-2xl overflow-hidden bg-white">
+        <SectionCarousel slides={slides} initialIndex={initialIndex} />
       </div>
-    </MobileFrame>
-  );
-}
-
-// ============= Video Slide Preview =============
-function VideoSlidePreview({ slide }: { slide: VideoSlide }) {
-  const videoId = extractVideoId(slide.videoUrl);
-  return (
-    <MobileFrame>
-      <div className="w-full h-full flex flex-col bg-white">
-        <div className="w-full bg-black" style={{ height: '55%' }}>
-          {videoId ? (
-            <img
-              src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
-              alt="썸네일"
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-white/50 text-[9px]">
-              YouTube URL을 입력하세요
-            </div>
-          )}
-        </div>
-        <div className="flex-1 flex flex-col items-center justify-center px-4 text-center">
-          <p className="font-extrabold text-sm leading-tight mb-1 whitespace-pre-line"
-            style={{ color: slide.titleColor || '#1a1a1a' }}>
-            {slide.title || '제목을 입력하세요'}
-          </p>
-          {slide.description && (
-            <p className="text-[9px] whitespace-pre-line"
-              style={{ color: slide.descriptionColor || '#666666' }}>
-              {slide.description}
-            </p>
-          )}
-        </div>
-      </div>
-    </MobileFrame>
+    </MobilePreview>
   );
 }

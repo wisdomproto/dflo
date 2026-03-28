@@ -1,7 +1,7 @@
-// SectionCarousel - Unified carousel for mixed banner/video slides
-// Each slide renders according to its own template field
+// SectionCarousel - Instagram card-news style carousel
+// 4:5 aspect ratio, small dots at bottom, swipe-only navigation
 
-import { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import type { Slide, BannerSlide, VideoSlide } from '../types/websiteSection';
 
 export function extractVideoId(url: string): string | null {
@@ -20,11 +20,17 @@ export function extractVideoId(url: string): string | null {
 
 interface Props {
   slides: Slide[];
+  initialIndex?: number;
 }
 
-export function SectionCarousel({ slides }: Props) {
-  const [current, setCurrent] = useState(0);
+export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
+  const [current, setCurrent] = useState(initialIndex);
   const total = slides.length;
+
+  // Sync with external initialIndex changes (admin preview)
+  React.useEffect(() => {
+    setCurrent(initialIndex);
+  }, [initialIndex]);
 
   const goTo = useCallback((i: number) => {
     setCurrent(((i % total) + total) % total);
@@ -44,12 +50,10 @@ export function SectionCarousel({ slides }: Props) {
   };
 
   if (!slides.length) return null;
-  const s = slides[current];
-  if (!s) return null;
 
   return (
     <section
-      className="relative overflow-hidden w-full h-[calc(100dvh-57px)]"
+      className="relative overflow-hidden w-full aspect-[4/5]"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -62,7 +66,7 @@ export function SectionCarousel({ slides }: Props) {
             opacity: i === current ? 1 : 0,
             visibility: i === current ? 'visible' : 'hidden',
             pointerEvents: i === current ? 'auto' : 'none',
-            transition: 'opacity 700ms ease-in-out, visibility 700ms ease-in-out',
+            transition: 'opacity 500ms ease-in-out, visibility 500ms ease-in-out',
           }}
         >
           {slide.template === 'banner'
@@ -72,42 +76,19 @@ export function SectionCarousel({ slides }: Props) {
         </div>
       ))}
 
-      {/* Arrows */}
+      {/* Instagram-style dots at bottom */}
       {total > 1 && (
-        <>
-          <button onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 active:scale-95 transition-all backdrop-blur-sm">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 active:scale-95 transition-all backdrop-blur-sm">
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </>
-      )}
-
-      {/* Dots */}
-      {total > 1 && (
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-[5px]">
           {slides.map((_, i) => (
             <button key={i} onClick={() => goTo(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === current ? 'w-6 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
+              className={`rounded-full transition-all duration-300 ${
+                i === current
+                  ? 'w-[6px] h-[6px] bg-white'
+                  : 'w-[6px] h-[6px] bg-white/40'
               }`} />
           ))}
         </div>
       )}
-
-      {/* Scroll down indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <svg className="w-6 h-6 text-white/70 drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
     </section>
   );
 }
@@ -132,8 +113,8 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
       <div className="absolute left-0 right-0 z-10 px-6" style={{ bottom: `${s.textPositionY ?? 12}%` }}>
         <div className="max-w-2xl mx-auto text-center">
           <h1
-            className={`font-extrabold leading-[1.15] mb-3 whitespace-pre-line animate-[fadeUp_0.5s_ease-out] ${
-              !s.titleSize ? 'text-[42px] md:text-[56px]' : ''
+            className={`font-extrabold leading-[1.15] mb-3 whitespace-pre-line ${
+              !s.titleSize ? 'text-[36px] md:text-[48px]' : ''
             } ${!s.titleColor ? 'text-white' : ''}`}
             style={{
               fontSize: s.titleSize ? `${s.titleSize}px` : undefined,
@@ -145,8 +126,8 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
           </h1>
           {s.subtitle && (
             <p
-              className={`mb-5 whitespace-pre-line animate-[fadeUp_0.5s_ease-out_0.1s_both] ${
-                !s.subtitleSize ? 'text-[17px] md:text-xl' : ''
+              className={`mb-4 whitespace-pre-line ${
+                !s.subtitleSize ? 'text-[15px] md:text-lg' : ''
               } ${!s.subtitleColor ? 'text-white/90' : ''}`}
               style={{
                 fontSize: s.subtitleSize ? `${s.subtitleSize}px` : undefined,
@@ -160,10 +141,10 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
           {s.ctaText && (
             <button
               onClick={handleCta}
-              className={`inline-flex items-center gap-2 rounded-full bg-[#0F6E56] text-white font-bold shadow-lg hover:bg-[#0d5e4a] hover:scale-105 active:scale-95 transition-all animate-[fadeUp_0.5s_ease-out_0.2s_both] ${
+              className={`inline-flex items-center gap-2 rounded-full bg-[#0F6E56] text-white font-bold shadow-lg hover:bg-[#0d5e4a] active:scale-95 transition-all ${
                 s.ctaSize === 'sm' ? 'px-5 py-2.5 text-xs' :
-                s.ctaSize === 'lg' ? 'px-10 py-5 text-lg md:text-xl' :
-                'px-7 py-3.5 md:px-8 md:py-4 text-sm md:text-base'
+                s.ctaSize === 'lg' ? 'px-10 py-5 text-lg' :
+                'px-7 py-3.5 text-sm'
               }`}
             >
               {s.ctaText}
@@ -181,7 +162,7 @@ function VideoContent({ slide: s }: { slide: VideoSlide }) {
 
   return (
     <div className="w-full h-full bg-white flex flex-col">
-      <div className="w-full flex-shrink-0 bg-black" style={{ height: '55%' }}>
+      <div className="w-full flex-shrink-0 bg-black" style={{ height: '60%' }}>
         {videoId ? (
           <iframe
             src={`https://www.youtube.com/embed/${videoId}?rel=0`}
@@ -196,10 +177,10 @@ function VideoContent({ slide: s }: { slide: VideoSlide }) {
           </div>
         )}
       </div>
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-6 text-center overflow-y-auto">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-4 text-center overflow-y-auto">
         {s.title && (
           <h2
-            className="text-2xl md:text-3xl font-extrabold leading-tight mb-3 whitespace-pre-line"
+            className="text-xl md:text-2xl font-extrabold leading-tight mb-2 whitespace-pre-line"
             style={{ color: s.titleColor || '#1a1a1a' }}
           >
             {s.title}
@@ -207,7 +188,7 @@ function VideoContent({ slide: s }: { slide: VideoSlide }) {
         )}
         {s.description && (
           <p
-            className="text-sm md:text-base leading-relaxed whitespace-pre-line max-w-lg"
+            className="text-sm leading-relaxed whitespace-pre-line max-w-lg"
             style={{ color: s.descriptionColor || '#666666' }}
           >
             {s.description}
