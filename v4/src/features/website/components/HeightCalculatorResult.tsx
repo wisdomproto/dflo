@@ -4,6 +4,7 @@
 // ================================================
 
 import { useMemo, useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import {
@@ -57,6 +58,7 @@ function useCountUp(target: number, duration: number, active: boolean) {
 }
 
 export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
+  const navigate = useNavigate();
   const [showHelp, setShowHelp] = useState(false);
   const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=done
   const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
@@ -269,13 +271,33 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
           <p className="text-xs text-amber-700 leading-relaxed">{interpretation}</p>
         </div>
 
-        {/* CTA — fade in at end */}
-        <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
-          className={`flex items-center justify-center gap-2 w-full rounded-xl bg-[#FEE500] py-3.5
-                     text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all duration-700
-                     ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <span>💬</span> 전문 상담 받아보세요
-        </a>
+        {/* CTA buttons — fade in at end */}
+        <div className={`space-y-2.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          {/* Diagnosis CTA */}
+          <button
+            onClick={() => {
+              onClose();
+              navigate('/website/diagnosis', {
+                state: {
+                  gender: result.gender,
+                  currentHeight: result.currentHeight,
+                  age: result.age,
+                  predictedHeight: result.predicted,
+                },
+              });
+            }}
+            className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5
+                       text-white font-bold text-base hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
+            <span>🔬</span> 더 정확한 AI 진단 받기
+          </button>
+
+          {/* Kakao CTA */}
+          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#FEE500] py-3.5
+                       text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all">
+            <span>💬</span> 전문 상담 받아보세요
+          </a>
+        </div>
       </div>
     </InfoModal>
   );

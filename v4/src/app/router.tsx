@@ -25,6 +25,7 @@ const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 // Website pages (public, no auth)
 const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomePage'));
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
+const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 
 // Admin pages
@@ -69,6 +70,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <ProgramDetailPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/website/diagnosis',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <IntakeDiagnosisPage />
       </Suspense>
     ),
   },

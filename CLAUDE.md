@@ -40,13 +40,17 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Supabase Storage: `content-images` bucket, `meal-photos` bucket
 - Image compression: 1200x1200 JPEG 80% before upload
 - Website sections: Instagram card-news style (4:5 ratio cards, swipe carousel)
-- Per-slide templates: banner (image+text) or video (YouTube+text) in same section
+- Per-slide templates: banner, video, cases (3 types) in same section
 - DB: `website_sections` table (JSONB slides), legacy fallback to `website_banners`
-- Admin preview: actual SectionCarousel component + CSS mobile override + scale
+- Admin: PC split layout (left 35% preview, right 65% editor) at lg breakpoint
+- Admin preview: full website preview with all sections, scroll, per-section carousel arrows
+- Admin: section inline rename/delete with confirm modal, slide tab delete with confirm
+- Image history: upload 시 기존 이미지 삭제 안 함, 히스토리에서 복원 가능
 - Bottom tab bar: 예상키 측정, 카카오톡 상담 (플로팅 버튼 대체)
-- Image paste upload: Ctrl+V로 클립보드 이미지 업로드 지원
-- Contain mode: 긴 이미지(인포그래픽) 원본 비율 표시 (4:5 제약 해제)
-- Title/subtitle shadow toggle per slide
+- Cases slide: 직접 입력 (환자, 회차별 기록, 초진정보, 성장곡선+막대그래프)
+- Cases measurements: 엑셀 붙여넣기(TSV), 한국식 나이 파싱 ("13세2개월"→13.2)
+- GrowthChart: 실제키 + 최종예상키(18세) 포인트, x축 18.5세까지
+- Diagnosis flow: 예상키 결과 → "AI 진단" → 7단계 초진 폼 (성별 구분)
 - Website bg: gray-200, 카카오 아이콘: 노란색 SVG
 
 ## Environment Variables
@@ -66,6 +70,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 6: PARTIAL (meal AI working, body analysis mock)
 - Phase 7: COMPLETE (hospital website redesign)
 - Phase 7.5: COMPLETE (Instagram card-news redesign, per-slide templates, dnd-kit reorder, bottom tab bar, admin live preview)
+- Phase 8: PARTIAL (PC admin layout, cases slide, image history, diagnosis intake form, growth chart enhancements)
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`

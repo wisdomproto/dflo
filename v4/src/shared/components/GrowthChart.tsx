@@ -40,6 +40,10 @@ interface GrowthChartProps {
   zoomable?: boolean;
   /** 크게 보기 버튼 클릭 콜백 */
   onExpand?: () => void;
+  /** 컴팩트 모드 — 범례/폰트 축소 (모바일 임베드용) */
+  compact?: boolean;
+  /** 18세 예상키 (cm) — 마지막 측정점에서 18세 예상키까지 점선 연결 */
+  predictedAdultHeight?: number;
 }
 
 export function GrowthChart({
@@ -48,6 +52,8 @@ export function GrowthChart({
   showTitle = true,
   zoomable = false,
   onExpand,
+  compact = false,
+  predictedAdultHeight,
 }: GrowthChartProps) {
   const chartRef = useRef<ChartJS<'line'> | null>(null);
 
@@ -56,16 +62,11 @@ export function GrowthChart({
 
     const standard = getHeightStandard(gender);
 
-    // 0.5세 단위로 스냅
-    const snapped = points.map((p) => ({
-      age: Math.round(p.age * 2) / 2,
-      height: p.height,
-    }));
-
-    const ages = snapped.map((p) => p.age);
-    // zoomable: 전체 범위(3~18), 아닐 때: 측정 나이 ±1세
+    // 원래 나이 값 그대로 사용 (LinearScale이므로 소수점도 정확히 표시)
+    const ages = points.map((p) => p.age);
+    // zoomable: 전체 범위(3~18), 아닐 때: 측정 나이 ±1세 (extend to 18 if predictedAdultHeight)
     const minAge = zoomable ? 3 : Math.max(2, Math.floor(Math.min(...ages)) - 1);
-    const maxAge = zoomable ? 18 : Math.min(18, Math.ceil(Math.max(...ages)) + 1);
+    const maxAge = zoomable ? 18 : predictedAdultHeight ? 18.5 : Math.min(18, Math.ceil(Math.max(...ages)) + 1);
     const stdFiltered = standard.filter((d) => d.age >= minAge && d.age <= maxAge);
 
     // {x, y} 포인트 형식으로 변환 (LinearScale 용)
@@ -124,7 +125,7 @@ export function GrowthChart({
         },
         {
           label: '실제 키',
-          data: snapped.map((p) => ({ x: p.age, y: p.height })),
+          data: points.map((p) => ({ x: p.age, y: p.height })),
           borderColor: '#667eea',
           backgroundColor: '#667eea',
           borderWidth: 2.5,
@@ -133,6 +134,35 @@ export function GrowthChart({
           spanGaps: true,
           tension: 0.3,
         },
+        // Predicted adult height line: last measurement → 18세 예상키
+        ...(predictedAdultHeight && points.length > 0 ? [
+          {
+            label: ' ',
+            data: [
+              { x: points[points.length - 1].age, y: points[points.length - 1].height },
+              { x: 18, y: predictedAdultHeight },
+            ],
+            borderColor: '#F59E0B',
+            backgroundColor: '#F59E0B',
+            borderWidth: 2,
+            borderDash: [6, 4] as number[],
+            pointRadius: 0,
+            spanGaps: true,
+            tension: 0,
+          },
+          {
+            label: '최종 예상키',
+            data: [{ x: 18, y: predictedAdultHeight }],
+            borderColor: '#F59E0B',
+            backgroundColor: '#F59E0B',
+            borderWidth: 0,
+            pointRadius: 7,
+            pointHoverRadius: 9,
+            pointBackgroundColor: '#F59E0B',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+          },
+        ] : []),
       ],
     };
   }, [gender, points]);
@@ -164,15 +194,23 @@ export function GrowthChart({
 
   if (!chartData) return null;
 
+  const fs = compact ? { legend: 9, axis: 9, tick: 9 } : { legend: 14, axis: 14, tick: 13 };
+
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: 1 / 1.5,
+    aspectRatio: compact ? 1 / 1.2 : 1 / 1.5,
+    layout: compact ? { padding: { top: 0, bottom: 0, left: 0, right: 4 } } : undefined,
     plugins: {
       legend: {
         display: true,
         position: 'top' as const,
-        labels: { boxWidth: 18, font: { size: 14 }, padding: 14 },
+        labels: {
+          boxWidth: compact ? 10 : 18,
+          font: { size: fs.legend },
+          padding: compact ? 6 : 14,
+          filter: (item: { text?: string }) => !!item.text?.trim(),
+        },
       },
       tooltip: {
         callbacks: {
@@ -201,9 +239,9 @@ export function GrowthChart({
     scales: {
       x: {
         type: 'linear' as const,
-        title: { display: true, text: '나이(세)', font: { size: 14 } },
+        title: { display: true, text: '나이(세)', font: { size: fs.axis } },
         ticks: {
-          font: { size: 13 },
+          font: { size: fs.tick },
           stepSize: 1,
           callback: (val) => Number.isInteger(Number(val)) ? `${val}` : '',
         },
@@ -212,8 +250,8 @@ export function GrowthChart({
         max: zoomable ? chartData.maxAge : chartData.maxAge,
       },
       y: {
-        title: { display: true, text: '키(cm)', font: { size: 14 } },
-        ticks: { font: { size: 13 } },
+        title: { display: true, text: '키(cm)', font: { size: fs.axis } },
+        ticks: { font: { size: fs.tick } },
         grid: { color: 'rgba(0,0,0,0.05)' },
       },
     },
@@ -247,10 +285,12 @@ export function GrowthChart({
       <div>
         <Line ref={chartRef} data={chartData} options={options} />
       </div>
-      <div className="flex justify-center gap-6 mt-4 text-lg text-gray-500">
-        <span>--- 5th / 50th / 95th 표준곡선</span>
-        <span className="text-primary font-bold">● 실제 측정값</span>
-      </div>
+      {!compact && (
+        <div className="flex justify-center gap-6 mt-4 text-lg text-gray-500">
+          <span>--- 5th / 50th / 95th 표준곡선</span>
+          <span className="text-primary font-bold">● 실제 측정값</span>
+        </div>
+      )}
     </div>
   );
 }

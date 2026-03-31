@@ -5,7 +5,7 @@
 // ================================================
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { uploadImage, deleteImage } from '@/shared/lib/storage';
+import { uploadImage } from '@/shared/lib/storage';
 
 type Folder = 'recipes' | 'guides' | 'cases' | 'banners';
 
@@ -57,10 +57,7 @@ export function ImageUploader({ folder, currentUrl, onUploaded, onRemoved, onPre
     setDragOver(false);
 
     try {
-      // 기존 이미지가 Supabase Storage URL이면 삭제
-      if (currentUrl && currentUrl.includes('supabase')) {
-        try { await deleteImage(currentUrl); } catch { /* 무시 */ }
-      }
+      // 기존 이미지는 삭제하지 않음 (히스토리 기능 + 저장 전 안전)
       const url = await uploadImage(folder, file);
       setPreview(url);
       onUploaded(url);
@@ -78,10 +75,8 @@ export function ImageUploader({ folder, currentUrl, onUploaded, onRemoved, onPre
     return () => document.removeEventListener('paste', handlePaste);
   }, [handlePaste]);
 
-  const handleRemove = async () => {
-    if (currentUrl && currentUrl.includes('supabase')) {
-      try { await deleteImage(currentUrl); } catch { /* 무시 */ }
-    }
+  const handleRemove = () => {
+    // Storage에서 즉시 삭제하지 않음 (히스토리 기능 + 저장 전 안전)
     setPreview(null);
     onUploaded('');
     onRemoved?.();
