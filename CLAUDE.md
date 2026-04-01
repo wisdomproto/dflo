@@ -51,7 +51,7 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Cases measurements: 엑셀 붙여넣기(TSV), 한국식 나이 파싱 ("13세2개월"→13.2)
 - GrowthChart: 실제키 + 최종예상키(18세) 포인트, x축 18.5세까지
 - Diagnosis flow: 예상키 결과 → "AI 진단" → 7단계 초진 폼 (성별 구분)
-- Website bg: gray-200, 카카오 아이콘: 노란색 SVG
+- Website bg: white, 섹션 카드: border-3 border-purple-300, 카카오 아이콘: 노란색 SVG
 
 ## Environment Variables
 ```
