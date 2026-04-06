@@ -311,7 +311,10 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
           </div>
           <div>
             <p className="text-base font-bold text-gray-800">{s.patientName}</p>
-            <p className="text-xs text-gray-400">{isMale ? '남아' : '여아'}</p>
+            <p className="text-xs text-gray-400">
+              {isMale ? '남아' : '여아'}
+              {s.category && <span className="ml-1.5 px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 text-[10px] font-medium">{s.category}</span>}
+            </p>
           </div>
           {heightGrowth && (
             <div className={`ml-auto rounded-xl px-3 py-1 text-center ${isMale ? 'bg-blue-50' : 'bg-pink-50'}`}>

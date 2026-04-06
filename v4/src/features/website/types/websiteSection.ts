@@ -84,6 +84,7 @@ export interface CasesSlide {
   id: string;
   patientName: string;     // 환자 이름
   gender: 'male' | 'female';
+  category?: string;       // 사례 카테고리 (부모키작음, 면역, 성조숙증 등)
   birthDate?: string;      // 생년월일
   intakeInfo?: CaseIntakeInfo; // 초진 정보 (문진표)
   initialMemo: string;     // 처음 왔을 때 메모

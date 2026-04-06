@@ -148,6 +148,17 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
             className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
         </div>
       </div>
+      <div>
+        <label className="text-xs font-semibold text-gray-500 mb-1 block">카테고리</label>
+        <select value={slide.category || ''}
+          onChange={(e) => onUpdate({ category: e.target.value || undefined })}
+          className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]">
+          <option value="">선택 안함</option>
+          <option value="부모 키가 작은 경우">부모 키가 작은 경우</option>
+          <option value="아토피·비염 (면역)">아토피·비염 (면역)</option>
+          <option value="성조숙증">성조숙증</option>
+        </select>
+      </div>
 
       {/* Intake Info (Collapsible) */}
       <div className="border border-gray-100 rounded-xl overflow-hidden">
