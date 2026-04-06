@@ -1,7 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 // WebsiteLayout removed - standalone page
 import guideData from './data/growthGuide.json';
-import type { GuideCategory, GuideCard, GuideSection } from './types';
+import type { GuideCategory, GuideCard } from './types';
 import { SectionRenderer } from './components/SectionRenderer';
 import { AnimatedGrowthChart } from './components/AnimatedGrowthChart';
 
@@ -24,8 +24,6 @@ function findCard(cardId: string): { card: GuideCard; category: GuideCategory } 
 
 export default function GrowthGuideDetailPage() {
   const { cardId } = useParams<{ cardId: string }>();
-  const navigate = useNavigate();
-
   const result = cardId ? findCard(cardId) : null;
   if (!result) {
     return (
@@ -39,14 +37,6 @@ export default function GrowthGuideDetailPage() {
 
   const { card, category } = result;
   const accent = CATEGORY_COLORS[category.id] || '#667eea';
-
-  // Find adjacent cards for navigation
-  const allCards = categories.flatMap((cat) =>
-    cat.cards.map((c) => ({ ...c, categoryId: cat.id }))
-  );
-  const currentIndex = allCards.findIndex((c) => c.id === card.id);
-  const prevCard = currentIndex > 0 ? allCards[currentIndex - 1] : null;
-  const nextCard = currentIndex < allCards.length - 1 ? allCards[currentIndex + 1] : null;
 
   return (
     <div className="min-h-dvh flex flex-col bg-white">

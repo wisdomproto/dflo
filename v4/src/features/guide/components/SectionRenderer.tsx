@@ -11,17 +11,17 @@ export function SectionRenderer({ section, accent, index }: Props) {
 
   switch (section.type) {
     case 'intro':
-      return <IntroBlock text={section.content} delay={delay} />;
+      return <IntroBlock text={(section as any).content} delay={delay} />;
     case 'explanation':
       return <ExplanationBlock section={section} accent={accent} delay={delay} />;
     case 'checklist':
       return <ChecklistBlock section={section} delay={delay} />;
     case 'guide':
-      return <StepsBlock title={section.title} steps={section.steps} accent={accent} delay={delay} />;
+      return <StepsBlock title={section.title} steps={(section as any).steps} accent={accent} delay={delay} />;
     case 'cta':
       return <CtaBlock section={section} accent={accent} delay={delay} />;
     case 'stage':
-      return <StageBlock section={section} accent={accent} delay={delay} />;
+      return <StageBlock section={section} delay={delay} />;
     case 'method':
       return <MethodBlock section={section} accent={accent} delay={delay} />;
     case 'highlight':
@@ -290,7 +290,7 @@ function CtaBlock({ section, accent, delay }: { section: any; accent: string; de
   );
 }
 
-function StageBlock({ section, accent, delay }: { section: any; accent: string; delay: string }) {
+function StageBlock({ section, delay }: { section: any; delay: string }) {
   const stageColors = ['#667eea', '#48bb78', '#ed8936', '#f56565'];
   const color = stageColors[(section.stage_number - 1) % 4];
 
