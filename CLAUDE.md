@@ -52,6 +52,12 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - GrowthChart: 실제키 + 최종예상키(18세) 포인트, x축 18.5세까지
 - Diagnosis flow: 예상키 결과 → "AI 진단" → 7단계 초진 폼 (성별 구분)
 - Website bg: white, 섹션 카드: border-3 border-purple-300, 카카오 아이콘: 노란색 SVG
+- Growth guide: 13 cards, 4 categories, standalone pages (no header/footer)
+- Guide data: JSON from 성장 바이블 원고 (fact-checked), 표준성장도표.xlsx
+- AnimatedGrowthChart: SVG, 5th/50th/95th percentiles, male/female toggle
+- Banner ctaAction: scroll | link | fulllink | modal | iframe
+- Banner modalRatio: '4:5' | '9:16' for modal/iframe slides
+- Program HTML pages: v4/public/programs/ (iframe-embeddable)
 
 ## Environment Variables
 ```
@@ -71,6 +77,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 7: COMPLETE (hospital website redesign)
 - Phase 7.5: COMPLETE (Instagram card-news redesign, per-slide templates, dnd-kit reorder, bottom tab bar, admin live preview)
 - Phase 8: PARTIAL (PC admin layout, cases slide, image history, diagnosis intake form, growth chart enhancements)
+- Phase 9: COMPLETE (growth guide pages, animated growth chart, banner enhancements)
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`
