@@ -54,10 +54,19 @@ export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
   // Current slide determines if we use fixed or natural height
   const currentSlide = slides[current];
   const isContain = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).imageFit === 'contain';
+  const isModalSlide = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'modal';
+  const isIframeSlide = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'iframe';
+  const specialRatio = (isModalSlide || isIframeSlide) ? ((currentSlide as BannerSlide).modalRatio || '9:16') : null;
+  const useNaturalHeight = isContain;
+
+  // Determine aspect ratio class
+  const aspectClass = (isModalSlide || isIframeSlide)
+    ? (specialRatio === '4:5' ? 'aspect-[4/5]' : 'aspect-[9/16]')
+    : useNaturalHeight ? '' : 'aspect-[4/5]';
 
   return (
     <section
-      className={`relative overflow-hidden w-full ${isContain ? '' : 'aspect-[4/5]'}`}
+      className={`relative overflow-hidden w-full ${aspectClass}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -82,18 +91,36 @@ export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
         );
       })}
 
-      {/* Instagram-style dots at bottom */}
+      {/* Left/Right arrows + dots */}
       {total > 1 && (
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-[5px]">
-          {slides.map((_, i) => (
-            <button key={i} onClick={() => goTo(i)}
-              className={`rounded-full transition-all duration-300 ${
-                i === current
-                  ? 'w-[6px] h-[6px] bg-white'
-                  : 'w-[6px] h-[6px] bg-white/40'
-              }`} />
-          ))}
-        </div>
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/20 text-white flex items-center justify-center active:scale-90 transition-all md:opacity-0 md:hover:opacity-100 md:w-10 md:h-10"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/20 text-white flex items-center justify-center active:scale-90 transition-all md:opacity-0 md:hover:opacity-100 md:w-10 md:h-10"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-[5px]">
+            {slides.map((_, i) => (
+              <button key={i} onClick={() => goTo(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current
+                    ? 'w-[6px] h-[6px] bg-white'
+                    : 'w-[6px] h-[6px] bg-white/40'
+                }`} />
+            ))}
+          </div>
+        </>
       )}
 
     </section>
@@ -105,14 +132,16 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
   const handleCta = () => {
     if (s.ctaAction === 'scroll') {
       document.dispatchEvent(new CustomEvent('open-height-calculator'));
-    } else if (s.ctaAction === 'link') {
+    } else if (s.ctaAction === 'link' || s.ctaAction === 'fulllink') {
       window.open(s.ctaTarget, '_blank');
     }
   };
 
   const isContain = s.imageFit === 'contain';
+  const isFullLink = s.ctaAction === 'fulllink';
+  const isModal = s.ctaAction === 'modal';
 
-  return (
+  const content = (
     <div className={isContain ? 'relative w-full' : 'absolute inset-0'}>
       {s.imageUrl ? (
         isContain ? (
@@ -151,7 +180,7 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
               {s.subtitle}
             </p>
           )}
-          {s.ctaText && (
+          {s.ctaText && !isFullLink && !isModal && (
             <button
               onClick={handleCta}
               className={`inline-flex items-center gap-2 rounded-full bg-[#0F6E56] text-white font-bold shadow-lg hover:bg-[#0d5e4a] active:scale-95 transition-all ${
@@ -167,6 +196,38 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
       </div>
     </div>
   );
+
+  if (isFullLink && s.ctaTarget) {
+    return (
+      <a href={s.ctaTarget} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
+        {content}
+      </a>
+    );
+  }
+
+  if (isModal) {
+    const modalImgUrl = s.ctaTarget || s.imageUrl || '';
+    return (
+      <div className="absolute inset-0 bg-black overflow-y-auto">
+        <img src={modalImgUrl} alt="" className="w-full" />
+      </div>
+    );
+  }
+
+  if (s.ctaAction === 'iframe' && s.ctaTarget) {
+    return (
+      <div className="absolute inset-0 bg-white overflow-hidden">
+        <iframe
+          src={s.ctaTarget}
+          title={s.title || ''}
+          className="w-full h-full border-0"
+          style={{ overflow: 'auto' }}
+        />
+      </div>
+    );
+  }
+
+  return content;
 }
 
 // ============= Video slide content =============

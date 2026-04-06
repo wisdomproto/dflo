@@ -20,6 +20,11 @@ export function FloatingButtons() {
       {/* Fixed bottom tab bar */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-[0_-2px_10px_rgba(0,0,0,0.08)]">
         <div className="max-w-5xl mx-auto flex items-center justify-around h-14">
+          <a href="/website"
+            className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-gray-600 hover:text-[#0F6E56] active:scale-95 transition-all">
+            <span className="text-lg">🏠</span>
+            <span className="text-[11px] font-semibold">홈</span>
+          </a>
           <button onClick={() => setShowAbout(true)}
             className="flex flex-col items-center gap-0.5 px-4 py-1.5 text-gray-600 hover:text-[#0F6E56] active:scale-95 transition-all">
             <span className="text-lg">🏥</span>

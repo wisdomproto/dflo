@@ -27,6 +27,8 @@ const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomeP
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
+const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
+const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
 
 // Admin pages
 const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout'));
@@ -70,6 +72,22 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <ProgramDetailPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/website/guide',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <GrowthGuidePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/website/guide/:cardId',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <GrowthGuideDetailPage />
       </Suspense>
     ),
   },

@@ -9,7 +9,7 @@ export interface BannerSlide {
   title: string;
   subtitle: string;
   ctaText: string;
-  ctaAction: 'scroll' | 'link';
+  ctaAction: 'scroll' | 'link' | 'fulllink' | 'modal' | 'iframe';
   ctaTarget: string;
   imageUrl?: string;
   imageFit?: 'cover' | 'contain';
@@ -24,6 +24,7 @@ export interface BannerSlide {
   titleShadow?: boolean; // default true
   subtitleShadow?: boolean; // default true
   ctaSize?: 'sm' | 'md' | 'lg';
+  modalRatio?: '4:5' | '9:16'; // modal 배너 외각 비율 (default: 9:16)
 }
 
 export interface VideoSlide {
@@ -93,7 +94,25 @@ export interface CasesSlide {
   order: number;
 }
 
-export type Slide = BannerSlide | VideoSlide | CasesSlide;
+export interface LinkBannerSlide {
+  template: 'link-banner';
+  id: string;
+  title: string;
+  subtitle: string;
+  linkUrl: string;          // 클릭 시 이동할 URL
+  imageUrl?: string;
+  imageFit?: 'cover' | 'contain';
+  order: number;
+  titleSize?: number;
+  titleColor?: string;
+  subtitleSize?: number;
+  subtitleColor?: string;
+  textPositionY?: number;
+  titleShadow?: boolean;
+  subtitleShadow?: boolean;
+}
+
+export type Slide = BannerSlide | VideoSlide | CasesSlide | LinkBannerSlide;
 
 export function isBannerSlide(slide: Slide): slide is BannerSlide {
   return slide.template === 'banner';

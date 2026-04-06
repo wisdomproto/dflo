@@ -1,0 +1,2555 @@
+{
+  "growth_guide": {
+    "version": "1.0",
+    "last_updated": "2026-01-10",
+    "categories": [
+      {
+        "id": "basics",
+        "name": "성장 기초",
+        "description": "우리 아이 성장의 기본을 이해하세요",
+        "icon": "📊",
+        "cards": [
+          {
+            "id": "card_01",
+            "order": 1,
+            "title": "성장 도표 읽는 법",
+            "subtitle": "우리 아이 성장, 성장 도표로 확인하세요",
+            "category": "basics",
+            "thumbnail": "https://www.genspark.ai/api/files/s/0SkiTPId?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/s2Mc5vdD?cache_control=3600",
+            "icon": "📈",
+            "summary": "성장 도표는 비용 없이 가장 정확하게 우리 아이의 성장 상태를 확인할 수 있는 도구입니다. 백분위수와 성장 곡선의 흐름을 이해하세요.",
+            "key_points": [
+              "백분위수로 아이의 위치 파악",
+              "6개월~1년 간격 기록으로 성장 곡선 작성",
+              "곡선이 아래로 꺾이면 신호",
+              "백분위보다 '곡선의 흐름'이 중요"
+            ],
+            "cta": "오늘부터 성장 일지를 시작해보세요",
+            "reading_time": "5분",
+            "tags": [
+              "성장도표",
+              "백분위수",
+              "성장곡선",
+              "기초"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "title": "성장 도표란?",
+                  "content": "성장 도표는 우리 아이의 키와 몸무게가 또래 아이들과 비교해 어느 위치에 있는지를 보여주는 가장 정확하고 객관적인 도구입니다. 비용도 들지 않고, 집에서도 쉽게 활용할 수 있어요."
+                },
+                {
+                  "type": "explanation",
+                  "title": "백분위수 이해하기",
+                  "content": [
+                    {
+                      "label": "50 백분위",
+                      "description": "100명 중 50번째, 평균적인 성장"
+                    },
+                    {
+                      "label": "25 백분위",
+                      "description": "100명 중 25번째, 평균보다 약간 작음"
+                    },
+                    {
+                      "label": "75 백분위",
+                      "description": "100명 중 75번째, 평균보다 약간 큼"
+                    },
+                    {
+                      "label": "3 백분위 미만",
+                      "description": "100명 중 3번째 이하, 저신장 위험 신호"
+                    }
+                  ],
+                  "highlight": "중요한 건 백분위 숫자가 아니라 '곡선의 흐름'입니다!"
+                },
+                {
+                  "type": "checklist",
+                  "title": "정상 성장 신호",
+                  "items": [
+                    {
+                      "status": "good",
+                      "text": "성장 곡선이 특정 백분위선을 따라 꾸준히 상승"
+                    },
+                    {
+                      "status": "good",
+                      "text": "6개월~1년 간격으로 측정했을 때 곡선이 일정"
+                    },
+                    {
+                      "status": "good",
+                      "text": "백분위가 10~90 사이를 유지"
+                    }
+                  ]
+                },
+                {
+                  "type": "checklist",
+                  "title": "주의가 필요한 신호",
+                  "items": [
+                    {
+                      "status": "warning",
+                      "text": "성장 곡선이 갑자기 아래로 꺾임"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "백분위가 2단계 이상 떨어짐 (예: 50→25→10)"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "백분위 3 미만으로 지속"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "1년에 4cm 미만 성장 (만 3세 이후)"
+                    }
+                  ]
+                },
+                {
+                  "type": "guide",
+                  "title": "성장 도표 활용법",
+                  "steps": [
+                    {
+                      "number": 1,
+                      "title": "정기적 측정",
+                      "description": "6개월~1년 간격으로 키와 몸무게 측정"
+                    },
+                    {
+                      "number": 2,
+                      "title": "정확한 기록",
+                      "description": "같은 시간대, 같은 조건에서 측정 (아침, 공복)"
+                    },
+                    {
+                      "number": 3,
+                      "title": "점 찍기",
+                      "description": "성장 도표에 나이와 키를 표시"
+                    },
+                    {
+                      "number": 4,
+                      "title": "선 연결",
+                      "description": "여러 점을 이어 성장 곡선 완성"
+                    },
+                    {
+                      "number": 5,
+                      "title": "추세 확인",
+                      "description": "곡선의 방향과 기울기 관찰"
+                    }
+                  ]
+                },
+                {
+                  "type": "cta",
+                  "title": "오늘부터 성장 일지를 시작해보세요!",
+                  "description": "정기적인 기록이 우리 아이의 성장 문제를 조기에 발견하는 가장 확실한 방법입니다.",
+                  "button": {
+                    "text": "성장 일지 시작하기",
+                    "action": "start_growth_diary"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_02",
+            "order": 2,
+            "title": "키 성장의 4단계 골든 타임",
+            "subtitle": "아이 성장의 결정적 순간들",
+            "category": "basics",
+            "thumbnail": "https://www.genspark.ai/api/files/s/GYe2NYyr?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/dnHgWwly?cache_control=3600",
+            "icon": "⏰",
+            "summary": "키 성장에는 4번의 골든 타임이 있습니다. 각 시기의 특징을 이해하고 집중 관리하세요.",
+            "key_points": [
+              "1단계 (0~3세): 성인 키의 40-45% 결정",
+              "2단계 (3세~사춘기): 연평균 5-7cm, 습관 형성",
+              "3단계 (사춘기): 마지막 스퍼트, 15-20% 결정",
+              "4단계: 성장판 닫힘, 건강 관리 집중"
+            ],
+            "cta": "우리 아이는 지금 어느 단계인가요?",
+            "reading_time": "7분",
+            "tags": [
+              "골든타임",
+              "성장단계",
+              "사춘기",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "키 성장에는 4번의 골든 타임이 있습니다. 이 시기를 놓치지 말고 집중 관리하세요!"
+                },
+                {
+                  "type": "stage",
+                  "stage_number": 1,
+                  "title": "폭풍 성장기 (0~3세)",
+                  "badge": "성인 키의 40-45% 결정",
+                  "growth_data": [
+                    {
+                      "period": "0~1세",
+                      "growth": "약 25cm"
+                    },
+                    {
+                      "period": "1~2세",
+                      "growth": "약 11cm"
+                    },
+                    {
+                      "period": "2~3세",
+                      "growth": "약 8cm"
+                    }
+                  ],
+                  "management_points": [
+                    "모유 수유 또는 충분한 분유 섭취",
+                    "이유식 영양소 균형 (단백질, 철분, 아연)",
+                    "충분한 수면 (신생아 14-17시간, 영유아 11-14시간)",
+                    "정기 검진으로 성장 곡선 확인"
+                  ],
+                  "caution": "출생 시 저체중이었다면 더욱 주의"
+                },
+                {
+                  "type": "stage",
+                  "stage_number": 2,
+                  "title": "꾸준한 성장기 (3세~사춘기 전)",
+                  "badge": "연평균 5-7cm 성장",
+                  "description": "이 시기는 속도는 느리지만 '올바른 습관'을 형성하는 결정적 시기입니다.",
+                  "management_points": [
+                    "균형 잡힌 식습관 확립",
+                    "규칙적인 수면 패턴 형성",
+                    "활동적인 놀이와 운동 습관",
+                    "6개월마다 성장 도표 기록"
+                  ],
+                  "warnings": [
+                    "비만 예방 (비만은 조기 사춘기 유발)",
+                    "조기 사춘기 징후 확인 (여아 만 8세, 남아 만 9세 이전)"
+                  ]
+                },
+                {
+                  "type": "stage",
+                  "stage_number": 3,
+                  "title": "사춘기 성장 급증기",
+                  "badge": "성인 키의 15-20% 결정, 마지막 스퍼트",
+                  "growth_data": [
+                    {
+                      "gender": "♀ 여아",
+                      "growth": "연간 최대 8-9cm",
+                      "detail": "만 10~11세 시작 (초경 전후)"
+                    },
+                    {
+                      "gender": "♂ 남아",
+                      "growth": "연간 최대 9-10cm",
+                      "detail": "만 12~13세 시작 (변성기 전후)"
+                    }
+                  ],
+                  "management_points": [
+                    "단백질·칼슘 섭취 대폭 증가",
+                    "성장판 자극 운동 (줄넘기, 농구, 배구)",
+                    "최소 8시간 수면 유지",
+                    "학업 스트레스 관리"
+                  ],
+                  "warnings": [
+                    "다이어트 금지 (영양소 부족 시 성장 멈춤)",
+                    "과도한 근력운동 주의"
+                  ]
+                },
+                {
+                  "type": "stage",
+                  "stage_number": 4,
+                  "title": "성장판 닫힘 (사춘기 후)",
+                  "badge": "성장 종료, 건강 관리 집중",
+                  "closure_time": {
+                    "female": "초경 후 2-3년 (평균 만 14~16세)",
+                    "male": "변성기 후 2-3년 (평균 만 17-18세)"
+                  },
+                  "management_points": [
+                    "바른 자세로 숨은 키 찾기 (최대 3cm)",
+                    "골밀도 강화 (평생 뼈 건강)",
+                    "건강한 체중 유지",
+                    "규칙적인 운동 습관 유지"
+                  ]
+                },
+                {
+                  "type": "cta",
+                  "title": "우리 아이는 지금 어느 단계인가요?",
+                  "description": "각 단계에 맞는 관리로 성장 잠재력을 최대한 발휘하세요!",
+                  "button": {
+                    "text": "성장 단계 확인하기",
+                    "action": "check_growth_stage"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_03",
+            "order": 3,
+            "title": "최종 키 예측 방법",
+            "subtitle": "우리 아이, 얼마나 클까요?",
+            "category": "basics",
+            "thumbnail": "https://www.genspark.ai/api/files/s/FJZUXDan?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/nQ05Pk2I?cache_control=3600",
+            "icon": "📏",
+            "summary": "최종 키를 예측하는 3가지 방법과 각각의 정확도를 이해하세요. 타너 공식, 뼈나이 검사, 유전자 분석의 특징을 비교합니다.",
+            "key_points": [
+              "표준 성장 도표: 성장 추세로 예측, 오차 ±4-6cm",
+              "타너 공식: 부모 키 기반, 오차 ±8-10cm",
+              "뼈나이 검사: 가장 정확, 오차 ±3-5cm",
+              "유전자 분석: 1만 2천+ 유전자 변이, 아직 보조적"
+            ],
+            "cta": "정확한 검사는 성장 클리닉에서",
+            "reading_time": "8분",
+            "tags": [
+              "키예측",
+              "타너공식",
+              "뼈나이",
+              "유전자"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "최종 키를 예측하는 방법은 여러 가지가 있습니다. 각 방법의 특징을 이해하고 활용하세요."
+                },
+                {
+                  "type": "method",
+                  "method_number": 1,
+                  "title": "표준 성장 도표 활용",
+                  "reliability": 4,
+                  "reliability_label": "높음",
+                  "description": "현재 키와 나이를 표준 성장 도표에 대입하여 성장 곡선의 추세를 확인하고, 18세 시점의 예상 키를 추정하는 방법입니다.",
+                  "pros": [
+                    "비용 없이 집에서 가능",
+                    "성장 추세를 한눈에 파악",
+                    "정기 측정으로 정확도 향상",
+                    "이상 징후 조기 발견 가능"
+                  ],
+                  "cons": [
+                    "사춘기 시기에 따라 오차 발생",
+                    "최소 6개월 이상 데이터 필요"
+                  ],
+                  "interpretation": [
+                    {
+                      "condition": "50 백분위 유지",
+                      "meaning": "평균 키로 성장 예상"
+                    },
+                    {
+                      "condition": "곡선이 위로 올라감",
+                      "meaning": "또래보다 빠르게 성장 중"
+                    },
+                    {
+                      "condition": "곡선이 아래로 꺾임",
+                      "meaning": "성장 둔화, 전문의 상담 필요"
+                    }
+                  ],
+                  "error_range": "±4-6cm"
+                },
+                {
+                  "type": "method",
+                  "method_number": 2,
+                  "title": "타너 공식 (부모 키 기반)",
+                  "reliability": 3,
+                  "reliability_label": "중간",
+                  "formula": {
+                    "male": "(아빠 키 + 엄마 키 + 13) ÷ 2",
+                    "female": "(아빠 키 + 엄마 키 - 13) ÷ 2"
+                  },
+                  "example": {
+                    "father_height": 175,
+                    "mother_height": 162,
+                    "son_result": 175,
+                    "daughter_result": 162
+                  },
+                  "pros": [
+                    "집에서 쉽게 계산 가능",
+                    "비용 없음",
+                    "유전적 키 잠재력 파악"
+                  ],
+                  "cons": [
+                    "오차 범위 ±10cm",
+                    "환경 요인 미반영",
+                    "조부모 유전 미반영"
+                  ],
+                  "error_range": "±10cm"
+                },
+                {
+                  "type": "method",
+                  "method_number": 3,
+                  "title": "뼈나이 검사 (X-ray)",
+                  "reliability": 5,
+                  "reliability_label": "가장 높음",
+                  "description": "왼손 X-ray 촬영 후 뼈의 성숙도를 분석하여 '생물학적 나이'를 측정합니다.",
+                  "analysis_methods": [
+                    {
+                      "name": "Greulich-Pyle 방식",
+                      "description": "표준 사진과 비교"
+                    },
+                    {
+                      "name": "TW3 방식",
+                      "description": "20개 뼈를 개별 점수화"
+                    },
+                    {
+                      "name": "AI 분석",
+                      "description": "최신 인공지능 판독"
+                    }
+                  ],
+                  "pros": [
+                    "가장 객관적이고 정확",
+                    "남은 성장 기간 예측 가능",
+                    "오차 범위 ±4-6cm",
+                    "사춘기 진행 상태 확인"
+                  ],
+                  "interpretation": [
+                    {
+                      "condition": "뼈나이 = 실제 나이",
+                      "meaning": "정상 성장"
+                    },
+                    {
+                      "condition": "뼈나이 < 실제 나이",
+                      "meaning": "늦게 자라는 타입, 성장 여지 있음"
+                    },
+                    {
+                      "condition": "뼈나이 > 실제 나이",
+                      "meaning": "빨리 자라는 타입, 성장판 빨리 닫힘"
+                    }
+                  ],
+                  "error_range": "±3-5cm"
+                },
+                {
+                  "type": "method",
+                  "method_number": 4,
+                  "title": "유전자 분석",
+                  "reliability": 3,
+                  "reliability_label": "발전 중",
+                  "description": "타액 또는 혈액으로 성장 관련 유전자 분석. 최근 연구에서 약 1만 2천 가지의 유전자 변이가 발견되었으나, 현재까지 밝혀진 변이들로 키 차이의 약 40%만 설명 가능.",
+                  "pros": [
+                    "최신 기술",
+                    "유전적 소인 파악",
+                    "맞춤형 관리 가능"
+                  ],
+                  "cons": [
+                    "아직 보조적 수단",
+                    "높은 비용",
+                    "환경 요인 미반영"
+                  ]
+                },
+                {
+                  "type": "highlight",
+                  "title": "중요한 사실",
+                  "content": "예측은 예측일 뿐! 관리를 통해 5~10cm까지 차이가 날 수 있습니다!",
+                  "description": "유전적 키는 정해져 있지만, 영양·수면·운동·스트레스 관리로 환경 20%를 최적화하면 예측 키보다 더 클 수 있습니다."
+                },
+                {
+                  "type": "cta",
+                  "title": "정확한 검사는 성장 클리닉에서",
+                  "description": "전문의 상담과 뼈나이 검사로 우리 아이의 성장 잠재력을 정확히 파악하세요.",
+                  "button": {
+                    "text": "가까운 클리닉 찾기",
+                    "action": "find_clinic"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_04",
+            "order": 4,
+            "title": "유전 vs 환경",
+            "subtitle": "키는 정말 유전일까요?",
+            "category": "basics",
+            "thumbnail": "https://www.genspark.ai/api/files/s/2ZwgaslQ?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/qE4DkgSP?cache_control=3600",
+            "icon": "🧬",
+            "summary": "유전 80%, 환경 20%. 하지만 그 20%의 관리가 최종 키 5~10cm 차이를 만듭니다. 우리가 통제할 수 있는 환경 요인에 집중하세요.",
+            "key_points": [
+              "유전은 키 잠재력의 범위를 결정 (약 80%)",
+              "환경 요인: 영양, 수면, 운동, 스트레스 관리",
+              "환경 20% 관리로 최종 키 5~10cm 차이 가능",
+              "지금 당장 바꿀 수 있는 것에 집중"
+            ],
+            "cta": "우리가 할 수 있는 20%에 집중",
+            "reading_time": "6분",
+            "tags": [
+              "유전",
+              "환경",
+              "영양",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "\"우리 부부가 다 작은데 아이도 작을 수밖에 없겠죠?\" → 아닙니다! 환경이 5-10cm 차이를 만듭니다."
+                },
+                {
+                  "type": "ratio",
+                  "title": "키를 결정하는 요인",
+                  "genetics": {
+                    "percentage": "70-80%",
+                    "factors": [
+                      "부모의 키",
+                      "조부모의 키",
+                      "성장 패턴 (빠르게 vs 늦게 자라는 체질)",
+                      "사춘기 시작 시기"
+                    ],
+                    "note": "유전은 '키 잠재력의 범위'를 결정합니다. 하지만 그 범위 안에서 실제 키는 환경이 결정합니다!"
+                  },
+                  "environment": {
+                    "percentage": "20-30%",
+                    "note": "우리가 통제할 수 있는 부분입니다!",
+                    "factors": [
+                      {
+                        "name": "영양",
+                        "good": [
+                          "단백질: 뼈·근육 성장",
+                          "칼슘·비타민D: 뼈 형성",
+                          "아연: 성장호르몬 활성화"
+                        ],
+                        "bad": [
+                          "가공식품, 단 음료, 튀김 피하기"
+                        ]
+                      },
+                      {
+                        "name": "수면",
+                        "good": [
+                          "연령별 충분한 수면 (학령기 9-11시간)",
+                          "깊은 수면(질)이 시간보다 더 중요",
+                          "어둡고 조용한 환경"
+                        ],
+                        "bad": [
+                          "스마트폰, TV 1-2시간 전 차단"
+                        ]
+                      },
+                      {
+                        "name": "운동",
+                        "good": [
+                          "성장판 자극 운동 (줄넘기, 농구, 수영)",
+                          "주 3회 이상, 30분 이상",
+                          "약간 숨이 찰 정도 강도"
+                        ],
+                        "bad": [
+                          "과도한 근력운동, 무리한 웨이트 금지"
+                        ]
+                      },
+                      {
+                        "name": "스트레스 관리",
+                        "good": [
+                          "충분한 대화와 공감",
+                          "취미와 놀이 시간 확보"
+                        ],
+                        "bad": [
+                          "키 비교, 강압적 태도 금지",
+                          "과도한 학업 스트레스 주의"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "cta",
+                  "title": "우리가 할 수 있는 20%에 집중하세요",
+                  "description": "유전은 바꿀 수 없지만, 환경은 지금 당장 바꿀 수 있습니다. 그 20%가 우리 아이의 최종 키를 5-10cm 달라지게 만듭니다!",
+                  "button": {
+                    "text": "환경 관리 시작하기",
+                    "action": "start_environment_management"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "nutrition",
+        "name": "영양 관리",
+        "description": "키 성장에 필수적인 영양소와 올바른 식습관",
+        "icon": "🥗",
+        "cards": [
+          {
+            "id": "card_05",
+            "order": 5,
+            "title": "나쁜 식습관 체크리스트",
+            "subtitle": "우리 아이 식습관, 안전한가요?",
+            "category": "nutrition",
+            "thumbnail": "https://www.genspark.ai/api/files/s/NL11S3LY?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/xdCCFZxs?cache_control=3600",
+            "icon": "🚨",
+            "summary": "성장을 방해하는 나쁜 식습관을 체크하세요. 단순당, 정제 탄수화물, 나쁜 지방 섭취는 비만과 조기 사춘기를 유발합니다.",
+            "key_points": [
+              "과도한 단순당: 탄산음료, 과자 매일 섭취",
+              "정제 탄수화물: 흰쌀밥, 라면 주 3회 이상",
+              "나쁜 지방: 튀김, 패스트푸드 주 2회 이상",
+              "하나라도 해당되면 개선 필요"
+            ],
+            "cta": "오늘부터 식습관 개선 시작!",
+            "reading_time": "6분",
+            "tags": [
+              "식습관",
+              "비만",
+              "조기사춘기",
+              "체크리스트"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "성장을 방해하는 나쁜 식습관, 하나라도 해당되면 지금 바로 개선이 필요합니다!"
+                },
+                {
+                  "type": "bad_habit",
+                  "category": "과도한 단순당",
+                  "warning_level": "high",
+                  "checklist": [
+                    "탄산음료 또는 과일주스 매일 1회 이상",
+                    "초콜릿, 사탕 매일 섭취",
+                    "달콤한 빵, 과자 주 3회 이상"
+                  ],
+                  "why_bad": [
+                    "혈당 급등락: 성장호르몬 분비 방해",
+                    "칼슘 배출: 뼈 성장 저해",
+                    "비만 유발: 조기 사춘기 → 성장판 빨리 닫힘",
+                    "식욕 저하: 정작 필요한 영양소 섭취 부족"
+                  ],
+                  "solution": [
+                    "물, 우유, 무가당 주스로 대체",
+                    "간식은 과일, 견과류로",
+                    "단 음료는 주 1-2회로 제한"
+                  ]
+                },
+                {
+                  "type": "bad_habit",
+                  "category": "정제 탄수화물 과다",
+                  "warning_level": "medium",
+                  "checklist": [
+                    "흰쌀밥만 고집, 잡곡밥 거부",
+                    "라면, 국수 주 3회 이상",
+                    "흰 빵, 떡 자주 섭취"
+                  ],
+                  "why_bad": [
+                    "영양소 부족: 정제 과정에서 비타민·미네랄 손실",
+                    "혈당 조절 실패: 인슐린 저항성 증가",
+                    "포만감 부족: 과식 유발",
+                    "성장 영양소 결핍: 아연, 마그네슘, 비타민B 부족"
+                  ],
+                  "solution": [
+                    "잡곡밥 (현미, 보리, 귀리 섞기)",
+                    "통밀빵, 호밀빵으로 대체",
+                    "라면 대신 칼국수, 우동 (야채 듬뿍)"
+                  ]
+                },
+                {
+                  "type": "bad_habit",
+                  "category": "나쁜 지방 과다",
+                  "warning_level": "high",
+                  "checklist": [
+                    "튀김, 패스트푸드 주 2회 이상",
+                    "가공육 (햄, 소시지) 자주 섭취",
+                    "인스턴트 식품 선호"
+                  ],
+                  "why_bad": [
+                    "트랜스 지방: 염증 유발, 성장 방해",
+                    "비만: 조기 사춘기 유발",
+                    "영양 불균형: 칼로리만 높고 영양소 부족",
+                    "소화 부담: 영양소 흡수 저해"
+                  ],
+                  "solution": [
+                    "튀김 대신 굽기, 찌기, 삶기",
+                    "가공육 대신 신선한 살코기",
+                    "견과류, 생선(오메가3)으로 좋은 지방 섭취"
+                  ]
+                },
+                {
+                  "type": "warning",
+                  "title": "성장판 닫힘 주의보",
+                  "content": "이런 식습관이 지속되면: 비만 → 조기 사춘기 → 성장판 빨리 닫힘. 최종적으로 5-10cm 작게 자랄 수 있습니다!"
+                },
+                {
+                  "type": "action_plan",
+                  "title": "오늘부터 식습관 개선 시작!",
+                  "weekly_plan": [
+                    {
+                      "week": 1,
+                      "goal": "단 음료 끊기"
+                    },
+                    {
+                      "week": 2,
+                      "goal": "잡곡밥 적응하기"
+                    },
+                    {
+                      "week": 3,
+                      "goal": "튀김 줄이기"
+                    },
+                    {
+                      "week": 4,
+                      "goal": "건강 간식 찾기"
+                    }
+                  ],
+                  "note": "작은 변화가 큰 차이를 만듭니다!"
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_08",
+            "order": 8,
+            "title": "키 크는 핵심 영양소 9가지",
+            "subtitle": "키 크는 영양소, 이것만은 꼭!",
+            "category": "nutrition",
+            "thumbnail": "https://www.genspark.ai/api/files/s/lIFKlajK?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/9ax6xw3j?cache_control=3600",
+            "icon": "💊",
+            "summary": "키 성장에 필수적인 9가지 영양소와 풍부한 음식, 하루 권장량을 안내합니다.",
+            "key_points": [
+              "단백질: 뼈·근육 성장의 재료",
+              "칼슘: 뼈 형성의 핵심",
+              "비타민D: 칼슘 흡수 촉진",
+              "아연, 철분, 비타민A, C, 수분, 통곡물"
+            ],
+            "cta": "9가지 영양소, 골고루 챙기세요",
+            "reading_time": "10분",
+            "tags": [
+              "영양소",
+              "단백질",
+              "칼슘",
+              "비타민",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "키 성장에 필수적인 9가지 영양소와 음식을 소개합니다."
+                },
+                {
+                  "type": "nutrient",
+                  "number": 1,
+                  "name": "단백질",
+                  "subtitle": "뼈·근육 성장의 재료",
+                  "icon": "🥩",
+                  "roles": [
+                    "뼈의 50%는 콜라겐 (단백질)",
+                    "근육 성장",
+                    "성장호르몬 생성"
+                  ],
+                  "food_sources": [
+                    "살코기 (소고기, 돼지고기, 닭고기)",
+                    "생선 (등푸른 생선: 고등어, 삼치, 연어)",
+                    "달걀",
+                    "콩, 두부",
+                    "우유, 치즈, 요거트",
+                    "견과류"
+                  ],
+                  "daily_requirement": {
+                    "age_6_8": "35g",
+                    "age_9_11": "45g",
+                    "age_12_14_male": "60g",
+                    "age_12_14_female": "55g"
+                  },
+                  "tip": "매 끼니마다 손바닥 크기만큼의 단백질 섭취!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 2,
+                  "name": "칼슘",
+                  "subtitle": "뼈 형성의 핵심",
+                  "icon": "🥛",
+                  "roles": [
+                    "뼈와 치아의 99% 구성",
+                    "골밀도 강화",
+                    "성장판 활성화"
+                  ],
+                  "food_sources": [
+                    "우유, 치즈, 요거트",
+                    "뼈째 먹는 생선 (멸치, 뱅어포)",
+                    "짙은 녹색 채소 (케일, 브로콜리, 청경채)",
+                    "콩, 두부",
+                    "견과류, 씨앗"
+                  ],
+                  "daily_requirement": {
+                    "age_6_8": "700mg",
+                    "age_9_11": "900mg",
+                    "age_12_14": "900mg"
+                  },
+                  "tip": "우유 2컵 + 멸치 한 줌이면 하루 권장량 충족!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 3,
+                  "name": "비타민D",
+                  "subtitle": "칼슘 흡수 촉진",
+                  "icon": "☀️",
+                  "roles": [
+                    "칼슘 흡수율 최대 80% 향상",
+                    "뼈 건강",
+                    "면역력 강화"
+                  ],
+                  "food_sources": [
+                    "햇빛: 하루 15-30분 (최고의 방법!)",
+                    "등푸른 생선 (연어, 고등어, 참치)",
+                    "달걀 노른자",
+                    "버섯 (햇빛에 말린 표고버섯)",
+                    "강화 우유, 시리얼"
+                  ],
+                  "daily_requirement": {
+                    "age_6_14": "10μg (400 IU)"
+                  },
+                  "tip": "칼슘 + 비타민D + 단백질 = 최강 조합!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 4,
+                  "name": "아연",
+                  "subtitle": "세포 성장 촉진",
+                  "icon": "🦪",
+                  "roles": [
+                    "세포 분열과 성장",
+                    "성장호르몬 기능 활성화",
+                    "면역 기능"
+                  ],
+                  "food_sources": [
+                    "굴",
+                    "붉은 고기",
+                    "조개류",
+                    "견과류 (호두, 아몬드)",
+                    "콩, 통곡물"
+                  ],
+                  "daily_requirement": {
+                    "age_6_8": "7mg",
+                    "age_9_11": "8mg",
+                    "age_12_14_male": "10mg",
+                    "age_12_14_female": "9mg"
+                  },
+                  "tip": "아연 부족 시 성장 지연, 식욕 저하!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 5,
+                  "name": "철분",
+                  "subtitle": "산소 운반",
+                  "icon": "🩸",
+                  "roles": [
+                    "혈액 생성",
+                    "산소 운반",
+                    "에너지 대사"
+                  ],
+                  "food_sources": [
+                    "붉은 고기, 간",
+                    "달걀 노른자",
+                    "콩, 푸른 잎채소 (시금치)",
+                    "조개류"
+                  ],
+                  "daily_requirement": {
+                    "age_6_8": "9mg",
+                    "age_9_11": "10mg",
+                    "age_12_14_male": "12mg",
+                    "age_12_14_female": "16mg"
+                  },
+                  "tip": "비타민C와 함께 먹으면 흡수율 UP!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 6,
+                  "name": "비타민A",
+                  "subtitle": "세포 발달",
+                  "icon": "🥕",
+                  "roles": [
+                    "세포 성장과 분화",
+                    "시력",
+                    "면역"
+                  ],
+                  "food_sources": [
+                    "당근, 고구마, 단호박",
+                    "달걀 노른자, 간",
+                    "녹황색 채소"
+                  ],
+                  "daily_requirement": {
+                    "age_6_8": "450μg RE",
+                    "age_9_11": "600μg RE",
+                    "age_12_14_male": "750μg RE",
+                    "age_12_14_female": "650μg RE"
+                  },
+                  "caution": "과다 섭취 금물!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 7,
+                  "name": "비타민C",
+                  "subtitle": "콜라겐 생성",
+                  "icon": "🍊",
+                  "roles": [
+                    "콜라겐 생성 (뼈 구조)",
+                    "면역력",
+                    "철분 흡수 촉진"
+                  ],
+                  "food_sources": [
+                    "과일 (딸기, 키위, 오렌지)",
+                    "채소 (파프리카, 브로콜리)"
+                  ],
+                  "daily_requirement": {
+                    "age_6_14": "60-100mg"
+                  },
+                  "tip": "열에 약하니 생으로 먹기!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 8,
+                  "name": "수분",
+                  "subtitle": "신진대사",
+                  "icon": "💧",
+                  "roles": [
+                    "영양소 운반",
+                    "노폐물 배출",
+                    "신진대사"
+                  ],
+                  "daily_requirement": {
+                    "age_6_8": "1,300ml",
+                    "age_9_11": "1,500ml",
+                    "age_12_14": "1,700ml"
+                  },
+                  "tip": "물병 옆에 두고 수시로!"
+                },
+                {
+                  "type": "nutrient",
+                  "number": 9,
+                  "name": "통곡물",
+                  "subtitle": "에너지원",
+                  "icon": "🌾",
+                  "roles": [
+                    "지속적 에너지 공급",
+                    "비타민B군, 미네랄",
+                    "식이섬유"
+                  ],
+                  "food_sources": [
+                    "현미, 잡곡밥",
+                    "통밀빵, 호밀빵",
+                    "귀리, 퀴노아"
+                  ],
+                  "tip": "백미 대신 잡곡밥으로!"
+                },
+                {
+                  "type": "cta",
+                  "title": "9가지 영양소, 골고루 챙기세요!",
+                  "description": "하나라도 부족하면 성장에 문제가 생길 수 있습니다. 균형이 핵심입니다!",
+                  "button": {
+                    "text": "영양 관리 체크하기",
+                    "action": "check_nutrition"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_09",
+            "order": 9,
+            "title": "성장 식단 피라미드",
+            "subtitle": "우리 아이 성장 접시",
+            "category": "nutrition",
+            "thumbnail": "https://www.genspark.ai/api/files/s/Bw4t09l2?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/ARihKgpi?cache_control=3600",
+            "icon": "🍽️",
+            "summary": "성장에 좋은 음식을 피라미드 형태로 정리했습니다. 매일 충분히, 적당히, 소량, 피하기로 구분합니다.",
+            "key_points": [
+              "매일 충분히: 통곡물, 채소, 과일",
+              "적당히: 단백질, 칼슘 식품",
+              "소량: 건강한 지방 (견과류)",
+              "피하기: 가공식품, 단 음료, 튀김"
+            ],
+            "cta": "성장 접시를 기억하세요",
+            "reading_time": "7분",
+            "tags": [
+              "식단",
+              "피라미드",
+              "균형식",
+              "가이드"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "성장에 좋은 음식을 피라미드 형태로 정리했습니다. 아래에서 위로 갈수록 적게 먹어요!"
+                },
+                {
+                  "type": "pyramid_level",
+                  "level": "base",
+                  "color": "green",
+                  "title": "매일 충분히 (피라미드 맨 아래)",
+                  "categories": [
+                    {
+                      "name": "통곡물",
+                      "foods": [
+                        "현미밥, 잡곡밥",
+                        "통밀빵, 호밀빵",
+                        "귀리, 퀴노아"
+                      ]
+                    },
+                    {
+                      "name": "채소",
+                      "foods": [
+                        "녹황색 채소 (브로콜리, 시금치, 당근)",
+                        "담색 채소 (양배추, 양파, 버섯)",
+                        "매 끼니 반찬의 50%"
+                      ]
+                    },
+                    {
+                      "name": "과일",
+                      "foods": [
+                        "신선한 제철 과일",
+                        "하루 2-3회, 주먹 크기"
+                      ]
+                    }
+                  ],
+                  "why": [
+                    "지속적인 에너지 공급",
+                    "비타민·미네랄 풍부",
+                    "식이섬유로 소화 건강"
+                  ]
+                },
+                {
+                  "type": "pyramid_level",
+                  "level": "middle",
+                  "color": "yellow",
+                  "title": "적당히 (피라미드 중간)",
+                  "categories": [
+                    {
+                      "name": "단백질 식품",
+                      "foods": [
+                        "살코기 (소고기, 돼지고기, 닭고기)",
+                        "생선 (등푸른 생선 특히 좋음)",
+                        "달걀",
+                        "콩, 두부"
+                      ]
+                    },
+                    {
+                      "name": "칼슘 식품",
+                      "foods": [
+                        "우유 (하루 2컵)",
+                        "치즈, 요거트",
+                        "뼈째 먹는 생선 (멸치)"
+                      ]
+                    }
+                  ],
+                  "daily_intake": {
+                    "protein": "손바닥 크기 3회",
+                    "milk": "2컵 (400ml)",
+                    "egg": "1-2개"
+                  },
+                  "why": [
+                    "성장에 필수 영양소",
+                    "과다 섭취 시 비만 위험"
+                  ]
+                },
+                {
+                  "type": "pyramid_level",
+                  "level": "top",
+                  "color": "orange",
+                  "title": "소량 (피라미드 위쪽)",
+                  "categories": [
+                    {
+                      "name": "건강한 지방",
+                      "foods": [
+                        "견과류 (아몬드, 호두, 캐슈넛)",
+                        "씨앗 (호박씨, 해바라기씨)",
+                        "식물성 기름 (올리브유, 들기름)"
+                      ]
+                    }
+                  ],
+                  "daily_intake": {
+                    "nuts": "한 줌 (약 20g)"
+                  },
+                  "why": [
+                    "오메가3, 비타민E 공급",
+                    "칼로리가 높아 과다 섭취 금물"
+                  ]
+                },
+                {
+                  "type": "pyramid_level",
+                  "level": "outside",
+                  "color": "red",
+                  "title": "피하기 (피라미드 밖)",
+                  "categories": [
+                    {
+                      "name": "가공식품",
+                      "foods": [
+                        "햄, 소시지, 베이컨",
+                        "인스턴트 식품",
+                        "과자, 빵, 케이크"
+                      ]
+                    },
+                    {
+                      "name": "단 음료",
+                      "foods": [
+                        "탄산음료",
+                        "과일주스 (시판)",
+                        "가당 우유"
+                      ]
+                    },
+                    {
+                      "name": "튀김·패스트푸드",
+                      "foods": [
+                        "치킨, 피자, 햄버거",
+                        "감자튀김, 도넛"
+                      ]
+                    }
+                  ],
+                  "why": [
+                    "단순당, 나쁜 지방으로 비만 유발",
+                    "조기 사춘기 → 성장판 빨리 닫힘",
+                    "칼슘 배출, 영양 불균형",
+                    "성장호르몬 분비 방해"
+                  ]
+                },
+                {
+                  "type": "meal_guide",
+                  "title": "매끼 식사 구성",
+                  "composition": [
+                    {
+                      "item": "통곡물",
+                      "amount": "주먹 1개"
+                    },
+                    {
+                      "item": "채소",
+                      "amount": "두 손 가득"
+                    },
+                    {
+                      "item": "단백질",
+                      "amount": "손바닥 크기"
+                    },
+                    {
+                      "item": "과일",
+                      "amount": "식후 또는 간식으로"
+                    }
+                  ],
+                  "snack_guide": {
+                    "good": [
+                      "과일",
+                      "견과류",
+                      "우유",
+                      "치즈"
+                    ],
+                    "bad": [
+                      "과자",
+                      "빵",
+                      "아이스크림",
+                      "탄산음료"
+                    ]
+                  }
+                },
+                {
+                  "type": "tip",
+                  "title": "한 끼에 7색 식단",
+                  "content": "흰색(쌀), 빨강(토마토), 주황(당근), 노랑(달걀), 초록(브로콜리), 보라(가지), 갈색(고기)처럼 다양한 색깔의 음식을 먹으면 영양 균형이 완벽해집니다!"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "clinic",
+        "name": "클리닉 방문",
+        "description": "성장 클리닉 방문 시기와 준비 사항",
+        "icon": "🏥",
+        "cards": [
+          {
+            "id": "card_06",
+            "order": 6,
+            "title": "성장 클리닉 방문 시기",
+            "subtitle": "언제 성장 클리닉을 방문해야 할까요?",
+            "category": "clinic",
+            "thumbnail": "https://www.genspark.ai/api/files/s/09JIiudA?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/STweAH7P?cache_control=3600",
+            "icon": "⚠️",
+            "summary": "성장 속도가 느리거나, 백분위수가 낮거나, 조기 사춘기 징후가 있다면 전문의 상담이 필요합니다.",
+            "key_points": [
+              "1년에 4cm 미만 성장 (만 3세 이후)",
+              "키 백분위수 3 미만 또는 지속 감소",
+              "조기 사춘기 징후 (여아 8세, 남아 9세 이전)",
+              "BMI 이상 (저체중 또는 비만)"
+            ],
+            "cta": "하나라도 해당되면 상담받아보세요",
+            "reading_time": "8분",
+            "tags": [
+              "클리닉",
+              "방문시기",
+              "조기발견",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "다음 중 하나라도 해당되면 전문의 상담이 필요합니다."
+                },
+                {
+                  "type": "warning_sign",
+                  "number": 1,
+                  "title": "성장 속도가 너무 느림",
+                  "checklist": [
+                    "만 3세 이후 1년에 4cm 미만 성장",
+                    "또래보다 머리 하나 이상 작음",
+                    "옷, 신발 사이즈가 2년 이상 그대로"
+                  ],
+                  "why_dangerous": "성장 속도가 느리다는 것은 성장호르몬 분비, 갑상선 기능, 영양 상태에 문제가 있을 수 있다는 신호입니다."
+                },
+                {
+                  "type": "warning_sign",
+                  "number": 2,
+                  "title": "백분위수가 너무 낮거나 떨어짐",
+                  "checklist": [
+                    "키 백분위수 3 미만",
+                    "6개월~1년 사이 백분위가 2단계 이상 하락 (예: 50→25→10)",
+                    "성장 곡선이 계속 아래로 꺾임"
+                  ],
+                  "why_dangerous": "백분위 하락은 성장 장애의 가장 확실한 신호입니다. 조기 발견이 치료 효과를 극대화합니다."
+                },
+                {
+                  "type": "warning_sign",
+                  "number": 3,
+                  "title": "조기 사춘기 징후",
+                  "female": {
+                    "age_limit": "만 8세 이전",
+                    "signs": [
+                      "가슴 몽우리 (유방 발달)",
+                      "음모 발생",
+                      "초경 시작"
+                    ]
+                  },
+                  "male": {
+                    "age_limit": "만 9세 이전",
+                    "signs": [
+                      "고환 크기 증가",
+                      "음모 발생",
+                      "목소리 변화"
+                    ]
+                  },
+                  "why_dangerous": "조기 사춘기는 성장판을 빨리 닫히게 해서 최종 키가 작아집니다. 빠른 치료가 필수입니다."
+                },
+                {
+                  "type": "warning_sign",
+                  "number": 4,
+                  "title": "체중 문제",
+                  "underweight": {
+                    "criteria": "BMI 백분위수 5 미만",
+                    "signs": [
+                      "식욕 부진, 편식 심함",
+                      "에너지 부족, 쉽게 피로"
+                    ],
+                    "risk": "영양 부족으로 성장 지연"
+                  },
+                  "obesity": {
+                    "criteria": "BMI 백분위수 85 이상",
+                    "signs": [
+                      "빠른 체중 증가",
+                      "사춘기가 빨리 오는 느낌"
+                    ],
+                    "risk": "조기 사춘기 유발, 성장판 빨리 닫힘"
+                  }
+                },
+                {
+                  "type": "warning_sign",
+                  "number": 5,
+                  "title": "기타 위험 요인",
+                  "checklist": [
+                    "부모 키 대비 너무 작음 (예측 키보다 8cm 이상 차이)",
+                    "조산아, 저체중 출생아",
+                    "만성 질환 (천식, 아토피, 소화기 질환)",
+                    "가족력 (부모, 형제의 성장 문제)",
+                    "아이가 키에 대한 스트레스 호소"
+                  ]
+                },
+                {
+                  "type": "optimal_timing",
+                  "title": "언제 방문하는 게 가장 좋을까요?",
+                  "timings": [
+                    {
+                      "age": "만 4-5세",
+                      "reason": "성장호르몬 결핍 조기 발견"
+                    },
+                    {
+                      "age": "초등 입학 전",
+                      "reason": "기초 검사 및 성장 계획 수립"
+                    },
+                    {
+                      "age": "초등 고학년",
+                      "reason": "사춘기 전 마지막 골든 타임"
+                    },
+                    {
+                      "age": "사춘기 징후 시작",
+                      "reason": "성장판 상태 확인"
+                    }
+                  ],
+                  "note": "빠를수록 좋습니다!"
+                },
+                {
+                  "type": "highlight",
+                  "content": "성장 문제는 조기 발견이 90%입니다. 의심되면 망설이지 말고 전문의 상담을 받으세요."
+                },
+                {
+                  "type": "cta",
+                  "title": "하나라도 해당되면 상담받아보세요",
+                  "description": "우리 아이의 성장, 후회 없이 관리하세요!",
+                  "button": {
+                    "text": "187 성장 클리닉 예약하기",
+                    "action": "book_appointment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_15",
+            "order": 15,
+            "title": "우리 아이 혹시 성조숙증?",
+            "subtitle": "성장판을 지키는 조기 발견과 예방",
+            "category": "clinic",
+            "thumbnail": "https://www.genspark.ai/api/files/s/NL11S3LY?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/NL11S3LY?cache_control=3600",
+            "icon": "⚡",
+            "summary": "성조숙증은 성장판을 2~3년 이상 일찍 닫히게 하여 최종 키를 5cm 이상 줄일 수 있습니다. 조기 발견과 적절한 치료로 관리가 가능합니다.",
+            "key_points": [
+              "여아 만 8세, 남아 만 9세 이전 2차 성징 = 성조숙증",
+              "사춘기 1년 빨라질 때마다 평균 5~6cm 키 감소",
+              "GnRH 치료: 가역적이며 장기 안전성 확인",
+              "비만 예방, 수면, 운동으로 예방 가능"
+            ],
+            "cta": "의심 증상이 보이면 즉시 성장 클리닉 상담",
+            "reading_time": "10분",
+            "tags": [
+              "성조숙증",
+              "사춘기",
+              "성장판",
+              "조기발견"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "성조숙증은 성장판을 일찍 닫히게 하여 최종 키를 5cm 이상 줄일 수 있습니다. 하지만 조기에 발견하면 치료로 충분히 관리할 수 있습니다."
+                },
+                {
+                  "type": "explanation",
+                  "title": "성조숙증이란?",
+                  "content": [
+                    {
+                      "label": "여아",
+                      "description": "만 8세 이전에 유방 발달, 음모 발생 등 2차 성징"
+                    },
+                    {
+                      "label": "남아",
+                      "description": "만 9세 이전에 고환 크기 증가, 음모 발생, 변성기 등 2차 성징"
+                    }
+                  ],
+                  "highlight": "사춘기가 빨리 오면 초반에는 잘 크는 것처럼 보이지만, 성장판이 일찍 닫혀 최종 키가 작아집니다!"
+                },
+                {
+                  "type": "warning",
+                  "title": "키에 미치는 영향",
+                  "content": "성장판이 2~3년 이상 일찍 닫힙니다. 사춘기 1년 빨라질 때마다 평균 5~6cm 최종 키 감소. 한국 여아 연구: 초경 1년 빨라질 때마다 최종 키 0.45cm 감소, 조기 초경 시 153cm 미만이 될 위험 2.62배."
+                },
+                {
+                  "type": "guide",
+                  "title": "정상 사춘기 타임라인",
+                  "steps": [
+                    {
+                      "number": 1,
+                      "title": "♀ 여아 성장 급등",
+                      "description": "만 10~11세 시작, 연간 최대 8~9cm 성장"
+                    },
+                    {
+                      "number": 2,
+                      "title": "♀ 여아 초경",
+                      "description": "평균 12.6세, 성장 속도 정점 이후 서서히 감소"
+                    },
+                    {
+                      "number": 3,
+                      "title": "♂ 남아 성장 급등",
+                      "description": "만 12~13세 시작, 연간 최대 9~10cm 성장"
+                    },
+                    {
+                      "number": 4,
+                      "title": "♂ 남아 성장 고점",
+                      "description": "만 14~15세, 이후 감속하여 16~18세 성장 종료"
+                    }
+                  ]
+                },
+                {
+                  "type": "checklist",
+                  "title": "성조숙증 의심 체크리스트",
+                  "description": "우리 아이에게 해당하는 항목이 있나요?",
+                  "items": [
+                    {
+                      "status": "warning",
+                      "text": "여아: 만 8세 이전 가슴에 멍울이 잡히거나 아프다"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "남아: 만 9세 이전 고환이 눈에 띄게 커졌다"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "또래보다 사춘기 발달이 눈에 띄게 빠르다"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "최근 1년간 키가 갑자기 많이 자랐다 (연간 8cm 이상)"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "체중이 또래보다 많이 나간다 (비만)"
+                    },
+                    {
+                      "status": "warning",
+                      "text": "여아: 만 10세 이전 초경이 시작되었다"
+                    }
+                  ]
+                },
+                {
+                  "type": "guide",
+                  "title": "진단 과정 (5단계)",
+                  "steps": [
+                    {
+                      "number": 1,
+                      "title": "문진 + 신체검사",
+                      "description": "2차 성징 확인, 성장 속도 평가"
+                    },
+                    {
+                      "number": 2,
+                      "title": "뼈나이 X-ray",
+                      "description": "성조숙증 아이는 보통 실제 나이보다 1~2년 진행"
+                    },
+                    {
+                      "number": 3,
+                      "title": "GnRH 자극검사",
+                      "description": "30분 간격 채혈 2~4회, 총 2~3시간 소요"
+                    },
+                    {
+                      "number": 4,
+                      "title": "영상 검사",
+                      "description": "뇌 MRI (특히 남아 6세 미만), 골반 초음파"
+                    },
+                    {
+                      "number": 5,
+                      "title": "종합 진단",
+                      "description": "모든 결과를 종합하여 치료 여부 결정"
+                    }
+                  ]
+                },
+                {
+                  "type": "highlight",
+                  "title": "GnRH 치료",
+                  "content": "치료는 가역적이며, 중단 후 정상적으로 사춘기가 재개됩니다.",
+                  "description": "주사 간격: 4주 또는 12주마다. 추적 관찰: 3~6개월 간격. 치료 종료: 뼈나이 여아 12~13세, 남아 13~14세 도달 시. 보험 적용 가능 (기준 충족 시). 수십 년의 장기 추적 데이터로 안전성 확인됨."
+                },
+                {
+                  "type": "checklist",
+                  "title": "예방 가이드",
+                  "items": [
+                    {
+                      "status": "good",
+                      "text": "운동: 하루 최소 30분~1시간, 중등도 강도"
+                    },
+                    {
+                      "status": "good",
+                      "text": "수면: 초등 9~10시간, 청소년 8~9시간 / 밤 9~10시 이전 취침"
+                    },
+                    {
+                      "status": "good",
+                      "text": "단백질 상한: 체중 kg당 최대 1.5g/일"
+                    },
+                    {
+                      "status": "good",
+                      "text": "비만 예방: BMI 정상 범위 유지"
+                    },
+                    {
+                      "status": "good",
+                      "text": "환경호르몬 최소화: 플라스틱 3·6·7번 피하기"
+                    },
+                    {
+                      "status": "good",
+                      "text": "스크린 차단: 취침 1시간 전, 침실 온도 18~22°C"
+                    }
+                  ]
+                }
+              ],
+              "highlight": "하나라도 의심 징후가 있다면, 지체 없이 성장 클리닉을 방문하세요!"
+            }
+          }
+        ]
+      },
+      {
+        "id": "lifestyle",
+        "name": "생활 습관",
+        "description": "수면, 운동, 자세 등 일상 속 성장 관리",
+        "icon": "🏃",
+        "cards": [
+          {
+            "id": "card_10",
+            "order": 10,
+            "title": "잠이 키를 키운다",
+            "subtitle": "수면이 성장을 만든다",
+            "category": "lifestyle",
+            "thumbnail": "https://www.genspark.ai/api/files/s/FposZiji?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/vZZj4GWP?cache_control=3600",
+            "icon": "😴",
+            "summary": "성장호르몬의 60~70%는 깊은 잠(비렘 3단계)에서 분비됩니다. 시간보다 수면의 질이 더 중요합니다.",
+            "key_points": [
+              "신생아 14-17h, 학령기 9-11h, 청소년 8-10h",
+              "골든 타임: 밤 10시 ~ 새벽 2시",
+              "깊은 수면의 질이 취침 시간보다 더 중요",
+              "스마트폰/TV 1-2시간 전 차단"
+            ],
+            "cta": "오늘 밤부터 일찍 재우기",
+            "reading_time": "9분",
+            "tags": [
+              "수면",
+              "성장호르몬",
+              "골든타임",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "성장호르몬의 60~70%는 깊은 잠(비렘 3단계)에서 분비됩니다. 취침 시간보다 수면의 깊이(질)가 더 중요합니다!"
+                },
+                {
+                  "type": "sleep_requirement",
+                  "title": "연령별 수면 권장 시간",
+                  "age_groups": [
+                    {
+                      "age": "신생아 (0-3개월)",
+                      "hours": "14-17시간"
+                    },
+                    {
+                      "age": "영아 (4-11개월)",
+                      "hours": "12-15시간"
+                    },
+                    {
+                      "age": "유아 (1-2세)",
+                      "hours": "11-14시간"
+                    },
+                    {
+                      "age": "학령 전기 (3-5세)",
+                      "hours": "10-13시간"
+                    },
+                    {
+                      "age": "학령기 (6-13세)",
+                      "hours": "9-11시간"
+                    },
+                    {
+                      "age": "청소년 (14-17세)",
+                      "hours": "8-10시간"
+                    }
+                  ],
+                  "question": "우리 아이는 충분히 자고 있나요?"
+                },
+                {
+                  "type": "golden_time",
+                  "title": "성장호르몬 분비 시간",
+                  "peak_time": "밤 10시 ~ 새벽 2시",
+                  "description": "성장호르몬은 잠든 후 1-2시간 뒤 깊은 수면 단계에서 최대 분비됩니다.",
+                  "pattern": [
+                    {
+                      "time": "22:00-02:00",
+                      "secretion": "분비량 최고 (60~70%)"
+                    },
+                    {
+                      "time": "새벽 3-4시",
+                      "secretion": "두 번째 피크"
+                    },
+                    {
+                      "time": "낮잠",
+                      "secretion": "소량 분비"
+                    }
+                  ],
+                  "key_point": "밤 10시라는 시간보다 \"깊이 잠드는 것\"이 핵심입니다. 잠든 후 1~2시간의 깊은 수면에서 성장호르몬이 가장 많이 분비됩니다."
+                },
+                {
+                  "type": "sleep_deprivation",
+                  "title": "수면 부족의 악영향",
+                  "effects": [
+                    {
+                      "category": "성장호르몬 분비 감소",
+                      "details": [
+                        "하루 1시간 부족 → 연간 성장 1-2cm 감소",
+                        "만성 수면 부족 → 최종 키 5-8cm 작아짐"
+                      ]
+                    },
+                    {
+                      "category": "식욕 조절 실패",
+                      "details": [
+                        "렙틴(포만감) 감소 → 과식",
+                        "그렐린(식욕) 증가 → 비만",
+                        "비만 → 조기 사춘기 → 성장판 빨리 닫힘"
+                      ]
+                    },
+                    {
+                      "category": "면역력 저하",
+                      "details": [
+                        "잦은 감기, 질병",
+                        "성장 에너지 소모"
+                      ]
+                    },
+                    {
+                      "category": "학습 능력 저하",
+                      "details": [
+                        "집중력, 기억력 감소",
+                        "스트레스 증가 → 성장호르몬 억제"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "sleep_principles",
+                  "title": "질 높은 수면을 위한 5가지 원칙",
+                  "principles": [
+                    {
+                      "number": 1,
+                      "title": "규칙적인 수면 시간",
+                      "guidelines": [
+                        "매일 같은 시간에 자고 일어나기",
+                        "주말에도 ±1시간 이내 유지",
+                        "낮잠은 30분 이내 (학령기 이후 불필요)"
+                      ]
+                    },
+                    {
+                      "number": 2,
+                      "title": "취침 시간: 22시 이전",
+                      "guidelines": [
+                        "늦어도 21:30 침대에 누우기",
+                        "잠들기까지 15-30분 소요",
+                        "목표: 22:00 깊은 수면 진입"
+                      ]
+                    },
+                    {
+                      "number": 3,
+                      "title": "어둡고 조용한 환경",
+                      "guidelines": [
+                        "암막 커튼 (또는 수면 안대)",
+                        "조용한 환경 (귀마개 사용 가능)",
+                        "적정 온도: 18-20°C",
+                        "적정 습도: 40-60%"
+                      ],
+                      "note": "멜라토닌(수면 호르몬)은 어두울 때 분비됩니다!"
+                    },
+                    {
+                      "number": 4,
+                      "title": "스마트폰·TV 차단",
+                      "guidelines": [
+                        "취침 1-2시간 전 사용 금지",
+                        "블루라이트가 멜라토닌 분비 억제",
+                        "침실에 전자기기 두지 않기"
+                      ],
+                      "alternatives": [
+                        "책 읽기",
+                        "가벼운 스트레칭",
+                        "가족 대화",
+                        "명상, 심호흡"
+                      ]
+                    },
+                    {
+                      "number": 5,
+                      "title": "취침 전 루틴 만들기",
+                      "routine": [
+                        "따뜻한 물로 샤워 (체온 낮추기)",
+                        "우유 한 잔 (트립토판 → 멜라토닌)",
+                        "부모와 대화 (정서 안정)",
+                        "가벼운 스트레칭 (근육 이완)",
+                        "조명 점진적으로 어둡게"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "avoid_list",
+                  "title": "피해야 할 것들",
+                  "items": [
+                    "카페인 음료 (콜라, 초콜릿)",
+                    "과식 (소화 부담)",
+                    "격렬한 운동 (각성)",
+                    "무서운 영상, 게임 (흥분)",
+                    "낮잠 길게 자기"
+                  ]
+                },
+                {
+                  "type": "action_plan",
+                  "title": "오늘 밤부터 일찍 재우기",
+                  "weekly_goals": [
+                    {
+                      "week": 1,
+                      "goal": "30분 일찍 재우기"
+                    },
+                    {
+                      "week": 2,
+                      "goal": "22시 취침 습관화"
+                    },
+                    {
+                      "week": 3,
+                      "goal": "스마트폰 없이 잠들기"
+                    },
+                    {
+                      "week": 4,
+                      "goal": "규칙적인 수면 패턴 완성"
+                    }
+                  ]
+                },
+                {
+                  "type": "highlight",
+                  "content": "잠이 최고의 성장제입니다! 아무리 좋은 영양제, 운동을 해도 잠이 부족하면 소용없습니다. 오늘 밤부터 일찍 재워주세요!"
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_11",
+            "order": 11,
+            "title": "키 크는 운동 가이드",
+            "subtitle": "키 크는 운동은 따로 있다",
+            "category": "lifestyle",
+            "thumbnail": "https://www.genspark.ai/api/files/s/dJyiHD4V?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/V8HtsG5U?cache_control=3600",
+            "icon": "🏃",
+            "summary": "성장판을 자극하는 운동과 주의해야 할 운동을 구분하여 안내합니다. 줄넘기, 농구, 배구, 수영, 스트레칭이 추천됩니다.",
+            "key_points": [
+              "추천: 줄넘기, 농구, 배구, 수영, 스트레칭",
+              "주 3회 이상, 30분 이상, 약간 숨이 찰 정도",
+              "주의: 과도한 근력운동, 무리한 웨이트",
+              "매일 즐겁게 뛰어놀게"
+            ],
+            "cta": "매일 즐겁게 뛰어놀게 해주세요",
+            "reading_time": "10분",
+            "tags": [
+              "운동",
+              "성장판",
+              "줄넘기",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "모든 운동이 키 성장에 좋은 것은 아닙니다. 성장판을 자극하는 운동이 따로 있어요!"
+                },
+                {
+                  "type": "recommended_exercise",
+                  "exercise": "줄넘기",
+                  "rating": 5,
+                  "icon": "🦘",
+                  "why_good": [
+                    "점프 동작이 성장판에 적절한 압력",
+                    "뼈 세포 활성화",
+                    "하체 근력 강화",
+                    "심폐 기능 향상"
+                  ],
+                  "how_to": {
+                    "start": "하루 100개 (5세트)",
+                    "goal": "하루 500-1,000개",
+                    "frequency": "주 5회, 10-15분",
+                    "surface": "우레탄, 잔디 (충격 흡수)"
+                  },
+                  "progression": [
+                    {
+                      "level": 1,
+                      "exercise": "양발 모아 뛰기 100개"
+                    },
+                    {
+                      "level": 2,
+                      "exercise": "한 발씩 번갈아 200개"
+                    },
+                    {
+                      "level": 3,
+                      "exercise": "2단 뛰기 100개"
+                    },
+                    {
+                      "level": 4,
+                      "exercise": "자유 스타일 200개"
+                    }
+                  ],
+                  "tip": "아침, 저녁 나눠서 하면 효과 UP!"
+                },
+                {
+                  "type": "recommended_exercise",
+                  "exercise": "농구",
+                  "rating": 5,
+                  "icon": "🏀",
+                  "why_good": [
+                    "점프 슛, 리바운드로 수직 운동",
+                    "전신 근육 발달",
+                    "순발력, 지구력 향상"
+                  ],
+                  "how_to": {
+                    "frequency": "주 3-4회, 회당 30-60분",
+                    "activities": [
+                      "자유투 연습 (점프 동작)",
+                      "레이업 슛 (달리기 + 점프)",
+                      "미니 게임"
+                    ]
+                  },
+                  "at_home": [
+                    "미니 농구대 설치",
+                    "점프해서 천장 터치",
+                    "벽에 표시하고 점프해서 터치"
+                  ]
+                },
+                {
+                  "type": "recommended_exercise",
+                  "exercise": "배구",
+                  "rating": 4,
+                  "icon": "🏐",
+                  "why_good": [
+                    "스파이크, 블로킹으로 점프",
+                    "전신 협응력",
+                    "유연성 향상"
+                  ],
+                  "how_to": {
+                    "frequency": "주 2-3회, 회당 40-60분",
+                    "activities": [
+                      "서브, 리시브 연습",
+                      "점프 스파이크"
+                    ]
+                  }
+                },
+                {
+                  "type": "recommended_exercise",
+                  "exercise": "수영",
+                  "rating": 4,
+                  "icon": "🏊",
+                  "why_good": [
+                    "전신 운동으로 골고루 성장",
+                    "관절 무리 없음 (무중력 환경)",
+                    "폐활량 증가 → 산소 공급 ↑",
+                    "척추 스트레칭 효과"
+                  ],
+                  "how_to": {
+                    "frequency": "주 3-4회, 회당 40-60분",
+                    "recommended_strokes": [
+                      "자유형",
+                      "배영"
+                    ],
+                    "note": "평영은 성장판에 약간 부담"
+                  },
+                  "tip": "수영 + 줄넘기 조합이 최고!"
+                },
+                {
+                  "type": "recommended_exercise",
+                  "exercise": "스트레칭",
+                  "rating": 4,
+                  "icon": "🧘",
+                  "why_good": [
+                    "척추 늘리기",
+                    "관절 유연성",
+                    "성장판 자극",
+                    "혈액 순환 개선"
+                  ],
+                  "morning_routine": {
+                    "duration": "5분",
+                    "exercises": [
+                      {
+                        "name": "기지개 켜기",
+                        "description": "팔 위로 쭉",
+                        "duration": "10초 × 3회"
+                      },
+                      {
+                        "name": "전신 늘리기",
+                        "description": "발끝 서서 팔 쭉",
+                        "duration": "10초 × 3회"
+                      },
+                      {
+                        "name": "앞으로 숙이기",
+                        "description": "다리 쭉 펴고 손으로 발끝 터치",
+                        "duration": "10초 × 3회"
+                      }
+                    ]
+                  },
+                  "evening_routine": {
+                    "duration": "10분",
+                    "exercises": [
+                      {
+                        "name": "고양이 자세",
+                        "description": "등 둥글게/펴기",
+                        "reps": "10회"
+                      },
+                      {
+                        "name": "코브라 자세",
+                        "description": "상체 뒤로 젖히기",
+                        "duration": "10초 × 3회"
+                      },
+                      {
+                        "name": "다리 찢기",
+                        "description": "옆으로, 앞뒤로",
+                        "duration": "10초 × 3회"
+                      },
+                      {
+                        "name": "브릿지",
+                        "description": "허리 들어올리기",
+                        "duration": "10초 × 3회"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "exercise_caution",
+                  "title": "주의해야 할 운동",
+                  "exercises": [
+                    {
+                      "name": "과도한 근력운동",
+                      "why_dangerous": [
+                        "성장판에 과도한 압박",
+                        "수직 성장보다 근육 성장 우선",
+                        "성장호르몬을 근육 생성에 소모"
+                      ],
+                      "avoid": [
+                        "무거운 바벨, 덤벨 (체중의 50% 이상)",
+                        "데드리프트, 스쿼트 (고중량)",
+                        "벤치프레스 (고중량)"
+                      ],
+                      "note": "맨몸 운동은 OK! (팔굽혀펴기, 윗몸일으키기, 플랭크)"
+                    },
+                    {
+                      "name": "무리한 웨이트 트레이닝",
+                      "when_possible": "성장판이 거의 닫힌 후 (만 16-17세 이후)",
+                      "before_that": "체중 이용한 저강도 근력 운동만"
+                    },
+                    {
+                      "name": "과도한 장거리 달리기",
+                      "why_caution": [
+                        "성장 에너지 소모",
+                        "무릎, 발목 관절 부담",
+                        "체지방 과도 감소 → 성장호르몬 분비 감소"
+                      ],
+                      "appropriate_level": {
+                        "frequency": "주 3회, 20-30분",
+                        "pace": "천천히 달리기 (대화 가능한 속도)"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "exercise_plan",
+                  "title": "운동 계획표",
+                  "plans": [
+                    {
+                      "age_group": "초등 저학년 (1-3학년)",
+                      "plan": {
+                        "weekday": "월·수·금: 줄넘기 10분 + 자유 놀이 30분\n화·목: 수영 또는 태권도 40분",
+                        "weekend": "주말: 가족과 자전거, 등산"
+                      }
+                    },
+                    {
+                      "age_group": "초등 고학년 (4-6학년)",
+                      "plan": {
+                        "weekday": "월·수·금: 줄넘기 15분 + 농구/축구 30분\n화·목: 수영 또는 배드민턴 60분",
+                        "daily": "매일: 아침·저녁 스트레칭 10분"
+                      }
+                    },
+                    {
+                      "age_group": "중학생",
+                      "plan": {
+                        "weekday": "월·수·금: 농구/배구 60분\n화·목: 수영 60분\n토: 줄넘기 20분 + 근력 운동(맨몸) 20분",
+                        "daily": "매일: 스트레칭 15분"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "exercise_tips",
+                  "title": "운동 효과를 높이는 TIP",
+                  "tips": [
+                    {
+                      "tip": "주 3회 이상, 30분 이상",
+                      "description": "성장호르몬 분비는 운동 후 2-3시간 지속. 규칙적인 운동이 핵심"
+                    },
+                    {
+                      "tip": "약간 숨이 찰 정도 강도",
+                      "description": "너무 강하면 오히려 성장 방해. 운동 중 대화 가능한 수준"
+                    },
+                    {
+                      "tip": "운동 후 단백질 섭취",
+                      "foods": [
+                        "우유",
+                        "달걀",
+                        "바나나"
+                      ],
+                      "effect": "근육 회복 + 성장 촉진"
+                    },
+                    {
+                      "tip": "충분한 수면",
+                      "description": "운동으로 자극된 성장판은 수면 중 성장. 운동 + 수면 = 최강 조합"
+                    },
+                    {
+                      "tip": "즐거운 운동",
+                      "description": "억지로 시키면 스트레스 → 역효과. 아이가 좋아하는 운동 찾기"
+                    }
+                  ]
+                },
+                {
+                  "type": "highlight",
+                  "content": "최고의 운동은 '즐겁게 노는 것'입니다. 친구들과 뛰어노는 시간이 가장 좋은 성장 운동입니다!"
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_12",
+            "order": 12,
+            "title": "바른 자세로 숨은 키 찾기",
+            "subtitle": "숨은 키 3cm, 자세가 답이다",
+            "category": "lifestyle",
+            "thumbnail": "https://www.genspark.ai/api/files/s/9GUmXZfO?cache_control=3600",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/AtfjlgtV?cache_control=3600",
+            "icon": "🧘",
+            "summary": "바른 자세만으로도 즉시 2-3cm, 장기적으로 최대 5cm까지 키가 달라 보일 수 있습니다. 거북목, 굽은 등을 교정하세요.",
+            "key_points": [
+              "거북목, 굽은 등은 3-5cm 손실",
+              "올바른 앉기/서기/걷기 자세",
+              "아침·저녁 스트레칭 5-10분",
+              "스마트폰 사용 시 자세 주의"
+            ],
+            "cta": "자세 교정으로 숨은 키 찾기",
+            "reading_time": "12분",
+            "tags": [
+              "자세",
+              "거북목",
+              "스트레칭",
+              "교정"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "바른 자세만으로도 즉시 2-3cm, 장기적으로는 최대 5cm까지 키가 달라 보일 수 있습니다!"
+                },
+                {
+                  "type": "bad_posture",
+                  "category": "거북목 (일자목)",
+                  "description": "고개가 앞으로 쭉 나가고, 목뼈가 일자로 펴지며, 어깨가 앞으로 말리는 자세",
+                  "causes": [
+                    "스마트폰, 태블릿 장시간 사용",
+                    "책상에서 구부정한 자세",
+                    "베개가 너무 높음"
+                  ],
+                  "height_loss": [
+                    {
+                      "angle": "고개 15도 숙임",
+                      "loss": "-1.5cm"
+                    },
+                    {
+                      "angle": "고개 30도 숙임",
+                      "loss": "-3cm"
+                    },
+                    {
+                      "angle": "고개 45도 숙임",
+                      "loss": "-5cm"
+                    }
+                  ],
+                  "health_issues": [
+                    "목·어깨 통증",
+                    "두통",
+                    "혈액순환 장애 → 성장 방해"
+                  ]
+                },
+                {
+                  "type": "bad_posture",
+                  "category": "굽은 등 (척추 후만증)",
+                  "description": "등이 C자로 굽고, 가슴이 들어가며, 어깨가 앞으로 말리는 자세",
+                  "causes": [
+                    "오래 앉아있기",
+                    "운동 부족",
+                    "복부 근력 약화",
+                    "무거운 가방"
+                  ],
+                  "height_loss": [
+                    {
+                      "severity": "경미한 굽음",
+                      "loss": "-2cm"
+                    },
+                    {
+                      "severity": "심한 굽음",
+                      "loss": "-5cm 이상"
+                    }
+                  ],
+                  "health_issues": [
+                    "폐활량 감소 → 산소 공급 ↓",
+                    "소화 장애",
+                    "척추측만증 위험"
+                  ]
+                },
+                {
+                  "type": "bad_posture",
+                  "category": "골반 틀어짐",
+                  "description": "한쪽으로 기대 앉기, 다리 꼬기, 짝다리 짚기",
+                  "impact": [
+                    "양쪽 다리 길이 차이",
+                    "척추 측만",
+                    "키 1-2cm 손실"
+                  ]
+                },
+                {
+                  "type": "correct_posture",
+                  "situation": "책상에 앉을 때",
+                  "checkpoints": [
+                    {
+                      "body_part": "엉덩이",
+                      "position": "의자 깊숙이 밀착"
+                    },
+                    {
+                      "body_part": "등",
+                      "position": "등받이에 밀착 (허리 쿠션 사용 권장)"
+                    },
+                    {
+                      "body_part": "발",
+                      "position": "바닥에 평평하게 (발판 사용 가능)"
+                    },
+                    {
+                      "body_part": "무릎",
+                      "position": "90도 각도"
+                    },
+                    {
+                      "body_part": "팔",
+                      "position": "책상에 자연스럽게"
+                    },
+                    {
+                      "body_part": "모니터",
+                      "position": "눈높이 (고개 숙이지 않게)"
+                    },
+                    {
+                      "body_part": "책",
+                      "position": "30-40cm 거리, 받침대 사용"
+                    }
+                  ],
+                  "tip": "50분 앉으면 10분 일어나 스트레칭!"
+                },
+                {
+                  "type": "correct_posture",
+                  "situation": "바닥에 앉을 때",
+                  "good_postures": [
+                    "양반다리 (쿠션 깔기)",
+                    "무릎 세우고 앉기"
+                  ],
+                  "bad_postures": [
+                    "옆으로 다리 접기",
+                    "W자로 앉기",
+                    "엎드리기"
+                  ]
+                },
+                {
+                  "type": "correct_posture",
+                  "situation": "서 있을 때",
+                  "checkpoints": [
+                    {
+                      "number": 1,
+                      "body_part": "턱",
+                      "position": "당기기 (이중턱 만드는 느낌)"
+                    },
+                    {
+                      "number": 2,
+                      "body_part": "어깨",
+                      "position": "뒤로 쭉 펴기"
+                    },
+                    {
+                      "number": 3,
+                      "body_part": "가슴",
+                      "position": "내밀기"
+                    },
+                    {
+                      "number": 4,
+                      "body_part": "배",
+                      "position": "당기기 (복부 긴장)"
+                    },
+                    {
+                      "number": 5,
+                      "body_part": "골반",
+                      "position": "중립 (너무 앞/뒤로 기울지 않게)"
+                    },
+                    {
+                      "number": 6,
+                      "body_part": "무릎",
+                      "position": "살짝 여유있게 (과도하게 펴지 말기)"
+                    },
+                    {
+                      "number": 7,
+                      "body_part": "발",
+                      "position": "어깨 너비로 벌리기, 체중 균등 분배"
+                    }
+                  ],
+                  "wall_check": "뒤통수, 어깨, 엉덩이, 종아리, 발뒤꿈치가 벽에 닿아야 정상. 허리와 벽 사이 손바닥 하나 들어갈 정도 공간"
+                },
+                {
+                  "type": "posture_stretching",
+                  "title": "자세 교정 스트레칭",
+                  "morning_routine": {
+                    "duration": "5분",
+                    "exercises": [
+                      {
+                        "name": "만세 스트레칭",
+                        "duration": "1분",
+                        "description": "서서 팔을 위로 쭉, 온 힘을 다해 늘리기",
+                        "reps": "10초 × 6회"
+                      },
+                      {
+                        "name": "어깨 돌리기",
+                        "duration": "1분",
+                        "description": "앞으로 10회, 뒤로 10회, 크게 원을 그리며"
+                      },
+                      {
+                        "name": "목 스트레칭",
+                        "duration": "1분",
+                        "description": "좌우로 천천히 기울이기, 각 방향 10초씩"
+                      },
+                      {
+                        "name": "허리 비틀기",
+                        "duration": "1분",
+                        "description": "서서 상체 좌우로 비틀기, 각 방향 10초씩"
+                      },
+                      {
+                        "name": "전신 스트레칭",
+                        "duration": "1분",
+                        "description": "발끝 서서 팔 쭉",
+                        "reps": "10초 × 6회"
+                      }
+                    ]
+                  },
+                  "evening_routine": {
+                    "duration": "10분",
+                    "exercises": [
+                      {
+                        "name": "고양이-소 자세",
+                        "duration": "2분",
+                        "description": "네발 자세에서 등 둥글게/펴기",
+                        "reps": "10회 반복"
+                      },
+                      {
+                        "name": "코브라 자세",
+                        "duration": "2분",
+                        "description": "엎드려 상체 들어올리기",
+                        "reps": "10초 × 6회"
+                      },
+                      {
+                        "name": "아이 자세",
+                        "duration": "2분",
+                        "description": "무릎 꿇고 앞으로 숙이기, 팔 쭉 뻗기",
+                        "reps": "30초 × 4회"
+                      },
+                      {
+                        "name": "브릿지",
+                        "duration": "2분",
+                        "description": "누워서 허리 들어올리기",
+                        "reps": "10초 × 6회"
+                      },
+                      {
+                        "name": "다리 당기기",
+                        "duration": "2분",
+                        "description": "누워서 무릎을 가슴으로, 한쪽씩",
+                        "reps": "15초 × 4회"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "smartphone_rules",
+                  "title": "스마트폰 사용 수칙",
+                  "correct_usage": [
+                    "눈높이까지 올리기",
+                    "팔꿈치 지지하기",
+                    "30분마다 목 스트레칭"
+                  ],
+                  "incorrect_usage": [
+                    "고개 숙이고 보기",
+                    "누워서 보기",
+                    "걸으면서 보기"
+                  ],
+                  "time_limits": {
+                    "elementary_low": "하루 30분",
+                    "elementary_high": "하루 1시간",
+                    "middle_school": "하루 1.5시간"
+                  }
+                },
+                {
+                  "type": "highlight",
+                  "content": "바른 자세는 키뿐 아니라 자신감, 건강, 학습 능력까지 향상시킵니다! 지금 당장 확인하세요: 거울 앞에 서서 옆모습을 보세요. 귀-어깨-골반-무릎-발목이 일직선인가요?"
+                }
+              ]
+            }
+          },
+          {
+            "id": "card_13",
+            "order": 13,
+            "title": "스트레스 관리",
+            "subtitle": "마음이 건강해야 몸도 큰다",
+            "category": "lifestyle",
+            "thumbnail": "https://www.genspark.ai/api/files/s/bquFkEvl?cache_control=3600",
+            "icon": "💚",
+            "summary": "만성 스트레스는 성장호르몬을 억제합니다. 대화와 공감, 운동, 키 비교 금지, 과정 칭찬으로 아이의 마음을 건강하게 지켜주세요.",
+            "key_points": [
+              "만성 스트레스 = 성장호르몬 최대 50% 감소",
+              "충분한 대화와 공감",
+              "운동/취미로 스트레스 해소",
+              "키 비교 금지 및 과정 칭찬"
+            ],
+            "tags": [
+              "스트레스",
+              "정서",
+              "공감",
+              "필수"
+            ],
+            "detail": {
+              "sections": [
+                {
+                  "type": "intro",
+                  "content": "만성 스트레스는 성장호르몬을 억제하고 성장을 방해합니다. 아이의 마음 건강이 키 성장의 핵심입니다."
+                },
+                {
+                  "type": "mechanism",
+                  "title": "스트레스가 성장을 막는 원리",
+                  "items": [
+                    {
+                      "name": "코르티솔(스트레스 호르몬) 증가",
+                      "description": "스트레스 → 코르티솔 ↑ → 성장호르몬 ↓ (최대 50% 감소) → 성장 둔화",
+                      "effects": [
+                        "단백질 분해 촉진 (근육·뼈 성장 방해)",
+                        "칼슘 흡수 저해",
+                        "면역력 저하",
+                        "수면 방해"
+                      ]
+                    },
+                    {
+                      "name": "식욕 변화",
+                      "description": "과식 → 비만 → 조기 사춘기 / 식욕 부진 → 영양 부족 → 성장 지연"
+                    },
+                    {
+                      "name": "수면 장애",
+                      "effects": [
+                        "잠들기 어려움",
+                        "깊은 수면 감소",
+                        "성장호르몬 분비 ↓"
+                      ]
+                    },
+                    {
+                      "name": "활동량 감소",
+                      "effects": [
+                        "의욕 저하",
+                        "운동 회피",
+                        "성장판 자극 ↓"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "causes",
+                  "title": "아이의 스트레스 원인",
+                  "causes": [
+                    {
+                      "category": "학업 스트레스",
+                      "level": "가장 큰 원인",
+                      "symptoms": [
+                        "공부에 대한 부담감",
+                        "성적 걱정",
+                        "시험 불안",
+                        "과도한 학원, 숙제"
+                      ],
+                      "impact": "만성 피로, 수면 부족, 성장 에너지 소모, 연간 1-2cm 성장 감소 가능"
+                    },
+                    {
+                      "category": "키에 대한 스트레스",
+                      "symptoms": [
+                        "나는 왜 이렇게 작아?",
+                        "또래 비교",
+                        "놀림, 따돌림",
+                        "자존감 저하"
+                      ],
+                      "impact": "키 스트레스 → 코르티솔 ↑ → 성장 더 느려짐 → 스트레스 ↑ (악순환)"
+                    },
+                    {
+                      "category": "가족 스트레스",
+                      "symptoms": [
+                        "부모의 과도한 기대",
+                        "형제 비교",
+                        "부부 갈등 목격",
+                        "정서적 불안"
+                      ]
+                    },
+                    {
+                      "category": "또래 관계 스트레스",
+                      "symptoms": [
+                        "친구 관계 문제",
+                        "왕따, 괴롭힘",
+                        "SNS 스트레스"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "management",
+                  "title": "스트레스 관리 방법",
+                  "methods": [
+                    {
+                      "method": "충분한 대화와 공감",
+                      "good_examples": [
+                        "많이 힘들었겠구나",
+                        "엄마도 네 마음을 이해해",
+                        "무슨 일이 있었는지 이야기해줄래?"
+                      ],
+                      "bad_examples": [
+                        "그게 뭐가 힘들어? (감정 무시)",
+                        "다른 애들은 다 잘하는데 (비교)",
+                        "그까짓 거로 울어? (감정 부정)"
+                      ],
+                      "listening_skills": [
+                        "눈 맞추기",
+                        "고개 끄덕이기",
+                        "중간에 끊지 않기",
+                        "감정 이름 붙여주기 (화가 났구나, 속상했구나)"
+                      ],
+                      "daily_talk": {
+                        "duration": "하루 20분",
+                        "timing": [
+                          "저녁 식사 시간",
+                          "잠들기 전",
+                          "주말 산책하며"
+                        ],
+                        "rule": "스마트폰 없이 집중"
+                      }
+                    },
+                    {
+                      "method": "운동과 취미로 스트레스 해소",
+                      "exercise": {
+                        "benefits": [
+                          "엔도르핀 분비 → 기분 UP",
+                          "코르티솔 감소",
+                          "수면의 질 향상"
+                        ],
+                        "recommendation": "주 3-5회, 30-60분",
+                        "types": {
+                          "aerobic": "줄넘기, 달리기, 자전거, 수영",
+                          "team_sports": "축구, 농구, 배구 (사회성 ↑)",
+                          "relaxation": "요가, 스트레칭 (긴장 이완)"
+                        }
+                      },
+                      "hobbies": [
+                        "음악 (악기 연주, 노래)",
+                        "미술 (그림, 만들기)",
+                        "독서",
+                        "요리",
+                        "반려동물과 놀기"
+                      ],
+                      "note": "아이가 좋아하는 것, 강요하지 말기!"
+                    },
+                    {
+                      "method": "키 비교 금지",
+                      "never_say": [
+                        "넌 왜 형보다 작니?",
+                        "○○는 많이 컸는데 너는...",
+                        "엄마 아빠가 작아서 너도 작은 거야",
+                        "키 작으면 안 돼, 큰일이야"
+                      ],
+                      "say_instead": [
+                        "지금 건강하게 잘 자라고 있어",
+                        "네 속도로 자라는 거야",
+                        "키보다 중요한 건 건강이야",
+                        "넌 그대로도 정말 멋져"
+                      ]
+                    },
+                    {
+                      "method": "과정 칭찬하기",
+                      "result_praise": {
+                        "bad": [
+                          "1등 했네, 잘했어!",
+                          "키가 많이 컸네!"
+                        ]
+                      },
+                      "process_praise": {
+                        "good": [
+                          "매일 열심히 공부하는 모습이 대단해",
+                          "우유 잘 마시고 일찍 자려고 노력하는구나",
+                          "줄넘기 꾸준히 하는 거 보니까 기특하다"
+                        ]
+                      },
+                      "reason": "결과는 통제 불가 → 스트레스 ↑ / 과정은 통제 가능 → 자존감 ↑, 동기부여 ↑"
+                    },
+                    {
+                      "method": "학업 스트레스 관리",
+                      "tips": [
+                        "너무 많은 학원 → 휴식 부족 → 성장 방해",
+                        "아이와 상의해서 우선순위 정하기",
+                        "하루 1-2시간 자유 시간 확보",
+                        "50분 공부 - 10분 휴식",
+                        "시험 후 충분한 휴식"
+                      ]
+                    },
+                    {
+                      "method": "규칙적인 생활 패턴",
+                      "importance": "불규칙한 생활 = 신체 스트레스 / 규칙성 = 안정감, 예측 가능성",
+                      "routine": [
+                        "같은 시간 기상/취침",
+                        "규칙적인 식사 시간",
+                        "정해진 공부/놀이 시간",
+                        "주말에도 ±1시간 이내 유지"
+                      ]
+                    },
+                    {
+                      "method": "긍정적인 가족 분위기",
+                      "motto": "행복한 가정 = 성장호르몬 ↑",
+                      "practices": [
+                        "가족 식사 시간 (주 5회 이상)",
+                        "주말 나들이",
+                        "함께 운동, 취미 활동",
+                        "서로 칭찬하기",
+                        "사랑해, 고마워 자주 표현"
+                      ],
+                      "caution": "아이 앞에서 싸우지 않기, 부정적 감정 최소화, 안정적인 환경 제공"
+                    }
+                  ]
+                },
+                {
+                  "type": "checklist",
+                  "title": "스트레스 지수 체크리스트",
+                  "description": "우리 아이에게 해당하는 항목은?",
+                  "items": [
+                    "잠들기 어려워하거나 악몽을 꾼다",
+                    "짜증이 늘고 예민해졌다",
+                    "식욕이 없거나 과식한다",
+                    "두통, 복통을 자주 호소한다",
+                    "친구 만나기를 피한다",
+                    "공부, 학교 가기를 싫어한다",
+                    "자주 울거나 우울해 보인다",
+                    "활동량이 줄었다",
+                    "키에 대해 자주 걱정한다",
+                    "자신감이 없어 보인다"
+                  ],
+                  "result": {
+                    "normal": "0-2개: 정상",
+                    "caution": "3-5개: 경계, 관심 필요",
+                    "high": "6개 이상: 높은 스트레스, 적극적 개입 필요"
+                  }
+                },
+                {
+                  "type": "professional_help",
+                  "title": "전문가 도움이 필요한 경우",
+                  "situations": [
+                    "2주 이상 우울, 무기력",
+                    "자해, 자살 생각",
+                    "폭력적 행동",
+                    "심한 불안, 공황",
+                    "식사 거부",
+                    "등교 거부"
+                  ],
+                  "action": "소아청소년 정신건강의학과 상담"
+                },
+                {
+                  "type": "priority",
+                  "title": "성장 관리 우선순위",
+                  "order": [
+                    "1. 정서적 안정 (가장 중요!)",
+                    "2. 수면",
+                    "3. 영양",
+                    "4. 운동"
+                  ],
+                  "conclusion": "아이가 행복해야 성장호르몬이 제대로 분비됩니다."
+                }
+              ],
+              "highlight": "잘 크려면 행복해야 한다. 오늘부터 아이의 마음을 먼저 챙겨주세요. 키는 자연스럽게 따라옵니다!"
+            },
+            "reading_time": "11분",
+            "cta": "아이의 마음 우선",
+            "thumbnail_alt": "https://www.genspark.ai/api/files/s/jk741pYN?cache_control=3600"
+          }
+        ]
+      }
+    ]
+  }
+}
