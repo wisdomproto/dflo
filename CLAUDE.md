@@ -79,6 +79,20 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 8: PARTIAL (PC admin layout, cases slide, image history, diagnosis intake form, growth chart enhancements)
 - Phase 9: COMPLETE (growth guide pages, animated growth chart, banner enhancements)
 
+## Remotion (Instagram Reels)
+- **Directory**: `./remotion/` — Remotion 4 + TypeScript
+- **Purpose**: Height prediction feature showcase reels (9:16, ~24.5s)
+- **Compositions**: `HeightReels` (한국어), `HeightReelsTH` (태국어)
+- **Locale system**: `src/lib/texts.ts` — add new language → create composition → render
+- **Commands**:
+  ```bash
+  cd remotion && npx remotion preview        # Preview
+  cd remotion && npx remotion render HeightReels out/reels.mp4      # Korean
+  cd remotion && npx remotion render HeightReelsTH out/reels-th.mp4 # Thai
+  ```
+- **Add new language**: 1) Add translations in `texts.ts` 2) Copy `HeightReelsTH.tsx` → change `setLocale()` 3) Add Composition in `Root.tsx`
+
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`
 - AI server details: see `ai-server/CLAUDE.md`
+- Remotion details: see `remotion/` (scenes, components, locale)

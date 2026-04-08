@@ -1,0 +1,32 @@
+{
+  "name": "remotion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "preview": "remotion preview",
+    "render": "remotion render HeightReels out/reels.mp4",
+    "build": "remotion render HeightReels out/reels.mp4"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@remotion/bundler": "^4.0.447",
+    "@remotion/cli": "^4.0.447",
+    "@remotion/fonts": "^4.0.447",
+    "@remotion/google-fonts": "^4.0.447",
+    "@remotion/media": "^4.0.447",
+    "@remotion/paths": "^4.0.447",
+    "@remotion/sfx": "^4.0.447",
+    "@remotion/transitions": "^4.0.447",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "^4.0.447"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^6.0.2"
+  }
+}
