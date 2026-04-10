@@ -57,7 +57,14 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - AnimatedGrowthChart: SVG, 5th/50th/95th percentiles, male/female toggle
 - Banner ctaAction: scroll | link | fulllink | modal | iframe
 - Banner modalRatio: '4:5' | '9:16' for modal/iframe slides
+- Banner iframeZoom: configurable content zoom % (default 70%)
 - Program HTML pages: v4/public/programs/ (iframe-embeddable)
+- Cases: clean_cases.py for Excel data cleanup + AI predicted height calculation
+- Cases: predicted growth curve (bone-age percentile → yearly projection to 18)
+- Cases: allergyData (danger/caution food lists) with collapsible card UI
+- Cases: admin fields — realName, chartNumber, youtubeUrl, allergyData, category (free-text)
+- Cases: percentile display in measurement table (actual age for height, age 18 for predicted)
+- Cases: character illustrations (Gemini Imagen 4.0) in v4/public/images/cases/
 
 ## Environment Variables
 ```
@@ -78,6 +85,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 7.5: COMPLETE (Instagram card-news redesign, per-slide templates, dnd-kit reorder, bottom tab bar, admin live preview)
 - Phase 8: PARTIAL (PC admin layout, cases slide, image history, diagnosis intake form, growth chart enhancements)
 - Phase 9: COMPLETE (growth guide pages, animated growth chart, banner enhancements)
+- Phase 10: PARTIAL (7 treatment cases with data cleanup, predicted growth curves, allergy data, admin enhancements)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript
