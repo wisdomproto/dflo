@@ -268,6 +268,12 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
             </div>
             <p className="text-[10px] text-gray-400 mt-1">배너 영역 안에 HTML 페이지가 iframe으로 표시됩니다. 스크롤 가능.</p>
           </div>
+          <div>
+            <label className="text-xs font-semibold text-gray-500 mb-1 block">콘텐츠 크기 ({bs.iframeZoom || 70}%)</label>
+            <input type="range" min={50} max={150} step={5} value={bs.iframeZoom || 70}
+              onChange={(e) => onUpdate({ iframeZoom: Number(e.target.value) })}
+              className="w-full accent-[#0F6E56] h-1" />
+          </div>
         </div>
       )}
       {!['fulllink', 'modal', 'iframe'].includes(bs.ctaAction) && bs.ctaText && (

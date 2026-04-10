@@ -44,6 +44,8 @@ interface GrowthChartProps {
   compact?: boolean;
   /** 18세 예상키 (cm) — 마지막 측정점에서 18세 예상키까지 점선 연결 */
   predictedAdultHeight?: number;
+  /** 예상 성장 곡선 포인트 (마지막 측정~18세, 1년 간격) — predictedAdultHeight 대신 사용 */
+  predictedCurve?: GrowthPoint[];
 }
 
 export function GrowthChart({
@@ -54,6 +56,7 @@ export function GrowthChart({
   onExpand,
   compact = false,
   predictedAdultHeight,
+  predictedCurve,
 }: GrowthChartProps) {
   const chartRef = useRef<ChartJS<'line'> | null>(null);
 
@@ -66,7 +69,8 @@ export function GrowthChart({
     const ages = points.map((p) => p.age);
     // zoomable: 전체 범위(3~18), 아닐 때: 측정 나이 ±1세 (extend to 18 if predictedAdultHeight)
     const minAge = zoomable ? 3 : Math.max(2, Math.floor(Math.min(...ages)) - 1);
-    const maxAge = zoomable ? 18 : predictedAdultHeight ? 18.5 : Math.min(18, Math.ceil(Math.max(...ages)) + 1);
+    const hasPrediction = predictedCurve?.length || predictedAdultHeight;
+    const maxAge = zoomable ? 18 : hasPrediction ? 18.5 : Math.min(18, Math.ceil(Math.max(...ages)) + 1);
     const stdFiltered = standard.filter((d) => d.age >= minAge && d.age <= maxAge);
 
     // {x, y} 포인트 형식으로 변환 (LinearScale 용)
@@ -134,8 +138,26 @@ export function GrowthChart({
           spanGaps: true,
           tension: 0.3,
         },
-        // Predicted adult height line: last measurement → 18세 예상키
-        ...(predictedAdultHeight && points.length > 0 ? [
+        // Predicted growth curve (yearly points from last measurement to 18)
+        ...(predictedCurve && predictedCurve.length > 0 ? [
+          {
+            label: '예상 성장곡선',
+            data: predictedCurve.map((p) => ({ x: p.age, y: p.height })),
+            borderColor: '#F59E0B',
+            backgroundColor: '#F59E0B',
+            borderWidth: 2,
+            borderDash: [6, 4] as number[],
+            pointRadius: predictedCurve.map((_, i) => i === predictedCurve.length - 1 ? 7 : 4),
+            pointHoverRadius: 6,
+            pointBackgroundColor: predictedCurve.map((_, i) => i === predictedCurve.length - 1 ? '#F59E0B' : '#FCD34D'),
+            pointBorderColor: '#fff',
+            pointBorderWidth: predictedCurve.map((_, i) => i === predictedCurve.length - 1 ? 2 : 1.5),
+            spanGaps: true,
+            tension: 0.3,
+            fill: false,
+          },
+        ] : predictedAdultHeight && points.length > 0 ? [
+          // Fallback: single line to 18세
           {
             label: ' ',
             data: [
@@ -165,7 +187,7 @@ export function GrowthChart({
         ] : []),
       ],
     };
-  }, [gender, points]);
+  }, [gender, points, predictedAdultHeight, predictedCurve]);
 
   // 왼쪽 더블클릭 → zoom in (애니메이션), 우클릭 → 3~18세 전체 보기
   const handleDblClick = useCallback(() => {
@@ -199,7 +221,7 @@ export function GrowthChart({
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: compact ? 1 / 1.2 : 1 / 1.5,
+    aspectRatio: compact ? 1 / 1.1 : 1 / 1.5,
     layout: compact ? { padding: { top: 0, bottom: 0, left: 0, right: 4 } } : undefined,
     plugins: {
       legend: {
@@ -258,7 +280,7 @@ export function GrowthChart({
   };
 
   return (
-    <div>
+    <div className={compact ? 'max-w-[600px] mx-auto' : ''}>
       {showTitle && (
         <div className="flex items-center justify-between mb-2">
           <h4 className="text-base font-bold text-gray-800">성장 그래프</h4>

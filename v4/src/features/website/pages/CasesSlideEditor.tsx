@@ -124,12 +124,26 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
       </div>
 
       {/* Patient Info */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
         <div>
-          <label className="text-xs font-semibold text-gray-500 mb-1 block">환자 이름</label>
+          <label className="text-xs font-semibold text-gray-500 mb-1 block">실명 (비공개)</label>
+          <input value={slide.realName || ''}
+            onChange={(e) => onUpdate({ realName: e.target.value || undefined })}
+            placeholder="김철수"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+        </div>
+        <div>
+          <label className="text-xs font-semibold text-gray-500 mb-1 block">가명 (공개)</label>
           <input value={slide.patientName}
             onChange={(e) => onUpdate({ patientName: e.target.value })}
-            placeholder="김○○"
+            placeholder="철수"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+        </div>
+        <div>
+          <label className="text-xs font-semibold text-gray-500 mb-1 block">차트번호 (비공개)</label>
+          <input value={slide.chartNumber || ''}
+            onChange={(e) => onUpdate({ chartNumber: e.target.value || undefined })}
+            placeholder="12345"
             className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
         </div>
         <div>
@@ -148,21 +162,38 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
             className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
         </div>
       </div>
-      <div>
-        <label className="text-xs font-semibold text-gray-500 mb-1 block">카테고리</label>
-        <select value={slide.category || ''}
-          onChange={(e) => onUpdate({ category: e.target.value || undefined })}
-          className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]">
-          <option value="">선택 안함</option>
-          <option value="부모 키가 작은 경우">부모 키가 작은 경우</option>
-          <option value="아토피·비염 (면역)">아토피·비염 (면역)</option>
-          <option value="성조숙증">성조숙증</option>
-        </select>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div>
+          <label className="text-xs font-semibold text-gray-500 mb-1 block">카테고리</label>
+          <input list="category-presets" value={slide.category || ''}
+            onChange={(e) => onUpdate({ category: e.target.value || undefined })}
+            placeholder="직접 입력 또는 선택"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+          <datalist id="category-presets">
+            <option value="부모 키가 작은 경우" />
+            <option value="아토피·비염 (면역)" />
+            <option value="성조숙증" />
+          </datalist>
+        </div>
+        <div>
+          <label className="text-xs font-semibold text-gray-500 mb-1 block">유튜브 URL</label>
+          <input value={slide.youtubeUrl || ''}
+            onChange={(e) => onUpdate({ youtubeUrl: e.target.value || undefined })}
+            placeholder="https://youtu.be/..."
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+        </div>
       </div>
+
+      {/* Allergy Test Data */}
+      <AllergyEditor
+        key={slide.id}
+        data={slide.allergyData}
+        onUpdate={(d) => onUpdate({ allergyData: d })}
+      />
 
       {/* Intake Info (Collapsible) */}
       <div className="border border-gray-100 rounded-xl overflow-hidden">
-        <button onClick={() => setIntakeOpen(!intakeOpen)}
+        <button type="button" onClick={() => setIntakeOpen(!intakeOpen)}
           className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors">
           <span className="text-xs font-bold text-gray-600">📋 초진 정보 (문진표)</span>
           <span className={`text-xs text-gray-400 transition-transform ${intakeOpen ? 'rotate-180' : ''}`}>▼</span>
@@ -245,12 +276,12 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <label className="text-xs font-semibold text-gray-500">📏 회차별 기록</label>
-            <button onClick={() => setPasteHint(!pasteHint)}
+            <button type="button" onClick={() => setPasteHint(!pasteHint)}
               className="text-[10px] text-gray-400 hover:text-[#0F6E56] transition-colors" title="붙여넣기 도움말">
               ❓
             </button>
           </div>
-          <button onClick={addRow}
+          <button type="button" onClick={addRow}
             className="text-xs font-semibold text-[#0F6E56] hover:bg-[#E8F5F0] px-3 py-1 rounded-lg transition-colors">
             + 행 추가
           </button>
@@ -323,7 +354,7 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
                   ))}
                   {/* Photo toggle */}
                   <div className="w-16 shrink-0 text-center py-1">
-                    <button onClick={() => setOpenPhotos(openPhotos === rowIdx ? null : rowIdx)}
+                    <button type="button" onClick={() => setOpenPhotos(openPhotos === rowIdx ? null : rowIdx)}
                       className={`text-[10px] px-1.5 py-0.5 rounded transition-colors ${
                         openPhotos === rowIdx ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
                       }`}>
@@ -332,7 +363,7 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
                   </div>
                   {/* Delete */}
                   <div className="w-8 shrink-0 text-center py-1">
-                    <button onClick={() => removeRow(rowIdx)}
+                    <button type="button" onClick={() => removeRow(rowIdx)}
                       className="text-[10px] text-gray-300 hover:text-red-500 transition-colors">✕</button>
                   </div>
                 </div>
@@ -358,7 +389,7 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
           )}
 
           {/* Footer: add row */}
-          <button onClick={addRow}
+          <button type="button" onClick={addRow}
             className="w-full py-2 text-[10px] text-gray-400 hover:text-[#0F6E56] hover:bg-gray-50 transition-colors border-t border-gray-100">
             + 행 추가
           </button>
@@ -387,12 +418,12 @@ export function CasesSlideEditor({ slide, onUpdate }: CasesSlideEditorProps) {
         {/* Font Scale */}
         <div className="flex items-center gap-2 flex-1 min-w-[180px]">
           <span className="text-xs text-gray-500 shrink-0">🔤 글자 크기</span>
-          <input type="range" min={70} max={140} step={5} value={slide.fontScale ?? 70}
+          <input type="range" min={70} max={140} step={5} value={slide.fontScale ?? 100}
             onChange={(e) => onUpdate({ fontScale: Number(e.target.value) })}
             className="flex-1 accent-[#0F6E56] h-1" />
-          <span className="text-[10px] text-gray-500 w-10 text-right">{slide.fontScale ?? 70}%</span>
-          {slide.fontScale && slide.fontScale !== 70 && (
-            <button onClick={() => onUpdate({ fontScale: 70 })}
+          <span className="text-[10px] text-gray-500 w-10 text-right">{slide.fontScale ?? 100}%</span>
+          {slide.fontScale && slide.fontScale !== 100 && (
+            <button type="button" onClick={() => onUpdate({ fontScale: 100 })}
               className="text-[10px] text-gray-400 hover:text-red-400">↩</button>
           )}
         </div>
@@ -492,4 +523,58 @@ function PhotoUpload({ label, url, onUploaded }: {
 
 function countPhotos(m: CaseMeasurementEntry): number {
   return [m.photoFront, m.photoSide, m.xrayFront, m.xraySide].filter(Boolean).length;
+}
+
+// ─── Allergy Editor: manual input with local text state ───
+function AllergyEditor({ data, onUpdate }: {
+  data?: { danger: string[]; caution: string[] };
+  onUpdate: (d: { danger: string[]; caution: string[] } | undefined) => void;
+}) {
+  const [dangerText, setDangerText] = useState(data?.danger?.join(', ') || '');
+  const [cautionText, setCautionText] = useState(data?.caution?.join(', ') || '');
+  const hasData = dangerText.trim().length > 0 || cautionText.trim().length > 0;
+
+  const commitDanger = (text: string) => {
+    const items = text.split(',').map(s => s.trim()).filter(Boolean);
+    const cautionItems = cautionText.split(',').map(s => s.trim()).filter(Boolean);
+    onUpdate(items.length > 0 || cautionItems.length > 0 ? { danger: items, caution: cautionItems } : undefined);
+  };
+
+  const commitCaution = (text: string) => {
+    const items = text.split(',').map(s => s.trim()).filter(Boolean);
+    const dangerItems = dangerText.split(',').map(s => s.trim()).filter(Boolean);
+    onUpdate(dangerItems.length > 0 || items.length > 0 ? { danger: dangerItems, caution: items } : undefined);
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <label className="text-xs font-semibold text-gray-500">🍽️ 알러지 검사 결과</label>
+        {hasData && (
+          <button type="button" onClick={() => { setDangerText(''); setCautionText(''); onUpdate(undefined); }}
+            className="text-[10px] text-red-400 hover:text-red-600">전체 삭제</button>
+        )}
+      </div>
+      <div className="space-y-2">
+        <div>
+          <label className="text-[10px] text-red-500 font-semibold mb-0.5 block">🚫 위험 (IgG4 ≥ 30) — 최소 3개월 섭취 금지</label>
+          <textarea value={dangerText}
+            onChange={(e) => setDangerText(e.target.value)}
+            onBlur={() => commitDanger(dangerText)}
+            rows={2}
+            placeholder="카제인, 우유, 계란 흰자, 소고기, ..."
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-red-400" />
+        </div>
+        <div>
+          <label className="text-[10px] text-amber-600 font-semibold mb-0.5 block">⚠️ 경계 (IgG4 24~29) — 주 4회 미만 제한</label>
+          <textarea value={cautionText}
+            onChange={(e) => setCautionText(e.target.value)}
+            onBlur={() => commitCaution(cautionText)}
+            rows={2}
+            placeholder="알파락트알부민, 농어, 고등어, ..."
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-amber-400" />
+        </div>
+      </div>
+    </div>
+  );
 }

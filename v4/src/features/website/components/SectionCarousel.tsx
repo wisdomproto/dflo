@@ -215,13 +215,20 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
   }
 
   if (s.ctaAction === 'iframe' && s.ctaTarget) {
+    const zoom = (s.iframeZoom || 70) / 100;
     return (
       <div className="absolute inset-0 bg-white overflow-hidden">
         <iframe
           src={s.ctaTarget}
           title={s.title || ''}
-          className="w-full h-full border-0"
-          style={{ overflow: 'auto' }}
+          className="border-0"
+          style={{
+            width: zoom !== 1 ? `${100 / zoom}%` : '100%',
+            height: zoom !== 1 ? `${100 / zoom}%` : '100%',
+            transform: zoom !== 1 ? `scale(${zoom})` : undefined,
+            transformOrigin: 'top left',
+            overflow: 'auto',
+          }}
         />
       </div>
     );
@@ -279,6 +286,28 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
   const isMale = s.gender === 'male';
   const KAKAO_URL = 'https://pf.kakao.com/_ZxneSb';
 
+  // Load growth standard for percentile display
+  const [heightStd, setHeightStd] = React.useState<{ age: number; p5: number; p50: number; p95: number }[] | null>(null);
+  React.useEffect(() => {
+    import('@/shared/data/growthStandard').then((mod) => setHeightStd(mod.getHeightStandard(s.gender)));
+  }, [s.gender]);
+
+  // Calculate percentile at bone age for each measurement
+  const getPercentile = React.useCallback((boneAge: number, height: number) => {
+    if (!heightStd) return null;
+    let best = heightStd[0];
+    let bestDiff = Math.abs(best.age - boneAge);
+    for (const d of heightStd) {
+      const diff = Math.abs(d.age - boneAge);
+      if (diff < bestDiff) { best = d; bestDiff = diff; }
+    }
+    const { p5, p50, p95 } = best;
+    if (height <= p5) return Math.max(1, Math.round(5 * height / p5));
+    if (height <= p50) return Math.round(5 + 45 * (height - p5) / (p50 - p5));
+    if (height <= p95) return Math.round(50 + 45 * (height - p50) / (p95 - p50));
+    return Math.min(99, Math.round(95 + 4 * (height - p95) / Math.max(p95 - p50, 1)));
+  }, [heightStd]);
+
   if (!s.patientName && ms.length === 0) {
     return (
       <div className="w-full h-full bg-white flex items-center justify-center">
@@ -299,7 +328,7 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
   const predictedGrowth = hasPredictedPair
     ? (lastPredicted.predictedHeight - firstPredicted.predictedHeight).toFixed(1) : null;
 
-  const scale = (s.fontScale ?? 70) / 100;
+  const scale = (s.fontScale ?? 100) / 100;
   return (
     <div className="w-full h-full bg-white overflow-y-auto">
       <div className="py-5 space-y-4" style={scale !== 1 ? { zoom: scale } : undefined}>
@@ -359,6 +388,26 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
           </div>
         )}
 
+        {/* 3.5. YouTube Video (치료 후기 영상) */}
+        {s.youtubeUrl && (
+          <div className="mx-4 rounded-xl overflow-hidden border border-gray-200">
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${extractYoutubeId(s.youtubeUrl)}`}
+                title="치료 후기 영상"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
+
+        {/* 3.6. Allergy Test Results (알러지 검사 결과) */}
+        {s.allergyData && (s.allergyData.danger?.length > 0 || s.allergyData.caution?.length > 0) && (
+          <AllergyDataSection data={s.allergyData} />
+        )}
+
         {/* 4. Growth Standard Chart (카드 너비 가득 — px-0) */}
         {ms.length >= 2 && s.birthDate && (
           <CasesGrowthChartSection measurements={ms} birthDate={s.birthDate} gender={s.gender} />
@@ -386,11 +435,23 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
                     <tr key={i} className="border-t border-gray-100">
                       <td className="px-1.5 py-1.5 text-gray-400">{i + 1}</td>
                       <td className="px-1.5 py-1.5">{m.date ? formatDate(m.date) : '-'}</td>
-                      <td className="px-1.5 py-1.5 text-right font-bold">{m.height || '-'}</td>
+                      <td className="px-1.5 py-1.5 text-right font-bold">
+                        {m.height || '-'}
+                        {m.height && age ? (() => {
+                          const pct = getPercentile(age, m.height);
+                          return pct ? <span className="text-[9px] text-gray-400 font-normal ml-0.5">({pct}%)</span> : null;
+                        })() : null}
+                      </td>
                       <td className="px-1.5 py-1.5 text-right text-gray-500">{m.weight || '-'}</td>
                       {s.birthDate && <td className="px-1.5 py-1.5 text-center text-gray-500">{age !== null ? `${age}` : '-'}</td>}
                       {ms.some((mm) => mm.boneAge) && <td className="px-1.5 py-1.5 text-center text-amber-600 font-semibold">{m.boneAge || '-'}</td>}
-                      <td className="px-1.5 py-1.5 text-right text-[#0F6E56] font-bold">{m.predictedHeight || '-'}</td>
+                      <td className="px-1.5 py-1.5 text-right text-[#0F6E56] font-bold">
+                        {m.predictedHeight || '-'}
+                        {m.predictedHeight ? (() => {
+                          const pct = getPercentile(18, m.predictedHeight);
+                          return pct ? <span className="text-[9px] text-gray-400 font-normal ml-0.5">({pct}%)</span> : null;
+                        })() : null}
+                      </td>
                     </tr>
                   );
                 })}
@@ -415,7 +476,7 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
         )}
 
         {/* CTA */}
-        {(s.showCta !== false) && (
+        {s.showCta && (
           <div className="px-4">
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3
@@ -429,10 +490,49 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
   );
 }
 
+function AllergyDataSection({ data }: { data: { danger: string[]; caution: string[] } }) {
+  const [open, setOpen] = React.useState(false);
+  const total = (data.danger?.length || 0) + (data.caution?.length || 0);
+  return (
+    <div className="mx-4 rounded-xl border border-gray-200 overflow-hidden">
+      <button type="button" onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between bg-gray-50 px-3 py-2 hover:bg-gray-100 transition-colors">
+        <p className="text-[10px] font-semibold text-gray-500">🍽️ 음식 알러지 검사 결과 ({total}개)</p>
+        <span className={`text-[10px] text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
+      </button>
+      {open && data.danger?.length > 0 && (
+        <div className="px-3 py-2 border-t border-gray-100">
+          <p className="text-[10px] font-bold text-red-500 mb-1">🚫 위험 ({data.danger.length}개)</p>
+          <div className="flex flex-wrap gap-1">
+            {data.danger.map((food, i) => (
+              <span key={i} className="px-1.5 py-0.5 bg-red-50 text-red-600 rounded text-[10px] border border-red-200">{food}</span>
+            ))}
+          </div>
+        </div>
+      )}
+      {open && data.caution?.length > 0 && (
+        <div className="px-3 py-2 border-t border-gray-100">
+          <p className="text-[10px] font-bold text-amber-600 mb-1">⚠️ 경계 ({data.caution.length}개)</p>
+          <div className="flex flex-wrap gap-1">
+            {data.caution.map((food, i) => (
+              <span key={i} className="px-1.5 py-0.5 bg-amber-50 text-amber-600 rounded text-[10px] border border-amber-200">{food}</span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function formatDate(d: string) {
   if (!d) return '';
   const parts = d.split('-');
-  return parts.length === 3 ? `${parts[1]}/${parts[2]}` : d;
+  return parts.length === 3 ? `${parts[0].slice(2)}/${parts[1]}/${parts[2]}` : d;
+}
+
+function extractYoutubeId(url: string): string {
+  const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([^?&/]+)/);
+  return m?.[1] || '';
 }
 
 // Lazy-loaded chart components to avoid bundling Chart.js in the carousel
@@ -456,13 +556,19 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
     gender: string; points: { age: number; height: number }[];
     showTitle?: boolean; zoomable?: boolean; compact?: boolean;
     predictedAdultHeight?: number;
+    predictedCurve?: { age: number; height: number }[];
   }> | null>(null);
+  const [heightStandard, setHeightStandard] = React.useState<{ age: number; p5: number; p50: number; p95: number }[] | null>(null);
 
   React.useEffect(() => {
-    import('@/shared/components/GrowthChart').then(({ GrowthChart }) => {
-      setGrowthChartComp(() => GrowthChart as unknown as typeof GrowthChartComp extends null ? never : NonNullable<typeof GrowthChartComp>);
+    Promise.all([
+      import('@/shared/components/GrowthChart'),
+      import('@/shared/data/growthStandard'),
+    ]).then(([chartMod, stdMod]) => {
+      setGrowthChartComp(() => chartMod.GrowthChart as unknown as typeof GrowthChartComp extends null ? never : NonNullable<typeof GrowthChartComp>);
+      setHeightStandard(stdMod.getHeightStandard(gender));
     });
-  }, []);
+  }, [gender]);
 
   // Convert measurements to GrowthPoint[] (age + height)
   const points = React.useMemo(() => {
@@ -475,8 +581,62 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
       .filter(Boolean) as { age: number; height: number }[];
   }, [measurements, birthDate]);
 
-  // Find the last measurement with predictedHeight
-  const lastWithPredicted = [...measurements].reverse().find((m) => (m.predictedHeight ?? 0) > 0);
+  // Build predicted curve: bone-age percentile → projected yearly points to age 18
+  const predictedCurve = React.useMemo(() => {
+    if (!heightStandard || points.length === 0) return undefined;
+    const lastWithBone = [...measurements].reverse().find((m) => (m.boneAge ?? 0) > 0 && (m.predictedHeight ?? 0) > 0);
+    if (!lastWithBone) return undefined;
+
+    const lastPoint = points[points.length - 1];
+    const lastBA = lastWithBone.boneAge!;
+    const lastCA = lastPoint.age;
+    if (lastCA >= 18 || lastBA >= 18) return undefined;
+
+    const getStdAtAge = (ageYr: number) => {
+      let best = heightStandard[0];
+      let bestDiff = Math.abs(best.age - ageYr);
+      for (const s of heightStandard) {
+        const diff = Math.abs(s.age - ageYr);
+        if (diff < bestDiff) { best = s; bestDiff = diff; }
+      }
+      return best;
+    };
+
+    const heightAtPct = (ageYr: number, pct: number) => {
+      const s = getStdAtAge(ageYr);
+      if (pct <= 5) return s.p5 * pct / 5;
+      if (pct <= 50) return s.p5 + (s.p50 - s.p5) * (pct - 5) / 45;
+      if (pct <= 95) return s.p50 + (s.p95 - s.p50) * (pct - 50) / 45;
+      return s.p95 + (s.p95 - s.p50) * (pct - 95) / 2; // inverse of forward: pct = 95 + 2*(h-p95)/(p95-p50)
+    };
+
+    // Calculate percentile at bone age (clamped to 3~97 to prevent wild extrapolation)
+    const std = getStdAtAge(lastBA);
+    let pct: number;
+    if (lastPoint.height <= std.p5) {
+      pct = Math.max(3, 5 * lastPoint.height / std.p5);
+    } else if (lastPoint.height <= std.p50) {
+      pct = 5 + 45 * (lastPoint.height - std.p5) / (std.p50 - std.p5);
+    } else if (lastPoint.height <= std.p95) {
+      pct = 50 + 45 * (lastPoint.height - std.p50) / (std.p95 - std.p50);
+    } else {
+      // Cap at 97 to prevent extrapolation beyond chart bounds
+      pct = Math.min(97, 95 + 2 * (lastPoint.height - std.p95) / Math.max(std.p95 - std.p50, 1));
+    }
+
+    // Project: bone age progresses linearly from lastBA → 18 as chronological age goes lastCA → 18
+    // So at chronological age Y, projected bone age = lastBA + (Y - lastCA) * (18 - lastBA) / (18 - lastCA)
+    const baRate = (18 - lastBA) / (18 - lastCA);
+
+    const curve: { age: number; height: number }[] = [{ age: lastPoint.age, height: lastPoint.height }];
+    const startYear = Math.ceil(lastCA);
+    for (let y = startYear; y <= 18; y++) {
+      const projectedBA = lastBA + (y - lastCA) * baRate;
+      const h = heightAtPct(Math.min(projectedBA, 18), pct);
+      curve.push({ age: y, height: Math.round(h * 10) / 10 });
+    }
+    return curve.length > 1 ? curve : undefined;
+  }, [measurements, points, heightStandard]);
 
   if (points.length < 2) return null;
 
@@ -489,7 +649,7 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
           points={points}
           showTitle={false}
           compact
-          predictedAdultHeight={lastWithPredicted?.predictedHeight}
+          predictedCurve={predictedCurve}
         />
       ) : (
         <div className="h-32 flex items-center justify-center text-xs text-gray-400">로딩...</div>

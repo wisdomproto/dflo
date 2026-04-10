@@ -30,7 +30,7 @@ function emptyCasesSlide(order: number): CasesSlide {
     template: 'cases', id: uid(),
     patientName: '', gender: 'male',
     initialMemo: '', finalMemo: '',
-    measurements: [], showCta: true, fontScale: 70, order,
+    measurements: [], showCta: true, fontScale: 100, order,
   };
 }
 

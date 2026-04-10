@@ -74,3 +74,15 @@ export async function analyzeBodyPhoto(
 ): Promise<BodyAnalysisResult> {
   return postAnalysis<BodyAnalysisResult>('/api/analyze/body', file);
 }
+
+export interface AllergyAnalysisResult {
+  danger: string[];
+  caution: string[];
+  error?: string;
+}
+
+export async function analyzeAllergyImage(
+  file: File,
+): Promise<AllergyAnalysisResult> {
+  return postAnalysis<AllergyAnalysisResult>('/api/analyze/allergy', file);
+}

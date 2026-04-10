@@ -25,6 +25,7 @@ export interface BannerSlide {
   subtitleShadow?: boolean; // default true
   ctaSize?: 'sm' | 'md' | 'lg';
   modalRatio?: '4:5' | '9:16'; // modal 배너 외각 비율 (default: 9:16)
+  iframeZoom?: number;          // iframe 콘텐츠 zoom % (default: 100)
 }
 
 export interface VideoSlide {
@@ -82,11 +83,18 @@ export interface CaseIntakeInfo {
 export interface CasesSlide {
   template: 'cases';
   id: string;
-  patientName: string;     // 환자 이름
+  patientName: string;     // 가명 (웹사이트 표시용)
+  realName?: string;       // 실명 (관리자 전용, 웹사이트 미표시)
+  chartNumber?: string;    // 차트번호 (관리자 전용, 웹사이트 미표시)
   gender: 'male' | 'female';
   category?: string;       // 사례 카테고리 (부모키작음, 면역, 성조숙증 등)
   birthDate?: string;      // 생년월일
   intakeInfo?: CaseIntakeInfo; // 초진 정보 (문진표)
+  youtubeUrl?: string;     // 유튜브 치료후기 영상 URL
+  allergyData?: {            // 음식 알러지 검사 결과 (구조화 데이터)
+    danger: string[];          // 위험 (≥30) 음식 목록
+    caution: string[];         // 경계 (24~29) 음식 목록
+  };
   initialMemo: string;     // 처음 왔을 때 메모
   finalMemo: string;       // 마무리 메모
   measurements: CaseMeasurementEntry[];
