@@ -304,28 +304,6 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
   const isMale = s.gender === 'male';
   const KAKAO_URL = 'https://pf.kakao.com/_ZxneSb';
 
-  // Load growth standard for percentile display
-  const [heightStd, setHeightStd] = React.useState<{ age: number; p5: number; p50: number; p95: number }[] | null>(null);
-  React.useEffect(() => {
-    import('@/shared/data/growthStandard').then((mod) => setHeightStd(mod.getHeightStandard(s.gender)));
-  }, [s.gender]);
-
-  // Calculate percentile at bone age for each measurement
-  const getPercentile = React.useCallback((boneAge: number, height: number) => {
-    if (!heightStd) return null;
-    let best = heightStd[0];
-    let bestDiff = Math.abs(best.age - boneAge);
-    for (const d of heightStd) {
-      const diff = Math.abs(d.age - boneAge);
-      if (diff < bestDiff) { best = d; bestDiff = diff; }
-    }
-    const { p5, p50, p95 } = best;
-    if (height <= p5) return Math.max(1, Math.round(5 * height / p5));
-    if (height <= p50) return Math.round(5 + 45 * (height - p5) / (p50 - p5));
-    if (height <= p95) return Math.round(50 + 45 * (height - p50) / (p95 - p50));
-    return Math.min(99, Math.round(95 + 4 * (height - p95) / Math.max(p95 - p50, 1)));
-  }, [heightStd]);
-
   if (!s.patientName && ms.length === 0) {
     return (
       <div className="w-full h-full bg-white flex items-center justify-center">
@@ -453,23 +431,11 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
                     <tr key={i} className="border-t border-gray-100">
                       <td className="px-1.5 py-1.5 text-gray-400">{i + 1}</td>
                       <td className="px-1.5 py-1.5">{m.date ? formatDate(m.date) : '-'}</td>
-                      <td className="px-1.5 py-1.5 text-right font-bold">
-                        {m.height || '-'}
-                        {m.height && age ? (() => {
-                          const pct = getPercentile(age, m.height);
-                          return pct ? <span className="text-[9px] text-gray-400 font-normal ml-0.5">({pct}%)</span> : null;
-                        })() : null}
-                      </td>
+                      <td className="px-1.5 py-1.5 text-right font-bold">{m.height || '-'}</td>
                       <td className="px-1.5 py-1.5 text-right text-gray-500">{m.weight || '-'}</td>
                       {s.birthDate && <td className="px-1.5 py-1.5 text-center text-gray-500">{age !== null ? `${age}` : '-'}</td>}
-                      {ms.some((mm) => mm.boneAge) && <td className="px-1.5 py-1.5 text-center text-amber-600 font-semibold">{m.boneAge || '-'}</td>}
-                      <td className="px-1.5 py-1.5 text-right text-[#0F6E56] font-bold">
-                        {m.predictedHeight || '-'}
-                        {m.predictedHeight ? (() => {
-                          const pct = getPercentile(18, m.predictedHeight);
-                          return pct ? <span className="text-[9px] text-gray-400 font-normal ml-0.5">({pct}%)</span> : null;
-                        })() : null}
-                      </td>
+                      {ms.some((mm) => mm.boneAge) && <td className="px-1.5 py-1.5 text-center text-amber-600 font-semibold">{m.boneAge ? m.boneAge.toFixed(1) : '-'}</td>}
+                      <td className="px-1.5 py-1.5 text-right text-[#0F6E56] font-bold">{m.predictedHeight || '-'}</td>
                     </tr>
                   );
                 })}

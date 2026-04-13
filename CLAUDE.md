@@ -71,6 +71,9 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Banner CTA: ctaSizePx (8~20), ctaAlign (left|center|right), ctaBgColor, ctaTextColor
 - WebsiteSection.showNav: 하단 도트 인디케이터 on/off (좌우 화살표는 항상 표시)
 - Admin preview: 375px 폭 (iPhone 기준)
+- Website content on Cloudflare R2 (website.json + images); ai-server exposes /api/r2/website (PUT) + /api/r2/upload (POST), PIN-protected
+- Patient app data (users, children, measurements, meals) remains on Supabase
+- Cases measurement table: no percentiles; bone age shown to 1 decimal
 
 ## Environment Variables
 ```
