@@ -65,6 +65,12 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Cases: admin fields — realName, chartNumber, youtubeUrl, allergyData, category (free-text)
 - Cases: percentile display in measurement table (actual age for height, age 18 for predicted)
 - Cases: character illustrations (Gemini Imagen 4.0) in v4/public/images/cases/
+- Typography: Noto Sans KR (Google Fonts) 전체 통일, body font-family
+- Banner typography defaults: title bold 96px, subtitle medium 50px, CTA medium 14px
+- Banner text align: titleAlign/subtitleAlign (left|center|right|justify)
+- Banner CTA: ctaSizePx (8~20), ctaAlign (left|center|right), ctaBgColor, ctaTextColor
+- WebsiteSection.showNav: 하단 도트 인디케이터 on/off (좌우 화살표는 항상 표시)
+- Admin preview: 375px 폭 (iPhone 기준)
 
 ## Environment Variables
 ```

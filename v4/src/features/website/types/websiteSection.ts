@@ -18,12 +18,18 @@ export interface BannerSlide {
   order: number;
   titleSize?: number;
   titleColor?: string;
+  titleAlign?: 'left' | 'center' | 'right' | 'justify';
   subtitleSize?: number;
   subtitleColor?: string;
+  subtitleAlign?: 'left' | 'center' | 'right' | 'justify';
   textPositionY?: number; // bottom % (default 12)
   titleShadow?: boolean; // default true
   subtitleShadow?: boolean; // default true
   ctaSize?: 'sm' | 'md' | 'lg';
+  ctaSizePx?: number;                    // 커스텀 버튼 크기 (px, 설정 시 ctaSize보다 우선)
+  ctaAlign?: 'left' | 'center' | 'right'; // 버튼 정렬
+  ctaBgColor?: string;                   // 버튼 배경색 (default: #0F6E56)
+  ctaTextColor?: string;                 // 버튼 글자색 (default: #ffffff)
   modalRatio?: '4:5' | '9:16'; // modal 배너 외각 비율 (default: 9:16)
   iframeZoom?: number;          // iframe 콘텐츠 zoom % (default: 100)
 }
@@ -140,6 +146,7 @@ export interface WebsiteSection {
   order_index: number;
   title?: string;
   slides: Slide[];
+  showNav?: boolean; // 캐러셀 하단 도트 + 좌우 화살표 표시 (default: true)
   created_at?: string;
   updated_at?: string;
 }

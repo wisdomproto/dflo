@@ -212,6 +212,10 @@ export default function AdminWebsitePage() {
     setSections(sections.map((s, i) => i === activeSection ? { ...s, title } : s));
   };
 
+  const updateSection = (updates: Partial<WebsiteSection>) => {
+    setSections(sections.map((s, i) => i === activeSection ? { ...s, ...updates } : s));
+  };
+
   // ---- PIN Screen ----
   if (!authed) {
     return (
@@ -291,6 +295,7 @@ export default function AdminWebsitePage() {
             onRemoveSlide={removeSlide}
             onUpdateSlide={updateSlide}
             onUpdateSectionTitle={updateSectionTitle}
+            onUpdateSection={updateSection}
             onSectionDragEnd={handleSectionDragEnd}
             onSlideDragEnd={handleSlideDragEnd}
             onMoveSlide={moveSlide}

@@ -23,6 +23,7 @@ interface AdminEditorPanelProps {
   onRemoveSlide: (idx: number) => void;
   onUpdateSlide: (slideIdx: number, updates: Record<string, unknown>) => void;
   onUpdateSectionTitle: (title: string) => void;
+  onUpdateSection: (updates: Partial<WebsiteSection>) => void;
   onSectionDragEnd: (event: DragEndEvent) => void;
   onSlideDragEnd: (event: DragEndEvent) => void;
   onMoveSlide: (fromIdx: number, toIdx: number) => void;
@@ -44,6 +45,7 @@ export function AdminEditorPanel({
   onRemoveSlide,
   onUpdateSlide,
   onUpdateSectionTitle,
+  onUpdateSection,
   onSectionDragEnd,
   onSlideDragEnd,
   onMoveSlide,
@@ -105,6 +107,21 @@ export function AdminEditorPanel({
           </div>
         </SortableContext>
       </DndContext>
+
+      {/* Section-level options */}
+      {sec && (
+        <div className="flex items-center gap-2 text-xs">
+          <label className="flex items-center gap-1.5 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={sec.showNav ?? true}
+              onChange={(e) => onUpdateSection({ showNav: e.target.checked })}
+              className="accent-[#0F6E56] w-3.5 h-3.5"
+            />
+            <span className="text-gray-600">슬라이드 인디케이터 (하단 도트)</span>
+          </label>
+        </div>
+      )}
 
       {/* Slide Tabs + Controls */}
       {sec && (

@@ -17,10 +17,10 @@ export default function WebsiteHomePage() {
 
   return (
     <WebsiteLayout>
-      <div className="flex flex-col gap-3 p-3">
+      <div className="flex flex-col gap-3 p-3 max-w-3xl mx-auto w-full">
         {sections.map((section, idx) => (
           <div key={section.id || idx} className="rounded-2xl overflow-hidden shadow-md bg-white border-3 border-purple-300">
-            <SectionCarousel slides={section.slides} />
+            <SectionCarousel slides={section.slides} showNav={section.showNav ?? true} />
           </div>
         ))}
       </div>

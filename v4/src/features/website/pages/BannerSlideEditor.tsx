@@ -101,14 +101,23 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
             className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm font-semibold focus:outline-none focus:border-[#0F6E56] resize-none" />
           <div className="flex items-center gap-2 mt-1">
             <span className="text-[10px] text-gray-400 shrink-0">크기</span>
-            <input type="range" min={16} max={64} value={bs.titleSize || 36}
+            <input type="range" min={16} max={120} value={bs.titleSize || 96}
               onChange={(e) => onUpdate({ titleSize: Number(e.target.value) })}
               className="flex-1 accent-[#0F6E56] h-1" />
-            <span className="text-[10px] text-gray-500 w-8 text-right">{bs.titleSize || 36}px</span>
+            <span className="text-[10px] text-gray-500 w-10 text-right">{bs.titleSize || 96}px</span>
             {bs.titleSize && (
               <button onClick={() => onUpdate({ titleSize: undefined })}
                 className="text-[10px] text-gray-400 hover:text-red-400">↩</button>
             )}
+          </div>
+          <div className="flex items-center gap-1 mt-1">
+            <span className="text-[10px] text-gray-400 shrink-0 mr-1">정렬</span>
+            {(['left', 'center', 'right', 'justify'] as const).map((a) => (
+              <button key={a} onClick={() => onUpdate({ titleAlign: a })}
+                className={`text-[10px] px-2 py-0.5 rounded ${(bs.titleAlign ?? 'center') === a ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
+                {a === 'left' ? '왼쪽' : a === 'center' ? '가운데' : a === 'right' ? '오른쪽' : '양쪽'}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -137,14 +146,23 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
             className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:border-[#0F6E56] resize-none" />
           <div className="flex items-center gap-2 mt-1">
             <span className="text-[10px] text-gray-400 shrink-0">크기</span>
-            <input type="range" min={10} max={36} value={bs.subtitleSize || 15}
+            <input type="range" min={10} max={80} value={bs.subtitleSize || 50}
               onChange={(e) => onUpdate({ subtitleSize: Number(e.target.value) })}
               className="flex-1 accent-[#0F6E56] h-1" />
-            <span className="text-[10px] text-gray-500 w-8 text-right">{bs.subtitleSize || 15}px</span>
+            <span className="text-[10px] text-gray-500 w-10 text-right">{bs.subtitleSize || 50}px</span>
             {bs.subtitleSize && (
               <button onClick={() => onUpdate({ subtitleSize: undefined })}
                 className="text-[10px] text-gray-400 hover:text-red-400">↩</button>
             )}
+          </div>
+          <div className="flex items-center gap-1 mt-1">
+            <span className="text-[10px] text-gray-400 shrink-0 mr-1">정렬</span>
+            {(['left', 'center', 'right', 'justify'] as const).map((a) => (
+              <button key={a} onClick={() => onUpdate({ subtitleAlign: a })}
+                className={`text-[10px] px-2 py-0.5 rounded ${(bs.subtitleAlign ?? 'center') === a ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
+                {a === 'left' ? '왼쪽' : a === 'center' ? '가운데' : a === 'right' ? '오른쪽' : '양쪽'}
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -173,13 +191,47 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
         </div>
         <div>
           <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 크기</label>
-          <select value={bs.ctaSize || 'md'}
-            onChange={(e) => onUpdate({ ctaSize: e.target.value as 'sm' | 'md' | 'lg' })}
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]">
-            <option value="sm">작게</option>
-            <option value="md">보통</option>
-            <option value="lg">크게</option>
-          </select>
+          <div className="flex items-center gap-2">
+            <input type="range" min={8} max={20} value={bs.ctaSizePx ?? (bs.ctaSize === 'sm' ? 12 : bs.ctaSize === 'lg' ? 18 : 14)}
+              onChange={(e) => onUpdate({ ctaSizePx: Number(e.target.value) })}
+              className="flex-1 accent-[#0F6E56] h-1" />
+            <span className="text-[10px] text-gray-500 w-10 text-right">
+              {bs.ctaSizePx ?? (bs.ctaSize === 'sm' ? 12 : bs.ctaSize === 'lg' ? 18 : 14)}px
+            </span>
+            {bs.ctaSizePx && (
+              <button onClick={() => onUpdate({ ctaSizePx: undefined })}
+                className="text-[10px] text-gray-400 hover:text-red-400">↩</button>
+            )}
+          </div>
+          <div className="flex items-center gap-1 mt-1">
+            <span className="text-[10px] text-gray-400 shrink-0 mr-1">정렬</span>
+            {(['left', 'center', 'right'] as const).map((a) => (
+              <button key={a} onClick={() => onUpdate({ ctaAlign: a })}
+                className={`text-[10px] px-2 py-0.5 rounded ${(bs.ctaAlign ?? 'center') === a ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
+                {a === 'left' ? '왼쪽' : a === 'center' ? '가운데' : '오른쪽'}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 mt-1 flex-wrap">
+            <span className="text-[10px] text-gray-400 shrink-0">배경</span>
+            <input type="color" value={bs.ctaBgColor || '#0F6E56'}
+              onChange={(e) => onUpdate({ ctaBgColor: e.target.value })}
+              className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
+            <span className="text-[10px] text-gray-400">{bs.ctaBgColor || '#0F6E56'}</span>
+            {bs.ctaBgColor && (
+              <button onClick={() => onUpdate({ ctaBgColor: undefined })}
+                className="text-[10px] text-gray-400 hover:text-red-400">✕</button>
+            )}
+            <span className="text-[10px] text-gray-400 shrink-0 ml-2">글자</span>
+            <input type="color" value={bs.ctaTextColor || '#ffffff'}
+              onChange={(e) => onUpdate({ ctaTextColor: e.target.value })}
+              className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
+            <span className="text-[10px] text-gray-400">{bs.ctaTextColor || '#ffffff'}</span>
+            {bs.ctaTextColor && (
+              <button onClick={() => onUpdate({ ctaTextColor: undefined })}
+                className="text-[10px] text-gray-400 hover:text-red-400">✕</button>
+            )}
+          </div>
         </div>
         <div>
           <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 동작</label>

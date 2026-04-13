@@ -21,9 +21,10 @@ export function extractVideoId(url: string): string | null {
 interface Props {
   slides: Slide[];
   initialIndex?: number;
+  showNav?: boolean;
 }
 
-export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
+export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Props) {
   const [current, setCurrent] = useState(initialIndex);
   const total = slides.length;
 
@@ -91,7 +92,7 @@ export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
         );
       })}
 
-      {/* Left/Right arrows + dots */}
+      {/* Left/Right arrows — always visible when multi-slide */}
       {total > 1 && (
         <>
           <button
@@ -110,17 +111,21 @@ export function SectionCarousel({ slides, initialIndex = 0 }: Props) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-[5px]">
-            {slides.map((_, i) => (
-              <button key={i} onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === current
-                    ? 'w-[6px] h-[6px] bg-white'
-                    : 'w-[6px] h-[6px] bg-white/40'
-                }`} />
-            ))}
-          </div>
         </>
+      )}
+
+      {/* Dots — toggleable per section */}
+      {total > 1 && showNav && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-[5px]">
+          {slides.map((_, i) => (
+            <button key={i} onClick={() => goTo(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === current
+                  ? 'w-[6px] h-[6px] bg-white'
+                  : 'w-[6px] h-[6px] bg-white/40'
+              }`} />
+          ))}
+        </div>
       )}
 
     </section>
@@ -155,11 +160,13 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
       <div className="absolute left-0 right-0 z-10 px-6" style={{ bottom: `${s.textPositionY ?? 12}%` }}>
         <div className="max-w-2xl mx-auto text-center">
           <h1
-            className={`font-extrabold leading-[1.15] mb-3 whitespace-pre-line ${
-              !s.titleSize ? 'text-[36px] md:text-[48px]' : ''
-            } ${!s.titleColor ? 'text-white' : ''}`}
+            className={`font-bold leading-[1.15] mb-3 whitespace-pre-line font-['Noto_Sans_KR'] ${
+              !s.titleColor ? 'text-white' : ''
+            }`}
             style={{
-              fontSize: s.titleSize ? `${s.titleSize}px` : undefined,
+              fontSize: s.titleSize ? `${s.titleSize}px` : '96px',
+              fontWeight: 700,
+              textAlign: s.titleAlign ?? 'center',
               color: s.titleColor || undefined,
               textShadow: (s.titleShadow ?? true) ? '0 2px 8px rgba(0,0,0,0.5)' : 'none',
             }}
@@ -168,11 +175,13 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
           </h1>
           {s.subtitle && (
             <p
-              className={`mb-4 whitespace-pre-line ${
-                !s.subtitleSize ? 'text-[15px] md:text-lg' : ''
-              } ${!s.subtitleColor ? 'text-white/90' : ''}`}
+              className={`mb-4 whitespace-pre-line font-['Noto_Sans_KR'] ${
+                !s.subtitleColor ? 'text-white/90' : ''
+              }`}
               style={{
-                fontSize: s.subtitleSize ? `${s.subtitleSize}px` : undefined,
+                fontSize: s.subtitleSize ? `${s.subtitleSize}px` : '50px',
+                fontWeight: 500,
+                textAlign: s.subtitleAlign ?? 'center',
                 color: s.subtitleColor || undefined,
                 textShadow: (s.subtitleShadow ?? true) ? '0 1px 6px rgba(0,0,0,0.5)' : 'none',
               }}
@@ -180,18 +189,27 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
               {s.subtitle}
             </p>
           )}
-          {s.ctaText && !isFullLink && !isModal && (
-            <button
-              onClick={handleCta}
-              className={`inline-flex items-center gap-2 rounded-full bg-[#0F6E56] text-white font-bold shadow-lg hover:bg-[#0d5e4a] active:scale-95 transition-all ${
-                s.ctaSize === 'sm' ? 'px-5 py-2.5 text-xs' :
-                s.ctaSize === 'lg' ? 'px-10 py-5 text-lg' :
-                'px-7 py-3.5 text-sm'
-              }`}
-            >
-              {s.ctaText}
-            </button>
-          )}
+          {s.ctaText && !isFullLink && !isModal && (() => {
+            const ctaPx = s.ctaSizePx
+              ?? (s.ctaSize === 'sm' ? 18 : s.ctaSize === 'lg' ? 42 : 30);
+            return (
+              <div style={{ textAlign: s.ctaAlign ?? 'center' }}>
+                <button
+                  onClick={handleCta}
+                  className="inline-flex items-center gap-2 rounded-full shadow-lg active:scale-95 transition-all font-['Noto_Sans_KR']"
+                  style={{
+                    fontSize: `${ctaPx}px`,
+                    fontWeight: 500,
+                    padding: `${ctaPx * 0.45}px ${ctaPx * 1.0}px`,
+                    backgroundColor: s.ctaBgColor || '#0F6E56',
+                    color: s.ctaTextColor || '#ffffff',
+                  }}
+                >
+                  {s.ctaText}
+                </button>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </div>

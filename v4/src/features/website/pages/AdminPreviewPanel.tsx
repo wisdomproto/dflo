@@ -77,14 +77,12 @@ function PreviewSectionCard({
           .force-mobile .text-\\[15px\\] { font-size: 10px; }
           .force-mobile .md\\:text-lg { font-size: 10px; }
           .force-mobile .text-xl, .force-mobile .text-2xl { font-size: 14px !important; }
-          .force-mobile button[class*="rounded-full"][class*="bg-\\[\\#0F6E56\\]"] {
-            font-size: 8px !important; padding: 4px 10px !important;
-          }
         `}</style>
         <SectionCarousel
           key={`preview-${section.id}`}
           slides={section.slides}
           initialIndex={localSlide}
+          showNav={section.showNav ?? true}
         />
       </div>
 
@@ -148,7 +146,7 @@ export function AdminPreviewPanel({
 
       {/* Scrollable phone-style preview */}
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-3 py-3">
-        <div className="mx-auto max-w-[300px]">
+        <div className="mx-auto max-w-[375px]">
           {/* Phone frame top (notch) */}
           <div className="bg-gray-200 lg:bg-gray-700 rounded-t-[1.5rem] h-5 flex items-center justify-center">
             <div className="w-16 h-1.5 bg-gray-300 lg:bg-gray-600 rounded-full" />
