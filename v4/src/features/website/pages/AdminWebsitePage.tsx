@@ -69,6 +69,9 @@ export default function AdminWebsitePage() {
 
   useEffect(() => {
     if (user?.role === 'admin' || sessionStorage.getItem('website-admin-auth') === 'true') {
+      if (!sessionStorage.getItem('website_admin_pin')) {
+        sessionStorage.setItem('website_admin_pin', ADMIN_PIN);
+      }
       setAuthed(true);
     }
   }, [user]);
@@ -76,6 +79,7 @@ export default function AdminWebsitePage() {
   const handlePinSubmit = () => {
     if (pinInput === ADMIN_PIN) {
       sessionStorage.setItem('website-admin-auth', 'true');
+      sessionStorage.setItem('website_admin_pin', pinInput);
       setAuthed(true);
     } else {
       setPinError('비밀번호가 틀렸습니다');

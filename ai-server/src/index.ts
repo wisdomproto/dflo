@@ -6,6 +6,7 @@ import { authMiddleware } from './middleware/auth.js';
 import { mealRouter } from './routes/meal.js';
 import { bodyRouter } from './routes/body.js';
 import { allergyRouter } from './routes/allergy.js';
+import { r2Router } from './routes/r2.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -39,6 +40,7 @@ if (isDev) {
 app.use('/api/analyze', ...middlewares, mealRouter);
 app.use('/api/analyze', ...middlewares, bodyRouter);
 app.use('/api/analyze', ...middlewares, allergyRouter);
+app.use('/api/r2', r2Router);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
