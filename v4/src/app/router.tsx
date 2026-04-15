@@ -35,6 +35,8 @@ const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout')
 const AdminDashboardPage = lazy(() => import('@/pages/admin/AdminDashboardPage'));
 const AdminPatientsPage = lazy(() => import('@/pages/admin/AdminPatientsPage'));
 const AdminPatientDetailPage = lazy(() => import('@/pages/admin/AdminPatientDetailPage'));
+const AdminVisitNewPage = lazy(() => import('@/pages/admin/AdminVisitNewPage'));
+const AdminVisitDetailPage = lazy(() => import('@/pages/admin/AdminVisitDetailPage'));
 const AdminContentPage = lazy(() => import('@/pages/admin/AdminContentPage'));
 const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
 
@@ -206,6 +208,22 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <AdminPatientDetailPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/patients/:id/visits/new',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminVisitNewPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/patients/:id/visits/:visitId',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminVisitDetailPage />
               </Suspense>
             ),
           },
