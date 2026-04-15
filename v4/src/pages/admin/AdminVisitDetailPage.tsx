@@ -5,6 +5,8 @@ import { fetchVisit, updateVisit } from '@/features/hospital/services/visitServi
 import { fetchMeasurementsByVisit } from '@/features/hospital/services/hospitalMeasurementService';
 import { MeasurementEditor } from '@/features/hospital/components/MeasurementEditor';
 import { VisitForm } from '@/features/hospital/components/VisitForm';
+import { LabTestsBlock } from '@/features/hospital/components/LabTestsBlock';
+import { PrescriptionsBlock } from '@/features/hospital/components/PrescriptionsBlock';
 
 export default function AdminVisitDetailPage() {
   const { id, visitId } = useParams<{ id: string; visitId: string }>();
@@ -80,14 +82,14 @@ export default function AdminVisitDetailPage() {
         <div className="mt-2 text-xs text-gray-400">(Phase C 에서 구현)</div>
       </section>
 
-      <section className="rounded-lg border border-dashed bg-gray-50 p-4">
-        <h2 className="mb-2 text-sm font-semibold text-gray-600">🧪 Lab tests</h2>
-        <div className="text-xs text-gray-400">(Phase D 에서 구현)</div>
+      <section className="rounded-lg border bg-white p-4">
+        <h2 className="mb-2 text-sm font-semibold">🧪 Lab tests</h2>
+        <LabTestsBlock visitId={visit.id} childId={id} />
       </section>
 
-      <section className="rounded-lg border border-dashed bg-gray-50 p-4">
-        <h2 className="mb-2 text-sm font-semibold text-gray-600">💊 처방</h2>
-        <div className="text-xs text-gray-400">(Phase D 에서 구현)</div>
+      <section className="rounded-lg border bg-white p-4">
+        <h2 className="mb-2 text-sm font-semibold">💊 처방</h2>
+        <PrescriptionsBlock visitId={visit.id} childId={id} />
       </section>
     </div>
   );
