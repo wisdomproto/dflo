@@ -17,9 +17,11 @@ features/
   auth/           # LoginPage, ProtectedRoute, AdminRoute
   children/       # ChildFormModal, childrenService
   growth/         # measurementService (hospital_measurements CRUD)
-  hospital/       # services/ visitService, hospitalMeasurementService
-                  # components/ VisitsTimeline, VisitForm, MeasurementEditor, LifestyleSummary
-                  # (Phase D: LabTestsBlock, PrescriptionsBlock, MedicationPicker)
+  hospital/       # services/ visitService, hospitalMeasurementService,
+                  #   medicationService, labTestService, prescriptionService
+                  # components/ VisitsTimeline, VisitForm, MeasurementEditor,
+                  #   LifestyleSummary, LabTestsBlock, AllergyLabEditor,
+                  #   FreeformLabEditor, MedicationPicker, PrescriptionsBlock
   bone-age/       # lib/ types, atlas, matcher, growthPrediction, growthStandard
                   # components/ PatientForm, XrayUpload, XrayPreview, MatchResultView,
                   #   BoneAgeInput, PredictionResult, BoneAgeChart, BoneAgeTool
@@ -45,8 +47,7 @@ features/
 pages/            # HomePage, RoutinePage, BodyAnalysisPage, InfoPage
   admin/          # AdminDashboardPage, AdminPatientsPage, AdminPatientDetailPage,
                   # AdminVisitNewPage, AdminVisitDetailPage, AdminBoneAgePage,
-                  # AdminContentPage, AdminImportPage
-                  # (Phase D: AdminMedicationsPage)
+                  # AdminMedicationsPage, AdminContentPage, AdminImportPage
 scripts/
   create_admin.mjs, setup_storage.mjs, upload_growth_cases.mjs
   migrations/     # 000_initial_schema.sql + README (Supabase SQL)
