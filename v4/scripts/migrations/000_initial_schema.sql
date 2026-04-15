@@ -453,7 +453,7 @@ CREATE POLICY "auth_update_xray"  ON storage.objects FOR UPDATE TO authenticated
 CREATE POLICY "service_all_xray"  ON storage.objects FOR ALL TO service_role USING (bucket_id = 'xray-images') WITH CHECK (bucket_id = 'xray-images');
 
 -- ============================================================
--- Done.
--- Next: run seed_admin.sql (or `node v4/scripts/create_admin.mjs`)
--- to create the admin@187growth.com account.
+-- Sentinel: final statement so SQL editors don't choke on a trailing comment block
+-- Next step: run `node v4/scripts/create_admin.mjs` to seed the admin account.
 -- ============================================================
+SELECT 'initial schema applied' AS status;
