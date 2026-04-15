@@ -44,8 +44,23 @@ export interface Child {
   is_active: boolean;
 }
 
-export interface Measurement {
+export type LabTestType = 'allergy' | 'organic_acid' | 'blood';
+
+export interface Visit {
   id: string;
+  child_id: string;
+  visit_date: string;
+  doctor_id?: string;
+  chief_complaint?: string;
+  plan?: string;
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface HospitalMeasurement {
+  id: string;
+  visit_id: string;
   child_id: string;
   measured_date: string;
   height: number;
@@ -62,6 +77,73 @@ export interface Measurement {
   created_at: string;
   updated_at: string;
 }
+
+export interface XrayReading {
+  id: string;
+  visit_id: string;
+  child_id: string;
+  xray_date: string;
+  image_path?: string;
+  bone_age_result?: number;
+  atlas_match_younger?: string;
+  atlas_match_older?: string;
+  doctor_memo?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LabTestAttachment {
+  url: string;
+  name: string;
+  mime: string;
+}
+
+export interface AllergyLabResult {
+  danger: string[];
+  caution: string[];
+}
+
+export interface LabTest {
+  id: string;
+  visit_id: string;
+  child_id: string;
+  test_type: LabTestType;
+  collected_date?: string;
+  result_date?: string;
+  result_data: AllergyLabResult | Record<string, unknown>;
+  attachments: LabTestAttachment[];
+  doctor_memo?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Medication {
+  id: string;
+  code: string;
+  name: string;
+  default_dose?: string;
+  unit?: string;
+  notes?: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Prescription {
+  id: string;
+  visit_id: string;
+  child_id: string;
+  medication_id: string;
+  dose?: string;
+  frequency?: string;
+  duration_days?: number;
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+/** @deprecated Use HospitalMeasurement. Alias kept for backwards compatibility during migration. */
+export type Measurement = HospitalMeasurement;
 
 export interface DailyRoutine {
   id: string;
