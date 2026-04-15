@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchPatientDetail } from '@/features/admin/services/adminService';
 import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
+import { fetchVisitIdsWithXray } from '@/features/bone-age/services/xrayReadingService';
 import { VisitList } from '@/features/hospital/components/VisitList';
 import { XrayPanel } from '@/features/hospital/components/XrayPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
@@ -20,6 +21,21 @@ export default function AdminPatientDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [xrayVisitId, setXrayVisitId] = useState<string | null>(null);
+  const [xrayVisitIds, setXrayVisitIds] = useState<Set<string>>(new Set());
+
+  const refreshData = async (childId: string) => {
+    const [detail, vs, xrayIds] = await Promise.all([
+      fetchPatientDetail(childId),
+      fetchVisitsForChild(childId),
+      fetchVisitIdsWithXray(childId),
+    ]);
+    setChild(detail.child);
+    setMeasurements(detail.measurements as HospitalMeasurement[]);
+    setParent(detail.parent);
+    setVisits(vs);
+    setXrayVisitIds(xrayIds);
+    return { visits: vs };
+  };
 
   useEffect(() => {
     if (!id) return;
@@ -28,15 +44,8 @@ export default function AdminPatientDetailPage() {
       setLoading(true);
       setError(null);
       try {
-        const [detail, vs] = await Promise.all([
-          fetchPatientDetail(id),
-          fetchVisitsForChild(id),
-        ]);
+        const { visits: vs } = await refreshData(id);
         if (cancelled) return;
-        setChild(detail.child);
-        setMeasurements(detail.measurements as HospitalMeasurement[]);
-        setParent(detail.parent);
-        setVisits(vs);
         if (vs.length > 0) setSelectedVisitId(vs[0].id);
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : '환자 정보를 불러오지 못했습니다.');
@@ -47,6 +56,7 @@ export default function AdminPatientDetailPage() {
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const xrayVisit = useMemo(
@@ -113,17 +123,37 @@ export default function AdminPatientDetailPage() {
                 setSelectedVisitId(vid);
                 setXrayVisitId(vid);
               }}
+              onMeasurementChanged={(m) =>
+                setMeasurements((prev) => {
+                  const rest = prev.filter((x) => x.id !== m.id);
+                  return [...rest, m].sort(
+                    (a, b) =>
+                      new Date(a.measured_date).getTime() -
+                      new Date(b.measured_date).getTime(),
+                  );
+                })
+              }
             />
           </div>
         </section>
 
         {/* Middle: X-ray viewer (only when open) */}
-        {xrayOpen && xrayVisit && (
+        {xrayOpen && xrayVisit && child && (
           <section className="min-h-0">
             <XrayPanel
-              childId={id}
+              child={child}
               visit={xrayVisit}
+              visits={visits}
+              measurements={measurements}
+              xrayVisitIds={xrayVisitIds}
+              onSelectVisit={(vid) => {
+                setSelectedVisitId(vid);
+                setXrayVisitId(vid);
+              }}
               onClose={() => setXrayVisitId(null)}
+              onSaved={() => {
+                if (id) refreshData(id).catch(() => undefined);
+              }}
             />
           </section>
         )}

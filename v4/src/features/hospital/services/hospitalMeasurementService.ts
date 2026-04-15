@@ -54,6 +54,35 @@ export async function updateMeasurement(
   return data as HospitalMeasurement;
 }
 
+/** Upsert a single field on the measurement row for a visit. Creates the row
+ *  if it doesn't exist yet (using visit_date as measured_date). */
+export async function upsertMeasurementField(input: {
+  visit_id: string;
+  child_id: string;
+  measured_date: string;
+  patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'bone_age' | 'pah' | 'doctor_notes'>>;
+}): Promise<HospitalMeasurement> {
+  const existing = await fetchMeasurementsByVisit(input.visit_id);
+  if (existing[0]) {
+    return updateMeasurement(existing[0].id, input.patch);
+  }
+  const { data, error } = await supabase
+    .from('hospital_measurements')
+    .insert({
+      visit_id: input.visit_id,
+      child_id: input.child_id,
+      measured_date: input.measured_date,
+      ...input.patch,
+    })
+    .select()
+    .single();
+  if (error) {
+    logger.error('upsertMeasurementField failed', error);
+    throw new Error('측정 기록 저장에 실패했습니다.');
+  }
+  return data as HospitalMeasurement;
+}
+
 export async function updateMeasurementBoneAge(
   visitId: string,
   boneAge: number,

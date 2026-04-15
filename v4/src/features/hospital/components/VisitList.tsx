@@ -1,13 +1,14 @@
-// Left-column visit list. Two modes:
-//   - full (default):  basic metrics in each row + expandable scroll box below
-//   - rail  (xray on): thin collapsed rail showing just date + visit index
-// Expanded row content lazy-loads labs/rx/xray and offers an "X-ray 보기" action.
+// Left-column visit list for the admin patient detail page.
+//   - full mode: inline height/weight inputs on each card + expandable scroll box
+//   - rail mode: thin date-stamp strip (used when X-ray panel is open)
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchLabTestsByVisit } from '@/features/hospital/services/labTestService';
 import { fetchPrescriptionsByVisit } from '@/features/hospital/services/prescriptionService';
 import { fetchXrayReadingsByVisit } from '@/features/bone-age/services/xrayReadingService';
+import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
+import { logger } from '@/shared/lib/logger';
 import type {
   HospitalMeasurement,
   LabTest,
@@ -24,6 +25,7 @@ interface Props {
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
   onOpenXray: (visitId: string) => void;
+  onMeasurementChanged: (m: HospitalMeasurement) => void;
 }
 
 interface VisitExtras {
@@ -50,6 +52,7 @@ export function VisitList({
   selectedVisitId,
   onSelectVisit,
   onOpenXray,
+  onMeasurementChanged,
 }: Props) {
   const [extras, setExtras] = useState<Record<string, VisitExtras>>({});
   const loadedRef = useRef<Set<string>>(new Set());
@@ -81,8 +84,8 @@ export function VisitList({
   }, []);
 
   useEffect(() => {
-    if (selectedVisitId) loadExtras(selectedVisitId);
-  }, [selectedVisitId, loadExtras]);
+    if (selectedVisitId && mode === 'full') loadExtras(selectedVisitId);
+  }, [selectedVisitId, mode, loadExtras]);
 
   if (visits.length === 0) {
     return (
@@ -123,7 +126,6 @@ export function VisitList({
     );
   }
 
-  // Full mode
   return (
     <ul className="space-y-2">
       {visits.map((v, i) => {
@@ -138,33 +140,76 @@ export function VisitList({
               isOpen ? 'border-slate-400' : 'border-slate-200'
             }`}
           >
-            <button
-              type="button"
-              onClick={() => onSelectVisit(isOpen ? null : v.id)}
-              className="w-full text-left hover:bg-slate-50"
-            >
-              <div className="flex items-center justify-between gap-3 px-3 py-2.5">
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-[11px] font-semibold text-slate-400">
-                      #{idx}
+            <div className="flex items-start gap-2 px-3 py-2.5">
+              <button
+                type="button"
+                onClick={() => onSelectVisit(isOpen ? null : v.id)}
+                className="min-w-0 flex-1 text-left"
+              >
+                <div className="flex items-baseline gap-2">
+                  <span className="text-[11px] font-semibold text-slate-400">
+                    #{idx}
+                  </span>
+                  <span className="text-sm font-semibold text-slate-900">
+                    {v.visit_date}
+                  </span>
+                  {m?.bone_age != null && (
+                    <span className="text-[11px] text-slate-500">
+                      BA {m.bone_age.toFixed(1)}
                     </span>
-                    <span className="text-sm font-semibold text-slate-900">
-                      {v.visit_date}
+                  )}
+                  {m?.pah != null && (
+                    <span className="text-[11px] text-slate-500">
+                      예측 {m.pah}
                     </span>
-                  </div>
-                  <div className="mt-1 flex items-center gap-3 text-[12px] text-slate-600">
-                    <Metric label="키" value={m?.height ? `${m.height}cm` : '—'} />
-                    <Metric
-                      label="BA"
-                      value={m?.bone_age ? m.bone_age.toFixed(1) : '—'}
-                    />
-                    <Metric label="예측" value={m?.pah ? `${m.pah}` : '—'} />
-                  </div>
+                  )}
                 </div>
-                <span className="text-slate-400">{isOpen ? '▾' : '▸'}</span>
-              </div>
-            </button>
+              </button>
+              <NumberField
+                value={m?.height ?? null}
+                suffix="cm"
+                placeholder="키"
+                onSave={async (val) => {
+                  try {
+                    const next = await upsertMeasurementField({
+                      visit_id: v.id,
+                      child_id: childId,
+                      measured_date: v.visit_date,
+                      patch: { height: val ?? undefined },
+                    });
+                    onMeasurementChanged(next);
+                  } catch (e) {
+                    logger.error('save height failed', e);
+                  }
+                }}
+              />
+              <NumberField
+                value={m?.weight ?? null}
+                suffix="kg"
+                placeholder="몸무게"
+                onSave={async (val) => {
+                  try {
+                    const next = await upsertMeasurementField({
+                      visit_id: v.id,
+                      child_id: childId,
+                      measured_date: v.visit_date,
+                      patch: { weight: val ?? undefined },
+                    });
+                    onMeasurementChanged(next);
+                  } catch (e) {
+                    logger.error('save weight failed', e);
+                  }
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => onSelectVisit(isOpen ? null : v.id)}
+                className="ml-1 self-center text-slate-400 hover:text-slate-600"
+                aria-label={isOpen ? '접기' : '펼치기'}
+              >
+                {isOpen ? '▾' : '▸'}
+              </button>
+            </div>
 
             {isOpen && (
               <div className="max-h-80 overflow-y-auto border-t border-slate-100 bg-slate-50 px-3 py-2 text-xs">
@@ -238,7 +283,7 @@ export function VisitList({
                     to={`/admin/patients/${childId}/visits/${v.id}`}
                     className="text-[11px] text-slate-600 underline-offset-2 hover:underline"
                   >
-                    편집 →
+                    자세히 편집 →
                   </Link>
                 </div>
               </div>
@@ -250,12 +295,49 @@ export function VisitList({
   );
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
+function NumberField({
+  value,
+  suffix,
+  placeholder,
+  onSave,
+}: {
+  value: number | null;
+  suffix: string;
+  placeholder: string;
+  onSave: (val: number | null) => Promise<void>;
+}) {
+  const [draft, setDraft] = useState<string>(value != null ? `${value}` : '');
+  useEffect(() => {
+    setDraft(value != null ? `${value}` : '');
+  }, [value]);
+
+  const commit = async () => {
+    const parsed = draft.trim() === '' ? null : Number(draft);
+    const nextVal = typeof parsed === 'number' && !Number.isNaN(parsed) ? parsed : null;
+    if (nextVal === value) return;
+    await onSave(nextVal);
+  };
+
   return (
-    <span className="inline-flex items-baseline gap-1">
-      <span className="text-[10px] text-slate-500">{label}</span>
-      <span className="font-medium text-slate-800">{value}</span>
-    </span>
+    <div className="relative">
+      <input
+        type="number"
+        step="0.1"
+        inputMode="decimal"
+        value={draft}
+        placeholder={placeholder}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
+        }}
+        className="h-8 w-20 rounded border border-slate-200 bg-white pr-7 pl-2 text-right text-[12px] text-slate-900 outline-none focus:border-slate-400"
+      />
+      <span className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-[10px] text-slate-400">
+        {suffix}
+      </span>
+    </div>
   );
 }
 

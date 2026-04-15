@@ -25,6 +25,18 @@ export async function getXrayImageSignedUrl(path: string, expiresInSec = 3600): 
   return data.signedUrl;
 }
 
+export async function fetchVisitIdsWithXray(childId: string): Promise<Set<string>> {
+  const { data, error } = await supabase
+    .from('xray_readings')
+    .select('visit_id')
+    .eq('child_id', childId);
+  if (error) {
+    logger.error('fetchVisitIdsWithXray failed', error);
+    throw new Error('X-ray 목록을 불러오지 못했습니다.');
+  }
+  return new Set((data ?? []).map((r) => r.visit_id as string));
+}
+
 export async function fetchXrayReadingsByVisit(visitId: string): Promise<XrayReading[]> {
   const { data, error } = await supabase
     .from('xray_readings')
