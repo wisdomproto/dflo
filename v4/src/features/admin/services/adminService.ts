@@ -1,4 +1,4 @@
-import type { Child, Measurement, User, Recipe, GrowthCase, GrowthGuide } from '@/shared/types';
+import type { Child, Measurement, User } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 
@@ -220,59 +220,6 @@ export async function fetchRoutineSummaries(
     hasInjection: r.growth_injection === true,
     hasSleep: r.sleep_quality != null || r.sleep_time != null,
   }));
-}
-
-// ---------- Content CRUD ----------
-
-export async function upsertRecipe(recipe: Partial<Recipe> & { title: string }) {
-  const { error } = await supabase.from('recipes').upsert({
-    ...recipe,
-    is_published: recipe.is_published ?? true,
-    order_index: recipe.order_index ?? 0,
-  });
-  if (error) throw error;
-}
-
-export async function deleteRecipe(id: string) {
-  const { error } = await supabase
-    .from('recipes')
-    .update({ is_published: false })
-    .eq('id', id);
-  if (error) throw error;
-}
-
-export async function upsertGuide(guide: Partial<GrowthGuide> & { title: string; content: string }) {
-  const { error } = await supabase.from('growth_guides').upsert({
-    ...guide,
-    is_published: guide.is_published ?? true,
-    order_index: guide.order_index ?? 0,
-  });
-  if (error) throw error;
-}
-
-export async function deleteGuide(id: string) {
-  const { error } = await supabase
-    .from('growth_guides')
-    .update({ is_published: false })
-    .eq('id', id);
-  if (error) throw error;
-}
-
-export async function upsertGrowthCase(c: Partial<GrowthCase> & { patient_name: string }) {
-  const { error } = await supabase.from('growth_cases').upsert({
-    ...c,
-    is_published: c.is_published ?? true,
-    order_index: c.order_index ?? 0,
-  });
-  if (error) throw error;
-}
-
-export async function deleteGrowthCase(id: string) {
-  const { error } = await supabase
-    .from('growth_cases')
-    .update({ is_published: false })
-    .eq('id', id);
-  if (error) throw error;
 }
 
 // ---------- Patient Data Import (CSV) ----------
