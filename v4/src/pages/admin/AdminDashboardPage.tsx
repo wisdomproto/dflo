@@ -14,7 +14,7 @@ const statCards = [
 
 const quickActions = [
   { label: '환자 관리', path: '/admin/patients', icon: '👥' },
-  { label: '콘텐츠 작성', path: '/admin/content', icon: '✏️' },
+  { label: '약품 마스터', path: '/admin/medications', icon: '💊' },
   { label: '데이터 업로드', path: '/admin/import', icon: '📤' },
 ];
 
