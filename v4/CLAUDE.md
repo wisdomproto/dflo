@@ -18,11 +18,12 @@ features/
   children/       # ChildFormModal, childrenService
   growth/         # measurementService (hospital_measurements CRUD)
   hospital/       # services/ visitService, hospitalMeasurementService
-                  # (Phase B: components/ VisitsTimeline, VisitForm, MeasurementEditor,
-                  #  LifestyleSummary, LabTestsBlock, PrescriptionsBlock, MedicationPicker)
-  bone-age/       # (Phase C: lib/ atlas, matcher, growthPrediction +
-                  #  components/ PatientForm, XrayUpload, MatchResultView,
-                  #  BoneAgeInput, PredictionResult, BoneAgeChart, BoneAgeTool)
+                  # components/ VisitsTimeline, VisitForm, MeasurementEditor, LifestyleSummary
+                  # (Phase D: LabTestsBlock, PrescriptionsBlock, MedicationPicker)
+  bone-age/       # lib/ types, atlas, matcher, growthPrediction, growthStandard
+                  # components/ PatientForm, XrayUpload, XrayPreview, MatchResultView,
+                  #   BoneAgeInput, PredictionResult, BoneAgeChart, BoneAgeTool
+                  # services/ xrayReadingService
   routine/        # routineService, CalendarView, GrowthModalContent
                   # Cards: SleepCard, MealCard, ExerciseCard, SupplementCard
   content/        # contentService, useHomeContent hook
@@ -43,9 +44,8 @@ features/
     assets/       # Hospital images
 pages/            # HomePage, RoutinePage, BodyAnalysisPage, InfoPage
   admin/          # AdminDashboardPage, AdminPatientsPage, AdminPatientDetailPage,
+                  # AdminVisitNewPage, AdminVisitDetailPage, AdminBoneAgePage,
                   # AdminContentPage, AdminImportPage
-                  # (Phase B: AdminVisitNewPage, AdminVisitDetailPage)
-                  # (Phase C: AdminBoneAgePage)
                   # (Phase D: AdminMedicationsPage)
 scripts/
   create_admin.mjs, setup_storage.mjs, upload_growth_cases.mjs
