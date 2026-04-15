@@ -40,6 +40,7 @@ const AdminVisitDetailPage = lazy(() => import('@/pages/admin/AdminVisitDetailPa
 const AdminBoneAgePage = lazy(() => import('@/pages/admin/AdminBoneAgePage'));
 const AdminContentPage = lazy(() => import('@/pages/admin/AdminContentPage'));
 const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
+const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
 
 function SuspenseFallback() {
   return (
@@ -241,6 +242,14 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <AdminContentPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/medications',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminMedicationsPage />
               </Suspense>
             ),
           },
