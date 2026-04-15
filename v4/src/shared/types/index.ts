@@ -38,6 +38,7 @@ export interface Child {
   birth_notes?: string;
   father_height?: number;
   mother_height?: number;
+  desired_height?: number;
   is_patient?: boolean;
   created_at: string;
   updated_at: string;

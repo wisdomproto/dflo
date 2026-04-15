@@ -21,10 +21,11 @@ interface FormState {
   birth_date: string;
   father_height: string;
   mother_height: string;
+  desired_height: string;
 }
 
 const initialForm: FormState = {
-  name: '', gender: '', birth_date: '', father_height: '', mother_height: '',
+  name: '', gender: '', birth_date: '', father_height: '', mother_height: '', desired_height: '',
 };
 
 const inputCls = (hasError: boolean) =>
@@ -57,6 +58,7 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
         birth_date: editChild.birth_date,
         father_height: editChild.father_height?.toString() ?? '',
         mother_height: editChild.mother_height?.toString() ?? '',
+        desired_height: editChild.desired_height?.toString() ?? '',
       });
     } else if (isOpen) {
       // 새 자녀 등록 시 기존 자녀의 부모 키 가져오기
@@ -84,6 +86,8 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
       e.father_height = '100~220cm 사이로 입력해 주세요';
     if (form.mother_height && !isValidHeight(form.mother_height))
       e.mother_height = '100~220cm 사이로 입력해 주세요';
+    if (form.desired_height && !isValidHeight(form.desired_height))
+      e.desired_height = '100~220cm 사이로 입력해 주세요';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -99,6 +103,7 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
         birth_date: form.birth_date,
         father_height: form.father_height ? Number(form.father_height) : undefined,
         mother_height: form.mother_height ? Number(form.mother_height) : undefined,
+        desired_height: form.desired_height ? Number(form.desired_height) : undefined,
       };
       if (isEdit && editChild) {
         await updateChild(editChild.id, payload);
@@ -124,7 +129,7 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
     }
   };
 
-  const heightField = (key: 'father_height' | 'mother_height', label: string) => (
+  const heightField = (key: 'father_height' | 'mother_height' | 'desired_height', label: string) => (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
       <div className="relative">
@@ -191,6 +196,11 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
         <div className="grid grid-cols-2 gap-3">
           {heightField('father_height', '아버지 키')}
           {heightField('mother_height', '어머니 키')}
+        </div>
+
+        {/* 희망 키 */}
+        <div>
+          {heightField('desired_height', '희망 키 (Desired Height)')}
         </div>
 
         {/* 제출 */}
