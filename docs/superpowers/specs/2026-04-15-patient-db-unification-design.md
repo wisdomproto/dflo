@@ -272,3 +272,4 @@ BoneAgeAI 가 쓰는 것 중 v4 에 없는 것만 추가:
 - BoneAgeAI `growthStandard.ts` 와 v4 `growthStandard.ts` diff 검토 (LMS 데이터 동일? 함수 signature 다른지)
 - RLS 정책 SQL 정확한 표현 (parent 는 child.parent_id = auth.uid() 조건)
 - migration 의 "admin 사용자 1명" 결정 (기본 admin 계정 id 를 seed 로 박을지, 환경변수)
+- RLS 초기 정책은 permissive (authenticated/anon read). 환자 앱이 Supabase auth 로 전환되면 `parent_id = auth.uid()` 조건으로 tighten 필요 (follow-up migration).
