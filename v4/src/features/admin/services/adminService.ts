@@ -24,7 +24,7 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
 
   const [children, measurements, recipes, guides] = await Promise.all([
     supabase.from('children').select('id, created_at', { count: 'exact' }),
-    supabase.from('measurements').select('id', { count: 'exact' }),
+    supabase.from('hospital_measurements').select('id', { count: 'exact' }),
     supabase.from('recipes').select('id', { count: 'exact' }).eq('is_published', true),
     supabase.from('growth_guides').select('id', { count: 'exact' }).eq('is_published', true),
   ]);
@@ -80,14 +80,14 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
           .eq('id', patient.parent_id)
           .maybeSingle(),
         supabase
-          .from('measurements')
+          .from('hospital_measurements')
           .select('*')
           .eq('child_id', patient.id)
           .order('measured_date', { ascending: false })
           .limit(1)
           .maybeSingle(),
         supabase
-          .from('measurements')
+          .from('hospital_measurements')
           .select('id', { count: 'exact' })
           .eq('child_id', patient.id),
       ]);
@@ -110,7 +110,7 @@ export async function fetchPatientDetail(childId: string) {
   const [childRes, measurementsRes] = await Promise.all([
     supabase.from('children').select('*').eq('id', childId).single(),
     supabase
-      .from('measurements')
+      .from('hospital_measurements')
       .select('*')
       .eq('child_id', childId)
       .order('measured_date', { ascending: false }),
@@ -138,7 +138,7 @@ export async function fetchPatientDetail(childId: string) {
 export async function addMeasurement(
   measurement: Omit<Measurement, 'id' | 'created_at' | 'updated_at'>,
 ) {
-  const { error } = await supabase.from('measurements').insert(measurement);
+  const { error } = await supabase.from('hospital_measurements').insert(measurement);
   if (error) {
     logger.error('Failed to add measurement:', error);
     throw error;
@@ -147,7 +147,7 @@ export async function addMeasurement(
 
 export async function updateMeasurement(id: string, updates: Partial<Measurement>) {
   const { error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .update({ ...updates, updated_at: new Date().toISOString() })
     .eq('id', id);
 
@@ -158,7 +158,7 @@ export async function updateMeasurement(id: string, updates: Partial<Measurement
 }
 
 export async function deleteMeasurement(id: string) {
-  const { error } = await supabase.from('measurements').delete().eq('id', id);
+  const { error } = await supabase.from('hospital_measurements').delete().eq('id', id);
   if (error) {
     logger.error('Failed to delete measurement:', error);
     throw error;
@@ -344,7 +344,7 @@ export async function importPatients(parentId: string, rows: ImportRow[]) {
       if (childError) throw childError;
 
       if (row.height && child) {
-        await supabase.from('measurements').insert({
+        await supabase.from('hospital_measurements').insert({
           child_id: child.id,
           measured_date: row.measured_date || new Date().toISOString().split('T')[0],
           height: row.height,

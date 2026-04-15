@@ -69,7 +69,7 @@ export const useChildrenStore = create<ChildrenStore>((set, get) => ({
           children.map(async (child) => {
             const { data: measurementData, error: measurementError } =
               await supabase
-                .from('measurements')
+                .from('hospital_measurements')
                 .select('*')
                 .eq('child_id', child.id)
                 .order('measured_date', { ascending: false })

@@ -11,7 +11,7 @@ import { logger } from '@/shared/lib/logger';
  */
 export async function fetchMeasurements(childId: string): Promise<Measurement[]> {
   const { data, error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .select('*')
     .eq('child_id', childId)
     .order('measured_date', { ascending: false });
@@ -31,7 +31,7 @@ export async function fetchLatestMeasurement(
   childId: string,
 ): Promise<Measurement | null> {
   const { data, error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .select('*')
     .eq('child_id', childId)
     .order('measured_date', { ascending: false })
@@ -68,7 +68,7 @@ export async function createMeasurement(measurement: {
   created_by?: string;
 }): Promise<Measurement> {
   const { data, error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .insert(measurement)
     .select()
     .single();
@@ -89,7 +89,7 @@ export async function updateMeasurement(
   updates: Partial<Measurement>,
 ): Promise<Measurement> {
   const { data, error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .update({ ...updates, updated_at: new Date().toISOString() })
     .eq('id', id)
     .select()
@@ -108,7 +108,7 @@ export async function updateMeasurement(
  */
 export async function deleteMeasurement(id: string): Promise<void> {
   const { error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .delete()
     .eq('id', id);
 
