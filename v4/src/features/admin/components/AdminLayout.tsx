@@ -10,6 +10,7 @@ import { useAuthStore } from '@/stores/authStore';
 const NAV_ITEMS = [
   { to: '/admin', icon: '📊', label: '대시보드', end: true },
   { to: '/admin/patients', icon: '👥', label: '환자 관리', end: false },
+  { to: '/admin/medications', icon: '💊', label: '약품 마스터', end: false },
   { to: '/admin/content', icon: '📝', label: '콘텐츠 저작', end: false },
 ];
 
