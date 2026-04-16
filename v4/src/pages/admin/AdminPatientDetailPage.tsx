@@ -20,6 +20,7 @@ export default function AdminPatientDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [xrayCollapsed, setXrayCollapsed] = useState(false);
+  const [visitsCollapsed, setVisitsCollapsed] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -93,20 +94,32 @@ export default function AdminPatientDetailPage() {
         </Link>
       </div>
 
-      {/* 3-column layout: visits | X-ray (collapsible) | chart */}
+      {/* 3-column layout: visits (collapsible) | X-ray (collapsible) | chart */}
       <div
-        className={`grid min-h-0 flex-1 gap-3 grid-cols-1 ${
-          xrayCollapsed
-            ? 'lg:grid-cols-[minmax(320px,1fr)_44px_minmax(0,1.4fr)]'
-            : 'lg:grid-cols-[minmax(320px,1fr)_minmax(0,1fr)_minmax(0,1.2fr)]'
-        }`}
+        className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
+        style={
+          {
+            ['--cols' as string]: `${visitsCollapsed ? '60px' : 'minmax(320px,1fr)'} ${
+              xrayCollapsed ? '44px' : 'minmax(0,1fr)'
+            } minmax(0,1.2fr)`,
+          } as React.CSSProperties
+        }
       >
         {/* Left: visit list */}
         <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
-          <div className="shrink-0 border-b border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700">
-            진료 기록
+          <div className="flex shrink-0 items-center justify-between gap-1 border-b border-slate-200 px-2 py-2 text-sm font-semibold text-slate-700">
+            {!visitsCollapsed && <span className="px-1">진료 기록</span>}
+            <button
+              type="button"
+              onClick={() => setVisitsCollapsed((c) => !c)}
+              title={visitsCollapsed ? '펼치기' : '접기'}
+              aria-label={visitsCollapsed ? '펼치기' : '접기'}
+              className="ml-auto h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+            >
+              {visitsCollapsed ? '›' : '‹'}
+            </button>
           </div>
-          <div className="min-h-0 flex-1 overflow-y-auto p-3">
+          <div className={`min-h-0 flex-1 overflow-y-auto ${visitsCollapsed ? 'p-1' : 'p-3'}`}>
             <VisitList
               childId={id}
               visits={visits}
@@ -123,6 +136,7 @@ export default function AdminPatientDetailPage() {
                   );
                 })
               }
+              collapsed={visitsCollapsed}
             />
           </div>
         </section>

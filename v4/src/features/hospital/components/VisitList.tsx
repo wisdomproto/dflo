@@ -22,6 +22,7 @@ interface Props {
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
   onMeasurementChanged: (m: HospitalMeasurement) => void;
+  collapsed?: boolean;
 }
 
 interface VisitExtras {
@@ -45,6 +46,7 @@ export function VisitList({
   selectedVisitId,
   onSelectVisit,
   onMeasurementChanged,
+  collapsed = false,
 }: Props) {
   const [extras, setExtras] = useState<Record<string, VisitExtras>>({});
   const loadedRef = useRef<Set<string>>(new Set());
@@ -83,6 +85,36 @@ export function VisitList({
       <div className="rounded-lg border border-dashed border-slate-200 bg-white p-6 text-center text-sm text-slate-500">
         내원 기록이 없습니다.
       </div>
+    );
+  }
+
+  if (collapsed) {
+    return (
+      <ul className="space-y-1">
+        {visits.map((v, i) => {
+          const idx = visits.length - i;
+          const isSel = selectedVisitId === v.id;
+          return (
+            <li key={v.id}>
+              <button
+                type="button"
+                onClick={() => onSelectVisit(v.id)}
+                title={v.visit_date}
+                className={`block w-full rounded px-1 py-1.5 text-center text-[10px] leading-tight transition-colors ${
+                  isSel
+                    ? 'bg-slate-900 text-white'
+                    : 'bg-white text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                <div className="font-semibold">#{idx}</div>
+                <div className="mt-0.5 text-[9px] opacity-80">
+                  {v.visit_date.slice(2, 10).replace(/-/g, '/')}
+                </div>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     );
   }
 
