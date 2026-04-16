@@ -94,15 +94,16 @@ export default function AdminPatientDetailPage() {
         </Link>
       </div>
 
-      {/* 3-column layout: visits + X-ray are fixed. Chart fills the rest, so
-          collapsing the X-ray rail expands the chart to the right. */}
+      {/* 3-column layout: chart + X-ray are fixed; the visit list is the only
+          fluid 1fr column, so collapsing the X-ray rail expands visits — the
+          chart keeps its current width. */}
       <div
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
           {
-            ['--cols' as string]: `${visitsCollapsed ? '60px' : '360px'} ${
-              xrayCollapsed ? '44px' : '360px'
-            } minmax(580px,1fr)`,
+            ['--cols' as string]: `${
+              visitsCollapsed ? '60px' : 'minmax(280px,1fr)'
+            } ${xrayCollapsed ? '44px' : '360px'} 800px`,
           } as React.CSSProperties
         }
       >
