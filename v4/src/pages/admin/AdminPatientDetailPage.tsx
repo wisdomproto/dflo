@@ -122,6 +122,7 @@ export default function AdminPatientDetailPage() {
           <div className={`min-h-0 flex-1 overflow-y-auto ${visitsCollapsed ? 'p-1' : 'p-3'}`}>
             <VisitList
               childId={id}
+              gender={child.gender}
               visits={visits}
               measurements={measurements}
               selectedVisitId={selectedVisitId}

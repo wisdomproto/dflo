@@ -7,8 +7,10 @@ import { Link } from 'react-router-dom';
 import { fetchLabTestsByVisit } from '@/features/hospital/services/labTestService';
 import { fetchPrescriptionsByVisit } from '@/features/hospital/services/prescriptionService';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
+import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 import { logger } from '@/shared/lib/logger';
 import type {
+  Gender,
   HospitalMeasurement,
   LabTest,
   Prescription,
@@ -17,12 +19,26 @@ import type {
 
 interface Props {
   childId: string;
+  gender: Gender;
   visits: Visit[];
   measurements: HospitalMeasurement[];
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
   onMeasurementChanged: (m: HospitalMeasurement) => void;
   collapsed?: boolean;
+}
+
+function aiPredictedHeight(
+  m: HospitalMeasurement | undefined,
+  gender: Gender,
+): number | null {
+  if (!m?.height || !m?.bone_age) return null;
+  const v = predictAdultHeightByBonePercentile(
+    m.height,
+    m.bone_age,
+    gender === 'male' ? 'M' : 'F',
+  );
+  return v > 0 ? Number(v.toFixed(1)) : null;
 }
 
 interface VisitExtras {
@@ -41,6 +57,7 @@ const emptyExtras: VisitExtras = {
 
 export function VisitList({
   childId,
+  gender,
   visits,
   measurements,
   selectedVisitId,
@@ -150,11 +167,23 @@ export function VisitList({
                       BA {m.bone_age.toFixed(1)}
                     </span>
                   )}
+                </div>
+                <div className="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[11px] text-slate-500">
                   {m?.pah != null && (
-                    <span className="text-[11px] text-slate-500">
-                      예측 {m.pah}
+                    <span>
+                      <span className="text-slate-400">PAH</span>{' '}
+                      <span className="font-medium text-slate-700">{m.pah}</span>
                     </span>
                   )}
+                  {(() => {
+                    const ai = aiPredictedHeight(m, gender);
+                    return ai != null ? (
+                      <span>
+                        <span className="text-indigo-500">AI</span>{' '}
+                        <span className="font-medium text-indigo-700">{ai}</span>
+                      </span>
+                    ) : null;
+                  })()}
                 </div>
               </button>
               <NumberField

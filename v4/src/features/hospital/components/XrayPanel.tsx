@@ -78,6 +78,9 @@ export function XrayPanel({
         if (cancelled) return;
         const first = rows[0] ?? null;
         setExisting(first);
+        // Show the saved bone-age value so UI matches what's stored,
+        // not the freshly-recomputed atlas midpoint.
+        if (first?.bone_age_result != null) setManualBoneAge(first.bone_age_result);
         if (first?.image_path) {
           try {
             const url = await getXrayImageSignedUrl(first.image_path);
