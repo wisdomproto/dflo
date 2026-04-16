@@ -12,6 +12,7 @@ import {
   neighborInSorted,
 } from '@/features/bone-age/lib/atlas';
 import { computeAge, matchByAge } from '@/features/bone-age/lib/matcher';
+import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 import type { AtlasEntry, Gender } from '@/features/bone-age/lib/types';
 import {
   createXrayReading,
@@ -182,6 +183,18 @@ export function XrayPanel({
 
   const effectiveBoneAge = manualBoneAge ?? midpoint;
 
+  // Predicted adult height = same percentile at bone-age extrapolated to age 18.
+  const visitHeight = useMemo(() => {
+    const m = measurements.find((x) => x.visit_id === visit.id);
+    return m?.height ?? null;
+  }, [measurements, visit.id]);
+
+  const predictedAdult = useMemo(() => {
+    if (visitHeight == null || effectiveBoneAge == null) return null;
+    const v = predictAdultHeightByBonePercentile(visitHeight, effectiveBoneAge, gender);
+    return v > 0 ? v : null;
+  }, [visitHeight, effectiveBoneAge, gender]);
+
   const handleSave = async () => {
     if (!effectiveYounger || !effectiveOlder || effectiveBoneAge == null) return;
     setSaving(true);
@@ -289,13 +302,15 @@ export function XrayPanel({
               <StepButtons canUp={canStepUp} canDown={canStepDown} onStep={handleStep} />
             </Pane>
 
-            {/* Patient — drag & drop + paste + editable bone age */}
+            {/* Patient — drag & drop + paste + editable bone age + predicted adult */}
             <PatientPane
               imageUrl={imageUrl}
               onFile={acceptFile}
               boneAge={effectiveBoneAge}
               midpointFallback={midpoint}
               onBoneAgeChange={setManualBoneAge}
+              predictedAdult={predictedAdult}
+              visitHeight={visitHeight}
             />
 
             {/* Older — auto */}
@@ -388,12 +403,16 @@ function PatientPane({
   boneAge,
   midpointFallback,
   onBoneAgeChange,
+  predictedAdult,
+  visitHeight,
 }: {
   imageUrl: string | null;
   onFile: (file: File) => void;
   boneAge: number | null;
   midpointFallback: number | null;
   onBoneAgeChange: (v: number | null) => void;
+  predictedAdult: number | null;
+  visitHeight: number | null;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
@@ -485,6 +504,21 @@ function PatientPane({
           평균값 ({midpointFallback.toFixed(2)}) 으로 되돌리기
         </button>
       )}
+
+      {/* Bone-age based predicted adult height */}
+      <div className="mt-1 rounded border border-indigo-200 bg-indigo-50 px-2 py-1 text-center">
+        <div className="text-[10px] font-medium text-indigo-700">예측 성인키</div>
+        {predictedAdult != null ? (
+          <div className="text-[14px] font-bold text-indigo-900">
+            {predictedAdult.toFixed(1)}
+            <span className="ml-0.5 text-[11px] font-normal text-indigo-700">cm</span>
+          </div>
+        ) : (
+          <div className="text-[11px] text-indigo-400">
+            {visitHeight == null ? '키 입력 필요' : '뼈나이 입력 필요'}
+          </div>
+        )}
+      </div>
 
       {imageUrl && (
         <button
