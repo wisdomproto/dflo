@@ -234,10 +234,26 @@ export function AdminPatientGrowthChart({
     responsive: true,
     maintainAspectRatio: false,
     animation: {
-      // Reveal datasets left → right (X eases) without Y growing from baseline.
+      // Projection draws outward from the selected visit point; everything
+      // else snaps in place (no bottom-up Y growth).
       duration: 600,
       easing: 'easeOutQuart',
-      x: { duration: 600, easing: 'easeOutQuart' },
+      x: {
+        duration: 600,
+        easing: 'easeOutQuart',
+        from: (ctx) => {
+          // For projection points, start animation at the first point's X
+          // (= the selected visit's chrono age). Other datasets keep default.
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const c: any = ctx;
+          const ds = c.chart?.data?.datasets?.[c.datasetIndex];
+          if (ds?.label === 'projection' && c.type === 'data' && ds.data?.length) {
+            const startX = (ds.data[0] as { x: number }).x;
+            return c.chart.scales.x.getPixelForValue(startX);
+          }
+          return c.from;
+        },
+      },
       y: { duration: 0 },
     },
     plugins: {
