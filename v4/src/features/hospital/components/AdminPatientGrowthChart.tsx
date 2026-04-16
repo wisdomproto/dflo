@@ -1,6 +1,7 @@
 // Growth chart for the admin patient detail page.
-// Minimal: toggles double as value chips (checkbox + label + current value),
-// no in-chart overlays. Percentile legend moved beneath the canvas.
+// Shows KDCA 2017 percentiles, patient measurements, and a percentile-based
+// projection curve from the most recent point to age 18. A horizontal line
+// at the projected adult height caps the prediction.
 
 import { useMemo, useState } from 'react';
 import {
@@ -11,10 +12,12 @@ import {
   Tooltip,
   Filler,
   type ChartDataset,
-  type Plugin,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { getHeightStandard } from '@/features/bone-age/lib/growthStandard';
+import {
+  getHeightStandard,
+  heightAtSamePercentile,
+} from '@/features/bone-age/lib/growthStandard';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import type { Child, HospitalMeasurement } from '@/shared/types';
 
@@ -34,20 +37,11 @@ const COLORS = {
   p85: '#ef4444',
   p97: '#a855f7',
   patient: '#0f172a',
-  chrono: '#f97316',
-  actualHeight: '#dc2626',
-  pah: '#2563eb',
-  mph: '#64748b',
+  predicted: '#6366f1',
   desired: '#9333ea',
 };
 
-type ToggleKey = 'chrono' | 'actual' | 'boneAge' | 'mph' | 'pah' | 'desired';
-
-function calcMph(child: Child): number | null {
-  if (!child.father_height || !child.mother_height) return null;
-  const adj = child.gender === 'male' ? 13 : -13;
-  return Number(((child.father_height + child.mother_height + adj) / 2).toFixed(1));
-}
+type ToggleKey = 'boneAge' | 'predicted' | 'desired';
 
 interface Props {
   child: Child;
@@ -56,11 +50,8 @@ interface Props {
 
 export function AdminPatientGrowthChart({ child, measurements }: Props) {
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
-    chrono: true,
-    actual: true,
     boneAge: true,
-    mph: true,
-    pah: true,
+    predicted: true,
     desired: true,
   });
 
@@ -76,14 +67,32 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
   );
 
   const latest = sortedMeasurements.at(-1) ?? null;
-  const chronoAge = latest
+  const latestAge = latest
     ? calculateAgeAtDate(child.birth_date, new Date(latest.measured_date)).decimal
     : null;
-  const actualHeight = latest?.height ?? null;
   const boneAge = latest?.bone_age ?? null;
-  const pah = latest?.pah ?? null;
-  const mph = calcMph(child);
   const desired = child.desired_height ?? null;
+
+  // Projected curve — stays on the same percentile as the latest point
+  const predictedCurve = useMemo(() => {
+    if (!latest || latestAge == null) return null;
+    if (latestAge >= X_MAX) return null;
+    const start = Math.max(X_MIN, latestAge);
+    const points: { x: number; y: number }[] = [];
+    for (let a = start; a <= X_MAX + 0.0001; a += 0.25) {
+      const aa = Math.min(a, X_MAX);
+      const y = heightAtSamePercentile(latest.height!, latestAge, aa, child.gender);
+      if (y > 0) points.push({ x: Number(aa.toFixed(2)), y: Number(y.toFixed(1)) });
+    }
+    return points.length >= 2 ? points : null;
+  }, [latest, latestAge, child.gender]);
+
+  const predictedAdult = useMemo(() => {
+    if (!latest || latestAge == null) return null;
+    return Number(
+      heightAtSamePercentile(latest.height!, latestAge, X_MAX, child.gender).toFixed(1),
+    );
+  }, [latest, latestAge, child.gender]);
 
   const toggles: Array<{
     key: ToggleKey;
@@ -92,29 +101,16 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
     value: string | null;
   }> = [
     {
-      key: 'chrono',
-      label: 'Chrono',
-      color: COLORS.chrono,
-      value: chronoAge != null ? chronoAge.toFixed(1) : null,
-    },
-    {
-      key: 'actual',
-      label: '실측 키',
-      color: COLORS.actualHeight,
-      value: actualHeight != null ? `${actualHeight}` : null,
-    },
-    {
       key: 'boneAge',
       label: 'BA',
       color: '#0f172a',
       value: boneAge != null ? boneAge.toFixed(1) : null,
     },
-    { key: 'mph', label: 'MPH', color: COLORS.mph, value: mph != null ? `${mph}` : null },
     {
-      key: 'pah',
-      label: 'PAH',
-      color: COLORS.pah,
-      value: pah != null ? `${pah}` : null,
+      key: 'predicted',
+      label: '예측 18세',
+      color: COLORS.predicted,
+      value: predictedAdult != null ? `${predictedAdult}` : null,
     },
     {
       key: 'desired',
@@ -150,49 +146,32 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
 
     const refDatasets: LineDataset[] = [];
 
-    if (visible.chrono && typeof chronoAge === 'number') {
+    if (visible.predicted && predictedCurve) {
       refDatasets.push({
-        label: 'chrono',
-        data: [
-          { x: chronoAge, y: Y_MIN },
-          { x: chronoAge, y: Y_MAX },
-        ],
-        borderColor: COLORS.chrono,
-        borderWidth: 2,
-        pointRadius: 0,
-        tension: 0,
-        order: 3,
-      });
-    }
-
-    if (visible.actual && typeof actualHeight === 'number') {
-      refDatasets.push({
-        label: 'actual',
-        data: [
-          { x: X_MIN, y: actualHeight },
-          { x: X_MAX, y: actualHeight },
-        ],
-        borderColor: COLORS.actualHeight,
+        label: 'predictedCurve',
+        data: predictedCurve,
+        borderColor: COLORS.predicted,
+        backgroundColor: COLORS.predicted,
         borderWidth: 2.5,
+        borderDash: [6, 4],
         pointRadius: 0,
-        tension: 0,
-        order: 3,
+        tension: 0.3,
+        order: 1,
       });
     }
 
-    if (visible.mph && typeof mph === 'number') {
+    if (visible.predicted && predictedAdult != null) {
       refDatasets.push({
-        label: 'mph',
+        label: 'predictedHline',
         data: [
-          { x: X_MIN, y: mph },
-          { x: X_MAX, y: mph },
+          { x: X_MIN, y: predictedAdult },
+          { x: X_MAX, y: predictedAdult },
         ],
-        borderColor: COLORS.mph,
+        borderColor: COLORS.predicted,
         borderWidth: 1.5,
-        borderDash: [4, 4],
         pointRadius: 0,
         tension: 0,
-        order: 4,
+        order: 3,
       });
     }
 
@@ -212,21 +191,6 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
       });
     }
 
-    if (visible.pah && typeof pah === 'number' && typeof chronoAge === 'number') {
-      refDatasets.push({
-        label: 'pah',
-        data: [
-          { x: chronoAge, y: pah },
-          { x: X_MAX, y: pah },
-        ],
-        borderColor: COLORS.pah,
-        borderWidth: 2.5,
-        pointRadius: 0,
-        tension: 0,
-        order: 3,
-      });
-    }
-
     const patientPoints = sortedMeasurements.map((m) => ({
       x: calculateAgeAtDate(child.birth_date, new Date(m.measured_date)).decimal,
       y: m.height!,
@@ -242,35 +206,11 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
       pointHoverRadius: 7,
       showLine: patientPoints.length > 1,
       tension: 0,
-      order: 1,
+      order: 0,
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, chronoAge, actualHeight, mph, desired, pah]);
-
-  const pahArrowPlugin: Plugin<'line'> = useMemo(
-    () => ({
-      id: 'pahArrow',
-      afterDatasetsDraw(chart) {
-        if (!visible.pah || typeof pah !== 'number' || typeof chronoAge !== 'number') return;
-        const { ctx, scales } = chart;
-        const xEnd = scales.x.getPixelForValue(X_MAX);
-        const yEnd = scales.y.getPixelForValue(pah);
-        const headLen = 10;
-        const headWidth = 7;
-        ctx.save();
-        ctx.fillStyle = COLORS.pah;
-        ctx.beginPath();
-        ctx.moveTo(xEnd, yEnd);
-        ctx.lineTo(xEnd - headLen, yEnd - headWidth);
-        ctx.lineTo(xEnd - headLen, yEnd + headWidth);
-        ctx.closePath();
-        ctx.fill();
-        ctx.restore();
-      },
-    }),
-    [visible.pah, pah, chronoAge],
-  );
+  }, [child, sortedMeasurements, visible, predictedCurve, predictedAdult, desired]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
@@ -338,7 +278,7 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
 
       {/* Chart fills remaining height */}
       <div className="relative min-h-0 flex-1">
-        <Line data={chartData} options={options} plugins={[pahArrowPlugin]} />
+        <Line data={chartData} options={options} />
       </div>
 
       {/* Percentile legend — single line under chart */}
