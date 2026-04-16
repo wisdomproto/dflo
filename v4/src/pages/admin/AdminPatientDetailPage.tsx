@@ -123,6 +123,7 @@ export default function AdminPatientDetailPage() {
             <VisitList
               childId={id}
               gender={child.gender}
+              birthDate={child.birth_date}
               visits={visits}
               measurements={measurements}
               selectedVisitId={selectedVisitId}

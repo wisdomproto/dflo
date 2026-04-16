@@ -8,6 +8,7 @@ import { fetchLabTestsByVisit } from '@/features/hospital/services/labTestServic
 import { fetchPrescriptionsByVisit } from '@/features/hospital/services/prescriptionService';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
+import { calculateAgeAtDate } from '@/shared/utils/age';
 import { logger } from '@/shared/lib/logger';
 import type {
   Gender,
@@ -20,6 +21,7 @@ import type {
 interface Props {
   childId: string;
   gender: Gender;
+  birthDate: string;
   visits: Visit[];
   measurements: HospitalMeasurement[];
   selectedVisitId: string | null;
@@ -58,6 +60,7 @@ const emptyExtras: VisitExtras = {
 export function VisitList({
   childId,
   gender,
+  birthDate,
   visits,
   measurements,
   selectedVisitId,
@@ -161,6 +164,9 @@ export function VisitList({
                   </span>
                   <span className="text-sm font-semibold text-slate-900">
                     {v.visit_date}
+                  </span>
+                  <span className="text-[11px] text-slate-500">
+                    CA {calculateAgeAtDate(birthDate, new Date(v.visit_date)).decimal.toFixed(1)}
                   </span>
                   {m?.bone_age != null && (
                     <span className="text-[11px] text-slate-500">

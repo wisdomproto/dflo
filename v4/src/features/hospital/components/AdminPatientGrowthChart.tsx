@@ -1,7 +1,6 @@
 // Growth chart for the admin patient detail page.
-// Shows KDCA 2017 percentiles, patient measurements, and a percentile-based
-// projection curve from the most recent point to age 18. A horizontal line
-// at the projected adult height caps the prediction.
+// Shows KDCA 2017 percentiles, patient measurements, and (when a visit is
+// selected) a yearly percentile projection from that point out to age 18.
 
 import { useMemo, useState } from 'react';
 import {
@@ -72,32 +71,44 @@ export function AdminPatientGrowthChart({
   );
 
   const latest = sortedMeasurements.at(-1) ?? null;
-  const latestAge = latest
-    ? calculateAgeAtDate(child.birth_date, new Date(latest.measured_date)).decimal
-    : null;
   const boneAge = latest?.bone_age ?? null;
   const desired = child.desired_height ?? null;
 
-  // Projected curve — stays on the same percentile as the latest point
-  const predictedCurve = useMemo(() => {
-    if (!latest || latestAge == null) return null;
-    if (latestAge >= X_MAX) return null;
-    const start = Math.max(X_MIN, latestAge);
-    const points: { x: number; y: number }[] = [];
-    for (let a = start; a <= X_MAX + 0.0001; a += 0.25) {
-      const aa = Math.min(a, X_MAX);
-      const y = heightAtSamePercentile(latest.height!, latestAge, aa, child.gender);
-      if (y > 0) points.push({ x: Number(aa.toFixed(2)), y: Number(y.toFixed(1)) });
+  // Projection riding the same percentile as the SELECTED visit point.
+  // Uses 1-year intervals from the next integer year to age 18.
+  const selectedMeas = useMemo(
+    () => sortedMeasurements.find((m) => m.visit_id === selectedVisitId) ?? null,
+    [sortedMeasurements, selectedVisitId],
+  );
+  const selectedAge = selectedMeas
+    ? calculateAgeAtDate(child.birth_date, new Date(selectedMeas.measured_date)).decimal
+    : null;
+
+  const projectionPoints = useMemo(() => {
+    if (!selectedMeas || selectedAge == null) return null;
+    if (selectedAge >= X_MAX) return null;
+    const startH = selectedMeas.height!;
+    const points: { x: number; y: number }[] = [
+      { x: Number(selectedAge.toFixed(2)), y: startH },
+    ];
+    const firstInt = Math.ceil(selectedAge + 0.0001);
+    for (let a = firstInt; a <= X_MAX; a++) {
+      const y = heightAtSamePercentile(startH, selectedAge, a, child.gender);
+      if (y > 0) points.push({ x: a, y: Number(y.toFixed(1)) });
+    }
+    if (points[points.length - 1].x !== X_MAX) {
+      const y = heightAtSamePercentile(startH, selectedAge, X_MAX, child.gender);
+      points.push({ x: X_MAX, y: Number(y.toFixed(1)) });
     }
     return points.length >= 2 ? points : null;
-  }, [latest, latestAge, child.gender]);
+  }, [selectedMeas, selectedAge, child.gender]);
 
-  const predictedAdult = useMemo(() => {
-    if (!latest || latestAge == null) return null;
+  const projectedAdult = useMemo(() => {
+    if (!selectedMeas || selectedAge == null) return null;
     return Number(
-      heightAtSamePercentile(latest.height!, latestAge, X_MAX, child.gender).toFixed(1),
+      heightAtSamePercentile(selectedMeas.height!, selectedAge, X_MAX, child.gender).toFixed(1),
     );
-  }, [latest, latestAge, child.gender]);
+  }, [selectedMeas, selectedAge, child.gender]);
 
   const toggles: Array<{
     key: ToggleKey;
@@ -113,9 +124,9 @@ export function AdminPatientGrowthChart({
     },
     {
       key: 'predicted',
-      label: '예측 18세',
+      label: '선택 회차 예측',
       color: COLORS.predicted,
-      value: predictedAdult != null ? `${predictedAdult}` : null,
+      value: projectedAdult != null ? `${projectedAdult}` : null,
     },
     {
       key: 'desired',
@@ -151,32 +162,20 @@ export function AdminPatientGrowthChart({
 
     const refDatasets: LineDataset[] = [];
 
-    if (visible.predicted && predictedCurve) {
+    if (visible.predicted && projectionPoints) {
       refDatasets.push({
-        label: 'predictedCurve',
-        data: predictedCurve,
+        label: 'projection',
+        data: projectionPoints,
         borderColor: COLORS.predicted,
         backgroundColor: COLORS.predicted,
-        borderWidth: 2.5,
-        borderDash: [6, 4],
-        pointRadius: 0,
-        tension: 0.3,
-        order: 1,
-      });
-    }
-
-    if (visible.predicted && predictedAdult != null) {
-      refDatasets.push({
-        label: 'predictedHline',
-        data: [
-          { x: X_MIN, y: predictedAdult },
-          { x: X_MAX, y: predictedAdult },
-        ],
-        borderColor: COLORS.predicted,
-        borderWidth: 1.5,
-        pointRadius: 0,
+        borderWidth: 2,
+        borderDash: [5, 4],
+        pointRadius: projectionPoints.map((_, i) => (i === 0 ? 0 : 4)),
+        pointHoverRadius: 6,
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 1,
         tension: 0,
-        order: 3,
+        order: 1,
       });
     }
 
@@ -223,7 +222,7 @@ export function AdminPatientGrowthChart({
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, predictedCurve, predictedAdult, desired, selectedVisitId]);
+  }, [child, sortedMeasurements, visible, projectionPoints, desired, selectedVisitId]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
@@ -232,12 +231,14 @@ export function AdminPatientGrowthChart({
     plugins: {
       legend: { display: false },
       tooltip: {
-        filter: (ctx) => ctx.dataset.label === 'patient',
+        filter: (ctx) =>
+          ctx.dataset.label === 'patient' || ctx.dataset.label === 'projection',
         callbacks: {
-          label: (ctx) =>
-            ctx.parsed.y != null
-              ? `${ctx.parsed.y}cm @ ${Number(ctx.parsed.x).toFixed(1)}세`
-              : '',
+          label: (ctx) => {
+            if (ctx.parsed.y == null) return '';
+            const tag = ctx.dataset.label === 'projection' ? '예측' : '실측';
+            return `${tag} ${ctx.parsed.y}cm @ ${Number(ctx.parsed.x).toFixed(1)}세`;
+          },
         },
       },
     },
