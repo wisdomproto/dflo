@@ -233,7 +233,13 @@ export function AdminPatientGrowthChart({
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
     maintainAspectRatio: false,
-    animation: { duration: 300 },
+    animation: {
+      // Reveal datasets left → right (X eases) without Y growing from baseline.
+      duration: 600,
+      easing: 'easeOutQuart',
+      x: { duration: 600, easing: 'easeOutQuart' },
+      y: { duration: 0 },
+    },
     plugins: {
       legend: { display: false },
       tooltip: {
