@@ -46,6 +46,7 @@ export function XrayPanel({
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [manualYounger, setManualYounger] = useState<AtlasEntry | null>(null);
+  const [manualBoneAge, setManualBoneAge] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const objectUrlRef = useRef<string | null>(null);
@@ -62,6 +63,7 @@ export function XrayPanel({
     let cancelled = false;
     setExisting(null);
     setManualYounger(null);
+    setManualBoneAge(null);
     setError(null);
     if (objectUrlRef.current) {
       URL.revokeObjectURL(objectUrlRef.current);
@@ -146,7 +148,10 @@ export function XrayPanel({
 
   const handleStep = (offset: number) => {
     const next = neighborInSorted(sortedAtlas, effectiveYounger, offset);
-    if (next) setManualYounger(next);
+    if (next) {
+      setManualYounger(next);
+      setManualBoneAge(null); // re-derive midpoint from new pair
+    }
   };
 
   const acceptFile = useCallback((file: File) => {
@@ -175,8 +180,10 @@ export function XrayPanel({
     return Number(((effectiveYounger.age + effectiveOlder.age) / 2).toFixed(2));
   }, [effectiveYounger, effectiveOlder]);
 
+  const effectiveBoneAge = manualBoneAge ?? midpoint;
+
   const handleSave = async () => {
-    if (!effectiveYounger || !effectiveOlder || midpoint == null) return;
+    if (!effectiveYounger || !effectiveOlder || effectiveBoneAge == null) return;
     setSaving(true);
     setError(null);
     try {
@@ -189,7 +196,7 @@ export function XrayPanel({
         child_id: child.id,
         xray_date: visit.visit_date,
         image_path,
-        bone_age_result: midpoint,
+        bone_age_result: effectiveBoneAge,
         atlas_match_younger: effectiveYounger.file,
         atlas_match_older: effectiveOlder.file,
       });
@@ -251,22 +258,14 @@ export function XrayPanel({
             역년령 {chronoAge != null ? chronoAge.toFixed(2) : '—'}
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          {midpoint != null && (
-            <span className="text-[12px] text-slate-700">
-              판독값
-              <span className="ml-1 font-semibold text-slate-900">{midpoint.toFixed(2)}</span>
-            </span>
-          )}
-          <button
-            type="button"
-            disabled={saving || !effectiveYounger || !effectiveOlder}
-            onClick={handleSave}
-            className="rounded bg-slate-900 px-3 py-1 text-[12px] font-semibold text-white hover:bg-slate-800 disabled:opacity-40"
-          >
-            {saving ? '저장 중…' : existing ? '재저장' : '저장'}
-          </button>
-        </div>
+        <button
+          type="button"
+          disabled={saving || !effectiveYounger || !effectiveOlder}
+          onClick={handleSave}
+          className="rounded bg-slate-900 px-3 py-1 text-[12px] font-semibold text-white hover:bg-slate-800 disabled:opacity-40"
+        >
+          {saving ? '저장 중…' : existing ? '재저장' : '저장'}
+        </button>
       </div>
 
       {/* Body — 3 panes */}
@@ -290,8 +289,14 @@ export function XrayPanel({
               <StepButtons canUp={canStepUp} canDown={canStepDown} onStep={handleStep} />
             </Pane>
 
-            {/* Patient — drag & drop + paste */}
-            <PatientPane imageUrl={imageUrl} onFile={acceptFile} />
+            {/* Patient — drag & drop + paste + editable bone age */}
+            <PatientPane
+              imageUrl={imageUrl}
+              onFile={acceptFile}
+              boneAge={effectiveBoneAge}
+              midpointFallback={midpoint}
+              onBoneAgeChange={setManualBoneAge}
+            />
 
             {/* Older — auto */}
             <Pane
@@ -380,16 +385,37 @@ function StepButtons({
 function PatientPane({
   imageUrl,
   onFile,
+  boneAge,
+  midpointFallback,
+  onBoneAgeChange,
 }: {
   imageUrl: string | null;
   onFile: (file: File) => void;
+  boneAge: number | null;
+  midpointFallback: number | null;
+  onBoneAgeChange: (v: number | null) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
+  const [draft, setDraft] = useState<string>(boneAge != null ? `${boneAge}` : '');
+
+  useEffect(() => {
+    setDraft(boneAge != null ? `${boneAge}` : '');
+  }, [boneAge]);
 
   const handleFiles = (files: FileList | null | undefined) => {
     const f = files?.[0];
     if (f) onFile(f);
+  };
+
+  const commit = () => {
+    const trimmed = draft.trim();
+    if (trimmed === '') {
+      onBoneAgeChange(null); // revert to midpoint
+      return;
+    }
+    const n = Number(trimmed);
+    if (!Number.isNaN(n) && n > 0 && n < 25) onBoneAgeChange(Number(n.toFixed(2)));
   };
 
   return (
@@ -429,6 +455,37 @@ function PatientPane({
           onChange={(e) => handleFiles(e.target.files)}
         />
       </div>
+
+      {/* Editable bone-age (defaults to midpoint of younger+older) */}
+      <div className="flex items-center justify-center gap-1 pt-0.5">
+        <span className="text-[11px] text-slate-500">뼈나이</span>
+        <input
+          type="number"
+          step="0.05"
+          min={0}
+          max={25}
+          inputMode="decimal"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          onBlur={commit}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
+          }}
+          placeholder={midpointFallback != null ? midpointFallback.toFixed(2) : '—'}
+          className="h-7 w-20 rounded border border-slate-200 bg-white px-2 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400"
+        />
+        <span className="text-[11px] text-slate-500">세</span>
+      </div>
+      {midpointFallback != null && boneAge != null && Math.abs(boneAge - midpointFallback) > 0.005 && (
+        <button
+          type="button"
+          onClick={() => onBoneAgeChange(null)}
+          className="text-center text-[10px] text-slate-400 hover:text-slate-600 hover:underline"
+        >
+          평균값 ({midpointFallback.toFixed(2)}) 으로 되돌리기
+        </button>
+      )}
+
       {imageUrl && (
         <button
           type="button"
