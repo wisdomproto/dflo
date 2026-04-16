@@ -75,7 +75,8 @@ export function AdminPatientGrowthChart({
   const desired = child.desired_height ?? null;
 
   // Projection riding the same percentile as the SELECTED visit point.
-  // Uses 1-year intervals from the next integer year to age 18.
+  // Uses BA when available so the endpoint matches the visit-row AI value;
+  // x-axis stays chronological so the endpoint shows when (BA→18) is reached.
   const selectedMeas = useMemo(
     () => sortedMeasurements.find((m) => m.visit_id === selectedVisitId) ?? null,
     [sortedMeasurements, selectedVisitId],
@@ -86,27 +87,32 @@ export function AdminPatientGrowthChart({
 
   const projectionPoints = useMemo(() => {
     if (!selectedMeas || selectedAge == null) return null;
-    if (selectedAge >= X_MAX) return null;
     const startH = selectedMeas.height!;
+    const startBA = selectedMeas.bone_age ?? selectedAge; // fall back to CA
+    if (startBA >= 18) return null;
+    // chrono age when BA reaches 18 = CA + (18 - BA)
+    const endCA = Math.min(X_MAX, selectedAge + (18 - startBA));
     const points: { x: number; y: number }[] = [
       { x: Number(selectedAge.toFixed(2)), y: startH },
     ];
     const firstInt = Math.ceil(selectedAge + 0.0001);
-    for (let a = firstInt; a <= X_MAX; a++) {
-      const y = heightAtSamePercentile(startH, selectedAge, a, child.gender);
-      if (y > 0) points.push({ x: a, y: Number(y.toFixed(1)) });
+    for (let yr = firstInt; yr < endCA; yr++) {
+      const baAtYr = startBA + (yr - selectedAge);
+      if (baAtYr >= 18) break;
+      const y = heightAtSamePercentile(startH, startBA, baAtYr, child.gender);
+      if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
     }
-    if (points[points.length - 1].x !== X_MAX) {
-      const y = heightAtSamePercentile(startH, selectedAge, X_MAX, child.gender);
-      points.push({ x: X_MAX, y: Number(y.toFixed(1)) });
-    }
+    // Endpoint at the chrono age when BA hits 18
+    const yEnd = heightAtSamePercentile(startH, startBA, 18, child.gender);
+    if (yEnd > 0) points.push({ x: Number(endCA.toFixed(2)), y: Number(yEnd.toFixed(1)) });
     return points.length >= 2 ? points : null;
   }, [selectedMeas, selectedAge, child.gender]);
 
   const projectedAdult = useMemo(() => {
     if (!selectedMeas || selectedAge == null) return null;
+    const startBA = selectedMeas.bone_age ?? selectedAge;
     return Number(
-      heightAtSamePercentile(selectedMeas.height!, selectedAge, X_MAX, child.gender).toFixed(1),
+      heightAtSamePercentile(selectedMeas.height!, startBA, 18, child.gender).toFixed(1),
     );
   }, [selectedMeas, selectedAge, child.gender]);
 
