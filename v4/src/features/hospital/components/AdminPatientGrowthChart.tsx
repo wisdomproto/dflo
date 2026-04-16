@@ -46,9 +46,14 @@ type ToggleKey = 'boneAge' | 'predicted' | 'desired';
 interface Props {
   child: Child;
   measurements: HospitalMeasurement[];
+  selectedVisitId?: string | null;
 }
 
-export function AdminPatientGrowthChart({ child, measurements }: Props) {
+export function AdminPatientGrowthChart({
+  child,
+  measurements,
+  selectedVisitId = null,
+}: Props) {
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
     boneAge: true,
     predicted: true,
@@ -196,21 +201,29 @@ export function AdminPatientGrowthChart({ child, measurements }: Props) {
       y: m.height!,
     }));
 
+    const isSelected = sortedMeasurements.map(
+      (m) => selectedVisitId != null && m.visit_id === selectedVisitId,
+    );
+
     const patientDataset: LineDataset = {
       label: 'patient',
       data: patientPoints,
       borderColor: COLORS.patient,
-      backgroundColor: COLORS.patient,
+      backgroundColor: isSelected.map((sel) =>
+        sel ? '#facc15' : COLORS.patient,
+      ),
       borderWidth: 2,
-      pointRadius: 5,
-      pointHoverRadius: 7,
+      pointRadius: isSelected.map((sel) => (sel ? 9 : 5)),
+      pointHoverRadius: 9,
+      pointBorderColor: isSelected.map((sel) => (sel ? '#0f172a' : 'transparent')),
+      pointBorderWidth: isSelected.map((sel) => (sel ? 2 : 0)),
       showLine: patientPoints.length > 1,
       tension: 0,
       order: 0,
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, predictedCurve, predictedAdult, desired]);
+  }, [child, sortedMeasurements, visible, predictedCurve, predictedAdult, desired, selectedVisitId]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,

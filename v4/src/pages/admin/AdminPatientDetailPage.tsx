@@ -160,7 +160,11 @@ export default function AdminPatientDetailPage() {
 
         {/* Right: growth chart (fills) */}
         <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-3">
-          <AdminPatientGrowthChart child={child} measurements={measurements} />
+          <AdminPatientGrowthChart
+            child={child}
+            measurements={measurements}
+            selectedVisitId={selectedVisitId}
+          />
         </section>
       </div>
     </div>
