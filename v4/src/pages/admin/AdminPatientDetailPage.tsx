@@ -94,15 +94,15 @@ export default function AdminPatientDetailPage() {
         </Link>
       </div>
 
-      {/* 3-column layout: visits (fluid) | X-ray (fixed when open) | chart (fixed)
-          → toggling the X-ray panel only resizes the visit list; chart stays put. */}
+      {/* 3-column layout: every column has a fixed width so toggling the X-ray
+          panel only changes its own column — visits and chart stay put. */}
       <div
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
           {
-            ['--cols' as string]: `${
-              visitsCollapsed ? '60px' : 'minmax(280px,1fr)'
-            } ${xrayCollapsed ? '44px' : '360px'} 580px`,
+            ['--cols' as string]: `${visitsCollapsed ? '60px' : '360px'} ${
+              xrayCollapsed ? '44px' : '360px'
+            } 580px`,
           } as React.CSSProperties
         }
       >
