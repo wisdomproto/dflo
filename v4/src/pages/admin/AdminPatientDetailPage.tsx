@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { fetchPatientDetail } from '@/features/admin/services/adminService';
 import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
-import { fetchVisitIdsWithXray } from '@/features/bone-age/services/xrayReadingService';
 import { VisitList } from '@/features/hospital/components/VisitList';
 import { XrayPanel } from '@/features/hospital/components/XrayPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
@@ -20,20 +19,17 @@ export default function AdminPatientDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
-  const [xrayVisitId, setXrayVisitId] = useState<string | null>(null);
-  const [xrayVisitIds, setXrayVisitIds] = useState<Set<string>>(new Set());
+  const [xrayCollapsed, setXrayCollapsed] = useState(false);
 
   const refreshData = async (childId: string) => {
-    const [detail, vs, xrayIds] = await Promise.all([
+    const [detail, vs] = await Promise.all([
       fetchPatientDetail(childId),
       fetchVisitsForChild(childId),
-      fetchVisitIdsWithXray(childId),
     ]);
     setChild(detail.child);
     setMeasurements(detail.measurements as HospitalMeasurement[]);
     setParent(detail.parent);
     setVisits(vs);
-    setXrayVisitIds(xrayIds);
     return { visits: vs };
   };
 
@@ -59,9 +55,9 @@ export default function AdminPatientDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const xrayVisit = useMemo(
-    () => (xrayVisitId ? visits.find((v) => v.id === xrayVisitId) ?? null : null),
-    [xrayVisitId, visits],
+  const selectedVisit = useMemo(
+    () => (selectedVisitId ? visits.find((v) => v.id === selectedVisitId) ?? null : null),
+    [selectedVisitId, visits],
   );
 
   if (!id) return null;
@@ -70,7 +66,6 @@ export default function AdminPatientDetailPage() {
   if (!child) return <div className="p-6 text-sm text-red-500">환자를 찾을 수 없습니다.</div>;
 
   const age = calculateAge(child.birth_date);
-  const xrayOpen = !!xrayVisit;
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-3">
@@ -98,31 +93,26 @@ export default function AdminPatientDetailPage() {
         </Link>
       </div>
 
-      {/* Main 2-col (3-col when X-ray panel is open) */}
+      {/* 3-column layout: visits | X-ray (collapsible) | chart */}
       <div
-        className={`grid min-h-0 flex-1 gap-3 ${
-          xrayOpen
-            ? 'grid-cols-[72px_minmax(0,1fr)_minmax(0,1fr)]'
-            : 'grid-cols-1 lg:grid-cols-2'
+        className={`grid min-h-0 flex-1 gap-3 grid-cols-1 ${
+          xrayCollapsed
+            ? 'lg:grid-cols-[minmax(320px,1fr)_44px_minmax(0,1.4fr)]'
+            : 'lg:grid-cols-[minmax(320px,1fr)_minmax(0,1fr)_minmax(0,1.2fr)]'
         }`}
       >
-        {/* Left: visit list (full in 2-col, rail in 3-col) */}
+        {/* Left: visit list */}
         <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
           <div className="shrink-0 border-b border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700">
-            {xrayOpen ? '회차' : '진료 기록'}
+            진료 기록
           </div>
-          <div className={`min-h-0 flex-1 overflow-y-auto ${xrayOpen ? 'p-1' : 'p-3'}`}>
+          <div className="min-h-0 flex-1 overflow-y-auto p-3">
             <VisitList
               childId={id}
               visits={visits}
               measurements={measurements}
-              mode={xrayOpen ? 'rail' : 'full'}
               selectedVisitId={selectedVisitId}
               onSelectVisit={setSelectedVisitId}
-              onOpenXray={(vid) => {
-                setSelectedVisitId(vid);
-                setXrayVisitId(vid);
-              }}
               onMeasurementChanged={(m) =>
                 setMeasurements((prev) => {
                   const rest = prev.filter((x) => x.id !== m.id);
@@ -137,28 +127,27 @@ export default function AdminPatientDetailPage() {
           </div>
         </section>
 
-        {/* Middle: X-ray viewer (only when open) */}
-        {xrayOpen && xrayVisit && child && (
-          <section className="min-h-0">
+        {/* Middle: X-ray panel (linked to selected visit, collapsible) */}
+        <section className="min-h-0">
+          {selectedVisit ? (
             <XrayPanel
               child={child}
-              visit={xrayVisit}
-              visits={visits}
+              visit={selectedVisit}
               measurements={measurements}
-              xrayVisitIds={xrayVisitIds}
-              onSelectVisit={(vid) => {
-                setSelectedVisitId(vid);
-                setXrayVisitId(vid);
-              }}
-              onClose={() => setXrayVisitId(null)}
+              collapsed={xrayCollapsed}
+              onToggleCollapse={() => setXrayCollapsed((c) => !c)}
               onSaved={() => {
                 if (id) refreshData(id).catch(() => undefined);
               }}
             />
-          </section>
-        )}
+          ) : (
+            <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-200 bg-white text-xs text-slate-400">
+              회차를 선택하세요
+            </div>
+          )}
+        </section>
 
-        {/* Right: growth chart (fills) */}
+        {/* Right: growth chart */}
         <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-3">
           <AdminPatientGrowthChart
             child={child}

@@ -25,22 +25,18 @@ import type { Child, HospitalMeasurement, Visit, XrayReading } from '@/shared/ty
 interface Props {
   child: Child;
   visit: Visit;
-  visits: Visit[];
   measurements: HospitalMeasurement[];
-  xrayVisitIds: Set<string>;
-  onSelectVisit: (visitId: string) => void;
-  onClose: () => void;
+  collapsed: boolean;
+  onToggleCollapse: () => void;
   onSaved: () => void;
 }
 
 export function XrayPanel({
   child,
   visit,
-  visits,
   measurements,
-  xrayVisitIds,
-  onSelectVisit,
-  onClose,
+  collapsed,
+  onToggleCollapse,
   onSaved,
 }: Props) {
   const gender: Gender = child.gender === 'male' ? 'M' : 'F';
@@ -174,17 +170,6 @@ export function XrayPanel({
     return () => window.removeEventListener('paste', onPaste);
   }, [acceptFile]);
 
-  // Prev/Next navigation — skip visits without X-ray
-  const { prevVisitId, nextVisitId } = useMemo(() => {
-    const sorted = [...visits].sort(
-      (a, b) => new Date(a.visit_date).getTime() - new Date(b.visit_date).getTime(),
-    );
-    const idx = sorted.findIndex((v) => v.id === visit.id);
-    const prev = sorted.slice(0, idx).reverse().find((v) => xrayVisitIds.has(v.id)) ?? null;
-    const next = sorted.slice(idx + 1).find((v) => xrayVisitIds.has(v.id)) ?? null;
-    return { prevVisitId: prev?.id ?? null, nextVisitId: next?.id ?? null };
-  }, [visits, visit.id, xrayVisitIds]);
-
   const midpoint = useMemo(() => {
     if (!effectiveYounger || !effectiveOlder) return null;
     return Number(((effectiveYounger.age + effectiveOlder.age) / 2).toFixed(2));
@@ -220,6 +205,31 @@ export function XrayPanel({
 
   const chronoAge = computeAge(child.birth_date, visit.visit_date);
 
+  // Collapsed: thin vertical rail with an expand chevron
+  if (collapsed) {
+    return (
+      <div className="flex h-full flex-col items-center rounded-lg border border-slate-200 bg-white py-2">
+        <button
+          type="button"
+          onClick={onToggleCollapse}
+          className="mb-2 h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+          title="X-ray 펼치기"
+          aria-label="펼치기"
+        >
+          ›
+        </button>
+        <div className="rotate-180 [writing-mode:vertical-rl] text-[11px] font-semibold text-slate-600">
+          X-ray
+        </div>
+        {existing?.bone_age_result != null && (
+          <div className="mt-2 rotate-180 [writing-mode:vertical-rl] text-[11px] text-slate-500">
+            BA {existing.bone_age_result.toFixed(1)}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-full flex-col rounded-lg border border-slate-200 bg-white">
       {/* Header */}
@@ -227,21 +237,12 @@ export function XrayPanel({
         <div className="flex items-center gap-2">
           <button
             type="button"
-            disabled={!prevVisitId}
-            onClick={() => prevVisitId && onSelectVisit(prevVisitId)}
-            className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-30"
-            title="이전 X-ray"
+            onClick={onToggleCollapse}
+            className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+            title="접기"
+            aria-label="접기"
           >
             ‹
-          </button>
-          <button
-            type="button"
-            disabled={!nextVisitId}
-            onClick={() => nextVisitId && onSelectVisit(nextVisitId)}
-            className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-30"
-            title="다음 X-ray"
-          >
-            ›
           </button>
           <div className="ml-1 text-sm font-semibold text-slate-900">
             X-ray · {visit.visit_date}
@@ -264,14 +265,6 @@ export function XrayPanel({
             className="rounded bg-slate-900 px-3 py-1 text-[12px] font-semibold text-white hover:bg-slate-800 disabled:opacity-40"
           >
             {saving ? '저장 중…' : existing ? '재저장' : '저장'}
-          </button>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded border border-slate-200 px-2 py-1 text-[11px] text-slate-600 hover:bg-slate-50"
-            aria-label="닫기"
-          >
-            ✕
           </button>
         </div>
       </div>
