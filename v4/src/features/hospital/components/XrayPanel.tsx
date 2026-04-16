@@ -181,7 +181,7 @@ export function XrayPanel({
 
   const midpoint = useMemo(() => {
     if (!effectiveYounger || !effectiveOlder) return null;
-    return Number(((effectiveYounger.age + effectiveOlder.age) / 2).toFixed(2));
+    return Number(((effectiveYounger.age + effectiveOlder.age) / 2).toFixed(1));
   }, [effectiveYounger, effectiveOlder]);
 
   const effectiveBoneAge = manualBoneAge ?? midpoint;
@@ -419,10 +419,10 @@ function PatientPane({
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
-  const [draft, setDraft] = useState<string>(boneAge != null ? `${boneAge}` : '');
+  const [draft, setDraft] = useState<string>(boneAge != null ? boneAge.toFixed(1) : '');
 
   useEffect(() => {
-    setDraft(boneAge != null ? `${boneAge}` : '');
+    setDraft(boneAge != null ? boneAge.toFixed(1) : '');
   }, [boneAge]);
 
   const handleFiles = (files: FileList | null | undefined) => {
@@ -437,7 +437,7 @@ function PatientPane({
       return;
     }
     const n = Number(trimmed);
-    if (!Number.isNaN(n) && n > 0 && n < 25) onBoneAgeChange(Number(n.toFixed(2)));
+    if (!Number.isNaN(n) && n > 0 && n < 25) onBoneAgeChange(Number(n.toFixed(1)));
   };
 
   return (
@@ -483,7 +483,7 @@ function PatientPane({
         <span className="text-[11px] text-slate-500">뼈나이</span>
         <input
           type="number"
-          step="0.05"
+          step="0.1"
           min={0}
           max={25}
           inputMode="decimal"
@@ -493,18 +493,18 @@ function PatientPane({
           onKeyDown={(e) => {
             if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
           }}
-          placeholder={midpointFallback != null ? midpointFallback.toFixed(2) : '—'}
+          placeholder={midpointFallback != null ? midpointFallback.toFixed(1) : '—'}
           className="h-7 w-20 rounded border border-slate-200 bg-white px-2 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400"
         />
         <span className="text-[11px] text-slate-500">세</span>
       </div>
-      {midpointFallback != null && boneAge != null && Math.abs(boneAge - midpointFallback) > 0.005 && (
+      {midpointFallback != null && boneAge != null && Math.abs(boneAge - midpointFallback) > 0.05 && (
         <button
           type="button"
           onClick={() => onBoneAgeChange(null)}
           className="text-center text-[10px] text-slate-400 hover:text-slate-600 hover:underline"
         >
-          평균값 ({midpointFallback.toFixed(2)}) 으로 되돌리기
+          평균값 ({midpointFallback.toFixed(1)}) 으로 되돌리기
         </button>
       )}
 
