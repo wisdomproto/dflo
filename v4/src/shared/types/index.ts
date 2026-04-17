@@ -45,7 +45,7 @@ export interface Child {
   is_active: boolean;
 }
 
-export type LabTestType = 'allergy' | 'organic_acid' | 'blood';
+export type LabTestType = 'allergy' | 'organic_acid' | 'blood' | 'attachment';
 
 export interface Visit {
   id: string;

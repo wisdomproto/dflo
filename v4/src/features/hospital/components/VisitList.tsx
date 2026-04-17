@@ -4,11 +4,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchLabTestsByVisit } from '@/features/hospital/services/labTestService';
+import { fetchLabTestsByVisit, createLabTest } from '@/features/hospital/services/labTestService';
 import { fetchPrescriptionsByVisit } from '@/features/hospital/services/prescriptionService';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 import { calculateAgeAtDate } from '@/shared/utils/age';
+import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import type {
   Gender,
@@ -174,23 +175,15 @@ export function VisitList({
                     </span>
                   )}
                 </div>
-                <div className="mt-0.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-[11px] text-slate-500">
-                  {m?.pah != null && (
-                    <span>
-                      <span className="text-slate-400">PAH</span>{' '}
-                      <span className="font-medium text-slate-700">{m.pah}</span>
-                    </span>
-                  )}
-                  {(() => {
-                    const ai = aiPredictedHeight(m, gender);
-                    return ai != null ? (
-                      <span>
-                        <span className="text-indigo-500">AI</span>{' '}
-                        <span className="font-medium text-indigo-700">{ai}</span>
-                      </span>
-                    ) : null;
-                  })()}
-                </div>
+                {(() => {
+                  const pah = aiPredictedHeight(m, gender);
+                  return pah != null ? (
+                    <div className="mt-0.5 text-[11px]">
+                      <span className="text-indigo-500">PAH</span>{' '}
+                      <span className="font-medium text-indigo-700">{pah}</span>
+                    </div>
+                  ) : null;
+                })()}
               </button>
               <NumberField
                 value={m?.height ?? null}
@@ -239,7 +232,23 @@ export function VisitList({
             </div>
 
             {isOpen && (
-              <div className="max-h-80 overflow-y-auto border-t border-slate-100 bg-slate-50 px-3 py-2 text-xs">
+              <div className="max-h-96 overflow-y-auto border-t border-slate-100 bg-slate-50 px-3 py-2 text-xs">
+                {/* Measurement summary */}
+                {m && (
+                  <div className="mb-2 grid grid-cols-4 gap-2 rounded bg-white p-2 ring-1 ring-slate-200">
+                    <Stat label="키" value={m.height ? `${m.height}cm` : '—'} />
+                    <Stat label="몸무게" value={m.weight ? `${m.weight}kg` : '—'} />
+                    <Stat label="뼈나이" value={m.bone_age ? m.bone_age.toFixed(1) : '—'} />
+                    <Stat
+                      label="PAH"
+                      value={(() => {
+                        const p = aiPredictedHeight(m, gender);
+                        return p ? `${p}` : '—';
+                      })()}
+                    />
+                  </div>
+                )}
+
                 {v.chief_complaint && (
                   <Row label="주호소">
                     <span className="whitespace-pre-wrap text-slate-700">
@@ -265,19 +274,49 @@ export function VisitList({
                 ) : (
                   <>
                     <Row label="검사">
-                      {extra.labs.length === 0 ? (
-                        <span className="text-slate-400">—</span>
-                      ) : (
-                        extra.labs.map((l) => (
-                          <span
-                            key={l.id}
-                            className="mr-1 inline-block rounded bg-white px-1.5 py-0.5 text-[11px] text-slate-700 ring-1 ring-slate-200"
-                          >
-                            {labTypeLabel(l.test_type)}
-                          </span>
-                        ))
-                      )}
+                      <div className="space-y-1">
+                        {extra.labs
+                          .filter((l) => l.test_type !== 'attachment')
+                          .map((l) => (
+                            <span
+                              key={l.id}
+                              className="mr-1 inline-block rounded bg-white px-1.5 py-0.5 text-[11px] text-slate-700 ring-1 ring-slate-200"
+                            >
+                              {labTypeLabel(l.test_type)}
+                            </span>
+                          ))}
+                        {/* Attached files */}
+                        {extra.labs
+                          .filter((l) => l.test_type === 'attachment')
+                          .map((l) => {
+                            const files = (l.result_data as unknown as { files?: { name: string; url: string }[] })?.files ?? [];
+                            return files.map((f, fi) => (
+                              <a
+                                key={`${l.id}-${fi}`}
+                                href={f.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mr-1 inline-flex items-center gap-1 rounded bg-blue-50 px-1.5 py-0.5 text-[11px] text-blue-700 ring-1 ring-blue-200 hover:bg-blue-100"
+                              >
+                                📎 {f.name}
+                              </a>
+                            ));
+                          })}
+                        {extra.labs.length === 0 && (
+                          <span className="text-slate-400">—</span>
+                        )}
+                      </div>
                     </Row>
+                    {/* Lab file upload zone */}
+                    <LabFileUpload
+                      visitId={v.id}
+                      childId={childId}
+                      visitDate={v.visit_date}
+                      onUploaded={() => {
+                        loadedRef.current.delete(v.id);
+                        loadExtras(v.id);
+                      }}
+                    />
                     <Row label="처방">
                       {extra.prescriptions.length === 0 ? (
                         <span className="text-slate-400">—</span>
@@ -357,6 +396,15 @@ function NumberField({
   );
 }
 
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div className="text-[10px] text-slate-500">{label}</div>
+      <div className="text-sm font-semibold text-slate-900">{value}</div>
+    </div>
+  );
+}
+
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex gap-2 py-0.5">
@@ -370,5 +418,103 @@ function labTypeLabel(t: string) {
   if (t === 'allergy') return '알러지';
   if (t === 'organic_acid') return '유기산';
   if (t === 'blood') return '혈액';
+  if (t === 'attachment') return '첨부';
   return t;
+}
+
+function LabFileUpload({
+  visitId,
+  childId,
+  visitDate,
+  onUploaded,
+}: {
+  visitId: string;
+  childId: string;
+  visitDate: string;
+  onUploaded: () => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [drag, setDrag] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
+  const upload = async (file: File) => {
+    if (!file.type.startsWith('image/') && file.type !== 'application/pdf') return;
+    setUploading(true);
+    try {
+      const ext = file.name.split('.').pop() ?? 'bin';
+      const path = `lab/${childId}/${visitId}/${crypto.randomUUID()}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from('content-images')
+        .upload(path, file, { upsert: false });
+      if (upErr) throw upErr;
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from('content-images').getPublicUrl(path);
+      await createLabTest({
+        visit_id: visitId,
+        child_id: childId,
+        test_type: 'attachment',
+        collected_date: visitDate,
+        result_data: { files: [{ name: file.name, url: publicUrl }] },
+      });
+      onUploaded();
+    } catch (e) {
+      logger.error('lab file upload failed', e);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleFiles = (files: FileList | null | undefined) => {
+    const f = files?.[0];
+    if (f) upload(f);
+  };
+
+  useEffect(() => {
+    const onPaste = (e: ClipboardEvent) => {
+      const f = Array.from(e.clipboardData?.items ?? [])
+        .find((i) => i.type.startsWith('image/') || i.type === 'application/pdf')
+        ?.getAsFile();
+      if (f) upload(f);
+    };
+    window.addEventListener('paste', onPaste);
+    return () => window.removeEventListener('paste', onPaste);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visitId, childId]);
+
+  return (
+    <div className="py-1">
+      <div
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDrag(true);
+        }}
+        onDragLeave={() => setDrag(false)}
+        onDrop={(e) => {
+          e.preventDefault();
+          setDrag(false);
+          handleFiles(e.dataTransfer.files);
+        }}
+        onClick={() => inputRef.current?.click()}
+        className={`cursor-pointer rounded border border-dashed px-3 py-2 text-center text-[11px] transition-colors ${
+          drag
+            ? 'border-blue-500 bg-blue-50 text-blue-700'
+            : 'border-slate-300 text-slate-500 hover:border-slate-400'
+        }`}
+      >
+        {uploading ? (
+          '업로드 중…'
+        ) : (
+          <>📎 검사 파일 첨부 (드래그 · 붙여넣기 · 클릭)</>
+        )}
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*,application/pdf"
+          className="hidden"
+          onChange={(e) => handleFiles(e.target.files)}
+        />
+      </div>
+    </div>
+  );
 }
