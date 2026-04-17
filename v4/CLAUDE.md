@@ -15,17 +15,20 @@ shared/
   services/       # aiService.ts (client-side AI proxy)
 features/
   auth/           # LoginPage, ProtectedRoute, AdminRoute
-  children/       # ChildFormModal, childrenService
+  children/       # ChildFormModal (+ desired_height field), childrenService
   growth/         # measurementService (hospital_measurements CRUD)
-  hospital/       # services/ visitService, hospitalMeasurementService,
+  hospital/       # services/ visitService, hospitalMeasurementService (+upsert),
                   #   medicationService, labTestService, prescriptionService
-                  # components/ VisitsTimeline, VisitForm, MeasurementEditor,
+                  # components/ VisitList (inline inputs, collapsible rail, lab upload),
+                  #   XrayPanel (atlas matching, drag/paste/pick, editable BA, predicted adult),
+                  #   AdminPatientGrowthChart (BA+CA dual projection, per-visit highlight),
+                  #   VisitsTimeline, VisitForm, MeasurementEditor,
                   #   LifestyleSummary, LabTestsBlock, AllergyLabEditor,
                   #   FreeformLabEditor, MedicationPicker, PrescriptionsBlock
   bone-age/       # lib/ types, atlas, matcher, growthPrediction, growthStandard
                   # components/ PatientForm, XrayUpload, XrayPreview, MatchResultView,
                   #   BoneAgeInput, PredictionResult, BoneAgeChart, BoneAgeTool
-                  # services/ xrayReadingService
+                  # services/ xrayReadingService (+fetchVisitIdsWithXray)
   routine/        # routineService, CalendarView, GrowthModalContent
                   # Cards: SleepCard, MealCard, ExerciseCard, SupplementCard
   content/        # contentService, useHomeContent hook
@@ -34,7 +37,6 @@ features/
   meal/           # MealCard, MealAnalysisSection, mealService
   exercise/       # ExerciseCard, YouTubeModal, exercises data
   admin/          # AdminLayout, ImageUploader, adminService
-                  # Tabs: AdminRecipeTab, AdminGuideTab, AdminCaseTab, AdminContentShared
   website/        # Public hospital website (연세새봄의원 리뉴얼)
     components/   # HeroBanner, WebsiteHeader/Footer/Layout, WebsiteSlider,
                   # HeroSection, TrustStats, HeightCalculator/Result,
@@ -47,10 +49,13 @@ features/
 pages/            # HomePage, RoutinePage, BodyAnalysisPage, InfoPage
   admin/          # AdminDashboardPage, AdminPatientsPage, AdminPatientDetailPage,
                   # AdminVisitNewPage, AdminVisitDetailPage, AdminBoneAgePage,
-                  # AdminMedicationsPage, AdminContentPage, AdminImportPage
+                  # AdminMedicationsPage, AdminImportPage
 scripts/
   create_admin.mjs, setup_storage.mjs, upload_growth_cases.mjs
-  migrations/     # 000_initial_schema.sql + README (Supabase SQL)
+  migrations/     # 000_initial_schema.sql, 001_permissive_clinical_writes.sql,
+                  #   002_add_desired_height.sql + README
+  seeds/          # seed_treatment_cases.sql (7 patients, 48 visits),
+                  #   seed_xray_atlas_matches.sql (47 xray readings)
 ```
 
 ## Database Tables
@@ -59,15 +64,15 @@ scripts/
 | Table | Key Columns | Notes |
 |-------|-------------|-------|
 | `users` | id, email, name, phone, role, password | role: 'parent' \| 'doctor' \| 'admin' |
-| `children` | id, parent_id, name, gender, birth_date, father_height, mother_height | Every child is a patient |
+| `children` | id, parent_id, name, gender, birth_date, father_height, mother_height, desired_height | Every child is a patient |
 
 ### Hospital data (doctor-entered, visit-centric)
 | Table | Key Columns | Notes |
 |-------|-------------|-------|
 | `visits` | id, child_id, visit_date, doctor_id, chief_complaint, plan, notes | Hospital-data hub |
-| `hospital_measurements` | id, visit_id, child_id, measured_date, height, weight, bone_age, pah | Renamed from `measurements` |
-| `xray_readings` | id, visit_id, child_id, xray_date, image_path, bone_age_result, atlas_match_younger/older | BoneAgeAI output, storage: `xray-images` |
-| `lab_tests` | id, visit_id, child_id, test_type, result_data jsonb, attachments jsonb | allergy \| organic_acid \| blood |
+| `hospital_measurements` | id, visit_id, child_id, measured_date, height, weight, bone_age, pah | One per visit |
+| `xray_readings` | id, visit_id, child_id, xray_date, image_path, bone_age_result, atlas_match_younger/older | Atlas-matched, storage: `xray-images` |
+| `lab_tests` | id, visit_id, child_id, test_type, result_data jsonb, attachments jsonb | allergy \| organic_acid \| blood \| attachment |
 | `medications` | id, code, name, default_dose, unit, is_active | Drug master (admin CRUD) |
 | `prescriptions` | id, visit_id, child_id, medication_id, dose, frequency, duration_days | Per-visit prescriptions |
 
@@ -89,7 +94,7 @@ scripts/
 | `growth_cases` | id, chart_number, patient_name, gender, is_published | Website treatment cases |
 
 ## Storage Buckets
-- `content-images` (public, 5MB) — guides/recipes/cases
+- `content-images` (public, 5MB) — guides/recipes/cases + lab attachments
 - `meal-photos` (public, 5MB) — patient meal uploads
 - `xray-images` (PRIVATE, 10MB) — PHI, signed URL only
 
@@ -99,10 +104,20 @@ scripts/
 
 ## Schema & Migrations
 - Fresh-project setup SQL: `v4/scripts/migrations/000_initial_schema.sql`
-- Run in Supabase SQL Editor; see `v4/scripts/migrations/README.md`
+- Permissive writes for anon: `001_permissive_clinical_writes.sql`
+- Desired height column: `002_add_desired_height.sql`
+- Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
+
+## Admin Patient Detail (3-Column Layout)
+- **Left**: Visit list — inline height/weight inputs, collapsible rail, CA/BA/PAH display, lab file upload (drag/paste/pick)
+- **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick
+- **Right**: Growth chart — KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips
+- Grid: visits `minmax(220px, 1fr)` | X-ray `360px/44px` | chart `60%`
+- Chart: BA 예측 (indigo dashed) + CA 예측 (teal dashed) + solid horizontal lines at predicted adult heights
 
 ## Admin Access
 - **App admin**: `admin@187growth.com` / `admin187!` (routes: `/admin/*`)
+- **Cases parent**: `cases@187growth.com` / `cases187!` (7 treatment case children)
 - **Banner admin**: PIN `8054` (route: `/website/admin/banners`, sessionStorage)
 
 ## App Navigation (login required)
@@ -125,16 +140,8 @@ scripts/
 - **Body analysis**: MOCK - placeholder, needs Gemini integration
 - **RAG chatbot**: DEFERRED
 
-## Website Features (Phase 7)
-- Rolling hero banner (3 slides, fade, arrow/dot/swipe, admin-managed)
-- Height predictor (LMS-based, Korean 2017 standards, chart 3~18세)
-- Trust stats (15,000+ children, 94.7% goal rate, 20yr+ experience)
-- 187 성장프로그램 (7 programs, sliding cards → detail pages)
-- Content sliders (guides/recipes/exercises/cases via WebsiteSlider)
-- Hospital info modals (location, hours, about)
-- Mobile-first, brand color #0F6E56, desktop max-w-5xl
-
 ## Refactoring History
-- AdminContentPage: 479→~130 lines (split into tabs)
+- AdminContentPage: removed (content authoring dropped from admin)
+- AdminPatientDetailPage: 3-column redesign with inline editing
 - RoutinePage: 402→~200 lines (extracted cards)
 - HeightCalculator: 336→~120+170 lines (form/result split)
