@@ -9,6 +9,7 @@ import { IntakeGrowthHistoryTable } from './IntakeGrowthHistoryTable';
 import { IntakeFamilySection } from './IntakeFamilySection';
 import { IntakeMedicalSection } from './IntakeMedicalSection';
 import { IntakeCausesSection } from './IntakeCausesSection';
+import { IntakeClinicalSection } from './IntakeClinicalSection';
 
 interface Props {
   child: Child;
@@ -41,17 +42,28 @@ export function IntakeSurveyPanel({ child, onChildUpdated }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs">
-        <span className="text-slate-500">초진 설문지 · Q1~Q16</span>
+    <div className="mx-auto flex max-w-5xl flex-col gap-5 bg-gradient-to-b from-slate-50/60 to-transparent p-1">
+      {/* Sticky header — 설문지 · 저장 상태 */}
+      <div className="sticky top-0 z-10 -mx-1 flex items-center justify-between border-b border-slate-200 bg-white/80 px-4 py-2.5 backdrop-blur">
+        <div className="flex items-center gap-2 text-xs">
+          <span className="inline-flex h-5 items-center rounded-full bg-indigo-50 px-2 font-semibold text-indigo-700">
+            초진 설문
+          </span>
+          <span className="text-slate-500">Q1 ~ Q16</span>
+        </div>
         <SaveIndicator status={status} updatedAt={survey.updated_at} />
       </div>
 
       <IntakeBasicInfoSection child={child} onSaved={onChildUpdated} />
       <IntakeGrowthHistoryTable survey={survey} onSave={handleSurveyPatch} />
       <IntakeFamilySection survey={survey} onSave={handleSurveyPatch} />
-      <IntakeMedicalSection survey={survey} onSave={handleSurveyPatch} />
+      <IntakeMedicalSection
+        survey={survey}
+        defaultGender={child.gender}
+        onSave={handleSurveyPatch}
+      />
       <IntakeCausesSection survey={survey} onSave={handleSurveyPatch} />
+      <IntakeClinicalSection child={child} onChildUpdated={onChildUpdated} />
     </div>
   );
 }

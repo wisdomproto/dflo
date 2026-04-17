@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { IntakeSurvey, ShortStatureCause } from '@/shared/types';
+import { SectionCard } from './SectionCard';
 
 interface Props {
   survey: IntakeSurvey;
@@ -31,10 +32,7 @@ export function IntakeCausesSection({ survey, onSave }: Props) {
   };
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-4">
-      <h2 className="mb-3 text-sm font-semibold text-slate-800">
-        5. 키가 작은 원인 <span className="ml-1 text-xs font-normal text-slate-400">복수 선택</span>
-      </h2>
+    <SectionCard step="05" title="키가 작은 원인" subtitle="Q16 · 복수 선택" accent="amber">
       <div className="flex flex-wrap gap-2">
         {CAUSE_OPTIONS.map(({ key, label }) => {
           const active = causes.includes(key);
@@ -44,10 +42,10 @@ export function IntakeCausesSection({ survey, onSave }: Props) {
               type="button"
               onClick={() => toggle(key)}
               className={
-                'rounded-full border px-3 py-1 text-xs transition ' +
+                'rounded-full border px-3 py-1.5 text-xs font-medium shadow-sm transition ' +
                 (active
-                  ? 'border-indigo-400 bg-indigo-50 text-indigo-700'
-                  : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300')
+                  ? 'border-amber-400 bg-gradient-to-b from-amber-50 to-amber-100 text-amber-800'
+                  : 'border-slate-200 bg-white text-slate-600 hover:border-amber-300 hover:bg-amber-50')
               }
             >
               {active ? '✓ ' : ''}
@@ -56,10 +54,10 @@ export function IntakeCausesSection({ survey, onSave }: Props) {
           );
         })}
       </div>
-      <label className="mt-3 flex flex-col gap-1 text-xs text-slate-500">
+      <label className="mt-4 flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
         <span>기타 원인</span>
         <textarea
-          className="min-h-[60px] rounded border border-slate-200 px-2 py-1.5 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+          className="min-h-[64px] rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-100"
           value={other}
           onChange={(e) => setOther(e.target.value)}
           onBlur={() => {
@@ -69,6 +67,6 @@ export function IntakeCausesSection({ survey, onSave }: Props) {
           }}
         />
       </label>
-    </section>
+    </SectionCard>
   );
 }

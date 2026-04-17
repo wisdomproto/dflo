@@ -32,6 +32,7 @@ export async function createVisit(input: {
   chief_complaint?: string;
   plan?: string;
   notes?: string;
+  is_intake?: boolean;
 }): Promise<Visit> {
   const { data, error } = await supabase.from('visits').insert(input).select().single();
   if (error) {
@@ -39,6 +40,34 @@ export async function createVisit(input: {
     throw new Error('내원 기록 저장에 실패했습니다.');
   }
   return data as Visit;
+}
+
+/**
+ * Lookup or lazily create the single "intake" visit for a child.
+ * Used by the 기본 정보 tab to hang X-ray / lab / measurement data off of
+ * an existing visit row without cluttering the 진료 기록 timeline semantics.
+ */
+export async function getOrCreateIntakeVisit(
+  childId: string,
+  defaultDate: string,
+): Promise<Visit> {
+  const { data: found, error: fetchErr } = await supabase
+    .from('visits')
+    .select('*')
+    .eq('child_id', childId)
+    .eq('is_intake', true)
+    .maybeSingle();
+  if (fetchErr) {
+    logger.error('getOrCreateIntakeVisit fetch failed', fetchErr);
+    throw new Error('초진 회차를 불러오지 못했습니다.');
+  }
+  if (found) return found as Visit;
+  return await createVisit({
+    child_id: childId,
+    visit_date: defaultDate,
+    chief_complaint: '초진 문진',
+    is_intake: true,
+  });
 }
 
 export async function updateVisit(

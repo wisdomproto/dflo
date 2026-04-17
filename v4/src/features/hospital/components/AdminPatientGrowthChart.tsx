@@ -18,8 +18,10 @@ import { Line } from 'react-chartjs-2';
 import {
   getHeightStandard,
   heightAtSamePercentile,
+  type Nationality,
 } from '@/features/bone-age/lib/growthStandard';
 import { calculateAgeAtDate } from '@/shared/utils/age';
+import { ZoomModal } from '@/shared/components/ZoomModal';
 import type { Child, HospitalMeasurement } from '@/shared/types';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Filler);
@@ -58,6 +60,10 @@ interface Props {
   child: Child;
   measurements: HospitalMeasurement[];
   selectedVisitId?: string | null;
+  /** Optional callback invoked when the user changes the nationality via
+   *  the in-chart toggle. If provided, the parent should persist the change
+   *  back to the children record so all other views stay in sync. */
+  onNationalityChange?: (next: Nationality) => void;
 }
 
 function buildProjection(
@@ -65,9 +71,9 @@ function buildProjection(
   startH: number,
   startReference: number, // BA or CA — the percentile reference age
   gender: 'male' | 'female',
+  nationality: Nationality,
 ): { x: number; y: number }[] | null {
   if (startReference >= 18) return null;
-  // chrono age when reference reaches 18
   const endCA = Math.min(X_MAX, startCA + (18 - startReference));
   const points: { x: number; y: number }[] = [
     { x: Number(startCA.toFixed(2)), y: startH },
@@ -76,10 +82,10 @@ function buildProjection(
   for (let yr = firstInt; yr < endCA; yr++) {
     const refAtYr = startReference + (yr - startCA);
     if (refAtYr >= 18) break;
-    const y = heightAtSamePercentile(startH, startReference, refAtYr, gender);
+    const y = heightAtSamePercentile(startH, startReference, refAtYr, gender, nationality);
     if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
   }
-  const yEnd = heightAtSamePercentile(startH, startReference, 18, gender);
+  const yEnd = heightAtSamePercentile(startH, startReference, 18, gender, nationality);
   if (yEnd > 0) points.push({ x: Number(endCA.toFixed(2)), y: Number(yEnd.toFixed(1)) });
   return points.length >= 2 ? points : null;
 }
@@ -88,6 +94,7 @@ export function AdminPatientGrowthChart({
   child,
   measurements,
   selectedVisitId = null,
+  onNationalityChange,
 }: Props) {
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
     boneAge: true,
@@ -95,6 +102,8 @@ export function AdminPatientGrowthChart({
     caProj: true,
     desired: true,
   });
+  const [zoomed, setZoomed] = useState(false);
+  const nationality: Nationality = child.nationality ?? 'KR';
 
   const sortedMeasurements = useMemo(
     () =>
@@ -119,32 +128,31 @@ export function AdminPatientGrowthChart({
     ? calculateAgeAtDate(child.birth_date, new Date(selectedMeas.measured_date)).decimal
     : null;
 
-  // Two projection variants for the selected visit point
   const baProjection = useMemo(() => {
     if (!selectedMeas || selectedAge == null) return null;
     const startBA = selectedMeas.bone_age;
     if (startBA == null) return null;
-    return buildProjection(selectedAge, selectedMeas.height!, startBA, child.gender);
-  }, [selectedMeas, selectedAge, child.gender]);
+    return buildProjection(selectedAge, selectedMeas.height!, startBA, child.gender, nationality);
+  }, [selectedMeas, selectedAge, child.gender, nationality]);
 
   const caProjection = useMemo(() => {
     if (!selectedMeas || selectedAge == null) return null;
-    return buildProjection(selectedAge, selectedMeas.height!, selectedAge, child.gender);
-  }, [selectedMeas, selectedAge, child.gender]);
+    return buildProjection(selectedAge, selectedMeas.height!, selectedAge, child.gender, nationality);
+  }, [selectedMeas, selectedAge, child.gender, nationality]);
 
   const baAdult = useMemo(() => {
     if (!selectedMeas || selectedAge == null || selectedMeas.bone_age == null) return null;
     return Number(
-      heightAtSamePercentile(selectedMeas.height!, selectedMeas.bone_age, 18, child.gender).toFixed(1),
+      heightAtSamePercentile(selectedMeas.height!, selectedMeas.bone_age, 18, child.gender, nationality).toFixed(1),
     );
-  }, [selectedMeas, selectedAge, child.gender]);
+  }, [selectedMeas, selectedAge, child.gender, nationality]);
 
   const caAdult = useMemo(() => {
     if (!selectedMeas || selectedAge == null) return null;
     return Number(
-      heightAtSamePercentile(selectedMeas.height!, selectedAge, 18, child.gender).toFixed(1),
+      heightAtSamePercentile(selectedMeas.height!, selectedAge, 18, child.gender, nationality).toFixed(1),
     );
-  }, [selectedMeas, selectedAge, child.gender]);
+  }, [selectedMeas, selectedAge, child.gender, nationality]);
 
   const toggles: Array<{
     key: ToggleKey;
@@ -179,7 +187,7 @@ export function AdminPatientGrowthChart({
   ];
 
   const chartData = useMemo(() => {
-    const standard = getHeightStandard(child.gender);
+    const standard = getHeightStandard(child.gender, nationality);
     const stdFiltered = standard.filter((d) => d.age >= X_MIN && d.age <= X_MAX);
     const toXY = (pick: (d: (typeof stdFiltered)[number]) => number) =>
       stdFiltered.map((d) => ({ x: d.age, y: pick(d) }));
@@ -343,7 +351,7 @@ export function AdminPatientGrowthChart({
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId]);
+  }, [child, sortedMeasurements, visible, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId, nationality]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
@@ -398,7 +406,7 @@ export function AdminPatientGrowthChart({
     },
   };
 
-  return (
+  const renderBody = () => (
     <div className="flex h-full flex-col gap-2">
       {/* Top legend — value chips with toggles */}
       <div className="flex flex-wrap gap-1.5 text-[11px]">
@@ -455,5 +463,66 @@ export function AdminPatientGrowthChart({
         ))}
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="relative h-full">
+        {renderBody()}
+        {/* Action bar: placed AFTER renderBody so it sits on top of the
+            legend chips in DOM order even with the same z-index, and pinned
+            to top-right via absolute positioning. */}
+        <div
+          className="pointer-events-none absolute right-0 top-0 z-30 flex items-center gap-1"
+        >
+          {onNationalityChange && (
+            <div className="pointer-events-auto inline-flex overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+              {(['KR', 'CN'] as const).map((code) => (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onNationalityChange(code);
+                  }}
+                  className={
+                    'px-2 py-1 text-[10px] font-semibold transition ' +
+                    (nationality === code
+                      ? 'bg-indigo-600 text-white'
+                      : 'text-slate-600 hover:bg-slate-50')
+                  }
+                  title={code === 'KR' ? '한국 표준' : '중국 표준'}
+                >
+                  {code}
+                </button>
+              ))}
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setZoomed(true);
+            }}
+            title="크게 보기"
+            aria-label="크게 보기"
+            className="pointer-events-auto inline-flex h-7 w-7 items-center justify-center rounded border border-slate-200 bg-white text-slate-500 shadow-sm hover:bg-slate-50"
+          >
+            ⤢
+          </button>
+        </div>
+      </div>
+      {zoomed && (
+        <ZoomModal
+          onClose={() => setZoomed(false)}
+          title={`성장 도표 · ${child.name}`}
+          aspectRatio="2 / 1"
+        >
+          {renderBody()}
+        </ZoomModal>
+      )}
+    </>
   );
 }

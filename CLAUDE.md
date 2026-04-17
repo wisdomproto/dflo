@@ -77,6 +77,21 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Admin patient detail: `?tab=info|visits` tabs (기본 정보 / 진료 기록)
 - Intake survey: `children.intake_survey` JSONB + `grade` / `class_height_rank` columns
 - Intake survey covers paper form Q1~Q16 (Q17 lab selection handled via `lab_tests`)
+- Admin sidebar: collapsible (localStorage `admin.sidebar.collapsed`), 64px rail
+- Admin patient list: `chart_number` UNIQUE NOT NULL (migration 007), search by name OR chart_number, + 환자 추가 / 삭제 (CASCADE) buttons
+- Admin patient detail 3-column: visit list (#번호+날짜만) | VisitDetailPanel | AdminPatientGrowthChart
+- VisitDetailPanel: 측정 · X-ray · 검사(Lab) · 처방 · 생활 습관 (진료 전 30일) 세로 섹션, X-ray onLiveChange → 측정 섹션 뼈나이/PAH 동기화 (측정은 read-only, `?` 툴팁)
+- 뼈나이 + 예측 성인키는 X-ray 섹션에서 계산, 측정 섹션은 자동 표시
+- Xray upsert: 동일 visit_id 있으면 UPDATE (이미지 경로 유지); migration 006 anon storage RLS opened
+- Growth chart 우상단 📊 환자 헤더 버튼 → ZoomModal에 GrowthComparisonDiagram (초기키/최초 예측/최종 예측 3명 픽토그램, pencil path 사용)
+- KR/CN nationality toggle: children.nationality (migration 005), X-ray 섹션 + 성장 그래프 양쪽 동기화, 중국 근사 LMS (`growthStandardCN.ts`)
+- Tanner 참고 이미지: `/public/images/tanner/male.png` + `female.png`, 환자 성별 토글로 자동 전환
+- Prescription 단순화: 약품 검색/표시 통합 input + 돋보기 + 용량 + 메모, 스프레드시트 스타일 행
+- 검사(Lab) 다중 파일 업로드 + 썸네일 갤러리 + 라이트박스(←→/Esc)
+- 생활 습관: 진료일 포함 월 뷰 + ◀▶ 이동 + 진료월 복귀; 5개 카테고리 평가 카드(수면/기분/성장주사/식사/운동, 잘함/보통/부족) + pill 필터
+- usePasteTarget 공용 훅: 한 번에 한 드롭존만 arm (X-ray patient / Lab)
+- ZoomableImg: 더블클릭 확대(2.5x) + 드래그 패닝 + 그리기 모드(빨간 자유선, 지우개)
+- visits.is_intake (migration 004): 환자당 "초진 가상 visit" 1개, 기본 정보 탭이 임상 데이터를 여기 저장
 
 ## Environment Variables
 ```
@@ -99,6 +114,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 9: COMPLETE (growth guide pages, animated growth chart, banner enhancements)
 - Phase 10: PARTIAL (7 treatment cases with data cleanup, predicted growth curves, allergy data, admin enhancements)
 - Phase 11: PARTIAL (patient DB unification, admin clinical dashboard, X-ray panel, BA/CA dual predictions, intake survey tab)
+- Phase 12: PARTIAL (VisitDetailPanel 4+1 섹션, chart_number, KR/CN 성장곡선, GrowthComparisonDiagram, 생활 습관 월간 뷰 + 카테고리 평가, 환자 추가/삭제, 사이드바 접기)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript

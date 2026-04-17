@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { GrowthHistoryEntry, IntakeSurvey } from '@/shared/types';
+import { SectionCard } from './SectionCard';
 
 interface Props {
   survey: IntakeSurvey;
@@ -55,20 +56,21 @@ export function IntakeGrowthHistoryTable({ survey, onSave }: Props) {
   };
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-4">
-      <div className="mb-3 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-slate-800">
-          2. 과거 성장표 <span className="ml-1 text-xs font-normal text-slate-400">생활기록부 · 소아과 기록</span>
-        </h2>
+    <SectionCard
+      step="02"
+      title="과거 성장표"
+      subtitle="생활기록부 · 소아과 기록"
+      accent="violet"
+      action={
         <button
           type="button"
           onClick={() => setPasteOpen(true)}
-          className="rounded border border-slate-300 bg-white px-2 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50"
+          className="inline-flex items-center gap-1 rounded-lg border border-violet-200 bg-white px-3 py-1.5 text-xs font-medium text-violet-700 shadow-sm transition hover:bg-violet-50"
         >
-          엑셀 붙여넣기
+          📋 엑셀 붙여넣기
         </button>
-      </div>
-
+      }
+    >
       <table className="w-full text-sm">
         <thead className="text-xs text-slate-500">
           <tr className="border-b border-slate-200">
@@ -117,7 +119,7 @@ export function IntakeGrowthHistoryTable({ survey, onSave }: Props) {
       </div>
 
       {pasteOpen && <PasteModal onCancel={() => setPasteOpen(false)} onApply={handlePaste} />}
-    </section>
+    </SectionCard>
   );
 }
 
@@ -145,7 +147,7 @@ function HeightRow({
         <input
           type="number"
           step={0.1}
-          className="w-24 rounded border border-slate-200 px-2 py-1 text-sm focus:border-slate-400 focus:outline-none"
+          className="w-24 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm shadow-sm transition focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-100"
           value={local}
           onChange={(e) => setLocal(e.target.value)}
           onBlur={() => {
@@ -176,10 +178,10 @@ function FlagChip({
       type="button"
       onClick={onToggle}
       className={
-        'rounded-full border px-3 py-1 text-xs transition ' +
+        'rounded-full border px-3 py-1.5 text-xs font-medium shadow-sm transition ' +
         (checked
-          ? 'border-indigo-400 bg-indigo-50 text-indigo-700'
-          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300')
+          ? 'border-violet-400 bg-violet-50 text-violet-700'
+          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50')
       }
     >
       {checked ? '✓ ' : ''}

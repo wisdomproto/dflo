@@ -7,10 +7,12 @@ import { Link } from 'react-router-dom';
 import { fetchLabTestsByVisit, createLabTest } from '@/features/hospital/services/labTestService';
 import { fetchPrescriptionsByVisit } from '@/features/hospital/services/prescriptionService';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
+import { deleteVisit } from '@/features/hospital/services/visitService';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
+import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
 import type {
   Gender,
   HospitalMeasurement,
@@ -23,23 +25,28 @@ interface Props {
   childId: string;
   gender: Gender;
   birthDate: string;
+  nationality?: 'KR' | 'CN';
   visits: Visit[];
   measurements: HospitalMeasurement[];
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
   onMeasurementChanged: (m: HospitalMeasurement) => void;
+  /** Parent refreshes the visits list after a row is removed. */
+  onVisitDeleted?: () => void;
   collapsed?: boolean;
 }
 
 function aiPredictedHeight(
   m: HospitalMeasurement | undefined,
   gender: Gender,
+  nationality: 'KR' | 'CN' = 'KR',
 ): number | null {
   if (!m?.height || !m?.bone_age) return null;
   const v = predictAdultHeightByBonePercentile(
     m.height,
     m.bone_age,
     gender === 'male' ? 'M' : 'F',
+    nationality,
   );
   return v > 0 ? Number(v.toFixed(1)) : null;
 }
@@ -62,11 +69,13 @@ export function VisitList({
   childId,
   gender,
   birthDate,
+  nationality = 'KR',
   visits,
   measurements,
   selectedVisitId,
   onSelectVisit,
   onMeasurementChanged,
+  onVisitDeleted,
   collapsed = false,
 }: Props) {
   const [extras, setExtras] = useState<Record<string, VisitExtras>>({});
@@ -143,212 +152,64 @@ export function VisitList({
     <ul className="space-y-2">
       {visits.map((v, i) => {
         const idx = visits.length - i;
-        const isOpen = selectedVisitId === v.id;
-        const m = measurements.find((x) => x.visit_id === v.id);
-        const extra = extras[v.id] ?? emptyExtras;
+        const isSelected = selectedVisitId === v.id;
         return (
           <li
             key={v.id}
-            className={`overflow-hidden rounded-lg border bg-white transition-colors ${
-              isOpen ? 'border-slate-400' : 'border-slate-200'
+            className={`group relative overflow-hidden rounded-lg border bg-white transition-colors ${
+              isSelected
+                ? 'border-indigo-400 ring-2 ring-indigo-100'
+                : 'border-slate-200 hover:border-slate-300'
             }`}
           >
-            <div className="px-3 py-2">
-              {/* Row 1 — info + toggle. Always fits: meta wraps, toggle pinned right. */}
-              <div className="flex items-start gap-2">
-                <button
-                  type="button"
-                  onClick={() => onSelectVisit(isOpen ? null : v.id)}
-                  className="min-w-0 flex-1 text-left"
-                >
-                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                    <span className="text-[11px] font-semibold text-slate-400">
-                      #{idx}
-                    </span>
-                    <span className="text-sm font-semibold text-slate-900 whitespace-nowrap">
-                      {v.visit_date}
-                    </span>
-                    <span className="text-[11px] text-slate-500 whitespace-nowrap">
-                      CA {calculateAgeAtDate(birthDate, new Date(v.visit_date)).decimal.toFixed(1)}
-                    </span>
-                    {m?.bone_age != null && (
-                      <span className="text-[11px] text-slate-500 whitespace-nowrap">
-                        BA {m.bone_age.toFixed(1)}
-                      </span>
-                    )}
-                    {(() => {
-                      const pah = aiPredictedHeight(m, gender);
-                      return pah != null ? (
-                        <span className="text-[11px] whitespace-nowrap">
-                          <span className="text-indigo-500">PAH</span>{' '}
-                          <span className="font-medium text-indigo-700">{pah}</span>
-                        </span>
-                      ) : null;
-                    })()}
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onSelectVisit(isOpen ? null : v.id)}
-                  className="-mr-1 shrink-0 rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
-                  aria-label={isOpen ? '접기' : '펼치기'}
-                >
-                  {isOpen ? '▾' : '▸'}
-                </button>
-              </div>
-              {/* Row 2 — inline metric inputs. Wrap when very narrow. */}
-              <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-                <NumberField
-                  value={m?.height ?? null}
-                  suffix="cm"
-                  placeholder="키"
-                  onSave={async (val) => {
-                    try {
-                      const next = await upsertMeasurementField({
-                        visit_id: v.id,
-                        child_id: childId,
-                        measured_date: v.visit_date,
-                        patch: { height: val ?? undefined },
-                      });
-                      onMeasurementChanged(next);
-                    } catch (e) {
-                      logger.error('save height failed', e);
-                    }
-                  }}
-                />
-                <NumberField
-                  value={m?.weight ?? null}
-                  suffix="kg"
-                  placeholder="몸무게"
-                  onSave={async (val) => {
-                    try {
-                      const next = await upsertMeasurementField({
-                        visit_id: v.id,
-                        child_id: childId,
-                        measured_date: v.visit_date,
-                        patch: { weight: val ?? undefined },
-                      });
-                      onMeasurementChanged(next);
-                    } catch (e) {
-                      logger.error('save weight failed', e);
-                    }
-                  }}
-                />
-              </div>
-            </div>
-
-            {isOpen && (
-              <div className="max-h-96 overflow-y-auto border-t border-slate-100 bg-slate-50 px-3 py-2 text-xs">
-                {/* Measurement summary */}
-                {m && (
-                  <div className="mb-2 flex flex-wrap gap-x-3 gap-y-1 rounded bg-white p-2 ring-1 ring-slate-200">
-                    <Stat label="키" value={m.height ? `${m.height}cm` : '—'} />
-                    <Stat label="몸무게" value={m.weight ? `${m.weight}kg` : '—'} />
-                    <Stat label="뼈나이" value={m.bone_age ? m.bone_age.toFixed(1) : '—'} />
-                    <Stat
-                      label="PAH"
-                      value={(() => {
-                        const p = aiPredictedHeight(m, gender);
-                        return p ? `${p}` : '—';
-                      })()}
-                    />
-                  </div>
-                )}
-
-                {v.chief_complaint && (
-                  <Row label="주호소">
-                    <span className="whitespace-pre-wrap text-slate-700">
-                      {v.chief_complaint}
-                    </span>
-                  </Row>
-                )}
-                {v.plan && (
-                  <Row label="계획">
-                    <span className="whitespace-pre-wrap text-slate-700">{v.plan}</span>
-                  </Row>
-                )}
-                {v.notes && (
-                  <Row label="메모">
-                    <span className="whitespace-pre-wrap text-slate-700">{v.notes}</span>
-                  </Row>
-                )}
-
-                {extra.loading ? (
-                  <div className="py-1 text-slate-400">불러오는 중…</div>
-                ) : extra.error ? (
-                  <div className="py-1 text-red-500">{extra.error}</div>
-                ) : (
-                  <>
-                    <Row label="검사">
-                      <div className="space-y-1">
-                        {extra.labs
-                          .filter((l) => l.test_type !== 'attachment')
-                          .map((l) => (
-                            <span
-                              key={l.id}
-                              className="mr-1 inline-block rounded bg-white px-1.5 py-0.5 text-[11px] text-slate-700 ring-1 ring-slate-200"
-                            >
-                              {labTypeLabel(l.test_type)}
-                            </span>
-                          ))}
-                        {/* Attached files */}
-                        {extra.labs
-                          .filter((l) => l.test_type === 'attachment')
-                          .map((l) => {
-                            const files = (l.result_data as unknown as { files?: { name: string; url: string }[] })?.files ?? [];
-                            return files.map((f, fi) => (
-                              <a
-                                key={`${l.id}-${fi}`}
-                                href={f.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mr-1 inline-flex items-center gap-1 rounded bg-blue-50 px-1.5 py-0.5 text-[11px] text-blue-700 ring-1 ring-blue-200 hover:bg-blue-100"
-                              >
-                                📎 {f.name}
-                              </a>
-                            ));
-                          })}
-                        {extra.labs.length === 0 && (
-                          <span className="text-slate-400">—</span>
-                        )}
-                      </div>
-                    </Row>
-                    {/* Lab file upload zone */}
-                    <LabFileUpload
-                      visitId={v.id}
-                      childId={childId}
-                      visitDate={v.visit_date}
-                      onUploaded={() => {
-                        loadedRef.current.delete(v.id);
-                        loadExtras(v.id);
-                      }}
-                    />
-                    <Row label="처방">
-                      {extra.prescriptions.length === 0 ? (
-                        <span className="text-slate-400">—</span>
-                      ) : (
-                        extra.prescriptions.map((p) => (
-                          <div key={p.id} className="text-slate-700">
-                            · {p.dose ?? '용량 미지정'}
-                            {p.frequency ? ` · ${p.frequency}` : ''}
-                            {p.duration_days ? ` · ${p.duration_days}일` : ''}
-                          </div>
-                        ))
-                      )}
-                    </Row>
-                  </>
-                )}
-
-                <div className="mt-2 flex items-center justify-end border-t border-slate-200 pt-2">
-                  <Link
-                    to={`/admin/patients/${childId}/visits/${v.id}`}
-                    className="text-[11px] text-slate-600 underline-offset-2 hover:underline"
-                  >
-                    자세히 편집 →
-                  </Link>
-                </div>
-              </div>
-            )}
+            <button
+              type="button"
+              onClick={() => onSelectVisit(v.id)}
+              aria-pressed={isSelected}
+              className="flex w-full items-baseline gap-2 px-3 py-2.5 text-left"
+            >
+              <span
+                className={
+                  'shrink-0 rounded px-1.5 py-0.5 text-[11px] font-bold ' +
+                  (isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500')
+                }
+              >
+                #{idx}
+              </span>
+              <span className="text-sm font-semibold text-slate-900 whitespace-nowrap">
+                {v.visit_date}
+              </span>
+            </button>
+            <button
+              type="button"
+              title="진료 기록 삭제"
+              aria-label="진료 기록 삭제"
+              onClick={async (e) => {
+                e.stopPropagation();
+                const ok = window.confirm(
+                  `${v.visit_date} 진료 기록을 삭제하시겠습니까?\n` +
+                    `측정, X-ray, 검사, 처방 등 해당 회차의 모든 데이터가 함께 삭제됩니다.`,
+                );
+                if (!ok) return;
+                try {
+                  await deleteVisit(v.id);
+                  if (selectedVisitId === v.id) onSelectVisit(null);
+                  onVisitDeleted?.();
+                } catch (err) {
+                  logger.error('delete visit failed', err);
+                  alert('삭제에 실패했습니다.');
+                }
+              }}
+              className="absolute right-1.5 top-1/2 hidden -translate-y-1/2 rounded p-1 text-red-400 shadow-sm ring-1 ring-red-100 hover:bg-red-50 hover:text-red-600 group-hover:inline-flex"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="3 6 5 6 21 6" />
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                <path d="M10 11v6" />
+                <path d="M14 11v6" />
+                <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+              </svg>
+            </button>
           </li>
         );
       })}
@@ -439,7 +300,6 @@ function LabFileUpload({
   visitDate: string;
   onUploaded: () => void;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
   const [uploading, setUploading] = useState(false);
 
@@ -472,25 +332,18 @@ function LabFileUpload({
   };
 
   const handleFiles = (files: FileList | null | undefined) => {
-    const f = files?.[0];
-    if (f) upload(f);
+    const arr = files ? Array.from(files) : [];
+    arr.forEach((f) => {
+      void upload(f);
+    });
   };
 
-  useEffect(() => {
-    const onPaste = (e: ClipboardEvent) => {
-      const f = Array.from(e.clipboardData?.items ?? [])
-        .find((i) => i.type.startsWith('image/') || i.type === 'application/pdf')
-        ?.getAsFile();
-      if (f) upload(f);
-    };
-    window.addEventListener('paste', onPaste);
-    return () => window.removeEventListener('paste', onPaste);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visitId, childId]);
+  const { armed, wrapperProps } = usePasteTarget({ onPaste: (f) => void upload(f) });
 
   return (
     <div className="py-1">
       <div
+        {...wrapperProps}
         onDragOver={(e) => {
           e.preventDefault();
           setDrag(true);
@@ -501,25 +354,19 @@ function LabFileUpload({
           setDrag(false);
           handleFiles(e.dataTransfer.files);
         }}
-        onClick={() => inputRef.current?.click()}
-        className={`cursor-pointer rounded border border-dashed px-3 py-2 text-center text-[11px] transition-colors ${
-          drag
-            ? 'border-blue-500 bg-blue-50 text-blue-700'
-            : 'border-slate-300 text-slate-500 hover:border-slate-400'
+        className={`cursor-pointer rounded border border-dashed px-3 py-2 text-center text-[11px] transition ${
+          armed
+            ? 'border-indigo-500 bg-indigo-50 text-indigo-800 ring-2 ring-indigo-100'
+            : drag
+              ? 'border-blue-500 bg-blue-50 text-blue-700'
+              : 'border-slate-300 text-slate-500 hover:border-slate-400'
         }`}
       >
-        {uploading ? (
-          '업로드 중…'
-        ) : (
-          <>📎 검사 파일 첨부 (드래그 · 붙여넣기 · 클릭)</>
-        )}
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*,application/pdf"
-          className="hidden"
-          onChange={(e) => handleFiles(e.target.files)}
-        />
+        {uploading
+          ? '업로드 중…'
+          : armed
+            ? '📋 붙여넣기 대기 중 — Ctrl+V'
+            : '📎 검사 파일 첨부 (드래그 · 클릭 후 붙여넣기)'}
       </div>
     </div>
   );

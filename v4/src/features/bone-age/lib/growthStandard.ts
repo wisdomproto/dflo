@@ -1,16 +1,12 @@
 // ================================================
 // 한국 소아 성장 표준 데이터 (2017 질병관리청)
 // 출처: 성장도표+데이터+테이블.xls
+// + 중국 성장 표준 (근사) — 국적별 전환 지원.
 // ================================================
 
-// ── LMS 행 타입 ──
-
-interface LMSRow {
-  age: number;
-  L: number;
-  M: number;
-  S: number;
-}
+import { MALE_HEIGHT_LMS_CN, FEMALE_HEIGHT_LMS_CN } from './growthStandardCN';
+import type { LMSRow, Nationality } from './growthStandardTypes';
+export type { Nationality } from './growthStandardTypes';
 
 // ── 퍼센타일 데이터 (차트 표시용, LMS에서 자동 계산) ──
 
@@ -51,9 +47,21 @@ function buildPercentiles(table: LMSRow[]): HeightPercentile[] {
   }));
 }
 
-export function getHeightStandard(gender: 'male' | 'female'): HeightPercentile[] {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
-  return buildPercentiles(table);
+function getHeightTable(
+  gender: 'male' | 'female',
+  nationality: Nationality = 'KR',
+): LMSRow[] {
+  if (nationality === 'CN') {
+    return gender === 'male' ? MALE_HEIGHT_LMS_CN : FEMALE_HEIGHT_LMS_CN;
+  }
+  return gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+}
+
+export function getHeightStandard(
+  gender: 'male' | 'female',
+  nationality: Nationality = 'KR',
+): HeightPercentile[] {
+  return buildPercentiles(getHeightTable(gender, nationality));
 }
 
 // ── LMS 데이터 (백분위·Z-score·예측키 계산용) ──
@@ -270,8 +278,9 @@ export function calculateHeightPercentileLMS(
   height: number,
   age: number,
   gender: 'male' | 'female',
+  nationality: Nationality = 'KR',
 ): number {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const table = getHeightTable(gender, nationality);
   const lms = interpolateLMS(age, table);
   if (!lms) return 50;
   const z = zScoreFromLMS(height, lms);
@@ -312,8 +321,9 @@ export function heightAtSamePercentile(
   currentAge: number,
   targetAge: number,
   gender: 'male' | 'female',
+  nationality: Nationality = 'KR',
 ): number {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const table = getHeightTable(gender, nationality);
   const currentLms = interpolateLMS(currentAge, table);
   const targetLms = interpolateLMS(targetAge, table);
   if (!currentLms || !targetLms) return 0;
@@ -326,8 +336,9 @@ export function predictAdultHeightLMS(
   height: number,
   age: number,
   gender: 'male' | 'female',
+  nationality: Nationality = 'KR',
 ): number {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const table = getHeightTable(gender, nationality);
   const currentLms = interpolateLMS(age, table);
   const adultLms = table[table.length - 1]; // 18세
   if (!currentLms) return 0;

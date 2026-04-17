@@ -3,9 +3,13 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { fetchPatientDetail } from '@/features/admin/services/adminService';
 import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
 import { VisitList } from '@/features/hospital/components/VisitList';
-import { XrayPanel } from '@/features/hospital/components/XrayPanel';
+import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
 import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
+import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
+import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
+import { ZoomModal } from '@/shared/components/ZoomModal';
+import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 import { calculateAge } from '@/shared/utils/age';
 import type { Child, HospitalMeasurement, User, Visit } from '@/shared/types';
 
@@ -30,8 +34,8 @@ export default function AdminPatientDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
-  const [xrayCollapsed, setXrayCollapsed] = useState(false);
   const [visitsCollapsed, setVisitsCollapsed] = useState(false);
+  const [comparisonOpen, setComparisonOpen] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -67,6 +71,46 @@ export default function AdminPatientDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  // Growth comparison numbers for the header "성장 비교" button / modal.
+  // Computed PER-PATIENT from every measurement we have:
+  //   • initial         = earliest visit with a height measurement
+  //   • firstPredicted  = BA-based PAH from the earliest visit that has
+  //                       BOTH height and bone_age
+  //   • latestPredicted = BA-based PAH from the LATEST visit that has both
+  //
+  // Robust to visits without bone_age or without height — those are skipped
+  // so the diagram can still show a meaningful comparison whenever at least
+  // two BA-complete visits exist.
+  const comparisonHeights = useMemo(() => {
+    if (!child || measurements.length === 0) return null;
+    const byDate = [...measurements].sort(
+      (a, b) => new Date(a.measured_date).getTime() - new Date(b.measured_date).getTime(),
+    );
+
+    const firstWithHeight = byDate.find((m) => m.height && m.height > 0);
+    const withBA = byDate.filter(
+      (m) => m.height && m.height > 0 && m.bone_age != null && m.bone_age > 0,
+    );
+    if (!firstWithHeight || withBA.length === 0) return null;
+
+    const firstBA = withBA[0];
+    const lastBA = withBA[withBA.length - 1];
+
+    const pah = (m: HospitalMeasurement) =>
+      predictAdultHeightByBonePercentile(
+        m.height,
+        m.bone_age!,
+        child.gender === 'male' ? 'M' : 'F',
+        child.nationality ?? 'KR',
+      );
+
+    return {
+      initial: firstWithHeight.height,
+      firstPredicted: pah(firstBA),
+      latestPredicted: pah(lastBA),
+    };
+  }, [child, measurements]);
+
   const selectedVisit = useMemo(
     () => (selectedVisitId ? visits.find((v) => v.id === selectedVisitId) ?? null : null),
     [selectedVisitId, visits],
@@ -86,8 +130,9 @@ export default function AdminPatientDetailPage() {
         <div className="flex items-center gap-3">
           <img src="/images/logo.jpg" alt="187 성장클리닉" className="h-8 w-auto" />
           <div>
-            <h1 className="text-base font-bold leading-tight text-slate-900">
-              {child.name}
+            <h1 className="flex items-center gap-2 text-base font-bold leading-tight text-slate-900">
+              <span className="font-mono text-[12px] text-slate-500">#{child.chart_number}</span>
+              <span>{child.name}</span>
             </h1>
             <div className="text-[11px] text-slate-500">
               {child.gender === 'male' ? '남' : '여'} · {child.birth_date} · 만 {age.years}세{age.months}개월
@@ -124,6 +169,16 @@ export default function AdminPatientDetailPage() {
               진료 기록
             </button>
           </div>
+          <button
+            type="button"
+            onClick={() => setComparisonOpen(true)}
+            disabled={!comparisonHeights}
+            title="성장 비교"
+            aria-label="성장 비교"
+            className="inline-flex h-8 w-8 items-center justify-center rounded border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40"
+          >
+            📊
+          </button>
           <Link
             to={`/admin/patients/${id}/visits/new`}
             className="rounded bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
@@ -132,6 +187,29 @@ export default function AdminPatientDetailPage() {
           </Link>
         </div>
       </div>
+
+      {comparisonOpen && comparisonHeights && (
+        <ZoomModal
+          onClose={() => setComparisonOpen(false)}
+          title={`성장 비교 · ${child.name}`}
+          maxWidth="1400px"
+        >
+          <div className="flex h-full flex-col">
+            <div className="flex-1 min-h-0">
+              <GrowthComparisonDiagram
+                initialHeight={comparisonHeights.initial ?? 0}
+                predictedAdultHeight={comparisonHeights.firstPredicted ?? 0}
+                finalHeight={comparisonHeights.latestPredicted ?? 0}
+                lang="ko"
+                className="h-full w-full"
+              />
+            </div>
+            <div className="mt-3 text-center text-xs text-slate-500">
+              초기 키 = 최초 방문 실측 키 · 최초 예측 성인키 = 최초 방문 BA 기반 PAH · 최종 예측 성인키 = 최근 BA 기반 PAH
+            </div>
+          </div>
+        </ZoomModal>
+      )}
 
       {tab === 'info' && (
         <div className="min-h-0 flex-1 overflow-y-auto">
@@ -150,8 +228,8 @@ export default function AdminPatientDetailPage() {
         style={
           {
             ['--cols' as string]: `${
-              visitsCollapsed ? '60px' : 'minmax(220px,1fr)'
-            } ${xrayCollapsed ? '44px' : '360px'} 60%`,
+              visitsCollapsed ? '60px' : '180px'
+            } minmax(360px, 1fr) 52%`,
           } as React.CSSProperties
         }
       >
@@ -174,6 +252,7 @@ export default function AdminPatientDetailPage() {
               childId={id}
               gender={child.gender}
               birthDate={child.birth_date}
+              nationality={child.nationality}
               visits={visits}
               measurements={measurements}
               selectedVisitId={selectedVisitId}
@@ -188,22 +267,41 @@ export default function AdminPatientDetailPage() {
                   );
                 })
               }
+              onVisitDeleted={() => {
+                if (id) refreshData(id).catch(() => undefined);
+              }}
               collapsed={visitsCollapsed}
             />
           </div>
         </section>
 
-        {/* Middle: X-ray panel (linked to selected visit, collapsible) */}
-        <section className="min-h-0">
+        {/* Middle: selected visit detail — 측정 / X-ray / Lab / 처방 */}
+        <section className="flex h-full min-h-0 flex-col overflow-hidden">
           {selectedVisit ? (
-            <XrayPanel
+            <VisitDetailPanel
               child={child}
               visit={selectedVisit}
               measurements={measurements}
-              collapsed={xrayCollapsed}
-              onToggleCollapse={() => setXrayCollapsed((c) => !c)}
-              onSaved={() => {
+              onMeasurementChanged={(m) =>
+                setMeasurements((prev) => {
+                  const rest = prev.filter((x) => x.id !== m.id);
+                  return [...rest, m].sort(
+                    (a, b) =>
+                      new Date(a.measured_date).getTime() -
+                      new Date(b.measured_date).getTime(),
+                  );
+                })
+              }
+              onXraySaved={() => {
                 if (id) refreshData(id).catch(() => undefined);
+              }}
+              onNationalityChange={async (next) => {
+                try {
+                  const updated = await updateChildField(child.id, { nationality: next });
+                  setChild(updated);
+                } catch {
+                  /* noop */
+                }
               }}
             />
           ) : (
@@ -219,6 +317,14 @@ export default function AdminPatientDetailPage() {
             child={child}
             measurements={measurements}
             selectedVisitId={selectedVisitId}
+            onNationalityChange={async (next) => {
+              try {
+                const updated = await updateChildField(child.id, { nationality: next });
+                setChild(updated);
+              } catch {
+                /* noop */
+              }
+            }}
           />
         </section>
       </div>

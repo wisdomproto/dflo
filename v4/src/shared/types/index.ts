@@ -39,8 +39,10 @@ export interface Child {
   father_height?: number;
   mother_height?: number;
   desired_height?: number;
+  chart_number: string;
   grade?: string;
   class_height_rank?: string;
+  nationality?: 'KR' | 'CN';
   intake_survey?: IntakeSurvey | null;
   is_patient?: boolean;
   created_at: string;
@@ -107,6 +109,7 @@ export interface Visit {
   chief_complaint?: string;
   plan?: string;
   notes?: string;
+  is_intake?: boolean;
   created_at: string;
   updated_at: string;
 }

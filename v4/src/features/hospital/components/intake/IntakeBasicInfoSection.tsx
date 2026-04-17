@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Child } from '@/shared/types';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
+import { SectionCard } from './SectionCard';
 
 interface Props {
   child: Child;
@@ -24,17 +25,35 @@ export function IntakeBasicInfoSection({ child, onSaved }: Props) {
   };
 
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-4">
-      <h2 className="mb-3 text-sm font-semibold text-slate-800">1. 기본 정보</h2>
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
+    <SectionCard step="01" title="기본 정보" subtitle="이름 · 생년월일 · 부모 키 등" accent="indigo">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <FieldText
+          label="환자번호"
+          value={child.chart_number}
+          onSave={(v) => {
+            const trimmed = v.trim();
+            if (!trimmed) return; // chart_number NOT NULL
+            save({ chart_number: trimmed });
+          }}
+        />
         <FieldText label="이름" value={child.name} onSave={(v) => save({ name: v })} />
         <FieldDate
           label="생년월일"
           value={child.birth_date}
           onSave={(v) => save({ birth_date: v })}
         />
-        <div className="flex items-end text-xs text-slate-500">
-          성별: <span className="ml-2 font-medium text-slate-700">{child.gender === 'male' ? '남' : '여'}</span>
+        <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+          <span>성별 · 국적</span>
+          <div className="flex items-center gap-2">
+            <GenderToggle
+              value={child.gender}
+              onChange={(v) => save({ gender: v })}
+            />
+            <NationalityToggle
+              value={child.nationality ?? 'KR'}
+              onChange={(v) => save({ nationality: v })}
+            />
+          </div>
         </div>
 
         <FieldNumber
@@ -90,7 +109,73 @@ export function IntakeBasicInfoSection({ child, onSaved }: Props) {
           placeholder="예) 12번"
         />
       </div>
-    </section>
+    </SectionCard>
+  );
+}
+
+function GenderToggle({
+  value,
+  onChange,
+}: {
+  value: 'male' | 'female';
+  onChange: (v: 'male' | 'female') => void;
+}) {
+  return (
+    <div className="inline-flex overflow-hidden rounded-lg border border-slate-200 shadow-sm">
+      <button
+        type="button"
+        onClick={() => onChange('male')}
+        className={
+          'px-3 py-1 text-[11px] font-semibold transition ' +
+          (value === 'male'
+            ? 'bg-sky-500 text-white'
+            : 'bg-white text-slate-600 hover:bg-slate-50')
+        }
+      >
+        남
+      </button>
+      <button
+        type="button"
+        onClick={() => onChange('female')}
+        className={
+          'border-l border-slate-200 px-3 py-1 text-[11px] font-semibold transition ' +
+          (value === 'female'
+            ? 'bg-pink-500 text-white'
+            : 'bg-white text-slate-600 hover:bg-slate-50')
+        }
+      >
+        여
+      </button>
+    </div>
+  );
+}
+
+function NationalityToggle({
+  value,
+  onChange,
+}: {
+  value: 'KR' | 'CN';
+  onChange: (v: 'KR' | 'CN') => void;
+}) {
+  return (
+    <div className="inline-flex overflow-hidden rounded-lg border border-slate-200 shadow-sm">
+      {(['KR', 'CN'] as const).map((code) => (
+        <button
+          key={code}
+          type="button"
+          onClick={() => onChange(code)}
+          className={
+            'px-2.5 py-1 text-[11px] font-semibold transition ' +
+            (value === code
+              ? 'bg-indigo-600 text-white'
+              : 'bg-white text-slate-600 hover:bg-slate-50')
+          }
+          title={code === 'KR' ? '한국 표준 성장곡선' : '중국 표준 성장곡선'}
+        >
+          {code === 'KR' ? '🇰🇷 KR' : '🇨🇳 CN'}
+        </button>
+      ))}
+    </div>
   );
 }
 
@@ -110,11 +195,11 @@ function FieldText({
   const [local, setLocal] = useState(value);
   useEffect(() => setLocal(value), [value]);
   return (
-    <label className="flex flex-col gap-1 text-xs text-slate-500">
+    <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
       <span>{label}</span>
       <input
         type="text"
-        className="rounded border border-slate-200 px-2 py-1.5 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
         value={local}
         placeholder={placeholder}
         onChange={(e) => setLocal(e.target.value)}
@@ -138,11 +223,11 @@ function FieldDate({
   const [local, setLocal] = useState(value);
   useEffect(() => setLocal(value), [value]);
   return (
-    <label className="flex flex-col gap-1 text-xs text-slate-500">
+    <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
       <span>{label}</span>
       <input
         type="date"
-        className="rounded border border-slate-200 px-2 py-1.5 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
         value={local}
         onChange={(e) => setLocal(e.target.value)}
         onBlur={() => {
@@ -167,12 +252,12 @@ function FieldNumber({
   const [local, setLocal] = useState<string>(value == null ? '' : String(value));
   useEffect(() => setLocal(value == null ? '' : String(value)), [value]);
   return (
-    <label className="flex flex-col gap-1 text-xs text-slate-500">
+    <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
       <span>{label}</span>
       <input
         type="number"
         step={step}
-        className="rounded border border-slate-200 px-2 py-1.5 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
         value={local}
         onChange={(e) => setLocal(e.target.value)}
         onBlur={() => {

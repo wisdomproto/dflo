@@ -21,6 +21,9 @@ import {
   uploadXrayImage,
 } from '@/features/bone-age/services/xrayReadingService';
 import { logger } from '@/shared/lib/logger';
+import { ZoomModal } from '@/shared/components/ZoomModal';
+import { ZoomableImg } from '@/shared/components/ZoomableImg';
+import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
 import type { Child, HospitalMeasurement, Visit, XrayReading } from '@/shared/types';
 
 interface Props {
@@ -30,6 +33,16 @@ interface Props {
   collapsed: boolean;
   onToggleCollapse: () => void;
   onSaved: () => void;
+  /** When true, hides the outer collapse button + internal scroll so the
+   *  panel fits exactly into its container (used by 기본 정보 탭). */
+  embedded?: boolean;
+  /** Live bone age + PAH updates (before save) so other widgets (e.g. the
+   *  chart overlay) can reflect the current working values immediately. */
+  onLiveChange?: (next: { boneAge: number | null; predictedAdult: number | null }) => void;
+  /** Optional callback for the KR/CN toggle. Shares the same source
+   *  (children.nationality) as the growth-chart toggle — updating here
+   *  propagates to the chart, and vice versa. */
+  onNationalityChange?: (next: 'KR' | 'CN') => void;
 }
 
 export function XrayPanel({
@@ -39,6 +52,9 @@ export function XrayPanel({
   collapsed,
   onToggleCollapse,
   onSaved,
+  embedded = false,
+  onLiveChange,
+  onNationalityChange,
 }: Props) {
   const gender: Gender = child.gender === 'male' ? 'M' : 'F';
 
@@ -50,6 +66,7 @@ export function XrayPanel({
   const [manualBoneAge, setManualBoneAge] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [zoomed, setZoomed] = useState(false);
   const objectUrlRef = useRef<string | null>(null);
 
   // Load atlas once
@@ -77,13 +94,19 @@ export function XrayPanel({
       .then(async (rows) => {
         if (cancelled) return;
         const first = rows[0] ?? null;
+        // eslint-disable-next-line no-console
+        console.debug('[XrayPanel] fetched readings', {
+          visitId: visit.id,
+          count: rows.length,
+          firstImagePath: first?.image_path,
+        });
         setExisting(first);
-        // Show the saved bone-age value so UI matches what's stored,
-        // not the freshly-recomputed atlas midpoint.
         if (first?.bone_age_result != null) setManualBoneAge(first.bone_age_result);
         if (first?.image_path) {
           try {
             const url = await getXrayImageSignedUrl(first.image_path);
+            // eslint-disable-next-line no-console
+            console.debug('[XrayPanel] signed url', { url });
             if (!cancelled) setImageUrl(url);
           } catch (e) {
             logger.error('signed url failed', e);
@@ -167,17 +190,9 @@ export function XrayPanel({
     setImageUrl(url);
   }, []);
 
-  // Paste listener
-  useEffect(() => {
-    const onPaste = (e: ClipboardEvent) => {
-      const file = Array.from(e.clipboardData?.items ?? [])
-        .find((i) => i.type.startsWith('image/'))
-        ?.getAsFile();
-      if (file) acceptFile(file);
-    };
-    window.addEventListener('paste', onPaste);
-    return () => window.removeEventListener('paste', onPaste);
-  }, [acceptFile]);
+  // Paste listener is now handled per-PatientPane via usePasteTarget so the
+  // user must explicitly click the X-ray drop zone to "arm" it before
+  // Ctrl+V. This keeps paste scoped to exactly one dropzone at a time.
 
   const midpoint = useMemo(() => {
     if (!effectiveYounger || !effectiveOlder) return null;
@@ -194,9 +209,19 @@ export function XrayPanel({
 
   const predictedAdult = useMemo(() => {
     if (visitHeight == null || effectiveBoneAge == null) return null;
-    const v = predictAdultHeightByBonePercentile(visitHeight, effectiveBoneAge, gender);
+    const v = predictAdultHeightByBonePercentile(
+      visitHeight,
+      effectiveBoneAge,
+      gender,
+      child.nationality ?? 'KR',
+    );
     return v > 0 ? v : null;
-  }, [visitHeight, effectiveBoneAge, gender]);
+  }, [visitHeight, effectiveBoneAge, gender, child.nationality]);
+
+  // Live-push bone age + PAH to any parent that cares (overlay memo).
+  useEffect(() => {
+    onLiveChange?.({ boneAge: effectiveBoneAge, predictedAdult });
+  }, [effectiveBoneAge, predictedAdult, onLiveChange]);
 
   const handleSave = async () => {
     if (!effectiveYounger || !effectiveOlder || effectiveBoneAge == null) return;
@@ -254,38 +279,77 @@ export function XrayPanel({
   }
 
   return (
-    <div className="flex h-full flex-col rounded-lg border border-slate-200 bg-white">
-      {/* Header */}
-      <div className="flex items-center justify-between gap-2 border-b border-slate-200 px-3 py-2">
+    <>
+    <div className={`flex flex-col rounded-lg border border-slate-200 bg-white ${embedded ? '' : 'h-full'}`}>
+      {/* Header — flex-wrap so the right-side toolbar stays on one row even
+          when the panel is narrow; left title truncates if needed. */}
+      <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-1 border-b border-slate-200 px-3 py-2">
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleCollapse}
-            className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
-            title="접기"
-            aria-label="접기"
-          >
-            ‹
-          </button>
-          <div className="ml-1 text-sm font-semibold text-slate-900">
-            X-ray · {visit.visit_date}
-          </div>
-          <div className="text-[11px] text-slate-500">
-            역년령 {chronoAge != null ? chronoAge.toFixed(2) : '—'}
+          {!embedded && (
+            <button
+              type="button"
+              onClick={onToggleCollapse}
+              className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+              title="접기"
+              aria-label="접기"
+            >
+              ‹
+            </button>
+          )}
+          <div className="ml-1 flex items-baseline gap-1.5 whitespace-nowrap">
+            <span className="text-sm font-semibold text-slate-900">X-ray</span>
+            <span className="text-[11px] text-slate-500">{visit.visit_date}</span>
+            <span className="text-[11px] text-slate-500">
+              · CA {chronoAge != null ? chronoAge.toFixed(1) : '—'}
+            </span>
           </div>
         </div>
-        <button
-          type="button"
-          disabled={saving || !effectiveYounger || !effectiveOlder}
-          onClick={handleSave}
-          className="rounded bg-slate-900 px-3 py-1 text-[12px] font-semibold text-white hover:bg-slate-800 disabled:opacity-40"
-        >
-          {saving ? '저장 중…' : existing ? '재저장' : '저장'}
-        </button>
+        <div className="flex items-center gap-1">
+          {onNationalityChange && (
+            <div className="inline-flex overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+              {(['KR', 'CN'] as const).map((code) => (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => onNationalityChange(code)}
+                  className={
+                    'px-2 py-1 text-[10px] font-semibold transition ' +
+                    ((child.nationality ?? 'KR') === code
+                      ? 'bg-indigo-600 text-white'
+                      : 'text-slate-600 hover:bg-slate-50')
+                  }
+                  title={code === 'KR' ? '한국 표준' : '중국 표준'}
+                >
+                  {code}
+                </button>
+              ))}
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => setZoomed(true)}
+            title="크게 보기"
+            aria-label="크게 보기"
+            className="inline-flex h-7 w-7 items-center justify-center rounded border border-slate-200 text-slate-500 hover:bg-slate-50"
+          >
+            ⤢
+          </button>
+          <button
+            type="button"
+            disabled={saving || !effectiveYounger || !effectiveOlder}
+            onClick={handleSave}
+            className="rounded bg-slate-900 px-3 py-1 text-[12px] font-semibold text-white hover:bg-slate-800 disabled:opacity-40"
+          >
+            {saving ? '저장 중…' : existing ? '재저장' : '저장'}
+          </button>
+        </div>
       </div>
 
-      {/* Body — 3 panes */}
-      <div className="min-h-0 flex-1 overflow-y-auto p-3">
+      {/* Body — 3 panes. When embedded inside the 기본 정보 tab we let the
+          aspect-ratio of the 3 panes define the natural height, so let the
+          container grow freely instead of using flex-1 / min-h-0 (those need
+          a constrained parent height). */}
+      <div className={`p-3 ${embedded ? '' : 'min-h-0 flex-1 overflow-y-auto'}`}>
         {!atlas ? (
           <div className="py-8 text-center text-sm text-slate-500">Atlas 로딩 중…</div>
         ) : (
@@ -295,14 +359,14 @@ export function XrayPanel({
               label="younger"
               color="text-blue-600"
               caption={effectiveYounger ? formatLabel(effectiveYounger) : '—'}
-              hint="↑ 다음 / ↓ 이전"
+              hint="← 이전 / → 다음"
             >
               {effectiveYounger ? (
                 <AtlasImage file={effectiveYounger.file} alt={formatLabel(effectiveYounger)} />
               ) : (
                 <Placeholder text="후보 없음" />
               )}
-              <StepButtons canUp={canStepUp} canDown={canStepDown} onStep={handleStep} />
+              <StepButtons canPrev={canStepDown} canNext={canStepUp} onStep={handleStep} />
             </Pane>
 
             {/* Patient — drag & drop + paste + editable bone age + predicted adult */}
@@ -339,6 +403,71 @@ export function XrayPanel({
         )}
       </div>
     </div>
+    {zoomed && (
+      <ZoomModal
+        onClose={() => setZoomed(false)}
+        title={`X-ray · ${visit.visit_date} · ${child.name}`}
+      >
+        <div className="grid h-full grid-cols-3 gap-4">
+          <ZoomPane
+            label="younger"
+            color="text-blue-600"
+            caption={effectiveYounger ? formatLabel(effectiveYounger) : '—'}
+          >
+            {effectiveYounger ? (
+              <AtlasImage file={effectiveYounger.file} alt={formatLabel(effectiveYounger)} />
+            ) : (
+              <Placeholder text="후보 없음" />
+            )}
+            <StepButtons canPrev={canStepDown} canNext={canStepUp} onStep={handleStep} />
+          </ZoomPane>
+          <ZoomPane label="patient" color="text-slate-700" caption={effectiveBoneAge != null ? `${effectiveBoneAge.toFixed(1)}세` : '—'}>
+            {imageUrl ? (
+              <ZoomableImg src={imageUrl} alt="patient x-ray" />
+            ) : (
+              <Placeholder text="이미지 없음" />
+            )}
+          </ZoomPane>
+          <ZoomPane label="older" color="text-rose-600" caption={effectiveOlder ? formatLabel(effectiveOlder) : '—'}>
+            {effectiveOlder ? (
+              <AtlasImage file={effectiveOlder.file} alt={formatLabel(effectiveOlder)} />
+            ) : (
+              <Placeholder text="더 큰 atlas 없음" />
+            )}
+          </ZoomPane>
+        </div>
+      </ZoomModal>
+    )}
+    </>
+  );
+}
+
+function ZoomPane({
+  label,
+  color,
+  caption,
+  children,
+  footer,
+}: {
+  label: string;
+  color: string;
+  caption: string;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+}) {
+  return (
+    <div className="flex h-full min-h-0 flex-col gap-1.5">
+      <div className="flex items-baseline justify-between">
+        <div className={`text-[11px] font-semibold uppercase tracking-wider ${color}`}>
+          {label}
+        </div>
+        <div className="text-[12px] font-medium text-slate-700">{caption}</div>
+      </div>
+      <div className="relative min-h-0 flex-1 overflow-hidden rounded bg-slate-900 ring-1 ring-slate-200">
+        {children}
+      </div>
+      {footer}
+    </div>
   );
 }
 
@@ -348,12 +477,14 @@ function Pane({
   caption,
   hint,
   children,
+  footer,
 }: {
   label: string;
   color: string;
   caption: string;
   hint?: string;
   children: React.ReactNode;
+  footer?: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1">
@@ -365,38 +496,43 @@ function Pane({
       </div>
       <div className="text-center text-[12px] font-semibold text-slate-800">{caption}</div>
       {hint && <div className="text-center text-[10px] text-slate-500">{hint}</div>}
+      {footer}
     </div>
   );
 }
 
 function StepButtons({
-  canUp,
-  canDown,
+  canPrev,
+  canNext,
   onStep,
 }: {
-  canUp: boolean;
-  canDown: boolean;
+  canPrev: boolean;
+  canNext: boolean;
   onStep: (offset: number) => void;
 }) {
   return (
-    <div className="pointer-events-none absolute right-1 top-1 flex flex-col gap-1">
+    <>
       <button
         type="button"
-        disabled={!canUp}
-        onClick={() => onStep(+1)}
-        className="pointer-events-auto h-7 w-7 rounded bg-white/90 text-sm font-bold text-slate-800 shadow hover:bg-white disabled:opacity-30"
-      >
-        ↑
-      </button>
-      <button
-        type="button"
-        disabled={!canDown}
+        disabled={!canPrev}
         onClick={() => onStep(-1)}
-        className="pointer-events-auto h-7 w-7 rounded bg-white/90 text-sm font-bold text-slate-800 shadow hover:bg-white disabled:opacity-30"
+        title="이전 (더 어린 나이)"
+        aria-label="이전"
+        className="pointer-events-auto absolute left-2 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white/85 text-base font-bold text-slate-800 shadow-md backdrop-blur hover:bg-white disabled:opacity-30"
       >
-        ↓
+        ←
       </button>
-    </div>
+      <button
+        type="button"
+        disabled={!canNext}
+        onClick={() => onStep(+1)}
+        title="다음 (더 큰 나이)"
+        aria-label="다음"
+        className="pointer-events-auto absolute right-2 top-1/2 -translate-y-1/2 z-10 h-9 w-9 rounded-full bg-white/85 text-base font-bold text-slate-800 shadow-md backdrop-blur hover:bg-white disabled:opacity-30"
+      >
+        →
+      </button>
+    </>
   );
 }
 
@@ -417,9 +553,12 @@ function PatientPane({
   predictedAdult: number | null;
   visitHeight: number | null;
 }) {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
   const [draft, setDraft] = useState<string>(boneAge != null ? boneAge.toFixed(1) : '');
+  const { armed, wrapperProps } = usePasteTarget({
+    onPaste: onFile,
+    accept: (t) => t.startsWith('image/'),
+  });
 
   useEffect(() => {
     setDraft(boneAge != null ? boneAge.toFixed(1) : '');
@@ -446,6 +585,7 @@ function PatientPane({
         patient
       </div>
       <div
+        {...wrapperProps}
         onDragOver={(e) => {
           e.preventDefault();
           setDrag(true);
@@ -456,31 +596,35 @@ function PatientPane({
           setDrag(false);
           handleFiles(e.dataTransfer.files);
         }}
-        onClick={() => !imageUrl && inputRef.current?.click()}
-        className={`relative aspect-[800/1166] overflow-hidden rounded bg-slate-900 ring-1 transition-colors ${
-          drag ? 'ring-blue-500' : 'ring-slate-200'
+        className={`relative aspect-[800/1166] overflow-hidden rounded bg-slate-900 transition ${
+          armed
+            ? 'ring-4 ring-indigo-400 ring-offset-2 ring-offset-white'
+            : drag
+              ? 'ring-2 ring-blue-500'
+              : 'ring-1 ring-slate-200'
         } ${imageUrl ? '' : 'cursor-pointer hover:ring-slate-400'}`}
       >
         {imageUrl ? (
-          <img src={imageUrl} alt="환자 X-ray" className="h-full w-full object-contain" />
+          <ZoomableImg src={imageUrl} alt="환자 X-ray" />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-slate-200">
             <div className="text-sm font-medium">이미지 끌어다 놓기</div>
-            <div className="text-[11px] text-slate-400">또는 클릭해서 선택 · Ctrl+V 붙여넣기</div>
+            <div className="text-[11px] text-slate-400">
+              {armed ? 'Ctrl+V 로 붙여넣기' : '또는 클릭 후 Ctrl+V'}
+            </div>
           </div>
         )}
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={(e) => handleFiles(e.target.files)}
-        />
+        {armed && (
+          <div className="pointer-events-none absolute left-1 top-1 z-10 rounded bg-indigo-600 px-1.5 py-0.5 text-[10px] font-bold text-white shadow">
+            📋 붙여넣기 대기
+          </div>
+        )}
       </div>
 
       {/* Editable bone-age (defaults to midpoint of younger+older) */}
-      <div className="flex items-center justify-center gap-1 pt-0.5">
-        <span className="text-[11px] text-slate-500">뼈나이</span>
+      {/* Bone age input (compact, centered). */}
+      <div className="flex items-center justify-center gap-1 pt-1">
+        <span className="text-[11px] whitespace-nowrap text-slate-500">뼈나이</span>
         <input
           type="number"
           step="0.1"
@@ -494,10 +638,11 @@ function PatientPane({
             if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
           }}
           placeholder={midpointFallback != null ? midpointFallback.toFixed(1) : '—'}
-          className="h-7 w-20 rounded border border-slate-200 bg-white px-2 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400"
+          className="h-7 w-16 rounded border border-slate-200 bg-white px-2 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400"
         />
         <span className="text-[11px] text-slate-500">세</span>
       </div>
+
       {midpointFallback != null && boneAge != null && Math.abs(boneAge - midpointFallback) > 0.05 && (
         <button
           type="button"
@@ -508,36 +653,28 @@ function PatientPane({
         </button>
       )}
 
-      {/* Bone-age based predicted adult height */}
-      <div className="mt-1 rounded border border-indigo-200 bg-indigo-50 px-2 py-1 text-center">
-        <div className="text-[10px] font-medium text-indigo-700">예측 성인키</div>
+      {/* Predicted adult height — full-width block at the bottom so the text
+          stays horizontal even when the pane is narrow. */}
+      <div className="mt-1 flex items-center justify-between gap-2 rounded border border-indigo-200 bg-indigo-50 px-2 py-1.5">
+        <span className="text-[11px] font-medium whitespace-nowrap text-indigo-700">예측 성인키</span>
         {predictedAdult != null ? (
-          <div className="text-[14px] font-bold text-indigo-900">
+          <span className="whitespace-nowrap text-[14px] font-bold text-indigo-900">
             {predictedAdult.toFixed(1)}
             <span className="ml-0.5 text-[11px] font-normal text-indigo-700">cm</span>
-          </div>
+          </span>
         ) : (
-          <div className="text-[11px] text-indigo-400">
-            {visitHeight == null ? '키 입력 필요' : '뼈나이 입력 필요'}
-          </div>
+          <span className="text-[11px] whitespace-nowrap text-indigo-400">
+            {visitHeight == null ? '키 필요' : '뼈나이 필요'}
+          </span>
         )}
       </div>
 
-      {imageUrl && (
-        <button
-          type="button"
-          onClick={() => inputRef.current?.click()}
-          className="text-center text-[11px] text-slate-500 hover:text-slate-700 hover:underline"
-        >
-          다른 이미지로 교체
-        </button>
-      )}
     </div>
   );
 }
 
 function AtlasImage({ file, alt }: { file: string; alt: string }) {
-  return <img src={`/atlas/${file}`} alt={alt} className="h-full w-full object-contain" />;
+  return <ZoomableImg src={`/atlas/${file}`} alt={alt} />;
 }
 
 function Placeholder({ text }: { text: string }) {

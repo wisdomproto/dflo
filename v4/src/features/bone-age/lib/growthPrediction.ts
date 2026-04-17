@@ -11,7 +11,11 @@
 // parallel to the standard percentile curves.
 
 import type { Gender } from "./types";
-import { heightAtSamePercentile, calculateHeightPercentileLMS } from "./growthStandard";
+import {
+  heightAtSamePercentile,
+  calculateHeightPercentileLMS,
+  type Nationality,
+} from "./growthStandard";
 
 /** BoneAgeAI 'M'|'F' → growthStandard 'male'|'female' */
 export function toLongGender(g: Gender): "male" | "female" {
@@ -30,10 +34,11 @@ export function predictAdultHeightByBonePercentile(
   currentHeight: number,
   boneAge: number,
   gender: Gender,
+  nationality: Nationality = 'KR',
 ): number {
   if (currentHeight <= 0 || boneAge <= 0) return 0;
   const g = toLongGender(gender);
-  const result = heightAtSamePercentile(currentHeight, boneAge, 18, g);
+  const result = heightAtSamePercentile(currentHeight, boneAge, 18, g, nationality);
   return Math.round(result * 10) / 10;
 }
 
@@ -42,8 +47,9 @@ export function percentileAtBoneAge(
   currentHeight: number,
   boneAge: number,
   gender: Gender,
+  nationality: Nationality = 'KR',
 ): number {
-  return calculateHeightPercentileLMS(currentHeight, boneAge, toLongGender(gender));
+  return calculateHeightPercentileLMS(currentHeight, boneAge, toLongGender(gender), nationality);
 }
 
 /**
@@ -55,21 +61,20 @@ export function buildProjectedCurve(
   boneAge: number,
   currentHeight: number,
   gender: Gender,
+  nationality: Nationality = 'KR',
 ): { age: number; height: number }[] {
   if (currentHeight <= 0 || boneAge <= 0) return [];
   const g = toLongGender(gender);
   const start = Math.min(18, Math.max(PRED_AGE_MIN, boneAge));
   const out: { age: number; height: number }[] = [{ age: start, height: currentHeight }];
 
-  // Walk integer years from the next year after `start` up through 18.
   const firstInt = Math.ceil(start + 0.0001);
   for (let a = firstInt; a <= 18; a++) {
-    const h = heightAtSamePercentile(currentHeight, start, a, g);
+    const h = heightAtSamePercentile(currentHeight, start, a, g, nationality);
     out.push({ age: a, height: Math.round(h * 10) / 10 });
   }
-  // Guarantee an exact age-18 endpoint even if firstInt already hit 18.
   if (out[out.length - 1].age !== 18) {
-    const h = heightAtSamePercentile(currentHeight, start, 18, g);
+    const h = heightAtSamePercentile(currentHeight, start, 18, g, nationality);
     out.push({ age: 18, height: Math.round(h * 10) / 10 });
   }
   return out;

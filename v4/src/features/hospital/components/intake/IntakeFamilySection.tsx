@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { IntakeSurvey } from '@/shared/types';
+import { SectionCard } from './SectionCard';
 
 interface Props {
   survey: IntakeSurvey;
@@ -12,8 +13,7 @@ interface Props {
  */
 export function IntakeFamilySection({ survey, onSave }: Props) {
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-4">
-      <h2 className="mb-3 text-sm font-semibold text-slate-800">3. 가족 · 관심도</h2>
+    <SectionCard step="03" title="가족 · 관심도" subtitle="Q9 · Q10 · Q12 · Q13" accent="sky">
       <div className="flex flex-col gap-3">
         <YesNoRow
           label="Q9. 과거 성장 클리닉에서 상담해 본 적이 있습니까?"
@@ -44,7 +44,7 @@ export function IntakeFamilySection({ survey, onSave }: Props) {
           onChange={(v) => onSave({ child_interested: v })}
         />
       </div>
-    </section>
+    </SectionCard>
   );
 }
 
@@ -58,16 +58,16 @@ function YesNoRow({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2">
       <span className="text-sm text-slate-700">{label}</span>
-      <div className="inline-flex overflow-hidden rounded border border-slate-300">
+      <div className="inline-flex overflow-hidden rounded-lg border border-slate-200 shadow-sm">
         <button
           type="button"
           onClick={() => onChange(true)}
           className={
-            'px-3 py-1 text-xs ' +
+            'px-4 py-1.5 text-xs font-medium transition ' +
             (value === true
-              ? 'bg-indigo-600 text-white'
+              ? 'bg-sky-500 text-white'
               : 'bg-white text-slate-600 hover:bg-slate-50')
           }
         >
@@ -77,9 +77,9 @@ function YesNoRow({
           type="button"
           onClick={() => onChange(false)}
           className={
-            'border-l border-slate-300 px-3 py-1 text-xs ' +
+            'border-l border-slate-200 px-4 py-1.5 text-xs font-medium transition ' +
             (value === false
-              ? 'bg-indigo-600 text-white'
+              ? 'bg-slate-700 text-white'
               : 'bg-white text-slate-600 hover:bg-slate-50')
           }
         >
@@ -109,7 +109,7 @@ function SportsEventInput({
         onBlur={() => {
           if (local !== value) onSave(local);
         }}
-        className="flex-1 rounded border border-slate-200 px-2 py-1 text-sm text-slate-900 focus:border-slate-400 focus:outline-none"
+        className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm text-slate-900 shadow-sm transition focus:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-100"
         placeholder="예) 축구, 수영"
       />
     </label>

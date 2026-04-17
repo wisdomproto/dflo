@@ -58,7 +58,11 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     .order('created_at', { ascending: false });
 
   if (search) {
-    query = query.ilike('name', `%${search}%`);
+    // Search across name, chart_number, and chart_number partial for quick
+    // lookup in the admin patients list.
+    query = query.or(
+      `name.ilike.%${search}%,chart_number.ilike.%${search}%`,
+    );
   }
 
   const { data, error } = await query;
@@ -102,6 +106,90 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
   );
 
   return enriched;
+}
+
+// ---------- Create / Delete ----------
+
+export async function createPatient(input: {
+  chart_number: string;
+  name: string;
+  gender: 'male' | 'female';
+  birth_date: string;
+  father_height?: number;
+  mother_height?: number;
+  desired_height?: number;
+  parent_email?: string;
+}): Promise<Child> {
+  // Reuse the shared "cases" parent user by default so we don't demand a
+  // boho account for every new patient. Admin can reassign later via the
+  // basic info tab.
+  const parentEmail = input.parent_email ?? 'cases@187growth.com';
+  let parentId: string | null = null;
+  {
+    const { data: existing } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', parentEmail)
+      .maybeSingle();
+    if (existing?.id) {
+      parentId = existing.id as string;
+    } else {
+      const { data: inserted, error } = await supabase
+        .from('users')
+        .insert({
+          email: parentEmail,
+          name: '치료 사례 보호자',
+          role: 'parent',
+          password: 'change-me',
+          is_active: true,
+        })
+        .select('id')
+        .single();
+      if (error) {
+        logger.error('createPatient: create parent failed', error);
+        throw new Error('보호자 생성에 실패했습니다.');
+      }
+      parentId = (inserted as { id: string }).id;
+    }
+  }
+  if (!parentId) throw new Error('보호자 확보 실패');
+
+  const { data, error } = await supabase
+    .from('children')
+    .insert({
+      parent_id: parentId,
+      chart_number: input.chart_number,
+      name: input.name,
+      gender: input.gender,
+      birth_date: input.birth_date,
+      father_height: input.father_height,
+      mother_height: input.mother_height,
+      desired_height: input.desired_height,
+      is_active: true,
+    })
+    .select('*')
+    .single();
+  if (error) {
+    logger.error('createPatient failed', error);
+    if (/duplicate key|unique/i.test(error.message)) {
+      throw new Error(`환자번호 "${input.chart_number}" 가 이미 사용 중입니다.`);
+    }
+    throw new Error('환자 생성에 실패했습니다.');
+  }
+  return data as Child;
+}
+
+/**
+ * Delete a patient AND every clinical record hanging off of them
+ * (visits CASCADE → measurements, X-ray, labs, prescriptions).
+ * Supabase Storage files are NOT cleaned up here.
+ */
+export async function deletePatient(childId: string): Promise<void> {
+  const { error } = await supabase.from('children').delete().eq('id', childId);
+  if (error) {
+    logger.error('deletePatient failed', error);
+    throw new Error('환자 삭제에 실패했습니다.');
+  }
 }
 
 // ---------- Patient Detail ----------
