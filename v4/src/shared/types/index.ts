@@ -39,10 +39,62 @@ export interface Child {
   father_height?: number;
   mother_height?: number;
   desired_height?: number;
+  grade?: string;
+  class_height_rank?: string;
+  intake_survey?: IntakeSurvey | null;
   is_patient?: boolean;
   created_at: string;
   updated_at: string;
   is_active: boolean;
+}
+
+// ================================================
+// Initial Intake Survey (admin 기본 정보 탭)
+// ================================================
+export interface GrowthHistoryEntry {
+  age: number;           // 8..16
+  height: number | null; // cm; null = unknown
+}
+
+export type ShortStatureCause =
+  | 'parents_short'
+  | 'parents_height_gap'
+  | 'picky_eating'
+  | 'parents_early_stop'
+  | 'insufficient_sleep'
+  | 'chronic_illness';
+
+export type TannerStage = 1 | 2 | 3 | 4 | 5;
+
+export interface IntakeSurvey {
+  /** Q4: 과거 성장 기록 (8~16세 9항목) */
+  growth_history: GrowthHistoryEntry[];
+  /** Q4 체크박스 */
+  growth_flags: {
+    rapid_growth: boolean;
+    slowed: boolean;
+    puberty_concern: boolean;
+  };
+  /** Q9 과거 성장 클리닉 상담 여부 */
+  past_clinic_consult: boolean | null;
+  /** Q10 양측 부모 관심 여부 */
+  parents_interested: boolean | null;
+  /** Q12 체육 특기생 여부 */
+  sports_athlete: boolean | null;
+  /** Q12 종목 */
+  sports_event: string;
+  /** Q13 아이 본인 관심 여부 */
+  child_interested: boolean | null;
+  /** Q14 과거/지속 치료중 질환 */
+  chronic_conditions: string;
+  /** Q15 사춘기(Tanner) 단계 1~5 */
+  tanner_stage: TannerStage | null;
+  /** Q16 키가 작은 원인 (다중 선택) */
+  short_stature_causes: ShortStatureCause[];
+  /** Q16 기타 원인 자유 서술 */
+  short_stature_other: string;
+  /** ISO timestamp, 마지막 저장 시각 */
+  updated_at: string;
 }
 
 export type LabTestType = 'allergy' | 'organic_acid' | 'blood' | 'attachment';

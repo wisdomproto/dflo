@@ -1,17 +1,28 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { fetchPatientDetail } from '@/features/admin/services/adminService';
 import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
 import { VisitList } from '@/features/hospital/components/VisitList';
 import { XrayPanel } from '@/features/hospital/components/XrayPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
+import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
 import { calculateAge } from '@/shared/utils/age';
 import type { Child, HospitalMeasurement, User, Visit } from '@/shared/types';
+
+type TabKey = 'info' | 'visits';
 
 type ParentInfo = Pick<User, 'id' | 'name' | 'email' | 'phone'>;
 
 export default function AdminPatientDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab: TabKey = (searchParams.get('tab') as TabKey) === 'info' ? 'info' : 'visits';
+  const setTab = (next: TabKey) => {
+    const sp = new URLSearchParams(searchParams);
+    if (next === 'visits') sp.delete('tab');
+    else sp.set('tab', next);
+    setSearchParams(sp, { replace: true });
+  };
   const [child, setChild] = useState<Child | null>(null);
   const [measurements, setMeasurements] = useState<HospitalMeasurement[]>([]);
   const [parent, setParent] = useState<ParentInfo | null>(null);
@@ -86,14 +97,50 @@ export default function AdminPatientDetailPage() {
             </div>
           </div>
         </div>
-        <Link
-          to={`/admin/patients/${id}/visits/new`}
-          className="rounded bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
-        >
-          + 새 진료
-        </Link>
+        <div className="flex items-center gap-2">
+          <div className="inline-flex overflow-hidden rounded border border-slate-300">
+            <button
+              type="button"
+              onClick={() => setTab('info')}
+              className={
+                'px-3 py-1.5 text-xs font-medium transition ' +
+                (tab === 'info'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-slate-600 hover:bg-slate-50')
+              }
+            >
+              기본 정보
+            </button>
+            <button
+              type="button"
+              onClick={() => setTab('visits')}
+              className={
+                'border-l border-slate-300 px-3 py-1.5 text-xs font-medium transition ' +
+                (tab === 'visits'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-slate-600 hover:bg-slate-50')
+              }
+            >
+              진료 기록
+            </button>
+          </div>
+          <Link
+            to={`/admin/patients/${id}/visits/new`}
+            className="rounded bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
+          >
+            + 새 진료
+          </Link>
+        </div>
       </div>
 
+      {tab === 'info' && (
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
+        </div>
+      )}
+
+      {tab === 'visits' && (
+      <>
       {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
           Chart locks at 60% of the grid width so its size never depends on
           the X-ray rail state — collapsing X-ray flows its 316px purely into
@@ -175,6 +222,8 @@ export default function AdminPatientDetailPage() {
           />
         </section>
       </div>
+      </>
+      )}
     </div>
   );
 }

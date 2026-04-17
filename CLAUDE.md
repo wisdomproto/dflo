@@ -74,6 +74,9 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Website content on Cloudflare R2 (website.json + images); ai-server exposes /api/r2/website (PUT) + /api/r2/upload (POST), PIN-protected
 - Patient app data (users, children, measurements, meals) remains on Supabase
 - Cases measurement table: no percentiles; bone age shown to 1 decimal
+- Admin patient detail: `?tab=info|visits` tabs (기본 정보 / 진료 기록)
+- Intake survey: `children.intake_survey` JSONB + `grade` / `class_height_rank` columns
+- Intake survey covers paper form Q1~Q16 (Q17 lab selection handled via `lab_tests`)
 
 ## Environment Variables
 ```
@@ -95,6 +98,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 8: PARTIAL (PC admin layout, cases slide, image history, diagnosis intake form, growth chart enhancements)
 - Phase 9: COMPLETE (growth guide pages, animated growth chart, banner enhancements)
 - Phase 10: PARTIAL (7 treatment cases with data cleanup, predicted growth curves, allergy data, admin enhancements)
+- Phase 11: PARTIAL (patient DB unification, admin clinical dashboard, X-ray panel, BA/CA dual predictions, intake survey tab)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript

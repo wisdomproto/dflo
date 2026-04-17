@@ -18,13 +18,17 @@ features/
   children/       # ChildFormModal (+ desired_height field), childrenService
   growth/         # measurementService (hospital_measurements CRUD)
   hospital/       # services/ visitService, hospitalMeasurementService (+upsert),
-                  #   medicationService, labTestService, prescriptionService
+                  #   medicationService, labTestService, prescriptionService,
+                  #   intakeSurveyService (updateChildField, updateIntakeSurvey)
                   # components/ VisitList (inline inputs, collapsible rail, lab upload),
                   #   XrayPanel (atlas matching, drag/paste/pick, editable BA, predicted adult),
                   #   AdminPatientGrowthChart (BA+CA dual projection, per-visit highlight),
                   #   VisitsTimeline, VisitForm, MeasurementEditor,
                   #   LifestyleSummary, LabTestsBlock, AllergyLabEditor,
                   #   FreeformLabEditor, MedicationPicker, PrescriptionsBlock
+                  # components/intake/ IntakeSurveyPanel (기본 정보 tab root),
+                  #   IntakeBasicInfoSection, IntakeGrowthHistoryTable (TSV paste),
+                  #   IntakeFamilySection, IntakeMedicalSection, IntakeCausesSection
   bone-age/       # lib/ types, atlas, matcher, growthPrediction, growthStandard
                   # components/ PatientForm, XrayUpload, XrayPreview, MatchResultView,
                   #   BoneAgeInput, PredictionResult, BoneAgeChart, BoneAgeTool
@@ -64,7 +68,7 @@ scripts/
 | Table | Key Columns | Notes |
 |-------|-------------|-------|
 | `users` | id, email, name, phone, role, password | role: 'parent' \| 'doctor' \| 'admin' |
-| `children` | id, parent_id, name, gender, birth_date, father_height, mother_height, desired_height | Every child is a patient |
+| `children` | id, parent_id, name, gender, birth_date, father_height, mother_height, desired_height, grade, class_height_rank, intake_survey (jsonb) | Every child is a patient; intake_survey holds paper-form Q4/Q9~Q16 |
 
 ### Hospital data (doctor-entered, visit-centric)
 | Table | Key Columns | Notes |
@@ -106,14 +110,23 @@ scripts/
 - Fresh-project setup SQL: `v4/scripts/migrations/000_initial_schema.sql`
 - Permissive writes for anon: `001_permissive_clinical_writes.sql`
 - Desired height column: `002_add_desired_height.sql`
+- Intake survey columns: `003_children_intake_survey.sql`
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
-## Admin Patient Detail (3-Column Layout)
-- **Left**: Visit list — inline height/weight inputs, collapsible rail, CA/BA/PAH display, lab file upload (drag/paste/pick)
-- **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick
-- **Right**: Growth chart — KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips
-- Grid: visits `minmax(220px, 1fr)` | X-ray `360px/44px` | chart `60%`
-- Chart: BA 예측 (indigo dashed) + CA 예측 (teal dashed) + solid horizontal lines at predicted adult heights
+## Admin Patient Detail
+- **Tabs**: `?tab=info` (기본 정보) / `?tab=visits` (진료 기록, default)
+- **기본 정보 tab**: `IntakeSurveyPanel` — 5 sections
+  - Basic info (children columns: name/birth/parent heights/grade/class_rank/...)
+  - Growth history table (8~16세, TSV paste modal, delta auto-calc)
+  - Family/interest (Q9/Q10/Q12/Q13 yes-no + sports event)
+  - Medical/development (Q14 chronic conditions, Q15 Tanner 1-5)
+  - Short stature causes (Q16 multi-select chips + free-text)
+- **진료 기록 tab — 3-Column Layout**
+  - **Left**: Visit list — inline height/weight inputs, collapsible rail, CA/BA/PAH display, lab file upload (drag/paste/pick)
+  - **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick
+  - **Right**: Growth chart — KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips
+  - Grid: visits `minmax(220px, 1fr)` | X-ray `360px/44px` | chart `60%`
+  - Chart: BA 예측 (indigo dashed) + CA 예측 (teal dashed) + solid horizontal lines at predicted adult heights
 
 ## Admin Access
 - **App admin**: `admin@187growth.com` / `admin187!` (routes: `/admin/*`)

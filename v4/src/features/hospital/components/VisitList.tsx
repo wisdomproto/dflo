@@ -153,89 +153,95 @@ export function VisitList({
               isOpen ? 'border-slate-400' : 'border-slate-200'
             }`}
           >
-            <div className="flex items-start gap-2 px-3 py-2.5">
-              <button
-                type="button"
-                onClick={() => onSelectVisit(isOpen ? null : v.id)}
-                className="min-w-0 flex-1 text-left"
-              >
-                <div className="flex items-baseline gap-2">
-                  <span className="text-[11px] font-semibold text-slate-400">
-                    #{idx}
-                  </span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {v.visit_date}
-                  </span>
-                  <span className="text-[11px] text-slate-500">
-                    CA {calculateAgeAtDate(birthDate, new Date(v.visit_date)).decimal.toFixed(1)}
-                  </span>
-                  {m?.bone_age != null && (
-                    <span className="text-[11px] text-slate-500">
-                      BA {m.bone_age.toFixed(1)}
+            <div className="px-3 py-2">
+              {/* Row 1 — info + toggle. Always fits: meta wraps, toggle pinned right. */}
+              <div className="flex items-start gap-2">
+                <button
+                  type="button"
+                  onClick={() => onSelectVisit(isOpen ? null : v.id)}
+                  className="min-w-0 flex-1 text-left"
+                >
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                    <span className="text-[11px] font-semibold text-slate-400">
+                      #{idx}
                     </span>
-                  )}
-                </div>
-                {(() => {
-                  const pah = aiPredictedHeight(m, gender);
-                  return pah != null ? (
-                    <div className="mt-0.5 text-[11px]">
-                      <span className="text-indigo-500">PAH</span>{' '}
-                      <span className="font-medium text-indigo-700">{pah}</span>
-                    </div>
-                  ) : null;
-                })()}
-              </button>
-              <NumberField
-                value={m?.height ?? null}
-                suffix="cm"
-                placeholder="키"
-                onSave={async (val) => {
-                  try {
-                    const next = await upsertMeasurementField({
-                      visit_id: v.id,
-                      child_id: childId,
-                      measured_date: v.visit_date,
-                      patch: { height: val ?? undefined },
-                    });
-                    onMeasurementChanged(next);
-                  } catch (e) {
-                    logger.error('save height failed', e);
-                  }
-                }}
-              />
-              <NumberField
-                value={m?.weight ?? null}
-                suffix="kg"
-                placeholder="몸무게"
-                onSave={async (val) => {
-                  try {
-                    const next = await upsertMeasurementField({
-                      visit_id: v.id,
-                      child_id: childId,
-                      measured_date: v.visit_date,
-                      patch: { weight: val ?? undefined },
-                    });
-                    onMeasurementChanged(next);
-                  } catch (e) {
-                    logger.error('save weight failed', e);
-                  }
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => onSelectVisit(isOpen ? null : v.id)}
-                className="ml-1 self-center text-slate-400 hover:text-slate-600"
-                aria-label={isOpen ? '접기' : '펼치기'}
-              >
-                {isOpen ? '▾' : '▸'}
-              </button>
+                    <span className="text-sm font-semibold text-slate-900 whitespace-nowrap">
+                      {v.visit_date}
+                    </span>
+                    <span className="text-[11px] text-slate-500 whitespace-nowrap">
+                      CA {calculateAgeAtDate(birthDate, new Date(v.visit_date)).decimal.toFixed(1)}
+                    </span>
+                    {m?.bone_age != null && (
+                      <span className="text-[11px] text-slate-500 whitespace-nowrap">
+                        BA {m.bone_age.toFixed(1)}
+                      </span>
+                    )}
+                    {(() => {
+                      const pah = aiPredictedHeight(m, gender);
+                      return pah != null ? (
+                        <span className="text-[11px] whitespace-nowrap">
+                          <span className="text-indigo-500">PAH</span>{' '}
+                          <span className="font-medium text-indigo-700">{pah}</span>
+                        </span>
+                      ) : null;
+                    })()}
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onSelectVisit(isOpen ? null : v.id)}
+                  className="-mr-1 shrink-0 rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                  aria-label={isOpen ? '접기' : '펼치기'}
+                >
+                  {isOpen ? '▾' : '▸'}
+                </button>
+              </div>
+              {/* Row 2 — inline metric inputs. Wrap when very narrow. */}
+              <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                <NumberField
+                  value={m?.height ?? null}
+                  suffix="cm"
+                  placeholder="키"
+                  onSave={async (val) => {
+                    try {
+                      const next = await upsertMeasurementField({
+                        visit_id: v.id,
+                        child_id: childId,
+                        measured_date: v.visit_date,
+                        patch: { height: val ?? undefined },
+                      });
+                      onMeasurementChanged(next);
+                    } catch (e) {
+                      logger.error('save height failed', e);
+                    }
+                  }}
+                />
+                <NumberField
+                  value={m?.weight ?? null}
+                  suffix="kg"
+                  placeholder="몸무게"
+                  onSave={async (val) => {
+                    try {
+                      const next = await upsertMeasurementField({
+                        visit_id: v.id,
+                        child_id: childId,
+                        measured_date: v.visit_date,
+                        patch: { weight: val ?? undefined },
+                      });
+                      onMeasurementChanged(next);
+                    } catch (e) {
+                      logger.error('save weight failed', e);
+                    }
+                  }}
+                />
+              </div>
             </div>
 
             {isOpen && (
               <div className="max-h-96 overflow-y-auto border-t border-slate-100 bg-slate-50 px-3 py-2 text-xs">
                 {/* Measurement summary */}
                 {m && (
-                  <div className="mb-2 grid grid-cols-4 gap-2 rounded bg-white p-2 ring-1 ring-slate-200">
+                  <div className="mb-2 flex flex-wrap gap-x-3 gap-y-1 rounded bg-white p-2 ring-1 ring-slate-200">
                     <Stat label="키" value={m.height ? `${m.height}cm` : '—'} />
                     <Stat label="몸무게" value={m.weight ? `${m.weight}kg` : '—'} />
                     <Stat label="뼈나이" value={m.bone_age ? m.bone_age.toFixed(1) : '—'} />
@@ -387,7 +393,7 @@ function NumberField({
         onKeyDown={(e) => {
           if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
         }}
-        className="h-8 w-20 rounded border border-slate-200 bg-white pr-7 pl-2 text-right text-[12px] text-slate-900 outline-none focus:border-slate-400"
+        className="h-8 w-[78px] rounded border border-slate-200 bg-white pr-6 pl-1.5 text-right text-[12px] text-slate-900 outline-none focus:border-slate-400"
       />
       <span className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-[10px] text-slate-400">
         {suffix}
@@ -398,9 +404,9 @@ function NumberField({
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <div className="text-[10px] text-slate-500">{label}</div>
-      <div className="text-sm font-semibold text-slate-900">{value}</div>
+    <div className="flex items-baseline gap-1 whitespace-nowrap">
+      <span className="text-[10px] text-slate-500">{label}</span>
+      <span className="text-[13px] font-semibold text-slate-900">{value}</span>
     </div>
   );
 }
