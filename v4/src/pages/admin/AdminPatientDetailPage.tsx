@@ -180,12 +180,6 @@ export default function AdminPatientDetailPage() {
           >
             📊
           </button>
-          <Link
-            to={`/admin/patients/${id}/visits/new`}
-            className="rounded bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
-          >
-            + 새 진료
-          </Link>
         </div>
       </div>
 
@@ -249,6 +243,14 @@ export default function AdminPatientDetailPage() {
                 if (id) refreshData(id).catch(() => undefined);
               }}
             />
+          </div>
+          <div className="shrink-0 border-t border-slate-200 p-2">
+            <Link
+              to={`/admin/patients/${id}/visits/new`}
+              className="flex w-full items-center justify-center rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800"
+            >
+              + 새 진료
+            </Link>
           </div>
         </section>
 
