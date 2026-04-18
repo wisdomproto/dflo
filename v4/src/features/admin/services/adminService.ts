@@ -1,4 +1,4 @@
-import type { Child, Measurement, User, Recipe, GrowthCase, GrowthGuide } from '@/shared/types';
+import type { Child, Measurement, User } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 
@@ -24,7 +24,7 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
 
   const [children, measurements, recipes, guides] = await Promise.all([
     supabase.from('children').select('id, created_at', { count: 'exact' }),
-    supabase.from('measurements').select('id', { count: 'exact' }),
+    supabase.from('hospital_measurements').select('id', { count: 'exact' }),
     supabase.from('recipes').select('id', { count: 'exact' }).eq('is_published', true),
     supabase.from('growth_guides').select('id', { count: 'exact' }).eq('is_published', true),
   ]);
@@ -58,7 +58,11 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     .order('created_at', { ascending: false });
 
   if (search) {
-    query = query.ilike('name', `%${search}%`);
+    // Search across name, chart_number, and chart_number partial for quick
+    // lookup in the admin patients list.
+    query = query.or(
+      `name.ilike.%${search}%,chart_number.ilike.%${search}%`,
+    );
   }
 
   const { data, error } = await query;
@@ -80,14 +84,14 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
           .eq('id', patient.parent_id)
           .maybeSingle(),
         supabase
-          .from('measurements')
+          .from('hospital_measurements')
           .select('*')
           .eq('child_id', patient.id)
           .order('measured_date', { ascending: false })
           .limit(1)
           .maybeSingle(),
         supabase
-          .from('measurements')
+          .from('hospital_measurements')
           .select('id', { count: 'exact' })
           .eq('child_id', patient.id),
       ]);
@@ -104,13 +108,97 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
   return enriched;
 }
 
+// ---------- Create / Delete ----------
+
+export async function createPatient(input: {
+  chart_number: string;
+  name: string;
+  gender: 'male' | 'female';
+  birth_date: string;
+  father_height?: number;
+  mother_height?: number;
+  desired_height?: number;
+  parent_email?: string;
+}): Promise<Child> {
+  // Reuse the shared "cases" parent user by default so we don't demand a
+  // boho account for every new patient. Admin can reassign later via the
+  // basic info tab.
+  const parentEmail = input.parent_email ?? 'cases@187growth.com';
+  let parentId: string | null = null;
+  {
+    const { data: existing } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', parentEmail)
+      .maybeSingle();
+    if (existing?.id) {
+      parentId = existing.id as string;
+    } else {
+      const { data: inserted, error } = await supabase
+        .from('users')
+        .insert({
+          email: parentEmail,
+          name: '치료 사례 보호자',
+          role: 'parent',
+          password: 'change-me',
+          is_active: true,
+        })
+        .select('id')
+        .single();
+      if (error) {
+        logger.error('createPatient: create parent failed', error);
+        throw new Error('보호자 생성에 실패했습니다.');
+      }
+      parentId = (inserted as { id: string }).id;
+    }
+  }
+  if (!parentId) throw new Error('보호자 확보 실패');
+
+  const { data, error } = await supabase
+    .from('children')
+    .insert({
+      parent_id: parentId,
+      chart_number: input.chart_number,
+      name: input.name,
+      gender: input.gender,
+      birth_date: input.birth_date,
+      father_height: input.father_height,
+      mother_height: input.mother_height,
+      desired_height: input.desired_height,
+      is_active: true,
+    })
+    .select('*')
+    .single();
+  if (error) {
+    logger.error('createPatient failed', error);
+    if (/duplicate key|unique/i.test(error.message)) {
+      throw new Error(`환자번호 "${input.chart_number}" 가 이미 사용 중입니다.`);
+    }
+    throw new Error('환자 생성에 실패했습니다.');
+  }
+  return data as Child;
+}
+
+/**
+ * Delete a patient AND every clinical record hanging off of them
+ * (visits CASCADE → measurements, X-ray, labs, prescriptions).
+ * Supabase Storage files are NOT cleaned up here.
+ */
+export async function deletePatient(childId: string): Promise<void> {
+  const { error } = await supabase.from('children').delete().eq('id', childId);
+  if (error) {
+    logger.error('deletePatient failed', error);
+    throw new Error('환자 삭제에 실패했습니다.');
+  }
+}
+
 // ---------- Patient Detail ----------
 
 export async function fetchPatientDetail(childId: string) {
   const [childRes, measurementsRes] = await Promise.all([
     supabase.from('children').select('*').eq('id', childId).single(),
     supabase
-      .from('measurements')
+      .from('hospital_measurements')
       .select('*')
       .eq('child_id', childId)
       .order('measured_date', { ascending: false }),
@@ -138,7 +226,7 @@ export async function fetchPatientDetail(childId: string) {
 export async function addMeasurement(
   measurement: Omit<Measurement, 'id' | 'created_at' | 'updated_at'>,
 ) {
-  const { error } = await supabase.from('measurements').insert(measurement);
+  const { error } = await supabase.from('hospital_measurements').insert(measurement);
   if (error) {
     logger.error('Failed to add measurement:', error);
     throw error;
@@ -147,7 +235,7 @@ export async function addMeasurement(
 
 export async function updateMeasurement(id: string, updates: Partial<Measurement>) {
   const { error } = await supabase
-    .from('measurements')
+    .from('hospital_measurements')
     .update({ ...updates, updated_at: new Date().toISOString() })
     .eq('id', id);
 
@@ -158,7 +246,7 @@ export async function updateMeasurement(id: string, updates: Partial<Measurement
 }
 
 export async function deleteMeasurement(id: string) {
-  const { error } = await supabase.from('measurements').delete().eq('id', id);
+  const { error } = await supabase.from('hospital_measurements').delete().eq('id', id);
   if (error) {
     logger.error('Failed to delete measurement:', error);
     throw error;
@@ -220,59 +308,6 @@ export async function fetchRoutineSummaries(
     hasInjection: r.growth_injection === true,
     hasSleep: r.sleep_quality != null || r.sleep_time != null,
   }));
-}
-
-// ---------- Content CRUD ----------
-
-export async function upsertRecipe(recipe: Partial<Recipe> & { title: string }) {
-  const { error } = await supabase.from('recipes').upsert({
-    ...recipe,
-    is_published: recipe.is_published ?? true,
-    order_index: recipe.order_index ?? 0,
-  });
-  if (error) throw error;
-}
-
-export async function deleteRecipe(id: string) {
-  const { error } = await supabase
-    .from('recipes')
-    .update({ is_published: false })
-    .eq('id', id);
-  if (error) throw error;
-}
-
-export async function upsertGuide(guide: Partial<GrowthGuide> & { title: string; content: string }) {
-  const { error } = await supabase.from('growth_guides').upsert({
-    ...guide,
-    is_published: guide.is_published ?? true,
-    order_index: guide.order_index ?? 0,
-  });
-  if (error) throw error;
-}
-
-export async function deleteGuide(id: string) {
-  const { error } = await supabase
-    .from('growth_guides')
-    .update({ is_published: false })
-    .eq('id', id);
-  if (error) throw error;
-}
-
-export async function upsertGrowthCase(c: Partial<GrowthCase> & { patient_name: string }) {
-  const { error } = await supabase.from('growth_cases').upsert({
-    ...c,
-    is_published: c.is_published ?? true,
-    order_index: c.order_index ?? 0,
-  });
-  if (error) throw error;
-}
-
-export async function deleteGrowthCase(id: string) {
-  const { error } = await supabase
-    .from('growth_cases')
-    .update({ is_published: false })
-    .eq('id', id);
-  if (error) throw error;
 }
 
 // ---------- Patient Data Import (CSV) ----------
@@ -344,7 +379,7 @@ export async function importPatients(parentId: string, rows: ImportRow[]) {
       if (childError) throw childError;
 
       if (row.height && child) {
-        await supabase.from('measurements').insert({
+        await supabase.from('hospital_measurements').insert({
           child_id: child.id,
           measured_date: row.measured_date || new Date().toISOString().split('T')[0],
           height: row.height,

@@ -35,8 +35,12 @@ const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout')
 const AdminDashboardPage = lazy(() => import('@/pages/admin/AdminDashboardPage'));
 const AdminPatientsPage = lazy(() => import('@/pages/admin/AdminPatientsPage'));
 const AdminPatientDetailPage = lazy(() => import('@/pages/admin/AdminPatientDetailPage'));
-const AdminContentPage = lazy(() => import('@/pages/admin/AdminContentPage'));
+const AdminVisitNewPage = lazy(() => import('@/pages/admin/AdminVisitNewPage'));
+const AdminVisitDetailPage = lazy(() => import('@/pages/admin/AdminVisitDetailPage'));
+const AdminBoneAgePage = lazy(() => import('@/pages/admin/AdminBoneAgePage'));
 const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
+const AdminDiagramPreviewPage = lazy(() => import('@/pages/admin/AdminDiagramPreviewPage'));
+const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
 
 function SuspenseFallback() {
   return (
@@ -210,10 +214,34 @@ export const router = createBrowserRouter([
             ),
           },
           {
-            path: '/admin/content',
+            path: '/admin/patients/:id/visits/new',
             element: (
               <Suspense fallback={<SuspenseFallback />}>
-                <AdminContentPage />
+                <AdminVisitNewPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/patients/:id/visits/:visitId',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminVisitDetailPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/patients/:id/visits/:visitId/bone-age',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminBoneAgePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/medications',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminMedicationsPage />
               </Suspense>
             ),
           },
@@ -222,6 +250,14 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <AdminImportPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/diagram-preview',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminDiagramPreviewPage />
               </Suspense>
             ),
           },

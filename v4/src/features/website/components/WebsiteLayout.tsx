@@ -8,7 +8,7 @@ interface Props {
 
 export function WebsiteLayout({ children }: Props) {
   return (
-    <div className="min-h-dvh flex flex-col bg-white">
+    <div className="min-h-dvh flex flex-col bg-white md:bg-gray-50">
       <WebsiteHeader />
       <main className="flex-1 overflow-y-auto pb-14">
         {children}

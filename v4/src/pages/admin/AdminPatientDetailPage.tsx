@@ -1,331 +1,319 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import {
-  fetchPatientDetail,
-  addMeasurement,
-  deleteMeasurement,
-} from '@/features/admin/services/adminService';
-import { useUIStore } from '@/stores/uiStore';
-import { calculateAge, calculateAgeAtDate, formatAge } from '@/shared/utils/age';
-import { GrowthChart } from '@/shared/components/GrowthChart';
-import type { GrowthPoint } from '@/shared/components/GrowthChart';
-import { calculateHeightPercentileLMS } from '@/shared/data/growthStandard';
-import { RoutineCalendar } from '@/features/admin/components/RoutineCalendar';
-import type { Child, Measurement, User } from '@/shared/types';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { fetchPatientDetail } from '@/features/admin/services/adminService';
+import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
+import { VisitList } from '@/features/hospital/components/VisitList';
+import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPanel';
+import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
+import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
+import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
+import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
+import { ZoomModal } from '@/shared/components/ZoomModal';
+import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
+import { calculateAge } from '@/shared/utils/age';
+import type { Child, HospitalMeasurement, User, Visit } from '@/shared/types';
+
+type TabKey = 'info' | 'visits';
 
 type ParentInfo = Pick<User, 'id' | 'name' | 'email' | 'phone'>;
 
-interface FormState {
-  measured_date: string;
-  height: string;
-  weight: string;
-  bone_age: string;
-  pah: string;
-  notes: string;
-  doctor_notes: string;
-}
-
-const emptyForm: FormState = {
-  measured_date: new Date().toISOString().split('T')[0],
-  height: '',
-  weight: '',
-  bone_age: '',
-  pah: '',
-  notes: '',
-  doctor_notes: '',
-};
-
 export default function AdminPatientDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const addToast = useUIStore((s) => s.addToast);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab: TabKey = (searchParams.get('tab') as TabKey) === 'info' ? 'info' : 'visits';
+  const setTab = (next: TabKey) => {
+    const sp = new URLSearchParams(searchParams);
+    if (next === 'visits') sp.delete('tab');
+    else sp.set('tab', next);
+    setSearchParams(sp, { replace: true });
+  };
   const [child, setChild] = useState<Child | null>(null);
-  const [measurements, setMeasurements] = useState<Measurement[]>([]);
+  const [measurements, setMeasurements] = useState<HospitalMeasurement[]>([]);
   const [parent, setParent] = useState<ParentInfo | null>(null);
+  const [visits, setVisits] = useState<Visit[]>([]);
   const [loading, setLoading] = useState(true);
-  const [formOpen, setFormOpen] = useState(false);
-  const [chartExpanded, setChartExpanded] = useState(false);
-  const [form, setForm] = useState<FormState>(emptyForm);
-  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
+  const [visitsCollapsed, setVisitsCollapsed] = useState(false);
+  const [comparisonOpen, setComparisonOpen] = useState(false);
 
-  const load = async () => {
-    if (!id) return;
-    try {
-      const data = await fetchPatientDetail(id);
-      setChild(data.child);
-      setMeasurements(data.measurements);
-      setParent(data.parent);
-    } catch {
-      setChild(null);
-    } finally {
-      setLoading(false);
-    }
+  const refreshData = async (childId: string) => {
+    const [detail, vs] = await Promise.all([
+      fetchPatientDetail(childId),
+      fetchVisitsForChild(childId),
+    ]);
+    setChild(detail.child);
+    setMeasurements(detail.measurements as HospitalMeasurement[]);
+    setParent(detail.parent);
+    setVisits(vs);
+    return { visits: vs };
   };
 
-  useEffect(() => { load(); }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (!id) return;
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const { visits: vs } = await refreshData(id);
+        if (cancelled) return;
+        if (vs.length > 0) setSelectedVisitId(vs[0].id);
+      } catch (e) {
+        if (!cancelled) setError(e instanceof Error ? e.message : '환자 정보를 불러오지 못했습니다.');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
-  // 측정 데이터 → GrowthChart 포인트
-  const chartPoints = useMemo<GrowthPoint[]>(() => {
-    if (!child) return [];
-    return measurements
-      .filter((m) => m.height > 0)
-      .map((m) => {
-        const age = calculateAgeAtDate(child.birth_date, new Date(m.measured_date));
-        return { age: age.decimal, height: m.height };
-      })
-      .sort((a, b) => a.age - b.age);
+  // Growth comparison numbers for the header "성장 비교" button / modal.
+  // Computed PER-PATIENT from every measurement we have:
+  //   • initial         = earliest visit with a height measurement
+  //   • firstPredicted  = BA-based PAH from the earliest visit that has
+  //                       BOTH height and bone_age
+  //   • latestPredicted = BA-based PAH from the LATEST visit that has both
+  //
+  // Robust to visits without bone_age or without height — those are skipped
+  // so the diagram can still show a meaningful comparison whenever at least
+  // two BA-complete visits exist.
+  const comparisonHeights = useMemo(() => {
+    if (!child || measurements.length === 0) return null;
+    const byDate = [...measurements].sort(
+      (a, b) => new Date(a.measured_date).getTime() - new Date(b.measured_date).getTime(),
+    );
+
+    const firstWithHeight = byDate.find((m) => m.height && m.height > 0);
+    const withBA = byDate.filter(
+      (m) => m.height && m.height > 0 && m.bone_age != null && m.bone_age > 0,
+    );
+    if (!firstWithHeight || withBA.length === 0) return null;
+
+    const firstBA = withBA[0];
+    const lastBA = withBA[withBA.length - 1];
+
+    const pah = (m: HospitalMeasurement) =>
+      predictAdultHeightByBonePercentile(
+        m.height,
+        m.bone_age!,
+        child.gender === 'male' ? 'M' : 'F',
+        child.nationality ?? 'KR',
+      );
+
+    return {
+      initial: firstWithHeight.height,
+      firstPredicted: pah(firstBA),
+      latestPredicted: pah(lastBA),
+    };
   }, [child, measurements]);
 
-  // 최신 날짜순 정렬된 측정 데이터
-  const sortedMeasurements = useMemo(
-    () => [...measurements].sort((a, b) => b.measured_date.localeCompare(a.measured_date)),
-    [measurements],
+  const selectedVisit = useMemo(
+    () => (selectedVisitId ? visits.find((v) => v.id === selectedVisitId) ?? null : null),
+    [selectedVisitId, visits],
   );
 
-  const handleDelete = async (mId: string) => {
-    if (!window.confirm('이 측정 기록을 삭제하시겠습니까?')) return;
-    try {
-      await deleteMeasurement(mId);
-      addToast('success', '측정 기록이 삭제되었습니다');
-      await load();
-    } catch {
-      addToast('error', '삭제에 실패했습니다');
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!id || !form.height) return;
-    setSubmitting(true);
-    try {
-      await addMeasurement({
-        child_id: id,
-        measured_date: form.measured_date,
-        height: Number(form.height),
-        weight: form.weight ? Number(form.weight) : undefined,
-        bone_age: form.bone_age ? Number(form.bone_age) : undefined,
-        pah: form.pah ? Number(form.pah.split(/[~\-–—]/)[0].trim()) || undefined : undefined,
-        notes: form.notes || undefined,
-        doctor_notes: form.doctor_notes || undefined,
-      });
-      addToast('success', '측정 기록이 추가되었습니다');
-      setForm(emptyForm);
-      setFormOpen(false);
-      await load();
-    } catch {
-      addToast('error', '측정 기록 추가에 실패했습니다');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const set = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((f) => ({ ...f, [key]: e.target.value }));
-
-  if (loading) {
-    return (
-      <div className="space-y-4">
-        <div className="bg-white rounded-xl shadow-sm p-6 h-40 animate-pulse" />
-        <div className="bg-white rounded-xl shadow-sm p-6 h-60 animate-pulse" />
-      </div>
-    );
-  }
-
-  if (!child) {
-    return (
-      <div className="text-center py-20 space-y-4">
-        <p className="text-gray-400 text-lg">환자를 찾을 수 없습니다</p>
-        <button onClick={() => navigate('/admin/patients')} className="text-primary underline text-sm">
-          목록으로 돌아가기
-        </button>
-      </div>
-    );
-  }
+  if (!id) return null;
+  if (loading) return <div className="p-6 text-sm text-gray-500">로딩…</div>;
+  if (error) return <div className="p-6 text-sm text-red-500">{error}</div>;
+  if (!child) return <div className="p-6 text-sm text-red-500">환자를 찾을 수 없습니다.</div>;
 
   const age = calculateAge(child.birth_date);
 
   return (
-    <div className="space-y-6">
-      {/* 환자 정보 */}
-      <div className="bg-white rounded-xl shadow-sm p-6 space-y-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">{child.gender === 'male' ? '\u2642' : '\u2640'}</span>
-            <div>
-              <h1 className="text-xl font-bold">{child.name}</h1>
-              <p className="text-sm text-gray-500">{formatAge(age)} ({child.birth_date})</p>
+    <div className="flex h-full min-h-0 flex-col gap-3">
+      {/* Slim header */}
+      <div className="flex shrink-0 items-center justify-between gap-4 rounded-lg border border-slate-200 bg-white px-3 py-2">
+        <div className="flex items-center gap-3">
+          <img src="/images/logo.jpg" alt="187 성장클리닉" className="h-8 w-auto" />
+          <div>
+            <h1 className="flex items-center gap-2 text-base font-bold leading-tight text-slate-900">
+              <span className="font-mono text-[12px] text-slate-500">#{child.chart_number}</span>
+              <span>{child.name}</span>
+            </h1>
+            <div className="text-[11px] text-slate-500">
+              {child.gender === 'male' ? '남' : '여'} · {child.birth_date} · 만 {age.years}세{age.months}개월
+              {child.father_height ? ` · 父 ${child.father_height}cm` : ''}
+              {child.mother_height ? ` · 母 ${child.mother_height}cm` : ''}
+              {parent ? ` · 보호자 ${parent.name}` : ''}
             </div>
-            <span className={`ml-2 text-xs font-medium px-2 py-0.5 rounded-full ${child.is_active ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-              {child.is_active ? 'Active' : 'Inactive'}
-            </span>
           </div>
-          <button onClick={() => navigate('/admin/patients')} className="text-sm text-gray-500 hover:text-gray-700">
-            &larr; 목록
-          </button>
         </div>
-
-        <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-600">
-          {child.father_height != null && <span>아버지 키: {child.father_height}cm</span>}
-          {child.mother_height != null && <span>어머니 키: {child.mother_height}cm</span>}
-          {parent && <span>보호자: {parent.name} ({parent.phone ?? parent.email})</span>}
-        </div>
-      </div>
-
-      {/* 그래프(좌) + 측정 기록(우) — PC에서 가로 배치 */}
-      <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-        {/* 성장 그래프 */}
-        {chartPoints.length > 0 && (
-          <div className="bg-white rounded-xl shadow-sm p-4 lg:w-[420px] lg:flex-shrink-0">
-            <GrowthChart
-              gender={child.gender}
-              points={chartPoints}
-              zoomable
-              onExpand={() => setChartExpanded(true)}
-            />
-          </div>
-        )}
-
-        {/* 측정 기록 */}
-        <div className="bg-white rounded-xl shadow-sm p-6 space-y-4 flex-1 min-w-0">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">측정 기록 ({measurements.length})</h2>
+        <div className="flex items-center gap-2">
+          <div className="inline-flex overflow-hidden rounded border border-slate-300">
             <button
-              onClick={() => setFormOpen((o) => !o)}
-              className="bg-primary text-white rounded-lg px-4 py-2 text-sm"
+              type="button"
+              onClick={() => setTab('info')}
+              className={
+                'px-3 py-1.5 text-xs font-medium transition ' +
+                (tab === 'info'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-slate-600 hover:bg-slate-50')
+              }
             >
-              {formOpen ? '닫기' : '+ 기록 추가'}
+              기본 정보
+            </button>
+            <button
+              type="button"
+              onClick={() => setTab('visits')}
+              className={
+                'border-l border-slate-300 px-3 py-1.5 text-xs font-medium transition ' +
+                (tab === 'visits'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-slate-600 hover:bg-slate-50')
+              }
+            >
+              진료 기록
             </button>
           </div>
-
-          {/* 측정 추가 폼 */}
-          {formOpen && (
-            <form onSubmit={handleSubmit} className="border border-gray-200 rounded-lg p-4 space-y-3">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <label className="space-y-1">
-                  <span className="text-xs text-gray-500">측정일 *</span>
-                  <input type="date" value={form.measured_date} onChange={set('measured_date')} required className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-                <label className="space-y-1">
-                  <span className="text-xs text-gray-500">키 (cm) *</span>
-                  <input type="number" step="0.1" value={form.height} onChange={set('height')} required className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-                <label className="space-y-1">
-                  <span className="text-xs text-gray-500">체중 (kg)</span>
-                  <input type="number" step="0.1" value={form.weight} onChange={set('weight')} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-                <label className="space-y-1">
-                  <span className="text-xs text-gray-500">뼈나이</span>
-                  <input type="number" step="0.1" value={form.bone_age} onChange={set('bone_age')} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-                <label className="space-y-1">
-                  <span className="text-xs text-gray-500">뼈 예측키 (PAH)</span>
-                  <input type="text" placeholder="예: 165 또는 150~151" value={form.pah} onChange={set('pah')} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-                <label className="space-y-1 col-span-2 md:col-span-1">
-                  <span className="text-xs text-gray-500">메모</span>
-                  <input type="text" value={form.notes} onChange={set('notes')} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-                <label className="space-y-1 col-span-2 md:col-span-1">
-                  <span className="text-xs text-gray-500">의사 소견</span>
-                  <input type="text" value={form.doctor_notes} onChange={set('doctor_notes')} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm" />
-                </label>
-              </div>
-              <div className="flex justify-end">
-                <button type="submit" disabled={submitting} className="bg-primary text-white rounded-lg px-4 py-2 text-sm disabled:opacity-50">
-                  {submitting ? '저장 중...' : '저장'}
-                </button>
-              </div>
-            </form>
-          )}
-
-          {/* 측정 테이블 */}
-          {sortedMeasurements.length === 0 ? (
-            <p className="text-gray-400 text-center py-8 text-sm">측정 기록이 없습니다</p>
-          ) : (
-            <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: '70vh' }}>
-              <table className="w-full text-sm">
-                <thead className="sticky top-0 bg-white">
-                  <tr className="text-left text-gray-500 border-b border-gray-200">
-                    <th className="pb-2 font-medium">날짜</th>
-                    <th className="pb-2 font-medium text-right">키</th>
-                    <th className="pb-2 font-medium text-right">체중</th>
-                    <th className="pb-2 font-medium text-right">만나이</th>
-                    <th className="pb-2 font-medium text-right">뼈나이</th>
-                    <th className="pb-2 font-medium text-right">뼈 예측키</th>
-                    <th className="pb-2 pr-4 font-medium text-right">백분위</th>
-                    <th className="pb-2 pl-4 font-medium">의사 소견</th>
-                    <th className="pb-2" />
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {sortedMeasurements.map((m) => {
-                    const mAge = child ? calculateAgeAtDate(child.birth_date, new Date(m.measured_date)) : null;
-                    const percentile = (mAge && mAge.decimal >= 2 && m.height && child)
-                      ? calculateHeightPercentileLMS(m.height, mAge.decimal, child.gender)
-                      : null;
-                    return (
-                      <tr key={m.id} className="hover:bg-gray-50">
-                        <td className="py-2 whitespace-nowrap">{m.measured_date}</td>
-                        <td className="py-2 text-right font-medium">{m.height}cm</td>
-                        <td className="py-2 text-right text-gray-600">{m.weight != null ? `${m.weight}kg` : '-'}</td>
-                        <td className="py-2 text-right text-gray-600">{mAge ? formatAge(mAge) : '-'}</td>
-                        <td className="py-2 text-right text-gray-600">{m.bone_age != null ? `${Math.floor(m.bone_age)}세 ${Math.round((m.bone_age % 1) * 12)}개월` : '-'}</td>
-                        <td className="py-2 text-right text-purple-600 font-medium">{m.pah != null ? `${m.pah}cm` : ''}</td>
-                        <td className="py-2 pr-4 text-right text-blue-600 font-medium">
-                          {percentile != null ? `${percentile.toFixed(1)}%` : '-'}
-                        </td>
-                        <td className="py-2 pl-4 max-w-[200px] truncate text-gray-600">{m.doctor_notes || m.notes || '-'}</td>
-                        <td className="py-2 text-right">
-                          <button
-                            onClick={() => handleDelete(m.id)}
-                            className="text-red-400 hover:text-red-600 hover:bg-red-50 rounded px-2 py-1 text-xs transition-colors"
-                          >
-                            삭제
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
+          <button
+            type="button"
+            onClick={() => setComparisonOpen(true)}
+            disabled={!comparisonHeights}
+            title="성장 비교"
+            aria-label="성장 비교"
+            className="inline-flex h-8 w-8 items-center justify-center rounded border border-slate-300 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40"
+          >
+            📊
+          </button>
+          <Link
+            to={`/admin/patients/${id}/visits/new`}
+            className="rounded bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
+          >
+            + 새 진료
+          </Link>
         </div>
       </div>
 
-      {/* 생활습관 기록 캘린더 */}
-      <div className="bg-white rounded-xl shadow-sm p-6">
-        <RoutineCalendar childId={child.id} />
-      </div>
-
-      {/* 그래프 크게 보기 모달 */}
-      {chartExpanded && chartPoints.length > 0 && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50" onClick={() => setChartExpanded(false)}>
-          <div
-            className="bg-white rounded-2xl shadow-2xl p-6 max-h-[92vh] overflow-auto"
-            style={{ width: 'min(55vh, 90vw)' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-gray-800">{child.name} — 성장 그래프</h3>
-              <button
-                onClick={() => setChartExpanded(false)}
-                className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
+      {comparisonOpen && comparisonHeights && (
+        <ZoomModal
+          onClose={() => setComparisonOpen(false)}
+          title={`성장 비교 · ${child.name}`}
+          maxWidth="1400px"
+        >
+          <div className="flex h-full flex-col">
+            <div className="flex-1 min-h-0">
+              <GrowthComparisonDiagram
+                initialHeight={comparisonHeights.initial ?? 0}
+                predictedAdultHeight={comparisonHeights.firstPredicted ?? 0}
+                finalHeight={comparisonHeights.latestPredicted ?? 0}
+                lang="ko"
+                className="h-full w-full"
+              />
             </div>
-            <GrowthChart
-              gender={child.gender}
-              points={chartPoints}
-              showTitle={false}
-              zoomable
+            <div className="mt-3 text-center text-xs text-slate-500">
+              초기 키 = 최초 방문 실측 키 · 최초 예측 성인키 = 최초 방문 BA 기반 PAH · 최종 예측 성인키 = 최근 BA 기반 PAH
+            </div>
+          </div>
+        </ZoomModal>
+      )}
+
+      {tab === 'info' && (
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
+        </div>
+      )}
+
+      {tab === 'visits' && (
+      <>
+      {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
+          Chart locks at 60% of the grid width so its size never depends on
+          the X-ray rail state — collapsing X-ray flows its 316px purely into
+          the visits column. */}
+      <div
+        className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
+        style={
+          {
+            ['--cols' as string]: `${
+              visitsCollapsed ? '60px' : '180px'
+            } minmax(360px, 1fr) 52%`,
+          } as React.CSSProperties
+        }
+      >
+        {/* Left: visit list */}
+        <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
+          <div className="flex shrink-0 items-center justify-between gap-1 border-b border-slate-200 px-2 py-2 text-sm font-semibold text-slate-700">
+            {!visitsCollapsed && <span className="px-1">진료 기록</span>}
+            <button
+              type="button"
+              onClick={() => setVisitsCollapsed((c) => !c)}
+              title={visitsCollapsed ? '펼치기' : '접기'}
+              aria-label={visitsCollapsed ? '펼치기' : '접기'}
+              className="ml-auto h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+            >
+              {visitsCollapsed ? '›' : '‹'}
+            </button>
+          </div>
+          <div className={`min-h-0 flex-1 overflow-y-auto ${visitsCollapsed ? 'p-1' : 'p-3'}`}>
+            <VisitList
+              childId={id}
+              visits={visits}
+              selectedVisitId={selectedVisitId}
+              onSelectVisit={setSelectedVisitId}
+              onVisitDeleted={() => {
+                if (id) refreshData(id).catch(() => undefined);
+              }}
             />
           </div>
-        </div>
+        </section>
+
+        {/* Middle: selected visit detail — 측정 / X-ray / Lab / 처방 */}
+        <section className="flex h-full min-h-0 flex-col overflow-hidden">
+          {selectedVisit ? (
+            <VisitDetailPanel
+              child={child}
+              visit={selectedVisit}
+              measurements={measurements}
+              onMeasurementChanged={(m) =>
+                setMeasurements((prev) => {
+                  const rest = prev.filter((x) => x.id !== m.id);
+                  return [...rest, m].sort(
+                    (a, b) =>
+                      new Date(a.measured_date).getTime() -
+                      new Date(b.measured_date).getTime(),
+                  );
+                })
+              }
+              onXraySaved={() => {
+                if (id) refreshData(id).catch(() => undefined);
+              }}
+              onNationalityChange={async (next) => {
+                try {
+                  const updated = await updateChildField(child.id, { nationality: next });
+                  setChild(updated);
+                } catch {
+                  /* noop */
+                }
+              }}
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-200 bg-white text-xs text-slate-400">
+              회차를 선택하세요
+            </div>
+          )}
+        </section>
+
+        {/* Right: growth chart */}
+        <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-3">
+          <AdminPatientGrowthChart
+            child={child}
+            measurements={measurements}
+            selectedVisitId={selectedVisitId}
+            onNationalityChange={async (next) => {
+              try {
+                const updated = await updateChildField(child.id, { nationality: next });
+                setChild(updated);
+              } catch {
+                /* noop */
+              }
+            }}
+          />
+        </section>
+      </div>
+      </>
       )}
     </div>
   );
