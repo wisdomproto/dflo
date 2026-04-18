@@ -175,7 +175,8 @@ export default function AdminPatientDetailPage() {
         </ZoomModal>
       )}
 
-      {/* 첫 상담 · 프레젠테이션 덱 — 기본 정보 위에 접힌 상태로 상주 */}
+      {/* 첫 상담 · 프레젠테이션 덱 — 기본 정보 위에 접힌 상태로 상주.
+          섹션 01~06 은 덱 내부에서 직접 입력 가능(기본 정보 탭과 동일 소스). */}
       <FirstConsultPanel
         expanded={consultExpanded}
         onToggle={() => {
@@ -185,6 +186,8 @@ export default function AdminPatientDetailPage() {
             return next;
           });
         }}
+        child={child}
+        onChildUpdated={setChild}
       />
 
       {/* 기본 정보 — 진료 기록 맨 위에 고정. 기본 접힌 상태, 클릭 시 펼쳐지며
