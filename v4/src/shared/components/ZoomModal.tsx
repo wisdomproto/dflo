@@ -36,7 +36,13 @@ export function ZoomModal({
       onClick={onClose}
     >
       <div
-        className="relative flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-xl"
+        className={
+          'relative flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-xl' +
+          // When no aspect ratio is given, fill the viewport vertically so
+          // children that rely on h-full (like the X-ray 3-pane grid) have
+          // a concrete height to fit into instead of growing past the modal.
+          (aspectRatio ? '' : ' h-[92vh]')
+        }
         style={{
           maxWidth,
           aspectRatio,
