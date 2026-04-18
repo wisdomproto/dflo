@@ -81,6 +81,7 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Admin patient list: `chart_number` UNIQUE NOT NULL (migration 007), search by name OR chart_number, + 환자 추가 / 삭제 (CASCADE) buttons
 - Admin patient detail 3-column: visit list (#번호+날짜만) | VisitDetailPanel | AdminPatientGrowthChart
 - VisitDetailPanel: 측정 · X-ray · 검사(Lab) · 처방 · 생활 습관 (진료 전 30일) 세로 섹션, X-ray onLiveChange → 측정 섹션 뼈나이/PAH 동기화 (측정은 read-only, `?` 툴팁)
+- VisitDetailPanel X-ray/Lab 섹션 접기: 헤더 ▾/▴ 토글, 데이터 없으면 기본 접힘 (`hasXrayImage === false` / `labFileCount === 0`), 요약 배지 "이미지 없음" / "첨부 N"
 - 뼈나이 + 예측 성인키는 X-ray 섹션에서 계산, 측정 섹션은 자동 표시
 - Xray upsert: 동일 visit_id 있으면 UPDATE (이미지 경로 유지); migration 006 anon storage RLS opened
 - Growth chart 우상단 📊 환자 헤더 버튼 → ZoomModal에 GrowthComparisonDiagram (초기키/최초 예측/최종 예측 3명 픽토그램, pencil path 사용)
