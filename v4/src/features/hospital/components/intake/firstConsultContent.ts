@@ -166,40 +166,6 @@ const ko: ConsultSlide[] = [
       '자세 · 척추 측만 평가로 실제 키 손실분 확인.',
     ],
   },
-  {
-    kind: 'methods-comparison',
-    title: '예상 성인 키 — 두 가지 방법',
-    intro:
-      '성인 키 예측은 유전 기반 MPH 와 뼈나이 기반 예측키(Bone-age based PAH) 두 가지를 병행합니다. MPH 는 목표 설정, 뼈나이 기반 예측키는 치료 효과 추적에 쓰입니다.',
-    methods: [
-      {
-        badge: 'MPH',
-        title: '① MPH',
-        subtitle: 'Mid-Parental Height · 중간 부모 키',
-        formula:
-          '남아: (아버지 + 어머니 + 13) ÷ 2 cm\n여아: (아버지 + 어머니 − 13) ÷ 2 cm',
-        formulaNote: '95% 신뢰 구간은 ± 8.5 cm',
-        bullets: [
-          '유전적인 키 잠재력만 반영 — 뼈나이나 현재 성장 속도와 무관.',
-          '빠르고 간편하지만 개인의 성장 편차(사춘기 타이밍)를 못 반영.',
-          '목표 설정의 출발점으로 사용, 단독 판단 근거로는 부족.',
-        ],
-      },
-      {
-        badge: 'Bone-age PAH',
-        title: '② 뼈나이 기반 예측키',
-        subtitle: 'Bone-age based PAH',
-        formula:
-          '뼈나이 시점의 키 백분위를 구하고,\n같은 백분위로 만 18세 표준 키를 역산',
-        formulaNote: 'KDCA 2017 한국 표준성장도표 LMS 데이터 사용',
-        bullets: [
-          '현재 키 + 뼈나이(X-ray) + 성별 3가지로 개별 예측.',
-          '사춘기가 빠른 아이(뼈나이 > 역년령)는 MPH 보다 작게 예측됨.',
-          '매 진료마다 업데이트 가능 — 치료 효과 추적의 핵심 지표.',
-        ],
-      },
-    ],
-  },
 ];
 
 // ------------------------------ ENGLISH -------------------------------
@@ -288,40 +254,6 @@ const en: ConsultSlide[] = [
       'Measure in the morning, same time of day, shoes off.',
       'Body composition (skeletal muscle mass, body fat) uncovers growth inhibitors.',
       'Posture & scoliosis assessment reveals "lost" height.',
-    ],
-  },
-  {
-    kind: 'methods-comparison',
-    title: 'Predicted Adult Height — Two Methods',
-    intro:
-      'We combine a genetics-based MPH estimate with a Bone-age based PAH projection. MPH anchors the target; Bone-age based PAH tracks treatment progress over time.',
-    methods: [
-      {
-        badge: 'MPH',
-        title: '① MPH',
-        subtitle: 'Mid-Parental Height',
-        formula:
-          'Boy: (Father + Mother + 13) ÷ 2 cm\nGirl: (Father + Mother − 13) ÷ 2 cm',
-        formulaNote: '95% confidence interval is ± 8.5 cm',
-        bullets: [
-          'Reflects only genetic potential — independent of bone age or growth velocity.',
-          'Fast and easy, but cannot capture individual pubertal timing.',
-          'Useful as a goal-setting anchor; not a standalone clinical call.',
-        ],
-      },
-      {
-        badge: 'Bone-age PAH',
-        title: '② Bone-age based PAH',
-        subtitle: 'Predicted Adult Height · bone-age anchored',
-        formula:
-          'Compute the height percentile at bone age,\nand back-solve to age 18 at the same percentile.',
-        formulaNote: 'Based on the KDCA 2017 Korean growth standard LMS data.',
-        bullets: [
-          'Individualized from current height + bone age (X-ray) + gender.',
-          'Children with advanced bone age (BA > CA) are predicted lower than MPH.',
-          'Updates every visit — the key metric for tracking treatment efficacy.',
-        ],
-      },
     ],
   },
 ];
