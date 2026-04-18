@@ -99,7 +99,28 @@ export function LifestylePanel({ childId, anchorDate }: Props) {
       ) : routines.length === 0 ? (
         <div className="text-xs text-slate-400">이 달에는 기록이 없습니다.</div>
       ) : (
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-5">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setFilter(null)}
+              className={
+                'rounded-full border px-2 py-0.5 text-[10px] font-semibold transition ' +
+                (filter == null
+                  ? 'border-slate-400 bg-slate-900 text-white'
+                  : 'border-slate-200 bg-white text-slate-500 hover:border-slate-300')
+              }
+              title="모든 카테고리 표시"
+            >
+              전체
+            </button>
+            {filter != null && (
+              <span className="text-[10px] text-slate-500">
+                · 클릭한 카테고리만 캘린더에 표시됩니다
+              </span>
+            )}
+          </div>
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-5">
           {(
             [
               { key: 'sleep', label: '수면', ...evalSleep(routines) },
@@ -134,6 +155,7 @@ export function LifestylePanel({ childId, anchorDate }: Props) {
               <span className="text-[11px] text-slate-500">{c.detail}</span>
             </button>
           ))}
+          </div>
         </div>
       )}
 
@@ -234,6 +256,9 @@ export function LifestylePanel({ childId, anchorDate }: Props) {
           })}
         </div>
         <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[10px] text-slate-500">
+          <FilterChip active={filter == null} onClick={() => setFilter(null)}>
+            전체
+          </FilterChip>
           <FilterChip active={filter === 'sleep'} onClick={() => setFilter(filter === 'sleep' ? null : 'sleep')}>
             <span className="inline-flex items-center gap-1">
               <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
@@ -260,15 +285,6 @@ export function LifestylePanel({ childId, anchorDate }: Props) {
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> 운동
           </FilterChip>
-          {filter != null && (
-            <button
-              type="button"
-              onClick={() => setFilter(null)}
-              className="rounded px-1.5 py-0.5 text-[10px] text-slate-500 hover:bg-slate-100"
-            >
-              필터 해제 ✕
-            </button>
-          )}
           <span className="ml-auto">진료일 = 파랑 테두리</span>
         </div>
       </div>
