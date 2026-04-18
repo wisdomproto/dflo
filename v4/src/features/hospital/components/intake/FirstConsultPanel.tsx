@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { Child, IntakeSurvey } from '@/shared/types';
 import {
   DEFAULT_INTAKE_SURVEY,
@@ -17,12 +17,17 @@ import { IntakeCausesSection } from './IntakeCausesSection';
 import { IntakeClinicalSection } from './IntakeClinicalSection';
 
 /**
- * 첫 상담 프레젠테이션. 기본 정보 위에 접힌 상태로 상주하며, 펼치면
- * 모든 섹션을 세로 스크롤로 한 번에 보여준다(환자/보호자와 스크롤하며
- * 훑어보는 패턴). 한/영 2 가지 언어를 헤더 토글로 전환한다.
+ * 첫 상담 프레젠테이션 (슬라이드 덱 모드).
  *
- * 섹션 01~06 은 설명 하단에 실제 Intake 편집 컴포넌트를 끼워넣어 여기서
- * 바로 입력/수정이 가능하다(기본 정보 탭과 동일한 데이터 소스).
+ * 한 번에 한 장의 슬라이드를 큰 영역으로 보여주고, ← / → 버튼 또는
+ * 방향키로 다음 슬라이드로 넘어간다 (PowerPoint 스타일). KO/EN 언어 토글
+ * 은 헤더에 유지.
+ *
+ * 섹션 01~06 슬라이드는 설명 위에 실제 Intake 편집 컴포넌트를 배치해서
+ * 상담 흐름 안에서 바로 데이터 입력이 가능하다. 편집기 위쪽엔 설명, 아래쪽엔
+ * bullet 포인트를 두 컬럼으로 나누는 레이아웃 대신, 편집기가 먼저 오고
+ * 설명이 아래에 따라오는 구조로 바꿔 좁은 높이 안에서도 입력창이 잘리지
+ * 않게 한다.
  */
 interface Props {
   expanded: boolean;
@@ -39,6 +44,9 @@ export function FirstConsultPanel({
 }: Props) {
   const [lang, setLang] = useState<ConsultLang>('ko');
   const slides = firstConsultContent[lang];
+  const [idx, setIdx] = useState(0);
+  const clamped = Math.min(idx, slides.length - 1);
+  const slide = slides[clamped];
 
   const survey: IntakeSurvey = useMemo(
     () => child.intake_survey ?? DEFAULT_INTAKE_SURVEY,
@@ -50,13 +58,33 @@ export function FirstConsultPanel({
       const updated = await updateIntakeSurvey(child.id, patch);
       onChildUpdated(updated);
     } catch {
-      /* noop — surface via toast when available */
+      /* noop */
     }
   };
 
-  const editorFor = (slide: ConsultSlide): ReactNode => {
-    if (slide.kind !== 'section') return null;
-    switch (slide.badge) {
+  // Keyboard ← / → when expanded and not focused in a form field.
+  useEffect(() => {
+    if (!expanded) return;
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target;
+      if (
+        t instanceof HTMLInputElement ||
+        t instanceof HTMLTextAreaElement ||
+        t instanceof HTMLSelectElement ||
+        (t instanceof HTMLElement && t.isContentEditable)
+      )
+        return;
+      if (e.key === 'ArrowLeft') setIdx((i) => Math.max(0, i - 1));
+      else if (e.key === 'ArrowRight')
+        setIdx((i) => Math.min(slides.length - 1, i + 1));
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [expanded, slides.length]);
+
+  const editorFor = (s: ConsultSlide): ReactNode => {
+    if (s.kind !== 'section') return null;
+    switch (s.badge) {
       case '01':
         return <IntakeBasicInfoSection child={child} onSaved={onChildUpdated} />;
       case '02':
@@ -76,7 +104,9 @@ export function FirstConsultPanel({
       case '05':
         return <IntakeCausesSection survey={survey} onSave={handleSurveyPatch} />;
       case '06':
-        return <IntakeClinicalSection child={child} onChildUpdated={onChildUpdated} />;
+        return (
+          <IntakeClinicalSection child={child} onChildUpdated={onChildUpdated} />
+        );
       default:
         return null;
     }
@@ -101,7 +131,14 @@ export function FirstConsultPanel({
             {expanded ? '클릭하여 접기' : '클릭하여 펼치기'}
           </span>
         </button>
-        {expanded && <LangToggle lang={lang} onChange={setLang} />}
+        {expanded && (
+          <>
+            <LangToggle lang={lang} onChange={setLang} />
+            <span className="text-[11px] tabular-nums text-emerald-800/80">
+              {clamped + 1} / {slides.length}
+            </span>
+          </>
+        )}
         <button
           type="button"
           onClick={onToggle}
@@ -113,30 +150,19 @@ export function FirstConsultPanel({
       </div>
 
       {expanded && (
-        <div className="min-h-0 flex-1 overflow-y-auto bg-gradient-to-b from-white to-emerald-50/30">
-          <div className="flex flex-col">
-            {slides.map((s, i) => {
-              const editor = editorFor(s);
-              return (
-                <div
-                  key={`${lang}-${i}`}
-                  className={i === 0 ? '' : 'border-t border-emerald-100'}
-                >
-                  <SlideRender slide={s} lang={lang} />
-                  {editor && (
-                    <div className="border-t border-emerald-100 bg-white px-8 py-8 md:px-12">
-                      <div className="mx-auto flex max-w-5xl flex-col gap-5">
-                        <div className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
-                          {lang === 'ko' ? '직접 입력' : 'Direct input'}
-                        </div>
-                        {editor}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+        <div className="relative flex min-h-0 flex-1 flex-col bg-gradient-to-b from-white to-emerald-50/30">
+          {/* Slide stage — one slide fills the available height; inner scroll
+              kicks in if the embedded editor pushes beyond the viewport. */}
+          <div className="relative min-h-0 flex-1 overflow-y-auto">
+            <SlideRender slide={slide} lang={lang} editor={editorFor(slide)} />
           </div>
+          <DeckNav
+            idx={clamped}
+            total={slides.length}
+            onPrev={() => setIdx((i) => Math.max(0, i - 1))}
+            onNext={() => setIdx((i) => Math.min(slides.length - 1, i + 1))}
+            onJump={setIdx}
+          />
         </div>
       )}
     </section>
@@ -171,11 +197,68 @@ function LangToggle({
   );
 }
 
-// --------------------------- Slide renderers ---------------------------
-// 각 슬라이드를 세로 스크롤에서 한 화면씩 차지할 수 있도록 큼직하게 렌더.
-// 최소 높이는 90vh 로 잡아 "한 화면 = 한 섹션" 느낌을 살린다.
+function DeckNav({
+  idx,
+  total,
+  onPrev,
+  onNext,
+  onJump,
+}: {
+  idx: number;
+  total: number;
+  onPrev: () => void;
+  onNext: () => void;
+  onJump: (i: number) => void;
+}) {
+  return (
+    <div className="sticky bottom-0 z-10 flex shrink-0 items-center justify-between gap-3 border-t border-emerald-100 bg-white/95 px-4 py-2 backdrop-blur">
+      <button
+        type="button"
+        onClick={onPrev}
+        disabled={idx === 0}
+        className="inline-flex h-8 items-center gap-1 rounded border border-slate-300 bg-white px-3 text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+      >
+        ← 이전
+      </button>
+      <div className="flex items-center gap-1">
+        {Array.from({ length: total }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onJump(i)}
+            aria-label={`슬라이드 ${i + 1}`}
+            className={
+              'h-2 rounded-full transition ' +
+              (i === idx
+                ? 'w-5 bg-emerald-600'
+                : 'w-2 bg-slate-300 hover:bg-slate-400')
+            }
+          />
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={onNext}
+        disabled={idx === total - 1}
+        className="inline-flex h-8 items-center gap-1 rounded border border-slate-300 bg-white px-3 text-sm text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+      >
+        다음 →
+      </button>
+    </div>
+  );
+}
 
-function SlideRender({ slide, lang }: { slide: ConsultSlide; lang: ConsultLang }) {
+// --------------------------- Slide renderers ---------------------------
+
+function SlideRender({
+  slide,
+  lang,
+  editor,
+}: {
+  slide: ConsultSlide;
+  lang: ConsultLang;
+  editor: ReactNode;
+}) {
   switch (slide.kind) {
     case 'cover':
       return <CoverSlide slide={slide} />;
@@ -184,7 +267,7 @@ function SlideRender({ slide, lang }: { slide: ConsultSlide; lang: ConsultLang }
     case 'hospital':
       return <HospitalSlide slide={slide} />;
     case 'section':
-      return <SectionSlide slide={slide} />;
+      return <SectionSlide slide={slide} lang={lang} editor={editor} />;
     case 'method':
       return <MethodSlide slide={slide} lang={lang} />;
   }
@@ -193,21 +276,22 @@ function SlideRender({ slide, lang }: { slide: ConsultSlide; lang: ConsultLang }
 function CoverSlide({ slide }: { slide: Extract<ConsultSlide, { kind: 'cover' }> }) {
   return (
     <div
-      className="relative flex min-h-[90vh] flex-col justify-between px-16 py-20 text-white"
+      className="relative flex min-h-full flex-col justify-between px-16 py-20 text-white"
       style={{ backgroundColor: '#1F4F3C' }}
     >
       <div className="space-y-3">
         <div className="text-xl font-light tracking-wide text-white/85">
           {slide.lineTop}
         </div>
-        <h1 className="text-6xl font-bold leading-tight md:text-7xl">{slide.title}</h1>
+        <h1 className="text-6xl font-bold leading-tight md:text-7xl">
+          {slide.title}
+        </h1>
       </div>
       <div className="space-y-1 text-base text-white/85">
         <div>{slide.footer1}</div>
         <div className="text-xl font-medium text-white">{slide.footer2}</div>
         <div className="pt-3 text-sm text-white/70">{slide.website}</div>
       </div>
-      {/* subtle brand mark in corner */}
       <div className="absolute right-14 top-14 select-none text-right text-[11px] leading-tight text-white/70">
         <div className="text-base tracking-widest">SAEBOM</div>
         <div>당신의 가치를 더하는</div>
@@ -223,7 +307,7 @@ function DirectorSlide({
   slide: Extract<ConsultSlide, { kind: 'director' }>;
 }) {
   return (
-    <div className="grid min-h-[90vh] grid-cols-1 gap-10 px-12 py-16 md:grid-cols-[minmax(0,1fr)_340px]">
+    <div className="grid min-h-full grid-cols-1 gap-10 px-12 py-14 md:grid-cols-[minmax(0,1fr)_340px]">
       <div>
         <div
           className="text-5xl font-bold leading-tight md:text-6xl"
@@ -231,7 +315,7 @@ function DirectorSlide({
         >
           {slide.title}
         </div>
-        <div className="mt-10 space-y-5 text-base">
+        <div className="mt-8 space-y-5 text-base">
           {slide.timeline.map((t) => (
             <div key={t.year} className="grid grid-cols-[72px_1fr] gap-4">
               <div className="font-semibold text-emerald-800">{t.year}</div>
@@ -243,7 +327,7 @@ function DirectorSlide({
             </div>
           ))}
         </div>
-        <ul className="mt-10 list-disc space-y-1.5 pl-6 text-sm text-slate-600">
+        <ul className="mt-8 list-disc space-y-1.5 pl-6 text-sm text-slate-600">
           {slide.extras.map((e) => (
             <li key={e}>{e}</li>
           ))}
@@ -270,7 +354,7 @@ function HospitalSlide({
   slide: Extract<ConsultSlide, { kind: 'hospital' }>;
 }) {
   return (
-    <div className="min-h-[90vh] px-12 py-16">
+    <div className="min-h-full px-12 py-14">
       <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">
         187 Growth Clinic
       </div>
@@ -283,7 +367,7 @@ function HospitalSlide({
       <p className="mt-6 max-w-4xl text-lg leading-relaxed text-slate-700">
         {slide.lead}
       </p>
-      <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+      <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
         {slide.bullets.map((b) => (
           <li
             key={b}
@@ -294,8 +378,7 @@ function HospitalSlide({
           </li>
         ))}
       </ul>
-      {/* Placeholder photo strip — 실사진은 admin 에서 R2/Supabase 에 업로드 후 교체 */}
-      <div className="mt-12 grid grid-cols-6 gap-3">
+      <div className="mt-10 grid grid-cols-6 gap-3">
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
@@ -309,11 +392,15 @@ function HospitalSlide({
 
 function SectionSlide({
   slide,
+  lang,
+  editor,
 }: {
   slide: Extract<ConsultSlide, { kind: 'section' }>;
+  lang: ConsultLang;
+  editor: ReactNode;
 }) {
   return (
-    <div className="min-h-[90vh] px-12 py-16">
+    <div className="min-h-full px-12 py-10">
       <div className="flex items-baseline gap-4">
         <span
           className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-base font-bold text-white"
@@ -328,20 +415,28 @@ function SectionSlide({
           {slide.title}
         </h2>
       </div>
-      <p className="mt-8 max-w-4xl text-lg leading-relaxed text-slate-700">
+      <p className="mt-6 max-w-4xl text-base leading-relaxed text-slate-700">
         {slide.intro}
       </p>
-      <ul className="mt-10 space-y-4">
+      {editor && (
+        <div className="mt-6 rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
+          <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
+            {lang === 'ko' ? '직접 입력' : 'Direct input'}
+          </div>
+          {editor}
+        </div>
+      )}
+      <ul className="mt-6 space-y-3">
         {slide.bullets.map((b) => (
           <li
             key={b}
-            className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+            className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
           >
             <span
-              className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full"
+              className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
               style={{ backgroundColor: '#1F4F3C' }}
             />
-            <span className="text-base text-slate-700">{b}</span>
+            <span className="text-sm text-slate-700">{b}</span>
           </li>
         ))}
       </ul>
@@ -357,7 +452,7 @@ function MethodSlide({
   lang: ConsultLang;
 }) {
   return (
-    <div className="min-h-[90vh] px-12 py-16">
+    <div className="min-h-full px-12 py-14">
       <div className="flex items-center gap-3">
         <span
           className="inline-flex h-12 items-center rounded-full px-5 text-base font-bold tracking-wide text-white"
@@ -384,13 +479,13 @@ function MethodSlide({
         </pre>
         <div className="mt-3 text-sm text-slate-500">{slide.formulaNote}</div>
       </div>
-      <ul className="mt-10 space-y-4">
+      <ul className="mt-8 space-y-3">
         {slide.bullets.map((b) => (
           <li
             key={b}
-            className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+            className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
           >
-            <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" />
+            <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
             <span className="text-base text-slate-700">{b}</span>
           </li>
         ))}
