@@ -282,7 +282,77 @@ function SlideRender({
       return <SurveyBundleSlide slide={slide} lang={lang} editor={editor} />;
     case 'method':
       return <MethodSlide slide={slide} lang={lang} />;
+    case 'methods-comparison':
+      return <MethodsComparisonSlide slide={slide} lang={lang} />;
   }
+}
+
+function MethodsComparisonSlide({
+  slide,
+  lang,
+}: {
+  slide: Extract<ConsultSlide, { kind: 'methods-comparison' }>;
+  lang: ConsultLang;
+}) {
+  return (
+    <div className="min-h-full px-10 py-12">
+      <h2
+        className="text-3xl font-bold leading-tight md:text-4xl"
+        style={{ color: '#1F4F3C' }}
+      >
+        {slide.title}
+      </h2>
+      <p className="mt-3 max-w-4xl text-base leading-relaxed text-slate-700">
+        {slide.intro}
+      </p>
+      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {slide.methods.map((m) => (
+          <div
+            key={m.badge}
+            className="flex flex-col rounded-2xl border-2 border-emerald-200 bg-white p-6 shadow-sm"
+          >
+            <div className="flex items-center gap-3">
+              <span
+                className="inline-flex h-10 items-center rounded-full px-4 text-sm font-bold tracking-wide text-white"
+                style={{ backgroundColor: '#1F4F3C' }}
+              >
+                {m.badge}
+              </span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                {m.subtitle}
+              </span>
+            </div>
+            <h3
+              className="mt-3 text-2xl font-bold leading-tight"
+              style={{ color: '#1F4F3C' }}
+            >
+              {m.title}
+            </h3>
+            <div className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50/50 p-4">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">
+                {lang === 'ko' ? '공식' : 'Formula'}
+              </div>
+              <pre className="mt-1 whitespace-pre-wrap text-sm font-semibold leading-relaxed text-slate-900">
+                {m.formula}
+              </pre>
+              <div className="mt-2 text-xs text-slate-500">{m.formulaNote}</div>
+            </div>
+            <ul className="mt-4 space-y-2">
+              {m.bullets.map((b) => (
+                <li
+                  key={b}
+                  className="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3 text-sm"
+                >
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                  <span className="text-slate-700">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 function SurveyBundleSlide({
