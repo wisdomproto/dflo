@@ -24,10 +24,11 @@ const PEN_SIZE = 2.5;
  * Coords are stored in container-space (0..w, 0..h of the wrapper). When the
  * wrapper resizes, the canvas DPI stays pinned, so strokes redraw correctly.
  */
-export function ZoomableImg({ src, alt, className, scale = 2.5 }: Props) {
+export function ZoomableImg({ src, alt, className, scale: baseScale = 1.5 }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [zoomed, setZoomed] = useState(false);
+  // Continuous zoom level. 1 = fit, >1 = zoomed in.
+  const [zoomLevel, setZoomLevel] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [panning, setPanning] = useState(false);
   const pan = useRef<{ sx: number; sy: number; ox: number; oy: number } | null>(null);
@@ -37,8 +38,13 @@ export function ZoomableImg({ src, alt, className, scale = 2.5 }: Props) {
   const [zoomedStrokes, setZoomedStrokes] = useState<Stroke[]>([]);
   const drawing = useRef<Stroke | null>(null);
 
+  const zoomed = zoomLevel > 1.001;
   const currentStrokes = zoomed ? zoomedStrokes : normalStrokes;
   const setCurrentStrokes = zoomed ? setZoomedStrokes : setNormalStrokes;
+
+  const ZOOM_MIN = 1;
+  const ZOOM_MAX = 8;
+  const ZOOM_STEP = baseScale; // multiplicative per double-click
 
   // Release pan on mouseup anywhere.
   useEffect(() => {
@@ -69,7 +75,7 @@ export function ZoomableImg({ src, alt, className, scale = 2.5 }: Props) {
       drawStroke(ctx, stroke);
     }
     if (drawing.current) drawStroke(ctx, drawing.current);
-  }, [currentStrokes, zoomed]);
+  }, [currentStrokes, zoomed, zoomLevel]);
 
   // Repaint on resize.
   useEffect(() => {
@@ -89,7 +95,13 @@ export function ZoomableImg({ src, alt, className, scale = 2.5 }: Props) {
   };
 
   const cursor =
-    tool === 'draw' ? 'crosshair' : zoomed ? (panning ? 'grabbing' : 'grab') : 'zoom-in';
+    tool === 'draw'
+      ? 'crosshair'
+      : zoomed
+        ? panning
+          ? 'grabbing'
+          : 'grab'
+        : 'zoom-in';
 
   return (
     <div
@@ -146,8 +158,17 @@ export function ZoomableImg({ src, alt, className, scale = 2.5 }: Props) {
       onDoubleClick={(e) => {
         if (tool === 'draw') return;
         e.stopPropagation();
-        setZoomed((z) => !z);
-        setOffset({ x: 0, y: 0 });
+        // Left half of the image → zoom IN, right half → zoom OUT.
+        const rect = wrapRef.current?.getBoundingClientRect();
+        const zoomIn = rect ? e.clientX - rect.left < rect.width / 2 : true;
+        setZoomLevel((z) => {
+          const next = zoomIn
+            ? Math.min(ZOOM_MAX, z * ZOOM_STEP)
+            : Math.max(ZOOM_MIN, z / ZOOM_STEP);
+          // When we return to fit-size, recenter so the image sits flush again.
+          if (next <= ZOOM_MIN + 0.001) setOffset({ x: 0, y: 0 });
+          return next;
+        });
       }}
     >
       <img
@@ -156,7 +177,7 @@ export function ZoomableImg({ src, alt, className, scale = 2.5 }: Props) {
         draggable={false}
         className="h-full w-full select-none object-contain"
         style={{
-          transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoomed ? scale : 1})`,
+          transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoomLevel})`,
           transformOrigin: 'center center',
           transition: panning ? 'none' : 'transform 180ms ease',
           pointerEvents: 'none',
