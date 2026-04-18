@@ -74,19 +74,20 @@ function buildProjection(
   nationality: Nationality,
 ): { x: number; y: number }[] | null {
   if (startReference >= 18) return null;
-  const endCA = Math.min(X_MAX, startCA + (18 - startReference));
+  // Always extend the projection to the chart's right edge (X_MAX) so the
+  // dashed curve visually terminates at CA=18. Beyond the point where the
+  // reference age (BA or CA) hits 18, the height plateaus at the predicted
+  // adult value — modeling growth-plate closure without leaving a visual gap
+  // between the projection and the chart boundary.
   const points: { x: number; y: number }[] = [
     { x: Number(startCA.toFixed(2)), y: startH },
   ];
   const firstInt = Math.ceil(startCA + 0.0001);
-  for (let yr = firstInt; yr < endCA; yr++) {
-    const refAtYr = startReference + (yr - startCA);
-    if (refAtYr >= 18) break;
+  for (let yr = firstInt; yr <= X_MAX; yr++) {
+    const refAtYr = Math.min(18, startReference + (yr - startCA));
     const y = heightAtSamePercentile(startH, startReference, refAtYr, gender, nationality);
     if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
   }
-  const yEnd = heightAtSamePercentile(startH, startReference, 18, gender, nationality);
-  if (yEnd > 0) points.push({ x: Number(endCA.toFixed(2)), y: Number(yEnd.toFixed(1)) });
   return points.length >= 2 ? points : null;
 }
 
@@ -99,7 +100,7 @@ export function AdminPatientGrowthChart({
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
     boneAge: true,
     baProj: true,
-    caProj: true,
+    caProj: false,
     desired: true,
   });
   const [zoomed, setZoomed] = useState(false);
