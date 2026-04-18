@@ -250,27 +250,12 @@ export default function AdminPatientDetailPage() {
           <div className={`min-h-0 flex-1 overflow-y-auto ${visitsCollapsed ? 'p-1' : 'p-3'}`}>
             <VisitList
               childId={id}
-              gender={child.gender}
-              birthDate={child.birth_date}
-              nationality={child.nationality}
               visits={visits}
-              measurements={measurements}
               selectedVisitId={selectedVisitId}
               onSelectVisit={setSelectedVisitId}
-              onMeasurementChanged={(m) =>
-                setMeasurements((prev) => {
-                  const rest = prev.filter((x) => x.id !== m.id);
-                  return [...rest, m].sort(
-                    (a, b) =>
-                      new Date(a.measured_date).getTime() -
-                      new Date(b.measured_date).getTime(),
-                  );
-                })
-              }
               onVisitDeleted={() => {
                 if (id) refreshData(id).catch(() => undefined);
               }}
-              collapsed={visitsCollapsed}
             />
           </div>
         </section>

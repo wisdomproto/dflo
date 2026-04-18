@@ -109,7 +109,12 @@ export function ChildFormModal({ isOpen, onClose, editChild }: ChildFormModalPro
         await updateChild(editChild.id, payload);
         addToast('success', '자녀 정보가 수정되었습니다');
       } else {
-        await addChild({ ...payload, parent_id: '' });
+        // Parent app doesn't know the in-clinic chart number yet. Generate
+        // a placeholder (TMP-xxxxxxxx); admin replaces it via the basic
+        // info tab once the child is assigned a real chart number.
+        const tmpChart =
+          'TMP-' + Math.random().toString(36).slice(2, 10).toUpperCase();
+        await addChild({ ...payload, parent_id: '', chart_number: tmpChart });
         addToast('success', '자녀가 등록되었습니다');
       }
 

@@ -40,13 +40,6 @@ export default function AdminLayout() {
     navigate('/login');
   };
 
-  const linkCls = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-      isActive
-        ? 'bg-primary/10 text-primary'
-        : 'text-gray-600 hover:bg-gray-100'
-    }`;
-
   const sidebar = (
     <nav className="flex flex-col h-full">
       {/* Logo / collapse header */}

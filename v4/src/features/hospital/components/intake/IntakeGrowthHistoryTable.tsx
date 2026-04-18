@@ -102,18 +102,22 @@ export function IntakeGrowthHistoryTable({ survey, onSave }: Props) {
         <FlagChip
           checked={flags.rapid_growth}
           label="최근 키가 부쩍 많이 자란다"
-          onToggle={() => onSave({ growth_flags: { rapid_growth: !flags.rapid_growth } })}
+          onToggle={() =>
+            onSave({ growth_flags: { ...flags, rapid_growth: !flags.rapid_growth } })
+          }
         />
         <FlagChip
           checked={flags.slowed}
           label="최근 크는 속도가 급격히 줄었다"
-          onToggle={() => onSave({ growth_flags: { slowed: !flags.slowed } })}
+          onToggle={() =>
+            onSave({ growth_flags: { ...flags, slowed: !flags.slowed } })
+          }
         />
         <FlagChip
           checked={flags.puberty_concern}
           label="성조숙증이 걱정된다"
           onToggle={() =>
-            onSave({ growth_flags: { puberty_concern: !flags.puberty_concern } })
+            onSave({ growth_flags: { ...flags, puberty_concern: !flags.puberty_concern } })
           }
         />
       </div>
