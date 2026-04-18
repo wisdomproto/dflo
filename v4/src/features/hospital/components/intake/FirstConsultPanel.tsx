@@ -307,8 +307,9 @@ function DirectorSlide({
   slide: Extract<ConsultSlide, { kind: 'director' }>;
 }) {
   return (
-    <div className="grid min-h-full grid-cols-1 gap-10 px-12 py-14 md:grid-cols-[minmax(0,1fr)_340px]">
-      <div>
+    <div className="relative grid min-h-full grid-cols-1 gap-10 px-12 py-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      {/* Left column — bio / timeline */}
+      <div className="relative z-10">
         <div
           className="text-5xl font-bold leading-tight md:text-6xl"
           style={{ color: '#1F4F3C' }}
@@ -333,17 +334,39 @@ function DirectorSlide({
           ))}
         </ul>
       </div>
-      <aside className="flex flex-col items-start justify-between rounded-2xl bg-emerald-50 p-8">
-        <blockquote
-          className="relative font-serif text-3xl leading-snug md:text-4xl"
-          style={{ color: '#1F4F3C' }}
-        >
-          <span className="absolute -left-4 -top-3 text-5xl">“</span>
-          {slide.quote}
-          <span className="ml-1 text-5xl">”</span>
-        </blockquote>
-        <div className="mt-8 text-sm text-emerald-900/70">{slide.footerName}</div>
-      </aside>
+
+      {/* Right column — big serif quote floating over the portrait
+          (portrait already has whitespace on the left so the quote reads
+          cleanly). Text sits above the image via z-index. */}
+      <div className="relative">
+        <img
+          src="/images/director-portrait.png"
+          alt={slide.footerName}
+          className="pointer-events-none absolute inset-y-0 right-0 h-full w-auto max-w-full select-none object-contain object-right"
+          // If the file isn't uploaded yet, fall back to the legacy doctor.jpg
+          // so the slide still renders without a broken icon.
+          onError={(e) => {
+            const el = e.currentTarget as HTMLImageElement;
+            if (!el.dataset.fallback) {
+              el.dataset.fallback = '1';
+              el.src = '/images/doctor.jpg';
+            }
+          }}
+        />
+        <div className="relative z-10 flex min-h-[60vh] flex-col justify-between">
+          <blockquote
+            className="font-serif text-3xl leading-snug md:text-4xl"
+            style={{ color: '#1F4F3C' }}
+          >
+            <span className="mr-1 text-5xl align-top">“</span>
+            {slide.quote}
+            <span className="ml-1 text-5xl align-top">”</span>
+          </blockquote>
+          <div className="self-end text-right text-sm font-semibold text-emerald-900/80">
+            {slide.footerName}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
