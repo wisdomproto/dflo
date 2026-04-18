@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchPatientDetail } from '@/features/admin/services/adminService';
 import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
 import { VisitList } from '@/features/hospital/components/VisitList';
@@ -13,20 +13,10 @@ import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/grow
 import { calculateAge } from '@/shared/utils/age';
 import type { Child, HospitalMeasurement, User, Visit } from '@/shared/types';
 
-type TabKey = 'info' | 'visits';
-
 type ParentInfo = Pick<User, 'id' | 'name' | 'email' | 'phone'>;
 
 export default function AdminPatientDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const tab: TabKey = (searchParams.get('tab') as TabKey) === 'info' ? 'info' : 'visits';
-  const setTab = (next: TabKey) => {
-    const sp = new URLSearchParams(searchParams);
-    if (next === 'visits') sp.delete('tab');
-    else sp.set('tab', next);
-    setSearchParams(sp, { replace: true });
-  };
   const [child, setChild] = useState<Child | null>(null);
   const [measurements, setMeasurements] = useState<HospitalMeasurement[]>([]);
   const [parent, setParent] = useState<ParentInfo | null>(null);
@@ -37,6 +27,8 @@ export default function AdminPatientDetailPage() {
   const [chartCollapsed, setChartCollapsed] = useState(false);
   const [detailCollapsed, setDetailCollapsed] = useState(false);
   const [comparisonOpen, setComparisonOpen] = useState(false);
+  // 기본 정보는 진료 기록 상단에 접힌 채로 고정 — 필요할 때만 펼침
+  const [intakeExpanded, setIntakeExpanded] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -144,32 +136,6 @@ export default function AdminPatientDetailPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="inline-flex overflow-hidden rounded border border-slate-300">
-            <button
-              type="button"
-              onClick={() => setTab('info')}
-              className={
-                'px-3 py-1.5 text-xs font-medium transition ' +
-                (tab === 'info'
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-white text-slate-600 hover:bg-slate-50')
-              }
-            >
-              기본 정보
-            </button>
-            <button
-              type="button"
-              onClick={() => setTab('visits')}
-              className={
-                'border-l border-slate-300 px-3 py-1.5 text-xs font-medium transition ' +
-                (tab === 'visits'
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-white text-slate-600 hover:bg-slate-50')
-              }
-            >
-              진료 기록
-            </button>
-          </div>
           <button
             type="button"
             onClick={() => setComparisonOpen(true)}
@@ -206,14 +172,30 @@ export default function AdminPatientDetailPage() {
         </ZoomModal>
       )}
 
-      {tab === 'info' && (
-        <div className="min-h-0 flex-1 overflow-y-auto">
-          <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
-        </div>
-      )}
+      {/* 기본 정보 — 진료 기록 맨 위에 고정. 기본 접힌 상태, 클릭 시 펼침. */}
+      <section className="shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white">
+        <button
+          type="button"
+          onClick={() => setIntakeExpanded((v) => !v)}
+          className="flex w-full items-center justify-between px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+        >
+          <span className="flex items-center gap-2">
+            <span className="text-[11px] uppercase tracking-wider text-indigo-600">
+              기본 정보
+            </span>
+            <span className="text-[11px] font-normal text-slate-400">
+              {intakeExpanded ? '클릭하여 접기' : '클릭하여 펼치기'}
+            </span>
+          </span>
+          <span className="text-slate-500">{intakeExpanded ? '▴' : '▾'}</span>
+        </button>
+        {intakeExpanded && (
+          <div className="max-h-[60vh] overflow-y-auto border-t border-slate-200">
+            <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
+          </div>
+        )}
+      </section>
 
-      {tab === 'visits' && (
-      <>
       {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
           Chart locks at 60% of the grid width so its size never depends on
           the X-ray rail state — collapsing X-ray flows its 316px purely into
@@ -389,8 +371,6 @@ export default function AdminPatientDetailPage() {
           )}
         </section>
       </div>
-      </>
-      )}
     </div>
   );
 }
