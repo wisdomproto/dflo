@@ -172,25 +172,32 @@ export default function AdminPatientDetailPage() {
         </ZoomModal>
       )}
 
-      {/* 기본 정보 — 진료 기록 맨 위에 고정. 기본 접힌 상태, 클릭 시 펼침. */}
-      <section className="shrink-0 overflow-hidden rounded-lg border border-slate-200 bg-white">
+      {/* 기본 정보 — 진료 기록 맨 위에 고정. 기본 접힌 상태, 클릭 시 펼쳐지며
+          펼쳐지면 남은 세로 공간 전체를 차지(3단 레이아웃 일시 숨김)해서 X-ray
+          입력 · 성장 그래프 · 검사(Lab) 섹션까지 모두 보이게 한다. 다시 접으면
+          3단 레이아웃이 돌아온다. */}
+      <section
+        className={`overflow-hidden rounded-lg border border-slate-200 bg-white ${
+          intakeExpanded ? 'flex min-h-0 flex-1 flex-col' : 'shrink-0'
+        }`}
+      >
         <button
           type="button"
           onClick={() => setIntakeExpanded((v) => !v)}
-          className="flex w-full items-center justify-between px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+          className="flex w-full shrink-0 items-center justify-between px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
         >
           <span className="flex items-center gap-2">
             <span className="text-[11px] uppercase tracking-wider text-indigo-600">
               기본 정보
             </span>
             <span className="text-[11px] font-normal text-slate-400">
-              {intakeExpanded ? '클릭하여 접기' : '클릭하여 펼치기'}
+              {intakeExpanded ? '클릭하여 접기 (진료 기록 보기)' : '클릭하여 펼치기'}
             </span>
           </span>
           <span className="text-slate-500">{intakeExpanded ? '▴' : '▾'}</span>
         </button>
         {intakeExpanded && (
-          <div className="max-h-[60vh] overflow-y-auto border-t border-slate-200">
+          <div className="min-h-0 flex-1 overflow-y-auto border-t border-slate-200">
             <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
           </div>
         )}
@@ -199,7 +206,8 @@ export default function AdminPatientDetailPage() {
       {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
           Chart locks at 60% of the grid width so its size never depends on
           the X-ray rail state — collapsing X-ray flows its 316px purely into
-          the visits column. */}
+          the visits column. 기본 정보가 펼쳐져 있으면 숨김. */}
+      {!intakeExpanded && (
       <div
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
@@ -371,6 +379,7 @@ export default function AdminPatientDetailPage() {
           )}
         </section>
       </div>
+      )}
     </div>
   );
 }
