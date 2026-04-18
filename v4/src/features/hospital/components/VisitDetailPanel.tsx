@@ -15,6 +15,7 @@ import { calculateAgeAtDate } from '@/shared/utils/age';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
+import { fetchXrayReadingsByVisit } from '@/features/bone-age/services/xrayReadingService';
 import { XrayPanel } from './XrayPanel';
 import { PrescriptionsBlock } from './PrescriptionsBlock';
 import { LifestylePanel } from './LifestylePanel';
@@ -56,6 +57,41 @@ export function VisitDetailPanel({
   // Reset live state when switching to a different visit.
   useEffect(() => {
     setLiveXray({ boneAge: null, predictedAdult: null });
+  }, [visit.id]);
+
+  // Presence probes so X-ray and Lab sections auto-collapse when empty.
+  const [hasXrayImage, setHasXrayImage] = useState<boolean | null>(null);
+  const [labFileCount, setLabFileCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setHasXrayImage(null);
+    setLabFileCount(null);
+    (async () => {
+      try {
+        const [xrs, labs] = await Promise.all([
+          fetchXrayReadingsByVisit(visit.id),
+          fetchLabTestsByVisit(visit.id),
+        ]);
+        if (cancelled) return;
+        setHasXrayImage(xrs.some((r) => !!r.image_path));
+        const files = labs.flatMap(
+          (l) =>
+            (l.result_data as unknown as { files?: { name: string; url: string }[] })
+              ?.files ?? [],
+        );
+        setLabFileCount(files.length);
+      } catch (e) {
+        if (!cancelled) {
+          logger.error('section presence probe failed', e);
+          setHasXrayImage(false);
+          setLabFileCount(0);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [visit.id]);
 
   const effectiveBoneAge = liveXray.boneAge ?? m?.bone_age ?? null;
@@ -141,7 +177,19 @@ export function VisitDetailPanel({
         </div>
       </Section>
 
-      <Section title="X-ray" accent="indigo">
+      <Section
+        title="X-ray"
+        accent="indigo"
+        collapsible
+        defaultCollapsed={hasXrayImage === false}
+        summary={
+          hasXrayImage == null
+            ? undefined
+            : hasXrayImage
+              ? undefined
+              : '이미지 없음'
+        }
+      >
         <XrayPanel
           child={child}
           visit={visit}
@@ -157,7 +205,19 @@ export function VisitDetailPanel({
         />
       </Section>
 
-      <Section title="검사 (Lab)" accent="sky">
+      <Section
+        title="검사 (Lab)"
+        accent="sky"
+        collapsible
+        defaultCollapsed={labFileCount === 0}
+        summary={
+          labFileCount == null
+            ? undefined
+            : labFileCount > 0
+              ? `첨부 ${labFileCount}`
+              : '첨부 없음'
+        }
+      >
         <LabSection
           visitId={visit.id}
           childId={child.id}
@@ -180,10 +240,22 @@ function Section({
   title,
   accent,
   children,
+  collapsible = false,
+  defaultCollapsed = false,
+  summary,
 }: {
   title: string;
   accent: 'emerald' | 'indigo' | 'sky' | 'violet';
   children: React.ReactNode;
+  /** Render a collapse toggle in the header. Default false. */
+  collapsible?: boolean;
+  /** Initial collapsed state (only used when collapsible). Re-evaluated
+   *  whenever the value changes — useful when parent recomputes based on
+   *  whether data exists for the selected visit. */
+  defaultCollapsed?: boolean;
+  /** Small text shown next to the title summarizing the collapsed state
+   *  (e.g. "이미지 없음" or "첨부 3"). */
+  summary?: string;
 }) {
   const bars: Record<typeof accent, string> = {
     emerald: 'bg-emerald-500',
@@ -191,18 +263,38 @@ function Section({
     sky: 'bg-sky-500',
     violet: 'bg-violet-500',
   };
-  // No overflow-hidden — each section must size to its content so nothing
-  // is clipped. The accent bar is absolute-positioned and uses inset-y-0
-  // so it still spans the full height.
+  const [collapsed, setCollapsed] = useState(defaultCollapsed);
+  // Sync with parent-calculated default when it changes (e.g. new visit
+  // selected and it has/doesn't have data for this section).
+  useEffect(() => {
+    if (!collapsible) return;
+    setCollapsed(defaultCollapsed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultCollapsed]);
+
   return (
     <section className="relative shrink-0 rounded-lg border border-slate-200 bg-white shadow-sm">
       <div
         className={`pointer-events-none absolute inset-y-0 left-0 w-1 rounded-l-lg ${bars[accent]}`}
       />
-      <div className="border-b border-slate-100 px-4 py-2 pl-5 text-[12px] font-semibold uppercase tracking-wide text-slate-700">
-        {title}
+      <div className="flex items-center justify-between gap-2 border-b border-slate-100 px-4 py-2 pl-5 text-[12px] font-semibold uppercase tracking-wide text-slate-700">
+        <div className="flex items-baseline gap-2">
+          <span>{title}</span>
+          {summary && <span className="text-[10px] font-normal text-slate-400 normal-case tracking-normal">{summary}</span>}
+        </div>
+        {collapsible && (
+          <button
+            type="button"
+            onClick={() => setCollapsed((c) => !c)}
+            title={collapsed ? '펼치기' : '접기'}
+            aria-label={collapsed ? '펼치기' : '접기'}
+            className="h-6 w-6 rounded border border-slate-200 text-slate-500 hover:bg-slate-50"
+          >
+            {collapsed ? '▾' : '▴'}
+          </button>
+        )}
       </div>
-      <div className="px-4 py-3 pl-5">{children}</div>
+      {!collapsed && <div className="px-4 py-3 pl-5">{children}</div>}
     </section>
   );
 }
