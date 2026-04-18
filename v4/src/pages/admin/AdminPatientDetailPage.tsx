@@ -6,6 +6,7 @@ import { VisitList } from '@/features/hospital/components/VisitList';
 import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
 import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
+import { FirstConsultPanel } from '@/features/hospital/components/intake/FirstConsultPanel';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
 import { ZoomModal } from '@/shared/components/ZoomModal';
@@ -29,6 +30,8 @@ export default function AdminPatientDetailPage() {
   const [comparisonOpen, setComparisonOpen] = useState(false);
   // 기본 정보는 진료 기록 상단에 접힌 채로 고정 — 필요할 때만 펼침
   const [intakeExpanded, setIntakeExpanded] = useState(false);
+  // 첫 상담 프레젠테이션 덱도 접힌 채로 상주 — 펼치면 슬라이드 덱이 열림
+  const [consultExpanded, setConsultExpanded] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -172,18 +175,36 @@ export default function AdminPatientDetailPage() {
         </ZoomModal>
       )}
 
+      {/* 첫 상담 · 프레젠테이션 덱 — 기본 정보 위에 접힌 상태로 상주 */}
+      <FirstConsultPanel
+        expanded={consultExpanded}
+        onToggle={() => {
+          setConsultExpanded((v) => {
+            const next = !v;
+            if (next) setIntakeExpanded(false);
+            return next;
+          });
+        }}
+      />
+
       {/* 기본 정보 — 진료 기록 맨 위에 고정. 기본 접힌 상태, 클릭 시 펼쳐지며
           펼쳐지면 남은 세로 공간 전체를 차지(3단 레이아웃 일시 숨김)해서 X-ray
           입력 · 성장 그래프 · 검사(Lab) 섹션까지 모두 보이게 한다. 다시 접으면
-          3단 레이아웃이 돌아온다. */}
+          3단 레이아웃이 돌아온다. 첫 상담이 펼쳐져 있으면 기본 정보는 접힘. */}
       <section
         className={`overflow-hidden rounded-lg border border-slate-200 bg-white ${
-          intakeExpanded ? 'flex min-h-0 flex-1 flex-col' : 'shrink-0'
+          intakeExpanded && !consultExpanded ? 'flex min-h-0 flex-1 flex-col' : 'shrink-0'
         }`}
       >
         <button
           type="button"
-          onClick={() => setIntakeExpanded((v) => !v)}
+          onClick={() => {
+            setIntakeExpanded((v) => {
+              const next = !v;
+              if (next) setConsultExpanded(false);
+              return next;
+            });
+          }}
           className="flex w-full shrink-0 items-center justify-between px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
         >
           <span className="flex items-center gap-2">
@@ -196,7 +217,7 @@ export default function AdminPatientDetailPage() {
           </span>
           <span className="text-slate-500">{intakeExpanded ? '▴' : '▾'}</span>
         </button>
-        {intakeExpanded && (
+        {intakeExpanded && !consultExpanded && (
           <div className="min-h-0 flex-1 overflow-y-auto border-t border-slate-200">
             <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
           </div>
@@ -206,8 +227,8 @@ export default function AdminPatientDetailPage() {
       {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
           Chart locks at 60% of the grid width so its size never depends on
           the X-ray rail state — collapsing X-ray flows its 316px purely into
-          the visits column. 기본 정보가 펼쳐져 있으면 숨김. */}
-      {!intakeExpanded && (
+          the visits column. 첫 상담 / 기본 정보가 펼쳐져 있으면 숨김. */}
+      {!intakeExpanded && !consultExpanded && (
       <div
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
