@@ -34,8 +34,8 @@ export default function AdminPatientDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
-  const [visitsCollapsed, setVisitsCollapsed] = useState(false);
   const [chartCollapsed, setChartCollapsed] = useState(false);
+  const [detailCollapsed, setDetailCollapsed] = useState(false);
   const [comparisonOpen, setComparisonOpen] = useState(false);
 
   const refreshData = async (childId: string) => {
@@ -228,27 +228,18 @@ export default function AdminPatientDetailPage() {
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
           {
-            ['--cols' as string]: `${
-              visitsCollapsed ? '60px' : '180px'
-            } minmax(360px, 1fr) ${chartCollapsed ? '44px' : '52%'}`,
+            ['--cols' as string]: `180px ${
+              detailCollapsed ? '44px' : 'minmax(360px, 1fr)'
+            } ${chartCollapsed ? '44px' : '52%'}`,
           } as React.CSSProperties
         }
       >
-        {/* Left: visit list */}
+        {/* Left: visit list (always expanded) */}
         <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white">
-          <div className="flex shrink-0 items-center justify-between gap-1 border-b border-slate-200 px-2 py-2 text-sm font-semibold text-slate-700">
-            {!visitsCollapsed && <span className="px-1">진료 기록</span>}
-            <button
-              type="button"
-              onClick={() => setVisitsCollapsed((c) => !c)}
-              title={visitsCollapsed ? '펼치기' : '접기'}
-              aria-label={visitsCollapsed ? '펼치기' : '접기'}
-              className="ml-auto h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
-            >
-              {visitsCollapsed ? '›' : '‹'}
-            </button>
+          <div className="shrink-0 border-b border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700">
+            진료 기록
           </div>
-          <div className={`min-h-0 flex-1 overflow-y-auto ${visitsCollapsed ? 'p-1' : 'p-3'}`}>
+          <div className="min-h-0 flex-1 overflow-y-auto p-3">
             <VisitList
               childId={id}
               visits={visits}
@@ -261,38 +252,78 @@ export default function AdminPatientDetailPage() {
           </div>
         </section>
 
-        {/* Middle: selected visit detail — 측정 / X-ray / Lab / 처방 */}
-        <section className="flex h-full min-h-0 flex-col overflow-hidden">
-          {selectedVisit ? (
-            <VisitDetailPanel
-              child={child}
-              visit={selectedVisit}
-              measurements={measurements}
-              onMeasurementChanged={(m) =>
-                setMeasurements((prev) => {
-                  const rest = prev.filter((x) => x.id !== m.id);
-                  return [...rest, m].sort(
-                    (a, b) =>
-                      new Date(a.measured_date).getTime() -
-                      new Date(b.measured_date).getTime(),
-                  );
-                })
-              }
-              onXraySaved={() => {
-                if (id) refreshData(id).catch(() => undefined);
-              }}
-              onNationalityChange={async (next) => {
-                try {
-                  const updated = await updateChildField(child.id, { nationality: next });
-                  setChild(updated);
-                } catch {
-                  /* noop */
-                }
-              }}
-            />
+        {/* Middle: selected visit detail — 측정 / X-ray / Lab / 처방 (collapsible to 44px rail) */}
+        <section
+          className={`flex h-full min-h-0 flex-col overflow-hidden ${
+            detailCollapsed ? 'items-center rounded-lg border border-slate-200 bg-white py-2' : ''
+          }`}
+        >
+          {detailCollapsed ? (
+            <>
+              <button
+                type="button"
+                onClick={() => setDetailCollapsed(false)}
+                title="진료 내역 펼치기"
+                aria-label="진료 내역 펼치기"
+                className="mb-2 h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+              >
+                ›
+              </button>
+              <div
+                className="text-[10px] font-semibold uppercase tracking-wider text-slate-500"
+                style={{ writingMode: 'vertical-rl' }}
+              >
+                진료 내역
+              </div>
+            </>
           ) : (
-            <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-200 bg-white text-xs text-slate-400">
-              회차를 선택하세요
+            <div className="flex h-full min-h-0 flex-col gap-1">
+              <div className="flex items-center justify-between">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                  진료 내역
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setDetailCollapsed(true)}
+                  title="진료 내역 접기"
+                  aria-label="진료 내역 접기"
+                  className="h-7 w-7 rounded border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                >
+                  ‹
+                </button>
+              </div>
+              {selectedVisit ? (
+                <VisitDetailPanel
+                  child={child}
+                  visit={selectedVisit}
+                  measurements={measurements}
+                  onMeasurementChanged={(m) =>
+                    setMeasurements((prev) => {
+                      const rest = prev.filter((x) => x.id !== m.id);
+                      return [...rest, m].sort(
+                        (a, b) =>
+                          new Date(a.measured_date).getTime() -
+                          new Date(b.measured_date).getTime(),
+                      );
+                    })
+                  }
+                  onXraySaved={() => {
+                    if (id) refreshData(id).catch(() => undefined);
+                  }}
+                  onNationalityChange={async (next) => {
+                    try {
+                      const updated = await updateChildField(child.id, { nationality: next });
+                      setChild(updated);
+                    } catch {
+                      /* noop */
+                    }
+                  }}
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-200 bg-white text-xs text-slate-400">
+                  회차를 선택하세요
+                </div>
+              )}
             </div>
           )}
         </section>
