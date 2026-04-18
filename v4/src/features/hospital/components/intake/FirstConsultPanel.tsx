@@ -344,7 +344,7 @@ function DirectorSlide({
         <img
           src="/first_session/원장님.png"
           alt={slide.footerName}
-          className="pointer-events-none absolute inset-y-0 left-0 h-full w-auto max-w-full select-none object-contain object-left"
+          className="pointer-events-none absolute inset-y-0 left-24 h-full w-auto max-w-[calc(100%-6rem)] select-none object-contain object-left"
           onError={(e) => {
             const el = e.currentTarget as HTMLImageElement;
             if (!el.dataset.fallback) {
