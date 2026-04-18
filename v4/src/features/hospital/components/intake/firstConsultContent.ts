@@ -41,6 +41,13 @@ type SectionSlide = {
   bullets: string[];
 };
 
+/** 기본 정보 01~05 를 한 슬라이드에 묶는 번들 뷰. */
+type SurveyBundleSlide = {
+  kind: 'survey-bundle';
+  title: string;
+  intro: string;
+};
+
 type MethodSlide = {
   kind: 'method';
   badge: string; // e.g. "MPH" or "PAH"
@@ -56,6 +63,7 @@ export type ConsultSlide =
   | DirectorSlide
   | HospitalSlide
   | SectionSlide
+  | SurveyBundleSlide
   | MethodSlide;
 
 // ------------------------------ KOREAN --------------------------------
@@ -125,64 +133,10 @@ const ko: ConsultSlide[] = [
     ],
   },
   {
-    kind: 'section',
-    badge: '01',
-    title: '기본 정보 · 부모님 키',
+    kind: 'survey-bundle',
+    title: '기본 정보 · 초진 설문',
     intro:
-      '환자 정보와 부모님 성인 키(부·모)를 기록합니다. 부모님 키는 MPH 계산과 유전적 성장 잠재력 평가의 기초가 됩니다.',
-    bullets: [
-      '생년월일로 역년령(CA)과 학년을 산출합니다.',
-      '부모님 키로 중간부모키(MPH)를 계산합니다.',
-      '희망 성인 키를 함께 기록해 목표 설정에 활용합니다.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '02',
-    title: '성장 이력',
-    intro:
-      '만 8세부터 16세까지 해마다 측정한 키를 시계열로 확인합니다. 연간 성장 속도(Growth Velocity)가 가장 중요한 지표입니다.',
-    bullets: [
-      '정상 범위: 사춘기 전 4~6cm/년, 사춘기 피크 8~12cm/년.',
-      '2년 연속 연 4cm 미만이면 성장 저하를 의심합니다.',
-      '엑셀 데이터 붙여넣기 지원(학교 건강검진 표 그대로 사용 가능).',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '03',
-    title: '가족력 · 운동',
-    intro:
-      '형제자매의 성장 패턴, 부모의 사춘기 시기, 현재 참여 중인 운동을 파악합니다. 가족 내 조숙/만숙 경향이 유전됩니다.',
-    bullets: [
-      '부모의 초경·변성기 시기로 사춘기 타이밍을 예측합니다.',
-      '형제 중 저신장·성조숙증 사례 여부 확인.',
-      '현재 운동 종목 · 주당 시간 · 근력/유연성 균형 평가.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '04',
-    title: '사춘기 단계 (Tanner) · 만성 질환',
-    intro:
-      '사춘기 진행 정도(Tanner 1~5)를 평가하고, 치료에 영향을 주는 만성 질환·복용 약물을 기록합니다.',
-    bullets: [
-      'Tanner 단계에 따라 남은 성장 기간이 결정됩니다.',
-      '아토피 · 알레르기 · 비염 등 면역 관련 질환 여부.',
-      '복용 약물(스테로이드 등)이 성장에 미치는 영향 체크.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '05',
-    title: '저신장 원인 평가',
-    intro:
-      '저신장의 가능한 원인을 체크리스트로 분류합니다. 원인이 다르면 치료 방향도 달라집니다.',
-    bullets: [
-      '가족성 저신장 · 체질성 성장지연 · 성조숙증 · 내분비 질환 등.',
-      '수면 부족 · 편식 · 운동 부족 같은 생활 요인 별도 구분.',
-      '원인별로 맞춤 치료 플랜(성장주사·생활개선·호르몬 치료) 수립.',
-    ],
+      '환자 정보부터 성장 이력 · 가족력 · 사춘기 평가 · 저신장 원인까지 한 번에 기록합니다. 각 섹션은 아래에서 직접 입력 가능하며, 입력한 값은 자동 저장되어 기본 정보 탭과 실시간 공유됩니다.',
   },
   {
     kind: 'section',
@@ -297,64 +251,10 @@ const en: ConsultSlide[] = [
     ],
   },
   {
-    kind: 'section',
-    badge: '01',
-    title: 'Basic Information · Parental Heights',
+    kind: 'survey-bundle',
+    title: 'Basic Info · Intake Survey',
     intro:
-      'Patient info and adult heights of both parents. Parental heights are the foundation of MPH calculation and genetic height potential estimation.',
-    bullets: [
-      'Birth date yields chronological age (CA) and grade level.',
-      'Parental heights feed the Mid-Parental Height (MPH) formula.',
-      'Desired adult height is also recorded to anchor treatment goals.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '02',
-    title: 'Growth History',
-    intro:
-      'Yearly heights from age 8 to 16 as a time series. The most important metric is annual growth velocity.',
-    bullets: [
-      'Normal range: 4–6 cm/yr before puberty, 8–12 cm/yr at peak pubertal velocity.',
-      'Growth below 4 cm/yr for two consecutive years is a red flag.',
-      'Excel paste supported — school checkup tables can be pasted directly.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '03',
-    title: 'Family History · Exercise',
-    intro:
-      'Sibling growth patterns, parental pubertal timing, and current sports participation. Early/late puberty tends to run in families.',
-    bullets: [
-      'Maternal menarche / paternal voice-change age predicts pubertal timing.',
-      'History of short stature or precocious puberty among siblings.',
-      'Current sport · hours per week · strength vs flexibility balance.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '04',
-    title: 'Pubertal Stage (Tanner) · Chronic Conditions',
-    intro:
-      'Tanner stage (1–5) plus any chronic disease or medication that impacts growth and treatment planning.',
-    bullets: [
-      'Tanner stage determines the remaining growth window.',
-      'Immune conditions: atopic dermatitis, allergic rhinitis, asthma.',
-      'Medication effects — especially chronic steroid use — on growth.',
-    ],
-  },
-  {
-    kind: 'section',
-    badge: '05',
-    title: 'Short-Stature Cause Assessment',
-    intro:
-      'Checklist of possible underlying causes. Different causes require different treatment directions.',
-    bullets: [
-      'Familial · constitutional delay · precocious puberty · endocrine disorders.',
-      'Lifestyle factors — sleep deficit, picky eating, inactivity — are classified separately.',
-      'Treatment plan (injections · lifestyle · hormone therapy) is matched to the cause.',
-    ],
+      'Patient basics, growth history, family/exercise, pubertal stage, and short-stature causes — all captured in one place. Each section below is editable; values save automatically and stay in sync with the 기본 정보 tab.',
   },
   {
     kind: 'section',

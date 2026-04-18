@@ -1,9 +1,18 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import type { Child, IntakeSurvey } from '@/shared/types';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
+import type { Child, HospitalMeasurement, IntakeSurvey, Visit } from '@/shared/types';
 import {
   DEFAULT_INTAKE_SURVEY,
   updateIntakeSurvey,
 } from '@/features/hospital/services/intakeSurveyService';
+import {
+  getOrCreateIntakeVisit,
+  updateVisit,
+} from '@/features/hospital/services/visitService';
+import {
+  fetchMeasurementsByVisit,
+  upsertMeasurementField,
+} from '@/features/hospital/services/hospitalMeasurementService';
+import { logger } from '@/shared/lib/logger';
 import {
   firstConsultContent,
   type ConsultLang,
@@ -83,26 +92,27 @@ export function FirstConsultPanel({
   }, [expanded, slides.length]);
 
   const editorFor = (s: ConsultSlide): ReactNode => {
-    if (s.kind !== 'section') return null;
-    switch (s.badge) {
-      case '01':
-        return <IntakeBasicInfoSection child={child} onSaved={onChildUpdated} />;
-      case '02':
-        return (
+    if (s.kind === 'survey-bundle') {
+      return (
+        <div className="flex flex-col gap-5">
+          {/* Current height + date pulled into view at the top so the doctor
+              sees the latest measurement without scrolling. Sourced from the
+              same is_intake visit that IntakeClinicalSection edits. */}
+          <CurrentHeightBlock child={child} onChildUpdated={onChildUpdated} />
+          <IntakeBasicInfoSection child={child} onSaved={onChildUpdated} />
           <IntakeGrowthHistoryTable survey={survey} onSave={handleSurveyPatch} />
-        );
-      case '03':
-        return <IntakeFamilySection survey={survey} onSave={handleSurveyPatch} />;
-      case '04':
-        return (
+          <IntakeFamilySection survey={survey} onSave={handleSurveyPatch} />
           <IntakeMedicalSection
             survey={survey}
             defaultGender={child.gender}
             onSave={handleSurveyPatch}
           />
-        );
-      case '05':
-        return <IntakeCausesSection survey={survey} onSave={handleSurveyPatch} />;
+          <IntakeCausesSection survey={survey} onSave={handleSurveyPatch} />
+        </div>
+      );
+    }
+    if (s.kind !== 'section') return null;
+    switch (s.badge) {
       case '06':
         return (
           <IntakeClinicalSection child={child} onChildUpdated={onChildUpdated} />
@@ -268,9 +278,43 @@ function SlideRender({
       return <HospitalSlide slide={slide} />;
     case 'section':
       return <SectionSlide slide={slide} lang={lang} editor={editor} />;
+    case 'survey-bundle':
+      return <SurveyBundleSlide slide={slide} lang={lang} editor={editor} />;
     case 'method':
       return <MethodSlide slide={slide} lang={lang} />;
   }
+}
+
+function SurveyBundleSlide({
+  slide,
+  lang,
+  editor,
+}: {
+  slide: Extract<ConsultSlide, { kind: 'survey-bundle' }>;
+  lang: ConsultLang;
+  editor: ReactNode;
+}) {
+  return (
+    <div className="min-h-full px-12 py-10">
+      <h2
+        className="text-3xl font-bold leading-tight md:text-4xl"
+        style={{ color: '#1F4F3C' }}
+      >
+        {slide.title}
+      </h2>
+      <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-700">
+        {slide.intro}
+      </p>
+      {editor && (
+        <div className="mt-6 rounded-2xl border border-emerald-200 bg-white p-5 shadow-sm">
+          <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
+            {lang === 'ko' ? '직접 입력' : 'Direct input'}
+          </div>
+          {editor}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function CoverSlide({ slide }: { slide: Extract<ConsultSlide, { kind: 'cover' }> }) {
@@ -463,6 +507,139 @@ function SectionSlide({
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+/**
+ * Compact "current height + date" block pinned at the top of the survey
+ * bundle slide. Reads and writes the same is_intake visit + measurement
+ * that IntakeClinicalSection uses, so edits here flow through to the 기본
+ * 정보 tab and the clinical section 06 slide automatically.
+ */
+function CurrentHeightBlock({
+  child,
+  onChildUpdated,
+}: {
+  child: Child;
+  onChildUpdated: (child: Child) => void;
+}) {
+  const [visit, setVisit] = useState<Visit | null>(null);
+  const [measurement, setMeasurement] = useState<HospitalMeasurement | null>(
+    null,
+  );
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      try {
+        const today = new Date().toISOString().slice(0, 10);
+        const v = await getOrCreateIntakeVisit(child.id, today);
+        if (cancelled) return;
+        setVisit(v);
+        const ms = await fetchMeasurementsByVisit(v.id);
+        if (cancelled) return;
+        setMeasurement(ms[0] ?? null);
+      } catch (e) {
+        logger.error('current-height block load failed', e);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [child.id]);
+
+  // Keep the 측정일 in sync with the visit_date when the doctor changes it.
+  const saveDate = useCallback(
+    async (newDate: string) => {
+      if (!visit) return;
+      try {
+        const next = await updateVisit(visit.id, { visit_date: newDate });
+        setVisit(next);
+        const updated = await upsertMeasurementField({
+          visit_id: next.id,
+          child_id: child.id,
+          measured_date: newDate,
+          patch: {},
+        });
+        setMeasurement(updated);
+        // nudge parent so any dependents (chart, etc.) re-read
+        onChildUpdated({ ...child });
+      } catch (e) {
+        logger.error('current-height date save failed', e);
+      }
+    },
+    [visit, child, onChildUpdated],
+  );
+
+  const saveHeight = useCallback(
+    async (v: number | null) => {
+      if (!visit) return;
+      try {
+        const next = await upsertMeasurementField({
+          visit_id: visit.id,
+          child_id: child.id,
+          measured_date: visit.visit_date,
+          patch: { height: v ?? undefined },
+        });
+        setMeasurement(next);
+        onChildUpdated({ ...child });
+      } catch (e) {
+        logger.error('current-height save failed', e);
+      }
+    },
+    [visit, child, onChildUpdated],
+  );
+
+  if (loading) {
+    return (
+      <div className="rounded-2xl border border-emerald-100 bg-white p-4 text-sm text-slate-400">
+        불러오는 중…
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-3 rounded-2xl border-2 border-emerald-300 bg-emerald-50/50 p-5 shadow-sm">
+      <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
+        현재 키 · Current Height
+      </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+          <span>측정일 · Measured Date</span>
+          <input
+            type="date"
+            defaultValue={visit?.visit_date ?? ''}
+            onBlur={(e) => {
+              if (e.target.value && e.target.value !== visit?.visit_date) {
+                saveDate(e.target.value);
+              }
+            }}
+            className="h-10 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-900 shadow-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+          />
+        </label>
+        <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+          <span>현재 키 (cm) · Current Height</span>
+          <input
+            type="number"
+            step={0.1}
+            defaultValue={measurement?.height ?? ''}
+            onBlur={(e) => {
+              const t = e.target.value.trim();
+              const parsed = t === '' ? null : Number(t);
+              if (parsed !== null && Number.isNaN(parsed)) return;
+              const cur = measurement?.height ?? null;
+              if (parsed !== cur) saveHeight(parsed);
+            }}
+            className="h-10 rounded-lg border border-slate-300 bg-white px-3 text-base font-semibold text-slate-900 shadow-sm focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+            placeholder="예: 158.4"
+          />
+        </label>
+      </div>
     </div>
   );
 }
