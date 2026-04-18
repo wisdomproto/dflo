@@ -407,34 +407,50 @@ export function XrayPanel({
       <ZoomModal
         onClose={() => setZoomed(false)}
         title={`X-ray · ${visit.visit_date} · ${child.name}`}
+        maxWidth="min(1800px, 98vw)"
       >
-        <div className="grid h-full grid-cols-3 gap-4">
-          <ZoomPane
-            label="younger"
-            color="text-blue-600"
-            caption={effectiveYounger ? formatLabel(effectiveYounger) : '—'}
-          >
-            {effectiveYounger ? (
-              <AtlasImage file={effectiveYounger.file} alt={formatLabel(effectiveYounger)} />
-            ) : (
-              <Placeholder text="후보 없음" />
-            )}
-            <StepButtons canPrev={canStepDown} canNext={canStepUp} onStep={handleStep} />
-          </ZoomPane>
-          <ZoomPane label="patient" color="text-slate-700" caption={effectiveBoneAge != null ? `${effectiveBoneAge.toFixed(1)}세` : '—'}>
-            {imageUrl ? (
-              <ZoomableImg src={imageUrl} alt="patient x-ray" />
-            ) : (
-              <Placeholder text="이미지 없음" />
-            )}
-          </ZoomPane>
-          <ZoomPane label="older" color="text-rose-600" caption={effectiveOlder ? formatLabel(effectiveOlder) : '—'}>
-            {effectiveOlder ? (
-              <AtlasImage file={effectiveOlder.file} alt={formatLabel(effectiveOlder)} />
-            ) : (
-              <Placeholder text="더 큰 atlas 없음" />
-            )}
-          </ZoomPane>
+        {/* Fit the three panes to the available modal area without
+            overflowing: each pane keeps the atlas aspect ratio, 3 columns
+            share the width, and the natural height of one pane drives the
+            row. On wide monitors the images max out at 80vh so nothing is
+            ever clipped. */}
+        <div className="flex h-full w-full flex-col">
+          <div className="mx-auto grid h-full max-h-[calc(90vh-72px)] w-full grid-cols-3 gap-4">
+            <ZoomPane
+              label="younger"
+              color="text-blue-600"
+              caption={effectiveYounger ? formatLabel(effectiveYounger) : '—'}
+            >
+              {effectiveYounger ? (
+                <AtlasImage file={effectiveYounger.file} alt={formatLabel(effectiveYounger)} />
+              ) : (
+                <Placeholder text="후보 없음" />
+              )}
+              <StepButtons canPrev={canStepDown} canNext={canStepUp} onStep={handleStep} />
+            </ZoomPane>
+            <ZoomPane
+              label="patient"
+              color="text-slate-700"
+              caption={effectiveBoneAge != null ? `${effectiveBoneAge.toFixed(1)}세` : '—'}
+            >
+              {imageUrl ? (
+                <ZoomableImg src={imageUrl} alt="patient x-ray" />
+              ) : (
+                <Placeholder text="이미지 없음" />
+              )}
+            </ZoomPane>
+            <ZoomPane
+              label="older"
+              color="text-rose-600"
+              caption={effectiveOlder ? formatLabel(effectiveOlder) : '—'}
+            >
+              {effectiveOlder ? (
+                <AtlasImage file={effectiveOlder.file} alt={formatLabel(effectiveOlder)} />
+              ) : (
+                <Placeholder text="더 큰 atlas 없음" />
+              )}
+            </ZoomPane>
+          </div>
         </div>
       </ZoomModal>
     )}
