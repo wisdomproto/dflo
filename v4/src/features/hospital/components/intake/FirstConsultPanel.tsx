@@ -307,9 +307,11 @@ function DirectorSlide({
   slide: Extract<ConsultSlide, { kind: 'director' }>;
 }) {
   return (
-    <div className="relative grid min-h-full grid-cols-1 gap-10 px-12 py-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-      {/* Left column — bio / timeline */}
-      <div className="relative z-10">
+    <div className="relative grid min-h-full grid-cols-1 gap-6 px-12 py-14 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+      {/* Left column — bio / timeline.
+          `md:ml-auto max-w-[560px]` 로 텍스트가 왼쪽 컬럼의 오른쪽에 붙도록 해
+          오른쪽 초상화와 함께 화면 가운데로 모이게 한다. */}
+      <div className="relative z-10 md:ml-auto md:max-w-[560px]">
         <div
           className="text-5xl font-bold leading-tight md:text-6xl"
           style={{ color: '#1F4F3C' }}
@@ -335,14 +337,14 @@ function DirectorSlide({
         </ul>
       </div>
 
-      {/* Right column — big serif quote floating over the portrait
-          (portrait already has whitespace on the left so the quote reads
-          cleanly). Text sits above the image via z-index. */}
-      <div className="relative">
+      {/* Right column — portrait hugs the LEFT of its column so the subject
+          sits near the page midline (quote now floats over the image from
+          the inner edge). */}
+      <div className="relative md:max-w-[560px]">
         <img
           src="/first_session/원장님.png"
           alt={slide.footerName}
-          className="pointer-events-none absolute inset-y-0 right-0 h-full w-auto max-w-full select-none object-contain object-right"
+          className="pointer-events-none absolute inset-y-0 left-0 h-full w-auto max-w-full select-none object-contain object-left"
           onError={(e) => {
             const el = e.currentTarget as HTMLImageElement;
             if (!el.dataset.fallback) {
@@ -351,7 +353,7 @@ function DirectorSlide({
             }
           }}
         />
-        <div className="relative z-10 flex min-h-[60vh] flex-col justify-between">
+        <div className="relative z-10 flex min-h-[60vh] flex-col justify-between pl-2">
           <blockquote
             className="font-serif text-3xl leading-snug md:text-4xl"
             style={{ color: '#1F4F3C' }}
