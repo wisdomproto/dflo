@@ -2,11 +2,19 @@ import type { Visit } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 
+/**
+ * 진료 기록 리스트용 visit fetch.
+ *
+ * is_intake 로 표시된 "첫 상담 가상 visit"은 첫 상담 전용 데이터 저장소로만
+ * 쓰이며 일반 진료 기록에는 노출되지 않는다 (사용자 요청). 해당 visit 이
+ * 필요한 화면은 `getOrCreateIntakeVisit` 를 직접 호출해서 얻는다.
+ */
 export async function fetchVisitsForChild(childId: string): Promise<Visit[]> {
   const { data, error } = await supabase
     .from('visits')
     .select('*')
     .eq('child_id', childId)
+    .or('is_intake.is.null,is_intake.eq.false')
     .order('visit_date', { ascending: false });
   if (error) {
     logger.error('fetchVisitsForChild failed', error);

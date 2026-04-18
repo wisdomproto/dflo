@@ -93,6 +93,14 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - usePasteTarget 공용 훅: 한 번에 한 드롭존만 arm (X-ray patient / Lab)
 - ZoomableImg: 더블클릭 확대(2.5x) + 드래그 패닝 + 그리기 모드(빨간 자유선, 지우개)
 - visits.is_intake (migration 004): 환자당 "초진 가상 visit" 1개, 기본 정보 탭이 임상 데이터를 여기 저장
+- 초진 visit 은 진료 기록 리스트/성장 그래프에서 제외 (visitService.fetchVisitsForChild + adminService.fetchPatientDetail 필터)
+- **첫 상담 (FirstConsultPanel)**: 환자 상세 페이지 상단 접힘 섹션, PPT 스타일 슬라이드 덱 (11장), KO/EN 토글, ←/→ 키보드 + dot 페이지네이션
+- 덱 슬라이드: Cover · Director(원장 초상) · 병원 진료 소개 x2 · 기본 정보 번들(현재키+설문 5개 섹션) · MPH/PAH 비교 · MPH 가우시안 분포 · 뼈나이 분석 · 뼈나이 아틀라스 · X-ray 판독 모듈 · 성장 그래프 모듈
+- 슬라이드 컨텐츠: `firstConsultContent.ts` 의 typed array (kind 별로 cover/director/hospital/survey-bundle/method/methods-comparison/mph-distribution/xray-module/growth-chart-module)
+- MPHDistributionSlide: SVG 가우시안 곡선, σ=2.5cm, 5개 색상 영역 (±1σ 68%, ±1~2σ 14%, ±2σ 이상 2%), 환자 부모키 기반 자동 공식 계산, x축 tick 에 중앙값 강조
+- 첫 상담 live BA 공유: XrayModuleSlide → FirstConsultPanel parent liveXray state → GrowthChartModuleSlide 가 measurement.bone_age fallback 으로 사용, 저장 없이도 슬라이드 11 에 예측 곡선 즉시 표시
+- CurrentHeightBlock: 슬라이드 5 최상단에 현재 키+측정일 입력, controlled input + "✓ 저장됨" 배지, is_intake visit 에 upsert
+- 첫 상담 이미지: `/first_session/` 폴더 (원장님.png, 진료 사진1.png, 진료사진 2.png, bon analysis.png, bone reference.png)
 
 ## Environment Variables
 ```

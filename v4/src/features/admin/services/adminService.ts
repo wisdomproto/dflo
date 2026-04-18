@@ -195,8 +195,17 @@ export async function deletePatient(childId: string): Promise<void> {
 // ---------- Patient Detail ----------
 
 export async function fetchPatientDetail(childId: string) {
-  const [childRes, measurementsRes] = await Promise.all([
+  // is_intake 로 표시된 "첫 상담 가상 visit"의 측정값은 첫 상담 뷰 전용으로만
+  // 쓰이고 일반 진료 기록/성장 그래프에는 노출되지 않는다. 해당 measurement
+  // 는 FirstConsultPanel 내부에서 `useIntakeVisitAndMeasurement` 로 따로
+  // 읽는다.
+  const [childRes, intakeVisitsRes, measurementsRes] = await Promise.all([
     supabase.from('children').select('*').eq('id', childId).single(),
+    supabase
+      .from('visits')
+      .select('id')
+      .eq('child_id', childId)
+      .eq('is_intake', true),
     supabase
       .from('hospital_measurements')
       .select('*')
@@ -214,9 +223,16 @@ export async function fetchPatientDetail(childId: string) {
     .eq('id', child.parent_id)
     .maybeSingle();
 
+  const intakeVisitIds = new Set(
+    (intakeVisitsRes.data ?? []).map((v) => v.id as string),
+  );
+  const measurements = ((measurementsRes.data ?? []) as Measurement[]).filter(
+    (m) => !intakeVisitIds.has(m.visit_id as string),
+  );
+
   return {
     child,
-    measurements: (measurementsRes.data ?? []) as Measurement[],
+    measurements,
     parent: parentData as Pick<User, 'id' | 'name' | 'email' | 'phone'> | null,
   };
 }

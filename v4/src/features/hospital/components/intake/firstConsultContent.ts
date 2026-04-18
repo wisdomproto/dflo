@@ -29,8 +29,7 @@ type DirectorSlide = {
 type HospitalSlide = {
   kind: 'hospital';
   title: string;
-  lead: string;
-  bullets: string[];
+  image: string;
 };
 
 type SectionSlide = {
@@ -73,6 +72,27 @@ type MethodsComparisonSlide = {
   }>;
 };
 
+/** 환자의 부모 키 기반 MPH 값을 가우시안 분포로 시각화. */
+type MPHDistributionSlide = {
+  kind: 'mph-distribution';
+  title: string;
+  caption: string;
+};
+
+/** 환자 X-ray + 좌우 atlas 레퍼런스 + 뼈나이 입력 모듈. */
+type XrayModuleSlide = {
+  kind: 'xray-module';
+  title: string;
+  caption?: string;
+};
+
+/** 환자 성장 그래프 모듈 — KDCA 백분위 + BA/CA 예측 곡선. */
+type GrowthChartModuleSlide = {
+  kind: 'growth-chart-module';
+  title: string;
+  caption?: string;
+};
+
 export type ConsultSlide =
   | CoverSlide
   | DirectorSlide
@@ -80,7 +100,10 @@ export type ConsultSlide =
   | SectionSlide
   | SurveyBundleSlide
   | MethodSlide
-  | MethodsComparisonSlide;
+  | MethodsComparisonSlide
+  | MPHDistributionSlide
+  | XrayModuleSlide
+  | GrowthChartModuleSlide;
 
 // ------------------------------ KOREAN --------------------------------
 
@@ -138,15 +161,13 @@ const ko: ConsultSlide[] = [
   },
   {
     kind: 'hospital',
-    title: '187 성장클리닉',
-    lead:
-      '체계적인 측정 · 뼈나이 판독 · 생활 습관 관리로 아이의 최종 성인키 잠재력을 끌어올리는 성장 클리닉입니다.',
-    bullets: [
-      '초진 설문 · 신체 측정 · X-ray 뼈나이 판독 · 혈액/유기산 검사 통합',
-      'KDCA 2017 표준 성장도표 기반 BA/CA 이중 예측 곡선',
-      '수면 · 영양 · 운동 · 성장주사 등 5대 카테고리 일상 관리',
-      '체형 평가, 자세 교정, 근력/유연성 트레이닝 병행',
-    ],
+    title: '병원 진료 소개',
+    image: '/first_session/진료 사진1.png',
+  },
+  {
+    kind: 'hospital',
+    title: '병원 진료 소개',
+    image: '/first_session/진료사진 2.png',
   },
   {
     kind: 'survey-bundle',
@@ -155,16 +176,63 @@ const ko: ConsultSlide[] = [
       '환자 정보부터 성장 이력 · 가족력 · 사춘기 평가 · 저신장 원인까지 한 번에 기록합니다. 각 섹션은 아래에서 직접 입력 가능하며, 입력한 값은 자동 저장되어 기본 정보 탭과 실시간 공유됩니다.',
   },
   {
-    kind: 'section',
-    badge: '06',
-    title: '기본 신체 측정',
+    kind: 'methods-comparison',
+    title: '예상 성인 키 — 두 가지 방법',
     intro:
-      '표준 측정 프로토콜로 키 · 몸무게 · 체성분 · 자세를 기록합니다. 한 번의 측정이 아니라 추세가 중요합니다.',
-    bullets: [
-      '아침 · 같은 시간대 · 같은 신발 벗고 측정 권장.',
-      '체성분(골격근량 · 체지방률)로 성장 저해 요인 파악.',
-      '자세 · 척추 측만 평가로 실제 키 손실분 확인.',
+      '성인 키 예측은 유전 기반 MPH 와 뼈나이 기반 예측키(Bone-age based PAH) 두 가지를 병행합니다. MPH 는 목표 설정, 뼈나이 기반 예측키는 치료 효과 추적에 쓰입니다.',
+    methods: [
+      {
+        badge: 'MPH',
+        title: '① MPH',
+        subtitle: 'Mid-Parental Height · 중간 부모 키',
+        formula:
+          '남아: (아버지 + 어머니 + 13) ÷ 2 cm\n여아: (아버지 + 어머니 − 13) ÷ 2 cm',
+        formulaNote: '95% 신뢰 구간은 ± 8.5 cm',
+        bullets: [
+          '유전적인 키 잠재력만 반영 — 뼈나이나 현재 성장 속도와 무관.',
+          '빠르고 간편하지만 개인의 성장 편차(사춘기 타이밍)를 못 반영.',
+          '목표 설정의 출발점으로 사용, 단독 판단 근거로는 부족.',
+        ],
+      },
+      {
+        badge: 'Bone-age PAH',
+        title: '② 뼈나이 기반 예측키',
+        subtitle: 'Bone-age based PAH',
+        formula:
+          '뼈나이 시점의 키 백분위를 구하고,\n같은 백분위로 만 18세 표준 키를 역산',
+        formulaNote: 'KDCA 2017 한국 표준성장도표 LMS 데이터 사용',
+        bullets: [
+          '현재 키 + 뼈나이(X-ray) + 성별 3가지로 개별 예측.',
+          '사춘기가 빠른 아이(뼈나이 > 역년령)는 MPH 보다 작게 예측됨.',
+          '매 진료마다 업데이트 가능 — 치료 효과 추적의 핵심 지표.',
+        ],
+      },
     ],
+  },
+  {
+    kind: 'mph-distribution',
+    title: 'MPH 분포 · Mid-Parental Height Distribution',
+    caption: '환자의 아버지 · 어머니 키를 기반으로 한 MPH 분포입니다. 실제 성인 키는 이 분포 안에서 약 68% 확률로 ±2.5cm, 95% 확률로 ±5cm 범위에 들어옵니다.',
+  },
+  {
+    kind: 'hospital',
+    title: '뼈나이 분석 · Bone Age Analysis',
+    image: '/first_session/bon analysis.png',
+  },
+  {
+    kind: 'hospital',
+    title: '뼈나이 아틀라스 · Bone Age Atlas',
+    image: '/first_session/bone reference.png',
+  },
+  {
+    kind: 'xray-module',
+    title: 'X-ray 판독 · Bone-Age Module',
+    caption: '환자 X-ray 를 가운데에 두고 좌·우에 atlas 레퍼런스를 비교하며 뼈나이를 판독합니다. 이미지 드래그/붙여넣기로 업로드 후 ← → 버튼으로 atlas 를 맞춰 뼈나이를 입력하면 예측 성인키가 즉시 계산됩니다.',
+  },
+  {
+    kind: 'growth-chart-module',
+    title: '성장 그래프 · Growth Chart',
+    caption: 'KDCA 2017 표준성장도표 백분위에 환자의 실측 키와 BA·CA 기반 예측 곡선을 함께 표시합니다. 매 진료마다 업데이트되어 치료 효과를 시각적으로 추적합니다.',
   },
 ];
 
@@ -228,15 +296,13 @@ const en: ConsultSlide[] = [
   },
   {
     kind: 'hospital',
-    title: '187 Growth Clinic',
-    lead:
-      'A growth clinic that unlocks your child’s final adult height potential through systematic measurement, bone-age reading, and lifestyle coaching.',
-    bullets: [
-      'Integrated intake survey, physical measurements, X-ray bone-age reading, blood & organic-acid tests.',
-      'Dual BA/CA projection curves built on the KDCA 2017 Korean growth standard.',
-      'Five daily-care categories: sleep, nutrition, exercise, supplements, growth injections.',
-      'Combined with posture assessment, alignment correction, strength & flexibility training.',
-    ],
+    title: 'Clinic Overview',
+    image: '/first_session/진료 사진1.png',
+  },
+  {
+    kind: 'hospital',
+    title: 'Clinic Overview',
+    image: '/first_session/진료사진 2.png',
   },
   {
     kind: 'survey-bundle',
@@ -245,16 +311,66 @@ const en: ConsultSlide[] = [
       'Patient basics, growth history, family/exercise, pubertal stage, and short-stature causes — all captured in one place. Each section below is editable; values save automatically and stay in sync with the 기본 정보 tab.',
   },
   {
-    kind: 'section',
-    badge: '06',
-    title: 'Baseline Physical Measurements',
+    kind: 'methods-comparison',
+    title: 'Predicted Adult Height — Two Methods',
     intro:
-      'Standardized measurement protocol for height, weight, body composition, and posture. Trend matters more than any single data point.',
-    bullets: [
-      'Measure in the morning, same time of day, shoes off.',
-      'Body composition (skeletal muscle mass, body fat) uncovers growth inhibitors.',
-      'Posture & scoliosis assessment reveals "lost" height.',
+      'We combine a genetics-based MPH estimate with a Bone-age based PAH projection. MPH anchors the target; Bone-age based PAH tracks treatment progress over time.',
+    methods: [
+      {
+        badge: 'MPH',
+        title: '① MPH',
+        subtitle: 'Mid-Parental Height',
+        formula:
+          'Boy: (Father + Mother + 13) ÷ 2 cm\nGirl: (Father + Mother − 13) ÷ 2 cm',
+        formulaNote: '95% confidence interval is ± 8.5 cm',
+        bullets: [
+          'Reflects only genetic potential — independent of bone age or growth velocity.',
+          'Fast and easy, but cannot capture individual pubertal timing.',
+          'Useful as a goal-setting anchor; not a standalone clinical call.',
+        ],
+      },
+      {
+        badge: 'Bone-age PAH',
+        title: '② Bone-age based PAH',
+        subtitle: 'Predicted Adult Height · bone-age anchored',
+        formula:
+          'Compute the height percentile at bone age,\nand back-solve to age 18 at the same percentile.',
+        formulaNote: 'Based on the KDCA 2017 Korean growth standard LMS data.',
+        bullets: [
+          'Individualized from current height + bone age (X-ray) + gender.',
+          'Children with advanced bone age (BA > CA) are predicted lower than MPH.',
+          'Updates every visit — the key metric for tracking treatment efficacy.',
+        ],
+      },
     ],
+  },
+  {
+    kind: 'mph-distribution',
+    title: 'Mid-Parental Height Distribution',
+    caption:
+      'MPH distribution built from the father/mother heights on file. Actual adult height falls within ±2.5 cm of MPH ≈ 68% of the time, and within ±5 cm ≈ 95% of the time.',
+  },
+  {
+    kind: 'hospital',
+    title: 'Bone Age Analysis',
+    image: '/first_session/bon analysis.png',
+  },
+  {
+    kind: 'hospital',
+    title: 'Bone Age Atlas',
+    image: '/first_session/bone reference.png',
+  },
+  {
+    kind: 'xray-module',
+    title: 'Bone-Age Reading Module',
+    caption:
+      'The patient X-ray sits between two atlas references. Drag/paste an image to upload, step through the atlas with ← →, and the predicted adult height updates immediately.',
+  },
+  {
+    kind: 'growth-chart-module',
+    title: 'Growth Chart Module',
+    caption:
+      'KDCA 2017 percentile standard plotted with the patient’s measured heights and the BA/CA projection curves. Updates every visit for visual treatment tracking.',
   },
 ];
 
