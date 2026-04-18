@@ -170,7 +170,7 @@ const ko: ConsultSlide[] = [
     kind: 'methods-comparison',
     title: '예상 성인 키 — 두 가지 방법',
     intro:
-      '성인 키 예측은 유전 기반 MPH 와 뼈나이 기반 PAH 두 가지를 병행합니다. MPH 는 목표 설정, PAH 는 치료 효과 추적에 쓰입니다.',
+      '성인 키 예측은 유전 기반 MPH 와 뼈나이 기반 예측키(Bone-age based PAH) 두 가지를 병행합니다. MPH 는 목표 설정, 뼈나이 기반 예측키는 치료 효과 추적에 쓰입니다.',
     methods: [
       {
         badge: 'MPH',
@@ -186,9 +186,9 @@ const ko: ConsultSlide[] = [
         ],
       },
       {
-        badge: 'PAH',
-        title: '② PAH',
-        subtitle: 'Predicted Adult Height · 뼈나이 기반',
+        badge: 'Bone-age PAH',
+        title: '② 뼈나이 기반 예측키',
+        subtitle: 'Bone-age based PAH',
         formula:
           '뼈나이 시점의 키 백분위를 구하고,\n같은 백분위로 만 18세 표준 키를 역산',
         formulaNote: 'KDCA 2017 한국 표준성장도표 LMS 데이터 사용',
@@ -294,7 +294,7 @@ const en: ConsultSlide[] = [
     kind: 'methods-comparison',
     title: 'Predicted Adult Height — Two Methods',
     intro:
-      'We combine a genetics-based MPH estimate with a bone-age-based PAH projection. MPH anchors the target; PAH tracks treatment progress over time.',
+      'We combine a genetics-based MPH estimate with a Bone-age based PAH projection. MPH anchors the target; Bone-age based PAH tracks treatment progress over time.',
     methods: [
       {
         badge: 'MPH',
@@ -310,9 +310,9 @@ const en: ConsultSlide[] = [
         ],
       },
       {
-        badge: 'PAH',
-        title: '② PAH',
-        subtitle: 'Bone-age based projection',
+        badge: 'Bone-age PAH',
+        title: '② Bone-age based PAH',
+        subtitle: 'Predicted Adult Height · bone-age anchored',
         formula:
           'Compute the height percentile at bone age,\nand back-solve to age 18 at the same percentile.',
         formulaNote: 'Based on the KDCA 2017 Korean growth standard LMS data.',
