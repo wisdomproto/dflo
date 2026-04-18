@@ -340,11 +340,9 @@ function DirectorSlide({
           cleanly). Text sits above the image via z-index. */}
       <div className="relative">
         <img
-          src="/images/director-portrait.png"
+          src="/first_session/원장님.png"
           alt={slide.footerName}
           className="pointer-events-none absolute inset-y-0 right-0 h-full w-auto max-w-full select-none object-contain object-right"
-          // If the file isn't uploaded yet, fall back to the legacy doctor.jpg
-          // so the slide still renders without a broken icon.
           onError={(e) => {
             const el = e.currentTarget as HTMLImageElement;
             if (!el.dataset.fallback) {
