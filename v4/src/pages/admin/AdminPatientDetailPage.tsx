@@ -35,6 +35,7 @@ export default function AdminPatientDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [visitsCollapsed, setVisitsCollapsed] = useState(false);
+  const [chartCollapsed, setChartCollapsed] = useState(false);
   const [comparisonOpen, setComparisonOpen] = useState(false);
 
   const refreshData = async (childId: string) => {
@@ -229,7 +230,7 @@ export default function AdminPatientDetailPage() {
           {
             ['--cols' as string]: `${
               visitsCollapsed ? '60px' : '180px'
-            } minmax(360px, 1fr) 52%`,
+            } minmax(360px, 1fr) ${chartCollapsed ? '44px' : '52%'}`,
           } as React.CSSProperties
         }
       >
@@ -296,21 +297,63 @@ export default function AdminPatientDetailPage() {
           )}
         </section>
 
-        {/* Right: growth chart */}
-        <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-3">
-          <AdminPatientGrowthChart
-            child={child}
-            measurements={measurements}
-            selectedVisitId={selectedVisitId}
-            onNationalityChange={async (next) => {
-              try {
-                const updated = await updateChildField(child.id, { nationality: next });
-                setChild(updated);
-              } catch {
-                /* noop */
-              }
-            }}
-          />
+        {/* Right: growth chart (collapsible to 44px rail) */}
+        <section
+          className={`flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white ${
+            chartCollapsed ? 'items-center py-2' : 'p-3'
+          }`}
+        >
+          {chartCollapsed ? (
+            <>
+              <button
+                type="button"
+                onClick={() => setChartCollapsed(false)}
+                title="성장 그래프 펼치기"
+                aria-label="성장 그래프 펼치기"
+                className="mb-2 h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+              >
+                ‹
+              </button>
+              <div
+                className="text-[10px] font-semibold uppercase tracking-wider text-slate-500"
+                style={{ writingMode: 'vertical-rl' }}
+              >
+                성장 그래프
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="mb-1 flex items-center justify-between">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                  성장 그래프
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setChartCollapsed(true)}
+                  title="성장 그래프 접기"
+                  aria-label="성장 그래프 접기"
+                  className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+                >
+                  ›
+                </button>
+              </div>
+              <div className="min-h-0 flex-1">
+                <AdminPatientGrowthChart
+                  child={child}
+                  measurements={measurements}
+                  selectedVisitId={selectedVisitId}
+                  onNationalityChange={async (next) => {
+                    try {
+                      const updated = await updateChildField(child.id, { nationality: next });
+                      setChild(updated);
+                    } catch {
+                      /* noop */
+                    }
+                  }}
+                />
+              </div>
+            </>
+          )}
         </section>
       </div>
       </>
