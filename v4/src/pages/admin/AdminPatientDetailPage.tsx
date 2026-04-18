@@ -176,13 +176,20 @@ export default function AdminPatientDetailPage() {
       )}
 
       {/* 첫 상담 · 프레젠테이션 덱 — 기본 정보 위에 접힌 상태로 상주.
-          섹션 01~06 은 덱 내부에서 직접 입력 가능(기본 정보 탭과 동일 소스). */}
+          섹션 01~06 은 덱 내부에서 직접 입력 가능(기본 정보 탭과 동일 소스).
+          동기화: 환자 컬럼/intake_survey 는 onChildUpdated→setChild 로 즉시
+          반영되고, 초진 visit(측정·X-ray·Lab)은 같은 is_intake visit 를
+          공유하므로 DB 레벨에서 자동 공유된다. 닫을 때 parent 의 measurements
+          도 새로 고쳐서 아래 3단 그래프/리스트가 최신 상태를 유지하게 한다. */}
       <FirstConsultPanel
         expanded={consultExpanded}
         onToggle={() => {
           setConsultExpanded((v) => {
             const next = !v;
             if (next) setIntakeExpanded(false);
+            // 접을 때 parent refresh — 초진에서 저장된 측정/BA 가 3단 레이아웃
+            // 의 그래프·visit 리스트·VisitDetailPanel 에 반영되도록
+            if (!next && id) refreshData(id).catch(() => undefined);
             return next;
           });
         }}
@@ -205,6 +212,9 @@ export default function AdminPatientDetailPage() {
             setIntakeExpanded((v) => {
               const next = !v;
               if (next) setConsultExpanded(false);
+              // 접을 때 parent refresh — 기본 정보에서 저장된 측정/BA 등을
+              // 3단 레이아웃이 최신 상태로 반영하도록
+              if (!next && id) refreshData(id).catch(() => undefined);
               return next;
             });
           }}
