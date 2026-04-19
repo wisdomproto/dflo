@@ -27,6 +27,7 @@ import { IntakeCausesSection } from './IntakeCausesSection';
 import { IntakeClinicalSection } from './IntakeClinicalSection';
 import { XrayPanel } from '@/features/hospital/components/XrayPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
+import { GrowthChartOverlay } from './GrowthChartOverlay';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 
@@ -855,25 +856,36 @@ function GrowthChartModuleSlide({
           )}
         </>
       )}
-      <div className="mt-2 min-h-0 flex-1 rounded-xl border border-emerald-100 bg-white p-2 shadow-sm">
+      <div className="relative mt-2 min-h-0 flex-1 rounded-xl border border-emerald-100 bg-white p-2 shadow-sm">
         {loading ? (
           <div className="text-sm text-slate-400">성장 그래프 불러오는 중…</div>
         ) : (
-          <AdminPatientGrowthChart
-            child={child}
-            measurements={effectiveMeasurement ? [effectiveMeasurement] : []}
-            selectedVisitId={visit?.id ?? null}
-            onNationalityChange={async (next) => {
-              try {
-                const updated = await updateChildField(child.id, {
-                  nationality: next,
-                });
-                onChildUpdated(updated);
-              } catch {
-                /* noop */
-              }
-            }}
-          />
+          <>
+            <AdminPatientGrowthChart
+              child={child}
+              measurements={effectiveMeasurement ? [effectiveMeasurement] : []}
+              selectedVisitId={visit?.id ?? null}
+              onNationalityChange={async (next) => {
+                try {
+                  const updated = await updateChildField(child.id, {
+                    nationality: next,
+                  });
+                  onChildUpdated(updated);
+                } catch {
+                  /* noop */
+                }
+              }}
+            />
+            {/* 우하단에 CA/BA/PAH 드래그·리사이즈 가능한 텍스트 박스. live BA
+                가 있으면 우선 반영. */}
+            <GrowthChartOverlay
+              child={child}
+              measurement={effectiveMeasurement}
+              referenceDate={visit?.visit_date ?? ''}
+              liveBoneAge={liveXray.boneAge}
+              livePredictedAdult={liveXray.predictedAdult}
+            />
+          </>
         )}
       </div>
     </div>
