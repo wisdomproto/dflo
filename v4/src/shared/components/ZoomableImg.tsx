@@ -4,8 +4,6 @@ interface Props {
   src: string;
   alt: string;
   className?: string;
-  /** Scale applied when zoomed. Default 2.5. */
-  scale?: number;
 }
 
 type Point = { x: number; y: number };
@@ -16,7 +14,8 @@ const PEN_SIZE = 2.5;
 
 /**
  * Image with three modes driven by a small toolbar:
- *   - Pan/Zoom (default): double-click toggles zoom, drag pans while zoomed.
+ *   - Pan/Zoom (default): mouse wheel zooms in/out (15% per tick), drag
+ *     pans while zoomed.
  *   - Draw: free-hand overlay on top of image. Strokes are kept separately
  *     for the normal view vs the zoomed view ("따로 그리면 될듯").
  *   - Clear: wipe strokes of the CURRENT view only.
@@ -24,7 +23,7 @@ const PEN_SIZE = 2.5;
  * Coords are stored in container-space (0..w, 0..h of the wrapper). When the
  * wrapper resizes, the canvas DPI stays pinned, so strokes redraw correctly.
  */
-export function ZoomableImg({ src, alt, className, scale: baseScale = 1.5 }: Props) {
+export function ZoomableImg({ src, alt, className }: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // Continuous zoom level. 1 = fit, >1 = zoomed in.
@@ -44,7 +43,6 @@ export function ZoomableImg({ src, alt, className, scale: baseScale = 1.5 }: Pro
 
   const ZOOM_MIN = 1;
   const ZOOM_MAX = 8;
-  const ZOOM_STEP = baseScale; // multiplicative per double-click
 
   // Release pan on mouseup anywhere.
   useEffect(() => {
@@ -55,6 +53,28 @@ export function ZoomableImg({ src, alt, className, scale: baseScale = 1.5 }: Pro
     window.addEventListener('mouseup', onUp);
     return () => window.removeEventListener('mouseup', onUp);
   }, []);
+
+  // Mouse wheel → zoom in/out. Bind natively with passive:false so we can
+  // preventDefault() and stop the page from scrolling while the cursor is
+  // over the image wrapper.
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const onWheel = (e: WheelEvent) => {
+      if (tool === 'draw') return;
+      e.preventDefault();
+      e.stopPropagation();
+      const direction = e.deltaY < 0 ? 1 : -1; // up → in, down → out
+      const factor = direction > 0 ? 1.15 : 1 / 1.15;
+      setZoomLevel((z) => {
+        const next = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z * factor));
+        if (next <= ZOOM_MIN + 0.001) setOffset({ x: 0, y: 0 });
+        return next;
+      });
+    };
+    wrap.addEventListener('wheel', onWheel, { passive: false });
+    return () => wrap.removeEventListener('wheel', onWheel);
+  }, [tool]);
 
   // Size canvas to wrapper + repaint on any stroke/state change.
   useLayoutEffect(() => {
@@ -101,7 +121,7 @@ export function ZoomableImg({ src, alt, className, scale: baseScale = 1.5 }: Pro
         ? panning
           ? 'grabbing'
           : 'grab'
-        : 'zoom-in';
+        : 'default';
 
   return (
     <div
@@ -154,21 +174,6 @@ export function ZoomableImg({ src, alt, className, scale: baseScale = 1.5 }: Pro
           }
           e.stopPropagation();
         }
-      }}
-      onDoubleClick={(e) => {
-        if (tool === 'draw') return;
-        e.stopPropagation();
-        // Left half of the image → zoom IN, right half → zoom OUT.
-        const rect = wrapRef.current?.getBoundingClientRect();
-        const zoomIn = rect ? e.clientX - rect.left < rect.width / 2 : true;
-        setZoomLevel((z) => {
-          const next = zoomIn
-            ? Math.min(ZOOM_MAX, z * ZOOM_STEP)
-            : Math.max(ZOOM_MIN, z / ZOOM_STEP);
-          // When we return to fit-size, recenter so the image sits flush again.
-          if (next <= ZOOM_MIN + 0.001) setOffset({ x: 0, y: 0 });
-          return next;
-        });
       }}
     >
       <img

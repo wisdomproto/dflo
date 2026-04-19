@@ -91,7 +91,7 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - 검사(Lab) 다중 파일 업로드 + 썸네일 갤러리 + 라이트박스(←→/Esc)
 - 생활 습관: 진료일 포함 월 뷰 + ◀▶ 이동 + 진료월 복귀; 5개 카테고리 평가 카드(수면/기분/성장주사/식사/운동, 잘함/보통/부족) + pill 필터
 - usePasteTarget 공용 훅: 한 번에 한 드롭존만 arm (X-ray patient / Lab)
-- ZoomableImg: 더블클릭 확대(2.5x) + 드래그 패닝 + 그리기 모드(빨간 자유선, 지우개)
+- ZoomableImg: 마우스 휠로 줌 인/아웃(15% per tick, passive:false native listener) + 드래그 패닝 + 그리기 모드(빨간 자유선, 지우개)
 - visits.is_intake (migration 004): 환자당 "초진 가상 visit" 1개, 기본 정보 탭이 임상 데이터를 여기 저장
 - 초진 visit 은 진료 기록 리스트/성장 그래프에서 제외 (visitService.fetchVisitsForChild + adminService.fetchPatientDetail 필터)
 - **첫 상담 (FirstConsultPanel)**: 환자 상세 페이지 상단 접힘 섹션, PPT 스타일 슬라이드 덱 (11장), KO/EN 토글, ←/→ 키보드 + dot 페이지네이션
