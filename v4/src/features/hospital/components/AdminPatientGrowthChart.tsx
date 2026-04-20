@@ -88,6 +88,20 @@ function buildProjection(
     const y = heightAtSamePercentile(startH, startReference, refAtYr, gender, nationality);
     if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
   }
+  // Clamp the final point at CA=X_MAX to the predicted adult height (same-
+  // percentile at reference age 18) so the dashed curve visually terminates
+  // on the solid horizontal "adult" line. For delayed-BA patients (BA < CA),
+  // refAtYr doesn't reach 18 within the chart, which otherwise leaves a gap
+  // between the curve endpoint and the adult line.
+  const adult = heightAtSamePercentile(startH, startReference, 18, gender, nationality);
+  if (adult > 0 && points.length > 0) {
+    const last = points[points.length - 1];
+    if (last.x === X_MAX) {
+      last.y = Number(adult.toFixed(1));
+    } else {
+      points.push({ x: X_MAX, y: Number(adult.toFixed(1)) });
+    }
+  }
   return points.length >= 2 ? points : null;
 }
 
