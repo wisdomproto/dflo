@@ -56,14 +56,14 @@ export function WebsiteHeader() {
 
   const handleAdminClick = () => {
     setMenuOpen(false);
-    navigate('/website/admin');
+    navigate('/banner-admin');
   };
 
   return (
     <>
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-5xl mx-auto flex items-center justify-between h-14 px-4">
-          <Link to="/website" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <img src="/images/logo.jpg" alt="187 성장클리닉" className="h-9 w-auto rounded" />
             <span className="text-sm font-bold text-gray-700 hidden sm:inline">성장클리닉</span>
           </Link>

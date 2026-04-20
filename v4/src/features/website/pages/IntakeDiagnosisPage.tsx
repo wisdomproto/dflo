@@ -142,7 +142,7 @@ export default function IntakeDiagnosisPage() {
       {/* Header */}
       <div className="bg-[#0F6E56] text-white px-4 py-4 sticky top-0 z-40">
         <div className="max-w-lg mx-auto flex items-center justify-between">
-          <button onClick={() => navigate('/website')} className="text-white/80 hover:text-white text-sm">
+          <button onClick={() => navigate('/')} className="text-white/80 hover:text-white text-sm">
             ← 돌아가기
           </button>
           <h1 className="text-base font-bold">🔬 AI 성장 진단</h1>
@@ -331,7 +331,7 @@ export default function IntakeDiagnosisPage() {
             <p className="text-xs text-gray-400 mt-2">
               🔬 AI 진단 기능은 곧 추가됩니다
             </p>
-            <button onClick={() => navigate('/website')}
+            <button onClick={() => navigate('/')}
               className="mt-4 px-8 py-3 bg-[#0F6E56] text-white rounded-xl font-bold hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
               홈으로 돌아가기
             </button>

@@ -28,7 +28,7 @@ export default function GrowthGuidePage() {
       : allCards.filter((c) => c.categoryId === activeCategory);
 
   const handleCardClick = (card: GuideCard & { categoryId: string }) => {
-    navigate(`/website/guide/${card.id}`, { state: { categoryId: card.categoryId } });
+    navigate(`/guide/${card.id}`, { state: { categoryId: card.categoryId } });
   };
 
   return (

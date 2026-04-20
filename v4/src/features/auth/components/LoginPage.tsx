@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
 import { useUIStore } from '@/stores/uiStore';
 
@@ -17,6 +17,8 @@ export function LoginPage() {
   const signIn = useAuthStore((s) => s.signIn);
   const addToast = useUIStore((s) => s.addToast);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = (location.state as { from?: { pathname?: string } } | null)?.from?.pathname;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ export function LoginPage() {
 
     try {
       await signIn(email, password);
-      navigate('/');
+      navigate(from || '/app', { replace: true });
     } catch (err) {
       const message =
         err instanceof Error

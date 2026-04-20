@@ -131,22 +131,29 @@ scripts/
 ## Admin Access
 - **App admin**: `admin@187growth.com` / `admin187!` (routes: `/admin/*`)
 - **Cases parent**: `cases@187growth.com` / `cases187!` (7 treatment case children)
-- **Banner admin**: PIN `8054` (route: `/website/admin/banners`, sessionStorage)
+- **Banner admin**: PIN `8054` (route: `/banner-admin`, sessionStorage)
 
-## App Navigation (login required)
+## App Navigation (login required, mounted under `/app`)
 | Tab | Route | Page |
 |-----|-------|------|
-| 홈 | `/` | HomePage (성장 요약 + 콘텐츠) |
-| 데일리 루틴 | `/routine` | RoutinePage (캘린더 + 식사/운동/수면) |
-| 체형 분석 | `/body-analysis` | BodyAnalysisPage (mock) |
-| 성장가이드 | `/info` | InfoPage (가이드/레시피/사례) |
+| 홈 | `/app` | HomePage (성장 요약 + 콘텐츠) |
+| 데일리 루틴 | `/app/routine` | RoutinePage (캘린더 + 식사/운동/수면) |
+| 체형 분석 | `/app/body-analysis` | BodyAnalysisPage (mock) |
+| 성장가이드 | `/app/info` | InfoPage (가이드/레시피/사례) |
 
-## Website Navigation (public)
+## Website Navigation (public, root)
 | Route | Page |
 |-------|------|
-| `/website` | WebsiteHomePage (랜딩페이지) |
-| `/website/program/:slug` | ProgramDetailPage (7개 프로그램) |
-| `/website/admin/banners` | AdminBannerPage (PIN 보호) |
+| `/` | WebsiteHomePage (KR 랜딩페이지) |
+| `/program/:slug` | ProgramDetailPage (7개 프로그램) |
+| `/guide`, `/guide/:cardId` | GrowthGuidePage / Detail |
+| `/diagnosis` | IntakeDiagnosisPage (AI 진단 intake) |
+| `/banner-admin` | AdminWebsitePage (PIN 보호) |
+
+## Legacy Route Redirects
+router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmarks and banner `cta_target` values in R2 keep working:
+- `/website` → `/`, `/website/program/:slug` → `/program/:slug`, `/website/guide[/*]` → `/guide[/*]`, `/website/diagnosis` → `/diagnosis`, `/website/admin` → `/banner-admin`
+- `/routine` → `/app/routine`, `/body-analysis` → `/app/body-analysis`, `/info[/*]` → `/app/info[/*]`
 
 ## AI Features
 - **Meal analysis**: WORKING - photo → compress → Gemini analyze → DB save

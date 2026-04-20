@@ -12,9 +12,9 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { path: '/', label: '홈', icon: '🏠' },
-  { path: '/routine', label: '데일리 루틴', icon: '📝' },
-  { path: '/body-analysis', label: '체형', icon: '🧍' },
+  { path: '/app', label: '홈', icon: '🏠' },
+  { path: '/app/routine', label: '데일리 루틴', icon: '📝' },
+  { path: '/app/body-analysis', label: '체형', icon: '🧍' },
 ];
 
 export default function BottomNav() {
@@ -22,7 +22,7 @@ export default function BottomNav() {
   const navigate = useNavigate();
 
   const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === '/app') return location.pathname === '/app';
     return location.pathname.startsWith(path);
   };
 

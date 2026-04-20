@@ -88,19 +88,19 @@ export default function HomePage() {
               onShowGrowth={() => setShowGrowthModal(true)}
             />
 
-            <SwipeableSection title="키 성장 가이드" emoji="📚" isLoading={contentLoading} onSeeAll={() => navigate('/info/guides')}>
+            <SwipeableSection title="키 성장 가이드" emoji="📚" isLoading={contentLoading} onSeeAll={() => navigate('/app/info/guides')}>
               {guides.map((g) => (
                 <GrowthGuideSwipeCard key={g.id} guide={g} onClick={() => setDetail({ type: 'guide', data: g })} />
               ))}
             </SwipeableSection>
 
-            <SwipeableSection title="오늘의 키 쑥쑥 식단" emoji="🥗" isLoading={contentLoading} onSeeAll={() => navigate('/info/recipes')}>
+            <SwipeableSection title="오늘의 키 쑥쑥 식단" emoji="🥗" isLoading={contentLoading} onSeeAll={() => navigate('/app/info/recipes')}>
               {recipes.map((r) => (
                 <RecipeSwipeCard key={r.id} recipe={r} onClick={() => setDetail({ type: 'recipe', data: r })} />
               ))}
             </SwipeableSection>
 
-            <SwipeableSection title="성장 관리 사례" emoji="📋" isLoading={contentLoading} onSeeAll={() => navigate('/info/cases')}>
+            <SwipeableSection title="성장 관리 사례" emoji="📋" isLoading={contentLoading} onSeeAll={() => navigate('/app/info/cases')}>
               {cases.map((c) => (
                 <GrowthCaseSwipeCard key={c.id} caseData={c} onClick={() => setDetail({ type: 'case', data: c })} />
               ))}

@@ -277,7 +277,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
           <button
             onClick={() => {
               onClose();
-              navigate('/website/diagnosis', {
+              navigate('/diagnosis', {
                 state: {
                   gender: result.gender,
                   currentHeight: result.currentHeight,

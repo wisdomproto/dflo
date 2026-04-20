@@ -242,7 +242,7 @@ export default function AdminWebsitePage() {
             className="w-full bg-[#0F6E56] text-white font-bold py-3 rounded-xl hover:bg-[#0D5A47] disabled:opacity-50 transition-all">
             확인
           </button>
-          <button onClick={() => navigate('/website')}
+          <button onClick={() => navigate('/')}
             className="w-full mt-3 bg-gray-100 text-gray-600 font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
             돌아가기
           </button>
@@ -258,7 +258,7 @@ export default function AdminWebsitePage() {
       <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
         <div className="flex items-center justify-between h-14 px-4 lg:px-6">
           <div className="flex items-center gap-3">
-            <Link to="/website" className="text-sm text-gray-500 hover:text-[#0F6E56]">웹사이트</Link>
+            <Link to="/" className="text-sm text-gray-500 hover:text-[#0F6E56]">웹사이트</Link>
             <span className="text-gray-300">|</span>
             <h1 className="text-base font-bold text-gray-800">섹션 관리</h1>
           </div>

@@ -19,7 +19,7 @@ export default function ProgramDetailPage() {
       <WebsiteLayout>
         <div className="max-w-lg mx-auto px-6 py-20 text-center">
           <p className="text-gray-500">프로그램을 찾을 수 없습니다.</p>
-          <button onClick={() => navigate('/website')}
+          <button onClick={() => navigate('/')}
             className="mt-4 text-sm text-[#0F6E56] font-semibold underline">홈으로 돌아가기</button>
         </div>
       </WebsiteLayout>
@@ -27,7 +27,7 @@ export default function ProgramDetailPage() {
   }
 
   const backButton = (
-    <button onClick={() => navigate('/website')}
+    <button onClick={() => navigate('/')}
       className="text-sm text-gray-500 hover:text-gray-700 mb-6 flex items-center gap-1">
       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />

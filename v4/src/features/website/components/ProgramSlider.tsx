@@ -41,7 +41,7 @@ export function ProgramSlider() {
       <div className="flex-1 flex items-center justify-center">
         <WebsiteSlider id="programs" title="🏥 187 성장 프로그램 소개" desktopCards={3} sideHeader>
         {PROGRAMS.map((p) => (
-          <button key={p.slug} onClick={() => navigate(`/website/program/${p.slug}`)}
+          <button key={p.slug} onClick={() => navigate(`/program/${p.slug}`)}
             className="w-full h-full text-left rounded-2xl p-5 transition-all hover:shadow-lg active:scale-[0.98] border border-gray-100"
             style={{ backgroundColor: p.color + '08', borderLeft: `4px solid ${p.color}` }}>
             <div className="flex items-center gap-3 mb-2">

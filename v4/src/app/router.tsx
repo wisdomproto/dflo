@@ -1,10 +1,21 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter, useParams } from 'react-router-dom';
 import { ProtectedRoute } from '@/features/auth/components/ProtectedRoute';
 import { AdminRoute } from '@/features/auth/components/ProtectedRoute';
 
 // ================================================
 // Router - 187 성장케어 v4
+//
+// Route structure:
+//   /              → 병원 홈페이지 (public)
+//   /program/:slug → 프로그램 상세
+//   /guide, /guide/:id → 성장 가이드
+//   /diagnosis     → AI 진단 intake 폼
+//   /banner-admin  → 홈페이지 배너 관리 (PIN)
+//   /app/*         → 사용자 앱 (로그인)
+//   /admin/*       → 클리닉 관리자 (로그인 + 관리자)
+//   /login         → 로그인
+//   /website/*     → (deprecated) 구 경로, / 쪽으로 리다이렉트
 // ================================================
 
 // Lazy-loaded page components
@@ -15,7 +26,6 @@ const LoginPage = lazy(() =>
   })),
 );
 const RoutinePage = lazy(() => import('@/pages/RoutinePage'));
-// GrowthPage removed: merged into RoutinePage
 const BodyAnalysisPage = lazy(() => import('@/pages/BodyAnalysisPage'));
 const InfoPage = lazy(() => import('@/pages/InfoPage'));
 const GuidesListPage = lazy(() => import('@/pages/GuidesListPage'));
@@ -53,10 +63,21 @@ function SuspenseFallback() {
   );
 }
 
+// Redirect helpers for param-carrying legacy paths.
+function RedirectProgram() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/program/${slug ?? ''}`} replace />;
+}
+
+function RedirectGuideDetail() {
+  const { cardId } = useParams<{ cardId: string }>();
+  return <Navigate to={`/guide/${cardId ?? ''}`} replace />;
+}
+
 export const router = createBrowserRouter([
-  // Public website routes (no auth)
+  // Public website routes (root = hospital landing page)
   {
-    path: '/website',
+    path: '/',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <WebsiteHomePage />
@@ -64,15 +85,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/website/admin',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <AdminWebsitePage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/website/program/:slug',
+    path: '/program/:slug',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <ProgramDetailPage />
@@ -80,7 +93,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/website/guide',
+    path: '/guide',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <GrowthGuidePage />
@@ -88,7 +101,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/website/guide/:cardId',
+    path: '/guide/:cardId',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <GrowthGuideDetailPage />
@@ -96,15 +109,31 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: '/website/diagnosis',
+    path: '/diagnosis',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <IntakeDiagnosisPage />
       </Suspense>
     ),
   },
+  {
+    path: '/banner-admin',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <AdminWebsitePage />
+      </Suspense>
+    ),
+  },
 
-  // Public routes
+  // Legacy /website/* redirects (banner CTAs in R2, external bookmarks)
+  { path: '/website', element: <Navigate to="/" replace /> },
+  { path: '/website/admin', element: <Navigate to="/banner-admin" replace /> },
+  { path: '/website/program/:slug', element: <RedirectProgram /> },
+  { path: '/website/guide', element: <Navigate to="/guide" replace /> },
+  { path: '/website/guide/:cardId', element: <RedirectGuideDetail /> },
+  { path: '/website/diagnosis', element: <Navigate to="/diagnosis" replace /> },
+
+  // Login
   {
     path: '/login',
     element: (
@@ -114,12 +143,12 @@ export const router = createBrowserRouter([
     ),
   },
 
-  // Protected routes (login required)
+  // User app routes (login required) — mounted under /app
   {
     element: <ProtectedRoute />,
     children: [
       {
-        path: '/',
+        path: '/app',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <HomePage />
@@ -127,16 +156,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/routine',
+        path: '/app/routine',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <RoutinePage />
           </Suspense>
         ),
       },
-      // /growth removed: merged into /routine
       {
-        path: '/body-analysis',
+        path: '/app/body-analysis',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <BodyAnalysisPage />
@@ -144,7 +172,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/info',
+        path: '/app/info',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <InfoPage />
@@ -152,7 +180,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/info/guides',
+        path: '/app/info/guides',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <GuidesListPage />
@@ -160,7 +188,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/info/recipes',
+        path: '/app/info/recipes',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <RecipesListPage />
@@ -168,7 +196,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/info/cases',
+        path: '/app/info/cases',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <CasesListPage />
@@ -177,6 +205,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  // Legacy app-route redirects (pre-restructure bookmarks)
+  { path: '/routine', element: <Navigate to="/app/routine" replace /> },
+  { path: '/body-analysis', element: <Navigate to="/app/body-analysis" replace /> },
+  { path: '/info', element: <Navigate to="/app/info" replace /> },
+  { path: '/info/guides', element: <Navigate to="/app/info/guides" replace /> },
+  { path: '/info/recipes', element: <Navigate to="/app/info/recipes" replace /> },
+  { path: '/info/cases', element: <Navigate to="/app/info/cases" replace /> },
 
   // Admin routes (login + admin role required)
   {
