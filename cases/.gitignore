@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Source lab report images (patient data; do not commit)
+랩데이터/
+판독문/
+판독문_ocr/
+판독문_review/
+판독문_캡쳐.zip
+판독문_캡쳐_/
+igg4 검사/
+xray 이미지 (jpg)/
+솔찍썰 치료후기 케이스/
+0. backup/
+
+# OCR cached output + parsed lab JSONs (PHI; regeneratable from images)
+랩데이터_ocr/
+
+# Excel seeds with patient identifiers
+성장치료 환자 리스트.xls
+치료 후기 케이스 정리*.xlsx
+치료 후기 케이스 정리 (정리완료).xlsx
+patients.json
+seed_patients.sql
+
+# Ad-hoc OCR sample dumps
+*.surya.json
+*.raw.json
