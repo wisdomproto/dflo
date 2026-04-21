@@ -185,6 +185,40 @@ def parse_header(lines: list[dict], header_stop_y: int) -> dict[str, Any]:
     if accession_match:
         header["accession"] = accession_match
 
+    # Date regex fallback: IgG4 / hair-mineral / other non-standard pages often
+    # fuse "검체채취일 YYYY-MM-DD" into one OCR cell, leaving collected_at unset.
+    # Pair each date-bearing cell with the nearest same-row label-like text to
+    # decide which date field it populates.
+    DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
+    LABEL_FIELDS = [
+        ("검체채취일", "collected_at"),
+        ("검사의뢰일", "tested_at"),
+        ("접수일시",   "collected_at"),
+        ("검사일시",   "tested_at"),
+        ("결과보고일", "reported_at"),
+        ("보고일시",   "reported_at"),
+    ]
+    for ln in top_lines:
+        for kor_label, eng_field in LABEL_FIELDS:
+            if header.get(eng_field):
+                continue  # already populated
+            if kor_label.replace(" ", "") in ln["text"].replace(" ", ""):
+                # Look for a date in the same cell first, then on the same row.
+                m = DATE_RE.search(ln["text"])
+                if m:
+                    header[eng_field] = m.group(1)
+                    break
+                ly = ycenter(ln)
+                for other in top_lines:
+                    if other is ln:
+                        continue
+                    if abs(ycenter(other) - ly) > ROW_PIXEL_TOL:
+                        continue
+                    m2 = DATE_RE.search(other["text"])
+                    if m2:
+                        header[eng_field] = m2.group(1)
+                        break
+
     return header
 
 

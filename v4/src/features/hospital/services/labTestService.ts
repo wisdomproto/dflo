@@ -15,6 +15,19 @@ export async function fetchLabTestsByVisit(visitId: string): Promise<LabTest[]> 
   return (data ?? []) as LabTest[];
 }
 
+export async function fetchLabTestsByChild(childId: string): Promise<LabTest[]> {
+  const { data, error } = await supabase
+    .from('lab_tests')
+    .select('*')
+    .eq('child_id', childId)
+    .order('collected_date', { ascending: false });
+  if (error) {
+    logger.error('fetchLabTestsByChild failed', error);
+    throw new Error('검사 기록을 불러오지 못했습니다.');
+  }
+  return (data ?? []) as LabTest[];
+}
+
 export async function createLabTest(input: {
   visit_id: string;
   child_id: string;
