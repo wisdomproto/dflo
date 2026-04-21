@@ -52,6 +52,7 @@ export interface PatientWithParent extends Child {
 }
 
 export async function fetchPatients(search?: string): Promise<PatientWithParent[]> {
+  // 1) Fetch children with any search filter applied.
   let query = supabase
     .from('children')
     .select('*')
@@ -66,46 +67,56 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
   }
 
   const { data, error } = await query;
-
   if (error) {
     logger.error('Failed to fetch patients:', error);
     throw error;
   }
-
   const patients = (data ?? []) as Child[];
+  if (!patients.length) return [];
 
-  // Fetch parent info and latest measurement for each patient
-  const enriched: PatientWithParent[] = await Promise.all(
-    patients.map(async (patient) => {
-      const [parentRes, measurementRes, countRes] = await Promise.all([
-        supabase
-          .from('users')
-          .select('id, name, email, phone')
-          .eq('id', patient.parent_id)
-          .maybeSingle(),
-        supabase
-          .from('hospital_measurements')
-          .select('*')
-          .eq('child_id', patient.id)
-          .order('measured_date', { ascending: false })
-          .limit(1)
-          .maybeSingle(),
-        supabase
-          .from('hospital_measurements')
-          .select('id', { count: 'exact' })
-          .eq('child_id', patient.id),
-      ]);
-
-      return {
-        ...patient,
-        parent: (parentRes.data as PatientWithParent['parent']) ?? undefined,
-        latestMeasurement: (measurementRes.data as Measurement) ?? undefined,
-        measurementCount: countRes.count ?? 0,
-      };
-    }),
+  // 2) Batch-fetch parent users + all measurements in two queries (not N+1).
+  const parentIds = Array.from(
+    new Set(patients.map((p) => p.parent_id).filter(Boolean) as string[]),
   );
+  const childIds = patients.map((p) => p.id);
 
-  return enriched;
+  const [parentsRes, measurementsRes] = await Promise.all([
+    parentIds.length
+      ? supabase.from('users').select('id, name, email, phone').in('id', parentIds)
+      : Promise.resolve({ data: [], error: null }),
+    supabase
+      .from('hospital_measurements')
+      .select('id, child_id, measured_date, height, weight, bone_age, pah')
+      .in('child_id', childIds)
+      .order('measured_date', { ascending: false }),
+  ]);
+
+  if (parentsRes.error) logger.error('fetchPatients parents:', parentsRes.error);
+  if (measurementsRes.error) logger.error('fetchPatients measurements:', measurementsRes.error);
+
+  // 3) Index parents by id, group measurements by child_id.
+  const parentMap = new Map<string, PatientWithParent['parent']>();
+  for (const p of parentsRes.data ?? []) {
+    parentMap.set((p as { id: string }).id, p as PatientWithParent['parent']);
+  }
+
+  const measurementsByChild = new Map<string, Measurement[]>();
+  for (const m of (measurementsRes.data ?? []) as Measurement[]) {
+    const arr = measurementsByChild.get(m.child_id) ?? [];
+    arr.push(m);
+    measurementsByChild.set(m.child_id, arr);
+  }
+
+  // 4) Assemble without any extra round-trips.
+  return patients.map((patient) => {
+    const ms = measurementsByChild.get(patient.id) ?? [];
+    return {
+      ...patient,
+      parent: parentMap.get(patient.parent_id),
+      latestMeasurement: ms[0], // already sorted desc by measured_date
+      measurementCount: ms.length,
+    };
+  });
 }
 
 // ---------- Create / Delete ----------

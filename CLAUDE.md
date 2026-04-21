@@ -101,6 +101,15 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - 첫 상담 live BA 공유: XrayModuleSlide → FirstConsultPanel parent liveXray state → GrowthChartModuleSlide 가 measurement.bone_age fallback 으로 사용, 저장 없이도 슬라이드 11 에 예측 곡선 즉시 표시
 - CurrentHeightBlock: 슬라이드 5 최상단에 현재 키+측정일 입력, controlled input + "✓ 저장됨" 배지, is_intake visit 에 upsert
 - 첫 상담 이미지: `/first_session/` 폴더 (원장님.png, 진료 사진1.png, 진료사진 2.png, bon analysis.png, bone reference.png)
+- **Lab OCR 파이프라인** (`cases/`): Surya OCR + eone 파서 + Supabase 임포트. 5 양식 지원 (표준 피검사, IgG4 음식과민증, MAST, NK세포 활성도, 유기산 상세) + 모발 중금속/기타는 attachment 처리. 234차트 / 2094이미지 → 804 lab_tests 임포트됨
+- `parse_eone.py`: 페이지별 eone 판독 파서 (standard/igg4/mast/nk/organic_acid_detail 분기), accession + date 정규식 fallback으로 OCR merged cell 대응, 22028 차트 기준 290/290 match 검증
+- `surya_batch.py` + `surya_watchdog.py`: GPU VRAM 단편화로 3-4 배치 후 hang하는 Surya를 5분 stall 감지 → kill/relaunch로 자동 복구, BATCH=4 / rec_batch=16 / `torch.cuda.empty_cache()` 설정
+- `aggregate_labs.py`: 페이지별 파싱을 (accession, 패널 family)별 논리 lab order로 머지. IgG4 + 표준 피검사가 한 accession에 공존해도 분리됨
+- `insert_labs_to_db.mjs`: ai-server/.env의 SERVICE_ROLE_KEY로 Supabase 직접 쓰기. collected_date별 visit find-or-create, dedup = (visit_id, accession, panel_type)
+- `upsert_children_from_labs.mjs`: OCR'd chart_number에 대한 children 레코드 자동 생성 (`ocr-import@187growth.com` 보호자), birth_prefix(YYMMDD-c)로 birth_date 계산
+- **검사 이력 (LabHistoryPanel)**: AdminPatientDetailPage 접힘 섹션, 첫 상담·기본 정보와 3자택1. panel_type별 전용 렌더 (혈액=이상수치 강조+전체 toggle / IgG4·MAST=Class≥1 정렬 / NK=값+배지 / 유기산=카테고리별 flag / 모발·첨부=파일 목록), panel 필터 칩
+- lab_tests.test_type CHECK는 기존 3종 유지 (`allergy|organic_acid|blood|attachment`) — 신규 panel은 `result_data.panel_type`에 식별자 저장. migration 008 은 CHECK 확장 SQL 파일만 준비 (수동 적용 대기)
+- fetchPatients 배치 쿼리: 239명 × 3 round-trip을 `in('id', parentIds)` + `in('child_id', childIds)` 로 합쳐 총 3 쿼리로 축소
 
 ## Environment Variables
 ```
@@ -124,6 +133,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 10: PARTIAL (7 treatment cases with data cleanup, predicted growth curves, allergy data, admin enhancements)
 - Phase 11: PARTIAL (patient DB unification, admin clinical dashboard, X-ray panel, BA/CA dual predictions, intake survey tab)
 - Phase 12: PARTIAL (VisitDetailPanel 4+1 섹션, chart_number, KR/CN 성장곡선, GrowthComparisonDiagram, 생활 습관 월간 뷰 + 카테고리 평가, 환자 추가/삭제, 사이드바 접기)
+- Phase 14: PARTIAL (Lab OCR 파이프라인 — Surya + parse_eone + Supabase 임포트 / 234차트·2094이미지·804 lab_tests / LabHistoryPanel + 검사 이력 접힘 섹션)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript
