@@ -41,6 +41,10 @@ def main() -> None:
         chart = non_empty(row[3])
         if not chart:
             continue
+        # Skip subtotal rows (e.g. "5368 요약", "총합계") — Excel mixes rollups
+        # into the data area and the chart_number cell isn't a real chart.
+        if "요약" in chart or chart == "총합계" or not any(ch.isdigit() for ch in chart):
+            continue
         name = non_empty(row[4])
         presc_date = row[12]
         rrn = non_empty(row[13])
