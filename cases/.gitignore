@@ -27,3 +27,6 @@ seed_patients.sql
 # Ad-hoc OCR sample dumps
 *.surya.json
 *.raw.json
+
+# Patient roster JSON (PHI: names, RRN, address)
+_patient_roster.json
