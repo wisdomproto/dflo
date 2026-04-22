@@ -322,7 +322,9 @@ function VisitNotesField({ visit }: { visit: Visit }) {
     if (value === (visit.notes ?? '')) return;
     setSaving(true);
     try {
-      await updateVisit(visit.id, { notes: value || null });
+      // Cast: DB nullifies when value is empty, but Visit.notes is typed
+      // as optional string only.
+      await updateVisit(visit.id, { notes: (value || null) as unknown as string });
       setSaved(true);
       if (savedTimer.current) clearTimeout(savedTimer.current);
       savedTimer.current = setTimeout(() => setSaved(false), 1500);

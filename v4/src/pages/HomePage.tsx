@@ -4,7 +4,6 @@
 // ================================================
 
 import { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Layout from '@/shared/components/Layout';
 import Modal from '@/shared/components/Modal';
 import ChildSelector from '@/shared/components/ChildSelector';
@@ -132,30 +131,6 @@ export default function HomePage() {
 
       <ChildFormModal isOpen={isModalOpen} onClose={closeModal} editChild={editTarget} />
     </Layout>
-  );
-}
-
-// ── PatientShortcutGrid (로그인 후 환자 전용 바로가기) — kept for future use ──
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function PatientShortcutGrid({ onNav }: { onNav: (path: string) => void }) {
-  const items: { path: string; label: string; icon: string; bg: string }[] = [
-    { path: '/app/routine', label: '생활 데이터\n입력하기', icon: '📝', bg: 'from-emerald-50 to-teal-50' },
-    { path: '/app/body-analysis', label: '체형 분석', icon: '🧍', bg: 'from-violet-50 to-indigo-50' },
-  ];
-  return (
-    <div className="grid grid-cols-2 gap-3">
-      {items.map((it) => (
-        <button
-          key={it.path}
-          onClick={() => onNav(it.path)}
-          className={`rounded-2xl bg-gradient-to-br ${it.bg} p-4 text-left active:scale-[0.98] transition-transform shadow-sm border border-gray-100`}
-        >
-          <span className="text-2xl">{it.icon}</span>
-          <p className="mt-2 text-sm font-bold text-gray-800 whitespace-pre-line leading-tight">{it.label}</p>
-        </button>
-      ))}
-    </div>
   );
 }
 
