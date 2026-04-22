@@ -109,7 +109,8 @@ export interface Visit {
   doctor_id?: string;
   chief_complaint?: string;
   plan?: string;
-  notes?: string;
+  /** Nullable so the "clear memo" path can write explicit null. */
+  notes?: string | null;
   is_intake?: boolean;
   created_at: string;
   updated_at: string;
