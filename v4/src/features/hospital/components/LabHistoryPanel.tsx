@@ -7,7 +7,7 @@ import { fetchLabTestsByChild } from '@/features/hospital/services/labTestServic
 // by the DB CHECK constraint. The OCR import pipeline stores the finer-grained
 // panel under result_data.panel_type so we can distinguish IgG4 food panels
 // from MAST allergen panels, etc.
-type PanelType =
+export type PanelType =
   | 'blood'
   | 'food_intolerance'
   | 'mast_allergy'
@@ -39,7 +39,7 @@ const PANEL_ORDER: PanelType[] = [
   'unknown',
 ];
 
-function panelTypeOf(lab: LabTest): PanelType {
+export function panelTypeOf(lab: LabTest): PanelType {
   const pt = (lab.result_data as { panel_type?: string } | undefined)?.panel_type;
   if (pt && PANEL_ORDER.includes(pt as PanelType)) return pt as PanelType;
   // Fallback: infer from the legacy test_type.
@@ -123,6 +123,55 @@ function ResultTable({ rows }: { rows: StandardItem[] }) {
   );
 }
 
+// IgG4 food-intolerance class table — 6 grades ranked by antibody level.
+// Hover the ? icon to see the interpretation key without leaving the page.
+const IGG4_CLASS_GUIDE: Array<{ cls: string; range: string; label: string; color: string }> = [
+  { cls: '0', range: '< 0.35 IU/mL',   label: '음성 — 반응 없음',                   color: 'bg-slate-100 text-slate-600' },
+  { cls: '1', range: '0.35 – 0.69',    label: '매우 낮음 — 경미, 관찰',            color: 'bg-amber-50 text-amber-700' },
+  { cls: '2', range: '0.70 – 3.49',    label: '낮음 — 간헐 섭취 주의',             color: 'bg-amber-100 text-amber-800' },
+  { cls: '3', range: '3.50 – 17.49',   label: '중등도 — 빈도 제한 권장',            color: 'bg-orange-100 text-orange-800' },
+  { cls: '4', range: '17.50 – 49.99',  label: '높음 — 섭취 회피',                  color: 'bg-red-100 text-red-700' },
+  { cls: '5', range: '50.00 – 99.99',  label: '매우 높음 — 엄격 회피',             color: 'bg-red-200 text-red-800' },
+  { cls: '6', range: '≥ 100.00',       label: '극도 — 회피 + 알레르기 전문의 상담', color: 'bg-red-300 text-red-900' },
+];
+
+function igg4ClassColor(cls: string | null | undefined): string {
+  const hit = IGG4_CLASS_GUIDE.find((g) => g.cls === String(cls ?? ''));
+  return hit?.color ?? 'bg-slate-100 text-slate-600';
+}
+
+function IgG4ClassHelp() {
+  return (
+    <span className="group relative inline-flex">
+      <span
+        className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full border border-slate-300 bg-white text-[10px] font-bold text-slate-500 hover:bg-slate-100"
+        aria-label="IgG4 Class 설명"
+      >
+        ?
+      </span>
+      <span className="pointer-events-none absolute left-5 top-0 z-50 hidden w-80 rounded-lg border border-slate-200 bg-white p-2 text-[11px] shadow-lg group-hover:block">
+        <div className="mb-1 font-semibold text-slate-700">IgG4 음식 민감도 등급</div>
+        <ul className="space-y-0.5">
+          {IGG4_CLASS_GUIDE.map((g) => (
+            <li key={g.cls} className="flex items-start gap-2">
+              <span className={`shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold ${g.color}`}>
+                Class {g.cls}
+              </span>
+              <span className="flex-1 text-slate-600">
+                <span className="tabular-nums">{g.range}</span>
+                <span className="ml-1">· {g.label}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-1 text-[10px] text-slate-400">
+          Class ≥ 1은 양성으로 분류됩니다. 수치가 높을수록 지연성 반응 강도가 큽니다.
+        </div>
+      </span>
+    </span>
+  );
+}
+
 function IgG4View({ data }: { data: Record<string, unknown> }) {
   const items = (data.items as IgG4Item[] | undefined) ?? [];
   const elevated = items.filter((i) => {
@@ -131,8 +180,11 @@ function IgG4View({ data }: { data: Record<string, unknown> }) {
   });
   return (
     <div className="space-y-2">
-      <p className="text-[11px] text-slate-500">
-        전체 {items.length}종, 양성 <span className="font-semibold text-red-600">{elevated.length}</span>종
+      <p className="flex items-center gap-1 text-[11px] text-slate-500">
+        <span>
+          전체 {items.length}종, 양성 <span className="font-semibold text-red-600">{elevated.length}</span>종
+        </span>
+        <IgG4ClassHelp />
       </p>
       {elevated.length > 0 && (
         <ul className="space-y-1 text-xs">
@@ -143,7 +195,9 @@ function IgG4View({ data }: { data: Record<string, unknown> }) {
                 <span>{it.name}</span>
                 <span>
                   <span className="tabular-nums text-slate-600">{it.value}</span>
-                  <span className="ml-2 rounded bg-orange-100 px-1 text-[10px] text-orange-700">
+                  <span
+                    className={`ml-2 rounded px-1 text-[10px] font-semibold ${igg4ClassColor(it.class)}`}
+                  >
                     Class {it.class}
                   </span>
                 </span>
@@ -247,7 +301,7 @@ function AttachmentView({ data }: { data: Record<string, unknown> }) {
   );
 }
 
-function PanelContent({ panel, data }: { panel: PanelType; data: Record<string, unknown> }) {
+export function PanelContent({ panel, data }: { panel: PanelType; data: Record<string, unknown> }) {
   switch (panel) {
     case 'blood':
       return <BloodPanelView data={data} />;

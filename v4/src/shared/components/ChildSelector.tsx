@@ -20,6 +20,12 @@ export default function ChildSelector() {
     );
   }
 
+  // 차트번호 단위 로그인이라 보통 자녀 1명만 활성화된다.
+  // 1명이면 선택 칩이 의미가 없으므로 숨김.
+  if (children.length === 1) {
+    return null;
+  }
+
   return (
     <div className="flex gap-2 px-4 py-2 overflow-x-auto scrollbar-hide">
       {children.map((child) => {

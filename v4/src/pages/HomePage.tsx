@@ -10,32 +10,24 @@ import Modal from '@/shared/components/Modal';
 import ChildSelector from '@/shared/components/ChildSelector';
 import LoadingSpinner from '@/shared/components/LoadingSpinner';
 import GenderIcon from '@/shared/components/GenderIcon';
-import { SwipeableSection } from '@/shared/components/SwipeableSection';
 import { ChildFormModal } from '@/features/children/components/ChildFormModal';
-import { GrowthGuideSwipeCard } from '@/features/content/components/GrowthGuideSwipeCard';
-import { RecipeSwipeCard } from '@/features/content/components/RecipeSwipeCard';
-import { GrowthCaseSwipeCard } from '@/features/content/components/GrowthCaseSwipeCard';
-import { RecipeDetail } from '@/features/content/components/RecipeDetail';
-import { CaseDetail } from '@/features/content/components/CaseDetail';
-import { GuideDetail } from '@/features/content/components/GuideDetail';
-import { useHomeContent } from '@/features/content/hooks/useHomeContent';
 import { useGrowthRecord } from '@/features/growth/hooks/useGrowthRecord';
 import { GrowthModalContent } from '@/features/routine/components/GrowthModalContent';
+import { SectionCarousel } from '@/features/website/components/SectionCarousel';
+import { fetchSections } from '@/features/website/services/websiteSectionService';
+import type { WebsiteSection } from '@/features/website/types/websiteSection';
 import { useChildrenStore } from '@/stores/childrenStore';
+import { useAuthStore } from '@/stores/authStore';
 import { useUIStore } from '@/stores/uiStore';
 import { calculateAgeAtDate, formatAge } from '@/shared/utils/age';
 import { toDateString } from '@/shared/utils/date';
 import { calculateHeightPercentileLMS, calculateWeightPercentileLMS, predictAdultHeightLMS } from '@/shared/data/growthStandard';
 import { fetchRoutine, upsertRoutine } from '@/features/routine/services/routineService';
-import type { Child, Recipe, GrowthCase, GrowthGuide } from '@/shared/types';
-
-type DetailItem =
-  | { type: 'recipe'; data: Recipe }
-  | { type: 'case'; data: GrowthCase }
-  | { type: 'guide'; data: GrowthGuide };
+import type { Child } from '@/shared/types';
 
 export default function HomePage() {
-  const navigate = useNavigate();
+  const user = useAuthStore((s) => s.user);
+  const isLoggedIn = !!user;
   const children = useChildrenStore((s) => s.children);
   const isLoading = useChildrenStore((s) => s.isLoading);
   const fetchChildren = useChildrenStore((s) => s.fetchChildren);
@@ -44,39 +36,59 @@ export default function HomePage() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editTarget, setEditTarget] = useState<Child | undefined>(undefined);
-  const [detail, setDetail] = useState<DetailItem | null>(null);
   const [predInfo, setPredInfo] = useState<{ height: number } | null>(null);
   const [showBmiInfo, setShowBmiInfo] = useState(false);
   const [showGrowthModal, setShowGrowthModal] = useState(false);
 
-  const { guides, recipes, cases, isLoading: contentLoading } = useHomeContent();
+  // Website sections (R2 website.json) — 게스트/로그인 공통 표시
+  const [sections, setSections] = useState<WebsiteSection[]>([]);
+
   const growth = useGrowthRecord(selectedChild ?? null);
 
   const openAddModal = () => { setEditTarget(undefined); setIsModalOpen(true); };
   const openEditModal = (child: Child) => { setEditTarget(child); setIsModalOpen(true); };
   const closeModal = () => { setIsModalOpen(false); setEditTarget(undefined); };
 
-  useEffect(() => { fetchChildren(); }, [fetchChildren]);
+  // 로그인 상태일 때만 자녀 데이터 fetch
+  useEffect(() => {
+    if (isLoggedIn) fetchChildren();
+  }, [fetchChildren, isLoggedIn]);
 
-  const detailTitle = detail?.type === 'recipe' ? detail.data.title
-    : detail?.type === 'case' ? `${detail.data.patient_name} 성장 사례`
-    : detail?.type === 'guide' ? detail.data.title : '';
+  // 섹션은 게스트/로그인 모두 동일하게 표시.
+  // 'app-home.json'에 저장된 내용을 우선 사용하고, 없으면 'website.json' fallback.
+  useEffect(() => {
+    fetchSections('app-home.json', 'website.json').then(setSections);
+  }, []);
+
+  const websiteSections = (
+    <div className="flex flex-col gap-3">
+      {sections.map((section, idx) => (
+        <div key={section.id || idx} className="rounded-2xl overflow-hidden shadow-md bg-white border-2 border-purple-300">
+          <SectionCarousel slides={section.slides} showNav={section.showNav ?? true} />
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <Layout title="187 성장케어">
-      <div className="flex items-center justify-between px-4 pt-2">
-        <ChildSelector />
-        {children.length > 0 && (
-          <button onClick={openAddModal}
-            className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full
-                       bg-gradient-to-br from-primary to-secondary text-white text-lg leading-none
-                       active:scale-90 transition-transform shadow-md shadow-primary/20"
-            aria-label="자녀 추가">+</button>
-        )}
-      </div>
+      {isLoggedIn && (
+        <div className="flex items-center justify-between px-4 pt-2">
+          <ChildSelector />
+          {children.length > 0 && (
+            <button onClick={openAddModal}
+              className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full
+                         bg-gradient-to-br from-primary to-secondary text-white text-lg leading-none
+                         active:scale-90 transition-transform shadow-md shadow-primary/20"
+              aria-label="자녀 추가">+</button>
+          )}
+        </div>
+      )}
 
-      <div className="flex flex-col gap-4 px-4 py-4">
-        {isLoading ? <LoadingSpinner /> : children.length === 0 ? (
+      <div className="flex flex-col gap-4 px-3 py-3">
+        {isLoggedIn && (isLoading ? (
+          <LoadingSpinner />
+        ) : children.length === 0 ? (
           <EmptyState onAdd={openAddModal} />
         ) : selectedChild ? (
           <>
@@ -87,34 +99,11 @@ export default function HomePage() {
               onShowBmiInfo={() => setShowBmiInfo(true)}
               onShowGrowth={() => setShowGrowthModal(true)}
             />
-
-            <SwipeableSection title="키 성장 가이드" emoji="📚" isLoading={contentLoading} onSeeAll={() => navigate('/app/info/guides')}>
-              {guides.map((g) => (
-                <GrowthGuideSwipeCard key={g.id} guide={g} onClick={() => setDetail({ type: 'guide', data: g })} />
-              ))}
-            </SwipeableSection>
-
-            <SwipeableSection title="오늘의 키 쑥쑥 식단" emoji="🥗" isLoading={contentLoading} onSeeAll={() => navigate('/app/info/recipes')}>
-              {recipes.map((r) => (
-                <RecipeSwipeCard key={r.id} recipe={r} onClick={() => setDetail({ type: 'recipe', data: r })} />
-              ))}
-            </SwipeableSection>
-
-            <SwipeableSection title="성장 관리 사례" emoji="📋" isLoading={contentLoading} onSeeAll={() => navigate('/app/info/cases')}>
-              {cases.map((c) => (
-                <GrowthCaseSwipeCard key={c.id} caseData={c} onClick={() => setDetail({ type: 'case', data: c })} />
-              ))}
-            </SwipeableSection>
-
           </>
-        ) : null}
-      </div>
+        ) : null)}
 
-      <Modal isOpen={!!detail} onClose={() => setDetail(null)} title={detailTitle} size="lg">
-        {detail?.type === 'recipe' && <RecipeDetail recipe={detail.data} />}
-        {detail?.type === 'case' && <CaseDetail caseData={detail.data} />}
-        {detail?.type === 'guide' && <GuideDetail guide={detail.data} />}
-      </Modal>
+        {websiteSections}
+      </div>
 
       <Modal isOpen={!!predInfo} onClose={() => setPredInfo(null)} title="예측 성인키란?">
         {selectedChild && predInfo && (
@@ -143,6 +132,30 @@ export default function HomePage() {
 
       <ChildFormModal isOpen={isModalOpen} onClose={closeModal} editChild={editTarget} />
     </Layout>
+  );
+}
+
+// ── PatientShortcutGrid (로그인 후 환자 전용 바로가기) — kept for future use ──
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function PatientShortcutGrid({ onNav }: { onNav: (path: string) => void }) {
+  const items: { path: string; label: string; icon: string; bg: string }[] = [
+    { path: '/app/routine', label: '생활 데이터\n입력하기', icon: '📝', bg: 'from-emerald-50 to-teal-50' },
+    { path: '/app/body-analysis', label: '체형 분석', icon: '🧍', bg: 'from-violet-50 to-indigo-50' },
+  ];
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {items.map((it) => (
+        <button
+          key={it.path}
+          onClick={() => onNav(it.path)}
+          className={`rounded-2xl bg-gradient-to-br ${it.bg} p-4 text-left active:scale-[0.98] transition-transform shadow-sm border border-gray-100`}
+        >
+          <span className="text-2xl">{it.icon}</span>
+          <p className="mt-2 text-sm font-bold text-gray-800 whitespace-pre-line leading-tight">{it.label}</p>
+        </button>
+      ))}
+    </div>
   );
 }
 

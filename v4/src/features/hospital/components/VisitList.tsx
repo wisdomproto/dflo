@@ -3,14 +3,15 @@
 // hover to reveal the delete button. Clinical data is edited in the
 // center column via VisitDetailPanel.
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { deleteVisit } from '@/features/hospital/services/visitService';
 import { logger } from '@/shared/lib/logger';
-import type { Visit } from '@/shared/types';
+import type { HospitalMeasurement, Visit } from '@/shared/types';
 
 interface Props {
   childId: string;
   visits: Visit[];
+  measurements?: HospitalMeasurement[];
   selectedVisitId: string | null;
   onSelectVisit: (visitId: string | null) => void;
   /** Parent refreshes after a row is removed. */
@@ -20,10 +21,19 @@ interface Props {
 export function VisitList({
   childId: _childId,
   visits,
+  measurements = [],
   selectedVisitId,
   onSelectVisit,
   onVisitDeleted,
 }: Props) {
+  // BA measurements are per-visit but rare — pre-index so row rendering is cheap.
+  const baByVisitId = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const m of measurements) {
+      if (m.visit_id && m.bone_age != null) map.set(m.visit_id, m.bone_age);
+    }
+    return map;
+  }, [measurements]);
   const [busyId, setBusyId] = useState<string | null>(null);
 
   if (visits.length === 0) {
@@ -65,6 +75,14 @@ export function VisitList({
               <span className="whitespace-nowrap text-sm font-semibold text-slate-900">
                 {v.visit_date}
               </span>
+              {baByVisitId.has(v.id) && (
+                <span
+                  className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800"
+                  title={`뼈나이 측정됨: BA ${baByVisitId.get(v.id)?.toFixed(1)}`}
+                >
+                  🦴 BA {baByVisitId.get(v.id)?.toFixed(1)}
+                </span>
+              )}
             </button>
             <button
               type="button"

@@ -40,6 +40,7 @@ export interface Child {
   mother_height?: number;
   desired_height?: number;
   chart_number: string;
+  password?: string;
   grade?: string;
   class_height_rank?: string;
   nationality?: 'KR' | 'CN';

@@ -49,29 +49,49 @@ export interface PatientWithParent extends Child {
   parent?: Pick<User, 'id' | 'name' | 'email' | 'phone'>;
   latestMeasurement?: Measurement;
   measurementCount?: number;
+  labCount?: number;
+}
+
+const PAGE = 1000;
+
+// Generic paginator — PostgREST caps a single response at 1000 rows, so any
+// table that can exceed that needs explicit paging. Clinical filtering and
+// category chips run client-side, so the list page depends on fetching the
+// full child+measurement set in one go.
+async function fetchAllRows<T>(
+  builder: (from: number, to: number) => Promise<{ data: T[] | null; error: unknown }>,
+): Promise<T[]> {
+  const out: T[] = [];
+  let from = 0;
+  while (true) {
+    const { data, error } = await builder(from, from + PAGE - 1);
+    if (error) {
+      logger.error('fetchAllRows failed:', error);
+      return out;
+    }
+    if (!data || data.length === 0) break;
+    out.push(...data);
+    if (data.length < PAGE) break;
+    from += PAGE;
+  }
+  return out;
 }
 
 export async function fetchPatients(search?: string): Promise<PatientWithParent[]> {
-  // 1) Fetch children with any search filter applied.
-  let query = supabase
-    .from('children')
-    .select('*')
-    .order('created_at', { ascending: false });
-
-  if (search) {
-    // Search across name, chart_number, and chart_number partial for quick
-    // lookup in the admin patients list.
-    query = query.or(
-      `name.ilike.%${search}%,chart_number.ilike.%${search}%`,
-    );
-  }
-
-  const { data, error } = await query;
-  if (error) {
-    logger.error('Failed to fetch patients:', error);
-    throw error;
-  }
-  const patients = (data ?? []) as Child[];
+  // 1) Fetch children with any search filter applied — paginated so the full
+  //    roster is available to client-side category filters.
+  const patients = await fetchAllRows<Child>(async (from, to) => {
+    let q = supabase
+      .from('children')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .range(from, to);
+    if (search) {
+      q = q.or(`name.ilike.%${search}%,chart_number.ilike.%${search}%`);
+    }
+    const { data, error } = await q;
+    return { data: (data ?? []) as Child[], error };
+  });
   if (!patients.length) return [];
 
   // 2) Batch-fetch parent users + all measurements in two queries (not N+1).
@@ -80,31 +100,81 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
   );
   const childIds = patients.map((p) => p.id);
 
-  const [parentsRes, measurementsRes] = await Promise.all([
+  // PostgREST caps a single response at 1000 rows by default, so the full
+  // measurement set for every patient (now ~3k rows) won't come back in one
+  // request. Paginate explicitly until the page size is short — otherwise
+  // patients past the cutoff silently show measurementCount=0.
+  async function fetchAllMeasurements(): Promise<Measurement[]> {
+    const PAGE = 1000;
+    const out: Measurement[] = [];
+    let from = 0;
+    while (true) {
+      const { data, error } = await supabase
+        .from('hospital_measurements')
+        .select('id, child_id, measured_date, height, weight, bone_age, pah')
+        .in('child_id', childIds)
+        .order('measured_date', { ascending: false })
+        .range(from, from + PAGE - 1);
+      if (error) {
+        logger.error('fetchPatients measurements:', error);
+        return out;
+      }
+      if (!data || data.length === 0) break;
+      out.push(...(data as Measurement[]));
+      if (data.length < PAGE) break;
+      from += PAGE;
+    }
+    return out;
+  }
+
+  // Lab tests — same paging pattern since the ceiling could eventually trip us.
+  async function fetchAllLabIds(): Promise<Array<{ child_id: string }>> {
+    const out: Array<{ child_id: string }> = [];
+    let from = 0;
+    while (true) {
+      const { data, error } = await supabase
+        .from('lab_tests')
+        .select('child_id')
+        .in('child_id', childIds)
+        .range(from, from + PAGE - 1);
+      if (error) {
+        logger.error('fetchPatients labs:', error);
+        return out;
+      }
+      if (!data || data.length === 0) break;
+      out.push(...(data as Array<{ child_id: string }>));
+      if (data.length < PAGE) break;
+      from += PAGE;
+    }
+    return out;
+  }
+
+  const [parentsRes, measurements, labs] = await Promise.all([
     parentIds.length
       ? supabase.from('users').select('id, name, email, phone').in('id', parentIds)
       : Promise.resolve({ data: [], error: null }),
-    supabase
-      .from('hospital_measurements')
-      .select('id, child_id, measured_date, height, weight, bone_age, pah')
-      .in('child_id', childIds)
-      .order('measured_date', { ascending: false }),
+    fetchAllMeasurements(),
+    fetchAllLabIds(),
   ]);
 
   if (parentsRes.error) logger.error('fetchPatients parents:', parentsRes.error);
-  if (measurementsRes.error) logger.error('fetchPatients measurements:', measurementsRes.error);
 
-  // 3) Index parents by id, group measurements by child_id.
+  // 3) Index parents by id, group measurements + lab counts by child_id.
   const parentMap = new Map<string, PatientWithParent['parent']>();
   for (const p of parentsRes.data ?? []) {
     parentMap.set((p as { id: string }).id, p as PatientWithParent['parent']);
   }
 
   const measurementsByChild = new Map<string, Measurement[]>();
-  for (const m of (measurementsRes.data ?? []) as Measurement[]) {
+  for (const m of measurements) {
     const arr = measurementsByChild.get(m.child_id) ?? [];
     arr.push(m);
     measurementsByChild.set(m.child_id, arr);
+  }
+
+  const labCountByChild = new Map<string, number>();
+  for (const l of labs) {
+    labCountByChild.set(l.child_id, (labCountByChild.get(l.child_id) ?? 0) + 1);
   }
 
   // 4) Assemble without any extra round-trips.
@@ -115,6 +185,7 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
       parent: parentMap.get(patient.parent_id),
       latestMeasurement: ms[0], // already sorted desc by measured_date
       measurementCount: ms.length,
+      labCount: labCountByChild.get(patient.id) ?? 0,
     };
   });
 }

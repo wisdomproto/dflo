@@ -25,6 +25,11 @@ const LoginPage = lazy(() =>
     default: m.LoginPage,
   })),
 );
+const AdminLoginPage = lazy(() =>
+  import('@/features/auth/components/AdminLoginPage').then((m) => ({
+    default: m.AdminLoginPage,
+  })),
+);
 const RoutinePage = lazy(() => import('@/pages/RoutinePage'));
 const BodyAnalysisPage = lazy(() => import('@/pages/BodyAnalysisPage'));
 const InfoPage = lazy(() => import('@/pages/InfoPage'));
@@ -51,6 +56,7 @@ const AdminBoneAgePage = lazy(() => import('@/pages/admin/AdminBoneAgePage'));
 const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
 const AdminDiagramPreviewPage = lazy(() => import('@/pages/admin/AdminDiagramPreviewPage'));
 const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
+const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
 
 function SuspenseFallback() {
   return (
@@ -124,6 +130,15 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
   },
+  {
+    // 앱 홈(/app) 섹션 콘텐츠 관리 — PIN 보호 (의사 admin과 분리)
+    path: '/app-home-admin',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <AdminAppHomePage />
+      </Suspense>
+    ),
+  },
 
   // Legacy /website/* redirects (banner CTAs in R2, external bookmarks)
   { path: '/website', element: <Navigate to="/" replace /> },
@@ -133,7 +148,7 @@ export const router = createBrowserRouter([
   { path: '/website/guide/:cardId', element: <RedirectGuideDetail /> },
   { path: '/website/diagnosis', element: <Navigate to="/diagnosis" replace /> },
 
-  // Login
+  // Login (환자: 차트번호 / 관리자: 이메일)
   {
     path: '/login',
     element: (
@@ -142,19 +157,61 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
   },
+  {
+    path: '/admin/login',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <AdminLoginPage />
+      </Suspense>
+    ),
+  },
 
-  // User app routes (login required) — mounted under /app
+  // Public app routes (로그인 없이 둘러보기 가능)
+  {
+    path: '/app',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <HomePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/app/info',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <InfoPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/app/info/guides',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <GuidesListPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/app/info/recipes',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <RecipesListPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/app/info/cases',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <CasesListPage />
+      </Suspense>
+    ),
+  },
+
+  // Patient-only app routes (로그인 필요 — 개인 데이터)
   {
     element: <ProtectedRoute />,
     children: [
-      {
-        path: '/app',
-        element: (
-          <Suspense fallback={<SuspenseFallback />}>
-            <HomePage />
-          </Suspense>
-        ),
-      },
       {
         path: '/app/routine',
         element: (
@@ -168,38 +225,6 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <BodyAnalysisPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/app/info',
-        element: (
-          <Suspense fallback={<SuspenseFallback />}>
-            <InfoPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/app/info/guides',
-        element: (
-          <Suspense fallback={<SuspenseFallback />}>
-            <GuidesListPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/app/info/recipes',
-        element: (
-          <Suspense fallback={<SuspenseFallback />}>
-            <RecipesListPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/app/info/cases',
-        element: (
-          <Suspense fallback={<SuspenseFallback />}>
-            <CasesListPage />
           </Suspense>
         ),
       },

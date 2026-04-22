@@ -6,6 +6,7 @@ import type {
   Visit,
 } from '@/shared/types';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
+import { updateVisit } from '@/features/hospital/services/visitService';
 import {
   fetchLabTestsByVisit,
   createLabTest,
@@ -19,6 +20,7 @@ import { fetchXrayReadingsByVisit } from '@/features/bone-age/services/xrayReadi
 import { XrayPanel } from './XrayPanel';
 import { PrescriptionsBlock } from './PrescriptionsBlock';
 import { LifestylePanel } from './LifestylePanel';
+import { PanelContent, panelTypeOf } from './LabHistoryPanel';
 
 interface Props {
   child: Child;
@@ -75,12 +77,17 @@ export function VisitDetailPanel({
         ]);
         if (cancelled) return;
         setHasXrayImage(xrs.some((r) => !!r.image_path));
+        // Count = file attachments + structured panel rows (blood/IgG4/etc.)
         const files = labs.flatMap(
           (l) =>
             (l.result_data as unknown as { files?: { name: string; url: string }[] })
               ?.files ?? [],
         );
-        setLabFileCount(files.length);
+        const structured = labs.filter((l) => {
+          const rd = l.result_data as { items?: unknown[] } | null;
+          return l.test_type !== 'attachment' && Array.isArray(rd?.items) && rd!.items!.length > 0;
+        });
+        setLabFileCount(files.length + structured.length);
       } catch (e) {
         if (!cancelled) {
           logger.error('section presence probe failed', e);
@@ -124,6 +131,35 @@ export function VisitDetailPanel({
     }
   };
 
+  // Tab state — the visit's data was formerly a vertical stack of every
+  // section at once; splitting into tabs keeps the middle pane focused on
+  // one aspect at a time while the left column still drives visit selection.
+  type TabKey = 'clinical' | 'xray' | 'lab' | 'lifestyle';
+  const [tab, setTab] = useState<TabKey>('clinical');
+
+  // Summary badge shape: text + flag so empty/populated states can be styled
+  // differently in the tab bar (e.g. muted red for missing data).
+  type TabSummary = { text: string; empty: boolean };
+  const tabs: Array<{ key: TabKey; label: string; summary?: TabSummary }> = [
+    { key: 'clinical', label: '진료 내역' },
+    {
+      key: 'xray',
+      label: 'X-ray 검사',
+      summary: hasXrayImage === false ? { text: '없음', empty: true } : undefined,
+    },
+    {
+      key: 'lab',
+      label: 'Lab 테스트',
+      summary:
+        labFileCount == null
+          ? undefined
+          : labFileCount > 0
+            ? { text: String(labFileCount), empty: false }
+            : { text: '없음', empty: true },
+    },
+    { key: 'lifestyle', label: '생활습관' },
+  ];
+
   return (
     <div className="flex h-full min-h-0 flex-col gap-3 overflow-y-auto pb-24">
       {/* Header */}
@@ -140,98 +176,175 @@ export function VisitDetailPanel({
         </div>
       </div>
 
-      <Section title="측정" accent="emerald">
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
-          <NumberField
-            label="키 (cm)"
-            value={m?.height ?? null}
-            step={0.1}
-            onSave={(v) => saveField({ height: v ?? undefined })}
+      {/* Tab bar */}
+      <div className="flex shrink-0 gap-1 border-b border-slate-200">
+        {tabs.map((t) => {
+          const active = tab === t.key;
+          return (
+            <button
+              key={t.key}
+              type="button"
+              onClick={() => setTab(t.key)}
+              className={
+                'relative -mb-px inline-flex items-center gap-1.5 border-b-2 px-3 py-2 text-sm font-medium transition-colors ' +
+                (active
+                  ? 'border-indigo-500 text-indigo-700'
+                  : 'border-transparent text-slate-500 hover:text-slate-700')
+              }
+            >
+              <span>{t.label}</span>
+              {t.summary != null && (
+                <span
+                  className={
+                    'rounded-full px-1.5 py-0.5 text-[10px] font-semibold ' +
+                    (t.summary.empty
+                      ? 'bg-rose-50 text-rose-500 ring-1 ring-rose-100'
+                      : 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100')
+                  }
+                >
+                  {t.summary.text}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {tab === 'clinical' && (
+        <>
+          <Section title="측정" accent="emerald">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
+              <NumberField
+                label="키 (cm)"
+                value={m?.height ?? null}
+                step={0.1}
+                onSave={(v) => saveField({ height: v ?? undefined })}
+              />
+              <NumberField
+                label="몸무게 (kg)"
+                value={m?.weight ?? null}
+                step={0.1}
+                onSave={(v) => saveField({ weight: v ?? undefined })}
+              />
+              {/* 뼈나이 + 예측 성인키: X-ray 탭에서 계산한 값을 그대로 표시
+                  (read-only). 수정은 X-ray 탭에서만 가능. */}
+              <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+                <div className="flex items-center gap-1">
+                  <span>뼈나이 (세)</span>
+                  <HelpTip text="X-ray 탭에서 자동 계산" />
+                </div>
+                <div className="flex h-9 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700">
+                  {effectiveBoneAge != null ? effectiveBoneAge.toFixed(1) : '—'}
+                </div>
+              </div>
+              <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+                <div className="flex items-center gap-1">
+                  <span>예측 성인키</span>
+                  <HelpTip text="X-ray 탭에서 자동 계산" />
+                </div>
+                <div className="flex h-9 items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 text-sm font-bold text-indigo-900">
+                  {pah != null ? `${pah.toFixed(1)} cm` : '—'}
+                </div>
+              </div>
+            </div>
+          </Section>
+
+          <Section title="처방" accent="violet">
+            <PrescriptionsBlock visitId={visit.id} childId={child.id} />
+          </Section>
+
+          <Section title="메모" accent="sky">
+            <VisitNotesField visit={visit} />
+          </Section>
+
+          <Section title="판독문 원본" accent="indigo">
+            <PandokmunPages child={child} visitId={visit.id} />
+          </Section>
+        </>
+      )}
+
+      {tab === 'xray' && (
+        <Section title="X-ray" accent="indigo">
+          <XrayPanel
+            child={child}
+            visit={visit}
+            measurements={measurements}
+            collapsed={false}
+            onToggleCollapse={() => {
+              /* no-op inside VisitDetailPanel; zoom button handles expansion */
+            }}
+            onSaved={onXraySaved}
+            embedded
+            onNationalityChange={onNationalityChange}
+            onLiveChange={setLiveXray}
           />
-          <NumberField
-            label="몸무게 (kg)"
-            value={m?.weight ?? null}
-            step={0.1}
-            onSave={(v) => saveField({ weight: v ?? undefined })}
+        </Section>
+      )}
+
+      {tab === 'lab' && (
+        <Section title="검사 (Lab)" accent="sky">
+          <LabSection
+            visitId={visit.id}
+            childId={child.id}
+            visitDate={visit.visit_date}
           />
-          {/* 뼈나이 + 예측 성인키: X-ray 섹션에서 계산한 값을 그대로 표시
-              (read-only). 수정은 X-ray 섹션에서만 가능. */}
-          <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
-            <div className="flex items-center gap-1">
-              <span>뼈나이 (세)</span>
-              <HelpTip text="X-ray 탭에서 자동 계산" />
-            </div>
-            <div className="flex h-9 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700">
-              {effectiveBoneAge != null ? effectiveBoneAge.toFixed(1) : '—'}
-            </div>
-          </div>
-          <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
-            <div className="flex items-center gap-1">
-              <span>예측 성인키</span>
-              <HelpTip text="X-ray 탭에서 자동 계산" />
-            </div>
-            <div className="flex h-9 items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 text-sm font-bold text-indigo-900">
-              {pah != null ? `${pah.toFixed(1)} cm` : '—'}
-            </div>
-          </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
-      <Section
-        title="X-ray"
-        accent="indigo"
-        collapsible
-        defaultCollapsed={hasXrayImage === false}
-        summary={
-          hasXrayImage == null
-            ? undefined
-            : hasXrayImage
-              ? undefined
-              : '이미지 없음'
-        }
-      >
-        <XrayPanel
-          child={child}
-          visit={visit}
-          measurements={measurements}
-          collapsed={false}
-          onToggleCollapse={() => {
-            /* no-op inside VisitDetailPanel; zoom button handles expansion */
-          }}
-          onSaved={onXraySaved}
-          embedded
-          onNationalityChange={onNationalityChange}
-          onLiveChange={setLiveXray}
-        />
-      </Section>
+      {tab === 'lifestyle' && (
+        <Section title="생활 습관 (진료 전 30일)" accent="emerald">
+          <LifestylePanel childId={child.id} anchorDate={visit.visit_date} />
+        </Section>
+      )}
+    </div>
+  );
+}
 
-      <Section
-        title="검사 (Lab)"
-        accent="sky"
-        collapsible
-        defaultCollapsed={labFileCount === 0}
-        summary={
-          labFileCount == null
-            ? undefined
-            : labFileCount > 0
-              ? `첨부 ${labFileCount}`
-              : '첨부 없음'
-        }
-      >
-        <LabSection
-          visitId={visit.id}
-          childId={child.id}
-          visitDate={visit.visit_date}
-        />
-      </Section>
+/** Editable textarea bound to visits.notes. Saves onBlur when the value
+ *  changes so the user can free-type without intermediate network calls. */
+function VisitNotesField({ visit }: { visit: Visit }) {
+  // Fallback to measurement.notes (OCR memo imported there) when the visit
+  // row itself has no memo yet, so historical data renders without a backfill.
+  const initial = visit.notes ?? '';
+  const [value, setValue] = useState(initial);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const savedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-      <Section title="처방" accent="violet">
-        <PrescriptionsBlock visitId={visit.id} childId={child.id} />
-      </Section>
+  // Re-sync when the selected visit changes.
+  useEffect(() => {
+    setValue(visit.notes ?? '');
+    setSaved(false);
+  }, [visit.id, visit.notes]);
 
-      <Section title="생활 습관 (진료 전 30일)" accent="emerald">
-        <LifestylePanel childId={child.id} anchorDate={visit.visit_date} />
-      </Section>
+  const commit = async () => {
+    if (value === (visit.notes ?? '')) return;
+    setSaving(true);
+    try {
+      await updateVisit(visit.id, { notes: value || null });
+      setSaved(true);
+      if (savedTimer.current) clearTimeout(savedTimer.current);
+      savedTimer.current = setTimeout(() => setSaved(false), 1500);
+    } catch (e) {
+      logger.error('visit notes save failed', e);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-1">
+      <textarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onBlur={commit}
+        rows={3}
+        placeholder="진료 메모 (자동 저장)"
+        className="w-full resize-y rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-sky-400 focus:outline-none focus:ring-1 focus:ring-sky-200"
+      />
+      <div className="h-4 text-[11px] text-slate-400">
+        {saving ? '저장 중…' : saved ? '✓ 저장됨' : ''}
+      </div>
     </div>
   );
 }
@@ -438,12 +551,61 @@ function LabSection({
   const imageFiles = allFiles.filter(isImageFile);
   const pdfFiles = allFiles.filter((f) => !isImageFile(f));
 
+  // Labs with parsed numeric panels (blood, IgG4, MAST, NK, OAP, hair).
+  // Attachment-only rows are rendered via the images/pdf grids below, so we
+  // skip them here to avoid a redundant "첨부" block.
+  const structuredLabs = labs.filter((l) => {
+    const rd = l.result_data as { panel_type?: string; items?: unknown[] } | null;
+    if (!rd) return false;
+    if (l.test_type === 'attachment') return false;
+    return Array.isArray(rd.items) && rd.items.length > 0;
+  });
+
   return (
     <div className="flex flex-col gap-3">
       {loading ? (
         <div className="text-xs text-slate-400">불러오는 중…</div>
       ) : (
         <>
+          {/* Parsed panel results (blood / IgG4 / MAST / NK / OAP) */}
+          {structuredLabs.map((lab) => {
+            const panel = panelTypeOf(lab);
+            const rd = lab.result_data as Record<string, unknown>;
+            return (
+              <div
+                key={lab.id}
+                className="rounded-lg border border-slate-200 bg-white"
+              >
+                <div className="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-3 py-1.5 text-[11px] text-slate-600">
+                  <span className="font-semibold uppercase tracking-wider">
+                    {panel === 'blood'
+                      ? '혈액'
+                      : panel === 'food_intolerance'
+                        ? 'IgG4 음식'
+                        : panel === 'mast_allergy'
+                          ? 'MAST'
+                          : panel === 'nk_activity'
+                            ? 'NK 활성도'
+                            : panel === 'organic_acid'
+                              ? '유기산'
+                              : panel === 'hair_mineral'
+                                ? '모발 중금속'
+                                : '기타'}
+                  </span>
+                  <span>
+                    {lab.collected_date ?? '—'}
+                    {typeof rd.accession === 'string' && (
+                      <span className="ml-2 text-slate-400">{rd.accession}</span>
+                    )}
+                  </span>
+                </div>
+                <div className="p-2">
+                  <PanelContent panel={panel} data={rd} />
+                </div>
+              </div>
+            );
+          })}
+
           {imageFiles.length > 0 && (
             <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
               {imageFiles.map((f, i) => (
@@ -481,8 +643,8 @@ function LabSection({
             </div>
           )}
 
-          {imageFiles.length === 0 && pdfFiles.length === 0 && (
-            <div className="text-xs text-slate-400">첨부된 검사 기록이 없습니다.</div>
+          {imageFiles.length === 0 && pdfFiles.length === 0 && structuredLabs.length === 0 && (
+            <div className="text-xs text-slate-400">검사 기록이 없습니다.</div>
           )}
         </>
       )}
@@ -613,3 +775,134 @@ function LabLightbox({
     </div>
   );
 }
+
+/** Mirrors the 판독문 review UI: one large page at a time with prev/next
+ *  paging, a thumb strip below, and a full-screen viewer on click. Pulls the
+ *  per-visit filename list + flat URL map from children.intake_survey.raw_files.
+ */
+function PandokmunPages({ child, visitId }: { child: Child; visitId: string }) {
+  const rf = (child.intake_survey as {
+    raw_files?: {
+      pandokmun?: Array<{ filename: string; url: string }>;
+      pandokmun_by_visit?: Record<string, string[]>;
+    };
+  } | null)?.raw_files;
+  const filenames = rf?.pandokmun_by_visit?.[visitId] ?? [];
+  const urlByName = useMemo(
+    () => new Map((rf?.pandokmun ?? []).map((e) => [e.filename, e.url])),
+    [rf],
+  );
+  const pages = filenames
+    .map((fn) => ({ filename: fn, url: urlByName.get(fn) }))
+    .filter((p): p is { filename: string; url: string } => !!p.url);
+
+  const [idx, setIdx] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
+  // Reset page pointer when switching visits.
+  useEffect(() => {
+    setIdx(0);
+  }, [visitId]);
+
+  if (pages.length === 0) {
+    return (
+      <div className="text-xs text-slate-400">
+        이 회차와 연결된 판독문 페이지가 없습니다.
+      </div>
+    );
+  }
+
+  const current = pages[Math.min(idx, pages.length - 1)];
+  const canPrev = idx > 0;
+  const canNext = idx < pages.length - 1;
+
+  return (
+    <div className="flex flex-col gap-2">
+      {/* Top toolbar: prev / label / next / zoom-to-full */}
+      <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs">
+        <button
+          type="button"
+          disabled={!canPrev}
+          onClick={() => setIdx((i) => Math.max(0, i - 1))}
+          className="rounded border border-slate-300 bg-white px-2 py-0.5 text-slate-700 hover:bg-slate-100 disabled:opacity-40"
+        >
+          ◀
+        </button>
+        <span className="tabular-nums text-slate-600">
+          {idx + 1} / {pages.length}
+        </span>
+        <button
+          type="button"
+          disabled={!canNext}
+          onClick={() => setIdx((i) => Math.min(pages.length - 1, i + 1))}
+          className="rounded border border-slate-300 bg-white px-2 py-0.5 text-slate-700 hover:bg-slate-100 disabled:opacity-40"
+        >
+          ▶
+        </button>
+        <span className="truncate text-slate-500">{current.filename}</span>
+        <button
+          type="button"
+          onClick={() => setZoomed(true)}
+          className="ml-auto rounded border border-slate-300 bg-white px-2 py-0.5 text-slate-700 hover:bg-slate-100"
+        >
+          전체 보기
+        </button>
+      </div>
+
+      {/* Main image */}
+      <div
+        className="cursor-zoom-in overflow-hidden rounded-lg border border-slate-200 bg-white"
+        onClick={() => setZoomed(true)}
+        title="클릭하여 전체 보기"
+      >
+        <img
+          src={current.url}
+          alt={current.filename}
+          className="h-auto w-full object-contain"
+        />
+      </div>
+
+      {/* Thumb strip (only when there's more than one page) */}
+      {pages.length > 1 && (
+        <div className="flex gap-1.5 overflow-x-auto">
+          {pages.map((p, i) => (
+            <button
+              key={p.filename}
+              type="button"
+              onClick={() => setIdx(i)}
+              className={
+                'shrink-0 overflow-hidden rounded border bg-white transition ' +
+                (i === idx
+                  ? 'border-indigo-500 ring-2 ring-indigo-200'
+                  : 'border-slate-200 hover:border-slate-400')
+              }
+              title={p.filename}
+            >
+              <img
+                src={p.url}
+                alt={p.filename}
+                loading="lazy"
+                className="h-16 w-12 object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Fullscreen lightbox */}
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setZoomed(false)}
+        >
+          <img
+            src={current.url}
+            alt=""
+            className="max-h-[95vh] max-w-[95vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
+    </div>
+  );
+}
+

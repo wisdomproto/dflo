@@ -40,12 +40,12 @@ export function AdminRoute() {
   if (isLoading || !isInitialized) return <LoadingScreen />;
 
   if (!session) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
   }
 
   const role = user?.role;
   if (role !== 'admin' && role !== 'doctor') {
-    return <Navigate to="/app" replace />;
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
   }
 
   return <Outlet />;

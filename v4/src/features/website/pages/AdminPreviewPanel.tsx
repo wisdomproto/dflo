@@ -144,9 +144,10 @@ export function AdminPreviewPanel({
         </p>
       </div>
 
-      {/* Scrollable phone-style preview */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-3 py-3">
-        <div className="mx-auto max-w-[375px]">
+      {/* Scrollable phone-style preview — 폭은 375px 고정 (실제 모바일과 동일).
+          부모 패널이 좁으면 horizontal scroll 로 처리하여 비율을 유지한다. */}
+      <div ref={scrollRef} className="flex-1 overflow-auto px-3 py-3">
+        <div className="mx-auto" style={{ width: '375px' }}>
           {/* Phone frame top (notch) */}
           <div className="bg-gray-200 lg:bg-gray-700 rounded-t-[1.5rem] h-5 flex items-center justify-center">
             <div className="w-16 h-1.5 bg-gray-300 lg:bg-gray-600 rounded-full" />

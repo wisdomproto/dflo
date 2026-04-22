@@ -7,7 +7,6 @@ import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPane
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
 import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
 import { FirstConsultPanel } from '@/features/hospital/components/intake/FirstConsultPanel';
-import { LabHistoryPanel } from '@/features/hospital/components/LabHistoryPanel';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
 import { ZoomModal } from '@/shared/components/ZoomModal';
@@ -33,8 +32,6 @@ export default function AdminPatientDetailPage() {
   const [intakeExpanded, setIntakeExpanded] = useState(false);
   // 첫 상담 프레젠테이션 덱도 접힌 채로 상주 — 펼치면 슬라이드 덱이 열림
   const [consultExpanded, setConsultExpanded] = useState(false);
-  // 검사 이력 — 환자별 전체 lab_tests 를 panel 별로 보여주는 접힘 섹션
-  const [labsExpanded, setLabsExpanded] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -240,52 +237,11 @@ export default function AdminPatientDetailPage() {
         )}
       </section>
 
-      {/* 검사 이력 — 기본 정보와 동일한 접힘 섹션. 펼치면 환자의 모든 lab_tests
-          을 panel 별(혈액/IgG4/MAST/NK/유기산/모발) 필터 칩과 함께 표시.
-          첫 상담 또는 기본 정보가 펼쳐져 있으면 자동 접힘. */}
-      <section
-        className={`overflow-hidden rounded-lg border border-slate-200 bg-white ${
-          labsExpanded && !consultExpanded && !intakeExpanded
-            ? 'flex min-h-0 flex-1 flex-col'
-            : 'shrink-0'
-        }`}
-      >
-        <button
-          type="button"
-          onClick={() => {
-            setLabsExpanded((v) => {
-              const next = !v;
-              if (next) {
-                setConsultExpanded(false);
-                setIntakeExpanded(false);
-              }
-              return next;
-            });
-          }}
-          className="flex w-full shrink-0 items-center justify-between px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
-        >
-          <span className="flex items-center gap-2">
-            <span className="text-[11px] uppercase tracking-wider text-indigo-600">
-              검사 이력
-            </span>
-            <span className="text-[11px] font-normal text-slate-400">
-              {labsExpanded ? '클릭하여 접기 (진료 기록 보기)' : '클릭하여 펼치기'}
-            </span>
-          </span>
-          <span className="text-slate-500">{labsExpanded ? '▴' : '▾'}</span>
-        </button>
-        {labsExpanded && !consultExpanded && !intakeExpanded && child && (
-          <div className="min-h-0 flex-1 overflow-y-auto border-t border-slate-200">
-            <LabHistoryPanel childId={child.id} />
-          </div>
-        )}
-      </section>
-
       {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
           Chart locks at 60% of the grid width so its size never depends on
           the X-ray rail state — collapsing X-ray flows its 316px purely into
           the visits column. 첫 상담 / 기본 정보가 펼쳐져 있으면 숨김. */}
-      {!intakeExpanded && !consultExpanded && !labsExpanded && (
+      {!intakeExpanded && !consultExpanded && (
       <div
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
@@ -305,6 +261,7 @@ export default function AdminPatientDetailPage() {
             <VisitList
               childId={id}
               visits={visits}
+              measurements={measurements}
               selectedVisitId={selectedVisitId}
               onSelectVisit={setSelectedVisitId}
               onVisitDeleted={() => {
@@ -461,3 +418,4 @@ export default function AdminPatientDetailPage() {
     </div>
   );
 }
+

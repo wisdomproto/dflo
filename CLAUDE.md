@@ -80,8 +80,9 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Admin sidebar: collapsible (localStorage `admin.sidebar.collapsed`), 64px rail
 - Admin patient list: `chart_number` UNIQUE NOT NULL (migration 007), search by name OR chart_number, + 환자 추가 / 삭제 (CASCADE) buttons
 - Admin patient detail 3-column: visit list (#번호+날짜만) | VisitDetailPanel | AdminPatientGrowthChart
-- VisitDetailPanel: 측정 · X-ray · 검사(Lab) · 처방 · 생활 습관 (진료 전 30일) 세로 섹션, X-ray onLiveChange → 측정 섹션 뼈나이/PAH 동기화 (측정은 read-only, `?` 툴팁)
-- VisitDetailPanel X-ray/Lab 섹션 접기: 헤더 ▾/▴ 토글, 데이터 없으면 기본 접힘 (`hasXrayImage === false` / `labFileCount === 0`), 요약 배지 "이미지 없음" / "첨부 N"
+- VisitDetailPanel: 4탭 구조 (진료 내역 / X-ray 검사 / Lab 테스트 / 생활습관), 공통 헤더(날짜·CA·BA·PAH) + 탭 뱃지에 데이터 유무 표시 (없음=rose / 첨부 N=emerald)
+- 진료 내역 탭: 측정 + 처방 + 메모 + 판독문 원본 (해당 회차 이미지 1장 + prev/next + 썸네일 strip)
+- Lab 테스트 탭: 회차별 lab_tests 수치 테이블 (panel별 분리) + 첨부 이미지/PDF 갤러리
 - 뼈나이 + 예측 성인키는 X-ray 섹션에서 계산, 측정 섹션은 자동 표시
 - Xray upsert: 동일 visit_id 있으면 UPDATE (이미지 경로 유지); migration 006 anon storage RLS opened
 - Growth chart 우상단 📊 환자 헤더 버튼 → ZoomModal에 GrowthComparisonDiagram (초기키/최초 예측/최종 예측 3명 픽토그램, pencil path 사용)
@@ -107,9 +108,17 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - `aggregate_labs.py`: 페이지별 파싱을 (accession, 패널 family)별 논리 lab order로 머지. IgG4 + 표준 피검사가 한 accession에 공존해도 분리됨
 - `insert_labs_to_db.mjs`: ai-server/.env의 SERVICE_ROLE_KEY로 Supabase 직접 쓰기. collected_date별 visit find-or-create, dedup = (visit_id, accession, panel_type)
 - `upsert_children_from_labs.mjs`: OCR'd chart_number에 대한 children 레코드 자동 생성 (`ocr-import@187growth.com` 보호자), birth_prefix(YYMMDD-c)로 birth_date 계산
-- **검사 이력 (LabHistoryPanel)**: AdminPatientDetailPage 접힘 섹션, 첫 상담·기본 정보와 3자택1. panel_type별 전용 렌더 (혈액=이상수치 강조+전체 toggle / IgG4·MAST=Class≥1 정렬 / NK=값+배지 / 유기산=카테고리별 flag / 모발·첨부=파일 목록), panel 필터 칩
+- **검사 이력 (LabHistoryPanel)**: 기존 접힘 섹션은 제거 — panel_type별 렌더러(`PanelContent`, `panelTypeOf`)는 export되어 VisitDetailPanel Lab 탭이 재사용. IgG4는 Class 0-6 색상 스케일(회색→노랑→주황→빨강) + `?` 툴팁 가이드
 - lab_tests.test_type CHECK는 기존 3종 유지 (`allergy|organic_acid|blood|attachment`) — 신규 panel은 `result_data.panel_type`에 식별자 저장. migration 008 은 CHECK 확장 SQL 파일만 준비 (수동 적용 대기)
-- fetchPatients 배치 쿼리: 239명 × 3 round-trip을 `in('id', parentIds)` + `in('child_id', childIds)` 로 합쳐 총 3 쿼리로 축소
+- fetchPatients 페이지네이션: children/measurements/labs 각 쿼리를 1000 row 단위로 반복 fetch (PostgREST 기본 limit 해결), per-child measurementCount/labCount 정확히 집계
+- **환자 카테고리 분류** (`v4/src/features/admin/utils/patientCategories.ts`): 8개 카테고리(부모키 작음 🧬/성장 느림 🐢/성조숙 의심 ⚡/염증·알레르기 🌿/치료 시기 놓침 ⏰/미숙아·저체중 👶/편식 🍎/수면 부족 😴), children + intake_survey 기반 Pure 함수, 중복 허용. AdminPatientsPage에 필터 칩 + 뱃지 컬럼 + 컬럼별 정렬(환자번호/이름/카테고리 수/측정/Lab/상태)
+- **판독문 OCR 임포트 완료**: 판독문_ocr/*/data.json → hospital_measurements 2995건(+2930 insert, BA 602건), visits 3803건(+550 ocr-only visit 생성), visits.notes 3758건(판독문 memo 이식). "Imported from eone" placeholder 3203건은 NULL 처리. OCR memo 매핑 스크립트: `cases/import_ocr_measurements.mjs`
+- **lab_tests visit 재매핑** (`cases/remap_labs_to_clinical_visits.mjs`): lab-only visit에 연결됐던 230개 lab을 collected_date+90일/-30일 내 가장 가까운 진료 visit으로 재연결, 202개 orphan visit 삭제. 46개는 매칭 윈도우 밖이라 유지
+- **원본 파일 Storage** (`raw-records` 버킷, public): 판독문 원본 976개 + 랩 원본 2094개 업로드. `children.intake_survey.raw_files` JSONB에 `{pandokmun:[], lab:[], pandokmun_by_visit:{visit_id→[filename]}}` 메타 저장. 업로드 스크립트 `cases/upload_raw_records.mjs`, visit 매핑 스크립트 `cases/map_pandokmun_pages_to_visits.mjs` (ocr-only row는 date 매칭 fallback으로 547개 복구)
+- **성장문진표 임포트**: docx 36개 + Google Forms 응답 xlsx 91개 → children/intake_survey 각각 18명 매칭 업데이트 (DB에 없는 환자는 skip). 스크립트: `cases/parse_intake_surveys.py`, `parse_intake_xlsx.py`, `import_intake_surveys.mjs`, `import_intake_xlsx.mjs`
+- **XrayPanel**: X-ray 이미지 있을 때만 atlas 자동매칭 BA/PAH를 parent(VisitDetailPanel)에 push, 이미지 없으면 `null`로 밀어 판독문 OCR에서 온 `hospital_measurements.bone_age` 값만 사용
+- **AdminPatientGrowthChart**: BA 측정된 visit point를 주황 다이아몬드(`rectRot`) + tooltip에 BA 값 표시. "🦴 뼈나이 측정만" 체크박스로 월별 촘촘한 실측 대신 BA 측정 회차만 표시
+- **VisitList**: 각 회차 row에 BA 측정된 visit만 `🦴 BA 12.3` amber 뱃지 표시 (판독문에서 실제 측정된 회차만)
 
 ## Environment Variables
 ```
@@ -134,6 +143,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 11: PARTIAL (patient DB unification, admin clinical dashboard, X-ray panel, BA/CA dual predictions, intake survey tab)
 - Phase 12: PARTIAL (VisitDetailPanel 4+1 섹션, chart_number, KR/CN 성장곡선, GrowthComparisonDiagram, 생활 습관 월간 뷰 + 카테고리 평가, 환자 추가/삭제, 사이드바 접기)
 - Phase 14: PARTIAL (Lab OCR 파이프라인 — Surya + parse_eone + Supabase 임포트 / 234차트·2094이미지·804 lab_tests / LabHistoryPanel + 검사 이력 접힘 섹션)
+- Phase 15: COMPLETE (판독문 OCR 전체 완료 240명 / hospital_measurements 2995건 / visits.notes 3758건 / 원본 Storage 업로드 / 환자 카테고리 8종 + 필터·정렬 / VisitDetailPanel 4탭 리팩토링 / 진료 회차별 판독문 페이지 뷰어 / lab_tests 진료 visit 재매핑)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript

@@ -39,7 +39,8 @@ export const useChildrenStore = create<ChildrenStore>((set, get) => ({
 
   // Actions
   fetchChildren: async () => {
-    const user = useAuthStore.getState().user;
+    const auth = useAuthStore.getState();
+    const user = auth.user;
     if (!user) {
       logger.warn('Cannot fetch children: no authenticated user');
       return;
@@ -48,12 +49,18 @@ export const useChildrenStore = create<ChildrenStore>((set, get) => ({
     set({ isLoading: true });
 
     try {
-      // Fetch children for the current user
-      const { data: childrenData, error: childrenError } = await supabase
-        .from('children')
-        .select('*')
-        .eq('parent_id', user.id)
-        .order('created_at', { ascending: true });
+      // 환자 모드: authStore.selectedChildId 가 있으면 그 자녀 1명만 조회.
+      // (한 부모가 여러 자녀더라도 차트번호 단위 로그인이므로 1명만 활성)
+      // admin 모드 등 selectedChildId 가 없을 때는 parent_id 전체.
+      const baseQuery = supabase.from('children').select('*');
+      const filtered = auth.selectedChildId
+        ? baseQuery.eq('id', auth.selectedChildId)
+        : baseQuery.eq('parent_id', user.id);
+
+      const { data: childrenData, error: childrenError } = await filtered.order(
+        'created_at',
+        { ascending: true },
+      );
 
       if (childrenError) {
         logger.error('Failed to fetch children:', childrenError);

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   fetchPatients,
@@ -7,9 +7,14 @@ import {
   type PatientWithParent,
 } from '@/features/admin/services/adminService';
 import { useUIStore } from '@/stores/uiStore';
-import { calculateAge, formatAge } from '@/shared/utils/age';
 import GenderIcon from '@/shared/components/GenderIcon';
 import type { Gender } from '@/shared/types';
+import {
+  classifyPatient,
+  CATEGORY_ORDER,
+  PATIENT_CATEGORIES,
+  type PatientCategoryId,
+} from '@/features/admin/utils/patientCategories';
 
 export default function AdminPatientsPage() {
   const navigate = useNavigate();
@@ -19,7 +24,98 @@ export default function AdminPatientsPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [addOpen, setAddOpen] = useState(false);
+  const [activeCategories, setActiveCategories] = useState<Set<PatientCategoryId>>(new Set());
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  // Precompute categories per patient once per list load.
+  const categoriesById = useMemo(() => {
+    const map = new Map<string, PatientCategoryId[]>();
+    for (const p of patients) map.set(p.id, classifyPatient(p));
+    return map;
+  }, [patients]);
+
+  // Count patients per category for the filter chip badges.
+  const categoryCounts = useMemo(() => {
+    const counts: Record<PatientCategoryId, number> = {
+      parents_short: 0, slow_growth: 0, precocious: 0, inflammation: 0,
+      late_start: 0, preterm: 0, picky_eating: 0, sleep_deficit: 0,
+    };
+    for (const cats of categoriesById.values()) {
+      for (const c of cats) counts[c]++;
+    }
+    return counts;
+  }, [categoriesById]);
+
+  // Apply category filter client-side (name/chart search is still server-side).
+  const filteredPatients = useMemo(() => {
+    if (!activeCategories.size) return patients;
+    return patients.filter((p) => {
+      const cats = categoriesById.get(p.id) ?? [];
+      // AND semantics: must match all active filters
+      for (const needed of activeCategories) if (!cats.includes(needed)) return false;
+      return true;
+    });
+  }, [patients, categoriesById, activeCategories]);
+
+  // Column sorting — chart / name / categories count / measurement count / lab count / status.
+  type SortKey = 'chart' | 'name' | 'categories' | 'measurements' | 'labs' | 'status';
+  const [sort, setSort] = useState<{ key: SortKey; dir: 'asc' | 'desc' } | null>(null);
+
+  const sortedPatients = useMemo(() => {
+    if (!sort) return filteredPatients;
+    const dir = sort.dir === 'asc' ? 1 : -1;
+    const toNum = (v: unknown) => {
+      const n = typeof v === 'string' ? parseInt(v, 10) : typeof v === 'number' ? v : NaN;
+      return Number.isFinite(n) ? n : NaN;
+    };
+    const keyOf = (p: PatientWithParent): number | string => {
+      switch (sort.key) {
+        case 'chart': {
+          const n = toNum(p.chart_number);
+          // Prefer numeric sort when chart is numeric; fallback to string.
+          return Number.isFinite(n) ? n : p.chart_number ?? '';
+        }
+        case 'name':
+          return p.name ?? '';
+        case 'categories':
+          return (categoriesById.get(p.id) ?? []).length;
+        case 'measurements':
+          return p.measurementCount ?? 0;
+        case 'labs':
+          return p.labCount ?? 0;
+        case 'status':
+          return p.is_active ? 1 : 0;
+      }
+    };
+    return [...filteredPatients].sort((a, b) => {
+      const av = keyOf(a);
+      const bv = keyOf(b);
+      if (typeof av === 'number' && typeof bv === 'number') return (av - bv) * dir;
+      return String(av).localeCompare(String(bv), 'ko') * dir;
+    });
+  }, [filteredPatients, sort, categoriesById]);
+
+  const toggleSort = (key: SortKey) => {
+    setSort((prev) => {
+      if (!prev || prev.key !== key) return { key, dir: 'asc' };
+      if (prev.dir === 'asc') return { key, dir: 'desc' };
+      return null; // third click clears
+    });
+  };
+
+  const sortIndicator = (key: SortKey) => {
+    if (!sort || sort.key !== key) return ' ⇅';
+    return sort.dir === 'asc' ? ' ▲' : ' ▼';
+  };
+
+  const toggleCategory = (id: PatientCategoryId) => {
+    setActiveCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   const handleDelete = async (p: PatientWithParent) => {
     const ok = window.confirm(
@@ -58,20 +154,31 @@ export default function AdminPatientsPage() {
     }
   }
 
+  function CategoryBadges({ ids, compact }: { ids: PatientCategoryId[]; compact?: boolean }) {
+    if (!ids.length) return <span className="text-gray-300 text-xs">-</span>;
+    return (
+      <div className="flex flex-wrap gap-1">
+        {ids.map((id) => {
+          const cat = PATIENT_CATEGORIES[id];
+          return (
+            <span
+              key={id}
+              className={`inline-flex items-center gap-0.5 rounded-full px-1.5 py-0.5 text-[10px] font-medium ${cat.color}`}
+              title={cat.label}
+            >
+              <span>{cat.emoji}</span>
+              {!compact && <span>{cat.label}</span>}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
   function StatusBadge({ active }: { active: boolean }) {
     return active
       ? <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">활성</span>
       : <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-500">비활성</span>;
-  }
-
-  function MeasurementInfo({ p }: { p: PatientWithParent }) {
-    if (!p.latestMeasurement) return <span className="text-gray-400 text-sm">-</span>;
-    const m = p.latestMeasurement;
-    return (
-      <span className="text-sm text-gray-700">
-        {m.height}cm{m.weight != null && ` / ${m.weight}kg`}
-      </span>
-    );
   }
 
   return (
@@ -81,7 +188,10 @@ export default function AdminPatientsPage() {
         <h1 className="text-xl font-bold text-gray-900">환자 관리</h1>
         {!loading && (
           <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
-            {patients.length}
+            {filteredPatients.length}
+            {activeCategories.size > 0 && (
+              <span className="text-blue-500/70"> / {patients.length}</span>
+            )}
           </span>
         )}
         <div className="ml-auto">
@@ -104,34 +214,102 @@ export default function AdminPatientsPage() {
         className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
       />
 
+      {/* Category filter chips */}
+      <div className="flex flex-wrap gap-1.5">
+        {CATEGORY_ORDER.map((id) => {
+          const cat = PATIENT_CATEGORIES[id];
+          const active = activeCategories.has(id);
+          const count = categoryCounts[id];
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => toggleCategory(id)}
+              className={
+                'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition ' +
+                (active
+                  ? cat.color.replace('border-', 'ring-2 ring-') + ' shadow-sm'
+                  : cat.color + ' opacity-70 hover:opacity-100')
+              }
+            >
+              <span>{cat.emoji}</span>
+              <span>{cat.label}</span>
+              <span className="ml-0.5 rounded-full bg-white/70 px-1.5 text-[10px] font-semibold">
+                {count}
+              </span>
+            </button>
+          );
+        })}
+        {activeCategories.size > 0 && (
+          <button
+            type="button"
+            onClick={() => setActiveCategories(new Set())}
+            className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 hover:bg-slate-50"
+          >
+            초기화
+          </button>
+        )}
+      </div>
+
       {/* Content */}
       <div className="bg-white rounded-xl shadow-sm overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center py-20 text-gray-400 text-sm">
             불러오는 중...
           </div>
-        ) : patients.length === 0 ? (
+        ) : filteredPatients.length === 0 ? (
           <div className="flex items-center justify-center py-20 text-gray-400 text-sm">
-            등록된 환자가 없습니다
+            {patients.length === 0
+              ? '등록된 환자가 없습니다'
+              : '선택한 카테고리에 해당하는 환자가 없습니다'}
           </div>
         ) : (
           <>
             {/* Desktop table */}
             <table className="hidden lg:table w-full text-sm">
-              <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+              <thead className="bg-gray-50 text-gray-500 text-xs uppercase select-none">
                 <tr>
-                  <th className="px-4 py-3 text-left">환자번호</th>
-                  <th className="px-4 py-3 text-left">환자</th>
-                  <th className="px-4 py-3 text-left">나이</th>
-                  <th className="px-4 py-3 text-left">보호자</th>
-                  <th className="px-4 py-3 text-left">최근 측정</th>
-                  <th className="px-4 py-3 text-center">측정 수</th>
-                  <th className="px-4 py-3 text-center">상태</th>
+                  <th
+                    onClick={() => toggleSort('chart')}
+                    className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
+                  >
+                    환자번호{sortIndicator('chart')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('name')}
+                    className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
+                  >
+                    환자{sortIndicator('name')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('categories')}
+                    className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
+                  >
+                    카테고리{sortIndicator('categories')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('measurements')}
+                    className="cursor-pointer px-4 py-3 text-center hover:text-slate-700"
+                  >
+                    측정 수{sortIndicator('measurements')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('labs')}
+                    className="cursor-pointer px-4 py-3 text-center hover:text-slate-700"
+                  >
+                    Lab{sortIndicator('labs')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('status')}
+                    className="cursor-pointer px-4 py-3 text-center hover:text-slate-700"
+                  >
+                    상태{sortIndicator('status')}
+                  </th>
                   <th className="px-2 py-3"></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {patients.map((p) => (
+                {sortedPatients.map((p) => (
                   <tr
                     key={p.id}
                     onClick={() => navigate(`/admin/patients/${p.id}`)}
@@ -146,14 +324,24 @@ export default function AdminPatientsPage() {
                         {p.name}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-gray-600">
-                      {formatAge(calculateAge(p.birth_date))}
+                    <td className="px-4 py-3">
+                      <CategoryBadges ids={categoriesById.get(p.id) ?? []} />
                     </td>
-                    <td className="px-4 py-3 text-gray-600">{p.parent?.name ?? '-'}</td>
-                    <td className="px-4 py-3"><MeasurementInfo p={p} /></td>
                     <td className="px-4 py-3 text-center">
                       <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-blue-50 text-blue-600">
                         {p.measurementCount ?? 0}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-center">
+                      <span
+                        className={
+                          'px-2 py-0.5 text-xs font-medium rounded-full ' +
+                          ((p.labCount ?? 0) > 0
+                            ? 'bg-emerald-50 text-emerald-700'
+                            : 'bg-slate-100 text-slate-400')
+                        }
+                      >
+                        {p.labCount ?? 0}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center"><StatusBadge active={p.is_active} /></td>
@@ -184,7 +372,7 @@ export default function AdminPatientsPage() {
 
             {/* Mobile card list */}
             <div className="lg:hidden divide-y divide-gray-100">
-              {patients.map((p) => (
+              {sortedPatients.map((p) => (
                 <div
                   key={p.id}
                   onClick={() => navigate(`/admin/patients/${p.id}`)}
@@ -199,15 +387,23 @@ export default function AdminPatientsPage() {
                       <span className="font-medium text-gray-900 truncate">{p.name}</span>
                       <StatusBadge active={p.is_active} />
                     </div>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      {formatAge(calculateAge(p.birth_date))}
-                      {p.parent?.name && ` · ${p.parent.name}`}
-                    </p>
+                    <div className="mt-1">
+                      <CategoryBadges ids={categoriesById.get(p.id) ?? []} compact />
+                    </div>
                   </div>
-                  <div className="text-right shrink-0">
-                    <MeasurementInfo p={p} />
-                    <span className="block mt-0.5 px-2 py-0.5 text-xs font-medium rounded-full bg-blue-50 text-blue-600 text-center">
-                      {p.measurementCount ?? 0}회
+                  <div className="flex shrink-0 flex-col items-end gap-1">
+                    <span className="px-2 py-0.5 text-[10px] font-medium rounded-full bg-blue-50 text-blue-600">
+                      측정 {p.measurementCount ?? 0}
+                    </span>
+                    <span
+                      className={
+                        'px-2 py-0.5 text-[10px] font-medium rounded-full ' +
+                        ((p.labCount ?? 0) > 0
+                          ? 'bg-emerald-50 text-emerald-700'
+                          : 'bg-slate-100 text-slate-400')
+                      }
+                    >
+                      Lab {p.labCount ?? 0}
                     </span>
                   </div>
                   <button

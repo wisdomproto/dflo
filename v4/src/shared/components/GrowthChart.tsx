@@ -44,8 +44,10 @@ interface GrowthChartProps {
   compact?: boolean;
   /** 18세 예상키 (cm) — 마지막 측정점에서 18세 예상키까지 점선 연결 */
   predictedAdultHeight?: number;
-  /** 예상 성장 곡선 포인트 (마지막 측정~18세, 1년 간격) — predictedAdultHeight 대신 사용 */
+  /** 마지막 측정 기준 예상 성장 곡선 (마지막 측정~18세, 1년 간격) */
   predictedCurve?: GrowthPoint[];
+  /** 첫 측정 기준 예상 성장 곡선 (첫 측정~18세, 1년 간격) — "치료 받지 않았다면" baseline */
+  initialPredictedCurve?: GrowthPoint[];
 }
 
 export function GrowthChart({
@@ -57,6 +59,7 @@ export function GrowthChart({
   compact = false,
   predictedAdultHeight,
   predictedCurve,
+  initialPredictedCurve,
 }: GrowthChartProps) {
   const chartRef = useRef<ChartJS<'line'> | null>(null);
 
@@ -69,8 +72,16 @@ export function GrowthChart({
     const ages = points.map((p) => p.age);
     // zoomable: 전체 범위(3~18), 아닐 때: 측정 나이 ±1세 (extend to 18 if predictedAdultHeight)
     const minAge = zoomable ? 3 : Math.max(2, Math.floor(Math.min(...ages)) - 1);
-    const hasPrediction = predictedCurve?.length || predictedAdultHeight;
+    const hasPrediction = predictedCurve?.length || predictedAdultHeight || initialPredictedCurve?.length;
     const maxAge = zoomable ? 18 : hasPrediction ? 18.5 : Math.min(18, Math.ceil(Math.max(...ages)) + 1);
+
+    // 두 예측 곡선의 마지막(18세) 키값 — 가로 reference line 용
+    const lastPredictedH = predictedCurve && predictedCurve.length > 0
+      ? predictedCurve[predictedCurve.length - 1].height
+      : null;
+    const lastInitialH = initialPredictedCurve && initialPredictedCurve.length > 0
+      ? initialPredictedCurve[initialPredictedCurve.length - 1].height
+      : null;
     const stdFiltered = standard.filter((d) => d.age >= minAge && d.age <= maxAge);
 
     // {x, y} 포인트 형식으로 변환 (LinearScale 용)
@@ -138,10 +149,41 @@ export function GrowthChart({
           spanGaps: true,
           tension: 0.3,
         },
+        // 첫 측정 기준 예상 곡선 — "치료 받지 않았다면" baseline (회색)
+        ...(initialPredictedCurve && initialPredictedCurve.length > 0 ? [
+          {
+            label: '초진 예상 성장',
+            data: initialPredictedCurve.map((p) => ({ x: p.age, y: p.height })),
+            borderColor: '#94A3B8',
+            backgroundColor: '#94A3B8',
+            borderWidth: 2,
+            pointRadius: initialPredictedCurve.map((_, i) => i === initialPredictedCurve.length - 1 ? 6 : 3),
+            pointHoverRadius: 5,
+            pointBackgroundColor: initialPredictedCurve.map((_, i) => i === initialPredictedCurve.length - 1 ? '#94A3B8' : '#CBD5E1'),
+            pointBorderColor: '#fff',
+            pointBorderWidth: initialPredictedCurve.map((_, i) => i === initialPredictedCurve.length - 1 ? 2 : 1.5),
+            spanGaps: true,
+            tension: 0.3,
+            fill: false,
+          },
+        ] : []),
+        // 초진 예상키 가로선 (y = lastInitialH) — 실선
+        ...(lastInitialH != null ? [{
+          label: '',
+          data: [{ x: minAge, y: lastInitialH }, { x: 18.5, y: lastInitialH }],
+          borderColor: 'rgba(100,116,139,0.95)',
+          backgroundColor: 'rgba(100,116,139,0.95)',
+          borderWidth: 1.5,
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          spanGaps: true,
+          tension: 0,
+          fill: false,
+        }] : []),
         // Predicted growth curve (yearly points from last measurement to 18)
         ...(predictedCurve && predictedCurve.length > 0 ? [
           {
-            label: '예상 성장곡선',
+            label: '현재 예상 성장',
             data: predictedCurve.map((p) => ({ x: p.age, y: p.height })),
             borderColor: '#F59E0B',
             backgroundColor: '#F59E0B',
@@ -156,6 +198,19 @@ export function GrowthChart({
             tension: 0.3,
             fill: false,
           },
+          // 현재 예상키 가로선 (y = lastPredictedH) — 실선
+          ...(lastPredictedH != null ? [{
+            label: '',
+            data: [{ x: minAge, y: lastPredictedH }, { x: 18.5, y: lastPredictedH }],
+            borderColor: 'rgba(217,119,6,1)',
+            backgroundColor: 'rgba(217,119,6,1)',
+            borderWidth: 1.75,
+            pointRadius: 0,
+            pointHoverRadius: 0,
+            spanGaps: true,
+            tension: 0,
+            fill: false,
+          }] : []),
         ] : predictedAdultHeight && points.length > 0 ? [
           // Fallback: single line to 18세
           {
@@ -187,7 +242,7 @@ export function GrowthChart({
         ] : []),
       ],
     };
-  }, [gender, points, predictedAdultHeight, predictedCurve]);
+  }, [gender, points, predictedAdultHeight, predictedCurve, initialPredictedCurve, zoomable]);
 
   // 왼쪽 더블클릭 → zoom in (애니메이션), 우클릭 → 3~18세 전체 보기
   const handleDblClick = useCallback(() => {
@@ -231,7 +286,12 @@ export function GrowthChart({
           boxWidth: compact ? 10 : 18,
           font: { size: fs.legend },
           padding: compact ? 6 : 14,
-          filter: (item: { text?: string }) => !!item.text?.trim(),
+          // 빈 라벨 + 표준곡선(5th/50th/95th) 은 차트 안 우측 하단에 별도 표시
+          filter: (item: { text?: string }) => {
+            const t = item.text?.trim();
+            if (!t) return false;
+            return t !== '5th' && t !== '50th' && t !== '95th';
+          },
         },
       },
       tooltip: {
@@ -304,8 +364,23 @@ export function GrowthChart({
           </div>
         </div>
       )}
-      <div>
+      <div className="relative">
         <Line ref={chartRef} data={chartData} options={options} />
+        {/* 표준곡선 라벨 — 차트 우측 하단 (X축 라벨 위, 5th 곡선 아래 빈 공간). */}
+        <div className="absolute right-3 bottom-12 flex flex-col items-start gap-0.5 pointer-events-none select-none bg-white/70 backdrop-blur-sm rounded px-1.5 py-1">
+          <div className="flex items-center gap-1 text-[9px] font-medium" style={{ color: 'rgba(239,68,68,0.85)' }}>
+            <span className="inline-block w-3 border-t border-dashed" style={{ borderColor: 'rgba(239,68,68,0.5)' }} />
+            <span>95th</span>
+          </div>
+          <div className="flex items-center gap-1 text-[9px] font-medium" style={{ color: 'rgba(34,197,94,0.85)' }}>
+            <span className="inline-block w-3 border-t border-dashed" style={{ borderColor: 'rgba(34,197,94,0.6)' }} />
+            <span>50th</span>
+          </div>
+          <div className="flex items-center gap-1 text-[9px] font-medium" style={{ color: 'rgba(59,130,246,0.85)' }}>
+            <span className="inline-block w-3 border-t border-dashed" style={{ borderColor: 'rgba(59,130,246,0.5)' }} />
+            <span>5th</span>
+          </div>
+        </div>
       </div>
       {!compact && (
         <div className="flex justify-center gap-6 mt-4 text-lg text-gray-500">

@@ -117,6 +117,10 @@ export function AdminPatientGrowthChart({
     caProj: false,
     desired: true,
   });
+  // When true, patient data points are limited to visits that also had a BA
+  // reading — useful when the clinic sees the child monthly and the chart gets
+  // too crowded to read the long-term trend.
+  const [baOnly, setBaOnly] = useState(false);
   const [zoomed, setZoomed] = useState(false);
   const nationality: Nationality = child.nationality ?? 'KR';
 
@@ -341,32 +345,47 @@ export function AdminPatientGrowthChart({
       });
     }
 
-    const patientPoints = sortedMeasurements.map((m) => ({
+    // Optionally trim to BA-measured visits only (checkbox below the chart).
+    const chartMeasurements = baOnly
+      ? sortedMeasurements.filter((m) => m.bone_age != null)
+      : sortedMeasurements;
+
+    const patientPoints = chartMeasurements.map((m) => ({
       x: calculateAgeAtDate(child.birth_date, new Date(m.measured_date)).decimal,
       y: m.height!,
+      // Custom props passed to the tooltip callback so we can show BA when present.
+      _boneAge: m.bone_age ?? null,
+      _date: m.measured_date,
     }));
 
-    const isSelected = sortedMeasurements.map(
+    const isSelected = chartMeasurements.map(
       (m) => selectedVisitId != null && m.visit_id === selectedVisitId,
     );
+    const hasBa = chartMeasurements.map((m) => m.bone_age != null);
 
     const patientDataset: LineDataset = {
       label: 'patient',
       data: patientPoints,
       borderColor: COLORS.patient,
-      backgroundColor: isSelected.map((sel) => (sel ? '#facc15' : COLORS.patient)),
+      backgroundColor: isSelected.map((sel, i) =>
+        sel ? '#facc15' : hasBa[i] ? '#f97316' : COLORS.patient,
+      ),
       borderWidth: 2,
-      pointRadius: isSelected.map((sel) => (sel ? 9 : 5)),
+      // BA-measured points are larger diamonds; selected > BA > regular
+      pointStyle: hasBa.map((b) => (b ? 'rectRot' : 'circle')),
+      pointRadius: isSelected.map((sel, i) => (sel ? 9 : hasBa[i] ? 7 : 5)),
       pointHoverRadius: 9,
-      pointBorderColor: isSelected.map((sel) => (sel ? '#0f172a' : 'transparent')),
-      pointBorderWidth: isSelected.map((sel) => (sel ? 2 : 0)),
+      pointBorderColor: isSelected.map((sel, i) =>
+        sel ? '#0f172a' : hasBa[i] ? '#ffffff' : 'transparent',
+      ),
+      pointBorderWidth: isSelected.map((sel, i) => (sel ? 2 : hasBa[i] ? 1.5 : 0)),
       showLine: patientPoints.length > 1,
       tension: 0,
       order: 0,
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId, nationality]);
+  }, [child, sortedMeasurements, visible, baOnly, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId, nationality]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
@@ -393,7 +412,12 @@ export function AdminPatientGrowthChart({
                 : ctx.dataset.label === 'caProjection'
                 ? 'CA 예측'
                 : '실측';
-            return `${tag} ${ctx.parsed.y}cm @ ${Number(ctx.parsed.x).toFixed(1)}세`;
+            const base = `${tag} ${ctx.parsed.y}cm @ ${Number(ctx.parsed.x).toFixed(1)}세`;
+            if (ctx.dataset.label === 'patient') {
+              const raw = (ctx.raw as { _boneAge?: number | null } | undefined);
+              if (raw?._boneAge != null) return `${base} · BA ${raw._boneAge.toFixed(1)}`;
+            }
+            return base;
           },
         },
       },
@@ -460,6 +484,26 @@ export function AdminPatientGrowthChart({
             </label>
           );
         })}
+        {/* Thin data: when the clinic sees the child monthly the chart becomes
+            too dense to read. This narrows the patient series to visits that
+            also have a BA reading — usually once every few months. */}
+        <label
+          className={
+            'inline-flex items-center gap-1 rounded border px-2 py-1 cursor-pointer select-none ' +
+            (baOnly
+              ? 'border-orange-400 bg-orange-50 text-orange-800'
+              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300')
+          }
+          title="체크하면 뼈나이를 실제로 측정한 회차의 키만 그래프에 표시합니다"
+        >
+          <input
+            type="checkbox"
+            checked={baOnly}
+            onChange={(e) => setBaOnly(e.target.checked)}
+            className="h-3 w-3 accent-orange-500"
+          />
+          <span className="font-medium">🦴 뼈나이 측정만</span>
+        </label>
       </div>
 
       {/* Chart fills remaining height */}

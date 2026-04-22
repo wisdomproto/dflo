@@ -201,6 +201,11 @@ export function XrayPanel({
 
   const effectiveBoneAge = manualBoneAge ?? midpoint;
 
+  // An actual X-ray image is required for BA/PAH to be "real" — without it, the
+  // atlas auto-match just guesses from chronological age and spills fake values
+  // into the parent panel. Only treat BA/PAH as live when an image is present.
+  const hasXrayImage = imageFile != null || existing?.image_path != null;
+
   // Predicted adult height = same percentile at bone-age extrapolated to age 18.
   const visitHeight = useMemo(() => {
     const m = measurements.find((x) => x.visit_id === visit.id);
@@ -219,9 +224,14 @@ export function XrayPanel({
   }, [visitHeight, effectiveBoneAge, gender, child.nationality]);
 
   // Live-push bone age + PAH to any parent that cares (overlay memo).
+  // Suppress when no actual X-ray image exists — atlas guessing is misleading.
   useEffect(() => {
-    onLiveChange?.({ boneAge: effectiveBoneAge, predictedAdult });
-  }, [effectiveBoneAge, predictedAdult, onLiveChange]);
+    if (hasXrayImage) {
+      onLiveChange?.({ boneAge: effectiveBoneAge, predictedAdult });
+    } else {
+      onLiveChange?.({ boneAge: null, predictedAdult: null });
+    }
+  }, [hasXrayImage, effectiveBoneAge, predictedAdult, onLiveChange]);
 
   const handleSave = async () => {
     if (!effectiveYounger || !effectiveOlder || effectiveBoneAge == null) return;

@@ -3,10 +3,23 @@ import { Link, useNavigate } from 'react-router-dom';
 import { PointerSensor, TouchSensor, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 import { useAuthStore } from '@/stores/authStore';
-import { fetchSections, saveSections } from '../services/websiteSectionService';
+import { fetchSections, saveSections, type SectionStorageKey } from '../services/websiteSectionService';
 import type { WebsiteSection, BannerSlide, VideoSlide, CasesSlide, Slide, SlideTemplate } from '../types/websiteSection';
 import { AdminPreviewPanel } from './AdminPreviewPanel';
 import { AdminEditorPanel } from './AdminEditorPanel';
+
+export interface AdminWebsitePageProps {
+  /** R2 sections JSON key. Defaults to 'website.json' (병원 홈). */
+  storageKey?: SectionStorageKey;
+  /** 첫 진입 시 storageKey가 비어 있으면 이 키에서 읽어와 표시 (저장 시점에 storageKey로 분리됨). */
+  fallbackKey?: SectionStorageKey;
+  /** Header 라벨 (좌측 "섹션 관리" 옆) */
+  headerTitle?: string;
+  /** 좌상단 홈 링크 라벨. 기본 "웹사이트". */
+  homeLinkText?: string;
+  /** 좌상단 홈 링크 경로. 기본 "/". */
+  homeLinkPath?: string;
+}
 
 function uid() {
   return `id-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
@@ -44,7 +57,13 @@ function emptySection(order: number): WebsiteSection {
 
 const ADMIN_PIN = '8054';
 
-export default function AdminWebsitePage() {
+export default function AdminWebsitePage({
+  storageKey = 'website.json',
+  fallbackKey,
+  headerTitle = '섹션 관리',
+  homeLinkText = '웹사이트',
+  homeLinkPath = '/',
+}: AdminWebsitePageProps = {}) {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
 
@@ -89,7 +108,7 @@ export default function AdminWebsitePage() {
 
   useEffect(() => {
     if (!authed) return;
-    fetchSections()
+    fetchSections(storageKey, fallbackKey)
       .then((data) => {
         setSections(data);
         // Initialize image history from existing banner slides
@@ -101,13 +120,13 @@ export default function AdminWebsitePage() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [authed]);
+  }, [authed, storageKey, fallbackKey]);
 
   const save = async () => {
     setSaving(true);
     setSaveMsg('');
     try {
-      const result = await saveSections(sections);
+      const result = await saveSections(sections, storageKey);
       setSections(result);
       setSaveMsg('저장됨!');
       setTimeout(() => setSaveMsg(''), 2000);
@@ -258,9 +277,9 @@ export default function AdminWebsitePage() {
       <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
         <div className="flex items-center justify-between h-14 px-4 lg:px-6">
           <div className="flex items-center gap-3">
-            <Link to="/" className="text-sm text-gray-500 hover:text-[#0F6E56]">웹사이트</Link>
+            <Link to={homeLinkPath} className="text-sm text-gray-500 hover:text-[#0F6E56]">{homeLinkText}</Link>
             <span className="text-gray-300">|</span>
-            <h1 className="text-base font-bold text-gray-800">섹션 관리</h1>
+            <h1 className="text-base font-bold text-gray-800">{headerTitle}</h1>
           </div>
           <button onClick={save} disabled={saving}
             className="text-sm font-bold text-white bg-[#0F6E56] px-5 py-2 rounded-xl hover:bg-[#0D5A47] active:scale-[0.98] transition-all disabled:opacity-50">

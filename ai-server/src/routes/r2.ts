@@ -20,20 +20,33 @@ function checkPin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-// GET /api/r2/website — read current website.json (public)
-r2Router.get('/website', async (_req, res) => {
-  const buf = await getObject('website.json');
+// Allowlist of section JSON keys that can be read/written via these routes.
+// Anything else is rejected to keep the surface narrow.
+const ALLOWED_SECTION_KEYS = new Set(['website.json', 'app-home.json']);
+
+function resolveSectionKey(req: Request): string | null {
+  const raw = (req.query.key as string | undefined) || 'website.json';
+  return ALLOWED_SECTION_KEYS.has(raw) ? raw : null;
+}
+
+// GET /api/r2/website[?key=app-home.json] — read sections JSON (public)
+r2Router.get('/website', async (req, res) => {
+  const key = resolveSectionKey(req);
+  if (!key) return res.status(400).json({ success: false, error: 'invalid key' });
+  const buf = await getObject(key);
   if (!buf) return res.status(404).json({ success: false, error: 'not found' });
   res.setHeader('Content-Type', 'application/json');
   res.send(buf);
 });
 
-// PUT /api/r2/website — replace website.json (admin)
+// PUT /api/r2/website[?key=app-home.json] — replace sections JSON (admin)
 r2Router.put('/website', checkPin, async (req, res) => {
+  const key = resolveSectionKey(req);
+  if (!key) return res.status(400).json({ success: false, error: 'invalid key' });
   try {
     const body = JSON.stringify(req.body.data ?? req.body);
-    const url = await putObject('website.json', body, 'application/json');
-    res.json({ success: true, url });
+    const url = await putObject(key, body, 'application/json');
+    res.json({ success: true, url, key });
   } catch (e) {
     res.status(500).json({ success: false, error: (e as Error).message });
   }

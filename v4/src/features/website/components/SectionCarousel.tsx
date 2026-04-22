@@ -66,6 +66,49 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
     : useNaturalHeight ? '' : 'aspect-[4/5]';
 
   return (
+    <div className="w-full">
+      {/* Top navigation row — visible when multi-slide */}
+      {total > 1 && (
+        <div className="flex items-center justify-between gap-2 px-3 py-2 bg-white border-b border-gray-100">
+          <button
+            onClick={prev}
+            className="w-7 h-7 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
+            aria-label="이전 슬라이드"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div className="flex items-center gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current ? 'w-4 h-1.5 bg-primary' : 'w-1.5 h-1.5 bg-gray-300'
+                }`}
+                aria-label={`슬라이드 ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          <span className="text-[11px] font-medium text-gray-400 tabular-nums">
+            {current + 1} / {total}
+          </span>
+
+          <button
+            onClick={next}
+            className="w-7 h-7 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
+            aria-label="다음 슬라이드"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      )}
+
     <section
       className={`relative overflow-hidden w-full ${aspectClass}`}
       onTouchStart={handleTouchStart}
@@ -92,27 +135,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
         );
       })}
 
-      {/* Left/Right arrows — always visible when multi-slide */}
-      {total > 1 && (
-        <>
-          <button
-            onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/20 text-white flex items-center justify-center active:scale-90 transition-all md:opacity-0 md:hover:opacity-100 md:w-10 md:h-10"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={next}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/20 text-white flex items-center justify-center active:scale-90 transition-all md:opacity-0 md:hover:opacity-100 md:w-10 md:h-10"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </>
-      )}
+      {/* Left/Right arrows removed — top nav + swipe handle navigation. */}
 
       {/* Dots — toggleable per section */}
       {total > 1 && showNav && (
@@ -129,6 +152,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
       )}
 
     </section>
+    </div>
   );
 }
 
@@ -234,6 +258,8 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
 
   if (s.ctaAction === 'iframe' && s.ctaTarget) {
     const zoom = (s.iframeZoom || 70) / 100;
+    // CSS `zoom` 은 layout-aware scaling 이라 transform: scale 과 달리
+    // 텍스트가 흐려지지 않는다. 모바일 Chrome/Safari/WebKit 모두 지원.
     return (
       <div className="absolute inset-0 bg-white overflow-hidden">
         <iframe
@@ -241,10 +267,9 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
           title={s.title || ''}
           className="border-0"
           style={{
-            width: zoom !== 1 ? `${100 / zoom}%` : '100%',
-            height: zoom !== 1 ? `${100 / zoom}%` : '100%',
-            transform: zoom !== 1 ? `scale(${zoom})` : undefined,
-            transformOrigin: 'top left',
+            width: '100%',
+            height: '100%',
+            zoom: zoom !== 1 ? zoom : undefined,
             overflow: 'auto',
           }}
         />
@@ -541,6 +566,7 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
     showTitle?: boolean; zoomable?: boolean; compact?: boolean;
     predictedAdultHeight?: number;
     predictedCurve?: { age: number; height: number }[];
+    initialPredictedCurve?: { age: number; height: number }[];
   }> | null>(null);
   const [heightStandard, setHeightStandard] = React.useState<{ age: number; p5: number; p50: number; p95: number }[] | null>(null);
 
@@ -622,6 +648,47 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
     return curve.length > 1 ? curve : undefined;
   }, [measurements, points, heightStandard]);
 
+  // "치료 받지 않았다면" baseline — 첫 측정 시점의 percentile 을 18세까지 그대로 유지.
+  // 사용자 요구: 첫 측정 percentile 기준으로 매년 점, 마지막(18세)에서 가로선.
+  const initialPredictedCurve = React.useMemo(() => {
+    if (!heightStandard || points.length === 0) return undefined;
+    const first = points[0];
+    if (first.age >= 18) return undefined;
+
+    const getStdAtAge = (ageYr: number) => {
+      let best = heightStandard[0];
+      let bestDiff = Math.abs(best.age - ageYr);
+      for (const s of heightStandard) {
+        const diff = Math.abs(s.age - ageYr);
+        if (diff < bestDiff) { best = s; bestDiff = diff; }
+      }
+      return best;
+    };
+
+    const heightAtPct = (ageYr: number, pct: number) => {
+      const s = getStdAtAge(ageYr);
+      if (pct <= 5) return s.p5 * pct / 5;
+      if (pct <= 50) return s.p5 + (s.p50 - s.p5) * (pct - 5) / 45;
+      if (pct <= 95) return s.p50 + (s.p95 - s.p50) * (pct - 50) / 45;
+      return s.p95 + (s.p95 - s.p50) * (pct - 95) / 2;
+    };
+
+    // 첫 측정 키의 percentile
+    const std = getStdAtAge(first.age);
+    let pct: number;
+    if (first.height <= std.p5) pct = Math.max(3, 5 * first.height / std.p5);
+    else if (first.height <= std.p50) pct = 5 + 45 * (first.height - std.p5) / (std.p50 - std.p5);
+    else if (first.height <= std.p95) pct = 50 + 45 * (first.height - std.p50) / (std.p95 - std.p50);
+    else pct = Math.min(97, 95 + 2 * (first.height - std.p95) / Math.max(std.p95 - std.p50, 1));
+
+    const curve: { age: number; height: number }[] = [{ age: first.age, height: first.height }];
+    const startYear = Math.ceil(first.age);
+    for (let y = startYear; y <= 18; y++) {
+      curve.push({ age: y, height: Math.round(heightAtPct(y, pct) * 10) / 10 });
+    }
+    return curve.length > 1 ? curve : undefined;
+  }, [points, heightStandard]);
+
   if (points.length < 2) return null;
 
   return (
@@ -634,6 +701,7 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
           showTitle={false}
           compact
           predictedCurve={predictedCurve}
+          initialPredictedCurve={initialPredictedCurve}
         />
       ) : (
         <div className="h-32 flex items-center justify-center text-xs text-gray-400">로딩...</div>
