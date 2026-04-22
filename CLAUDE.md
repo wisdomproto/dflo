@@ -80,8 +80,10 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Admin sidebar: collapsible (localStorage `admin.sidebar.collapsed`), 64px rail
 - Admin patient list: `chart_number` UNIQUE NOT NULL (migration 007), search by name OR chart_number, + 환자 추가 / 삭제 (CASCADE) buttons
 - Admin patient detail 3-column: visit list (#번호+날짜만) | VisitDetailPanel | AdminPatientGrowthChart
-- VisitDetailPanel: 4탭 구조 (진료 내역 / X-ray 검사 / Lab 테스트 / 생활습관), 공통 헤더(날짜·CA·BA·PAH) + 탭 뱃지에 데이터 유무 표시 (없음=rose / 첨부 N=emerald)
+- VisitDetailPanel: 4탭 구조 (진료 내역 / X-ray 검사 / Lab 테스트 / 생활습관), 공통 헤더(날짜·CA·BA·PAH) + 탭 뱃지에 데이터 유무 표시 (없음=rose / 첨부 N=emerald). 헤더+탭바는 `sticky top-0 z-10`으로 고정, 탭 컨텐츠만 스크롤
 - 진료 내역 탭: 측정 + 처방 + 메모 + 판독문 원본 (해당 회차 이미지 1장 + prev/next + 썸네일 strip)
+- 새 진료 버튼: 별도 페이지 이동 대신 오늘 날짜로 빈 visit 즉석 생성 + 자동 선택 → 탭에서 바로 데이터 입력
+- 첫 상담 · 기본 정보: 페이지 상단 접힘 섹션 삭제, 환자 헤더 오른쪽 버튼(`첫 상담`·`기본 정보`)으로 열리는 full-screen 모달로 이전. 모달 내부 flex column으로 DeckNav가 하단에 고정되게 보강
 - Lab 테스트 탭: 회차별 lab_tests 수치 테이블 (panel별 분리) + 첨부 이미지/PDF 갤러리
 - 뼈나이 + 예측 성인키는 X-ray 섹션에서 계산, 측정 섹션은 자동 표시
 - Xray upsert: 동일 visit_id 있으면 UPDATE (이미지 경로 유지); migration 006 anon storage RLS opened

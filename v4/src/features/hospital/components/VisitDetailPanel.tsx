@@ -162,22 +162,22 @@ export function VisitDetailPanel({
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-3 overflow-y-auto pb-24">
-      {/* Header */}
-      <div className="flex shrink-0 items-baseline justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
-        <div className="flex items-baseline gap-2">
-          <span className="text-sm font-semibold text-slate-900">{visit.visit_date}</span>
-          <span className="text-[11px] text-slate-500">CA {chronoAge.toFixed(1)}</span>
-          {effectiveBoneAge != null && (
-            <span className="text-[11px] text-slate-500">BA {effectiveBoneAge.toFixed(1)}</span>
-          )}
-          {pah != null && (
-            <span className="text-[11px] text-indigo-600">PAH {pah.toFixed(1)}</span>
-          )}
+      {/* Header + Tab bar stay pinned while the active tab's content scrolls. */}
+      <div className="sticky top-0 z-10 flex shrink-0 flex-col gap-2 bg-slate-50 pb-1 pt-0">
+        <div className="flex items-baseline justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
+          <div className="flex items-baseline gap-2">
+            <span className="text-sm font-semibold text-slate-900">{visit.visit_date}</span>
+            <span className="text-[11px] text-slate-500">CA {chronoAge.toFixed(1)}</span>
+            {effectiveBoneAge != null && (
+              <span className="text-[11px] text-slate-500">BA {effectiveBoneAge.toFixed(1)}</span>
+            )}
+            {pah != null && (
+              <span className="text-[11px] text-indigo-600">PAH {pah.toFixed(1)}</span>
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* Tab bar */}
-      <div className="flex shrink-0 gap-1 border-b border-slate-200">
+        <div className="flex gap-1 border-b border-slate-200 bg-slate-50">
         {tabs.map((t) => {
           const active = tab === t.key;
           return (
@@ -208,6 +208,7 @@ export function VisitDetailPanel({
             </button>
           );
         })}
+        </div>
       </div>
 
       {tab === 'clinical' && (

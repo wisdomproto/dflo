@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { fetchPatientDetail } from '@/features/admin/services/adminService';
-import { fetchVisitsForChild } from '@/features/hospital/services/visitService';
+import { createVisit, fetchVisitsForChild } from '@/features/hospital/services/visitService';
+import { logger } from '@/shared/lib/logger';
 import { VisitList } from '@/features/hospital/components/VisitList';
 import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
@@ -141,6 +142,20 @@ export default function AdminPatientDetailPage() {
         <div className="flex items-center gap-2">
           <button
             type="button"
+            onClick={() => setConsultExpanded(true)}
+            className="inline-flex h-8 items-center rounded border border-slate-300 bg-white px-3 text-xs font-medium text-slate-700 hover:bg-slate-50"
+          >
+            첫 상담
+          </button>
+          <button
+            type="button"
+            onClick={() => setIntakeExpanded(true)}
+            className="inline-flex h-8 items-center rounded border border-slate-300 bg-white px-3 text-xs font-medium text-slate-700 hover:bg-slate-50"
+          >
+            기본 정보
+          </button>
+          <button
+            type="button"
             onClick={() => setComparisonOpen(true)}
             disabled={!comparisonHeights}
             title="성장 비교"
@@ -175,73 +190,73 @@ export default function AdminPatientDetailPage() {
         </ZoomModal>
       )}
 
-      {/* 첫 상담 · 프레젠테이션 덱 — 기본 정보 위에 접힌 상태로 상주.
-          섹션 01~06 은 덱 내부에서 직접 입력 가능(기본 정보 탭과 동일 소스).
-          동기화: 환자 컬럼/intake_survey 는 onChildUpdated→setChild 로 즉시
-          반영되고, 초진 visit(측정·X-ray·Lab)은 같은 is_intake visit 를
-          공유하므로 DB 레벨에서 자동 공유된다. 닫을 때 parent 의 measurements
-          도 새로 고쳐서 아래 3단 그래프/리스트가 최신 상태를 유지하게 한다. */}
-      <FirstConsultPanel
-        expanded={consultExpanded}
-        onToggle={() => {
-          setConsultExpanded((v) => {
-            const next = !v;
-            if (next) setIntakeExpanded(false);
-            // 접을 때 parent refresh — 초진에서 저장된 측정/BA 가 3단 레이아웃
-            // 의 그래프·visit 리스트·VisitDetailPanel 에 반영되도록
-            if (!next && id) refreshData(id).catch(() => undefined);
-            return next;
-          });
-        }}
-        child={child}
-        onChildUpdated={setChild}
-      />
+      {/* 첫 상담 + 기본 정보는 헤더 버튼으로 열리는 full-screen 모달. 평소엔
+          페이지 세로 공간을 전혀 차지하지 않아 3단 레이아웃이 항상 보인다.
+          저장 내용은 onChildUpdated→setChild 로 즉시 반영되고, 닫을 때
+          refreshData 로 그래프/visits/VisitDetailPanel 도 최신화한다. */}
+      {consultExpanded && (
+        <div className="fixed inset-0 z-40 flex flex-col bg-white">
+          <div className="flex shrink-0 items-center justify-between border-b border-slate-200 px-4 py-2">
+            <h2 className="text-sm font-semibold text-slate-900">
+              첫 상담 · #{child.chart_number} {child.name}
+            </h2>
+            <button
+              type="button"
+              onClick={() => {
+                setConsultExpanded(false);
+                if (id) refreshData(id).catch(() => undefined);
+              }}
+              className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+              aria-label="닫기"
+            >
+              ✕
+            </button>
+          </div>
+          {/* flex column so FirstConsultPanel's inner `flex-1` actually
+              takes the remaining height — the DeckNav bar gets squeezed out
+              of view otherwise and every slide looks a different size. */}
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            <FirstConsultPanel
+              expanded={true}
+              onToggle={() => {
+                setConsultExpanded(false);
+                if (id) refreshData(id).catch(() => undefined);
+              }}
+              child={child}
+              onChildUpdated={setChild}
+            />
+          </div>
+        </div>
+      )}
 
-      {/* 기본 정보 — 진료 기록 맨 위에 고정. 기본 접힌 상태, 클릭 시 펼쳐지며
-          펼쳐지면 남은 세로 공간 전체를 차지(3단 레이아웃 일시 숨김)해서 X-ray
-          입력 · 성장 그래프 · 검사(Lab) 섹션까지 모두 보이게 한다. 다시 접으면
-          3단 레이아웃이 돌아온다. 첫 상담이 펼쳐져 있으면 기본 정보는 접힘. */}
-      <section
-        className={`overflow-hidden rounded-lg border border-slate-200 bg-white ${
-          intakeExpanded && !consultExpanded ? 'flex min-h-0 flex-1 flex-col' : 'shrink-0'
-        }`}
-      >
-        <button
-          type="button"
-          onClick={() => {
-            setIntakeExpanded((v) => {
-              const next = !v;
-              if (next) setConsultExpanded(false);
-              // 접을 때 parent refresh — 기본 정보에서 저장된 측정/BA 등을
-              // 3단 레이아웃이 최신 상태로 반영하도록
-              if (!next && id) refreshData(id).catch(() => undefined);
-              return next;
-            });
-          }}
-          className="flex w-full shrink-0 items-center justify-between px-3 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
-        >
-          <span className="flex items-center gap-2">
-            <span className="text-[11px] uppercase tracking-wider text-indigo-600">
-              기본 정보
-            </span>
-            <span className="text-[11px] font-normal text-slate-400">
-              {intakeExpanded ? '클릭하여 접기 (진료 기록 보기)' : '클릭하여 펼치기'}
-            </span>
-          </span>
-          <span className="text-slate-500">{intakeExpanded ? '▴' : '▾'}</span>
-        </button>
-        {intakeExpanded && !consultExpanded && (
-          <div className="min-h-0 flex-1 overflow-y-auto border-t border-slate-200">
+      {intakeExpanded && (
+        <div className="fixed inset-0 z-40 flex flex-col bg-white">
+          <div className="flex shrink-0 items-center justify-between border-b border-slate-200 px-4 py-2">
+            <h2 className="text-sm font-semibold text-slate-900">
+              기본 정보 · #{child.chart_number} {child.name}
+            </h2>
+            <button
+              type="button"
+              onClick={() => {
+                setIntakeExpanded(false);
+                if (id) refreshData(id).catch(() => undefined);
+              }}
+              className="rounded p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
+              aria-label="닫기"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="min-h-0 flex-1 overflow-y-auto">
             <IntakeSurveyPanel child={child} onChildUpdated={setChild} />
           </div>
-        )}
-      </section>
+        </div>
+      )}
 
       {/* 3-column layout: chart + X-ray fixed, visits is the only fluid 1fr.
           Chart locks at 60% of the grid width so its size never depends on
-          the X-ray rail state — collapsing X-ray flows its 316px purely into
-          the visits column. 첫 상담 / 기본 정보가 펼쳐져 있으면 숨김. */}
-      {!intakeExpanded && !consultExpanded && (
+          the X-ray rail state. 접힘 섹션이 제거돼 항상 표시된다. */}
+      {true && (
       <div
         className="grid min-h-0 flex-1 grid-cols-1 gap-3 lg:[grid-template-columns:var(--cols)]"
         style={
@@ -270,12 +285,26 @@ export default function AdminPatientDetailPage() {
             />
           </div>
           <div className="shrink-0 border-t border-slate-200 p-2">
-            <Link
-              to={`/admin/patients/${id}/visits/new`}
+            <button
+              type="button"
+              onClick={async () => {
+                if (!id) return;
+                try {
+                  const v = await createVisit({
+                    child_id: id,
+                    visit_date: new Date().toISOString().slice(0, 10),
+                    is_intake: false,
+                  });
+                  await refreshData(id);
+                  setSelectedVisitId(v.id);
+                } catch (e) {
+                  logger.error('inline visit create failed', e);
+                }
+              }}
               className="flex w-full items-center justify-center rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800"
             >
               + 새 진료
-            </Link>
+            </button>
           </div>
         </section>
 
