@@ -25,6 +25,7 @@ import { ZoomModal } from '@/shared/components/ZoomModal';
 import { ZoomableImg } from '@/shared/components/ZoomableImg';
 import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
 import type { Child, HospitalMeasurement, Visit, XrayReading } from '@/shared/types';
+import { VisitImageGallery, XRAY_IMAGE_DRAG_TYPE } from './VisitImageGallery';
 
 interface Props {
   child: Child;
@@ -411,6 +412,13 @@ export function XrayPanel({
             {error}
           </div>
         )}
+
+        {/* Visit image gallery — all images captured for this visit. Click to
+            zoom, drag a thumbnail onto the patient pane above to adopt it as
+            the hand X-ray used for atlas matching + save. */}
+        <div className="mt-3">
+          <VisitImageGallery visitId={visit.id} />
+        </div>
       </div>
     </div>
     {zoomed && (
@@ -595,6 +603,21 @@ function PatientPane({
     if (f) onFile(f);
   };
 
+  /** Accept a dragged image from the VisitImageGallery (data = signed URL). */
+  const handleUrlDrop = async (url: string) => {
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const name = url.split('?')[0]?.split('/').pop() || 'image.webp';
+      const file = new File([blob], name, { type: blob.type || 'image/webp' });
+      onFile(file);
+    } catch (e) {
+      // fallthrough — silently ignore; the gallery is still usable
+      // eslint-disable-next-line no-console
+      console.warn('[XrayPanel] URL drop failed', e);
+    }
+  };
+
   const commit = () => {
     const trimmed = draft.trim();
     if (trimmed === '') {
@@ -620,6 +643,11 @@ function PatientPane({
         onDrop={(e) => {
           e.preventDefault();
           setDrag(false);
+          const urlPayload = e.dataTransfer.getData(XRAY_IMAGE_DRAG_TYPE);
+          if (urlPayload) {
+            handleUrlDrop(urlPayload);
+            return;
+          }
           handleFiles(e.dataTransfer.files);
         }}
         className={`relative aspect-[800/1166] overflow-hidden rounded bg-slate-900 transition ${

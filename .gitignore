@@ -68,3 +68,42 @@ wrangler.toml.backup
 
 # Windows artifacts
 nul
+
+# 대용량 임포트 소스 데이터 (cases/) — scripts만 커밋, 원본 엑셀/이미지/CSV는 로컬 유지
+cases/영상데이터/
+cases/판독문/
+cases/판독문_ocr/
+cases/판독문_review/
+cases/랩데이터/
+cases/랩데이터_ocr/
+cases/랩데이터_ocr_v2/
+cases/NEW성장문진표*/
+cases/처방데이터.csv
+cases/*.xlsx
+cases/*.xls
+cases/*.csv
+cases/~$*
+cases/_prescription_rows.json
+cases/_prescription_codes.json
+cases/_patient_roster.json
+cases/_xlsx_quick.json
+cases/_nonmed_flagged.json
+cases/_upload_*.log
+cases/_ocr_import.log
+cases/_upload_lab.log
+cases/_upload_raw.log
+cases/intake_surveys_parsed.json
+cases/intake_xlsx_parsed.json
+cases/0. backup/
+cases/__pycache__/
+cases/*.sql
+cases/igg4*/
+
+# 마이그레이션/프로토타입 워크스페이스
+migration/
+prototype/
+.superpowers/
+
+# v4 public 대용량 zip / pptx
+v4/public/first_session/*.pptx
+v4/public/images/랜딩페이지*.zip

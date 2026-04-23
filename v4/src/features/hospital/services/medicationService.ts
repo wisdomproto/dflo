@@ -5,14 +5,26 @@ import { logger } from '@/shared/lib/logger';
 export async function fetchMedications(
   opts: { activeOnly?: boolean } = {},
 ): Promise<Medication[]> {
-  let q = supabase.from('medications').select('*').order('code');
-  if (opts.activeOnly) q = q.eq('is_active', true);
-  const { data, error } = await q;
-  if (error) {
-    logger.error('fetchMedications failed', error);
-    throw new Error('약품 목록을 불러오지 못했습니다.');
+  // Page through in 1000-row batches (PostgREST default limit).
+  const all: Medication[] = [];
+  const PAGE = 1000;
+  for (let from = 0; ; from += PAGE) {
+    let q = supabase
+      .from('medications')
+      .select('*')
+      .order('code')
+      .range(from, from + PAGE - 1);
+    if (opts.activeOnly) q = q.eq('is_active', true);
+    const { data, error } = await q;
+    if (error) {
+      logger.error('fetchMedications failed', error);
+      throw new Error('약품 목록을 불러오지 못했습니다.');
+    }
+    if (!data || data.length === 0) break;
+    all.push(...(data as Medication[]));
+    if (data.length < PAGE) break;
   }
-  return (data ?? []) as Medication[];
+  return all;
 }
 
 export async function createMedication(

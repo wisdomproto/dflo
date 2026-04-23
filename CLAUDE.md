@@ -121,6 +121,11 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - **XrayPanel**: X-ray 이미지 있을 때만 atlas 자동매칭 BA/PAH를 parent(VisitDetailPanel)에 push, 이미지 없으면 `null`로 밀어 판독문 OCR에서 온 `hospital_measurements.bone_age` 값만 사용
 - **AdminPatientGrowthChart**: BA 측정된 visit point를 주황 다이아몬드(`rectRot`) + tooltip에 BA 값 표시. "🦴 뼈나이 측정만" 체크박스로 월별 촘촘한 실측 대신 BA 측정 회차만 표시
 - **VisitList**: 각 회차 row에 BA 측정된 visit만 `🦴 BA 12.3` amber 뱃지 표시 (판독문에서 실제 측정된 회차만)
+- **처방 임포트 파이프라인** (`cases/`): eone 처방데이터.csv(UTF-16, 40만 행) → `parse_prescriptions.py`(MEDICINE/LAB/ADMIN/XRAY/FOLLOWUP 분류) → `insert_medications.mjs` + `insert_prescriptions.mjs`. 244명 × 19,080 처방 임포트. 매칭 로직: chart_number로 child 찾고 처방일자 기준 ±30일 내 가장 가까운 visit 연결, 없으면 새 visit 생성(`notes='Auto-created from prescription import'`, is_intake=false). 비약품 40개(X-ray 촬영 오더 `g4502` 등, 진료기록 사본)는 `cleanup_nonmed.mjs`로 제거
+- **medication 코드 포맷 재설계** (`cases/recode_medications.mjs`): 이름순 정렬 후 `MED0001` / `INJ001` / `PRO001` (처방약 1,155 / 주사 43 / 시술 8). 원본 eone 코드는 `notes`에 `eone:{원본}` 보존. `round_doses.mjs`로 default_dose/dose 전부 소수점 1자리(`1.000` → `1.0`). `total=N.0` 메모는 14,837건 복원 (`restore_rx_totals.mjs`)
+- **AdminMedicationsPage 리디자인**: 상태 컬럼 제거, 코드/약명 검색 박스, 카테고리 필터 탭(전체 / 처방약 / 주사 / 시술 + 개수), sticky 헤더. `fetchMedications`는 페이지네이션 반복 fetch (1,206개 전체 로드)
+- **visit_images + X-ray 갤러리** (migration 011): 회차별 webp 이미지 저장. 업로드 스크립트 `cases/upload_visit_images.mjs`로 `cases/영상데이터/{chart}/{YYYYMMDD}/*.webp` 9,025개를 `xray-images` 버킷에 업로드 (Storage 키는 ASCII로 한글 sanitize, 238명 / 836 visit / 43개 새 visit 자동 생성). 서비스 `visitImageService.ts` + 컴포넌트 `VisitImageGallery.tsx` (수평 스크롤 썸네일 + ← → 스크롤 버튼 + 클릭 라이트박스 + 드래그 가능)
+- **XrayPanel 갤러리 통합**: 3-column atlas 아래 `VisitImageGallery` 렌더. 썸네일을 가운데 환자 pane에 드래그&드롭 → `XRAY_IMAGE_DRAG_TYPE` dataTransfer 수신 → signed URL을 fetch로 Blob 변환 → File 생성 → 기존 `acceptFile` 경로 재사용. 드래그 후 저장 시 해당 이미지가 손 X-ray로 확정됨
 
 ## Environment Variables
 ```
@@ -146,6 +151,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 12: PARTIAL (VisitDetailPanel 4+1 섹션, chart_number, KR/CN 성장곡선, GrowthComparisonDiagram, 생활 습관 월간 뷰 + 카테고리 평가, 환자 추가/삭제, 사이드바 접기)
 - Phase 14: PARTIAL (Lab OCR 파이프라인 — Surya + parse_eone + Supabase 임포트 / 234차트·2094이미지·804 lab_tests / LabHistoryPanel + 검사 이력 접힘 섹션)
 - Phase 15: COMPLETE (판독문 OCR 전체 완료 240명 / hospital_measurements 2995건 / visits.notes 3758건 / 원본 Storage 업로드 / 환자 카테고리 8종 + 필터·정렬 / VisitDetailPanel 4탭 리팩토링 / 진료 회차별 판독문 페이지 뷰어 / lab_tests 진료 visit 재매핑)
+- Phase 16: COMPLETE (처방 파이프라인 40만 행 → 19,080 처방 임포트 + 약품코드 MED/INJ/PRO 재설계 + AdminMedicationsPage 리디자인 / X-ray 회차 이미지 9,025개 업로드 + VisitImageGallery 드래그&드롭)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript
