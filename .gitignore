@@ -96,6 +96,8 @@ cases/intake_surveys_parsed.json
 cases/intake_xlsx_parsed.json
 cases/_patient_dump_*.json
 cases/_patient_summary_probe.mjs
+cases/_probe_seed_rows.mjs
+cases/_ljy_excel.json
 cases/_spot_check.mjs
 cases/_upload_visit_images.log
 cases/0. backup/
