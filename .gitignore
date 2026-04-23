@@ -94,6 +94,10 @@ cases/_upload_lab.log
 cases/_upload_raw.log
 cases/intake_surveys_parsed.json
 cases/intake_xlsx_parsed.json
+cases/_patient_dump_*.json
+cases/_patient_summary_probe.mjs
+cases/_spot_check.mjs
+cases/_upload_visit_images.log
 cases/0. backup/
 cases/__pycache__/
 cases/*.sql

@@ -126,6 +126,8 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - **AdminMedicationsPage 리디자인**: 상태 컬럼 제거, 코드/약명 검색 박스, 카테고리 필터 탭(전체 / 처방약 / 주사 / 시술 + 개수), sticky 헤더. `fetchMedications`는 페이지네이션 반복 fetch (1,206개 전체 로드)
 - **visit_images + X-ray 갤러리** (migration 011): 회차별 webp 이미지 저장. 업로드 스크립트 `cases/upload_visit_images.mjs`로 `cases/영상데이터/{chart}/{YYYYMMDD}/*.webp` 9,025개를 `xray-images` 버킷에 업로드 (Storage 키는 ASCII로 한글 sanitize, 238명 / 836 visit / 43개 새 visit 자동 생성). 서비스 `visitImageService.ts` + 컴포넌트 `VisitImageGallery.tsx` (수평 스크롤 썸네일 + ← → 스크롤 버튼 + 클릭 라이트박스 + 드래그 가능)
 - **XrayPanel 갤러리 통합**: 3-column atlas 아래 `VisitImageGallery` 렌더. 썸네일을 가운데 환자 pane에 드래그&드롭 → `XRAY_IMAGE_DRAG_TYPE` dataTransfer 수신 → signed URL을 fetch로 Blob 변환 → File 생성 → 기존 `acceptFile` 경로 재사용. 드래그 후 저장 시 해당 이미지가 손 X-ray로 확정됨
+- **AI 환자 분석 파이프라인** (migration 012): `patient_analyses(child_id UNIQUE, data JSONB, model, generated_at)` 테이블. ai-server에 `/api/patient-analysis/:childId` GET/POST. POST는 children + visits + measurements + prescriptions(med name 조인) + lab_tests 전체를 묶어 Gemini 2.5 Flash에 구조화 JSON 요청. 응답: `summary / problem / intervention / outcome / response_level(excellent~insufficient_data) / treatment_phase(초기/유지/마무리/종료/일회성/불명) / sub_categories / risk_flags / key_findings / growth_metrics`
+- **PatientAnalysisModal** (`v4/src/features/hospital/components/`): AdminPatientDetailPage 좌하단 플로팅 `🧠 환자 분석` 버튼 → 모달 열기. 캐시된 분석 없으면 "분석 생성하기" 버튼, 있으면 반응도·치료단계 배지 + 서사 요약 + 처방/세부카테고리/경고/지표변화/growth_metrics 전체 표시. 재생성 가능
 
 ## Environment Variables
 ```
@@ -152,6 +154,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 14: PARTIAL (Lab OCR 파이프라인 — Surya + parse_eone + Supabase 임포트 / 234차트·2094이미지·804 lab_tests / LabHistoryPanel + 검사 이력 접힘 섹션)
 - Phase 15: COMPLETE (판독문 OCR 전체 완료 240명 / hospital_measurements 2995건 / visits.notes 3758건 / 원본 Storage 업로드 / 환자 카테고리 8종 + 필터·정렬 / VisitDetailPanel 4탭 리팩토링 / 진료 회차별 판독문 페이지 뷰어 / lab_tests 진료 visit 재매핑)
 - Phase 16: COMPLETE (처방 파이프라인 40만 행 → 19,080 처방 임포트 + 약품코드 MED/INJ/PRO 재설계 + AdminMedicationsPage 리디자인 / X-ray 회차 이미지 9,025개 업로드 + VisitImageGallery 드래그&드롭)
+- Phase 17: PARTIAL (AI 환자 분석 파이프라인 — migration 012 / ai-server endpoint / PatientAnalysisModal / 수작업 1명 검증 완료. Gemini API 키 만료로 배치 실행 대기 중)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript

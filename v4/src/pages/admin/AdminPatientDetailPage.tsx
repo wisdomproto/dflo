@@ -8,6 +8,7 @@ import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPane
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
 import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
 import { FirstConsultPanel } from '@/features/hospital/components/intake/FirstConsultPanel';
+import { PatientAnalysisModal } from '@/features/hospital/components/PatientAnalysisModal';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
 import { ZoomModal } from '@/shared/components/ZoomModal';
@@ -33,6 +34,7 @@ export default function AdminPatientDetailPage() {
   const [intakeExpanded, setIntakeExpanded] = useState(false);
   // 첫 상담 프레젠테이션 덱도 접힌 채로 상주 — 펼치면 슬라이드 덱이 열림
   const [consultExpanded, setConsultExpanded] = useState(false);
+  const [analysisOpen, setAnalysisOpen] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -443,6 +445,26 @@ export default function AdminPatientDetailPage() {
           )}
         </section>
       </div>
+      )}
+
+      {/* Floating "환자 분석" button — bottom-left of the viewport, opens
+          the AI-generated narrative analysis modal. */}
+      <button
+        type="button"
+        onClick={() => setAnalysisOpen(true)}
+        title="AI 환자 분석"
+        className="fixed bottom-4 left-4 z-30 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-indigo-700"
+      >
+        <span>🧠</span>
+        <span>환자 분석</span>
+      </button>
+
+      {analysisOpen && child && (
+        <PatientAnalysisModal
+          childId={child.id}
+          patientName={child.name}
+          onClose={() => setAnalysisOpen(false)}
+        />
       )}
     </div>
   );
