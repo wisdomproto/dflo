@@ -15,6 +15,10 @@ export default defineConfig({
   },
   preview: {
     host: true,
-    allowedHosts: ['dflo-production.up.railway.app'],
+    allowedHosts: [
+      'dflo-production.up.railway.app',
+      'www.dr187growup.com',
+      'dr187growup.com',
+    ],
   },
 });
