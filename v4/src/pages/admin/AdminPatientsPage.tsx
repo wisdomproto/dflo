@@ -15,7 +15,7 @@ import {
   PATIENT_CATEGORIES,
   type PatientCategoryId,
 } from '@/features/admin/utils/patientCategories';
-import { regionLabel, regionSortKey } from '@/features/admin/utils/region';
+import { regionSortKey } from '@/features/admin/utils/region';
 
 export default function AdminPatientsPage() {
   const navigate = useNavigate();
