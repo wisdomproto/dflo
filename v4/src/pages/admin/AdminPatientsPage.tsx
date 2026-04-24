@@ -16,6 +16,8 @@ import {
   type PatientCategoryId,
 } from '@/features/admin/utils/patientCategories';
 import { regionSortKey } from '@/features/admin/utils/region';
+import { fetchStoryChildIds } from '@/features/admin/services/patientStoryService';
+import PatientStoryModal from '@/features/admin/components/PatientStoryModal';
 
 export default function AdminPatientsPage() {
   const navigate = useNavigate();
@@ -26,6 +28,8 @@ export default function AdminPatientsPage() {
   const [loading, setLoading] = useState(true);
   const [addOpen, setAddOpen] = useState(false);
   const [activeCategories, setActiveCategories] = useState<Set<PatientCategoryId>>(new Set());
+  const [storyChildIds, setStoryChildIds] = useState<Set<string>>(new Set());
+  const [storyOpenFor, setStoryOpenFor] = useState<PatientWithParent | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   // Precompute categories per patient once per list load.
@@ -151,6 +155,7 @@ export default function AdminPatientsPage() {
 
   useEffect(() => {
     loadPatients('');
+    fetchStoryChildIds().then(setStoryChildIds).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -365,6 +370,7 @@ export default function AdminPatientsPage() {
                   >
                     상태{sortIndicator('status')}
                   </th>
+                  <th className="px-3 py-3 text-center">스토리</th>
                   <th className="px-2 py-3"></th>
                 </tr>
               </thead>
@@ -410,6 +416,25 @@ export default function AdminPatientsPage() {
                       </span>
                     </td>
                     <td className="px-4 py-3 text-center"><StatusBadge active={p.is_active} /></td>
+                    <td className="px-3 py-3 text-center">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setStoryOpenFor(p);
+                        }}
+                        title={storyChildIds.has(p.id) ? '스토리 보기' : '스토리 없음 (클릭으로 상태 확인)'}
+                        aria-label="환자 스토리 보기"
+                        className={
+                          'inline-flex items-center justify-center rounded-full px-2 py-1 text-base transition ' +
+                          (storyChildIds.has(p.id)
+                            ? 'bg-amber-50 text-amber-700 hover:bg-amber-100'
+                            : 'bg-slate-50 text-slate-300 hover:bg-slate-100')
+                        }
+                      >
+                        📖
+                      </button>
+                    </td>
                     <td className="px-2 py-3 text-center">
                       <button
                         type="button"
@@ -481,6 +506,21 @@ export default function AdminPatientsPage() {
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
+                      setStoryOpenFor(p);
+                    }}
+                    title={storyChildIds.has(p.id) ? '스토리 보기' : '스토리 없음'}
+                    aria-label="환자 스토리 보기"
+                    className={
+                      'ml-1 shrink-0 rounded p-2 text-lg ' +
+                      (storyChildIds.has(p.id) ? 'text-amber-600' : 'text-slate-300')
+                    }
+                  >
+                    📖
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
                       handleDelete(p);
                     }}
                     title="환자 삭제"
@@ -503,6 +543,14 @@ export default function AdminPatientsPage() {
             loadPatients(search);
             navigate(`/admin/patients/${id}`);
           }}
+        />
+      )}
+      {storyOpenFor && (
+        <PatientStoryModal
+          childId={storyOpenFor.id}
+          childName={storyOpenFor.name}
+          chartNumber={storyOpenFor.chart_number}
+          onClose={() => setStoryOpenFor(null)}
         />
       )}
     </div>
