@@ -15,6 +15,7 @@ import {
   PATIENT_CATEGORIES,
   type PatientCategoryId,
 } from '@/features/admin/utils/patientCategories';
+import { regionLabel, regionSortKey } from '@/features/admin/utils/region';
 
 export default function AdminPatientsPage() {
   const navigate = useNavigate();
@@ -57,8 +58,17 @@ export default function AdminPatientsPage() {
     });
   }, [patients, categoriesById, activeCategories]);
 
-  // Column sorting — chart / name / categories count / measurement count / lab count / status.
-  type SortKey = 'chart' | 'name' | 'categories' | 'measurements' | 'labs' | 'status';
+  // Column sorting — chart / name / region / first visit / last visit / categories / measurements / labs / status.
+  type SortKey =
+    | 'chart'
+    | 'name'
+    | 'region'
+    | 'firstVisit'
+    | 'lastVisit'
+    | 'categories'
+    | 'measurements'
+    | 'labs'
+    | 'status';
   const [sort, setSort] = useState<{ key: SortKey; dir: 'asc' | 'desc' } | null>(null);
 
   const sortedPatients = useMemo(() => {
@@ -77,6 +87,13 @@ export default function AdminPatientsPage() {
         }
         case 'name':
           return p.name ?? '';
+        case 'region':
+          return regionSortKey(p.region);
+        case 'firstVisit':
+          // '' sorts before any valid date — push blanks to the bottom regardless of dir.
+          return p.firstVisitDate ?? (dir === 1 ? '￿' : '');
+        case 'lastVisit':
+          return p.lastVisitDate ?? (dir === 1 ? '￿' : '');
         case 'categories':
           return (categoriesById.get(p.id) ?? []).length;
         case 'measurements':
@@ -181,6 +198,31 @@ export default function AdminPatientsPage() {
       : <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-500">비활성</span>;
   }
 
+  function RegionBadge({ patient }: { patient: PatientWithParent }) {
+    const r = patient.region;
+    if (!r) return <span className="text-gray-300 text-xs">-</span>;
+    if (r.district) {
+      return (
+        <span className="inline-flex items-center gap-1">
+          <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-medium text-slate-600">
+            서울
+          </span>
+          <span className="text-xs text-slate-800">{r.district}</span>
+        </span>
+      );
+    }
+    return (
+      <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[11px] font-medium text-slate-600">
+        {r.metro}
+      </span>
+    );
+  }
+
+  function formatVisitDate(iso: string | undefined) {
+    if (!iso) return <span className="text-gray-300">-</span>;
+    return <span className="font-mono text-xs text-slate-700">{iso}</span>;
+  }
+
   return (
     <div className="space-y-4">
       {/* Header */}
@@ -282,6 +324,24 @@ export default function AdminPatientsPage() {
                     환자{sortIndicator('name')}
                   </th>
                   <th
+                    onClick={() => toggleSort('region')}
+                    className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
+                  >
+                    주소{sortIndicator('region')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('firstVisit')}
+                    className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
+                  >
+                    최초 내원{sortIndicator('firstVisit')}
+                  </th>
+                  <th
+                    onClick={() => toggleSort('lastVisit')}
+                    className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
+                  >
+                    최근 내원{sortIndicator('lastVisit')}
+                  </th>
+                  <th
                     onClick={() => toggleSort('categories')}
                     className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
                   >
@@ -324,6 +384,11 @@ export default function AdminPatientsPage() {
                         {p.name}
                       </span>
                     </td>
+                    <td className="px-4 py-3">
+                      <RegionBadge patient={p} />
+                    </td>
+                    <td className="px-4 py-3">{formatVisitDate(p.firstVisitDate)}</td>
+                    <td className="px-4 py-3">{formatVisitDate(p.lastVisitDate)}</td>
                     <td className="px-4 py-3">
                       <CategoryBadges ids={categoriesById.get(p.id) ?? []} />
                     </td>
@@ -386,6 +451,12 @@ export default function AdminPatientsPage() {
                       </span>
                       <span className="font-medium text-gray-900 truncate">{p.name}</span>
                       <StatusBadge active={p.is_active} />
+                    </div>
+                    <div className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
+                      <RegionBadge patient={p} />
+                      {p.lastVisitDate && (
+                        <span className="font-mono">최근 {p.lastVisitDate}</span>
+                      )}
                     </div>
                     <div className="mt-1">
                       <CategoryBadges ids={categoriesById.get(p.id) ?? []} compact />

@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchDashboardStats, type DashboardStats } from '@/features/admin/services/adminService';
+import {
+  fetchDashboardStats,
+  fetchRegionDistribution,
+  type DashboardStats,
+  type RegionDistribution,
+} from '@/features/admin/services/adminService';
 import { useUIStore } from '@/stores/uiStore';
+import PatientDistributionMap from '@/features/admin/components/PatientDistributionMap';
 
 const statCards = [
   { key: 'totalPatients', label: '총 환자 수', icon: '👥', bg: 'bg-blue-50' },
@@ -23,12 +29,18 @@ export default function AdminDashboardPage() {
   const addToast = useUIStore((s) => s.addToast);
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [regionData, setRegionData] = useState<RegionDistribution | null>(null);
+  const [regionLoading, setRegionLoading] = useState(true);
 
   useEffect(() => {
     fetchDashboardStats()
       .then(setStats)
       .catch((err) => addToast('error', err?.message ?? '통계를 불러오지 못했습니다.'))
       .finally(() => setLoading(false));
+    fetchRegionDistribution()
+      .then(setRegionData)
+      .catch((err) => addToast('error', err?.message ?? '지역 분포를 불러오지 못했습니다.'))
+      .finally(() => setRegionLoading(false));
   }, [addToast]);
 
   return (
@@ -64,6 +76,8 @@ export default function AdminDashboardPage() {
           데이터를 불러올 수 없습니다.
         </p>
       )}
+
+<PatientDistributionMap data={regionData} loading={regionLoading} />
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold">빠른 이동</h2>

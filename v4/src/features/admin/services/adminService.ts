@@ -1,6 +1,7 @@
 import type { Child, Measurement, User } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
+import { regionFromAddress, type Region } from '@/features/admin/utils/region';
 
 // ================================================
 // Admin Service - 187 성장케어 v4
@@ -43,6 +44,78 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
   };
 }
 
+// ---------- Region Distribution ----------
+
+export interface RegionDistribution {
+  /** Province / metro counts, keyed by region label ('서울', '경기', '부산', ...). */
+  provinces: Record<string, number>;
+  /** Seoul 구 counts, keyed by 구 name ('강남구', ...). */
+  seoulDistricts: Record<string, number>;
+  /** Addresses that failed to resolve to any known region. */
+  unknown: number;
+  /** 미국 / 해외 거주로 태그된 환자. */
+  overseas: number;
+  /** Patients with a non-empty address string (== resolved + unknown). */
+  totalWithAddress: number;
+  /** Grand total, including patients with no address at all. */
+  totalPatients: number;
+}
+
+export async function fetchRegionDistribution(): Promise<RegionDistribution> {
+  const PAGE_SIZE = 1000;
+  let from = 0;
+  const rows: Array<{ intake_survey: unknown }> = [];
+  while (true) {
+    const { data, error } = await supabase
+      .from('children')
+      .select('intake_survey')
+      .range(from, from + PAGE_SIZE - 1);
+    if (error) {
+      logger.error('fetchRegionDistribution failed:', error);
+      break;
+    }
+    if (!data || data.length === 0) break;
+    rows.push(...(data as Array<{ intake_survey: unknown }>));
+    if (data.length < PAGE_SIZE) break;
+    from += PAGE_SIZE;
+  }
+
+  const provinces: Record<string, number> = {};
+  const seoulDistricts: Record<string, number> = {};
+  let unknown = 0;
+  let overseas = 0;
+  let totalWithAddress = 0;
+
+  for (const r of rows) {
+    const contact = (r.intake_survey as { contact?: { address?: string | null } } | null)?.contact;
+    const addr = contact?.address;
+    if (!addr || !String(addr).trim()) continue;
+    totalWithAddress += 1;
+    const reg = regionFromAddress(addr);
+    if (!reg) {
+      unknown += 1;
+      continue;
+    }
+    if (reg.metro === '해외') {
+      overseas += 1;
+      continue;
+    }
+    provinces[reg.metro] = (provinces[reg.metro] ?? 0) + 1;
+    if (reg.metro === '서울' && reg.district) {
+      seoulDistricts[reg.district] = (seoulDistricts[reg.district] ?? 0) + 1;
+    }
+  }
+
+  return {
+    provinces,
+    seoulDistricts,
+    unknown,
+    overseas,
+    totalWithAddress,
+    totalPatients: rows.length,
+  };
+}
+
 // ---------- Patient List ----------
 
 export interface PatientWithParent extends Child {
@@ -50,6 +123,12 @@ export interface PatientWithParent extends Child {
   latestMeasurement?: Measurement;
   measurementCount?: number;
   labCount?: number;
+  /** Earliest non-intake visit date (YYYY-MM-DD) or undefined if never seen. */
+  firstVisitDate?: string;
+  /** Most recent non-intake visit date (YYYY-MM-DD). */
+  lastVisitDate?: string;
+  /** Parsed from `intake_survey.contact.address` — null if unknown. */
+  region?: Region | null;
 }
 
 const PAGE = 1000;
@@ -149,12 +228,38 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     return out;
   }
 
-  const [parentsRes, measurements, labs] = await Promise.all([
+  // Visits — same paginated pattern so we don't miss dates past the 1000-row cap.
+  // `is_intake=false` excludes the virtual first-consult row that every patient
+  // has (see Phase 13 notes).
+  async function fetchAllVisitDates(): Promise<Array<{ child_id: string; visit_date: string }>> {
+    const out: Array<{ child_id: string; visit_date: string }> = [];
+    let from = 0;
+    while (true) {
+      const { data, error } = await supabase
+        .from('visits')
+        .select('child_id, visit_date')
+        .in('child_id', childIds)
+        .eq('is_intake', false)
+        .range(from, from + PAGE - 1);
+      if (error) {
+        logger.error('fetchPatients visits:', error);
+        return out;
+      }
+      if (!data || data.length === 0) break;
+      out.push(...(data as Array<{ child_id: string; visit_date: string }>));
+      if (data.length < PAGE) break;
+      from += PAGE;
+    }
+    return out;
+  }
+
+  const [parentsRes, measurements, labs, visitDates] = await Promise.all([
     parentIds.length
       ? supabase.from('users').select('id, name, email, phone').in('id', parentIds)
       : Promise.resolve({ data: [], error: null }),
     fetchAllMeasurements(),
     fetchAllLabIds(),
+    fetchAllVisitDates(),
   ]);
 
   if (parentsRes.error) logger.error('fetchPatients parents:', parentsRes.error);
@@ -177,15 +282,36 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     labCountByChild.set(l.child_id, (labCountByChild.get(l.child_id) ?? 0) + 1);
   }
 
+  // Track first/last non-intake visit per child in one pass.
+  const visitRangeByChild = new Map<string, { first: string; last: string }>();
+  for (const v of visitDates) {
+    if (!v.visit_date) continue;
+    const cur = visitRangeByChild.get(v.child_id);
+    if (!cur) {
+      visitRangeByChild.set(v.child_id, { first: v.visit_date, last: v.visit_date });
+      continue;
+    }
+    if (v.visit_date < cur.first) cur.first = v.visit_date;
+    if (v.visit_date > cur.last) cur.last = v.visit_date;
+  }
+
   // 4) Assemble without any extra round-trips.
   return patients.map((patient) => {
     const ms = measurementsByChild.get(patient.id) ?? [];
+    const range = visitRangeByChild.get(patient.id);
+    // intake_survey is typed narrowly in shared/types; contact is stashed by
+    // the roster importer under intake_survey.contact.address.
+    const contact = (patient.intake_survey as { contact?: { address?: string | null } } | null | undefined)?.contact;
+    const region = regionFromAddress(contact?.address ?? null);
     return {
       ...patient,
       parent: parentMap.get(patient.parent_id),
       latestMeasurement: ms[0], // already sorted desc by measured_date
       measurementCount: ms.length,
       labCount: labCountByChild.get(patient.id) ?? 0,
+      firstVisitDate: range?.first,
+      lastVisitDate: range?.last,
+      region,
     };
   });
 }

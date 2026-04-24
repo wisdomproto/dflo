@@ -49,14 +49,25 @@ export function VisitList({
       {visits.map((v, i) => {
         const idx = visits.length - i;
         const isSelected = selectedVisitId === v.id;
+        const hasBA = baByVisitId.has(v.id);
+        const rowClass = hasBA
+          ? isSelected
+            ? 'border-amber-500 bg-amber-100 ring-2 ring-amber-200'
+            : 'border-amber-300 bg-amber-50 hover:border-amber-400'
+          : isSelected
+            ? 'border-indigo-400 bg-white ring-2 ring-indigo-100'
+            : 'border-slate-200 bg-white hover:border-slate-300';
+        const idxBadgeClass = hasBA
+          ? isSelected
+            ? 'bg-amber-600 text-white'
+            : 'bg-amber-200 text-amber-900'
+          : isSelected
+            ? 'bg-indigo-600 text-white'
+            : 'bg-slate-100 text-slate-500';
         return (
           <li
             key={v.id}
-            className={`group relative overflow-hidden rounded-lg border bg-white transition-colors ${
-              isSelected
-                ? 'border-indigo-400 ring-2 ring-indigo-100'
-                : 'border-slate-200 hover:border-slate-300'
-            }`}
+            className={`group relative overflow-hidden rounded-lg border transition-colors ${rowClass}`}
           >
             <button
               type="button"
@@ -65,19 +76,21 @@ export function VisitList({
               className="flex w-full items-baseline gap-2 px-3 py-2.5 text-left"
             >
               <span
-                className={
-                  'shrink-0 rounded px-1.5 py-0.5 text-[11px] font-bold ' +
-                  (isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500')
-                }
+                className={'shrink-0 rounded px-1.5 py-0.5 text-[11px] font-bold ' + idxBadgeClass}
               >
                 #{idx}
               </span>
-              <span className="whitespace-nowrap text-sm font-semibold text-slate-900">
+              <span
+                className={
+                  'whitespace-nowrap text-sm font-semibold ' +
+                  (hasBA ? 'text-amber-900' : 'text-slate-900')
+                }
+              >
                 {v.visit_date}
               </span>
-              {baByVisitId.has(v.id) && (
+              {hasBA && (
                 <span
-                  className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800"
+                  className="ml-auto shrink-0 rounded-full bg-amber-200 px-1.5 py-0.5 text-[10px] font-semibold text-amber-900"
                   title={`뼈나이 측정됨: BA ${baByVisitId.get(v.id)?.toFixed(1)}`}
                 >
                   🦴 BA {baByVisitId.get(v.id)?.toFixed(1)}

@@ -30,3 +30,8 @@ seed_patients.sql
 
 # Patient roster JSON (PHI: names, RRN, address)
 _patient_roster.json
+
+# Ad-hoc inspection scripts (may print PHI to stdout)
+_inspect_*.mjs
+_verify_*.mjs
+_region_tmp.mjs

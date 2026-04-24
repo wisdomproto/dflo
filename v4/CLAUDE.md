@@ -40,7 +40,9 @@ features/
                   # Details: RecipeDetail, CaseDetail, GuideDetail, CasePredictionBadge
   meal/           # MealCard, MealAnalysisSection, mealService
   exercise/       # ExerciseCard, YouTubeModal, exercises data
-  admin/          # AdminLayout, ImageUploader, adminService
+  admin/          # AdminLayout, ImageUploader, adminService (+fetchRegionDistribution)
+                  # components/ PatientDistributionMap (17 시도 타일 카토그램 + 서울 구 bar chart)
+                  # utils/ region.ts (주소 → Region 파서, 99.6% 커버리지)
   website/        # Public hospital website (연세새봄의원 리뉴얼)
     components/   # HeroBanner, WebsiteHeader/Footer/Layout, WebsiteSlider,
                   # HeroSection, TrustStats, HeightCalculator/Result,

@@ -129,6 +129,10 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - **AI 환자 분석 파이프라인** (migration 012): `patient_analyses(child_id UNIQUE, data JSONB, model, generated_at)` 테이블. ai-server에 `/api/patient-analysis/:childId` GET/POST. POST는 children + visits + measurements + prescriptions(med name 조인) + lab_tests 전체를 묶어 Gemini 2.5 Flash에 구조화 JSON 요청. 응답: `summary / problem / intervention / outcome / response_level(excellent~insufficient_data) / treatment_phase(초기/유지/마무리/종료/일회성/불명) / sub_categories / risk_flags / key_findings / growth_metrics`
 - **치료 후기 xlsx seed 데이터 제외** (2026-04-24): `cases/치료 후기 케이스 정리 (정리완료).xlsx` 기반으로 `seed_treatment_cases.sql`이 넣었던 35개 측정값 + 14개 이미지 없는 xray_readings + 9개 seed 메모 삭제. 판독문 OCR 근거 없는 수기 정리 데이터는 더 이상 사용하지 않음. 향후 분석/스토리 생성도 이 xlsx 무시. 정리 스크립트: `cases/cleanup_seed_measurements.mjs`
 - **PatientAnalysisModal** (`v4/src/features/hospital/components/`): AdminPatientDetailPage 좌하단 플로팅 `🧠 환자 분석` 버튼 → 모달 열기. 캐시된 분석 없으면 "분석 생성하기" 버튼, 있으면 반응도·치료단계 배지 + 서사 요약 + 처방/세부카테고리/경고/지표변화/growth_metrics 전체 표시. 재생성 가능
+- **VisitList BA 회차 하이라이트**: `hospital_measurements.bone_age` 측정된 회차는 행 배경을 amber로 전환 (선택 시 `bg-amber-100 ring-amber-200`). BA 없는 회차는 기존 indigo selection
+- **환자 리스트 주소/내원일 컬럼**: `AdminPatientsPage` 에 `주소` · `최초 내원` · `최근 내원` 3개 컬럼 + 정렬키 추가. `fetchPatients` 가 `visits(is_intake=false)` 페이지네이션 집계로 first/last date 계산, `intake_survey.contact.address` → `regionFromAddress()` 파싱해 region 포함. RegionBadge: 서울은 `[서울] 강남구`, 광역시·도는 단일 칩
+- **주소 → 지역 파서** (`v4/src/features/admin/utils/region.ts`): 233개 실주소 중 232개 해결(99.6%). 서울 25구 + 동→구 매핑 50+, 구 축약형(마포→마포구), 도로명(선릉로·반포대로·위례광장로·천중로·성북로…), 랜드마크(한남더힐·타워팰리스·반포자이·시그니엘…), 경기 시(수원·부천·남양주·고양·하남·용인·파주·김포…) + 내부 구(영통·분당·기흥·일산동…), 충남/충북/전북/전남/경북(문경시)/경남(진주시·함안군)/강원 각 시·군, 오타(감남구→강남구), 해외(미국·필리핀·일본·중국·태국·베트남 등). 매칭 순서: 광역시도 prefix → 서울구 prefix → 서울동 prefix → 경기시 prefix → 경기구 prefix → 각도 시/군 prefix → 서울구 축약 → 경기 도로 → 서울 도로 → 랜드마크 → 부분포함
+- **대시보드 한국 지도** (`PatientDistributionMap`): 좌측 17 광역시도 타일 카토그램(CSS 6×7 grid, indigo 5단계 choropleth), 우측 서울 25구 수평 bar chart(count 내림차순). `fetchRegionDistribution()` 이 children.intake_survey.contact.address 전수 집계. AdminDashboardPage 에 stat cards 아래 섹션으로 추가
 
 ## Environment Variables
 ```
@@ -156,6 +160,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 15: COMPLETE (판독문 OCR 전체 완료 240명 / hospital_measurements 2995건 / visits.notes 3758건 / 원본 Storage 업로드 / 환자 카테고리 8종 + 필터·정렬 / VisitDetailPanel 4탭 리팩토링 / 진료 회차별 판독문 페이지 뷰어 / lab_tests 진료 visit 재매핑)
 - Phase 16: COMPLETE (처방 파이프라인 40만 행 → 19,080 처방 임포트 + 약품코드 MED/INJ/PRO 재설계 + AdminMedicationsPage 리디자인 / X-ray 회차 이미지 9,025개 업로드 + VisitImageGallery 드래그&드롭)
 - Phase 17: PARTIAL (AI 환자 분석 파이프라인 — migration 012 / ai-server endpoint / PatientAnalysisModal / 수작업 1명 검증 완료. Gemini API 키 만료로 배치 실행 대기 중)
+- Phase 18: COMPLETE (환자 리스트 고도화 — VisitList BA 하이라이트 / AdminPatientsPage 주소·내원일 컬럼 / region 파서 99.6% 커버리지 / 대시보드 한국 지도 타일 카토그램)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript
