@@ -7,9 +7,9 @@
 function getAIServerURL(): string {
   const envUrl = import.meta.env.VITE_AI_SERVER_URL;
   if (envUrl && !envUrl.includes('localhost')) return envUrl;
-  // dev 모드: 현재 접속한 호스트와 같은 IP에 포트 3001
+  // dev 모드: 현재 접속한 호스트와 같은 IP에 포트 4000
   const host = window.location.hostname;
-  return `http://${host}:3001`;
+  return `http://${host}:4000`;
 }
 const AI_SERVER_URL = getAIServerURL();
 

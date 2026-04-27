@@ -40,6 +40,7 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Supabase Storage: `content-images` bucket, `meal-photos` bucket
 - Image compression: 1200x1200 JPEG 80% before upload
 - Website sections: Instagram card-news style (4:5 ratio cards, swipe carousel)
+- Website PC layout: 모바일 폭 카드(`max-w-[460px]`)를 PC 중앙에 세로 스택 (인스타그램 데스크탑 스타일). 헤더는 데스크탑 nav 제거 + 햄버거만 표시, 하단 탭바는 `md:h-20` + `md:text-2xl/sm` 으로 확대해 PC 의 주 네비로 사용. `useViewportZoom` 폐기 — 텍스트:카드 비율이 모바일과 동일
 - Per-slide templates: banner, video, cases (3 types) in same section
 - DB: `website_sections` table (JSONB slides), legacy fallback to `website_banners`
 - Admin: PC split layout (left 35% preview, right 65% editor) at lg breakpoint

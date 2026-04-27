@@ -4,7 +4,6 @@
 // ================================================
 
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import {
@@ -58,8 +57,6 @@ function useCountUp(target: number, duration: number, active: boolean) {
 }
 
 export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
-  const navigate = useNavigate();
-  const [showHelp, setShowHelp] = useState(false);
   const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=done
   const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
   const chartRef = useRef<ChartJS<'line'>>(null);
@@ -223,23 +220,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
   return (
     <InfoModal isOpen={isOpen} onClose={onClose} title="">
       <div className="space-y-5">
-        {/* Title + help button */}
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-extrabold text-gray-900">예상키 측정 결과</h2>
-          <button onClick={() => setShowHelp(!showHelp)}
-            className="w-7 h-7 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:bg-gray-100 text-xs font-bold shrink-0">
-            ?
-          </button>
-        </div>
-
-        {/* Help dropdown */}
-        {showHelp && (
-          <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-xs text-gray-600 leading-relaxed animate-[fadeUp_0.3s_ease-out]">
-            <p><strong>📊 측정 원리:</strong> 한국 질병관리청(2017) 소아·청소년 성장 표준 데이터(LMS 방법) 기반</p>
-            <p><strong>🎯 예상 키:</strong> 현재 키의 백분위를 유지한다는 가정 하에 18세 시점의 동일 백분위 키를 역산</p>
-            <p><strong>⚠️ 참고:</strong> 골연령, 성장호르몬, 영양 상태 등은 반영되지 않은 통계적 추정치입니다. 정확한 진단은 전문의 상담이 필요합니다.</p>
-          </div>
-        )}
+        <h2 className="text-xl font-extrabold text-gray-900">예상키 측정 결과</h2>
 
         {/* Main result — count-up animation */}
         <div className="bg-[#E8F5F0] rounded-2xl p-5 text-center space-y-2">
@@ -271,25 +252,13 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
           <p className="text-xs text-amber-700 leading-relaxed">{interpretation}</p>
         </div>
 
-        {/* CTA buttons — fade in at end */}
+        {/* Methodology note + Kakao CTA — fade in at end */}
         <div className={`space-y-2.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          {/* Diagnosis CTA */}
-          <button
-            onClick={() => {
-              onClose();
-              navigate('/diagnosis', {
-                state: {
-                  gender: result.gender,
-                  currentHeight: result.currentHeight,
-                  age: result.age,
-                  predictedHeight: result.predicted,
-                },
-              });
-            }}
-            className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5
-                       text-white font-bold text-base hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
-            <span>🔬</span> 더 정확한 AI 진단 받기
-          </button>
+          <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-xs text-gray-600 leading-relaxed">
+            <p><strong>📊 측정 원리:</strong> 한국 질병관리청(2017) 소아·청소년 성장 표준 데이터(LMS 방법) 기반</p>
+            <p><strong>🎯 예상 키:</strong> 현재 키의 백분위를 유지한다는 가정 하에 18세 시점의 동일 백분위 키를 역산</p>
+            <p><strong>⚠️ 참고:</strong> 골연령, 성장호르몬, 영양 상태 등은 반영되지 않은 통계적 추정치입니다. 정확한 진단은 전문의 상담이 필요합니다.</p>
+          </div>
 
           {/* Kakao CTA */}
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"

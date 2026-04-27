@@ -3,7 +3,7 @@
 
 type Folder = 'recipes' | 'guides' | 'cases' | 'banners';
 
-const AI_SERVER = import.meta.env.VITE_AI_SERVER_URL || 'http://localhost:3001';
+const AI_SERVER = import.meta.env.VITE_AI_SERVER_URL || 'http://localhost:4000';
 const PIN_STORAGE_KEY = 'website_admin_pin';
 
 function getPin(): string {

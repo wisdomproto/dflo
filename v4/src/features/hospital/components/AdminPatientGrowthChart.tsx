@@ -225,10 +225,13 @@ export function AdminPatientGrowthChart({
 
     const refDatasets: LineDataset[] = [];
 
+    const PROJ_DURATION = 700;
+    const ADULT_LINE_DURATION = 600;
     // Per-dataset animation that fans the projection out from its first
     // point's pixel — safe because it's scoped to projection datasets only.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const projAnimation = (label: string): any => ({
+      duration: PROJ_DURATION,
       x: {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         from: (ctx: any) => {
@@ -258,6 +261,21 @@ export function AdminPatientGrowthChart({
           }
           return ctx.chart?.chartArea?.bottom ?? 0;
         },
+      },
+    });
+
+    // Adult line: starts from the chart's right edge and sweeps leftward
+    // *after* the projection animation finishes. Both endpoints share the
+    // same starting x-pixel (chartArea.right); during tween the right point
+    // stays put while the left point travels to X_MIN, producing a clean
+    // right→left reveal.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const adultLineAnimation = (): any => ({
+      duration: ADULT_LINE_DURATION,
+      delay: PROJ_DURATION,
+      x: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        from: (ctx: any) => ctx.chart?.chartArea?.right ?? 0,
       },
     });
 
@@ -291,7 +309,9 @@ export function AdminPatientGrowthChart({
           pointRadius: 0,
           tension: 0,
           order: 5,
-        });
+          animation: adultLineAnimation(),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any);
       }
     }
 
@@ -325,7 +345,9 @@ export function AdminPatientGrowthChart({
           pointRadius: 0,
           tension: 0,
           order: 5,
-        });
+          animation: adultLineAnimation(),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any);
       }
     }
 

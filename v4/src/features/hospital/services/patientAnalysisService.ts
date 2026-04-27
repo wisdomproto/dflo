@@ -27,7 +27,7 @@ export interface CachedAnalysis {
   generated_at: string;
 }
 
-const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:3001';
+const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
 export async function fetchAnalysis(childId: string): Promise<CachedAnalysis | null> {
   const res = await fetch(`${BASE}/api/patient-analysis/${childId}`);

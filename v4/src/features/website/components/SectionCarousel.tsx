@@ -1,5 +1,8 @@
 // SectionCarousel - Instagram card-news style carousel
 // 4:5 aspect ratio, small dots at bottom, swipe-only navigation
+//
+// 카드는 PC 에서도 모바일 폭(WebsiteHomePage 의 max-w-[460px]) 그대로 유지된다.
+// 텍스트는 px 절대값 그대로 모바일 비율로 자연스럽게 렌더된다.
 
 import React, { useState, useCallback, useRef } from 'react';
 import type { Slide, BannerSlide, VideoSlide, CasesSlide } from '../types/websiteSection';
@@ -72,7 +75,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
         <div className="flex items-center justify-between gap-2 px-3 py-2 bg-white border-b border-gray-100">
           <button
             onClick={prev}
-            className="w-7 h-7 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
+            className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
             aria-label="이전 슬라이드"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -80,26 +83,28 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
             </svg>
           </button>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 min-w-0 overflow-hidden">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === current ? 'w-4 h-1.5 bg-primary' : 'w-1.5 h-1.5 bg-gray-300'
+                className={`rounded-full transition-all duration-300 flex-shrink-0 ${
+                  i === current
+                    ? 'w-4 h-1.5 bg-primary'
+                    : 'w-1.5 h-1.5 bg-gray-300'
                 }`}
                 aria-label={`슬라이드 ${i + 1}`}
               />
             ))}
           </div>
 
-          <span className="text-[11px] font-medium text-gray-400 tabular-nums">
+          <span className="text-[11px] font-medium text-gray-400 tabular-nums whitespace-nowrap flex-shrink-0">
             {current + 1} / {total}
           </span>
 
           <button
             onClick={next}
-            className="w-7 h-7 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
+            className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
             aria-label="다음 슬라이드"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -337,22 +342,19 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
     );
   }
 
-  const firstM = ms[0];
-  const lastM = ms[ms.length - 1];
-  const heightGrowth = firstM && lastM ? (lastM.height - firstM.height).toFixed(1) : null;
-
-  // 예상키가 입력된 첫 번째/마지막 회차 찾기
+  // 예상키가 입력된 첫 번째/마지막 회차 — 실제키와 예상키를 한 쌍으로 묶어 비교한다.
   const msWithPredicted = ms.filter((m) => (m.predictedHeight ?? 0) > 0);
   const firstPredicted = msWithPredicted[0];
   const lastPredicted = msWithPredicted[msWithPredicted.length - 1];
   const hasPredictedPair = msWithPredicted.length >= 2 && firstPredicted !== lastPredicted;
-  const predictedGrowth = hasPredictedPair
-    ? (lastPredicted.predictedHeight - firstPredicted.predictedHeight).toFixed(1) : null;
 
-  const scale = (s.fontScale ?? 100) / 100;
+  // 어드민에서 fontScale 로 슬라이드별 글자 크기 미세조정 (기본 100 = no-op).
+  const fontZoom = (s.fontScale ?? 100) / 100;
+  const fontZoomStyle: React.CSSProperties | undefined =
+    fontZoom === 1 ? undefined : { zoom: fontZoom, width: `${100 / fontZoom}%` };
   return (
     <div className="w-full h-full bg-white overflow-y-auto">
-      <div className="py-5 space-y-4" style={scale !== 1 ? { zoom: scale } : undefined}>
+      <div className="py-5 space-y-4" style={fontZoomStyle}>
         {/* 1. Patient Header (이름, 성별) */}
         <div className="px-4 flex items-center gap-3">
           <div className={`w-11 h-11 rounded-full flex items-center justify-center text-lg
@@ -366,12 +368,6 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
               {s.category && <span className="ml-1.5 px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 text-[10px] font-medium">{s.category}</span>}
             </p>
           </div>
-          {heightGrowth && (
-            <div className={`ml-auto rounded-xl px-3 py-1 text-center ${isMale ? 'bg-blue-50' : 'bg-pink-50'}`}>
-              <p className={`text-lg font-black ${isMale ? 'text-blue-600' : 'text-pink-600'}`}>+{heightGrowth}cm</p>
-              <p className="text-[10px] text-gray-400">성장</p>
-            </div>
-          )}
         </div>
 
         {/* 2. Initial Memo (초진 메모) */}
@@ -389,23 +385,20 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
           </div>
         )}
 
-        {/* 3. Predicted Height Bar Chart (예상키 입력된 첫/마지막 회차) */}
+        {/* 3. 키 변화: 초진 시점과 최종 시점에서 각각 실제키 vs 예상키 비교 */}
         {hasPredictedPair && (
           <div className="mx-4 bg-gray-50 rounded-xl p-3">
-            <p className="text-[10px] font-semibold text-gray-500 mb-2">📊 예상키 변화</p>
+            <p className="text-[10px] font-semibold text-gray-500 mb-2">📊 키 변화</p>
             <CasesBarChart
+              initialActual={firstPredicted.height}
               initialPredicted={firstPredicted.predictedHeight}
+              finalActual={lastPredicted.height}
               finalPredicted={lastPredicted.predictedHeight}
+              initialDate={firstPredicted.date}
+              finalDate={lastPredicted.date}
               isMale={isMale}
               isActive={isActive}
             />
-            {predictedGrowth && (
-              <p className="text-center text-xs mt-1">
-                예상키 <span className={`font-black ${isMale ? 'text-blue-600' : 'text-pink-600'}`}>
-                  +{predictedGrowth}cm
-                </span> 증가
-              </p>
-            )}
           </div>
         )}
 
@@ -710,28 +703,191 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
   );
 }
 
-function CasesBarChart({ initialPredicted, finalPredicted, isMale, isActive }: {
-  initialPredicted: number; finalPredicted: number; isMale: boolean; isActive: boolean;
+function CasesBarChart({
+  initialActual, initialPredicted,
+  finalActual, finalPredicted,
+  initialDate, finalDate,
+  isMale, isActive,
+}: {
+  initialActual: number; initialPredicted: number;
+  finalActual: number; finalPredicted: number;
+  initialDate?: string; finalDate?: string;
+  isMale: boolean; isActive: boolean;
 }) {
-  const maxVal = Math.max(initialPredicted, finalPredicted);
-  const color1 = '#94A3B8';
-  const color2 = isMale ? '#3B82F6' : '#EC4899';
-  const barPct = (val: number) => ((val - 130) / (maxVal - 130 + 10)) * 100;
+  // 차트는 "예상키 변화" 한 가지만 보여준다. 실제키는 자연 성장 영향이
+  // 크기 때문에 같이 그리면 어린 환자에서는 갭이 커 보이고 큰 환자에서는
+  // 작아 보여 치료 효과가 왜곡된다. 정직한 비교를 위해 예상키 1개 바.
+  const lowerBound = 60;
+  const upperBound = Math.ceil((Math.max(initialPredicted, finalPredicted) + 5) / 10) * 10;
+  const range = Math.max(1, upperBound - lowerBound);
+  const pct = (val: number) => ((val - lowerBound) / range) * 100;
+
+  const tickStep = 20;
+  const yTicks: number[] = [];
+  for (let v = lowerBound; v <= upperBound; v += tickStep) yTicks.push(v);
+
+  // 초진 = before treatment (중성 회색 그라디언트), 최종 = after (브랜드 비비드)
+  const initialBg = 'linear-gradient(180deg, #CBD5E1 0%, #64748B 100%)';     // slate-300 → slate-500
+  const initialColor = '#475569'; // slate-600 — readable on white
+  const finalBg = isMale
+    ? 'linear-gradient(180deg, #38BDF8 0%, #2563EB 100%)'   // sky-400 → blue-600
+    : 'linear-gradient(180deg, #FB7185 0%, #BE185D 100%)';  // rose-400 → pink-700
+  const finalColor = isMale ? '#2563EB' : '#BE185D';
+  const accent = isMale ? 'text-blue-600' : 'text-pink-600';
+  const accentBg = isMale ? 'bg-blue-50' : 'bg-pink-50';
+
+  const actualGrowth = (finalActual - initialActual).toFixed(1);
+  const predictedGrowth = (finalPredicted - initialPredicted).toFixed(1);
+
+  const fmtDate = (d?: string) => {
+    if (!d) return '';
+    const dt = new Date(d);
+    if (Number.isNaN(dt.getTime())) return '';
+    return `${dt.getFullYear()}.${String(dt.getMonth() + 1).padStart(2, '0')}`;
+  };
+
+  // 치료기간: initial → final (개월 단위, 12개월 넘으면 "Y년 M개월")
+  const treatmentDuration = (() => {
+    if (!initialDate || !finalDate) return null;
+    const start = new Date(initialDate);
+    const end = new Date(finalDate);
+    if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return null;
+    const months = Math.max(
+      1,
+      Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30.44)),
+    );
+    if (months < 12) return `${months}개월`;
+    const years = Math.floor(months / 12);
+    const remMonths = months % 12;
+    return remMonths === 0 ? `${years}년` : `${years}년 ${remMonths}개월`;
+  })();
+
+  const CHART_HEIGHT = 180;
+
+  // 예상키 한 개의 막대만 그린다. 측면 라벨은 같은 좌우로 충돌하지 않게
+  // 초진은 왼쪽으로, 최종은 오른쪽으로 펼친다.
+  const Group = ({
+    title, dateLabel,
+    predicted,
+    delayBase, labelSide,
+    barBg, labelColor,
+  }: {
+    title: string; dateLabel: string;
+    predicted: number;
+    delayBase: number; labelSide: 'left' | 'right';
+    barBg: string; labelColor: string;
+  }) => {
+    const predictedPct = pct(predicted);
+    // Bar half-width = 26px (52/2); add small gap before the side label.
+    const sideStyle = labelSide === 'left'
+      ? { right: 'calc(50% + 30px)', left: -4 }
+      : { left: 'calc(50% + 30px)', right: -4 };
+    const flexDir = labelSide === 'left' ? 'flex-row-reverse' : 'flex-row';
+    return (
+      <div className="flex-1 flex flex-col items-center">
+        <div className="relative w-full" style={{ height: CHART_HEIGHT }}>
+          <div
+            className="absolute bottom-0 rounded-t-md overflow-hidden ring-1 ring-black/5"
+            style={{
+              left: '50%', transform: 'translateX(-50%)',
+              width: 52, height: '100%',
+              background: 'linear-gradient(180deg, rgba(248,250,252,0) 0%, rgba(248,250,252,0.5) 100%)',
+            }}
+          >
+            <GrowBar heightPct={predictedPct} color={barBg} delayMs={delayBase} isActive={isActive} />
+          </div>
+
+          {/* Predicted indicator line + label (level = predictedPct) */}
+          <div
+            className={`absolute flex items-center gap-1 ${flexDir} pointer-events-none`}
+            style={{ ...sideStyle, bottom: `${predictedPct}%`, transform: 'translateY(50%)' }}
+          >
+            <span
+              className="text-[11px] font-black tabular-nums whitespace-nowrap leading-none px-1 rounded bg-white/85 backdrop-blur-[1px]"
+              style={{ color: labelColor }}
+            >
+              {predicted}
+            </span>
+            <div className="border-t border-dashed" style={{ borderColor: labelColor, width: 14 }} />
+          </div>
+        </div>
+
+        {/* x-axis label */}
+        <div className="text-center mt-2 leading-tight">
+          <p className="text-[11px] font-bold text-gray-700">{title}</p>
+          {dateLabel && <p className="text-[9px] text-gray-400 mt-0.5">{dateLabel}</p>}
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <div className="flex items-end justify-center gap-8" style={{ height: 160 }}>
-      {[
-        { label: '초진 예상키', val: initialPredicted, color: color1, delay: 0 },
-        { label: '최종 예상키', val: finalPredicted, color: color2, delay: 300 },
-      ].map(({ label, val, color, delay }) => (
-        <div key={label} className="flex flex-col items-center gap-1 flex-1 max-w-[100px] h-full justify-end">
-          <span className="text-xs font-black" style={{ color }}>{val}cm</span>
-          <div className="w-full bg-gray-100 rounded-t-lg" style={{ height: '80%', position: 'relative', overflow: 'hidden' }}>
-            <GrowBar heightPct={barPct(val)} color={color} delayMs={delay} isActive={isActive} />
+    <div className="space-y-3">
+      <div className="flex items-stretch">
+        {/* Chart area (Y-axis labels removed — per-bar indicator gives the precise cm) */}
+        <div className="relative flex-1">
+          {/* Background grid + bottom axis */}
+          <div className="absolute inset-x-0 pointer-events-none" style={{ height: CHART_HEIGHT }}>
+            {yTicks.map((v) => (
+              <div
+                key={v}
+                className="absolute inset-x-0 border-t border-dashed"
+                style={{ bottom: `${pct(v)}%`, borderColor: 'rgba(15,23,42,0.04)' }}
+              />
+            ))}
+            <div
+              className="absolute inset-x-0 border-t"
+              style={{ bottom: 0, borderColor: 'rgba(15,23,42,0.12)' }}
+            />
           </div>
-          <span className="text-[10px] text-gray-500 text-center">{label}</span>
+
+          {/* Two predicted bars + connecting arrow — 색깔로 before/after 구분 */}
+          <div className="relative flex items-stretch">
+            <Group
+              title="초진 예상키"
+              dateLabel={fmtDate(initialDate)}
+              predicted={initialPredicted}
+              delayBase={0}
+              labelSide="left"
+              barBg={initialBg}
+              labelColor={initialColor}
+            />
+            <div
+              className="flex items-center justify-center text-gray-300 text-base"
+              style={{ height: CHART_HEIGHT, width: 18 }}
+            >
+              →
+            </div>
+            <Group
+              title="최종 예상키"
+              dateLabel={fmtDate(finalDate)}
+              predicted={finalPredicted}
+              delayBase={400}
+              labelSide="right"
+              barBg={finalBg}
+              labelColor={finalColor}
+            />
+          </div>
         </div>
-      ))}
+      </div>
+
+      {/* 치료 기간 동안 실제키·예상키가 얼마나 변했는지 — 한 줄로 가운데 */}
+      <div className="flex items-center justify-center">
+        <div className={`inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 ${accentBg} rounded-lg px-3 py-1.5`}>
+          {treatmentDuration && (
+            <span className="text-[11px] text-gray-700">
+              치료 <span className="font-bold text-gray-900">{treatmentDuration}</span> 동안
+            </span>
+          )}
+          <span className="text-[11px] text-gray-600">
+            실제키 <span className="font-bold text-gray-800">+{actualGrowth}cm</span>
+          </span>
+          <span className="text-[10px] text-gray-300">·</span>
+          <span className={`text-[11px] font-black ${accent}`}>
+            예상키 +{predictedGrowth}cm
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -773,7 +929,8 @@ function GrowBar({ heightPct, color, delayMs, isActive }: {
         left: 0,
         right: 0,
         borderRadius: '0.5rem 0.5rem 0 0',
-        backgroundColor: color,
+        // `background` accepts plain colors AND linear-gradient strings.
+        background: color,
         height: '0%',
       }}
     />

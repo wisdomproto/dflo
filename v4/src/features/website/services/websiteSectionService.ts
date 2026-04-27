@@ -11,7 +11,7 @@
 import type { WebsiteSection, Slide } from '../types/websiteSection';
 
 const R2_PUBLIC_URL = (import.meta.env.VITE_R2_PUBLIC_URL || '').replace(/\/$/, '');
-const AI_SERVER = import.meta.env.VITE_AI_SERVER_URL || 'http://localhost:3001';
+const AI_SERVER = import.meta.env.VITE_AI_SERVER_URL || 'http://localhost:4000';
 
 export type SectionStorageKey = 'website.json' | 'app-home.json';
 
