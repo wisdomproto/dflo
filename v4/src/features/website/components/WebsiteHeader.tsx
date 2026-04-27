@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AboutModal } from './AboutModal';
+import { ShareSheet } from './ShareSheet';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_ZxneSb';
 
@@ -39,6 +40,7 @@ export function WebsiteHeader() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
   const handleAction = (item: { action: string; target: string }) => {
     setMenuOpen(false);
@@ -78,15 +80,29 @@ export function WebsiteHeader() {
             </span>
           </div>
 
-          {/* Hamburger — shown on all viewports for consistent mobile-style nav */}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="w-9 h-9 flex items-center justify-center">
-            <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              {menuOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              }
-            </svg>
-          </button>
+          <div className="flex items-center gap-1">
+            {/* 공유하기 — 카카오톡/링크복사/네이티브 공유 시트 열기 */}
+            <button
+              onClick={() => setShowShare(true)}
+              className="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-[#0F6E56] active:scale-95 transition-all"
+              aria-label="공유하기"
+              title="공유하기"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+            </button>
+
+            {/* Hamburger — 모든 뷰포트에서 노출 */}
+            <button onClick={() => setMenuOpen(!menuOpen)} className="w-9 h-9 flex items-center justify-center" aria-label="메뉴 열기">
+              <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                {menuOpen
+                  ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                }
+              </svg>
+            </button>
+          </div>
         </div>
 
       </header>
@@ -147,6 +163,7 @@ export function WebsiteHeader() {
       </div>
 
       <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
+      <ShareSheet isOpen={showShare} onClose={() => setShowShare(false)} />
     </>
   );
 }
