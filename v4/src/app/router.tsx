@@ -42,6 +42,7 @@ const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomeP
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
+const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
 const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
 const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
 
@@ -127,6 +128,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <AdminWebsitePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/banner-admin/analytics',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <AdminAnalyticsPage />
       </Suspense>
     ),
   },

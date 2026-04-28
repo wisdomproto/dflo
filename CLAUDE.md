@@ -42,6 +42,8 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Website sections: Instagram card-news style (4:5 ratio cards, swipe carousel)
 - Website PC layout: 모바일 폭 카드(`max-w-[460px]`)를 PC 중앙에 세로 스택 (인스타그램 데스크탑 스타일). 헤더는 데스크탑 nav 제거 + 햄버거만 표시, 하단 탭바는 `md:h-20` + `md:text-2xl/sm` 으로 확대해 PC 의 주 네비로 사용. `useViewportZoom` 폐기 — 텍스트:카드 비율이 모바일과 동일
 - Website 공유 (`ShareSheet`): 헤더 우측 📤 버튼 → 바텀시트 — Web Share API (모바일 네이티브 시트 안에 카톡 포함) + 링크 복사. Kakao SDK 연동은 보류 (`VITE_KAKAO_JS_KEY` 받기 전까지 Web Share 로 대체)
+- GA4 통합: 클라이언트는 [analytics.ts](v4/src/shared/lib/analytics.ts) 에서 `gtag.js` 동적 로드 (`VITE_GA_MEASUREMENT_ID=G-Y5VKTKKEQ4`, Property `534844605`). App.tsx 가 `router.subscribe` 로 SPA 페이지뷰 발사. 카톡 CTA 7군데(헤더/탭바/예상키결과/케이스슬라이더/케이스모달/cases슬라이드/가이드섹션) 모두 `trackKakaoConsult(source)` 발사 — 핵심 전환 이벤트. private path(`/app/*`, `/admin/*`, `/banner-admin/*`) 는 자동 차단. URL prefix `/vn`,`/th`,`/en`,`/zh`,`/ja` 자동 감지 → `locale` 파라미터로 다국어 분리
+- 어드민 분석: `/banner-admin/analytics` (PIN 보호) — ai-server `/api/analytics/overview` 가 GA4 Data API (OAuth refresh token 인증) 호출 → 요약 카드 + 일자별 트렌드 + 카톡 source별 + locale별 + 인기 페이지. 서비스 계정 키 정책 우회 위해 OAuth 데스크톱 앱 + 일회성 refresh token (`ai-server/scripts/setup-ga4-oauth.mjs`) 사용. 커스텀 디멘션(`source`,`locale`) 등록 전엔 해당 카드만 빈 상태로 graceful fallback
 - Per-slide templates: banner, video, cases (3 types) in same section
 - DB: `website_sections` table (JSONB slides), legacy fallback to `website_banners`
 - Admin: PC split layout (left 35% preview, right 65% editor) at lg breakpoint

@@ -1,3 +1,4 @@
+import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { GuideSection } from '../types';
 
 interface Props {
@@ -281,6 +282,7 @@ function CtaBlock({ section, accent, delay }: { section: any; accent: string; de
         href="https://pf.kakao.com/_ZxneSb"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackKakaoConsult('guide_section')}
         className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-white text-sm font-semibold shadow-lg transition-transform active:scale-95"
         style={{ backgroundColor: accent }}
       >

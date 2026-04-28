@@ -281,10 +281,16 @@ export default function AdminWebsitePage({
             <span className="text-gray-300">|</span>
             <h1 className="text-base font-bold text-gray-800">{headerTitle}</h1>
           </div>
-          <button onClick={save} disabled={saving}
-            className="text-sm font-bold text-white bg-[#0F6E56] px-5 py-2 rounded-xl hover:bg-[#0D5A47] active:scale-[0.98] transition-all disabled:opacity-50">
-            {saving ? '저장 중..' : saveMsg || '저장'}
-          </button>
+          <div className="flex items-center gap-2">
+            <Link to="/banner-admin/analytics"
+              className="text-sm font-medium text-gray-700 bg-gray-100 px-3 py-2 rounded-xl hover:bg-gray-200 active:scale-[0.98] transition-all whitespace-nowrap">
+              📊 사이트 분석
+            </Link>
+            <button onClick={save} disabled={saving}
+              className="text-sm font-bold text-white bg-[#0F6E56] px-5 py-2 rounded-xl hover:bg-[#0D5A47] active:scale-[0.98] transition-all disabled:opacity-50">
+              {saving ? '저장 중..' : saveMsg || '저장'}
+            </button>
+          </div>
         </div>
       </header>
 

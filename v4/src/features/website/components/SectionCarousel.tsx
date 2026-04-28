@@ -5,6 +5,7 @@
 // 텍스트는 px 절대값 그대로 모바일 비율로 자연스럽게 렌더된다.
 
 import React, { useState, useCallback, useRef } from 'react';
+import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { Slide, BannerSlide, VideoSlide, CasesSlide } from '../types/websiteSection';
 
 export function extractVideoId(url: string): string | null {
@@ -481,6 +482,7 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
         {s.showCta && (
           <div className="px-4">
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+              onClick={() => trackKakaoConsult('cases_slide')}
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3
                          text-white font-bold text-sm hover:bg-[#0D5A47] transition-all">
               💬 우리 아이도 상담 받아보기

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { WebsiteSlider } from './WebsiteSlider';
 import { CaseDetailModal } from './CaseDetailModal';
 import { fetchGrowthCases } from '@/features/content/services/contentService';
+import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { GrowthCase } from '@/shared/types';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_ZxneSb';
@@ -68,6 +69,7 @@ export function CaseSlider() {
       {/* Final CTA */}
       <div className="max-w-5xl mx-auto px-4 md:px-6 pb-8">
         <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+          onClick={() => trackKakaoConsult('case_slider')}
           className="flex items-center justify-center gap-2 w-full rounded-2xl bg-[#0F6E56] py-4
                      text-white font-bold text-base hover:bg-[#0D5A47] active:scale-[0.98] transition-all shadow-lg">
           <span>💬</span> 우리 아이도 상담 받아보기

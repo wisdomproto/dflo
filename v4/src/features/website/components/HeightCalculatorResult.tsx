@@ -6,6 +6,7 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
+import { trackKakaoConsult } from '@/shared/lib/analytics';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -262,6 +263,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
 
           {/* Kakao CTA */}
           <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+            onClick={() => trackKakaoConsult('height_calc_result')}
             className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#FEE500] py-3.5
                        text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all">
             <span>💬</span> 전문 상담 받아보세요

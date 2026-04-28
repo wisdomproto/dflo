@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AboutModal } from './AboutModal';
 import { ShareSheet } from './ShareSheet';
+import { trackKakaoConsult } from '@/shared/lib/analytics';
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_ZxneSb';
 
@@ -151,6 +152,7 @@ export function WebsiteHeader() {
           ))}
           <div className="pt-4 border-t border-gray-100 mt-4 space-y-3">
             <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+              onClick={() => trackKakaoConsult('header_drawer')}
               className="flex items-center justify-center gap-2 text-sm font-bold text-white bg-[#0F6E56] rounded-xl px-4 py-3 hover:bg-[#0D5A47] transition-colors">
               💬 카카오톡 상담
             </a>

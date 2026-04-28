@@ -11,6 +11,8 @@ config.js
 # API 키 파일
 **/api-keys.js
 **/secrets.js
+**/ga4-key.json
+**/*-service-account*.json
 
 # 로그 파일
 *.log
