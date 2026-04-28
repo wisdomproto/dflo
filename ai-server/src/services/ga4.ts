@@ -134,7 +134,7 @@ export async function fetchOverview(p: OverviewParams): Promise<AnalyticsOvervie
     dimensions: [{ name: 'pagePath' }],
     metrics: [{ name: 'screenPageViews' }],
     orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
-    limit: '10' as unknown as number,
+    limit: '10',
   });
   const topPages = (topPagesResp.rows ?? []).map((row) => ({
     path: row.dimensionValues?.[0]?.value ?? '',
@@ -153,7 +153,7 @@ export async function fetchOverview(p: OverviewParams): Promise<AnalyticsOvervie
       },
     },
     orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
-    limit: '20' as unknown as number,
+    limit: '20',
   });
   const kakaoBySource = (kakaoBySourceResp?.rows ?? [])
     .map((row) => ({
