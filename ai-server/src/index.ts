@@ -14,12 +14,38 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const isDev = process.env.NODE_ENV !== 'production';
 
+// 프로덕션 CORS — 도메인 패턴 기반 허용 + CORS_ORIGIN env 로 명시적 추가 가능.
+// 도메인이 늘 때마다 env 만질 필요 없도록 정규식 패턴 사용.
+const ALLOWED_HOST_PATTERNS = [
+  /^dr187growup\.com$/,
+  /\.dr187growup\.com$/,
+  /\.up\.railway\.app$/,      // Railway 모든 서비스
+  /^localhost(:\d+)?$/,        // 로컬 dev (포트 무관)
+  /^127\.0\.0\.1(:\d+)?$/,
+];
+
+const explicitOrigins = (process.env.CORS_ORIGIN ?? '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 app.use(cors({
   origin: isDev
     ? true  // dev: 모든 origin 허용 (모바일 테스트용)
-    : process.env.CORS_ORIGIN
-      ? process.env.CORS_ORIGIN.split(',')
-      : ['http://localhost:5173'],
+    : (origin, cb) => {
+        // origin 없는 경우 (server-to-server, curl 등) 통과
+        if (!origin) return cb(null, true);
+        try {
+          const { hostname, host } = new URL(origin);
+          if (ALLOWED_HOST_PATTERNS.some((p) => p.test(hostname) || p.test(host))) {
+            return cb(null, true);
+          }
+        } catch {
+          // 잘못된 URL → 거부
+        }
+        if (explicitOrigins.includes(origin)) return cb(null, true);
+        return cb(new Error(`CORS: origin '${origin}' not allowed`));
+      },
 }));
 app.use(express.json({ limit: '10mb' }));
 
