@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>187 성장클리닉 — 자주 묻는 질문 (Mockup)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#667eea',
+            secondary: '#764ba2',
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'Noto Sans SC', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Noto Sans KR', 'Noto Sans SC', sans-serif; -webkit-font-smoothing: antialiased; }
+    [data-lang="zh"] .ko { display: none; }
+    [data-lang="zh"] .zh { display: block; }
+    [data-lang="zh"] .zh-inline { display: inline; }
+    [data-lang="ko"] .zh, [data-lang="ko"] .zh-inline { display: none; }
+    .ko { display: block; }
+    .ko-inline { display: inline; }
+
+    /* Accordion */
+    .faq-item .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 800px;
+      padding-top: 0.5rem;
+      padding-bottom: 1.25rem;
+    }
+    .faq-item .faq-chevron {
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+    .faq-item.open {
+      border-color: #667eea;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-purple-50 via-white to-purple-50 min-h-screen" data-lang="ko">
+
+  <!-- 언어 토글 -->
+  <div class="fixed top-3 right-3 z-50 flex gap-1 bg-white rounded-full shadow-lg p-1 border border-purple-200">
+    <button onclick="document.body.dataset.lang='ko'" class="px-3 py-1 rounded-full text-xs font-medium hover:bg-purple-100">한국어</button>
+    <button onclick="document.body.dataset.lang='zh'" class="px-3 py-1 rounded-full text-xs font-medium hover:bg-purple-100">中文</button>
+  </div>
+
+  <!-- 모바일 카드 컨테이너 -->
+  <div class="max-w-[460px] mx-auto bg-white shadow-xl">
+
+    <!-- 상단 헤더 (참고용) -->
+    <div class="h-14 border-b border-gray-100 flex items-center justify-between px-4 sticky top-0 bg-white/90 backdrop-blur z-40">
+      <button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="font-bold text-sm">
+        <span class="ko">187 성장클리닉</span>
+        <span class="zh">187成长诊所</span>
+      </div>
+      <button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100">📤</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 1 · 섹션 헤드라인 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pt-12 pb-6 text-center">
+      <div class="inline-block px-3 py-1 rounded-full bg-purple-100 text-primary text-xs font-medium mb-4">
+        <span class="ko">자주 묻는 질문</span>
+        <span class="zh">常见问题</span>
+      </div>
+      <h2 class="text-3xl font-black text-gray-900 leading-tight mb-3">
+        <span class="ko">상담 전에<br/>가장 궁금한 5가지</span>
+        <span class="zh">咨询前<br/>最关心的5个问题</span>
+      </h2>
+      <p class="text-sm text-gray-600 leading-relaxed">
+        <span class="ko">부모님이 가장 많이 물으셨던 질문들</span>
+        <span class="zh">家长们最常询问的问题</span>
+      </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 2 · FAQ 아코디언 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-10">
+      <div class="space-y-3">
+
+        <!-- Q1: 한국 안 가도 진료 가능? -->
+        <div class="faq-item border-2 border-purple-200 rounded-2xl overflow-hidden bg-white transition-colors">
+          <button onclick="this.parentElement.classList.toggle('open')" class="w-full flex items-start gap-3 px-5 py-4 text-left">
+            <div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Q1</div>
+            <div class="flex-1 font-bold text-gray-900 text-sm">
+              <span class="ko">한국에 가지 않아도 진료 받을 수 있나요?</span>
+              <span class="zh">不去韩国也能看诊吗?</span>
+            </div>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-5 text-sm text-gray-700 leading-relaxed">
+            <div class="ko">
+              <p class="mb-2"><strong class="text-primary">네, 가능합니다.</strong> 첫 상담은 모두 영상 통화(WhatsApp / Zalo / WeChat)로 진행됩니다.</p>
+              <p class="mb-2">기본 정보(부모 키, 현재 아이 키, 사진 몇 장)만으로 1차 진단이 가능합니다.</p>
+              <p>골 연령 정밀 진단이 필요한 경우만 한국 방문이 권장되며, 그 외엔 대부분 원격으로 관리 가능합니다.</p>
+            </div>
+            <div class="zh">
+              <p class="mb-2"><strong class="text-primary">是的,完全可以。</strong>首次咨询全部通过视频通话(WhatsApp / Zalo / WeChat)进行。</p>
+              <p class="mb-2">仅凭基本信息(父母身高、孩子现身高、几张照片)即可完成初步诊断。</p>
+              <p>仅当需要精密骨龄检测时才建议到访韩国,其他情况大多可远程管理。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2: 비용 -->
+        <div class="faq-item border-2 border-purple-200 rounded-2xl overflow-hidden bg-white transition-colors">
+          <button onclick="this.parentElement.classList.toggle('open')" class="w-full flex items-start gap-3 px-5 py-4 text-left">
+            <div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Q2</div>
+            <div class="flex-1 font-bold text-gray-900 text-sm">
+              <span class="ko">비용은 어느 정도인가요?</span>
+              <span class="zh">费用大概多少?</span>
+            </div>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-5 text-sm text-gray-700 leading-relaxed">
+            <div class="ko">
+              <p class="mb-3"><strong class="text-primary">첫 영상 상담은 무료입니다.</strong> 이후 견적은 아이 상태에 따라 맞춤 안내드립니다.</p>
+              <ul class="space-y-2 mb-2 pl-1">
+                <li class="flex gap-2"><span class="text-primary">·</span><span><strong>정밀 진단</strong> (한국 방문 시): 검사 항목별 비용 안내</span></li>
+                <li class="flex gap-2"><span class="text-primary">·</span><span><strong>월 관리비</strong>: 원격 관리 + 처방 검토</span></li>
+                <li class="flex gap-2"><span class="text-primary">·</span><span><strong>약 처방</strong>: 처방 종류에 따라 별도</span></li>
+              </ul>
+              <p class="text-xs text-gray-500 italic">정확한 견적은 첫 상담 후 안내드려요.</p>
+            </div>
+            <div class="zh">
+              <p class="mb-3"><strong class="text-primary">首次视频咨询完全免费。</strong>之后根据孩子情况提供定制化报价。</p>
+              <ul class="space-y-2 mb-2 pl-1">
+                <li class="flex gap-2"><span class="text-primary">·</span><span><strong>精密诊断</strong>(到访韩国时):按检查项目报价</span></li>
+                <li class="flex gap-2"><span class="text-primary">·</span><span><strong>月管理费</strong>:远程管理 + 处方审核</span></li>
+                <li class="flex gap-2"><span class="text-primary">·</span><span><strong>处方药品</strong>:依据药品种类另计</span></li>
+              </ul>
+              <p class="text-xs text-gray-500 italic">具体报价将在首次咨询后提供。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3: 중국어/베트남어 상담 -->
+        <div class="faq-item border-2 border-purple-200 rounded-2xl overflow-hidden bg-white transition-colors">
+          <button onclick="this.parentElement.classList.toggle('open')" class="w-full flex items-start gap-3 px-5 py-4 text-left">
+            <div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Q3</div>
+            <div class="flex-1 font-bold text-gray-900 text-sm">
+              <span class="ko">중국어 / 베트남어로 상담 가능한가요?</span>
+              <span class="zh">可以用中文 / 越南文咨询吗?</span>
+            </div>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-5 text-sm text-gray-700 leading-relaxed">
+            <div class="ko">
+              <p class="mb-2"><strong class="text-primary">네, 가능합니다.</strong> 중국어(간체/번체) · 베트남어 · 영어 모두 지원합니다.</p>
+              <p class="mb-2">전담 통역사가 동석하거나, 간단한 질문은 의사가 직접 답변드립니다.</p>
+              <p>WhatsApp · Zalo · WeChat 메시지도 같은 언어로 응답해드려요.</p>
+            </div>
+            <div class="zh">
+              <p class="mb-2"><strong class="text-primary">是的,完全支持。</strong>中文(简体/繁体)、越南文、英文都可以。</p>
+              <p class="mb-2">由专属翻译同席,简单问题由医师直接回答。</p>
+              <p>WhatsApp · Zalo · WeChat 消息也以相同语言回复。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4: 화교/해외 환자 경험 -->
+        <div class="faq-item border-2 border-purple-200 rounded-2xl overflow-hidden bg-white transition-colors">
+          <button onclick="this.parentElement.classList.toggle('open')" class="w-full flex items-start gap-3 px-5 py-4 text-left">
+            <div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Q4</div>
+            <div class="flex-1 font-bold text-gray-900 text-sm">
+              <span class="ko">해외 화교 가족 진료 경험이 있나요?</span>
+              <span class="zh">有海外华人家庭的诊疗经验吗?</span>
+            </div>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-5 text-sm text-gray-700 leading-relaxed">
+            <div class="ko">
+              <p class="mb-2"><strong class="text-primary">말레이시아 · 싱가포르 · 인도네시아 화교 가족 12+ 명을 진료 중입니다.</strong></p>
+              <p class="mb-2">대만 · 홍콩 · 베트남 · 태국 가족도 점차 늘고 있습니다.</p>
+              <p>화교 부모님들의 추천 후기는 <a href="#" class="text-primary underline">치료 사례 페이지</a>에서 확인하실 수 있어요.</p>
+            </div>
+            <div class="zh">
+              <p class="mb-2"><strong class="text-primary">目前正在为马来西亚、新加坡、印尼等地的12+华人家庭提供诊疗服务。</strong></p>
+              <p class="mb-2">台湾、香港、越南、泰国家庭也在持续增加中。</p>
+              <p>华人家长的真实推荐请见<a href="#" class="text-primary underline">治疗案例页面</a>。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5: 약 배송 -->
+        <div class="faq-item border-2 border-purple-200 rounded-2xl overflow-hidden bg-white transition-colors">
+          <button onclick="this.parentElement.classList.toggle('open')" class="w-full flex items-start gap-3 px-5 py-4 text-left">
+            <div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">Q5</div>
+            <div class="flex-1 font-bold text-gray-900 text-sm">
+              <span class="ko">처방 약을 베트남에서 받을 수 있나요?</span>
+              <span class="zh">可以在越南收到处方药吗?</span>
+            </div>
+            <svg class="faq-chevron w-5 h-5 text-gray-400 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer px-5 text-sm text-gray-700 leading-relaxed">
+            <div class="ko">
+              <p class="mb-2"><strong class="text-primary">약 종류에 따라 다릅니다.</strong></p>
+              <ul class="space-y-2 mb-2 pl-1">
+                <li class="flex gap-2"><span class="text-green-500">✓</span><span>한약 · 영양 보충제 등 일반 처방: <strong>국제 배송 가능</strong></span></li>
+                <li class="flex gap-2"><span class="text-amber-500">!</span><span>호르몬 치료제 등 의료 처방: 한국 방문 시 처방</span></li>
+              </ul>
+              <p class="text-xs text-gray-500 italic">자세한 안내는 상담 시 약품별로 안내드려요.</p>
+            </div>
+            <div class="zh">
+              <p class="mb-2"><strong class="text-primary">根据药品种类不同。</strong></p>
+              <ul class="space-y-2 mb-2 pl-1">
+                <li class="flex gap-2"><span class="text-green-500">✓</span><span>韩药、营养补充剂等一般处方:<strong>可国际配送</strong></span></li>
+                <li class="flex gap-2"><span class="text-amber-500">!</span><span>激素治疗剂等医疗处方:需到访韩国处方</span></li>
+              </ul>
+              <p class="text-xs text-gray-500 italic">详细信息将在咨询时按药品逐一说明。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 3 · 더 궁금한 점 안내 + Inline CTA -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-12">
+      <div class="rounded-3xl bg-gradient-to-br from-primary to-secondary text-white p-6 text-center shadow-xl shadow-purple-200">
+        <div class="text-base font-medium mb-1 opacity-90">
+          <span class="ko">더 궁금한 점이 있으신가요?</span>
+          <span class="zh">还有其他问题吗?</span>
+        </div>
+        <div class="text-xl font-black mb-5">
+          <span class="ko">의사에게 직접 물어보세요</span>
+          <span class="zh">直接向医师咨询</span>
+        </div>
+        <button class="w-full bg-white text-primary font-bold py-4 rounded-2xl text-base hover:bg-purple-50 transition shadow-lg">
+          <span class="ko">📲 무료 첫 상담 신청</span>
+          <span class="zh">📲 申请免费首诊</span>
+        </button>
+        <div class="flex justify-center gap-3 mt-4 text-xs opacity-90">
+          <span>WhatsApp</span>
+          <span>·</span>
+          <span>Zalo</span>
+          <span>·</span>
+          <span>WeChat</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 다음 섹션 안내 -->
+    <div class="px-6 pb-20 pt-8 text-center text-xs text-gray-400 border-t border-gray-100">
+      ↓
+      <div class="mt-2">
+        <span class="ko">다음 섹션: 성장 가이드</span>
+        <span class="zh">下一节:成长指南</span>
+      </div>
+    </div>
+
+    <!-- 하단 sticky 탭바 -->
+    <div class="sticky bottom-0 bg-white border-t border-gray-200 grid grid-cols-2 z-40">
+      <button class="py-4 text-center text-xs font-medium text-gray-700 hover:bg-gray-50">
+        <div class="text-2xl mb-1">📏</div>
+        <div>
+          <span class="ko">예측키 측정</span>
+          <span class="zh">身高预测</span>
+        </div>
+      </button>
+      <button class="py-4 text-center text-xs font-medium text-white bg-gradient-to-br from-primary to-secondary">
+        <div class="text-2xl mb-1">💬</div>
+        <div>
+          <span class="ko">무료 상담</span>
+          <span class="zh">免费咨询</span>
+        </div>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- PC 안내 -->
+  <div class="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 max-w-xs text-sm text-gray-500 leading-relaxed">
+    <div class="font-bold text-gray-700 mb-2">📱 FAQ Mockup</div>
+    <p>info-stack 패턴 + 아코디언 인터랙션. 카드 클릭하면 펼쳐짐.</p>
+    <p class="mt-3 text-xs">5개 핵심 질문은 화교 부모의 진입 의심을 풀기 위한 우선순위.</p>
+  </div>
+
+</body>
+</html>

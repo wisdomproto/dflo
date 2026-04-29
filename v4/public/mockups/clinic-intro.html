@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>187 성장클리닉 — 병원 소개 (Mockup)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#667eea',
+            secondary: '#764ba2',
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'Noto Sans SC', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: 'Noto Sans KR', 'Noto Sans SC', sans-serif; -webkit-font-smoothing: antialiased; }
+    .lang-toggle { font-family: 'Noto Sans KR', sans-serif; }
+    [data-lang="zh"] .ko { display: none; }
+    [data-lang="zh"] .zh { display: block; }
+    [data-lang="zh"] .zh-inline { display: inline; }
+    [data-lang="ko"] .zh, [data-lang="ko"] .zh-inline { display: none; }
+    .ko { display: block; }
+    .ko-inline { display: inline; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-purple-50 via-white to-purple-50 min-h-screen" data-lang="ko">
+
+  <!-- 언어 토글 (mockup용) -->
+  <div class="fixed top-3 right-3 z-50 flex gap-1 bg-white rounded-full shadow-lg p-1 border border-purple-200 lang-toggle">
+    <button onclick="document.body.dataset.lang='ko'" class="px-3 py-1 rounded-full text-xs font-medium hover:bg-purple-100">한국어</button>
+    <button onclick="document.body.dataset.lang='zh'" class="px-3 py-1 rounded-full text-xs font-medium hover:bg-purple-100">中文</button>
+  </div>
+
+  <!-- 모바일 카드 컨테이너 -->
+  <div class="max-w-[460px] mx-auto bg-white shadow-xl">
+
+    <!-- 상단 헤더 (참고용 - 실제 사이트 헤더 자리) -->
+    <div class="h-14 border-b border-gray-100 flex items-center justify-between px-4 sticky top-0 bg-white/90 backdrop-blur z-40">
+      <button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="font-bold text-sm">
+        <span class="ko">187 성장클리닉</span>
+        <span class="zh">187成长诊所</span>
+      </div>
+      <button class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100">📤</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 1 · 섹션 헤드라인 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pt-12 pb-8 text-center">
+      <div class="inline-block px-3 py-1 rounded-full bg-purple-100 text-primary text-xs font-medium mb-4">
+        <span class="ko">병원 소개</span>
+        <span class="zh">关于我们</span>
+      </div>
+      <h2 class="text-3xl font-black text-gray-900 leading-tight mb-3">
+        <span class="ko">한국 187<br/>키 성장 클리닉</span>
+        <span class="zh">韩国 187<br/>儿童成长诊所</span>
+      </h2>
+      <p class="text-base text-gray-600 leading-relaxed">
+        <span class="ko">3,000+ 가족과 함께한<br/>성장 여정의 시작</span>
+        <span class="zh">为3000+家庭<br/>找到了答案</span>
+      </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 2 · 원장 프로필 카드 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-10">
+      <div class="rounded-3xl border-2 border-purple-200 overflow-hidden bg-gradient-to-br from-purple-50 to-white">
+        <!-- 사진 placeholder -->
+        <div class="aspect-[4/3] bg-gradient-to-br from-purple-200 via-purple-100 to-purple-50 flex items-center justify-center relative">
+          <div class="text-purple-400 text-sm flex flex-col items-center gap-2">
+            <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>[원장 사진]</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <div class="text-xs text-primary font-medium mb-1">
+            <span class="ko">院长 · 원장</span>
+            <span class="zh">院长 Director</span>
+          </div>
+          <h3 class="text-2xl font-black text-gray-900 mb-1">
+            <span class="ko">김 ○ ○</span>
+            <span class="zh">金 ○ ○</span>
+          </h3>
+          <div class="text-sm text-gray-600 mb-4">
+            <span class="ko">연세새봄의원 / 187 성장클리닉</span>
+            <span class="zh">延世新春医院 / 187成长诊所</span>
+          </div>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-0.5">✓</span>
+              <span>
+                <span class="ko">한국 소아청소년과 전문의</span>
+                <span class="zh">韩国小儿科专科医师</span>
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-0.5">✓</span>
+              <span>
+                <span class="ko">키 성장 진료 15년+ 임상 경험</span>
+                <span class="zh">儿童成长诊疗 15年+ 临床经验</span>
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-primary mt-0.5">✓</span>
+              <span>
+                <span class="ko">대한소아과학회 정회원</span>
+                <span class="zh">大韩小儿科学会正会员</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 3 · 숫자 통계 (4분할 그리드) -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-10">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="rounded-2xl bg-gradient-to-br from-primary to-secondary text-white p-5 text-center">
+          <div class="text-3xl font-black mb-1">3,000+</div>
+          <div class="text-xs font-medium opacity-90">
+            <span class="ko">진료 가족</span>
+            <span class="zh">治疗家庭</span>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-purple-100 text-gray-900 p-5 text-center">
+          <div class="text-3xl font-black mb-1 text-primary">15+</div>
+          <div class="text-xs font-medium text-gray-700">
+            <span class="ko">임상 경험 (년)</span>
+            <span class="zh">临床经验 (年)</span>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-purple-100 text-gray-900 p-5 text-center">
+          <div class="text-3xl font-black mb-1 text-primary">240+</div>
+          <div class="text-xs font-medium text-gray-700">
+            <span class="ko">치료 사례 공개</span>
+            <span class="zh">公开治疗案例</span>
+          </div>
+        </div>
+        <div class="rounded-2xl bg-gradient-to-br from-secondary to-primary text-white p-5 text-center">
+          <div class="text-3xl font-black mb-1">12+</div>
+          <div class="text-xs font-medium opacity-90">
+            <span class="ko">해외 화교 가족</span>
+            <span class="zh">海外华人家庭</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-[11px] text-gray-400 text-center mt-3 italic">
+        * 실제 데이터로 업데이트 필요
+      </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 4 · 차별점 4가지 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-10">
+      <h3 class="text-xl font-black text-gray-900 mb-5 text-center">
+        <span class="ko">우리만의 차별점</span>
+        <span class="zh">我们的不同之处</span>
+      </h3>
+      <div class="space-y-3">
+
+        <!-- 차별점 1: AI 예측 -->
+        <div class="rounded-2xl border border-purple-200 p-4 flex gap-3 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl shrink-0">🤖</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900 mb-1">
+              <span class="ko">AI 키 예측 시스템</span>
+              <span class="zh">AI 身高预测系统</span>
+            </div>
+            <div class="text-xs text-gray-600 leading-relaxed">
+              <span class="ko">자체 개발한 AI 환자 분석 기술로 골 연령·예측 성인키를 정밀 산출</span>
+              <span class="zh">自主开发的AI患者分析技术,精确测算骨龄与预测成人身高</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 차별점 2: 다국어 상담 -->
+        <div class="rounded-2xl border border-purple-200 p-4 flex gap-3 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl shrink-0">🌐</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900 mb-1">
+              <span class="ko">중국어 / 베트남어 상담</span>
+              <span class="zh">中文 / 越南文 在线咨询</span>
+            </div>
+            <div class="text-xs text-gray-600 leading-relaxed">
+              <span class="ko">화교 가족을 위한 다국어 진료. 언어 장벽 없이 한국 의사 직접 상담</span>
+              <span class="zh">为华人家庭提供多语言诊疗,无语言障碍直接咨询韩国医师</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 차별점 3: 원격 진료 -->
+        <div class="rounded-2xl border border-purple-200 p-4 flex gap-3 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl shrink-0">📹</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900 mb-1">
+              <span class="ko">원격 진료 + 한국 방문 옵션</span>
+              <span class="zh">远程诊疗 + 韩国就诊</span>
+            </div>
+            <div class="text-xs text-gray-600 leading-relaxed">
+              <span class="ko">한국 안 와도 영상 상담으로 시작 가능. 필요한 경우만 한국 방문</span>
+              <span class="zh">无需亲临韩国,视频咨询即可开始。仅在需要时安排到访</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 차별점 4: 골 연령 분석 -->
+        <div class="rounded-2xl border border-purple-200 p-4 flex gap-3 bg-white">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary text-xl shrink-0">🦴</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900 mb-1">
+              <span class="ko">정밀 골 연령 분석</span>
+              <span class="zh">精密骨龄分析</span>
+            </div>
+            <div class="text-xs text-gray-600 leading-relaxed">
+              <span class="ko">X-ray + 자체 데이터베이스로 또래 평균 대비 정확한 성장 단계 진단</span>
+              <span class="zh">X光检查与自有数据库,精准判断生长阶段</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 5 · 미디어 노출 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-10">
+      <div class="text-xs text-gray-500 text-center mb-4 font-medium tracking-wider">
+        <span class="ko">미디어 노출</span>
+        <span class="zh">媒体报道</span>
+      </div>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="aspect-[3/2] rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold">KBS</div>
+        <div class="aspect-[3/2] rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold">MBC</div>
+        <div class="aspect-[3/2] rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold">조선일보</div>
+        <div class="aspect-[3/2] rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold">매일경제</div>
+        <div class="aspect-[3/2] rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold">YTN</div>
+        <div class="aspect-[3/2] rounded-xl bg-gray-100 flex items-center justify-center text-gray-400 text-xs font-bold">+ more</div>
+      </div>
+      <p class="text-[11px] text-gray-400 text-center mt-3 italic">
+        * 실제 노출 채널 로고로 교체
+      </p>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 6 · 클리닉 사진 -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-10">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="aspect-square rounded-2xl bg-gradient-to-br from-purple-100 to-purple-50 flex items-center justify-center text-purple-400 text-xs">
+          [진료실]
+        </div>
+        <div class="aspect-square rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center text-purple-400 text-xs">
+          [클리닉 외관]
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-gray-600">
+        <span class="ko">📍 서울 강남구 · 187 성장클리닉</span>
+        <span class="zh">📍 首尔江南区 · 187成长诊所</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BLOCK 7 · Inline CTA -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="px-6 pb-12">
+      <div class="rounded-3xl bg-gradient-to-br from-primary to-secondary text-white p-6 text-center shadow-xl shadow-purple-200">
+        <div class="text-base font-medium mb-1 opacity-90">
+          <span class="ko">더 자세히 알고 싶으세요?</span>
+          <span class="zh">想了解更多?</span>
+        </div>
+        <div class="text-xl font-black mb-5">
+          <span class="ko">첫 상담은 무료입니다</span>
+          <span class="zh">首次咨询免费</span>
+        </div>
+        <button class="w-full bg-white text-primary font-bold py-4 rounded-2xl text-base hover:bg-purple-50 transition shadow-lg">
+          <span class="ko">📲 무료 상담 받기</span>
+          <span class="zh">📲 立即免费咨询</span>
+        </button>
+        <div class="flex justify-center gap-3 mt-4 text-xs opacity-90">
+          <span>WhatsApp</span>
+          <span>·</span>
+          <span>Zalo</span>
+          <span>·</span>
+          <span>WeChat</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 다음 섹션 안내 (mockup용) -->
+    <div class="px-6 pb-20 pt-8 text-center text-xs text-gray-400 border-t border-gray-100">
+      ↓
+      <div class="mt-2">다음 섹션: 치료 프로그램</div>
+    </div>
+
+    <!-- 하단 sticky 탭바 (참고용) -->
+    <div class="sticky bottom-0 bg-white border-t border-gray-200 grid grid-cols-2 z-40">
+      <button class="py-4 text-center text-xs font-medium text-gray-700 hover:bg-gray-50">
+        <div class="text-2xl mb-1">📏</div>
+        <div>
+          <span class="ko">예측키 측정</span>
+          <span class="zh">身高预测</span>
+        </div>
+      </button>
+      <button class="py-4 text-center text-xs font-medium text-white bg-gradient-to-br from-primary to-secondary">
+        <div class="text-2xl mb-1">💬</div>
+        <div>
+          <span class="ko">무료 상담</span>
+          <span class="zh">免费咨询</span>
+        </div>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- PC에서 모바일 카드 옆 안내 -->
+  <div class="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 max-w-xs text-sm text-gray-500 leading-relaxed">
+    <div class="font-bold text-gray-700 mb-2">📱 Mobile Mockup</div>
+    <p>병원 소개 섹션의 info-stack 구조 미리보기. 한국어/중국어 토글 우상단.</p>
+    <p class="mt-3 text-xs">실제 사이트는 모바일 폭 카드를 PC 중앙에 배치 (현재 사이트 PC 레이아웃 그대로).</p>
+  </div>
+
+</body>
+</html>
