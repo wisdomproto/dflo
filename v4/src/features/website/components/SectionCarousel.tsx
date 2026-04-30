@@ -61,11 +61,12 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
   const isContain = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).imageFit === 'contain';
   const isModalSlide = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'modal';
   const isIframeSlide = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'iframe';
+  const iframeFlexHeight = isIframeSlide && (currentSlide as BannerSlide).iframeFlexHeight === true;
   const specialRatio = (isModalSlide || isIframeSlide) ? ((currentSlide as BannerSlide).modalRatio || '9:16') : null;
-  const useNaturalHeight = isContain;
+  const useNaturalHeight = isContain || iframeFlexHeight;
 
   // Determine aspect ratio class
-  const aspectClass = (isModalSlide || isIframeSlide)
+  const aspectClass = (isModalSlide || (isIframeSlide && !iframeFlexHeight))
     ? (specialRatio === '4:5' ? 'aspect-[4/5]' : 'aspect-[9/16]')
     : useNaturalHeight ? '' : 'aspect-[4/5]';
 
@@ -122,7 +123,11 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
     >
       {/* Slide content */}
       {slides.map((slide, i) => {
-        const slideContain = slide.template === 'banner' && (slide as BannerSlide).imageFit === 'contain';
+        const slideBanner = slide.template === 'banner' ? (slide as BannerSlide) : null;
+        const slideContain = slideBanner !== null && (
+          slideBanner.imageFit === 'contain' ||
+          (slideBanner.ctaAction === 'iframe' && slideBanner.iframeFlexHeight === true)
+        );
         return (
           <div
             key={slide.id}
@@ -264,6 +269,24 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
 
   if (s.ctaAction === 'iframe' && s.ctaTarget) {
     const zoom = (s.iframeZoom || 70) / 100;
+
+    // Flex height 모드: 종횡비 강제 없이 natural height — info-stack 섹션 용
+    if (s.iframeFlexHeight) {
+      return (
+        <div className="relative w-full bg-white">
+          <iframe
+            src={s.ctaTarget}
+            title={s.title || ''}
+            className="block w-full border-0"
+            style={{
+              minHeight: '100vh',
+              zoom: zoom !== 1 ? zoom : undefined,
+            }}
+          />
+        </div>
+      );
+    }
+
     // CSS `zoom` 은 layout-aware scaling 이라 transform: scale 과 달리
     // 텍스트가 흐려지지 않는다. 모바일 Chrome/Safari/WebKit 모두 지원.
     return (

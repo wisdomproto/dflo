@@ -32,6 +32,7 @@ export interface BannerSlide {
   ctaTextColor?: string;                 // 버튼 글자색 (default: #ffffff)
   modalRatio?: '4:5' | '9:16'; // modal 배너 외각 비율 (default: 9:16)
   iframeZoom?: number;          // iframe 콘텐츠 zoom % (default: 100)
+  iframeFlexHeight?: boolean;   // iframe 슬라이드의 종횡비 강제 해제 (info-stack 용, default: false)
 }
 
 export interface VideoSlide {

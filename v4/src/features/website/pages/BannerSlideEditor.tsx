@@ -298,28 +298,49 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
               placeholder="/programs/body-proportion.html"
               className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
           </div>
-          <div>
-            <label className="text-xs font-semibold text-gray-500 mb-1 block">외각 비율</label>
-            <div className="flex gap-2">
-              <button
-                onClick={() => onUpdate({ modalRatio: '4:5' })}
-                className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
-                  bs.modalRatio === '4:5' ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]' : 'border-gray-200 text-gray-500'
-                }`}
-              >
-                4:5
-              </button>
-              <button
-                onClick={() => onUpdate({ modalRatio: '9:16' })}
-                className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
-                  (!bs.modalRatio || bs.modalRatio === '9:16') ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]' : 'border-gray-200 text-gray-500'
-                }`}
-              >
-                9:16
-              </button>
-            </div>
-            <p className="text-[10px] text-gray-400 mt-1">배너 영역 안에 HTML 페이지가 iframe으로 표시됩니다. 스크롤 가능.</p>
+
+          <div className="rounded-xl border border-purple-200 bg-purple-50/40 p-3">
+            <label className="flex items-start gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={bs.iframeFlexHeight ?? false}
+                onChange={(e) => onUpdate({ iframeFlexHeight: e.target.checked })}
+                className="accent-[#0F6E56] w-4 h-4 mt-0.5"
+              />
+              <div className="flex-1 min-w-0">
+                <span className="text-xs font-bold text-gray-700">📐 프레임 풀기 (info-stack 모드)</span>
+                <p className="text-[10px] text-gray-500 mt-0.5 leading-snug">
+                  켜면 종횡비 강제 없이 HTML 콘텐츠 자연 높이로 노출 (병원 소개 · FAQ 같은 정보형 페이지에 적합).
+                  꺼두면 아래 4:5 / 9:16 비율 적용.
+                </p>
+              </div>
+            </label>
           </div>
+
+          {!bs.iframeFlexHeight && (
+            <div>
+              <label className="text-xs font-semibold text-gray-500 mb-1 block">외각 비율</label>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => onUpdate({ modalRatio: '4:5' })}
+                  className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
+                    bs.modalRatio === '4:5' ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]' : 'border-gray-200 text-gray-500'
+                  }`}
+                >
+                  4:5
+                </button>
+                <button
+                  onClick={() => onUpdate({ modalRatio: '9:16' })}
+                  className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
+                    (!bs.modalRatio || bs.modalRatio === '9:16') ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]' : 'border-gray-200 text-gray-500'
+                  }`}
+                >
+                  9:16
+                </button>
+              </div>
+              <p className="text-[10px] text-gray-400 mt-1">배너 영역 안에 HTML 페이지가 iframe으로 표시됩니다. 스크롤 가능.</p>
+            </div>
+          )}
           <div>
             <label className="text-xs font-semibold text-gray-500 mb-1 block">콘텐츠 크기 ({bs.iframeZoom || 70}%)</label>
             <input type="range" min={50} max={150} step={5} value={bs.iframeZoom || 70}
