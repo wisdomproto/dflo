@@ -1,16 +1,55 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { WebsiteSlider } from './WebsiteSlider';
 import { InfoModal } from './InfoModal';
-import { EXERCISES, type ExerciseItem } from '@/features/exercise/data/exercises';
+import { fetchExercises, parseYouTubeUrl } from '@/features/exercise/services/exerciseService';
+import type { Exercise } from '@/shared/types';
+
+interface ExerciseDisplay {
+  id: string;
+  name: string;
+  category: string;
+  videoId: string;
+  startSeconds: number;
+}
+
+function toDisplay(ex: Exercise): ExerciseDisplay | null {
+  const parsed = parseYouTubeUrl(ex.youtube_url);
+  if (!parsed) return null;
+  return {
+    id: ex.id,
+    name: ex.name,
+    category: ex.category,
+    videoId: parsed.videoId,
+    startSeconds: parsed.startSeconds,
+  };
+}
 
 export function ExerciseSlider() {
-  const [selected, setSelected] = useState<ExerciseItem | null>(null);
+  const [items, setItems] = useState<ExerciseDisplay[]>([]);
+  const [selected, setSelected] = useState<ExerciseDisplay | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchExercises()
+      .then((list) => {
+        if (cancelled) return;
+        setItems(list.map(toDisplay).filter((x): x is ExerciseDisplay => x !== null));
+      })
+      .catch(() => {
+        if (!cancelled) setItems([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (items.length === 0) return null;
 
   return (
     <>
       <div className="w-full h-full flex items-center justify-center">
         <WebsiteSlider id="exercises" title="🏃 바른 자세 · 키 성장 운동" desktopCards={3} sideHeader>
-        {EXERCISES.map((ex) => {
+        {items.map((ex) => {
           const isStretch = ex.category === '스트레칭';
           return (
             <button key={ex.id} onClick={() => setSelected(ex)}

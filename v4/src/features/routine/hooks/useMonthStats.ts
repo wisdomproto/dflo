@@ -111,7 +111,7 @@ export function useMonthStats(childId: string | null, year: number, month: numbe
       if (routines.length === 0) {
         const daysInMonth = new Date(year, month, 0).getDate();
         setStats({ days: [], totalDaysInMonth: daysInMonth, recordedDays: 0, injectionDays: 0,
-          averages: { total: 0, meal: 0, exercise: 0, water: 0, supplement: 0, sleep: 0 } });
+          averages: { total: 0, meal: 0, exercise: 0, water: 0, supplement: 0, sleep: 0, injection: 0 } });
         setLoading(false);
         return;
       }

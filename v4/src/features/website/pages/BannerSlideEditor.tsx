@@ -180,84 +180,154 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
         </div>
       </div>
 
-      {/* CTA Buttons */}
-      <div className="grid grid-cols-3 gap-3">
-        <div>
-          <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 텍스트</label>
-          <input value={bs.ctaText}
-            onChange={(e) => onUpdate({ ctaText: e.target.value })}
-            placeholder="비우면 표시 안 함"
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+      {/* ===== 배너 동작 (top-level) =====
+          배너 자체가 어떻게 동작하는지: 일반(이미지+텍스트+버튼) vs 긴 이미지 모달 vs 배너 전체 클릭.
+          버튼 동작은 "일반" 안에서만 의미가 있음 (아래 별도 섹션). */}
+      <div>
+        <label className="text-xs font-semibold text-gray-500 mb-1 block">배너 동작</label>
+        <div className="grid grid-cols-3 gap-2">
+          <BannerTypeCard
+            active={bs.ctaAction === 'scroll' || bs.ctaAction === 'link'}
+            icon="🖼️"
+            title="일반"
+            desc="이미지 + 텍스트 + 버튼"
+            onClick={() => {
+              // 기존이 scroll/link 가 아니면 scroll 으로 전환
+              if (bs.ctaAction !== 'scroll' && bs.ctaAction !== 'link') {
+                onUpdate({ ctaAction: 'scroll' });
+              }
+            }}
+          />
+          <BannerTypeCard
+            active={bs.ctaAction === 'modal'}
+            icon="📜"
+            title="긴 이미지 모달"
+            desc="스크롤되는 큰 이미지"
+            onClick={() => onUpdate({ ctaAction: 'modal' })}
+          />
+          <BannerTypeCard
+            active={bs.ctaAction === 'fulllink'}
+            icon="🔗"
+            title="배너 전체 클릭"
+            desc="외부 링크로 이동"
+            onClick={() => onUpdate({ ctaAction: 'fulllink' })}
+          />
         </div>
-        <div>
-          <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 크기</label>
-          <div className="flex items-center gap-2">
-            <input type="range" min={8} max={20} value={bs.ctaSizePx ?? (bs.ctaSize === 'sm' ? 12 : bs.ctaSize === 'lg' ? 18 : 14)}
-              onChange={(e) => onUpdate({ ctaSizePx: Number(e.target.value) })}
-              className="flex-1 accent-[#0F6E56] h-1" />
-            <span className="text-[10px] text-gray-500 w-10 text-right">
-              {bs.ctaSizePx ?? (bs.ctaSize === 'sm' ? 12 : bs.ctaSize === 'lg' ? 18 : 14)}px
-            </span>
-            {bs.ctaSizePx && (
-              <button onClick={() => onUpdate({ ctaSizePx: undefined })}
-                className="text-[10px] text-gray-400 hover:text-red-400">↩</button>
-            )}
+
+        {/* legacy iframe 안내 */}
+        {bs.ctaAction === 'iframe' && (
+          <div className="mt-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] text-amber-700">
+            <p className="font-bold">⚠ HTML 페이지 임베드 (legacy)</p>
+            <p className="mt-0.5 leading-snug">
+              새 슬라이드는 <strong>+ 🌐 페이지</strong> (IframeSlide) 를 사용하세요.
+              기존 설정은 그대로 유지됩니다.
+            </p>
           </div>
-          <div className="flex items-center gap-1 mt-1">
-            <span className="text-[10px] text-gray-400 shrink-0 mr-1">정렬</span>
-            {(['left', 'center', 'right'] as const).map((a) => (
-              <button key={a} onClick={() => onUpdate({ ctaAlign: a })}
-                className={`text-[10px] px-2 py-0.5 rounded ${(bs.ctaAlign ?? 'center') === a ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
-                {a === 'left' ? '왼쪽' : a === 'center' ? '가운데' : '오른쪽'}
-              </button>
-            ))}
-          </div>
-          <div className="flex items-center gap-2 mt-1 flex-wrap">
-            <span className="text-[10px] text-gray-400 shrink-0">배경</span>
-            <input type="color" value={bs.ctaBgColor || '#0F6E56'}
-              onChange={(e) => onUpdate({ ctaBgColor: e.target.value })}
-              className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
-            <span className="text-[10px] text-gray-400">{bs.ctaBgColor || '#0F6E56'}</span>
-            {bs.ctaBgColor && (
-              <button onClick={() => onUpdate({ ctaBgColor: undefined })}
-                className="text-[10px] text-gray-400 hover:text-red-400">✕</button>
-            )}
-            <span className="text-[10px] text-gray-400 shrink-0 ml-2">글자</span>
-            <input type="color" value={bs.ctaTextColor || '#ffffff'}
-              onChange={(e) => onUpdate({ ctaTextColor: e.target.value })}
-              className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
-            <span className="text-[10px] text-gray-400">{bs.ctaTextColor || '#ffffff'}</span>
-            {bs.ctaTextColor && (
-              <button onClick={() => onUpdate({ ctaTextColor: undefined })}
-                className="text-[10px] text-gray-400 hover:text-red-400">✕</button>
-            )}
-          </div>
-        </div>
-        <div>
-          <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 동작</label>
-          <select value={bs.ctaAction}
-            onChange={(e) => onUpdate({ ctaAction: e.target.value as 'scroll' | 'link' | 'fulllink' | 'modal' | 'iframe' })}
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]">
-            <option value="scroll">스크롤</option>
-            <option value="link">링크</option>
-            <option value="fulllink">전체 배너 링크</option>
-            <option value="modal">모달 (전체화면 이미지)</option>
-            <option value="iframe">HTML 페이지 임베드</option>
-          </select>
-        </div>
+        )}
       </div>
-      {bs.ctaAction === 'fulllink' && (
-        <div>
-          <label className="text-xs font-semibold text-gray-500 mb-1 block">이동할 URL</label>
-          <input value={bs.ctaTarget}
-            onChange={(e) => onUpdate({ ctaTarget: e.target.value })}
-            placeholder="https://... 또는 /programs/body-proportion.html"
-            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
-          <p className="text-[10px] text-gray-400 mt-1">배너 전체를 클릭하면 해당 URL로 이동합니다 (버튼 숨김)</p>
+
+      {/* ===== 일반 모드: 버튼 옵션 ===== */}
+      {(bs.ctaAction === 'scroll' || bs.ctaAction === 'link') && (
+        <div className="rounded-xl border border-gray-100 bg-gray-50/60 p-3 space-y-3">
+          <div>
+            <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 텍스트</label>
+            <input value={bs.ctaText}
+              onChange={(e) => onUpdate({ ctaText: e.target.value })}
+              placeholder="비우면 버튼 표시 안 함"
+              className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+          </div>
+
+          {bs.ctaText && (
+            <>
+              {/* 버튼 동작 선택 */}
+              <div>
+                <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 동작</label>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => onUpdate({ ctaAction: 'scroll' })}
+                    className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
+                      bs.ctaAction === 'scroll' ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]' : 'border-gray-200 text-gray-500'
+                    }`}
+                  >
+                    📏 예상키 측정 모달
+                  </button>
+                  <button
+                    onClick={() => onUpdate({ ctaAction: 'link' })}
+                    className={`flex-1 rounded-xl border px-3 py-2 text-sm font-medium transition-all ${
+                      bs.ctaAction === 'link' ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]' : 'border-gray-200 text-gray-500'
+                    }`}
+                  >
+                    🔗 외부 링크
+                  </button>
+                </div>
+              </div>
+
+              {bs.ctaAction === 'link' && (
+                <div>
+                  <label className="text-xs font-semibold text-gray-500 mb-1 block">이동할 URL</label>
+                  <input value={bs.ctaTarget}
+                    onChange={(e) => onUpdate({ ctaTarget: e.target.value })}
+                    placeholder="https://..."
+                    className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+                </div>
+              )}
+
+              {/* 버튼 스타일 */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 크기</label>
+                  <div className="flex items-center gap-2">
+                    <input type="range" min={8} max={20} value={bs.ctaSizePx ?? (bs.ctaSize === 'sm' ? 12 : bs.ctaSize === 'lg' ? 18 : 14)}
+                      onChange={(e) => onUpdate({ ctaSizePx: Number(e.target.value) })}
+                      className="flex-1 accent-[#0F6E56] h-1" />
+                    <span className="text-[10px] text-gray-500 w-10 text-right">
+                      {bs.ctaSizePx ?? (bs.ctaSize === 'sm' ? 12 : bs.ctaSize === 'lg' ? 18 : 14)}px
+                    </span>
+                    {bs.ctaSizePx && (
+                      <button onClick={() => onUpdate({ ctaSizePx: undefined })}
+                        className="text-[10px] text-gray-400 hover:text-red-400">↩</button>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-1 mt-1">
+                    <span className="text-[10px] text-gray-400 shrink-0 mr-1">정렬</span>
+                    {(['left', 'center', 'right'] as const).map((a) => (
+                      <button key={a} onClick={() => onUpdate({ ctaAlign: a })}
+                        className={`text-[10px] px-2 py-0.5 rounded ${(bs.ctaAlign ?? 'center') === a ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
+                        {a === 'left' ? '왼쪽' : a === 'center' ? '가운데' : '오른쪽'}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-gray-500 mb-1 block">버튼 색상</label>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[10px] text-gray-400 shrink-0">배경</span>
+                    <input type="color" value={bs.ctaBgColor || '#0F6E56'}
+                      onChange={(e) => onUpdate({ ctaBgColor: e.target.value })}
+                      className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
+                    {bs.ctaBgColor && (
+                      <button onClick={() => onUpdate({ ctaBgColor: undefined })}
+                        className="text-[10px] text-gray-400 hover:text-red-400">✕</button>
+                    )}
+                    <span className="text-[10px] text-gray-400 shrink-0 ml-2">글자</span>
+                    <input type="color" value={bs.ctaTextColor || '#ffffff'}
+                      onChange={(e) => onUpdate({ ctaTextColor: e.target.value })}
+                      className="w-6 h-6 rounded border border-gray-200 cursor-pointer" />
+                    {bs.ctaTextColor && (
+                      <button onClick={() => onUpdate({ ctaTextColor: undefined })}
+                        className="text-[10px] text-gray-400 hover:text-red-400">✕</button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       )}
+
+      {/* ===== 모달 모드 ===== */}
       {bs.ctaAction === 'modal' && (
-        <div className="space-y-3">
+        <div className="rounded-xl border border-gray-100 bg-gray-50/60 p-3 space-y-3">
           <div>
             <label className="text-xs font-semibold text-gray-500 mb-1 block">모달 이미지 URL</label>
             <input value={bs.ctaTarget}
@@ -285,12 +355,26 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
                 9:16
               </button>
             </div>
-            <p className="text-[10px] text-gray-400 mt-1">검은 배경 위에 이미지 표시. 긴 이미지는 스크롤 가능.</p>
+            <p className="text-[10px] text-gray-400 mt-1">검은 배경 위에 이미지 표시. 긴 이미지는 스크롤 가능. 텍스트/버튼은 표시되지 않음.</p>
           </div>
         </div>
       )}
+
+      {/* ===== 전체 클릭 모드 ===== */}
+      {bs.ctaAction === 'fulllink' && (
+        <div className="rounded-xl border border-gray-100 bg-gray-50/60 p-3">
+          <label className="text-xs font-semibold text-gray-500 mb-1 block">이동할 URL</label>
+          <input value={bs.ctaTarget}
+            onChange={(e) => onUpdate({ ctaTarget: e.target.value })}
+            placeholder="https://... 또는 /programs/body-proportion.html"
+            className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+          <p className="text-[10px] text-gray-400 mt-1">이미지·텍스트는 표시되지만, 배너 어디든 클릭하면 위 URL 로 이동합니다 (버튼 숨김).</p>
+        </div>
+      )}
+
+      {/* ===== Legacy iframe 모드 ===== */}
       {bs.ctaAction === 'iframe' && (
-        <div className="space-y-3">
+        <div className="rounded-xl border border-amber-100 bg-amber-50/40 p-3 space-y-3">
           <div>
             <label className="text-xs font-semibold text-gray-500 mb-1 block">HTML 페이지 URL</label>
             <input value={bs.ctaTarget}
@@ -299,23 +383,20 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
               className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
           </div>
 
-          <div className="rounded-xl border border-purple-200 bg-purple-50/40 p-3">
-            <label className="flex items-start gap-2 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={bs.iframeFlexHeight ?? false}
-                onChange={(e) => onUpdate({ iframeFlexHeight: e.target.checked })}
-                className="accent-[#0F6E56] w-4 h-4 mt-0.5"
-              />
-              <div className="flex-1 min-w-0">
-                <span className="text-xs font-bold text-gray-700">📐 프레임 풀기 (info-stack 모드)</span>
-                <p className="text-[10px] text-gray-500 mt-0.5 leading-snug">
-                  켜면 종횡비 강제 없이 HTML 콘텐츠 자연 높이로 노출 (병원 소개 · FAQ 같은 정보형 페이지에 적합).
-                  꺼두면 아래 4:5 / 9:16 비율 적용.
-                </p>
-              </div>
-            </label>
-          </div>
+          <label className="flex items-start gap-2 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={bs.iframeFlexHeight ?? false}
+              onChange={(e) => onUpdate({ iframeFlexHeight: e.target.checked })}
+              className="accent-[#0F6E56] w-4 h-4 mt-0.5"
+            />
+            <div className="flex-1 min-w-0">
+              <span className="text-xs font-bold text-gray-700">📐 프레임 풀기 (info-stack 모드)</span>
+              <p className="text-[10px] text-gray-500 mt-0.5 leading-snug">
+                켜면 종횡비 강제 없이 HTML 콘텐츠 자연 높이로 노출. 꺼두면 아래 4:5 / 9:16 비율 적용.
+              </p>
+            </div>
+          </label>
 
           {!bs.iframeFlexHeight && (
             <div>
@@ -338,7 +419,6 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
                   9:16
                 </button>
               </div>
-              <p className="text-[10px] text-gray-400 mt-1">배너 영역 안에 HTML 페이지가 iframe으로 표시됩니다. 스크롤 가능.</p>
             </div>
           )}
           <div>
@@ -349,12 +429,26 @@ export function BannerSlideEditor({ slide, onUpdate, imageHistory }: BannerSlide
           </div>
         </div>
       )}
-      {!['fulllink', 'modal', 'iframe'].includes(bs.ctaAction) && bs.ctaText && (
-        <input value={bs.ctaTarget}
-          onChange={(e) => onUpdate({ ctaTarget: e.target.value })}
-          placeholder={bs.ctaAction === 'scroll' ? 'calculator' : 'https://...'}
-          className="w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
-      )}
     </div>
+  );
+}
+
+// ============= Banner type picker card =============
+function BannerTypeCard({ active, icon, title, desc, onClick }: {
+  active: boolean; icon: string; title: string; desc: string; onClick: () => void;
+}) {
+  return (
+    <button onClick={onClick}
+      className={`text-left rounded-xl border-2 px-3 py-2.5 transition-all ${
+        active
+          ? 'border-[#0F6E56] bg-[#0F6E56]/8'
+          : 'border-gray-200 bg-white hover:border-gray-300'
+      }`}>
+      <div className="flex items-center gap-1.5">
+        <span className="text-base leading-none">{icon}</span>
+        <span className={`text-xs font-bold ${active ? 'text-[#0F6E56]' : 'text-gray-700'}`}>{title}</span>
+      </div>
+      <p className="text-[10px] text-gray-500 mt-0.5 leading-snug">{desc}</p>
+    </button>
   );
 }

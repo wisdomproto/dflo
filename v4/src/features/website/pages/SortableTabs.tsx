@@ -111,7 +111,11 @@ export function SortableSlideTab({
         ⠿
       </span>
       <button onClick={onClick} className="pr-1 py-2">
-        {slide.template === 'video' ? '🎬' : slide.template === 'cases' ? '📊' : '📸'} {idx + 1}
+        {slide.template === 'video' ? '🎬'
+          : slide.template === 'cases' ? '📊'
+          : slide.template === 'iframe' ? '🌐'
+          : slide.template === 'faq' ? '❓'
+          : '📸'} {idx + 1}
       </button>
 
       {/* Delete X — only on active tab */}

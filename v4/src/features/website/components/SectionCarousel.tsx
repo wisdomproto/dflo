@@ -6,7 +6,7 @@
 
 import React, { useState, useCallback, useRef } from 'react';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
-import type { Slide, BannerSlide, VideoSlide, CasesSlide } from '../types/websiteSection';
+import type { Slide, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, FaqItem } from '../types/websiteSection';
 
 export function extractVideoId(url: string): string | null {
   if (!url) return null;
@@ -60,13 +60,18 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
   const currentSlide = slides[current];
   const isContain = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).imageFit === 'contain';
   const isModalSlide = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'modal';
-  const isIframeSlide = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'iframe';
-  const iframeFlexHeight = isIframeSlide && (currentSlide as BannerSlide).iframeFlexHeight === true;
-  const specialRatio = (isModalSlide || isIframeSlide) ? ((currentSlide as BannerSlide).modalRatio || '9:16') : null;
-  const useNaturalHeight = isContain || iframeFlexHeight;
+  const isBannerIframe = currentSlide?.template === 'banner' && (currentSlide as BannerSlide).ctaAction === 'iframe';
+  const bannerIframeFlex = isBannerIframe && (currentSlide as BannerSlide).iframeFlexHeight === true;
+  // 신규 IframeSlide 는 height 미지정이면 항상 flex (콘텐츠 자연 높이)
+  const isStandaloneIframe = currentSlide?.template === 'iframe';
+  const standaloneIframeFlex = isStandaloneIframe && !(currentSlide as IframeSlide).height;
+  // FaqSlide 는 항상 flex 높이 (아코디언이라 콘텐츠 길이 가변)
+  const isFaqSlideActive = currentSlide?.template === 'faq';
+  const specialRatio = (isModalSlide || isBannerIframe) ? ((currentSlide as BannerSlide).modalRatio || '9:16') : null;
+  const useNaturalHeight = isContain || bannerIframeFlex || standaloneIframeFlex || isFaqSlideActive;
 
   // Determine aspect ratio class
-  const aspectClass = (isModalSlide || (isIframeSlide && !iframeFlexHeight))
+  const aspectClass = (isModalSlide || (isBannerIframe && !bannerIframeFlex))
     ? (specialRatio === '4:5' ? 'aspect-[4/5]' : 'aspect-[9/16]')
     : useNaturalHeight ? '' : 'aspect-[4/5]';
 
@@ -124,10 +129,12 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
       {/* Slide content */}
       {slides.map((slide, i) => {
         const slideBanner = slide.template === 'banner' ? (slide as BannerSlide) : null;
-        const slideContain = slideBanner !== null && (
+        const slideIframe = slide.template === 'iframe' ? (slide as IframeSlide) : null;
+        const slideFaq = slide.template === 'faq';
+        const slideContain = (slideBanner !== null && (
           slideBanner.imageFit === 'contain' ||
           (slideBanner.ctaAction === 'iframe' && slideBanner.iframeFlexHeight === true)
-        );
+        )) || (slideIframe !== null && !slideIframe.height) || slideFaq;
         return (
           <div
             key={slide.id}
@@ -142,6 +149,8 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
             {slide.template === 'banner' && <BannerContent slide={slide} />}
             {slide.template === 'video' && <VideoContent slide={slide} />}
             {slide.template === 'cases' && <CasesContent slide={slide as CasesSlide} isActive={i === current} />}
+            {slide.template === 'iframe' && <IframeContent slide={slide as IframeSlide} />}
+            {slide.template === 'faq' && <FaqContent slide={slide as FaqSlide} />}
           </div>
         );
       })}
@@ -307,6 +316,245 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
   }
 
   return content;
+}
+
+// ============= Iframe slide content (info-stack: 정적 HTML 임베드) =============
+function IframeContent({ slide: s }: { slide: IframeSlide }) {
+  const zoom = (s.zoom ?? 100) / 100;
+  const bg = s.bgColor || '#ffffff';
+
+  // height 지정 시: 고정 박스 안에서 iframe 100% (overflow scroll)
+  // 미지정 시: 콘텐츠 자연 높이 → 부모 페이지가 스크롤 (info-stack)
+  const hasFixedHeight = typeof s.height === 'number' && s.height > 0;
+  const frame = s.showFrame === true;
+
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [autoHeight, setAutoHeight] = useState<number | null>(null);
+
+  // Flex 모드: 같은 origin iframe 의 콘텐츠 높이를 측정해 iframe 자체 높이를 콘텐츠에 맞춘다.
+  // 결과적으로 iframe 내부 스크롤이 사라지고, 부모 페이지가 자연스럽게 스크롤됨.
+  React.useEffect(() => {
+    if (hasFixedHeight) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    let observer: ResizeObserver | null = null;
+    let interval: number | null = null;
+
+    const measure = () => {
+      try {
+        const doc = iframe.contentDocument;
+        if (!doc?.body) return;
+        // body.scrollHeight 가 콘텐츠의 자연 높이. zoom 은 iframe element 에 적용되므로 별도 보정 불필요.
+        const h = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+        if (h > 0) setAutoHeight(h);
+      } catch {
+        // cross-origin → fallback (minHeight 100vh) 으로 둠
+      }
+    };
+
+    const onLoad = () => {
+      measure();
+      try {
+        const doc = iframe.contentDocument;
+        if (!doc?.body) return;
+        observer = new ResizeObserver(measure);
+        observer.observe(doc.body);
+      } catch {
+        // cross-origin → 0.5초 폴링 fallback
+        interval = window.setInterval(measure, 500);
+      }
+    };
+
+    iframe.addEventListener('load', onLoad);
+    // 이미 로드된 상태일 수도 있음
+    if (iframe.contentDocument?.readyState === 'complete') onLoad();
+
+    return () => {
+      iframe.removeEventListener('load', onLoad);
+      observer?.disconnect();
+      if (interval) clearInterval(interval);
+    };
+  }, [hasFixedHeight, s.src]);
+
+  const iframeEl = (
+    <iframe
+      ref={iframeRef}
+      src={s.src}
+      title=""
+      className="block w-full border-0"
+      style={{
+        height: hasFixedHeight ? '100%' : (autoHeight ? `${autoHeight}px` : undefined),
+        minHeight: hasFixedHeight || autoHeight ? undefined : '100vh',
+        zoom: zoom !== 1 ? zoom : undefined,
+      }}
+    />
+  );
+
+  if (hasFixedHeight) {
+    return (
+      <div
+        className={`absolute inset-0 overflow-hidden ${frame ? 'border border-gray-200' : ''}`}
+        style={{ backgroundColor: bg }}
+      >
+        {frame && (
+          <div className="flex items-center justify-end px-2 py-1 border-b border-gray-100 bg-white/80">
+            <a href={s.src} target="_blank" rel="noopener noreferrer"
+              className="text-[10px] text-gray-500 hover:text-[#0F6E56]">전체화면 ↗</a>
+          </div>
+        )}
+        {iframeEl}
+      </div>
+    );
+  }
+
+  // Flex 높이 (info-stack) — iframe 내부 스크롤 없이 부모가 스크롤
+  return (
+    <div
+      className={`relative w-full ${frame ? 'border border-gray-200' : ''}`}
+      style={{ backgroundColor: bg }}
+    >
+      {frame && (
+        <div className="flex items-center justify-end px-2 py-1 border-b border-gray-100 bg-white/80">
+          <a href={s.src} target="_blank" rel="noopener noreferrer"
+            className="text-[10px] text-gray-500 hover:text-[#0F6E56]">전체화면 ↗</a>
+        </div>
+      )}
+      {iframeEl}
+    </div>
+  );
+}
+
+// ============= FAQ slide content (info-stack: 아코디언) =============
+function FaqContent({ slide: s }: { slide: FaqSlide }) {
+  // ZH 데이터가 한 군데라도 있으면 자동으로 토글 노출 (showLanguageToggle 명시 시 그게 우선)
+  const hasZh = s.showLanguageToggle ?? Boolean(
+    s.titleZh || s.subtitleZh || s.badgeZh || s.items.some((it) => it.questionZh || it.answerZh)
+  );
+  const [lang, setLang] = useState<'ko' | 'zh'>('ko');
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const text = (ko?: string, zh?: string) => (lang === 'zh' ? (zh || ko || '') : (ko || ''));
+
+  const headerCta = s.ctaButtonUrl;
+  const handleCta = () => {
+    if (headerCta) {
+      // 외부 카톡 등 — 새 탭. (kakao 라면 trackKakaoConsult 발사)
+      if (headerCta.includes('pf.kakao.com')) trackKakaoConsult('faq_cta');
+      window.open(headerCta, '_blank');
+    }
+  };
+
+  return (
+    <div className="relative w-full bg-gradient-to-b from-purple-50 via-white to-purple-50">
+      {/* 언어 토글 (ZH 데이터 있을 때만) */}
+      {hasZh && (
+        <div className="absolute top-3 right-3 z-30 flex gap-1 bg-white rounded-full shadow-md p-1 border border-purple-200">
+          <button onClick={() => setLang('ko')}
+            className={`px-3 py-1 rounded-full text-[11px] font-medium transition-colors ${
+              lang === 'ko' ? 'bg-primary text-white' : 'text-gray-600 hover:bg-purple-50'
+            }`}>한국어</button>
+          <button onClick={() => setLang('zh')}
+            className={`px-3 py-1 rounded-full text-[11px] font-medium transition-colors ${
+              lang === 'zh' ? 'bg-primary text-white' : 'text-gray-600 hover:bg-purple-50'
+            }`}>中文</button>
+        </div>
+      )}
+
+      <div className="max-w-[460px] mx-auto bg-white shadow-xl">
+        {/* 헤드라인 */}
+        <section className="px-6 pt-12 pb-6 text-center">
+          {(s.badge || s.badgeZh) && (
+            <div className="inline-block px-3 py-1 rounded-full bg-purple-100 text-primary text-xs font-medium mb-4">
+              {text(s.badge, s.badgeZh)}
+            </div>
+          )}
+          <h2 className="text-3xl font-black text-gray-900 leading-tight mb-3 whitespace-pre-line">
+            {text(s.title, s.titleZh)}
+          </h2>
+          {(s.subtitle || s.subtitleZh) && (
+            <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
+              {text(s.subtitle, s.subtitleZh)}
+            </p>
+          )}
+        </section>
+
+        {/* 아코디언 */}
+        <section className="px-6 pb-10">
+          <div className="space-y-3">
+            {s.items.map((item, idx) => (
+              <FaqAccordionItem
+                key={item.id}
+                item={item}
+                index={idx}
+                lang={lang}
+                isOpen={openId === item.id}
+                onToggle={() => setOpenId(openId === item.id ? null : item.id)}
+              />
+            ))}
+            {s.items.length === 0 && (
+              <p className="text-center text-sm text-gray-400 py-8">FAQ 항목을 추가해주세요.</p>
+            )}
+          </div>
+        </section>
+
+        {/* 하단 CTA 카드 */}
+        {(s.ctaTitle || s.ctaTitleZh || s.ctaButtonText || s.ctaButtonTextZh) && (
+          <section className="px-6 pb-12">
+            <div className="rounded-3xl bg-gradient-to-br from-primary to-secondary text-white p-6 text-center shadow-xl shadow-purple-200">
+              {(s.ctaHeadline || s.ctaHeadlineZh) && (
+                <div className="text-base font-medium mb-1 opacity-90">
+                  {text(s.ctaHeadline, s.ctaHeadlineZh)}
+                </div>
+              )}
+              {(s.ctaTitle || s.ctaTitleZh) && (
+                <div className="text-xl font-black mb-5">
+                  {text(s.ctaTitle, s.ctaTitleZh)}
+                </div>
+              )}
+              {(s.ctaButtonText || s.ctaButtonTextZh) && (
+                <button onClick={handleCta}
+                  className="w-full bg-white text-primary font-bold py-4 rounded-2xl text-base hover:bg-purple-50 transition shadow-lg">
+                  {text(s.ctaButtonText, s.ctaButtonTextZh)}
+                </button>
+              )}
+            </div>
+          </section>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FaqAccordionItem({ item, index, lang, isOpen, onToggle }: {
+  item: FaqItem; index: number; lang: 'ko' | 'zh'; isOpen: boolean; onToggle: () => void;
+}) {
+  const text = (ko?: string, zh?: string) => (lang === 'zh' ? (zh || ko || '') : (ko || ''));
+  const question = text(item.question, item.questionZh);
+  const answer = text(item.answer, item.answerZh);
+
+  return (
+    <div className={`border-2 rounded-2xl overflow-hidden bg-white transition-colors ${
+      isOpen ? 'border-primary' : 'border-purple-200'
+    }`}>
+      <button onClick={onToggle} className="w-full flex items-start gap-3 px-5 py-4 text-left">
+        <div className="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+          Q{index + 1}
+        </div>
+        <div className="flex-1 font-bold text-gray-900 text-sm">{question}</div>
+        <svg className={`w-5 h-5 text-gray-400 shrink-0 mt-1 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div className="overflow-hidden transition-all duration-400 ease-in-out"
+        style={{ maxHeight: isOpen ? 800 : 0 }}>
+        <div className="px-5 pb-5 pt-2 text-sm text-gray-700 leading-relaxed whitespace-pre-line">
+          {answer}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // ============= Video slide content =============

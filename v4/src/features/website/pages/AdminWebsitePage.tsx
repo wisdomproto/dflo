@@ -4,7 +4,7 @@ import { PointerSensor, TouchSensor, useSensor, useSensors, type DragEndEvent } 
 import { arrayMove } from '@dnd-kit/sortable';
 import { useAuthStore } from '@/stores/authStore';
 import { fetchSections, saveSections, type SectionStorageKey } from '../services/websiteSectionService';
-import type { WebsiteSection, BannerSlide, VideoSlide, CasesSlide, Slide, SlideTemplate } from '../types/websiteSection';
+import type { WebsiteSection, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, Slide, SlideTemplate } from '../types/websiteSection';
 import { AdminPreviewPanel } from './AdminPreviewPanel';
 import { AdminEditorPanel } from './AdminEditorPanel';
 
@@ -47,7 +47,42 @@ function emptyCasesSlide(order: number): CasesSlide {
   };
 }
 
-function emptySection(order: number): WebsiteSection {
+function emptyIframeSlide(order: number): IframeSlide {
+  return { template: 'iframe', id: uid(), src: '', order };
+}
+
+function emptyFaqSlide(order: number): FaqSlide {
+  return {
+    template: 'faq',
+    id: uid(),
+    title: '자주 묻는 질문',
+    items: [],
+    order,
+  };
+}
+
+// 섹션 타입: 카드(배너 1개, 카드 프레임), 페이지(iframe full-bleed), FAQ(faq full-bleed)
+export type SectionType = 'card' | 'iframe' | 'faq';
+
+function emptySection(order: number, type: SectionType = 'card'): WebsiteSection {
+  if (type === 'iframe') {
+    return {
+      id: uid(), order_index: order,
+      title: `페이지 ${order + 1}`,
+      fullBleed: true,
+      showNav: false,
+      slides: [emptyIframeSlide(0)],
+    };
+  }
+  if (type === 'faq') {
+    return {
+      id: uid(), order_index: order,
+      title: 'FAQ',
+      fullBleed: true,
+      showNav: false,
+      slides: [emptyFaqSlide(0)],
+    };
+  }
   return {
     id: uid(), order_index: order,
     title: `섹션 ${order + 1}`,
@@ -141,8 +176,8 @@ export default function AdminWebsitePage({
   // ---- Section actions ----
   const sec = sections[activeSection];
 
-  const addSection = () => {
-    const ns = [...sections, emptySection(sections.length)];
+  const addSection = (type: SectionType = 'card') => {
+    const ns = [...sections, emptySection(sections.length, type)];
     setSections(ns);
     setActiveSection(ns.length - 1);
     setActiveSlide(0);
@@ -163,11 +198,12 @@ export default function AdminWebsitePage({
 
   const addSlide = (template: SlideTemplate) => {
     if (!sec) return;
-    const newSlide = template === 'video'
-      ? emptyVideoSlide(sec.slides.length)
-      : template === 'cases'
-        ? emptyCasesSlide(sec.slides.length)
-        : emptyBannerSlide(sec.slides.length);
+    const newSlide =
+      template === 'video' ? emptyVideoSlide(sec.slides.length)
+      : template === 'cases' ? emptyCasesSlide(sec.slides.length)
+      : template === 'iframe' ? emptyIframeSlide(sec.slides.length)
+      : template === 'faq' ? emptyFaqSlide(sec.slides.length)
+      : emptyBannerSlide(sec.slides.length);
     const ns = [...sec.slides, newSlide];
     updateSlides(ns);
     setActiveSlide(ns.length - 1);

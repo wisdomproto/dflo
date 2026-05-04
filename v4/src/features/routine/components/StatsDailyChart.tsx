@@ -121,7 +121,7 @@ interface WeekBucket {
   hasData: boolean;
 }
 
-function buildWeeklyBuckets(days: DayStats[], totalDays: number, key: ScoreKey, year: number, month: number): WeekBucket[] {
+function buildWeeklyBuckets(days: DayStats[], totalDays: number, key: ScoreKey, _year: number, month: number): WeekBucket[] {
   // 1~7, 8~14, 15~21, 22~28, 29~end
   const ranges: [number, number][] = [
     [1, 7],

@@ -39,11 +39,14 @@ function PreviewSectionCard({
     changeSlide((localSlide + 1) % total);
   };
 
+  // section.fullBleed 가 켜진 섹션은 카드 프레임을 빼고 edge-to-edge 로 보여준다 (실제 사이트와 동일).
+  const cardClasses = section.fullBleed ? '' : 'rounded-2xl shadow-md bg-white';
+
   if (!section.slides.length) {
     return (
       <div
         onClick={onClick}
-        className={`rounded-2xl overflow-hidden bg-white shadow-md cursor-pointer transition-all ${
+        className={`${cardClasses} overflow-hidden cursor-pointer transition-all ${
           isActive ? 'ring-2 ring-[#0F6E56] ring-offset-2' : 'opacity-60 hover:opacity-80'
         }`}
       >
@@ -57,7 +60,7 @@ function PreviewSectionCard({
   return (
     <div
       onClick={onClick}
-      className={`group relative rounded-2xl overflow-hidden bg-white shadow-md cursor-pointer transition-all ${
+      className={`group relative ${cardClasses} overflow-hidden cursor-pointer transition-all ${
         isActive ? 'ring-2 ring-[#0F6E56] ring-offset-1' : 'opacity-50 hover:opacity-75'
       }`}
     >
