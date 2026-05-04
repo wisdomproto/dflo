@@ -1,7 +1,7 @@
 // Website section types
 // Each slide has its own template - a section is a collection of mixed slides
 
-export type SlideTemplate = 'banner' | 'video' | 'cases';
+export type SlideTemplate = 'banner' | 'video' | 'cases' | 'iframe' | 'faq';
 
 export interface BannerSlide {
   template: 'banner';
@@ -128,7 +128,51 @@ export interface LinkBannerSlide {
   subtitleShadow?: boolean;
 }
 
-export type Slide = BannerSlide | VideoSlide | CasesSlide | LinkBannerSlide;
+// info-stack 섹션을 정적 HTML 파일로 운영하기 위한 슬라이드 타입.
+// 화교 시장 리디자인(Hero·병원소개·FAQ·CTA)에서 mockup HTML을 그대로 임베드한다.
+export interface IframeSlide {
+  template: 'iframe';
+  id: string;
+  src: string;              // /mockups/clinic-intro.html 같은 경로 또는 외부 URL
+  height?: number;          // px 고정 높이 (미지정 시 콘텐츠 자연 높이)
+  showFrame?: boolean;      // 외곽 보더/헤더 표시 (default false → 섹션에 매끄럽게 녹아듦)
+  zoom?: number;            // 콘텐츠 zoom % (default 100)
+  bgColor?: string;         // 외곽 배경색 (default white)
+  order: number;
+}
+
+// FAQ 아코디언 슬라이드 — info-stack 섹션 용. 어드민에서 Q&A 추가/삭제/순서 변경 가능.
+// KO 가 기본 언어, ZH 는 옵션 (화교 시장 다국어 대응).
+export interface FaqItem {
+  id: string;
+  question: string;        // KO 질문
+  answer: string;          // KO 답변 (multi-line, plain text. \n 줄바꿈)
+  questionZh?: string;     // 中文 질문
+  answerZh?: string;       // 中文 답변
+}
+
+export interface FaqSlide {
+  template: 'faq';
+  id: string;
+  badge?: string;          // 상단 작은 배지 ("자주 묻는 질문")
+  badgeZh?: string;
+  title: string;           // 큰 제목 (multi-line)
+  titleZh?: string;
+  subtitle?: string;       // 부제
+  subtitleZh?: string;
+  items: FaqItem[];
+  ctaHeadline?: string;    // 하단 CTA 카드 헤드라인 ("더 궁금한 점이 있으신가요?")
+  ctaHeadlineZh?: string;
+  ctaTitle?: string;       // 하단 CTA 큰 글씨 ("의사에게 직접 물어보세요")
+  ctaTitleZh?: string;
+  ctaButtonText?: string;  // CTA 버튼 텍스트
+  ctaButtonTextZh?: string;
+  ctaButtonUrl?: string;   // CTA 클릭 시 이동 URL (카톡 등)
+  showLanguageToggle?: boolean; // KO/ZH 토글 표시 (default: ZH 데이터 있으면 자동 노출)
+  order: number;
+}
+
+export type Slide = BannerSlide | VideoSlide | CasesSlide | LinkBannerSlide | IframeSlide | FaqSlide;
 
 export function isBannerSlide(slide: Slide): slide is BannerSlide {
   return slide.template === 'banner';
@@ -142,12 +186,24 @@ export function isCasesSlide(slide: Slide): slide is CasesSlide {
   return slide.template === 'cases';
 }
 
+export function isIframeSlide(slide: Slide): slide is IframeSlide {
+  return slide.template === 'iframe';
+}
+
+export function isFaqSlide(slide: Slide): slide is FaqSlide {
+  return slide.template === 'faq';
+}
+
 export interface WebsiteSection {
   id: string;
   order_index: number;
   title?: string;
   slides: Slide[];
   showNav?: boolean; // 캐러셀 하단 도트 + 좌우 화살표 표시 (default: true)
+  fullBleed?: boolean; // 카드 프레임 제거 + viewport 가득 (info-stack iframe 섹션 용, default: false)
+  /** 어드민에서 토글하는 노출 여부. undefined 면 노출(default: true).
+   *  false 일 때만 환자 화면에서 숨겨지고, 어드민 미리보기에는 흐리게 표시. */
+  visible?: boolean;
   created_at?: string;
   updated_at?: string;
 }

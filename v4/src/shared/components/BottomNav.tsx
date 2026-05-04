@@ -1,12 +1,14 @@
 // ================================================
 // BottomNav 컴포넌트 - 187 성장케어 v4
-// 고정 하단 네비게이션 바
-// 홈 + 데일리 루틴 + 진료기록 + 1:1상담
+// 환자 단계(treatment_status)별 분기:
+//   - treatment   : 진료기록 / 생활 다이어리 / 생활 통계 / 1:1상담 (홈 없음)
+//   - consultation: 홈 / 첫 상담 기록 / 1:1상담 (다이어리 없음)
 // ================================================
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
+import { useChildrenStore } from '@/stores/childrenStore';
 import { HeightCalculator } from '@/features/website/components/HeightCalculator';
 
 interface NavItem {
@@ -19,22 +21,32 @@ const guestNavItems: NavItem[] = [
   { path: '/app', label: '홈', icon: '🏠' },
 ];
 
-const patientNavItems: NavItem[] = [
+const consultationNavItems: NavItem[] = [
   { path: '/app', label: '홈', icon: '🏠' },
-  { path: '/app/routine', label: '루틴', icon: '📝' },
+  { path: '/app/records', label: '첫 상담 기록', icon: '📋' },
+];
+
+const treatmentNavItems: NavItem[] = [
   { path: '/app/records', label: '진료기록', icon: '📋' },
+  { path: '/app/routine', label: '생활 다이어리', icon: '📔' },
+  { path: '/app/stats', label: '생활 통계', icon: '📊' },
 ];
 
 export default function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const isLoggedIn = !!useAuthStore((s) => s.user);
-  const navItems = isLoggedIn ? patientNavItems : guestNavItems;
+  const getSelectedChild = useChildrenStore((s) => s.getSelectedChild);
+  const selectedChild = getSelectedChild();
+
+  const navItems = !isLoggedIn
+    ? guestNavItems
+    : selectedChild?.treatment_status === 'treatment'
+    ? treatmentNavItems
+    : consultationNavItems;
 
   const [showCalc, setShowCalc] = useState(false);
 
-  // SectionCarousel 의 banner CTA(예측키 측정하기 등)에서 dispatch 하는 이벤트.
-  // website 의 FloatingButtons 와 동일한 패턴으로 모달 오픈.
   useEffect(() => {
     const handler = () => setShowCalc(true);
     document.addEventListener('open-height-calculator', handler);
@@ -78,7 +90,7 @@ export default function BottomNav() {
             );
           })}
 
-          {/* 카카오톡 1:1 상담 */}
+          {/* 카카오톡 1:1 상담 — 양 단계 공통 */}
           <a
             href="https://pf.kakao.com/_ZxneSb"
             target="_blank"

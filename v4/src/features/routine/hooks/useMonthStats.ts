@@ -14,6 +14,7 @@ export interface DayStats {
   waterScore: number;
   supplementScore: number;
   sleepScore: number;
+  injectionScore: number;
   totalScore: number;
   hasInjection: boolean;
 }
@@ -30,15 +31,31 @@ export interface MonthStats {
     water: number;
     supplement: number;
     sleep: number;
+    injection: number;
   };
 }
 
 // ── Scoring helpers ──────────────────────────────
 
-function scoreMeal(mealTypes: Set<string>): number {
-  // breakfast/lunch/dinner 중 몇 끼 기록했는지
-  const count = ['breakfast', 'lunch', 'dinner'].filter((t) => mealTypes.has(t)).length;
-  return Math.round((count / 3) * 100);
+/**
+ * 식사 점수 — meal 평가(is_healthy) 까지 반영.
+ * 3끼니(아침/점심/저녁) 각각:
+ *   - is_healthy=true  → 100점
+ *   - is_healthy=null  → 50점 (기록만)
+ *   - is_healthy=false → 30점 (먹긴 했지만 별로)
+ *   - row 없음          → 0점 (안 먹음)
+ * 세 끼니 평균.
+ */
+function scoreMeal(qualities: Map<string, boolean | null>): number {
+  const types = ['breakfast', 'lunch', 'dinner'] as const;
+  const sum = types.reduce((acc, t) => {
+    if (!qualities.has(t)) return acc + 0;
+    const q = qualities.get(t);
+    if (q === true) return acc + 100;
+    if (q === false) return acc + 30;
+    return acc + 50; // null = 기록만
+  }, 0);
+  return Math.round(sum / 3);
 }
 
 function scoreExercise(completedCount: number): number {
@@ -49,9 +66,10 @@ function scoreExercise(completedCount: number): number {
   return 100;
 }
 
+/** 수분 점수 — 1000ml(=1L) 만점. WaterCard 의 "잘 마셨어요" 기준과 일치. */
 function scoreWater(ml: number | undefined): number {
   if (!ml || ml <= 0) return 0;
-  return Math.min(Math.round((ml / 1500) * 100), 100);
+  return Math.min(Math.round((ml / 1000) * 100), 100);
 }
 
 function scoreSupplement(supplements: string[] | undefined | null): number {
@@ -60,14 +78,19 @@ function scoreSupplement(supplements: string[] | undefined | null): number {
 
 function scoreSleep(quality: string | undefined | null, sleepTime: string | undefined | null): number {
   if (!quality && !sleepTime) return 0;
-  let score = 50; // 기록 자체에 50점
+  let score = 50;
   if (quality === 'good') score += 50;
-  // quality === 'bad' → +0
   return score;
 }
 
-function totalScore(m: number, e: number, w: number, s: number, sl: number): number {
-  return Math.round(m * 0.25 + e * 0.20 + w * 0.20 + s * 0.20 + sl * 0.15);
+/** 성장주사 점수 — 매일 binary (true → 100, else → 0). */
+function scoreInjection(injection: boolean | null | undefined): number {
+  return injection === true ? 100 : 0;
+}
+
+// 가중치 합 = 100. 식사·주사를 가장 중요하게.
+function totalScore(m: number, e: number, w: number, s: number, sl: number, inj: number): number {
+  return Math.round(m * 0.20 + e * 0.15 + w * 0.15 + s * 0.15 + sl * 0.15 + inj * 0.20);
 }
 
 // ── Hook ─────────────────────────────────────────
@@ -96,16 +119,22 @@ export function useMonthStats(childId: string | null, year: number, month: numbe
       const ids = routines.map((r) => r.id);
 
       const [mealsRes, exRes] = await Promise.all([
-        supabase.from('meals').select('daily_routine_id, meal_type').in('daily_routine_id', ids),
+        supabase.from('meals').select('daily_routine_id, meal_type, is_healthy').in('daily_routine_id', ids),
         supabase.from('exercise_logs').select('daily_routine_id, completed').in('daily_routine_id', ids),
       ]);
       if (cancelled) return;
 
-      // Build maps: routineId → meal types, routineId → completed exercise count
-      const mealMap = new Map<string, Set<string>>();
+      // routineId → Map<meal_type, is_healthy(boolean|null)>
+      // 같은 meal_type 이 여러 row 있으면 가장 좋은 평가(true > null > false) 우선.
+      const mealMap = new Map<string, Map<string, boolean | null>>();
       for (const m of mealsRes.data ?? []) {
-        if (!mealMap.has(m.daily_routine_id)) mealMap.set(m.daily_routine_id, new Set());
-        mealMap.get(m.daily_routine_id)!.add(m.meal_type);
+        if (!mealMap.has(m.daily_routine_id)) mealMap.set(m.daily_routine_id, new Map());
+        const inner = mealMap.get(m.daily_routine_id)!;
+        const cur = inner.get(m.meal_type);
+        const next = m.is_healthy as boolean | null;
+        // priority: true > null > false
+        const rank = (v: boolean | null | undefined) => (v === true ? 2 : v === false ? 0 : 1);
+        if (cur === undefined || rank(next) > rank(cur)) inner.set(m.meal_type, next);
       }
 
       const exMap = new Map<string, number>();
@@ -113,18 +142,18 @@ export function useMonthStats(childId: string | null, year: number, month: numbe
         if (e.completed) exMap.set(e.daily_routine_id, (exMap.get(e.daily_routine_id) ?? 0) + 1);
       }
 
-      // Compute per-day stats
       const days: DayStats[] = routines.map((r: DailyRoutine) => {
-        const ms = scoreMeal(mealMap.get(r.id) ?? new Set());
+        const ms = scoreMeal(mealMap.get(r.id) ?? new Map());
         const es = scoreExercise(exMap.get(r.id) ?? 0);
         const ws = scoreWater(r.water_intake_ml);
         const ss = scoreSupplement(r.basic_supplements as string[]);
         const sls = scoreSleep(r.sleep_quality, r.sleep_time);
+        const ijs = scoreInjection(r.growth_injection);
         return {
           date: r.routine_date,
           mealScore: ms, exerciseScore: es, waterScore: ws,
-          supplementScore: ss, sleepScore: sls,
-          totalScore: totalScore(ms, es, ws, ss, sls),
+          supplementScore: ss, sleepScore: sls, injectionScore: ijs,
+          totalScore: totalScore(ms, es, ws, ss, sls, ijs),
           hasInjection: r.growth_injection === true,
         };
       });
@@ -143,6 +172,7 @@ export function useMonthStats(childId: string | null, year: number, month: numbe
         averages: {
           total: avg('totalScore'), meal: avg('mealScore'), exercise: avg('exerciseScore'),
           water: avg('waterScore'), supplement: avg('supplementScore'), sleep: avg('sleepScore'),
+          injection: avg('injectionScore'),
         },
       });
       setLoading(false);

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { PatientVisitRecord } from '@/features/records/services/patientRecordsService';
-import type { Child } from '@/shared/types';
+import type { Child, XrayReading } from '@/shared/types';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { heightAtSamePercentile } from '@/shared/data/growthStandard';
 import { LabDetailModal } from '@/features/records/components/LabDetailModal';
 import { panelTypeOf, type PanelType } from '@/features/hospital/components/LabHistoryPanel';
+import { getXrayImageSignedUrl } from '@/features/bone-age/services/xrayReadingService';
 
 interface Props {
   record: PatientVisitRecord;
@@ -31,10 +32,12 @@ const PANEL_LABELS: Record<PanelType, string> = {
   unknown: '기타 검사',
 };
 
+type TabKey = 'prescription' | 'lab' | 'xray' | 'memo';
+
 export function VisitTimelineCard({ record, index, totalVisits, child }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [labModal, setLabModal] = useState<{ open: boolean; panel?: PanelType }>({ open: false });
-  const { visit, measurement, prescriptions, labTests } = record;
+  const { visit, measurement, prescriptions, labTests, xrayReadings } = record;
 
   const visitNo = totalVisits - index;
 
@@ -60,11 +63,40 @@ export function VisitTimelineCard({ record, index, totalVisits, child }: Props) 
     return acc;
   }, new Map<PanelType, number>());
 
+  // X-ray: image_path 가 있는 reading 만 환자에게 노출
+  const xrayWithImage = useMemo(
+    () => xrayReadings.filter((r) => !!r.image_path),
+    [xrayReadings],
+  );
+
+  // 데이터가 있는 탭만 동적으로 구성
+  const tabs: { key: TabKey; label: string; emoji: string; count?: number }[] = [];
+  if (prescriptions.length > 0) tabs.push({ key: 'prescription', label: '처방', emoji: '💊', count: prescriptions.length });
+  if (labTests.length > 0) tabs.push({ key: 'lab', label: '검사', emoji: '🧪', count: labTests.length });
+  if (xrayWithImage.length > 0) tabs.push({ key: 'xray', label: 'X-ray', emoji: '🦴', count: xrayWithImage.length });
+  if (noteText) tabs.push({ key: 'memo', label: '메모', emoji: '📝' });
+
+  const [activeTab, setActiveTab] = useState<TabKey | null>(tabs[0]?.key ?? null);
+  // 펼칠 때마다 첫 번째 사용 가능한 탭으로 초기화
+  useEffect(() => {
+    if (expanded && tabs.length > 0 && (!activeTab || !tabs.some((t) => t.key === activeTab))) {
+      setActiveTab(tabs[0].key);
+    }
+  }, [expanded, tabs, activeTab]);
+
   return (
-    <div className="rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden">
+    <div
+      className={`rounded-2xl shadow-sm overflow-hidden border ${
+        hasBoneAge
+          ? 'bg-amber-50/40 border-amber-200'
+          : 'bg-white border-gray-100'
+      }`}
+    >
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full text-left px-4 py-3 active:bg-gray-50 transition-colors"
+        className={`w-full text-left px-4 py-3 transition-colors ${
+          hasBoneAge ? 'active:bg-amber-100/40' : 'active:bg-gray-50'
+        }`}
       >
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
@@ -116,72 +148,97 @@ export function VisitTimelineCard({ record, index, totalVisits, child }: Props) 
       </button>
 
       {expanded && (
-        <div className="border-t border-gray-100 px-4 py-3 space-y-3 bg-gray-50/50">
-          {/* 처방 */}
-          {prescriptions.length > 0 && (
-            <Section title="처방 약품" emoji="💊">
-              <div className="space-y-1.5">
-                {prescriptions.map((p) => (
-                  <div
-                    key={p.id}
-                    className="flex items-center justify-between bg-white rounded-lg px-3 py-2 text-sm border border-gray-100"
-                  >
-                    <span className="font-medium text-gray-800 truncate">
-                      {p.medication_name}
-                    </span>
-                    {p.dose && (
-                      <span className="text-xs text-gray-500 shrink-0 ml-2">
-                        {p.dose}
-                        {p.medication_unit ? ` ${p.medication_unit}` : ''}
-                      </span>
-                    )}
+        <div className="border-t border-gray-100 bg-gray-50/50">
+          {tabs.length === 0 ? (
+            <p className="text-xs text-gray-400 text-center py-4">추가 기록이 없습니다</p>
+          ) : (
+            <>
+              {/* 탭 바 — 가로 스크롤 가능 */}
+              <div className="flex gap-1 px-3 pt-3 pb-2 overflow-x-auto scrollbar-hide">
+                {tabs.map((t) => {
+                  const active = t.key === activeTab;
+                  return (
+                    <button
+                      key={t.key}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveTab(t.key);
+                      }}
+                      className={`shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap ${
+                        active
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'bg-white text-gray-500 border border-gray-200 active:bg-gray-100'
+                      }`}
+                    >
+                      <span className="mr-1">{t.emoji}</span>
+                      {t.label}
+                      {t.count != null && (
+                        <span className={`ml-1 ${active ? 'text-white/80' : 'text-gray-400'}`}>{t.count}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* 탭 내용 */}
+              <div className="px-4 pb-3">
+                {activeTab === 'prescription' && (
+                  <div className="space-y-1.5">
+                    {prescriptions.map((p) => (
+                      <div
+                        key={p.id}
+                        className="flex items-center justify-between bg-white rounded-lg px-3 py-2 text-sm border border-gray-100"
+                      >
+                        <span className="font-medium text-gray-800 truncate">{p.medication_name}</span>
+                        {p.dose && (
+                          <span className="text-xs text-gray-500 shrink-0 ml-2">
+                            {p.dose}
+                            {p.medication_unit ? ` ${p.medication_unit}` : ''}
+                          </span>
+                        )}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
+
+                {activeTab === 'lab' && (
+                  <div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {[...labsByPanel.entries()].map(([panel, count]) => (
+                        <button
+                          key={panel}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setLabModal({ open: true, panel });
+                          }}
+                          className="text-xs px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-100 active:bg-cyan-100 transition-colors flex items-center gap-1"
+                        >
+                          {PANEL_LABELS[panel]} <span className="font-semibold">{count}</span>
+                          <span className="text-[10px] text-cyan-500">›</span>
+                        </button>
+                      ))}
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLabModal({ open: true });
+                      }}
+                      className="mt-2 text-xs font-semibold text-cyan-700 active:text-cyan-900"
+                    >
+                      📋 검사 결과 자세히 보기
+                    </button>
+                  </div>
+                )}
+
+                {activeTab === 'xray' && <XrayTabContent readings={xrayWithImage} />}
+
+                {activeTab === 'memo' && noteText && (
+                  <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap bg-white rounded-lg p-3 border border-gray-100">
+                    {noteText}
+                  </p>
+                )}
               </div>
-            </Section>
-          )}
-
-          {/* 검사 — 칩을 버튼으로, 클릭 시 디테일 모달 */}
-          {labTests.length > 0 && (
-            <Section title="검사" emoji="🧪">
-              <div className="flex flex-wrap gap-1.5">
-                {[...labsByPanel.entries()].map(([panel, count]) => (
-                  <button
-                    key={panel}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setLabModal({ open: true, panel });
-                    }}
-                    className="text-xs px-2.5 py-1 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-100 active:bg-cyan-100 transition-colors flex items-center gap-1"
-                  >
-                    {PANEL_LABELS[panel]} <span className="font-semibold">{count}</span>
-                    <span className="text-[10px] text-cyan-500">›</span>
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setLabModal({ open: true });
-                }}
-                className="mt-2 text-xs font-semibold text-cyan-700 active:text-cyan-900"
-              >
-                📋 검사 결과 자세히 보기
-              </button>
-            </Section>
-          )}
-
-          {/* 메모 */}
-          {noteText && (
-            <Section title="진료 메모" emoji="📝">
-              <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap bg-white rounded-lg p-3 border border-gray-100">
-                {noteText}
-              </p>
-            </Section>
-          )}
-
-          {!prescriptions.length && !labTests.length && !noteText && (
-            <p className="text-xs text-gray-400 text-center py-2">추가 기록이 없습니다</p>
+            </>
           )}
         </div>
       )}
@@ -196,22 +253,83 @@ export function VisitTimelineCard({ record, index, totalVisits, child }: Props) 
   );
 }
 
-function Section({
-  title,
-  emoji,
-  children,
-}: {
-  title: string;
-  emoji: string;
-  children: React.ReactNode;
-}) {
+// ── X-ray 갤러리 (signed URL fetch + 라이트박스) ──
+
+function XrayTabContent({ readings }: { readings: XrayReading[] }) {
+  const [urls, setUrls] = useState<Record<string, string>>({});
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      readings.map(async (r) => {
+        try {
+          const url = await getXrayImageSignedUrl(r.image_path!);
+          return [r.id, url] as const;
+        } catch {
+          return [r.id, ''] as const;
+        }
+      }),
+    ).then((pairs) => {
+      if (cancelled) return;
+      const m: Record<string, string> = {};
+      for (const [id, url] of pairs) if (url) m[id] = url;
+      setUrls(m);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [readings]);
+
+  if (readings.length === 0) return null;
+
   return (
-    <div>
-      <h4 className="text-[11px] font-semibold text-gray-500 mb-1.5 flex items-center gap-1">
-        <span>{emoji}</span> {title}
-      </h4>
-      {children}
-    </div>
+    <>
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide -mx-1 px-1">
+        {readings.map((r) => {
+          const url = urls[r.id];
+          return (
+            <button
+              key={r.id}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (url) setLightbox(url);
+              }}
+              className="shrink-0 w-32 h-40 rounded-lg overflow-hidden bg-gray-100 border border-gray-200 active:opacity-80 transition-opacity"
+            >
+              {url ? (
+                <img src={url} alt="X-ray" className="w-full h-full object-cover" />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-400">로딩…</div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+      <p className="mt-2 text-[11px] text-gray-400">탭하면 크게 볼 수 있습니다.</p>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-4"
+          onClick={(e) => {
+            e.stopPropagation();
+            setLightbox(null);
+          }}
+        >
+          <img src={lightbox} alt="X-ray 확대" className="max-w-full max-h-full object-contain" />
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightbox(null);
+            }}
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 text-white text-xl flex items-center justify-center backdrop-blur-sm"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -64,6 +64,14 @@ interface Props {
    *  the in-chart toggle. If provided, the parent should persist the change
    *  back to the children record so all other views stay in sync. */
   onNationalityChange?: (next: Nationality) => void;
+  /** Patient-facing simplified mode: forces baOnly=true, hides the toggle
+   *  legend / nationality switch, makes the chart click-selectable, and
+   *  shows a compact line above the chart with the selected visit's
+   *  BA-based predicted adult height. */
+  simplified?: boolean;
+  /** Called when the user clicks a measurement point. Useful in simplified
+   *  mode where the parent doesn't already track a selected visit. */
+  onVisitSelect?: (visitId: string) => void;
 }
 
 function buildProjection(
@@ -108,8 +116,10 @@ function buildProjection(
 export function AdminPatientGrowthChart({
   child,
   measurements,
-  selectedVisitId = null,
+  selectedVisitId: controlledSelectedVisitId,
   onNationalityChange,
+  simplified = false,
+  onVisitSelect,
 }: Props) {
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
     boneAge: true,
@@ -122,6 +132,22 @@ export function AdminPatientGrowthChart({
   // too crowded to read the long-term trend.
   const [baOnly, setBaOnly] = useState(false);
   const [zoomed, setZoomed] = useState(false);
+  // Simplified (patient) mode keeps its own selection state so the parent
+  // doesn't have to wire up controlled selection. Default selection in
+  // simplified mode = the latest BA-measured visit, so the projection curve
+  // shows up immediately without an extra click.
+  const [internalSelectedVisitId, setInternalSelectedVisitId] = useState<string | null>(() => {
+    if (!simplified) return null;
+    const latestBa = [...measurements]
+      .filter((m) => m.bone_age != null && typeof m.height === 'number' && m.height > 0)
+      .sort(
+        (a, b) =>
+          new Date(b.measured_date).getTime() - new Date(a.measured_date).getTime(),
+      )[0];
+    return latestBa?.visit_id ?? null;
+  });
+  const selectedVisitId = controlledSelectedVisitId ?? internalSelectedVisitId;
+  const effectiveBaOnly = simplified ? true : baOnly;
   const nationality: Nationality = child.nationality ?? 'KR';
 
   const sortedMeasurements = useMemo(
@@ -351,7 +377,9 @@ export function AdminPatientGrowthChart({
       }
     }
 
-    if (visible.desired && typeof desired === 'number') {
+    // 희망 키(보라색 점선)는 어드민 전용 — 환자 simplified 모드에서는 BA 예측
+    // 곡선과 시각적으로 겹쳐서 혼동을 줘서 숨긴다.
+    if (!simplified && visible.desired && typeof desired === 'number') {
       refDatasets.push({
         label: 'desired',
         data: [
@@ -368,7 +396,7 @@ export function AdminPatientGrowthChart({
     }
 
     // Optionally trim to BA-measured visits only (checkbox below the chart).
-    const chartMeasurements = baOnly
+    const chartMeasurements = effectiveBaOnly
       ? sortedMeasurements.filter((m) => m.bone_age != null)
       : sortedMeasurements;
 
@@ -378,6 +406,7 @@ export function AdminPatientGrowthChart({
       // Custom props passed to the tooltip callback so we can show BA when present.
       _boneAge: m.bone_age ?? null,
       _date: m.measured_date,
+      _visitId: m.visit_id,
     }));
 
     const isSelected = chartMeasurements.map(
@@ -407,7 +436,7 @@ export function AdminPatientGrowthChart({
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, baOnly, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId, nationality]);
+  }, [child, sortedMeasurements, visible, effectiveBaOnly, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId, nationality, simplified]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
@@ -418,6 +447,17 @@ export function AdminPatientGrowthChart({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onProgress: undefined as any,
     },
+    onClick: (_evt, elements, chart) => {
+      const el = elements[0];
+      if (!el) return;
+      const ds = chart.data.datasets[el.datasetIndex];
+      if (ds.label !== 'patient') return;
+      const point = ds.data[el.index] as { _visitId?: string } | undefined;
+      const vid = point?._visitId;
+      if (!vid) return;
+      if (onVisitSelect) onVisitSelect(vid);
+      else setInternalSelectedVisitId((cur) => (cur === vid ? null : vid));
+    },
     plugins: {
       legend: { display: false },
       tooltip: {
@@ -426,18 +466,33 @@ export function AdminPatientGrowthChart({
           ctx.dataset.label === 'baProjection' ||
           ctx.dataset.label === 'caProjection',
         callbacks: {
+          title: (ctxs) => {
+            const patient = ctxs.find((c) => c.dataset.label === 'patient');
+            if (patient) {
+              const raw = patient.raw as { _date?: string } | undefined;
+              if (raw?._date) {
+                const dt = new Date(raw._date);
+                if (!Number.isNaN(dt.getTime())) {
+                  const wd = ['일', '월', '화', '수', '목', '금', '토'][dt.getDay()];
+                  return `${dt.getFullYear()}.${String(dt.getMonth() + 1).padStart(2, '0')}.${String(dt.getDate()).padStart(2, '0')} (${wd})`;
+                }
+              }
+            }
+            const x = ctxs[0]?.parsed?.x;
+            return x != null ? `만 ${Number(x).toFixed(1)}세` : '';
+          },
           label: (ctx) => {
             if (ctx.parsed.y == null) return '';
             const tag =
               ctx.dataset.label === 'baProjection'
-                ? 'BA 예측'
+                ? '예측키'
                 : ctx.dataset.label === 'caProjection'
                 ? 'CA 예측'
                 : '실측';
-            const base = `${tag} ${ctx.parsed.y}cm @ ${Number(ctx.parsed.x).toFixed(1)}세`;
+            const base = `${tag} ${ctx.parsed.y}cm @ 만 ${Number(ctx.parsed.x).toFixed(1)}세`;
             if (ctx.dataset.label === 'patient') {
               const raw = (ctx.raw as { _boneAge?: number | null } | undefined);
-              if (raw?._boneAge != null) return `${base} · BA ${raw._boneAge.toFixed(1)}`;
+              if (raw?._boneAge != null) return `${base} · 뼈나이 ${raw._boneAge.toFixed(1)}`;
             }
             return base;
           },
@@ -467,9 +522,31 @@ export function AdminPatientGrowthChart({
     },
   };
 
+  // Patient-mode banner: shows the BA-based predicted adult height for the
+  // currently selected (clicked) measurement. Empty until the user clicks a
+  // BA-measured point.
+  const simplifiedBanner = simplified && selectedMeas && selectedMeas.bone_age != null && baAdult != null
+    ? (
+      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-[12px] bg-indigo-50 border border-indigo-100 rounded-lg px-3 py-2 text-indigo-900">
+        <span className="font-semibold">{new Date(selectedMeas.measured_date).toLocaleDateString('ko-KR')}</span>
+        <span className="text-indigo-700">키 <span className="font-bold">{selectedMeas.height}</span>cm</span>
+        <span className="text-amber-700">뼈나이 <span className="font-bold">{selectedMeas.bone_age.toFixed(1)}</span>세</span>
+        <span>🎯 예측키 <span className="font-bold">{baAdult}</span>cm</span>
+      </div>
+    )
+    : simplified
+    ? (
+      <div className="text-center text-[11px] text-gray-400 py-1">
+        🦴 다이아몬드 포인트를 누르면 그 시점의 예측키가 표시됩니다
+      </div>
+    )
+    : null;
+
   const renderBody = () => (
     <div className="flex h-full flex-col gap-2">
-      {/* Top legend — value chips with toggles */}
+      {simplifiedBanner}
+      {/* Top legend — value chips with toggles (admin only) */}
+      {!simplified && (
       <div className="flex flex-wrap gap-1.5 text-[11px]">
         {toggles.map((t) => {
           const isProj = t.key === 'baProj' || t.key === 'caProj';
@@ -527,6 +604,7 @@ export function AdminPatientGrowthChart({
           <span className="font-medium">🦴 뼈나이 측정만</span>
         </label>
       </div>
+      )}
 
       {/* Chart fills remaining height */}
       <div className="relative min-h-0 flex-1">

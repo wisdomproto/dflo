@@ -138,13 +138,20 @@ scripts/
 ## App Navigation (login required, mounted under `/app`)
 모든 `/app/*` 라우트는 `ProtectedRoute` 로 보호됨. 환자는 차트번호 + 비밀번호 (기본 `1234`) 로 로그인.
 
-| Tab | Route | Page |
-|-----|-------|------|
-| 홈 | `/app` | HomePage (성장 요약 + 콘텐츠) |
-| 루틴 | `/app/routine` | RoutinePage (입력/통계 탭 + 마지막에 PhotoCaptureCard "내 사진") |
-| 진료기록 | `/app/records` | RecordsPage (병원 측정 데이터 read-only) |
-| 1:1상담 | (외부) | 카카오톡 https://pf.kakao.com/_ZxneSb |
-| (탭 없음) | `/app/info[/*]` | 성장가이드 / 레시피 / 케이스 (홈에서 진입) |
+**환자 단계별 BottomNav 분기** — `selectedChild.treatment_status` 기준
+- **`treatment` (치료 중)**: 진료기록(📋) / 생활 다이어리(📔) / 생활 통계(📊) / 1:1상담. `/app` 진입 시 `/app/records` 로 자동 redirect.
+- **`consultation` (상담만 한 환자)**: 홈(🏠) / 첫 상담 기록(📋) / 1:1상담. 마케팅 + 데이터 기반 공포 카드로 치료 시작 유도.
+
+| Route | Page | 노출 단계 |
+|-------|------|----------|
+| `/app` | HomePage (단계별 분기 — IntakeGrowthChartCard 또는 redirect) | consultation |
+| `/app/records` | RecordsPage (treatment→진료 회차 타임라인 / consultation→`ConsultationRecordView` 풀 14카드) | both |
+| `/app/routine` | RoutinePage (생활 다이어리, 입력 전용 — 통계 분리됨) | treatment |
+| `/app/stats` | StatsPage (월별 통계, 6 카테고리 + 일별/주별 토글) | treatment |
+| `/app/info[/*]` | 성장가이드 / 레시피 / 케이스 (탭 없음, 홈에서 진입) | consultation |
+| 1:1상담 | (외부) 카카오톡 https://pf.kakao.com/_ZxneSb | both |
+
+**`treatment_status` 의사 수동 토글** — AdminPatientDetailPage 헤더 좌측 `[상담][치료]` 버튼. 즉시 저장. `migration 014` 의 자동 백필 (visits 1건 이상 → treatment) 결과 244명 전원 `treatment` 로 시작.
 
 **헤더** (Layout.tsx): 로고(앱홈으로) + ← 화살표 + "홈페이지" pill 버튼(공식 사이트로 빠져나가는 동선) + 톱니바퀴(콘텐츠 관리 PIN) + 햄버거(로그아웃).
 
@@ -178,10 +185,40 @@ router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmar
 
 ## features/records/ — 환자용 진료기록 (NEW)
 환자가 병원에서 측정·진료받은 read-only 데이터를 모바일 친화적으로 보여주는 새 영역.
+`treatment_status` 에 따라 RecordsPage 가 두 가지 뷰로 분기.
 
-- `services/patientRecordsService.ts` — 한 child 의 visits + measurements + prescriptions(medication name 조인) + lab_tests + xray_readings 를 한 번에 fetch 하는 `fetchPatientRecords(childId)` 함수. is_intake 가상 visit 제외. 반환 구조 `PatientRecords { visits: PatientVisitRecord[], measurements, visitCount, boneAgeCount, prescriptionCount, labCount }`.
-- `components/PatientHeaderCard.tsx` — 그라데이션 헤더 + 진료/뼈나이/처방/검사 4-stat + 마지막 진료일.
-- `components/BoneAgeCompareCard.tsx` — 최신 BA 회차 기준 실제나이 vs 뼈나이 + 친근한 한 줄 해석 ("실제보다 약 0.3세 빠른 편입니다") + 이전 측정 펼침.
-- `components/VisitTimelineCard.tsx` — 회차 카드 (접힘 상태: 회차번호 / 날짜 + 만나이 / 키·체중·뼈나이·예측키 / 처방·검사·메모 배지). 펼치면 처방 약품 리스트 + 패널별 검사 칩(클릭 가능) + 메모 원문. PAH 가 DB에 비어 있어도 BA 회차에서 `heightAtSamePercentile(키, BA, 18, gender)` 로 fallback 계산.
-- `components/LabDetailModal.tsx` — Lab 칩/버튼 클릭 시 오픈. 어드민 `LabHistoryPanel` 의 export 된 `PanelContent`/`panelTypeOf`/`PanelType` 그대로 재사용. 회차에 panel 여러 개면 상단 탭으로 전환 (혈액 / IgG4 / MAST / NK / 유기산 / 모발 / 첨부 / 기타).
-- `pages/RecordsPage.tsx` — 위 컴포넌트들 조립, GrowthChart compact 모드로 키 추이 + 예측키 라인 표시.
+**공통**
+- `services/patientRecordsService.ts` — 한 child 의 visits + measurements + prescriptions(medication name 조인) + lab_tests + xray_readings 를 한 번에 fetch 하는 `fetchPatientRecords(childId)` 함수. is_intake 가상 visit 제외.
+
+**치료 환자 뷰** (`treatment_status='treatment'`) — RecordsPage 정상 흐름
+- `components/PatientHeaderCard.tsx` — 그라데이션 헤더 + 이름·생년월일·만나이 한 줄 + 차트번호 + 진료/뼈나이/처방/검사 4-stat + 최초/마지막 진료일.
+- `components/GrowthComparisonCard.tsx` — "📊 최종 예측키 변화 ±N cm" (default 접힘). 펼치면 어드민 `GrowthComparisonDiagram` 3 픽토그램 (초기 키 / 최초 예측 / 최종 예측). BA 측정 ≥2 일 때만.
+- `components/BoneAgeCompareCard.tsx` — "🦴 뼈나이 / 예측키" 3 그리드 (실제 나이 / 뼈나이 / 예측키) + 친근한 한 줄 해석 + 이전 측정 펼침 (회차별 예측키 포함).
+- `components/VisitTimelineCard.tsx` — 회차 카드. BA 회차는 amber 톤 강조. 펼치면 **처방/검사/X-ray/메모 4탭**. X-ray 탭은 image_path 있는 reading 만 노출 + signed URL 라이트박스. 검사 탭의 panel 칩 클릭 시 LabDetailModal.
+- `components/LabDetailModal.tsx` — 어드민 `LabHistoryPanel` 의 `PanelContent`/`panelTypeOf` 재사용. 한 회차에 panel 여러 개면 상단 탭.
+- 회차 필터 체크박스 (🦴 뼈나이 / 🧪 검사 / 📝 메모) — OR 필터, 진료기록 헤더에서 토글.
+- 성장 추이 그래프: `AdminPatientGrowthChart` simplified 모드 재사용 (BA 회차만 다이아 + 클릭 시 예측키 banner + 보라 점선 hide).
+
+**상담 환자 뷰** (`treatment_status='consultation'` 또는 visits=0) — `ConsultationRecordView`
+어드민의 `firstConsultContent.ko` 11 슬라이드 + 환자 데이터를 합쳐 모바일 14 카드 스택으로 풀 재구성. 가족·지인 공유 가능.
+
+1. 187 Cover (다크그린 hero, 원장명·웹사이트)
+2. 환자 인사 ("{이름} 님의 첫 상담 기록 · 자유롭게 공유")
+3. 채용현 원장 소개 (사진 + 인용구 + 2002/2010/2023/2025 타임라인 + 활동·출연 펼침)
+4. 병원 진료 소개 사진 x2
+5. 핵심 수치 hero (현재 키 / 18세 예측 / MPH + 공포 카피 "MPH 보다 -Ncm")
+6. 성장 추이 그래프 (intake history + 18세 LMS 예측)
+7. 설문 발췌 (성장 패턴/Tanner/원인 칩/학교/만성/관심도)
+8. MPH vs PAH 방법론 (firstConsultContent 그대로)
+9. MPH 가우시안 분포 (자체 모바일 SVG bell curve, ±1σ 68% / ±2σ / 외각 + tick labels)
+10. 뼈나이 분석 (이미지 + 설명)
+11. 뼈나이 아틀라스 (이미지 + 설명)
+12. X-ray 판독 모듈 안내 ("진료 시작 시 누적")
+13. 성장 그래프 모듈 안내 ("진료 시작 시 매 회차 업데이트")
+14. **원장 마무리 한마디** — amber 톤 손편지 카드, 환자 데이터 기반 동적 4문단 (백분위·MPH 갭·Tanner·원인 별 분기) + "잘 치료하면 충분히 좋아질 케이스" + 채용현 원장 서명
+15. 카톡 1:1 상담 CTA
+
+**기타 환자용 컴포넌트**
+- `features/home/components/IntakeGrowthChartCard.tsx` — 상담 단계 홈 첫 섹션. 공포 마케팅 카드.
+- `features/home/components/TreatmentDashboardCard.tsx` — 치료 단계 홈 (실제로는 redirect 되니 stub 역할). 마지막 진료 N일 + 진료기록·다이어리 quick entry.
+- `pages/RecordsPage.tsx` — 위 두 뷰 조립 + `treatment_status` 분기.

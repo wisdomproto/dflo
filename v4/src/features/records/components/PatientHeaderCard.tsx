@@ -5,6 +5,7 @@ import type { Child } from '@/shared/types';
 interface Props {
   child: Child;
   visitCount: number;
+  firstVisitDate: string | null;
   lastVisitDate: string | null;
   boneAgeCount: number;
   prescriptionCount: number;
@@ -18,9 +19,16 @@ function formatDateKo(d: string | null): string {
   return `${dt.getFullYear()}.${String(dt.getMonth() + 1).padStart(2, '0')}.${String(dt.getDate()).padStart(2, '0')}`;
 }
 
+function formatBirth(d: string): string {
+  const dt = new Date(d);
+  if (Number.isNaN(dt.getTime())) return d;
+  return `${dt.getFullYear()}.${String(dt.getMonth() + 1).padStart(2, '0')}.${String(dt.getDate()).padStart(2, '0')}`;
+}
+
 export function PatientHeaderCard({
   child,
   visitCount,
+  firstVisitDate,
   lastVisitDate,
   boneAgeCount,
   prescriptionCount,
@@ -42,11 +50,14 @@ export function PatientHeaderCard({
             <GenderIcon gender={child.gender} size="md" />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-lg font-bold text-white truncate">{child.name}</h2>
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <h2 className="text-lg font-bold text-white truncate">{child.name}</h2>
+              <span className="text-[11px] text-white/70">
+                {formatBirth(child.birth_date)} ({formatAge(age)})
+              </span>
+            </div>
             <p className="text-xs text-white/70">
               차트번호 <span className="font-mono font-semibold">{child.chart_number}</span>
-              {' · '}
-              {formatAge(age)}
             </p>
           </div>
         </div>
@@ -58,9 +69,14 @@ export function PatientHeaderCard({
           <Stat label="검사" value={labCount} />
         </div>
 
-        <p className="text-[11px] text-white/70 mt-3 relative">
-          마지막 진료: <span className="font-semibold">{formatDateKo(lastVisitDate)}</span>
-        </p>
+        <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-[11px] text-white/70 mt-3 relative">
+          <span>
+            최초 진료: <span className="font-semibold">{formatDateKo(firstVisitDate)}</span>
+          </span>
+          <span>
+            마지막 진료: <span className="font-semibold">{formatDateKo(lastVisitDate)}</span>
+          </span>
+        </div>
       </div>
     </div>
   );

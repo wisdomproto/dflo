@@ -33,7 +33,7 @@ export async function upsertMeal(meal: {
   meal_type: MealType;
   meal_time?: string;
   description?: string;
-  is_healthy?: boolean;
+  is_healthy?: boolean | null;
   portion_size?: string;
 }): Promise<Meal> {
   const { data, error } = await supabase

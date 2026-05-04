@@ -29,7 +29,7 @@ export async function fetchRoutine(
       return null;
     }
     logger.error('Failed to fetch routine:', error);
-    throw new Error('루틴 정보를 불러오는데 실패했습니다.');
+    throw new Error('다이어리를 불러오는데 실패했습니다.');
   }
 
   return data as DailyRoutine;
@@ -59,7 +59,7 @@ export async function fetchRoutinesByMonth(
 
   if (error) {
     logger.error('Failed to fetch routines by month:', error);
-    throw new Error('월별 루틴 정보를 불러오는데 실패했습니다.');
+    throw new Error('월별 다이어리를 불러오는데 실패했습니다.');
   }
 
   return data as DailyRoutine[];
@@ -94,7 +94,7 @@ export async function upsertRoutine(routine: {
 
   if (error) {
     logger.error('Failed to upsert routine:', error);
-    throw new Error('루틴 저장에 실패했습니다.');
+    throw new Error('다이어리 저장에 실패했습니다.');
   }
 
   return data as DailyRoutine;

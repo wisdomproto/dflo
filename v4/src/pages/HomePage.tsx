@@ -4,6 +4,7 @@
 // ================================================
 
 import { useEffect, useState, useRef } from 'react';
+import { Navigate } from 'react-router-dom';
 import Layout from '@/shared/components/Layout';
 import Modal from '@/shared/components/Modal';
 import ChildSelector from '@/shared/components/ChildSelector';
@@ -15,6 +16,8 @@ import { GrowthModalContent } from '@/features/routine/components/GrowthModalCon
 import { SectionCarousel } from '@/features/website/components/SectionCarousel';
 import { fetchSections } from '@/features/website/services/websiteSectionService';
 import type { WebsiteSection } from '@/features/website/types/websiteSection';
+import { IntakeGrowthChartCard } from '@/features/home/components/IntakeGrowthChartCard';
+import { TreatmentDashboardCard } from '@/features/home/components/TreatmentDashboardCard';
 import { useChildrenStore } from '@/stores/childrenStore';
 import { useAuthStore } from '@/stores/authStore';
 import { useUIStore } from '@/stores/uiStore';
@@ -59,9 +62,16 @@ export default function HomePage() {
     fetchSections('app-home.json', 'website.json').then(setSections);
   }, []);
 
+  // 치료 단계 환자가 /app 으로 진입하면 진료기록 페이지로 자동 이동.
+  // 모든 hooks 호출 후에 early return 해야 hook 순서가 일관됨.
+  if (isLoggedIn && selectedChild?.treatment_status === 'treatment') {
+    return <Navigate to="/app/records" replace />;
+  }
+
+  const visibleSections = sections.filter((s) => s.visible !== false);
   const websiteSections = (
     <div className="flex flex-col gap-3">
-      {sections.map((section, idx) => (
+      {visibleSections.map((section, idx) => (
         <div key={section.id || idx} className="rounded-2xl overflow-hidden shadow-md bg-white border-2 border-purple-300">
           <SectionCarousel slides={section.slides} showNav={section.showNav ?? true} />
         </div>
@@ -90,17 +100,32 @@ export default function HomePage() {
         ) : children.length === 0 ? (
           <EmptyState onAdd={openAddModal} />
         ) : selectedChild ? (
-          <>
-            <GrowthSummaryCard
-              child={selectedChild}
-              onEdit={() => openEditModal(selectedChild)}
-              onShowPrediction={(h) => setPredInfo({ height: h })}
-              onShowBmiInfo={() => setShowBmiInfo(true)}
-              onShowGrowth={() => setShowGrowthModal(true)}
-            />
-          </>
+          (() => {
+            const isTreatment = selectedChild.treatment_status === 'treatment';
+            return (
+              <>
+                {isTreatment ? (
+                  // 치료 단계 — 자기 데이터 중심 대시보드
+                  <>
+                    <TreatmentDashboardCard child={selectedChild} />
+                    <GrowthSummaryCard
+                      child={selectedChild}
+                      onEdit={() => openEditModal(selectedChild)}
+                      onShowPrediction={(h) => setPredInfo({ height: h })}
+                      onShowBmiInfo={() => setShowBmiInfo(true)}
+                      onShowGrowth={() => setShowGrowthModal(true)}
+                    />
+                  </>
+                ) : (
+                  // 상담 단계 — 공포 마케팅 + 콘텐츠 (매일 측정 카드 없음)
+                  <IntakeGrowthChartCard child={selectedChild} />
+                )}
+              </>
+            );
+          })()
         ) : null)}
 
+        {/* 콘텐츠 섹션 — 치료 환자에겐 마지막에 (보조 정보), 상담 환자에겐 메인 마케팅 */}
         {websiteSections}
       </div>
 

@@ -3,9 +3,8 @@
 // 환자 앱(/app) 홈 화면용 섹션 관리자.
 // website(병원 홈)와 같은 편집 UI(AdminWebsitePage)를 쓰지만
 // R2 저장 키는 'app-home.json'으로 분리되어 있다.
-// 처음 진입 시 'app-home.json'이 없으면 'website.json' 내용을
-// 보여주고, 저장하면 그 시점부터 'app-home.json'으로 분리 저장된다.
-// 이미지 자체는 두 페이지가 같은 R2 URL을 공유한다.
+// 섹션별 노출 여부는 AdminEditorPanel 의 섹션 옵션 영역 (👁️ 노출 중/🙈 숨김)
+// 에서 직접 토글한다.
 // ================================================
 
 import AdminWebsitePage from '@/features/website/pages/AdminWebsitePage';

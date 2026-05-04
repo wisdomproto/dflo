@@ -142,6 +142,40 @@ export default function AdminPatientDetailPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {/* 상담 / 치료 단계 토글 — 의사 수동 분류 */}
+          <div className="inline-flex h-8 overflow-hidden rounded border border-slate-300">
+            {(['consultation', 'treatment'] as const).map((status) => {
+              const cur = child.treatment_status ?? 'consultation';
+              const active = cur === status;
+              const label = status === 'consultation' ? '상담' : '치료';
+              return (
+                <button
+                  key={status}
+                  type="button"
+                  onClick={async () => {
+                    if (active) return;
+                    try {
+                      const updated = await updateChildField(child.id, { treatment_status: status });
+                      setChild(updated);
+                    } catch (e) {
+                      const msg = e instanceof Error ? e.message : 'Unknown';
+                      alert('단계 변경 실패: ' + msg);
+                    }
+                  }}
+                  className={`px-3 text-xs font-semibold transition ${
+                    active
+                      ? status === 'treatment'
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-amber-500 text-white'
+                      : 'bg-white text-slate-600 hover:bg-slate-50'
+                  }`}
+                  title={status === 'treatment' ? '실제 진료 중' : '상담만 한 환자 (치료 시작 유도 대상)'}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
           <button
             type="button"
             onClick={() => setConsultExpanded(true)}

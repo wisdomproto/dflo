@@ -46,6 +46,11 @@ export interface Child {
   nationality?: 'KR' | 'CN';
   intake_survey?: IntakeSurvey | null;
   is_patient?: boolean;
+  /** 의사가 수동으로 토글하는 환자 단계.
+   *  - 'consultation' (기본) — 상담만 한 환자, 치료 시작 유도 대상
+   *  - 'treatment'           — 실제 진료 중인 환자
+   */
+  treatment_status?: 'consultation' | 'treatment';
   created_at: string;
   updated_at: string;
   is_active: boolean;
@@ -224,6 +229,8 @@ export interface DailyRoutine {
   created_at: string;
   updated_at: string;
 }
+
+export type TreatmentStatus = 'consultation' | 'treatment';
 
 export interface Meal {
   id: string;

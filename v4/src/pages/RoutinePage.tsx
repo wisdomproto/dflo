@@ -1,7 +1,8 @@
 // ================================================
 // RoutinePage - 187 성장케어 v4
-// 일일 루틴 트래커 (입력 + 월별 통계)
+// 생활 다이어리 (일일 입력 전용 — 통계는 /app/stats 에서 별도 페이지)
 // 성장 기록(차트/예측/측정기록) 통합
+// 노출 라벨: "생활 다이어리" (코드/라우트는 routine 유지)
 // ================================================
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -16,7 +17,6 @@ import { useUIStore } from '@/stores/uiStore';
 import { MealCard } from '@/features/meal/components/MealCard';
 import { MealAnalysisSection } from '@/features/meal/components/MealAnalysisSection';
 import { ExerciseCard } from '@/features/exercise/components/ExerciseCard';
-import { MonthStatsView } from '@/features/routine/components/MonthStatsView';
 import { GrowthModalContent } from '@/features/routine/components/GrowthModalContent';
 import { HeightWeightCard } from '@/features/routine/components/HeightWeightCard';
 import { SleepCard } from '@/features/routine/components/SleepCard';
@@ -56,7 +56,6 @@ export default function RoutinePage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const dateParam = searchParams.get('date');
-  const [tab, setTab] = useState<'input' | 'calendar'>('input');
   const [date, setDate] = useState(() => {
     if (dateParam) {
       const d = new Date(dateParam + 'T00:00:00');
@@ -64,9 +63,6 @@ export default function RoutinePage() {
     }
     return new Date();
   });
-  const today0 = new Date();
-  const [calYear, setCalYear] = useState(today0.getFullYear());
-  const [calMonth, setCalMonth] = useState(today0.getMonth() + 1);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -89,7 +85,6 @@ export default function RoutinePage() {
   const [waterIntake, setWaterIntake] = useState(0);
   const [supplements, setSupplements] = useState<string[]>([]);
   const [growthInjection, setGrowthInjection] = useState(false);
-  const [injectionTime, setInjectionTime] = useState('');
   const [mood, setMood] = useState<Mood | ''>('');
   const [dailyNotes, setDailyNotes] = useState('');
 
@@ -112,7 +107,7 @@ export default function RoutinePage() {
   const resetForm = useCallback(() => {
     setDailyHeight(''); setDailyWeight('');
     setSleepTime(''); setWakeTime(''); setSleepQuality(''); setWaterIntake(0);
-    setSupplements([]); setGrowthInjection(false); setInjectionTime('');
+    setSupplements([]); setGrowthInjection(false);
     setMood(''); setDailyNotes('');
     setRoutineId(null); setMealList([]); setMealPhotos([]); setMealAnalyses([]); setExerciseLogs([]);
   }, []);
@@ -124,7 +119,7 @@ export default function RoutinePage() {
     setSleepTime(r.sleep_time ?? ''); setWakeTime(r.wake_time ?? '');
     setSleepQuality(r.sleep_quality ?? ''); setWaterIntake(r.water_intake_ml ?? 0);
     setSupplements(r.basic_supplements ?? []); setGrowthInjection(r.growth_injection);
-    setInjectionTime(r.injection_time ?? ''); setMood(r.mood ?? '');
+    setMood(r.mood ?? '');
     setDailyNotes(r.daily_notes ?? '');
   }, []);
 
@@ -151,7 +146,7 @@ export default function RoutinePage() {
           }
         }
       })
-      .catch(() => { if (!cancelled) addToast('error', '루틴 정보를 불러오지 못했습니다.'); })
+      .catch(() => { if (!cancelled) addToast('error', '다이어리를 불러오지 못했습니다.'); })
       .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [selectedChildId, date, resetForm, populateForm, addToast]);
@@ -185,11 +180,10 @@ export default function RoutinePage() {
         sleep_quality: sleepQuality || undefined, water_intake_ml: waterIntake || undefined,
         basic_supplements: supplements.length > 0 ? supplements : undefined,
         growth_injection: growthInjection,
-        injection_time: growthInjection && injectionTime ? injectionTime : undefined,
         mood: mood || undefined, daily_notes: dailyNotes || undefined,
       });
       setRoutineId(saved.id);
-      addToast('success', '루틴이 저장되었습니다.');
+      addToast('success', '다이어리가 저장되었습니다.');
     } catch { addToast('error', '저장에 실패했습니다.'); }
     finally { setSaving(false); }
   };
@@ -212,7 +206,6 @@ export default function RoutinePage() {
 
   const isToday = toDateString(date) === toDateString(new Date());
   const shiftDate = (d: number) => { if (d > 0 && isToday) return; setDate((p) => { const n = new Date(p); n.setDate(n.getDate() + d); if (n > new Date()) return p; return n; }); };
-  const shiftMonth = (d: number) => { let m = calMonth + d, y = calYear; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } setCalMonth(m); setCalYear(y); };
 
   // 성장 데이터 계산
   const latestMeas = measurements[0] ?? null;
@@ -258,97 +251,68 @@ export default function RoutinePage() {
   const measPred = measAge && h && child ? predictAdultHeightLMS(h, measAge.decimal, child.gender) : null;
 
   return (
-    <Layout title="데일리 루틴 기록">
+    <Layout title="생활 다이어리">
       <div className="flex items-center justify-between px-4 pt-2">
         <ChildSelector />
       </div>
 
-      {/* 탭 바 */}
-      <div className="flex mx-4 mt-2 p-1 bg-white/60 backdrop-blur-sm rounded-xl gap-1 relative">
-        <div onClick={() => { if (tab !== 'input') setTab('input'); }}
-          className={`w-1/2 flex-shrink-0 flex items-center justify-center gap-0 rounded-lg px-1 py-1 transition-all cursor-pointer ${
-            tab === 'input' ? 'bg-white shadow-sm' : 'opacity-60'
-          }`}>
-          <span className={`text-xs font-semibold pl-0.5 pr-0.5 whitespace-nowrap ${tab === 'input' ? 'text-primary' : 'text-gray-400'}`}>📝 입력</span>
-          <button onClick={(e) => { e.stopPropagation(); if (tab !== 'input') setTab('input'); shiftDate(-1); }} className="w-6 h-6 flex-shrink-0 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="left" /></button>
-          <button onClick={(e) => { e.stopPropagation(); if (tab !== 'input') setTab('input'); dateRef.current?.showPicker?.(); }} className={`text-center text-sm font-bold whitespace-nowrap active:opacity-70 transition-colors ${tab === 'input' ? 'text-primary' : 'text-gray-500'}`}>
-            {formatDate(date, 'month')}
-          </button>
-          <button onClick={(e) => { e.stopPropagation(); if (tab !== 'input') setTab('input'); shiftDate(1); }} disabled={isToday} className={`w-6 h-6 flex items-center justify-center rounded-full transition-colors ${isToday ? 'text-gray-200' : 'text-gray-400 active:bg-gray-100'}`}><Chevron dir="right" /></button>
-          {toDateString(date) !== toDateString(new Date()) && (
-            <button onClick={(e) => { e.stopPropagation(); setDate(new Date()); if (tab !== 'input') setTab('input'); }} className="px-1.5 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold active:bg-primary/20">
-              오늘
-            </button>
-          )}
-          <input ref={dateRef} type="date" value={toDateString(date)} max={toDateString(new Date())}
-            onChange={(e) => { if (e.target.value) { setDate(new Date(e.target.value + 'T00:00:00')); if (tab !== 'input') setTab('input'); } }}
-            className="absolute opacity-0 w-0 h-0 pointer-events-none" />
-        </div>
-        <button onClick={() => setTab(tab === 'calendar' ? 'input' : 'calendar')}
-          className={`w-1/2 flex-shrink-0 py-2.5 text-sm font-semibold rounded-lg transition-all ${
-            tab === 'calendar' ? 'bg-white text-primary shadow-sm' : 'text-gray-400 active:text-gray-600'
-          }`}>
-          📊 통계
+      {/* 날짜 네비 */}
+      <div className="flex items-center justify-center gap-1 mx-4 mt-3 px-2 py-1.5 bg-white/60 backdrop-blur-sm rounded-xl relative">
+        <button onClick={() => shiftDate(-1)} className="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="left" /></button>
+        <button onClick={() => dateRef.current?.showPicker?.()} className="text-center text-sm font-bold whitespace-nowrap active:opacity-70 text-primary px-1">
+          {formatDate(date, 'month')}
         </button>
+        <button onClick={() => shiftDate(1)} disabled={isToday} className={`w-7 h-7 flex items-center justify-center rounded-full transition-colors ${isToday ? 'text-gray-200' : 'text-gray-400 active:bg-gray-100'}`}><Chevron dir="right" /></button>
+        {!isToday && (
+          <button onClick={() => setDate(new Date())} className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-semibold active:bg-primary/20 ml-1">
+            오늘
+          </button>
+        )}
+        <input ref={dateRef} type="date" value={toDateString(date)} max={toDateString(new Date())}
+          onChange={(e) => { if (e.target.value) setDate(new Date(e.target.value + 'T00:00:00')); }}
+          className="absolute opacity-0 w-0 h-0 pointer-events-none" />
       </div>
-
-      {tab === 'calendar' && (
-        <div className="flex items-center justify-center gap-2 mx-4 mt-1">
-          <button onClick={() => shiftMonth(-1)} className="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="left" /></button>
-          <span className="text-sm font-bold text-gray-700">{calYear}년 {calMonth}월</span>
-          <button onClick={() => shiftMonth(1)} className="w-7 h-7 flex items-center justify-center rounded-full text-gray-400 active:bg-gray-100 transition-colors"><Chevron dir="right" /></button>
-        </div>
-      )}
 
       <div className="flex flex-col gap-4 px-4 py-4">
         {!selectedChildId ? (
           <Card className="py-8 text-center"><p className="text-sm text-gray-400">자녀를 먼저 선택해주세요</p></Card>
-        ) : tab === 'input' ? (
-          loading ? <LoadingSpinner message="불러오는 중..." /> : (
-            <>
-              <HeightWeightCard
-                dailyHeight={dailyHeight} dailyWeight={dailyWeight}
-                onDailyHeightChange={setDailyHeight} onDailyWeightChange={setDailyWeight}
-                child={child ?? null} measAge={measAge} measPct={measPct} measPred={measPred}
-                latestBoneAge={latestBoneAge} measurementCount={measurements.length}
-                onShowGrowthModal={() => setShowGrowthModal(true)}
-              />
+        ) : loading ? <LoadingSpinner message="불러오는 중..." /> : (
+          <>
+            <HeightWeightCard
+              dailyHeight={dailyHeight} dailyWeight={dailyWeight}
+              onDailyHeightChange={setDailyHeight} onDailyWeightChange={setDailyWeight}
+              child={child ?? null} measAge={measAge} measPct={measPct} measPred={measPred}
+              latestBoneAge={latestBoneAge} measurementCount={measurements.length}
+              onShowGrowthModal={() => setShowGrowthModal(true)}
+            />
 
-              {selectedChildId && (
-                <>
-                  <MealCard routineId={routineId} childId={selectedChildId} meals={mealList} photos={mealPhotos} onDataChange={refreshMealData} onAnalysisChange={refreshAnalysisData} ensureRoutineId={ensureRoutineId} />
-                  <MealAnalysisSection analyses={mealAnalyses} meals={mealList} photos={mealPhotos} childId={selectedChildId} onAnalysisChange={refreshAnalysisData} />
-                </>
-              )}
-              <ExerciseCard routineId={routineId} exerciseLogs={exerciseLogs} onDataChange={refreshExerciseData} ensureRoutineId={ensureRoutineId} />
+            {selectedChildId && (
+              <>
+                <MealCard routineId={routineId} childId={selectedChildId} meals={mealList} photos={mealPhotos} onDataChange={refreshMealData} onAnalysisChange={refreshAnalysisData} ensureRoutineId={ensureRoutineId} />
+                <MealAnalysisSection analyses={mealAnalyses} meals={mealList} photos={mealPhotos} childId={selectedChildId} onAnalysisChange={refreshAnalysisData} />
+              </>
+            )}
+            <ExerciseCard routineId={routineId} exerciseLogs={exerciseLogs} onDataChange={refreshExerciseData} ensureRoutineId={ensureRoutineId} />
 
-              <SleepCard sleepTime={sleepTime} wakeTime={wakeTime} sleepQuality={sleepQuality}
-                onSleepTimeChange={setSleepTime} onWakeTimeChange={setWakeTime} onSleepQualityChange={setSleepQuality} />
+            <SleepCard sleepTime={sleepTime} wakeTime={wakeTime} sleepQuality={sleepQuality}
+              onSleepTimeChange={setSleepTime} onWakeTimeChange={setWakeTime} onSleepQualityChange={setSleepQuality} />
 
-              <WaterCard waterIntake={waterIntake} onWaterIntakeChange={setWaterIntake} />
+            <WaterCard waterIntake={waterIntake} onWaterIntakeChange={setWaterIntake} />
 
-              <SupplementCard supplements={supplements} onSupplementsChange={setSupplements} />
+            <SupplementCard supplements={supplements} onSupplementsChange={setSupplements} />
 
-              {child?.is_patient && (
-                <InjectionCard growthInjection={growthInjection} injectionTime={injectionTime}
-                  onGrowthInjectionChange={setGrowthInjection} onInjectionTimeChange={setInjectionTime} />
-              )}
+            <InjectionCard growthInjection={growthInjection} onGrowthInjectionChange={setGrowthInjection} />
 
-              <MemoCard mood={mood} dailyNotes={dailyNotes} onMoodChange={setMood} onDailyNotesChange={setDailyNotes} />
+            <MemoCard mood={mood} dailyNotes={dailyNotes} onMoodChange={setMood} onDailyNotesChange={setDailyNotes} />
 
-              <PhotoCaptureCard />
+            <PhotoCaptureCard />
 
-              <button onClick={handleSave} disabled={saving}
-                className="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary py-3.5 text-sm font-bold text-white
-                           active:scale-[0.98] transition-transform disabled:opacity-50 shadow-lg shadow-primary/25">
-                {saving ? '저장 중...' : '저장하기'}
-              </button>
-            </>
-          )
-        ) : (
-          <MonthStatsView childId={selectedChildId} year={calYear} month={calMonth}
-            selectedDate={date}
-            onSelectDate={(d: Date) => { setDate(d); setTab('input'); }} />
+            <button onClick={handleSave} disabled={saving}
+              className="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary py-3.5 text-sm font-bold text-white
+                         active:scale-[0.98] transition-transform disabled:opacity-50 shadow-lg shadow-primary/25">
+              {saving ? '저장 중...' : '저장하기'}
+            </button>
+          </>
         )}
       </div>
 

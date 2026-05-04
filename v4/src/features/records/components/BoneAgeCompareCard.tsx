@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
+import { heightAtSamePercentile } from '@/shared/data/growthStandard';
 import type { Child, HospitalMeasurement } from '@/shared/types';
+
+function predictedAdultFor(m: HospitalMeasurement, gender: 'male' | 'female'): number | null {
+  if (m.pah && m.pah > 0) return m.pah;
+  if (m.bone_age == null || !m.height) return null;
+  const v = heightAtSamePercentile(m.height, m.bone_age, 18, gender);
+  return v > 0 ? Math.round(v * 10) / 10 : null;
+}
 
 interface Props {
   child: Child;
@@ -28,6 +36,7 @@ export function BoneAgeCompareCard({ child, measurements }: Props) {
   const boneAge = latest.bone_age!;
   const diff = boneAge - realAge;
   const absDiff = Math.abs(diff);
+  const latestPredicted = predictedAdultFor(latest, child.gender);
 
   let interpretation: { label: string; color: string; emoji: string };
   if (absDiff < 0.5) {
@@ -51,16 +60,21 @@ export function BoneAgeCompareCard({ child, measurements }: Props) {
       <div className="px-4 pt-3 pb-2">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-bold text-gray-800 flex items-center gap-1.5">
-            <span>🦴</span> 뼈나이
+            <span>🦴</span> 뼈나이 / 예측키
           </h3>
           <span className="text-[10px] text-gray-400">{formatDateShort(latest.measured_date)} 측정</span>
         </div>
       </div>
 
       <div className="px-4 pb-3">
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-3 gap-2">
           <Cell label="실제 나이" value={`${realAge.toFixed(1)}세`} accent="text-gray-600" />
           <Cell label="뼈나이" value={`${boneAge.toFixed(1)}세`} accent="text-amber-600" />
+          <Cell
+            label="예측키"
+            value={latestPredicted != null ? `${latestPredicted}cm` : '-'}
+            accent="text-indigo-600"
+          />
         </div>
         <div className={`mt-2 rounded-lg px-3 py-2 text-sm font-medium ${interpretation.color}`}>
           {interpretation.emoji} {interpretation.label}
@@ -80,21 +94,31 @@ export function BoneAgeCompareCard({ child, measurements }: Props) {
             {baMeasurements.slice(1).map((m) => {
               const ra = calculateAgeAtDate(child.birth_date, new Date(m.measured_date)).decimal;
               const d = m.bone_age! - ra;
+              const pred = predictedAdultFor(m, child.gender);
               return (
                 <div
                   key={m.id}
-                  className="flex items-center justify-between text-xs bg-gray-50 rounded-lg px-3 py-1.5"
+                  className="flex flex-col gap-0.5 text-xs bg-gray-50 rounded-lg px-3 py-1.5"
                 >
-                  <span className="text-gray-500">{formatDateShort(m.measured_date)}</span>
-                  <span className="text-gray-700">
-                    실제 <span className="font-semibold">{ra.toFixed(1)}</span>
-                    {' / '}
-                    뼈나이 <span className="font-semibold text-amber-600">{m.bone_age!.toFixed(1)}</span>
-                    {' '}
-                    <span className={d > 0 ? 'text-amber-500' : d < 0 ? 'text-blue-500' : 'text-gray-400'}>
-                      ({d > 0 ? '+' : ''}{d.toFixed(1)})
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-500">{formatDateShort(m.measured_date)}</span>
+                    <span className="text-gray-700">
+                      실제 <span className="font-semibold">{ra.toFixed(1)}</span>
+                      {' / '}
+                      뼈나이 <span className="font-semibold text-amber-600">{m.bone_age!.toFixed(1)}</span>
+                      {' '}
+                      <span className={d > 0 ? 'text-amber-500' : d < 0 ? 'text-blue-500' : 'text-gray-400'}>
+                        ({d > 0 ? '+' : ''}{d.toFixed(1)})
+                      </span>
                     </span>
-                  </span>
+                  </div>
+                  {pred != null && (
+                    <div className="flex items-center justify-end">
+                      <span className="text-indigo-600">
+                        🎯 예측키 <span className="font-semibold">{pred}</span>cm
+                      </span>
+                    </div>
+                  )}
                 </div>
               );
             })}

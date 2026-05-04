@@ -32,6 +32,7 @@ const AdminLoginPage = lazy(() =>
 );
 const RoutinePage = lazy(() => import('@/pages/RoutinePage'));
 const RecordsPage = lazy(() => import('@/pages/RecordsPage'));
+const StatsPage = lazy(() => import('@/pages/StatsPage'));
 const InfoPage = lazy(() => import('@/pages/InfoPage'));
 const GuidesListPage = lazy(() => import('@/pages/GuidesListPage'));
 const RecipesListPage = lazy(() => import('@/pages/RecipesListPage'));
@@ -235,6 +236,14 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: '/app/stats',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <StatsPage />
+          </Suspense>
+        ),
+      },
     ],
   },
 
@@ -242,7 +251,6 @@ export const router = createBrowserRouter([
   { path: '/routine', element: <Navigate to="/app/routine" replace /> },
   { path: '/body-analysis', element: <Navigate to="/app/routine" replace /> },
   { path: '/app/body-analysis', element: <Navigate to="/app/routine" replace /> },
-  { path: '/app/stats', element: <Navigate to="/app/routine" replace /> },
   { path: '/info', element: <Navigate to="/app/info" replace /> },
   { path: '/info/guides', element: <Navigate to="/app/info/guides" replace /> },
   { path: '/info/recipes', element: <Navigate to="/app/info/recipes" replace /> },

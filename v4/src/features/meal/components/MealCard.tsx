@@ -56,6 +56,7 @@ export function MealCard({ routineId, childId, meals, photos, onDataChange, onAn
   const [activeMealType, setActiveMealType] = useState<MealType | null>(null);
   const [previewPhoto, setPreviewPhoto] = useState<MealPhoto | null>(null);
   const [showPickerFor, setShowPickerFor] = useState<MealType | null>(null);
+  const [savingQuality, setSavingQuality] = useState<MealType | null>(null);
 
   // AI 분석 상태
   const [analyzing, setAnalyzing] = useState<MealType | null>(null);
@@ -69,7 +70,7 @@ export function MealCard({ routineId, childId, meals, photos, onDataChange, onAn
 
   const handlePhotoTrigger = useCallback(async (mealType: MealType) => {
     const rid = routineId ?? await ensureRoutineId();
-    if (!rid) { addToast('warning', '루틴 생성에 실패했습니다.'); return; }
+    if (!rid) { addToast('warning', '다이어리 생성에 실패했습니다.'); return; }
     setShowPickerFor(mealType);
   }, [routineId, addToast, ensureRoutineId]);
 
@@ -118,7 +119,7 @@ export function MealCard({ routineId, childId, meals, photos, onDataChange, onAn
     e.target.value = '';
 
     const rid = routineId ?? await ensureRoutineId();
-    if (!rid) { addToast('error', '루틴 생성에 실패했습니다.'); return; }
+    if (!rid) { addToast('error', '다이어리 생성에 실패했습니다.'); return; }
 
     const currentMealType = activeMealType;
     setUploading(currentMealType);
@@ -156,6 +157,34 @@ export function MealCard({ routineId, childId, meals, photos, onDataChange, onAn
     setActiveMealType(null);
   }, [activeMealType, routineId, childId, meals, onDataChange, addToast, ensureRoutineId, runAnalysis]);
 
+  // 식사 평가 토글 (good ↔ null, bad ↔ null) — 같은 값을 다시 누르면 해제
+  const handleQuality = useCallback(
+    async (mealType: MealType, value: boolean) => {
+      const rid = routineId ?? (await ensureRoutineId());
+      if (!rid) {
+        addToast('error', '다이어리 생성에 실패했습니다.');
+        return;
+      }
+      const existing = meals.find((m) => m.meal_type === mealType);
+      const next = existing?.is_healthy === value ? null : value;
+      setSavingQuality(mealType);
+      try {
+        await upsertMeal({
+          id: existing?.id,
+          daily_routine_id: rid,
+          meal_type: mealType,
+          is_healthy: next,
+        });
+        onDataChange();
+      } catch {
+        addToast('error', '평가 저장에 실패했습니다.');
+      } finally {
+        setSavingQuality(null);
+      }
+    },
+    [routineId, ensureRoutineId, meals, onDataChange, addToast],
+  );
+
   const handleDeletePhoto = useCallback(async (photo: MealPhoto) => {
     try {
       await deleteMealPhoto(photo);
@@ -185,8 +214,10 @@ export function MealCard({ routineId, childId, meals, photos, onDataChange, onAn
               slot={slot}
               uploading={uploading === slot.type}
               analyzing={analyzing === slot.type}
+              savingQuality={savingQuality === slot.type}
               onTriggerPhoto={() => handlePhotoTrigger(slot.type)}
               onPreview={setPreviewPhoto}
+              onSetQuality={(v) => handleQuality(slot.type, v)}
             />
           ))}
         </div>
@@ -244,17 +275,20 @@ export function MealCard({ routineId, childId, meals, photos, onDataChange, onAn
 // ── 개별 식사 슬롯 ──
 
 function MealSlotView({
-  slot, uploading, analyzing, onTriggerPhoto, onPreview,
+  slot, uploading, analyzing, savingQuality, onTriggerPhoto, onPreview, onSetQuality,
 }: {
   slot: MealSlot;
   uploading: boolean;
   analyzing: boolean;
+  savingQuality: boolean;
   onTriggerPhoto: () => void;
   onPreview: (photo: MealPhoto) => void;
+  onSetQuality: (value: boolean) => void;
 }) {
   const hasPhotos = slot.photos.length > 0;
   const thumb = slot.photos[0];
   const busy = uploading || analyzing;
+  const quality = slot.meal?.is_healthy;
 
   return (
     <div className="flex flex-col items-center gap-1.5">
@@ -289,6 +323,35 @@ function MealSlotView({
           </div>
         )}
       </button>
+
+      {/* good / bad 평가 토글 — 한 번 더 누르면 해제 (안 먹음) */}
+      <div className="flex gap-1 w-full">
+        <button
+          type="button"
+          onClick={() => onSetQuality(true)}
+          disabled={savingQuality}
+          className={`flex-1 py-1 rounded-md text-[11px] font-semibold transition-colors disabled:opacity-50 ${
+            quality === true
+              ? 'bg-green-500 text-white shadow-sm'
+              : 'bg-gray-100 text-gray-500 active:bg-gray-200'
+          }`}
+        >
+          👍
+        </button>
+        <button
+          type="button"
+          onClick={() => onSetQuality(false)}
+          disabled={savingQuality}
+          className={`flex-1 py-1 rounded-md text-[11px] font-semibold transition-colors disabled:opacity-50 ${
+            quality === false
+              ? 'bg-red-500 text-white shadow-sm'
+              : 'bg-gray-100 text-gray-500 active:bg-gray-200'
+          }`}
+        >
+          👎
+        </button>
+      </div>
+
       {hasPhotos && !busy && (
         <button onClick={onTriggerPhoto} className="text-[10px] text-primary font-medium active:text-primary/70">+ 추가</button>
       )}

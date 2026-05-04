@@ -59,6 +59,8 @@ async function fetchSectionsFromKey(key: SectionStorageKey): Promise<WebsiteSect
       title: row.title || '',
       slides: migrateSlides(row.slides),
       showNav: row.showNav ?? true,
+      fullBleed: row.fullBleed ?? false,
+      visible: row.visible !== false,
     }));
   } catch (e) {
     console.error(`[sections:${key}] fetch failed:`, e);
@@ -98,6 +100,8 @@ export async function saveSections(
     title: s.title || '',
     slides: s.slides || [],
     showNav: s.showNav ?? true,
+    fullBleed: s.fullBleed ?? false,
+    visible: s.visible !== false,
   }));
 
   const res = await fetch(`${AI_SERVER}/api/r2/website?key=${encodeURIComponent(key)}`, {
