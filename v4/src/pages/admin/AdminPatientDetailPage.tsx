@@ -9,6 +9,7 @@ import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPat
 import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
 import { FirstConsultPanel } from '@/features/hospital/components/intake/FirstConsultPanel';
 import { PatientAnalysisModal } from '@/features/hospital/components/PatientAnalysisModal';
+import { SimilarCasesModal } from '@/features/hospital/components/SimilarCasesModal';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
 import { ZoomModal } from '@/shared/components/ZoomModal';
@@ -35,6 +36,7 @@ export default function AdminPatientDetailPage() {
   // 첫 상담 프레젠테이션 덱도 접힌 채로 상주 — 펼치면 슬라이드 덱이 열림
   const [consultExpanded, setConsultExpanded] = useState(false);
   const [analysisOpen, setAnalysisOpen] = useState(false);
+  const [similarOpen, setSimilarOpen] = useState(false);
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -481,23 +483,42 @@ export default function AdminPatientDetailPage() {
       </div>
       )}
 
-      {/* Floating "환자 분석" button — bottom-left of the viewport, opens
-          the AI-generated narrative analysis modal. */}
-      <button
-        type="button"
-        onClick={() => setAnalysisOpen(true)}
-        title="AI 환자 분석"
-        className="fixed bottom-4 left-4 z-30 inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-indigo-700"
-      >
-        <span>🧠</span>
-        <span>환자 분석</span>
-      </button>
+      {/* Floating buttons — AI 환자 분석 + 비슷한 케이스 */}
+      <div className="fixed bottom-4 left-4 z-30 flex flex-col gap-2">
+        <button
+          type="button"
+          onClick={() => setSimilarOpen(true)}
+          title="비슷한 케이스 검색 (RAG)"
+          className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-emerald-700"
+        >
+          <span>🔍</span>
+          <span>비슷한 케이스</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setAnalysisOpen(true)}
+          title="AI 환자 분석"
+          className="inline-flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:bg-indigo-700"
+        >
+          <span>🧠</span>
+          <span>환자 분석</span>
+        </button>
+      </div>
 
       {analysisOpen && child && (
         <PatientAnalysisModal
           childId={child.id}
           patientName={child.name}
           onClose={() => setAnalysisOpen(false)}
+        />
+      )}
+
+      {child && (
+        <SimilarCasesModal
+          childId={child.id}
+          childName={child.name}
+          isOpen={similarOpen}
+          onClose={() => setSimilarOpen(false)}
         />
       )}
     </div>

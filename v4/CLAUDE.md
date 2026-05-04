@@ -183,6 +183,20 @@ router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmar
 - HeightCalculator: 336→~120+170 lines (form/result split)
 - BodyAnalysisPage: deleted, condensed into `features/routine/components/PhotoCaptureCard.tsx` and embedded at the bottom of RoutinePage's input tab.
 
+## RAG (Phase 21, 인프라+UI 완성·임베딩 배치 대기)
+
+**A. 의사 보조 — 비슷한 케이스 검색**
+- migration 015 (수동 실행 대기): pgvector + `patient_embeddings(child_id PK, embedding vector(768))` + RPC `match_patient_embeddings(query_child_id, match_count)` (cosine top-k).
+- ai-server: `services/embedder.ts` 가 child 의 인구학·MPH·키 추이·뼈나이·처방 패턴·lab 강반응·메모를 한국어 brief 텍스트로 정규화 → Gemini `text-embedding-004` (REST 직접 호출) → upsert.
+- endpoints: `POST /api/embeddings/build/:childId` · `POST /api/embeddings/build-all` (skipExisting, 0.4s 간격) · `GET /api/similar-cases/:childId?k=5` (유사도% + 환자 demographics + 첫·마지막 키/PAH + 처방 top-5).
+- 어드민 UI: AdminPatientDetailPage 좌하단 `🔍 비슷한 케이스` 플로팅 버튼 (기존 `🧠 환자 분석` 위) → `SimilarCasesModal` (5장 카드: 유사도/키 변화/PAH 변화/처방 칩/환자 상세 링크). 임베딩 없을 때 "임베딩 만들고 다시 검색" fallback 버튼.
+
+**B. 환자 코칭 — 식단/잠/운동 가이드**
+- migration 015: `coaching_cards(child_id, content_date UNIQUE, content jsonb)` — 1일 1회 캐시.
+- ai-server: `services/coachingGenerator.ts` 가 child + 최근 7일 daily_routines(meal/sleep/water/injection 평균) + intake → Gemini 2.5 Flash → `{meal, sleep, exercise, summary}` JSON.
+- endpoints: `GET /api/coaching/:childId` (오늘 캐시 또는 자동 생성) · `POST /api/coaching/:childId` (강제 재생성).
+- 환자 UI: RoutinePage 입력 탭 HeightWeightCard 직후 `CoachingCard` (3개 가이드 카드 + 격려 한 줄 + 🔄 새로 받기). 매일 1회 자동 호출.
+
 ## features/records/ — 환자용 진료기록 (NEW)
 환자가 병원에서 측정·진료받은 read-only 데이터를 모바일 친화적으로 보여주는 새 영역.
 `treatment_status` 에 따라 RecordsPage 가 두 가지 뷰로 분기.

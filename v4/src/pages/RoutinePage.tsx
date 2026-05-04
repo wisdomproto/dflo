@@ -25,6 +25,7 @@ import { SupplementCard } from '@/features/routine/components/SupplementCard';
 import { InjectionCard } from '@/features/routine/components/InjectionCard';
 import { MemoCard } from '@/features/routine/components/MemoCard';
 import { PhotoCaptureCard } from '@/features/routine/components/PhotoCaptureCard';
+import { CoachingCard } from '@/features/routine/components/CoachingCard';
 import {
   fetchMealsByRoutine,
   fetchPhotosByRoutine,
@@ -285,6 +286,8 @@ export default function RoutinePage() {
               latestBoneAge={latestBoneAge} measurementCount={measurements.length}
               onShowGrowthModal={() => setShowGrowthModal(true)}
             />
+
+            {selectedChildId && <CoachingCard childId={selectedChildId} />}
 
             {selectedChildId && (
               <>

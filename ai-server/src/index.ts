@@ -9,6 +9,9 @@ import { allergyRouter } from './routes/allergy.js';
 import { r2Router } from './routes/r2.js';
 import { patientAnalysisRouter } from './routes/patientAnalysis.js';
 import { analyticsRouter } from './routes/analytics.js';
+import { embeddingsRouter } from './routes/embeddings.js';
+import { similarCasesRouter } from './routes/similarCases.js';
+import { coachingRouter } from './routes/coaching.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -71,6 +74,9 @@ app.use('/api/analyze', ...middlewares, allergyRouter);
 app.use('/api/r2', r2Router);
 app.use('/api/patient-analysis', ...middlewares, patientAnalysisRouter);
 app.use('/api/analytics', analyticsRouter);
+app.use('/api/embeddings', ...middlewares, embeddingsRouter);
+app.use('/api/similar-cases', ...middlewares, similarCasesRouter);
+app.use('/api/coaching', ...middlewares, coachingRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });

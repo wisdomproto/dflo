@@ -47,3 +47,29 @@ export async function generateText(prompt: string): Promise<string> {
   const response = result.response;
   return response.text();
 }
+
+/**
+ * Embed text using Gemini text-embedding-004 (768 dim).
+ * Direct REST call to avoid SDK version drift.
+ */
+export async function embedText(text: string): Promise<number[]> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${apiKey}`;
+  const body = {
+    content: { parts: [{ text }] },
+  };
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const errText = await res.text().catch(() => '');
+    throw new Error(`Gemini embed failed (${res.status}): ${errText}`);
+  }
+  const json = (await res.json()) as { embedding?: { values?: number[] } };
+  const values = json.embedding?.values;
+  if (!Array.isArray(values) || values.length === 0) {
+    throw new Error('Gemini embed returned empty vector');
+  }
+  return values;
+}

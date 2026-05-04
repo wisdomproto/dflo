@@ -234,6 +234,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     }
 
     set({ user: null, session: null, selectedChildId: null });
+
+    // childrenStore 도 같이 리셋 — 다음 사용자 로그인 시 옛 children/
+    // selectedChildId 가 남지 않도록. 동적 import 로 순환 참조 회피.
+    void import('@/stores/childrenStore').then(({ useChildrenStore }) => {
+      useChildrenStore.setState({ children: [], selectedChildId: null });
+    });
   },
 
   isAdmin: () => {

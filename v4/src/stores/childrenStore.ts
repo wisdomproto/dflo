@@ -100,9 +100,13 @@ export const useChildrenStore = create<ChildrenStore>((set, get) => ({
 
       set({ children: childrenWithMeasurements, isLoading: false });
 
-      // Auto-select first child if none selected
+      // Auto-select if invalid: 다른 환자 로그인 후 옛 selectedChildId 가
+      // 새 children 배열에 없으면 (예: 22028 → 로그아웃 → F9999 로그인) 첫
+      // 환자로 자동 전환. 이걸 안 하면 RecordsPage 가 child=undefined 라
+      // 빈 화면 → 새로고침 후에야 정상이 됨.
       const { selectedChildId } = get();
-      if (!selectedChildId && childrenWithMeasurements.length > 0) {
+      const valid = !!selectedChildId && childrenWithMeasurements.some((c) => c.id === selectedChildId);
+      if (!valid && childrenWithMeasurements.length > 0) {
         set({ selectedChildId: childrenWithMeasurements[0].id });
       }
     } catch (err) {
