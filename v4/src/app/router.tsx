@@ -12,7 +12,7 @@ import { AdminRoute } from '@/features/auth/components/ProtectedRoute';
 //   /guide, /guide/:id → 성장 가이드
 //   /diagnosis     → AI 진단 intake 폼
 //   /banner-admin  → 홈페이지 배너 관리 (PIN)
-//   /app/*         → 사용자 앱 (로그인)
+//   /app/*         → 사용자 앱 (로그인 필수, 차트번호 + 비밀번호)
 //   /admin/*       → 클리닉 관리자 (로그인 + 관리자)
 //   /login         → 로그인
 //   /website/*     → (deprecated) 구 경로, / 쪽으로 리다이렉트
@@ -31,7 +31,7 @@ const AdminLoginPage = lazy(() =>
   })),
 );
 const RoutinePage = lazy(() => import('@/pages/RoutinePage'));
-const BodyAnalysisPage = lazy(() => import('@/pages/BodyAnalysisPage'));
+const RecordsPage = lazy(() => import('@/pages/RecordsPage'));
 const InfoPage = lazy(() => import('@/pages/InfoPage'));
 const GuidesListPage = lazy(() => import('@/pages/GuidesListPage'));
 const RecipesListPage = lazy(() => import('@/pages/RecipesListPage'));
@@ -175,52 +175,50 @@ export const router = createBrowserRouter([
     ),
   },
 
-  // Public app routes (로그인 없이 둘러보기 가능)
-  {
-    path: '/app',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <HomePage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/app/info',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <InfoPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/app/info/guides',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <GuidesListPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/app/info/recipes',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <RecipesListPage />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/app/info/cases',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <CasesListPage />
-      </Suspense>
-    ),
-  },
-
-  // Patient-only app routes (로그인 필요 — 개인 데이터)
+  // App routes (로그인 필수 — 환자 전용 공간, 차트번호 로그인)
   {
     element: <ProtectedRoute />,
     children: [
+      {
+        path: '/app',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <HomePage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/app/info',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <InfoPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/app/info/guides',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <GuidesListPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/app/info/recipes',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <RecipesListPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/app/info/cases',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <CasesListPage />
+          </Suspense>
+        ),
+      },
       {
         path: '/app/routine',
         element: (
@@ -230,10 +228,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/app/body-analysis',
+        path: '/app/records',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
-            <BodyAnalysisPage />
+            <RecordsPage />
           </Suspense>
         ),
       },
@@ -242,7 +240,9 @@ export const router = createBrowserRouter([
 
   // Legacy app-route redirects (pre-restructure bookmarks)
   { path: '/routine', element: <Navigate to="/app/routine" replace /> },
-  { path: '/body-analysis', element: <Navigate to="/app/body-analysis" replace /> },
+  { path: '/body-analysis', element: <Navigate to="/app/routine" replace /> },
+  { path: '/app/body-analysis', element: <Navigate to="/app/routine" replace /> },
+  { path: '/app/stats', element: <Navigate to="/app/routine" replace /> },
   { path: '/info', element: <Navigate to="/app/info" replace /> },
   { path: '/info/guides', element: <Navigate to="/app/info/guides" replace /> },
   { path: '/info/recipes', element: <Navigate to="/app/info/recipes" replace /> },

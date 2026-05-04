@@ -59,19 +59,35 @@ export default function Layout({ title, showBack = false, children }: LayoutProp
                 </svg>
               </button>
             )}
-            <Link to="/app" className="flex items-center gap-2 min-w-0" aria-label="홈으로 가기">
+            <Link to="/app" className="flex items-center gap-2 min-w-0" aria-label="앱 홈으로 가기">
               <img
                 src="/images/logo.jpg"
                 alt="187 성장클리닉"
                 className="h-8 w-auto rounded"
               />
-              {/* 페이지 별 보조 제목 (홈일 땐 굳이 안 보이게) */}
-              {title && title !== '187 성장케어' && (
-                <span className="text-sm font-semibold text-gray-700 truncate border-l border-gray-200 pl-2">
-                  {title}
-                </span>
-              )}
             </Link>
+            <a
+              href="https://www.yssaebomq.com/"
+              className="flex items-center gap-1 pl-1.5 pr-2.5 py-1 rounded-full
+                         bg-gradient-to-r from-purple-50 to-indigo-50
+                         hover:from-purple-100 hover:to-indigo-100 active:scale-95
+                         text-[11px] font-bold text-primary
+                         border border-purple-200 shadow-sm
+                         whitespace-nowrap shrink-0 transition-all"
+              aria-label="홈페이지로 가기"
+              title="홈페이지로 가기"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+              </svg>
+              홈페이지
+            </a>
+            {/* 페이지 별 보조 제목 (홈일 땐 굳이 안 보이게) */}
+            {title && title !== '187 성장케어' && (
+              <span className="text-sm font-semibold text-gray-700 truncate border-l border-gray-200 pl-2">
+                {title}
+              </span>
+            )}
           </div>
 
           {/* 톱니바퀴 — 앱 홈 콘텐츠 관리 (PIN 8054) */}

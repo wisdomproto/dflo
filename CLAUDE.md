@@ -165,6 +165,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 16: COMPLETE (처방 파이프라인 40만 행 → 19,080 처방 임포트 + 약품코드 MED/INJ/PRO 재설계 + AdminMedicationsPage 리디자인 / X-ray 회차 이미지 9,025개 업로드 + VisitImageGallery 드래그&드롭)
 - Phase 17: PARTIAL (AI 환자 분석 파이프라인 — migration 012 / ai-server endpoint / PatientAnalysisModal / 수작업 1명 검증 완료. Gemini API 키 만료로 배치 실행 대기 중)
 - Phase 18: COMPLETE (환자 리스트 고도화 — VisitList BA 하이라이트 / AdminPatientsPage 주소·내원일 컬럼 / region 파서 99.6% 커버리지 / 대시보드 한국 지도 타일 카토그램)
+- Phase 19: COMPLETE (환자 모드 강화 — `/app/*` 전체 ProtectedRoute 보호 / 차트번호 로그인 (244명 전부 password='1234' 활성) / Layout 헤더에 "← 홈페이지" 외부 진입 버튼 / BottomNav 4탭 정리 (홈·루틴·진료기록·1:1상담) / BodyAnalysisPage → PhotoCaptureCard 흡수 / 통계 페이지는 RoutinePage 탭으로 재통합 / **RecordsPage 신규** — `features/records/` (patientRecordsService + PatientHeaderCard + BoneAgeCompareCard + VisitTimelineCard + LabDetailModal). 어드민의 PanelContent/panelTypeOf 재사용. BA 회차 PAH fallback 계산. 만나이 표시. cases/check_app_login_readiness.mjs + cases/check_lifestyle_data.mjs 진단 스크립트 추가)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript

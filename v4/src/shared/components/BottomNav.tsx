@@ -1,15 +1,12 @@
 // ================================================
 // BottomNav 컴포넌트 - 187 성장케어 v4
 // 고정 하단 네비게이션 바
-// 비로그인: 홈 + 병원소개 + 커뮤니티 + 상담
-// 로그인: 홈 + 데일리 루틴 + 체형 + 병원소개 + 커뮤니티 + 상담
+// 홈 + 데일리 루틴 + 진료기록 + 1:1상담
 // ================================================
 
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
-import { AboutModal } from '@/features/website/components/AboutModal';
-import { CommunityBottomSheet } from '@/features/website/components/CommunityBottomSheet';
 import { HeightCalculator } from '@/features/website/components/HeightCalculator';
 
 interface NavItem {
@@ -25,7 +22,7 @@ const guestNavItems: NavItem[] = [
 const patientNavItems: NavItem[] = [
   { path: '/app', label: '홈', icon: '🏠' },
   { path: '/app/routine', label: '루틴', icon: '📝' },
-  { path: '/app/body-analysis', label: '체형', icon: '🧍' },
+  { path: '/app/records', label: '진료기록', icon: '📋' },
 ];
 
 export default function BottomNav() {
@@ -34,8 +31,6 @@ export default function BottomNav() {
   const isLoggedIn = !!useAuthStore((s) => s.user);
   const navItems = isLoggedIn ? patientNavItems : guestNavItems;
 
-  const [showAbout, setShowAbout] = useState(false);
-  const [showCommunity, setShowCommunity] = useState(false);
   const [showCalc, setShowCalc] = useState(false);
 
   // SectionCarousel 의 banner CTA(예측키 측정하기 등)에서 dispatch 하는 이벤트.
@@ -83,25 +78,7 @@ export default function BottomNav() {
             );
           })}
 
-          {/* 병원 소개 */}
-          <button
-            onClick={() => setShowAbout(true)}
-            className="relative flex flex-col items-center justify-center w-full h-full text-gray-400 active:text-gray-600 transition-all"
-          >
-            <span className="relative text-xl leading-none mb-0.5">🏥</span>
-            <span className="relative text-[10px] leading-tight font-medium">병원소개</span>
-          </button>
-
-          {/* 커뮤니티 */}
-          <button
-            onClick={() => setShowCommunity(true)}
-            className="relative flex flex-col items-center justify-center w-full h-full text-gray-400 active:text-gray-600 transition-all"
-          >
-            <span className="relative text-xl leading-none mb-0.5">💬</span>
-            <span className="relative text-[10px] leading-tight font-medium">커뮤니티</span>
-          </button>
-
-          {/* 카카오톡 상담 */}
+          {/* 카카오톡 1:1 상담 */}
           <a
             href="https://pf.kakao.com/_ZxneSb"
             target="_blank"
@@ -115,14 +92,12 @@ export default function BottomNav() {
               </svg>
             </span>
             <span className="relative text-[10px] leading-tight font-medium" style={{ color: '#3C1E1E' }}>
-              상담
+              1:1상담
             </span>
           </a>
         </div>
       </nav>
 
-      <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
-      <CommunityBottomSheet isOpen={showCommunity} onClose={() => setShowCommunity(false)} />
       <HeightCalculator isOpen={showCalc} onClose={() => setShowCalc(false)} />
     </>
   );

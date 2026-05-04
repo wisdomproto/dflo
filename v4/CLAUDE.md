@@ -136,12 +136,17 @@ scripts/
 - **Banner admin**: PIN `8054` (route: `/banner-admin`, sessionStorage)
 
 ## App Navigation (login required, mounted under `/app`)
+모든 `/app/*` 라우트는 `ProtectedRoute` 로 보호됨. 환자는 차트번호 + 비밀번호 (기본 `1234`) 로 로그인.
+
 | Tab | Route | Page |
 |-----|-------|------|
 | 홈 | `/app` | HomePage (성장 요약 + 콘텐츠) |
-| 데일리 루틴 | `/app/routine` | RoutinePage (캘린더 + 식사/운동/수면) |
-| 체형 분석 | `/app/body-analysis` | BodyAnalysisPage (mock) |
-| 성장가이드 | `/app/info` | InfoPage (가이드/레시피/사례) |
+| 루틴 | `/app/routine` | RoutinePage (입력/통계 탭 + 마지막에 PhotoCaptureCard "내 사진") |
+| 진료기록 | `/app/records` | RecordsPage (병원 측정 데이터 read-only) |
+| 1:1상담 | (외부) | 카카오톡 https://pf.kakao.com/_ZxneSb |
+| (탭 없음) | `/app/info[/*]` | 성장가이드 / 레시피 / 케이스 (홈에서 진입) |
+
+**헤더** (Layout.tsx): 로고(앱홈으로) + ← 화살표 + "홈페이지" pill 버튼(공식 사이트로 빠져나가는 동선) + 톱니바퀴(콘텐츠 관리 PIN) + 햄버거(로그아웃).
 
 ## Website Navigation (public, root)
 | Route | Page |
@@ -155,7 +160,9 @@ scripts/
 ## Legacy Route Redirects
 router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmarks and banner `cta_target` values in R2 keep working:
 - `/website` → `/`, `/website/program/:slug` → `/program/:slug`, `/website/guide[/*]` → `/guide[/*]`, `/website/diagnosis` → `/diagnosis`, `/website/admin` → `/banner-admin`
-- `/routine` → `/app/routine`, `/body-analysis` → `/app/body-analysis`, `/info[/*]` → `/app/info[/*]`
+- `/routine` → `/app/routine`, `/info[/*]` → `/app/info[/*]`
+- `/body-analysis` & `/app/body-analysis` → `/app/routine` (체형 분석 페이지는 `PhotoCaptureCard` 로 흡수됨)
+- `/app/stats` → `/app/routine` (통계 페이지는 RoutinePage 안 탭으로 통합됨)
 
 ## AI Features
 - **Meal analysis**: WORKING - photo → compress → Gemini analyze → DB save
@@ -167,3 +174,14 @@ router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmar
 - AdminPatientDetailPage: 3-column redesign with inline editing
 - RoutinePage: 402→~200 lines (extracted cards)
 - HeightCalculator: 336→~120+170 lines (form/result split)
+- BodyAnalysisPage: deleted, condensed into `features/routine/components/PhotoCaptureCard.tsx` and embedded at the bottom of RoutinePage's input tab.
+
+## features/records/ — 환자용 진료기록 (NEW)
+환자가 병원에서 측정·진료받은 read-only 데이터를 모바일 친화적으로 보여주는 새 영역.
+
+- `services/patientRecordsService.ts` — 한 child 의 visits + measurements + prescriptions(medication name 조인) + lab_tests + xray_readings 를 한 번에 fetch 하는 `fetchPatientRecords(childId)` 함수. is_intake 가상 visit 제외. 반환 구조 `PatientRecords { visits: PatientVisitRecord[], measurements, visitCount, boneAgeCount, prescriptionCount, labCount }`.
+- `components/PatientHeaderCard.tsx` — 그라데이션 헤더 + 진료/뼈나이/처방/검사 4-stat + 마지막 진료일.
+- `components/BoneAgeCompareCard.tsx` — 최신 BA 회차 기준 실제나이 vs 뼈나이 + 친근한 한 줄 해석 ("실제보다 약 0.3세 빠른 편입니다") + 이전 측정 펼침.
+- `components/VisitTimelineCard.tsx` — 회차 카드 (접힘 상태: 회차번호 / 날짜 + 만나이 / 키·체중·뼈나이·예측키 / 처방·검사·메모 배지). 펼치면 처방 약품 리스트 + 패널별 검사 칩(클릭 가능) + 메모 원문. PAH 가 DB에 비어 있어도 BA 회차에서 `heightAtSamePercentile(키, BA, 18, gender)` 로 fallback 계산.
+- `components/LabDetailModal.tsx` — Lab 칩/버튼 클릭 시 오픈. 어드민 `LabHistoryPanel` 의 export 된 `PanelContent`/`panelTypeOf`/`PanelType` 그대로 재사용. 회차에 panel 여러 개면 상단 탭으로 전환 (혈액 / IgG4 / MAST / NK / 유기산 / 모발 / 첨부 / 기타).
+- `pages/RecordsPage.tsx` — 위 컴포넌트들 조립, GrowthChart compact 모드로 키 추이 + 예측키 라인 표시.

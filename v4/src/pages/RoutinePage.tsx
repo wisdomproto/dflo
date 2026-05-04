@@ -1,10 +1,11 @@
 // ================================================
 // RoutinePage - 187 성장케어 v4
-// 일일 루틴 트래커 (입력 + 캘린더 뷰)
+// 일일 루틴 트래커 (입력 + 월별 통계)
 // 성장 기록(차트/예측/측정기록) 통합
 // ================================================
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Layout from '@/shared/components/Layout';
 import Card from '@/shared/components/Card';
 import Modal from '@/shared/components/Modal';
@@ -23,6 +24,7 @@ import { WaterCard } from '@/features/routine/components/WaterCard';
 import { SupplementCard } from '@/features/routine/components/SupplementCard';
 import { InjectionCard } from '@/features/routine/components/InjectionCard';
 import { MemoCard } from '@/features/routine/components/MemoCard';
+import { PhotoCaptureCard } from '@/features/routine/components/PhotoCaptureCard';
 import {
   fetchMealsByRoutine,
   fetchPhotosByRoutine,
@@ -52,10 +54,31 @@ export default function RoutinePage() {
   const getSelectedChild = useChildrenStore((s) => s.getSelectedChild);
   const addToast = useUIStore((s) => s.addToast);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dateParam = searchParams.get('date');
   const [tab, setTab] = useState<'input' | 'calendar'>('input');
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(() => {
+    if (dateParam) {
+      const d = new Date(dateParam + 'T00:00:00');
+      if (!Number.isNaN(d.getTime())) return d;
+    }
+    return new Date();
+  });
+  const today0 = new Date();
+  const [calYear, setCalYear] = useState(today0.getFullYear());
+  const [calMonth, setCalMonth] = useState(today0.getMonth() + 1);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+
+  // URL ?date=YYYY-MM-DD 변경 추적 (통계 페이지에서 날짜 클릭 시 점프)
+  useEffect(() => {
+    if (!dateParam) return;
+    const d = new Date(dateParam + 'T00:00:00');
+    if (Number.isNaN(d.getTime())) return;
+    setDate(d);
+    // 한 번 적용 후 URL 정리
+    setSearchParams({}, { replace: true });
+  }, [dateParam, setSearchParams]);
 
   // 입력 폼 상태
   const [dailyHeight, setDailyHeight] = useState('');
@@ -69,10 +92,6 @@ export default function RoutinePage() {
   const [injectionTime, setInjectionTime] = useState('');
   const [mood, setMood] = useState<Mood | ''>('');
   const [dailyNotes, setDailyNotes] = useState('');
-
-  // 캘린더 상태
-  const [calYear, setCalYear] = useState(new Date().getFullYear());
-  const [calMonth, setCalMonth] = useState(new Date().getMonth() + 1);
 
   // 현재 루틴 ID
   const dateRef = useRef<HTMLInputElement>(null);
@@ -316,6 +335,8 @@ export default function RoutinePage() {
               )}
 
               <MemoCard mood={mood} dailyNotes={dailyNotes} onMoodChange={setMood} onDailyNotesChange={setDailyNotes} />
+
+              <PhotoCaptureCard />
 
               <button onClick={handleSave} disabled={saving}
                 className="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary py-3.5 text-sm font-bold text-white
