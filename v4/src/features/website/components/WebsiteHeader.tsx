@@ -73,7 +73,6 @@ export function WebsiteHeader() {
               title="연세새봄의원 홈페이지로 이동"
             >
               <img src="/images/logo.jpg" alt="187 성장클리닉" className="h-9 md:h-11 w-auto rounded" />
-              <span className="text-sm md:text-lg font-bold text-gray-700 hidden sm:inline whitespace-nowrap">성장클리닉</span>
             </a>
             <span className="flex items-center gap-1 md:gap-1.5 text-[11px] sm:text-xs md:text-sm font-semibold text-[#0F6E56] animate-pulse whitespace-nowrap">
               <span aria-hidden="true">←</span>
