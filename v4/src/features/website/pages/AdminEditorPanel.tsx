@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { DndContext, closestCenter, type DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable';
-import type { WebsiteSection, SlideTemplate, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide } from '../types/websiteSection';
+import type { WebsiteSection, SlideTemplate, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, HeightCalcSlide } from '../types/websiteSection';
 import type { SectionType } from './AdminWebsitePage';
 import { BannerSlideEditor } from './BannerSlideEditor';
 import { VideoSlideEditor } from './VideoSlideEditor';
 import { CasesSlideEditor } from './CasesSlideEditor';
 import { IframeSlideEditor } from './IframeSlideEditor';
 import { FaqSlideEditor } from './FaqSlideEditor';
+import { HeightCalcSlideEditor } from './HeightCalcSlideEditor';
 import { SortableSectionTab, SortableSlideTab } from './SortableTabs';
 import { ConfirmModal } from './ConfirmModal';
 
@@ -76,6 +77,7 @@ export function AdminEditorPanel({
       : slide?.template === 'cases' ? '사례'
       : slide?.template === 'iframe' ? '페이지'
       : slide?.template === 'faq' ? 'FAQ'
+      : slide?.template === 'height-calc' ? '예상키'
       : '배너';
     setConfirmModal({
       message: `${slideType} ${activeSlide + 1} 슬라이드를 삭제하시겠습니까?`,
@@ -231,6 +233,10 @@ export function AdminEditorPanel({
                 className="px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-gray-200 hover:bg-[#E8F5F0] hover:text-[#0F6E56] hover:border-[#0F6E56] transition-colors">
                 + ❓ FAQ
               </button>
+              <button onClick={() => onAddSlide('height-calc')}
+                className="px-4 py-2 rounded-xl text-sm font-semibold bg-white border border-gray-200 hover:bg-[#E8F5F0] hover:text-[#0F6E56] hover:border-[#0F6E56] transition-colors">
+                + 📐 예상키
+              </button>
             </div>
           )}
         </div>
@@ -261,6 +267,10 @@ export function AdminEditorPanel({
             <button onClick={() => onAddSlide('faq')}
               className="text-sm font-bold text-[#0F6E56] bg-[#E8F5F0] px-5 py-2.5 rounded-xl hover:bg-[#D0EDE4] transition-colors">
               + ❓ FAQ
+            </button>
+            <button onClick={() => onAddSlide('height-calc')}
+              className="text-sm font-bold text-[#0F6E56] bg-[#E8F5F0] px-5 py-2.5 rounded-xl hover:bg-[#D0EDE4] transition-colors">
+              + 📐 예상키
             </button>
           </div>
         </div>
@@ -297,6 +307,12 @@ export function AdminEditorPanel({
           {slide.template === 'faq' && (
             <FaqSlideEditor
               slide={slide as FaqSlide}
+              onUpdate={(updates) => onUpdateSlide(activeSlide, updates)}
+            />
+          )}
+          {slide.template === 'height-calc' && (
+            <HeightCalcSlideEditor
+              slide={slide as HeightCalcSlide}
               onUpdate={(updates) => onUpdateSlide(activeSlide, updates)}
             />
           )}

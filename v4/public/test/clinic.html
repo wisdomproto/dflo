@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>병원 소개 | 187 성장클리닉</title>
+<link rel="stylesheet" href="_shell.css">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #444; background: #fff; font-size: 15px; line-height: 1.78;
+    word-break: keep-all; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 640px; margin: 0 auto; background: #fff;
+  }
+
+  .doctor-card {
+    padding: 32px 24px 24px;
+    text-align: center;
+    border-bottom: 1px solid #e8eaf0;
+  }
+  .doctor-card img.portrait {
+    width: 140px;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 14px;
+    margin: 0 auto 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+  .doctor-card .name {
+    font-size: 22px;
+    font-weight: 900;
+    color: #171717;
+    letter-spacing: -0.5px;
+  }
+  .doctor-card .name .title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #777;
+    margin-left: 6px;
+  }
+  .doctor-card .quote {
+    font-size: 14px;
+    color: #6B3FA0;
+    font-weight: 500;
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .doctor-card .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 20px;
+    text-align: left;
+    background: #f7f8fb;
+    padding: 16px 18px;
+    border-radius: 12px;
+  }
+  .doctor-card .profile li {
+    list-style: none;
+    font-size: 12.5px;
+    color: #555;
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.55;
+  }
+  .doctor-card .profile li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #6B3FA0;
+  }
+
+  .clinic-intro {
+    padding: 32px 24px;
+    border-bottom: 1px solid #e8eaf0;
+  }
+  .clinic-intro h2 {
+    font-size: 19px;
+    font-weight: 900;
+    color: #171717;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+  }
+  .clinic-intro p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.75;
+  }
+  .clinic-intro p + p { margin-top: 12px; }
+
+  .video-section {
+    padding: 32px 24px;
+    border-bottom: 1px solid #e8eaf0;
+  }
+  .video-section h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #171717;
+    margin-bottom: 14px;
+  }
+  .video-section .frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+  }
+  .video-section .frame iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+
+  .facility {
+    padding: 32px 24px;
+    border-bottom: 1px solid #e8eaf0;
+  }
+  .facility h3 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #171717;
+    margin-bottom: 14px;
+  }
+  .facility .viewer {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .facility .viewer img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+  .facility .label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    color: #fff;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .facility .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    border: 0;
+    color: #444;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .facility .nav.prev { left: 10px; }
+  .facility .nav.next { right: 10px; }
+  .facility .dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .facility .dots button {
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    border: 0;
+    background: #d4d4d4;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.2s;
+  }
+  .facility .dots button.active {
+    width: 22px;
+    background: #6B3FA0;
+  }
+
+  .contact-card {
+    margin: 24px;
+    background: #f3edfa;
+    border-radius: 14px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .contact-card .label {
+    font-size: 12px;
+    color: #6B3FA0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .contact-card .phone {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    color: #6B3FA0;
+    margin-top: 4px;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .contact-card .addr {
+    font-size: 12px;
+    color: #777;
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
+  @media (min-width: 640px) {
+    .doctor-card { padding: 48px 24px 32px; }
+    .doctor-card img.portrait { width: 180px; }
+    .doctor-card .name { font-size: 26px; }
+    .clinic-intro h2 { font-size: 22px; }
+    .video-section h3, .facility h3 { font-size: 19px; }
+  }
+</style>
+</head>
+
+<body data-page="clinic">
+<div class="t-page">
+<div class="container">
+
+  <!-- Doctor section -->
+  <section class="doctor-card">
+    <img class="portrait" src="/images/doctor.jpg" alt="채용현 원장">
+    <div class="name">채용현<span class="title">대표원장</span></div>
+    <p class="quote">"고객의 건강과 가치를 더하는 채용현 원장입니다."</p>
+    <ul class="profile">
+      <li>IFBB Pro · USPTA · Level II Trainer</li>
+      <li>현 연세 새봄의원 원장</li>
+      <li>호르몬 치료 전문</li>
+      <li>NABBA / WFF 의학 고문</li>
+      <li>연세대학교 의학과 졸업</li>
+      <li>연세대학교 의과대학원 졸업</li>
+    </ul>
+  </section>
+
+  <!-- Clinic introduction -->
+  <section class="clinic-intro">
+    <h2>연세새봄의원</h2>
+    <p>
+      질병 치료에 국한되었던 기존 병원의 한계를 뛰어넘어,
+      고객의 정신적·신체적 능력(Performance &amp; Look)을 향상시켜주는
+      <strong>호르몬 전문 클리닉</strong>을 목표로 진료에 최선을 다하고 있습니다.
+    </p>
+    <p>
+      고객에게 젊고 아름다운 신체와 능력 향상을 위해
+      최상의 의료 서비스를 제공하는 연세새봄의원과 함께 해주셔서 감사합니다.
+    </p>
+  </section>
+
+  <!-- YouTube -->
+  <section class="video-section">
+    <h3>병원 소개 영상</h3>
+    <div class="frame">
+      <iframe
+        src="https://www.youtube.com/embed/WkBRUFXOGPo"
+        title="연세새봄의원 소개"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Facility -->
+  <section class="facility">
+    <h3>시설 소개</h3>
+    <div class="viewer" id="facility-viewer">
+      <img src="/images/facility-1.jpg" alt="2층 대기실" id="facility-img">
+      <div class="label" id="facility-label">2층 대기실</div>
+      <button type="button" class="nav prev" aria-label="이전">‹</button>
+      <button type="button" class="nav next" aria-label="다음">›</button>
+    </div>
+    <div class="dots" id="facility-dots"></div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-card">
+    <div class="label">상담 및 예약 문의</div>
+    <a class="phone" href="tel:02-3395-0999">02-3395-0999</a>
+    <div class="addr">서울시 강남구 도산대로 328, 휘선빌딩 4층</div>
+  </section>
+
+</div>
+</div><!-- /.t-page -->
+
+<script>
+  // Facility carousel
+  (function() {
+    const FACILITIES = [
+      { src: '/images/facility-1.jpg', label: '2층 대기실' },
+      { src: '/images/facility-2.jpg', label: '2층 진료실' },
+      { src: '/images/facility-3.jpg', label: '2층 외관' },
+      { src: '/images/facility-4.jpg', label: '3층 운동센터' },
+      { src: '/images/facility-5.jpg', label: '3층 트레이닝' },
+      { src: '/images/facility-6.jpg', label: '3층 GYM' },
+    ];
+    const img = document.getElementById('facility-img');
+    const labelEl = document.getElementById('facility-label');
+    const dotsWrap = document.getElementById('facility-dots');
+    const viewer = document.getElementById('facility-viewer');
+    let idx = 0;
+
+    const render = () => {
+      const f = FACILITIES[idx];
+      img.src = f.src;
+      img.alt = f.label;
+      labelEl.textContent = f.label;
+      dotsWrap.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === idx));
+    };
+
+    FACILITIES.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', `사진 ${i + 1}`);
+      btn.addEventListener('click', () => { idx = i; render(); });
+      dotsWrap.appendChild(btn);
+    });
+
+    viewer.querySelector('.prev').addEventListener('click', () => {
+      idx = (idx - 1 + FACILITIES.length) % FACILITIES.length;
+      render();
+    });
+    viewer.querySelector('.next').addEventListener('click', () => {
+      idx = (idx + 1) % FACILITIES.length;
+      render();
+    });
+
+    render();
+  })();
+</script>
+
+<script src="_shell.js"></script>
+
+</body>
+</html>

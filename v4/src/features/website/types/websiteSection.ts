@@ -1,7 +1,7 @@
 // Website section types
 // Each slide has its own template - a section is a collection of mixed slides
 
-export type SlideTemplate = 'banner' | 'video' | 'cases' | 'iframe' | 'faq';
+export type SlideTemplate = 'banner' | 'video' | 'cases' | 'iframe' | 'faq' | 'height-calc';
 
 export interface BannerSlide {
   template: 'banner';
@@ -151,6 +151,24 @@ export interface FaqItem {
   answerZh?: string;       // 中文 답변
 }
 
+// 예상 키 측정 슬라이드 — 카드 안에 직접 입력 폼이 들어가고,
+// 계산 후에는 같은 카드 안에서 결과 화면으로 전환된다 (모달 X).
+// 4:5 비율 카드에 input form ↔ result 두 가지 state 가 토글된다.
+export interface HeightCalcSlide {
+  template: 'height-calc';
+  id: string;
+  badge?: string;            // 상단 작은 배지 ("성장 진단", default)
+  title: string;             // 큰 제목 ("우리 아이 예상 키 측정")
+  subtitle?: string;         // 부제 (한 줄, optional)
+  ctaText?: string;          // 버튼 텍스트 (default: "예상키 계산하기")
+  ctaBgColor?: string;       // 버튼 배경색 (default: #0F6E56)
+  ctaTextColor?: string;     // 버튼 글자색 (default: #ffffff)
+  resultCtaText?: string;    // 결과 후 카톡 상담 CTA (default: "1:1 카톡 상담")
+  resultCtaUrl?: string;     // 결과 후 CTA URL (default: 카카오톡 채널)
+  ratio?: '4:5' | '9:16';    // 카드 비율 (default: '4:5')
+  order: number;
+}
+
 export interface FaqSlide {
   template: 'faq';
   id: string;
@@ -172,7 +190,7 @@ export interface FaqSlide {
   order: number;
 }
 
-export type Slide = BannerSlide | VideoSlide | CasesSlide | LinkBannerSlide | IframeSlide | FaqSlide;
+export type Slide = BannerSlide | VideoSlide | CasesSlide | LinkBannerSlide | IframeSlide | FaqSlide | HeightCalcSlide;
 
 export function isBannerSlide(slide: Slide): slide is BannerSlide {
   return slide.template === 'banner';
@@ -192,6 +210,10 @@ export function isIframeSlide(slide: Slide): slide is IframeSlide {
 
 export function isFaqSlide(slide: Slide): slide is FaqSlide {
   return slide.template === 'faq';
+}
+
+export function isHeightCalcSlide(slide: Slide): slide is HeightCalcSlide {
+  return slide.template === 'height-calc';
 }
 
 export interface WebsiteSection {

@@ -13,366 +13,208 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 640px; margin: 0 auto; overflow: hidden; }
-  .section-img { width: 100%; display: block; }
+  .container { max-width: 640px; margin: 0 auto; overflow: hidden; background: #fff; }
+  .full-img { width: 100%; display: block; }
 
-  /* ===== Hero ===== */
-  .hero {
-    background: #f5f0eb;
+  .page-title {
     text-align: center;
-    padding: 40px 24px 0;
-  }
-  .hero .tag {
-    display: inline-block;
-    font-size: 14px;
-    color: #8B7355;
-    border-bottom: 2px solid #8B7355;
-    padding-bottom: 4px;
-    margin-bottom: 24px;
-    letter-spacing: 1px;
-  }
-  .hero h1 {
-    font-size: 24px;
+    padding: 40px 24px 28px;
+    font-size: 26px;
     font-weight: 800;
-    color: #222;
-    line-height: 1.5;
-    margin-bottom: 20px;
-  }
-  .hero h1 .accent { color: #C4883A; font-weight: 900; }
-  .hero .desc {
-    font-size: 13px;
-    color: #777;
-    line-height: 1.9;
-    margin-bottom: 0;
-    padding: 0 8px;
-    text-align: left;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
   }
 
-  /* ===== Ratio Badges ===== */
-  .ratio-section {
-    background: #f5f0eb;
-    padding: 30px 24px 40px;
-    text-align: center;
-  }
-  .ratio-badges {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-  }
-  .ratio-badge {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #fff;
-  }
-  .ratio-badge.golden { background: #C4883A; }
-  .ratio-badge.ideal { background: #8B7355; }
-
-  /* ===== Article ===== */
-  .article {
-    padding: 48px 24px;
-    background: #fff;
-  }
-  .article h2 {
+  .section-head { text-align: center; padding: 56px 24px 32px; }
+  .section-head h3 {
     font-size: 22px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
     line-height: 1.5;
-    color: #222;
+    letter-spacing: -0.5px;
   }
-  .article h2 .red { color: #E53E3E; font-weight: 900; }
-  .article .body-text {
-    font-size: 14px;
-    color: #555;
-    line-height: 2;
-    margin-bottom: 12px;
-  }
-  .ref-box {
-    margin-top: 24px;
-    padding: 20px;
-    background: #fafafa;
-    border-radius: 12px;
-    border: 1px solid #eee;
-  }
-  .ref-box p {
-    font-size: 11px;
-    color: #999;
-    line-height: 1.7;
-    margin-bottom: 8px;
-  }
-  .ref-box .source {
-    font-style: italic;
-    color: #aaa;
-    font-size: 10px;
-  }
-
-  /* ===== Comparison ===== */
-  .comparison {
-    padding: 40px 24px;
-    background: #f9f6f2;
-  }
-  .comparison-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .comp-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 24px 16px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .comp-card .label {
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 16px;
-    font-weight: 600;
-  }
-  .comp-card .body-icon {
-    font-size: 64px;
-    display: block;
-    margin-bottom: 16px;
-  }
-  .comp-card .stat {
-    font-size: 14px;
-    font-weight: 800;
-    line-height: 1.4;
-  }
-  .comp-card.precocious .stat { color: #C4883A; }
-  .comp-card.normal .stat { color: #0F6E56; }
-
-  /* ===== Process ===== */
-  .process {
-    padding: 48px 24px;
-    background: #fff;
-  }
-  .process h2 {
-    font-size: 24px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 16px;
-    color: #222;
-  }
-  .process .subtitle {
-    text-align: center;
+  .section-head h3 .gold { color: #C4883A; font-weight: 800; }
+  .section-head h3 .copper { color: #B5651D; font-weight: 800; }
+  .section-head h3 .accent { color: #2451c4; font-weight: 800; }
+  .section-head p {
     font-size: 13px;
     color: #777;
-    margin-bottom: 12px;
-    line-height: 1.8;
+    line-height: 1.95;
+    margin-top: 18px;
   }
-  .age-badge-wrap {
-    text-align: center;
-    margin-bottom: 32px;
+  .section-head p strong { color: #333; font-weight: 700; }
+
+  .citations {
+    margin: 32px 20px 0;
+    padding: 24px 20px;
+    background: #f3f3f3;
+    border-radius: 4px;
   }
-  .age-badge {
-    display: inline-block;
-    background: #C4883A;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 8px 24px;
-    border-radius: 24px;
-  }
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-  .step-card {
-    text-align: center;
-    background: #f9f6f2;
-    border-radius: 14px;
-    padding: 20px 10px;
-  }
-  .step-card .icon { font-size: 32px; margin-bottom: 10px; display: block; }
-  .step-card .step-title {
+  .citations .quote {
     font-size: 12px;
-    font-weight: 700;
-    color: #444;
-    line-height: 1.5;
-  }
-  .arrow-down {
+    color: #555;
+    font-style: italic;
+    line-height: 1.85;
     text-align: center;
-    padding: 6px 0;
-    color: #C4883A;
-    font-size: 18px;
+  }
+  .citations .src {
+    font-size: 11px;
+    color: #888;
+    text-align: center;
+    margin-top: 8px;
+    line-height: 1.65;
+  }
+  .citations .quote + .quote { margin-top: 24px; }
+
+  .compare-wrap {
+    padding: 48px 20px 64px;
+  }
+  .compare-wrap img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
   }
 
-  /* ===== Promise ===== */
-  .promise {
-    padding: 48px 24px;
-    background: #f5f0eb;
-  }
-  .promise .clinic-label {
-    text-align: center;
-    font-size: 14px;
-    color: #8B7355;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .promise h2 {
-    text-align: center;
-    font-size: 22px;
-    font-weight: 800;
-    line-height: 1.5;
-    margin-bottom: 24px;
-    color: #222;
-  }
-  .promise h2 .hl {
-    background: linear-gradient(transparent 55%, #e8d5b8 55%);
-    padding: 0 4px;
-  }
-  .promise .body-text {
+  .process { padding: 48px 0; text-align: center; }
+  .process .pill {
+    display: inline-block;
+    background: #2451c4;
+    color: #fff;
     font-size: 13px;
-    color: #666;
-    line-height: 2;
-    margin-bottom: 12px;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: 999px;
+    margin-top: 4px;
   }
-  .doctor-sign {
-    text-align: right;
-    margin-top: 28px;
-    padding-top: 16px;
-    border-top: 1px solid #ddd;
+  .process-grid-img { margin-top: 32px; padding: 0 16px; }
+
+  .director {
+    background: #fff;
+    padding: 48px 24px 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: end;
   }
-  .doctor-sign .title { font-size: 13px; color: #8B7355; font-weight: 700; }
+  .director .quote h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 22px;
+    letter-spacing: -0.5px;
+  }
+  .director .quote h3 .strong { font-weight: 800; }
+  .director .quote p {
+    font-size: 12.5px;
+    color: #555;
+    line-height: 1.85;
+  }
+  .director .portrait { width: 160px; align-self: end; }
+  .director .portrait img { width: 100%; display: block; }
+
+  @media (max-width: 480px) {
+    .page-title { font-size: 22px; padding: 32px 20px 24px; }
+    .section-head h3 { font-size: 19px; }
+    .director { padding: 36px 20px 48px; }
+    .director .quote h3 { font-size: 17px; }
+    .director .portrait { width: 130px; }
+  }
 </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="tag">신체 비율이 예뻐지는</div>
-    <h1>서구화된 시대, <span class="accent">큰 키와 긴 다리</span><br>우리아이도 가능할까?</h1>
-    <p class="desc">
-      요즘은 전형적인 서구적인체형으로, 아이들도 큰 키와 긴 다리에 대해서도 관심이 많고 동경하고 있습니다.
-      다리가 길고 몸매가 좋으면 대체로 스타일도 좋아져서, 자신감에도 많은 도움이 됩니다.
-      하지만 성장클리닉에서 진료하다보면 성조숙증으로 인한 체형이 변화하여
-      키가 작거나 다리가 짧은 사례로 본인이거나 부모님이 정서적으로 위축될 수도 있습니다.
-    </p>
-    <!-- 초등 아이 사진 -->
-    <img src="/images/programs/body-ratio/hero-photo.jpg" alt="남녀 아이" class="section-img" style="margin-top: 24px;">
-  </section>
+  <h1 class="page-title">신체 비율이 예뻐지는</h1>
+  <img class="full-img" src="images/body-proportion/hero.jpg" alt="">
 
-  <!-- 교복 학생 사진 + 황금비율/예쁜비율 -->
-  <section style="background: #f5f0eb; padding: 0 0 20px;">
-    <img src="/images/programs/body-ratio/uniform-students.jpg" alt="교복 남녀 학생 - 황금비율과 예쁜비율" class="section-img">
-  </section>
-
-  <!-- Article -->
-  <section class="article">
-    <h2>성조숙증인 아이들은<br>일반적으로 <span class="red">다리가 짧다?</span></h2>
-
-    <p class="body-text">
-      논문에 의하면 사춘기가 성장판이 일찍 닫히는 성조숙증 아이들에게는 상체에 비해 다리가 상대적으로
-      하체보다는 상체쪽으로 키가 자라는 비율이기에 다리가 짧습니다.
+  <div class="section-head">
+    <h3>서구화된 시대, <span class="gold">큰 키와 긴 다리</span><br>우리아이도 가능할까?</h3>
+    <p>
+      요즘은 체형이 서구화되면서, 아이들도 큰 키를 선호하고 있습니다<br>
+      다리가 길고 짧음에 대해서도 민감하게 반응합니다<br>
+      훤칠한 키와 긴 다리는 시원시원하게 보이며, 첫인상에 막대한 영향을 미칩니다<br>
+      키가 작거나 다리가 짧은 사람은 옷맵시가 나지 않거나 정서적으로 위축될 수도 있습니다
     </p>
-    <p class="body-text">
-      그 결과 성조숙증이 있는 아이들은 팔과 다리가 짧고 몸통이 긴 체형을 유지한 채로 성장하게 되어,
-      또래에 비해 키가 작을 뿐만 아니라 다리가 긴 예쁜 체형이 되기 어렵습니다.
-    </p>
-    <p class="body-text">
-      빨리 시작된 사춘기가 팔다리의 길이 성장보다 몸통의 성장을 더 촉진시키기 때문입니다.
-      2차 성장을 진행을 조절하고 적절하게 성장을 유도하면 키 뿐만 아니라 팔다리가 길어져서
-      예쁜 신체 비율을 갖출 수 있게 됩니다.
+  </div>
+
+  <img class="full-img" src="images/body-proportion/ratio.jpg" alt="황금 비율 / 예쁜 비율">
+
+  <div class="section-head">
+    <h3>성조숙증인 아이들은<br>일반적으로 <span class="copper">다리가 짧다?</span></h3>
+    <p>
+      논문에 의하면 사춘기의 성장은 <strong>하체보다는 상체의 길이 성장</strong>과<br>
+      더 연관성이 높다고 이야기되고 있습니다<br>
+      그 결과 성조숙증을 겪은 아이들의 경우 그렇지 않은 아이들에 비해<br>
+      <strong>하체가 짧고 상체가 긴 모습</strong>을 보이게 됩니다<br>
+      또한 이러한 모습은 성인까지 이어질 수 있다고 되어 있습니다<br>
+      연세새봄 187 성장클리닉에서는 '신체 비율이 예뻐지는' 프로그램을 통해<br>
+      2차 성징을 진행을 조절하고 하체의 성장판 자극 운동을 통해 모델과 연예인을 지망하는 아이들의<br>
+      키 성장을 돕는 특화된 프로그램을 진행하고 있습니다
     </p>
 
-    <div class="ref-box">
-      <p>Short adult stature, with unfavourable body proportions, i.e. an increased upper-lower segment ratio,
-      is probably the only handicap of idiopathic central precocious puberty that persists into adulthood.</p>
-      <p class="source">참고: Diagnosis and treatment of central precocious puberty, Hormone Research in Paediatrics</p>
-
-      <p style="margin-top: 12px;">Because puberty is associated with relatively greater truncal than limb growth, an increased U/L
-      ratio for age may be seen in precocious puberty. A decreased ratio for age indicating long legs
-      compared to the trunk may be seen in delayed or incomplete puberty.</p>
-      <p class="source">참고: Management of Children with Short Stature, EDUCATIONAL ARTICLE, Pediatric Clinik Journal</p>
+    <div class="citations">
+      <p class="quote">
+        Short adult stature, with unfavourable body proportions, i.e. an increased upper:lower segment ratio,
+        is probably the only handicap of idiopathic central precocious puberty that persists into adulthood.
+      </p>
+      <p class="src">
+        출처: Diagnosis and treatment of central precocious puberty—can final height be improved?<br>
+        German/Dutch Central Precocious Puberty Study Group, Workshop I: Puberty: Onset and<br>
+        Diagnosis, Hormone Research in Paediatrics
+      </p>
+      <p class="quote">
+        Because puberty is associated with relatively greater truncal than limb growth, an increased U/L
+        ratio for age may be seen in precocious puberty. A decreased ratio for age indicating long legs
+        compared to the trunk may be seen in delayed or incomplete puberty
+      </p>
+      <p class="src">
+        출처: Management of Children with Short Stature, EDUCATIONAL ARTICLE, Pediatric Oncall Journal
+      </p>
     </div>
-  </section>
+  </div>
 
-  <!-- Comparison -->
-  <section class="comparison">
-    <img src="/images/programs/body-ratio/comparison.jpg" alt="성조숙증 아이 vs 일반적인 아이 체형 비교" class="section-img">
-  </section>
+  <div class="compare-wrap">
+    <img src="images/body-proportion/comparison.jpg" alt="성조숙증 아이 (상체가 긴 체형) vs 일반적인 아이 (하체가 긴 체형)">
+  </div>
 
-  <!-- 진료 과정 -->
   <section class="process">
-    <h2>진료 과정</h2>
-    <p class="subtitle">
-      아이의 성장 관련 어려움(키, 체중, 뼈나이 등)이 있으시면 저희 진료를 예약해주세요.<br>
-      체계적인 성장 관리를 통해 아이의 건강한 성장을 관리합니다.
-    </p>
-    <div class="age-badge-wrap">
-      <span class="age-badge">적용 연령 6세부터 ~ 뼈나이가 만 14세 미만</span>
+    <div class="section-head" style="padding: 0 24px 24px;">
+      <h3><span class="accent">진료</span> 과정</h3>
+      <p>
+        아이의 성장 관리는 아이, 부모님, 의사가 함께 하는 과정입니다<br>
+        따라서 187 성장 클리닉의 모든 진료 과정을 부모님과 함께 진행하고 있습니다<br>
+        초진 순간부터 성장 치료가 종료된 후 6개월~1년까지 지속적인<br>
+        케어를 통해 아이의 건강한 성장을 관리합니다
+      </p>
+      <div class="pill">치료 종료 6개월~1년까지 지속 관리</div>
     </div>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <span class="icon">📋</span>
-        <div class="step-title">문진표<br>작성</div>
-      </div>
-      <div class="step-card">
-        <span class="icon">📊</span>
-        <div class="step-title">신장, 체중,<br>체성분 분석</div>
-      </div>
-      <div class="step-card">
-        <span class="icon">🦴</span>
-        <div class="step-title">골연령, 전신 체형<br>X-ray 검사</div>
-      </div>
-    </div>
-
-    <div class="arrow-down">▼</div>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <span class="icon">🩺</span>
-        <div class="step-title">혈액, 소변 검사<br>추가검사 (필요시)</div>
-      </div>
-      <div class="step-card">
-        <span class="icon">👨‍⚕️</span>
-        <div class="step-title">진료, 채혈,<br>체성분 분석</div>
-      </div>
-      <div class="step-card">
-        <span class="icon">📅</span>
-        <div class="step-title">6개월 간격으로<br>성장 발달 평가</div>
-      </div>
+    <div class="process-grid-img">
+      <img class="full-img" src="images/body-proportion/process-grid.jpg" alt="진료 과정 7단계">
     </div>
   </section>
 
-  <!-- Promise -->
-  <section class="promise">
-    <p class="clinic-label">연세새봄에서는</p>
-    <h2>'<span class="hl">건강하고 균형있는 성장</span>'을<br>약속 드립니다</h2>
-
-    <p class="body-text">
-      연세새봄은 오랜 시간 성장치료를 해온 경험을 바탕으로 아이들의 몸속수를 분석하여
-      배지오르코 오뮤러밍 유은서수를 분석하여 각 아이의 필요에 맞는 개별화된 성장솔루션을 제공합니다.
-    </p>
-    <p class="body-text">
-      성장 둔화의 이유는 다양합니다. 성장호르몬 부족이나 아연이나 철분등의 미네랄 부족, 다른
-      성장방해요인들이 복합적으로 관여할 수 있으며, 성조숙증이나 비만도 성장판에 큰 영향을
-      끼치므로 다각적인 접근이 필요합니다.
-    </p>
-    <p class="body-text">
-      우리아이의 건강하고 긴 다리의 꿈을 실현할 수 있도록 함께 힘이 되어 드리겠습니다.
-    </p>
-
-    <div class="doctor-sign">
-      <span class="title">Dr. 채종원 원장</span>
+  <section class="director">
+    <div class="quote">
+      <h3>
+        연세새봄에서는<br>
+        <span class="strong">‘건강하고 균형있는 성장’</span>을<br>
+        약속 드립니다
+      </h3>
+      <p>
+        연세새봄은 오랜 시간 성장치료를 해온 경험을<br>
+        바탕으로 미래의 운동선수를 준비하고 있거나 방송,<br>
+        연기, 모델을 준비하는 우리 아이를 위한 특별한<br>
+        성장 클리닉 입니다. 바른 영양과 수면, 그리고<br>
+        균형 잡힌 호르몬 치료를 통해 건강하고 밝은 아이의<br>
+        미래를 함께 준비합니다.
+      </p>
+    </div>
+    <div class="portrait">
+      <img src="images/body-proportion/director.jpg" alt="Dr. 채용현 원장">
     </div>
   </section>
 
 </div>
-
 </body>
 </html>

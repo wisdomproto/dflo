@@ -6,7 +6,8 @@
 
 import React, { useState, useCallback, useRef } from 'react';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
-import type { Slide, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, FaqItem } from '../types/websiteSection';
+import type { Slide, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, FaqItem, HeightCalcSlide } from '../types/websiteSection';
+import { HeightCalcCard } from './HeightCalcCard';
 
 export function extractVideoId(url: string): string | null {
   if (!url) return null;
@@ -67,13 +68,18 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
   const standaloneIframeFlex = isStandaloneIframe && !(currentSlide as IframeSlide).height;
   // FaqSlide 는 항상 flex 높이 (아코디언이라 콘텐츠 길이 가변)
   const isFaqSlideActive = currentSlide?.template === 'faq';
+  // HeightCalcSlide 는 ratio 옵션 (default 4:5)
+  const isHeightCalcActive = currentSlide?.template === 'height-calc';
+  const heightCalcRatio = isHeightCalcActive ? ((currentSlide as HeightCalcSlide).ratio || '4:5') : null;
   const specialRatio = (isModalSlide || isBannerIframe) ? ((currentSlide as BannerSlide).modalRatio || '9:16') : null;
   const useNaturalHeight = isContain || bannerIframeFlex || standaloneIframeFlex || isFaqSlideActive;
 
   // Determine aspect ratio class
   const aspectClass = (isModalSlide || (isBannerIframe && !bannerIframeFlex))
     ? (specialRatio === '4:5' ? 'aspect-[4/5]' : 'aspect-[9/16]')
-    : useNaturalHeight ? '' : 'aspect-[4/5]';
+    : isHeightCalcActive
+      ? (heightCalcRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-[4/5]')
+      : useNaturalHeight ? '' : 'aspect-[4/5]';
 
   return (
     <div className="w-full">
@@ -151,6 +157,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
             {slide.template === 'cases' && <CasesContent slide={slide as CasesSlide} isActive={i === current} />}
             {slide.template === 'iframe' && <IframeContent slide={slide as IframeSlide} />}
             {slide.template === 'faq' && <FaqContent slide={slide as FaqSlide} />}
+            {slide.template === 'height-calc' && <HeightCalcCard slide={slide as HeightCalcSlide} />}
           </div>
         );
       })}
@@ -914,46 +921,26 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
     return curve.length > 1 ? curve : undefined;
   }, [measurements, points, heightStandard]);
 
-  // "치료 받지 않았다면" baseline — 첫 측정 시점의 percentile 을 18세까지 그대로 유지.
-  // 사용자 요구: 첫 측정 percentile 기준으로 매년 점, 마지막(18세)에서 가로선.
+  // "초진 시점에 예상한" 성인키 baseline — 첫 측정의 stored predictedHeight 를 18세 plateau 로 사용.
+  // 곡선은 first.height 에서 시작해 ease-out 으로 first.predictedHeight 까지 부드럽게 증가.
   const initialPredictedCurve = React.useMemo(() => {
-    if (!heightStandard || points.length === 0) return undefined;
+    if (points.length === 0) return undefined;
+    const firstWithPred = measurements.find((m) => (m.predictedHeight ?? 0) > 0);
+    if (!firstWithPred) return undefined;
     const first = points[0];
     if (first.age >= 18) return undefined;
 
-    const getStdAtAge = (ageYr: number) => {
-      let best = heightStandard[0];
-      let bestDiff = Math.abs(best.age - ageYr);
-      for (const s of heightStandard) {
-        const diff = Math.abs(s.age - ageYr);
-        if (diff < bestDiff) { best = s; bestDiff = diff; }
-      }
-      return best;
-    };
-
-    const heightAtPct = (ageYr: number, pct: number) => {
-      const s = getStdAtAge(ageYr);
-      if (pct <= 5) return s.p5 * pct / 5;
-      if (pct <= 50) return s.p5 + (s.p50 - s.p5) * (pct - 5) / 45;
-      if (pct <= 95) return s.p50 + (s.p95 - s.p50) * (pct - 50) / 45;
-      return s.p95 + (s.p95 - s.p50) * (pct - 95) / 2;
-    };
-
-    // 첫 측정 키의 percentile
-    const std = getStdAtAge(first.age);
-    let pct: number;
-    if (first.height <= std.p5) pct = Math.max(3, 5 * first.height / std.p5);
-    else if (first.height <= std.p50) pct = 5 + 45 * (first.height - std.p5) / (std.p50 - std.p5);
-    else if (first.height <= std.p95) pct = 50 + 45 * (first.height - std.p50) / (std.p95 - std.p50);
-    else pct = Math.min(97, 95 + 2 * (first.height - std.p95) / Math.max(std.p95 - std.p50, 1));
-
+    const target = firstWithPred.predictedHeight;
     const curve: { age: number; height: number }[] = [{ age: first.age, height: first.height }];
     const startYear = Math.ceil(first.age);
     for (let y = startYear; y <= 18; y++) {
-      curve.push({ age: y, height: Math.round(heightAtPct(y, pct) * 10) / 10 });
+      const t = Math.min(1, (y - first.age) / Math.max(0.5, 18 - first.age));
+      const eased = 1 - Math.pow(1 - t, 1.8); // ease-out: 초기 성장 속도 빠르고 점점 plateau
+      const h = first.height + (target - first.height) * eased;
+      curve.push({ age: y, height: Math.round(h * 10) / 10 });
     }
     return curve.length > 1 ? curve : undefined;
-  }, [points, heightStandard]);
+  }, [points, measurements]);
 
   if (points.length < 2) return null;
 

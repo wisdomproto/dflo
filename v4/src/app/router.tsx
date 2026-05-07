@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, createBrowserRouter, useParams } from 'react-router-dom';
 import { ProtectedRoute } from '@/features/auth/components/ProtectedRoute';
 import { AdminRoute } from '@/features/auth/components/ProtectedRoute';
@@ -44,6 +44,7 @@ const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDet
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
+const CasesEmbedPage = lazy(() => import('@/features/website/pages/CasesEmbedPage'));
 const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
 const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
 
@@ -69,6 +70,14 @@ function SuspenseFallback() {
       </div>
     </div>
   );
+}
+
+// Hard redirect to a static file (causes full page reload so Vite serves it directly).
+function HardRedirect({ to }: { to: string }) {
+  useEffect(() => {
+    window.location.replace(to);
+  }, [to]);
+  return null;
 }
 
 // Redirect helpers for param-carrying legacy paths.
@@ -146,6 +155,20 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <AdminAppHomePage />
+      </Suspense>
+    ),
+  },
+
+  // /test/ static prototype — hard redirect to index.html so Vite serves it.
+  { path: '/test', element: <HardRedirect to="/test/index.html" /> },
+  { path: '/test/', element: <HardRedirect to="/test/index.html" /> },
+
+  // /cases-embed — used as iframe target by /test/cases.html
+  {
+    path: '/cases-embed',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <CasesEmbedPage />
       </Suspense>
     ),
   },

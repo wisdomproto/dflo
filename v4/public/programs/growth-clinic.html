@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>187 성장클리닉 - 연세새봄의원</title>
+
+<style>
+  :root {
+    --ink: #171717;
+    --body: #444;
+    --muted: #777;
+    --soft: #f7f8fb;
+    --hairline: #e8eaf0;
+    --brand: #2451c4;
+    --brand-dark: #17398d;
+    --brand-soft: #eef3ff;
+    --accent: var(--brand);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* sticky가 작동하려면 html/body에 overflow-x:hidden을 걸지 않습니다 */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 68px;
+  }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--body);
+    background: #fff;
+    font-size: 15px;
+    line-height: 1.78;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    /* sticky가 동작하도록 overflow는 visible 유지 */
+    overflow: visible;
+  }
+
+  .full-img { width: 100%; }
+
+  .accent { color: var(--accent); font-weight: 800; }
+
+  /* ================= TOP MASTHEAD (logo + program title) ================= */
+  .masthead {
+    text-align: center;
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .masthead .logo {
+    max-width: 240px;
+    width: 70%;
+    margin: 0 auto 18px;
+    display: block;
+  }
+  .masthead h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.7px;
+    line-height: 1.2;
+  }
+  @media (min-width: 640px) {
+    .masthead { padding: 36px 24px 28px; }
+    .masthead .logo { max-width: 300px; }
+    .masthead h1 { font-size: 32px; }
+  }
+
+  /* ================= HERO (tagline) ================= */
+  .page-hero { text-align: center; padding: 36px 24px 20px; }
+  .page-hero .brand {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 1.8px; margin-bottom: 10px;
+  }
+  .page-hero h1 {
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    line-height: 1.38; letter-spacing: -0.6px;
+  }
+  @media (min-width: 640px) { .page-hero h1 { font-size: 26px; } }
+
+  /* ================= COMMON ================= */
+  .intro { padding: 46px 24px 54px; text-align: center; }
+  .intro h2 {
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    line-height: 1.45; margin-bottom: 18px; letter-spacing: -0.6px;
+  }
+  .intro p { font-size: 15px; color: var(--muted); line-height: 1.82; }
+  .intro strong, .lead strong { color: var(--ink); font-weight: 800; }
+
+  section[id] { position: relative; padding-top: 64px; }
+  section[id]::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: var(--accent);
+  }
+
+  .sec-head { text-align: center; padding: 0 24px 34px; }
+  .sec-head.entry { padding: 56px 24px 32px; }
+  .sec-head.spaced { padding-top: 42px; }
+  .sec-head.large { padding-top: 56px; }
+
+  .sec-eyebrow {
+    text-align: center; padding: 0 24px;
+    font-size: 12px; font-weight: 800; color: var(--accent);
+    letter-spacing: 1.6px; margin-bottom: 8px;
+  }
+  .sec-head .sec-eyebrow { padding: 0; margin-bottom: 8px; }
+
+  .sec-head h3 {
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    line-height: 1.42; letter-spacing: -0.7px;
+  }
+  .sec-head .lead {
+    font-size: 15px; color: var(--muted);
+    line-height: 1.82; margin-top: 16px;
+  }
+
+  @media (min-width: 640px) {
+    section[id] { padding-top: 76px; }
+    .sec-head h3 { font-size: 25px; }
+  }
+
+  .subhead {
+    margin: 34px 24px 18px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+    font-size: 15px; font-weight: 800; color: var(--ink);
+    letter-spacing: -0.4px;
+  }
+
+  /* ================= SECTION COLORS ================= */
+  #hormone    { --accent: #2451c4; }
+  #obesity    { --accent: #1f8f8d; }
+  #precocious { --accent: #9f3f7f; }
+  #proportion { --accent: #a97432; }
+  #bodywork   { --accent: #b95324; }
+  #late       { --accent: #5f4aa0; }
+  #process    { --accent: #2451c4; }
+
+  /* ================= CASE NAV - STICKY ================= */
+  .case-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transition: box-shadow 0.2s ease;
+  }
+  .case-nav.is-stuck { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+
+  .case-nav .scroll {
+    display: flex; gap: 8px; overflow-x: auto;
+    padding: 10px 16px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .case-nav .scroll::-webkit-scrollbar { display: none; }
+
+  .case-nav a {
+    flex: none; display: inline-flex;
+    align-items: center; justify-content: center;
+    padding: 8px 15px; border-radius: 999px;
+    border: 1px solid var(--hairline); background: #fff;
+    color: var(--muted);
+    font-size: 13px; font-weight: 700; line-height: 1;
+    text-decoration: none; white-space: nowrap;
+    scroll-snap-align: center;
+    transition: all 0.16s ease;
+  }
+  .case-nav a.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(36,81,196,0.18);
+  }
+
+  /* ================= CHECK GRID ================= */
+  .need-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 12px;
+    padding: 0 20px 12px;
+  }
+  .need-card { text-align: center; }
+  .need-card .photo {
+    width: 100%; aspect-ratio: 1/1; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .need-card img { width: 100%; height: 100%; object-fit: cover; }
+  .need-card .cap {
+    font-size: 12.5px; color: var(--ink);
+    font-weight: 700; line-height: 1.55;
+  }
+
+  /* ================= CARD COMMON ================= */
+  .solution-img, .equipment-block, .process-grid-img, .chart-block {
+    padding: 0 16px;
+  }
+
+  .features-3, .life-list {
+    display: flex; flex-direction: column; gap: 12px; padding: 8px 20px 0;
+  }
+  .feature-3, .life-card {
+    display: flex; background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 8px; overflow: hidden;
+  }
+  .feature-3 .photo, .life-card .photo {
+    flex: 0 0 38%; aspect-ratio: 4/3; background: var(--soft);
+  }
+  .feature-3 img, .life-card img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .feature-3 .body, .life-card .body {
+    flex: 1; padding: 15px 16px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .feature-3 .num, .life-card .num {
+    font-size: 12px; font-weight: 800; color: var(--accent);
+    margin-bottom: 4px; letter-spacing: 0.3px;
+  }
+  .feature-3 h4, .life-card h4 {
+    font-size: 15px; font-weight: 800; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .feature-3 p, .life-card .desc {
+    font-size: 13px; color: var(--body); line-height: 1.6;
+  }
+
+  /* ================= PANELS / GRIDS ================= */
+  .panel-bordered, .bmi-panel {
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    margin: 0 20px 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .panel-bordered { padding: 24px 14px 14px; text-align: center; }
+  .panel-bordered .ctitle {
+    font-size: 16px; font-weight: 800; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .panel-bordered .csrc { font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+  .panel-bordered .cunit {
+    font-size: 11px; color: var(--muted);
+    text-align: right; margin-bottom: 6px;
+  }
+
+  .arrow-illust { padding: 0 20px 16px; }
+  .arrow-illust img,
+  .equipment-block img,
+  .compare-block img { border-radius: 6px; }
+  .equipment-block img { margin-bottom: 8px; }
+
+  .cause-grid-2, .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px 12px; padding: 0 20px;
+  }
+  .cause-grid-3 {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px 10px; padding: 0 20px;
+  }
+  .cause-grid-2 .item, .cause-grid-3 .item, .problem-grid .item { text-align: center; }
+
+  .cause-grid-2 .photo {
+    width: 100%; aspect-ratio: 1/1; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .cause-grid-3 .photo {
+    width: 100%; aspect-ratio: 4/5; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .problem-grid .photo {
+    width: 100%; aspect-ratio: 4/3; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .cause-grid-2 img, .cause-grid-3 img, .problem-grid img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .cause-grid-2 h4 {
+    font-size: 14px; font-weight: 800; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .cause-grid-2 .desc, .cause-grid-3 .cap {
+    font-size: 12px; color: var(--body); line-height: 1.55;
+  }
+
+  .risk-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 20px 12px; padding: 0 20px;
+  }
+  @media (min-width: 480px) {
+    .risk-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .risk-grid .item { text-align: center; }
+  .risk-grid .photo {
+    width: 100%; aspect-ratio: 1/1; overflow: hidden;
+    border-radius: 50%; background: var(--soft); margin-bottom: 10px;
+  }
+  .risk-grid img { width: 100%; height: 100%; object-fit: cover; }
+  .risk-grid h4 {
+    font-size: 13.5px; font-weight: 800; color: var(--ink);
+    margin-bottom: 3px; letter-spacing: -0.2px;
+  }
+  .risk-grid .desc { font-size: 12px; color: var(--body); line-height: 1.55; }
+
+  /* ================= PROPORTION / LATE ================= */
+  .compare-block { padding: 32px 20px 0; }
+  .compare-quote {
+    margin: 16px 20px 0; padding: 18px 20px;
+    background: var(--soft); border-radius: 8px;
+    text-align: center;
+  }
+  .compare-quote q {
+    display: block; quotes: none;
+    font-size: 13.5px; font-style: italic;
+    color: var(--ink); font-weight: 500; line-height: 1.7;
+  }
+  .compare-quote q::before { content: '"'; }
+  .compare-quote q::after { content: '"'; }
+
+  .problem-grid .cap {
+    font-size: 13.5px; color: var(--ink);
+    font-weight: 700; letter-spacing: -0.2px;
+  }
+  .problem-grid .strong { font-weight: 800; }
+
+  .program-tags {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; padding: 8px 24px 0;
+  }
+  .program-tags .tag {
+    background: var(--soft); text-align: center;
+    padding: 14px 8px; font-size: 13px; font-weight: 700;
+    color: var(--ink); border-radius: 6px; letter-spacing: -0.2px;
+  }
+
+  .chart-block { padding-top: 24px; }
+  .table-block { padding: 0 24px; }
+  table.speed { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.speed th, table.speed td {
+    border: 1px solid var(--hairline); padding: 10px 6px; text-align: center;
+  }
+  table.speed th { background: #fafafa; font-weight: 800; color: var(--ink); }
+
+  .feat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px 8px; padding: 32px 16px 0;
+  }
+  .feat-grid .item { text-align: center; }
+  .feat-grid .photo {
+    width: 100%; aspect-ratio: 4/5; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 8px;
+  }
+  .feat-grid img { width: 100%; height: 100%; object-fit: cover; }
+  .feat-grid .cap { font-size: 12px; color: var(--body); line-height: 1.45; }
+
+  /* ================= PROCESS / DIRECTOR / CTA ================= */
+  .process { padding: 64px 0 36px; text-align: center; }
+  .process .pill {
+    display: inline-block;
+    background: var(--brand); color: #fff;
+    font-size: 13px; font-weight: 700;
+    padding: 10px 22px; border-radius: 999px;
+    margin-top: 18px; letter-spacing: -0.2px;
+  }
+  .process-grid-img { margin-top: 28px; }
+
+  .director {
+    padding: 36px 24px 58px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 16px; align-items: end;
+  }
+  .director .quote h3 {
+    font-size: 19px; font-weight: 600; color: var(--ink);
+    line-height: 1.55; margin-bottom: 18px; letter-spacing: -0.6px;
+  }
+  .director .quote h3 .strong { font-weight: 800; }
+  .director .quote p { font-size: 13px; color: var(--body); line-height: 1.82; }
+  .director .portrait { width: 130px; align-self: end; }
+  @media (min-width: 640px) {
+    .director .quote h3 { font-size: 21px; }
+    .director .portrait { width: 160px; }
+  }
+
+  .cta-bottom {
+    background: var(--soft); text-align: center;
+    padding: 44px 24px 58px;
+  }
+  .cta-bottom h4 {
+    font-size: 21px; font-weight: 800; color: var(--ink);
+    margin-bottom: 10px; line-height: 1.45; letter-spacing: -0.5px;
+  }
+  .cta-bottom p {
+    font-size: 14.5px; color: var(--muted); margin-bottom: 24px;
+  }
+  .cta-bottom a {
+    display: inline-block; background: #FAE100; color: #1a1a1a;
+    text-decoration: none; font-weight: 800; font-size: 15px;
+    padding: 15px 36px; border-radius: 999px;
+    transition: transform 0.15s ease;
+  }
+  .cta-bottom a:active { transform: scale(0.97); }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- ================= MASTHEAD (logo + program title) ================= -->
+  <header class="masthead">
+    <img class="logo" src="/images/logo.jpg" alt="187 성장클리닉">
+    <h1>성장 프로그램 소개</h1>
+  </header>
+
+  <!-- ================= HERO (tagline) ================= -->
+  <header class="page-hero">
+    <div class="brand">YONSEI SAEBOM · 187</div>
+    <h1>
+      우리 아이 성장,<br>
+      <span class="accent">키만 보지 않고 균형까지</span> 봅니다
+    </h1>
+  </header>
+
+  <img class="full-img" src="images/growth-hormone-balance/hero.jpg" alt="연세새봄의원 187 성장클리닉 대표 이미지">
+
+  <!-- ================= INTRO ================= -->
+  <section class="intro">
+    <h2>
+      아이의 성장은<br>
+      <span class="accent">성장호르몬 하나로만</span> 결정되지 않습니다
+    </h2>
+    <p>
+      사춘기 진행, 수면, 갑상선, 스트레스, 체중, 자세까지<br>
+      함께 살펴야 건강한 성장 방향을 잡을 수 있습니다.<br>
+      연세새봄은 아이의 성장 방해 요인을 통합적으로 확인합니다.
+    </p>
+  </section>
+
+  <section class="medal">
+    <img class="full-img" src="images/growth-hormone-balance/medal-panel.jpg" alt="모델 에이전시 지정 병원, 운동선수 모델 특화 클리닉 안내">
+  </section>
+
+  <!-- ================= CHECK ================= -->
+  <div class="sec-head entry">
+    <div class="sec-eyebrow">우리 아이에게 필요할까?</div>
+    <h3>성장 검사를 <span class="accent">고려해볼 수 있는 경우</span></h3>
+  </div>
+
+  <div class="need-grid">
+    <div class="need-card">
+      <div class="photo"><img src="images/growth-hormone-balance/need-1.jpg" alt="또래보다 키가 작은 아이"></div>
+      <div class="cap">또래보다 키가<br>눈에 띄게 작은 경우</div>
+    </div>
+    <div class="need-card">
+      <div class="photo"><img src="images/growth-hormone-balance/need-2.jpg" alt="성장 속도가 느린 아이"></div>
+      <div class="cap">최근 1년 성장 속도가<br>느린 경우</div>
+    </div>
+    <div class="need-card">
+      <div class="photo"><img src="images/growth-hormone-balance/need-3.jpg" alt="성장 속도가 갑자기 변한 아이"></div>
+      <div class="cap">성장 속도가<br>갑자기 변한 경우</div>
+    </div>
+    <div class="need-card">
+      <div class="photo"><img src="images/growth-hormone-balance/need-4.jpg" alt="평균 키보다 작은 아이"></div>
+      <div class="cap">평균 키보다<br>10cm 이상 작은 경우</div>
+    </div>
+    <div class="need-card">
+      <div class="photo"><img src="images/growth-hormone-balance/need-5.jpg" alt="자세와 체형 불균형이 있는 아이"></div>
+      <div class="cap">자세·체형 불균형이<br>있는 경우</div>
+    </div>
+    <div class="need-card">
+      <div class="photo"><img src="images/growth-hormone-balance/need-6.jpg" alt="호르몬 이상이 의심되는 아이"></div>
+      <div class="cap">호르몬 이상이<br>의심되는 경우</div>
+    </div>
+  </div>
+
+  <!-- ================= GOLDEN TIME ================= -->
+  <div class="sec-head large">
+    <div class="sec-eyebrow">성장 치료의 골든타임</div>
+    <h3>키 성장 <span class="accent">확인 시기</span>는 언제일까요?</h3>
+  </div>
+
+  <div class="golden">
+    <img class="full-img" src="images/growth-hormone-balance/golden-time.jpg" alt="남자아이와 여자아이 성장 치료 시기 안내">
+  </div>
+
+  <div class="sec-head spaced">
+    <p class="lead">
+      성장 치료의 효과는 <strong>성장판 상태와 사춘기 진행 정도</strong>에 따라 달라질 수 있습니다.<br>
+      검사는 치료 결정과 별개로 진행할 수 있으므로,
+      성장 속도가 걱정된다면 먼저 현재 상태를 확인해보는 것이 좋습니다.
+    </p>
+  </div>
+
+  <!-- ================= HORMONE ================= -->
+  <section id="hormone">
+    <div class="sec-eyebrow">통합 성장 관리</div>
+    <div class="sec-head">
+      <h3>
+        성장호르몬만 보는 치료가 아닙니다<br>
+        연세새봄의 <span class="accent">통합 성장 솔루션</span>
+      </h3>
+      <p class="lead">
+        연세새봄은 성장호르몬뿐 아니라
+        <strong>성호르몬, 수면, 갑상선, 스트레스, 체중, 자세</strong>를 함께 평가합니다.
+        아이의 성장 방해 요인을 찾고, 개인별 성장 방향을 설계합니다.
+      </p>
+    </div>
+
+    <div class="solution-img">
+      <img src="images/growth-hormone-balance/solution-diagram.jpg" alt="연세새봄 6대 통합 성장 솔루션">
+    </div>
+
+    <div class="sec-head large">
+      <h3>호르몬 밸런스를 위한<br><span class="accent">3가지 핵심 관리</span></h3>
+    </div>
+
+    <div class="features-3">
+      <div class="feature-3">
+        <div class="photo"><img src="images/growth-hormone-balance/feature-1.jpg" alt="호르몬 관리"></div>
+        <div class="body">
+          <div class="num">01 / 호르몬 관리</div>
+          <h4>불균형 진단 및 체계적 관리</h4>
+          <p>성장호르몬 외에도 성·수면·갑상선·스트레스 호르몬까지 전체 균형을 확인합니다.</p>
+        </div>
+      </div>
+
+      <div class="feature-3">
+        <div class="photo"><img src="images/growth-hormone-balance/feature-2.jpg" alt="사춘기 관리"></div>
+        <div class="body">
+          <div class="num">02 / 사춘기 관리</div>
+          <h4>성조숙증 · 2차 성징 관리</h4>
+          <p>사춘기 진행 속도와 성장판 상태를 함께 살펴 건강한 성장 방향을 잡습니다.</p>
+        </div>
+      </div>
+
+      <div class="feature-3">
+        <div class="photo"><img src="images/growth-hormone-balance/feature-3.jpg" alt="비만 아이 성장 관리"></div>
+        <div class="body">
+          <div class="num">03 / 체중 관리</div>
+          <h4>성장을 고려한 체중 조절</h4>
+          <p>성장기 아이에게 필요한 영양을 고려하며 체중과 키 성장을 함께 관리합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CASE INTRO ================= -->
+  <section class="intro">
+    <h2>우리 아이에게 맞는<br><span class="accent">성장 관리 유형</span></h2>
+    <p>
+      아이마다 성장을 방해하는 원인은 다릅니다.<br>
+      아래 항목 중 해당되는 유형을 선택해<br>
+      필요한 관리 방향을 확인해보세요.
+    </p>
+  </section>
+
+  <!-- ================= CASE NAV (sticky) ================= -->
+  <nav class="case-nav" id="caseNav" aria-label="성장 관리 유형 네비게이션">
+    <div class="scroll">
+      <a href="#obesity">비만형 성장</a>
+      <a href="#precocious">빠른 사춘기</a>
+      <a href="#proportion">체형·비율</a>
+      <a href="#bodywork">자세·발육</a>
+      <a href="#late">사춘기 후반</a>
+    </div>
+  </nav>
+
+  <!-- ================= OBESITY ================= -->
+  <section id="obesity">
+    <div class="sec-eyebrow">01 / 비만형 성장 관리</div>
+    <div class="sec-head">
+      <h3>
+        체중이 늘면 키도 클까요?<br>
+        <span class="accent">비만형 성장</span>은 다르게 봐야 합니다
+      </h3>
+      <p class="lead">
+        성장기 비만은 체중 문제에 그치지 않고
+        성호르몬 분비와 사춘기 진행에도 영향을 줄 수 있습니다.
+        아이의 체중, 성장 속도, 생활습관을 함께 확인하는 것이 중요합니다.
+      </p>
+    </div>
+
+    <div class="bmi-panel">
+      <img src="images/obesity-growth/body-bmi.jpg" alt="소아비만의 진단 기준 안내">
+    </div>
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">소아비만과 키의 상관관계</div>
+      <h3>성장기 아이들의 살은<br><span class="accent">모두 키로 가지 않습니다</span></h3>
+      <p class="lead">
+        과도한 체지방은 성장호르몬 작용과 사춘기 진행에 영향을 줄 수 있습니다.
+        따라서 성장기 체중 관리는 단순한 다이어트가 아니라
+        <strong>건강한 성장 환경을 만드는 과정</strong>입니다.
+      </p>
+    </div>
+
+    <img class="full-img" src="images/obesity-growth/waffle-photo.jpg" alt="고칼로리 음식과 소아비만 이미지">
+
+    <div class="sec-head spaced">
+      <h3>소아비만은<br><span class="accent">성인비만과 다르게 접근해야 합니다</span></h3>
+      <p class="lead">
+        성장기에는 지방세포의 크기뿐 아니라 수와 대사 환경도 함께 변화할 수 있습니다.
+        조기 관리가 중요한 이유입니다.
+      </p>
+    </div>
+
+    <img class="full-img" src="images/obesity-growth/fat-cell.jpg" alt="지방 세포 수와 지방 크기 증가 설명">
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">쉽게 넘기면 안 되는 소아비만</div>
+      <h3>소아비만, <span class="accent">왜 관리가 필요할까요?</span></h3>
+    </div>
+
+    <div class="risk-grid">
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/risk-1.jpg" alt="성인비만 위험"></div>
+        <h4>성인비만</h4>
+        <div class="desc">성장기 비만은 성인기 체중 문제로 이어질 가능성이 있습니다.</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/risk-2.jpg" alt="대사 질환 위험"></div>
+        <h4>대사 건강</h4>
+        <div class="desc">혈당, 혈압, 피부 질환 등 다양한 건강 문제와 연관될 수 있습니다.</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/risk-3.jpg" alt="키 성장 방해"></div>
+        <h4>성장 방해</h4>
+        <div class="desc">체지방과 사춘기 진행은 성장판 변화에 영향을 줄 수 있습니다.</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/risk-4.jpg" alt="심리적 위축"></div>
+        <h4>심리 위축</h4>
+        <div class="desc">체형 고민은 자신감과 대인관계에도 영향을 줄 수 있습니다.</div>
+      </div>
+    </div>
+
+    <div class="sec-head large">
+      <div class="sec-eyebrow">왜 점점 많아질까?</div>
+      <h3><span class="accent">소아비만의 원인</span>을 함께 확인합니다</h3>
+    </div>
+
+    <div class="cause-grid-2">
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/cause-1.jpg" alt="에너지 불균형"></div>
+        <h4>에너지 불균형</h4>
+        <div class="desc">야식, 고칼로리 간식, 불규칙한 식습관</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/cause-2.jpg" alt="유전적 요인"></div>
+        <h4>유전적 요인</h4>
+        <div class="desc">가족력과 생활환경을 함께 고려합니다</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/cause-3.jpg" alt="내분비 요인"></div>
+        <h4>내분비 요인</h4>
+        <div class="desc">식욕, 대사, 호르몬 균형 확인</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/obesity-growth/cause-4.jpg" alt="생활습관 요인"></div>
+        <h4>생활습관 요인</h4>
+        <div class="desc">신체활동 감소와 서구화된 식습관</div>
+      </div>
+    </div>
+
+    <div class="sec-head large">
+      <h3>소아비만을 줄이는<br><span class="accent">성장기 생활습관</span></h3>
+      <p class="lead">
+        성장기 아이에게 필요한 영양과 활동량을 고려하여
+        체중과 성장을 함께 관리합니다.
+      </p>
+    </div>
+
+    <div class="life-list">
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-1.jpg" alt="식이 관리"></div>
+        <div class="body">
+          <div class="num">01 / 식이 관리</div>
+          <h4>균형 잡힌 식단</h4>
+          <div class="desc">고칼로리 간식은 줄이고 단백질, 채소, 식이섬유를 균형 있게 섭취합니다.</div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-2.jpg" alt="스크린 타임 줄이기"></div>
+        <div class="body">
+          <div class="num">02 / 생활 관리</div>
+          <h4>스크린 타임 조절</h4>
+          <div class="desc">TV, 게임, 스마트폰 사용 시간을 줄이고 활동량을 늘립니다.</div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-3.jpg" alt="신체활동"></div>
+        <div class="body">
+          <div class="num">03 / 신체활동</div>
+          <h4>일상 속 움직임</h4>
+          <div class="desc">걷기, 계단 이용, 가벼운 운동으로 성장기 활동량을 확보합니다.</div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-4.jpg" alt="수면 관리"></div>
+        <div class="body">
+          <div class="num">04 / 수면 관리</div>
+          <h4>규칙적인 수면</h4>
+          <div class="desc">수면 리듬은 체중 조절과 성장 환경에 모두 중요합니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRECOCIOUS ================= -->
+  <section id="precocious">
+    <div class="sec-eyebrow">02 / 빠른 사춘기 관리</div>
+    <div class="sec-head">
+      <h3>
+        사춘기가 빠른 아이,<br>
+        <span class="accent">성장판 속도</span>를 함께 봐야 합니다
+      </h3>
+      <p class="lead">
+        성조숙증은 여아 만 8세 이전, 남아 만 9세 이전에 2차 성징이 나타나는 경우를 말합니다.
+        사춘기 진행이 빠르면 성장판 변화도 빨라질 수 있어 현재 상태 확인이 중요합니다.
+      </p>
+    </div>
+
+    <div class="panel-bordered">
+      <div class="ctitle">2016~2020년 국내 성조숙증 환자 수</div>
+      <div class="csrc">출처: 건강보험심사평가원</div>
+      <div class="cunit">단위: 명</div>
+      <img src="images/precocious-puberty/chart.jpg" alt="2016년부터 2020년까지 국내 성조숙증 환자 수 그래프">
+    </div>
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">성조숙증과 키의 관계</div>
+      <h3><span class="accent">빠른 사춘기</span>가 키 성장에 주는 영향</h3>
+      <p class="lead">
+        성호르몬이 이른 시기에 분비되면 일시적으로 키 크는 속도가 빨라 보일 수 있습니다.
+        하지만 이후 성장판 변화가 빨라져 최종 키에 영향을 줄 수 있습니다.
+      </p>
+    </div>
+
+    <img class="full-img" src="images/precocious-puberty/height-boy.jpg" alt="성조숙증과 성장 속도 관계 이미지">
+
+    <div class="sec-head spaced">
+      <h3>
+        성조숙증 관리는<br>
+        <span class="accent">사춘기 진행과 성장 속도</span>를 함께 고려해야 합니다
+      </h3>
+      <p class="lead">
+        성조숙증 치료는 단순히 성호르몬만 보는 것이 아니라
+        성장 속도, 성장판 상태, 수면, 영양, 체중을 함께 고려해야 합니다.
+      </p>
+    </div>
+
+    <div class="arrow-illust">
+      <img src="images/precocious-puberty/arrow-illust.jpg" alt="성조숙증 치료와 성장 속도 관리 설명">
+    </div>
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">아직 어린데 왜?</div>
+      <h3><span class="accent">성조숙증 원인</span>을 함께 확인합니다</h3>
+    </div>
+
+    <div class="cause-grid-3">
+      <div class="item">
+        <div class="photo"><img src="images/precocious-puberty/cause-1.jpg" alt="질환 관련 요인"></div>
+        <div class="cap">뇌·난소·고환 등<br>관련 질환이 있는 경우</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/precocious-puberty/cause-2.jpg" alt="식습관 요인"></div>
+        <div class="cap">육식 위주, 인스턴트 등<br>고지방 섭취가 많은 경우</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/precocious-puberty/cause-3.jpg" alt="비만 요인"></div>
+        <div class="cap">성호르몬 분비와 연관된<br>비만이 있는 경우</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/precocious-puberty/cause-4.jpg" alt="환경호르몬 요인"></div>
+        <div class="cap">환경오염, 일회용품 등<br>환경호르몬 노출이 많은 경우</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/precocious-puberty/cause-5.jpg" alt="활동 부족"></div>
+        <div class="cap">게임, TV 시청 등으로<br>신체활동이 부족한 경우</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/precocious-puberty/cause-6.jpg" alt="스트레스 요인"></div>
+        <div class="cap">학업, 생활 스트레스가<br>큰 경우</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROPORTION ================= -->
+  <section id="proportion">
+    <div class="sec-eyebrow">03 / 체형·비율 관리</div>
+    <div class="sec-head">
+      <h3>
+        키만큼 중요한 것,<br>
+        <span class="accent">균형 잡힌 신체 비율</span>입니다
+      </h3>
+      <p class="lead">
+        키 성장과 함께 신체 비율, 자세, 하체 균형도 아이의 인상과 자신감에 영향을 줄 수 있습니다.
+        성장 과정에서 체형과 비율을 함께 살피는 것이 중요합니다.
+      </p>
+    </div>
+
+    <div class="proportion-img">
+      <img src="images/body-proportion/ratio.jpg" alt="황금 비율과 예쁜 신체 비율 안내">
+    </div>
+
+    <div class="sec-head spaced">
+      <h3>빠른 사춘기와<br><span class="accent">신체 비율 변화</span></h3>
+      <p class="lead">
+        사춘기 진행 시기와 성장 속도는 상체와 하체의 성장 균형에도 영향을 줄 수 있습니다.
+        성장판 상태와 사춘기 단계를 확인하며 체형 균형을 함께 관리하는 것이 중요합니다.
+      </p>
+    </div>
+
+    <div class="compare-block">
+      <img src="images/body-proportion/comparison.jpg" alt="상체와 하체 비율 비교 이미지">
+    </div>
+
+    <p class="compare-quote">
+      <q>사춘기 진행 시기와 성장 속도는 성장 후 신체 비율에도 영향을 줄 수 있습니다.</q>
+    </p>
+  </section>
+
+  <!-- ================= BODYWORK ================= -->
+  <section id="bodywork">
+    <div class="sec-eyebrow">04 / 자세·발육 케어</div>
+    <div class="sec-head">
+      <h3>
+        자세와 체형도<br>
+        <span class="accent">성장 환경</span>에 영향을 줍니다
+      </h3>
+      <p class="lead">
+        나쁜 자세, 근육과 근막의 긴장, 척추·골반 불균형은 아이의 신체 균형에 영향을 줄 수 있습니다.
+        진단과 운동 관리를 통해 체형과 발육 상태를 함께 확인합니다.
+      </p>
+    </div>
+
+    <div class="subhead">진단 — 전신 X-Ray 분석</div>
+
+    <img class="full-img" src="images/feet-care/back.jpg" alt="전신 X-Ray 체형 분석 이미지">
+
+    <div class="sec-head spaced">
+      <p class="lead">
+        척추 측만, 요추 전만, 거북목, O다리, X다리 등
+        성장기 체형 문제를 확인하고 아이에게 필요한 관리 방향을 안내합니다.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="item">
+        <div class="photo"><img src="images/feet-care/problem-1.jpg" alt="척추 측만"></div>
+        <div class="cap"><span class="strong">척추 측만</span> 확인</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/feet-care/problem-2.jpg" alt="요추 전만"></div>
+        <div class="cap"><span class="strong">요추 전만</span> 확인</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/feet-care/problem-3.jpg" alt="거북목"></div>
+        <div class="cap"><span class="strong">거북목</span> 확인</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/feet-care/problem-4.jpg" alt="O다리 X다리"></div>
+        <div class="cap"><span class="strong">O·X 다리</span> 확인</div>
+      </div>
+    </div>
+
+    <div class="subhead" style="margin-top: 56px;">치료 — 성장 자극 운동 + 바른 발육 관리</div>
+
+    <div class="sec-head spaced">
+      <p class="lead">
+        부설 GYM의 전문 트레이너 1:1 지도를 통해 성장기 아이에게 맞는 운동을 진행합니다.
+        스트레칭과 자세 교정, 근막 이완 관리를 통해 바른 자세와 신체 균형을 돕습니다.
+      </p>
+    </div>
+
+    <div class="equipment-block">
+      <img src="images/posture-exercise/equipment-main.jpg" alt="성장 운동 장비 이미지">
+      <img src="images/posture-exercise/equipment-row.jpg" alt="성장 운동 프로그램 장비 이미지">
+    </div>
+  </section>
+
+  <!-- ================= LATE ================= -->
+  <section id="late">
+    <div class="sec-eyebrow">05 / 사춘기 후반 성장 관리</div>
+    <div class="sec-head">
+      <h3>
+        사춘기 후반이라도<br>
+        <span class="accent">현재 성장 가능성</span>을 확인해보세요
+      </h3>
+      <p class="lead">
+        사춘기 후반에는 성장 속도가 점차 줄어들 수 있습니다.
+        하지만 성장판 상태, 호르몬 균형, 자세, 수면, 영양 상태에 따라
+        관리 방향은 달라질 수 있습니다.
+      </p>
+    </div>
+
+    <div class="program-tags">
+      <div class="tag">사춘기 전 프로그램</div>
+      <div class="tag">성조숙증 프로그램</div>
+      <div class="tag">사춘기 단계별 프로그램</div>
+      <div class="tag">사춘기 후반 프로그램</div>
+    </div>
+
+    <div class="sec-head spaced">
+      <h3>나이별 <span class="accent">성장 속도</span>를 확인합니다</h3>
+      <p class="lead">
+        각 시기에 맞는 성장 속도를 파악하고, 아이의 현재 상태에 맞는 관리 방향을 정하는 것이 중요합니다.
+      </p>
+    </div>
+
+    <div class="chart-block">
+      <img src="images/late-growth/growth-chart.jpg" alt="나이별 성장 속도 그래프">
+    </div>
+
+    <div class="table-block">
+      <table class="speed">
+        <thead>
+          <tr>
+            <th>연령</th>
+            <th colspan="2">연간 성장 속도 <span style="color:#888;font-size:11px;">(cm/year)</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="2">사춘기 이전</td><td>5~6cm</td></tr>
+          <tr><td rowspan="2">사춘기 초기</td><td>남아</td><td>7~12cm</td></tr>
+          <tr><td>여아</td><td>6~11cm</td></tr>
+          <tr><td colspan="2">사춘기 후기</td><td>이전 성장률보다 감소</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head large">
+      <h3>성장 가능성,<br><span class="accent">현재 상태부터 확인합니다</span></h3>
+      <p class="lead">아이의 성장 단계에 맞춰 세분화된 성장 프로그램을 진행합니다.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="item">
+        <div class="photo"><img src="images/late-growth/card-1.jpg" alt="사춘기 진행 속도 관리"></div>
+        <div class="cap">사춘기 진행<br>속도 확인</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/late-growth/card-2.jpg" alt="척추 골반 하체 균형"></div>
+        <div class="cap">척추·골반<br>하체 균형</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/late-growth/card-3.jpg" alt="운동 영양 수면 관리"></div>
+        <div class="cap">운동·영양·수면<br>생활 관리</div>
+      </div>
+      <div class="item">
+        <div class="photo"><img src="images/late-growth/card-4.jpg" alt="호르몬 밸런스 관리"></div>
+        <div class="cap">호르몬 밸런스<br>성장 관리</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROCESS ================= -->
+  <section id="process" class="process">
+    <div class="sec-head">
+      <div class="sec-eyebrow">함께 만드는 성장</div>
+      <h3><span class="accent">진료 과정</span></h3>
+      <p class="lead">
+        아이의 성장 관리는 아이, 부모님, 의료진이 함께하는 과정입니다.
+        초진부터 치료 종료 후 경과 관찰까지 지속적으로 성장 상태를 확인합니다.
+      </p>
+      <div class="pill">치료 종료 후에도 성장 상태 지속 관리</div>
+    </div>
+
+    <div class="process-grid-img">
+      <img src="images/growth-hormone-balance/process-grid.jpg" alt="연세새봄 성장클리닉 진료 과정 7단계">
+    </div>
+  </section>
+
+  <!-- ================= DIRECTOR ================= -->
+  <section class="director">
+    <div class="quote">
+      <h3>
+        연세새봄에서는<br>
+        <span class="strong">건강하고 균형 있는 성장</span>을<br>
+        함께 준비합니다
+      </h3>
+      <p>
+        연세새봄은 성장치료 경험을 바탕으로 아이의 키, 체형, 호르몬 균형, 생활습관을 함께 살핍니다.
+        바른 영양과 수면, 균형 잡힌 성장 관리를 통해 아이의 건강한 미래를 준비하겠습니다.
+      </p>
+    </div>
+
+    <div class="portrait">
+      <img src="images/growth-hormone-balance/director.jpg" alt="연세새봄의원 채용현 원장">
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta-bottom">
+    <h4>우리 아이 성장,<br>현재 상태부터 확인해보세요</h4>
+    <p>검사는 치료 결정과 별개로 진행할 수 있습니다.</p>
+    <a href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">카카오톡 1:1 상담하기</a>
+  </section>
+
+</div>
+
+<script>
+  (function() {
+    const nav = document.getElementById('caseNav');
+    if (!nav) return;
+
+    const links = nav.querySelectorAll('a[href^="#"]');
+    const sections = Array.from(links)
+      .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+      .filter(Boolean);
+
+    // sticky 상태 감지 (그림자 토글용)
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'height:1px;width:1px;';
+    nav.parentNode.insertBefore(sentinel, nav);
+
+    new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('is-stuck', !entry.isIntersecting);
+    }, { threshold: 1 }).observe(sentinel);
+
+    const scroller = nav.querySelector('.scroll');
+
+    function setActive(id) {
+      links.forEach(link => {
+        const isActive = link.getAttribute('href') === '#' + id;
+        link.classList.toggle('active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+      const active = nav.querySelector('a.active');
+      if (active && scroller) {
+        const target = active.offsetLeft - (scroller.clientWidth - active.offsetWidth) / 2;
+        scroller.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      }
+    }
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    links.forEach(link => {
+      link.addEventListener('click', function() {
+        setActive(this.getAttribute('href').slice(1));
+      });
+    });
+
+    if (sections[0]) setActive(sections[0].id);
+  })();
+</script>
+
+</body>
+</html>

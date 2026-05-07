@@ -4,7 +4,7 @@ import { PointerSensor, TouchSensor, useSensor, useSensors, type DragEndEvent } 
 import { arrayMove } from '@dnd-kit/sortable';
 import { useAuthStore } from '@/stores/authStore';
 import { fetchSections, saveSections, type SectionStorageKey } from '../services/websiteSectionService';
-import type { WebsiteSection, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, Slide, SlideTemplate } from '../types/websiteSection';
+import type { WebsiteSection, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, HeightCalcSlide, Slide, SlideTemplate } from '../types/websiteSection';
 import { AdminPreviewPanel } from './AdminPreviewPanel';
 import { AdminEditorPanel } from './AdminEditorPanel';
 
@@ -57,6 +57,22 @@ function emptyFaqSlide(order: number): FaqSlide {
     id: uid(),
     title: '자주 묻는 질문',
     items: [],
+    order,
+  };
+}
+
+function emptyHeightCalcSlide(order: number): HeightCalcSlide {
+  return {
+    template: 'height-calc',
+    id: uid(),
+    badge: '성장 진단',
+    title: '우리 아이 예상 키 측정',
+    subtitle: '간단한 정보만 입력하면 예상 성인 키를 바로 확인할 수 있어요',
+    ctaText: '예상키 계산하기',
+    ctaBgColor: '#0F6E56',
+    ctaTextColor: '#ffffff',
+    resultCtaText: '1:1 카톡 상담',
+    ratio: '4:5',
     order,
   };
 }
@@ -203,6 +219,7 @@ export default function AdminWebsitePage({
       : template === 'cases' ? emptyCasesSlide(sec.slides.length)
       : template === 'iframe' ? emptyIframeSlide(sec.slides.length)
       : template === 'faq' ? emptyFaqSlide(sec.slides.length)
+      : template === 'height-calc' ? emptyHeightCalcSlide(sec.slides.length)
       : emptyBannerSlide(sec.slides.length);
     const ns = [...sec.slides, newSlide];
     updateSlides(ns);

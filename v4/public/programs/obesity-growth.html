@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>비만아이 특화 성장 - 연세새봄의원</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #333;
+    background: #fff;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 640px; margin: 0 auto; overflow: hidden; background: #fff; }
+  .full-img { width: 100%; display: block; }
+
+  .page-title {
+    text-align: center;
+    padding: 40px 24px 28px;
+    font-size: 26px;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+  }
+
+  .section-head { text-align: center; padding: 56px 24px 32px; }
+  .section-head .eyebrow {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .section-head h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+  }
+  .section-head h3 .accent { color: #2BA3A1; font-weight: 800; }
+  .section-head h3 .red { color: #d4501a; font-weight: 800; }
+  .section-head h3 .blue { color: #2451c4; font-weight: 800; }
+  .section-head p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.95;
+    margin-top: 18px;
+  }
+  .section-head p strong { color: #333; font-weight: 700; }
+
+  .panel {
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    margin: 0 20px 56px;
+    padding: 0;
+  }
+  .panel img { width: 100%; display: block; }
+
+  .full-block {
+    padding: 0 0 56px;
+  }
+  .full-block img { width: 100%; display: block; }
+
+  .padded-block {
+    padding: 0 20px 56px;
+  }
+  .padded-block img { width: 100%; display: block; }
+
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 0 16px 56px;
+  }
+  .risk-card { text-align: center; }
+  .risk-card .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #f0f0f0;
+    margin-bottom: 10px;
+  }
+  .risk-card .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .risk-card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .risk-card .desc {
+    font-size: 10.5px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .cause-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 12px;
+    padding: 0 20px 56px;
+  }
+  .cause-card { text-align: center; }
+  .cause-card .photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #f0f0f0;
+    margin-bottom: 12px;
+  }
+  .cause-card .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cause-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  .cause-card .desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.55;
+  }
+
+  .lifestyle { background: #f7f7f9; padding: 56px 0 64px; }
+  .lifestyle .section-head { padding-top: 0; }
+  .life-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0 20px;
+  }
+  .life-card {
+    display: flex;
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  }
+  .life-card .photo { flex: 0 0 38%; aspect-ratio: 4 / 3; }
+  .life-card .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .life-card .body { flex: 1; padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; }
+  .life-card .num { font-size: 13px; font-weight: 700; color: #2BA3A1; text-decoration: underline; text-underline-offset: 3px; margin-bottom: 4px; }
+  .life-card h4 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .life-card h4 .sub { font-size: 11.5px; font-weight: 500; color: #888; margin-left: 6px; }
+  .life-card .desc { font-size: 12px; color: #666; line-height: 1.65; }
+
+  .process { padding: 48px 0; text-align: center; }
+  .process .pill { display: inline-block; background: #2BA3A1; color: #fff; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 999px; margin-top: 4px; }
+  .process-grid-img { margin-top: 32px; padding: 0 16px; }
+
+  .director {
+    background: #fff;
+    padding: 48px 24px 64px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: end;
+  }
+  .director .quote h3 { font-size: 20px; font-weight: 600; color: #1a1a1a; line-height: 1.55; margin-bottom: 22px; letter-spacing: -0.5px; }
+  .director .quote h3 .strong { font-weight: 800; }
+  .director .quote p { font-size: 12.5px; color: #555; line-height: 1.85; }
+  .director .portrait { width: 160px; align-self: end; }
+  .director .portrait img { width: 100%; display: block; }
+
+  @media (max-width: 480px) {
+    .page-title { font-size: 22px; padding: 32px 20px 24px; }
+    .section-head h3 { font-size: 19px; }
+    .risk-card h4 { font-size: 11px; }
+    .risk-card .desc { font-size: 10px; }
+    .cause-card h4 { font-size: 13px; }
+    .cause-card .desc { font-size: 11.5px; }
+    .director { padding: 36px 20px 48px; }
+    .director .quote h3 { font-size: 17px; }
+    .director .portrait { width: 130px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1 class="page-title">비만아이 특화 성장</h1>
+  <img class="full-img" src="images/obesity-growth/hero.jpg" alt="">
+
+  <div class="section-head">
+    <h3>성장을 방해하는 <span class="accent">소아비만!</span><br>우리아이는 괜찮을까?</h3>
+    <p>
+      소아비만은 제대로 치료하지 않으면 <strong>성인비만으로 이어질 확률이 80% 이상</strong>입니다<br>
+      그뿐만 아니라 고혈압, 고지혈증, 당뇨병 등 성인병으로 발병할 확률도 높아집니다<br>
+      특히 성장기 아이의 비만은 성호르몬 분비에 영향을 주어<br>
+      성조숙증을 초래할 수 있습니다
+    </p>
+  </div>
+
+  <div class="panel">
+    <img src="images/obesity-growth/body-bmi.jpg" alt="소아비만의 진단 기준">
+  </div>
+
+  <div class="section-head">
+    <h3>꾸준히 증가하는 <span class="accent">소아비만</span></h3>
+    <p>과체중은 85~95백분위수 미만, 비만은 95백분위수 이상</p>
+  </div>
+
+  <div class="padded-block">
+    <img src="images/obesity-growth/percentile.jpg" alt="2017 소아청소년 성장도표 - 남자/여자 3-18세 백분위수">
+  </div>
+
+  <div class="section-head">
+    <h3>코로나 이후에 급증한 <span class="red">비만</span></h3>
+    <p>
+      코로나19 영향으로 체육 활동, 외부 활동량 등이 줄어들면서 급증한 초·중·고 비만율<br>
+      <strong>서울 초·중·고 학생 과체중·비만 증가</strong>
+    </p>
+  </div>
+
+  <div class="padded-block">
+    <img src="images/obesity-growth/covid-chart.jpg" alt="2017~2021 서울 초중고 비만율 그래프">
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">소아비만과 우리아이 키의 상관관계?</div>
+    <h3>성장기 아이들의 살은 <span class="accent">다 키로 간다?</span></h3>
+    <p>
+      <strong>과도하게 쪄버린 살은 오히려 키 성장을 방해합니다</strong><br>
+      체내에 지방이 과도하게 쌓이면 성장호르몬의 분비를 저해하고 성조숙증의 원인이 되기도 합니다<br>
+      최근 연구 결과에 의하면 비만인 아이는 사춘기의 최고 성장 속도가 떨어진다는 보고도 있습니다
+    </p>
+  </div>
+
+  <img class="full-img" src="images/obesity-growth/waffle-photo.jpg" alt="">
+
+  <div class="section-head">
+    <h3>소아비만은<br>성인비만과 <span class="accent">다릅니다</span></h3>
+    <p>
+      소아비만은 지방세포의 <strong>크기뿐 아니라 개수가 함께 증가</strong>합니다<br>
+      성인들은 이미 형성된 체지방세포의 부피를 늘리는 방식으로 살이 찌지만,<br>
+      아이들은 <strong>지방세포의 숫자를 늘리며 체지방을 저장하는 방식</strong>이기 때문에,<br>
+      소아비만은 아이들을 영구적으로 <strong>살찌는 체질</strong>로 만들기도 합니다<br>
+      이것을 막으려면 소아비만을 조기에 치료함으로써 체지방세포의 수를 관리해야 합니다
+    </p>
+  </div>
+
+  <div class="full-block">
+    <img src="images/obesity-growth/fat-cell.jpg" alt="지방 세포수 증가 / 지방 크기 증가">
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">쉽게 생각하면 안 되는 소아비만!</div>
+    <h3>소아비만, <span class="red">왜 위험할까요?</span></h3>
+  </div>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="photo"><img src="images/obesity-growth/risk-1.jpg" alt=""></div>
+      <h4>성인비만</h4>
+      <div class="desc">한번 증가한 지방세포 수는 살이 빠져도 없어지지 않아 성인비만으로 이어질 확률이 높습니다</div>
+    </div>
+    <div class="risk-card">
+      <div class="photo"><img src="images/obesity-growth/risk-2.jpg" alt=""></div>
+      <h4>여러 질병의 원인</h4>
+      <div class="desc">소아비만은 소아당뇨, 고혈압, 아토피 피부염 등 다양한 질환의 원인이 됩니다</div>
+    </div>
+    <div class="risk-card">
+      <div class="photo"><img src="images/obesity-growth/risk-3.jpg" alt=""></div>
+      <h4>키 성장 방해</h4>
+      <div class="desc">성장호르몬이 성장에 쓰이지 못하고, 지방을 분해하는 데 쓰여 성장판이 일찍 닫히면 성장부진의 원인이 됩니다</div>
+    </div>
+    <div class="risk-card">
+      <div class="photo"><img src="images/obesity-growth/risk-4.jpg" alt=""></div>
+      <h4>불안정한 심리</h4>
+      <div class="desc">우울증, 과잉행동을 보일 수 있고 내향적인 성격으로 변할 수 있으며 ADHD의 원인이 될 수도 있습니다</div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">소아비만은 왜 점점 많아질까?</div>
+    <h3><span class="accent">소아비만의 원인</span>은 무엇일까요?</h3>
+  </div>
+
+  <div class="cause-grid">
+    <div class="cause-card">
+      <div class="photo"><img src="images/obesity-growth/cause-1.jpg" alt=""></div>
+      <h4>에너지 불균형</h4>
+      <div class="desc">야식 &amp; 고칼로리 군것질은<br>비만의 주범!</div>
+    </div>
+    <div class="cause-card">
+      <div class="photo"><img src="images/obesity-growth/cause-2.jpg" alt=""></div>
+      <h4>유전적 요인</h4>
+      <div class="desc">부모가 비만이라면<br>자녀도 비만일 확률이 높습니다</div>
+    </div>
+    <div class="cause-card">
+      <div class="photo"><img src="images/obesity-growth/cause-3.jpg" alt=""></div>
+      <h4>신경내분비 요인</h4>
+      <div class="desc">뇌에서 보내는 식욕 억제 신호<br>전달체계의 문제</div>
+    </div>
+    <div class="cause-card">
+      <div class="photo"><img src="images/obesity-growth/cause-4.jpg" alt=""></div>
+      <h4>사회적 요인</h4>
+      <div class="desc">서구화된 식습관, 방과 후 학업으로<br>신체 활동 감소</div>
+    </div>
+  </div>
+
+  <section class="lifestyle">
+    <div class="section-head">
+      <h3>소아비만 <span class="accent">예방</span>하는 <span class="accent">생활습관</span></h3>
+      <p>
+        연세새봄의원은 <strong>2010년 개원 당시부터</strong> 바른 식습관과 호르몬 밸런스를 이용한<br>
+        건강한 다이어트 프로그램을 시행하고 있습니다<br>
+        또한 호르몬 밸런스 다이어트 분야 국내 최대의 임상 경험을 보유하고 있습니다<br>
+        이를 바탕으로 187 성장클리닉 아이의 건강한 다이어트를 진행하고 있습니다
+      </p>
+    </div>
+    <div class="life-list">
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-1.jpg" alt=""></div>
+        <div class="body">
+          <div class="num">01</div>
+          <h4>식이 관리</h4>
+          <div class="desc">야식 &amp; 고칼로리 군것질은 줄이고 과일, 채소 등 섬유소 많은 음식 섭취</div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-2.jpg" alt=""></div>
+        <div class="body">
+          <div class="num">02</div>
+          <h4>생활 관리</h4>
+          <div class="desc">과도한 TV시청, 게임, 스마트폰 사용 등을 줄이고 신체활동 늘리기</div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-3.jpg" alt=""></div>
+        <div class="body">
+          <div class="num">03</div>
+          <h4>규칙적인 신체활동</h4>
+          <div class="desc">가까운 걸은 걸어서, 엘리베이터보다는 계단을 이용하여 신체활동 늘리기</div>
+        </div>
+      </div>
+      <div class="life-card">
+        <div class="photo"><img src="images/obesity-growth/life-4.jpg" alt=""></div>
+        <div class="body">
+          <div class="num">04</div>
+          <h4>수면 관리<span class="sub">수면제 없는 수면클리닉</span></h4>
+          <div class="desc">아이의 바른 수면을 도와 소아비만을 예방하고, 키가 크는데 도움을 줌</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="section-head" style="padding: 0 24px 24px;">
+      <h3><span class="accent">진료</span> 과정</h3>
+      <p>
+        아이의 성장 관리는 아이, 부모님, 의사가 함께 하는 과정입니다<br>
+        따라서 187 성장 클리닉의 모든 진료 과정을 부모님과 함께 진행하고 있습니다<br>
+        초진 순간부터 성장 치료가 종료된 후 6개월~1년까지 지속적인<br>
+        케어를 통해 아이의 건강한 성장을 관리합니다
+      </p>
+      <div class="pill">치료 종료 6개월~1년까지 지속 관리</div>
+    </div>
+    <div class="process-grid-img">
+      <img class="full-img" src="images/obesity-growth/process-grid.jpg" alt="진료 과정 7단계">
+    </div>
+  </section>
+
+  <section class="director">
+    <div class="quote">
+      <h3>
+        연세새봄에서는<br>
+        <span class="strong">‘건강하고 균형있는 성장’</span>을<br>
+        약속 드립니다
+      </h3>
+      <p>
+        연세새봄은 오랜 시간 성장치료를 해온 경험을<br>
+        바탕으로 미래의 운동선수를 준비하고 있거나 방송,<br>
+        연기, 모델을 준비하는 우리 아이를 위한 특별한<br>
+        성장 클리닉 입니다. 바른 영양과 수면, 그리고<br>
+        균형 잡힌 호르몬 치료를 통해 건강하고 밝은 아이의<br>
+        미래를 함께 준비합니다.
+      </p>
+    </div>
+    <div class="portrait">
+      <img src="images/obesity-growth/director.jpg" alt="Dr. 채용현 원장">
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
