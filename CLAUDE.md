@@ -81,7 +81,7 @@ cd ai-server && npm run dev   # AI server (port 3001)
 - Admin patient detail: `?tab=info|visits` tabs (기본 정보 / 진료 기록)
 - Intake survey: `children.intake_survey` JSONB + `grade` / `class_height_rank` columns
 - Intake survey covers paper form Q1~Q16 (Q17 lab selection handled via `lab_tests`)
-- Admin sidebar: collapsible (localStorage `admin.sidebar.collapsed`), 64px rail
+- Admin sidebar: collapsible (localStorage `admin.sidebar.collapsed`), 64px rail. 좌하단 "📄 BM 자료" 드롭다운 → IR deck 새 탭 (`v4/public/ir/187_ir_v2_260506.html`, 24장 self-contained HTML, Korean Growth Clinic OS 포지셔닝)
 - Admin patient list: `chart_number` UNIQUE NOT NULL (migration 007), search by name OR chart_number, + 환자 추가 / 삭제 (CASCADE) buttons
 - Admin patient detail 3-column: visit list (#번호+날짜만) | VisitDetailPanel | AdminPatientGrowthChart
 - VisitDetailPanel: 4탭 구조 (진료 내역 / X-ray 검사 / Lab 테스트 / 생활습관), 공통 헤더(날짜·CA·BA·PAH) + 탭 뱃지에 데이터 유무 표시 (없음=rose / 첨부 N=emerald). 헤더+탭바는 `sticky top-0 z-10`으로 고정, 탭 컨텐츠만 스크롤

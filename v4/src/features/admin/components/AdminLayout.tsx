@@ -13,8 +13,17 @@ const NAV_ITEMS = [
   { to: '/admin/medications', icon: '💊', label: '약품 마스터', end: false },
 ];
 
+const BM_DOCS = [
+  {
+    href: '/ir/187_ir_v2_260506.html',
+    label: '187 성장케어 IR · 2026.05',
+    sub: 'Korean Growth Clinic OS · Series A',
+  },
+];
+
 export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [bmOpen, setBmOpen] = useState(false);
   // Desktop collapse state persists across page navigation via localStorage.
   const [collapsed, setCollapsed] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -86,6 +95,55 @@ export default function AdminLayout() {
             {!collapsed && <span>{item.label}</span>}
           </NavLink>
         ))}
+      </div>
+
+      {/* BM 자료 dropdown */}
+      <div className={`border-t border-gray-200 ${collapsed ? 'px-2 py-2' : 'px-3 py-2'}`}>
+        {collapsed ? (
+          <a
+            href={BM_DOCS[0].href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-9 w-9 mx-auto items-center justify-center rounded-lg bg-amber-50 text-base hover:bg-amber-100"
+            title="BM 자료"
+            aria-label="BM 자료"
+          >
+            📄
+          </a>
+        ) : (
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setBmOpen((v) => !v)}
+              className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                bmOpen ? 'bg-amber-50 text-amber-900' : 'text-gray-600 hover:bg-amber-50/60'
+              }`}
+              aria-expanded={bmOpen}
+            >
+              <span className="flex items-center gap-2">
+                <span className="text-base">📄</span>
+                <span>BM 자료</span>
+              </span>
+              <span className={`text-xs transition-transform ${bmOpen ? 'rotate-180' : ''}`}>▾</span>
+            </button>
+            {bmOpen && (
+              <div className="mt-1 space-y-1 rounded-lg border border-amber-200 bg-amber-50/40 p-1">
+                {BM_DOCS.map((doc) => (
+                  <a
+                    key={doc.href}
+                    href={doc.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block rounded-md px-3 py-2 hover:bg-white"
+                  >
+                    <div className="text-sm font-semibold text-gray-900">{doc.label}</div>
+                    <div className="mt-0.5 text-[11px] text-gray-500">{doc.sub}</div>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* User Info & Logout */}
