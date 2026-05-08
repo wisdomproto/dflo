@@ -213,8 +213,8 @@ const SHELL_HTML = `
   </nav>
 
   <div class="t-modal" id="tCalcModal" role="dialog" aria-modal="true" aria-labelledby="tCalcTitle">
-    <button type="button" class="t-modal-close" data-close-modal aria-label="닫기">✕</button>
     <div class="t-calc">
+      <button type="button" class="t-modal-close" data-close-modal aria-label="닫기">✕</button>
       <div id="tCalcForm">
         <div class="calc-header">
           <span class="badge">성장 진단 · 무료</span>

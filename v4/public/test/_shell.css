@@ -36,8 +36,8 @@ body { background: var(--shell-page-bg) !important; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 14px;
-  max-width: 640px;
+  padding: 0 18px;
+  max-width: 1024px;
   margin: 0 auto;
 }
 .t-header .logo-wrap {
@@ -229,14 +229,18 @@ body { background: var(--shell-page-bg) !important; }
 .t-header-kakao:active { transform: scale(0.96); }
 .t-header-kakao svg { flex-shrink: 0; }
 
-/* ============= CALCULATOR MODAL (fullscreen) ============= */
+/* ============= CALCULATOR MODAL (centered card with backdrop) ============= */
 .t-modal {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: #fff;
+  background: rgba(26,23,20,0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   display: none;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   overflow-y: auto;
 }
 .t-modal.is-open {
@@ -247,13 +251,13 @@ body { background: var(--shell-page-bg) !important; }
   top: 12px;
   right: 12px;
   z-index: 10;
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 0;
   background: rgba(0,0,0,0.06);
   color: var(--shell-ink);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -265,13 +269,19 @@ body { background: var(--shell-page-bg) !important; }
 .t-modal-close:active { transform: scale(0.92); }
 
 .t-calc {
+  position: relative;            /* close 버튼 anchor */
   max-width: 460px;
-  margin: 0 auto;
   width: 100%;
-  padding: 60px 24px 40px;
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 28px 22px 28px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(26,23,20,0.30);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 .t-calc .calc-header {
   text-align: center;
