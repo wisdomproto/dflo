@@ -33,6 +33,8 @@ interface Props {
   result: HeightResult;
   isOpen: boolean;
   onClose: () => void;
+  /** Render result inline as a page (no modal overlay). Used by /calc-embed. */
+  embedded?: boolean;
 }
 
 /** Count-up hook: animates from 0 to target over duration ms */
@@ -57,7 +59,7 @@ function useCountUp(target: number, duration: number, active: boolean) {
   return value;
 }
 
-export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
+export function HeightCalculatorResult({ result, isOpen, onClose, embedded = false }: Props) {
   const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=done
   const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
   const chartRef = useRef<ChartJS<'line'>>(null);
@@ -218,8 +220,8 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
         ? '또래 평균보다 약간 작은 편입니다. 전문 상담을 통해 성장 가능성을 확인해보세요.'
         : '또래 대비 작은 편이므로, 성장판이 열려있는 지금이 성장 치료의 골든타임입니다.';
 
-  return (
-    <InfoModal isOpen={isOpen} onClose={onClose} title="">
+  const body = (
+    <>
       <div className="space-y-5">
         <h2 className="text-xl font-extrabold text-gray-900">예상키 측정 결과</h2>
 
@@ -268,8 +270,26 @@ export function HeightCalculatorResult({ result, isOpen, onClose }: Props) {
                        text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all">
             <span>💬</span> 전문 상담 받아보세요
           </a>
+
+          {/* Reset button — embedded mode only (modal mode uses close button) */}
+          {embedded && (
+            <button onClick={onClose}
+              className="w-full text-center text-xs text-gray-500 underline underline-offset-4 py-2 hover:text-gray-700">
+              다시 측정하기
+            </button>
+          )}
         </div>
       </div>
+    </>
+  );
+
+  if (embedded) {
+    return <div className="max-w-lg mx-auto p-5 bg-white">{body}</div>;
+  }
+
+  return (
+    <InfoModal isOpen={isOpen} onClose={onClose} title="">
+      {body}
     </InfoModal>
   );
 }

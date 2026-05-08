@@ -150,8 +150,9 @@
   .case-nav {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
-    z-index: 999;
+    /* fixed 헤더(t-header, 52px) 아래에 멈추도록 보정 */
+    top: 52px;
+    z-index: 30;
     width: 100%;
     background: rgba(255,255,255,0.96);
     backdrop-filter: blur(8px);
@@ -415,6 +416,33 @@
     transition: transform 0.15s ease;
   }
   .cta-bottom a:active { transform: scale(0.97); }
+
+  /* ===== Inline luxury CTA at the end of each case section ===== */
+  .case-cta-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #4A2D6B;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    padding: 17px 22px;
+    border-radius: 2px;
+    text-decoration: none;
+    margin: 40px 0 12px;
+    transition: background 0.2s ease, transform 0.15s ease;
+    line-height: 1.45;
+    text-align: center;
+  }
+  .case-cta-inline:hover { background: #2E1A48; }
+  .case-cta-inline:active { transform: scale(0.99); }
+  .case-cta-inline .arrow {
+    font-size: 16px;
+    flex-shrink: 0;
+    font-weight: 400;
+  }
 </style>
 </head>
 
@@ -425,7 +453,7 @@
   <!-- ================= MASTHEAD (logo + program title) ================= -->
   <header class="t-masthead">
     <img class="logo" src="/images/logo.jpg" alt="187 성장클리닉">
-    <h1>성장 프로그램 소개</h1>
+    <h1>우리 아이 키,<br>지금 어디쯤일까요?</h1>
   </header>
 
   <img class="full-img" src="../programs/images/growth-hormone-balance/hero.jpg" alt="연세새봄의원 187 성장클리닉 대표 이미지">
@@ -711,6 +739,9 @@
         </div>
       </div>
     </div>
+    <a class="case-cta-inline" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">
+      우리 아이 비만 · 성장이 걱정되신다면 &nbsp;1:1 전문 상담 <span class="arrow">→</span>
+    </a>
   </section>
 
   <!-- ================= PRECOCIOUS ================= -->
@@ -791,6 +822,9 @@
         <div class="cap">학업, 생활 스트레스가<br>큰 경우</div>
       </div>
     </div>
+    <a class="case-cta-inline" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">
+      사춘기 진행이 빠른가요 &nbsp;1:1 전문 상담 <span class="arrow">→</span>
+    </a>
   </section>
 
   <!-- ================= PROPORTION ================= -->
@@ -826,6 +860,9 @@
     <p class="compare-quote">
       <q>사춘기 진행 시기와 성장 속도는 성장 후 신체 비율에도 영향을 줄 수 있습니다.</q>
     </p>
+    <a class="case-cta-inline" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">
+      체형 균형이 걱정이라면 &nbsp;1:1 전문 상담 <span class="arrow">→</span>
+    </a>
   </section>
 
   <!-- ================= BODYWORK ================= -->
@@ -885,6 +922,9 @@
       <img src="../programs/images/posture-exercise/equipment-main.jpg" alt="성장 운동 장비 이미지">
       <img src="../programs/images/posture-exercise/equipment-row.jpg" alt="성장 운동 프로그램 장비 이미지">
     </div>
+    <a class="case-cta-inline" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">
+      자세 · 발육 통합 진단 &nbsp;1:1 전문 상담 <span class="arrow">→</span>
+    </a>
   </section>
 
   <!-- ================= LATE ================= -->
@@ -960,6 +1000,9 @@
         <div class="cap">호르몬 밸런스<br>성장 관리</div>
       </div>
     </div>
+    <a class="case-cta-inline" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">
+      사춘기 후반, 늦은 게 아닐까 &nbsp;1:1 전문 상담 <span class="arrow">→</span>
+    </a>
   </section>
 
   <!-- ================= PROCESS ================= -->

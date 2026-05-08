@@ -1,26 +1,43 @@
-// CasesEmbedPage — Standalone page that fetches cases from R2 and renders via SectionCarousel.
-// Designed to be iframed by /test/cases.html so the original CasesContent rendering
-// (height change bar chart, growth chart, photos, intake info, allergy, memos, etc.)
-// is reused without duplication.
+// CasesEmbedPage — /banner-admin 의 "키 성장 관리 사례" 섹션을 그대로 보여주는 standalone 페이지.
+// /test/cases.html 가 iframe 으로 임베드해서 cases-only 뷰로 노출.
+// 사용자가 어드민에서 cases 슬라이드를 만들면 자동 반영.
 
 import { useEffect, useState } from 'react';
 import { fetchSections } from '../services/websiteSectionService';
 import { SectionCarousel } from '../components/SectionCarousel';
-import type { CasesSlide } from '../types/websiteSection';
+import type { Slide } from '../types/websiteSection';
 
 export default function CasesEmbedPage() {
-  const [cases, setCases] = useState<CasesSlide[]>([]);
+  const [slides, setSlides] = useState<Slide[]>([]);
+  const [showNav, setShowNav] = useState(true);
+  const [initialIndex, setInitialIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = '치료 사례';
-    fetchSections().then((sections) => {
-      const all = sections.flatMap((s) => s.slides || []);
-      const filtered = all.filter((s): s is CasesSlide => s.template === 'cases');
-      filtered.sort((a, b) => (a.order || 0) - (b.order || 0));
-      setCases(filtered);
-      setLoading(false);
-    }).catch(() => setLoading(false));
+    fetchSections()
+      .then((sections) => {
+        // cases 슬라이드를 포함한 첫 섹션 = "키 성장 관리 사례"
+        const casesSection = sections.find((s) =>
+          s.slides?.some((sl) => sl.template === 'cases'),
+        );
+        if (!casesSection) {
+          setLoading(false);
+          return;
+        }
+        // 섹션 자체를 그대로 — intro banner + cases 슬라이드 + 어드민에서 추가한 다른 슬라이드 포함.
+        const ordered = (casesSection.slides || [])
+          .slice()
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+        // 첫 진입은 케이스 슬라이드부터 — intro banner 에서 이탈해도 실제 사례 0개 본 일이 없도록.
+        // 사용자가 swipe 로 앞쪽 인트로/배너에 접근은 가능.
+        const firstCaseIdx = ordered.findIndex((s) => s.template === 'cases');
+        setSlides(ordered);
+        setShowNav(casesSection.showNav ?? true);
+        setInitialIndex(firstCaseIdx > 0 ? firstCaseIdx : 0);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   if (loading) {
@@ -30,7 +47,7 @@ export default function CasesEmbedPage() {
       </div>
     );
   }
-  if (cases.length === 0) {
+  if (slides.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center text-sm text-gray-400">
         등록된 치료 사례가 없습니다.
@@ -40,7 +57,7 @@ export default function CasesEmbedPage() {
 
   return (
     <div className="w-full max-w-[460px] mx-auto bg-white">
-      <SectionCarousel slides={cases} showNav={true} />
+      <SectionCarousel slides={slides} showNav={showNav} initialIndex={initialIndex} />
     </div>
   );
 }

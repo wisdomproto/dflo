@@ -45,6 +45,7 @@ const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDi
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
 const CasesEmbedPage = lazy(() => import('@/features/website/pages/CasesEmbedPage'));
+const CalcEmbedPage = lazy(() => import('@/features/website/pages/CalcEmbedPage'));
 const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
 const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
 
@@ -164,11 +165,22 @@ export const router = createBrowserRouter([
   { path: '/test/', element: <HardRedirect to="/test/index.html" /> },
 
   // /cases-embed — used as iframe target by /test/cases.html
+  // /banner-admin 에서 만든 cases 슬라이드만 SectionCarousel 로 렌더한다.
   {
     path: '/cases-embed',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <CasesEmbedPage />
+      </Suspense>
+    ),
+  },
+  // /calc-embed — used as iframe target by /test/calculator.html
+  // 메인 사이트의 HeightCalculator 모듈 (Chart.js 그래프 포함) 을 그대로 재사용.
+  {
+    path: '/calc-embed',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <CalcEmbedPage />
       </Suspense>
     ),
   },
