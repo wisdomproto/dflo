@@ -15,9 +15,14 @@ const NAV_ITEMS = [
 
 const BM_DOCS = [
   {
+    href: '/ir/187_ir_v3_260509.html',
+    label: '187 성장케어 IR · v3',
+    sub: 'K-헬스케어 글로벌 표준 · 16장',
+  },
+  {
     href: '/ir/187_ir_v2_260506.html',
-    label: '187 성장케어 IR · 2026.05',
-    sub: 'Korean Growth Clinic OS · Series A',
+    label: '187 성장케어 IR · v2 (archive)',
+    sub: 'Korean Growth Clinic OS · 24장',
   },
 ];
 

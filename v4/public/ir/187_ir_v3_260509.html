@@ -1,0 +1,1544 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>187 성장케어 · IR Deck v3 · 2026.05</title>
+<meta name="viewport" content="width=1280">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #4A2D6B;
+  --purple-light: #7B5CA6;
+  --purple-soft: #B5A0CC;
+  --purple-dark: #2E1B43;
+  --gold: #D4A862;
+  --paper: #FAFAF8;
+  --paper-warm: #F5EFE6;
+  --hairline: #E8E2D8;
+  --ink: #1A1714;
+  --ink-soft: #5A544D;
+  --ink-mute: #8A847C;
+  --rose: #B85A6B;
+  --teal: #4A8B7E;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: #1a1019;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 40px 0; gap: 8px;
+}
+
+/* ─── slide frame ─── */
+.slide {
+  width: 1280px; height: 720px;
+  background: var(--paper);
+  position: relative; overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  padding: 90px 100px;
+}
+.slide.dark { background: var(--purple-dark); color: var(--paper); }
+.slide.cover {
+  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple) 100%);
+  color: var(--paper);
+  padding: 100px 110px;
+}
+.slide-no {
+  position: absolute; bottom: 36px; right: 48px;
+  font-size: 12px; color: var(--ink-mute); letter-spacing: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.slide.dark .slide-no, .slide.cover .slide-no { color: rgba(250, 250, 248, 0.4); }
+
+.brand-mark {
+  position: absolute; bottom: 36px; left: 48px;
+  font-size: 12px; color: var(--ink-mute); letter-spacing: 2px; font-weight: 500;
+}
+.slide.dark .brand-mark, .slide.cover .brand-mark { color: rgba(250, 250, 248, 0.4); }
+
+.section-label {
+  font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--purple-light); font-weight: 700; margin-bottom: 28px;
+}
+.slide.dark .section-label, .slide.cover .section-label { color: var(--gold); }
+
+/* ─── typography ─── */
+.headline-xl {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 80px; font-weight: 900; line-height: 1.1; letter-spacing: -2px;
+}
+.headline-lg {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 56px; font-weight: 700; line-height: 1.2; letter-spacing: -1px;
+}
+.headline-md {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 40px; font-weight: 700; line-height: 1.3;
+}
+.lead {
+  font-size: 28px; line-height: 1.45; font-weight: 500;
+  color: var(--ink);
+}
+.slide.dark .lead, .slide.cover .lead { color: var(--paper); }
+.lead-sub {
+  font-size: 22px; line-height: 1.5; font-weight: 400;
+  color: var(--ink-soft);
+}
+.slide.dark .lead-sub, .slide.cover .lead-sub { color: var(--purple-soft); }
+.body {
+  font-size: 18px; line-height: 1.7;
+}
+.small {
+  font-size: 14px; color: var(--ink-soft); line-height: 1.5;
+}
+.slide.dark .small, .slide.cover .small { color: var(--purple-soft); }
+.kicker {
+  font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--purple); font-weight: 700;
+}
+.slide.dark .kicker, .slide.cover .kicker { color: var(--gold); }
+
+.number {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 900; line-height: 1; letter-spacing: -3px;
+}
+
+/* ─── tbd ─── */
+.tbd {
+  display: inline-block; padding: 2px 14px;
+  background: rgba(212, 168, 98, 0.15);
+  border: 1px dashed var(--gold);
+  color: var(--gold); font-size: 14px; font-weight: 600;
+  border-radius: 4px; letter-spacing: 1px; vertical-align: middle;
+}
+
+/* ─── notes & transition ─── */
+.notes {
+  width: 1280px; padding: 32px 48px;
+  background: #20132d;
+  border-left: 4px solid var(--gold);
+  color: rgba(250, 250, 248, 0.85); font-size: 16px; line-height: 1.75;
+  font-family: 'Noto Sans KR', sans-serif; font-weight: 300;
+  margin-bottom: 32px;
+}
+.notes-label {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); font-weight: 700; margin-bottom: 12px; display: block;
+}
+.notes em { font-style: normal; font-weight: 700; color: var(--paper); }
+
+.transition {
+  width: 1280px; padding: 28px 48px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 168, 98, 0.12) 30%, rgba(212, 168, 98, 0.12) 70%, transparent 100%);
+  color: var(--gold); font-size: 18px; font-style: italic; text-align: center;
+  font-family: 'Noto Serif KR', serif;
+  margin-bottom: 32px;
+}
+.transition::before, .transition::after {
+  content: '◇'; margin: 0 16px; opacity: 0.5;
+}
+
+/* ─── cover ─── */
+.cover-content {
+  height: 100%; display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+.cover-mark {
+  font-size: 13px; letter-spacing: 6px;
+  color: var(--gold); font-weight: 700; text-transform: uppercase;
+}
+.cover-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 130px; font-weight: 900; line-height: 1; letter-spacing: -4px;
+  margin-top: 30px;
+}
+.cover-sub {
+  font-size: 32px; font-weight: 400; margin-top: 28px;
+  color: var(--purple-soft);
+}
+.cover-foot {
+  display: flex; justify-content: space-between; align-items: end;
+}
+.cover-foot-l {
+  font-size: 16px; color: var(--paper);
+}
+.cover-foot-l span { display: block; }
+.cover-foot-l .city { color: var(--gold); font-weight: 700; letter-spacing: 3px; font-size: 14px; }
+.cover-foot-r {
+  font-size: 14px; color: rgba(250, 250, 248, 0.5); letter-spacing: 2px;
+}
+
+/* ─── slide 2 — five life stages ─── */
+.life-stages {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 20px; margin-top: 60px;
+}
+.life-stage {
+  text-align: center; padding: 28px 12px;
+  border: 1px solid var(--hairline);
+  background: white;
+}
+.life-stage-icon {
+  font-size: 44px; line-height: 1;
+}
+.life-stage-label {
+  font-size: 16px; font-weight: 700; margin-top: 14px; color: var(--purple);
+}
+.life-stage-bar {
+  height: 4px; background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 100%);
+  margin-top: 14px; border-radius: 2px;
+}
+.life-stage-note {
+  font-size: 11px; color: var(--ink-mute); margin-top: 10px; letter-spacing: 1px;
+}
+
+/* ─── slide 3 — market chart ─── */
+.market-grid {
+  display: grid; grid-template-columns: 0.85fr 1.1fr; gap: 60px; align-items: center;
+  margin-top: 30px;
+}
+.market-headline { font-family: 'Noto Serif KR'; font-weight: 900; line-height: 1.05; letter-spacing: -2px; }
+.market-headline .small-arrow { font-size: 38px; color: var(--purple-light); }
+.market-headline .from { font-size: 60px; color: var(--ink-soft); }
+.market-headline .to { font-size: 110px; color: var(--purple); display: block; margin-top: 8px; }
+.market-meta { margin-top: 24px; font-size: 18px; color: var(--ink-soft); }
+.market-meta b { color: var(--purple); font-weight: 700; }
+.market-source { margin-top: 32px; font-size: 12px; color: var(--ink-mute); letter-spacing: 1px; }
+
+/* ─── slide 4 — clinic 10 year ─── */
+.clinic-grid {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: start;
+  margin-top: 20px;
+}
+.clinic-photo {
+  width: 100%; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  color: rgba(250, 250, 248, 0.4); font-size: 14px; letter-spacing: 4px;
+  position: relative; overflow: hidden;
+}
+.clinic-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(212, 168, 98, 0.2) 0%, transparent 60%);
+}
+.timeline {
+  margin-top: 24px; height: 80px; position: relative;
+}
+.timeline-line {
+  position: absolute; top: 40px; left: 0; right: 0;
+  height: 2px; background: var(--hairline);
+}
+.timeline-pt {
+  position: absolute; top: 32px; width: 18px; height: 18px;
+  background: var(--purple); border-radius: 50%; transform: translateX(-50%);
+  border: 4px solid var(--paper);
+}
+.timeline-label {
+  position: absolute; top: 60px; transform: translateX(-50%);
+  font-size: 13px; font-weight: 700; color: var(--purple); white-space: nowrap;
+}
+.timeline-sub {
+  position: absolute; top: 8px; transform: translateX(-50%);
+  font-size: 11px; color: var(--ink-mute); white-space: nowrap;
+}
+
+.numstack { display: flex; flex-direction: column; gap: 22px; }
+.numstack-item { padding: 18px 0; border-bottom: 1px solid var(--hairline); }
+.numstack-item:last-child { border-bottom: none; }
+.numstack-num {
+  font-family: 'Noto Serif KR'; font-size: 56px; font-weight: 900; line-height: 1;
+  color: var(--purple); letter-spacing: -1px;
+}
+.numstack-label {
+  font-size: 14px; color: var(--ink-soft); margin-top: 4px;
+}
+
+/* ─── slide 5 — Thailand ─── */
+.flow-diagram {
+  margin-top: 30px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 20px; align-items: center;
+}
+.flow-node {
+  background: white; border: 2px solid var(--hairline);
+  padding: 28px 20px; text-align: center; border-radius: 8px;
+  min-height: 140px; display: flex; flex-direction: column; justify-content: center;
+}
+.flow-node.kr { border-color: var(--purple); }
+.flow-node.th { border-color: var(--gold); }
+.flow-node-flag {
+  font-size: 13px; letter-spacing: 3px; font-weight: 700; color: var(--purple);
+}
+.flow-node.th .flow-node-flag { color: var(--gold); }
+.flow-node-title { font-size: 18px; font-weight: 700; margin-top: 10px; }
+.flow-node-sub { font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.5; }
+.flow-arrow { font-size: 24px; color: var(--purple-light); }
+
+.metrics-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  margin-top: 40px;
+}
+.metric-tile {
+  border-top: 3px solid var(--purple-light);
+  padding-top: 16px;
+}
+.metric-tile-label { font-size: 12px; letter-spacing: 2px; color: var(--ink-mute); text-transform: uppercase; font-weight: 700; }
+.metric-tile-val {
+  font-family: 'Noto Serif KR'; font-size: 32px; font-weight: 900;
+  color: var(--purple); margin-top: 6px;
+}
+
+/* ─── slide 6 — capacity cliff ─── */
+.calendar-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 4px; margin-top: 20px;
+}
+.cal-cell {
+  aspect-ratio: 1.4/1; padding: 8px;
+  background: white; border: 1px solid var(--hairline);
+  font-size: 10px; color: var(--ink-mute);
+  position: relative; overflow: hidden;
+}
+.cal-cell.full {
+  background: repeating-linear-gradient(45deg, rgba(184, 90, 107, 0.12) 0px, rgba(184, 90, 107, 0.12) 6px, rgba(184, 90, 107, 0.22) 6px, rgba(184, 90, 107, 0.22) 12px);
+  border-color: var(--rose);
+  color: var(--rose); font-weight: 700;
+}
+.cal-cell.next {
+  background: var(--paper-warm); border: 2px dashed var(--ink-mute);
+  color: var(--ink-mute);
+}
+.cal-cell.next-label {
+  background: white; border: 2px dashed var(--ink-mute);
+  display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
+  color: var(--ink-mute); letter-spacing: 2px;
+}
+
+.cliff-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; }
+
+/* ─── slide 7 — 3 moats ─── */
+.moats {
+  display: flex; justify-content: center; align-items: center;
+  margin-top: 50px; height: 420px; position: relative;
+}
+.moat-circle {
+  width: 280px; height: 280px; border-radius: 50%;
+  position: absolute;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; text-align: center;
+  font-weight: 700; color: white;
+  border: 3px solid white;
+  mix-blend-mode: normal;
+}
+.moat-circle.brand {
+  left: 50%; top: 0; transform: translateX(-50%);
+  background: rgba(74, 45, 107, 0.85);
+}
+.moat-circle.emr {
+  left: calc(50% - 130px); top: 130px;
+  background: rgba(212, 168, 98, 0.85);
+  color: var(--purple-dark);
+}
+.moat-circle.data {
+  left: calc(50% + 130px); top: 130px;
+  transform: translateX(-100%);
+  background: rgba(74, 139, 126, 0.85);
+}
+.moat-label-h { font-size: 24px; font-family: 'Noto Serif KR'; font-weight: 900; }
+.moat-label-s { font-size: 14px; margin-top: 6px; font-weight: 400; }
+
+.time-axis {
+  margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.time-pt {
+  padding: 14px 18px; background: white; border-left: 3px solid var(--purple-light);
+}
+.time-pt-yr { font-size: 13px; color: var(--ink-mute); letter-spacing: 2px; font-weight: 700; }
+.time-pt-msg { font-size: 14px; color: var(--ink-soft); margin-top: 4px; }
+
+/* ─── slide 8 — data moat ─── */
+.data-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+  margin-top: 40px;
+}
+.data-tile {
+  padding: 26px 20px; background: white;
+  border-top: 4px solid var(--purple);
+  position: relative;
+}
+.data-tile-num {
+  font-family: 'Noto Serif KR'; font-size: 42px; font-weight: 900;
+  color: var(--purple); line-height: 1; letter-spacing: -1px;
+}
+.data-tile-label { font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.4; }
+.data-meta { margin-top: 32px; font-size: 16px; color: var(--ink-soft); line-height: 1.7; }
+.data-meta b { color: var(--purple); }
+
+/* ─── slide 9 — AI EMR mockup ─── */
+.emr-mock {
+  margin-top: 24px;
+  display: grid; grid-template-columns: 220px 1fr 240px; gap: 12px;
+  height: 380px;
+  background: #f1ecf5; padding: 14px; border-radius: 8px;
+  border: 1px solid var(--hairline);
+}
+.emr-pane { background: white; border-radius: 4px; padding: 16px; overflow: hidden; }
+.emr-pane-h { font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+.emr-tabs { display: flex; gap: 4px; margin-bottom: 14px; }
+.emr-tab { padding: 6px 12px; font-size: 11px; background: var(--paper-warm); border-radius: 3px; color: var(--ink-soft); }
+.emr-tab.active { background: var(--purple); color: white; font-weight: 700; }
+.emr-row { font-size: 12px; padding: 6px 0; border-bottom: 1px dashed var(--hairline); color: var(--ink-soft); }
+.emr-row b { color: var(--ink); }
+.emr-chart-placeholder {
+  height: 80px; background: linear-gradient(180deg, rgba(74, 45, 107, 0.08), transparent);
+  border-bottom: 2px solid var(--purple); margin-top: 8px; position: relative;
+}
+.emr-chart-placeholder::after {
+  content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, var(--purple) 30%, var(--gold) 80%);
+}
+.emr-feat-list { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+.emr-feat { display: flex; gap: 14px; align-items: center; }
+.emr-feat-dot {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--purple);
+  color: white; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; flex-shrink: 0;
+}
+.emr-feat-text { font-size: 15px; color: var(--ink-soft); }
+.emr-feat-text b { color: var(--ink); font-weight: 700; }
+
+/* ─── slide 10 — RAG cards ─── */
+.rag-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+  margin-top: 30px;
+}
+.rag-card {
+  background: white; border: 1px solid var(--hairline);
+  padding: 12px; border-radius: 4px; min-height: 110px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.rag-card.highlight { border-color: var(--purple); border-width: 2px; background: rgba(74, 45, 107, 0.04); }
+.rag-card-id { font-size: 10px; color: var(--ink-mute); letter-spacing: 1px; }
+.rag-card-h { font-size: 14px; font-weight: 700; color: var(--ink); margin-top: 2px; }
+.rag-card-bar { height: 3px; background: var(--hairline); border-radius: 2px; margin-top: auto; position: relative; }
+.rag-card-bar::after {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--purple); border-radius: 2px;
+}
+.rag-card.h1 .rag-card-bar::after { width: 92%; }
+.rag-card.h2 .rag-card-bar::after { width: 88%; }
+.rag-card.h3 .rag-card-bar::after { width: 84%; }
+.rag-card.h4 .rag-card-bar::after { width: 79%; }
+.rag-card.h5 .rag-card-bar::after { width: 76%; }
+.rag-card.h6 .rag-card-bar::after { width: 73%; }
+.rag-card-pct { font-size: 11px; font-weight: 700; color: var(--purple); margin-top: 4px; }
+
+/* ─── slide 11 — Malaysia ─── */
+.malaysia-grid {
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; margin-top: 20px;
+}
+.phase-flow {
+  background: white; padding: 28px; border-radius: 8px; border: 1px solid var(--hairline);
+}
+.phase-flow-h { font-size: 13px; letter-spacing: 3px; font-weight: 700; color: var(--purple); text-transform: uppercase; }
+.phase-row {
+  display: grid; grid-template-columns: 60px 1fr; gap: 16px;
+  padding: 18px 0; border-bottom: 1px solid var(--hairline);
+}
+.phase-row:last-child { border-bottom: none; }
+.phase-num {
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--purple); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif KR'; font-size: 20px; font-weight: 900;
+}
+.phase-num.next { background: var(--gold); color: var(--purple-dark); }
+.phase-title { font-size: 16px; font-weight: 700; }
+.phase-desc { font-size: 13px; color: var(--ink-soft); margin-top: 4px; line-height: 1.5; }
+
+.bucket-list { display: flex; flex-direction: column; gap: 14px; }
+.bucket {
+  display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start;
+  padding: 16px; background: white; border-left: 4px solid var(--purple);
+}
+.bucket-id {
+  font-family: 'Noto Serif KR'; font-size: 22px; font-weight: 900;
+  color: var(--purple); letter-spacing: -1px;
+}
+.bucket-h { font-size: 15px; font-weight: 700; }
+.bucket-b { font-size: 12px; color: var(--ink-soft); margin-top: 4px; line-height: 1.5; }
+
+.deploy-banner {
+  margin-top: 28px; padding: 18px 24px;
+  background: var(--purple); color: white;
+  font-size: 17px; font-weight: 700; text-align: center;
+  letter-spacing: 1px;
+}
+.deploy-banner b { color: var(--gold); }
+
+/* ─── slide 12 — BM ─── */
+.bm-stack {
+  display: flex; flex-direction: column; gap: 12px; margin-top: 24px;
+}
+.bm-line {
+  display: grid; grid-template-columns: 36px 1fr 140px; gap: 18px; align-items: center;
+  padding: 18px 22px; background: white; border: 1px solid var(--hairline);
+}
+.bm-line.future { background: var(--paper-warm); border-style: dashed; }
+.bm-line-id {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--purple); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+}
+.bm-line.future .bm-line-id { background: var(--gold); color: var(--purple-dark); }
+.bm-line-h { font-size: 16px; font-weight: 700; }
+.bm-line-b { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+.bm-line-tag { font-size: 12px; color: var(--ink-mute); text-align: right; letter-spacing: 1px; font-weight: 700; }
+
+.ue-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 30px;
+}
+.ue-tile {
+  background: white; padding: 20px; border-top: 3px solid var(--purple-light);
+}
+.ue-tile-label { font-size: 11px; color: var(--ink-mute); letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
+.ue-tile-val { font-family: 'Noto Serif KR'; font-size: 22px; font-weight: 900; color: var(--purple); margin-top: 8px; }
+
+/* ─── slide 13 — Roadmap ─── */
+.roadmap {
+  margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 22px; position: relative;
+}
+.roadmap::before {
+  content: ''; position: absolute; top: 32px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--purple-light) 50%, var(--gold) 100%);
+}
+.year-card {
+  background: white; padding: 24px;
+  border-top: none; box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  position: relative; padding-top: 56px;
+}
+.year-marker {
+  position: absolute; top: 22px; left: 24px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--purple); border: 4px solid var(--paper);
+}
+.year-card.y2 .year-marker { background: var(--purple-light); }
+.year-card.y3 .year-marker { background: var(--gold); }
+.year-label { font-family: 'Noto Serif KR'; font-size: 36px; font-weight: 900; color: var(--purple); }
+.year-card.y2 .year-label { color: var(--purple-light); }
+.year-card.y3 .year-label { color: var(--gold); }
+.year-tagline { font-size: 14px; color: var(--ink-mute); letter-spacing: 1px; margin-bottom: 16px; }
+.year-list { font-size: 14px; line-height: 1.7; color: var(--ink); }
+.year-list li { list-style: none; padding-left: 18px; position: relative; margin-bottom: 6px; }
+.year-list li::before { content: '·'; position: absolute; left: 4px; top: -2px; color: var(--purple); font-weight: 900; font-size: 18px; }
+
+/* ─── slide 14 — wedge family OS ─── */
+.wedge-diagram {
+  margin-top: 50px; height: 360px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.wedge-small {
+  width: 160px; height: 160px; border-radius: 50%;
+  background: var(--purple); color: white;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 20px;
+  z-index: 2; flex-shrink: 0;
+}
+.wedge-small-h { font-family: 'Noto Serif KR'; font-size: 18px; font-weight: 900; }
+.wedge-small-s { font-size: 12px; margin-top: 6px; opacity: 0.85; }
+.wedge-arrow {
+  width: 60px; height: 8px; background: linear-gradient(90deg, var(--purple) 0%, var(--gold) 100%);
+  position: relative; flex-shrink: 0;
+}
+.wedge-arrow::after {
+  content: ''; position: absolute; right: -10px; top: -8px;
+  width: 0; height: 0;
+  border-left: 14px solid var(--gold);
+  border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+}
+.wedge-large {
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, var(--gold) 0%, #c08e3e 100%);
+  color: var(--purple-dark);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 40px; flex-shrink: 0;
+}
+.wedge-large-h { font-family: 'Noto Serif KR'; font-size: 28px; font-weight: 900; }
+.wedge-large-s { font-size: 15px; margin-top: 10px; line-height: 1.5; }
+
+.tam-compare {
+  margin-top: 40px; display: flex; justify-content: center; gap: 40px; align-items: end;
+}
+.tam-bar { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.tam-bar-vis { width: 80px; background: var(--purple); }
+.tam-bar.entry .tam-bar-vis { height: 24px; background: var(--purple); }
+.tam-bar.real .tam-bar-vis { height: 100px; background: var(--gold); }
+.tam-bar-label { font-size: 11px; color: var(--ink-mute); letter-spacing: 1px; }
+.tam-bar-val { font-family: 'Noto Serif KR'; font-size: 18px; font-weight: 900; color: var(--purple); }
+.tam-bar.real .tam-bar-val { color: var(--gold); }
+
+/* ─── slide 15 — team ─── */
+.team-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; margin-top: 24px;
+}
+.founder-card {
+  background: white; padding: 24px; border-left: 4px solid var(--purple);
+}
+.founder-photo {
+  width: 100%; aspect-ratio: 1; background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+  border-radius: 4px; margin-bottom: 18px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(250, 250, 248, 0.4); font-size: 12px; letter-spacing: 4px;
+}
+.founder-name { font-family: 'Noto Serif KR'; font-size: 26px; font-weight: 900; color: var(--purple); }
+.founder-role { font-size: 13px; color: var(--ink-soft); letter-spacing: 2px; margin-top: 4px; font-weight: 700; }
+.founder-cred { font-size: 14px; color: var(--ink-soft); margin-top: 14px; line-height: 1.6; }
+
+.team-list { display: flex; flex-direction: column; gap: 14px; }
+.team-row {
+  display: grid; grid-template-columns: 130px 1fr; gap: 20px; align-items: center;
+  padding: 16px 20px; background: white; border: 1px solid var(--hairline);
+}
+.team-row-label { font-weight: 700; color: var(--purple); font-size: 14px; letter-spacing: 1px; }
+.team-row-body { font-size: 14px; color: var(--ink-soft); }
+.team-row-body b { color: var(--ink); font-weight: 700; }
+.team-summary {
+  margin-top: 24px; padding: 18px 24px;
+  background: var(--purple); color: white;
+  font-size: 15px; line-height: 1.6;
+}
+.team-summary b { color: var(--gold); }
+
+/* ─── slide 16 — ask + syndicate ─── */
+.ask-grid {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; margin-top: 24px;
+}
+.ask-block {
+  background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+  color: white; padding: 32px; border-radius: 8px;
+}
+.ask-round-label { font-size: 12px; color: var(--gold); letter-spacing: 4px; font-weight: 700; text-transform: uppercase; }
+.ask-round-val { font-family: 'Noto Serif KR'; font-size: 56px; font-weight: 900; margin-top: 8px; line-height: 1; }
+.ask-round-foot { font-size: 14px; color: var(--purple-soft); margin-top: 10px; }
+.ask-mile { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(212, 168, 98, 0.3); }
+.ask-mile-h { font-size: 12px; color: var(--gold); letter-spacing: 3px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
+.ask-mile-list { font-size: 14px; line-height: 1.8; color: var(--paper); }
+.ask-mile-list li { list-style: none; padding-left: 18px; position: relative; }
+.ask-mile-list li::before { content: '◇'; position: absolute; left: 0; color: var(--gold); }
+
+.syndicate { display: flex; flex-direction: column; gap: 14px; }
+.tier {
+  display: grid; grid-template-columns: 56px 1fr 1fr; gap: 18px; align-items: center;
+  padding: 18px 22px; background: white; border-left: 4px solid var(--purple);
+}
+.tier-num {
+  font-family: 'Noto Serif KR'; font-size: 28px; font-weight: 900;
+  color: var(--purple); line-height: 1;
+}
+.tier-name { font-size: 14px; font-weight: 700; line-height: 1.4; }
+.tier-name span { display: block; font-size: 11px; color: var(--ink-mute); margin-top: 4px; font-weight: 400; letter-spacing: 1px; }
+.tier-value { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+@media print {
+  body { background: white; padding: 0; }
+  .slide { box-shadow: none; page-break-after: always; }
+  .notes, .transition { page-break-after: always; background: white; color: var(--ink-soft); border-color: var(--purple-light); }
+  .notes-label { color: var(--purple); }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ [1] COVER ════════ -->
+<div class="slide cover">
+  <div class="cover-content">
+    <div>
+      <div class="cover-mark">187 GROWTH CARE · IR DECK · 2026</div>
+      <div class="cover-title">187</div>
+      <div style="font-family: 'Noto Serif KR'; font-size: 56px; font-weight: 700; color: var(--paper); margin-top: 4px; letter-spacing: -1px;">성장케어</div>
+      <div class="cover-sub">글로벌 표준의 키 성장 진료</div>
+    </div>
+    <div class="cover-foot">
+      <div class="cover-foot-l">
+        <span class="city">SEOUL · BANGKOK · KUALA LUMPUR</span>
+      </div>
+      <div class="cover-foot-r">v3 · 2026.05</div>
+    </div>
+  </div>
+  <div class="slide-no">01 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  오늘 말씀드릴 회사는 <em>187 성장케어</em>입니다. 한국에서 <em>10년 진료한 키 성장 클리닉</em>을, 글로벌 표준으로 만들어가고 있습니다. 한국에서 검증되었고, 태국에서 첫 export 가 끝났고, 올해 3분기에 말레이시아가 열립니다.
+</div>
+
+
+<!-- ════════ SECTION 1 — 시장 ════════ -->
+
+<!-- ════════ [2] 부모는 무엇이든 한다 ════════ -->
+<div class="slide">
+  <div class="section-label">시장 · 1 / 3</div>
+  <h1 class="headline-lg">왜 부모는 무엇이든 한다</h1>
+  <div class="lead-sub" style="margin-top: 28px; max-width: 900px;">
+    키는 평생 따라붙는다. 자녀의 작은 키 = 부모의 양육 실패감.<br>
+    골단이 닫히면 끝 — 단 한 번의 시간 창.
+  </div>
+
+  <div class="life-stages">
+    <div class="life-stage">
+      <div class="life-stage-icon">🎒</div>
+      <div class="life-stage-label">학교</div>
+      <div class="life-stage-bar"></div>
+      <div class="life-stage-note">또래 비교</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-icon">🪖</div>
+      <div class="life-stage-label">군대</div>
+      <div class="life-stage-bar"></div>
+      <div class="life-stage-note">신체 등급</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-icon">💑</div>
+      <div class="life-stage-label">연애</div>
+      <div class="life-stage-bar"></div>
+      <div class="life-stage-note">선호 키</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-icon">💼</div>
+      <div class="life-stage-label">취업</div>
+      <div class="life-stage-bar"></div>
+      <div class="life-stage-note">첫인상</div>
+    </div>
+    <div class="life-stage">
+      <div class="life-stage-icon">💍</div>
+      <div class="life-stage-label">결혼</div>
+      <div class="life-stage-bar"></div>
+      <div class="life-stage-note">가족 결정</div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">02 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  부모가 자녀 키 진료에 들어오는 순간을 상상해 보세요. 친구 부모들이 다 데려가고, 인터넷 후기 보고, <em>마지막 시간이라 생각하고 결심</em>합니다. 거의 종교적 결정이에요. 시간이 한 번뿐이라 — 뼈가 닫히면 그 결심은 영원히 후회로 바뀝니다. healthcare 어떤 카테고리도 <em>anxiety, urgency, cash 를 이렇게 동시에 max</em> 로 만들지 못합니다.
+</div>
+
+
+<!-- ════════ [3] 시장 — $14B ════════ -->
+<div class="slide">
+  <div class="section-label">시장 · 2 / 3</div>
+  <h1 class="headline-lg">시장 — 글로벌 성장호르몬 $14B</h1>
+
+  <div class="market-grid">
+    <div>
+      <div class="market-headline">
+        <div style="font-size: 16px; color: var(--ink-mute); letter-spacing: 3px; margin-bottom: 12px; font-family: 'Noto Sans KR'; font-weight: 700;">2023 → 2030</div>
+        <span class="from">$6.3B</span>
+        <span class="small-arrow"> ▶ </span>
+        <span class="to">$14.3B</span>
+      </div>
+      <div class="market-meta">
+        매년 <b>12.3%</b> 성장 (CAGR 2024~2030)<br>
+        Asia-Pacific = 가장 빠른 region<br>
+        소아 성장 장애 segment = 시장의 <b>40%</b><br>
+        GHD = 정통 적응증 <b>43%</b> 점유
+      </div>
+      <div class="market-source">출처: Grand View Research · Human Growth Hormone Market Report (2024)</div>
+    </div>
+
+    <div>
+      <!-- hockey stick chart SVG -->
+      <svg viewBox="0 0 520 360" style="width: 100%;">
+        <defs>
+          <linearGradient id="grad-mkt" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4A2D6B" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#4A2D6B" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- grid lines -->
+        <line x1="40" y1="60" x2="500" y2="60" stroke="#E8E2D8" stroke-width="1"/>
+        <line x1="40" y1="140" x2="500" y2="140" stroke="#E8E2D8" stroke-width="1"/>
+        <line x1="40" y1="220" x2="500" y2="220" stroke="#E8E2D8" stroke-width="1"/>
+        <line x1="40" y1="300" x2="500" y2="300" stroke="#E8E2D8" stroke-width="2"/>
+        <!-- y labels -->
+        <text x="32" y="64" text-anchor="end" font-size="11" fill="#8A847C">$15B</text>
+        <text x="32" y="144" text-anchor="end" font-size="11" fill="#8A847C">$10B</text>
+        <text x="32" y="224" text-anchor="end" font-size="11" fill="#8A847C">$5B</text>
+        <text x="32" y="304" text-anchor="end" font-size="11" fill="#8A847C">$0</text>
+        <!-- area under curve -->
+        <path d="M 60 270 L 130 264 L 200 254 L 270 238 L 340 212 L 410 170 L 480 98 L 480 300 L 60 300 Z" fill="url(#grad-mkt)"/>
+        <!-- line -->
+        <path d="M 60 270 L 130 264 L 200 254 L 270 238 L 340 212 L 410 170 L 480 98" stroke="#4A2D6B" stroke-width="3" fill="none"/>
+        <!-- start point -->
+        <circle cx="60" cy="270" r="5" fill="#4A2D6B"/>
+        <text x="60" y="290" text-anchor="middle" font-size="12" fill="#5A544D" font-weight="700">2023</text>
+        <text x="60" y="258" text-anchor="middle" font-size="13" fill="#4A2D6B" font-weight="700">$6.3B</text>
+        <!-- end point -->
+        <circle cx="480" cy="98" r="9" fill="#D4A862" stroke="#4A2D6B" stroke-width="3"/>
+        <text x="480" y="320" text-anchor="middle" font-size="14" fill="#4A2D6B" font-weight="900">2030</text>
+        <text x="480" y="86" text-anchor="middle" font-size="20" fill="#4A2D6B" font-weight="900" font-family="Noto Serif KR">$14.3B</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">03 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  글로벌 성장호르몬 시장 — 지금 <em>6.3 billion dollars</em> 입니다. 2030년에 <em>14.3 billion</em> 이 됩니다. 매년 12% 자라는 시장이에요. 그 안에서 가장 빠르게 자라는 region 이 Asia-Pacific. 그리고 그 region 안에서 <em>의사 한 명당 환자 노출량이 가장 많은 나라 — 한국</em>입니다.
+</div>
+
+
+<!-- ════════ [4] 한국에서 10년의 진료 사례 ════════ -->
+<div class="slide">
+  <div class="section-label">시장 · 3 / 3</div>
+  <h1 class="headline-lg">한국에서 10년의 진료 사례</h1>
+  <div class="kicker" style="margin-top: 14px;">연세새봄의원 / 187 성장클리닉</div>
+
+  <div class="clinic-grid">
+    <div>
+      <div class="clinic-photo">CLINIC · YONSEI SAEBOM · GANGNAM</div>
+      <div class="timeline">
+        <div class="timeline-line"></div>
+        <div class="timeline-pt" style="left: 10%;"></div>
+        <div class="timeline-sub" style="left: 10%;">개원</div>
+        <div class="timeline-label" style="left: 10%;">2016</div>
+        <div class="timeline-pt" style="left: 60%;"></div>
+        <div class="timeline-sub" style="left: 60%;">디지털화 시작</div>
+        <div class="timeline-label" style="left: 60%;">2022</div>
+        <div class="timeline-pt" style="left: 90%; background: var(--gold);"></div>
+        <div class="timeline-sub" style="left: 90%;">현재</div>
+        <div class="timeline-label" style="left: 90%; color: var(--gold);">2026</div>
+      </div>
+      <div class="lead" style="margin-top: 24px; font-size: 22px;">
+        <b>10년의 진료.</b><br>
+        <b>4년의 완전 디지털화.</b>
+      </div>
+    </div>
+
+    <div class="numstack">
+      <div class="numstack-item">
+        <div class="numstack-num">234</div>
+        <div class="numstack-label">명의 환자 (4년 디지털화 누적)</div>
+      </div>
+      <div class="numstack-item">
+        <div class="numstack-num">19,080</div>
+        <div class="numstack-label">건의 처방 데이터</div>
+      </div>
+      <div class="numstack-item">
+        <div class="numstack-num">2,995</div>
+        <div class="numstack-label">건의 뼈나이 측정</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">04 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  한국 강남, 연세새봄의원. 그 안에서 운영되는 187 성장클리닉. <em>10년 동안 키 성장 진료</em>를 해왔습니다. 채용현 원장 한 사람의 진료 — <em>234명의 환자, 19,080건의 처방, 2,995건의 뼈나이 측정</em>. 비급여, 접근성, 통합 호르몬 관점이 만든 진료 빈도가 한국에선 가능합니다. 그리고 거기에 K-medical 후광까지 — 동남아 부모들이 한국으로 비행기 타고 옵니다. <em>우리가 export 할 자산이 어딘가에 있는 게 아닙니다. 이미 10년 동안 만들어졌습니다.</em>
+</div>
+
+<div class="transition">그리고 우리는 이걸 한 도시에서 이미 해봤습니다 — 태국.</div>
+
+
+<!-- ════════ SECTION 2 — 검증·한계 ════════ -->
+
+<!-- ════════ [5] 태국 JV — Phase 1 검증 ════════ -->
+<div class="slide">
+  <div class="section-label">검증 · 1 / 2</div>
+  <h1 class="headline-lg">태국 JV — Phase 1 검증</h1>
+  <div class="lead-sub" style="margin-top: 18px;">첫 cross-border 검증. 채용현 remote consult + 현지 의사 prescribe + co-invest JV.</div>
+
+  <div class="flow-diagram">
+    <div class="flow-node kr">
+      <div class="flow-node-flag">🇰🇷 SEOUL</div>
+      <div class="flow-node-title">채용현 원장</div>
+      <div class="flow-node-sub">remote consult<br>(Phase 1 마스터)</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="flow-node-flag">CO-INVEST JV</div>
+      <div class="flow-node-title">합작 클리닉</div>
+      <div class="flow-node-sub">한국 ↔ 태국<br>지분 공동 출자</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node th">
+      <div class="flow-node-flag">🇹🇭 BANGKOK</div>
+      <div class="flow-node-title">현지 의사</div>
+      <div class="flow-node-sub">prescribe + face-to-face<br>+ 환자 케어</div>
+    </div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-tile">
+      <div class="metric-tile-label">환자 수</div>
+      <div class="metric-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+    <div class="metric-tile">
+      <div class="metric-tile-label">매출</div>
+      <div class="metric-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+    <div class="metric-tile">
+      <div class="metric-tile-label">재방문률</div>
+      <div class="metric-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+    <div class="metric-tile">
+      <div class="metric-tile-label">운영 기간</div>
+      <div class="metric-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">05 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  태국 파트너와 합작 투자한 클리닉입니다. 채용현 원장이 한국에서 원격 진료를 보고, 현지 의사가 처방을 합니다. 1년 동안 [TBD]명의 환자, [TBD]의 재방문률, [TBD] 매출. <em>cross-border telemedicine + JV 모델이 한 도시에서 작동한다는 첫 증거</em>입니다.
+</div>
+
+
+<!-- ════════ [6] 마스터 캐파 cliff ════════ -->
+<div class="slide">
+  <div class="section-label">검증 · 2 / 2</div>
+  <h1 class="headline-lg">마스터 1인 모델의 천장</h1>
+
+  <div class="cliff-grid" style="margin-top: 30px;">
+    <div>
+      <div class="lead" style="font-size: 26px;">
+        한 사람의 시간이<br>
+        <b style="color: var(--rose);">가장 희소한 자원.</b>
+      </div>
+      <div class="body" style="margin-top: 28px; color: var(--ink-soft);">
+        본원 진료 + 태국 원격 진료 = <b style="color: var(--ink);">캐파 곧 풀</b>. 이대로면 다음 도시 — 말레이시아 — 추가 불가.
+      </div>
+      <div class="body" style="margin-top: 16px; color: var(--ink-soft);">
+        의사 한 사람의 머리에 갇힌 진료 IP — 글로벌 export 의 가장 큰 병목, 라이벌 방어벽도 약함.
+      </div>
+      <div style="margin-top: 28px; padding: 16px 20px; background: rgba(184, 90, 107, 0.08); border-left: 3px solid var(--rose);">
+        <div class="kicker" style="color: var(--rose);">CAPACITY METRIC</div>
+        <div style="font-size: 15px; color: var(--ink-soft); margin-top: 6px;">
+          본원 캐파 사용률 <span class="tbd">TBD</span> · 일일 한도 <span class="tbd">TBD</span> · 예약 대기 <span class="tbd">TBD</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="kicker" style="margin-bottom: 14px;">채용현 원장 · 일주일 시간표</div>
+      <div class="calendar-grid">
+        <div class="cal-cell">월 AM<br>본원</div>
+        <div class="cal-cell full">월 PM<br>가득</div>
+        <div class="cal-cell full">화 AM<br>가득</div>
+        <div class="cal-cell full">화 PM<br>가득</div>
+        <div class="cal-cell full">수 AM<br>가득</div>
+        <div class="cal-cell full">수 PM<br>가득</div>
+        <div class="cal-cell">목 AM<br>본원</div>
+        <div class="cal-cell full">목 PM<br>가득</div>
+        <div class="cal-cell full">금 AM<br>가득</div>
+        <div class="cal-cell full">금 PM<br>가득</div>
+        <div class="cal-cell full">토 AM<br>가득</div>
+        <div class="cal-cell">토 PM<br>—</div>
+        <div class="cal-cell next-label">🇲🇾 MYS</div>
+        <div class="cal-cell next-label">🇻🇳 VNM</div>
+        <div class="cal-cell next">⋯</div>
+      </div>
+      <div style="margin-top: 14px; font-size: 12px; color: var(--ink-mute); letter-spacing: 1px;">
+        <span style="color: var(--rose); font-weight: 700;">▤ 가득 찬 시간</span> &nbsp;·&nbsp; <span style="color: var(--ink-mute); font-weight: 700;">⋯ 다음 도시 = 비어있음</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">06 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  그런데 여기서 멈춥니다. 채용현 원장의 시간은 무한이 아니에요. 본원 진료에 태국 원격 진료까지 — <em>캐파가 곧 꽉 찹니다</em>. 이 모델로는 다음 도시, 말레이시아를 추가할 수 없습니다. <em>의사 한 사람의 머리에 갇힌 진료 IP</em> — 이게 글로벌 export 의 가장 큰 병목이고, 라이벌이 들어올 때 막을 방어벽도 약합니다. 그래서 우리가 4년 동안 만든 것이 —
+</div>
+
+<div class="transition">187 성장케어의 진입 장벽입니다.</div>
+
+
+<!-- ════════ SECTION 3 — 3중 moat ════════ -->
+
+<!-- ════════ [7] 라이벌이 못 뚫는 3중 moat ─ TURNING POINT ════════ -->
+<div class="slide dark">
+  <div class="section-label">3중 MOAT · 1 / 4 · TURNING POINT</div>
+  <h1 class="headline-lg" style="color: var(--paper);">라이벌이 못 뚫는 3중 moat</h1>
+  <div class="lead-sub">시간이 갈수록 단단해진다. K-헬스케어 브랜드 × AI EMR × 진료 데이터.</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 40px; align-items: center;">
+    <div class="moats">
+      <div class="moat-circle brand">
+        <div class="moat-label-h">K-헬스케어</div>
+        <div class="moat-label-s">브랜드</div>
+      </div>
+      <div class="moat-circle emr">
+        <div class="moat-label-h">AI EMR</div>
+        <div class="moat-label-s">진료 표준화</div>
+      </div>
+      <div class="moat-circle data">
+        <div class="moat-label-h">진료 데이터</div>
+        <div class="moat-label-s">4년 누적</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="kicker" style="color: var(--gold);">시간이 곱연산으로 작용</div>
+      <div class="time-axis" style="grid-template-columns: 1fr; gap: 14px;">
+        <div class="time-pt" style="background: rgba(123, 92, 166, 0.15); border-left-color: var(--purple-soft);">
+          <div class="time-pt-yr" style="color: var(--purple-soft);">+ 1 YEAR</div>
+          <div class="time-pt-msg" style="color: var(--paper); opacity: 0.85;">Malaysia open · AI 인허가 시작 · 데이터 +1년</div>
+        </div>
+        <div class="time-pt" style="background: rgba(212, 168, 98, 0.15); border-left-color: var(--gold);">
+          <div class="time-pt-yr" style="color: var(--gold);">+ 3 YEARS</div>
+          <div class="time-pt-msg" style="color: var(--paper); opacity: 0.85;">동남아 5~7국 운영 · K-medical 글로벌 인지 · 데이터 깊이 2배</div>
+        </div>
+        <div class="time-pt" style="background: rgba(212, 168, 98, 0.3); border-left-color: var(--gold);">
+          <div class="time-pt-yr" style="color: var(--gold);">+ 5 YEARS</div>
+          <div class="time-pt-msg" style="color: var(--paper);"><b>라이벌 진입 불가능 · 표준화 OS 가 글로벌 default</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">07 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  라이벌이 들어와도 우리가 막을 수 있는 이유는 세 가지입니다. 첫째, <em>K-헬스케어 브랜드</em> — 한국 의료의 글로벌 신뢰. 동남아에 들어가는 순간 우리가 이미 가지고 가는 자산입니다. 둘째, <em>AI EMR</em> — 의사가 한 화면에서 모든 진료를 끝내는 표준화 도구. 4년 동안 본원에서 직접 만들었습니다. 셋째, <em>진료 데이터</em> — 채용현 원장 4년치 누적, 다른 곳에선 못 만듭니다. 이 셋이 1년 후, 3년 후, 5년 후 — <em>시간을 곱하면 라이벌은 못 따라옵니다</em>. 다음 세 슬라이드에서 그 셋을 하나씩 보여드립니다.
+</div>
+
+
+<!-- ════════ [8] 진료 데이터 모트 ════════ -->
+<div class="slide">
+  <div class="section-label">3중 MOAT · 2 / 4 — 진료 데이터</div>
+  <h1 class="headline-lg">의사 1인 4년치, 모방 불가</h1>
+  <div class="lead-sub" style="margin-top: 18px;">한국식 진료 빈도 + 통합 호르몬 관점 + 종이까지 OCR 한 깊이. 한국 밖에선 만들 수 없다.</div>
+
+  <div class="data-grid">
+    <div class="data-tile">
+      <div class="data-tile-num">234</div>
+      <div class="data-tile-label">명의 환자</div>
+    </div>
+    <div class="data-tile">
+      <div class="data-tile-num">19,080</div>
+      <div class="data-tile-label">건의 처방</div>
+    </div>
+    <div class="data-tile">
+      <div class="data-tile-num">2,995</div>
+      <div class="data-tile-label">건의 뼈나이 측정</div>
+    </div>
+    <div class="data-tile">
+      <div class="data-tile-num">3,803</div>
+      <div class="data-tile-label">건의 진료 회차 (visits)</div>
+    </div>
+  </div>
+
+  <div class="data-grid" style="margin-top: 16px;">
+    <div class="data-tile" style="border-color: var(--gold);">
+      <div class="data-tile-num" style="color: var(--gold);">240</div>
+      <div class="data-tile-label">명의 판독문 OCR</div>
+    </div>
+    <div class="data-tile" style="border-color: var(--gold);">
+      <div class="data-tile-num" style="color: var(--gold);">804</div>
+      <div class="data-tile-label">건의 Lab OCR</div>
+    </div>
+    <div class="data-tile" style="border-color: var(--gold);">
+      <div class="data-tile-num" style="color: var(--gold);">9,025</div>
+      <div class="data-tile-label">장의 X-ray 이미지</div>
+    </div>
+    <div class="data-tile" style="border-color: var(--gold); background: var(--paper-warm);">
+      <div class="data-tile-num" style="color: var(--gold); font-size: 32px; line-height: 1.2;">+ 1 yr</div>
+      <div class="data-tile-label">매년 같은 속도로 누적</div>
+    </div>
+  </div>
+
+  <div class="data-meta">
+    종이 판독문도, 종이 검사지도, X-ray 이미지도 — 모두 디지털화. 의사 1인이 4년간 직접 build 한 데이터셋이 그대로 글로벌 export 의 학습 자산이 됨. <b>시간이 갈수록 깊어진다.</b>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">08 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  첫 번째 moat — 진료 데이터. 채용현 원장 한 사람의 4년치 진료가 <em>전부 디지털화</em>되었습니다. 종이 판독문도 OCR 로 들어왔고, Lab 검사지도, X-ray 9,025장도. 한국식 진료 빈도와 통합 호르몬 관점이 만든 데이터셋 — <em>한국 밖에선 만들 수 없는 것</em>입니다. 시간이 갈수록 깊어집니다.
+</div>
+
+
+<!-- ════════ [9] AI EMR — 한 화면 ════════ -->
+<div class="slide">
+  <div class="section-label">3중 MOAT · 3 / 4 — AI EMR</div>
+  <h1 class="headline-lg">의사가 한 화면에서 진료 끝</h1>
+  <div class="lead-sub" style="margin-top: 14px;">X-ray 자동 뼈나이 + Lab OCR + 통합 EMR + 환자앱 연동.</div>
+
+  <div class="emr-mock">
+    <div class="emr-pane">
+      <div class="emr-pane-h">환자 정보</div>
+      <div class="emr-row"><b>김OO</b> · 12세 3개월</div>
+      <div class="emr-row">차트 #220148</div>
+      <div class="emr-row">현재 키 145.2 cm</div>
+      <div class="emr-row">뼈나이 11.5 (auto)</div>
+      <div class="emr-row">예측 성인키 173.8</div>
+      <div class="emr-row" style="border-bottom: none; margin-top: 8px;"><span style="color: var(--purple); font-weight: 700;">진료 12회차</span></div>
+    </div>
+
+    <div class="emr-pane">
+      <div class="emr-tabs">
+        <div class="emr-tab active">진료</div>
+        <div class="emr-tab">X-ray</div>
+        <div class="emr-tab">Lab</div>
+        <div class="emr-tab">생활습관</div>
+      </div>
+      <div class="emr-row"><b>15:32</b> · 측정 145.2 / 38.4 kg</div>
+      <div class="emr-row"><b>X-ray</b> · 뼈나이 자동 11.5 → 의사 11.4 확정</div>
+      <div class="emr-row"><b>Lab</b> · IGF-1 ↓ · 비타민D ↓ · OCR 자동 입력</div>
+      <div class="emr-row"><b>처방</b> · MED0042 / INJ002</div>
+      <div class="emr-row" style="margin-top: 6px; color: var(--ink); font-weight: 700;">📊 성장곡선</div>
+      <div class="emr-chart-placeholder"></div>
+    </div>
+
+    <div class="emr-pane">
+      <div class="emr-pane-h">환자앱 연동</div>
+      <div class="emr-row">📔 루틴 다이어리 28일</div>
+      <div class="emr-row">😴 평균 수면 7.2h</div>
+      <div class="emr-row">🥗 식사 점수 평균 76</div>
+      <div class="emr-row">🏃 운동 12회 / 월</div>
+      <div class="emr-row">💉 성장주사 26/28일</div>
+      <div class="emr-row" style="border-bottom: none; margin-top: 8px; color: var(--purple); font-weight: 700;">🤖 AI 코칭 카드 active</div>
+    </div>
+  </div>
+
+  <div class="emr-feat-list" style="margin-top: 24px;">
+    <div class="emr-feat">
+      <div class="emr-feat-dot">★</div>
+      <div class="emr-feat-text">본원에서 <b>4년 동안 매일 직접 사용</b>하면서 build. <b style="color: var(--purple);">build 가 아니라 deploy 단계.</b></div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">09 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  두 번째 moat — AI EMR. 의사가 환자를 부르면 <em>한 화면에서 진료가 끝납니다</em>. X-ray 를 올리면 뼈나이가 자동으로 측정되고, 종이 Lab 검사지를 올리면 OCR 로 들어오고, 진료/X-ray/Lab/생활습관 — 4탭이 한 곳에서 보입니다. 환자가 집에서 입력한 루틴 다이어리도 같이 뜹니다. 4년 동안 본원에서 매일 사용하면서 만들었습니다. <em>build 가 아니라 deploy 단계</em>입니다.
+</div>
+
+
+<!-- ════════ [10] AI 진료 보조 ════════ -->
+<div class="slide">
+  <div class="section-label">3중 MOAT · 4 / 4 — AI 진료 보조</div>
+  <h1 class="headline-lg">의사가 가장 먼저 보는 것: 비슷한 환자 12명</h1>
+  <div class="lead-sub" style="margin-top: 14px;">본원 4년치 데이터가 매번 옆에 앉는다. 글로벌 의사도 첫날부터 한국 진료 깊이 위에서 시작.</div>
+
+  <div class="rag-grid">
+    <div class="rag-card highlight h1"><div class="rag-card-id">#187-088</div><div class="rag-card-h">남 · 11.8세</div><div class="rag-card-bar"></div><div class="rag-card-pct">유사도 92%</div></div>
+    <div class="rag-card highlight h2"><div class="rag-card-id">#187-152</div><div class="rag-card-h">남 · 12.1세</div><div class="rag-card-bar"></div><div class="rag-card-pct">유사도 88%</div></div>
+    <div class="rag-card highlight h3"><div class="rag-card-id">#187-203</div><div class="rag-card-h">남 · 12.4세</div><div class="rag-card-bar"></div><div class="rag-card-pct">유사도 84%</div></div>
+    <div class="rag-card h4"><div class="rag-card-id">#187-061</div><div class="rag-card-h">남 · 11.5세</div><div class="rag-card-bar"></div><div class="rag-card-pct">유사도 79%</div></div>
+    <div class="rag-card h5"><div class="rag-card-id">#187-119</div><div class="rag-card-h">남 · 12.8세</div><div class="rag-card-bar"></div><div class="rag-card-pct">유사도 76%</div></div>
+    <div class="rag-card h6"><div class="rag-card-id">#187-217</div><div class="rag-card-h">남 · 11.2세</div><div class="rag-card-bar"></div><div class="rag-card-pct">유사도 73%</div></div>
+  </div>
+
+  <div style="margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    <div style="padding: 20px; background: white; border-top: 3px solid var(--purple);">
+      <div class="kicker">RETRIEVE</div>
+      <div style="font-size: 15px; color: var(--ink-soft); margin-top: 8px; line-height: 1.6;">현 환자 데이터로 4년치 누적 코호트에서 <b style="color: var(--ink);">cosine top-k</b> 검색</div>
+    </div>
+    <div style="padding: 20px; background: white; border-top: 3px solid var(--purple-light);">
+      <div class="kicker">AGGREGATE</div>
+      <div style="font-size: 15px; color: var(--ink-soft); margin-top: 8px; line-height: 1.6;">평균 키 변화, 처방 패턴, 결과 자동 요약 — <b style="color: var(--ink);">의사 0.5초 안에 본인 사례처럼 파악</b></div>
+    </div>
+    <div style="padding: 20px; background: white; border-top: 3px solid var(--gold);">
+      <div class="kicker">DOCTOR DECIDES</div>
+      <div style="font-size: 15px; color: var(--ink-soft); margin-top: 8px; line-height: 1.6;">AI 가 진료하지 않음 — <b style="color: var(--ink);">의사 최종 서명</b>. 한국 진료 4년치를 <b style="color: var(--purple);">의사 보조</b> 로 사용</div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">10 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  세 번째 moat — AI 진료 보조. 환자 차트가 열리면 의사가 가장 먼저 보는 것이 — <em>우리 4년 데이터에서 가장 비슷한 환자 12명</em>입니다. 그들의 키 변화, 받은 처방, 결과. 의사가 처음 보는 환자가 아닙니다. <em>4년치 누적 진료가 매번 같이 옆에 앉습니다</em>. AI 가 진료하는 게 아니라, 의사를 더 강하게 만드는 도구입니다. <em>한국 의사가 4년 만에 만든 진료 깊이를, 글로벌 의사가 첫날부터 갖고 시작합니다.</em>
+</div>
+
+<div class="transition">이게 다음 도시에 어떻게 deploy 되는지 — 보여드리겠습니다.</div>
+
+
+<!-- ════════ SECTION 4 — 산업화 deploy ════════ -->
+
+<!-- ════════ [11] Malaysia + 자금 4 bucket ════════ -->
+<div class="slide">
+  <div class="section-label">산업화 DEPLOY</div>
+  <h1 class="headline-lg">Malaysia Q3 = Phase 2 첫 deploy</h1>
+  <div class="lead-sub" style="margin-top: 14px;">현지 채용 의사 + AI EMR + 진료 보조 도구 + 채용현 review-only.</div>
+
+  <div class="malaysia-grid">
+    <div>
+      <div class="phase-flow">
+        <div class="phase-flow-h">Phase 1 → Phase 2</div>
+        <div class="phase-row">
+          <div class="phase-num">1</div>
+          <div>
+            <div class="phase-title">Phase 1 (지금, 태국)</div>
+            <div class="phase-desc">마스터 KR remote consult + 현지 의사 prescribe → 한 도시에서만 작동</div>
+          </div>
+        </div>
+        <div class="phase-row">
+          <div class="phase-num next">2</div>
+          <div>
+            <div class="phase-title" style="color: var(--purple);">Phase 2 (말레이시아 Q3 ~)</div>
+            <div class="phase-desc"><b>현지 채용 의사 + AI EMR + 진료 보조 도구</b> · 채용현은 어려운 케이스만 review · 다음 도시 추가 가능</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="kicker" style="margin-bottom: 14px;">자금 4 BUCKET — DEPLOY FUEL</div>
+      <div class="bucket-list">
+        <div class="bucket">
+          <div class="bucket-id">U1</div>
+          <div>
+            <div class="bucket-h">현지 시장 rollout</div>
+            <div class="bucket-b">Malaysia + 그 다음 1~2개국 진출. JV setup, 의사 채용, 클리닉 오픈 capex</div>
+          </div>
+        </div>
+        <div class="bucket">
+          <div class="bucket-id">U2</div>
+          <div>
+            <div class="bucket-h">임상·규제 패스</div>
+            <div class="bucket-b">AI 도구 SaMD 인허가, 현지 의료법 대응, 임상 논문/RWE 출판</div>
+          </div>
+        </div>
+        <div class="bucket">
+          <div class="bucket-id">U3</div>
+          <div>
+            <div class="bucket-h">현지화 + 표준화 운영</div>
+            <div class="bucket-b">다국어 EMR, 현지 임상 가이드 어댑테이션, 의사 트레이닝 SOP</div>
+          </div>
+        </div>
+        <div class="bucket">
+          <div class="bucket-id">U4</div>
+          <div>
+            <div class="bucket-h">JV·가맹 본부 + 브랜드</div>
+            <div class="bucket-b">본부 운영, 파트너 온보딩, K-medical 글로벌 마케팅, ContentFlow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deploy-banner">이건 <b>build 자금이 아닙니다.</b> 도구는 다 있어요. <b>deploy 자금</b>입니다.</div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">11 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  올해 3분기 말레이시아가 열립니다. 이게 <em>Phase 2 의 첫 사례</em>입니다. 채용현 원장이 원격으로 모든 진료를 하는 게 아니라 — 현지에서 채용한 의사가 AI EMR 과 진료 보조 도구를 사용해서 직접 진료합니다. 채용현 원장은 어려운 케이스만 review 합니다. 자금은 네 곳에 씁니다. <em>U1 현지 시장 rollout, U2 임상·규제, U3 현지화 SOP, U4 JV 본부·브랜드.</em> 이건 build 자금이 아닙니다. 도구는 다 있어요. <em>deploy 자금</em>입니다.
+</div>
+
+
+<!-- ════════ SECTION 5 — BM·미래 ════════ -->
+
+<!-- ════════ [12] BM + UE ════════ -->
+<div class="slide">
+  <div class="section-label">BM · 1 / 2</div>
+  <h1 class="headline-lg">Business Model + Unit Economics</h1>
+
+  <div class="bm-stack">
+    <div class="bm-line">
+      <div class="bm-line-id">1</div>
+      <div>
+        <div class="bm-line-h">본원 진료비</div>
+        <div class="bm-line-b">한국 cash-pay 비급여 — 검증된 누적 매출 base</div>
+      </div>
+      <div class="bm-line-tag">NOW</div>
+    </div>
+    <div class="bm-line">
+      <div class="bm-line-id">2</div>
+      <div>
+        <div class="bm-line-h">JV 클리닉 진료 share + equity</div>
+        <div class="bm-line-b">글로벌 클리닉 (태국·말레이시아·…) 진료 share 와 지분 가치</div>
+      </div>
+      <div class="bm-line-tag">Y1 ~</div>
+    </div>
+    <div class="bm-line">
+      <div class="bm-line-id">3</div>
+      <div>
+        <div class="bm-line-h">AI EMR 라이선스 (옵션)</div>
+        <div class="bm-line-b">비주력 — 외부 클리닉 SaaS 라이선스 가능성 열어둠</div>
+      </div>
+      <div class="bm-line-tag">Y2 ~</div>
+    </div>
+    <div class="bm-line future">
+      <div class="bm-line-id">4</div>
+      <div>
+        <div class="bm-line-h">가족 lifecycle 진료</div>
+        <div class="bm-line-b">자녀 → 부모 → 만성질환·예방의학 — TAM 자릿수 변화 (마지막 슬라이드 참고)</div>
+      </div>
+      <div class="bm-line-tag">Y3+</div>
+    </div>
+  </div>
+
+  <div class="ue-row">
+    <div class="ue-tile">
+      <div class="ue-tile-label">클리닉 1개당 setup</div>
+      <div class="ue-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+    <div class="ue-tile">
+      <div class="ue-tile-label">환자 ARPU</div>
+      <div class="ue-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+    <div class="ue-tile">
+      <div class="ue-tile-label">Payback</div>
+      <div class="ue-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+    <div class="ue-tile">
+      <div class="ue-tile-label">Break-even 클리닉</div>
+      <div class="ue-tile-val"><span class="tbd">TBD</span></div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">12 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  매출 구조는 단순합니다. 본원의 진료비, JV 클리닉의 진료 share + equity, 가족 lifecycle 진료는 미래 라인. 클리닉 1개당 [TBD] 에 setup 하고, 환자 ARPU [TBD], payback [TBD]개월. <em>본원의 4년치 unit economics 가 그대로 다음 클리닉의 운영 모델</em>입니다 — 이미 검증된 숫자 위에서 expand 합니다.
+</div>
+
+
+<!-- ════════ [13] Roadmap ════════ -->
+<div class="slide">
+  <div class="section-label">BM · 2 / 2 — 로드맵</div>
+  <h1 class="headline-lg">Roadmap to Series B</h1>
+
+  <div class="roadmap">
+    <div class="year-card y1">
+      <div class="year-marker"></div>
+      <div class="year-label">Y1</div>
+      <div class="year-tagline">FOUNDATION</div>
+      <ul class="year-list">
+        <li>Malaysia open</li>
+        <li>AI 도구 인허가 시작 (SaMD path)</li>
+        <li>본원 캐파를 표준화 도구로 50% ↑</li>
+        <li>현지 의사 트레이닝 SOP v1</li>
+      </ul>
+    </div>
+    <div class="year-card y2">
+      <div class="year-marker"></div>
+      <div class="year-label">Y2</div>
+      <div class="year-tagline">EXPANSION</div>
+      <ul class="year-list">
+        <li>동남아 2~3국 추가 (베트남·인니·싱가포르 검토)</li>
+        <li>AI 1.0 정식 인허가</li>
+        <li>가족 lifecycle 진료 라인 KR launch (소규모)</li>
+        <li>K-medical 글로벌 브랜드 캠페인</li>
+      </ul>
+    </div>
+    <div class="year-card y3">
+      <div class="year-marker"></div>
+      <div class="year-label">Y3</div>
+      <div class="year-tagline">SERIES B TRIGGER</div>
+      <ul class="year-list">
+        <li>5~7개국 운영</li>
+        <li>가족 lifecycle 매출 비중 ↑</li>
+        <li>ARR <span class="tbd">TBD</span> · 클리닉 <span class="tbd">TBD</span> 개</li>
+        <li>Series B 라운드 ready</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 50px; padding: 20px 28px; background: var(--paper-warm); border-left: 4px solid var(--purple); font-size: 15px; color: var(--ink-soft); line-height: 1.7;">
+    여기까지가 <b style="color: var(--ink);">키 성장 시장 안에서의 이야기</b>입니다. 이 단일 시장만으로도 venture-scale 입니다.
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">13 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  <em>1년차</em> — Malaysia open, AI 도구 인허가 시작, 본원 캐파를 표준화 도구로 50% 이상 늘립니다. <em>2년차</em> — 동남아 2~3국 추가, AI 1.0 정식 인허가. <em>3년차</em> — 5~7국 운영, Series B 트리거 metric — ARR [TBD], 클리닉 [TBD]개. 여기까지가 키 성장 시장 안에서의 이야기입니다.
+</div>
+
+<div class="transition">그런데 한 가지 더 — 우리가 모르고 있던 게 있었습니다.</div>
+
+
+<!-- ════════ [14] 그 너머 — 가족 healthcare OS ════════ -->
+<div class="slide dark">
+  <div class="section-label">그 너머</div>
+  <h1 class="headline-lg" style="color: var(--paper);">키 진료는 entry. 진짜 게임은 가족 healthcare OS.</h1>
+
+  <div class="wedge-diagram">
+    <div class="wedge-small">
+      <div class="wedge-small-h">자녀<br>키 진료</div>
+      <div class="wedge-small-s">3년 진료 / wedge</div>
+    </div>
+    <div class="wedge-arrow"></div>
+    <div class="wedge-large">
+      <div class="wedge-large-h">가족 healthcare</div>
+      <div class="wedge-large-s">만성질환 · 예방의학<br>일생 동안 동반</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+    <div>
+      <div class="kicker" style="color: var(--gold);">CONVERSION ALREADY HAPPENING</div>
+      <div class="body" style="margin-top: 14px; color: var(--paper); opacity: 0.9;">
+        3년 진료가 끝날 때 그 가족이 의사를 떠나지 않습니다. 자녀 결과로 평생 감사하는 부모 — 본인 진료로, 만성질환 관리로 자연스럽게 흐릅니다.<br><br>
+        <b style="color: var(--gold);">본원에서 이미 일어나고 있는 일</b> — <span class="tbd">TBD</span> 자녀→부모 진료 전환.
+      </div>
+    </div>
+    <div>
+      <div class="kicker" style="color: var(--gold);">TAM RESHAPE</div>
+      <div class="tam-compare" style="margin-top: 20px;">
+        <div class="tam-bar entry">
+          <div class="tam-bar-vis"></div>
+          <div class="tam-bar-val" style="color: var(--paper);">$14B</div>
+          <div class="tam-bar-label" style="color: var(--purple-soft);">키 성장 = entry</div>
+        </div>
+        <div class="tam-bar real">
+          <div class="tam-bar-vis"></div>
+          <div class="tam-bar-val" style="color: var(--gold);">$수백 B</div>
+          <div class="tam-bar-label" style="color: var(--purple-soft);">가족 healthcare = real</div>
+        </div>
+      </div>
+      <div style="margin-top: 14px; font-size: 13px; color: var(--purple-soft); text-align: center;">자릿수가 바뀐다.</div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">14 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  3년 진료가 끝날 때 그 가족이 의사를 떠나지 않습니다. 매 6개월마다 만난 의사, 자녀 결과로 평생 감사하는 부모 — 본인 진료로, 만성질환 관리로 자연스럽게 흐릅니다. 본원에서 이미 그 일이 일어나고 있습니다 [TBD]. 그래서 우리가 보는 시장은 <em>14 billion 이 아닙니다</em>. 그건 entry 입니다. 진짜 시장은 그 뒤에 — 가족 healthcare 전체. <em>자릿수가 바뀝니다</em>. 키 진료는 healthcare 에서 evangelist 를 가장 잘 만드는 카테고리이기 때문입니다.
+</div>
+
+
+<!-- ════════ SECTION 6 — Team + Ask ════════ -->
+
+<!-- ════════ [15] Team ════════ -->
+<div class="slide">
+  <div class="section-label">팀</div>
+  <h1 class="headline-lg">의료 IP · 기술 build · 글로벌 운영, 한 팀</h1>
+
+  <div class="team-grid">
+    <div>
+      <div class="founder-card">
+        <div class="founder-photo">PHOTO · 채용현 원장</div>
+        <div class="founder-name">채용현</div>
+        <div class="founder-role">CEO · CMO · FOUNDER</div>
+        <div class="founder-cred">
+          187 성장클리닉을 <b>10년 운영</b>한 founder. AI EMR 을 <b>4년 동안 직접 build</b>. 의료 IP 의 본인.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="team-list">
+        <div class="team-row">
+          <div class="team-row-label">AI · IT</div>
+          <div class="team-row-body"><b><span class="tbd">TBD</span> 명</b> — 본원 시스템을 직접 만든 사람들 (EMR · RAG · OCR 파이프라인 · 환자앱)</div>
+        </div>
+        <div class="team-row">
+          <div class="team-row-label">운영</div>
+          <div class="team-row-body"><b><span class="tbd">TBD</span> 명</b> — 본원 운영 + JV 본부 (글로벌 partner ops)</div>
+        </div>
+        <div class="team-row">
+          <div class="team-row-label">자문</div>
+          <div class="team-row-body"><b><span class="tbd">TBD</span></b> — 의료·규제·글로벌 진출 자문위원회</div>
+        </div>
+      </div>
+
+      <div class="team-summary">
+        의료 IP, 기술 build, 글로벌 운영 — <b>세 축이 다 한 팀 안에 있습니다.</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">15 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  채용현 원장 — 187 성장클리닉을 10년 운영했고, AI EMR 을 4년 동안 직접 build 한 founder. CEO 이자 CMO. AI/IT 팀 [TBD]명 — 본원 시스템을 직접 만든 사람들. 운영 팀 [TBD]명. 자문위원회 [TBD]. <em>의료 IP, 기술 build, 글로벌 운영 — 세 축이 다 한 팀 안에 있습니다.</em>
+</div>
+
+
+<!-- ════════ [16] Ask + Syndicate ════════ -->
+<div class="slide">
+  <div class="section-label">ASK</div>
+  <h1 class="headline-lg">Round + Syndicate We're Building</h1>
+
+  <div class="ask-grid">
+    <div class="ask-block">
+      <div class="ask-round-label">Round Size</div>
+      <div class="ask-round-val"><span class="tbd" style="font-size: 36px; vertical-align: middle;">TBD</span></div>
+      <div class="ask-round-foot">자금 4 bucket — Malaysia 진출 · 임상·규제 · 현지화 SOP · JV 본부</div>
+
+      <div class="ask-mile">
+        <div class="ask-mile-h">Y1 Milestone</div>
+        <ul class="ask-mile-list">
+          <li>Malaysia open (Q3)</li>
+          <li>AI SaMD 인허가 path</li>
+          <li>본원 캐파 표준화 도구로 ↑</li>
+          <li>현지 의사 트레이닝 SOP v1</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="kicker" style="margin-bottom: 16px;">함께 짜고 싶은 SYNDICATE</div>
+      <div class="syndicate">
+        <div class="tier">
+          <div class="tier-num">01</div>
+          <div class="tier-name">글로벌 헬스 VC<span>a16z bio · GV · 기타 specialist</span></div>
+          <div class="tier-value">후속 라운드 + 글로벌 브랜드 · cross-border 신뢰</div>
+        </div>
+        <div class="tier" style="border-left-color: var(--purple-light);">
+          <div class="tier-num" style="color: var(--purple-light);">02</div>
+          <div class="tier-name">동남아 현지 헬스 VC<span>BANGKOK · KL · SG · JKT</span></div>
+          <div class="tier-value">진출국 시장 진입 가속 · 현지 규제·인력 해결</div>
+        </div>
+        <div class="tier" style="border-left-color: var(--gold);">
+          <div class="tier-num" style="color: var(--gold);">03</div>
+          <div class="tier-name">플랫폼 액셀러레이터<span>OEM · 운영·표준화 네트워크</span></div>
+          <div class="tier-value">운영 표준화 자원 · 후속 syndicate 매칭</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px; padding: 18px 22px; background: var(--paper-warm); border-left: 4px solid var(--gold); font-size: 14px; color: var(--ink-soft); line-height: 1.6;">
+        187 성장케어가 <b style="color: var(--purple);">K-헬스케어 글로벌 표준</b>이 되는 길에 — 함께 만들 분들을 찾고 있습니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-mark">187 GROWTH CARE</div>
+  <div class="slide-no">16 / 16</div>
+</div>
+<div class="notes">
+  <span class="notes-label">발표자 노트</span>
+  라운드는 [TBD] 입니다. 자금은 4 bucket — Malaysia 진출, 임상·규제, 현지화 SOP, JV 본부. 1년차 milestone — Malaysia open, AI 인허가 path, 본원 캐파 표준화. 그리고 — 우리가 함께 짜고 싶은 syndicate 가 있습니다. <em>글로벌 헬스 VC</em> — 후속 라운드와 글로벌 브랜드. <em>동남아 현지 헬스 VC</em> — 진출국 시장 진입 가속. <em>플랫폼 액셀러레이터</em> — 운영 표준화·OEM 네트워크. 187 성장케어가 K-헬스케어 글로벌 표준이 되는 길에 — 함께 만들 분들을 찾고 있습니다.
+</div>
+
+</body>
+</html>
