@@ -21,6 +21,6 @@ test('sitemap adds per-post entries when blogSlugs provided', () => {
     activeLangs: ['ko'],
     blogSlugs: { ko: ['hello-world', 'second-post'] },
   });
-  assert.ok(xml.includes('/ko/blog/hello-world/'));
-  assert.ok(xml.includes('/ko/blog/second-post/'));
+  assert.ok(xml.includes('/test/ko/blog/hello-world/'));
+  assert.ok(xml.includes('/test/ko/blog/second-post/'));
 });

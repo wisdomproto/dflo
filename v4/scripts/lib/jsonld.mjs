@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
 const ORIGIN = 'https://www.dr187growup.com';
+const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '/test';  // strip via SITE_PATH_PREFIX="" when /test/ is promoted to root
 const CLINIC_NAME = '연세새봄의원 187 성장클리닉';
 const CLINIC_PHONE = '+82-2-XXX-XXXX';  // TODO: confirm with clinic admin
 const CLINIC_ADDRESS = {
@@ -30,9 +31,9 @@ export function medicalClinicJsonLd(lang) {
     '@context': 'https://schema.org',
     '@type': 'MedicalClinic',
     name: CLINIC_NAME,
-    url: `${ORIGIN}/${lang}/`,
+    url: `${ORIGIN}${PATH_PREFIX}/${lang}/`,
     logo: `${ORIGIN}/images/logo.jpg`,
-    image: `${ORIGIN}/test/og/og-${lang}.jpg`,
+    image: `${ORIGIN}${PATH_PREFIX}/og/og-${lang}.jpg`,
     medicalSpecialty: 'Pediatrics',
     telephone: CLINIC_PHONE,
     address: CLINIC_ADDRESS,
@@ -49,7 +50,7 @@ export function physicianJsonLd(lang) {
     worksFor: {
       '@type': 'MedicalClinic',
       name: CLINIC_NAME,
-      url: `${ORIGIN}/${lang}/`,
+      url: `${ORIGIN}${PATH_PREFIX}/${lang}/`,
     },
   };
 }
@@ -80,7 +81,7 @@ export function blogPostingJsonLd({ post, lang }) {
     datePublished: post.published_at,
     dateModified: post.updated_at || post.published_at,
     inLanguage: lang,
-    url: `${ORIGIN}/${lang}/blog/${post.slug}/`,
+    url: `${ORIGIN}${PATH_PREFIX}/${lang}/blog/${post.slug}/`,
     publisher: {
       '@type': 'MedicalClinic',
       name: CLINIC_NAME,
