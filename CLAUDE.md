@@ -15,10 +15,67 @@
 ## Commands
 ```bash
 cd v4 && npm run dev          # Dev server
-cd v4 && npm run build        # Production build
+cd v4 && npm run build        # Production build (tsc → build:i18n → vite build)
 cd v4 && npx tsc --noEmit     # Type check
+cd v4 && npm run build:i18n   # 다국어 정적 HTML 빌드 (4개 언어)
+cd v4 && npm run build:i18n -- --refetch  # ContentFlow에서 블로그 글 새로 fetch + 빌드
+cd v4 && npm run test:i18n    # i18n 빌드 시스템 테스트
 cd ai-server && npm run dev   # AI server (port 3001)
 ```
+
+## i18n + Global SEO Infrastructure (2026-05-13)
+
+글로벌 진출(187개국 키워드 분석 → 7개 언어축 → 1차 ko/th/vi/en 활성화) 정적 다국어 빌드 파이프라인.
+
+### 파이프라인
+```
+v4/i18n/template/index.html   ← {{placeholder}} 골격 (frozen 13 섹션)
+        +
+v4/i18n/locales/{ko,th,vi,en,ja,zh-tw,id}.yml   ← 언어별 카피 (ja/zh-tw/id는 stub)
+        +
+v4/i18n/messenger.yml         ← 국가별 메신저 (1차 전부 Kakao, LINE/Zalo/WhatsApp 계정 받으면 URL만 교체)
+        +
+v4/i18n/seo.yml               ← 언어별 title/description/FAQ
+        ↓ build-i18n.mjs (Node + js-yaml, 프레임워크 X)
+v4/public/test/{lang}/index.html × 4 (활성)
+v4/public/test/sitemap.xml    ← hreflang ×8 자동 생성
+```
+
+### 핵심 파일 (`v4/scripts/`)
+- `build-i18n.mjs`: 빌드 오케스트레이터 (async main, `--refetch` 플래그)
+- `lib/render.mjs`: `{{placeholder}}` + `{{#each list}}` 미니 렌더러 (마커 누락 시 throw)
+- `lib/messenger.mjs`: `getMessengerCTA(lang, {requireLiveUrl})` — TBD URL이 활성 언어에 있으면 빌드 실패
+- `lib/seo.mjs`: meta/canonical/hreflang/OG + `PATH_PREFIX` env-var 지원 (기본 `/test`, Phase 6 승격 시 `SITE_PATH_PREFIX=""`)
+- `lib/jsonld.mjs`: MedicalClinic + Physician + FAQPage + BlogPosting
+- `lib/sitemap.mjs`: `<xhtml:link rel="alternate">` 자동 삽입
+- `lib/fetch-contentflow-posts.mjs`: ContentFlow API에서 블로그 fetch → `i18n/blog-cache/` JSON 캐시
+- `lib/blog.mjs`: `renderPost` + `renderIndex` + `loadCachedPosts`
+
+빌드 산출(`public/test/{ko,th,vi,en}/`, `sitemap.xml`, `i18n/blog-cache/`)은 `.gitignore`. 소스(`/test/index.html`, `_shell.css`, `_shell.js`, `og/`, `robots.txt`)는 tracked.
+
+### 환경변수
+```
+SITE_PATH_PREFIX=/test       # 기본값. Phase 6 승격 시 "" 설정
+CONTENTFLOW_API_URL=         # 블로그 fetch용 (없으면 빌드 시 블로그 skip + 경고)
+CONTENTFLOW_PROJECT_ID=      # 연세새봄의원 project UUID
+```
+
+### CTA 라우팅 + GA4
+모든 메신저 버튼은 `messenger.yml`만 참조 (URL/라벨/색상). 5개 인라인 CTA(`case-cta-inline` × obesity/precocious/proportion/bodywork/late)는 `data-source="case_{section}"`. `_shell.js`의 `trackConsultClick`이 `data-source` 가진 모든 `<a>` 클릭 시 GA4 `consult_click` 이벤트 발사 (channel/locale/source/page_type 디멘션).
+
+### 블로그 연동 (ContentFlow ↔ dflo)
+ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={lang}` (service-role + `!inner` 조인으로 프로젝트 격리)가 published 글을 JSON 반환. dflo가 빌드 시 fetch → 캐시 → `blog-post.html`/`blog-index.html` 템플릿 → `/test/{lang}/blog/{slug}/index.html`.
+
+### 라우터
+`v4/src/app/router.tsx`: `/test/:lang`, `/test/:lang/`, `/test/:lang/blog`, `/test/:lang/blog/`는 `HardRedirect`로 정적 `index.html`로 보냄 (React Router fallback 회피).
+
+### 1차 활성화 스코프
+- 시장 4개: 🇰🇷 ko / 🇹🇭 th / 🇻🇳 vi / 🇺🇸 en
+- 메신저: 전부 KakaoTalk fallback (`pf.kakao.com/_ZxneSb`) — 현지 메신저 계정 받으면 `messenger.yml`만 교체 후 재빌드
+- 한국어 카피 폴리싱 후 → 번역 → 빌드 → Phase 6(`/test/` → `/` 승격, Railway 배포 검증)는 별도 작업
+
+### 위성 콘텐츠 배포 정책
+메인 블로그는 우리 도메인(`/blog/{lang}/`). 위성(네이버 블로그·FB·Pantip)은 발췌+`canonical` 메인 가리키기 (중복 콘텐츠 페널티 회피).
 
 ## Conventions
 - **Language**: All UI text in Korean (한국어)
