@@ -71,6 +71,24 @@ export function faqPageJsonLd(lang) {
   };
 }
 
+export function blogPostingJsonLd({ post, lang }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.meta_description || '',
+    datePublished: post.published_at,
+    dateModified: post.updated_at || post.published_at,
+    inLanguage: lang,
+    url: `${ORIGIN}/${lang}/blog/${post.slug}/`,
+    publisher: {
+      '@type': 'MedicalClinic',
+      name: CLINIC_NAME,
+      logo: { '@type': 'ImageObject', url: `${ORIGIN}/images/logo.jpg` },
+    },
+  };
+}
+
 export function renderJsonLd(obj) {
   return `<script type="application/ld+json">\n${JSON.stringify(obj, null, 2)}\n</script>`;
 }

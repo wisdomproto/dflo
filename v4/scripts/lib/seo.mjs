@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
-import { medicalClinicJsonLd, physicianJsonLd, faqPageJsonLd, renderJsonLd } from './jsonld.mjs';
+import { medicalClinicJsonLd, physicianJsonLd, faqPageJsonLd, blogPostingJsonLd, renderJsonLd } from './jsonld.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -36,6 +36,32 @@ export function buildHreflang(path = '/') {
 
 export function escapeAttr(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+}
+
+export function buildBlogPostHead({ post, lang }) {
+  const path = `/blog/${post.slug}/`;
+  const description = post.meta_description || '';
+  return [
+    `<title>${post.title}</title>`,
+    `<meta name="description" content="${escapeAttr(description)}">`,
+    `<link rel="canonical" href="${ORIGIN}/${lang}${path}">`,
+    buildHreflang(path),
+    `<meta property="og:type" content="article">`,
+    `<meta property="og:locale" content="${OG_LOCALE_MAP[lang]}">`,
+    `<meta property="og:title" content="${escapeAttr(post.title)}">`,
+    `<meta property="og:description" content="${escapeAttr(description)}">`,
+    `<meta property="og:url" content="${ORIGIN}/${lang}${path}">`,
+    renderJsonLd(blogPostingJsonLd({ post, lang })),
+  ].join('\n  ');
+}
+
+export function buildBlogIndexHead(lang) {
+  const path = '/blog/';
+  return [
+    `<title>Blog | ${buildSeo(lang).title}</title>`,
+    `<link rel="canonical" href="${ORIGIN}/${lang}${path}">`,
+    buildHreflang(path),
+  ].join('\n  ');
 }
 
 export function buildHead(lang, opts = {}) {
