@@ -5,6 +5,7 @@ import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
 import { buildHead } from './lib/seo.mjs';
+import { buildSitemap } from './lib/sitemap.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -35,6 +36,8 @@ function main() {
   for (const lang of ACTIVE_LANGS) {
     buildLocale(lang);
   }
+  const sitemap = buildSitemap({ activeLangs: ACTIVE_LANGS, blogSlugs: {} });
+  writeFile(join(ROOT, 'public/test/sitemap.xml'), sitemap);
   console.log(`[i18n] done — ${ACTIVE_LANGS.length} locale(s)`);
 }
 
