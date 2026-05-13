@@ -24,6 +24,22 @@ export function renderPost({ post, template, locale, messenger, seoHead }) {
   return render(template, data);
 }
 
+export function renderIndex({ posts, template, locale, seoHead }) {
+  const data = {
+    ...locale,
+    seo_head: seoHead,
+    lang: locale.meta.lang,
+    posts: posts.map((p) => ({
+      lang: locale.meta.lang,
+      slug: p.slug,
+      title: p.title,
+      meta_description: p.meta_description || '',
+      published_at_display: formatDate(p.published_at, locale.meta.lang),
+    })),
+  };
+  return render(template, data);
+}
+
 export function loadCachedPosts(cacheDir, lang) {
   const dir = join(cacheDir, lang);
   if (!existsSync(dir)) return [];

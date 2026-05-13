@@ -2,6 +2,10 @@ meta:
   lang: en
   og_locale: en_US
   title: '[NEEDS TRANSLATION]'
+
+blog:
+  index_heading: "[NEEDS TRANSLATION]"
+
 hero:
   logo_alt: '[NEEDS TRANSLATION]'
   title_line1: '[NEEDS TRANSLATION]'

@@ -3,6 +3,9 @@ meta:
   og_locale: ko_KR
   title: "성장 프로그램 소개 | 187 성장클리닉"
 
+blog:
+  index_heading: "성장 인사이트"
+
 hero:
   logo_alt: "187 성장클리닉"
   title_line1: "우리 아이 키,"
