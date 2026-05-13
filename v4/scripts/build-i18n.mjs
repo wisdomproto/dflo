@@ -6,7 +6,7 @@ import { render } from './lib/render.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const ACTIVE_LANGS = ['ko'];
+const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en'];
 
 function loadLocale(lang) {
   const path = join(ROOT, 'i18n/locales', `${lang}.yml`);
