@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{seo_head}}
+<link rel="stylesheet" href="/test/_shell.css">
+<style>
+  .post-container { max-width: 740px; margin: 0 auto; padding: 24px; }
+  .post-header { padding: 32px 0 24px; border-bottom: 1px solid var(--hairline); }
+  .post-title { font-size: 28px; font-weight: 900; color: var(--ink); letter-spacing: -0.6px; line-height: 1.3; }
+  .post-meta { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  .post-body { padding: 28px 0; font-size: 16px; line-height: 1.85; color: var(--body); }
+  .post-body img { margin: 24px 0; border-radius: 8px; }
+  .post-cta { margin: 40px 0; padding: 24px; background: var(--shell-page-bg); text-align: center; border-radius: 12px; }
+  .post-cta a {
+    display: inline-flex; padding: 14px 28px; background: {{messenger.color_bg}}; color: {{messenger.color_fg}};
+    text-decoration: none; font-weight: 700; border-radius: 2px;
+  }
+  @media (min-width: 640px) { .post-title { font-size: 36px; } }
+</style>
+</head>
+<body data-page="blog-post">
+<div class="post-container">
+  <header class="post-header">
+    <h1 class="post-title">{{post.title}}</h1>
+    <div class="post-meta">{{post.published_at_display}}</div>
+  </header>
+  <article class="post-body">
+    {{post.body_html}}
+  </article>
+  <div class="post-cta">
+    <a href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="blog_post" data-channel="{{messenger.channel}}">
+      {{messenger.label}}
+    </a>
+  </div>
+</div>
+<script>
+  window.__I18N__ = { locale: "{{meta.lang}}", channel: "{{messenger.channel}}", page_type: "blog" };
+</script>
+<script src="/test/_shell.js"></script>
+</body>
+</html>
