@@ -155,6 +155,28 @@ window.t.calc = { calculateAge, calcPercentile, predictAdultHeight };
 // Also expose interpolate / zScore so chart helper inside IIFE can be replicated by inline scripts if needed.
 window.t.lms = { interpolateLMS, zScoreFromLMS, MALE_HEIGHT_LMS, FEMALE_HEIGHT_LMS };
 
+// ============== GA4 Consult Tracking ==============
+// Locale + channel injected by build-i18n via window.__I18N__.
+window.trackConsultClick = function (source) {
+  var i18n = window.__I18N__ || {};
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'consult_click', {
+    channel: i18n.channel || 'unknown',
+    locale: i18n.locale || 'unknown',
+    source: source || 'unspecified',
+    page_type: i18n.page_type || 'home',
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+  var anchors = document.querySelectorAll('a[data-source]');
+  anchors.forEach(function (a) {
+    a.addEventListener('click', function () {
+      window.trackConsultClick(a.getAttribute('data-source'));
+    });
+  });
+});
+
 // ============= SHELL MARKUP INJECTION =============
 const SHELL_HTML = `
   <header class="t-header" role="banner">

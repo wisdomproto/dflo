@@ -958,7 +958,14 @@
   })();
 </script>
 
-<script src="_shell.js"></script>
+<script>
+  window.__I18N__ = {
+    locale: "{{meta.lang}}",
+    channel: "{{messenger.channel}}",
+    page_type: "home"
+  };
+</script>
+<script src="/test/_shell.js"></script>
 
 </body>
 </html>
