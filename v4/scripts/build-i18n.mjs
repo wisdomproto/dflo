@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
+import { buildHead } from './lib/seo.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -24,6 +25,7 @@ function buildLocale(lang) {
   console.log(`[i18n] building ${lang}`);
   const data = loadLocale(lang);
   data.messenger = getMessengerCTA(lang, { requireLiveUrl: true });
+  data.seo_head = buildHead(lang, { path: '/' });
   const template = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
   const html = render(template, data);
   writeFile(join(ROOT, 'public/test', lang, 'index.html'), html);
