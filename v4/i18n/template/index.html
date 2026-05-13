@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{seo_head}}
+<link rel="stylesheet" href="/test/_shell.css">
+
+<style>
+  :root {
+    --ink: #171717;
+    --body: #444;
+    --muted: #777;
+    --soft: #f7f8fb;
+    --hairline: #e8eaf0;
+    --brand: #2451c4;
+    --brand-dark: #17398d;
+    --brand-soft: #eef3ff;
+    --accent: var(--brand);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* sticky가 작동하려면 html/body에 overflow-x:hidden을 걸지 않습니다 */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 68px;
+  }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--body);
+    background: #fff;
+    font-size: 15px;
+    line-height: 1.78;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: 1024px;
+    margin: 0 auto;
+    background: #fff;
+    /* sticky가 동작하도록 overflow는 visible 유지 */
+    overflow: visible;
+  }
+
+  .full-img { width: 100%; }
+
+  .accent { color: var(--accent); font-weight: 800; }
+
+  /* ================= TOP MASTHEAD (logo + program title) ================= */
+  .masthead {
+    text-align: center;
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .masthead .logo {
+    max-width: 240px;
+    width: 70%;
+    margin: 0 auto 18px;
+    display: block;
+  }
+  .masthead h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.7px;
+    line-height: 1.2;
+  }
+  @media (min-width: 640px) {
+    .masthead { padding: 36px 24px 28px; }
+    .masthead .logo { max-width: 300px; }
+    .masthead h1 { font-size: 32px; }
+  }
+
+  /* ================= HERO (tagline) ================= */
+  .page-hero { text-align: center; padding: 36px 24px 20px; }
+  .page-hero .brand {
+    font-size: 12px; color: var(--muted);
+    letter-spacing: 1.8px; margin-bottom: 10px;
+  }
+  .page-hero h1 {
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    line-height: 1.38; letter-spacing: -0.6px;
+  }
+  @media (min-width: 640px) { .page-hero h1 { font-size: 26px; } }
+
+  /* ================= COMMON ================= */
+  .intro { padding: 46px 24px 54px; text-align: center; }
+  .intro h2 {
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    line-height: 1.45; margin-bottom: 18px; letter-spacing: -0.6px;
+  }
+  .intro p { font-size: 15px; color: var(--muted); line-height: 1.82; }
+  .intro strong, .lead strong { color: var(--ink); font-weight: 800; }
+
+  section[id] { position: relative; padding-top: 64px; }
+  section[id]::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: var(--accent);
+  }
+
+  .sec-head { text-align: center; padding: 0 24px 34px; }
+  .sec-head.entry { padding: 56px 24px 32px; }
+  .sec-head.spaced { padding-top: 42px; }
+  .sec-head.large { padding-top: 56px; }
+
+  .sec-eyebrow {
+    text-align: center; padding: 0 24px;
+    font-size: 12px; font-weight: 800; color: var(--accent);
+    letter-spacing: 1.6px; margin-bottom: 8px;
+  }
+  .sec-head .sec-eyebrow { padding: 0; margin-bottom: 8px; }
+
+  .sec-head h3 {
+    font-size: 22px; font-weight: 800; color: var(--ink);
+    line-height: 1.42; letter-spacing: -0.7px;
+  }
+  .sec-head .lead {
+    font-size: 15px; color: var(--muted);
+    line-height: 1.82; margin-top: 16px;
+  }
+
+  @media (min-width: 640px) {
+    section[id] { padding-top: 76px; }
+    .sec-head h3 { font-size: 25px; }
+  }
+
+  .subhead {
+    margin: 34px 24px 18px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+    font-size: 15px; font-weight: 800; color: var(--ink);
+    letter-spacing: -0.4px;
+  }
+
+  /* ================= SECTION COLORS ================= */
+  #hormone    { --accent: #2451c4; }
+  #obesity    { --accent: #1f8f8d; }
+  #precocious { --accent: #9f3f7f; }
+  #proportion { --accent: #a97432; }
+  #bodywork   { --accent: #b95324; }
+  #late       { --accent: #5f4aa0; }
+  #process    { --accent: #2451c4; }
+
+  /* ================= CASE NAV - STICKY ================= */
+  .case-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    /* fixed 헤더(t-header, 52px) 아래에 멈추도록 보정 */
+    top: 52px;
+    z-index: 30;
+    width: 100%;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transition: box-shadow 0.2s ease;
+  }
+  .case-nav.is-stuck { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+
+  .case-nav .scroll {
+    display: flex; gap: 8px; overflow-x: auto;
+    padding: 10px 16px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .case-nav .scroll::-webkit-scrollbar { display: none; }
+
+  .case-nav a {
+    flex: none; display: inline-flex;
+    align-items: center; justify-content: center;
+    padding: 8px 15px; border-radius: 999px;
+    border: 1px solid var(--hairline); background: #fff;
+    color: var(--muted);
+    font-size: 13px; font-weight: 700; line-height: 1;
+    text-decoration: none; white-space: nowrap;
+    scroll-snap-align: center;
+    transition: all 0.16s ease;
+  }
+  .case-nav a.active {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(36,81,196,0.18);
+  }
+
+  /* ================= CHECK GRID ================= */
+  .need-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px 12px;
+    padding: 0 20px 12px;
+  }
+  .need-card { text-align: center; }
+  .need-card .photo {
+    width: 100%; aspect-ratio: 1/1; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .need-card img { width: 100%; height: 100%; object-fit: cover; }
+  .need-card .cap {
+    font-size: 12.5px; color: var(--ink);
+    font-weight: 700; line-height: 1.55;
+  }
+
+  /* ================= CARD COMMON ================= */
+  .solution-img, .equipment-block, .process-grid-img, .chart-block {
+    padding: 0 16px;
+  }
+
+  .features-3, .life-list {
+    display: flex; flex-direction: column; gap: 12px; padding: 8px 20px 0;
+  }
+  .feature-3, .life-card {
+    display: flex; background: #fff;
+    border: 1px solid var(--hairline);
+    border-radius: 8px; overflow: hidden;
+  }
+  .feature-3 .photo, .life-card .photo {
+    flex: 0 0 38%; aspect-ratio: 4/3; background: var(--soft);
+  }
+  .feature-3 img, .life-card img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .feature-3 .body, .life-card .body {
+    flex: 1; padding: 15px 16px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .feature-3 .num, .life-card .num {
+    font-size: 12px; font-weight: 800; color: var(--accent);
+    margin-bottom: 4px; letter-spacing: 0.3px;
+  }
+  .feature-3 h4, .life-card h4 {
+    font-size: 15px; font-weight: 800; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .feature-3 p, .life-card .desc {
+    font-size: 13px; color: var(--body); line-height: 1.6;
+  }
+
+  /* ================= PANELS / GRIDS ================= */
+  .panel-bordered, .bmi-panel {
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    margin: 0 20px 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .panel-bordered { padding: 24px 14px 14px; text-align: center; }
+  .panel-bordered .ctitle {
+    font-size: 16px; font-weight: 800; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .panel-bordered .csrc { font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+  .panel-bordered .cunit {
+    font-size: 11px; color: var(--muted);
+    text-align: right; margin-bottom: 6px;
+  }
+
+  .arrow-illust { padding: 0 20px 16px; }
+  .arrow-illust img,
+  .equipment-block img,
+  .compare-block img { border-radius: 6px; }
+  .equipment-block img { margin-bottom: 8px; }
+
+  .cause-grid-2, .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px 12px; padding: 0 20px;
+  }
+  .cause-grid-3 {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px 10px; padding: 0 20px;
+  }
+  .cause-grid-2 .item, .cause-grid-3 .item, .problem-grid .item { text-align: center; }
+
+  .cause-grid-2 .photo {
+    width: 100%; aspect-ratio: 1/1; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .cause-grid-3 .photo {
+    width: 100%; aspect-ratio: 4/5; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .problem-grid .photo {
+    width: 100%; aspect-ratio: 4/3; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  }
+  .cause-grid-2 img, .cause-grid-3 img, .problem-grid img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .cause-grid-2 h4 {
+    font-size: 14px; font-weight: 800; color: var(--ink);
+    margin-bottom: 4px; letter-spacing: -0.3px;
+  }
+  .cause-grid-2 .desc, .cause-grid-3 .cap {
+    font-size: 12px; color: var(--body); line-height: 1.55;
+  }
+
+  .risk-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 20px 12px; padding: 0 20px;
+  }
+  @media (min-width: 480px) {
+    .risk-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .risk-grid .item { text-align: center; }
+  .risk-grid .photo {
+    width: 100%; aspect-ratio: 1/1; overflow: hidden;
+    border-radius: 50%; background: var(--soft); margin-bottom: 10px;
+  }
+  .risk-grid img { width: 100%; height: 100%; object-fit: cover; }
+  .risk-grid h4 {
+    font-size: 13.5px; font-weight: 800; color: var(--ink);
+    margin-bottom: 3px; letter-spacing: -0.2px;
+  }
+  .risk-grid .desc { font-size: 12px; color: var(--body); line-height: 1.55; }
+
+  /* ================= PROPORTION / LATE ================= */
+  .compare-block { padding: 32px 20px 0; }
+  .compare-quote {
+    margin: 16px 20px 0; padding: 18px 20px;
+    background: var(--soft); border-radius: 8px;
+    text-align: center;
+  }
+  .compare-quote q {
+    display: block; quotes: none;
+    font-size: 13.5px; font-style: italic;
+    color: var(--ink); font-weight: 500; line-height: 1.7;
+  }
+  .compare-quote q::before { content: '"'; }
+  .compare-quote q::after { content: '"'; }
+
+  .problem-grid .cap {
+    font-size: 13.5px; color: var(--ink);
+    font-weight: 700; letter-spacing: -0.2px;
+  }
+  .problem-grid .strong { font-weight: 800; }
+
+  .program-tags {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; padding: 8px 24px 0;
+  }
+  .program-tags .tag {
+    background: var(--soft); text-align: center;
+    padding: 14px 8px; font-size: 13px; font-weight: 700;
+    color: var(--ink); border-radius: 6px; letter-spacing: -0.2px;
+  }
+
+  .chart-block { padding-top: 24px; }
+  .table-block { padding: 0 24px; }
+  table.speed { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.speed th, table.speed td {
+    border: 1px solid var(--hairline); padding: 10px 6px; text-align: center;
+  }
+  table.speed th { background: #fafafa; font-weight: 800; color: var(--ink); }
+
+  .feat-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px 8px; padding: 32px 16px 0;
+  }
+  .feat-grid .item { text-align: center; }
+  .feat-grid .photo {
+    width: 100%; aspect-ratio: 4/5; overflow: hidden;
+    border-radius: 6px; background: var(--soft); margin-bottom: 8px;
+  }
+  .feat-grid img { width: 100%; height: 100%; object-fit: cover; }
+  .feat-grid .cap { font-size: 12px; color: var(--body); line-height: 1.45; }
+
+  /* ================= PROCESS / DIRECTOR / CTA ================= */
+  .process { padding: 64px 0 36px; text-align: center; }
+  .process .pill {
+    display: inline-block;
+    background: var(--brand); color: #fff;
+    font-size: 13px; font-weight: 700;
+    padding: 10px 22px; border-radius: 999px;
+    margin-top: 18px; letter-spacing: -0.2px;
+  }
+  .process-grid-img { margin-top: 28px; }
+
+  .director {
+    padding: 36px 24px 58px;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 16px; align-items: end;
+  }
+  .director .quote h3 {
+    font-size: 19px; font-weight: 600; color: var(--ink);
+    line-height: 1.55; margin-bottom: 18px; letter-spacing: -0.6px;
+  }
+  .director .quote h3 .strong { font-weight: 800; }
+  .director .quote p { font-size: 13px; color: var(--body); line-height: 1.82; }
+  .director .portrait { width: 130px; align-self: end; }
+  @media (min-width: 640px) {
+    .director .quote h3 { font-size: 21px; }
+    .director .portrait { width: 160px; }
+  }
+
+  .cta-bottom {
+    background: var(--soft); text-align: center;
+    padding: 44px 24px 58px;
+  }
+  .cta-bottom h4 {
+    font-size: 21px; font-weight: 800; color: var(--ink);
+    margin-bottom: 10px; line-height: 1.45; letter-spacing: -0.5px;
+  }
+  .cta-bottom p {
+    font-size: 14.5px; color: var(--muted); margin-bottom: 24px;
+  }
+  .cta-bottom a {
+    display: inline-block; background: #FAE100; color: #1a1a1a;
+    text-decoration: none; font-weight: 800; font-size: 15px;
+    padding: 15px 36px; border-radius: 999px;
+    transition: transform 0.15s ease;
+  }
+  .cta-bottom a:active { transform: scale(0.97); }
+
+  /* ===== Inline luxury CTA at the end of each case section ===== */
+  .case-cta-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #4A2D6B;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    padding: 17px 22px;
+    border-radius: 2px;
+    text-decoration: none;
+    margin: 40px 0 12px;
+    transition: background 0.2s ease, transform 0.15s ease;
+    line-height: 1.45;
+    text-align: center;
+  }
+  .case-cta-inline:hover { background: #2E1A48; }
+  .case-cta-inline:active { transform: scale(0.99); }
+  .case-cta-inline .arrow {
+    font-size: 16px;
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+</style>
+</head>
+
+<body data-page="programs">
+<div class="t-page">
+<div class="container">
+
+  <!-- ================= MASTHEAD (logo + program title) ================= -->
+  <header class="t-masthead">
+    <img class="logo" src="/images/logo.jpg" alt="{{hero.logo_alt}}">
+    <h1>{{hero.title_line1}}<br>{{hero.title_line2}}</h1>
+  </header>
+
+  <img class="full-img" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
+
+  <!-- ================= INTRO ================= -->
+  <section class="intro">
+    <h2>
+      {{intro.h2_line1}}<br>
+      <span class="accent">{{intro.h2_accent}}</span>{{intro.h2_line2}}
+    </h2>
+    <p>
+      {{intro.body}}
+    </p>
+  </section>
+
+  <section class="medal">
+    <img class="full-img" src="/programs/images/growth-hormone-balance/medal-panel.jpg" alt="{{medal.panel_alt}}">
+  </section>
+
+  <!-- ================= CHECK ================= -->
+  <div class="sec-head entry">
+    <div class="sec-eyebrow">{{check.eyebrow}}</div>
+    <h3>{{check.heading_part1}}<span class="accent">{{check.heading_accent}}</span></h3>
+  </div>
+
+  <div class="need-grid">
+    {{#each check.cards}}
+    <div class="need-card">
+      <div class="photo"><img src="/programs/images/growth-hormone-balance/need-{{@index1}}.jpg" alt="{{alt}}"></div>
+      <div class="cap">{{caption_line1}}<br>{{caption_line2}}</div>
+    </div>
+    {{/each}}
+  </div>
+
+  <!-- ================= GOLDEN TIME ================= -->
+  <div class="sec-head large">
+    <div class="sec-eyebrow">{{golden.eyebrow}}</div>
+    <h3>{{golden.heading_part1}}<span class="accent">{{golden.heading_accent}}</span>{{golden.heading_part2}}</h3>
+  </div>
+
+  <div class="golden">
+    <img class="full-img" src="/programs/images/growth-hormone-balance/golden-time.jpg" alt="{{golden.img_alt}}">
+  </div>
+
+  <div class="sec-head spaced">
+    <p class="lead">
+      {{golden.lead}}
+    </p>
+  </div>
+
+  <!-- ================= HORMONE ================= -->
+  <section id="hormone">
+    <div class="sec-eyebrow">{{hormone.eyebrow}}</div>
+    <div class="sec-head">
+      <h3>
+        {{hormone.heading_line1}}<br>
+        {{hormone.heading_line2}}<span class="accent">{{hormone.heading_accent}}</span>
+      </h3>
+      <p class="lead">
+        {{hormone.lead}}
+      </p>
+    </div>
+
+    <div class="solution-img">
+      <img src="/programs/images/growth-hormone-balance/solution-diagram.jpg" alt="{{hormone.solution_img_alt}}">
+    </div>
+
+    <div class="sec-head large">
+      <h3>{{hormone.features_heading_line1}}<br><span class="accent">{{hormone.features_heading_accent}}</span></h3>
+    </div>
+
+    <div class="features-3">
+      {{#each hormone.features}}
+      <div class="feature-3">
+        <div class="photo"><img src="/programs/images/growth-hormone-balance/feature-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <div class="body">
+          <div class="num">{{num}}</div>
+          <h4>{{title}}</h4>
+          <p>{{desc}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  <!-- ================= CASE INTRO ================= -->
+  <section class="intro">
+    <h2>{{intro2.heading_line1}}<br><span class="accent">{{intro2.heading_accent}}</span></h2>
+    <p>
+      {{intro2.body}}
+    </p>
+  </section>
+
+  <!-- ================= CASE NAV (sticky) ================= -->
+  <nav class="case-nav" id="caseNav" aria-label="{{casenav.aria_label}}">
+    <div class="scroll">
+      {{#each casenav.links}}
+      <a href="{{href}}">{{label}}</a>
+      {{/each}}
+    </div>
+  </nav>
+
+  <!-- ================= OBESITY ================= -->
+  <section id="obesity">
+    <div class="sec-eyebrow">{{obesity.eyebrow}}</div>
+    <div class="sec-head">
+      <h3>
+        {{obesity.heading_line1}}<br>
+        <span class="accent">{{obesity.heading_accent}}</span>{{obesity.heading_line3}}
+      </h3>
+      <p class="lead">
+        {{obesity.lead}}
+      </p>
+    </div>
+
+    <div class="bmi-panel">
+      <img src="/programs/images/obesity-growth/body-bmi.jpg" alt="{{obesity.bmi_img_alt}}">
+    </div>
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">{{obesity.subsection1_eyebrow}}</div>
+      <h3>{{obesity.subsection1_heading_line1}}<br><span class="accent">{{obesity.subsection1_heading_accent}}</span></h3>
+      <p class="lead">
+        {{obesity.subsection1_lead}}
+      </p>
+    </div>
+
+    <img class="full-img" src="/programs/images/obesity-growth/waffle-photo.jpg" alt="{{obesity.waffle_img_alt}}">
+
+    <div class="sec-head spaced">
+      <h3>{{obesity.subsection2_heading_line1}}<br><span class="accent">{{obesity.subsection2_heading_accent}}</span></h3>
+      <p class="lead">
+        {{obesity.subsection2_lead}}
+      </p>
+    </div>
+
+    <img class="full-img" src="/programs/images/obesity-growth/fat-cell.jpg" alt="{{obesity.fatcell_img_alt}}">
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">{{obesity.risks_eyebrow}}</div>
+      <h3>{{obesity.risks_heading_part1}}<span class="accent">{{obesity.risks_heading_accent}}</span></h3>
+    </div>
+
+    <div class="risk-grid">
+      {{#each obesity.risks}}
+      <div class="item">
+        <div class="photo"><img src="/programs/images/obesity-growth/risk-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <h4>{{title}}</h4>
+        <div class="desc">{{desc}}</div>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="sec-head large">
+      <div class="sec-eyebrow">{{obesity.causes_eyebrow}}</div>
+      <h3><span class="accent">{{obesity.causes_heading_accent}}</span>{{obesity.causes_heading_part2}}</h3>
+    </div>
+
+    <div class="cause-grid-2">
+      {{#each obesity.causes}}
+      <div class="item">
+        <div class="photo"><img src="/programs/images/obesity-growth/cause-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <h4>{{title}}</h4>
+        <div class="desc">{{desc}}</div>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="sec-head large">
+      <h3>{{obesity.lifestyle_heading_line1}}<br><span class="accent">{{obesity.lifestyle_heading_accent}}</span></h3>
+      <p class="lead">
+        {{obesity.lifestyle_lead}}
+      </p>
+    </div>
+
+    <div class="life-list">
+      {{#each obesity.lifestyle_cards}}
+      <div class="life-card">
+        <div class="photo"><img src="/programs/images/obesity-growth/life-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <div class="body">
+          <div class="num">{{num}}</div>
+          <h4>{{title}}</h4>
+          <div class="desc">{{desc}}</div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="case_obesity" data-channel="{{messenger.channel}}"
+       style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+      {{obesity.cta_label}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+    </a>
+  </section>
+
+  <!-- ================= PRECOCIOUS ================= -->
+  <section id="precocious">
+    <div class="sec-eyebrow">{{precocious.eyebrow}}</div>
+    <div class="sec-head">
+      <h3>
+        {{precocious.heading_line1}}<br>
+        <span class="accent">{{precocious.heading_accent}}</span>{{precocious.heading_line2}}
+      </h3>
+      <p class="lead">
+        {{precocious.lead}}
+      </p>
+    </div>
+
+    <div class="panel-bordered">
+      <div class="ctitle">{{precocious.chart_ctitle}}</div>
+      <div class="csrc">{{precocious.chart_csrc}}</div>
+      <div class="cunit">{{precocious.chart_cunit}}</div>
+      <img src="/programs/images/precocious-puberty/chart.jpg" alt="{{precocious.chart_img_alt}}">
+    </div>
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">{{precocious.subsection1_eyebrow}}</div>
+      <h3><span class="accent">{{precocious.subsection1_heading_accent}}</span>{{precocious.subsection1_heading_part2}}</h3>
+      <p class="lead">
+        {{precocious.subsection1_lead}}
+      </p>
+    </div>
+
+    <img class="full-img" src="/programs/images/precocious-puberty/height-boy.jpg" alt="{{precocious.height_img_alt}}">
+
+    <div class="sec-head spaced">
+      <h3>
+        {{precocious.subsection2_heading_line1}}<br>
+        <span class="accent">{{precocious.subsection2_heading_accent}}</span>{{precocious.subsection2_heading_line2}}
+      </h3>
+      <p class="lead">
+        {{precocious.subsection2_lead}}
+      </p>
+    </div>
+
+    <div class="arrow-illust">
+      <img src="/programs/images/precocious-puberty/arrow-illust.jpg" alt="{{precocious.arrow_img_alt}}">
+    </div>
+
+    <div class="sec-head spaced">
+      <div class="sec-eyebrow">{{precocious.causes_eyebrow}}</div>
+      <h3><span class="accent">{{precocious.causes_heading_accent}}</span>{{precocious.causes_heading_part2}}</h3>
+    </div>
+
+    <div class="cause-grid-3">
+      {{#each precocious.causes}}
+      <div class="item">
+        <div class="photo"><img src="/programs/images/precocious-puberty/cause-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <div class="cap">{{cap_line1}}<br>{{cap_line2}}</div>
+      </div>
+      {{/each}}
+    </div>
+    <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="case_precocious" data-channel="{{messenger.channel}}"
+       style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+      {{precocious.cta_label}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+    </a>
+  </section>
+
+  <!-- ================= PROPORTION ================= -->
+  <section id="proportion">
+    <div class="sec-eyebrow">{{proportion.eyebrow}}</div>
+    <div class="sec-head">
+      <h3>
+        {{proportion.heading_line1}}<br>
+        <span class="accent">{{proportion.heading_accent}}</span>{{proportion.heading_line2}}
+      </h3>
+      <p class="lead">
+        {{proportion.lead}}
+      </p>
+    </div>
+
+    <div class="proportion-img">
+      <img src="/programs/images/body-proportion/ratio.jpg" alt="{{proportion.ratio_img_alt}}">
+    </div>
+
+    <div class="sec-head spaced">
+      <h3>{{proportion.subsection1_heading_line1}}<br><span class="accent">{{proportion.subsection1_heading_accent}}</span></h3>
+      <p class="lead">
+        {{proportion.subsection1_lead}}
+      </p>
+    </div>
+
+    <div class="compare-block">
+      <img src="/programs/images/body-proportion/comparison.jpg" alt="{{proportion.comparison_img_alt}}">
+    </div>
+
+    <p class="compare-quote">
+      <q>{{proportion.quote}}</q>
+    </p>
+    <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="case_proportion" data-channel="{{messenger.channel}}"
+       style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+      {{proportion.cta_label}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+    </a>
+  </section>
+
+  <!-- ================= BODYWORK ================= -->
+  <section id="bodywork">
+    <div class="sec-eyebrow">{{bodywork.eyebrow}}</div>
+    <div class="sec-head">
+      <h3>
+        {{bodywork.heading_line1}}<br>
+        <span class="accent">{{bodywork.heading_accent}}</span>{{bodywork.heading_line2}}
+      </h3>
+      <p class="lead">
+        {{bodywork.lead}}
+      </p>
+    </div>
+
+    <div class="subhead">{{bodywork.diag_subhead}}</div>
+
+    <img class="full-img" src="/programs/images/feet-care/back.jpg" alt="{{bodywork.xray_img_alt}}">
+
+    <div class="sec-head spaced">
+      <p class="lead">
+        {{bodywork.diag_lead}}
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      {{#each bodywork.problems}}
+      <div class="item">
+        <div class="photo"><img src="/programs/images/feet-care/problem-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <div class="cap"><span class="strong">{{cap_strong}}</span>{{cap_suffix}}</div>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="subhead" style="margin-top: 56px;">{{bodywork.treat_subhead}}</div>
+
+    <div class="sec-head spaced">
+      <p class="lead">
+        {{bodywork.treat_lead}}
+      </p>
+    </div>
+
+    <div class="equipment-block">
+      <img src="/programs/images/posture-exercise/equipment-main.jpg" alt="{{bodywork.equip_main_alt}}">
+      <img src="/programs/images/posture-exercise/equipment-row.jpg" alt="{{bodywork.equip_row_alt}}">
+    </div>
+    <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="case_bodywork" data-channel="{{messenger.channel}}"
+       style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+      {{bodywork.cta_label}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+    </a>
+  </section>
+
+  <!-- ================= LATE ================= -->
+  <section id="late">
+    <div class="sec-eyebrow">{{late.eyebrow}}</div>
+    <div class="sec-head">
+      <h3>
+        {{late.heading_line1}}<br>
+        <span class="accent">{{late.heading_accent}}</span>{{late.heading_line2}}
+      </h3>
+      <p class="lead">
+        {{late.lead}}
+      </p>
+    </div>
+
+    <div class="program-tags">
+      {{#each late.program_tags}}
+      <div class="tag">{{.}}</div>
+      {{/each}}
+    </div>
+
+    <div class="sec-head spaced">
+      <h3>{{late.speed_heading_part1}}<span class="accent">{{late.speed_heading_accent}}</span>{{late.speed_heading_part2}}</h3>
+      <p class="lead">
+        {{late.speed_lead}}
+      </p>
+    </div>
+
+    <div class="chart-block">
+      <img src="/programs/images/late-growth/growth-chart.jpg" alt="{{late.chart_img_alt}}">
+    </div>
+
+    <div class="table-block">
+      <table class="speed">
+        <thead>
+          <tr>
+            <th>{{late.table_header_age}}</th>
+            <th colspan="2">{{late.table_header_speed}} <span style="color:#888;font-size:11px;">{{late.table_header_speed_unit}}</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="2">{{late.table_rows.0.label}}</td><td>{{late.table_rows.0.value}}</td></tr>
+          <tr><td rowspan="2">{{late.table_rows.1.label}}</td><td>{{late.table_rows.1.sub_boy}}</td><td>{{late.table_rows.1.val_boy}}</td></tr>
+          <tr><td>{{late.table_rows.1.sub_girl}}</td><td>{{late.table_rows.1.val_girl}}</td></tr>
+          <tr><td colspan="2">{{late.table_rows.2.label}}</td><td>{{late.table_rows.2.value}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head large">
+      <h3>{{late.potential_heading_line1}}<br><span class="accent">{{late.potential_heading_accent}}</span></h3>
+      <p class="lead">{{late.potential_lead}}</p>
+    </div>
+
+    <div class="feat-grid">
+      {{#each late.cards}}
+      <div class="item">
+        <div class="photo"><img src="/programs/images/late-growth/card-{{@index1}}.jpg" alt="{{img_alt}}"></div>
+        <div class="cap">{{cap_line1}}<br>{{cap_line2}}</div>
+      </div>
+      {{/each}}
+    </div>
+    <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="case_late" data-channel="{{messenger.channel}}"
+       style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+      {{late.cta_label}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+    </a>
+  </section>
+
+  <!-- ================= PROCESS ================= -->
+  <section id="process" class="process">
+    <div class="sec-head">
+      <div class="sec-eyebrow">{{process.eyebrow}}</div>
+      <h3><span class="accent">{{process.heading_accent}}</span></h3>
+      <p class="lead">
+        {{process.lead}}
+      </p>
+      <div class="pill">{{process.pill}}</div>
+    </div>
+
+    <div class="process-grid-img">
+      <img src="/programs/images/growth-hormone-balance/process-grid.jpg" alt="{{process.grid_img_alt}}">
+    </div>
+  </section>
+
+  <!-- ================= DIRECTOR ================= -->
+  <section class="director">
+    <div class="quote">
+      <h3>
+        {{director.quote_line1}}<br>
+        <span class="strong">{{director.quote_strong}}</span>{{director.quote_line2}}<br>
+        {{director.quote_line3}}
+      </h3>
+      <p>
+        {{director.body}}
+      </p>
+    </div>
+
+    <div class="portrait">
+      <img src="/programs/images/growth-hormone-balance/director.jpg" alt="{{director.portrait_alt}}">
+    </div>
+  </section>
+
+</div>
+</div><!-- /.t-page -->
+
+<script>
+  (function() {
+    const nav = document.getElementById('caseNav');
+    if (!nav) return;
+
+    const links = nav.querySelectorAll('a[href^="#"]');
+    const sections = Array.from(links)
+      .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+      .filter(Boolean);
+
+    // sticky sentinel: detect when nav becomes stuck
+    const sentinel = document.createElement('div');
+    sentinel.style.cssText = 'height:1px;width:1px;';
+    nav.parentNode.insertBefore(sentinel, nav);
+
+    new IntersectionObserver(([entry]) => {
+      nav.classList.toggle('is-stuck', !entry.isIntersecting);
+    }, { threshold: 1 }).observe(sentinel);
+
+    const scroller = nav.querySelector('.scroll');
+
+    function setActive(id) {
+      links.forEach(link => {
+        const isActive = link.getAttribute('href') === '#' + id;
+        link.classList.toggle('active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'true');
+        else link.removeAttribute('aria-current');
+      });
+      const active = nav.querySelector('a.active');
+      if (active && scroller) {
+        const target = active.offsetLeft - (scroller.clientWidth - active.offsetWidth) / 2;
+        scroller.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      }
+    }
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    links.forEach(link => {
+      link.addEventListener('click', function() {
+        setActive(this.getAttribute('href').slice(1));
+      });
+    });
+
+    if (sections[0]) setActive(sections[0].id);
+  })();
+</script>
+
+<script>
+  window.__I18N__ = {
+    locale: "{{meta.lang}}",
+    channel: "{{messenger.channel}}",
+    page_type: "home"
+  };
+</script>
+<script src="/test/_shell.js"></script>
+
+</body>
+</html>

@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && npm run build:i18n && vite build",
+    "build:i18n": "node scripts/build-i18n.mjs",
+    "test:i18n": "node --test scripts/test/*.mjs",
     "start": "vite preview --port ${PORT:-3000} --host 0.0.0.0",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -38,6 +40,8 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "js-yaml": "^4.1.1",
+    "marked": "^18.0.3",
     "prettier": "^3.8.1",
     "tailwindcss": "^4.2.0",
     "typescript": "~5.9.3",

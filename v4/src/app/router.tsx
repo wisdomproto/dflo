@@ -81,6 +81,16 @@ function HardRedirect({ to }: { to: string }) {
   return null;
 }
 
+function LangRedirect() {
+  const { lang } = useParams<{ lang: string }>();
+  return <HardRedirect to={`/test/${lang ?? 'ko'}/index.html`} />;
+}
+
+function LangBlogRedirect() {
+  const { lang } = useParams<{ lang: string }>();
+  return <HardRedirect to={`/test/${lang ?? 'ko'}/blog/index.html`} />;
+}
+
 // Redirect helpers for param-carrying legacy paths.
 function RedirectProgram() {
   const { slug } = useParams<{ slug: string }>();
@@ -163,6 +173,11 @@ export const router = createBrowserRouter([
   // /test/ static prototype — hard redirect to index.html so Vite serves it.
   { path: '/test', element: <HardRedirect to="/test/index.html" /> },
   { path: '/test/', element: <HardRedirect to="/test/index.html" /> },
+  // /test/{lang}/ — hard redirect each locale to its index.html for proper static serving
+  { path: '/test/:lang', element: <LangRedirect /> },
+  { path: '/test/:lang/', element: <LangRedirect /> },
+  { path: '/test/:lang/blog', element: <LangBlogRedirect /> },
+  { path: '/test/:lang/blog/', element: <LangBlogRedirect /> },
 
   // /cases-embed — used as iframe target by /test/cases.html
   // /banner-admin 에서 만든 cases 슬라이드만 SectionCarousel 로 렌더한다.

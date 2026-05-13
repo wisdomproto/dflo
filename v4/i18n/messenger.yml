@@ -1,0 +1,42 @@
+ko:
+  channel: kakao
+  url: "https://pf.kakao.com/_ZxneSb"
+  label: "1:1 카카오톡 상담"
+  color_bg: "#FAE100"
+  color_fg: "#3C1E1E"
+th:
+  channel: kakao
+  url: "https://pf.kakao.com/_ZxneSb"
+  label: "ปรึกษาผ่าน KakaoTalk"
+  color_bg: "#FAE100"
+  color_fg: "#3C1E1E"
+vi:
+  channel: kakao
+  url: "https://pf.kakao.com/_ZxneSb"
+  label: "Tư vấn qua KakaoTalk"
+  color_bg: "#FAE100"
+  color_fg: "#3C1E1E"
+en:
+  channel: kakao
+  url: "https://pf.kakao.com/_ZxneSb"
+  label: "Consult via KakaoTalk"
+  color_bg: "#FAE100"
+  color_fg: "#3C1E1E"
+ja:
+  channel: line
+  url: "TBD"
+  label: "LINEで相談"
+  color_bg: "#06C755"
+  color_fg: "#FFFFFF"
+zh-tw:
+  channel: line
+  url: "TBD"
+  label: "LINE 諮詢"
+  color_bg: "#06C755"
+  color_fg: "#FFFFFF"
+id:
+  channel: whatsapp
+  url: "TBD"
+  label: "Konsultasi WhatsApp"
+  color_bg: "#25D366"
+  color_fg: "#FFFFFF"
