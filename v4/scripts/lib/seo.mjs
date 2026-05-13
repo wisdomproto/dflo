@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
+import { medicalClinicJsonLd, physicianJsonLd, faqPageJsonLd, renderJsonLd } from './jsonld.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
@@ -52,5 +53,8 @@ export function buildHead(lang, opts = {}) {
     `<meta property="og:description" content="${escapeAttr(seo.description)}">`,
     `<meta property="og:image" content="${ORIGIN}${seo.og_image}">`,
     `<meta property="og:url" content="${ORIGIN}/${lang}${path}">`,
+    renderJsonLd(medicalClinicJsonLd(lang)),
+    renderJsonLd(physicianJsonLd(lang)),
+    renderJsonLd(faqPageJsonLd(lang)),
   ].join('\n  ');
 }
