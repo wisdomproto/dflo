@@ -5,11 +5,11 @@ ko:
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"
 th:
-  channel: kakao
-  url: "https://pf.kakao.com/_ZxneSb"
-  label: "ปรึกษาผ่าน KakaoTalk"
-  color_bg: "#FAE100"
-  color_fg: "#3C1E1E"
+  channel: line
+  url: "https://line.me/R/ti/p/@894qhqtu"
+  label: "ปรึกษาผ่าน LINE"
+  color_bg: "#06C755"
+  color_fg: "#FFFFFF"
 vi:
   channel: kakao
   url: "https://pf.kakao.com/_ZxneSb"

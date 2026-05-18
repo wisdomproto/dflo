@@ -83,6 +83,7 @@ async function main() {
     const locale = loadLocale(lang);
     const messenger = getMessengerCTA(lang, { requireLiveUrl: true });
     locale.messenger = messenger;
+    locale.messenger_json = JSON.stringify(messenger);
     locale.shell_json = JSON.stringify(locale.shell || {});
 
     // Non-Korean locales pull per-language program images from /programs/images/{lang}/{slug}/

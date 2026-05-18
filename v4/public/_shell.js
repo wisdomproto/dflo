@@ -210,6 +210,23 @@ const __CLINIC_HREF = `${__NAV_BASE}/clinic.html`;
 const __CASES_HREF = `${__NAV_BASE}/cases.html`;
 const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
 const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.png' : '/images/logo.jpg';
+// Messenger CTA — injected per-locale by build-i18n. Falls back to Kakao defaults
+// so this file remains readable as ko source-of-truth even if __I18N__ is missing.
+const __MESSENGER = (window.__I18N__ && window.__I18N__.messenger) || {
+  url: 'https://pf.kakao.com/_ZxneSb',
+  label: '1:1 카톡 상담',
+  channel: 'kakao',
+  color_bg: '#FAE100',
+  color_fg: '#3C1E1E',
+};
+function escAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+const __M_URL = escAttr(__MESSENGER.url);
+const __M_LABEL = escAttr(__MESSENGER.label);
+const __M_CH = escAttr(__MESSENGER.channel);
+const __M_BG = escAttr(__MESSENGER.color_bg);
+const __M_FG = escAttr(__MESSENGER.color_fg);
 
 const SHELL_HTML = `
   <header class="t-header" role="banner">
@@ -217,7 +234,7 @@ const SHELL_HTML = `
       <img class="logo" src="${__LOGO_SRC}" alt="187 성장클리닉">
     </a>
     <div class="t-header-actions">
-      <a class="t-header-kakao" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}">
+      <a class="t-header-kakao" data-channel="${__M_CH}" data-source="header_cta" href="${__M_URL}" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}" style="background:${__M_BG};color:${__M_FG}">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
         </svg>
@@ -313,7 +330,7 @@ const SHELL_HTML = `
         <div class="note">
           <strong>${tEsc('calc.note_label', '참고:')}</strong> ${tEsc('calc.note_body', 'WHO/KDCA 표준 성장도표 기반 통계 추정치입니다. 실제 성장은 영양·수면·운동 등 환경 요인에 따라 달라질 수 있어요.')}
         </div>
-        <a class="kakao-cta" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">${tEsc('calc.kakao_cta', '💬 카톡 1:1 상담받기')}</a>
+        <a class="kakao-cta" data-channel="${__M_CH}" data-source="calc_result" href="${__M_URL}" target="_blank" rel="noopener" style="background:${__M_BG};color:${__M_FG}">${tEsc('calc.kakao_cta', '💬 카톡 1:1 상담받기')}</a>
         <button type="button" class="reset-btn" id="tCalcReset">${tEsc('calc.reset', '다시 측정하기')}</button>
       </div>
     </div>

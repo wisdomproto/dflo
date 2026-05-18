@@ -222,7 +222,7 @@ body { background: var(--shell-page-bg) !important; }
   transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
 }
 .t-header-kakao:hover {
-  background: #FFE92E;
+  filter: brightness(1.06);
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.14);
 }
@@ -500,7 +500,7 @@ body { background: var(--shell-page-bg) !important; }
   margin-top: 8px;
   transition: background 0.2s, transform 0.15s;
 }
-.t-result .kakao-cta:hover { background: #FFE92E; }
+.t-result .kakao-cta:hover { filter: brightness(1.06); }
 .t-result .kakao-cta:active { transform: scale(0.99); }
 
 .t-result .reset-btn {
