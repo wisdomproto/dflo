@@ -28,8 +28,8 @@ const FEMALE_DESCRIPTIONS: Record<TannerStage, string> = {
 };
 
 const TANNER_IMAGE: Record<Gender, string> = {
-  male: '/images/tanner/male.png',
-  female: '/images/tanner/female.png',
+  male: '/images/tanner/male.jpg',
+  female: '/images/tanner/female.jpg',
 };
 
 /**

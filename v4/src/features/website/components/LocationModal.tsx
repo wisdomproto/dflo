@@ -10,7 +10,7 @@ export function LocationModal({ isOpen, onClose }: Props) {
     <InfoModal isOpen={isOpen} onClose={onClose} title="병원 위치">
       <div className="space-y-5">
         {/* Map image */}
-        <img src="/images/clinic-map.png" alt="연세새봄의원 약도"
+        <img src="/images/clinic-map.jpg" alt="연세새봄의원 약도"
           className="w-full rounded-xl border border-gray-100" />
 
         {/* Address */}

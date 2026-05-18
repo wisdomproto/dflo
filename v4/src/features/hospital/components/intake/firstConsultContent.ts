@@ -217,12 +217,12 @@ const ko: ConsultSlide[] = [
   {
     kind: 'hospital',
     title: '뼈나이 분석 · Bone Age Analysis',
-    image: '/first_session/bon analysis.png',
+    image: '/first_session/bon analysis.jpg',
   },
   {
     kind: 'hospital',
     title: '뼈나이 아틀라스 · Bone Age Atlas',
-    image: '/first_session/bone reference.png',
+    image: '/first_session/bone reference.jpg',
   },
   {
     kind: 'xray-module',
@@ -353,12 +353,12 @@ const en: ConsultSlide[] = [
   {
     kind: 'hospital',
     title: 'Bone Age Analysis',
-    image: '/first_session/bon analysis.png',
+    image: '/first_session/bon analysis.jpg',
   },
   {
     kind: 'hospital',
     title: 'Bone Age Atlas',
-    image: '/first_session/bone reference.png',
+    image: '/first_session/bone reference.jpg',
   },
   {
     kind: 'xray-module',
