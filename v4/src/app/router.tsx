@@ -86,18 +86,6 @@ type I18nLang = (typeof I18N_LANGS)[number];
 const isI18nLang = (v: string | undefined): v is I18nLang =>
   !!v && (I18N_LANGS as readonly string[]).includes(v);
 
-function LangRedirect() {
-  const { lang } = useParams<{ lang: string }>();
-  const safe = isI18nLang(lang) ? lang : 'ko';
-  return <HardRedirect to={`/${safe}/index.html`} />;
-}
-
-function LangBlogRedirect() {
-  const { lang } = useParams<{ lang: string }>();
-  const safe = isI18nLang(lang) ? lang : 'ko';
-  return <HardRedirect to={`/${safe}/blog/index.html`} />;
-}
-
 // 301-style redirect from the legacy /test/* prototype URLs to the promoted /{lang}/ paths.
 function TestLangRedirect() {
   const { lang } = useParams<{ lang: string }>();
