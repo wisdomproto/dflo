@@ -49,6 +49,10 @@ const CalcEmbedPage = lazy(() => import('@/features/website/pages/CalcEmbedPage'
 const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
 const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
 
+// Blog pages
+const BlogList = lazy(() => import('@/pages/Blog/BlogList'));
+const BlogPost = lazy(() => import('@/pages/Blog/BlogPost'));
+
 // Admin pages
 const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout'));
 const AdminDashboardPage = lazy(() => import('@/pages/admin/AdminDashboardPage'));
@@ -411,5 +415,39 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+  },
+
+  // Blog routes — React SPA (list + detail) for ko and th
+  {
+    path: '/blog',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <BlogList lang="ko" />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/blog/:slug',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <BlogPost lang="ko" />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/th/blog',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <BlogList lang="th" />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/th/blog/:slug',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <BlogPost lang="th" />
+      </Suspense>
+    ),
   },
 ]);
