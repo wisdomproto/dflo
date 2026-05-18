@@ -31,14 +31,14 @@ async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate 
     posts, template: indexTemplate, locale,
     seoHead: buildBlogIndexHead(lang),
   });
-  writeFile(join(ROOT, 'public/test', lang, 'blog/index.html'), indexHtml);
+  writeFile(join(ROOT, 'public', lang, 'blog/index.html'), indexHtml);
 
   for (const post of posts) {
     const html = renderPost({
       post, template: postTemplate, locale, messenger,
       seoHead: buildBlogPostHead({ post, lang }),
     });
-    writeFile(join(ROOT, 'public/test', lang, 'blog', post.slug, 'index.html'), html);
+    writeFile(join(ROOT, 'public', lang, 'blog', post.slug, 'index.html'), html);
   }
   return posts.length;
 }
@@ -85,9 +85,19 @@ async function main() {
     locale.messenger = messenger;
     locale.shell_json = JSON.stringify(locale.shell || {});
 
+    // Non-Korean locales pull per-language program images from /programs/images/{lang}/{slug}/
+    // and use the English-style logo. Korean keeps the original paths (legacy program HTML
+    // pages and the existing logo.jpg masthead depend on them).
+    const localizeProgramImg = (html) => {
+      if (lang === 'ko') return html;
+      return html
+        .replaceAll('/programs/images/', `/programs/images/${lang}/`)
+        .replaceAll('/images/logo.jpg', '/images/logo_en.png');
+    };
+
     // Home
     locale.seo_head = buildHead(lang, { path: '/' });
-    writeFile(join(ROOT, 'public/test', lang, 'index.html'), render(homeTemplate, locale));
+    writeFile(join(ROOT, 'public', lang, 'index.html'), localizeProgramImg(render(homeTemplate, locale)));
 
     // Subpages — re-bind seo_head per page so canonical/hreflang/title are correct
     for (const sub of SUBPAGES) {
@@ -95,7 +105,7 @@ async function main() {
       let title = locale;
       for (const p of titleParts) title = title?.[p];
       locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, skipJsonLd: true });
-      writeFile(join(ROOT, 'public/test', lang, sub.file), render(sub.template, locale));
+      writeFile(join(ROOT, 'public', lang, sub.file), localizeProgramImg(render(sub.template, locale)));
     }
 
     if (blogSlugs[lang] && blogSlugs[lang].length > 0) {
@@ -105,7 +115,7 @@ async function main() {
   }
 
   const sitemap = buildSitemap({ activeLangs: ACTIVE_LANGS, blogSlugs });
-  writeFile(join(ROOT, 'public/test/sitemap.xml'), sitemap);
+  writeFile(join(ROOT, 'public/sitemap.xml'), sitemap);
   console.log(`[i18n] done — ${ACTIVE_LANGS.length} locale(s)`);
 }
 

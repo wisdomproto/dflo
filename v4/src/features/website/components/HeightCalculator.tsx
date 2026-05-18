@@ -20,7 +20,12 @@ interface Props {
 
 export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko' }: Props) {
   const [gender, setGender] = useState<'male' | 'female'>('male');
-  const [birthDate, setBirthDate] = useState('');
+  const [birthYear, setBirthYear] = useState('');
+  const [birthMonth, setBirthMonth] = useState('');
+  const [birthDay, setBirthDay] = useState('');
+  const birthDate = birthYear && birthMonth && birthDay
+    ? `${birthYear.padStart(4, '0')}-${birthMonth.padStart(2, '0')}-${birthDay.padStart(2, '0')}`
+    : '';
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [result, setResult] = useState<HeightResult | null>(null);
@@ -71,11 +76,23 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
         </div>
       </div>
 
-      {/* Birth date */}
+      {/* Birth date — 3 separate fields so labels localize across all browsers */}
       <div>
         <label className={labelCls}>{t.fieldBirth}</label>
-        <input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)}
-          className={inputCls} max={new Date().toISOString().split('T')[0]} />
+        <div className="grid grid-cols-3 gap-2">
+          <input type="number" inputMode="numeric" min={1900} max={2099}
+            placeholder={t.fieldBirthYear}
+            value={birthYear} onChange={(e) => setBirthYear(e.target.value)}
+            className={inputCls} />
+          <input type="number" inputMode="numeric" min={1} max={12}
+            placeholder={t.fieldBirthMonth}
+            value={birthMonth} onChange={(e) => setBirthMonth(e.target.value)}
+            className={inputCls} />
+          <input type="number" inputMode="numeric" min={1} max={31}
+            placeholder={t.fieldBirthDay}
+            value={birthDay} onChange={(e) => setBirthDay(e.target.value)}
+            className={inputCls} />
+        </div>
       </div>
 
       {/* Height / Weight */}

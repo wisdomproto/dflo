@@ -1,7 +1,7 @@
 ko:
   title: "187 성장클리닉 | 우리 아이 예상키 무료 측정"
   description: "사춘기·수면·체중·자세까지 통합 분석. 연세새봄 187 성장클리닉의 다각도 성장 관리. 예상키 무료 측정 + 1:1 카카오톡 상담."
-  og_image: "/test/og/og-ko.jpg"
+  og_image: "/og/og-ko.jpg"
   faq:
     - q: "성장 검사는 몇 살부터 받을 수 있나요?"
       a: "만 3세부터 가능합니다. 또래보다 키가 작거나 성장 속도가 느린 경우 조기 검사를 권장합니다."
@@ -17,7 +17,7 @@ ko:
 th:
   title: "187 Growth Clinic | คาดการณ์ส่วนสูงผู้ใหญ่ของลูกฟรี"
   description: "ดูแลการเจริญเติบโตแบบครบวงจรครอบคลุมวัยรุ่น การนอน น้ำหนัก และท่าทาง คลินิก Yonsei Saebom 187 Growth คาดการณ์ส่วนสูงผู้ใหญ่ฟรี + ปรึกษา KakaoTalk 1:1"
-  og_image: "/test/og/og-th.jpg"
+  og_image: "/og/og-th.jpg"
   faq:
     - q: "เด็กอายุเท่าไหร่จึงจะตรวจการเจริญเติบโตได้?"
       a: "ตั้งแต่อายุ 3 ปี แนะนำตรวจแต่เนิ่นๆ สำหรับเด็กที่ตัวเล็กกว่าวัยเดียวกันหรือมีความเร็วการเติบโตช้า"
@@ -33,7 +33,7 @@ th:
 vi:
   title: "187 Growth Clinic | Dự đoán chiều cao trưởng thành"
   description: "Chăm sóc tăng trưởng tích hợp: dậy thì, giấc ngủ, cân nặng, tư thế. Dự đoán chiều cao miễn phí + tư vấn KakaoTalk 1:1 tại Yonsei Saebom 187 Growth Clinic."
-  og_image: "/test/og/og-vi.jpg"
+  og_image: "/og/og-vi.jpg"
   faq:
     - q: "Trẻ từ mấy tuổi có thể được kiểm tra tăng trưởng?"
       a: "Từ 3 tuổi. Khuyến nghị kiểm tra sớm cho trẻ thấp hơn rõ rệt so với bạn cùng tuổi hoặc có tốc độ tăng trưởng chậm."
@@ -49,7 +49,7 @@ vi:
 en:
   title: "187 Growth Clinic | Free Adult-Height Prediction"
   description: "Integrated growth care covering puberty, sleep, weight, and posture. Free adult-height prediction + 1:1 KakaoTalk consultation at Yonsei Saebom 187 Growth Clinic."
-  og_image: "/test/og/og-en.jpg"
+  og_image: "/og/og-en.jpg"
   faq:
     - q: "From what age can a child get a growth assessment?"
       a: "From age 3. Early assessment is recommended for children noticeably shorter than peers or with a slow growth pace."

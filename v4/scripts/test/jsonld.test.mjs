@@ -20,7 +20,8 @@ test('faqPageJsonLd builds Q&A list from seo.yml', () => {
 });
 
 test('faqPageJsonLd returns empty mainEntity if locale has no FAQ', () => {
-  const obj = faqPageJsonLd('th');
+  // ja/zh-tw/id are stub locales with no FAQ entries yet
+  const obj = faqPageJsonLd('ja');
   assert.deepEqual(obj.mainEntity, []);
 });
 

@@ -18,7 +18,10 @@ export default function CalcEmbedPage() {
 
   useEffect(() => {
     document.title = t.pageTitle;
-  }, [t.pageTitle]);
+    const prevLang = document.documentElement.lang;
+    document.documentElement.lang = lang;
+    return () => { document.documentElement.lang = prevLang; };
+  }, [t.pageTitle, lang]);
 
   // embedded=true 면 InfoModal 우회 → 페이지 자체로 렌더.
   return (

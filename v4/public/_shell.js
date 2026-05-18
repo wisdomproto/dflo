@@ -1,5 +1,5 @@
 /* ============================================
-   /test/ shared shell JS
+   shared shell JS (loaded by every /{lang}/ static page)
    - Calculator (vanilla port of LMS logic)
    - Modal open/close
    - Active nav state
@@ -201,20 +201,20 @@ function tEsc(path, fallback) {
 }
 
 // ============= SHELL MARKUP INJECTION =============
-// Locale-aware nav: when window.__I18N__.locale is set (any /test/{lang}/ page) we
-// route to the matching language folder; from the root /test/ page (no __I18N__),
-// we route to the root KO copies that act as defaults.
-const __I18N_LOCALE = (window.__I18N__ && window.__I18N__.locale) || '';
-const __NAV_BASE = __I18N_LOCALE ? `/test/${__I18N_LOCALE}` : '/test';
+// Locale-aware nav: every public page lives under /{lang}/, set via window.__I18N__.locale
+// in the static HTML. Defaults to /ko/ for safety if locale is missing.
+const __I18N_LOCALE = (window.__I18N__ && window.__I18N__.locale) || 'ko';
+const __NAV_BASE = `/${__I18N_LOCALE}`;
 const __HOME_HREF = `${__NAV_BASE}/index.html`;
 const __CLINIC_HREF = `${__NAV_BASE}/clinic.html`;
 const __CASES_HREF = `${__NAV_BASE}/cases.html`;
 const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
+const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.png' : '/images/logo.jpg';
 
 const SHELL_HTML = `
   <header class="t-header" role="banner">
     <a href="${__HOME_HREF}" class="logo-wrap" aria-label="${tEsc('aria.home', '홈으로')}">
-      <img class="logo" src="/images/logo.jpg" alt="187 성장클리닉">
+      <img class="logo" src="${__LOGO_SRC}" alt="187 성장클리닉">
     </a>
     <div class="t-header-actions">
       <a class="t-header-kakao" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}">

@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
 const ORIGIN = 'https://www.dr187growup.com';
-const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '/test';  // strip via SITE_PATH_PREFIX="" when /test/ is promoted to root
+const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 const CLINIC_NAME = '연세새봄의원 187 성장클리닉';
 const CLINIC_PHONE = '+82-2-XXX-XXXX';  // TODO: confirm with clinic admin
 const CLINIC_ADDRESS = {

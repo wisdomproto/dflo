@@ -3,10 +3,10 @@ import assert from 'node:assert';
 import { readFileSync, existsSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 
-test('build:i18n generates /test/ko/index.html with no placeholders left', () => {
+test('build:i18n generates /ko/index.html with no placeholders left', () => {
   execSync('node scripts/build-i18n.mjs', { cwd: process.cwd(), stdio: 'pipe' });
 
-  const outPath = 'public/test/ko/index.html';
+  const outPath = 'public/ko/index.html';
   assert.ok(existsSync(outPath), `${outPath} should exist after build`);
 
   const html = readFileSync(outPath, 'utf8');

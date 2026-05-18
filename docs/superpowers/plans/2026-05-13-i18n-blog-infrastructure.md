@@ -1,5 +1,7 @@
 # i18n + Blog Infrastructure Implementation Plan
 
+> **Status (2026-05-18):** Phase 0–5 of this plan shipped under the `/test/` staging path (commit `c965a99` restored translations from worktree). **Phase 6 promoted on 2026-05-18** — all output paths moved from `/test/{lang}/` to `/{lang}/` and `SITE_PATH_PREFIX` default changed to `''`. See [memory phase6_i18n_root_promotion.md](../../../../.claude/projects/c--projects-dflo-0-1/memory/phase6_i18n_root_promotion.md) for the promotion diff. Path strings below still say `/test/...` since that's what the original tasks built — current code lives under `/{lang}/`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build the i18n + SEO + blog infrastructure that lets `/test/index.html` render as 4 localized pages (ko/th/vi/en) with full SEO surface, per-country messenger CTAs, and a blog system fed from ContentFlow's existing 연세새봄의원 project data.

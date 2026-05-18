@@ -22,6 +22,6 @@ test('buildHreflang emits 7 alternates + x-default', () => {
 
 test('buildHead includes canonical for the given lang', () => {
   const head = buildHead('ko');
-  assert.ok(head.includes('rel="canonical" href="https://www.dr187growup.com/test/ko/"'));
+  assert.ok(head.includes('rel="canonical" href="https://www.dr187growup.com/ko/"'));
   assert.ok(head.includes('property="og:locale" content="ko_KR"'));
 });

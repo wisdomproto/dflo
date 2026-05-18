@@ -81,14 +81,34 @@ function HardRedirect({ to }: { to: string }) {
   return null;
 }
 
+const I18N_LANGS = ['ko', 'th', 'vi', 'en'] as const;
+type I18nLang = (typeof I18N_LANGS)[number];
+const isI18nLang = (v: string | undefined): v is I18nLang =>
+  !!v && (I18N_LANGS as readonly string[]).includes(v);
+
 function LangRedirect() {
   const { lang } = useParams<{ lang: string }>();
-  return <HardRedirect to={`/test/${lang ?? 'ko'}/index.html`} />;
+  const safe = isI18nLang(lang) ? lang : 'ko';
+  return <HardRedirect to={`/${safe}/index.html`} />;
 }
 
 function LangBlogRedirect() {
   const { lang } = useParams<{ lang: string }>();
-  return <HardRedirect to={`/test/${lang ?? 'ko'}/blog/index.html`} />;
+  const safe = isI18nLang(lang) ? lang : 'ko';
+  return <HardRedirect to={`/${safe}/blog/index.html`} />;
+}
+
+// 301-style redirect from the legacy /test/* prototype URLs to the promoted /{lang}/ paths.
+function TestLangRedirect() {
+  const { lang } = useParams<{ lang: string }>();
+  const safe = isI18nLang(lang) ? lang : 'ko';
+  return <Navigate to={`/${safe}/`} replace />;
+}
+
+function TestLangBlogRedirect() {
+  const { lang } = useParams<{ lang: string }>();
+  const safe = isI18nLang(lang) ? lang : 'ko';
+  return <Navigate to={`/${safe}/blog/`} replace />;
 }
 
 // Redirect helpers for param-carrying legacy paths.
@@ -103,15 +123,26 @@ function RedirectGuideDetail() {
 }
 
 export const router = createBrowserRouter([
-  // Public website routes (root = hospital landing page)
+  // Root URL → Korean static i18n home. /ko/, /th/, /vi/, /en/ are the new entry points.
+  // The old React WebsiteHomePage stays mounted at /home-legacy for emergency rollback.
+  { path: '/', element: <HardRedirect to="/ko/index.html" /> },
   {
-    path: '/',
+    path: '/home-legacy',
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <WebsiteHomePage />
       </Suspense>
     ),
   },
+
+  // Per-language entry — explicit per-lang routes to avoid colliding with /admin, /app, etc.
+  // HardRedirect makes Vite serve the static {lang}/index.html directly.
+  ...I18N_LANGS.flatMap((l) => [
+    { path: `/${l}`, element: <HardRedirect to={`/${l}/index.html`} /> },
+    { path: `/${l}/`, element: <HardRedirect to={`/${l}/index.html`} /> },
+    { path: `/${l}/blog`, element: <HardRedirect to={`/${l}/blog/index.html`} /> },
+    { path: `/${l}/blog/`, element: <HardRedirect to={`/${l}/blog/index.html`} /> },
+  ]),
   {
     path: '/program/:slug',
     element: (
@@ -170,14 +201,14 @@ export const router = createBrowserRouter([
     ),
   },
 
-  // /test/ static prototype — hard redirect to index.html so Vite serves it.
-  { path: '/test', element: <HardRedirect to="/test/index.html" /> },
-  { path: '/test/', element: <HardRedirect to="/test/index.html" /> },
-  // /test/{lang}/ — hard redirect each locale to its index.html for proper static serving
-  { path: '/test/:lang', element: <LangRedirect /> },
-  { path: '/test/:lang/', element: <LangRedirect /> },
-  { path: '/test/:lang/blog', element: <LangBlogRedirect /> },
-  { path: '/test/:lang/blog/', element: <LangBlogRedirect /> },
+  // Legacy /test/* URLs — redirect to the promoted /{lang}/ paths so old bookmarks and
+  // shared links keep working after Phase 6 promotion.
+  { path: '/test', element: <Navigate to="/ko/" replace /> },
+  { path: '/test/', element: <Navigate to="/ko/" replace /> },
+  { path: '/test/:lang', element: <TestLangRedirect /> },
+  { path: '/test/:lang/', element: <TestLangRedirect /> },
+  { path: '/test/:lang/blog', element: <TestLangBlogRedirect /> },
+  { path: '/test/:lang/blog/', element: <TestLangBlogRedirect /> },
 
   // /cases-embed — used as iframe target by /test/cases.html
   // /banner-admin 에서 만든 cases 슬라이드만 SectionCarousel 로 렌더한다.

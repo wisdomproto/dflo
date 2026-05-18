@@ -1,5 +1,5 @@
 const ORIGIN = 'https://www.dr187growup.com';
-const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '/test';  // strip via SITE_PATH_PREFIX="" when /test/ is promoted to root
+const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', ja: 'ja', 'zh-tw': 'zh-TW', id: 'id' };
 
 function urlEntry(loc, allPaths) {

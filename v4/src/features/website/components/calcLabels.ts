@@ -18,6 +18,9 @@ type Dict = {
   genderMale: string;
   genderFemale: string;
   fieldBirth: string;
+  fieldBirthYear: string;
+  fieldBirthMonth: string;
+  fieldBirthDay: string;
   fieldHeight: string;
   fieldWeight: string;
   submit: string;
@@ -67,6 +70,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: '성별',
     genderMale: '👦 남아', genderFemale: '👧 여아',
     fieldBirth: '생년월일',
+    fieldBirthYear: '연도', fieldBirthMonth: '월', fieldBirthDay: '일',
     fieldHeight: '현재 키 (cm)',
     fieldWeight: '현재 체중 (kg)',
     submit: '예상키 계산하기',
@@ -112,6 +116,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: 'Gender',
     genderMale: '👦 Boy', genderFemale: '👧 Girl',
     fieldBirth: 'Date of birth',
+    fieldBirthYear: 'Year', fieldBirthMonth: 'Month', fieldBirthDay: 'Day',
     fieldHeight: 'Current height (cm)',
     fieldWeight: 'Current weight (kg)',
     submit: 'Calculate predicted height',
@@ -157,6 +162,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: 'เพศ',
     genderMale: '👦 เด็กชาย', genderFemale: '👧 เด็กหญิง',
     fieldBirth: 'วันเกิด',
+    fieldBirthYear: 'ปี', fieldBirthMonth: 'เดือน', fieldBirthDay: 'วัน',
     fieldHeight: 'ส่วนสูงปัจจุบัน (ซม.)',
     fieldWeight: 'น้ำหนักปัจจุบัน (กก.)',
     submit: 'คำนวณส่วนสูงที่คาดการณ์',
@@ -202,6 +208,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: 'Giới tính',
     genderMale: '👦 Bé trai', genderFemale: '👧 Bé gái',
     fieldBirth: 'Ngày sinh',
+    fieldBirthYear: 'Năm', fieldBirthMonth: 'Tháng', fieldBirthDay: 'Ngày',
     fieldHeight: 'Chiều cao hiện tại (cm)',
     fieldWeight: 'Cân nặng hiện tại (kg)',
     submit: 'Tính chiều cao dự đoán',
