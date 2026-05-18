@@ -82,7 +82,8 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 ### 1차 활성화 스코프 (Phase 6 완료)
 - 시장 4개: 🇰🇷 ko / 🇹🇭 th / 🇻🇳 vi / 🇺🇸 en
 - 메신저: ko/vi/en 은 KakaoTalk (`pf.kakao.com/_ZxneSb`), **th 는 LINE OA `@894qhqtu`** (2026-05-18 전환). `messenger.yml` 만 교체 → `_shell.js` 가 `window.__I18N__.messenger` 에서 읽어 헤더 pill·계산기 결과 CTA·5개 케이스 인라인 CTA 동적 렌더 (인라인 색상 + filter:brightness hover). 빌드가 `messenger_json` 으로 JSON-encode 해 안전 주입
-- 남은 작업: 외국어 프로그램 이미지 채우기 + Railway 프로덕션 배포 검증
+- 프로그램 이미지: ko + **th 완료** (`public/programs/images/th/{slug}/`, 7 프로그램 78 장, 2026-05-18). vi/en 은 추후 채울 예정 — 빌드가 lang 별로 자동 URL swap
+- 남은 작업: vi/en 프로그램 이미지 + Railway 프로덕션 배포 검증
 
 ### 위성 콘텐츠 배포 정책
 메인 블로그는 우리 도메인(`/blog/{lang}/`). 위성(네이버 블로그·FB·Pantip)은 발췌+`canonical` 메인 가리키기 (중복 콘텐츠 페널티 회피).
