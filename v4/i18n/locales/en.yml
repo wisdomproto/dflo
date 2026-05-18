@@ -1,305 +1,415 @@
 meta:
   lang: en
   og_locale: en_US
-  title: '[NEEDS TRANSLATION]'
+  title: "187 Growth Clinic | Free Adult-Height Prediction for Your Child"
 
 blog:
-  index_heading: "[NEEDS TRANSLATION]"
+  index_heading: "Growth Insights"
 
 hero:
-  logo_alt: '[NEEDS TRANSLATION]'
-  title_line1: '[NEEDS TRANSLATION]'
-  title_line2: '[NEEDS TRANSLATION]'
-  hero_img_alt: '[NEEDS TRANSLATION]'
+  logo_alt: "187 Growth Clinic"
+  title_line1: "Your child's growth —"
+  title_line2: "where does it stand today?"
+  hero_img_alt: "Yonsei Saebom Clinic 187 Growth Clinic main visual"
+
 intro:
-  h2_line1: '[NEEDS TRANSLATION]'
-  h2_accent: '[NEEDS TRANSLATION]'
-  h2_line2: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  h2_line1: "A child's growth is not"
+  h2_accent: "decided by growth hormone alone"
+  h2_line2: ""
+  body: |
+    Puberty pace, sleep, thyroid, stress, weight, and posture all matter.
+    Reading them together is how a healthy growth plan begins.
+    Yonsei Saebom evaluates every factor that may interfere with growth.
+
 medal:
-  panel_alt: '[NEEDS TRANSLATION]'
+  panel_alt: "Designated clinic for modeling agencies and athletic-model growth program"
+
 check:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "Does my child need this?"
+  heading_part1: "When to consider "
+  heading_accent: "a growth assessment"
   cards:
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
+    - alt: "Child noticeably shorter than peers"
+      caption_line1: "Visibly shorter"
+      caption_line2: "than peers"
+    - alt: "Slow growth velocity in the past year"
+      caption_line1: "Slow growth in the"
+      caption_line2: "past 12 months"
+    - alt: "Sudden change in growth pace"
+      caption_line1: "Sudden shift in"
+      caption_line2: "growth velocity"
+    - alt: "More than 10 cm below average height"
+      caption_line1: "10 cm or more below"
+      caption_line2: "average height"
+    - alt: "Posture or body imbalance"
+      caption_line1: "Posture or body"
+      caption_line2: "imbalance present"
+    - alt: "Suspected hormonal abnormality"
+      caption_line1: "Possible hormonal"
+      caption_line2: "irregularity"
+
 golden:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_part2: '[NEEDS TRANSLATION]'
-  img_alt: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "The golden window for growth treatment"
+  heading_part1: "When should you "
+  heading_accent: "check height growth?"
+  heading_part2: ""
+  img_alt: "Optimal treatment timing for boys and girls"
+  lead: "How well growth treatment works depends on the <strong>state of the growth plates and the pace of puberty</strong>. An assessment can be done independently of treatment — if the growth pace concerns you, it's worth checking the current status first."
+
 hormone:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  solution_img_alt: '[NEEDS TRANSLATION]'
-  features_heading_line1: '[NEEDS TRANSLATION]'
-  features_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "Integrated growth care"
+  heading_line1: "Growth care goes beyond growth hormone"
+  heading_line2: "Yonsei Saebom's "
+  heading_accent: "integrated growth solution"
+  lead: "We assess not only growth hormone but also <strong>sex hormones, sleep, thyroid, stress, weight, and posture</strong>. We identify what is holding back your child's growth and design a personal growth plan."
+  solution_img_alt: "Yonsei Saebom 6-pillar integrated growth solution"
+  features_heading_line1: "Three core pillars"
+  features_heading_accent: "for hormonal balance"
   features:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
+    - img_alt: "Hormone management"
+      num: "01 / Hormone care"
+      title: "Imbalance diagnosis & systematic care"
+      desc: "Beyond growth hormone, we check the full balance of sex, sleep, thyroid, and stress hormones."
+    - img_alt: "Puberty management"
+      num: "02 / Puberty care"
+      title: "Precocious puberty & secondary sex characteristics"
+      desc: "We track the pace of puberty alongside growth-plate status to keep growth on a healthy track."
+    - img_alt: "Childhood obesity & growth care"
+      num: "03 / Weight care"
+      title: "Weight control with growth in mind"
+      desc: "We balance the nutrition a growing child needs while managing both weight and height growth."
+
 intro2:
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  heading_line1: "Find the growth-care path"
+  heading_accent: "that fits your child"
+  body: "Every child is held back by different factors. Pick the case below that matches your child to see the care direction you may need."
+
 casenav:
-  aria_label: '[NEEDS TRANSLATION]'
+  aria_label: "Growth-care case navigation"
   links:
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
+    - href: "#obesity"
+      label: "Obesity-driven"
+    - href: "#precocious"
+      label: "Early puberty"
+    - href: "#proportion"
+      label: "Body proportion"
+    - href: "#bodywork"
+      label: "Posture & body"
+    - href: "#late"
+      label: "Late puberty"
+
 obesity:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line3: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  bmi_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  waffle_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  fatcell_img_alt: '[NEEDS TRANSLATION]'
-  risks_eyebrow: '[NEEDS TRANSLATION]'
-  risks_heading_part1: '[NEEDS TRANSLATION]'
-  risks_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "01 / Obesity-driven growth care"
+  heading_line1: "Does weight gain mean more height?"
+  heading_line2: ""
+  heading_accent: "Obesity-driven growth"
+  heading_line3: " calls for a different approach"
+  lead: "Childhood obesity is more than a weight issue — it can affect sex-hormone secretion and the pace of puberty. Weight, growth velocity, and lifestyle habits should be reviewed together."
+  bmi_img_alt: "Childhood obesity diagnostic criteria"
+  subsection1_eyebrow: "Childhood obesity & height"
+  subsection1_heading_line1: "Body fat in growing children"
+  subsection1_heading_accent: "doesn't always turn into height"
+  subsection1_lead: "Excess body fat can interfere with growth-hormone action and puberty progression. Weight management during growth is not a diet — it is about <strong>building a healthy environment for growth</strong>."
+  waffle_img_alt: "High-calorie food and childhood obesity"
+  subsection2_heading_line1: "Childhood obesity"
+  subsection2_heading_accent: "is different from adult obesity"
+  subsection2_lead: "During growth, both the size and the number of fat cells — along with the metabolic environment — can change. That is why early management matters."
+  fatcell_img_alt: "Increase in fat-cell number and size"
+  risks_eyebrow: "Why childhood obesity matters"
+  risks_heading_part1: "Why does it "
+  risks_heading_accent: "need attention?"
   risks:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+    - img_alt: "Adult obesity risk"
+      title: "Adult obesity"
+      desc: "Childhood obesity often carries into adult weight problems."
+    - img_alt: "Metabolic disease risk"
+      title: "Metabolic health"
+      desc: "Linked to blood-sugar, blood-pressure, and skin issues."
+    - img_alt: "Height growth interference"
+      title: "Growth interference"
+      desc: "Body fat and puberty pace can change how the growth plates develop."
+    - img_alt: "Emotional impact"
+      title: "Emotional impact"
+      desc: "Body-image concerns can affect confidence and friendships."
+  causes_eyebrow: "Why is it on the rise?"
+  causes_heading_accent: "The causes of childhood obesity"
+  causes_heading_part2: " — checked together"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  lifestyle_heading_line1: '[NEEDS TRANSLATION]'
-  lifestyle_heading_accent: '[NEEDS TRANSLATION]'
-  lifestyle_lead: '[NEEDS TRANSLATION]'
+    - img_alt: "Energy imbalance"
+      title: "Energy imbalance"
+      desc: "Late-night meals, high-calorie snacks, irregular eating"
+    - img_alt: "Genetic factors"
+      title: "Genetic factors"
+      desc: "Family history considered alongside environment"
+    - img_alt: "Endocrine factors"
+      title: "Endocrine factors"
+      desc: "Appetite, metabolism, and hormone balance reviewed"
+    - img_alt: "Lifestyle factors"
+      title: "Lifestyle factors"
+      desc: "Reduced activity and Westernized eating patterns"
+  lifestyle_heading_line1: "Lifestyle habits to ease"
+  lifestyle_heading_accent: "childhood obesity"
+  lifestyle_lead: "We balance both weight and growth by considering the nutrition and activity a growing child needs."
   lifestyle_cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Diet care"
+      num: "01 / Diet"
+      title: "Balanced meals"
+      desc: "Cut high-calorie snacks; balance protein, vegetables, and fiber."
+    - img_alt: "Reducing screen time"
+      num: "02 / Lifestyle"
+      title: "Manage screen time"
+      desc: "Reduce TV, gaming, and smartphone hours; raise daily activity."
+    - img_alt: "Physical activity"
+      num: "03 / Activity"
+      title: "Daily movement"
+      desc: "Walking, stairs, and light exercise keep growth-stage activity up."
+    - img_alt: "Sleep care"
+      num: "04 / Sleep"
+      title: "Regular sleep"
+      desc: "Sleep rhythm matters for both weight control and the growth environment."
+  cta_label: "Worried about your child's weight or growth? &nbsp;1:1 expert consultation"
+
 precocious:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  chart_ctitle: '[NEEDS TRANSLATION]'
-  chart_csrc: '[NEEDS TRANSLATION]'
-  chart_cunit: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_heading_part2: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  height_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_heading_line2: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  arrow_img_alt: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+  eyebrow: "02 / Early puberty care"
+  heading_line1: "When puberty starts early,"
+  heading_accent: "growth-plate pace"
+  heading_line2: " also needs a check"
+  lead: "Precocious puberty refers to secondary sex traits appearing before age 8 in girls and age 9 in boys. Faster puberty can also accelerate growth-plate changes, so checking the current status matters."
+  chart_ctitle: "Precocious puberty patients in Korea, 2016–2020"
+  chart_csrc: "Source: Health Insurance Review and Assessment Service"
+  chart_cunit: "Unit: persons"
+  chart_img_alt: "Number of precocious puberty patients in Korea, 2016–2020"
+  subsection1_eyebrow: "Early puberty & height"
+  subsection1_heading_accent: "How early puberty"
+  subsection1_heading_part2: " affects height growth"
+  subsection1_lead: "When sex hormones are released early, height may briefly seem to grow fast. But growth-plate changes accelerate afterwards, which can affect the final adult height."
+  height_img_alt: "Early puberty and growth velocity relationship"
+  subsection2_heading_line1: "Care for early puberty looks at"
+  subsection2_heading_accent: "puberty pace and growth velocity"
+  subsection2_heading_line2: " together"
+  subsection2_lead: "Treating precocious puberty is not just about sex hormones — it requires reviewing growth velocity, growth-plate status, sleep, nutrition, and weight together."
+  arrow_img_alt: "Care for precocious puberty and growth-pace management"
+  causes_eyebrow: "Why so young?"
+  causes_heading_accent: "Causes of early puberty"
+  causes_heading_part2: " — checked together"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Underlying medical conditions"
+      cap_line1: "Conditions in the brain,"
+      cap_line2: "ovaries, or testes"
+    - img_alt: "Dietary factors"
+      cap_line1: "Heavy meat or processed,"
+      cap_line2: "high-fat diet"
+    - img_alt: "Obesity factor"
+      cap_line1: "Obesity linked to"
+      cap_line2: "sex-hormone activity"
+    - img_alt: "Endocrine disruptors"
+      cap_line1: "High exposure to"
+      cap_line2: "endocrine disruptors"
+    - img_alt: "Lack of activity"
+      cap_line1: "Low physical activity"
+      cap_line2: "(gaming, TV)"
+    - img_alt: "Stress factor"
+      cap_line1: "Heavy academic or"
+      cap_line2: "lifestyle stress"
+  cta_label: "Is puberty progressing too fast? &nbsp;1:1 expert consultation"
+
 proportion:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  ratio_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  comparison_img_alt: '[NEEDS TRANSLATION]'
-  quote: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+  eyebrow: "03 / Body-proportion care"
+  heading_line1: "As important as height —"
+  heading_accent: "balanced body proportions"
+  heading_line2: ""
+  lead: "Beyond height, body proportion, posture, and lower-body balance shape a child's overall impression and confidence. Looking at proportion alongside height matters during growth."
+  ratio_img_alt: "Golden ratio and ideal body-proportion guide"
+  subsection1_heading_line1: "Early puberty and"
+  subsection1_heading_accent: "changes in body proportion"
+  subsection1_lead: "When puberty starts and how fast growth happens both shape the upper- and lower-body balance. Reviewing growth-plate status and pubertal stage helps manage proportion alongside height."
+  comparison_img_alt: "Upper-body and lower-body proportion comparison"
+  quote: "When puberty begins and how growth unfolds can shape final body proportions."
+  cta_label: "Concerned about body balance? &nbsp;1:1 expert consultation"
+
 bodywork:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  diag_subhead: '[NEEDS TRANSLATION]'
-  xray_img_alt: '[NEEDS TRANSLATION]'
-  diag_lead: '[NEEDS TRANSLATION]'
+  eyebrow: "04 / Posture & development care"
+  heading_line1: "Posture and body shape also affect"
+  heading_accent: "the growth environment"
+  heading_line2: ""
+  lead: "Poor posture, muscle and fascial tension, and spine or pelvic imbalance can throw off a child's body balance. We review both body shape and developmental status through diagnosis and exercise care."
+  diag_subhead: "Diagnosis — Whole-body X-ray analysis"
+  xray_img_alt: "Whole-body X-ray posture analysis"
+  diag_lead: "We screen for scoliosis, lumbar lordosis, forward head, and bow legs or knock knees (O- / X-legs) that can appear during growth, then guide the right care direction for your child."
   problems:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-  treat_subhead: '[NEEDS TRANSLATION]'
-  treat_lead: '[NEEDS TRANSLATION]'
-  equip_main_alt: '[NEEDS TRANSLATION]'
-  equip_row_alt: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Scoliosis"
+      cap_strong: "Scoliosis"
+      cap_suffix: " check"
+    - img_alt: "Lumbar lordosis"
+      cap_strong: "Lumbar lordosis"
+      cap_suffix: " check"
+    - img_alt: "Forward head"
+      cap_strong: "Forward head"
+      cap_suffix: " check"
+    - img_alt: "O- and X-legs"
+      cap_strong: "O- / X-legs"
+      cap_suffix: " check"
+  treat_subhead: "Treatment — Growth-stimulating exercise + healthy development"
+  treat_lead: "Our in-house GYM offers 1:1 trainer-led exercise designed for growing children. Stretching, posture correction, and fascial release support good posture and body balance."
+  equip_main_alt: "Growth exercise equipment"
+  equip_row_alt: "Growth exercise program equipment"
+  cta_label: "Worried about posture or development? &nbsp;1:1 expert consultation"
+
 late:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "05 / Late-puberty growth care"
+  heading_line1: "Even in late puberty,"
+  heading_accent: "remaining growth potential"
+  heading_line2: " can be checked"
+  lead: "Growth velocity slows in late puberty. Yet the right care direction can still vary depending on growth-plate status, hormone balance, posture, sleep, and nutrition."
   program_tags:
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-  speed_heading_part1: '[NEEDS TRANSLATION]'
-  speed_heading_accent: '[NEEDS TRANSLATION]'
-  speed_heading_part2: '[NEEDS TRANSLATION]'
-  speed_lead: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  table_header_age: '[NEEDS TRANSLATION]'
-  table_header_speed: '[NEEDS TRANSLATION]'
-  table_header_speed_unit: '[NEEDS TRANSLATION]'
+    - "Pre-puberty program"
+    - "Precocious puberty program"
+    - "Stage-by-stage puberty program"
+    - "Late-puberty program"
+  speed_heading_part1: "Growth velocity by "
+  speed_heading_accent: "age"
+  speed_heading_part2: " — what to expect"
+  speed_lead: "Knowing the typical growth velocity for each stage helps decide the right care direction for your child's current status."
+  chart_img_alt: "Growth velocity by age graph"
+  table_header_age: "Age"
+  table_header_speed: "Annual growth velocity"
+  table_header_speed_unit: "(cm/year)"
   table_rows:
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      sub_boy: '[NEEDS TRANSLATION]'
-      val_boy: '[NEEDS TRANSLATION]'
-      sub_girl: '[NEEDS TRANSLATION]'
-      val_girl: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-  potential_heading_line1: '[NEEDS TRANSLATION]'
-  potential_heading_accent: '[NEEDS TRANSLATION]'
-  potential_lead: '[NEEDS TRANSLATION]'
+    - label: "Pre-puberty"
+      value: "5–6 cm"
+    - label: "Early puberty"
+      sub_boy: "Boy"
+      val_boy: "7–12 cm"
+      sub_girl: "Girl"
+      val_girl: "6–11 cm"
+    - label: "Late puberty"
+      value: "Slower than the earlier rate"
+  potential_heading_line1: "Growth potential —"
+  potential_heading_accent: "start by checking current status"
+  potential_lead: "We run a tailored growth program matched to your child's current developmental stage."
   cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Puberty pace monitoring"
+      cap_line1: "Puberty pace"
+      cap_line2: "monitoring"
+    - img_alt: "Spine, pelvis, lower-body balance"
+      cap_line1: "Spine, pelvis &"
+      cap_line2: "lower-body balance"
+    - img_alt: "Exercise, nutrition, sleep care"
+      cap_line1: "Exercise, nutrition,"
+      cap_line2: "and sleep"
+    - img_alt: "Hormonal balance growth care"
+      cap_line1: "Hormonal balance"
+      cap_line2: "growth care"
+  cta_label: "Late puberty — is it really too late? &nbsp;1:1 expert consultation"
+
 process:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  pill: '[NEEDS TRANSLATION]'
-  grid_img_alt: '[NEEDS TRANSLATION]'
+  eyebrow: "Growth, together"
+  heading_accent: "Care process"
+  lead: "Caring for a child's growth is a journey shared by the child, the parents, and the medical team. From the first consultation through follow-up after treatment, we keep checking growth status."
+  pill: "Growth status is monitored even after treatment ends"
+  grid_img_alt: "Yonsei Saebom Growth Clinic 7-step care process"
+
 director:
-  quote_line1: '[NEEDS TRANSLATION]'
-  quote_strong: '[NEEDS TRANSLATION]'
-  quote_line2: '[NEEDS TRANSLATION]'
-  quote_line3: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
-  portrait_alt: '[NEEDS TRANSLATION]'
+  quote_line1: "At Yonsei Saebom we"
+  quote_strong: "prepare healthy, balanced growth"
+  quote_line2: ""
+  quote_line3: "alongside you"
+  body: "Drawing on our experience in growth care, we look at your child's height, body shape, hormonal balance, and lifestyle together. Through proper nutrition, sleep, and balanced growth care, we help prepare a healthy future for your child."
+  portrait_alt: "Director Chae Yong-hyun, Yonsei Saebom Clinic"
+
 cta_global:
-  header_consult: '[NEEDS TRANSLATION]'
-  bottom_nav_consult: '[NEEDS TRANSLATION]'
-  inline_cta_arrow: '[NEEDS TRANSLATION]'
+  header_consult: "Consult"
+  bottom_nav_consult: "Free check"
+  inline_cta_arrow: "→"
+
+clinic:
+  page_title: "Clinic | 187 Growth Clinic"
+  doctor:
+    h1_sr: "About Director Chae Yong-hyun"
+    portrait_alt: "Director Chae Yong-hyun"
+    name: "Chae Yong-hyun"
+    title: "Director"
+    quote_line1: "We see your child's height growth through an integrated hormonal lens."
+    quote_line2: "We'll be with you, drawing on 10 years of clinical experience."
+    profile:
+      - "10 years in pediatric growth care · integrated hormone specialist"
+      - "Yonsei University School of Medicine / Graduate School of Medicine"
+      - "Current Director, Yonsei Saebom Clinic"
+      - "Hormone therapy specialist (growth · thyroid · sex hormones)"
+      - "NABBA / WFF Medical Advisor"
+  intro:
+    h2: "187 Growth Clinic — Yonsei Saebom"
+    p1: "Pediatric height growth isn't decided by growth hormone alone. Because thyroid, sex hormones, nutrition, sleep, and stress all play a role, an <strong>integrated hormonal perspective</strong> is essential."
+    p2: "187 Growth Clinic delivers personalized care for every child — from precision bone-age assessment to comprehensive hormone testing and lifestyle coaching. Families overseas can also receive video consultations without traveling to Korea."
+  video:
+    h3: "About our clinic"
+    iframe_title: "Yonsei Saebom Clinic introduction"
+  facility:
+    h3: "Facilities"
+    aria_prev: "Previous"
+    aria_next: "Next"
+    aria_dot_prefix: "Photo"
+    items:
+      - "2F Waiting room"
+      - "2F Consultation room"
+      - "2F Exterior"
+      - "3F Exercise center"
+      - "3F Training area"
+      - "3F GYM"
+  contact:
+    label: "Consultation & Booking"
+    phone: "+82-2-3395-0999"
+    addr: "4F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
+
+cases:
+  page_title: "Treatment Cases | 187 Growth Clinic"
+  iframe_title: "Treatment cases"
+
+calculator:
+  page_title: "Free Height Check | 187 Growth Clinic"
+  iframe_title: "Free height prediction"
+
+shell:
+  aria:
+    home: "Home"
+    kakao: "1:1 KakaoTalk consultation"
+    share: "Share"
+    menu: "Main menu"
+    close: "Close"
+  header:
+    kakao_label: "1:1 KakaoTalk"
+  nav:
+    programs: "Programs"
+    clinic: "Clinic"
+    cases: "Cases"
+    calc: "Free check"
+  calc:
+    badge: "Growth check · Free"
+    title: "Predicted Adult Height"
+    subtitle_line1: "A golden-window check before the growth plates close."
+    subtitle_line2: "See your child's predicted adult height in 30 seconds."
+    field_gender: "Gender"
+    gender_male: "👦 Boy"
+    gender_female: "👧 Girl"
+    gender_male_short: "Boy"
+    gender_female_short: "Girl"
+    field_birth: "Date of birth"
+    field_height: "Current height (cm)"
+    field_weight: "Weight (kg)"
+    submit: "Calculate predicted height"
+    result_label: "Predicted Adult Height"
+    percentile_top: "Top"
+    note_label: "Note:"
+    note_body: "A statistical estimate based on WHO/KDCA standard growth charts. Actual growth depends on nutrition, sleep, exercise, and other environmental factors."
+    kakao_cta: "💬 Get a 1:1 KakaoTalk consultation"
+    reset: "Measure again"
+    interpret_high: "✅ Likely to grow above the peer average — keep up the current pace."
+    interpret_mid: "🔍 Around the peer average. Better lifestyle care can lift the outcome further."
+    interpret_low: "⚠️ May end up slightly shorter than peers. A golden-window check before the growth plates close is recommended."
+    interpret_critical: "🔎 May end up notably shorter than peers. Detailed bone-age and hormone testing is recommended to find the cause early."
+  toast:
+    copied: "Link copied"
+    failed: "Share failed"
+  chart:
+    now_prefix: "Now"
+    age_suffix: "y"

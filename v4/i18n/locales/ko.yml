@@ -211,7 +211,7 @@ precocious:
     - img_alt: "스트레스 요인"
       cap_line1: "학업, 생활 스트레스가"
       cap_line2: "큰 경우"
-  cta_label: "사춘기 진행이 빠른가요 &nbsp;1:1 전문 상담"
+  cta_label: "사춘기 진행이 빠른가요? &nbsp;1:1 전문 상담"
 
 proportion:
   eyebrow: "03 / 체형·비율 관리"
@@ -289,8 +289,8 @@ late:
   potential_lead: "아이의 성장 단계에 맞춰 세분화된 성장 프로그램을 진행합니다."
   cards:
     - img_alt: "사춘기 진행 속도 관리"
-      cap_line1: "사춘기 진행"
-      cap_line2: "속도 확인"
+      cap_line1: "사춘기 진행 속도"
+      cap_line2: "확인"
     - img_alt: "척추 골반 하체 균형"
       cap_line1: "척추·골반"
       cap_line2: "하체 균형"
@@ -300,7 +300,7 @@ late:
     - img_alt: "호르몬 밸런스 관리"
       cap_line1: "호르몬 밸런스"
       cap_line2: "성장 관리"
-  cta_label: "사춘기 후반, 늦은 게 아닐까 &nbsp;1:1 전문 상담"
+  cta_label: "늦었을까 걱정되신다면 &nbsp;1:1 전문 상담"
 
 process:
   eyebrow: "함께 만드는 성장"
@@ -321,3 +321,95 @@ cta_global:
   header_consult: "1:1 상담"
   bottom_nav_consult: "예상키 측정"
   inline_cta_arrow: "→"
+
+clinic:
+  page_title: "병원 소개 | 187 성장클리닉"
+  doctor:
+    h1_sr: "채용현 원장 소개"
+    portrait_alt: "채용현 원장"
+    name: "채용현"
+    title: "대표원장"
+    quote_line1: "호르몬 통합 관점으로 아이의 키 성장을 봅니다."
+    quote_line2: "10년의 진료 경험으로 함께하겠습니다."
+    profile:
+      - "소아 성장 진료 10년 · 통합 호르몬 전문"
+      - "연세대학교 의학과 / 의과대학원 졸업"
+      - "현 연세새봄의원 대표원장"
+      - "호르몬 치료 전문 (성장호르몬·갑상선·성호르몬)"
+      - "NABBA / WFF 의학 고문"
+  intro:
+    h2: "187 성장클리닉 — 연세새봄의원"
+    p1: "소아 키 성장은 성장호르몬 하나로 결정되지 않습니다. 갑상선·성호르몬·영양·수면·스트레스가 함께 작용해야 하기 때문에, <strong>호르몬을 통합적으로 보는 관점</strong>이 필요합니다."
+    p2: "187 성장클리닉은 골연령 정밀 진단부터 호르몬 종합 검사, 생활습관 코칭까지 아이마다 맞춤 관리합니다. 해외 거주 가족은 화상 상담으로 한국에 오지 않아도 진료가 가능합니다."
+  video:
+    h3: "병원 소개 영상"
+    iframe_title: "연세새봄의원 소개"
+  facility:
+    h3: "시설 소개"
+    aria_prev: "이전"
+    aria_next: "다음"
+    aria_dot_prefix: "사진"
+    items:
+      - "2층 대기실"
+      - "2층 진료실"
+      - "2층 외관"
+      - "3층 운동센터"
+      - "3층 트레이닝"
+      - "3층 GYM"
+  contact:
+    label: "상담 및 예약 문의"
+    phone: "02-3395-0999"
+    addr: "서울시 강남구 도산대로 328, 휘선빌딩 4층"
+
+cases:
+  page_title: "치료 사례 | 187 성장클리닉"
+  iframe_title: "치료 사례"
+
+calculator:
+  page_title: "예상키 측정 | 187 성장클리닉"
+  iframe_title: "예상키 측정"
+
+shell:
+  aria:
+    home: "홈으로"
+    kakao: "카카오톡 1:1 상담"
+    share: "공유하기"
+    menu: "메인 메뉴"
+    close: "닫기"
+  header:
+    kakao_label: "1:1 카톡 상담"
+  nav:
+    programs: "성장 프로그램"
+    clinic: "병원 소개"
+    cases: "치료 사례"
+    calc: "예상키 측정"
+  calc:
+    badge: "성장 진단 · 무료"
+    title: "우리 아이 예상 키"
+    subtitle_line1: "성장판이 닫히기 전 골든타임 진단."
+    subtitle_line2: "30초 안에 18세 예상 성인 키를 확인하세요."
+    field_gender: "성별"
+    gender_male: "👦 남아"
+    gender_female: "👧 여아"
+    gender_male_short: "남아"
+    gender_female_short: "여아"
+    field_birth: "생년월일"
+    field_height: "현재 키 (cm)"
+    field_weight: "몸무게 (kg)"
+    submit: "예상키 계산하기"
+    result_label: "예상 성인 키"
+    percentile_top: "상위"
+    note_label: "참고:"
+    note_body: "WHO/KDCA 표준 성장도표 기반 통계 추정치입니다. 실제 성장은 영양·수면·운동 등 환경 요인에 따라 달라질 수 있습니다."
+    kakao_cta: "💬 카톡 1:1 상담받기"
+    reset: "다시 측정하기"
+    interpret_high: "✅ 또래 평균 이상으로 성장할 가능성이 높아요. 지금 페이스를 유지하는 것이 중요합니다."
+    interpret_mid: "🔍 또래 평균 수준이에요. 환경 요인을 잘 관리하면 더 좋은 결과를 기대할 수 있어요."
+    interpret_low: "⚠️ 또래보다 약간 작을 수 있어요. 성장판이 닫히기 전 골든타임 진단을 권해드려요."
+    interpret_critical: "🔎 또래 대비 차이가 클 수 있어요. 골연령·호르몬 정밀 진단으로 원인을 빨리 확인하는 것이 좋습니다."
+  toast:
+    copied: "링크가 복사되었습니다"
+    failed: "공유 실패"
+  chart:
+    now_prefix: "현재"
+    age_suffix: "세"

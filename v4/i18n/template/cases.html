@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{seo_head}}
+<link rel="stylesheet" href="/test/_shell.css">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #444; background: #fff; font-size: 15px; line-height: 1.7;
+    word-break: keep-all; -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 1024px; margin: 0 auto; background: #fff; }
+
+  /* Iframe wrapper — fill viewport between fixed top header and bottom nav */
+  .cases-iframe-wrap {
+    width: 100%;
+    /* viewport - top header (52) - bottom nav (76) */
+    height: calc(100vh - 128px);
+    min-height: 480px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .cases-iframe-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+</style>
+</head>
+
+<body data-page="cases">
+<div class="t-page">
+<div class="container">
+
+  <div class="cases-iframe-wrap">
+    <iframe src="/cases-embed?lang={{meta.lang}}" title="{{cases.iframe_title}}" loading="eager"></iframe>
+  </div>
+
+</div>
+</div><!-- /.t-page -->
+
+<script>
+  window.__I18N__ = {
+    locale: "{{meta.lang}}",
+    channel: "{{messenger.channel}}",
+    page_type: "cases",
+    shell: {{shell_json}}
+  };
+</script>
+<script src="/test/_shell.js"></script>
+
+</body>
+</html>

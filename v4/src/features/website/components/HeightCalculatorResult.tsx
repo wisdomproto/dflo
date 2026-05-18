@@ -7,6 +7,7 @@ import { useMemo, useState, useEffect, useRef } from 'react';
 import { heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
+import { getCalcLabels, type CalcLang } from './calcLabels';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -35,6 +36,8 @@ interface Props {
   onClose: () => void;
   /** Render result inline as a page (no modal overlay). Used by /calc-embed. */
   embedded?: boolean;
+  /** Locale for UI labels. Default 'ko'. */
+  lang?: CalcLang;
 }
 
 /** Count-up hook: animates from 0 to target over duration ms */
@@ -59,10 +62,11 @@ function useCountUp(target: number, duration: number, active: boolean) {
   return value;
 }
 
-export function HeightCalculatorResult({ result, isOpen, onClose, embedded = false }: Props) {
+export function HeightCalculatorResult({ result, isOpen, onClose, embedded = false, lang = 'ko' }: Props) {
   const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=done
   const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
   const chartRef = useRef<ChartJS<'line'>>(null);
+  const t = getCalcLabels(lang);
 
   const allPathPoints = useMemo(() => {
     const startAge = Math.ceil(result.age * 2) / 2;
@@ -140,7 +144,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
         },
         // Prediction path — progressive line drawing (points added one by one)
         ...(pathPoints.length > 0 ? [{
-          label: '예상 성장 경로',
+          label: t.chartPathLegend,
           data: pathPoints,
           borderColor: '#0F6E56',
           backgroundColor: 'rgba(15,110,86,0.06)',
@@ -173,7 +177,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
         }] : []),
       ],
     };
-  }, [result, pathPoints, drawnPoints, allPathPoints.length]);
+  }, [result, pathPoints, drawnPoints, allPathPoints.length, t]);
 
   const options: Parameters<typeof Line>[0]['options'] = useMemo(() => ({
     responsive: true,
@@ -198,45 +202,48 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
     scales: {
       x: {
         type: 'linear' as const,
-        title: { display: true, text: '나이(세)', font: { size: 12 } },
+        title: { display: true, text: t.chartXAxis, font: { size: 12 } },
         min: 3, max: 18,
         ticks: { stepSize: 1, font: { size: 11 }, callback: (val) => Number.isInteger(Number(val)) ? `${val}` : '' },
         grid: { display: false },
       },
       y: {
-        title: { display: true, text: '키(cm)', font: { size: 12 } },
+        title: { display: true, text: t.chartYAxis, font: { size: 12 } },
         min: 70, max: 185,
         ticks: { font: { size: 11 }, stepSize: 10 },
         grid: { color: 'rgba(0,0,0,0.05)' },
       },
     },
-  }), [phase]);
+  }), [phase, t]);
 
   const interpretation = result.percentile >= 75
-    ? '현재 또래 대비 큰 편입니다. 꾸준한 성장 관리로 잠재력을 최대한 발휘할 수 있습니다.'
+    ? t.interpretHigh
     : result.percentile >= 50
-      ? '현재 또래 평균 수준입니다. 적절한 영양, 운동, 수면 관리로 더 클 수 있습니다.'
+      ? t.interpretMid
       : result.percentile >= 25
-        ? '또래 평균보다 약간 작은 편입니다. 전문 상담을 통해 성장 가능성을 확인해보세요.'
-        : '또래 대비 작은 편이므로, 성장판이 열려있는 지금이 성장 치료의 골든타임입니다.';
+        ? t.interpretLow
+        : t.interpretCritical;
+
+  const ageYears = Math.floor(result.age);
+  const ageMonths = Math.round((result.age % 1) * 12);
 
   const body = (
     <>
       <div className="space-y-5">
-        <h2 className="text-xl font-extrabold text-gray-900">예상키 측정 결과</h2>
+        <h2 className="text-xl font-extrabold text-gray-900">{t.resultTitle}</h2>
 
         {/* Main result — count-up animation */}
         <div className="bg-[#E8F5F0] rounded-2xl p-5 text-center space-y-2">
-          <p className="text-sm font-medium text-[#0F6E56]">예상 성인 키</p>
+          <p className="text-sm font-medium text-[#0F6E56]">{t.resultLabel}</p>
           <p className="text-5xl font-black text-[#0F6E56] leading-none transition-all">
             {countUp.toFixed(1)} <span className="text-2xl">cm</span>
           </p>
           <div className={`flex justify-center gap-2 flex-wrap text-xs transition-opacity duration-500 ${phase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
             <span className="rounded-full bg-[#0F6E56] text-white font-semibold px-3 py-1">
-              {result.gender === 'male' ? '남아' : '여아'} · {Math.floor(result.age)}세 {Math.round((result.age % 1) * 12)}개월
+              {result.gender === 'male' ? t.resultGenderMale : t.resultGenderFemale} · {t.pillAge(ageYears, ageMonths)}
             </span>
             <span className="rounded-full bg-white text-[#0F6E56] font-semibold px-3 py-1">
-              현재 {result.currentHeight}cm · 백분위 {result.percentile.toFixed(1)}%
+              {t.pillCurrent(result.currentHeight, result.percentile)}
             </span>
           </div>
         </div>
@@ -245,22 +252,22 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
         <div className={`transition-opacity duration-500 ${phase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
           <Line ref={chartRef} data={chartData} options={options} />
           <p className="text-[10px] text-gray-400 text-center mt-1">
-            한국 소아 성장 표준 (2017 질병관리청) · 5th / 50th / 95th 백분위
+            {t.chartFooter}
           </p>
         </div>
 
         {/* Interpretation — fade in at end */}
         <div className={`bg-amber-50 rounded-xl p-4 space-y-1.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <p className="text-xs font-bold text-amber-800">📋 해석 가이드</p>
+          <p className="text-xs font-bold text-amber-800">{t.interpretH}</p>
           <p className="text-xs text-amber-700 leading-relaxed">{interpretation}</p>
         </div>
 
         {/* Methodology note + Kakao CTA — fade in at end */}
         <div className={`space-y-2.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-xs text-gray-600 leading-relaxed">
-            <p><strong>📊 측정 원리:</strong> 한국 질병관리청(2017) 소아·청소년 성장 표준 데이터(LMS 방법) 기반</p>
-            <p><strong>🎯 예상 키:</strong> 현재 키의 백분위를 유지한다는 가정 하에 18세 시점의 동일 백분위 키를 역산</p>
-            <p><strong>⚠️ 참고:</strong> 골연령, 성장호르몬, 영양 상태 등은 반영되지 않은 통계적 추정치입니다. 정확한 진단은 전문의 상담이 필요합니다.</p>
+            <p><strong>{t.noteBoxPrincipleLabel}</strong> {t.noteBoxPrincipleBody}</p>
+            <p><strong>{t.noteBoxPredictedLabel}</strong> {t.noteBoxPredictedBody}</p>
+            <p><strong>{t.noteBoxCautionLabel}</strong> {t.noteBoxCautionBody}</p>
           </div>
 
           {/* Kakao CTA */}
@@ -268,14 +275,14 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             onClick={() => trackKakaoConsult('height_calc_result')}
             className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#FEE500] py-3.5
                        text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all">
-            <span>💬</span> 전문 상담 받아보세요
+            {t.kakaoCta}
           </a>
 
           {/* Reset button — embedded mode only (modal mode uses close button) */}
           {embedded && (
             <button onClick={onClose}
               className="w-full text-center text-xs text-gray-500 underline underline-offset-4 py-2 hover:text-gray-700">
-              다시 측정하기
+              {t.reset}
             </button>
           )}
         </div>

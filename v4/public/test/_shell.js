@@ -177,20 +177,53 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+// ============= I18N HELPER =============
+// Looks up window.__I18N__.shell with dot-path. Falls back to provided ko-default
+// so the file remains readable as Korean source-of-truth even if i18n is missing.
+function t(path, fallback) {
+  const root = (window.__I18N__ && window.__I18N__.shell) || null;
+  if (!root) return fallback;
+  let cur = root;
+  for (const p of path.split('.')) {
+    if (cur == null || typeof cur !== 'object' || !(p in cur)) return fallback;
+    cur = cur[p];
+  }
+  return typeof cur === 'string' ? cur : fallback;
+}
+// HTML-escape for use inside attribute/text content (defends against ' " < > & in translations).
+function tEsc(path, fallback) {
+  return t(path, fallback)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // ============= SHELL MARKUP INJECTION =============
+// Locale-aware nav: when window.__I18N__.locale is set (any /test/{lang}/ page) we
+// route to the matching language folder; from the root /test/ page (no __I18N__),
+// we route to the root KO copies that act as defaults.
+const __I18N_LOCALE = (window.__I18N__ && window.__I18N__.locale) || '';
+const __NAV_BASE = __I18N_LOCALE ? `/test/${__I18N_LOCALE}` : '/test';
+const __HOME_HREF = `${__NAV_BASE}/index.html`;
+const __CLINIC_HREF = `${__NAV_BASE}/clinic.html`;
+const __CASES_HREF = `${__NAV_BASE}/cases.html`;
+const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
+
 const SHELL_HTML = `
   <header class="t-header" role="banner">
-    <a href="index.html" class="logo-wrap" aria-label="홈으로">
+    <a href="${__HOME_HREF}" class="logo-wrap" aria-label="${tEsc('aria.home', '홈으로')}">
       <img class="logo" src="/images/logo.jpg" alt="187 성장클리닉">
     </a>
     <div class="t-header-actions">
-      <a class="t-header-kakao" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener" aria-label="카카오톡 1:1 상담">
+      <a class="t-header-kakao" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
         </svg>
-        <span>1:1 카톡 상담</span>
+        <span>${tEsc('header.kakao_label', '1:1 카톡 상담')}</span>
       </a>
-      <button type="button" class="share-btn" aria-label="공유하기" data-share>
+      <button type="button" class="share-btn" aria-label="${tEsc('aria.share', '공유하기')}" data-share>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="18" cy="5" r="3"/>
           <circle cx="6" cy="12" r="3"/>
@@ -202,86 +235,86 @@ const SHELL_HTML = `
     </div>
   </header>
 
-  <nav class="t-bottom-nav" aria-label="메인 메뉴">
-    <a href="index.html" data-nav="programs">
+  <nav class="t-bottom-nav" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
+    <a href="${__HOME_HREF}" data-nav="programs">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4h12a4 4 0 014 4v12" />
         <path d="M4 4v16h16" />
         <path d="M8 9h8" /><path d="M8 13h6" />
       </svg>
-      <span>성장 프로그램</span>
+      <span>${tEsc('nav.programs', '성장 프로그램')}</span>
     </a>
-    <a href="clinic.html" data-nav="clinic">
+    <a href="${__CLINIC_HREF}" data-nav="clinic">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M3 21h18" />
         <path d="M5 21V8l7-5 7 5v13" />
         <path d="M12 12v6" /><path d="M9 15h6" />
       </svg>
-      <span>병원 소개</span>
+      <span>${tEsc('nav.clinic', '병원 소개')}</span>
     </a>
-    <a href="cases.html" data-nav="cases">
+    <a href="${__CASES_HREF}" data-nav="cases">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="1.5" />
         <path d="M3 9h18" /><path d="M9 9v12" />
       </svg>
-      <span>치료 사례</span>
+      <span>${tEsc('nav.cases', '치료 사례')}</span>
     </a>
-    <a href="calculator.html" data-nav="calc" class="t-nav-highlight">
+    <a href="${__CALC_HREF}" data-nav="calc" class="t-nav-highlight">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4l16 16" /><path d="M4 4v16h16" /><path d="M9 14l3-3 3 3" /><path d="M12 11V4" />
       </svg>
-      <span>예상키 측정</span>
+      <span>${tEsc('nav.calc', '예상키 측정')}</span>
     </a>
   </nav>
 
   <div class="t-modal" id="tCalcModal" role="dialog" aria-modal="true" aria-labelledby="tCalcTitle">
     <div class="t-calc">
-      <button type="button" class="t-modal-close" data-close-modal aria-label="닫기">✕</button>
+      <button type="button" class="t-modal-close" data-close-modal aria-label="${tEsc('aria.close', '닫기')}">✕</button>
       <div id="tCalcForm">
         <div class="calc-header">
-          <span class="badge">성장 진단 · 무료</span>
-          <h2 id="tCalcTitle">우리 아이 예상 키</h2>
-          <p>성장판이 닫히기 전 골든타임 진단.<br>30초 안에 18세 예상 성인 키를 확인하세요.</p>
+          <span class="badge">${tEsc('calc.badge', '성장 진단 · 무료')}</span>
+          <h2 id="tCalcTitle">${tEsc('calc.title', '우리 아이 예상 키')}</h2>
+          <p>${tEsc('calc.subtitle_line1', '성장판이 닫히기 전 골든타임 진단.')}<br>${tEsc('calc.subtitle_line2', '30초 안에 18세 예상 성인 키를 확인하세요.')}</p>
         </div>
         <div style="margin-top:18px">
-          <label class="field-label">성별</label>
+          <label class="field-label">${tEsc('calc.field_gender', '성별')}</label>
           <div class="gender-row">
-            <button type="button" class="gender-btn active" data-gender="male">👦 남아</button>
-            <button type="button" class="gender-btn" data-gender="female">👧 여아</button>
+            <button type="button" class="gender-btn active" data-gender="male">${tEsc('calc.gender_male', '👦 남아')}</button>
+            <button type="button" class="gender-btn" data-gender="female">${tEsc('calc.gender_female', '👧 여아')}</button>
           </div>
         </div>
         <div style="margin-top:14px">
-          <label class="field-label">생년월일</label>
+          <label class="field-label">${tEsc('calc.field_birth', '생년월일')}</label>
           <input type="date" id="tCalcBirth">
         </div>
         <div class="row-2" style="margin-top:14px">
           <div>
-            <label class="field-label">현재 키 (cm)</label>
+            <label class="field-label">${tEsc('calc.field_height', '현재 키 (cm)')}</label>
             <input type="number" id="tCalcHeight" step="0.1" min="50" max="220" placeholder="120.5">
           </div>
           <div>
-            <label class="field-label">몸무게 (kg)</label>
+            <label class="field-label">${tEsc('calc.field_weight', '몸무게 (kg)')}</label>
             <input type="number" id="tCalcWeight" step="0.1" min="5" max="200" placeholder="25.0">
           </div>
         </div>
-        <button type="button" class="calc-btn" id="tCalcSubmit" disabled>예상키 계산하기</button>
+        <button type="button" class="calc-btn" id="tCalcSubmit" disabled>${tEsc('calc.submit', '예상키 계산하기')}</button>
       </div>
       <div class="t-result" id="tCalcResult">
         <div class="hero-card">
-          <div class="label">예상 성인 키</div>
+          <div class="label">${tEsc('calc.result_label', '예상 성인 키')}</div>
           <div class="number"><span id="tResultHeight">0</span><span class="unit"> cm</span></div>
           <div class="meta">
-            <span class="pill solid">상위 <span id="tResultPercentile">50</span>%</span>
-            <span class="pill outline" id="tResultGender">남아</span>
+            <span class="pill solid">${tEsc('calc.percentile_top', '상위')} <span id="tResultPercentile">50</span>%</span>
+            <span class="pill outline" id="tResultGender">${tEsc('calc.gender_male_short', '남아')}</span>
           </div>
         </div>
         <svg class="t-result-chart" id="tResultChart" viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true"></svg>
         <div class="interpretation" id="tResultInterpret"></div>
         <div class="note">
-          <strong>참고:</strong> WHO/KDCA 표준 성장도표 기반 통계 추정치입니다. 실제 성장은 영양·수면·운동 등 환경 요인에 따라 달라질 수 있어요.
+          <strong>${tEsc('calc.note_label', '참고:')}</strong> ${tEsc('calc.note_body', 'WHO/KDCA 표준 성장도표 기반 통계 추정치입니다. 실제 성장은 영양·수면·운동 등 환경 요인에 따라 달라질 수 있어요.')}
         </div>
-        <a class="kakao-cta" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">💬 카톡 1:1 상담받기</a>
-        <button type="button" class="reset-btn" id="tCalcReset">다시 측정하기</button>
+        <a class="kakao-cta" href="https://pf.kakao.com/_ZxneSb" target="_blank" rel="noopener">${tEsc('calc.kakao_cta', '💬 카톡 1:1 상담받기')}</a>
+        <button type="button" class="reset-btn" id="tCalcReset">${tEsc('calc.reset', '다시 측정하기')}</button>
       </div>
     </div>
   </div>
@@ -313,9 +346,9 @@ const SHELL_HTML = `
       } catch (e) { /* user cancelled or share failed — fall through to clipboard */ }
       try {
         await navigator.clipboard.writeText(url);
-        showToast('링크가 복사되었습니다');
+        showToast(t('toast.copied', '링크가 복사되었습니다'));
       } catch (e) {
-        showToast('공유 실패');
+        showToast(t('toast.failed', '공유 실패'));
       }
     });
   }
@@ -400,8 +433,8 @@ const SHELL_HTML = `
       <circle cx="${xOf(startAge).toFixed(1)}" cy="${yOf(currentH).toFixed(1)}" r="3.5" fill="#fff" stroke="#4A2D6B" stroke-width="1.5"/>
       <circle cx="${xOf(endAge).toFixed(1)}" cy="${yOf(adultH).toFixed(1)}" r="4" fill="#4A2D6B"/>
       <text x="${xOf(endAge).toFixed(1)}" y="${(yOf(adultH) - 8).toFixed(1)}" text-anchor="end" font-size="10.5" font-weight="700" fill="#4A2D6B">${adultH.toFixed(1)}cm</text>
-      <text x="${xOf(startAge).toFixed(1)}" y="${(yOf(currentH) - 8).toFixed(1)}" text-anchor="start" font-size="9.5" fill="#8a8580">현재 ${currentH}cm</text>
-      ${ageTicks.map(a => `<text x="${xOf(a).toFixed(1)}" y="${(VB_H - 10).toFixed(1)}" text-anchor="middle" font-size="9.5" fill="#8a8580">${a}세</text>`).join('')}
+      <text x="${xOf(startAge).toFixed(1)}" y="${(yOf(currentH) - 8).toFixed(1)}" text-anchor="start" font-size="9.5" fill="#8a8580">${t('chart.now_prefix', '현재')} ${currentH}cm</text>
+      ${ageTicks.map(a => `<text x="${xOf(a).toFixed(1)}" y="${(VB_H - 10).toFixed(1)}" text-anchor="middle" font-size="9.5" fill="#8a8580">${a}${t('chart.age_suffix', '세')}</text>`).join('')}
       <text x="${(PAD_L - 6).toFixed(1)}" y="${(PAD_T + 8).toFixed(1)}" text-anchor="end" font-size="9" fill="#8a8580">${maxH.toFixed(0)}</text>
       <text x="${(PAD_L - 6).toFixed(1)}" y="${(PAD_T + plotH).toFixed(1)}" text-anchor="end" font-size="9" fill="#8a8580">${minH.toFixed(0)}</text>
     `;
@@ -463,16 +496,18 @@ const SHELL_HTML = `
       const adultPctile = window.t.calc.calcPercentile(adultHeight, 18, gender);
       document.getElementById('tResultHeight').textContent = adultHeight.toFixed(1);
       document.getElementById('tResultPercentile').textContent = Math.round(adultPctile);
-      document.getElementById('tResultGender').textContent = gender === 'male' ? '남아' : '여아';
+      document.getElementById('tResultGender').textContent = gender === 'male'
+        ? t('calc.gender_male_short', '남아')
+        : t('calc.gender_female_short', '여아');
       let msg;
       if (adultPctile >= 75) {
-        msg = '✅ 또래 평균 이상으로 성장할 가능성이 높아요. 지금 페이스를 유지하는 것이 중요합니다.';
+        msg = t('calc.interpret_high', '✅ 또래 평균 이상으로 성장할 가능성이 높아요. 지금 페이스를 유지하는 것이 중요합니다.');
       } else if (adultPctile >= 50) {
-        msg = '🔍 또래 평균 수준이에요. 환경 요인을 잘 관리하면 더 좋은 결과를 기대할 수 있어요.';
+        msg = t('calc.interpret_mid', '🔍 또래 평균 수준이에요. 환경 요인을 잘 관리하면 더 좋은 결과를 기대할 수 있어요.');
       } else if (adultPctile >= 25) {
-        msg = '⚠️ 또래보다 약간 작을 수 있어요. 성장판이 닫히기 전 골든타임 진단을 권해드려요.';
+        msg = t('calc.interpret_low', '⚠️ 또래보다 약간 작을 수 있어요. 성장판이 닫히기 전 골든타임 진단을 권해드려요.');
       } else {
-        msg = '🚨 또래 대비 많이 작을 수 있어요. 골연령·호르몬 정밀 진단으로 원인을 빨리 찾는 것이 중요합니다.';
+        msg = t('calc.interpret_critical', '🚨 또래 대비 많이 작을 수 있어요. 골연령·호르몬 정밀 진단으로 원인을 빨리 찾는 것이 중요합니다.');
       }
       document.getElementById('tResultInterpret').textContent = msg;
       drawHeightChart(height, age, adultHeight, gender);

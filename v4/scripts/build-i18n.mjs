@@ -64,16 +64,39 @@ async function main() {
   }
 
   const homeTemplate = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
+  const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
+  const casesTemplate = readFileSync(join(ROOT, 'i18n/template/cases.html'), 'utf8');
+  const calculatorTemplate = readFileSync(join(ROOT, 'i18n/template/calculator.html'), 'utf8');
   const postTemplate = readFileSync(join(ROOT, 'i18n/template/blog-post.html'), 'utf8');
   const indexTemplate = readFileSync(join(ROOT, 'i18n/template/blog-index.html'), 'utf8');
+
+  // Subpages share the brand SEO entry (description, OG image) but get their own title
+  // from the locale yml so Google snippets and the browser tab read correctly.
+  const SUBPAGES = [
+    { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title' },
+    { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
+    { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title' },
+  ];
 
   for (const lang of ACTIVE_LANGS) {
     console.log(`[i18n] building ${lang}`);
     const locale = loadLocale(lang);
     const messenger = getMessengerCTA(lang, { requireLiveUrl: true });
     locale.messenger = messenger;
+    locale.shell_json = JSON.stringify(locale.shell || {});
+
+    // Home
     locale.seo_head = buildHead(lang, { path: '/' });
     writeFile(join(ROOT, 'public/test', lang, 'index.html'), render(homeTemplate, locale));
+
+    // Subpages — re-bind seo_head per page so canonical/hreflang/title are correct
+    for (const sub of SUBPAGES) {
+      const titleParts = sub.titlePath.split('.');
+      let title = locale;
+      for (const p of titleParts) title = title?.[p];
+      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, skipJsonLd: true });
+      writeFile(join(ROOT, 'public/test', lang, sub.file), render(sub.template, locale));
+    }
 
     if (blogSlugs[lang] && blogSlugs[lang].length > 0) {
       const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate });

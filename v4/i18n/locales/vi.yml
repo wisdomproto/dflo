@@ -1,305 +1,415 @@
 meta:
   lang: vi
   og_locale: vi_VN
-  title: '[NEEDS TRANSLATION]'
+  title: "187 Growth Clinic | Dự đoán chiều cao trưởng thành miễn phí cho con"
 
 blog:
-  index_heading: "[NEEDS TRANSLATION]"
+  index_heading: "Hiểu sâu về tăng trưởng"
 
 hero:
-  logo_alt: '[NEEDS TRANSLATION]'
-  title_line1: '[NEEDS TRANSLATION]'
-  title_line2: '[NEEDS TRANSLATION]'
-  hero_img_alt: '[NEEDS TRANSLATION]'
+  logo_alt: "187 Growth Clinic"
+  title_line1: "Chiều cao của con —"
+  title_line2: "hiện đang ở đâu?"
+  hero_img_alt: "Hình ảnh chính phòng khám Yonsei Saebom 187 Growth"
+
 intro:
-  h2_line1: '[NEEDS TRANSLATION]'
-  h2_accent: '[NEEDS TRANSLATION]'
-  h2_line2: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  h2_line1: "Sự tăng trưởng của trẻ"
+  h2_accent: "không chỉ phụ thuộc vào hormone tăng trưởng."
+  h2_line2: ""
+  body: |
+    Tiến trình dậy thì, giấc ngủ, tuyến giáp, căng thẳng, cân nặng và tư thế
+    đều phải được xem xét cùng nhau để định hướng tăng trưởng lành mạnh.
+    Yonsei Saebom đánh giá toàn diện mọi yếu tố cản trở sự phát triển của con.
+
 medal:
-  panel_alt: '[NEEDS TRANSLATION]'
+  panel_alt: "Phòng khám được công ty người mẫu chỉ định, chương trình chuyên cho vận động viên và người mẫu"
+
 check:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "Con bạn có cần điều này?"
+  heading_part1: "Khi nào nên cân nhắc "
+  heading_accent: "kiểm tra tăng trưởng"
   cards:
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
+    - alt: "Trẻ thấp hơn rõ rệt so với bạn cùng tuổi"
+      caption_line1: "Thấp hơn rõ rệt"
+      caption_line2: "so với bạn cùng tuổi"
+    - alt: "Tốc độ tăng trưởng chậm trong năm qua"
+      caption_line1: "Tốc độ tăng trưởng"
+      caption_line2: "12 tháng qua chậm"
+    - alt: "Tốc độ tăng trưởng thay đổi đột ngột"
+      caption_line1: "Tốc độ tăng trưởng"
+      caption_line2: "thay đổi đột ngột"
+    - alt: "Thấp hơn 10 cm so với chiều cao trung bình"
+      caption_line1: "Thấp hơn 10 cm"
+      caption_line2: "so với trung bình"
+    - alt: "Tư thế và tỷ lệ cơ thể không cân đối"
+      caption_line1: "Tư thế·tỷ lệ"
+      caption_line2: "cơ thể không cân đối"
+    - alt: "Nghi ngờ bất thường nội tiết tố"
+      caption_line1: "Nghi ngờ bất thường"
+      caption_line2: "về nội tiết tố"
+
 golden:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_part2: '[NEEDS TRANSLATION]'
-  img_alt: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "Thời điểm vàng cho điều trị tăng trưởng"
+  heading_part1: "Khi nào nên "
+  heading_accent: "kiểm tra chiều cao?"
+  heading_part2: ""
+  img_alt: "Thời điểm điều trị phù hợp cho bé trai và bé gái"
+  lead: "Hiệu quả điều trị tăng trưởng phụ thuộc vào <strong>tình trạng sụn tăng trưởng và tốc độ dậy thì</strong>. Việc đánh giá có thể tách khỏi điều trị, vì vậy nếu lo lắng về tốc độ tăng trưởng, hãy bắt đầu bằng cách kiểm tra tình trạng hiện tại."
+
 hormone:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  solution_img_alt: '[NEEDS TRANSLATION]'
-  features_heading_line1: '[NEEDS TRANSLATION]'
-  features_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "Chăm sóc tăng trưởng tích hợp"
+  heading_line1: "Không chỉ là điều trị bằng hormone tăng trưởng"
+  heading_line2: "Yonsei Saebom — "
+  heading_accent: "giải pháp tăng trưởng tích hợp"
+  lead: "Chúng tôi không chỉ đánh giá hormone tăng trưởng mà còn <strong>hormone giới tính, giấc ngủ, tuyến giáp, căng thẳng, cân nặng và tư thế</strong>. Tìm ra yếu tố cản trở sự phát triển của con và thiết kế hướng tăng trưởng cá nhân hóa."
+  solution_img_alt: "6 trụ cột giải pháp tăng trưởng tích hợp Yonsei Saebom"
+  features_heading_line1: "3 trụ cột cốt lõi"
+  features_heading_accent: "cho cân bằng nội tiết tố"
   features:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
+    - img_alt: "Quản lý hormone"
+      num: "01 / Chăm sóc hormone"
+      title: "Chẩn đoán mất cân bằng & chăm sóc có hệ thống"
+      desc: "Ngoài hormone tăng trưởng, chúng tôi còn kiểm tra cân bằng hormone giới tính, giấc ngủ, tuyến giáp và căng thẳng."
+    - img_alt: "Quản lý dậy thì"
+      num: "02 / Chăm sóc dậy thì"
+      title: "Dậy thì sớm·đặc điểm sinh dục thứ phát"
+      desc: "Theo dõi tốc độ dậy thì cùng tình trạng sụn tăng trưởng để giữ định hướng phát triển lành mạnh."
+    - img_alt: "Chăm sóc cân nặng cho trẻ béo phì"
+      num: "03 / Chăm sóc cân nặng"
+      title: "Kiểm soát cân nặng có tính đến tăng trưởng"
+      desc: "Cân bằng dinh dưỡng cho trẻ trong giai đoạn phát triển, đồng thời quản lý cả cân nặng và chiều cao."
+
 intro2:
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  heading_line1: "Tìm hướng chăm sóc tăng trưởng"
+  heading_accent: "phù hợp với con bạn"
+  body: "Mỗi trẻ có yếu tố cản trở khác nhau. Hãy chọn loại phù hợp với con bạn dưới đây để xem hướng chăm sóc cần thiết."
+
 casenav:
-  aria_label: '[NEEDS TRANSLATION]'
+  aria_label: "Điều hướng các loại chăm sóc tăng trưởng"
   links:
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
+    - href: "#obesity"
+      label: "Tăng trưởng do béo phì"
+    - href: "#precocious"
+      label: "Dậy thì sớm"
+    - href: "#proportion"
+      label: "Tỷ lệ cơ thể"
+    - href: "#bodywork"
+      label: "Tư thế·phát triển"
+    - href: "#late"
+      label: "Cuối dậy thì"
+
 obesity:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line3: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  bmi_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  waffle_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  fatcell_img_alt: '[NEEDS TRANSLATION]'
-  risks_eyebrow: '[NEEDS TRANSLATION]'
-  risks_heading_part1: '[NEEDS TRANSLATION]'
-  risks_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "01 / Chăm sóc tăng trưởng cho trẻ béo phì"
+  heading_line1: "Tăng cân có khiến con cao lên không?"
+  heading_line2: ""
+  heading_accent: "Tăng trưởng do béo phì"
+  heading_line3: " cần cách tiếp cận khác"
+  lead: "Béo phì ở trẻ không chỉ là vấn đề cân nặng mà còn ảnh hưởng đến tiết hormone giới tính và tốc độ dậy thì. Cần xem xét cân nặng, tốc độ tăng trưởng và thói quen sinh hoạt cùng nhau."
+  bmi_img_alt: "Tiêu chí chẩn đoán béo phì ở trẻ em"
+  subsection1_eyebrow: "Béo phì ở trẻ và chiều cao"
+  subsection1_heading_line1: "Mỡ thừa ở trẻ đang phát triển"
+  subsection1_heading_accent: "không phải lúc nào cũng chuyển thành chiều cao"
+  subsection1_lead: "Mỡ thừa có thể cản trở hoạt động của hormone tăng trưởng và quá trình dậy thì. Quản lý cân nặng trong giai đoạn tăng trưởng không phải là ăn kiêng mà là <strong>tạo môi trường lành mạnh cho sự phát triển</strong>."
+  waffle_img_alt: "Thực phẩm calo cao và béo phì ở trẻ"
+  subsection2_heading_line1: "Béo phì ở trẻ"
+  subsection2_heading_accent: "khác với béo phì ở người lớn"
+  subsection2_lead: "Trong giai đoạn tăng trưởng, cả kích thước, số lượng tế bào mỡ và môi trường chuyển hóa đều có thể thay đổi. Đó là lý do quản lý sớm rất quan trọng."
+  fatcell_img_alt: "Sự gia tăng số lượng và kích thước tế bào mỡ"
+  risks_eyebrow: "Vì sao béo phì ở trẻ quan trọng"
+  risks_heading_part1: "Vì sao "
+  risks_heading_accent: "cần được chú ý?"
   risks:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+    - img_alt: "Nguy cơ béo phì người lớn"
+      title: "Béo phì người lớn"
+      desc: "Béo phì ở trẻ thường kéo dài thành vấn đề cân nặng khi trưởng thành."
+    - img_alt: "Nguy cơ chuyển hóa"
+      title: "Sức khỏe chuyển hóa"
+      desc: "Có thể liên quan đến đường huyết, huyết áp và các vấn đề da."
+    - img_alt: "Cản trở tăng trưởng"
+      title: "Cản trở tăng trưởng"
+      desc: "Mỡ và tốc độ dậy thì có thể ảnh hưởng đến sự phát triển sụn tăng trưởng."
+    - img_alt: "Tâm lý"
+      title: "Tâm lý"
+      desc: "Lo lắng về vóc dáng có thể ảnh hưởng đến sự tự tin và quan hệ bạn bè."
+  causes_eyebrow: "Vì sao ngày càng nhiều?"
+  causes_heading_accent: "Nguyên nhân béo phì ở trẻ"
+  causes_heading_part2: " — chúng tôi cùng tìm hiểu"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  lifestyle_heading_line1: '[NEEDS TRANSLATION]'
-  lifestyle_heading_accent: '[NEEDS TRANSLATION]'
-  lifestyle_lead: '[NEEDS TRANSLATION]'
+    - img_alt: "Mất cân bằng năng lượng"
+      title: "Mất cân bằng năng lượng"
+      desc: "Ăn khuya, đồ ăn vặt calo cao, ăn không đều"
+    - img_alt: "Yếu tố di truyền"
+      title: "Yếu tố di truyền"
+      desc: "Xem xét cùng tiền sử gia đình và môi trường"
+    - img_alt: "Yếu tố nội tiết"
+      title: "Yếu tố nội tiết"
+      desc: "Kiểm tra cảm giác đói, chuyển hóa và cân bằng hormone"
+    - img_alt: "Yếu tố sinh hoạt"
+      title: "Yếu tố sinh hoạt"
+      desc: "Vận động giảm và thói quen ăn uống kiểu Tây"
+  lifestyle_heading_line1: "Thói quen giúp giảm"
+  lifestyle_heading_accent: "béo phì ở trẻ giai đoạn phát triển"
+  lifestyle_lead: "Cân bằng cả cân nặng và tăng trưởng dựa trên dinh dưỡng và hoạt động cần thiết cho trẻ."
   lifestyle_cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Chăm sóc dinh dưỡng"
+      num: "01 / Dinh dưỡng"
+      title: "Bữa ăn cân đối"
+      desc: "Giảm đồ ăn vặt calo cao; cân bằng đạm, rau và chất xơ."
+    - img_alt: "Quản lý thời gian màn hình"
+      num: "02 / Sinh hoạt"
+      title: "Quản lý thời gian màn hình"
+      desc: "Giảm thời gian TV, game, smartphone; tăng vận động."
+    - img_alt: "Hoạt động thể chất"
+      num: "03 / Vận động"
+      title: "Vận động hằng ngày"
+      desc: "Đi bộ, leo cầu thang, tập nhẹ để duy trì hoạt động giai đoạn phát triển."
+    - img_alt: "Chăm sóc giấc ngủ"
+      num: "04 / Giấc ngủ"
+      title: "Ngủ đều đặn"
+      desc: "Nhịp ngủ quan trọng cho cả kiểm soát cân nặng và môi trường tăng trưởng."
+  cta_label: "Lo lắng về cân nặng·tăng trưởng của con? &nbsp;Tư vấn chuyên gia 1:1"
+
 precocious:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  chart_ctitle: '[NEEDS TRANSLATION]'
-  chart_csrc: '[NEEDS TRANSLATION]'
-  chart_cunit: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_heading_part2: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  height_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_heading_line2: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  arrow_img_alt: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+  eyebrow: "02 / Chăm sóc dậy thì sớm"
+  heading_line1: "Trẻ dậy thì sớm,"
+  heading_accent: "tốc độ sụn tăng trưởng"
+  heading_line2: " cũng cần được theo dõi"
+  lead: "Dậy thì sớm là khi đặc điểm sinh dục thứ phát xuất hiện trước 8 tuổi ở bé gái và 9 tuổi ở bé trai. Dậy thì nhanh có thể đẩy nhanh sự thay đổi của sụn tăng trưởng, vì vậy việc kiểm tra tình trạng hiện tại rất quan trọng."
+  chart_ctitle: "Bệnh nhân dậy thì sớm tại Hàn Quốc, 2016–2020"
+  chart_csrc: "Nguồn: Cơ quan Đánh giá và Thẩm định Bảo hiểm Y tế Hàn Quốc"
+  chart_cunit: "Đơn vị: người"
+  chart_img_alt: "Biểu đồ số bệnh nhân dậy thì sớm tại Hàn Quốc, 2016–2020"
+  subsection1_eyebrow: "Dậy thì sớm và chiều cao"
+  subsection1_heading_accent: "Dậy thì sớm"
+  subsection1_heading_part2: " ảnh hưởng đến chiều cao như thế nào"
+  subsection1_lead: "Khi hormone giới tính được tiết ra sớm, chiều cao có vẻ tăng nhanh trong thời gian ngắn. Nhưng sau đó sự thay đổi của sụn tăng trưởng tăng tốc, ảnh hưởng đến chiều cao trưởng thành cuối cùng."
+  height_img_alt: "Mối quan hệ giữa dậy thì sớm và tốc độ tăng trưởng"
+  subsection2_heading_line1: "Chăm sóc dậy thì sớm cần xem xét"
+  subsection2_heading_accent: "tốc độ dậy thì và tăng trưởng"
+  subsection2_heading_line2: " cùng nhau"
+  subsection2_lead: "Điều trị dậy thì sớm không chỉ nhìn vào hormone giới tính mà còn cần xem xét tốc độ tăng trưởng, tình trạng sụn tăng trưởng, giấc ngủ, dinh dưỡng và cân nặng cùng nhau."
+  arrow_img_alt: "Điều trị dậy thì sớm và quản lý tốc độ tăng trưởng"
+  causes_eyebrow: "Vì sao còn nhỏ?"
+  causes_heading_accent: "Nguyên nhân dậy thì sớm"
+  causes_heading_part2: " — chúng tôi cùng tìm hiểu"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Bệnh lý liên quan"
+      cap_line1: "Bệnh lý liên quan đến"
+      cap_line2: "não, buồng trứng hoặc tinh hoàn"
+    - img_alt: "Yếu tố ăn uống"
+      cap_line1: "Chế độ nhiều thịt, đồ chế biến"
+      cap_line2: "tiêu thụ chất béo cao"
+    - img_alt: "Yếu tố béo phì"
+      cap_line1: "Béo phì liên quan đến"
+      cap_line2: "tiết hormone giới tính"
+    - img_alt: "Chất gây rối loạn nội tiết"
+      cap_line1: "Tiếp xúc nhiều với"
+      cap_line2: "chất gây rối loạn nội tiết"
+    - img_alt: "Vận động ít"
+      cap_line1: "Vận động ít"
+      cap_line2: "(game, TV)"
+    - img_alt: "Yếu tố căng thẳng"
+      cap_line1: "Căng thẳng học tập·"
+      cap_line2: "sinh hoạt cao"
+  cta_label: "Dậy thì có quá nhanh không? &nbsp;Tư vấn chuyên gia 1:1"
+
 proportion:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  ratio_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  comparison_img_alt: '[NEEDS TRANSLATION]'
-  quote: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+  eyebrow: "03 / Chăm sóc tỷ lệ cơ thể"
+  heading_line1: "Quan trọng như chiều cao,"
+  heading_accent: "tỷ lệ cơ thể cân đối"
+  heading_line2: " cũng quan trọng không kém"
+  lead: "Ngoài chiều cao, tỷ lệ cơ thể, tư thế và cân bằng phần dưới đều ảnh hưởng đến ấn tượng và sự tự tin của con. Việc xem xét tỷ lệ cùng chiều cao trong giai đoạn phát triển là quan trọng."
+  ratio_img_alt: "Hướng dẫn tỷ lệ vàng và tỷ lệ cơ thể đẹp"
+  subsection1_heading_line1: "Dậy thì sớm và"
+  subsection1_heading_accent: "thay đổi tỷ lệ cơ thể"
+  subsection1_lead: "Thời điểm dậy thì và tốc độ tăng trưởng đều ảnh hưởng đến cân bằng giữa phần trên và phần dưới. Kiểm tra tình trạng sụn tăng trưởng và giai đoạn dậy thì giúp quản lý tỷ lệ cùng chiều cao."
+  comparison_img_alt: "So sánh tỷ lệ phần trên và phần dưới cơ thể"
+  quote: "Thời điểm dậy thì và cách tăng trưởng diễn ra có thể định hình tỷ lệ cơ thể cuối cùng."
+  cta_label: "Lo lắng về cân đối cơ thể? &nbsp;Tư vấn chuyên gia 1:1"
+
 bodywork:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  diag_subhead: '[NEEDS TRANSLATION]'
-  xray_img_alt: '[NEEDS TRANSLATION]'
-  diag_lead: '[NEEDS TRANSLATION]'
+  eyebrow: "04 / Chăm sóc tư thế·phát triển"
+  heading_line1: "Tư thế và vóc dáng cũng ảnh hưởng đến"
+  heading_accent: "môi trường tăng trưởng"
+  heading_line2: ""
+  lead: "Tư thế xấu, căng cơ và mạc, mất cân bằng cột sống·xương chậu có thể làm mất cân bằng cơ thể. Chúng tôi xem xét vóc dáng và tình trạng phát triển qua chẩn đoán và chăm sóc bằng vận động."
+  diag_subhead: "Chẩn đoán — Phân tích X-ray toàn cơ thể"
+  xray_img_alt: "Phân tích tư thế bằng X-ray toàn cơ thể"
+  diag_lead: "Sàng lọc các vấn đề tư thế thường gặp ở trẻ trong giai đoạn phát triển — vẹo cột sống, ưỡn thắt lưng, đầu nhô về trước, chân chữ O/X — và hướng dẫn hướng chăm sóc phù hợp với con."
   problems:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-  treat_subhead: '[NEEDS TRANSLATION]'
-  treat_lead: '[NEEDS TRANSLATION]'
-  equip_main_alt: '[NEEDS TRANSLATION]'
-  equip_row_alt: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Vẹo cột sống"
+      cap_strong: "Vẹo cột sống"
+      cap_suffix: ""
+    - img_alt: "Ưỡn thắt lưng"
+      cap_strong: "Ưỡn thắt lưng"
+      cap_suffix: ""
+    - img_alt: "Đầu nhô trước"
+      cap_strong: "Đầu nhô trước"
+      cap_suffix: ""
+    - img_alt: "Chân O và X"
+      cap_strong: "Chân O·X"
+      cap_suffix: ""
+  treat_subhead: "Điều trị — Vận động kích thích tăng trưởng + chăm sóc phát triển"
+  treat_lead: "GYM nội bộ có huấn luyện viên 1:1 thiết kế bài tập cho trẻ trong giai đoạn phát triển. Giãn cơ, chỉnh tư thế và thư giãn mạc giúp tư thế tốt và cân bằng cơ thể."
+  equip_main_alt: "Thiết bị tập tăng trưởng"
+  equip_row_alt: "Thiết bị chương trình tập tăng trưởng"
+  cta_label: "Đánh giá tư thế·phát triển &nbsp;Tư vấn chuyên gia 1:1"
+
 late:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "05 / Chăm sóc tăng trưởng cuối dậy thì"
+  heading_line1: "Dù đang ở cuối dậy thì,"
+  heading_accent: "tiềm năng tăng trưởng còn lại"
+  heading_line2: " vẫn có thể được kiểm tra"
+  lead: "Tốc độ tăng trưởng chậm lại ở cuối dậy thì. Tuy nhiên hướng chăm sóc vẫn có thể khác nhau tùy tình trạng sụn tăng trưởng, cân bằng hormone, tư thế, giấc ngủ và dinh dưỡng."
   program_tags:
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-  speed_heading_part1: '[NEEDS TRANSLATION]'
-  speed_heading_accent: '[NEEDS TRANSLATION]'
-  speed_heading_part2: '[NEEDS TRANSLATION]'
-  speed_lead: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  table_header_age: '[NEEDS TRANSLATION]'
-  table_header_speed: '[NEEDS TRANSLATION]'
-  table_header_speed_unit: '[NEEDS TRANSLATION]'
+    - "Chương trình trước dậy thì"
+    - "Chương trình dậy thì sớm"
+    - "Chương trình theo giai đoạn dậy thì"
+    - "Chương trình cuối dậy thì"
+  speed_heading_part1: "Kiểm tra "
+  speed_heading_accent: "tốc độ tăng trưởng"
+  speed_heading_part2: " theo độ tuổi"
+  speed_lead: "Biết tốc độ tăng trưởng điển hình ở mỗi giai đoạn giúp quyết định hướng chăm sóc phù hợp với tình trạng hiện tại của con."
+  chart_img_alt: "Biểu đồ tốc độ tăng trưởng theo tuổi"
+  table_header_age: "Tuổi"
+  table_header_speed: "Tốc độ tăng trưởng năm"
+  table_header_speed_unit: "(cm/năm)"
   table_rows:
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      sub_boy: '[NEEDS TRANSLATION]'
-      val_boy: '[NEEDS TRANSLATION]'
-      sub_girl: '[NEEDS TRANSLATION]'
-      val_girl: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-  potential_heading_line1: '[NEEDS TRANSLATION]'
-  potential_heading_accent: '[NEEDS TRANSLATION]'
-  potential_lead: '[NEEDS TRANSLATION]'
+    - label: "Trước dậy thì"
+      value: "5–6 cm"
+    - label: "Dậy thì sớm"
+      sub_boy: "Bé trai"
+      val_boy: "7–12 cm"
+      sub_girl: "Bé gái"
+      val_girl: "6–11 cm"
+    - label: "Cuối dậy thì"
+      value: "Chậm hơn tỷ lệ trước"
+  potential_heading_line1: "Tiềm năng tăng trưởng —"
+  potential_heading_accent: "bắt đầu bằng kiểm tra tình trạng hiện tại"
+  potential_lead: "Chúng tôi triển khai chương trình tăng trưởng phù hợp với giai đoạn phát triển hiện tại của con."
   cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "Theo dõi tốc độ dậy thì"
+      cap_line1: "Theo dõi tốc độ"
+      cap_line2: "dậy thì"
+    - img_alt: "Cân bằng cột sống xương chậu phần dưới"
+      cap_line1: "Cân bằng cột sống·"
+      cap_line2: "xương chậu·phần dưới"
+    - img_alt: "Vận động dinh dưỡng giấc ngủ sinh hoạt"
+      cap_line1: "Vận động·dinh dưỡng"
+      cap_line2: "giấc ngủ·sinh hoạt"
+    - img_alt: "Cân bằng hormone chăm sóc tăng trưởng"
+      cap_line1: "Cân bằng hormone"
+      cap_line2: "chăm sóc tăng trưởng"
+  cta_label: "Cuối dậy thì — có thực sự muộn? &nbsp;Tư vấn chuyên gia 1:1"
+
 process:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  pill: '[NEEDS TRANSLATION]'
-  grid_img_alt: '[NEEDS TRANSLATION]'
+  eyebrow: "Cùng nhau lớn lên"
+  heading_accent: "Quy trình chăm sóc"
+  lead: "Chăm sóc tăng trưởng của con là hành trình mà con, cha mẹ và đội ngũ y tế cùng tham gia. Từ buổi tư vấn đầu tiên đến theo dõi sau điều trị, chúng tôi liên tục kiểm tra tình trạng tăng trưởng."
+  pill: "Tình trạng tăng trưởng được theo dõi ngay cả sau khi kết thúc điều trị"
+  grid_img_alt: "Quy trình chăm sóc 7 bước Yonsei Saebom Growth Clinic"
+
 director:
-  quote_line1: '[NEEDS TRANSLATION]'
-  quote_strong: '[NEEDS TRANSLATION]'
-  quote_line2: '[NEEDS TRANSLATION]'
-  quote_line3: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
-  portrait_alt: '[NEEDS TRANSLATION]'
+  quote_line1: "Tại Yonsei Saebom"
+  quote_strong: "tăng trưởng khỏe mạnh và cân bằng"
+  quote_line2: ", "
+  quote_line3: "chúng tôi chuẩn bị cùng bạn"
+  body: "Dựa trên kinh nghiệm chăm sóc tăng trưởng, chúng tôi xem xét chiều cao, vóc dáng, cân bằng hormone và thói quen sinh hoạt của con cùng nhau. Qua dinh dưỡng, giấc ngủ và chăm sóc tăng trưởng cân bằng, chúng tôi giúp chuẩn bị tương lai khỏe mạnh cho con."
+  portrait_alt: "Giám đốc Chae Yong-hyun, Phòng khám Yonsei Saebom"
+
 cta_global:
-  header_consult: '[NEEDS TRANSLATION]'
-  bottom_nav_consult: '[NEEDS TRANSLATION]'
-  inline_cta_arrow: '[NEEDS TRANSLATION]'
+  header_consult: "Tư vấn"
+  bottom_nav_consult: "Đo miễn phí"
+  inline_cta_arrow: "→"
+
+clinic:
+  page_title: "Phòng khám | 187 Growth Clinic"
+  doctor:
+    h1_sr: "Giới thiệu Giám đốc Chae Yong-hyun"
+    portrait_alt: "Giám đốc Chae Yong-hyun"
+    name: "Chae Yong-hyun"
+    title: "Giám đốc"
+    quote_line1: "Chúng tôi nhìn sự tăng trưởng chiều cao của con qua góc độ hormone tích hợp."
+    quote_line2: "Chúng tôi đồng hành cùng bạn với 10 năm kinh nghiệm khám chữa bệnh."
+    profile:
+      - "10 năm khám chữa tăng trưởng nhi · chuyên gia hormone tích hợp"
+      - "Trường Y Đại học Yonsei / Khoa sau đại học Y khoa"
+      - "Giám đốc hiện tại của Phòng khám Yonsei Saebom"
+      - "Chuyên gia điều trị hormone (tăng trưởng · tuyến giáp · giới tính)"
+      - "Cố vấn Y khoa NABBA / WFF"
+  intro:
+    h2: "187 Growth Clinic — Yonsei Saebom"
+    p1: "Sự tăng trưởng chiều cao của trẻ không chỉ phụ thuộc vào hormone tăng trưởng. Tuyến giáp, hormone giới tính, dinh dưỡng, giấc ngủ và căng thẳng đều có vai trò, vì vậy <strong>góc nhìn hormone tích hợp</strong> là cần thiết."
+    p2: "187 Growth Clinic chăm sóc cá nhân hóa cho từng trẻ — từ đánh giá tuổi xương chính xác, xét nghiệm hormone toàn diện đến tư vấn lối sống. Gia đình ở nước ngoài có thể nhận tư vấn qua video mà không cần đến Hàn Quốc."
+  video:
+    h3: "Video giới thiệu phòng khám"
+    iframe_title: "Giới thiệu Phòng khám Yonsei Saebom"
+  facility:
+    h3: "Cơ sở vật chất"
+    aria_prev: "Trước"
+    aria_next: "Sau"
+    aria_dot_prefix: "Ảnh"
+    items:
+      - "Phòng chờ tầng 2"
+      - "Phòng khám tầng 2"
+      - "Mặt ngoài tầng 2"
+      - "Trung tâm thể chất tầng 3"
+      - "Khu tập tầng 3"
+      - "GYM tầng 3"
+  contact:
+    label: "Tư vấn & Đặt lịch"
+    phone: "+82-2-3395-0999"
+    addr: "Tầng 4, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
+
+cases:
+  page_title: "Ca điều trị | 187 Growth Clinic"
+  iframe_title: "Ca điều trị"
+
+calculator:
+  page_title: "Đo chiều cao miễn phí | 187 Growth Clinic"
+  iframe_title: "Dự đoán chiều cao miễn phí"
+
+shell:
+  aria:
+    home: "Trang chủ"
+    kakao: "Tư vấn KakaoTalk 1:1"
+    share: "Chia sẻ"
+    menu: "Menu chính"
+    close: "Đóng"
+  header:
+    kakao_label: "KakaoTalk 1:1"
+  nav:
+    programs: "Chương trình"
+    clinic: "Phòng khám"
+    cases: "Ca điều trị"
+    calc: "Đo miễn phí"
+  calc:
+    badge: "Kiểm tra tăng trưởng · Miễn phí"
+    title: "Chiều cao trưởng thành dự đoán"
+    subtitle_line1: "Kiểm tra trong thời điểm vàng trước khi sụn tăng trưởng đóng."
+    subtitle_line2: "Xem chiều cao trưởng thành dự đoán của con trong 30 giây."
+    field_gender: "Giới tính"
+    gender_male: "👦 Bé trai"
+    gender_female: "👧 Bé gái"
+    gender_male_short: "Bé trai"
+    gender_female_short: "Bé gái"
+    field_birth: "Ngày sinh"
+    field_height: "Chiều cao hiện tại (cm)"
+    field_weight: "Cân nặng (kg)"
+    submit: "Tính chiều cao dự đoán"
+    result_label: "Chiều cao trưởng thành dự đoán"
+    percentile_top: "Top"
+    note_label: "Lưu ý:"
+    note_body: "Đây là ước tính thống kê dựa trên biểu đồ tăng trưởng tiêu chuẩn WHO/KDCA. Tăng trưởng thực tế phụ thuộc vào dinh dưỡng, giấc ngủ, vận động và các yếu tố môi trường khác."
+    kakao_cta: "💬 Nhận tư vấn KakaoTalk 1:1"
+    reset: "Đo lại"
+    interpret_high: "✅ Có khả năng cao trên mức trung bình của bạn cùng tuổi. Hãy duy trì nhịp độ hiện tại."
+    interpret_mid: "🔍 Quanh mức trung bình của bạn cùng tuổi. Chăm sóc sinh hoạt tốt hơn có thể nâng cao kết quả."
+    interpret_low: "⚠️ Có thể thấp hơn một chút so với bạn cùng tuổi. Khuyến nghị kiểm tra trong thời điểm vàng trước khi sụn tăng trưởng đóng."
+    interpret_critical: "🚨 Có thể thấp hơn nhiều so với bạn cùng tuổi. Cần kiểm tra tuổi xương·hormone chi tiết để tìm nguyên nhân sớm."
+  toast:
+    copied: "Đã sao chép link"
+    failed: "Chia sẻ thất bại"
+  chart:
+    now_prefix: "Hiện tại"
+    age_suffix: " tuổi"

@@ -1,305 +1,415 @@
 meta:
   lang: th
   og_locale: th_TH
-  title: '[NEEDS TRANSLATION]'
+  title: "187 Growth Clinic | คาดการณ์ส่วนสูงผู้ใหญ่ของลูกฟรี"
 
 blog:
-  index_heading: "[NEEDS TRANSLATION]"
+  index_heading: "เจาะลึกเรื่องการเจริญเติบโต"
 
 hero:
-  logo_alt: '[NEEDS TRANSLATION]'
-  title_line1: '[NEEDS TRANSLATION]'
-  title_line2: '[NEEDS TRANSLATION]'
-  hero_img_alt: '[NEEDS TRANSLATION]'
+  logo_alt: "187 Growth Clinic"
+  title_line1: "ส่วนสูงของลูกตอนนี้"
+  title_line2: "อยู่ตรงไหน?"
+  hero_img_alt: "ภาพหลัก คลินิก Yonsei Saebom 187 Growth"
+
 intro:
-  h2_line1: '[NEEDS TRANSLATION]'
-  h2_accent: '[NEEDS TRANSLATION]'
-  h2_line2: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  h2_line1: "การเจริญเติบโตของเด็ก ไม่ได้ขึ้นกับ"
+  h2_accent: "โกรทฮอร์โมนเพียงอย่างเดียว"
+  h2_line2: ""
+  body: |
+    การเข้าสู่วัยรุ่น การนอน ไทรอยด์ ความเครียด น้ำหนัก และท่าทาง
+    ต้องดูร่วมกันจึงจะกำหนดทิศทางการเติบโตที่แข็งแรงได้
+    Yonsei Saebom ตรวจสอบทุกปัจจัยที่อาจขัดขวางการเติบโต
+
 medal:
-  panel_alt: '[NEEDS TRANSLATION]'
+  panel_alt: "คลินิกที่ได้รับการรับรองจากเอเจนซีโมเดล โปรแกรมเฉพาะสำหรับนักกีฬาและโมเดล"
+
 check:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "ลูกของคุณต้องการสิ่งนี้ไหม?"
+  heading_part1: "เมื่อใดควรพิจารณา "
+  heading_accent: "ตรวจประเมินการเจริญเติบโต"
   cards:
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
+    - alt: "เด็กที่ตัวเล็กกว่าเพื่อนวัยเดียวกัน"
+      caption_line1: "ตัวเล็กกว่า"
+      caption_line2: "เพื่อนวัยเดียวกันชัดเจน"
+    - alt: "ความเร็วการเติบโตช้าในปีที่ผ่านมา"
+      caption_line1: "ความเร็วการเติบโต"
+      caption_line2: "ใน 1 ปีที่ผ่านมาช้า"
+    - alt: "ความเร็วการเติบโตเปลี่ยนแปลงกะทันหัน"
+      caption_line1: "ความเร็วการเติบโต"
+      caption_line2: "เปลี่ยนแปลงกะทันหัน"
+    - alt: "ส่วนสูงต่ำกว่าค่าเฉลี่ยเกิน 10 ซม."
+      caption_line1: "ต่ำกว่าค่าเฉลี่ย"
+      caption_line2: "เกิน 10 ซม."
+    - alt: "ท่าทางและสัดส่วนร่างกายไม่สมดุล"
+      caption_line1: "มีท่าทาง·สัดส่วน"
+      caption_line2: "ที่ไม่สมดุล"
+    - alt: "สงสัยว่ามีความผิดปกติของฮอร์โมน"
+      caption_line1: "สงสัยว่ามี"
+      caption_line2: "ความผิดปกติของฮอร์โมน"
+
 golden:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_part2: '[NEEDS TRANSLATION]'
-  img_alt: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "ช่วงเวลาทองของการรักษาการเจริญเติบโต"
+  heading_part1: "ตรวจ "
+  heading_accent: "ส่วนสูง"
+  heading_part2: " เมื่อไหร่ดี?"
+  img_alt: "ช่วงเวลาที่เหมาะสมสำหรับเด็กชายและเด็กหญิง"
+  lead: "ผลของการรักษาการเจริญเติบโตขึ้นอยู่กับ <strong>สถานะของแผ่นกระดูกอ่อนและความเร็วของการเข้าสู่วัยรุ่น</strong> การตรวจประเมินทำได้แยกจากการรักษา หากกังวลเรื่องความเร็วการเติบโต แนะนำให้เริ่มจากการตรวจสถานะปัจจุบันก่อน"
+
 hormone:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  solution_img_alt: '[NEEDS TRANSLATION]'
-  features_heading_line1: '[NEEDS TRANSLATION]'
-  features_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "การดูแลการเจริญเติบโตแบบครบวงจร"
+  heading_line1: "ไม่ใช่การรักษาที่มองเฉพาะโกรทฮอร์โมน"
+  heading_line2: "Yonsei Saebom "
+  heading_accent: "โซลูชันการเติบโตแบบครบวงจร"
+  lead: "เราประเมินไม่เพียงแค่โกรทฮอร์โมน แต่รวมถึง <strong>ฮอร์โมนเพศ การนอน ไทรอยด์ ความเครียด น้ำหนัก และท่าทาง</strong> เราค้นหาปัจจัยที่ขัดขวางการเติบโตของลูกและออกแบบทิศทางการเติบโตเฉพาะบุคคล"
+  solution_img_alt: "Yonsei Saebom 6 เสาหลักโซลูชันการเจริญเติบโต"
+  features_heading_line1: "3 หลักสำคัญ"
+  features_heading_accent: "เพื่อความสมดุลของฮอร์โมน"
   features:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
+    - img_alt: "การดูแลฮอร์โมน"
+      num: "01 / ดูแลฮอร์โมน"
+      title: "วินิจฉัยและจัดการความไม่สมดุลอย่างเป็นระบบ"
+      desc: "นอกจากโกรทฮอร์โมน ยังตรวจความสมดุลของฮอร์โมนเพศ การนอน ไทรอยด์ และความเครียดทั้งหมด"
+    - img_alt: "การดูแลวัยรุ่น"
+      num: "02 / ดูแลวัยรุ่น"
+      title: "วัยรุ่นก่อนกำหนด·พัฒนาการลักษณะเพศขั้นที่สอง"
+      desc: "ดูความเร็วของการเข้าสู่วัยรุ่นพร้อมสถานะแผ่นกระดูกอ่อนเพื่อทิศทางการเติบโตที่ดี"
+    - img_alt: "การดูแลน้ำหนักของเด็กอ้วน"
+      num: "03 / ดูแลน้ำหนัก"
+      title: "ควบคุมน้ำหนักโดยคำนึงถึงการเติบโต"
+      desc: "พิจารณาสารอาหารที่จำเป็นสำหรับเด็กในวัยเจริญเติบโต ดูแลทั้งน้ำหนักและส่วนสูงไปพร้อมกัน"
+
 intro2:
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  heading_line1: "ค้นหาแนวทางการดูแลการเติบโต"
+  heading_accent: "ที่เหมาะกับลูกของคุณ"
+  body: "เด็กแต่ละคนมีปัจจัยที่ขัดขวางการเติบโตต่างกัน เลือกประเภทที่ตรงกับลูกของคุณจากด้านล่างเพื่อดูทิศทางการดูแลที่จำเป็น"
+
 casenav:
-  aria_label: '[NEEDS TRANSLATION]'
+  aria_label: "เมนูประเภทการดูแลการเจริญเติบโต"
   links:
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
+    - href: "#obesity"
+      label: "เด็กอ้วน"
+    - href: "#precocious"
+      label: "วัยรุ่นเร็ว"
+    - href: "#proportion"
+      label: "สัดส่วนร่างกาย"
+    - href: "#bodywork"
+      label: "ท่าทาง·พัฒนาการ"
+    - href: "#late"
+      label: "ปลายวัยรุ่น"
+
 obesity:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line3: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  bmi_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  waffle_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  fatcell_img_alt: '[NEEDS TRANSLATION]'
-  risks_eyebrow: '[NEEDS TRANSLATION]'
-  risks_heading_part1: '[NEEDS TRANSLATION]'
-  risks_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "01 / ดูแลการเติบโตในเด็กอ้วน"
+  heading_line1: "น้ำหนักเพิ่ม ส่วนสูงจะเพิ่มไหม?"
+  heading_line2: ""
+  heading_accent: "การเติบโตในเด็กอ้วน"
+  heading_line3: " ต้องมองให้ต่างออกไป"
+  lead: "ความอ้วนในวัยเจริญเติบโตไม่ได้เป็นเพียงปัญหาน้ำหนัก แต่อาจส่งผลต่อการหลั่งฮอร์โมนเพศและความเร็วการเข้าสู่วัยรุ่น สำคัญที่ต้องตรวจน้ำหนัก ความเร็วการเติบโต และพฤติกรรมการใช้ชีวิตไปพร้อมกัน"
+  bmi_img_alt: "เกณฑ์การวินิจฉัยโรคอ้วนในเด็ก"
+  subsection1_eyebrow: "ความสัมพันธ์ระหว่างโรคอ้วนในเด็กกับส่วนสูง"
+  subsection1_heading_line1: "ไขมันในเด็กวัยเจริญเติบโต"
+  subsection1_heading_accent: "ไม่ได้กลายเป็นส่วนสูงเสมอไป"
+  subsection1_lead: "ไขมันส่วนเกินอาจขัดขวางการทำงานของโกรทฮอร์โมนและการเข้าสู่วัยรุ่น การจัดการน้ำหนักในวัยเจริญเติบโตไม่ใช่แค่การลดน้ำหนัก แต่เป็น <strong>การสร้างสภาพแวดล้อมที่ดีต่อการเติบโต</strong>"
+  waffle_img_alt: "อาหารแคลอรี่สูงและโรคอ้วนในเด็ก"
+  subsection2_heading_line1: "โรคอ้วนในเด็ก"
+  subsection2_heading_accent: "ต้องดูแลต่างจากโรคอ้วนในผู้ใหญ่"
+  subsection2_lead: "ในวัยเจริญเติบโต ทั้งขนาดและจำนวนของเซลล์ไขมัน รวมถึงสภาพการเผาผลาญสามารถเปลี่ยนแปลงได้ จึงเป็นเหตุผลที่การจัดการแต่เนิ่นๆ มีความสำคัญ"
+  fatcell_img_alt: "การเพิ่มจำนวนและขนาดของเซลล์ไขมัน"
+  risks_eyebrow: "ความเสี่ยงของโรคอ้วนในเด็กที่ไม่ควรมองข้าม"
+  risks_heading_part1: "โรคอ้วนในเด็ก "
+  risks_heading_accent: "ทำไมต้องดูแล?"
   risks:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+    - img_alt: "ความเสี่ยงโรคอ้วนในผู้ใหญ่"
+      title: "โรคอ้วนในผู้ใหญ่"
+      desc: "ความอ้วนในวัยเด็กอาจนำไปสู่ปัญหาน้ำหนักในวัยผู้ใหญ่"
+    - img_alt: "ความเสี่ยงโรคเมตาบอลิก"
+      title: "สุขภาพการเผาผลาญ"
+      desc: "อาจเชื่อมโยงกับน้ำตาลในเลือด ความดันโลหิต และโรคผิวหนัง"
+    - img_alt: "ขัดขวางการเติบโต"
+      title: "ขัดขวางการเติบโต"
+      desc: "ไขมันและการเข้าสู่วัยรุ่นอาจส่งผลต่อแผ่นกระดูกอ่อน"
+    - img_alt: "ผลทางจิตใจ"
+      title: "ผลทางจิตใจ"
+      desc: "ความกังวลเรื่องรูปร่างอาจส่งผลต่อความมั่นใจและความสัมพันธ์กับเพื่อน"
+  causes_eyebrow: "ทำไมจึงเพิ่มขึ้น?"
+  causes_heading_accent: "สาเหตุของโรคอ้วนในเด็ก"
+  causes_heading_part2: " — ตรวจสอบร่วมกัน"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  lifestyle_heading_line1: '[NEEDS TRANSLATION]'
-  lifestyle_heading_accent: '[NEEDS TRANSLATION]'
-  lifestyle_lead: '[NEEDS TRANSLATION]'
+    - img_alt: "ไม่สมดุลพลังงาน"
+      title: "ไม่สมดุลพลังงาน"
+      desc: "อาหารดึก ขนมแคลอรี่สูง การกินไม่เป็นเวลา"
+    - img_alt: "ปัจจัยทางพันธุกรรม"
+      title: "ปัจจัยทางพันธุกรรม"
+      desc: "พิจารณาประวัติครอบครัวและสภาพแวดล้อมร่วมกัน"
+    - img_alt: "ปัจจัยต่อมไร้ท่อ"
+      title: "ปัจจัยต่อมไร้ท่อ"
+      desc: "ตรวจความอยากอาหาร การเผาผลาญ และความสมดุลของฮอร์โมน"
+    - img_alt: "ปัจจัยพฤติกรรม"
+      title: "ปัจจัยพฤติกรรม"
+      desc: "การเคลื่อนไหวลดลงและพฤติกรรมการกินแบบตะวันตก"
+  lifestyle_heading_line1: "พฤติกรรมเพื่อลด"
+  lifestyle_heading_accent: "โรคอ้วนในเด็กวัยเจริญเติบโต"
+  lifestyle_lead: "ดูแลทั้งน้ำหนักและการเติบโตโดยพิจารณาสารอาหารและกิจกรรมที่จำเป็นสำหรับเด็ก"
   lifestyle_cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "การจัดการอาหาร"
+      num: "01 / โภชนาการ"
+      title: "อาหารสมดุล"
+      desc: "ลดขนมแคลอรี่สูง รับประทานโปรตีน ผัก และไฟเบอร์อย่างสมดุล"
+    - img_alt: "ลดเวลาหน้าจอ"
+      num: "02 / ไลฟ์สไตล์"
+      title: "ลดเวลาหน้าจอ"
+      desc: "ลดเวลาทีวี เกม สมาร์ทโฟน และเพิ่มกิจกรรม"
+    - img_alt: "กิจกรรมร่างกาย"
+      num: "03 / กิจกรรม"
+      title: "ขยับร่างกายในชีวิตประจำวัน"
+      desc: "เดิน ขึ้นบันได ออกกำลังกายเบาๆ เพื่อรักษาระดับกิจกรรมในวัยเจริญเติบโต"
+    - img_alt: "การจัดการการนอน"
+      num: "04 / การนอน"
+      title: "นอนเป็นเวลา"
+      desc: "จังหวะการนอนสำคัญทั้งต่อการควบคุมน้ำหนักและสภาพแวดล้อมการเติบโต"
+  cta_label: "กังวลเรื่องน้ำหนักและการเติบโตของลูก? &nbsp;ปรึกษาผู้เชี่ยวชาญ 1:1"
+
 precocious:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  chart_ctitle: '[NEEDS TRANSLATION]'
-  chart_csrc: '[NEEDS TRANSLATION]'
-  chart_cunit: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_heading_part2: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  height_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_heading_line2: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  arrow_img_alt: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+  eyebrow: "02 / ดูแลวัยรุ่นเร็ว"
+  heading_line1: "เด็กที่เข้าสู่วัยรุ่นเร็ว"
+  heading_accent: "ความเร็วของแผ่นกระดูกอ่อน"
+  heading_line2: " ก็ต้องดูพร้อมกัน"
+  lead: "ภาวะวัยรุ่นก่อนกำหนดหมายถึงการเกิดลักษณะเพศขั้นที่สองก่อนอายุ 8 ปีในเด็กหญิง และก่อน 9 ปีในเด็กชาย หากการเข้าสู่วัยรุ่นเร็ว การเปลี่ยนแปลงของแผ่นกระดูกอ่อนก็จะเร็วขึ้น สำคัญที่ต้องตรวจสถานะปัจจุบัน"
+  chart_ctitle: "ผู้ป่วยวัยรุ่นก่อนกำหนดในเกาหลี ปี 2016–2020"
+  chart_csrc: "แหล่งที่มา: สำนักงานประเมินและตรวจสอบประกันสุขภาพ"
+  chart_cunit: "หน่วย: คน"
+  chart_img_alt: "กราฟจำนวนผู้ป่วยวัยรุ่นก่อนกำหนดในเกาหลี ปี 2016–2020"
+  subsection1_eyebrow: "วัยรุ่นเร็วและส่วนสูง"
+  subsection1_heading_accent: "วัยรุ่นเร็ว"
+  subsection1_heading_part2: " ส่งผลต่อการเติบโตอย่างไร"
+  subsection1_lead: "เมื่อฮอร์โมนเพศหลั่งเร็ว ความเร็วของส่วนสูงอาจดูเร็วขึ้นชั่วคราว แต่หลังจากนั้นการเปลี่ยนแปลงของแผ่นกระดูกอ่อนจะเร็วขึ้น ส่งผลต่อส่วนสูงสุดท้าย"
+  height_img_alt: "ความสัมพันธ์ระหว่างวัยรุ่นเร็วและความเร็วการเติบโต"
+  subsection2_heading_line1: "การดูแลวัยรุ่นก่อนกำหนดต้องพิจารณา"
+  subsection2_heading_accent: "ความเร็วของวัยรุ่นและการเติบโต"
+  subsection2_heading_line2: " ไปพร้อมกัน"
+  subsection2_lead: "การรักษาภาวะวัยรุ่นก่อนกำหนดไม่ใช่แค่ดูฮอร์โมนเพศ แต่ต้องพิจารณาความเร็วการเติบโต แผ่นกระดูกอ่อน การนอน โภชนาการ และน้ำหนักไปพร้อมกัน"
+  arrow_img_alt: "การรักษาวัยรุ่นก่อนกำหนดและการจัดการความเร็วการเติบโต"
+  causes_eyebrow: "ทำไมยังเด็กแต่เป็น?"
+  causes_heading_accent: "สาเหตุของวัยรุ่นก่อนกำหนด"
+  causes_heading_part2: " — ตรวจสอบร่วมกัน"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "โรคที่เกี่ยวข้อง"
+      cap_line1: "มีโรคที่เกี่ยวกับ"
+      cap_line2: "สมอง รังไข่ หรืออัณฑะ"
+    - img_alt: "ปัจจัยอาหาร"
+      cap_line1: "อาหารเน้นเนื้อ อินสแตนท์"
+      cap_line2: "บริโภคไขมันสูง"
+    - img_alt: "ปัจจัยความอ้วน"
+      cap_line1: "ความอ้วนที่เชื่อมโยงกับ"
+      cap_line2: "การหลั่งฮอร์โมนเพศ"
+    - img_alt: "สารรบกวนฮอร์โมน"
+      cap_line1: "ได้รับสารรบกวน"
+      cap_line2: "ฮอร์โมนสิ่งแวดล้อมสูง"
+    - img_alt: "เคลื่อนไหวน้อย"
+      cap_line1: "เคลื่อนไหวน้อย"
+      cap_line2: "(เกม·ทีวี)"
+    - img_alt: "ปัจจัยความเครียด"
+      cap_line1: "ความเครียดเรื่องเรียน·"
+      cap_line2: "ชีวิตประจำวันสูง"
+  cta_label: "วัยรุ่นเข้าเร็วเกินไปไหม? &nbsp;ปรึกษาผู้เชี่ยวชาญ 1:1"
+
 proportion:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  ratio_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  comparison_img_alt: '[NEEDS TRANSLATION]'
-  quote: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+  eyebrow: "03 / ดูแลสัดส่วน·รูปร่าง"
+  heading_line1: "สำคัญพอกับส่วนสูง คือ"
+  heading_accent: "สัดส่วนร่างกายที่สมดุล"
+  heading_line2: ""
+  lead: "นอกจากส่วนสูง สัดส่วนร่างกาย ท่าทาง และความสมดุลของช่วงล่างยังส่งผลต่อภาพลักษณ์และความมั่นใจ การดูแลสัดส่วนพร้อมส่วนสูงในระหว่างการเติบโตเป็นสิ่งสำคัญ"
+  ratio_img_alt: "อัตราส่วนทองและคำแนะนำสัดส่วนร่างกายที่สวยงาม"
+  subsection1_heading_line1: "วัยรุ่นเร็วและ"
+  subsection1_heading_accent: "การเปลี่ยนแปลงของสัดส่วน"
+  subsection1_lead: "ช่วงเวลาที่เข้าสู่วัยรุ่นและความเร็วของการเติบโตส่งผลต่อความสมดุลระหว่างช่วงบนและช่วงล่าง การตรวจสถานะแผ่นกระดูกและขั้นวัยรุ่นช่วยจัดการสัดส่วนพร้อมส่วนสูงไปพร้อมกัน"
+  comparison_img_alt: "การเปรียบเทียบสัดส่วนช่วงบนและช่วงล่าง"
+  quote: "ช่วงเวลาที่เข้าสู่วัยรุ่นและความเร็วการเติบโตอาจส่งผลต่อสัดส่วนร่างกายในที่สุด"
+  cta_label: "กังวลเรื่องความสมดุลของรูปร่าง? &nbsp;ปรึกษาผู้เชี่ยวชาญ 1:1"
+
 bodywork:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  diag_subhead: '[NEEDS TRANSLATION]'
-  xray_img_alt: '[NEEDS TRANSLATION]'
-  diag_lead: '[NEEDS TRANSLATION]'
+  eyebrow: "04 / ดูแลท่าทาง·พัฒนาการ"
+  heading_line1: "ท่าทางและรูปร่างก็ส่งผลต่อ"
+  heading_accent: "สภาพแวดล้อมการเติบโต"
+  heading_line2: ""
+  lead: "ท่าทางที่ไม่ดี ความตึงของกล้ามเนื้อและพังผืด ความไม่สมดุลของกระดูกสันหลัง·เชิงกราน อาจส่งผลต่อความสมดุลของร่างกาย เราตรวจรูปร่างและพัฒนาการผ่านการวินิจฉัยและการดูแลด้วยการออกกำลังกาย"
+  diag_subhead: "วินิจฉัย — วิเคราะห์ X-ray ทั้งร่างกาย"
+  xray_img_alt: "ภาพวิเคราะห์รูปร่างจาก X-ray ทั้งร่างกาย"
+  diag_lead: "ตรวจหาภาวะกระดูกสันหลังคด หลังแอ่น คอยื่น ขา O ขา X และปัญหาอื่นๆ ที่อาจเกิดในวัยเจริญเติบโต พร้อมแนะนำทิศทางการดูแลที่เหมาะกับลูก"
   problems:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-  treat_subhead: '[NEEDS TRANSLATION]'
-  treat_lead: '[NEEDS TRANSLATION]'
-  equip_main_alt: '[NEEDS TRANSLATION]'
-  equip_row_alt: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "กระดูกสันหลังคด"
+      cap_strong: "กระดูกสันหลังคด"
+      cap_suffix: " ตรวจ"
+    - img_alt: "หลังแอ่น"
+      cap_strong: "หลังแอ่น"
+      cap_suffix: " ตรวจ"
+    - img_alt: "คอยื่น"
+      cap_strong: "คอยื่น"
+      cap_suffix: " ตรวจ"
+    - img_alt: "ขา O ขา X"
+      cap_strong: "ขา O·X"
+      cap_suffix: " ตรวจ"
+  treat_subhead: "การรักษา — ออกกำลังกายกระตุ้นการเติบโต + ดูแลพัฒนาการ"
+  treat_lead: "GYM ของเรามีเทรนเนอร์มืออาชีพดูแลแบบ 1:1 จัดออกกำลังกายเหมาะสมกับเด็กในวัยเจริญเติบโต รวมถึงการยืดเหยียด ปรับท่าทาง และคลายพังผืดเพื่อท่าทางที่ดีและสมดุล"
+  equip_main_alt: "อุปกรณ์ออกกำลังกายเพื่อการเติบโต"
+  equip_row_alt: "อุปกรณ์โปรแกรมออกกำลังกายเพื่อการเติบโต"
+  cta_label: "ตรวจวินิจฉัยท่าทาง·พัฒนาการ &nbsp;ปรึกษาผู้เชี่ยวชาญ 1:1"
+
 late:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "05 / ดูแลการเติบโตในปลายวัยรุ่น"
+  heading_line1: "แม้จะอยู่ปลายวัยรุ่น"
+  heading_accent: "ความเป็นไปได้ในการเติบโต"
+  heading_line2: " ในปัจจุบัน — ลองตรวจสอบดู"
+  lead: "ในปลายวัยรุ่นความเร็วของการเติบโตจะค่อยๆ ลดลง แต่ทิศทางการดูแลขึ้นอยู่กับสถานะแผ่นกระดูก ความสมดุลของฮอร์โมน ท่าทาง การนอน และโภชนาการ"
   program_tags:
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-  speed_heading_part1: '[NEEDS TRANSLATION]'
-  speed_heading_accent: '[NEEDS TRANSLATION]'
-  speed_heading_part2: '[NEEDS TRANSLATION]'
-  speed_lead: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  table_header_age: '[NEEDS TRANSLATION]'
-  table_header_speed: '[NEEDS TRANSLATION]'
-  table_header_speed_unit: '[NEEDS TRANSLATION]'
+    - "โปรแกรมก่อนวัยรุ่น"
+    - "โปรแกรมวัยรุ่นก่อนกำหนด"
+    - "โปรแกรมตามขั้นวัยรุ่น"
+    - "โปรแกรมปลายวัยรุ่น"
+  speed_heading_part1: "ตรวจสอบ "
+  speed_heading_accent: "ความเร็วการเติบโต"
+  speed_heading_part2: " ตามอายุ"
+  speed_lead: "การรู้ความเร็วการเติบโตที่เหมาะสมในแต่ละช่วงและการเลือกทิศทางการดูแลที่ตรงกับสถานะปัจจุบันของลูกเป็นสิ่งสำคัญ"
+  chart_img_alt: "กราฟความเร็วการเติบโตตามอายุ"
+  table_header_age: "อายุ"
+  table_header_speed: "ความเร็วการเติบโตต่อปี"
+  table_header_speed_unit: "(ซม./ปี)"
   table_rows:
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      sub_boy: '[NEEDS TRANSLATION]'
-      val_boy: '[NEEDS TRANSLATION]'
-      sub_girl: '[NEEDS TRANSLATION]'
-      val_girl: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-  potential_heading_line1: '[NEEDS TRANSLATION]'
-  potential_heading_accent: '[NEEDS TRANSLATION]'
-  potential_lead: '[NEEDS TRANSLATION]'
+    - label: "ก่อนวัยรุ่น"
+      value: "5–6 ซม."
+    - label: "วัยรุ่นต้น"
+      sub_boy: "เด็กชาย"
+      val_boy: "7–12 ซม."
+      sub_girl: "เด็กหญิง"
+      val_girl: "6–11 ซม."
+    - label: "ปลายวัยรุ่น"
+      value: "ลดลงจากอัตราเดิม"
+  potential_heading_line1: "ความเป็นไปได้ในการเติบโต"
+  potential_heading_accent: "เริ่มจากการตรวจสอบสถานะปัจจุบัน"
+  potential_lead: "เราดำเนินโปรแกรมการเติบโตที่แบ่งแยกตามขั้นพัฒนาการของลูก"
   cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "ติดตามความเร็วการเข้าสู่วัยรุ่น"
+      cap_line1: "ติดตามความเร็ว"
+      cap_line2: "การเข้าสู่วัยรุ่น"
+    - img_alt: "กระดูกสันหลัง เชิงกราน ความสมดุลช่วงล่าง"
+      cap_line1: "กระดูกสันหลัง·เชิงกราน"
+      cap_line2: "และความสมดุลช่วงล่าง"
+    - img_alt: "การจัดการการออกกำลังกาย โภชนาการ การนอน"
+      cap_line1: "ออกกำลังกาย·โภชนาการ"
+      cap_line2: "การนอน·ไลฟ์สไตล์"
+    - img_alt: "ดูแลการเติบโตด้วยความสมดุลของฮอร์โมน"
+      cap_line1: "ดูแลการเติบโต"
+      cap_line2: "ด้วยสมดุลฮอร์โมน"
+  cta_label: "ปลายวัยรุ่น สายเกินไปหรือยัง? &nbsp;ปรึกษาผู้เชี่ยวชาญ 1:1"
+
 process:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  pill: '[NEEDS TRANSLATION]'
-  grid_img_alt: '[NEEDS TRANSLATION]'
+  eyebrow: "เติบโตไปด้วยกัน"
+  heading_accent: "ขั้นตอนการรักษา"
+  lead: "การดูแลการเติบโตของลูกเป็นกระบวนการที่ลูก พ่อแม่ และทีมแพทย์ร่วมกัน ตั้งแต่การปรึกษาครั้งแรกจนถึงการติดตามหลังการรักษา เราตรวจสอบสถานะการเติบโตอย่างต่อเนื่อง"
+  pill: "ติดตามสถานะการเติบโตอย่างต่อเนื่องแม้หลังการรักษาสิ้นสุด"
+  grid_img_alt: "ขั้นตอนการรักษา 7 ขั้นของ Yonsei Saebom Growth Clinic"
+
 director:
-  quote_line1: '[NEEDS TRANSLATION]'
-  quote_strong: '[NEEDS TRANSLATION]'
-  quote_line2: '[NEEDS TRANSLATION]'
-  quote_line3: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
-  portrait_alt: '[NEEDS TRANSLATION]'
+  quote_line1: "ที่ Yonsei Saebom"
+  quote_strong: "การเติบโตที่แข็งแรงและสมดุล"
+  quote_line2: ""
+  quote_line3: "เราเตรียมไปด้วยกัน"
+  body: "ด้วยประสบการณ์ในการรักษาการเจริญเติบโต Yonsei Saebom ดูแลส่วนสูง รูปร่าง ความสมดุลของฮอร์โมน และพฤติกรรมการใช้ชีวิตของลูกไปพร้อมกัน ผ่านโภชนาการที่ถูกต้อง การนอน และการดูแลการเติบโตที่สมดุล เราจะเตรียมอนาคตที่แข็งแรงให้กับลูก"
+  portrait_alt: "ผู้อำนวยการแชยงฮยอน คลินิก Yonsei Saebom"
+
 cta_global:
-  header_consult: '[NEEDS TRANSLATION]'
-  bottom_nav_consult: '[NEEDS TRANSLATION]'
-  inline_cta_arrow: '[NEEDS TRANSLATION]'
+  header_consult: "ปรึกษา"
+  bottom_nav_consult: "วัดส่วนสูงฟรี"
+  inline_cta_arrow: "→"
+
+clinic:
+  page_title: "เกี่ยวกับคลินิก | 187 Growth Clinic"
+  doctor:
+    h1_sr: "เกี่ยวกับผู้อำนวยการ แชยงฮยอน"
+    portrait_alt: "ผู้อำนวยการแชยงฮยอน"
+    name: "แชยงฮยอน (Chae Yong-hyun)"
+    title: "ผู้อำนวยการ"
+    quote_line1: "เรามองการเติบโตของลูกผ่านมุมมองฮอร์โมนแบบครบวงจร"
+    quote_line2: "พร้อมเดินไปด้วยกันด้วยประสบการณ์การรักษา 10 ปี"
+    profile:
+      - "ประสบการณ์รักษาการเติบโตในเด็ก 10 ปี · ผู้เชี่ยวชาญฮอร์โมนแบบครบวงจร"
+      - "คณะแพทยศาสตร์ มหาวิทยาลัยยอนเซ / บัณฑิตวิทยาลัยแพทยศาสตร์"
+      - "ผู้อำนวยการคนปัจจุบัน Yonsei Saebom Clinic"
+      - "ผู้เชี่ยวชาญการรักษาฮอร์โมน (โกรท · ไทรอยด์ · ฮอร์โมนเพศ)"
+      - "ที่ปรึกษาทางการแพทย์ NABBA / WFF"
+  intro:
+    h2: "187 Growth Clinic — Yonsei Saebom"
+    p1: "การเติบโตของส่วนสูงในเด็กไม่ได้ขึ้นอยู่กับโกรทฮอร์โมนเพียงอย่างเดียว ไทรอยด์ ฮอร์โมนเพศ โภชนาการ การนอน และความเครียดล้วนมีบทบาท ดังนั้น<strong>มุมมองฮอร์โมนแบบครบวงจร</strong>จึงสำคัญ"
+    p2: "187 Growth Clinic ดูแลแบบเฉพาะบุคคลสำหรับเด็กแต่ละคน — ตั้งแต่การตรวจอายุกระดูกอย่างละเอียด ตรวจฮอร์โมนครบชุด ไปจนถึงการให้คำปรึกษาด้านไลฟ์สไตล์ ครอบครัวที่อยู่ต่างประเทศสามารถรับคำปรึกษาผ่านวิดีโอได้โดยไม่ต้องเดินทางมาเกาหลี"
+  video:
+    h3: "วิดีโอแนะนำคลินิก"
+    iframe_title: "แนะนำ Yonsei Saebom Clinic"
+  facility:
+    h3: "สิ่งอำนวยความสะดวก"
+    aria_prev: "ก่อนหน้า"
+    aria_next: "ถัดไป"
+    aria_dot_prefix: "ภาพ"
+    items:
+      - "ห้องรอ ชั้น 2"
+      - "ห้องตรวจ ชั้น 2"
+      - "ภายนอก ชั้น 2"
+      - "ศูนย์ออกกำลังกาย ชั้น 3"
+      - "พื้นที่ฝึก ชั้น 3"
+      - "GYM ชั้น 3"
+  contact:
+    label: "สอบถาม·จองคิวปรึกษา"
+    phone: "+82-2-3395-0999"
+    addr: "ชั้น 4 อาคาร Hwiseon เลขที่ 328 ถ.โดซาน-แดโร เขตคังนัม กรุงโซล เกาหลีใต้"
+
+cases:
+  page_title: "เคสรักษา | 187 Growth Clinic"
+  iframe_title: "เคสรักษา"
+
+calculator:
+  page_title: "วัดส่วนสูงฟรี | 187 Growth Clinic"
+  iframe_title: "คาดการณ์ส่วนสูงฟรี"
+
+shell:
+  aria:
+    home: "หน้าแรก"
+    kakao: "ปรึกษา KakaoTalk 1:1"
+    share: "แชร์"
+    menu: "เมนูหลัก"
+    close: "ปิด"
+  header:
+    kakao_label: "KakaoTalk 1:1"
+  nav:
+    programs: "โปรแกรม"
+    clinic: "คลินิก"
+    cases: "เคสรักษา"
+    calc: "วัดส่วนสูง"
+  calc:
+    badge: "ตรวจการเจริญเติบโต · ฟรี"
+    title: "ส่วนสูงผู้ใหญ่ที่คาดการณ์"
+    subtitle_line1: "ตรวจในช่วงเวลาทองก่อนแผ่นกระดูกอ่อนปิด"
+    subtitle_line2: "ดูส่วนสูงผู้ใหญ่ที่คาดการณ์ของลูกใน 30 วินาที"
+    field_gender: "เพศ"
+    gender_male: "👦 เด็กชาย"
+    gender_female: "👧 เด็กหญิง"
+    gender_male_short: "เด็กชาย"
+    gender_female_short: "เด็กหญิง"
+    field_birth: "วันเกิด"
+    field_height: "ส่วนสูงปัจจุบัน (ซม.)"
+    field_weight: "น้ำหนัก (กก.)"
+    submit: "คำนวณส่วนสูง"
+    result_label: "ส่วนสูงผู้ใหญ่ที่คาดการณ์"
+    percentile_top: "อันดับ"
+    note_label: "หมายเหตุ:"
+    note_body: "เป็นการประมาณทางสถิติจากตารางการเจริญเติบโตมาตรฐาน WHO/KDCA การเติบโตจริงขึ้นอยู่กับโภชนาการ การนอน การออกกำลังกาย และปัจจัยสภาพแวดล้อมอื่นๆ"
+    kakao_cta: "💬 ปรึกษา KakaoTalk 1:1"
+    reset: "วัดอีกครั้ง"
+    interpret_high: "✅ มีแนวโน้มเติบโตสูงกว่าค่าเฉลี่ยของวัยเดียวกัน รักษาจังหวะปัจจุบันต่อไป"
+    interpret_mid: "🔍 อยู่ในระดับค่าเฉลี่ยของวัยเดียวกัน หากดูแลปัจจัยสภาพแวดล้อมจะได้ผลดีขึ้น"
+    interpret_low: "⚠️ อาจตัวเล็กกว่าวัยเดียวกันเล็กน้อย แนะนำตรวจในช่วงเวลาทองก่อนแผ่นกระดูกอ่อนปิด"
+    interpret_critical: "🚨 อาจตัวเล็กกว่าวัยเดียวกันมาก จำเป็นต้องตรวจอายุกระดูก·ฮอร์โมนอย่างละเอียดเพื่อหาสาเหตุเร็ว"
+  toast:
+    copied: "คัดลอกลิงก์แล้ว"
+    failed: "แชร์ไม่สำเร็จ"
+  chart:
+    now_prefix: "ปัจจุบัน"
+    age_suffix: " ปี"

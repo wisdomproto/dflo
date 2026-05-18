@@ -69,19 +69,29 @@ export function buildHead(lang, opts = {}) {
   const path = opts.path || '/';
   const seo = buildSeo(lang);
   const ogLocale = OG_LOCALE_MAP[lang];
-  return [
-    `<title>${seo.title}</title>`,
-    `<meta name="description" content="${escapeAttr(seo.description)}">`,
+  // Subpages (clinic/cases/calculator) override title via opts; description + og_image
+  // stay on the same brand SEO entry. JSON-LD (clinic/physician/FAQ) is only emitted
+  // on the home page — opts.skipJsonLd lets subpages drop them so they don't compete.
+  const title = opts.title || seo.title;
+  const description = opts.description || seo.description;
+  const head = [
+    `<title>${title}</title>`,
+    `<meta name="description" content="${escapeAttr(description)}">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     buildHreflang(path),
     `<meta property="og:type" content="website">`,
     `<meta property="og:locale" content="${ogLocale}">`,
-    `<meta property="og:title" content="${escapeAttr(seo.title)}">`,
-    `<meta property="og:description" content="${escapeAttr(seo.description)}">`,
+    `<meta property="og:title" content="${escapeAttr(title)}">`,
+    `<meta property="og:description" content="${escapeAttr(description)}">`,
     `<meta property="og:image" content="${ORIGIN}${seo.og_image}">`,
     `<meta property="og:url" content="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
-    renderJsonLd(medicalClinicJsonLd(lang)),
-    renderJsonLd(physicianJsonLd(lang)),
-    renderJsonLd(faqPageJsonLd(lang)),
-  ].join('\n  ');
+  ];
+  if (!opts.skipJsonLd) {
+    head.push(
+      renderJsonLd(medicalClinicJsonLd(lang)),
+      renderJsonLd(physicianJsonLd(lang)),
+      renderJsonLd(faqPageJsonLd(lang)),
+    );
+  }
+  return head.join('\n  ');
 }

@@ -8,6 +8,8 @@ import React, { useState, useCallback, useRef } from 'react';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { Slide, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, FaqItem, HeightCalcSlide } from '../types/websiteSection';
 import { HeightCalcCard } from './HeightCalcCard';
+import { CasesLangContext, getCasesLabels, useCasesLang, useCasesLangCode, type CasesLang } from './casesLabels';
+import { CASES_I18N, type CaseLocale } from '../data/casesI18nData';
 
 export function extractVideoId(url: string): string | null {
   if (!url) return null;
@@ -27,11 +29,13 @@ interface Props {
   slides: Slide[];
   initialIndex?: number;
   showNav?: boolean;
+  lang?: CasesLang;
 }
 
-export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Props) {
+export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang = 'ko' }: Props) {
   const [current, setCurrent] = useState(initialIndex);
   const total = slides.length;
+  const labels = getCasesLabels(lang);
 
   // Sync with external initialIndex changes (admin preview)
   React.useEffect(() => {
@@ -82,6 +86,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
       : useNaturalHeight ? '' : 'aspect-[4/5]';
 
   return (
+    <CasesLangContext.Provider value={lang}>
     <div className="w-full">
       {/* Top navigation row — visible when multi-slide */}
       {total > 1 && (
@@ -89,7 +94,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
           <button
             onClick={prev}
             className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
-            aria-label="이전 슬라이드"
+            aria-label={labels.prevSlide}
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -106,7 +111,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
                     ? 'w-4 h-1.5 bg-primary'
                     : 'w-1.5 h-1.5 bg-gray-300'
                 }`}
-                aria-label={`슬라이드 ${i + 1}`}
+                aria-label={labels.slideNumber(i + 1)}
               />
             ))}
           </div>
@@ -118,7 +123,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
           <button
             onClick={next}
             className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
-            aria-label="다음 슬라이드"
+            aria-label={labels.nextSlide}
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -180,6 +185,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true }: Pr
 
     </section>
     </div>
+    </CasesLangContext.Provider>
   );
 }
 
@@ -612,11 +618,37 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
   const ms = s.measurements || [];
   const isMale = s.gender === 'male';
   const KAKAO_URL = 'https://pf.kakao.com/_ZxneSb';
+  const t = useCasesLang();
+  const lang = useCasesLangCode();
+
+  // Per-case translated overrides (patient name stays Korean by design).
+  const i18n = lang === 'ko' ? null : CASES_I18N[s.id];
+  const loc: CaseLocale | null = lang === 'ko' ? null : (lang as CaseLocale);
+  const localizedCategory = (loc && i18n?.category?.[loc]) || s.category;
+  const localizedInitialMemo = (loc && i18n?.initialMemo?.[loc]) || s.initialMemo;
+  const localizedFinalMemo = (loc && i18n?.finalMemo?.[loc]) || s.finalMemo;
+  const localizedAllergyData = (loc && s.allergyData && i18n?.allergyData)
+    ? {
+        danger: i18n.allergyData.danger?.[loc] ?? s.allergyData.danger,
+        caution: i18n.allergyData.caution?.[loc] ?? s.allergyData.caution,
+      }
+    : s.allergyData;
+  const localizedIntakeInfo = (loc && s.intakeInfo && i18n?.intakeInfo)
+    ? {
+        ...s.intakeInfo,
+        desiredHeight: i18n.intakeInfo.desiredHeight?.[loc] ?? s.intakeInfo.desiredHeight,
+        growthConcerns: i18n.intakeInfo.growthConcerns?.[loc] ?? s.intakeInfo.growthConcerns,
+        birthNote: i18n.intakeInfo.birthNote?.[loc] ?? s.intakeInfo.birthNote,
+        growthPattern: i18n.intakeInfo.growthPattern?.[loc] ?? s.intakeInfo.growthPattern,
+        pubertyStage: i18n.intakeInfo.pubertyStage?.[loc] ?? s.intakeInfo.pubertyStage,
+        pastConditions: i18n.intakeInfo.pastConditions?.[loc] ?? s.intakeInfo.pastConditions,
+      }
+    : s.intakeInfo;
 
   if (!s.patientName && ms.length === 0) {
     return (
       <div className="w-full h-full bg-white flex items-center justify-center">
-        <p className="text-sm text-gray-400">성장 사례를 입력해주세요</p>
+        <p className="text-sm text-gray-400">{t.emptyState}</p>
       </div>
     );
   }
@@ -643,31 +675,31 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
           <div>
             <p className="text-base font-bold text-gray-800">{s.patientName}</p>
             <p className="text-xs text-gray-400">
-              {isMale ? '남아' : '여아'}
-              {s.category && <span className="ml-1.5 px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 text-[10px] font-medium">{s.category}</span>}
+              {isMale ? t.boy : t.girl}
+              {localizedCategory && <span className="ml-1.5 px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 text-[10px] font-medium">{localizedCategory}</span>}
             </p>
           </div>
         </div>
 
         {/* 2. Initial Memo (초진 메모) */}
-        {s.initialMemo && s.initialMemo.trim() && s.initialMemo.trim() !== '0' && (
+        {localizedInitialMemo && localizedInitialMemo.trim() && localizedInitialMemo.trim() !== '0' && (
           <div className="mx-4 bg-amber-50 rounded-xl p-3 border border-amber-100">
-            <p className="text-[10px] font-semibold text-amber-600 mb-1">🏥 초진 메모</p>
-            <p className="text-xs text-gray-700 whitespace-pre-line">{s.initialMemo}</p>
+            <p className="text-[10px] font-semibold text-amber-600 mb-1">{t.initialMemo}</p>
+            <p className="text-xs text-gray-700 whitespace-pre-line">{localizedInitialMemo}</p>
           </div>
         )}
 
         {/* Intake Info (collapsible, after initial memo) */}
-        {s.intakeInfo && Object.values(s.intakeInfo).some(Boolean) && (
+        {localizedIntakeInfo && Object.values(localizedIntakeInfo).some(Boolean) && (
           <div className="px-4">
-            <CasesIntakeSection info={s.intakeInfo} isMale={isMale} />
+            <CasesIntakeSection info={localizedIntakeInfo} isMale={isMale} />
           </div>
         )}
 
         {/* 3. 키 변화: 초진 시점과 최종 시점에서 각각 실제키 vs 예상키 비교 */}
         {hasPredictedPair && (
           <div className="mx-4 bg-gray-50 rounded-xl p-3">
-            <p className="text-[10px] font-semibold text-gray-500 mb-2">📊 키 변화</p>
+            <p className="text-[10px] font-semibold text-gray-500 mb-2">{t.heightChange}</p>
             <CasesBarChart
               initialActual={firstPredicted.height}
               initialPredicted={firstPredicted.predictedHeight}
@@ -688,7 +720,7 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
               <iframe
                 className="absolute inset-0 w-full h-full"
                 src={`https://www.youtube.com/embed/${extractYoutubeId(s.youtubeUrl)}`}
-                title="치료 후기 영상"
+                title={t.youtubeTitle}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -697,8 +729,8 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
         )}
 
         {/* 3.6. Allergy Test Results (알러지 검사 결과) */}
-        {s.allergyData && (s.allergyData.danger?.length > 0 || s.allergyData.caution?.length > 0) && (
-          <AllergyDataSection data={s.allergyData} />
+        {localizedAllergyData && (localizedAllergyData.danger?.length > 0 || localizedAllergyData.caution?.length > 0) && (
+          <AllergyDataSection data={localizedAllergyData} />
         )}
 
         {/* 4. Growth Standard Chart (카드 너비 가득 — px-0) */}
@@ -712,13 +744,13 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
             <table className="w-full text-xs">
               <thead>
                 <tr className="bg-gray-50">
-                  <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">#</th>
-                  <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">날짜</th>
-                  <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">키</th>
-                  <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">체중</th>
-                  {s.birthDate && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">나이</th>}
-                  {ms.some((m) => m.boneAge) && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">뼈나이</th>}
-                  <th className="px-1.5 py-1.5 text-right text-[#0F6E56] font-semibold">예상키</th>
+                  <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">{t.tableNum}</th>
+                  <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">{t.tableDate}</th>
+                  <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">{t.tableHeight}</th>
+                  <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">{t.tableWeight}</th>
+                  {s.birthDate && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">{t.tableAge}</th>}
+                  {ms.some((m) => m.boneAge) && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">{t.tableBoneAge}</th>}
+                  <th className="px-1.5 py-1.5 text-right text-[#0F6E56] font-semibold">{t.tablePredicted}</th>
                 </tr>
               </thead>
               <tbody>
@@ -749,10 +781,10 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
         )}
 
         {/* 6. Final Memo (마무리 메모) */}
-        {s.finalMemo && (
+        {localizedFinalMemo && (
           <div className="mx-4 bg-green-50 rounded-xl p-3 border border-green-100">
-            <p className="text-[10px] font-semibold text-green-600 mb-1">🎉 마무리</p>
-            <p className="text-xs text-gray-700 whitespace-pre-line">{s.finalMemo}</p>
+            <p className="text-[10px] font-semibold text-green-600 mb-1">{t.finalMemo}</p>
+            <p className="text-xs text-gray-700 whitespace-pre-line">{localizedFinalMemo}</p>
           </div>
         )}
 
@@ -763,7 +795,7 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
               onClick={() => trackKakaoConsult('cases_slide')}
               className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3
                          text-white font-bold text-sm hover:bg-[#0D5A47] transition-all">
-              💬 우리 아이도 상담 받아보기
+              {t.cta}
             </a>
           </div>
         )}
@@ -775,16 +807,17 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
 function AllergyDataSection({ data }: { data: { danger: string[]; caution: string[] } }) {
   const [open, setOpen] = React.useState(false);
   const total = (data.danger?.length || 0) + (data.caution?.length || 0);
+  const t = useCasesLang();
   return (
     <div className="mx-4 rounded-xl border border-gray-200 overflow-hidden">
       <button type="button" onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between bg-gray-50 px-3 py-2 hover:bg-gray-100 transition-colors">
-        <p className="text-[10px] font-semibold text-gray-500">🍽️ 음식 알러지 검사 결과 ({total}개)</p>
+        <p className="text-[10px] font-semibold text-gray-500">{t.allergyTitle(total)}</p>
         <span className={`text-[10px] text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
       </button>
       {open && data.danger?.length > 0 && (
         <div className="px-3 py-2 border-t border-gray-100">
-          <p className="text-[10px] font-bold text-red-500 mb-1">🚫 위험 ({data.danger.length}개)</p>
+          <p className="text-[10px] font-bold text-red-500 mb-1">{t.allergyDanger(data.danger.length)}</p>
           <div className="flex flex-wrap gap-1">
             {data.danger.map((food, i) => (
               <span key={i} className="px-1.5 py-0.5 bg-red-50 text-red-600 rounded text-[10px] border border-red-200">{food}</span>
@@ -794,7 +827,7 @@ function AllergyDataSection({ data }: { data: { danger: string[]; caution: strin
       )}
       {open && data.caution?.length > 0 && (
         <div className="px-3 py-2 border-t border-gray-100">
-          <p className="text-[10px] font-bold text-amber-600 mb-1">⚠️ 경계 ({data.caution.length}개)</p>
+          <p className="text-[10px] font-bold text-amber-600 mb-1">{t.allergyCaution(data.caution.length)}</p>
           <div className="flex flex-wrap gap-1">
             {data.caution.map((food, i) => (
               <span key={i} className="px-1.5 py-0.5 bg-amber-50 text-amber-600 rounded text-[10px] border border-amber-200">{food}</span>
@@ -834,6 +867,7 @@ function calcAge(birthDate: string, measureDate: string): number | null {
 function CasesGrowthChartSection({ measurements, birthDate, gender }: {
   measurements: CaseMeasurementEntry[]; birthDate: string; gender: 'male' | 'female';
 }) {
+  const t = useCasesLang();
   const [GrowthChartComp, setGrowthChartComp] = React.useState<React.ComponentType<{
     gender: string; points: { age: number; height: number }[];
     showTitle?: boolean; zoomable?: boolean; compact?: boolean;
@@ -946,7 +980,7 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
 
   return (
     <div className="bg-gray-50 px-1 py-2">
-      <p className="text-[10px] font-semibold text-gray-500 mb-1 px-3">📈 성장 표준곡선</p>
+      <p className="text-[10px] font-semibold text-gray-500 mb-1 px-3">{t.growthChart}</p>
       {GrowthChartComp ? (
         <GrowthChartComp
           gender={gender}
@@ -957,7 +991,7 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
           initialPredictedCurve={initialPredictedCurve}
         />
       ) : (
-        <div className="h-32 flex items-center justify-center text-xs text-gray-400">로딩...</div>
+        <div className="h-32 flex items-center justify-center text-xs text-gray-400">{t.loading}</div>
       )}
     </div>
   );
@@ -974,6 +1008,7 @@ function CasesBarChart({
   initialDate?: string; finalDate?: string;
   isMale: boolean; isActive: boolean;
 }) {
+  const t = useCasesLang();
   // 차트는 "예상키 변화" 한 가지만 보여준다. 실제키는 자연 성장 영향이
   // 크기 때문에 같이 그리면 어린 환자에서는 갭이 커 보이고 큰 환자에서는
   // 작아 보여 치료 효과가 왜곡된다. 정직한 비교를 위해 예상키 1개 바.
@@ -1016,10 +1051,10 @@ function CasesBarChart({
       1,
       Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30.44)),
     );
-    if (months < 12) return `${months}개월`;
+    if (months < 12) return `${months}${t.monthSuffix}`;
     const years = Math.floor(months / 12);
     const remMonths = months % 12;
-    return remMonths === 0 ? `${years}년` : `${years}년 ${remMonths}개월`;
+    return remMonths === 0 ? `${years}${t.yearSuffix}` : `${years}${t.yearSuffix} ${remMonths}${t.monthSuffix}`;
   })();
 
   const CHART_HEIGHT = 180;
@@ -1104,7 +1139,7 @@ function CasesBarChart({
           {/* Two predicted bars + connecting arrow — 색깔로 before/after 구분 */}
           <div className="relative flex items-stretch">
             <Group
-              title="초진 예상키"
+              title={t.barInitial}
               dateLabel={fmtDate(initialDate)}
               predicted={initialPredicted}
               delayBase={0}
@@ -1119,7 +1154,7 @@ function CasesBarChart({
               →
             </div>
             <Group
-              title="최종 예상키"
+              title={t.barFinal}
               dateLabel={fmtDate(finalDate)}
               predicted={finalPredicted}
               delayBase={400}
@@ -1136,15 +1171,15 @@ function CasesBarChart({
         <div className={`inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 ${accentBg} rounded-lg px-3 py-1.5`}>
           {treatmentDuration && (
             <span className="text-[11px] text-gray-700">
-              치료 <span className="font-bold text-gray-900">{treatmentDuration}</span> 동안
+              {t.treatmentLabel} <span className="font-bold text-gray-900">{treatmentDuration}</span>{t.treatmentSuffix ? ` ${t.treatmentSuffix}` : ''}
             </span>
           )}
           <span className="text-[11px] text-gray-600">
-            실제키 <span className="font-bold text-gray-800">+{actualGrowth}cm</span>
+            {t.actualHeight} <span className="font-bold text-gray-800">+{actualGrowth}cm</span>
           </span>
           <span className="text-[10px] text-gray-300">·</span>
           <span className={`text-[11px] font-black ${accent}`}>
-            예상키 +{predictedGrowth}cm
+            {t.predictedHeight} +{predictedGrowth}cm
           </span>
         </div>
       </div>
@@ -1202,31 +1237,32 @@ import type { CaseIntakeInfo } from '../types/websiteSection';
 
 function CasesIntakeSection({ info, isMale }: { info: CaseIntakeInfo; isMale: boolean }) {
   const [open, setOpen] = React.useState(false);
+  const t = useCasesLang();
 
   return (
     <div className={`rounded-xl border ${isMale ? 'border-blue-100' : 'border-pink-100'} overflow-hidden`}>
       <button onClick={() => setOpen(!open)}
         className={`w-full flex items-center justify-between px-3 py-2 ${isMale ? 'bg-blue-50' : 'bg-pink-50'}`}>
-        <span className="text-[10px] font-bold text-gray-600">📋 초진 정보</span>
+        <span className="text-[10px] font-bold text-gray-600">{t.intakeInfoTitle}</span>
         <span className={`text-[10px] text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
       </button>
       {open && (
         <div className="px-3 py-2 space-y-2 text-[10px]">
-          {info.gestationalWeeks && <InfoRow label="임신 주수" value={`${info.gestationalWeeks}주`} />}
-          {info.birthWeight && <InfoRow label="출생 몸무게" value={`${info.birthWeight}kg`} />}
-          {info.birthNote && <InfoRow label="출생 특이사항" value={info.birthNote} />}
-          {info.currentHeight && <InfoRow label="내원 시 키" value={`${info.currentHeight}cm`} />}
-          {info.currentWeight && <InfoRow label="내원 시 몸무게" value={`${info.currentWeight}kg`} />}
-          {info.yearlyGrowth && <InfoRow label="연간 성장" value={`${info.yearlyGrowth}cm`} />}
-          {info.grade && <InfoRow label="학년" value={info.grade} />}
-          {info.heightRank && <InfoRow label="학급 키 순위" value={`${info.heightRank}번`} />}
-          {info.desiredHeight && <InfoRow label="희망 키" value={`${info.desiredHeight}cm`} />}
-          {info.fatherHeight && <InfoRow label="아버지 키" value={`${info.fatherHeight}cm`} />}
-          {info.motherHeight && <InfoRow label="어머니 키" value={`${info.motherHeight}cm`} />}
-          {info.growthPattern && <InfoRow label="성장 양상" value={info.growthPattern} />}
-          {info.pubertyStage && <InfoRow label="사춘기 평가" value={info.pubertyStage} />}
-          {info.growthConcerns && <InfoRow label="보호자 의견" value={info.growthConcerns} />}
-          {info.pastConditions && <InfoRow label="과거 질환" value={info.pastConditions} />}
+          {info.gestationalWeeks && <InfoRow label={t.intake.gestationalWeeks} value={`${info.gestationalWeeks}${t.unitWeeks}`} />}
+          {info.birthWeight && <InfoRow label={t.intake.birthWeight} value={`${info.birthWeight}kg`} />}
+          {info.birthNote && <InfoRow label={t.intake.birthNote} value={info.birthNote} />}
+          {info.currentHeight && <InfoRow label={t.intake.currentHeight} value={`${info.currentHeight}cm`} />}
+          {info.currentWeight && <InfoRow label={t.intake.currentWeight} value={`${info.currentWeight}kg`} />}
+          {info.yearlyGrowth && <InfoRow label={t.intake.yearlyGrowth} value={`${info.yearlyGrowth}cm`} />}
+          {info.grade && <InfoRow label={t.intake.grade} value={info.grade} />}
+          {info.heightRank && <InfoRow label={t.intake.heightRank} value={`${info.heightRank}${t.unitRank}`} />}
+          {info.desiredHeight && <InfoRow label={t.intake.desiredHeight} value={info.desiredHeight} />}
+          {info.fatherHeight && <InfoRow label={t.intake.fatherHeight} value={`${info.fatherHeight}cm`} />}
+          {info.motherHeight && <InfoRow label={t.intake.motherHeight} value={`${info.motherHeight}cm`} />}
+          {info.growthPattern && <InfoRow label={t.intake.growthPattern} value={info.growthPattern} />}
+          {info.pubertyStage && <InfoRow label={t.intake.pubertyStage} value={info.pubertyStage} />}
+          {info.growthConcerns && <InfoRow label={t.intake.growthConcerns} value={info.growthConcerns} />}
+          {info.pastConditions && <InfoRow label={t.intake.pastConditions} value={info.pastConditions} />}
         </div>
       )}
     </div>
@@ -1246,6 +1282,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 function CasesMeasurementPhotos({ measurements }: { measurements: CaseMeasurementEntry[] }) {
   const [expanded, setExpanded] = React.useState<number | null>(null);
   const [lightbox, setLightbox] = React.useState<string | null>(null);
+  const t = useCasesLang();
 
   const photosExist = (m: CaseMeasurementEntry) =>
     m.photoFront || m.photoSide || m.xrayFront || m.xraySide;
@@ -1260,15 +1297,15 @@ function CasesMeasurementPhotos({ measurements }: { measurements: CaseMeasuremen
             <div key={idx} className="rounded-xl border border-gray-100 overflow-hidden">
               <button onClick={() => setExpanded(isOpen ? null : idx)}
                 className="w-full flex items-center justify-between px-3 py-2 bg-gray-50 text-[10px]">
-                <span className="font-bold text-gray-600">📷 #{idx + 1}회 사진</span>
+                <span className="font-bold text-gray-600">{t.photosTitle(idx + 1)}</span>
                 <span className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}>▼</span>
               </button>
               {isOpen && (
                 <div className="grid grid-cols-2 gap-1 p-2">
-                  {m.photoFront && <PhotoThumb src={m.photoFront} label="정면" onClick={() => setLightbox(m.photoFront!)} />}
-                  {m.photoSide && <PhotoThumb src={m.photoSide} label="측면" onClick={() => setLightbox(m.photoSide!)} />}
-                  {m.xrayFront && <PhotoThumb src={m.xrayFront} label="X-ray 정면" onClick={() => setLightbox(m.xrayFront!)} />}
-                  {m.xraySide && <PhotoThumb src={m.xraySide} label="X-ray 측면" onClick={() => setLightbox(m.xraySide!)} />}
+                  {m.photoFront && <PhotoThumb src={m.photoFront} label={t.photoFront} onClick={() => setLightbox(m.photoFront!)} />}
+                  {m.photoSide && <PhotoThumb src={m.photoSide} label={t.photoSide} onClick={() => setLightbox(m.photoSide!)} />}
+                  {m.xrayFront && <PhotoThumb src={m.xrayFront} label={t.xrayFront} onClick={() => setLightbox(m.xrayFront!)} />}
+                  {m.xraySide && <PhotoThumb src={m.xraySide} label={t.xraySide} onClick={() => setLightbox(m.xraySide!)} />}
                 </div>
               )}
             </div>
