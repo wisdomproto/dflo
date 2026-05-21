@@ -9,16 +9,18 @@ const ROOT = join(__dirname, '..', '..');
 const ORIGIN = 'https://www.dr187growup.com';
 const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 const CLINIC_NAME = '연세새봄의원 187 성장클리닉';
-const CLINIC_PHONE = '+82-2-XXX-XXXX';  // TODO: confirm with clinic admin
+const CLINIC_PHONE = '+82-2-3395-0999';
 const CLINIC_ADDRESS = {
   '@type': 'PostalAddress',
-  streetAddress: 'TBD',
-  addressLocality: 'Seoul',
+  streetAddress: '2F, Hwiseon Building, 328 Dosan-daero',
+  addressLocality: 'Gangnam-gu',
   addressRegion: 'Seoul',
-  postalCode: 'TBD',
+  postalCode: '06039',
   addressCountry: 'KR',
 };
-const DIRECTOR_NAME = 'TBD';
+const CLINIC_SAME_AS = ['https://www.yssaebomq.com/'];
+const DIRECTOR_NAME = 'Chae Young-hyun';
+const DIRECTOR_NAME_KO = '채용현';
 
 let seoCache = null;
 function loadSeo() {
@@ -38,6 +40,7 @@ export function medicalClinicJsonLd(lang) {
     telephone: CLINIC_PHONE,
     address: CLINIC_ADDRESS,
     areaServed: 'KR',
+    sameAs: CLINIC_SAME_AS,
   };
 }
 
@@ -46,6 +49,7 @@ export function physicianJsonLd(lang) {
     '@context': 'https://schema.org',
     '@type': 'Physician',
     name: DIRECTOR_NAME,
+    alternateName: DIRECTOR_NAME_KO,
     medicalSpecialty: 'Pediatrics',
     worksFor: {
       '@type': 'MedicalClinic',
