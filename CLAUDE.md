@@ -76,7 +76,7 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 
 ### 다국어 자산 처리
 - **프로그램 이미지**: 한국어는 기존 `public/programs/images/{slug}/` 유지. 비한국어는 `public/programs/images/{lang}/{slug}/` (사용자가 직접 채움 — 공통 이미지도 복사). 빌드가 lang별로 URL swap
-- **로고**: 한국어 = `public/images/logo.jpg`. 비한국어 = `public/images/logo_en.png` (1200×400 팔레트 PNG, 46KB). `_shell.js`가 runtime `__I18N_LOCALE` 보고 분기, 빌드는 hero masthead용으로 URL swap
+- **로고**: 한국어 = `public/images/logo.jpg`. 비한국어 = `public/images/logo_en.png` (1832×560 PNG, ~860KB, 고해상도 영문 워드마크). `_shell.js`가 runtime `__I18N_LOCALE` 보고 분기, 빌드는 hero masthead용으로 URL swap
 - **HeightCalculator 생년월일 input**: `<input type="date">`가 Chromium에서 lang 속성 무시하는 문제 회피 — 3개 number 필드(년/월/일)로 분리, `calcLabels.ts`의 `fieldBirthYear/Month/Day` 라벨로 locale별 placeholder
 
 ### 1차 활성화 스코프 (Phase 6 완료)
