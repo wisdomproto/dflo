@@ -44,6 +44,9 @@ interface Props {
    *  (children.nationality) as the growth-chart toggle — updating here
    *  propagates to the chart, and vice versa. */
   onNationalityChange?: (next: 'KR' | 'CN') => void;
+  /** Bump from parent to force a re-fetch of the visit's xray_reading row
+   *  (e.g. after the 진료 내역 탭 syncs BA to xray_readings). */
+  refreshKey?: number;
 }
 
 export function XrayPanel({
@@ -56,6 +59,7 @@ export function XrayPanel({
   embedded = false,
   onLiveChange,
   onNationalityChange,
+  refreshKey = 0,
 }: Props) {
   const gender: Gender = child.gender === 'male' ? 'M' : 'F';
 
@@ -119,7 +123,7 @@ export function XrayPanel({
     return () => {
       cancelled = true;
     };
-  }, [visit.id]);
+  }, [visit.id, refreshKey]);
 
   // Clean up object URL on unmount
   useEffect(() => {
@@ -133,8 +137,17 @@ export function XrayPanel({
     [atlas, gender],
   );
 
-  // Default younger age: existing reading's match → previous visit BA → chronological at visit date
+  const thisVisitMeasurement = useMemo(
+    () => measurements.find((x) => x.visit_id === visit.id) ?? null,
+    [measurements, visit.id],
+  );
+
+  // Default younger age: 같은 visit measurement.bone_age → existing reading
+  // → previous visit BA → chronological. measurement 를 1순위로 두면 진료
+  // 내역 탭에서 BA 를 수정했을 때 xray_readings row 유무와 무관하게 atlas
+  // 레퍼런스가 새 BA 기준으로 다시 매칭된다.
   const defaultYoungerAge: number | null = useMemo(() => {
+    if (thisVisitMeasurement?.bone_age != null) return thisVisitMeasurement.bone_age;
     if (existing?.bone_age_result != null) return existing.bone_age_result;
     const earlier = [...measurements]
       .filter(
@@ -148,7 +161,7 @@ export function XrayPanel({
       )[0];
     if (earlier?.bone_age) return earlier.bone_age;
     return computeAge(child.birth_date, visit.visit_date);
-  }, [existing, measurements, child.birth_date, visit.id, visit.visit_date]);
+  }, [thisVisitMeasurement, existing, measurements, child.birth_date, visit.id, visit.visit_date]);
 
   const autoMatch = useMemo(() => {
     if (!atlas || defaultYoungerAge == null) return { younger: null, older: null };
@@ -200,7 +213,9 @@ export function XrayPanel({
     return Number(((effectiveYounger.age + effectiveOlder.age) / 2).toFixed(1));
   }, [effectiveYounger, effectiveOlder]);
 
-  const effectiveBoneAge = manualBoneAge ?? midpoint;
+  // 사용자가 X-ray 탭에서 manualBoneAge 입력했으면 그게 1순위, 없으면 진료
+  // 내역에서 저장한 measurement.bone_age, 그것도 없으면 atlas pair midpoint.
+  const effectiveBoneAge = manualBoneAge ?? thisVisitMeasurement?.bone_age ?? midpoint;
 
   // An actual X-ray image is required for BA/PAH to be "real" — without it, the
   // atlas auto-match just guesses from chronological age and spills fake values
@@ -675,8 +690,8 @@ function PatientPane({
         )}
       </div>
 
-      {/* Editable bone-age (defaults to midpoint of younger+older) */}
-      {/* Bone age input (compact, centered). */}
+      {/* Editable bone-age (defaults to midpoint of younger+older).
+          단위는 소수점 년 (예: 13.5 = 13년 6개월). atlas 도 같은 표기. */}
       <div className="flex items-center justify-center gap-1 pt-1">
         <span className="text-[11px] whitespace-nowrap text-slate-500">뼈나이</span>
         <input
@@ -695,6 +710,9 @@ function PatientPane({
           className="h-7 w-16 rounded border border-slate-200 bg-white px-2 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400"
         />
         <span className="text-[11px] text-slate-500">세</span>
+      </div>
+      <div className="text-center text-[10px] text-slate-400">
+        {formatBoneAgeHintXray(draft)}
       </div>
 
       {midpointFallback != null && boneAge != null && Math.abs(boneAge - midpointFallback) > 0.05 && (
@@ -737,4 +755,18 @@ function Placeholder({ text }: { text: string }) {
       {text}
     </div>
   );
+}
+
+/** "12.5" 같은 소수점 년 입력값 → "≈ 12년 6개월" 한글 환산 안내문.
+ *  임상에서 "12세 6개월" 을 "12.6" 으로 줄여 쓰는 관습이 있어서 입력 단위
+ *  혼동을 막기 위한 라이브 가이드. */
+function formatBoneAgeHintXray(draft: string): string {
+  const trimmed = draft.trim();
+  if (trimmed === '') return '예: 13.5 = 13년 6개월';
+  const n = Number(trimmed);
+  if (Number.isNaN(n) || n < 0 || n > 25) return '소수점 년 (예: 13.5 = 13년 6개월)';
+  const years = Math.floor(n);
+  const months = Math.round((n - years) * 12);
+  if (months === 12) return `≈ ${years + 1}년 0개월`;
+  return `≈ ${years}년 ${months}개월`;
 }

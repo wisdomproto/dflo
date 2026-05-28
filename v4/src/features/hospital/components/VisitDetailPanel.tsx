@@ -16,7 +16,10 @@ import { calculateAgeAtDate } from '@/shared/utils/age';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
-import { fetchXrayReadingsByVisit } from '@/features/bone-age/services/xrayReadingService';
+import {
+  fetchXrayReadingsByVisit,
+  syncXrayReadingBoneAge,
+} from '@/features/bone-age/services/xrayReadingService';
 import { XrayPanel } from './XrayPanel';
 import { PrescriptionsBlock } from './PrescriptionsBlock';
 import { LifestylePanel } from './LifestylePanel';
@@ -65,6 +68,10 @@ export function VisitDetailPanel({
   const [hasXrayImage, setHasXrayImage] = useState<boolean | null>(null);
   const [labFileCount, setLabFileCount] = useState<number | null>(null);
 
+  // Bumped after we sync BA into xray_readings from the 진료 내역 탭 so the
+  // XrayPanel re-fetches its row and shows the new value instead of stale state.
+  const [xrayRefreshKey, setXrayRefreshKey] = useState(0);
+
   useEffect(() => {
     let cancelled = false;
     setHasXrayImage(null);
@@ -101,19 +108,33 @@ export function VisitDetailPanel({
     };
   }, [visit.id]);
 
-  const effectiveBoneAge = liveXray.boneAge ?? m?.bone_age ?? null;
+  // 측정 grid 입력 미리보기: NumberField 가 onBlur 시점에 saveField 를 호출해
+  // measurements prop 이 갱신되기 전까지는 PAH/헤더 BA 가 stale 상태로 남는다.
+  // 입력 즉시(=onChange) NumberField 가 이 draft 를 부모에 push 하도록 onLocal
+  // 콜백을 연결해서, draft 가 있으면 그 값으로 PAH 를 미리 계산한다. 저장은
+  // 여전히 onBlur 시점에만 일어남.
+  const [heightDraft, setHeightDraft] = useState<number | null>(null);
+  const [boneAgeDraft, setBoneAgeDraft] = useState<number | null>(null);
+  useEffect(() => {
+    setHeightDraft(null);
+    setBoneAgeDraft(null);
+  }, [visit.id]);
+
+  const effectiveHeight = heightDraft ?? m?.height ?? null;
+  const effectiveBaForCalc = boneAgeDraft ?? m?.bone_age ?? null;
+  const effectiveBoneAge = liveXray.boneAge ?? effectiveBaForCalc;
   const pah = useMemo(() => {
     if (liveXray.predictedAdult != null) return liveXray.predictedAdult;
-    if (m?.height && m?.bone_age) {
+    if (effectiveHeight && effectiveBaForCalc) {
       return predictAdultHeightByBonePercentile(
-        m.height,
-        m.bone_age,
+        effectiveHeight,
+        effectiveBaForCalc,
         child.gender === 'male' ? 'M' : 'F',
         nationality,
       );
     }
     return null;
-  }, [liveXray.predictedAdult, m?.height, m?.bone_age, child.gender, nationality]);
+  }, [liveXray.predictedAdult, effectiveHeight, effectiveBaForCalc, child.gender, nationality]);
 
   const saveField = async (
     patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'bone_age' | 'pah' | 'doctor_notes'>>,
@@ -126,6 +147,13 @@ export function VisitDetailPanel({
         patch,
       });
       onMeasurementChanged(next);
+      // 진료 내역 탭에서 BA를 수정했으면 같은 회차의 xray_readings row 도
+      // 같이 동기화해 X-ray 탭과 값을 일치시킨다 (row 없으면 no-op).
+      if ('bone_age' in patch) {
+        await syncXrayReadingBoneAge(visit.id, patch.bone_age ?? null);
+        onXraySaved();
+        setXrayRefreshKey((k) => k + 1);
+      }
     } catch (e) {
       logger.error('measurement save failed', e);
     }
@@ -220,6 +248,7 @@ export function VisitDetailPanel({
                 value={m?.height ?? null}
                 step={0.1}
                 onSave={(v) => saveField({ height: v ?? undefined })}
+                onLocal={setHeightDraft}
               />
               <NumberField
                 label="몸무게 (kg)"
@@ -227,21 +256,23 @@ export function VisitDetailPanel({
                 step={0.1}
                 onSave={(v) => saveField({ weight: v ?? undefined })}
               />
-              {/* 뼈나이 + 예측 성인키: X-ray 탭에서 계산한 값을 그대로 표시
-                  (read-only). 수정은 X-ray 탭에서만 가능. */}
-              <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
-                <div className="flex items-center gap-1">
-                  <span>뼈나이 (세)</span>
-                  <HelpTip text="X-ray 탭에서 자동 계산" />
-                </div>
-                <div className="flex h-9 items-center rounded-lg border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700">
-                  {effectiveBoneAge != null ? effectiveBoneAge.toFixed(1) : '—'}
-                </div>
-              </div>
+              {/* 뼈나이: 직접 수정 가능. 저장 시 hospital_measurements.bone_age
+                  + (있으면) xray_readings.bone_age_result 같이 동기화. 라벨에
+                  '소수점 년' 명시 + 라이브 변환 힌트로 임상 관습("13세 2개월" =
+                  13.2 식 표기) 과의 혼동 방지. */}
+              <NumberField
+                label="뼈나이 (소수점 년)"
+                value={m?.bone_age ?? null}
+                step={0.1}
+                onSave={(v) => saveField({ bone_age: v ?? undefined })}
+                onLocal={setBoneAgeDraft}
+                hint={(v) => formatBoneAgeHint(v)}
+              />
+              {/* 예측 성인키: BA + 키로 자동 계산 (read-only). */}
               <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
                 <div className="flex items-center gap-1">
                   <span>예측 성인키</span>
-                  <HelpTip text="X-ray 탭에서 자동 계산" />
+                  <HelpTip text="키·뼈나이 기반 자동 계산" />
                 </div>
                 <div className="flex h-9 items-center rounded-lg border border-indigo-200 bg-indigo-50 px-3 text-sm font-bold text-indigo-900">
                   {pah != null ? `${pah.toFixed(1)} cm` : '—'}
@@ -278,6 +309,7 @@ export function VisitDetailPanel({
             embedded
             onNationalityChange={onNationalityChange}
             onLiveChange={setLiveXray}
+            refreshKey={xrayRefreshKey}
           />
         </Section>
       )}
@@ -418,14 +450,24 @@ function NumberField({
   value,
   step = 1,
   onSave,
+  onLocal,
+  hint,
 }: {
   label: string;
   value: number | null;
   step?: number;
   onSave: (v: number | null) => void;
+  /** 입력 즉시 부모에 push (저장은 아직 안 함). PAH 미리보기 같은 파생값을
+   *  실시간 반영하고 싶을 때 사용. */
+  onLocal?: (parsed: number | null) => void;
+  /** Live helper line shown below the input. Receives the currently typed
+   *  numeric value (parsed). Use for unit clarification etc. */
+  hint?: (parsed: number | null) => string;
 }) {
   const [local, setLocal] = useState<string>(value == null ? '' : String(value));
   useEffect(() => setLocal(value == null ? '' : String(value)), [value]);
+  const parsedLocal = local.trim() === '' ? null : Number(local);
+  const safeParsed = parsedLocal != null && !Number.isNaN(parsedLocal) ? parsedLocal : null;
   return (
     <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
       <span>{label}</span>
@@ -434,7 +476,15 @@ function NumberField({
         step={step}
         className="h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
         value={local}
-        onChange={(e) => setLocal(e.target.value)}
+        onChange={(e) => {
+          const v = e.target.value;
+          setLocal(v);
+          if (onLocal) {
+            const trimmed = v.trim();
+            const p = trimmed === '' ? null : Number(trimmed);
+            onLocal(p != null && !Number.isNaN(p) ? p : null);
+          }
+        }}
         onBlur={() => {
           const trimmed = local.trim();
           const parsed = trimmed === '' ? null : Number(trimmed);
@@ -443,8 +493,26 @@ function NumberField({
           if (trimmed !== currentStr) onSave(parsed);
         }}
       />
+      {hint && (
+        <span className="text-[10px] font-normal normal-case tracking-normal text-slate-400">
+          {hint(safeParsed)}
+        </span>
+      )}
     </label>
   );
+}
+
+/** 소수점 년 입력값 → "≈ N년 M개월" 한글 환산. 예: 13.5 → "≈ 13년 6개월".
+ *  비어있을 때는 표기 관습 안내. 임상에서 "13세 2개월"을 "13.2"로 적는
+ *  관습이 있어서 사용자가 입력 단위를 헷갈리는 걸 막기 위한 가이드. */
+function formatBoneAgeHint(parsed: number | null): string {
+  if (parsed == null) return '예: 13.5 = 13년 6개월 (12개월 = 1.0)';
+  if (parsed < 0 || parsed > 25) return '범위를 확인해주세요';
+  const years = Math.floor(parsed);
+  const months = Math.round((parsed - years) * 12);
+  // 12개월 round-up edge case (e.g. 13.99 → 14년 0개월)
+  if (months === 12) return `≈ ${years + 1}년 0개월`;
+  return `≈ ${years}년 ${months}개월`;
 }
 
 function HelpTip({ text }: { text: string }) {

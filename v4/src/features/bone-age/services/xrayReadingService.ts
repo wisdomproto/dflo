@@ -117,3 +117,26 @@ export async function createXrayReading(input: {
   }
   return data as XrayReading;
 }
+
+/** Sync 반대 방향: 진료 내역 탭에서 BA를 직접 수정했을 때 같은 회차의
+ *  xray_readings row 가 있으면 bone_age_result 도 같이 업데이트해 X-ray 탭과
+ *  값을 일치시킨다. atlas_match_younger/older 도 같이 비워서 X-ray 탭이
+ *  새 BA 기준으로 atlas 레퍼런스를 다시 자동 매칭하게 한다. row 가 없으면
+ *  (이미지 없는 회차) no-op. */
+export async function syncXrayReadingBoneAge(
+  visitId: string,
+  boneAge: number | null,
+): Promise<void> {
+  const { error } = await supabase
+    .from('xray_readings')
+    .update({
+      bone_age_result: boneAge,
+      atlas_match_younger: null,
+      atlas_match_older: null,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('visit_id', visitId);
+  if (error) {
+    logger.error('syncXrayReadingBoneAge failed', error);
+  }
+}

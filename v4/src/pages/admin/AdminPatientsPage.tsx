@@ -18,6 +18,7 @@ import {
 import { regionSortKey } from '@/features/admin/utils/region';
 import { fetchStoryChildIds } from '@/features/admin/services/patientStoryService';
 import PatientStoryModal from '@/features/admin/components/PatientStoryModal';
+import { useFavoritePatients } from '@/features/admin/hooks/useFavoritePatients';
 
 export default function AdminPatientsPage() {
   const navigate = useNavigate();
@@ -28,9 +29,11 @@ export default function AdminPatientsPage() {
   const [loading, setLoading] = useState(true);
   const [addOpen, setAddOpen] = useState(false);
   const [activeCategories, setActiveCategories] = useState<Set<PatientCategoryId>>(new Set());
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [storyChildIds, setStoryChildIds] = useState<Set<string>>(new Set());
   const [storyOpenFor, setStoryOpenFor] = useState<PatientWithParent | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const { favorites, isFavorite, toggle: toggleFavorite } = useFavoritePatients();
 
   // Precompute categories per patient once per list load.
   const categoriesById = useMemo(() => {
@@ -51,16 +54,21 @@ export default function AdminPatientsPage() {
     return counts;
   }, [categoriesById]);
 
-  // Apply category filter client-side (name/chart search is still server-side).
+  // Apply category + favorites filter client-side (name/chart search is still
+  // server-side). 즐겨찾기 토글이 켜져 있으면 favorites 집합에 있는 환자만,
+  // 카테고리 칩과 조합 시 AND 의미.
   const filteredPatients = useMemo(() => {
-    if (!activeCategories.size) return patients;
-    return patients.filter((p) => {
-      const cats = categoriesById.get(p.id) ?? [];
-      // AND semantics: must match all active filters
-      for (const needed of activeCategories) if (!cats.includes(needed)) return false;
-      return true;
-    });
-  }, [patients, categoriesById, activeCategories]);
+    let list = patients;
+    if (favoritesOnly) list = list.filter((p) => favorites.has(p.id));
+    if (activeCategories.size) {
+      list = list.filter((p) => {
+        const cats = categoriesById.get(p.id) ?? [];
+        for (const needed of activeCategories) if (!cats.includes(needed)) return false;
+        return true;
+      });
+    }
+    return list;
+  }, [patients, categoriesById, activeCategories, favoritesOnly, favorites]);
 
   // Column sorting — chart / name / region / first visit / last visit / categories / measurements / labs / status.
   type SortKey =
@@ -76,7 +84,19 @@ export default function AdminPatientsPage() {
   const [sort, setSort] = useState<{ key: SortKey; dir: 'asc' | 'desc' } | null>(null);
 
   const sortedPatients = useMemo(() => {
-    if (!sort) return filteredPatients;
+    // 사용자가 컬럼 헤더를 안 눌렀을 때의 기본 정렬: 측정 수 내림차순,
+    // 동률이면 최근 내원 내림차순 (최신이 위). 즐겨찾기는 필터로 보는
+    // 거라 정렬에는 영향 없음.
+    if (!sort) {
+      return [...filteredPatients].sort((a, b) => {
+        const ma = a.measurementCount ?? 0;
+        const mb = b.measurementCount ?? 0;
+        if (mb !== ma) return mb - ma;
+        const la = a.lastVisitDate ?? '';
+        const lb = b.lastVisitDate ?? '';
+        return lb.localeCompare(la);
+      });
+    }
     const dir = sort.dir === 'asc' ? 1 : -1;
     const toNum = (v: unknown) => {
       const n = typeof v === 'string' ? parseInt(v, 10) : typeof v === 'number' ? v : NaN;
@@ -261,8 +281,25 @@ export default function AdminPatientsPage() {
         className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
       />
 
-      {/* Category filter chips */}
+      {/* Filter chips: favorites + categories */}
       <div className="flex flex-wrap gap-1.5">
+        <button
+          type="button"
+          onClick={() => setFavoritesOnly((v) => !v)}
+          className={
+            'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition ' +
+            (favoritesOnly
+              ? 'bg-amber-100 text-amber-800 ring-2 ring-amber-300 shadow-sm'
+              : 'border border-amber-200 bg-amber-50 text-amber-700 opacity-80 hover:opacity-100')
+          }
+          title="즐겨찾기한 환자만 보기"
+        >
+          <span>{favoritesOnly ? '⭐' : '☆'}</span>
+          <span>즐겨찾기</span>
+          <span className="ml-0.5 rounded-full bg-white/70 px-1.5 text-[10px] font-semibold">
+            {favorites.size}
+          </span>
+        </button>
         {CATEGORY_ORDER.map((id) => {
           const cat = PATIENT_CATEGORIES[id];
           const active = activeCategories.has(id);
@@ -287,10 +324,13 @@ export default function AdminPatientsPage() {
             </button>
           );
         })}
-        {activeCategories.size > 0 && (
+        {(activeCategories.size > 0 || favoritesOnly) && (
           <button
             type="button"
-            onClick={() => setActiveCategories(new Set())}
+            onClick={() => {
+              setActiveCategories(new Set());
+              setFavoritesOnly(false);
+            }}
             className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 hover:bg-slate-50"
           >
             초기화
@@ -316,6 +356,7 @@ export default function AdminPatientsPage() {
             <table className="hidden lg:table w-full text-sm">
               <thead className="bg-gray-50 text-gray-500 text-xs uppercase select-none">
                 <tr>
+                  <th className="px-2 py-3 text-center w-8" title="즐겨찾기">⭐</th>
                   <th
                     onClick={() => toggleSort('chart')}
                     className="cursor-pointer px-4 py-3 text-left hover:text-slate-700"
@@ -381,6 +422,25 @@ export default function AdminPatientsPage() {
                     onClick={() => navigate(`/admin/patients/${p.id}`)}
                     className="group cursor-pointer transition-colors hover:bg-gray-50"
                   >
+                    <td className="px-2 py-3 text-center">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(p.id);
+                        }}
+                        title={isFavorite(p.id) ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+                        aria-label="즐겨찾기 토글"
+                        className={
+                          'inline-flex h-7 w-7 items-center justify-center rounded transition ' +
+                          (isFavorite(p.id)
+                            ? 'text-amber-500 hover:bg-amber-50'
+                            : 'text-slate-300 hover:bg-slate-100 hover:text-amber-400')
+                        }
+                      >
+                        {isFavorite(p.id) ? '★' : '☆'}
+                      </button>
+                    </td>
                     <td className="px-4 py-3 font-mono text-sm font-semibold text-slate-900">
                       #{p.chart_number}
                     </td>
@@ -468,6 +528,21 @@ export default function AdminPatientsPage() {
                   onClick={() => navigate(`/admin/patients/${p.id}`)}
                   className="flex items-center gap-3 px-4 py-3 active:bg-gray-50 cursor-pointer"
                 >
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(p.id);
+                    }}
+                    title={isFavorite(p.id) ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+                    aria-label="즐겨찾기 토글"
+                    className={
+                      'shrink-0 rounded p-1 text-lg ' +
+                      (isFavorite(p.id) ? 'text-amber-500' : 'text-slate-300')
+                    }
+                  >
+                    {isFavorite(p.id) ? '★' : '☆'}
+                  </button>
                   <GenderIcon gender={p.gender as Gender} size="lg" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
