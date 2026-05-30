@@ -45,23 +45,23 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
     setShowResult(true);
   };
 
-  const inputCls = 'w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
-  const labelCls = 'text-xs font-medium text-gray-500 mb-1 block';
+  const inputCls = 'w-full rounded-xl border border-gray-200 px-3 py-2.5 md:py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
+  const labelCls = 'text-xs md:text-sm font-medium text-gray-500 mb-1 block';
 
   const formContent = (
-    <div className="space-y-5">
+    <div className="space-y-5 md:space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-semibold text-[#0F6E56] mb-1">{t.badge}</p>
-          <h2 className="text-xl font-extrabold text-gray-900">{t.title}</h2>
+          <p className="text-xs md:text-sm font-semibold text-[#0F6E56] mb-1">{t.badge}</p>
+          <h2 className="text-xl md:text-2xl font-extrabold text-gray-900 break-keep">{t.title}</h2>
         </div>
         <button onClick={() => setShowHelp(true)}
           aria-label={t.helpButtonAria}
-          className="w-7 h-7 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:bg-gray-100 text-xs font-bold shrink-0">
+          className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:bg-gray-100 text-xs md:text-sm font-bold shrink-0">
           ?
         </button>
       </div>
-      <p className="text-sm text-gray-500 -mt-2">{t.subtitle}</p>
+      <p className="text-sm md:text-base text-gray-500 -mt-2 break-keep">{t.subtitle}</p>
 
       {/* Gender */}
       <div>
@@ -69,7 +69,7 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
         <div className="flex gap-2">
           {(['male', 'female'] as const).map((g) => (
             <button key={g} onClick={() => setGender(g)}
-              className={`flex-1 rounded-xl py-2.5 text-sm font-semibold transition-colors ${
+              className={`flex-1 rounded-xl py-2.5 md:py-3 text-sm md:text-base font-semibold transition-colors ${
                 gender === g ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'
               }`}>
               {g === 'male' ? t.genderMale : t.genderFemale}
@@ -113,8 +113,8 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
 
       {/* Calculate button */}
       <button onClick={calculate} disabled={!birthDate || !height}
-        className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0F6E56] text-white py-3.5
-                   font-bold text-base disabled:opacity-40 hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
+        className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0F6E56] text-white py-3.5 md:py-4
+                   font-bold text-base md:text-lg disabled:opacity-40 hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
         <span>📊</span> {t.submit}
       </button>
     </div>
@@ -154,7 +154,7 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
             lang={lang}
           />
         ) : (
-          <div className="max-w-lg mx-auto p-5 bg-white">{formContent}</div>
+          <div className="max-w-lg md:max-w-xl mx-auto p-5 md:p-8 bg-white">{formContent}</div>
         )}
         {/* Help still uses modal — short read, doesn't break embed flow */}
         <InfoModal isOpen={showHelp} onClose={() => setShowHelp(false)} title={t.helpTitle}>

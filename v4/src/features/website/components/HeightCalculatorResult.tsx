@@ -200,7 +200,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
         display: true,
         position: 'top' as const,
         labels: {
-          boxWidth: 14, font: { size: 11 }, padding: 10,
+          boxWidth: 14, font: { size: 12 }, padding: 10,
           filter: (item) => !item.text?.includes('hidden'),
         },
       },
@@ -213,15 +213,15 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
     scales: {
       x: {
         type: 'linear' as const,
-        title: { display: true, text: t.chartXAxis, font: { size: 12 } },
+        title: { display: true, text: t.chartXAxis, font: { size: 13 } },
         min: 3, max: 18,
-        ticks: { stepSize: 1, font: { size: 11 }, callback: (val) => Number.isInteger(Number(val)) ? `${val}` : '' },
+        ticks: { stepSize: 1, font: { size: 12 }, callback: (val) => Number.isInteger(Number(val)) ? `${val}` : '' },
         grid: { display: false },
       },
       y: {
-        title: { display: true, text: t.chartYAxis, font: { size: 12 } },
+        title: { display: true, text: t.chartYAxis, font: { size: 13 } },
         min: 70, max: 185,
-        ticks: { font: { size: 11 }, stepSize: 10 },
+        ticks: { font: { size: 12 }, stepSize: 10 },
         grid: { color: 'rgba(0,0,0,0.05)' },
       },
     },
@@ -240,16 +240,16 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
 
   const body = (
     <>
-      <div className="space-y-5">
-        <h2 className="text-xl font-extrabold text-gray-900">{t.resultTitle}</h2>
+      <div className="space-y-5 md:space-y-6">
+        <h2 className="text-xl md:text-2xl font-extrabold text-gray-900">{t.resultTitle}</h2>
 
         {/* Main result — count-up animation */}
-        <div className="bg-[#E8F5F0] rounded-2xl p-5 text-center space-y-2">
-          <p className="text-sm font-medium text-[#0F6E56]">{t.resultLabel}</p>
-          <p className="text-5xl font-black text-[#0F6E56] leading-none transition-all">
-            {countUp.toFixed(1)} <span className="text-2xl">cm</span>
+        <div className="bg-[#E8F5F0] rounded-2xl p-5 md:p-6 text-center space-y-2">
+          <p className="text-sm md:text-base font-medium text-[#0F6E56]">{t.resultLabel}</p>
+          <p className="text-5xl md:text-6xl font-black text-[#0F6E56] leading-none transition-all">
+            {countUp.toFixed(1)} <span className="text-2xl md:text-3xl">cm</span>
           </p>
-          <div className={`flex justify-center gap-2 flex-wrap text-xs transition-opacity duration-500 ${phase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`flex justify-center gap-2 flex-wrap text-xs md:text-sm transition-opacity duration-500 ${phase >= 1 ? 'opacity-100' : 'opacity-0'}`}>
             <span className="rounded-full bg-[#0F6E56] text-white font-semibold px-3 py-1">
               {result.gender === 'male' ? t.resultGenderMale : t.resultGenderFemale} · {t.pillAge(ageYears, ageMonths)}
             </span>
@@ -259,23 +259,25 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
           </div>
         </div>
 
-        {/* Chart — line drawing animation */}
+        {/* Chart — line drawing animation. PC 에선 너무 길어지지 않게 폭 제한(1:1.4 비율) */}
         <div className={`transition-opacity duration-500 ${phase >= 2 ? 'opacity-100' : 'opacity-0'}`}>
-          <Line ref={chartRef} data={chartData} options={options} />
-          <p className="text-[10px] text-gray-400 text-center mt-1">
+          <div className="md:max-w-md md:mx-auto">
+            <Line ref={chartRef} data={chartData} options={options} />
+          </div>
+          <p className="text-[10px] md:text-xs text-gray-400 text-center mt-1">
             {t.chartFooter}
           </p>
         </div>
 
         {/* Interpretation — fade in at end */}
-        <div className={`bg-amber-50 rounded-xl p-4 space-y-1.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <p className="text-xs font-bold text-amber-800">{t.interpretH}</p>
-          <p className="text-xs text-amber-700 leading-relaxed">{interpretation}</p>
+        <div className={`bg-amber-50 rounded-xl p-4 md:p-5 space-y-1.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p className="text-xs md:text-sm font-bold text-amber-800">{t.interpretH}</p>
+          <p className="text-xs md:text-sm text-amber-700 leading-relaxed break-keep">{interpretation}</p>
         </div>
 
         {/* Methodology note + Kakao CTA — fade in at end */}
-        <div className={`space-y-2.5 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="bg-gray-50 rounded-xl p-4 space-y-2 text-xs text-gray-600 leading-relaxed">
+        <div className={`space-y-2.5 md:space-y-3 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className="bg-gray-50 rounded-xl p-4 md:p-5 space-y-2 text-xs md:text-sm text-gray-600 leading-relaxed break-keep">
             <p><strong>{t.noteBoxPrincipleLabel}</strong> {t.noteBoxPrincipleBody}</p>
             <p><strong>{t.noteBoxPredictedLabel}</strong> {t.noteBoxPredictedBody}</p>
             <p><strong>{t.noteBoxCautionLabel}</strong> {t.noteBoxCautionBody}</p>
@@ -284,15 +286,15 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
           {/* 상담 CTA — th 는 LINE, 나머지는 KakaoTalk */}
           <a href={messenger.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackKakaoConsult('height_calc_result')}
-            className={`flex items-center justify-center gap-2 w-full rounded-xl ${messenger.bgClass} py-3.5
-                       ${messenger.fgClass} font-bold text-base ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
+            className={`flex items-center justify-center gap-2 w-full rounded-xl ${messenger.bgClass} py-3.5 md:py-4
+                       ${messenger.fgClass} font-bold text-base md:text-lg ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
             {t.kakaoCta}
           </a>
 
           {/* Reset button — embedded mode only (modal mode uses close button) */}
           {embedded && (
             <button onClick={onClose}
-              className="w-full text-center text-xs text-gray-500 underline underline-offset-4 py-2 hover:text-gray-700">
+              className="w-full text-center text-xs md:text-sm text-gray-500 underline underline-offset-4 py-2 hover:text-gray-700">
               {t.reset}
             </button>
           )}
@@ -302,7 +304,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
   );
 
   if (embedded) {
-    return <div className="max-w-lg mx-auto p-5 bg-white">{body}</div>;
+    return <div className="max-w-lg md:max-w-2xl mx-auto p-5 md:p-8 bg-white">{body}</div>;
   }
 
   return (

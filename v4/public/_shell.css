@@ -229,7 +229,7 @@ body { background: var(--shell-page-bg) !important; }
 .t-header-kakao:active { transform: scale(0.96); }
 .t-header-kakao svg { flex-shrink: 0; }
 
-/* ============= CALCULATOR MODAL (centered card with backdrop) ============= */
+/* ============= CALCULATOR MODAL (backdrop + iframe → React /calc-embed) ============= */
 .t-modal {
   position: fixed;
   inset: 0;
@@ -268,252 +268,42 @@ body { background: var(--shell-page-bg) !important; }
 .t-modal-close:hover { background: rgba(0,0,0,0.12); }
 .t-modal-close:active { transform: scale(0.92); }
 
-.t-calc {
-  position: relative;            /* close 버튼 anchor */
-  max-width: 460px;
+/* ===== iframe frame (React /calc-embed 재사용) ===== */
+/* 폼·결과·차트는 모두 iframe 안 React HeightCalculator 가 렌더. 여기선 모달 틀만. */
+.t-calc-frame {
+  position: relative;
   width: 100%;
-  max-height: calc(100dvh - 32px);
-  overflow-y: auto;
+  max-width: 460px;
+  /* definite height so the flex iframe child can fill it (flex-basis:0 overrides iframe's own height) */
+  height: calc(100dvh - 32px);
+  max-height: 760px;
   margin: 0 auto;
-  padding: 28px 22px 28px;
   background: #fff;
   border-radius: 20px;
+  overflow: hidden;
   box-shadow: 0 24px 60px rgba(26,23,20,0.30);
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
-.t-calc .calc-header {
-  text-align: center;
-}
-.t-calc .calc-header .badge {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.2px;
-  color: var(--shell-brand);
-  margin-bottom: 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--shell-brand);
-}
-.t-calc .calc-header h2 {
-  font-family: 'Noto Serif KR', 'Pretendard', serif;
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--shell-ink);
-  letter-spacing: -0.4px;
-  line-height: 1.35;
-}
-.t-calc .calc-header p {
-  font-size: 13px;
-  color: var(--shell-muted);
-  margin-top: 12px;
-  line-height: 1.7;
-  letter-spacing: 0.01em;
-}
-
-.t-calc .field-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--shell-muted);
-  margin-bottom: 5px;
-  display: block;
-}
-.t-calc .gender-row {
-  display: flex;
-  gap: 8px;
-}
-.t-calc .gender-btn {
-  flex: 1;
-  padding: 14px;
-  border-radius: 2px;
-  border: 1px solid var(--shell-hairline);
-  font-size: 14px;
-  font-weight: 500;
-  background: transparent;
-  color: var(--shell-muted);
-  cursor: pointer;
-  transition: all 0.18s;
-  letter-spacing: 0.02em;
-}
-.t-calc .gender-btn.active {
-  background: var(--shell-brand);
-  color: #fff;
-  border-color: var(--shell-brand);
-}
-.t-calc input[type="date"],
-.t-calc input[type="number"] {
-  width: 100%;
-  padding: 13px 14px;
-  border: 0;
-  border-bottom: 1px solid var(--shell-hairline);
-  border-radius: 0;
-  font-size: 15px;
-  font-family: inherit;
-  background: transparent;
-  color: var(--shell-ink);
-}
-.t-calc input:focus {
-  outline: none;
-  border-bottom-color: var(--shell-brand);
-}
-.t-calc .row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.t-calc .calc-btn {
-  width: 100%;
-  padding: 17px;
-  border-radius: 2px;
-  border: 0;
-  background: var(--shell-brand);
-  color: #fff;
-  font-size: 14.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: opacity 0.18s, transform 0.15s, background 0.18s;
-  margin-top: 10px;
-}
-.t-calc .calc-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-.t-calc .calc-btn:hover:not(:disabled) {
-  background: var(--shell-brand-deep);
-}
-.t-calc .calc-btn:active:not(:disabled) {
-  transform: scale(0.99);
-}
-
-/* ===== Result inside the modal ===== */
-.t-result {
-  display: none;
-  flex-direction: column;
-  gap: 16px;
-}
-.t-result.is-shown {
-  display: flex;
-}
-.t-result-chart {
-  width: 100%;
-  height: 180px;
-  display: block;
-}
-.t-result .hero-card {
-  background: var(--shell-brand-soft);
-  border: 1px solid var(--shell-hairline);
-  border-radius: 2px;
-  padding: 32px 22px 28px;
-  text-align: center;
+/* 닫기(✕) 버튼이 iframe 안 React '?' 도움말 버튼과 안 겹치도록 상단 바 확보 */
+.t-calc-frame-bar {
   position: relative;
+  height: 44px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--shell-hairline);
 }
-.t-result .hero-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 36px; height: 2px;
-  background: var(--shell-brand);
-  margin-top: -1px;
+.t-calc-frame .t-modal-close {
+  top: 4px;
+  right: 6px;
 }
-.t-result .hero-card .label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2.2px;
-  color: var(--shell-brand);
-  margin-bottom: 14px;
-}
-.t-result .hero-card .number {
-  font-family: 'Noto Serif KR', 'Pretendard', serif;
-  font-size: 64px;
-  font-weight: 500;
-  color: var(--shell-brand);
-  line-height: 1;
-  letter-spacing: -1.5px;
-}
-.t-result .hero-card .number .unit {
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--shell-muted);
-  letter-spacing: 0;
-  margin-left: 4px;
-}
-.t-result .hero-card .meta {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 18px;
-}
-.t-result .hero-card .pill {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 5px 12px;
-  border-radius: 0;
-  border: 1px solid var(--shell-brand);
-  color: var(--shell-brand);
+.t-calc-iframe {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  display: block;
   background: #fff;
 }
-.t-result .hero-card .pill.solid {
-  background: var(--shell-brand);
-  color: #fff;
-  border-color: var(--shell-brand);
-}
-
-.t-result .interpretation {
-  background: transparent;
-  border-left: 2px solid var(--shell-brand);
-  padding: 4px 14px;
-  font-size: 13.5px;
-  color: var(--shell-body);
-  line-height: 1.7;
-  font-weight: 500;
-  letter-spacing: 0.005em;
-}
-.t-result .note {
-  border: 1px solid var(--shell-hairline);
-  background: transparent;
-  border-radius: 2px;
-  padding: 14px 16px;
-  font-size: 11.5px;
-  color: var(--shell-muted);
-  line-height: 1.7;
-}
-.t-result .note strong { color: var(--shell-ink); font-weight: 600; }
-
-.t-result .kakao-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--shell-kakao);
-  color: var(--shell-ink);
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 0.02em;
-  padding: 17px;
-  border-radius: 2px;
-  text-decoration: none;
-  margin-top: 8px;
-  transition: background 0.2s, transform 0.15s;
-}
-.t-result .kakao-cta:hover { filter: brightness(1.06); }
-.t-result .kakao-cta:active { transform: scale(0.99); }
-
-.t-result .reset-btn {
-  background: transparent;
-  border: 0;
-  color: var(--shell-muted);
-  font-size: 11.5px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
-  cursor: pointer;
-  padding: 8px;
-  margin-top: -2px;
+@media (min-width: 768px) {
+  .t-calc-frame { max-width: 600px; }
 }
