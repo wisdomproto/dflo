@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
-import { calculateHeightPercentileLMS, predictAdultHeightLMS } from '@/shared/data/growthStandard';
+import { calculateHeightPercentileLMS, predictAdultHeightLMS, type GrowthStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import { HeightCalculatorResult, type HeightResult } from './HeightCalculatorResult';
 import { CalcLangContext, getCalcLabels, type CalcLang } from './calcLabels';
@@ -32,14 +32,16 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
   const [showResult, setShowResult] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const t = getCalcLabels(lang);
+  // 태국어 계산기는 태국 성장도표(TSPE) 기준, 그 외(ko/vi/en)는 한국 기준
+  const standard: GrowthStandard = lang === 'th' ? 'TH' : 'KR';
 
   const calculate = () => {
     const h = parseFloat(height);
     if (!birthDate || !h) return;
     const age = calculateAgeAtDate(birthDate, new Date());
-    const pct = calculateHeightPercentileLMS(h, age.decimal, gender);
-    const pred = predictAdultHeightLMS(h, age.decimal, gender);
-    setResult({ predicted: pred, percentile: pct, age: age.decimal, currentHeight: h, gender });
+    const pct = calculateHeightPercentileLMS(h, age.decimal, gender, standard);
+    const pred = predictAdultHeightLMS(h, age.decimal, gender, standard);
+    setResult({ predicted: pred, percentile: pct, age: age.decimal, currentHeight: h, gender, standard });
     setShowResult(true);
   };
 
@@ -123,10 +125,6 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
       <div>
         <h4 className="font-bold text-gray-900 mb-1">{t.helpPrincipleH}</h4>
         <p dangerouslySetInnerHTML={{ __html: t.helpPrincipleP }} />
-      </div>
-      <div>
-        <h4 className="font-bold text-gray-900 mb-1">{t.helpLmsH}</h4>
-        <p>{t.helpLmsP}</p>
       </div>
       <div>
         <h4 className="font-bold text-gray-900 mb-1">{t.helpAdultH}</h4>

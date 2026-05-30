@@ -133,6 +133,24 @@ function localizeAllergy(items: string[]): LocalizedStringArray {
 }
 
 // ============================================================================
+// Cases banner (intro slide) — title/subtitle stay Korean in R2, translated here.
+// Only the cases-embed page renders a banner for non-KO locales, so applying
+// these overrides whenever lang !== 'ko' is safe.
+// ============================================================================
+export const CASES_BANNER_I18N: { title: LocalizedString; subtitle: LocalizedString } = {
+  title: {
+    en: 'Growing Tall with Confidence\n187 Growth Stories',
+    th: 'เลี้ยงให้สูงได้อย่างมั่นใจ\n187 เรื่องราวการเติบโต',
+    vi: 'Nuôi con cao lớn đầy tự tin\n187 Câu chuyện tăng trưởng',
+  },
+  subtitle: {
+    en: "Real height-growth success stories from\n187 Growth Clinic's 10 years of expertise",
+    th: 'เรื่องราวความสำเร็จด้านส่วนสูงจริง\nจากประสบการณ์ดูแลการเติบโต 10 ปีของคลินิก 187',
+    vi: 'Những câu chuyện thành công về chiều cao thật\ntừ 10 năm kinh nghiệm của Phòng khám Tăng trưởng 187',
+  },
+};
+
+// ============================================================================
 // Per-case overrides (key = slide.id from R2)
 // ============================================================================
 export const CASES_I18N: Record<string, CaseI18nOverride> = {

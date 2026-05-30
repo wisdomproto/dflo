@@ -4,7 +4,7 @@
 // ================================================
 
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { heightAtSamePercentile, getHeightStandard } from '@/shared/data/growthStandard';
+import { heightAtSamePercentile, getHeightStandard, type GrowthStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
 import { getCalcLabels, type CalcLang } from './calcLabels';
@@ -22,12 +22,22 @@ ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_ZxneSb';
 
+// 언어별 메신저 CTA (i18n/messenger.yml 과 동일). th 는 LINE OA, 나머지는 KakaoTalk.
+const MESSENGER: Record<CalcLang, { url: string; bgClass: string; fgClass: string; hoverClass: string }> = {
+  ko: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
+  vi: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
+  en: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
+  th: { url: 'https://line.me/R/ti/p/%40894qhqtu', bgClass: 'bg-[#06C755]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
+};
+
 export interface HeightResult {
   predicted: number;
   percentile: number;
   age: number;
   currentHeight: number;
   gender: 'male' | 'female';
+  /** 성장 표준 (예측 경로·배경 백분위 곡선에 동일 적용). 기본 'KR'. */
+  standard?: GrowthStandard;
 }
 
 interface Props {
@@ -67,6 +77,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
   const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
   const chartRef = useRef<ChartJS<'line'>>(null);
   const t = getCalcLabels(lang);
+  const messenger = MESSENGER[lang] || MESSENGER.ko;
 
   const allPathPoints = useMemo(() => {
     const startAge = Math.ceil(result.age * 2) / 2;
@@ -74,7 +85,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
       { x: Math.round(result.age * 2) / 2, y: result.currentHeight },
     ];
     for (let a = startAge + 0.5; a <= 17.5; a += 0.5) {
-      const h = heightAtSamePercentile(result.currentHeight, result.age, a, result.gender);
+      const h = heightAtSamePercentile(result.currentHeight, result.age, a, result.gender, result.standard);
       if (h > 0) points.push({ x: a, y: h });
     }
     points.push({ x: 18, y: result.predicted });
@@ -114,7 +125,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
   const pathPoints = allPathPoints.slice(0, drawnPoints);
 
   const chartData = useMemo(() => {
-    const standard = getHeightStandard(result.gender);
+    const standard = getHeightStandard(result.gender, result.standard);
     const filtered = standard.filter((d) => d.age >= 3 && d.age <= 18);
     const toXY = (vals: number[]) => filtered.map((d, i) => ({ x: d.age, y: vals[i] }));
 
@@ -270,11 +281,11 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             <p><strong>{t.noteBoxCautionLabel}</strong> {t.noteBoxCautionBody}</p>
           </div>
 
-          {/* Kakao CTA */}
-          <a href={KAKAO_URL} target="_blank" rel="noopener noreferrer"
+          {/* 상담 CTA — th 는 LINE, 나머지는 KakaoTalk */}
+          <a href={messenger.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackKakaoConsult('height_calc_result')}
-            className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#FEE500] py-3.5
-                       text-[#3C1E1E] font-bold text-base hover:bg-[#FDD800] active:scale-[0.98] transition-all">
+            className={`flex items-center justify-center gap-2 w-full rounded-xl ${messenger.bgClass} py-3.5
+                       ${messenger.fgClass} font-bold text-base ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
             {t.kakaoCta}
           </a>
 

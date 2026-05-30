@@ -18,6 +18,12 @@ type LabelDict = {
   allergyCaution: (n: number) => string;
   growthChart: string;
   loading: string;
+  // Growth chart legend + axis labels (passed into shared GrowthChart)
+  chartActualHeight: string;
+  chartInitialGrowth: string;
+  chartCurrentGrowth: string;
+  chartAxisAge: string;
+  chartAxisHeight: string;
   tableNum: string;
   tableDate: string;
   tableHeight: string;
@@ -69,6 +75,8 @@ const DICT: Record<CasesLang, LabelDict> = {
     allergyCaution: (n) => `⚠️ 경계 (${n}개)`,
     growthChart: '📈 성장 표준곡선',
     loading: '로딩...',
+    chartActualHeight: '실제 키', chartInitialGrowth: '초진 예상 성장', chartCurrentGrowth: '현재 예상 성장',
+    chartAxisAge: '나이(세)', chartAxisHeight: '키(cm)',
     tableNum: '#',
     tableDate: '날짜', tableHeight: '키', tableWeight: '체중',
     tableAge: '나이', tableBoneAge: '뼈나이', tablePredicted: '예상키',
@@ -103,6 +111,8 @@ const DICT: Record<CasesLang, LabelDict> = {
     allergyCaution: (n) => `⚠️ Caution (${n})`,
     growthChart: '📈 Standard growth chart',
     loading: 'Loading…',
+    chartActualHeight: 'Actual height', chartInitialGrowth: 'Initial projection', chartCurrentGrowth: 'Current projection',
+    chartAxisAge: 'Age (yrs)', chartAxisHeight: 'Height (cm)',
     tableNum: '#',
     tableDate: 'Date', tableHeight: 'Height', tableWeight: 'Weight',
     tableAge: 'Age', tableBoneAge: 'Bone age', tablePredicted: 'Predicted',
@@ -137,6 +147,8 @@ const DICT: Record<CasesLang, LabelDict> = {
     allergyCaution: (n) => `⚠️ ระวัง (${n})`,
     growthChart: '📈 กราฟการเจริญเติบโตมาตรฐาน',
     loading: 'กำลังโหลด...',
+    chartActualHeight: 'ส่วนสูงจริง', chartInitialGrowth: 'คาดการณ์ครั้งแรก', chartCurrentGrowth: 'คาดการณ์ปัจจุบัน',
+    chartAxisAge: 'อายุ (ปี)', chartAxisHeight: 'ส่วนสูง (ซม.)',
     tableNum: '#',
     tableDate: 'วันที่', tableHeight: 'ส่วนสูง', tableWeight: 'น้ำหนัก',
     tableAge: 'อายุ', tableBoneAge: 'อายุกระดูก', tablePredicted: 'คาดการณ์',
@@ -171,6 +183,8 @@ const DICT: Record<CasesLang, LabelDict> = {
     allergyCaution: (n) => `⚠️ Cảnh báo (${n})`,
     growthChart: '📈 Biểu đồ tăng trưởng chuẩn',
     loading: 'Đang tải...',
+    chartActualHeight: 'Chiều cao thực', chartInitialGrowth: 'Dự đoán ban đầu', chartCurrentGrowth: 'Dự đoán hiện tại',
+    chartAxisAge: 'Tuổi (năm)', chartAxisHeight: 'Chiều cao (cm)',
     tableNum: '#',
     tableDate: 'Ngày', tableHeight: 'Chiều cao', tableWeight: 'Cân nặng',
     tableAge: 'Tuổi', tableBoneAge: 'Tuổi xương', tablePredicted: 'Dự đoán',

@@ -569,9 +569,11 @@
       </p>
     </div>
 
+    {{#each obesity.bmi_panel}}
     <div class="bmi-panel">
-      <img src="/programs/images/obesity-growth/body-bmi.jpg" alt="{{obesity.bmi_img_alt}}">
+      <img src="/programs/images/obesity-growth/body-bmi.jpg" alt="{{img_alt}}">
     </div>
+    {{/each}}
 
     <div class="sec-head spaced">
       <div class="sec-eyebrow">{{obesity.subsection1_eyebrow}}</div>
@@ -661,12 +663,14 @@
       </p>
     </div>
 
+    {{#each precocious.chart_panel}}
     <div class="panel-bordered">
-      <div class="ctitle">{{precocious.chart_ctitle}}</div>
-      <div class="csrc">{{precocious.chart_csrc}}</div>
-      <div class="cunit">{{precocious.chart_cunit}}</div>
-      <img src="/programs/images/precocious-puberty/chart.jpg" alt="{{precocious.chart_img_alt}}">
+      <div class="ctitle">{{ctitle}}</div>
+      <div class="csrc">{{csrc}}</div>
+      <div class="cunit">{{cunit}}</div>
+      <img src="/programs/images/precocious-puberty/chart.jpg" alt="{{img_alt}}">
     </div>
+    {{/each}}
 
     <div class="sec-head spaced">
       <div class="sec-eyebrow">{{precocious.subsection1_eyebrow}}</div>
@@ -827,9 +831,11 @@
       </p>
     </div>
 
+    {{#each late.chart_panel}}
     <div class="chart-block">
-      <img src="/programs/images/late-growth/growth-chart.jpg" alt="{{late.chart_img_alt}}">
+      <img src="/programs/images/late-growth/growth-chart.jpg" alt="{{img_alt}}">
     </div>
+    {{/each}}
 
     <div class="table-block">
       <table class="speed">

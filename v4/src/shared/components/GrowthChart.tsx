@@ -48,6 +48,14 @@ interface GrowthChartProps {
   predictedCurve?: GrowthPoint[];
   /** 첫 측정 기준 예상 성장 곡선 (첫 측정~18세, 1년 간격) — "치료 받지 않았다면" baseline */
   initialPredictedCurve?: GrowthPoint[];
+  /** 범례/축 라벨 번역 (다국어 임베드용). 미지정 시 한국어 기본값 */
+  labels?: {
+    actualHeight?: string;
+    initialGrowth?: string;
+    currentGrowth?: string;
+    axisAge?: string;
+    axisHeight?: string;
+  };
 }
 
 export function GrowthChart({
@@ -60,7 +68,15 @@ export function GrowthChart({
   predictedAdultHeight,
   predictedCurve,
   initialPredictedCurve,
+  labels,
 }: GrowthChartProps) {
+  const L = {
+    actualHeight: labels?.actualHeight ?? '실제 키',
+    initialGrowth: labels?.initialGrowth ?? '초진 예상 성장',
+    currentGrowth: labels?.currentGrowth ?? '현재 예상 성장',
+    axisAge: labels?.axisAge ?? '나이(세)',
+    axisHeight: labels?.axisHeight ?? '키(cm)',
+  };
   const chartRef = useRef<ChartJS<'line'> | null>(null);
 
   const chartData = useMemo(() => {
@@ -139,7 +155,7 @@ export function GrowthChart({
           tension: 0.3,
         },
         {
-          label: '실제 키',
+          label: L.actualHeight,
           data: points.map((p) => ({ x: p.age, y: p.height })),
           borderColor: '#667eea',
           backgroundColor: '#667eea',
@@ -152,7 +168,7 @@ export function GrowthChart({
         // 첫 측정 기준 예상 곡선 — "치료 받지 않았다면" baseline (회색)
         ...(initialPredictedCurve && initialPredictedCurve.length > 0 ? [
           {
-            label: '초진 예상 성장',
+            label: L.initialGrowth,
             data: initialPredictedCurve.map((p) => ({ x: p.age, y: p.height })),
             borderColor: '#94A3B8',
             backgroundColor: '#94A3B8',
@@ -183,7 +199,7 @@ export function GrowthChart({
         // Predicted growth curve (yearly points from last measurement to 18)
         ...(predictedCurve && predictedCurve.length > 0 ? [
           {
-            label: '현재 예상 성장',
+            label: L.currentGrowth,
             data: predictedCurve.map((p) => ({ x: p.age, y: p.height })),
             borderColor: '#F59E0B',
             backgroundColor: '#F59E0B',
@@ -242,7 +258,7 @@ export function GrowthChart({
         ] : []),
       ],
     };
-  }, [gender, points, predictedAdultHeight, predictedCurve, initialPredictedCurve, zoomable]);
+  }, [gender, points, predictedAdultHeight, predictedCurve, initialPredictedCurve, zoomable, L.actualHeight, L.initialGrowth, L.currentGrowth]);
 
   // 왼쪽 더블클릭 → zoom in (애니메이션), 우클릭 → 3~18세 전체 보기
   const handleDblClick = useCallback(() => {
@@ -321,7 +337,7 @@ export function GrowthChart({
     scales: {
       x: {
         type: 'linear' as const,
-        title: { display: true, text: '나이(세)', font: { size: fs.axis } },
+        title: { display: true, text: L.axisAge, font: { size: fs.axis } },
         ticks: {
           font: { size: fs.tick },
           stepSize: 1,
@@ -332,7 +348,7 @@ export function GrowthChart({
         max: zoomable ? chartData.maxAge : chartData.maxAge,
       },
       y: {
-        title: { display: true, text: '키(cm)', font: { size: fs.axis } },
+        title: { display: true, text: L.axisHeight, font: { size: fs.axis } },
         ticks: { font: { size: fs.tick } },
         grid: { color: 'rgba(0,0,0,0.05)' },
       },

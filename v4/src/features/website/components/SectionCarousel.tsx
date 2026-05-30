@@ -9,7 +9,7 @@ import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { Slide, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, FaqItem, HeightCalcSlide } from '../types/websiteSection';
 import { HeightCalcCard } from './HeightCalcCard';
 import { CasesLangContext, getCasesLabels, useCasesLang, useCasesLangCode, type CasesLang } from './casesLabels';
-import { CASES_I18N, type CaseLocale } from '../data/casesI18nData';
+import { CASES_I18N, CASES_BANNER_I18N, type CaseLocale } from '../data/casesI18nData';
 
 export function extractVideoId(url: string): string | null {
   if (!url) return null;
@@ -191,6 +191,11 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang
 
 // ============= Banner slide content =============
 function BannerContent({ slide: s }: { slide: BannerSlide }) {
+  const lang = useCasesLangCode();
+  const loc: CaseLocale | null = lang === 'ko' ? null : (lang as CaseLocale);
+  const bannerTitle = (loc && CASES_BANNER_I18N.title[loc]) || s.title;
+  const bannerSubtitle = (loc && CASES_BANNER_I18N.subtitle[loc]) || s.subtitle;
+
   const handleCta = () => {
     if (s.ctaAction === 'scroll') {
       document.dispatchEvent(new CustomEvent('open-height-calculator'));
@@ -228,9 +233,9 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
               textShadow: (s.titleShadow ?? true) ? '0 2px 8px rgba(0,0,0,0.5)' : 'none',
             }}
           >
-            {s.title}
+            {bannerTitle}
           </h1>
-          {s.subtitle && (
+          {bannerSubtitle && (
             <p
               className={`mb-4 whitespace-pre-line font-['Noto_Sans_KR'] ${
                 !s.subtitleColor ? 'text-white/90' : ''
@@ -243,7 +248,7 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
                 textShadow: (s.subtitleShadow ?? true) ? '0 1px 6px rgba(0,0,0,0.5)' : 'none',
               }}
             >
-              {s.subtitle}
+              {bannerSubtitle}
             </p>
           )}
           {s.ctaText && !isFullLink && !isModal && (() => {
@@ -874,6 +879,10 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
     predictedAdultHeight?: number;
     predictedCurve?: { age: number; height: number }[];
     initialPredictedCurve?: { age: number; height: number }[];
+    labels?: {
+      actualHeight?: string; initialGrowth?: string; currentGrowth?: string;
+      axisAge?: string; axisHeight?: string;
+    };
   }> | null>(null);
   const [heightStandard, setHeightStandard] = React.useState<{ age: number; p5: number; p50: number; p95: number }[] | null>(null);
 
@@ -989,6 +998,13 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
           compact
           predictedCurve={predictedCurve}
           initialPredictedCurve={initialPredictedCurve}
+          labels={{
+            actualHeight: t.chartActualHeight,
+            initialGrowth: t.chartInitialGrowth,
+            currentGrowth: t.chartCurrentGrowth,
+            axisAge: t.chartAxisAge,
+            axisHeight: t.chartAxisHeight,
+          }}
         />
       ) : (
         <div className="h-32 flex items-center justify-center text-xs text-gray-400">{t.loading}</div>
