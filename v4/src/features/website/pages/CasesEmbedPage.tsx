@@ -79,8 +79,8 @@ export default function CasesEmbedPage() {
   }
 
   return (
-    <div className="w-full max-w-[460px] md:max-w-[720px] mx-auto bg-white">
-      <SectionCarousel slides={slides} showNav={showNav} initialIndex={initialIndex} lang={lang} />
+    <div className="w-full max-w-[460px] md:max-w-[720px] mx-auto bg-white h-screen overflow-hidden flex flex-col">
+      <SectionCarousel slides={slides} showNav={showNav} initialIndex={initialIndex} lang={lang} embed />
     </div>
   );
 }

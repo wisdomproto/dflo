@@ -120,6 +120,13 @@ body { background: var(--shell-page-bg) !important; }
   background: #fff;
 }
 
+/* PC: 콘텐츠를 모바일 폭 중앙 카드로 보이게 — 따뜻한 배경 + 헤더 폭을 카드(680)에 맞춤.
+   index/clinic 템플릿이 .container 를 680 카드로 좁히므로 헤더도 같은 폭으로 정렬. */
+@media (min-width: 768px) {
+  .t-page { background: var(--shell-page-bg); }
+  .t-header { max-width: 680px; }
+}
+
 /* ============= BOTTOM NAV ============= */
 /* Floating pill nav — 화면 하단에서 살짝 띄움 + 둥근 캡슐 */
 .t-bottom-nav {
@@ -304,6 +311,17 @@ body { background: var(--shell-page-bg) !important; }
   display: block;
   background: #fff;
 }
+/* PC: iframe 안 React 계산기의 md: 반응형(텍스트 키움)이 켜지려면
+   iframe 자체 뷰포트가 ≥768px 여야 함 (iframe 은 부모 화면폭이 아닌 자기 폭 기준).
+   따라서 PC 모달 폭을 780px 로 키워 md breakpoint 를 활성화한다. */
+@media (min-width: 820px) {
+  .t-calc-frame { max-width: 780px; }
+}
+
+/* PC: 하단 플로팅 탭바 확대 (클릭 영역 + 가독성).
+   .t-bottom-nav 기본 정의 뒤에 와야 동일 명시도에서 오버라이드가 적용됨. */
 @media (min-width: 768px) {
-  .t-calc-frame { max-width: 600px; }
+  .t-bottom-nav { max-width: 560px; height: 66px; bottom: 18px; }
+  .t-bottom-nav a, .t-bottom-nav button { font-size: 13px; gap: 5px; }
+  .t-bottom-nav .icon { width: 22px; height: 22px; }
 }

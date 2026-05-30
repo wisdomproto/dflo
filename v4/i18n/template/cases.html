@@ -17,10 +17,19 @@
 
   .container { max-width: 1024px; margin: 0 auto; background: #fff; }
 
-  /* Iframe wrapper — fill viewport between fixed top header and bottom nav */
+  /* cases 페이지는 iframe 한 장이 화면을 꽉 채우는 구조 — 바깥 페이지는 스크롤하지 않고
+     iframe 안의 콘텐츠만 스크롤한다. _shell.css 의 .t-page padding-bottom(88) 을 제거하고
+     높이를 100vh 로 고정해 이중 스크롤바를 막는다. */
+  body[data-page="cases"] .t-page {
+    height: 100vh;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  /* Iframe wrapper — fill viewport between fixed top header and floating bottom nav */
   .cases-iframe-wrap {
     width: 100%;
-    /* viewport - top header (52) - bottom nav (76) */
+    /* viewport - top header (52) - floating nav clearance (76) */
     height: calc(100vh - 128px);
     min-height: 480px;
     overflow: hidden;

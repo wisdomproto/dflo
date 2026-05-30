@@ -30,9 +30,26 @@ interface Props {
   initialIndex?: number;
   showNav?: boolean;
   lang?: CasesLang;
+  /** standalone cases-embed(/cases-embed) 에서만 true — PC 폭(≥768)에서 케이스 카드 전체를
+   *  확대해 가독성을 높인다. 메인 사이트/어드민 프리뷰는 모바일 폭 그대로 유지하므로 false. */
+  embed?: boolean;
 }
 
-export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang = 'ko' }: Props) {
+// embed 모드에서 iframe 자체 뷰포트가 PC(≥768)일 때 1, 아니면 false → 케이스 카드 zoom 배율.
+function usePcEmbedZoom(enabled: boolean): number {
+  const [isPc, setIsPc] = React.useState(false);
+  React.useEffect(() => {
+    if (!enabled || typeof window === 'undefined') { setIsPc(false); return; }
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsPc(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, [enabled]);
+  return enabled && isPc ? 1.4 : 1;
+}
+
+export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang = 'ko', embed = false }: Props) {
   const [current, setCurrent] = useState(initialIndex);
   const total = slides.length;
   const labels = getCasesLabels(lang);
@@ -85,12 +102,14 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang
       ? (heightCalcRatio === '9:16' ? 'aspect-[9/16]' : 'aspect-[4/5]')
       : useNaturalHeight ? '' : 'aspect-[4/5]';
 
+  // embed(/cases-embed) 에서는 iframe 높이를 꽉 채우는 flex 컬럼으로 — 카드를 고정 4:5 박스가
+  // 아니라 남은 높이에 맞춰 늘리고, 그 안의 콘텐츠만 스크롤시켜 이중 스크롤바를 없앤다.
   return (
     <CasesLangContext.Provider value={lang}>
-    <div className="w-full">
+    <div className={embed ? 'w-full h-full flex flex-col min-h-0' : 'w-full'}>
       {/* Top navigation row — visible when multi-slide */}
       {total > 1 && (
-        <div className="flex items-center justify-between gap-2 px-3 py-2 bg-white border-b border-gray-100">
+        <div className={`flex items-center justify-between gap-2 px-3 py-2 bg-white border-b border-gray-100${embed ? ' flex-shrink-0' : ''}`}>
           <button
             onClick={prev}
             className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-gray-500 hover:text-primary hover:bg-gray-100 active:scale-90 transition-all"
@@ -133,7 +152,9 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang
       )}
 
     <section
-      className={`relative overflow-hidden w-full ${aspectClass}`}
+      className={embed
+        ? 'relative overflow-hidden w-full flex-1 min-h-0'
+        : `relative overflow-hidden w-full ${aspectClass}`}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -159,7 +180,7 @@ export function SectionCarousel({ slides, initialIndex = 0, showNav = true, lang
           >
             {slide.template === 'banner' && <BannerContent slide={slide} />}
             {slide.template === 'video' && <VideoContent slide={slide} />}
-            {slide.template === 'cases' && <CasesContent slide={slide as CasesSlide} isActive={i === current} />}
+            {slide.template === 'cases' && <CasesContent slide={slide as CasesSlide} isActive={i === current} embed={embed} />}
             {slide.template === 'iframe' && <IframeContent slide={slide as IframeSlide} />}
             {slide.template === 'faq' && <FaqContent slide={slide as FaqSlide} />}
             {slide.template === 'height-calc' && <HeightCalcCard slide={slide as HeightCalcSlide} />}
@@ -619,7 +640,7 @@ function VideoContent({ slide: s }: { slide: VideoSlide }) {
 }
 
 // ============= Cases slide content (direct input with charts) =============
-function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boolean }) {
+function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide; isActive: boolean; embed?: boolean }) {
   const ms = s.measurements || [];
   const isMale = s.gender === 'male';
   const KAKAO_URL = 'https://pf.kakao.com/_ZxneSb';
@@ -665,7 +686,9 @@ function CasesContent({ slide: s, isActive }: { slide: CasesSlide; isActive: boo
   const hasPredictedPair = msWithPredicted.length >= 2 && firstPredicted !== lastPredicted;
 
   // 어드민에서 fontScale 로 슬라이드별 글자 크기 미세조정 (기본 100 = no-op).
-  const fontZoom = (s.fontScale ?? 100) / 100;
+  // embed(/cases-embed) + PC 폭이면 카드 전체를 확대(pcZoom)해 가독성 확보.
+  const pcZoom = usePcEmbedZoom(embed);
+  const fontZoom = ((s.fontScale ?? 100) / 100) * pcZoom;
   const fontZoomStyle: React.CSSProperties | undefined =
     fontZoom === 1 ? undefined : { zoom: fontZoom, width: `${100 / fontZoom}%` };
   return (
@@ -1073,7 +1096,7 @@ function CasesBarChart({
     return remMonths === 0 ? `${years}${t.yearSuffix}` : `${years}${t.yearSuffix} ${remMonths}${t.monthSuffix}`;
   })();
 
-  const CHART_HEIGHT = 180;
+  const CHART_HEIGHT = 196;
 
   // 예상키 한 개의 막대만 그린다. 측면 라벨은 같은 좌우로 충돌하지 않게
   // 초진은 왼쪽으로, 최종은 오른쪽으로 펼친다.
@@ -1089,10 +1112,10 @@ function CasesBarChart({
     barBg: string; labelColor: string;
   }) => {
     const predictedPct = pct(predicted);
-    // Bar half-width = 26px (52/2); add small gap before the side label.
+    // Bar half-width = 29px (58/2); add small gap before the side label.
     const sideStyle = labelSide === 'left'
-      ? { right: 'calc(50% + 30px)', left: -4 }
-      : { left: 'calc(50% + 30px)', right: -4 };
+      ? { right: 'calc(50% + 33px)', left: -4 }
+      : { left: 'calc(50% + 33px)', right: -4 };
     const flexDir = labelSide === 'left' ? 'flex-row-reverse' : 'flex-row';
     return (
       <div className="flex-1 flex flex-col items-center">
@@ -1101,7 +1124,7 @@ function CasesBarChart({
             className="absolute bottom-0 rounded-t-md overflow-hidden ring-1 ring-black/5"
             style={{
               left: '50%', transform: 'translateX(-50%)',
-              width: 52, height: '100%',
+              width: 58, height: '100%',
               background: 'linear-gradient(180deg, rgba(248,250,252,0) 0%, rgba(248,250,252,0.5) 100%)',
             }}
           >
@@ -1114,19 +1137,19 @@ function CasesBarChart({
             style={{ ...sideStyle, bottom: `${predictedPct}%`, transform: 'translateY(50%)' }}
           >
             <span
-              className="text-[11px] font-black tabular-nums whitespace-nowrap leading-none px-1 rounded bg-white/85 backdrop-blur-[1px]"
+              className="text-[13px] font-black tabular-nums whitespace-nowrap leading-none px-1 py-0.5 rounded bg-white/85 backdrop-blur-[1px]"
               style={{ color: labelColor }}
             >
               {predicted}
             </span>
-            <div className="border-t border-dashed" style={{ borderColor: labelColor, width: 14 }} />
+            <div className="border-t border-dashed" style={{ borderColor: labelColor, width: 16 }} />
           </div>
         </div>
 
         {/* x-axis label */}
         <div className="text-center mt-2 leading-tight">
-          <p className="text-[11px] font-bold text-gray-700">{title}</p>
-          {dateLabel && <p className="text-[9px] text-gray-400 mt-0.5">{dateLabel}</p>}
+          <p className="text-[12.5px] font-bold text-gray-700">{title}</p>
+          {dateLabel && <p className="text-[10.5px] text-gray-400 mt-0.5">{dateLabel}</p>}
         </div>
       </div>
     );
@@ -1186,15 +1209,15 @@ function CasesBarChart({
       <div className="flex items-center justify-center">
         <div className={`inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 ${accentBg} rounded-lg px-3 py-1.5`}>
           {treatmentDuration && (
-            <span className="text-[11px] text-gray-700">
+            <span className="text-[12px] text-gray-700">
               {t.treatmentLabel} <span className="font-bold text-gray-900">{treatmentDuration}</span>{t.treatmentSuffix ? ` ${t.treatmentSuffix}` : ''}
             </span>
           )}
-          <span className="text-[11px] text-gray-600">
+          <span className="text-[12px] text-gray-600">
             {t.actualHeight} <span className="font-bold text-gray-800">+{actualGrowth}cm</span>
           </span>
-          <span className="text-[10px] text-gray-300">·</span>
-          <span className={`text-[11px] font-black ${accent}`}>
+          <span className="text-[11px] text-gray-300">·</span>
+          <span className={`text-[13px] font-black ${accent}`}>
             {t.predictedHeight} +{predictedGrowth}cm
           </span>
         </div>
