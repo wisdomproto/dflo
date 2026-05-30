@@ -10,7 +10,7 @@ import {
   Sequence,
 } from "remotion";
 import { GrowthChartSvg } from "../components/GrowthChartSvg";
-import { COLORS, SAMPLE_PREDICTED, SFX } from "../lib/constants";
+import { COLORS, samplePredicted, SFX } from "../lib/constants";
 import { ensureFonts, NOTO_SANS_KR } from "../lib/fonts";
 
 ensureFonts();
@@ -101,7 +101,7 @@ export const ChartScene: React.FC = () => {
           trajectoryProgress={trajectoryProgress}
           finalPointScale={finalPointScale}
           labelOpacity={labelOpacity}
-          predictedHeight={SAMPLE_PREDICTED}
+          predictedHeight={samplePredicted()}
         />
       </div>
 

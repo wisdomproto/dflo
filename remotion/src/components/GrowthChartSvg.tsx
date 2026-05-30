@@ -1,6 +1,6 @@
 import { evolvePath } from "@remotion/paths";
 import { interpolate } from "remotion";
-import chartData from "../data/growthChartData.json";
+import { getHeightStandard } from "../data/growthStandard";
 import { COLORS, buildGrowthPath, SAMPLE_GENDER } from "../lib/constants";
 import { t } from "../lib/texts";
 
@@ -42,10 +42,7 @@ function filterRange(points: DataPoint[]): DataPoint[] {
 
 function pointsToPath(points: DataPoint[]): string {
   const filtered = filterRange(points);
-  const sampled = filtered.filter(
-    (_, i) => i % 3 === 0 || i === filtered.length - 1
-  );
-  return sampled
+  return filtered
     .map(
       (p, i) =>
         `${i === 0 ? "M" : "L"} ${scaleX(p.month).toFixed(1)} ${scaleY(p.height).toFixed(1)}`
@@ -56,19 +53,13 @@ function pointsToPath(points: DataPoint[]): string {
 function areaPath(lower: DataPoint[], upper: DataPoint[]): string {
   const filteredLower = filterRange(lower);
   const filteredUpper = filterRange(upper);
-  const sampledLower = filteredLower.filter(
-    (_, i) => i % 3 === 0 || i === filteredLower.length - 1
-  );
-  const sampledUpper = filteredUpper.filter(
-    (_, i) => i % 3 === 0 || i === filteredUpper.length - 1
-  );
-  const forward = sampledLower
+  const forward = filteredLower
     .map(
       (p, i) =>
         `${i === 0 ? "M" : "L"} ${scaleX(p.month).toFixed(1)} ${scaleY(p.height).toFixed(1)}`
     )
     .join(" ");
-  const backward = [...sampledUpper]
+  const backward = [...filteredUpper]
     .reverse()
     .map(
       (p) =>
@@ -96,8 +87,12 @@ export const GrowthChartSvg: React.FC<GrowthChartSvgProps> = ({
   predictedHeight,
   annotationProgress = 0,
 }) => {
-  const data = (chartData as Record<string, Record<PercentileKey, DataPoint[]>>)
-    [SAMPLE_GENDER] as Record<PercentileKey, DataPoint[]>;
+  const std = getHeightStandard(SAMPLE_GENDER, t().growthStandard);
+  const data: Record<PercentileKey, DataPoint[]> = {
+    "5th": std.map((r) => ({ month: r.age * 12, height: r.p5 })),
+    "50th": std.map((r) => ({ month: r.age * 12, height: r.p50 })),
+    "95th": std.map((r) => ({ month: r.age * 12, height: r.p95 })),
+  };
   const growthPath = buildGrowthPath();
 
   const childPoints: DataPoint[] = growthPath.map((p) => ({
@@ -158,7 +153,7 @@ export const GrowthChartSvg: React.FC<GrowthChartSvgProps> = ({
             y={scaleY(h) + 4}
             textAnchor="end"
             fill="#9ca3af"
-            style={{ fontSize: 28 }}
+            style={{ fontSize: 34 }}
           >
             {h}
           </text>
@@ -176,12 +171,13 @@ export const GrowthChartSvg: React.FC<GrowthChartSvgProps> = ({
           />
           <text
             x={scaleX(age * 12)}
-            y={HEIGHT - PADDING.bottom + 20}
+            y={HEIGHT - PADDING.bottom + 24}
             textAnchor="middle"
             fill="#6b7280"
-            style={{ fontSize: 28 }}
+            style={{ fontSize: 34 }}
           >
-            {age}세
+            {age}
+            {t().chartAgeUnit}
           </text>
         </g>
       ))}
@@ -192,19 +188,19 @@ export const GrowthChartSvg: React.FC<GrowthChartSvgProps> = ({
         y={HEIGHT - 10}
         textAnchor="middle"
         fill="#9ca3af"
-        style={{ fontSize: 28 }}
+        style={{ fontSize: 32 }}
       >
-        나이
+        {t().chartAxisAge}
       </text>
       <text
         x={12}
         y={HEIGHT / 2}
         textAnchor="middle"
         fill="#9ca3af"
-        style={{ fontSize: 28 }}
+        style={{ fontSize: 32 }}
         transform={`rotate(-90, 12, ${HEIGHT / 2})`}
       >
-        신장 (cm)
+        {t().chartAxisHeight}
       </text>
 
       {/* Shaded band */}

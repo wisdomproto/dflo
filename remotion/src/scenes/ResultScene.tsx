@@ -15,8 +15,7 @@ import { GrowthChartSvg } from "../components/GrowthChartSvg";
 import { Particles } from "../components/Particles";
 import {
   COLORS,
-  SAMPLE_PREDICTED,
-  SAMPLE_PERCENTILE,
+  samplePredicted,
   SAMPLE_GENDER,
   SAMPLE_AGE,
   SAMPLE_HEIGHT,
@@ -62,7 +61,8 @@ export const ResultScene: React.FC = () => {
 
   // Count-up synced with trajectory
   const countUpProgress = trajectoryProgress;
-  const displayValue = (countUpProgress * SAMPLE_PREDICTED).toFixed(1);
+  const predicted = samplePredicted();
+  const displayValue = (countUpProgress * predicted).toFixed(1);
 
   // Badges appear when trajectory starts
   const badgeOpacity = interpolate(frame, [80, 95], [0, 1], {
@@ -137,10 +137,10 @@ export const ResultScene: React.FC = () => {
           <p
             style={{
               fontFamily: NOTO_SANS_KR,
-              fontSize: 18,
-              fontWeight: 600,
+              fontSize: 32,
+              fontWeight: 700,
               color: COLORS.teal,
-              marginBottom: 2,
+              marginBottom: 4,
             }}
           >
             {L.resultLabel}
@@ -149,7 +149,7 @@ export const ResultScene: React.FC = () => {
             <span
               style={{
                 fontFamily: INTER,
-                fontSize: 76,
+                fontSize: 92,
                 fontWeight: 900,
                 color: COLORS.teal,
                 lineHeight: 1,
@@ -160,7 +160,7 @@ export const ResultScene: React.FC = () => {
             <span
               style={{
                 fontFamily: INTER,
-                fontSize: 30,
+                fontSize: 38,
                 fontWeight: 900,
                 color: COLORS.teal,
               }}
@@ -182,26 +182,26 @@ export const ResultScene: React.FC = () => {
             <span
               style={{
                 fontFamily: NOTO_SANS_KR,
-                fontSize: 15,
+                fontSize: 27,
                 fontWeight: 600,
                 color: COLORS.white,
                 backgroundColor: COLORS.teal,
                 borderRadius: 50,
-                padding: "4px 14px",
+                padding: "7px 20px",
               }}
             >
-              {(SAMPLE_GENDER as string) === "female" ? L.genderFemale.replace(/👧 ?/, "") : L.genderMale.replace(/👦 ?/, "")} · {ageYears}
-              {ageMonths > 0 ? ` ${ageMonths}개월` : ""}
+              {(SAMPLE_GENDER as string) === "female" ? L.genderFemale.replace(/👧 ?/, "") : L.genderMale.replace(/👦 ?/, "")} · {ageYears}{L.chartAgeUnit}
+              {ageMonths > 0 ? ` ${ageMonths}${L.monthUnit}` : ""}
             </span>
             <span
               style={{
                 fontFamily: NOTO_SANS_KR,
-                fontSize: 15,
+                fontSize: 27,
                 fontWeight: 600,
                 color: COLORS.teal,
                 backgroundColor: COLORS.white,
                 borderRadius: 50,
-                padding: "4px 14px",
+                padding: "7px 20px",
                 border: `1px solid ${COLORS.teal}`,
               }}
             >
@@ -225,7 +225,7 @@ export const ResultScene: React.FC = () => {
             trajectoryProgress={trajectoryProgress}
             finalPointScale={finalPointScale}
             labelOpacity={chartLabelOpacity}
-            predictedHeight={SAMPLE_PREDICTED}
+            predictedHeight={predicted}
             annotationProgress={annotationProgress}
           />
         </div>
@@ -233,7 +233,7 @@ export const ResultScene: React.FC = () => {
         <p
           style={{
             fontFamily: NOTO_SANS_KR,
-            fontSize: 14,
+            fontSize: 24,
             color: COLORS.gray400,
             textAlign: "center",
           }}
@@ -260,7 +260,7 @@ export const ResultScene: React.FC = () => {
           <span
             style={{
               fontFamily: NOTO_SANS_KR,
-              fontSize: 22,
+              fontSize: 36,
               fontWeight: 600,
               color: COLORS.white,
               lineHeight: 1.4,

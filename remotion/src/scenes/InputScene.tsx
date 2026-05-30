@@ -49,7 +49,7 @@ export const InputScene: React.FC = () => {
   );
 
   const heightDelay = birthDelay + 30;
-  const heightText = "138.0";
+  const heightText = "137.0";
   const heightChars = Math.floor(
     interpolate(frame, [heightDelay, heightDelay + 15], [0, heightText.length], {
       extrapolateLeft: "clamp",
@@ -84,19 +84,19 @@ export const InputScene: React.FC = () => {
     width: "100%",
     borderRadius: 16,
     border: `2px solid ${COLORS.gray200}`,
-    padding: "16px 18px",
+    padding: "20px 22px",
     fontFamily: INTER,
-    fontSize: 20,
+    fontSize: 30,
     color: COLORS.gray900,
     backgroundColor: COLORS.white,
   };
 
   const labelStyle: React.CSSProperties = {
     fontFamily: NOTO_SANS_KR,
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: 500,
     color: COLORS.gray500,
-    marginBottom: 6,
+    marginBottom: 8,
     display: "block",
   };
 
@@ -135,11 +135,11 @@ export const InputScene: React.FC = () => {
           <span
             style={{
               fontFamily: NOTO_SANS_KR,
-              fontSize: 15,
+              fontSize: 22,
               fontWeight: 600,
               color: COLORS.teal,
               display: "block",
-              marginBottom: 6,
+              marginBottom: 8,
             }}
           >
             {L.inputLabel}
@@ -147,7 +147,7 @@ export const InputScene: React.FC = () => {
           <span
             style={{
               fontFamily: NOTO_SANS_KR,
-              fontSize: 28,
+              fontSize: 40,
               fontWeight: 800,
               color: COLORS.gray900,
             }}
@@ -158,7 +158,7 @@ export const InputScene: React.FC = () => {
         <span
           style={{
             fontFamily: NOTO_SANS_KR,
-            fontSize: 17,
+            fontSize: 25,
             color: COLORS.gray500,
             marginTop: -12,
           }}
@@ -178,11 +178,11 @@ export const InputScene: React.FC = () => {
                   style={{
                     flex: 1,
                     borderRadius: 16,
-                    padding: "14px 0",
+                    padding: "18px 0",
                     textAlign: "center",
                     backgroundColor: isActive ? COLORS.teal : COLORS.gray100,
                     fontFamily: NOTO_SANS_KR,
-                    fontSize: 18,
+                    fontSize: 28,
                     fontWeight: 600,
                     color: isActive ? COLORS.white : COLORS.gray600,
                   }}
@@ -235,11 +235,11 @@ export const InputScene: React.FC = () => {
             gap: 10,
           }}
         >
-          <span style={{ fontSize: 20 }}>📊</span>
+          <span style={{ fontSize: 30 }}>📊</span>
           <span
             style={{
               fontFamily: NOTO_SANS_KR,
-              fontSize: 20,
+              fontSize: 32,
               fontWeight: 700,
               color: COLORS.white,
             }}

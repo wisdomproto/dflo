@@ -5,6 +5,8 @@
   "scripts": {
     "preview": "remotion preview",
     "render": "remotion render HeightReels out/reels.mp4",
+    "render:th": "remotion render HeightReelsTH out/reels-th.mp4",
+    "render:th-promo": "remotion render HeightReelsTHPromo out/reels-th-promo.mp4",
     "build": "remotion render HeightReels out/reels.mp4"
   },
   "keywords": [],

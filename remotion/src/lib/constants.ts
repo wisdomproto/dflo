@@ -3,25 +3,34 @@ import {
   predictAdultHeightLMS,
   heightAtSamePercentile,
 } from "../data/growthStandard";
+import { t } from "./texts";
 
 export const SAMPLE_GENDER = "male" as const;
 export const SAMPLE_AGE = 10;
-export const SAMPLE_HEIGHT = 140;
+// 중앙값(50th)에 정확히 맞춰 "평균적인 아이"로 — 대놓고 광고처럼 보이지 않게 (태국 10세 137 / 한국 138.8)
+export const SAMPLE_HEIGHT = 137;
 
-// Computed at import time from actual LMS data
-export const SAMPLE_PERCENTILE = calculateHeightPercentileLMS(
-  SAMPLE_HEIGHT,
-  SAMPLE_AGE,
-  SAMPLE_GENDER
-);
-export const SAMPLE_PREDICTED = predictAdultHeightLMS(
-  SAMPLE_HEIGHT,
-  SAMPLE_AGE,
-  SAMPLE_GENDER
-);
+// Computed at render time from the active locale's growth standard
+export function samplePercentile() {
+  return calculateHeightPercentileLMS(
+    SAMPLE_HEIGHT,
+    SAMPLE_AGE,
+    SAMPLE_GENDER,
+    t().growthStandard
+  );
+}
+export function samplePredicted() {
+  return predictAdultHeightLMS(
+    SAMPLE_HEIGHT,
+    SAMPLE_AGE,
+    SAMPLE_GENDER,
+    t().growthStandard
+  );
+}
 
-// Growth path from current age to 18
+// Growth path from current age to 18 (locale-aware standard)
 export function buildGrowthPath() {
+  const standard = t().growthStandard;
   const points: { age: number; height: number }[] = [
     { age: SAMPLE_AGE, height: SAMPLE_HEIGHT },
   ];
@@ -30,11 +39,12 @@ export function buildGrowthPath() {
       SAMPLE_HEIGHT,
       SAMPLE_AGE,
       a,
-      SAMPLE_GENDER
+      SAMPLE_GENDER,
+      standard
     );
     if (h > 0) points.push({ age: a, height: h });
   }
-  points.push({ age: 18, height: SAMPLE_PREDICTED });
+  points.push({ age: 18, height: predictAdultHeightLMS(SAMPLE_HEIGHT, SAMPLE_AGE, SAMPLE_GENDER, standard) });
   return points;
 }
 
@@ -52,6 +62,8 @@ export const COLORS = {
   // Kakao
   kakaoYellow: "#FEE500",
   kakaoBrown: "#3C1E1E",
+  // LINE (Thai messenger)
+  lineGreen: "#06C755",
   // Neutrals
   white: "#FFFFFF",
   whiteAlpha15: "rgba(255,255,255,0.15)",
@@ -86,4 +98,4 @@ export const SFX = {
 } as const;
 
 // Website URL for CTA
-export const WEBSITE_URL = "dflo-production.up.railway.app";
+export const WEBSITE_URL = "www.dr187growup.com/th";

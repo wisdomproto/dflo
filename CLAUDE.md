@@ -247,16 +247,23 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript
-- **Purpose**: Height prediction feature showcase reels (9:16, ~24.5s)
-- **Compositions**: `HeightReels` (한국어), `HeightReelsTH` (태국어)
-- **Locale system**: `src/lib/texts.ts` — add new language → create composition → render
+- **Purpose**: Height prediction feature showcase reels (9:16)
+- **Compositions**:
+  - `HeightReels` (한국어 예측키 데모), `HeightReelsTH` (태국어 예측키 데모) — 24.5초
+  - `HeightReelsTHPromo` / `HeightReelsKRPromo` (병원 홍보, 800프레임 ~26.7초) — 동일 구조 다른 로케일. 흐름: 예측키 측정(Hook→Input→Result) → **원장+실적+병원 슬라이딩 합친 씬(ClinicScene)** → 아역배우 사례(CasesScene) → 홈페이지/메신저 CTA(CtaPromoScene)
+- **홍보 릴 핵심 설계**:
+  - **ClinicScene = 합친 레이아웃**: 좌상단 원장 사진(고정) + 우측 실적 stats(1000+/90%+ 카운트업, 고정) + 하단 병원 사진 4장 슬라이딩(한국어 "새봄" 네온 간판으로 마무리). 상단 Korea 배지(`clinicKoreaBadge`)로 "한국 병원" 명시. StatsScene 은 이 씬에 흡수돼 컴포지션 미사용(파일만 보존)
+  - **CtaPromoScene = locale-aware**: 로고(`L.logo`), 메신저 pill(`L.ctaMessengerBg/Fg` + `L.ctaLinePill`), URL(`L.siteUrl`) 전부 로케일 분기 → **ko = 한글 로고 + 카카오톡 노랑 pill + dr187growup.com / th = 영문 로고 + LINE 초록 pill + .../th**. "홈페이지에서 직접 측정 가능"(`ctaSiteMeasure`) 문구 + URL 로 재측정 동선 명시
+- **Locale system**: `src/lib/texts.ts` — `LocaleTexts` 인터페이스에 ko/th 값. 새 언어 = 값 추가 → setLocale 바꾼 컴포지션 복사 → `Root.tsx` 등록
 - **Commands**:
   ```bash
   cd remotion && npx remotion preview        # Preview
-  cd remotion && npx remotion render HeightReels out/reels.mp4      # Korean
-  cd remotion && npx remotion render HeightReelsTH out/reels-th.mp4 # Thai
+  cd remotion && npx remotion render HeightReels out/reels.mp4              # Korean demo
+  cd remotion && npx remotion render HeightReelsTH out/reels-th.mp4         # Thai demo
+  cd remotion && npx remotion render HeightReelsTHPromo out/reels-th-promo.mp4 # Thai promo
+  cd remotion && npx remotion render HeightReelsKRPromo out/reels-kr-promo.mp4 # Korean promo
   ```
-- **Add new language**: 1) Add translations in `texts.ts` 2) Copy `HeightReelsTH.tsx` → change `setLocale()` 3) Add Composition in `Root.tsx`
+- **Add new language**: 1) `texts.ts` 의 `LocaleTexts` 에 값 추가 2) `HeightReelsKRPromo.tsx` 복사 → `setLocale()` 변경 3) `Root.tsx` 에 Composition 등록
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`

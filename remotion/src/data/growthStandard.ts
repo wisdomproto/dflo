@@ -41,9 +41,23 @@ function buildPercentiles(table: LMSRow[]): HeightPercentile[] {
   }));
 }
 
-export function getHeightStandard(gender: 'male' | 'female'): HeightPercentile[] {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
-  return buildPercentiles(table);
+export type GrowthStandard = 'KR' | 'TH';
+
+function heightTable(
+  gender: 'male' | 'female',
+  standard: GrowthStandard = 'KR',
+): LMSRow[] {
+  if (standard === 'TH') {
+    return gender === 'male' ? MALE_HEIGHT_LMS_TH : FEMALE_HEIGHT_LMS_TH;
+  }
+  return gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+}
+
+export function getHeightStandard(
+  gender: 'male' | 'female',
+  standard: GrowthStandard = 'KR',
+): HeightPercentile[] {
+  return buildPercentiles(heightTable(gender, standard));
 }
 
 // ── LMS 데이터 (백분위·Z-score·예측키 계산용) ──
@@ -121,6 +135,53 @@ const FEMALE_HEIGHT_LMS: LMSRow[] = [
   { age: 17, L: -0.164, M: 160.2483, S: 0.0316 },
   { age: 17.5, L: -0.311, M: 160.4524, S: 0.0313 },
   { age: 18, L: -0.4107, M: 160.6484, S: 0.0311 },
+];
+
+// ================================================
+// 태국 소아 성장 표준 (TSPE 2022: WHO 2~5세 + 태국 국가 기준 2020)
+// 주의: 태국 아동 중앙값은 한국보다 낮음(성인 남 ~171 / 여 ~159cm).
+// ================================================
+
+// 태국 남아 키 LMS (만 2~18세)
+const MALE_HEIGHT_LMS_TH: LMSRow[] = [
+  { age: 2, L: 1, M: 87, S: 0.0336 },
+  { age: 3, L: 1, M: 96, S: 0.0388 },
+  { age: 4, L: 1, M: 103, S: 0.0387 },
+  { age: 5, L: 1, M: 110, S: 0.0387 },
+  { age: 6, L: 1, M: 116, S: 0.039 },
+  { age: 7, L: 1, M: 121, S: 0.0395 },
+  { age: 8, L: 1, M: 127, S: 0.0398 },
+  { age: 9, L: 1, M: 132, S: 0.0423 },
+  { age: 10, L: 1, M: 137, S: 0.0427 },
+  { age: 11, L: 1, M: 143, S: 0.0446 },
+  { age: 12, L: 1, M: 149, S: 0.0464 },
+  { age: 13, L: 1, M: 155, S: 0.0446 },
+  { age: 14, L: 1, M: 161, S: 0.0413 },
+  { age: 15, L: 1, M: 166, S: 0.0368 },
+  { age: 16, L: 1, M: 169, S: 0.033 },
+  { age: 17, L: 1, M: 170, S: 0.0313 },
+  { age: 18, L: 1, M: 171, S: 0.0295 },
+];
+
+// 태국 여아 키 LMS (만 2~18세)
+const FEMALE_HEIGHT_LMS_TH: LMSRow[] = [
+  { age: 2, L: 1, M: 86, S: 0.034 },
+  { age: 3, L: 1, M: 95, S: 0.0392 },
+  { age: 4, L: 1, M: 101, S: 0.0395 },
+  { age: 5, L: 1, M: 108, S: 0.0369 },
+  { age: 6, L: 1, M: 114, S: 0.0396 },
+  { age: 7, L: 1, M: 120, S: 0.0399 },
+  { age: 8, L: 1, M: 126, S: 0.0401 },
+  { age: 9, L: 1, M: 132, S: 0.0423 },
+  { age: 10, L: 1, M: 138, S: 0.0443 },
+  { age: 11, L: 1, M: 144, S: 0.0425 },
+  { age: 12, L: 1, M: 150, S: 0.039 },
+  { age: 13, L: 1, M: 154, S: 0.0345 },
+  { age: 14, L: 1, M: 156, S: 0.0324 },
+  { age: 15, L: 1, M: 158, S: 0.0303 },
+  { age: 16, L: 1, M: 158, S: 0.0303 },
+  { age: 17, L: 1, M: 159, S: 0.0284 },
+  { age: 18, L: 1, M: 159, S: 0.0301 },
 ];
 
 // ── 체중 LMS 데이터 (표준체중.CSV, 6개월 단위, 0~18세) ──
@@ -260,8 +321,9 @@ export function calculateHeightPercentileLMS(
   height: number,
   age: number,
   gender: 'male' | 'female',
+  standard: GrowthStandard = 'KR',
 ): number {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const table = heightTable(gender, standard);
   const lms = interpolateLMS(age, table);
   if (!lms) return 50;
   const z = zScoreFromLMS(height, lms);
@@ -302,8 +364,9 @@ export function heightAtSamePercentile(
   currentAge: number,
   targetAge: number,
   gender: 'male' | 'female',
+  standard: GrowthStandard = 'KR',
 ): number {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const table = heightTable(gender, standard);
   const currentLms = interpolateLMS(currentAge, table);
   const targetLms = interpolateLMS(targetAge, table);
   if (!currentLms || !targetLms) return 0;
@@ -316,8 +379,9 @@ export function predictAdultHeightLMS(
   height: number,
   age: number,
   gender: 'male' | 'female',
+  standard: GrowthStandard = 'KR',
 ): number {
-  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const table = heightTable(gender, standard);
   const currentLms = interpolateLMS(age, table);
   const adultLms = table[table.length - 1]; // 18세
   if (!currentLms) return 0;

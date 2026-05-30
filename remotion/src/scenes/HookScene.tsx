@@ -64,32 +64,28 @@ export const HookScene: React.FC = () => {
         padding: "0 80px",
       }}
     >
-      {/* Badge */}
+      {/* Brand logo (from homepage) */}
       <div
         style={{
           opacity: badgeOpacity,
           transform: `translateY(${badgeY}px)`,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          backgroundColor: COLORS.whiteAlpha15,
-          borderRadius: 50,
-          padding: "8px 20px",
-          marginBottom: 30,
+          backgroundColor: COLORS.white,
+          borderRadius: 20,
+          padding: "18px 26px",
+          marginBottom: 34,
           alignSelf: "flex-start",
+          boxShadow: "0 10px 40px rgba(0,0,0,0.25)",
         }}
       >
-        <span style={{ fontSize: 18 }}>📏</span>
-        <span
+        <Img
+          src={staticFile(L.logo)}
           style={{
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 16,
-            fontWeight: 600,
-            color: COLORS.whiteAlpha80,
+            height: 64,
+            width: "auto",
+            objectFit: "contain",
+            display: "block",
           }}
-        >
-          {L.hookBadge}
-        </span>
+        />
       </div>
 
       {/* Title */}
@@ -116,7 +112,7 @@ export const HookScene: React.FC = () => {
         style={{
           opacity: subOpacity,
           fontFamily: NOTO_SANS_KR,
-          fontSize: 24,
+          fontSize: 34,
           color: COLORS.whiteAlpha65,
           marginBottom: 40,
         }}
@@ -138,11 +134,11 @@ export const HookScene: React.FC = () => {
           boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
         }}
       >
-        <span style={{ fontSize: 22 }}>📐</span>
+        <span style={{ fontSize: 30 }}>📐</span>
         <span
           style={{
             fontFamily: NOTO_SANS_KR,
-            fontSize: 22,
+            fontSize: 30,
             fontWeight: 700,
             color: COLORS.teal,
           }}
