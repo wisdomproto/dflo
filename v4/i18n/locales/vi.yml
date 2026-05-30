@@ -363,6 +363,8 @@ clinic:
     label: "Tư vấn & Đặt lịch"
     phone: "+82-2-3395-0999"
     addr: "Tầng 4, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
+  # 원격 진료 안내는 th 전용 — 빈 배열이면 섹션 자체가 렌더되지 않음
+  remote_consult: []
 
 cases:
   page_title: "Ca điều trị | 187 Growth Clinic"

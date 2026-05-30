@@ -192,6 +192,46 @@
     background: #6B3FA0;
   }
 
+  /* 원격 진료 안내 — locale 의 clinic.remote_consult 배열이 비어있지 않은 경우(현재 th)만 렌더 */
+  .remote-consult {
+    padding: 32px 24px;
+    border-bottom: 1px solid #e8eaf0;
+    background: #faf7fd;
+  }
+  .remote-consult h3 {
+    font-size: 18px; font-weight: 900; color: #4A2D6B;
+    letter-spacing: -0.4px; margin-bottom: 6px;
+  }
+  .remote-consult .rc-intro {
+    font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 22px;
+  }
+  .remote-consult ol { list-style: none; counter-reset: rc; }
+  .remote-consult li {
+    position: relative; padding-left: 44px; padding-bottom: 20px;
+  }
+  .remote-consult li:last-child { padding-bottom: 0; }
+  .remote-consult li::before {
+    content: counter(rc); counter-increment: rc;
+    position: absolute; left: 0; top: 0;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: #6B3FA0; color: #fff;
+    font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .remote-consult li:not(:last-child)::after {
+    content: ''; position: absolute; left: 14px; top: 34px; bottom: 2px;
+    width: 2px; background: #e0d3f0;
+  }
+  .remote-consult .rc-label { font-size: 14.5px; font-weight: 800; color: #222; }
+  .remote-consult .rc-desc { font-size: 13px; color: #666; margin-top: 3px; line-height: 1.6; }
+  .remote-consult .rc-office {
+    margin-top: 22px; background: #fff; border: 1px solid #e8ddf4;
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .remote-consult .rc-office .o-label { font-size: 12px; font-weight: 700; color: #6B3FA0; }
+  .remote-consult .rc-office .o-addr { font-size: 13px; color: #555; margin-top: 4px; line-height: 1.5; }
+  .remote-consult .rc-foot { font-size: 12.5px; color: #777; margin-top: 14px; line-height: 1.65; }
+
   .contact-card {
     margin: 24px;
     background: #f3edfa;
@@ -249,6 +289,13 @@
     .video-section h3, .facility h3 { font-size: 22px; }
     .facility { padding: 40px 32px; }
     .facility .label { font-size: 15px; }
+    .remote-consult { padding: 40px 32px; }
+    .remote-consult h3 { font-size: 24px; }
+    .remote-consult .rc-intro { font-size: 16px; }
+    .remote-consult .rc-label { font-size: 16px; }
+    .remote-consult .rc-desc { font-size: 14.5px; }
+    .remote-consult .rc-office .o-addr { font-size: 14px; }
+    .remote-consult .rc-foot { font-size: 13.5px; }
     .contact-card { margin: 32px; padding: 28px 24px; }
     .contact-card .label { font-size: 13px; }
     .contact-card .phone { font-size: 34px; }
@@ -280,6 +327,25 @@
     <p>{{clinic.intro.p1}}</p>
     <p>{{clinic.intro.p2}}</p>
   </section>
+
+  <!-- Remote consultation guide — renders only when locale provides a non-empty clinic.remote_consult (currently th) -->
+  {{#each clinic.remote_consult}}
+  <section class="remote-consult">
+    <h3>{{title}}</h3>
+    <p class="rc-intro">{{intro}}</p>
+    <ol>
+      <li><div class="rc-label">{{step1_label}}</div><div class="rc-desc">{{step1_desc}}</div></li>
+      <li><div class="rc-label">{{step2_label}}</div><div class="rc-desc">{{step2_desc}}</div></li>
+      <li><div class="rc-label">{{step3_label}}</div><div class="rc-desc">{{step3_desc}}</div></li>
+      <li><div class="rc-label">{{step4_label}}</div><div class="rc-desc">{{step4_desc}}</div></li>
+    </ol>
+    <div class="rc-office">
+      <div class="o-label">{{office_label}}</div>
+      <div class="o-addr">{{office_addr}}</div>
+    </div>
+    <p class="rc-foot">{{footnote}}</p>
+  </section>
+  {{/each}}
 
   <!-- YouTube -->
   <section class="video-section">
