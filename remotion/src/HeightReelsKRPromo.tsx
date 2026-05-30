@@ -21,7 +21,7 @@ export const HeightReelsKRPromo: React.FC = () => {
     <AbsoluteFill>
       <TransitionSeries>
         <TransitionSeries.Sequence durationInFrames={90}>
-          <HookScene />
+          <HookScene hideCta />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
           presentation={fade()}

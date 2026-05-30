@@ -177,7 +177,7 @@ export const ClinicScene: React.FC = () => {
       </div>
 
       {/* Clinic name + years (under portrait) */}
-      <div style={{ position: "absolute", left: 70, top: 768, width: 430 }}>
+      <div style={{ position: "absolute", left: 70, top: 768, width: 460 }}>
         <span
           style={{
             display: "block",
@@ -196,8 +196,9 @@ export const ClinicScene: React.FC = () => {
           style={{
             display: "block",
             fontFamily: NOTO_SANS_KR,
-            fontSize: 27,
+            fontSize: 24,
             fontWeight: 500,
+            lineHeight: 1.35,
             color: COLORS.whiteAlpha80,
             marginTop: 12,
             ...reveal(20),

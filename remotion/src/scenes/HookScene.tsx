@@ -15,10 +15,17 @@ import { t } from "../lib/texts";
 
 ensureFonts();
 
-export const HookScene: React.FC = () => {
+export const HookScene: React.FC<{ hideCta?: boolean }> = ({
+  hideCta = false,
+}) => {
   const L = t();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+
+  // Promo (hideCta): pull copy in earlier so it settles before the scene's
+  // 15f exit transition — otherwise the late subtitle/CTA flash in and out.
+  const titleEnd = hideCta ? 1.5 * fps : 2 * fps;
+  const subStart = hideCta ? 1.5 * fps : 2 * fps;
 
   // Badge entrance
   const badgeOpacity = interpolate(frame, [0, 15], [0, 1], {
@@ -33,7 +40,7 @@ export const HookScene: React.FC = () => {
   const TITLE = L.hookTitle;
   const totalChars = TITLE.length;
   const charsToShow = Math.floor(
-    interpolate(frame, [10, 2 * fps], [0, totalChars], {
+    interpolate(frame, [10, titleEnd], [0, totalChars], {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
       easing: Easing.out(Easing.cubic),
@@ -43,7 +50,7 @@ export const HookScene: React.FC = () => {
   const cursorOn = charsToShow < totalChars && Math.floor(frame / 8) % 2 === 0;
 
   // Subtitle fade
-  const subOpacity = interpolate(frame, [2 * fps, 2 * fps + 15], [0, 1], {
+  const subOpacity = interpolate(frame, [subStart, subStart + 15], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -120,32 +127,34 @@ export const HookScene: React.FC = () => {
         {L.hookSubtitle}
       </p>
 
-      {/* CTA Button */}
-      <div
-        style={{
-          transform: `scale(${btnScale})`,
-          backgroundColor: COLORS.white,
-          borderRadius: 20,
-          padding: "20px 40px",
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 12,
-          alignSelf: "flex-start",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-        }}
-      >
-        <span style={{ fontSize: 30 }}>📐</span>
-        <span
+      {/* CTA Button (hidden in promo — the real CTA is the final CtaPromoScene) */}
+      {!hideCta && (
+        <div
           style={{
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 30,
-            fontWeight: 700,
-            color: COLORS.teal,
+            transform: `scale(${btnScale})`,
+            backgroundColor: COLORS.white,
+            borderRadius: 20,
+            padding: "20px 40px",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 12,
+            alignSelf: "flex-start",
+            boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
           }}
         >
-          {L.hookCta}
-        </span>
-      </div>
+          <span style={{ fontSize: 30 }}>📐</span>
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 30,
+              fontWeight: 700,
+              color: COLORS.teal,
+            }}
+          >
+            {L.hookCta}
+          </span>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };

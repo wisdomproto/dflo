@@ -254,6 +254,8 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - **홍보 릴 핵심 설계**:
   - **ClinicScene = 합친 레이아웃**: 좌상단 원장 사진(고정) + 우측 실적 stats(1000+/90%+ 카운트업, 고정) + 하단 병원 사진 4장 슬라이딩(한국어 "새봄" 네온 간판으로 마무리). 상단 Korea 배지(`clinicKoreaBadge`)로 "한국 병원" 명시. StatsScene 은 이 씬에 흡수돼 컴포지션 미사용(파일만 보존)
   - **CtaPromoScene = locale-aware**: 로고(`L.logo`), 메신저 pill(`L.ctaMessengerBg/Fg` + `L.ctaLinePill`), URL(`L.siteUrl`) 전부 로케일 분기 → **ko = 한글 로고 + 카카오톡 노랑 pill + dr187growup.com / th = 영문 로고 + LINE 초록 pill + .../th**. "홈페이지에서 직접 측정 가능"(`ctaSiteMeasure`) 문구 + URL 로 재측정 동선 명시
+  - **HookScene `hideCta` prop**: 프로모(TH/KR)는 `<HookScene hideCta />`. Hook 종료(75f)에 spring 등장하던 CTA 버튼이 exit transition(75f)과 겹쳐 **"깜빡 나타났다 사라지던"** 문제 제거 + `hideCta` 시 title/subtitle 타이밍을 `1.5·fps`로 앞당겨 전환 전 안착. 진짜 CTA는 마지막 CtaPromoScene 1곳만 (기존 데모 릴 `HeightReels`/`HeightReelsTH`는 prop 미지정 → 기본 동작 유지). ClinicScene 이름/연차 텍스트는 width 460·fontSize 24로 1줄 안착(th "10 ปี" 줄바꿈 깨짐 fix)
+  - **CasesScene = 사진 + 자막만**: 아역배우 그리드(현재 플레이스홀더 `actors-grid.jpg`, 사용자가 실 이미지 교체 예정) + 자막. 효과(cm) 막대 **없음**(의료광고 규정 — 셀럽 얼굴에 치료효과 직접 결합 금지). 자막 `casesActorsLine`은 셀럽 비강조 **브랜드 메시지** ("아이의 키 성장, 187이 함께합니다" / "187 ดูแลการเติบโตของลูกคุณ")
 - **Locale system**: `src/lib/texts.ts` — `LocaleTexts` 인터페이스에 ko/th 값. 새 언어 = 값 추가 → setLocale 바꾼 컴포지션 복사 → `Root.tsx` 등록
 - **Commands**:
   ```bash

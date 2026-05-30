@@ -1,5 +1,7 @@
 # 태국 홍보 릴스 v2 — "키크는 병원 + 예측키 + 홈페이지 유도" 설계
 
+> **구현 결과 (2026-05-31): ✅ 구현 완료 + 폴리시.** 실제 코드는 본 설계에서 일부 진화 — CasesScene 효과막대 제거(사진+자막만, 규정), ClinicScene이 StatsScene을 흡수해 원장+실적+병원 합친 단일 씬, HookScene `hideCta` prop(초반 CTA 깜빡임 제거), Cases 자막 브랜드 메시지화(셀럽 비강조). 한글판 `HeightReelsKRPromo`도 완성. 상세 memory/promo_reels_kr_th.md.
+
 - 작성일: 2026-05-30
 - 대상: 태국 시장(🇹🇭) Instagram Reels (9:16, 1080×1920, 30fps)
 - 디렉토리: `remotion/`

@@ -1,5 +1,7 @@
 # 태국 홍보 릴스 v2 (HeightReelsTHPromo) Implementation Plan
 
+> **상태 (2026-05-31 업데이트): ✅ 구현 완료 + 폴리시 완료.** 6씬 전부 구현·렌더됨(`out/reels-th-promo.mp4`). **한글판 `HeightReelsKRPromo`도 동일 구조로 완성**(`out/reels-kr-promo.mp4`). 구현 중 본 plan/spec 대비 변경: ① CasesScene = 효과막대 제거, 사진+자막만(규정) ② ClinicScene = 원장+실적(StatsScene 흡수)+병원 montage 합친 단일 씬 ③ HookScene `hideCta` prop으로 초반 CTA 깜빡임 제거(75f 등장 즉시 transition과 겹쳐 사라지던 버그) ④ Cases 자막 = 셀럽 비강조 브랜드 메시지("아이의 키 성장, 187이 함께합니다" / "187 ดูแลการเติบโตของลูกคุณ"). 남은 작업: `actors-grid.jpg` 실 아역배우 이미지 교체(사용자). 상세 memory/promo_reels_kr_th.md. 아래 task 체크박스는 최초 작성 시점 기록.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 기존 태국어 예측키 릴스를 확장해, "키크는 병원" 소개(원장 얼굴) + 예측키 측정 + 치료 사례(동의된 아역배우 바둑판 + 익명 막대)를 한 편에 녹여 홈페이지로 유입시키는 24.5초 9:16 Remotion 컴포지션을 만든다.
