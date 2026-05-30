@@ -9,6 +9,10 @@ const ROOT = join(__dirname, '..', '..');
 
 export const ORIGIN = 'https://www.dr187growup.com';
 export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
+// Languages we actually BUILD pages for. hreflang/sitemap must only point at these —
+// emitting ja/zh-tw/id (planned but not yet built) creates 404 hreflang targets that
+// invalidate the whole cluster in Search Console. Add a lang here only once its pages ship.
+export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en'];
 export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'ja', 'zh-tw', 'id'];
 export const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', ja: 'ja', 'zh-tw': 'zh-TW', id: 'id' };
 export const OG_LOCALE_MAP = { ko: 'ko_KR', th: 'th_TH', vi: 'vi_VN', en: 'en_US', ja: 'ja_JP', 'zh-tw': 'zh_TW', id: 'id_ID' };
@@ -27,7 +31,7 @@ export function buildSeo(lang) {
 }
 
 export function buildHreflang(path = '/') {
-  return ALL_LANGS.map((lang) => {
+  return ACTIVE_LANGS.map((lang) => {
     const hrefLang = HREFLANG_MAP[lang];
     return `<link rel="alternate" hreflang="${hrefLang}" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`;
   }).concat([
@@ -52,6 +56,9 @@ export function buildBlogPostHead({ post, lang }) {
     `<meta property="og:title" content="${escapeAttr(post.title)}">`,
     `<meta property="og:description" content="${escapeAttr(description)}">`,
     `<meta property="og:url" content="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${escapeAttr(post.title)}">`,
+    `<meta name="twitter:description" content="${escapeAttr(description)}">`,
     renderJsonLd(blogPostingJsonLd({ post, lang })),
   ].join('\n  ');
 }
@@ -85,6 +92,10 @@ export function buildHead(lang, opts = {}) {
     `<meta property="og:description" content="${escapeAttr(description)}">`,
     `<meta property="og:image" content="${ORIGIN}${seo.og_image}">`,
     `<meta property="og:url" content="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
+    `<meta name="twitter:card" content="summary_large_image">`,
+    `<meta name="twitter:title" content="${escapeAttr(title)}">`,
+    `<meta name="twitter:description" content="${escapeAttr(description)}">`,
+    `<meta name="twitter:image" content="${ORIGIN}${seo.og_image}">`,
   ];
   if (!opts.skipJsonLd) {
     head.push(

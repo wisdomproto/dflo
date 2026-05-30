@@ -12,11 +12,22 @@ function urlEntry(loc, allPaths) {
   return [`  <url>`, `    <loc>${loc}</loc>`, ...alternates, `  </url>`].join('\n');
 }
 
+// Static subpages built for every active lang (build-i18n.mjs SUBPAGES). They have unique
+// indexable content (clinic = remote-consult, calculator = tool) so they belong in the sitemap.
+const SUBPAGE_FILES = ['clinic.html', 'cases.html', 'calculator.html'];
+
 export function buildSitemap({ activeLangs, blogSlugs = {} }) {
   const entries = [];
   const homePaths = Object.fromEntries(activeLangs.map((l) => [l, '/']));
   for (const lang of activeLangs) {
     entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/`, homePaths));
+  }
+
+  for (const file of SUBPAGE_FILES) {
+    const subPaths = Object.fromEntries(activeLangs.map((l) => [l, `/${file}`]));
+    for (const lang of activeLangs) {
+      entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/${file}`, subPaths));
+    }
   }
 
   const blogListPaths = Object.fromEntries(activeLangs.map((l) => [l, '/blog/']));

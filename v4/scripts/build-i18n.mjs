@@ -4,14 +4,15 @@ import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
-import { buildHead, buildBlogPostHead, buildBlogIndexHead } from './lib/seo.mjs';
+import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS } from './lib/seo.mjs';
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en'];
+// ACTIVE_LANGS is the single source of truth (seo.mjs) so hreflang, sitemap, and the
+// build loop never drift — adding a lang there lights it up everywhere at once.
 const CACHE_DIR = join(ROOT, 'i18n/blog-cache');
 
 function loadLocale(lang) {

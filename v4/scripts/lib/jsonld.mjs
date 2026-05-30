@@ -29,6 +29,8 @@ function loadSeo() {
 }
 
 export function medicalClinicJsonLd(lang) {
+  // th markets a Bangkok-office remote-consult flow, so signal TH as a served area too.
+  const areaServed = lang === 'th' ? ['KR', 'TH'] : 'KR';
   return {
     '@context': 'https://schema.org',
     '@type': 'MedicalClinic',
@@ -39,7 +41,7 @@ export function medicalClinicJsonLd(lang) {
     medicalSpecialty: 'Pediatrics',
     telephone: CLINIC_PHONE,
     address: CLINIC_ADDRESS,
-    areaServed: 'KR',
+    areaServed,
     sameAs: CLINIC_SAME_AS,
   };
 }
@@ -51,6 +53,9 @@ export function physicianJsonLd(lang) {
     name: DIRECTOR_NAME,
     alternateName: DIRECTOR_NAME_KO,
     medicalSpecialty: 'Pediatrics',
+    image: `${ORIGIN}/images/doctor.jpg`,
+    url: `${ORIGIN}${PATH_PREFIX}/${lang}/clinic.html`,
+    jobTitle: 'Director',
     worksFor: {
       '@type': 'MedicalClinic',
       name: CLINIC_NAME,

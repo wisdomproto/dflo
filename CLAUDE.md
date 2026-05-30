@@ -39,16 +39,16 @@ v4/i18n/seo.yml               ← 언어별 title/description/FAQ
         ↓ build-i18n.mjs (Node + js-yaml, 프레임워크 X)
 v4/public/{lang}/{index,clinic,cases,calculator}.html × 4 (활성)
 v4/public/{lang}/blog/{slug}/index.html (ContentFlow fetch 시)
-v4/public/sitemap.xml         ← hreflang ×8 자동 생성
+v4/public/sitemap.xml         ← hreflang = ACTIVE_LANGS(4) + x-default 자동 생성
 ```
 
 ### 핵심 파일 (`v4/scripts/`)
 - `build-i18n.mjs`: 빌드 오케스트레이터 (async main, `--refetch` 플래그). 비한국어 빌드 시 후처리로 `/programs/images/` → `/programs/images/{lang}/`, `/images/logo.jpg` → `/images/logo_en.png` swap
 - `lib/render.mjs`: `{{placeholder}}` + `{{#each list}}` 미니 렌더러 (마커 누락 시 throw)
 - `lib/messenger.mjs`: `getMessengerCTA(lang, {requireLiveUrl})` — TBD URL이 활성 언어에 있으면 빌드 실패
-- `lib/seo.mjs`: meta/canonical/hreflang/OG + `PATH_PREFIX` env-var (기본 `''`, staging에서 `/test` 오버라이드 가능)
-- `lib/jsonld.mjs`: MedicalClinic + Physician + FAQPage + BlogPosting
-- `lib/sitemap.mjs`: `<xhtml:link rel="alternate">` 자동 삽입
+- `lib/seo.mjs`: meta/canonical/hreflang/OG/Twitter Card + `PATH_PREFIX` env-var (기본 `''`, staging에서 `/test` 오버라이드 가능). **`ACTIVE_LANGS`(ko/th/vi/en) 단일 소스** — `build-i18n.mjs`가 여기서 import. hreflang·sitemap·빌드 루프가 절대 어긋나지 않게(미빌드 ja/zh-tw/id 를 hreflang 으로 내보내면 404 타겟이라 클러스터 무효화). 언어 활성화 = 이 배열에만 추가
+- `lib/jsonld.mjs`: MedicalClinic + Physician + FAQPage + BlogPosting. `areaServed` 는 th 만 `[KR,TH]`(방콕 원격상담 신호), 그 외 `KR`. Physician 에 image(`/images/doctor.jpg`)·url·jobTitle 포함
+- `lib/sitemap.mjs`: `<xhtml:link rel="alternate">` 자동 삽입 + 홈·블로그 외 서브페이지(clinic/cases/calculator) × ACTIVE_LANGS 도 등재
 - `lib/fetch-contentflow-posts.mjs`: ContentFlow API에서 블로그 fetch → `i18n/blog-cache/` JSON 캐시
 - `lib/blog.mjs`: `renderPost` + `renderIndex` + `loadCachedPosts`
 
