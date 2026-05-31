@@ -8,26 +8,28 @@ blog:
 
 hero:
   logo_alt: "187 Growth Clinic"
-  title_line1: "Chiều cao của con —"
-  title_line2: "hiện đang ở đâu?"
+  title_line1: "Chiều cao của con,"
+  title_line2: "bạn có lo lắng?"
   hero_img_alt: "Hình ảnh chính phòng khám Yonsei Saebom 187 Growth"
 
 intro:
-  h2_line1: "Sự tăng trưởng của trẻ"
-  h2_accent: "không chỉ phụ thuộc vào hormone tăng trưởng."
+  h2_line1: "Nếu được chăm sóc đúng cách,"
+  h2_accent: "con vẫn có thể cao thêm"
   h2_line2: ""
   body: |
-    Tiến trình dậy thì, giấc ngủ, tuyến giáp, căng thẳng, cân nặng và tư thế
-    đều phải được xem xét cùng nhau để định hướng tăng trưởng lành mạnh.
-    Yonsei Saebom đánh giá toàn diện mọi yếu tố cản trở sự phát triển của con.
+    187 Growth Clinic tìm nguyên nhân khiến từng trẻ không cao,
+    rồi đồng hành bằng chăm sóc cá nhân hóa toàn diện.
+
+compare:
+  - img_alt: "So sánh điều trị chỉ bằng hormone tăng trưởng với chăm sóc tăng trưởng toàn diện của 187 Growth Clinic"
 
 medal:
   panel_alt: "Phòng khám được công ty người mẫu chỉ định, chương trình chuyên cho vận động viên và người mẫu"
 
 check:
-  eyebrow: "Con bạn có cần điều này?"
-  heading_part1: "Khi nào nên cân nhắc "
-  heading_accent: "kiểm tra tăng trưởng"
+  eyebrow: "Con bạn có cần kiểm tra tăng trưởng không?"
+  heading_part1: "Nếu thuộc các trường hợp này, "
+  heading_accent: "hãy cân nhắc kiểm tra"
   cards:
     - alt: "Trẻ thấp hơn rõ rệt so với bạn cùng tuổi"
       caption_line1: "Thấp hơn rõ rệt"
@@ -324,6 +326,9 @@ cta_global:
   header_consult: "Tư vấn"
   bottom_nav_consult: "Đo miễn phí"
   inline_cta_arrow: "→"
+  check_cta: "Con bạn có thuộc trường hợp nào? Tư vấn 1:1 ngay"
+  bottom_heading: "Kiểm tra sự phát triển của con ngay"
+  bottom_label: "Tư vấn 1:1 ngay"
 
 clinic:
   page_title: "Phòng khám | 187 Growth Clinic"

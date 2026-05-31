@@ -97,6 +97,9 @@
   .intro p { font-size: 15px; color: var(--muted); line-height: 1.82; }
   .intro strong, .lead strong { color: var(--ink); font-weight: 800; }
 
+  /* compare image (ko only) sits full-width right under INTRO */
+  .compare-img { margin-top: 6px; }
+
   section[id] { position: relative; padding-top: 64px; }
   section[id]::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0;
@@ -523,13 +526,14 @@
     </p>
   </section>
 
-  <section class="medal">
-    <img class="full-img" src="/programs/images/growth-hormone-balance/medal-panel.jpg" alt="{{medal.panel_alt}}">
-  </section>
+  <!-- ================= COMPARE (image — ko only via array) ================= -->
+  {{#each compare}}
+  <img class="full-img compare-img" src="/programs/images/growth-hormone-balance/compare-1vs6.webp" alt="{{img_alt}}">
+  {{/each}}
 
   <!-- ================= CHECK ================= -->
   <div class="sec-head entry">
-    <div class="sec-eyebrow">{{check.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{check.eyebrow}}</h2>
     <h3>{{check.heading_part1}}<span class="accent">{{check.heading_accent}}</span></h3>
   </div>
 
@@ -542,9 +546,15 @@
     {{/each}}
   </div>
 
+  <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+     data-source="check_selfcheck" data-channel="{{messenger.channel}}"
+     style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+    {{cta_global.check_cta}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+  </a>
+
   <!-- ================= GOLDEN TIME ================= -->
   <div class="sec-head large">
-    <div class="sec-eyebrow">{{golden.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{golden.eyebrow}}</h2>
     <h3>{{golden.heading_part1}}<span class="accent">{{golden.heading_accent}}</span>{{golden.heading_part2}}</h3>
   </div>
 
@@ -560,7 +570,7 @@
 
   <!-- ================= HORMONE ================= -->
   <section id="hormone">
-    <div class="sec-eyebrow">{{hormone.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{hormone.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
         {{hormone.heading_line1}}<br>
@@ -612,7 +622,7 @@
 
   <!-- ================= OBESITY ================= -->
   <section id="obesity">
-    <div class="sec-eyebrow">{{obesity.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{obesity.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
         {{obesity.heading_line1}}<br>
@@ -706,7 +716,7 @@
 
   <!-- ================= PRECOCIOUS ================= -->
   <section id="precocious">
-    <div class="sec-eyebrow">{{precocious.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{precocious.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
         {{precocious.heading_line1}}<br>
@@ -772,7 +782,7 @@
 
   <!-- ================= PROPORTION ================= -->
   <section id="proportion">
-    <div class="sec-eyebrow">{{proportion.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{proportion.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
         {{proportion.heading_line1}}<br>
@@ -810,7 +820,7 @@
 
   <!-- ================= BODYWORK ================= -->
   <section id="bodywork">
-    <div class="sec-eyebrow">{{bodywork.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{bodywork.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
         {{bodywork.heading_line1}}<br>
@@ -861,7 +871,7 @@
 
   <!-- ================= LATE ================= -->
   <section id="late">
-    <div class="sec-eyebrow">{{late.eyebrow}}</div>
+    <h2 class="sec-eyebrow">{{late.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
         {{late.heading_line1}}<br>
@@ -931,7 +941,7 @@
   <!-- ================= PROCESS ================= -->
   <section id="process" class="process">
     <div class="sec-head">
-      <div class="sec-eyebrow">{{process.eyebrow}}</div>
+      <h2 class="sec-eyebrow">{{process.eyebrow}}</h2>
       <h3><span class="accent">{{process.heading_accent}}</span></h3>
       <p class="lead">
         {{process.lead}}
@@ -960,6 +970,12 @@
     <div class="portrait">
       <img src="/programs/images/growth-hormone-balance/director.jpg" alt="{{director.portrait_alt}}">
     </div>
+  </section>
+
+  <!-- ================= CTA BOTTOM ================= -->
+  <section class="cta-bottom">
+    <h4>{{cta_global.bottom_heading}}</h4>
+    <a href="{{messenger.url}}" target="_blank" rel="noopener" data-source="cta_bottom" data-channel="{{messenger.channel}}">{{cta_global.bottom_label}}</a>
   </section>
 
 </div>

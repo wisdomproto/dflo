@@ -9,25 +9,27 @@ blog:
 hero:
   logo_alt: "187 성장클리닉"
   title_line1: "우리 아이 키,"
-  title_line2: "지금 어디쯤일까요?"
+  title_line2: "걱정되시나요?"
   hero_img_alt: "연세새봄의원 187 성장클리닉 대표 이미지"
 
 intro:
-  h2_line1: "아이의 성장은"
-  h2_accent: "성장호르몬 하나로만"
-  h2_line2: " 결정되지 않습니다"
+  h2_line1: "제대로 관리하면,"
+  h2_accent: "아직 충분히 클 수 있습니다"
+  h2_line2: ""
   body: |
-    사춘기 진행, 수면, 갑상선, 스트레스, 체중, 자세까지
-    함께 살펴야 건강한 성장 방향을 잡을 수 있습니다.
-    연세새봄은 아이의 성장 방해 요인을 통합적으로 확인합니다.
+    187 성장클리닉은 아이마다 키가 안 크는 원인부터 찾아,
+    맞춤형 통합 관리로 함께합니다.
+
+compare:
+  - img_alt: "타 성장클리닉의 단순 성장호르몬 치료와 187 성장클리닉의 통합 성장 관리 비교"
 
 medal:
   panel_alt: "모델 에이전시 지정 병원, 운동선수 모델 특화 클리닉 안내"
 
 check:
-  eyebrow: "우리 아이에게 필요할까?"
-  heading_part1: "성장 검사를 "
-  heading_accent: "고려해볼 수 있는 경우"
+  eyebrow: "우리 아이에게 성장 검사가 필요할까?"
+  heading_part1: "이런 경우라면 "
+  heading_accent: "고려해볼 수 있어요"
   cards:
     - alt: "또래보다 키가 작은 아이"
       caption_line1: "또래보다 키가"
@@ -324,6 +326,9 @@ cta_global:
   header_consult: "1:1 상담"
   bottom_nav_consult: "예상키 측정"
   inline_cta_arrow: "→"
+  check_cta: "우리 아이도 해당될까요? 지금 1:1 상담"
+  bottom_heading: "우리 아이 성장, 지금 점검해보세요"
+  bottom_label: "1:1 상담받기"
 
 clinic:
   page_title: "병원 소개 | 187 성장클리닉"

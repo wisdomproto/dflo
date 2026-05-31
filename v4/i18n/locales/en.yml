@@ -8,26 +8,28 @@ blog:
 
 hero:
   logo_alt: "187 Growth Clinic"
-  title_line1: "Your child's growth —"
-  title_line2: "where does it stand today?"
+  title_line1: "Your child's height,"
+  title_line2: "are you worried?"
   hero_img_alt: "Yonsei Saebom Clinic 187 Growth Clinic main visual"
 
 intro:
-  h2_line1: "A child's growth is not"
-  h2_accent: "decided by growth hormone alone"
+  h2_line1: "With the right care,"
+  h2_accent: "they can still grow taller"
   h2_line2: ""
   body: |
-    Puberty pace, sleep, thyroid, stress, weight, and posture all matter.
-    Reading them together is how a healthy growth plan begins.
-    Yonsei Saebom evaluates every factor that may interfere with growth.
+    187 Growth Clinic finds why each child isn't growing,
+    and supports them with personalized, integrated care.
+
+compare:
+  - img_alt: "Comparison of growth-hormone-only therapy versus 187 Growth Clinic's integrated growth care"
 
 medal:
   panel_alt: "Designated clinic for modeling agencies and athletic-model growth program"
 
 check:
-  eyebrow: "Does my child need this?"
-  heading_part1: "When to consider "
-  heading_accent: "a growth assessment"
+  eyebrow: "Does my child need a growth check?"
+  heading_part1: "If any of these apply, "
+  heading_accent: "consider a check"
   cards:
     - alt: "Child noticeably shorter than peers"
       caption_line1: "Visibly shorter"
@@ -324,6 +326,9 @@ cta_global:
   header_consult: "Consult"
   bottom_nav_consult: "Free check"
   inline_cta_arrow: "→"
+  check_cta: "Does your child fit any of these? Chat 1:1 now"
+  bottom_heading: "Check your child's growth now"
+  bottom_label: "Start a 1:1 chat"
 
 clinic:
   page_title: "Clinic | 187 Growth Clinic"
