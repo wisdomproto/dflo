@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>187 마케팅 릴스 스토리보드 — HeightReelsKRMarketing</title>
+<style>
+  :root{
+    --purple:#5b4391; --purple-dark:#34245c; --gold:#F59E0B; --ink:#1c1830;
+    --bg:#f4f2f8; --card:#fff; --line:#e6e1f0; --muted:#7a7390;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Pretendard','Noto Sans KR',-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;padding:32px 18px 80px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+
+  header.hero{background:linear-gradient(135deg,#5b4391,#34245c);color:#fff;
+    border-radius:20px;padding:30px 34px;margin-bottom:14px;
+    box-shadow:0 14px 40px rgba(52,36,92,0.3);}
+  header.hero h1{font-size:28px;font-weight:900;letter-spacing:-0.5px;}
+  header.hero .sub{opacity:.85;font-size:14px;margin-top:6px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);
+    border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;}
+  .chip.gold{background:var(--gold);color:#241a08;border-color:var(--gold);}
+
+  .flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:14px 18px;margin-bottom:24px;font-weight:800;font-size:14px;color:var(--purple);}
+  .flow .arr{color:var(--muted);font-weight:400;}
+
+  .scene{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:20px;margin-bottom:18px;display:grid;grid-template-columns:200px 1fr;gap:22px;
+    box-shadow:0 4px 18px rgba(52,36,92,0.06);}
+  @media(max-width:680px){.scene{grid-template-columns:1fr;}}
+
+  /* 9:16 mini preview */
+  .preview{width:200px;height:356px;border-radius:14px;overflow:hidden;position:relative;
+    box-shadow:0 8px 24px rgba(0,0,0,.25);color:#fff;font-weight:800;}
+  .preview .pbadge{position:absolute;top:10px;left:50%;transform:translateX(-50%);
+    font-size:8px;background:rgba(15,110,86,.92);padding:4px 9px;border-radius:20px;white-space:nowrap;}
+  .preview .cap{position:absolute;left:12px;right:12px;text-align:center;
+    text-shadow:0 2px 10px rgba(0,0,0,.6);line-height:1.3;}
+  .gold{color:var(--gold);}
+
+  .body h2{font-size:21px;font-weight:900;letter-spacing:-0.4px;display:flex;align-items:baseline;gap:10px;}
+  .body h2 .t{font-size:13px;font-weight:700;color:var(--purple);background:#f0ecfa;
+    padding:3px 10px;border-radius:8px;}
+  .row{margin-top:12px;}
+  .row .k{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.3px;margin-bottom:3px;
+    text-transform:uppercase;}
+  .row .v{font-size:14.5px;}
+  .narr{background:#fff8ec;border:1px solid #f5e3c0;border-left:4px solid var(--gold);
+    border-radius:10px;padding:12px 14px;font-size:15px;font-weight:600;color:#5a4310;}
+  .onscreen{font-weight:800;color:var(--ink);}
+  .prompt{background:#1c1830;color:#d8d2ea;border-radius:10px;padding:13px 15px;
+    font-size:12.5px;font-family:'SFMono-Regular',Consolas,monospace;line-height:1.55;
+    white-space:pre-wrap;}
+  .prompt .neg{color:#f0a3a3;}
+  .tag{display:inline-block;font-size:11px;font-weight:800;border-radius:6px;padding:2px 8px;margin-left:6px;}
+  .tag.todo{background:#fde7e7;color:#b3261e;}
+  .tag.ok{background:#e3f5ec;color:#0f6e56;}
+
+  .section-title{font-size:20px;font-weight:900;margin:34px 0 14px;color:var(--purple);}
+  .scriptbox{background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 6px;}
+  .scriptbox table{width:100%;border-collapse:collapse;font-size:14px;}
+  .scriptbox th,.scriptbox td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+  .scriptbox th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;}
+  .scriptbox td.s{font-weight:800;color:var(--purple);white-space:nowrap;}
+  .scriptbox td.time{color:var(--muted);font-size:13px;white-space:nowrap;}
+  .scriptbox tr:last-child td{border-bottom:none;}
+
+  .notes{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 22px;}
+  .notes ul{margin-left:18px;}
+  .notes li{margin:7px 0;font-size:14.5px;}
+  .notes b{color:var(--purple);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>187 성장클리닉 — 마케팅 릴스 스토리보드</h1>
+    <div class="sub">Composition: <code>HeightReelsKRMarketing</code> · 브랜드/신뢰 풀퍼널 (인-릴 측정 데모 제거 버전)</div>
+    <div class="meta-row">
+      <span class="chip gold">6컷</span>
+      <span class="chip">735 frames</span>
+      <span class="chip">~24.5초</span>
+      <span class="chip">1080×1920 (9:16)</span>
+      <span class="chip">30fps</span>
+      <span class="chip">로케일 KR</span>
+    </div>
+  </header>
+
+  <div class="flow">
+    S1 골든타임<span class="arr">→</span> S2 권위·실적<span class="arr">→</span> S3 차별화(VS)<span class="arr">→</span> S4 진료·강연<span class="arr">→</span> S5 사회적 증거<span class="arr">→</span> S6 CTA(홈페이지 무료측정)
+  </div>
+
+  <!-- S1 -->
+  <div class="scene">
+    <div class="preview" style="background:radial-gradient(120% 90% at 30% 25%,#3f3a58,#15131f 75%);">
+      <div style="position:absolute;bottom:120px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:14px;">
+        <div style="width:22px;height:60px;border-radius:12px 12px 0 0;background:linear-gradient(#7d5bb0,#3a2a55);box-shadow:0 0 18px rgba(125,91,176,.6);"></div>
+        <div style="width:22px;height:100px;border-radius:12px 12px 0 0;background:linear-gradient(#5a5470,#2c2940);opacity:.85;"></div>
+        <div style="width:22px;height:86px;border-radius:12px 12px 0 0;background:linear-gradient(#5a5470,#2c2940);opacity:.72;"></div>
+      </div>
+      <div class="cap" style="bottom:38px;font-size:11px;">① 아이 키가 고민이신가요?<br><span style="opacity:.55;">↓</span><br>② 우리 아이 키 성장,<br><span class="gold">지금이 바로 골든타임</span></div>
+    </div>
+    <div class="body">
+      <h2>S1 · FearIntro <span class="t">0:00–0:04 · 120f</span></h2>
+      <div class="row"><div class="k">화면</div><div class="v">어두운 라디얼 배경. 키 대비 막대(작은 보라 1 + 큰 회색 2), 1.0→1.08 느린 줌인. <b>→ AI 사진으로 교체 예정</b> <span class="tag todo">에셋 TODO</span></div></div>
+      <div class="row"><div class="k">자막 (on-screen)</div><div class="v onscreen">① "아이 키가 고민이신가요?" → ② "우리 아이 키 성장, / 지금이 바로 골든타임입니다" <span class="gold">(교차 페이드, 둘째 줄 골드)</span></div></div>
+      <div class="row"><div class="k">🎙 나레이션</div><div class="narr">"아이 키가 고민이신가요? 우리 아이 키 성장, 지금이 바로 골든타임입니다."</div></div>
+      <div class="row"><div class="k">🎬 모션</div><div class="v">배경 페이드인(0–12f) → 자막 아래서 위로 + 페이드(20–36f) → 배경 슬로우 줌</div></div>
+      <div class="row"><div class="k">🎯 목적</div><div class="v">불안 + 시급성 환기 — 협박이 아닌 "지금이 기회"라는 긍정적 골든타임</div></div>
+      <div class="row"><div class="k">🖼 AI 프롬프트 (fear-1.jpg)</div>
+        <div class="prompt">Cinematic vertical 9:16 photo of a Korean child (about 9) seen from behind, stretching one arm upward toward a wall-mounted height ruler, warm golden backlight from upper-left (golden-hour mood), dark moody premium interior, shallow depth of field, hopeful and aspirational, child in the upper-middle third, lower third in soft shadow for text overlay, photorealistic editorial style, no visible face, no text.
+<span class="neg">negative: text, watermark, front-facing identifiable face, distorted hands, creepy, oversaturated</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="scene">
+    <div class="preview" style="background:linear-gradient(180deg,#667eea,#764ba2 60%,#5b3a8c);">
+      <div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);background:#fff;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:900;color:#5b4391;">187 성장클리닉</div>
+      <div class="pbadge" style="top:42px;">대한민국 강남 · 성장 전문 클리닉</div>
+      <div style="position:absolute;top:78px;left:14px;width:70px;height:88px;border-radius:10px;background:#fff;border:2px solid rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;font-size:9px;color:#888;font-weight:700;">원장<br>사진</div>
+      <div style="position:absolute;top:84px;right:14px;text-align:left;">
+        <div style="font-size:22px;font-weight:900;color:var(--gold);">1,000+</div>
+        <div style="font-size:8px;">성장 치료 케이스</div>
+        <div style="font-size:22px;font-weight:900;color:var(--gold);margin-top:8px;">95%+</div>
+        <div style="font-size:8px;">치료 성공률</div>
+      </div>
+      <div style="position:absolute;top:170px;left:14px;right:14px;font-size:9px;line-height:1.4;">아시아 최고의<br>성장 클리닉</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(#2b2238,#11202b);display:flex;align-items:center;justify-content:center;font-size:9px;opacity:.85;">🏥 병원 사진 슬라이딩 →</div>
+    </div>
+    <div class="body">
+      <h2>S2 · Clinic (marketing) <span class="t">0:03.5–0:09 · 165f</span></h2>
+      <div class="row"><div class="k">화면</div><div class="v">상단 중앙 <b>187 로고(흰 카드)</b> + Korea 배지 + 좌상단 원장 사진 + 우측 실적 카운트업(1,000+ / 95%+) + "아시아 최고의 성장 클리닉" + <b>실제 내원 환자 국적 국기 🇰🇷🇹🇭🇲🇾🇮🇩🇺🇸</b> + 하단 병원 4장 슬라이딩(새봄 네온 간판) <span class="tag ok">실제 자산</span></div></div>
+      <div class="row"><div class="k">자막 (on-screen)</div><div class="v onscreen">배지 "대한민국 강남·성장 전문 클리닉" / "아시아 최고의 성장 클리닉"</div></div>
+      <div class="row"><div class="k">🎙 나레이션</div><div class="narr">"아시아 최고의 성장 클리닉. 천 건이 넘는 성장 치료 케이스, 95% 이상의 치료 성공률."</div></div>
+      <div class="row"><div class="k">🎬 모션</div><div class="v">원장 스프링 등장 · 실적 숫자 카운트업 · 하단 병원 사진 가로 슬라이딩(네온 간판에서 정지)</div></div>
+      <div class="row"><div class="k">🎯 목적</div><div class="v">"우리가 누구인가" — 권위(원장·학회) + 실적(수치) + 한국 프리미엄(네온 간판)</div></div>
+    </div>
+  </div>
+
+  <!-- S3 VS -->
+  <div class="scene">
+    <div class="preview" style="display:flex;">
+      <div style="flex:1;background:linear-gradient(180deg,#2b2b30,#1a1a1e);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding-bottom:90px;">
+        <div style="font-size:11px;color:rgba(255,255,255,.85);">타 클리닉</div>
+        <div style="font-size:42px;filter:grayscale(.6);opacity:.7;">💉</div>
+        <div style="font-size:8px;color:rgba(255,255,255,.5);text-align:center;">단순<br>성장호르몬 주사</div>
+      </div>
+      <div style="flex:1;background:linear-gradient(180deg,#5b4391,#34245c);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding-bottom:90px;">
+        <div style="font-size:10px;font-weight:900;color:var(--gold);">187 통합 성장 관리</div>
+        <div style="display:flex;flex-direction:column;gap:4px;font-size:8px;align-self:center;">
+          <div>💗 성장호르몬 밸런스</div>
+          <div>⚖️ 성호르몬·갑상선</div>
+          <div>🧍 곧은 발육</div>
+          <div>🏋️ 키자극 운동</div>
+          <div>🌙 수면 관리</div>
+          <div>🍎 체중·영양</div>
+        </div>
+      </div>
+      <div style="position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-style:italic;font-weight:900;color:#241a08;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,.5);">VS</div>
+      <div class="cap" style="bottom:22px;font-size:8.5px;">성장호르몬 하나만 보지 않습니다<br>키 성장은 다방면으로 관리해야 합니다</div>
+    </div>
+    <div class="body">
+      <h2>S3 · VS 차별화 <span class="t">0:08.5–0:14.5 · 180f</span></h2>
+      <div class="row"><div class="k">화면</div><div class="v">좌(회색): 단순 주사 1개 · 우(보라): <b>6항목 세로 리스트 — 한 줄에 이모지+텍스트</b>(순차 스프링) · 가운데 골드 VS 뱃지. <b>이모지 → AI 일러스트 아이콘으로 교체 예정</b> <span class="tag todo">에셋 TODO</span></div></div>
+      <div class="row"><div class="k">자막 (on-screen)</div><div class="v onscreen">"타 클리닉 / 단순 성장호르몬 주사" vs "187 통합 성장 관리" + 6항목(밸런스/성호르몬·갑상선/곧은 발육/키자극 운동/수면/체중·영양) / 펀치 "성장호르몬 하나만 보지 않습니다 / 키 성장은 다방면으로 관리해야 합니다"</div></div>
+      <div class="row"><div class="k">🎙 나레이션</div><div class="narr">"성장호르몬 하나로 키가 결정되지 않습니다. 187은 다방면으로 관리합니다."</div></div>
+      <div class="row"><div class="k">🎬 모션</div><div class="v">좌우 분할 페이드인 → VS 뱃지 스프링 팝(10f) → 6 아이콘 순차 등장 → 하단 펀치라인 업(70f)</div></div>
+      <div class="row"><div class="k">🎯 목적</div><div class="v">"왜 다른가" — 단순 1 vs 통합 6 시각 대비</div></div>
+      <div class="row"><div class="k">🖼 AI 프롬프트 (아이콘 7종 · 동일 스타일/시드)</div>
+        <div class="prompt">[MASTER] Minimalist soft-3D rounded icon, {SUBJECT}, premium medical brand style, purple (#5b4391) & gold (#F59E0B) palette, glossy clean finish, soft studio lighting, centered on transparent background, consistent icon-set style, high detail, no text.
+
+{SUBJECT} 1  성장호르몬 밸런스 → a glowing balanced scale with a pulse/heartbeat line
+{SUBJECT} 2  성호르몬·갑상선 → a stylized thyroid gland with subtle hormone molecules
+{SUBJECT} 3  곧은 발육 → a child figure standing straight with an aligned spine highlight
+{SUBJECT} 4  키자극 운동 → a child figure jumping/stretching upward
+{SUBJECT} 5  수면 관리 → a crescent moon with soft Zzz and a pillow
+{SUBJECT} 6  체중·영양 → a balanced plate with an apple and vegetables
+{SUBJECT} 7  (대비용) 단순 주사 → a single plain syringe, desaturated grey, dull lighting</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 DirectorGrid -->
+  <div class="scene">
+    <div class="preview" style="background:linear-gradient(180deg,#5b4391,#241733);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 12px;">
+      <div style="font-size:12px;font-weight:900;text-align:center;margin-bottom:14px;">세계 곳곳 아이들의 꿈을<br>부모와 함께 키웁니다</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;">
+        <div style="aspect-ratio:4/3;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,.6);">🩺 진료</div>
+        <div style="aspect-ratio:4/3;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,.6);">🩺 진료</div>
+        <div style="aspect-ratio:4/3;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,.6);">🩺 진료</div>
+        <div style="aspect-ratio:4/3;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,.6);">🎤 학부모 강연</div>
+        <div style="aspect-ratio:4/3;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,.6);">🎤 학부모 강연</div>
+        <div style="aspect-ratio:4/3;border-radius:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;color:rgba(255,255,255,.6);">🎤 학부모 강연</div>
+      </div>
+    </div>
+    <div class="body">
+      <h2>S4 · DirectorGrid (진료·강연) <span class="t">0:14–0:18 · 120f</span></h2>
+      <div class="row"><div class="k">화면</div><div class="v">"세계 곳곳 아이들의 꿈을 부모와 함께 키웁니다" 타이틀 + 2×3 바둑판(해외 환자 진료 3 + 학부모 강연 3). 타일 순차 스프링 팝업. <b>핵심 = 감성·파트너십</b>. <b>원장 실제 진료·강연 이미지/영상 필요</b> <span class="tag todo">에셋 TODO</span></div></div>
+      <div class="row"><div class="k">🎙 나레이션</div><div class="narr">"세계 곳곳 아이들의 꿈을, 부모와 함께 키웁니다."</div></div>
+      <div class="row"><div class="k">🎬 모션</div><div class="v">배경 페이드 → 타이틀 업+페이드 → 타일 6개 순차 스케일 팝(14f+i·6)</div></div>
+      <div class="row"><div class="k">🎯 목적</div><div class="v">감성 비트 — S2 국기(여러 나라)를 정서로 받아 <b>CTA 직전 셀럽과 함께 감정 리프트</b></div></div>
+      <div class="row"><div class="k">🖼 에셋</div><div class="v"><code>public/images/director/act-1~6.jpg</code> (1~3 진료 / 4~6 강연) 넣고 <code>DirectorGridScene</code>의 <code>HAS_IMG=true</code>. 영상 타일은 <code>&lt;Video&gt;</code>로 교체 가능</div></div>
+    </div>
+  </div>
+
+  <!-- S5 Celeb -->
+  <div class="scene">
+    <div class="preview" style="background:radial-gradient(120% 90% at 50% 25%,#5b4391,#1d1530 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;">
+      <div style="font-size:18px;opacity:.6;letter-spacing:4px;margin-bottom:14px;">⭐🌟✨🌟⭐</div>
+      <div style="font-size:11px;font-weight:900;text-align:center;line-height:1.35;">각국에서<br>배우·가수·운동선수를 꿈꾸는<br>아이들이 다녀갔습니다</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;width:100%;margin-top:12px;">
+        <div style="aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.6);">아이</div>
+        <div style="aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.6);">아이</div>
+        <div style="aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.6);">아이</div>
+        <div style="aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.6);">아이</div>
+        <div style="aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.6);">아이</div>
+        <div style="aspect-ratio:1;border-radius:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.6);">아이</div>
+      </div>
+      <div style="font-size:10px;color:var(--gold);font-weight:700;margin-top:10px;">187 성장클리닉</div>
+    </div>
+    <div class="body">
+      <h2>S5 · Celeb (사회적 증거) <span class="t">0:17.5–0:20.5 · 90f</span></h2>
+      <div class="row"><div class="k">화면</div><div class="v">보라 라디얼 배경 + 별 5개 순차 페이드 + 타이틀 스프링 + <b>실제 아이들 사진 3×2 그리드(순차 팝업)</b> + 187 서브. <b>실제 아이 사진 6장 필요</b> <span class="tag todo">에셋 TODO</span></div></div>
+      <div class="row"><div class="k">자막 (on-screen)</div><div class="v onscreen">"각국에서 / 배우·가수·운동선수를 꿈꾸는 / 아이들이 다녀갔습니다" + 서브 "187 성장클리닉" + 아이들 사진 그리드</div></div>
+      <div class="row"><div class="k">🎙 나레이션</div><div class="narr">"각국에서 배우·가수·운동선수를 꿈꾸는 아이들이 다녀갔습니다."</div></div>
+      <div class="row"><div class="k">🎯 목적</div><div class="v">동경·사회적 증거 — CTA 직전 감성 리프트. <b>배우·가수·운동선수를 꿈꾸는 각국 아이들이 많이 찾는다(사실) → 강하게.</b></div></div>
+      <div class="row"><div class="k">⚠️ 안전하게 강하게</div><div class="v">"많이 다녀간다"(고객 사실)는 강조 OK / <b>특정 실명·"○○가 효과 봤다"(효과 보증)만 회피</b> → 사실 기반이라 임팩트 유지 가능</div></div>
+    </div>
+  </div>
+
+  <!-- S6 CtaPromo -->
+  <div class="scene">
+    <div class="preview" style="background:linear-gradient(180deg,#667eea,#764ba2 60%,#5b3a8c);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 14px;">
+      <div style="background:#fff;border-radius:8px;padding:7px 12px;font-size:11px;font-weight:900;color:#5b4391;">187 성장클리닉</div>
+      <div style="font-size:11px;font-weight:900;text-align:center;line-height:1.3;">지금이 골든타임<br>우리 아이의 키,<br>지금 시작하세요</div>
+      <div style="background:#fff;border-radius:8px;padding:5px 12px;font-size:9px;font-weight:800;color:#0F6E56;">📐 예측키 무료 측정하기</div>
+      <div style="font-size:8px;">홈페이지에서 직접 측정할 수 있어요</div>
+      <div style="background:rgba(255,255,255,.15);border-radius:6px;padding:3px 10px;font-size:8px;">www.dr187growup.com</div>
+      <div style="background:#FAE100;border-radius:20px;padding:4px 12px;font-size:9px;font-weight:800;color:#3C1E1E;">💬 카카오톡 상담하기</div>
+    </div>
+    <div class="body">
+      <h2>S6 · CtaPromo <span class="t">0:20–0:24.5 · 135f</span></h2>
+      <div class="row"><div class="k">화면</div><div class="v">흰 카드 로고 + 헤딩 + 흰 측정 버튼 + 멘트 + URL pill + 카톡 pill + 병원명 (순차 스프링) <span class="tag ok">실제 자산</span></div></div>
+      <div class="row"><div class="k">자막 (on-screen)</div><div class="v onscreen">"지금이 골든타임 / 우리 아이의 키, 지금 시작하세요" · 📐 "예측키 무료 측정하기" · "홈페이지에서 직접 측정할 수 있어요" · URL · "카카오톡 상담하기"</div></div>
+      <div class="row"><div class="k">🎙 나레이션</div><div class="narr">"지금 홈페이지에서, 우리 아이 예상키를 무료로 확인하세요."</div></div>
+      <div class="row"><div class="k">🎯 목적</div><div class="v">행동 유도 — 데모를 뺀 대신 "측정은 홈페이지에서" 동선 명시 + 카톡 상담</div></div>
+    </div>
+  </div>
+
+  <!-- Narration script -->
+  <div class="section-title">🎙 나레이션 풀 스크립트 (VO)</div>
+  <div class="scriptbox">
+    <table>
+      <thead><tr><th>컷</th><th>타이밍</th><th>나레이션</th></tr></thead>
+      <tbody>
+        <tr><td class="s">S1</td><td class="time">0:00–0:04</td><td>아이 키가 고민이신가요? 우리 아이 키 성장, 지금이 바로 골든타임입니다.</td></tr>
+        <tr><td class="s">S2</td><td class="time">0:03.5–0:09</td><td>아시아 최고의 성장 클리닉. 천 건이 넘는 성장 치료 케이스, 95% 이상의 치료 성공률.</td></tr>
+        <tr><td class="s">S3</td><td class="time">0:08.5–0:14.5</td><td>성장호르몬 하나로 키가 결정되지 않습니다. 187은 다방면으로 관리합니다.</td></tr>
+        <tr><td class="s">S4</td><td class="time">0:14–0:18</td><td>세계 곳곳 아이들의 꿈을, 부모와 함께 키웁니다.</td></tr>
+        <tr><td class="s">S5</td><td class="time">0:17.5–0:20.5</td><td>각국에서 배우·가수·운동선수를 꿈꾸는 아이들이 다녀갔습니다.</td></tr>
+        <tr><td class="s">S6</td><td class="time">0:20–0:24.5</td><td>지금 홈페이지에서, 우리 아이 예상키를 무료로 확인하세요.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Notes -->
+  <div class="section-title">📌 제작 메모 / 남은 작업</div>
+  <div class="notes">
+    <ul>
+      <li><b>S1 fear-1.jpg</b> — 위 프롬프트로 AI 생성 → <code>remotion/public/images/fear-1.jpg</code> 넣고 <code>FearIntroScene</code>의 <code>HAS_IMG=true</code></li>
+      <li><b>S3 진료·강연 바둑판</b> — 원장 실제 진료 3 + 해외 강연 사진/영상 3 → <code>remotion/public/images/director/act-1~6.jpg</code> 넣고 <code>DirectorGridScene</code>의 <code>HAS_IMG=true</code> (영상은 <code>&lt;Video&gt;</code>)</li>
+      <li><b>S4 아이콘 7종 (VS)</b> — 동일 스타일로 생성 → <code>remotion/public/images/vs/</code> 에 넣고 <code>VsScene</code>의 이모지를 <code>&lt;Img&gt;</code>로 교체</li>
+      <li><b>S5 아이 사진 6장 (Celeb)</b> — 실제 내원 아이들 사진 → <code>public/images/celeb/kid-1~6.jpg</code> 넣고 <code>CelebScene</code>의 <code>HAS_IMG=true</code> (지금은 "아이 N" placeholder). 실명·효과 보증만 회피</li>
+      <li><b>나레이션</b> — TTS/성우 녹음 후 <code>&lt;Audio&gt;</code>로 트랙 추가 가능. BGM(잔잔→고조) 권장</li>
+      <li><b>로케일</b> — 위는 KR. 동일 구조로 TH 나레이션/카피는 <code>texts.ts</code> th 값으로 분기 가능</li>
+      <li><b>렌더</b> — <code>cd remotion &amp;&amp; npx remotion render HeightReelsKRMarketing out/reels-kr-marketing.mp4</code></li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

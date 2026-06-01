@@ -24,11 +24,21 @@ export const FearIntroScene: React.FC = () => {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const capO = interpolate(frame, [20, 36], [0, 1], {
+  // Phase 1: question hook (fades in, holds ~1.2s, fades out)
+  const q1O = interpolate(frame, [8, 22, 58, 68], [0, 1, 1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const capY = interpolate(frame, [20, 36], [40, 0], {
+  const q1Y = interpolate(frame, [8, 22], [40, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  // Phase 2: golden-time line (fades in after the question)
+  const g2O = interpolate(frame, [70, 82], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const g2Y = interpolate(frame, [70, 82], [40, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -101,6 +111,7 @@ export const FearIntroScene: React.FC = () => {
         }}
       />
 
+      {/* Phase 1 — question hook */}
       <div
         style={{
           position: "absolute",
@@ -108,8 +119,34 @@ export const FearIntroScene: React.FC = () => {
           left: 60,
           right: 60,
           textAlign: "center",
-          opacity: capO,
-          transform: `translateY(${capY}px)`,
+          opacity: q1O,
+          transform: `translateY(${q1Y}px)`,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: NOTO_SANS_KR,
+            fontSize: 66,
+            fontWeight: 800,
+            color: "#fff",
+            lineHeight: 1.4,
+            textShadow: "0 4px 24px rgba(0,0,0,0.7)",
+          }}
+        >
+          {L.fearQuestion}
+        </div>
+      </div>
+
+      {/* Phase 2 — golden-time line */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 230,
+          left: 60,
+          right: 60,
+          textAlign: "center",
+          opacity: g2O,
+          transform: `translateY(${g2Y}px)`,
         }}
       >
         {lines.map((ln, i) => (

@@ -30,6 +30,10 @@ const BOTTOM = [
   { src: "images/facility-1.jpg", pos: "72% center" },
 ];
 
+// Real patient nationalities (marketing) — flag PNGs (emoji flags break in headless render).
+// Order: Korea, Thailand, Malaysia, Indonesia, USA.
+const FLAGS = ["kr", "th", "my", "id", "us"];
+
 export const ClinicScene: React.FC<{ marketing?: boolean }> = ({ marketing }) => {
   const L = t();
   const frame = useCurrentFrame();
@@ -119,11 +123,40 @@ export const ClinicScene: React.FC<{ marketing?: boolean }> = ({ marketing }) =>
 
   return (
     <AbsoluteFill style={{ background: PURPLE_BG, opacity: sceneOpacity }}>
+      {/* Hospital logo (marketing only — top center, on a white card) */}
+      {marketing && (
+        <div
+          style={{
+            position: "absolute",
+            top: 44,
+            left: 0,
+            right: 0,
+            display: "flex",
+            justifyContent: "center",
+            opacity: badgeOpacity,
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: COLORS.white,
+              borderRadius: 18,
+              padding: "14px 28px",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+            }}
+          >
+            <Img
+              src={staticFile(L.logo)}
+              style={{ width: 300, height: "auto", objectFit: "contain", display: "block" }}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Korea badge (top, centered) */}
       <div
         style={{
           position: "absolute",
-          top: 60,
+          top: marketing ? 168 : 60,
           left: 0,
           right: 0,
           display: "flex",
@@ -153,9 +186,9 @@ export const ClinicScene: React.FC<{ marketing?: boolean }> = ({ marketing }) =>
         style={{
           position: "absolute",
           left: 70,
-          top: 210,
+          top: marketing ? 256 : 210,
           width: 430,
-          height: 540,
+          height: marketing ? 494 : 540,
           borderRadius: 36,
           overflow: "hidden",
           transform: `scale(${portraitSpring})`,
@@ -192,28 +225,73 @@ export const ClinicScene: React.FC<{ marketing?: boolean }> = ({ marketing }) =>
         >
           {marketing ? L.clinicPos : L.clinicName}
         </span>
-        <span
+        {!marketing && (
+          <span
+            style={{
+              display: "block",
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 24,
+              fontWeight: 500,
+              lineHeight: 1.35,
+              color: COLORS.whiteAlpha80,
+              marginTop: 12,
+              ...reveal(20),
+            }}
+          >
+            {L.clinicYears}
+          </span>
+        )}
+      </div>
+
+      {/* Real patient nationalities — flag strip (marketing only) */}
+      {marketing && (
+        <div
           style={{
-            display: "block",
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 24,
-            fontWeight: 500,
-            lineHeight: 1.35,
-            color: COLORS.whiteAlpha80,
-            marginTop: 12,
-            ...reveal(20),
+            position: "absolute",
+            top: 876,
+            left: 0,
+            right: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 16,
+            ...reveal(28),
           }}
         >
-          {marketing ? L.clinicLecture : L.clinicYears}
-        </span>
-      </div>
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 26,
+              fontWeight: 600,
+              color: COLORS.whiteAlpha80,
+              letterSpacing: 0.5,
+            }}
+          >
+            {L.clinicNations}
+          </span>
+          <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
+            {FLAGS.map((c) => (
+              <Img
+                key={c}
+                src={staticFile(`images/flags/${c}.png`)}
+                style={{
+                  height: 52,
+                  width: "auto",
+                  borderRadius: 6,
+                  boxShadow: "0 4px 14px rgba(0,0,0,0.4)",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Success stats (top-right) */}
       <div
         style={{
           position: "absolute",
           right: 70,
-          top: 250,
+          top: marketing ? 300 : 250,
           width: 460,
           display: "flex",
           flexDirection: "column",

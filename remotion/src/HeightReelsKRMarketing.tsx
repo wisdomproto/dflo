@@ -1,16 +1,14 @@
-// KR marketing reel — 8 cuts, full funnel:
-// fear/golden → clinic trust (incl. lecture+95%) → VS → celeb → cases → measure demo → result+site → CTA
+// KR marketing reel — 5 cuts (brand/trust funnel, no in-reel measure demo):
+// fear/golden → clinic trust (incl. lecture+95%) → VS → celeb → CTA(홈페이지 예측키 무료 측정 안내)
 import { AbsoluteFill } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
+import { slide } from "@remotion/transitions/slide";
 import { FearIntroScene } from "./scenes/FearIntroScene";
 import { ClinicScene } from "./scenes/ClinicScene";
+import { DirectorGridScene } from "./scenes/DirectorGridScene";
 import { VsScene } from "./scenes/VsScene";
 import { CelebScene } from "./scenes/CelebScene";
-import { CasesScene } from "./scenes/CasesScene";
-import { HookScene } from "./scenes/HookScene";
-import { InputScene } from "./scenes/InputScene";
-import { ResultScene } from "./scenes/ResultScene";
 import { CtaPromoScene } from "./scenes/CtaPromoScene";
 import { setLocale, t } from "./lib/texts";
 
@@ -35,7 +33,8 @@ export const HeightReelsKRMarketing: React.FC = () => {
         <TransitionSeries.Sequence durationInFrames={165}>
           <ClinicScene marketing />
         </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
+        {/* 슬라이드로 차별화 씬을 임팩트 있게 진입 */}
+        <TransitionSeries.Transition presentation={slide({ direction: "from-right" })} timing={linearTiming({ durationInFrames: T })} />
 
         {/* S3 VS 차별화 */}
         <TransitionSeries.Sequence durationInFrames={180}>
@@ -43,35 +42,19 @@ export const HeightReelsKRMarketing: React.FC = () => {
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-        {/* S4 외국 셀럽·아역배우가 찾는 곳 */}
+        {/* S4 원장 진료·학부모 강연 바둑판 (감성 — CTA 직전 셀럽과 함께) */}
+        <TransitionSeries.Sequence durationInFrames={120}>
+          <DirectorGridScene />
+        </TransitionSeries.Sequence>
+        <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
+
+        {/* S5 외국 셀럽·아역배우가 찾는 곳 */}
         <TransitionSeries.Sequence durationInFrames={90}>
           <CelebScene />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
 
-        {/* S5 성공 사례 */}
-        <TransitionSeries.Sequence durationInFrames={120}>
-          <CasesScene line={L.casesCelebLine} />
-        </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
-
-        {/* S6 예측키 측정 데모 (Hook + Input) */}
-        <TransitionSeries.Sequence durationInFrames={60}>
-          <HookScene hideCta />
-        </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
-        <TransitionSeries.Sequence durationInFrames={80}>
-          <InputScene />
-        </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
-
-        {/* S7 결과 + 홈페이지 무료 측정 멘트 */}
-        <TransitionSeries.Sequence durationInFrames={185}>
-          <ResultScene footerNote={L.demoFreeSite} />
-        </TransitionSeries.Sequence>
-        <TransitionSeries.Transition presentation={fade()} timing={linearTiming({ durationInFrames: T })} />
-
-        {/* S8 메신저 CTA */}
+        {/* S5 메신저 CTA + "예측키 무료 측정은 홈페이지에서" 안내 (버튼·ctaSiteMeasure·URL) */}
         <TransitionSeries.Sequence durationInFrames={135}>
           <CtaPromoScene heading={L.ctaGoldenTime} />
         </TransitionSeries.Sequence>

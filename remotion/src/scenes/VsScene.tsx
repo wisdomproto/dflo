@@ -97,7 +97,7 @@ export const VsScene: React.FC = () => {
         >
           {L.vsRightTitle}
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "28px 40px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 18, width: 400 }}>
           {L.vsItems.map((item, i) => {
             const s = spring({ frame: frame - (16 + i * 7), fps, config: { damping: 12 } });
             return (
@@ -105,24 +105,24 @@ export const VsScene: React.FC = () => {
                 key={item}
                 style={{
                   display: "flex",
-                  flexDirection: "column",
                   alignItems: "center",
-                  gap: 10,
-                  transform: `scale(${s})`,
+                  gap: 20,
+                  transform: `translateX(${(1 - s) * 34}px)`,
                   opacity: s,
                 }}
               >
                 <div
                   style={{
-                    width: 96,
-                    height: 96,
+                    width: 78,
+                    height: 78,
                     borderRadius: "50%",
                     background: "rgba(255,255,255,0.14)",
                     border: "2px solid rgba(255,255,255,0.3)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 46,
+                    fontSize: 40,
+                    flexShrink: 0,
                   }}
                 >
                   {ICONS[i]}
@@ -130,11 +130,9 @@ export const VsScene: React.FC = () => {
                 <div
                   style={{
                     fontFamily: NOTO_SANS_KR,
-                    fontSize: 23,
-                    fontWeight: 600,
+                    fontSize: 31,
+                    fontWeight: 700,
                     color: "#fff",
-                    textAlign: "center",
-                    maxWidth: 160,
                     lineHeight: 1.2,
                   }}
                 >
