@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>187 성장클리닉 마케팅 릴스 · 스토리보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15111c;--bg-2:#1d1729;--panel:#221b30;--panel-2:#2a2138;
+    --purple:#4A2D6B;--purple-lt:#7d5bb0;--gold:#c9a24b;--gold-lt:#e4c878;
+    --kakao:#FAE100;--line:#06C755;--teal:#1a3a32;
+    --ink:#f4efe6;--ink-soft:#cdc4d6;--muted:#94889f;
+    --hair:rgba(201,162,75,.22);--hair-soft:rgba(255,255,255,.08);--danger:#e06a6a;
+    --new:#e4c878;--reuse:#7fb5a6;--mod:#b58fd6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",sans-serif;line-height:1.6;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+      radial-gradient(900px 600px at 12% -5%, rgba(74,45,107,.55), transparent 60%),
+      radial-gradient(800px 700px at 100% 10%, rgba(201,162,75,.12), transparent 55%),
+      radial-gradient(1000px 800px at 50% 110%, rgba(74,45,107,.35), transparent 60%),var(--bg)}
+  body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  header{padding:96px 0 54px;position:relative}
+  .kicker{font-family:"Space Mono",monospace;font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-lt);display:flex;align-items:center;gap:14px;opacity:0;animation:rise .8s .05s forwards}
+  .kicker::before{content:"";width:46px;height:1px;background:var(--gold);display:inline-block}
+  h1{font-family:"Noto Serif KR",serif;font-weight:900;font-size:clamp(40px,6.4vw,82px);line-height:1.04;letter-spacing:-.01em;margin:22px 0 8px;color:var(--ink);opacity:0;animation:rise .9s .14s forwards}
+  h1 .accent{color:var(--gold-lt);font-style:normal}
+  h1 .en{font-family:"Fraunces",serif;font-weight:900;font-style:italic}
+  .sub{font-size:18px;color:var(--ink-soft);max-width:680px;margin-top:14px;opacity:0;animation:rise .9s .24s forwards}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:34px;font-family:"Space Mono",monospace;font-size:13px;color:var(--muted);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:16px 0;opacity:0;animation:rise .9s .34s forwards}
+  .meta-row b{color:var(--gold-lt);font-weight:700}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;opacity:0;animation:rise .9s .44s forwards}
+  .chip{font-size:13px;padding:7px 15px;border-radius:999px;border:1px solid var(--hair);background:rgba(201,162,75,.06);color:var(--ink-soft)}
+  .chip b{color:var(--gold-lt)}
+
+  .sec{padding:60px 0 10px}
+  .sec-h{font-family:"Noto Serif KR",serif;font-weight:900;font-size:30px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sec-h .no{font-family:"Fraunces",serif;font-style:italic;font-weight:600;font-size:20px;color:var(--gold)}
+  .sec-desc{color:var(--muted);font-size:15px;margin-bottom:30px;max-width:680px}
+
+  .scene{display:grid;grid-template-columns:300px 1fr;gap:42px;align-items:center;padding:30px 0;border-top:1px solid var(--hair-soft);opacity:0;transform:translateY(34px)}
+  .scene.in{animation:rise .8s forwards}
+  .scene:nth-child(even){grid-template-columns:1fr 300px}
+  .scene:nth-child(even) .frame-col{order:2}
+  .scene:nth-child(even) .meta-col{order:1;text-align:right}
+  .scene:nth-child(even) .badges{justify-content:flex-end}
+  .scene:nth-child(even) .asset{margin-left:auto}
+
+  .frame-col{display:flex;justify-content:center}
+  .frame{width:282px;height:501px;border-radius:26px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 70px rgba(0,0,0,.55), inset 0 0 0 6px rgba(0,0,0,.25);transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;background:#0c0a12}
+  .frame:hover{transform:translateY(-8px) scale(1.025);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px var(--gold)}
+  .tc{position:absolute;top:12px;left:12px;z-index:6;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.05em;color:rgba(255,255,255,.82);background:rgba(0,0,0,.42);padding:3px 8px;border-radius:6px;backdrop-filter:blur(3px)}
+  .sno{position:absolute;top:10px;right:14px;z-index:6;font-family:"Fraunces",serif;font-style:italic;font-weight:900;font-size:30px;color:rgba(255,255,255,.9);line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+  .fill{position:absolute;inset:0;display:flex;flex-direction:column}
+  .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 18px 24px;z-index:5;background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));font-family:"Noto Serif KR",serif;font-weight:700;font-size:16px;line-height:1.4;color:#fff;text-align:center;text-shadow:0 3px 14px rgba(0,0,0,.7)}
+  .cap small{display:block;font-family:"Noto Sans KR";font-weight:400;font-size:11px;color:rgba(255,255,255,.7);margin-top:6px;text-shadow:none}
+
+  .badges{display:flex;gap:8px;margin-bottom:12px}
+  .badge{font-size:11px;font-weight:700;padding:5px 11px;border-radius:7px;letter-spacing:.02em}
+  .b-new{background:rgba(228,200,120,.16);color:var(--new);border:1px solid rgba(228,200,120,.4)}
+  .b-reuse{background:rgba(127,181,166,.14);color:var(--reuse);border:1px solid rgba(127,181,166,.35)}
+  .b-mod{background:rgba(181,143,214,.14);color:var(--mod);border:1px solid rgba(181,143,214,.35)}
+  .scene h3{font-family:"Noto Serif KR",serif;font-weight:900;font-size:26px;letter-spacing:-.01em;margin-bottom:4px}
+  .dur{font-family:"Space Mono",monospace;font-size:13px;color:var(--gold-lt);margin-bottom:14px}
+  .copy{font-size:16px;color:var(--ink);line-height:1.65;margin-bottom:6px}
+  .copy .hl{color:var(--gold-lt);font-weight:700;font-family:"Noto Serif KR",serif}
+  .vis{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .asset{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft);background:var(--panel);border:1px solid var(--hair-soft);padding:7px 13px;border-radius:9px}
+  .asset.need{border-color:rgba(224,106,106,.4);color:#f0b6b6;background:rgba(224,106,106,.08)}
+
+  .s-fear{background:radial-gradient(120% 90% at 30% 25%,#3f3a58,#15131f 75%)}
+  .s-fear .kids{position:absolute;bottom:150px;left:0;right:0;display:flex;justify-content:center;align-items:flex-end;gap:18px}
+  .s-fear .kid{width:30px;border-radius:14px 14px 0 0}
+  .s-fear .kid.tall{height:150px;background:linear-gradient(#5a5470,#2c2940);opacity:.85}
+  .s-fear .kid.tall2{height:128px;background:linear-gradient(#5a5470,#2c2940);opacity:.72}
+  .s-fear .kid.small{height:84px;background:linear-gradient(#7d5bb0,#3a2a55);box-shadow:0 0 26px rgba(125,91,176,.55)}
+
+  .s-dir{background:linear-gradient(180deg,#3a2a55,#1d1530)}
+  .s-dir .por{position:absolute;top:50px;left:50%;transform:translateX(-50%);width:120px;height:148px;border-radius:18px;background:linear-gradient(160deg,#6b5a86,#2f2745);border:2px solid rgba(255,255,255,.25);display:flex;align-items:flex-end;justify-content:center;font-size:44px}
+  .s-dir .lec{position:absolute;top:214px;left:0;right:0;text-align:center;font-size:12px;color:#fff;padding:0 20px;line-height:1.4}
+  .s-dir .flags{font-size:18px;letter-spacing:4px;margin-top:6px}
+  .s-dir .stats{position:absolute;top:300px;left:0;right:0;display:flex;justify-content:center;gap:26px}
+  .s-dir .stats .st .n{font-family:"Fraunces",serif;font-weight:900;font-size:30px;color:var(--gold-lt);line-height:1;text-align:center}
+  .s-dir .stats .st .l{font-size:10px;color:var(--ink-soft);text-align:center}
+
+  .s-vs{display:flex;flex-direction:row}
+  .s-vs .half{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:30px 10px 96px}
+  .s-vs .left{background:linear-gradient(180deg,#2b2b30,#1c1c20)}
+  .s-vs .right{background:linear-gradient(180deg,#5b4391,#34245c)}
+  .s-vs .htitle{font-size:12px;font-weight:700;color:rgba(255,255,255,.85);text-align:center}
+  .s-vs .syringe{font-size:40px;filter:grayscale(.5);opacity:.7}
+  .s-vs .six{display:grid;grid-template-columns:repeat(2,1fr);gap:9px 12px}
+  .s-vs .ic{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid rgba(255,255,255,.25)}
+  .s-vs .vs-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:7;font-family:"Fraunces",serif;font-style:italic;font-weight:900;font-size:26px;color:#241a08;background:var(--gold-lt);width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+
+  .s-celeb{background:radial-gradient(120% 90% at 50% 22%,#5b4391,#1d1530 72%)}
+  .s-celeb .stars{position:absolute;top:128px;left:0;right:0;text-align:center;font-size:26px;opacity:.5;letter-spacing:10px}
+  .s-celeb .ctxt{position:absolute;top:198px;left:0;right:0;text-align:center;font-family:"Noto Serif KR";font-weight:900;font-size:31px;color:#fff;line-height:1.35;padding:0 22px}
+  .s-celeb .ctxt b{color:var(--gold-lt)}
+  .s-celeb .csub{position:absolute;top:332px;left:0;right:0;text-align:center;font-size:12px;color:var(--ink-soft);letter-spacing:.05em}
+
+  .s-cases{background:linear-gradient(180deg,#244a40,#13261f)}
+  .s-cases .grid3{position:absolute;top:54px;left:20px;right:20px;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:96px;gap:10px}
+  .s-cases .ph{border-radius:12px;background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.05));display:flex;align-items:center;justify-content:center;font-size:30px;border:1px solid rgba(255,255,255,.12)}
+  .s-cases .ph:first-child{grid-row:span 2}
+
+  .s-input{background:linear-gradient(180deg,#241c38,#1a1428)}
+  .s-input .ih{text-align:center;font-family:"Noto Serif KR";font-weight:900;font-size:20px;color:#fff;margin-top:42px}
+  .s-input .ih b{color:var(--gold-lt)}
+  .s-input .form{position:absolute;left:26px;right:26px;top:96px;display:flex;flex-direction:column;gap:12px}
+  .s-input .row{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;height:40px;display:flex;align-items:center;padding:0 14px;font-size:12px;color:var(--ink-soft)}
+  .s-input .seg{display:flex;gap:8px}
+  .s-input .seg .row{flex:1;justify-content:center}
+  .s-input .seg .on{background:var(--purple);border-color:var(--purple-lt);color:#fff;font-weight:700}
+  .s-input .go{background:var(--gold);color:#241a08;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-top:4px}
+
+  .s-result{background:linear-gradient(180deg,#241c38,#171122)}
+  .s-result .chart{position:absolute;top:54px;left:24px;right:24px;height:150px}
+  .s-result svg{width:100%;height:100%;overflow:visible}
+  .s-result .big{position:absolute;top:222px;left:0;right:0;text-align:center;color:#fff}
+  .s-result .big .n{font-family:"Fraunces",serif;font-weight:900;font-size:52px;color:var(--gold-lt);line-height:1}
+  .s-result .big .l{font-size:12px;color:var(--ink-soft);letter-spacing:.04em}
+  .s-result .demo-tag{position:absolute;top:14px;left:50%;transform:translateX(-50%);font-size:10px;color:rgba(255,255,255,.7);border:1px dashed rgba(255,255,255,.4);padding:3px 9px;border-radius:6px}
+
+  .s-cta{background:radial-gradient(110% 80% at 50% 30%,#5b4391,#241a3a 72%)}
+  .s-cta .logo{font-family:"Fraunces",serif;font-style:italic;font-weight:900;font-size:36px;color:#fff;text-align:center;margin-top:84px}
+  .s-cta .logo b{color:var(--gold-lt)}
+  .s-cta .url{font-family:"Space Mono",monospace;font-size:12px;color:var(--ink-soft);text-align:center;margin-top:14px;letter-spacing:.02em}
+  .s-cta .kk{position:absolute;top:300px;left:50%;transform:translateX(-50%);background:var(--kakao);color:#3c1e1e;font-weight:700;font-size:14px;padding:12px 26px;border-radius:999px;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(250,225,0,.25);white-space:nowrap}
+
+  .journey{border:1px solid var(--hair);border-radius:16px;overflow:hidden;margin-top:6px}
+  .journey .jr{display:grid;grid-template-columns:96px 1fr 170px;gap:20px;padding:20px 24px;border-top:1px solid var(--hair-soft);align-items:center}
+  .journey .jr:first-child{border-top:none;background:rgba(201,162,75,.06)}
+  .journey .jr .stage{font-family:"Space Mono",monospace;font-size:13px;color:var(--gold-lt);font-weight:700}
+  .journey .jr .msg{font-size:15px;color:var(--ink)}
+  .journey .jr .msg .hl{color:var(--gold-lt);font-weight:700}
+  .journey .jr .role{font-size:13px;color:var(--muted);text-align:right}
+  .journey .head .stage,.journey .head .msg,.journey .head .role{font-weight:700;color:var(--ink-soft);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-family:"Space Mono",monospace}
+
+  .prompt{background:var(--panel);border:1px solid var(--hair-soft);border-radius:14px;padding:0;margin-bottom:16px;overflow:hidden}
+  .prompt .ph{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--panel-2);border-bottom:1px solid var(--hair-soft)}
+  .prompt .ph .t{font-weight:700;font-size:14px;color:var(--ink)}
+  .prompt .ph .t small{color:var(--muted);font-weight:400;margin-left:8px}
+  .copybtn{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.04em;background:transparent;border:1px solid var(--hair);color:var(--gold-lt);padding:6px 12px;border-radius:7px;cursor:pointer;transition:all .2s}
+  .copybtn:hover{background:var(--gold);color:#241a08}
+  .prompt pre{padding:16px 18px;font-family:"Space Mono",monospace;font-size:12.5px;line-height:1.65;color:var(--ink-soft);white-space:pre-wrap;word-break:break-word}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .card{background:var(--panel);border:1px solid var(--hair-soft);border-radius:14px;padding:22px 24px}
+  .card h4{font-family:"Noto Serif KR";font-weight:700;font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+  .card.warn{border-color:rgba(224,106,106,.35);background:rgba(224,106,106,.05)}
+  .card.warn h4{color:#f0b6b6}
+  .ck{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .ck li{display:flex;gap:11px;font-size:14px;color:var(--ink-soft);line-height:1.5}
+  .ck li::before{content:"☐";color:var(--gold-lt);font-size:16px;flex-shrink:0}
+  .rules{list-style:none;display:flex;flex-direction:column;gap:13px;counter-reset:r}
+  .rules li{display:flex;gap:12px;font-size:14px;color:var(--ink-soft);line-height:1.55}
+  .rules li::before{counter-increment:r;content:counter(r);flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(224,106,106,.18);color:#f0b6b6;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:"Space Mono",monospace}
+  .rules li b{color:#f0b6b6}
+
+  footer{padding:64px 0 80px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--hair);margin-top:60px}
+  footer .fr{font-family:"Fraunces",serif;font-style:italic;font-size:18px;color:var(--gold-lt);margin-bottom:8px}
+
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media(max-width:760px){
+    .scene,.scene:nth-child(even){grid-template-columns:1fr;gap:24px;justify-items:center;text-align:center}
+    .scene:nth-child(even) .meta-col,.scene .meta-col{text-align:center}
+    .badges,.scene:nth-child(even) .badges{justify-content:center}
+    .asset,.scene:nth-child(even) .asset{margin:0 auto}
+    .cards{grid-template-columns:1fr}
+    .journey .jr{grid-template-columns:1fr;gap:6px;text-align:left}
+    .journey .jr .role{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="kicker">187 GROWTH CLINIC · REELS STORYBOARD</div>
+  <h1>우리 아이의 키,<br><span class="accent">골든타임</span>은 <span class="en">now.</span></h1>
+  <p class="sub">키 성장·골든타임 → 원장·실적 신뢰 → 통합 관리 차별 → 셀럽·사례로 설득한 뒤, 마지막에 예측키 측정 데모로 "직접 해보세요"를 유도하는 9:16 풀 퍼널 마케팅 릴스.</p>
+  <div class="meta-row">
+    <span>FORMAT <b>9:16 vertical</b></span>
+    <span>RUNTIME <b>~36s</b></span>
+    <span>SCENES <b>8 cuts</b></span>
+    <span>LOCALE <b>KO</b> (→ TH 확장)</span>
+    <span>FPS <b>30</b></span>
+  </div>
+  <div class="chips">
+    <span class="chip">원장·실적 <b>통합 1씬</b></span>
+    <span class="chip">셀럽 <b>독립 씬</b></span>
+    <span class="chip">예측키 데모 <b>맨 뒤</b></span>
+    <span class="chip">VS <b>코드 렌더</b></span>
+    <span class="chip">카피 <b>강(빡세게)</b></span>
+    <span class="chip">성공률 <b>95%+</b></span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="sec">
+    <h2 class="sec-h"><span class="no">01</span> 씬 시퀀스 <span style="font-family:'Space Mono';font-size:14px;color:var(--muted);font-weight:400">8 cuts · ~36s</span></h2>
+    <p class="sec-desc">각 프레임은 실제 화면 구성의 목업. 하단 자막 = 들어갈 카피(강 버전). 배지 — <span style="color:var(--new)">🆕 신규</span> · <span style="color:var(--reuse)">♻️ 재활용</span> · <span style="color:var(--mod)">🔧 개조</span></p>
+
+    <!-- S1 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:00–00:04</span><span class="sno">01</span>
+        <div class="fill s-fear">
+          <div class="kids"><div class="kid small"></div><div class="kid tall"></div><div class="kid tall2"></div></div>
+          <div class="cap">우리 아이 키 성장,<br>지금이 <span style="color:#e4c878">바로 골든타임</span>입니다<small>평균에 만족 않는 부모 심리</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-new">🆕 신규</span></div>
+        <h3>키 성장·골든타임 인트로</h3>
+        <div class="dur">120f · 4.0s · FearIntroScene</div>
+        <p class="copy"><span class="hl">"우리 아이 키 성장, 지금이 바로 골든타임입니다"</span></p>
+        <p class="vis">비주얼은 <b style="color:var(--ink-soft)">작은 아이 vs 큰 아이 대비</b>(감정 후크) 유지. 카피만 "우리 아이 키 성장" 보편 메시지로 — 작은 아이 부모뿐 아니라 평균 부모(평균에 만족 안 함)까지 포섭.</p>
+        <span class="asset need">🎨 AI 이미지 필요 (긍정 톤)</span>
+      </div>
+    </article>
+
+    <!-- S2 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:04–00:10</span><span class="sno">02</span>
+        <div class="fill s-dir">
+          <div class="por">👨‍⚕️</div>
+          <div class="lec">채용현 원장 · 말레이시아·태국<br>국제 학회 초청 강연<div class="flags">🇲🇾 🇹🇭</div></div>
+          <div class="stats"><div class="st"><div class="n">1,000+</div><div class="l">치료 케이스</div></div><div class="st"><div class="n">95%+</div><div class="l">목표 도달률</div></div></div>
+          <div class="cap">대한민국이 주목하는<br>강남 187 성장클리닉<small>원장·실적·병원 통합 신뢰</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-mod">🔧 개조</span></div>
+        <h3>원장·실적·병원 통합 신뢰 <span style="font-size:13px;color:var(--muted);font-family:'Space Mono'">구 2+4</span></h3>
+        <div class="dur">180f · 6.0s · ClinicScene (통합)</div>
+        <p class="copy"><span class="hl">"대한민국이 주목하는 강남 187 성장클리닉"</span> · "채용현 원장 · 국제 학회 강연" · 진료 10년 · <span class="hl">95%+</span></p>
+        <p class="vis">기존 ClinicScene(원장+실적+병원 슬라이딩)에 해외 학회 추가. 포지셔닝+95%를 여기로 통합. 실적 90→95.</p>
+        <span class="asset need">📸 학회 사진 (없으면 배지)</span>
+      </div>
+    </article>
+
+    <!-- S3 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:10–00:16</span><span class="sno">03</span>
+        <div class="fill s-vs">
+          <div class="vs-badge">VS</div>
+          <div class="half left"><div class="htitle">타 클리닉<br><span style="color:var(--muted);font-weight:400">단순 주사</span></div><div class="syringe">💉</div></div>
+          <div class="half right"><div class="htitle">187<br><span style="color:var(--gold-lt)">통합 관리</span></div>
+            <div class="six"><div class="ic">❤️</div><div class="ic">🦋</div><div class="ic">🧍</div><div class="ic">🏋️</div><div class="ic">🌙</div><div class="ic">🍎</div></div>
+          </div>
+          <div class="cap" style="z-index:8">주사 하나로 될까요?<br>187은 6가지를 동시에<small>Multi-modal Management</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-new">🆕 신규</span></div>
+        <h3>VS 차별화 <span style="font-size:14px;color:var(--gold-lt);font-family:'Space Mono'">핵심</span></h3>
+        <div class="dur">180f · 6.0s · VsScene (코드 렌더)</div>
+        <p class="copy">"주사 하나로 될까요?" → <span class="hl">"187은 6가지를 동시에 — 진짜 통합 성장 관리"</span></p>
+        <p class="vis">좌(회색) 단순 주사 vs 우(보라) 6아이콘 순차 팝업: 성장호르몬·성호르몬/갑상선·곧은발육·운동·수면·영양.</p>
+        <span class="asset">⚙️ Remotion 코드 렌더 · 자산 불필요</span>
+      </div>
+    </article>
+
+    <!-- S4 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:16–00:19</span><span class="sno">04</span>
+        <div class="fill s-celeb">
+          <div class="stars">⭐ 🌟 ✨ 🌟 ⭐</div>
+          <div class="ctxt">외국 <b>셀럽·아역배우</b>가<br>찾는 곳</div>
+          <div class="csub">글로벌이 신뢰하는 강남 187</div>
+          <div class="cap"><small>셀럽 포지셔닝 · 사회적 증거</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-new">🆕 신규</span></div>
+        <h3>외국 셀럽·아역배우가 찾는 곳</h3>
+        <div class="dur">90f · 3.0s · CelebScene (독립)</div>
+        <p class="copy"><span class="hl">"외국 셀럽·아역배우가 찾는 곳"</span> · "글로벌이 신뢰하는 강남 187"</p>
+        <p class="vis">럭셔리 보라+골드 톤, 텍스트 임팩트 씬. 얼굴 노출 없이 '명성' 암시 → 다음 S5 실제 사례로 연결.</p>
+        <span class="asset">⚙️ 텍스트 임팩트 · 자산 불필요</span>
+      </div>
+    </article>
+
+    <!-- S5 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:19–00:23</span><span class="sno">05</span>
+        <div class="fill s-cases">
+          <div class="grid3"><div class="ph">⭐</div><div class="ph">🎬</div><div class="ph">🌟</div></div>
+          <div class="cap">한국 아역배우부터 태국 셀럽까지<br>그들이 선택한 클리닉<small>얼굴+효과수치 직접결합 ❌ (규정)</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-mod">🔧 개조</span></div>
+        <h3>성공 사례</h3>
+        <div class="dur">120f · 4.0s · CasesScene 개조</div>
+        <p class="copy"><span class="hl">"한국 아역배우부터 태국 셀럽까지 — 그들이 선택한 클리닉"</span></p>
+        <p class="vis">실제 사례 사진 빠른 컷. S4(명성 선언) → S5(실제 사진)로 셀럽 메시지 강화. 얼굴+효과 직접결합 ❌.</p>
+        <span class="asset need">📸 동의된 셀럽 사진</span>
+      </div>
+    </article>
+
+    <!-- S6 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:23–00:27</span><span class="sno">06</span>
+        <div class="fill s-input">
+          <div class="ih">우리 아이, 얼마나 <b>클까?</b></div>
+          <div class="form">
+            <div class="seg"><div class="row on">👦 남아</div><div class="row">👧 여아</div></div>
+            <div class="row">생년월일 · 2016 / 03 / 12</div>
+            <div class="row">현재 키 · 128 cm</div>
+            <div class="go">예상키 계산하기</div>
+          </div>
+          <div class="cap"><small>예측키 측정 데모 (직접 해보세요)</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-reuse">♻️ 재활용</span></div>
+        <h3>예측키 측정 데모</h3>
+        <div class="dur">120f · 4.0s · Hook + InputScene</div>
+        <p class="copy"><span class="hl">"우리 아이, 얼마나 클까? — 직접 측정해보세요"</span></p>
+        <p class="vis">설득 다음에 배치. "그래서 우리 아이는?" 측정 입력 과정을 빠르게 시연.</p>
+        <span class="asset">✅ Hook+Input 재활용 (압축)</span>
+      </div>
+    </article>
+
+    <!-- S7 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:27–00:32</span><span class="sno">07</span>
+        <div class="fill s-result">
+          <span class="demo-tag">— 측정 예시 —</span>
+          <div class="chart"><svg viewBox="0 0 240 150" preserveAspectRatio="none">
+            <path d="M5,140 C70,130 120,85 235,18" fill="none" stroke="#7d5bb0" stroke-width="3"/>
+            <path d="M5,140 C70,125 120,75 235,8" fill="none" stroke="#c9a24b" stroke-width="3" stroke-dasharray="2 5"/>
+            <circle cx="235" cy="18" r="5" fill="#c9a24b"/>
+          </svg></div>
+          <div class="big"><div class="n">182<span style="font-size:24px">cm</span></div><div class="l">예상 성인 키</div></div>
+          <div class="cap">우리 아이 예상키는?<br><span style="color:#FAE100">홈페이지에서 무료로 측정</span>해보세요<small>실제 측정은 홈페이지로 유도</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-mod">🔧 개조</span></div>
+        <h3>결과 + 홈페이지 무료 측정</h3>
+        <div class="dur">150f · 5.0s · ResultScene + 멘트</div>
+        <p class="copy">예상키 결과(데모) + <span class="hl">"우리 아이 예상키, 홈페이지에서 무료로 직접 확인하세요"</span></p>
+        <p class="vis">데모 결과를 보여준 뒤 하단 멘트로 "직접 측정" 행동을 자연스럽게 유도. (본인 아이 단정 ❌)</p>
+        <span class="asset">✅ Result 재활용 + 멘트 자막</span>
+      </div>
+    </article>
+
+    <!-- S8 -->
+    <article class="scene">
+      <div class="frame-col"><div class="frame">
+        <span class="tc">00:32–00:36</span><span class="sno">08</span>
+        <div class="fill s-cta">
+          <div class="logo">1<b>8</b>7</div>
+          <div class="url">www.dr187growup.com</div>
+          <div class="kk">💬 카카오톡 1:1 상담</div>
+          <div class="cap">지금이 골든타임<br>우리 아이의 키, 지금 시작하세요<small>KR=카카오 · TH=LINE</small></div>
+        </div>
+      </div></div>
+      <div class="meta-col">
+        <div class="badges"><span class="badge b-reuse">♻️ 재활용</span></div>
+        <h3>메신저 CTA</h3>
+        <div class="dur">135f · 4.5s · CtaPromoScene</div>
+        <p class="copy"><span class="hl">"지금이 골든타임 — 우리 아이의 키, 지금 시작하세요"</span> · 1:1 상담</p>
+        <p class="vis">로고 + URL + 메신저 pill. 골든타임 메시지(S1)의 종착점. KR=카카오 / TH=LINE.</p>
+        <span class="asset">✅ 100% 재활용</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="sec">
+    <h2 class="sec-h"><span class="no">02</span> 골든타임 · 측정 메시지 여정</h2>
+    <p class="sec-desc">시청자가 안 한 행동을 전제로 말하지 않는다 — 골든타임은 '희망 시급성', 측정은 설득 뒤 'S6~S7 직접 유도'로 일원화.</p>
+    <div class="journey">
+      <div class="jr head"><span class="stage">단계</span><span class="msg">메시지</span><span class="role">역할</span></div>
+      <div class="jr"><span class="stage">S1</span><span class="msg">"또래보다 작은 우리 아이… <span class="hl">지금이 바로 골든타임입니다</span>"</span><span class="role">긍정·희망 시급성 도입</span></div>
+      <div class="jr"><span class="stage">S6–S7</span><span class="msg">예측키 측정 데모 + "<span class="hl">홈페이지에서 무료로 측정해보세요</span>"</span><span class="role">설득 후 직접 측정 유도</span></div>
+      <div class="jr"><span class="stage">S8</span><span class="msg">"<span class="hl">지금이 골든타임 — 우리 아이의 키, 지금 시작하세요</span>"</span><span class="role">행동 전환 (메신저)</span></div>
+    </div>
+  </section>
+
+  <!-- PROMPTS -->
+  <section class="sec">
+    <h2 class="sec-h"><span class="no">03</span> AI 이미지 생성 프롬프트</h2>
+    <p class="sec-desc">S1 인트로용 — 협박이 아닌 따뜻·희망 톤. Imagen / Midjourney 등에 그대로 사용.</p>
+    <div class="prompt">
+      <div class="ph"><span class="t">S1 작은 아이 vs 큰 아이 (대비) <small>9:16</small></span><button class="copybtn" data-copy="Cinematic photo, a smaller Korean child (~9) standing next to noticeably taller peers, looking up at them, warm cinematic light, soft bokeh, shallow depth of field, 9:16 vertical, photorealistic, emotional contrast of height difference">COPY</button></div>
+      <pre>Cinematic photo, a smaller Korean child (~9) standing next to noticeably taller peers, looking up at them, warm cinematic light, soft bokeh, shallow depth of field, 9:16 vertical, photorealistic, emotional contrast of height difference</pre>
+    </div>
+    <div class="prompt">
+      <div class="ph"><span class="t">S1 대안 — 성장 측정 모티프 <small>9:16</small></span><button class="copybtn" data-copy="Conceptual warm photo, a child measuring height against a doorframe with pencil marks, sunlight through window, hopeful mood, 9:16 vertical, photorealistic">COPY</button></div>
+      <pre>Conceptual warm photo, a child measuring height against a doorframe with pencil marks, sunlight through window, hopeful mood, 9:16 vertical, photorealistic</pre>
+    </div>
+  </section>
+
+  <!-- CHECKLIST + RULES -->
+  <section class="sec">
+    <h2 class="sec-h"><span class="no">04</span> 자산 & 규정</h2>
+    <div class="cards">
+      <div class="card">
+        <h4>📦 확보 필요 자산</h4>
+        <ul class="ck">
+          <li>채용현 원장 <b>해외 학회 강연 사진/영상</b> (말레이시아·태국)</li>
+          <li>한국 아역배우 / 태국 셀럽 <b>동의된 사진</b> (S5)</li>
+          <li>S1 <b>AI 이미지</b> (희망 톤) → public/images/fear-1.jpg</li>
+          <li>첨부 <b>VS 비교 이미지</b> → 코드 렌더 레퍼런스</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <h4>⚠️ 의료광고 규정 리스크 (강 카피)</h4>
+        <ul class="rules">
+          <li><b>절대적 표현</b> — "대한민국이 주목하는", "그들이 선택한" → 객관 근거 필요</li>
+          <li><b>유명인 치료 노출</b> — S4 "외국 셀럽·아역배우가 찾는" 독립 씬은 환자 유인성 ↑ → 사실 근거·동의 필수</li>
+          <li><b>"성공률 95%"</b> — 산출 근거 데이터 필수</li>
+          <li><b>얼굴+효과 직접결합 금지</b> — S5는 자막만, 효과 막대 ❌</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="fr">187 Growth Clinic</div>
+  <div>스토리보드 v3 · 2026-05-31 · 원장·실적 통합 + 셀럽 독립 씬 · 확정 시 Remotion 컴포지션 제작 → still 검증 → 렌더 → TH 확장</div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((es)=>{
+    es.forEach((e,i)=>{ if(e.isIntersecting){ e.target.style.animationDelay=(i*60)+'ms'; e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.18});
+  document.querySelectorAll('.scene').forEach(s=>io.observe(s));
+  document.querySelectorAll('.copybtn').forEach(b=>{
+    b.addEventListener('click',async()=>{
+      try{ await navigator.clipboard.writeText(b.dataset.copy);
+        const t=b.textContent; b.textContent='COPIED ✓'; setTimeout(()=>b.textContent=t,1400);
+      }catch(e){ b.textContent='ERR'; }
+    });
+  });
+</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ import { t } from "../lib/texts";
 
 ensureFonts();
 
-export const CasesScene: React.FC = () => {
+export const CasesScene: React.FC<{ line?: string }> = ({ line }) => {
   const L = t();
   const frame = useCurrentFrame();
 
@@ -92,7 +92,7 @@ export const CasesScene: React.FC = () => {
             textShadow: "0 6px 28px rgba(0,0,0,0.6)",
           }}
         >
-          {L.casesActorsLine}
+          {line ?? L.casesActorsLine}
         </span>
       </div>
     </AbsoluteFill>

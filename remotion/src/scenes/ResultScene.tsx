@@ -26,7 +26,7 @@ import { t } from "../lib/texts";
 
 ensureFonts();
 
-export const ResultScene: React.FC = () => {
+export const ResultScene: React.FC<{ footerNote?: string }> = ({ footerNote }) => {
   const L = t();
   const SUBTITLES = [
     { from: 20, to: 80, text: L.sub1 },
@@ -243,7 +243,33 @@ export const ResultScene: React.FC = () => {
       </div>
 
       {/* Subtitle bar */}
-      {currentSub && (
+      {footerNote ? (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 56,
+            left: 40,
+            right: 40,
+            backgroundColor: COLORS.accent,
+            borderRadius: 18,
+            padding: "20px 24px",
+            textAlign: "center",
+            boxShadow: "0 10px 34px rgba(0,0,0,0.4)",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 40,
+              fontWeight: 800,
+              color: "#241a08",
+              lineHeight: 1.35,
+            }}
+          >
+            {footerNote}
+          </span>
+        </div>
+      ) : currentSub ? (
         <div
           style={{
             position: "absolute",
@@ -269,7 +295,7 @@ export const ResultScene: React.FC = () => {
             {currentSub.text}
           </span>
         </div>
-      )}
+      ) : null}
 
       <Sequence from={0} durationInFrames={30} layout="none">
         <Audio src={SFX.whoosh} volume={0.5} />

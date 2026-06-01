@@ -30,7 +30,7 @@ const BOTTOM = [
   { src: "images/facility-1.jpg", pos: "72% center" },
 ];
 
-export const ClinicScene: React.FC = () => {
+export const ClinicScene: React.FC<{ marketing?: boolean }> = ({ marketing }) => {
   const L = t();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -190,7 +190,7 @@ export const ClinicScene: React.FC = () => {
             ...reveal(14),
           }}
         >
-          {L.clinicName}
+          {marketing ? L.clinicPos : L.clinicName}
         </span>
         <span
           style={{
@@ -204,7 +204,7 @@ export const ClinicScene: React.FC = () => {
             ...reveal(20),
           }}
         >
-          {L.clinicYears}
+          {marketing ? L.clinicLecture : L.clinicYears}
         </span>
       </div>
 

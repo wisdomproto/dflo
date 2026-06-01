@@ -66,6 +66,22 @@ export interface LocaleTexts {
   statsSuffix2: string;
   statsLabel2: string;
   statsFootnote: string;
+  // ── Marketing reel (KR) — new-scene copy ──
+  fearLine1: string;
+  fearGolden: string;
+  clinicPos: string;
+  clinicLecture: string;
+  celebLine: string;
+  celebSub: string;
+  vsLeftTitle: string;
+  vsLeftDesc: string;
+  vsRightTitle: string;
+  vsItems: string[];
+  vsPunch: string;
+  casesCelebLine: string;
+  demoMeasureLine: string;
+  demoFreeSite: string;
+  ctaGoldenTime: string;
 }
 
 export const ko: LocaleTexts = {
@@ -122,10 +138,25 @@ export const ko: LocaleTexts = {
   statsCount1: 1000,
   statsSuffix1: "+",
   statsLabel1: "성장 치료 케이스",
-  statsCount2: 90,
+  statsCount2: 95,
   statsSuffix2: "%+",
   statsLabel2: "목표 성장 도달률",
   statsFootnote: "실제 사례는 홈페이지에서 확인하세요",
+  fearLine1: "또래보다 작은 우리 아이…",
+  fearGolden: "우리 아이 키 성장,\n지금이 바로 골든타임입니다",
+  clinicPos: "대한민국이 주목하는\n강남 187 성장클리닉",
+  clinicLecture: "채용현 원장 · 말레이시아·태국\n국제 학회 초청 강연",
+  celebLine: "외국 셀럽·아역배우가\n찾는 곳",
+  celebSub: "글로벌이 신뢰하는 강남 187",
+  vsLeftTitle: "타 클리닉",
+  vsLeftDesc: "단순 성장호르몬 주사",
+  vsRightTitle: "187 통합 성장 관리",
+  vsItems: ["성장호르몬 밸런스", "성호르몬·갑상선", "곧은 발육", "키자극 운동", "수면 관리", "체중·영양"],
+  vsPunch: "주사 하나로 될까요?\n187은 6가지를 동시에",
+  casesCelebLine: "한국 아역배우부터 태국 셀럽까지\n그들이 선택한 클리닉",
+  demoMeasureLine: "우리 아이, 얼마나 클까?\n직접 측정해보세요",
+  demoFreeSite: "홈페이지에서 무료로 측정해보세요",
+  ctaGoldenTime: "지금이 골든타임\n우리 아이의 키,\n지금 시작하세요",
 };
 
 export const th: LocaleTexts = {
@@ -182,10 +213,25 @@ export const th: LocaleTexts = {
   statsCount1: 1000,
   statsSuffix1: "+",
   statsLabel1: "เคสดูแลการเจริญเติบโต",
-  statsCount2: 90,
+  statsCount2: 95,
   statsSuffix2: "%+",
   statsLabel2: "อัตราความสำเร็จ",
   statsFootnote: "ดูเคสจริงทั้งหมดได้ที่เว็บไซต์",
+  fearLine1: "ลูกของเราตัวเล็กกว่าเพื่อน…",
+  fearGolden: "การเติบโตของลูกเรา\nช่วงเวลาทองคือตอนนี้",
+  clinicPos: "คลินิกเพิ่มความสูง 187\nกังนัม เกาหลี",
+  clinicLecture: "ผอ.แช ยงฮยอน · บรรยาย\nงานประชุมนานาชาติ มาเลเซีย·ไทย",
+  celebLine: "ที่ที่เซเลบและนักแสดงเด็ก\nต่างชาติเลือก",
+  celebSub: "กังนัม 187 ที่ทั่วโลกไว้วางใจ",
+  vsLeftTitle: "คลินิกอื่น",
+  vsLeftDesc: "ฉีดฮอร์โมนอย่างเดียว",
+  vsRightTitle: "187 ดูแลครบวงจร",
+  vsItems: ["สมดุลฮอร์โมน", "ฮอร์โมนเพศ·ไทรอยด์", "พัฒนาการที่ดี", "ออกกำลังกาย", "การนอน", "โภชนาการ"],
+  vsPunch: "แค่ฉีดยาพอไหม?\n187 ดูแล 6 ด้านพร้อมกัน",
+  casesCelebLine: "ตั้งแต่นักแสดงเด็กเกาหลี\nถึงเซเลบไทยที่เลือก",
+  demoMeasureLine: "ลูกเราจะสูงแค่ไหน?\nวัดด้วยตัวเองเลย",
+  demoFreeSite: "วัดฟรีได้ที่เว็บไซต์",
+  ctaGoldenTime: "ช่วงเวลาทองคือตอนนี้\nเริ่มเพิ่มความสูง\nให้ลูกวันนี้",
 };
 
 // Module-level locale state

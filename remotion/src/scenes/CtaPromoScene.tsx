@@ -16,7 +16,7 @@ ensureFonts();
 const PURPLE_BG =
   "linear-gradient(180deg, #667eea 0%, #764ba2 60%, #5b3a8c 100%)";
 
-export const CtaPromoScene: React.FC = () => {
+export const CtaPromoScene: React.FC<{ heading?: string }> = ({ heading }) => {
   const L = t();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -72,7 +72,7 @@ export const CtaPromoScene: React.FC = () => {
             whiteSpace: "pre-line",
           }}
         >
-          {L.ctaPromoHeading}
+          {heading ?? L.ctaPromoHeading}
         </span>
       </div>
 
