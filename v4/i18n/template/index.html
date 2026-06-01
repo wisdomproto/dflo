@@ -90,6 +90,8 @@
 
   /* ================= COMMON ================= */
   .intro { padding: 46px 24px 54px; text-align: center; }
+  /* INTRO right under the title block — tighten the gap to the masthead */
+  .t-masthead + .intro { padding-top: 16px; }
   .intro h2 {
     font-size: 22px; font-weight: 800; color: var(--ink);
     line-height: 1.45; margin-bottom: 18px; letter-spacing: -0.6px;
@@ -114,9 +116,16 @@
   /* 섹션 이름(번호 포함)이 곧 섹션 제목 — kicker 가 아니라 가장 큰 헤딩으로 취급.
      accent 컬러 + 짧은 언더라인 + 아래 텍스트와 넉넉한 간격으로 확실히 구분.
      아래 h3 는 이를 받쳐주는 설명형 서브헤드. */
+  /* logo above a section eyebrow (HORMONE) */
+  .section-logo {
+    display: block; max-width: 200px; width: 56%;
+    margin: 0 auto 18px;
+  }
+  @media (min-width: 768px) { .section-logo { max-width: 240px; } }
+
   .sec-eyebrow {
     text-align: center; padding: 0 24px;
-    font-size: 18px; font-weight: 800; color: var(--accent);
+    font-size: 22px; font-weight: 800; color: var(--accent);
     letter-spacing: -0.2px; line-height: 1.35; margin-bottom: 16px;
   }
   .sec-eyebrow::after {
@@ -138,7 +147,7 @@
 
   @media (min-width: 640px) {
     section[id] { padding-top: 76px; }
-    .sec-eyebrow { font-size: 21px; }
+    .sec-eyebrow { font-size: 25px; }
     .sec-head h3 { font-size: 20px; }
   }
 
@@ -429,6 +438,11 @@
     transition: transform 0.15s ease;
   }
   .cta-bottom a:active { transform: scale(0.97); }
+  /* primary "free measurement" button (purple) sits above the messenger button */
+  .cta-bottom .cta-measure {
+    display: block; max-width: 320px; margin: 0 auto 12px;
+    background: #4A2D6B; color: #fff;
+  }
 
   /* ===== Inline luxury CTA at the end of each case section ===== */
   .case-cta-inline {
@@ -468,9 +482,10 @@
     }
     .page-hero h1 { font-size: 30px; }
     .intro { padding: 56px 34px 64px; }
+    .t-masthead + .intro { padding-top: 22px; }
     .intro h2 { font-size: 29px; }
     .intro p { font-size: 16.5px; }
-    .sec-eyebrow { font-size: 28px; letter-spacing: -0.4px; margin-bottom: 20px; }
+    .sec-eyebrow { font-size: 32px; letter-spacing: -0.4px; margin-bottom: 20px; }
     .sec-eyebrow::after { width: 48px; height: 3.5px; margin-top: 14px; }
     .sec-head h3 { font-size: 22px; }
     .sec-head .lead { font-size: 16.5px; }
@@ -513,8 +528,6 @@
     <h1>{{hero.title_line1}}<br>{{hero.title_line2}}</h1>
   </header>
 
-  <img class="full-img" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
-
   <!-- ================= INTRO ================= -->
   <section class="intro">
     <h2>
@@ -526,10 +539,8 @@
     </p>
   </section>
 
-  <!-- ================= COMPARE (image — ko only via array) ================= -->
-  {{#each compare}}
-  <img class="full-img compare-img" src="/programs/images/growth-hormone-balance/compare-1vs6.webp" alt="{{img_alt}}">
-  {{/each}}
+  <!-- hero image — visual payoff right after the hope message -->
+  <img class="full-img" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
 
   <!-- ================= CHECK ================= -->
   <div class="sec-head entry">
@@ -546,9 +557,8 @@
     {{/each}}
   </div>
 
-  <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
-     data-source="check_selfcheck" data-channel="{{messenger.channel}}"
-     style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+  <!-- soft self-check CTA: free height prediction (internal calculator, not the messenger) -->
+  <a class="case-cta-inline" href="/{{meta.lang}}/calculator.html">
     {{cta_global.check_cta}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
   </a>
 
@@ -570,6 +580,7 @@
 
   <!-- ================= HORMONE ================= -->
   <section id="hormone">
+    <img class="section-logo" src="/images/logo.jpg" alt="{{hero.logo_alt}}">
     <h2 class="sec-eyebrow">{{hormone.eyebrow}}</h2>
     <div class="sec-head">
       <h3>
@@ -581,26 +592,19 @@
       </p>
     </div>
 
-    <div class="solution-img">
-      <img src="/programs/images/growth-hormone-balance/solution-diagram.jpg" alt="{{hormone.solution_img_alt}}">
-    </div>
+    <!-- COMPARE (1-vs-6 image) — the single integrated-care visual.
+         Replaces the old 6-icon solution-diagram + "3가지 핵심 관리" cards (both redundant: the
+         1-vs-6 right half already lists the 6 areas; 사춘기/체중 have dedicated case sections below). -->
+    {{#each compare}}
+    <img class="full-img compare-img" src="/programs/images/growth-hormone-balance/compare-1vs6.webp" alt="{{img_alt}}">
+    {{/each}}
 
-    <div class="sec-head large">
-      <h3>{{hormone.features_heading_line1}}<br><span class="accent">{{hormone.features_heading_accent}}</span></h3>
-    </div>
-
-    <div class="features-3">
-      {{#each hormone.features}}
-      <div class="feature-3">
-        <div class="photo"><img src="/programs/images/growth-hormone-balance/feature-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <div class="body">
-          <div class="num">{{num}}</div>
-          <h4>{{title}}</h4>
-          <p>{{desc}}</p>
-        </div>
-      </div>
-      {{/each}}
-    </div>
+    <!-- strong consult CTA right after the differentiation peak (trust is built here) -->
+    <a class="case-cta-inline" href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="hormone_consult" data-channel="{{messenger.channel}}"
+       style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
+      {{cta_global.hormone_consult}} <span class="arrow">{{cta_global.inline_cta_arrow}}</span>
+    </a>
   </section>
 
   <!-- ================= CASE INTRO ================= -->
@@ -975,6 +979,8 @@
   <!-- ================= CTA BOTTOM ================= -->
   <section class="cta-bottom">
     <h4>{{cta_global.bottom_heading}}</h4>
+    <p>{{cta_global.bottom_sub}}</p>
+    <a class="cta-measure" href="/{{meta.lang}}/calculator.html">{{cta_global.bottom_measure_label}}</a>
     <a href="{{messenger.url}}" target="_blank" rel="noopener" data-source="cta_bottom" data-channel="{{messenger.channel}}">{{cta_global.bottom_label}}</a>
   </section>
 

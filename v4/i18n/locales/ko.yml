@@ -18,7 +18,7 @@ intro:
   h2_line2: ""
   body: |
     187 성장클리닉은 아이마다 키가 안 크는 원인부터 찾아,
-    맞춤형 통합 관리로 함께합니다.
+    아이에게 맞는 방향으로 함께합니다.
 
 compare:
   - img_alt: "타 성장클리닉의 단순 성장호르몬 치료와 187 성장클리닉의 통합 성장 관리 비교"
@@ -60,10 +60,10 @@ golden:
 
 hormone:
   eyebrow: "통합 성장 관리"
-  heading_line1: "성장호르몬만 보는 치료가 아닙니다"
-  heading_line2: "연세새봄의 "
-  heading_accent: "통합 성장 솔루션"
-  lead: "연세새봄은 성장호르몬뿐 아니라 <strong>성호르몬, 수면, 갑상선, 스트레스, 체중, 자세</strong>를 함께 평가합니다. 아이의 성장 방해 요인을 찾고, 개인별 성장 방향을 설계합니다."
+  heading_line1: "성장호르몬 하나만 보지 않습니다"
+  heading_line2: "키 성장을 "
+  heading_accent: "다방면으로 관리합니다"
+  lead: "187 성장클리닉은 성장호르몬뿐 아니라 <strong>성호르몬, 수면, 갑상선, 스트레스, 체중, 자세 등</strong> 다양한 요인을 함께 관리합니다. 아이의 성장 방해 요인을 찾고, 개인별 성장 방향을 설계합니다."
   solution_img_alt: "연세새봄 6대 통합 성장 솔루션"
   features_heading_line1: "호르몬 밸런스를 위한"
   features_heading_accent: "3가지 핵심 관리"
@@ -326,8 +326,11 @@ cta_global:
   header_consult: "1:1 상담"
   bottom_nav_consult: "예상키 측정"
   inline_cta_arrow: "→"
-  check_cta: "우리 아이도 해당될까요? 지금 1:1 상담"
-  bottom_heading: "우리 아이 성장, 지금 점검해보세요"
+  check_cta: "우리 아이는 지금 어디쯤일까요? 예상키 무료로 측정하기"
+  hormone_consult: "성장호르몬만으로 부족하다면? 1:1 상담받기"
+  bottom_heading: "원인부터 찾는 통합 관리, 지금 시작하세요"
+  bottom_sub: "우리 아이 예상키, 무료로 먼저 확인해보세요"
+  bottom_measure_label: "예상키 무료 측정하기"
   bottom_label: "1:1 상담받기"
 
 clinic:

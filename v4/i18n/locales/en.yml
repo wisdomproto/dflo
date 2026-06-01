@@ -18,7 +18,7 @@ intro:
   h2_line2: ""
   body: |
     187 Growth Clinic finds why each child isn't growing,
-    and supports them with personalized, integrated care.
+    and supports them with personalized care.
 
 compare:
   - img_alt: "Comparison of growth-hormone-only therapy versus 187 Growth Clinic's integrated growth care"
@@ -61,9 +61,9 @@ golden:
 hormone:
   eyebrow: "Integrated growth care"
   heading_line1: "Growth care goes beyond growth hormone"
-  heading_line2: "Yonsei Saebom's "
-  heading_accent: "integrated growth solution"
-  lead: "We assess not only growth hormone but also <strong>sex hormones, sleep, thyroid, stress, weight, and posture</strong>. We identify what is holding back your child's growth and design a personal growth plan."
+  heading_line2: "We manage growth "
+  heading_accent: "from every angle"
+  lead: "187 Growth Clinic manages not only growth hormone but also <strong>sex hormones, sleep, thyroid, stress, weight, posture, and many more factors</strong>. We identify what is holding back your child's growth and design a personal growth plan."
   solution_img_alt: "Yonsei Saebom 6-pillar integrated growth solution"
   features_heading_line1: "Three core pillars"
   features_heading_accent: "for hormonal balance"
@@ -326,8 +326,11 @@ cta_global:
   header_consult: "Consult"
   bottom_nav_consult: "Free check"
   inline_cta_arrow: "→"
-  check_cta: "Does your child fit any of these? Chat 1:1 now"
-  bottom_heading: "Check your child's growth now"
+  check_cta: "Where does your child stand now? Get a free height prediction"
+  hormone_consult: "If growth hormone alone isn't enough? Start a 1:1 chat"
+  bottom_heading: "Comprehensive care that starts with the cause — begin today"
+  bottom_sub: "Start by checking your child's predicted height — free"
+  bottom_measure_label: "Get a free height prediction"
   bottom_label: "Start a 1:1 chat"
 
 clinic:

@@ -18,7 +18,7 @@ intro:
   h2_line2: ""
   body: |
     187 Growth Clinic tìm nguyên nhân khiến từng trẻ không cao,
-    rồi đồng hành bằng chăm sóc cá nhân hóa toàn diện.
+    rồi đồng hành bằng chăm sóc cá nhân hóa.
 
 compare:
   - img_alt: "So sánh điều trị chỉ bằng hormone tăng trưởng với chăm sóc tăng trưởng toàn diện của 187 Growth Clinic"
@@ -61,9 +61,9 @@ golden:
 hormone:
   eyebrow: "Chăm sóc tăng trưởng tích hợp"
   heading_line1: "Không chỉ là điều trị bằng hormone tăng trưởng"
-  heading_line2: "Yonsei Saebom — "
-  heading_accent: "giải pháp tăng trưởng tích hợp"
-  lead: "Chúng tôi không chỉ đánh giá hormone tăng trưởng mà còn <strong>hormone giới tính, giấc ngủ, tuyến giáp, căng thẳng, cân nặng và tư thế</strong>. Tìm ra yếu tố cản trở sự phát triển của con và thiết kế hướng tăng trưởng cá nhân hóa."
+  heading_line2: "Chăm sóc tăng trưởng "
+  heading_accent: "một cách toàn diện"
+  lead: "187 Growth Clinic không chỉ chăm sóc hormone tăng trưởng mà còn <strong>hormone giới tính, giấc ngủ, tuyến giáp, căng thẳng, cân nặng, tư thế và nhiều yếu tố khác</strong>. Tìm ra yếu tố cản trở sự phát triển của con và thiết kế hướng tăng trưởng cá nhân hóa."
   solution_img_alt: "6 trụ cột giải pháp tăng trưởng tích hợp Yonsei Saebom"
   features_heading_line1: "3 trụ cột cốt lõi"
   features_heading_accent: "cho cân bằng nội tiết tố"
@@ -326,8 +326,11 @@ cta_global:
   header_consult: "Tư vấn"
   bottom_nav_consult: "Đo miễn phí"
   inline_cta_arrow: "→"
-  check_cta: "Con bạn có thuộc trường hợp nào? Tư vấn 1:1 ngay"
-  bottom_heading: "Kiểm tra sự phát triển của con ngay"
+  check_cta: "Con đang ở đâu rồi? Đo chiều cao dự đoán miễn phí"
+  hormone_consult: "Nếu chỉ hormone tăng trưởng là chưa đủ? Tư vấn 1:1"
+  bottom_heading: "Chăm sóc toàn diện bắt đầu từ tìm nguyên nhân — bắt đầu ngay"
+  bottom_sub: "Hãy bắt đầu bằng cách đo chiều cao dự đoán của con miễn phí"
+  bottom_measure_label: "Đo chiều cao dự đoán miễn phí"
   bottom_label: "Tư vấn 1:1 ngay"
 
 clinic:
