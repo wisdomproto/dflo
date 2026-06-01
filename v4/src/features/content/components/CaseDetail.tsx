@@ -98,7 +98,7 @@ export function CaseDetail({ caseData }: { caseData: GrowthCase }) {
       )}
 
       {chartPoints.length > 0 && (
-        <GrowthChart gender={c.gender} points={chartPoints} />
+        <GrowthChart gender={c.gender} points={chartPoints} showPercentiles={false} yMin={120} />
       )}
 
       {measurements.length > 0 && (

@@ -48,6 +48,10 @@ interface GrowthChartProps {
   predictedCurve?: GrowthPoint[];
   /** 첫 측정 기준 예상 성장 곡선 (첫 측정~18세, 1년 간격) — "치료 받지 않았다면" baseline */
   initialPredictedCurve?: GrowthPoint[];
+  /** 5th/50th/95th 표준곡선 표시 여부, 기본 true. 치료사례 등 소비자용은 false 로 숨겨 혼란 방지 */
+  showPercentiles?: boolean;
+  /** y축(키) 시작값 고정. 미지정 시 데이터에 맞춰 자동 스케일 */
+  yMin?: number;
   /** 범례/축 라벨 번역 (다국어 임베드용). 미지정 시 한국어 기본값 */
   labels?: {
     actualHeight?: string;
@@ -68,6 +72,8 @@ export function GrowthChart({
   predictedAdultHeight,
   predictedCurve,
   initialPredictedCurve,
+  showPercentiles = true,
+  yMin,
   labels,
 }: GrowthChartProps) {
   const L = {
@@ -121,6 +127,8 @@ export function GrowthChart({
       yMin,
       yMax,
       datasets: [
+        // 표준 백분위 곡선 (5th/50th/95th) — showPercentiles=false 면 통째 제외 (치료사례 등 소비자 혼란 방지)
+        ...(showPercentiles ? [
         {
           label: '95th',
           data: toXY(stdFiltered.map((d) => d.p95)),
@@ -154,6 +162,7 @@ export function GrowthChart({
           fill: false,
           tension: 0.3,
         },
+        ] : []),
         {
           label: L.actualHeight,
           data: points.map((p) => ({ x: p.age, y: p.height })),
@@ -258,7 +267,7 @@ export function GrowthChart({
         ] : []),
       ],
     };
-  }, [gender, points, predictedAdultHeight, predictedCurve, initialPredictedCurve, zoomable, L.actualHeight, L.initialGrowth, L.currentGrowth]);
+  }, [gender, points, predictedAdultHeight, predictedCurve, initialPredictedCurve, showPercentiles, zoomable, L.actualHeight, L.initialGrowth, L.currentGrowth]);
 
   // 왼쪽 더블클릭 → zoom in (애니메이션), 우클릭 → 3~18세 전체 보기
   const handleDblClick = useCallback(() => {
@@ -351,6 +360,7 @@ export function GrowthChart({
         title: { display: true, text: L.axisHeight, font: { size: fs.axis } },
         ticks: { font: { size: fs.tick } },
         grid: { color: 'rgba(0,0,0,0.05)' },
+        min: yMin,
       },
     },
   };
@@ -383,6 +393,7 @@ export function GrowthChart({
       <div className="relative">
         <Line ref={chartRef} data={chartData} options={options} />
         {/* 표준곡선 라벨 — 차트 우측 하단 (X축 라벨 위, 5th 곡선 아래 빈 공간). */}
+        {showPercentiles && (
         <div className="absolute right-3 bottom-12 flex flex-col items-start gap-0.5 pointer-events-none select-none bg-white/70 backdrop-blur-sm rounded px-1.5 py-1">
           <div className="flex items-center gap-1 text-[9px] font-medium" style={{ color: 'rgba(239,68,68,0.85)' }}>
             <span className="inline-block w-3 border-t border-dashed" style={{ borderColor: 'rgba(239,68,68,0.5)' }} />
@@ -397,10 +408,11 @@ export function GrowthChart({
             <span>5th</span>
           </div>
         </div>
+        )}
       </div>
       {!compact && (
         <div className="flex justify-center gap-6 mt-4 text-lg text-gray-500">
-          <span>--- 5th / 50th / 95th 표준곡선</span>
+          {showPercentiles && <span>--- 5th / 50th / 95th 표준곡선</span>}
           <span className="text-primary font-bold">● 실제 측정값</span>
         </div>
       )}

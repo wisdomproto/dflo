@@ -899,6 +899,7 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
   const [GrowthChartComp, setGrowthChartComp] = React.useState<React.ComponentType<{
     gender: string; points: { age: number; height: number }[];
     showTitle?: boolean; zoomable?: boolean; compact?: boolean;
+    showPercentiles?: boolean; yMin?: number;
     predictedAdultHeight?: number;
     predictedCurve?: { age: number; height: number }[];
     initialPredictedCurve?: { age: number; height: number }[];
@@ -907,15 +908,9 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
       axisAge?: string; axisHeight?: string;
     };
   }> | null>(null);
-  const [heightStandard, setHeightStandard] = React.useState<{ age: number; p5: number; p50: number; p95: number }[] | null>(null);
-
   React.useEffect(() => {
-    Promise.all([
-      import('@/shared/components/GrowthChart'),
-      import('@/shared/data/growthStandard'),
-    ]).then(([chartMod, stdMod]) => {
+    import('@/shared/components/GrowthChart').then((chartMod) => {
       setGrowthChartComp(() => chartMod.GrowthChart as unknown as typeof GrowthChartComp extends null ? never : NonNullable<typeof GrowthChartComp>);
-      setHeightStandard(stdMod.getHeightStandard(gender));
     });
   }, [gender]);
 
@@ -930,62 +925,27 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
       .filter(Boolean) as { age: number; height: number }[];
   }, [measurements, birthDate]);
 
-  // Build predicted curve: bone-age percentile → projected yearly points to age 18
+  // "현재 시점에 예상한" 성인키 — 마지막 뼈나이 측정의 stored predictedHeight 를 18세 plateau 로.
+  // 곡선은 마지막 측정 height 에서 시작해 ease-out 으로 target 까지 부드럽게 (초진 곡선과 동일 방식).
+  // 이전엔 뼈나이 백분위를 표준 행에 nearest-snap 투영해 계단식으로 울퉁불퉁했음.
   const predictedCurve = React.useMemo(() => {
-    if (!heightStandard || points.length === 0) return undefined;
+    if (points.length === 0) return undefined;
     const lastWithBone = [...measurements].reverse().find((m) => (m.boneAge ?? 0) > 0 && (m.predictedHeight ?? 0) > 0);
     if (!lastWithBone) return undefined;
+    const last = points[points.length - 1];
+    if (last.age >= 18) return undefined;
 
-    const lastPoint = points[points.length - 1];
-    const lastBA = lastWithBone.boneAge!;
-    const lastCA = lastPoint.age;
-    if (lastCA >= 18 || lastBA >= 18) return undefined;
-
-    const getStdAtAge = (ageYr: number) => {
-      let best = heightStandard[0];
-      let bestDiff = Math.abs(best.age - ageYr);
-      for (const s of heightStandard) {
-        const diff = Math.abs(s.age - ageYr);
-        if (diff < bestDiff) { best = s; bestDiff = diff; }
-      }
-      return best;
-    };
-
-    const heightAtPct = (ageYr: number, pct: number) => {
-      const s = getStdAtAge(ageYr);
-      if (pct <= 5) return s.p5 * pct / 5;
-      if (pct <= 50) return s.p5 + (s.p50 - s.p5) * (pct - 5) / 45;
-      if (pct <= 95) return s.p50 + (s.p95 - s.p50) * (pct - 50) / 45;
-      return s.p95 + (s.p95 - s.p50) * (pct - 95) / 2; // inverse of forward: pct = 95 + 2*(h-p95)/(p95-p50)
-    };
-
-    // Calculate percentile at bone age (clamped to 3~97 to prevent wild extrapolation)
-    const std = getStdAtAge(lastBA);
-    let pct: number;
-    if (lastPoint.height <= std.p5) {
-      pct = Math.max(3, 5 * lastPoint.height / std.p5);
-    } else if (lastPoint.height <= std.p50) {
-      pct = 5 + 45 * (lastPoint.height - std.p5) / (std.p50 - std.p5);
-    } else if (lastPoint.height <= std.p95) {
-      pct = 50 + 45 * (lastPoint.height - std.p50) / (std.p95 - std.p50);
-    } else {
-      // Cap at 97 to prevent extrapolation beyond chart bounds
-      pct = Math.min(97, 95 + 2 * (lastPoint.height - std.p95) / Math.max(std.p95 - std.p50, 1));
-    }
-
-    // Project: bone age progresses linearly from lastBA → 18 as chronological age goes lastCA → 18
-    // So at chronological age Y, projected bone age = lastBA + (Y - lastCA) * (18 - lastBA) / (18 - lastCA)
-    const baRate = (18 - lastBA) / (18 - lastCA);
-
-    const curve: { age: number; height: number }[] = [{ age: lastPoint.age, height: lastPoint.height }];
-    const startYear = Math.ceil(lastCA);
+    const target = lastWithBone.predictedHeight;
+    const curve: { age: number; height: number }[] = [{ age: last.age, height: last.height }];
+    const startYear = Math.ceil(last.age);
     for (let y = startYear; y <= 18; y++) {
-      const projectedBA = lastBA + (y - lastCA) * baRate;
-      const h = heightAtPct(Math.min(projectedBA, 18), pct);
+      const t = Math.min(1, (y - last.age) / Math.max(0.5, 18 - last.age));
+      const eased = 1 - Math.pow(1 - t, 1.8); // ease-out: 초기 성장 빠르고 점점 plateau
+      const h = last.height + (target - last.height) * eased;
       curve.push({ age: y, height: Math.round(h * 10) / 10 });
     }
     return curve.length > 1 ? curve : undefined;
-  }, [measurements, points, heightStandard]);
+  }, [points, measurements]);
 
   // "초진 시점에 예상한" 성인키 baseline — 첫 측정의 stored predictedHeight 를 18세 plateau 로 사용.
   // 곡선은 first.height 에서 시작해 ease-out 으로 first.predictedHeight 까지 부드럽게 증가.
@@ -1019,6 +979,8 @@ function CasesGrowthChartSection({ measurements, birthDate, gender }: {
           points={points}
           showTitle={false}
           compact
+          showPercentiles={false}
+          yMin={120}
           predictedCurve={predictedCurve}
           initialPredictedCurve={initialPredictedCurve}
           labels={{
