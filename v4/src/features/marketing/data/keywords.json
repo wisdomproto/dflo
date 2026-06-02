@@ -1,0 +1,650 @@
+[
+  {
+    "keyword": "키크는영양제",
+    "pcSearch": 2260,
+    "mobileSearch": 15000,
+    "totalSearch": 17260,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "성조숙증",
+    "pcSearch": 1640,
+    "mobileSearch": 11900,
+    "totalSearch": 13540,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "아이키커",
+    "pcSearch": 790,
+    "mobileSearch": 6770,
+    "totalSearch": 7560,
+    "competition": "medium",
+    "category": "gold",
+    "isGolden": true
+  },
+  {
+    "keyword": "성조숙증검사",
+    "pcSearch": 940,
+    "mobileSearch": 7040,
+    "totalSearch": 7980,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "키성장기영양제",
+    "pcSearch": 1400,
+    "mobileSearch": 6170,
+    "totalSearch": 7570,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장호르몬주사",
+    "pcSearch": 860,
+    "mobileSearch": 5060,
+    "totalSearch": 5920,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판검사",
+    "pcSearch": 670,
+    "mobileSearch": 5000,
+    "totalSearch": 5670,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는법",
+    "pcSearch": 650,
+    "mobileSearch": 4680,
+    "totalSearch": 5330,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "초등학생평균키",
+    "pcSearch": 650,
+    "mobileSearch": 4330,
+    "totalSearch": 4980,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "평균키",
+    "pcSearch": 540,
+    "mobileSearch": 4360,
+    "totalSearch": 4900,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장클리닉",
+    "pcSearch": 640,
+    "mobileSearch": 4040,
+    "totalSearch": 4680,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "안짱다리",
+    "pcSearch": 620,
+    "mobileSearch": 3930,
+    "totalSearch": 4550,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장주사",
+    "pcSearch": 1010,
+    "mobileSearch": 3120,
+    "totalSearch": 4130,
+    "competition": "medium",
+    "category": "gold,core",
+    "isGolden": true
+  },
+  {
+    "keyword": "예상키계산기",
+    "pcSearch": 390,
+    "mobileSearch": 3450,
+    "totalSearch": 3840,
+    "competition": "medium",
+    "category": "gold,habit",
+    "isGolden": true
+  },
+  {
+    "keyword": "예상키",
+    "pcSearch": 200,
+    "mobileSearch": 2990,
+    "totalSearch": 3190,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "예상키계산법",
+    "pcSearch": 300,
+    "mobileSearch": 2760,
+    "totalSearch": 3060,
+    "competition": "low",
+    "category": "gold,habit",
+    "isGolden": true
+  },
+  {
+    "keyword": "성조숙증증상",
+    "pcSearch": 270,
+    "mobileSearch": 2790,
+    "totalSearch": 3060,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는음식",
+    "pcSearch": 420,
+    "mobileSearch": 2610,
+    "totalSearch": 3030,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키성장영양제",
+    "pcSearch": 1130,
+    "mobileSearch": 2600,
+    "totalSearch": 3730,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "소아비만",
+    "pcSearch": 440,
+    "mobileSearch": 2530,
+    "totalSearch": 2970,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "초경전증상",
+    "pcSearch": 330,
+    "mobileSearch": 2640,
+    "totalSearch": 2970,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "6학년평균키",
+    "pcSearch": 250,
+    "mobileSearch": 2570,
+    "totalSearch": 2820,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "청소년키크는영양제",
+    "pcSearch": 910,
+    "mobileSearch": 2220,
+    "totalSearch": 3130,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장주사부작용",
+    "pcSearch": 880,
+    "mobileSearch": 1800,
+    "totalSearch": 2680,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는약",
+    "pcSearch": 350,
+    "mobileSearch": 2310,
+    "totalSearch": 2660,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장통",
+    "pcSearch": 320,
+    "mobileSearch": 2330,
+    "totalSearch": 2650,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는운동",
+    "pcSearch": 650,
+    "mobileSearch": 2450,
+    "totalSearch": 3100,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "사춘기테스트",
+    "pcSearch": 110,
+    "mobileSearch": 2420,
+    "totalSearch": 2530,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "사춘기증상",
+    "pcSearch": 170,
+    "mobileSearch": 2220,
+    "totalSearch": 2390,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키성장",
+    "pcSearch": 650,
+    "mobileSearch": 1610,
+    "totalSearch": 2260,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성조숙증치료",
+    "pcSearch": 650,
+    "mobileSearch": 1340,
+    "totalSearch": 1990,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장호르몬",
+    "pcSearch": 420,
+    "mobileSearch": 1370,
+    "totalSearch": 1790,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는주사",
+    "pcSearch": 280,
+    "mobileSearch": 1510,
+    "totalSearch": 1790,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판마사지",
+    "pcSearch": 550,
+    "mobileSearch": 1190,
+    "totalSearch": 1740,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판검사비용",
+    "pcSearch": 260,
+    "mobileSearch": 1230,
+    "totalSearch": 1490,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성조숙증원인",
+    "pcSearch": 90,
+    "mobileSearch": 1290,
+    "totalSearch": 1380,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판자가진단",
+    "pcSearch": 120,
+    "mobileSearch": 1240,
+    "totalSearch": 1360,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는스트레칭",
+    "pcSearch": 320,
+    "mobileSearch": 950,
+    "totalSearch": 1270,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장호르몬주사가격",
+    "pcSearch": 670,
+    "mobileSearch": 600,
+    "totalSearch": 1270,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장기영양제",
+    "pcSearch": 460,
+    "mobileSearch": 790,
+    "totalSearch": 1250,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는방법",
+    "pcSearch": 280,
+    "mobileSearch": 970,
+    "totalSearch": 1250,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "중학생키크는영양제",
+    "pcSearch": 710,
+    "mobileSearch": 520,
+    "totalSearch": 1230,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판검사시기",
+    "pcSearch": 490,
+    "mobileSearch": 520,
+    "totalSearch": 1010,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판검사병원",
+    "pcSearch": 150,
+    "mobileSearch": 850,
+    "totalSearch": 1000,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장호르몬검사",
+    "pcSearch": 390,
+    "mobileSearch": 610,
+    "totalSearch": 1000,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "남자아이성조숙증",
+    "pcSearch": 90,
+    "mobileSearch": 910,
+    "totalSearch": 1000,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장검사",
+    "pcSearch": 120,
+    "mobileSearch": 750,
+    "totalSearch": 870,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성인키성장",
+    "pcSearch": 320,
+    "mobileSearch": 560,
+    "totalSearch": 880,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장마사지",
+    "pcSearch": 330,
+    "mobileSearch": 600,
+    "totalSearch": 930,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "중학생키영양제",
+    "pcSearch": 360,
+    "mobileSearch": 490,
+    "totalSearch": 850,
+    "competition": "high",
+    "category": "product",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판닫히면",
+    "pcSearch": 360,
+    "mobileSearch": 390,
+    "totalSearch": 750,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "여자성조숙증",
+    "pcSearch": 110,
+    "mobileSearch": 600,
+    "totalSearch": 710,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판",
+    "pcSearch": 250,
+    "mobileSearch": 1060,
+    "totalSearch": 1310,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성조숙증병원",
+    "pcSearch": 20,
+    "mobileSearch": 320,
+    "totalSearch": 340,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장판자극운동",
+    "pcSearch": 220,
+    "mobileSearch": 200,
+    "totalSearch": 420,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장치료",
+    "pcSearch": 30,
+    "mobileSearch": 90,
+    "totalSearch": 120,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "저신장",
+    "pcSearch": 40,
+    "mobileSearch": 160,
+    "totalSearch": 200,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "강남성장클리닉",
+    "pcSearch": 90,
+    "mobileSearch": 120,
+    "totalSearch": 210,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "분당성장클리닉",
+    "pcSearch": 90,
+    "mobileSearch": 260,
+    "totalSearch": 350,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "우리아이예상키",
+    "pcSearch": 60,
+    "mobileSearch": 570,
+    "totalSearch": 630,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "초경후키",
+    "pcSearch": 280,
+    "mobileSearch": 270,
+    "totalSearch": 550,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키성장클리닉",
+    "pcSearch": 80,
+    "mobileSearch": 460,
+    "totalSearch": 540,
+    "competition": "high",
+    "category": "core",
+    "isGolden": false
+  },
+  {
+    "keyword": "나이별평균키",
+    "pcSearch": 100,
+    "mobileSearch": 710,
+    "totalSearch": 810,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "초등학생키",
+    "pcSearch": 90,
+    "mobileSearch": 720,
+    "totalSearch": 810,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "고등학생키",
+    "pcSearch": 20,
+    "mobileSearch": 250,
+    "totalSearch": 270,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "중학생키성장",
+    "pcSearch": 170,
+    "mobileSearch": 110,
+    "totalSearch": 280,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키예상",
+    "pcSearch": 40,
+    "mobileSearch": 780,
+    "totalSearch": 820,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키성장표",
+    "pcSearch": 150,
+    "mobileSearch": 730,
+    "totalSearch": 880,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "성장발육",
+    "pcSearch": 40,
+    "mobileSearch": 180,
+    "totalSearch": 220,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "키크는식단",
+    "pcSearch": 200,
+    "mobileSearch": 300,
+    "totalSearch": 500,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "어린이키",
+    "pcSearch": 220,
+    "mobileSearch": 430,
+    "totalSearch": 650,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  },
+  {
+    "keyword": "어린이키성장",
+    "pcSearch": 100,
+    "mobileSearch": 230,
+    "totalSearch": 330,
+    "competition": "high",
+    "category": "habit",
+    "isGolden": false
+  }
+]

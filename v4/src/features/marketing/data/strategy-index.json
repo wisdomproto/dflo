@@ -1,0 +1,58 @@
+[
+  {
+    "file": "domestic-strategy.html",
+    "title": "국내 마케팅 마스터",
+    "description": "키워드·주제·예산·채널·퍼널·KPI 종합",
+    "group": "국내",
+    "order": 1
+  },
+  {
+    "file": "global-market.html",
+    "title": "글로벌 시장 분석 (10개국)",
+    "description": "검색량·CPC·골든키워드 국가별 매트릭스",
+    "group": "글로벌",
+    "order": 2
+  },
+  {
+    "file": "global-strategy.html",
+    "title": "글로벌 실행 전략",
+    "description": "hub-spoke·퍼널·24개월 로드맵",
+    "group": "글로벌",
+    "order": 3
+  },
+  {
+    "file": "th-operations.html",
+    "title": "태국 작전",
+    "description": "페르소나·키워드·예산·90일 캘린더",
+    "group": "국가별 작전",
+    "order": 4
+  },
+  {
+    "file": "vn-operations.html",
+    "title": "베트남 작전",
+    "description": "Zalo·TikTok 중심",
+    "group": "국가별 작전",
+    "order": 5
+  },
+  {
+    "file": "en-operations.html",
+    "title": "영어 4시장 작전",
+    "description": "US·IN·PH·MY",
+    "group": "국가별 작전",
+    "order": 6
+  },
+  {
+    "file": "us-korean-operations.html",
+    "title": "미국 한인 작전",
+    "description": "디아스포라 Meta 리드젠",
+    "group": "국가별 작전",
+    "order": 7
+  },
+  {
+    "file": "youtube-analysis.html",
+    "title": "유튜브 채널 분석",
+    "description": "@187growup 성과 분석",
+    "group": "채널분석",
+    "order": 8
+  }
+]
