@@ -19,6 +19,7 @@ import {
   createXrayReading,
   fetchXrayReadingsByVisit,
   getXrayImageSignedUrl,
+  updateXrayViewState,
   uploadXrayImage,
 } from '@/features/bone-age/services/xrayReadingService';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
@@ -26,7 +27,7 @@ import { logger } from '@/shared/lib/logger';
 import { ZoomModal } from '@/shared/components/ZoomModal';
 import { ZoomableImg } from '@/shared/components/ZoomableImg';
 import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
-import type { Child, HospitalMeasurement, Visit, XrayReading } from '@/shared/types';
+import type { Child, HospitalMeasurement, Visit, XrayReading, XrayViewState } from '@/shared/types';
 import { VisitImageGallery, XRAY_IMAGE_DRAG_TYPE } from './VisitImageGallery';
 
 interface Props {
@@ -251,6 +252,17 @@ export function XrayPanel({
     }
   }, [hasXrayImage, effectiveBoneAge, predictedAdult, onLiveChange]);
 
+  // 줌/패닝/그리기 자동 저장 — 같은 회차 판독 row 의 view_state 갱신(디바운스는
+  // ZoomableImg 내부에서). row 가 없으면(이미지 미저장) no-op.
+  const handleViewStateChange = useCallback(
+    (vs: XrayViewState) => {
+      void updateXrayViewState(visit.id, vs);
+      // 로컬 캐시도 갱신 → 같은 세션에서 모달을 다시 열어도 최신 마킹 복원.
+      setExisting((prev) => (prev ? { ...prev, view_state: vs } : prev));
+    },
+    [visit.id],
+  );
+
   const handleSave = async () => {
     if (!effectiveYounger || !effectiveOlder || effectiveBoneAge == null) return;
     setSaving(true);
@@ -415,6 +427,8 @@ export function XrayPanel({
               onBoneAgeChange={setManualBoneAge}
               predictedAdult={predictedAdult}
               visitHeight={visitHeight}
+              viewState={existing?.view_state ?? null}
+              onViewStateChange={handleViewStateChange}
             />
 
             {/* Older — auto */}
@@ -478,7 +492,12 @@ export function XrayPanel({
               caption={effectiveBoneAge != null ? `${effectiveBoneAge.toFixed(1)}세` : '—'}
             >
               {imageUrl ? (
-                <ZoomableImg src={imageUrl} alt="patient x-ray" />
+                <ZoomableImg
+                  src={imageUrl}
+                  alt="patient x-ray"
+                  initialViewState={existing?.view_state ?? null}
+                  onViewStateChange={handleViewStateChange}
+                />
               ) : (
                 <Placeholder text="이미지 없음" />
               )}
@@ -604,6 +623,8 @@ function PatientPane({
   onBoneAgeChange,
   predictedAdult,
   visitHeight,
+  viewState,
+  onViewStateChange,
 }: {
   imageUrl: string | null;
   onFile: (file: File) => void;
@@ -612,6 +633,8 @@ function PatientPane({
   onBoneAgeChange: (v: number | null) => void;
   predictedAdult: number | null;
   visitHeight: number | null;
+  viewState?: XrayViewState | null;
+  onViewStateChange?: (vs: XrayViewState) => void;
 }) {
   const [drag, setDrag] = useState(false);
   // draft=null 이면 표시값을 boneAge(소수점 년)에서 직접 파생 → 기존 값이 항상
@@ -688,7 +711,12 @@ function PatientPane({
         } ${imageUrl ? '' : 'cursor-pointer hover:ring-slate-400'}`}
       >
         {imageUrl ? (
-          <ZoomableImg src={imageUrl} alt="환자 X-ray" />
+          <ZoomableImg
+            src={imageUrl}
+            alt="환자 X-ray"
+            initialViewState={viewState}
+            onViewStateChange={onViewStateChange}
+          />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-1 text-slate-200">
             <div className="text-sm font-medium">이미지 끌어다 놓기</div>

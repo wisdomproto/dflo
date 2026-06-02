@@ -141,6 +141,21 @@ export interface HospitalMeasurement {
   updated_at: string;
 }
 
+/** 자유선 한 획. 좌표는 컨테이너 기준 0~1 정규화(화면 크기 무관 복원). */
+export interface XrayStroke {
+  color: string;
+  size: number;
+  points: { x: number; y: number }[];
+}
+
+/** X-ray 뷰어(줌/패닝/그리기) 저장 상태. offset·stroke 좌표는 0~1 정규화. */
+export interface XrayViewState {
+  zoom: number;
+  offset: { x: number; y: number };
+  normalStrokes: XrayStroke[]; // 기본 뷰 마킹
+  zoomedStrokes: XrayStroke[]; // 확대 뷰 마킹
+}
+
 export interface XrayReading {
   id: string;
   visit_id: string;
@@ -151,6 +166,7 @@ export interface XrayReading {
   atlas_match_younger?: string;
   atlas_match_older?: string;
   doctor_memo?: string;
+  view_state?: XrayViewState | null;
   created_at: string;
   updated_at: string;
 }

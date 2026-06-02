@@ -1,4 +1,4 @@
-import type { XrayReading } from '@/shared/types';
+import type { XrayReading, XrayViewState } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import { updateMeasurementBoneAge } from '@/features/hospital/services/hospitalMeasurementService';
@@ -116,6 +116,22 @@ export async function createXrayReading(input: {
     await updateMeasurementBoneAge(input.visit_id, input.bone_age_result);
   }
   return data as XrayReading;
+}
+
+/** X-ray 뷰 상태(줌/패닝/그리기, 0~1 정규화)를 해당 회차 판독 row 에 저장.
+ *  판독 row 가 없으면(이미지 미저장) no-op. 컬럼(migration 016) 미적용이거나
+ *  기타 오류면 throw 하지 않고 로그만 — 뷰어 동작은 막지 않는다. */
+export async function updateXrayViewState(
+  visitId: string,
+  viewState: XrayViewState,
+): Promise<void> {
+  const { error } = await supabase
+    .from('xray_readings')
+    .update({ view_state: viewState, updated_at: new Date().toISOString() })
+    .eq('visit_id', visitId);
+  if (error) {
+    logger.error('updateXrayViewState failed (migration 016 적용 필요할 수 있음)', error);
+  }
 }
 
 /** Sync 반대 방향: 진료 내역 탭에서 BA를 직접 수정했을 때 같은 회차의

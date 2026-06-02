@@ -1,9 +1,14 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import type { XrayStroke, XrayViewState } from '@/shared/types';
 
 interface Props {
   src: string;
   alt: string;
   className?: string;
+  /** 저장된 뷰 상태(0~1 정규화)를 마운트 시 복원. */
+  initialViewState?: XrayViewState | null;
+  /** 줌/패닝/그리기 변경을 0~1 정규화해 디바운스 후 보고(자동 저장용). */
+  onViewStateChange?: (vs: XrayViewState) => void;
 }
 
 type Point = { x: number; y: number };
@@ -23,7 +28,13 @@ const PEN_SIZE = 2.5;
  * Coords are stored in container-space (0..w, 0..h of the wrapper). When the
  * wrapper resizes, the canvas DPI stays pinned, so strokes redraw correctly.
  */
-export function ZoomableImg({ src, alt, className }: Props) {
+export function ZoomableImg({
+  src,
+  alt,
+  className,
+  initialViewState,
+  onViewStateChange,
+}: Props) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // Continuous zoom level. 1 = fit, >1 = zoomed in.
@@ -36,6 +47,10 @@ export function ZoomableImg({ src, alt, className }: Props) {
   const [normalStrokes, setNormalStrokes] = useState<Stroke[]>([]);
   const [zoomedStrokes, setZoomedStrokes] = useState<Stroke[]>([]);
   const drawing = useRef<Stroke | null>(null);
+
+  // 저장 상태 복원/저장: 좌표는 컨테이너(0~1) 기준으로 변환해 화면 크기 무관.
+  const appliedRef = useRef(false); // initialViewState 적용 완료
+  const interactedRef = useRef(false); // 사용자가 한 번이라도 조작 → 저장 시작
 
   const zoomed = zoomLevel > 1.001;
   const currentStrokes = zoomed ? zoomedStrokes : normalStrokes;
@@ -66,6 +81,7 @@ export function ZoomableImg({ src, alt, className }: Props) {
       e.stopPropagation();
       const direction = e.deltaY < 0 ? 1 : -1; // up → in, down → out
       const factor = direction > 0 ? 1.15 : 1 / 1.15;
+      interactedRef.current = true;
       setZoomLevel((z) => {
         const next = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, z * factor));
         if (next <= ZOOM_MIN + 0.001) setOffset({ x: 0, y: 0 });
@@ -109,6 +125,56 @@ export function ZoomableImg({ src, alt, className }: Props) {
     return () => ro.disconnect();
   }, []);
 
+  // 저장된 뷰 상태 복원 — 컨테이너 크기를 측정해야 0~1 좌표를 px 로 환산할 수
+  // 있으므로, 측정 가능해질 때까지(ResizeObserver) 한 번만 적용한다.
+  const applyInitial = useCallback(() => {
+    if (appliedRef.current) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const rect = wrap.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return; // 아직 레이아웃 전
+    appliedRef.current = true;
+    if (!initialViewState) return;
+    setZoomLevel(initialViewState.zoom ?? 1);
+    setOffset({
+      x: (initialViewState.offset?.x ?? 0) * rect.width,
+      y: (initialViewState.offset?.y ?? 0) * rect.height,
+    });
+    setNormalStrokes(denormStrokes(initialViewState.normalStrokes, rect.width, rect.height));
+    setZoomedStrokes(denormStrokes(initialViewState.zoomedStrokes, rect.width, rect.height));
+  }, [initialViewState]);
+
+  useLayoutEffect(() => {
+    applyInitial();
+    if (appliedRef.current) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const ro = new ResizeObserver(() => {
+      applyInitial();
+      if (appliedRef.current) ro.disconnect();
+    });
+    ro.observe(wrap);
+    return () => ro.disconnect();
+  }, [applyInitial]);
+
+  // 변경 자동 저장(디바운스 600ms) — 사용자가 한 번이라도 조작한 뒤부터.
+  useEffect(() => {
+    if (!onViewStateChange || !appliedRef.current || !interactedRef.current) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const t = setTimeout(() => {
+      const rect = wrap.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      onViewStateChange({
+        zoom: zoomLevel,
+        offset: { x: offset.x / rect.width, y: offset.y / rect.height },
+        normalStrokes: normStrokes(normalStrokes, rect.width, rect.height),
+        zoomedStrokes: normStrokes(zoomedStrokes, rect.width, rect.height),
+      });
+    }, 600);
+    return () => clearTimeout(t);
+  }, [zoomLevel, offset, normalStrokes, zoomedStrokes, onViewStateChange]);
+
   const toContainerCoord = (e: React.MouseEvent): Point => {
     const rect = wrapRef.current!.getBoundingClientRect();
     return { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -132,6 +198,7 @@ export function ZoomableImg({ src, alt, className }: Props) {
         if (tool === 'draw') {
           e.preventDefault();
           e.stopPropagation();
+          interactedRef.current = true;
           drawing.current = {
             color: PEN_COLOR,
             size: PEN_SIZE,
@@ -143,6 +210,7 @@ export function ZoomableImg({ src, alt, className }: Props) {
         }
         if (!zoomed) return;
         e.preventDefault();
+        interactedRef.current = true;
         pan.current = {
           sx: e.clientX,
           sy: e.clientY,
@@ -195,7 +263,10 @@ export function ZoomableImg({ src, alt, className }: Props) {
       <Toolbar
         tool={tool}
         onToolChange={setTool}
-        onClear={() => setCurrentStrokes([])}
+        onClear={() => {
+          interactedRef.current = true;
+          setCurrentStrokes([]);
+        }}
         zoomed={zoomed}
       />
       <div
@@ -204,6 +275,28 @@ export function ZoomableImg({ src, alt, className }: Props) {
       />
     </div>
   );
+}
+
+// 저장(0~1) ↔ 화면(px) 좌표 변환. 컨테이너 크기가 달라도 위치가 맞도록.
+function denormStrokes(
+  strokes: XrayStroke[] | undefined,
+  w: number,
+  h: number,
+): Stroke[] {
+  return (strokes ?? []).map((s) => ({
+    color: s.color,
+    size: s.size,
+    points: s.points.map((p) => ({ x: p.x * w, y: p.y * h })),
+  }));
+}
+
+function normStrokes(strokes: Stroke[], w: number, h: number): XrayStroke[] {
+  if (w <= 0 || h <= 0) return [];
+  return strokes.map((s) => ({
+    color: s.color,
+    size: s.size,
+    points: s.points.map((p) => ({ x: p.x / w, y: p.y / h })),
+  }));
 }
 
 function drawStroke(ctx: CanvasRenderingContext2D, s: Stroke) {
