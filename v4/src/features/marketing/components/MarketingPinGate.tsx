@@ -17,13 +17,15 @@ export function MarketingPinGate({ onSubmit }: Props) {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-[#fafaf8]">
+    <div className="flex h-dvh items-center justify-center bg-[#fafaf8]">
       <div className="w-80 rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
         <h1 className="mb-1 text-lg font-bold text-[#4A2D6B]">187 마케팅 센터</h1>
         <p className="mb-5 text-sm text-gray-500">PIN을 입력하세요</p>
         <input
           type="password"
           inputMode="numeric"
+          maxLength={4}
+          aria-label="PIN"
           value={pin}
           onChange={(e) => {
             setPin(e.target.value);
@@ -34,7 +36,11 @@ export function MarketingPinGate({ onSubmit }: Props) {
           placeholder="••••"
           autoFocus
         />
-        {error && <p className="mb-2 text-xs text-red-500">PIN이 올바르지 않습니다</p>}
+        {error && (
+          <p role="alert" className="mb-2 text-xs text-red-500">
+            PIN이 올바르지 않습니다
+          </p>
+        )}
         <button
           onClick={handle}
           disabled={!pin}
