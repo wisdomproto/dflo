@@ -1,5 +1,6 @@
 // src/features/marketing/services/marketingConfigService.ts
 import { supabase } from '@/shared/lib/supabase';
+import { logger } from '@/shared/lib/logger';
 import type { MarketingConfig, BlogCategory } from '../types';
 
 const EMPTY: MarketingConfig = {
@@ -20,6 +21,7 @@ const EMPTY: MarketingConfig = {
   aiModel: 'gemini-2.5-flash',
 };
 
+// Keep field lists in sync: 016 migration columns ↔ configToRow ↔ rowToConfig ↔ MarketingConfig.
 type Row = Record<string, unknown>;
 
 function rowToConfig(r: Row | null): MarketingConfig {
@@ -72,7 +74,7 @@ export async function fetchConfig(): Promise<MarketingConfig> {
     .eq('id', 1)
     .maybeSingle();
   if (error) {
-    console.warn('[marketing] fetchConfig failed:', error.message);
+    logger.warn('[marketing] fetchConfig failed:', error.message);
     return { ...EMPTY };
   }
   return rowToConfig(data as Row | null);
