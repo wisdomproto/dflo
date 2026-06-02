@@ -9,6 +9,7 @@ import Card from '@/shared/components/Card';
 import ChildSelector from '@/shared/components/ChildSelector';
 import LoadingSpinner from '@/shared/components/LoadingSpinner';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
+import { PredictedHeightTrend } from '@/features/hospital/components/PredictedHeightTrend';
 import { useChildrenStore } from '@/stores/childrenStore';
 import { useUIStore } from '@/stores/uiStore';
 import {
@@ -29,6 +30,7 @@ export default function RecordsPage() {
 
   const [records, setRecords] = useState<PatientRecords | null>(null);
   const [loading, setLoading] = useState(false);
+  const [chartTab, setChartTab] = useState<'curve' | 'trend'>('curve');
 
   // 진료 회차 필터 — 한 가지라도 체크되면 그 조건 만족하는 회차만 표시.
   // 모두 해제 시 전체 표시.
@@ -119,18 +121,35 @@ export default function RecordsPage() {
             {/* 성장 그래프 — 어드민 차트 simplified 모드 재사용 */}
             {records.measurements.length > 0 && (
               <div className="rounded-2xl bg-white shadow-sm border border-gray-100 p-3">
-                <h3 className="text-sm font-bold text-gray-800 mb-2 flex items-center gap-1.5 px-1">
-                  <span>📈</span> 키 성장 추이
-                  <span className="ml-auto text-[11px] font-normal text-gray-400">
-                    🦴 = 뼈나이 측정 회차
-                  </span>
-                </h3>
+                <div className="mb-2 flex items-center gap-1.5 px-1">
+                  <button
+                    type="button"
+                    onClick={() => setChartTab('curve')}
+                    className={`rounded-full px-3 py-1 text-xs font-bold ${chartTab === 'curve' ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-500'}`}
+                  >
+                    📈 성장 곡선
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setChartTab('trend')}
+                    className={`rounded-full px-3 py-1 text-xs font-bold ${chartTab === 'trend' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-500'}`}
+                  >
+                    📊 예측키 추세
+                  </button>
+                  {chartTab === 'curve' && (
+                    <span className="ml-auto text-[11px] font-normal text-gray-400">🦴 = 뼈나이 측정 회차</span>
+                  )}
+                </div>
                 <div className="h-[360px]">
-                  <AdminPatientGrowthChart
-                    child={child}
-                    measurements={records.measurements}
-                    simplified
-                  />
+                  {chartTab === 'curve' ? (
+                    <AdminPatientGrowthChart
+                      child={child}
+                      measurements={records.measurements}
+                      simplified
+                    />
+                  ) : (
+                    <PredictedHeightTrend child={child} measurements={records.measurements} />
+                  )}
                 </div>
               </div>
             )}

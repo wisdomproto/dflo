@@ -6,6 +6,7 @@ import { logger } from '@/shared/lib/logger';
 import { VisitList } from '@/features/hospital/components/VisitList';
 import { VisitDetailPanel } from '@/features/hospital/components/VisitDetailPanel';
 import { AdminPatientGrowthChart } from '@/features/hospital/components/AdminPatientGrowthChart';
+import { PredictedHeightTrend } from '@/features/hospital/components/PredictedHeightTrend';
 import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeSurveyPanel';
 import { FirstConsultPanel } from '@/features/hospital/components/intake/FirstConsultPanel';
 import { PatientAnalysisModal } from '@/features/hospital/components/PatientAnalysisModal';
@@ -29,6 +30,7 @@ export default function AdminPatientDetailPage() {
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [chartCollapsed, setChartCollapsed] = useState(false);
+  const [chartTab, setChartTab] = useState<'curve' | 'trend'>('curve');
   const [detailCollapsed, setDetailCollapsed] = useState(false);
   const [comparisonOpen, setComparisonOpen] = useState(false);
   // 기본 정보는 진료 기록 상단에 접힌 채로 고정 — 필요할 때만 펼침
@@ -448,34 +450,52 @@ export default function AdminPatientDetailPage() {
             </>
           ) : (
             <>
-              <div className="mb-1 flex items-center justify-between">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-                  성장 그래프
+              <div className="mb-1 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setChartTab('curve')}
+                    className={`rounded px-2 py-1 text-[11px] font-semibold ${chartTab === 'curve' ? 'bg-slate-800 text-white' : 'text-slate-500 hover:bg-slate-100'}`}
+                  >
+                    성장 곡선
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setChartTab('trend')}
+                    className={`rounded px-2 py-1 text-[11px] font-semibold ${chartTab === 'trend' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:bg-slate-100'}`}
+                  >
+                    예측키 추세
+                  </button>
                 </div>
                 <button
                   type="button"
                   onClick={() => setChartCollapsed(true)}
                   title="성장 그래프 접기"
                   aria-label="성장 그래프 접기"
-                  className="h-7 w-7 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  className="h-7 w-7 shrink-0 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
                 >
                   ›
                 </button>
               </div>
               <div className="min-h-0 flex-1">
-                <AdminPatientGrowthChart
-                  child={child}
-                  measurements={measurements}
-                  selectedVisitId={selectedVisitId}
-                  onNationalityChange={async (next) => {
-                    try {
-                      const updated = await updateChildField(child.id, { nationality: next });
-                      setChild(updated);
-                    } catch {
-                      /* noop */
-                    }
-                  }}
-                />
+                {chartTab === 'curve' ? (
+                  <AdminPatientGrowthChart
+                    child={child}
+                    measurements={measurements}
+                    selectedVisitId={selectedVisitId}
+                    defaultHidePrediction
+                    onNationalityChange={async (next) => {
+                      try {
+                        const updated = await updateChildField(child.id, { nationality: next });
+                        setChild(updated);
+                      } catch {
+                        /* noop */
+                      }
+                    }}
+                  />
+                ) : (
+                  <PredictedHeightTrend child={child} measurements={measurements} />
+                )}
               </div>
             </>
           )}
@@ -483,7 +503,7 @@ export default function AdminPatientDetailPage() {
       </div>
       )}
 
-      {/* Floating buttons — AI 환자 분석 + 비슷한 케이스 */}
+      {/* Floating buttons (🔍 비슷한 케이스 · 🧠 환자 분석) — 숨김 처리. 되살리려면 아래 블록 주석 해제.
       <div className="fixed bottom-4 left-4 z-30 flex flex-col gap-2">
         <button
           type="button"
@@ -504,6 +524,7 @@ export default function AdminPatientDetailPage() {
           <span>환자 분석</span>
         </button>
       </div>
+      */}
 
       {analysisOpen && child && (
         <PatientAnalysisModal

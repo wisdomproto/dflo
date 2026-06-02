@@ -126,9 +126,12 @@ scripts/
 - **진료 기록 tab — 3-Column Layout**
   - **Left**: Visit list — inline height/weight inputs, collapsible rail, CA/BA/PAH display, lab file upload (drag/paste/pick)
   - **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick
-  - **Right**: Growth chart — KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips
+  - **Right**: Growth chart — `[성장 곡선][예측키 추세]` 2-tab (`chartTab` state)
+    - **성장 곡선** (`AdminPatientGrowthChart`): KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips. `baOnly`(뼈나이 측정만) 기본 ON, Y축 90~190(`Y_MAX`). 예측키(baProj) 곡선 기본 off — `defaultHidePrediction` prop, 상단 `BA 예측` 칩으로 켜기 (simplified/첫상담 미영향)
+    - **예측키 추세** (`PredictedHeightTrend`, 신규): 예측키(키+뼈나이 18세 예측) 라인 한 줄 + X축 아래 측정날짜/만나이/뼈나이/Δ(뼈−만, 조숙 +빨강·지연 −초록), 호버 툴팁 없음, Y축 폭 `afterFit` 고정으로 HTML 행 정렬
   - Grid: visits `minmax(220px, 1fr)` | X-ray `360px/44px` | chart `60%`
   - Chart: BA 예측 (indigo dashed) + CA 예측 (teal dashed) + solid horizontal lines at predicted adult heights
+  - 좌하단 `🔍 비슷한 케이스`/`🧠 환자 분석` 플로팅 버튼은 숨김 (JSX 주석 처리, 모달·state 보존 → 되살리기 쉬움)
 
 ## Admin Access
 - **App admin**: `admin@187growth.com` / `admin187!` (routes: `/admin/*`)
@@ -211,7 +214,7 @@ router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmar
 - `components/VisitTimelineCard.tsx` — 회차 카드. BA 회차는 amber 톤 강조. 펼치면 **처방/검사/X-ray/메모 4탭**. X-ray 탭은 image_path 있는 reading 만 노출 + signed URL 라이트박스. 검사 탭의 panel 칩 클릭 시 LabDetailModal.
 - `components/LabDetailModal.tsx` — 어드민 `LabHistoryPanel` 의 `PanelContent`/`panelTypeOf` 재사용. 한 회차에 panel 여러 개면 상단 탭.
 - 회차 필터 체크박스 (🦴 뼈나이 / 🧪 검사 / 📝 메모) — OR 필터, 진료기록 헤더에서 토글.
-- 성장 추이 그래프: `AdminPatientGrowthChart` simplified 모드 재사용 (BA 회차만 다이아 + 클릭 시 예측키 banner + 보라 점선 hide).
+- 성장 추이 그래프: `[성장 곡선][예측키 추세]` 2-tab (모바일 pill 버튼). 성장 곡선 = `AdminPatientGrowthChart` simplified (BA 회차만 다이아 + 클릭 시 예측키 banner + 보라 점선 hide), 예측키 추세 = `PredictedHeightTrend` (admin과 동일 컴포넌트 재사용). treatment 뷰만 (consultation 제외).
 
 **상담 환자 뷰** (`treatment_status='consultation'` 또는 visits=0) — `ConsultationRecordView`
 어드민의 `firstConsultContent.ko` 11 슬라이드 + 환자 데이터를 합쳐 모바일 14 카드 스택으로 풀 재구성. 가족·지인 공유 가능.

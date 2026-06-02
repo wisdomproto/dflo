@@ -31,7 +31,7 @@ type LineDataset = ChartDataset<'line', { x: number; y: number }[]>;
 const X_MIN = 5;
 const X_MAX = 18;
 const Y_MIN = 90;
-const Y_MAX = 185;
+const Y_MAX = 190;
 
 const COLORS = {
   // Percentile curves rendered with low opacity for less visual noise.
@@ -69,6 +69,8 @@ interface Props {
    *  shows a compact line above the chart with the selected visit's
    *  BA-based predicted adult height. */
   simplified?: boolean;
+  /** Admin 성장 곡선 탭: 예측(baProj) 곡선을 기본 숨김. 사용자가 toggle 로 다시 켤 수 있음. */
+  defaultHidePrediction?: boolean;
   /** Called when the user clicks a measurement point. Useful in simplified
    *  mode where the parent doesn't already track a selected visit. */
   onVisitSelect?: (visitId: string) => void;
@@ -119,18 +121,20 @@ export function AdminPatientGrowthChart({
   selectedVisitId: controlledSelectedVisitId,
   onNationalityChange,
   simplified = false,
+  defaultHidePrediction = false,
   onVisitSelect,
 }: Props) {
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
     boneAge: true,
-    baProj: true,
+    baProj: !defaultHidePrediction,
     caProj: false,
     desired: true,
   });
   // When true, patient data points are limited to visits that also had a BA
   // reading — useful when the clinic sees the child monthly and the chart gets
-  // too crowded to read the long-term trend.
-  const [baOnly, setBaOnly] = useState(false);
+  // too crowded to read the long-term trend. Defaults to on so the long-term
+  // trend is readable at a glance — uncheck to show every visit.
+  const [baOnly, setBaOnly] = useState(true);
   const [zoomed, setZoomed] = useState(false);
   // Simplified (patient) mode keeps its own selection state so the parent
   // doesn't have to wire up controlled selection. Default selection in
