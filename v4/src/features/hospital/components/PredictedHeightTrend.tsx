@@ -121,7 +121,9 @@ export function PredictedHeightTrend({ child, measurements, enlarged = false }: 
       tooltip: { enabled: false },
     },
     scales: {
-      x: { grid: { display: false }, ticks: { display: false } },
+      // offset:true → 포인트를 각 밴드(카테고리) 중앙에 배치 → 아래 HTML 그리드
+      // (1fr 칸마다 중앙 정렬된 날짜/나이 텍스트)와 가로 위치가 정확히 맞는다.
+      x: { offset: true, grid: { display: false }, ticks: { display: false } },
       y: {
         title: {
           display: true,
