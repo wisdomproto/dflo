@@ -153,7 +153,9 @@ export function VisitDetailPanel({
   }, [liveXray.predictedAdult, effectiveHeight, effectiveBaForCalc, child.gender, nationality]);
 
   const saveField = async (
-    patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'bone_age' | 'pah' | 'doctor_notes'>>,
+    patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'pah' | 'doctor_notes'>> & {
+      bone_age?: number | null;
+    },
   ) => {
     try {
       const next = await upsertMeasurementField({
@@ -177,7 +179,9 @@ export function VisitDetailPanel({
 
   // 측정 "저장" 버튼: 입력된 드래프트(키/몸무게/뼈나이)를 한 번에 저장.
   const saveMeasurement = async () => {
-    const patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'bone_age'>> = {};
+    const patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight'>> & {
+      bone_age?: number | null;
+    } = {};
     if (heightDraft != null) patch.height = heightDraft;
     if (weightDraft != null) patch.weight = weightDraft;
     // 뼈나이는 편집됐으면 draft 를 그대로 저장 — boneAgeDraft 가 null 이면(0,0 입력)

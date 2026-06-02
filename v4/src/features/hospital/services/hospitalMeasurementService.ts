@@ -81,7 +81,10 @@ export async function createMeasurement(input: {
 
 export async function updateMeasurement(
   id: string,
-  patch: Partial<Omit<HospitalMeasurement, 'id' | 'created_at' | 'updated_at'>>,
+  // bone_age 는 null 로 비울 수 있어야 한다(0년 0개월 = 미측정) → Omit 후 재정의.
+  patch: Partial<Omit<HospitalMeasurement, 'id' | 'created_at' | 'updated_at' | 'bone_age'>> & {
+    bone_age?: number | null;
+  },
 ): Promise<HospitalMeasurement> {
   const { data, error } = await supabase
     .from('hospital_measurements')
@@ -103,7 +106,10 @@ export async function upsertMeasurementField(input: {
   visit_id: string;
   child_id: string;
   measured_date: string;
-  patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'bone_age' | 'pah' | 'doctor_notes'>>;
+  // bone_age 는 null(미측정) 허용.
+  patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'pah' | 'doctor_notes'>> & {
+    bone_age?: number | null;
+  };
 }): Promise<HospitalMeasurement> {
   const existing = await fetchMeasurementsByVisit(input.visit_id);
   let row: HospitalMeasurement;
