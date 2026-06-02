@@ -12,6 +12,7 @@ import {
   createLabTest,
 } from '@/features/hospital/services/labTestService';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
+import { splitBoneAgeYM, parseBoneAgeDec } from '@/shared/utils/boneAge';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
@@ -49,7 +50,7 @@ export function VisitDetailPanel({
   onNationalityChange,
 }: Props) {
   const m = measurements.find((x) => x.visit_id === visit.id) ?? null;
-  const chronoAge = calculateAgeAtDate(child.birth_date, new Date(visit.visit_date)).decimal;
+  const chronoAge = calculateAgeAtDate(child.birth_date, new Date(visit.visit_date));
   const nationality = child.nationality ?? 'KR';
 
   // Live bone age + PAH from XrayPanel so the 측정 section shows the same
@@ -114,14 +115,29 @@ export function VisitDetailPanel({
   // 콜백을 연결해서, draft 가 있으면 그 값으로 PAH 를 미리 계산한다. 저장은
   // 여전히 onBlur 시점에만 일어남.
   const [heightDraft, setHeightDraft] = useState<number | null>(null);
+  const [weightDraft, setWeightDraft] = useState<number | null>(null);
   const [boneAgeDraft, setBoneAgeDraft] = useState<number | null>(null);
+  // 뼈나이는 "0년 0개월 → null(미측정)"로 비우는 것도 허용해야 하므로, draft 가
+  // null 인 것만으로는 "안 건드림"과 "0,0 으로 지움"을 구분할 수 없다. 사용자가
+  // 뼈나이 칸을 한 번이라도 편집했는지를 별도 플래그로 추적한다.
+  const [boneAgeTouched, setBoneAgeTouched] = useState(false);
+  // 측정 섹션은 자동(blur) 저장 대신 명시적 "저장" 버튼으로 한 번에 저장한다.
+  // dirty: 드래프트가 하나라도 바뀌었는지(버튼 활성화용). saved: 저장 직후 배지.
+  const [savingMeasure, setSavingMeasure] = useState(false);
+  const [savedMeasure, setSavedMeasure] = useState(false);
   useEffect(() => {
     setHeightDraft(null);
+    setWeightDraft(null);
     setBoneAgeDraft(null);
+    setBoneAgeTouched(false);
+    setSavedMeasure(false);
   }, [visit.id]);
+  const measureDirty = heightDraft != null || weightDraft != null || boneAgeTouched;
 
   const effectiveHeight = heightDraft ?? m?.height ?? null;
-  const effectiveBaForCalc = boneAgeDraft ?? m?.bone_age ?? null;
+  // 뼈나이를 편집했으면(0,0 으로 비운 경우 포함) draft 값을 그대로 쓴다(null = 미측정).
+  // 안 건드렸으면 저장된 m.bone_age 를 쓴다.
+  const effectiveBaForCalc = boneAgeTouched ? boneAgeDraft : (m?.bone_age ?? null);
   const effectiveBoneAge = liveXray.boneAge ?? effectiveBaForCalc;
   const pah = useMemo(() => {
     if (liveXray.predictedAdult != null) return liveXray.predictedAdult;
@@ -156,6 +172,29 @@ export function VisitDetailPanel({
       }
     } catch (e) {
       logger.error('measurement save failed', e);
+    }
+  };
+
+  // 측정 "저장" 버튼: 입력된 드래프트(키/몸무게/뼈나이)를 한 번에 저장.
+  const saveMeasurement = async () => {
+    const patch: Partial<Pick<HospitalMeasurement, 'height' | 'weight' | 'bone_age'>> = {};
+    if (heightDraft != null) patch.height = heightDraft;
+    if (weightDraft != null) patch.weight = weightDraft;
+    // 뼈나이는 편집됐으면 draft 를 그대로 저장 — boneAgeDraft 가 null 이면(0,0 입력)
+    // bone_age 를 null 로 비워 "측정 안 함"으로 만든다.
+    if (boneAgeTouched) patch.bone_age = boneAgeDraft ?? null;
+    if (Object.keys(patch).length === 0) return;
+    setSavingMeasure(true);
+    try {
+      await saveField(patch);
+      setHeightDraft(null);
+      setWeightDraft(null);
+      setBoneAgeDraft(null);
+      setBoneAgeTouched(false);
+      setSavedMeasure(true);
+      setTimeout(() => setSavedMeasure(false), 2000);
+    } finally {
+      setSavingMeasure(false);
     }
   };
 
@@ -195,7 +234,9 @@ export function VisitDetailPanel({
         <div className="flex items-baseline justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
           <div className="flex items-baseline gap-2">
             <span className="text-sm font-semibold text-slate-900">{visit.visit_date}</span>
-            <span className="text-[11px] text-slate-500">CA {chronoAge.toFixed(1)}</span>
+            <span className="text-[11px] text-slate-500">
+              CA {chronoAge.years}년 {chronoAge.months}개월
+            </span>
             {effectiveBoneAge != null && (
               <span className="text-[11px] text-slate-500">BA {effectiveBoneAge.toFixed(1)}</span>
             )}
@@ -242,11 +283,14 @@ export function VisitDetailPanel({
       {tab === 'clinical' && (
         <>
           <Section title="측정" accent="emerald">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-[3fr_3fr_6fr_4fr]">
+              {/* 자동(blur) 저장 끔(autoSave=false) — 아래 "저장" 버튼으로 한 번에
+                  저장. 입력은 onLocal 로 부모 draft 에 실시간 반영(PAH 미리보기). */}
               <NumberField
                 label="키 (cm)"
                 value={m?.height ?? null}
                 step={0.1}
+                autoSave={false}
                 onSave={(v) => saveField({ height: v ?? undefined })}
                 onLocal={setHeightDraft}
               />
@@ -254,22 +298,24 @@ export function VisitDetailPanel({
                 label="몸무게 (kg)"
                 value={m?.weight ?? null}
                 step={0.1}
+                autoSave={false}
                 onSave={(v) => saveField({ weight: v ?? undefined })}
+                onLocal={setWeightDraft}
               />
-              {/* 뼈나이: 직접 수정 가능. 저장 시 hospital_measurements.bone_age
-                  + (있으면) xray_readings.bone_age_result 같이 동기화. 라벨에
-                  '소수점 년' 명시 + 라이브 변환 힌트로 임상 관습("13세 2개월" =
-                  13.2 식 표기) 과의 혼동 방지. */}
-              <NumberField
-                label="뼈나이 (소수점 년)"
-                value={m?.bone_age ?? null}
-                step={0.1}
+              {/* 뼈나이: 년/개월 2칸 입력. 내부적으로 소수점 년(bone_age =
+                  년 + 개월/12)으로 변환·저장. 저장 시 hospital_measurements.bone_age
+                  + (있으면) xray_readings.bone_age_result 같이 동기화. */}
+              <BoneAgeYMField
+                value={effectiveBoneAge}
+                autoSave={false}
                 onSave={(v) => saveField({ bone_age: v ?? undefined })}
-                onLocal={setBoneAgeDraft}
-                hint={(v) => formatBoneAgeHint(v)}
+                onLocal={(v) => {
+                  setBoneAgeDraft(v);
+                  setBoneAgeTouched(true);
+                }}
               />
               {/* 예측 성인키: BA + 키로 자동 계산 (read-only). */}
-              <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+              <div className="flex min-w-0 flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
                 <div className="flex items-center gap-1">
                   <span>예측 성인키</span>
                   <HelpTip text="키·뼈나이 기반 자동 계산" />
@@ -278,6 +324,20 @@ export function VisitDetailPanel({
                   {pah != null ? `${pah.toFixed(1)} cm` : '—'}
                 </div>
               </div>
+            </div>
+            {/* 측정 저장 버튼 — 키/몸무게/뼈나이 드래프트를 한 번에 저장. */}
+            <div className="mt-3 flex items-center justify-end gap-2">
+              {savedMeasure && (
+                <span className="text-[12px] font-semibold text-emerald-600">✓ 저장됨</span>
+              )}
+              <button
+                type="button"
+                onClick={saveMeasurement}
+                disabled={!measureDirty || savingMeasure}
+                className="rounded-lg bg-emerald-600 px-4 py-1.5 text-[13px] font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {savingMeasure ? '저장 중…' : '저장'}
+              </button>
             </div>
           </Section>
 
@@ -452,6 +512,7 @@ function NumberField({
   onSave,
   onLocal,
   hint,
+  autoSave = true,
 }: {
   label: string;
   value: number | null;
@@ -463,18 +524,20 @@ function NumberField({
   /** Live helper line shown below the input. Receives the currently typed
    *  numeric value (parsed). Use for unit clarification etc. */
   hint?: (parsed: number | null) => string;
+  /** false 면 onBlur 자동 저장을 끈다(외부 "저장" 버튼이 책임짐). 기본 true. */
+  autoSave?: boolean;
 }) {
   const [local, setLocal] = useState<string>(value == null ? '' : String(value));
   useEffect(() => setLocal(value == null ? '' : String(value)), [value]);
   const parsedLocal = local.trim() === '' ? null : Number(local);
   const safeParsed = parsedLocal != null && !Number.isNaN(parsedLocal) ? parsedLocal : null;
   return (
-    <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+    <label className="flex min-w-0 flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
       <span>{label}</span>
       <input
         type="number"
         step={step}
-        className="h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100"
+        className="h-9 w-full min-w-0 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100 [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         value={local}
         onChange={(e) => {
           const v = e.target.value;
@@ -486,6 +549,7 @@ function NumberField({
           }
         }}
         onBlur={() => {
+          if (!autoSave) return; // 외부 "저장" 버튼이 저장 담당
           const trimmed = local.trim();
           const parsed = trimmed === '' ? null : Number(trimmed);
           if (parsed !== null && Number.isNaN(parsed)) return;
@@ -502,18 +566,94 @@ function NumberField({
   );
 }
 
-/** 소수점 년 입력값 → "≈ N년 M개월" 한글 환산. 예: 13.5 → "≈ 13년 6개월".
- *  비어있을 때는 표기 관습 안내. 임상에서 "13세 2개월"을 "13.2"로 적는
- *  관습이 있어서 사용자가 입력 단위를 헷갈리는 걸 막기 위한 가이드. */
-function formatBoneAgeHint(parsed: number | null): string {
-  if (parsed == null) return '예: 13.5 = 13년 6개월 (12개월 = 1.0)';
-  if (parsed < 0 || parsed > 25) return '범위를 확인해주세요';
-  const years = Math.floor(parsed);
-  const months = Math.round((parsed - years) * 12);
-  // 12개월 round-up edge case (e.g. 13.99 → 14년 0개월)
-  if (months === 12) return `≈ ${years + 1}년 0개월`;
-  return `≈ ${years}년 ${months}개월`;
+/** 뼈나이 입력 — 년/개월 2칸. 내부 저장값은 소수점 년(bone_age = 년 + 개월/12).
+ *  임상 표기("13년 6개월")를 그대로 입력하게 해서 "13.2" 식 단위 혼동을 없앤다. */
+function BoneAgeYMField({
+  value,
+  onSave,
+  onLocal,
+  autoSave = true,
+}: {
+  value: number | null;
+  onSave: (v: number | null) => void;
+  onLocal?: (parsed: number | null) => void;
+  /** false 면 blur 자동 저장을 끈다(외부 "저장" 버튼이 책임짐). 기본 true. */
+  autoSave?: boolean;
+}) {
+  // 편집(focus) 중이 아니면 표시값을 value(소수점 년)에서 직접 파생 → 측정칸이
+  // 항상 헤더(effectiveBoneAge)와 같은 값을 년/개월로 보여준다. 편집 중에는
+  // 로컬 draft 가 우선이라, 입력 도중 value 가 바뀌어도(=onLocal 이 PAH 미리보기용
+  // boneAgeDraft 를 바꿔 effectiveBoneAge 가 흔들려도) 타이핑이 덮이지 않는다.
+  const [draft, setDraft] = useState<{ y: string; m: string } | null>(null);
+  const [focused, setFocused] = useState(false);
+  useEffect(() => {
+    if (!focused) setDraft(null);
+  }, [value, focused]);
+  const shown = draft ?? splitBoneAgeYM(value);
+  const y = shown.y;
+  const mo = shown.m;
+
+  const commit = () => {
+    setFocused(false);
+    if (!autoSave) return; // 외부 "저장" 버튼이 저장 담당 (draft 는 onLocal 로 전달됨)
+    // 실제 입력(draft)이 없으면 단순 focus→blur 로는 저장하지 않는다(스냅 방지).
+    // 입력했으면 무조건 onSave 한다. value(=effectiveBoneAge)는 onLocal 로 입력
+    // 즉시 같이 변하므로 value 와 비교해 "변경 없음"으로 판단하면 저장이 누락된다.
+    if (draft == null) return;
+    onSave(parseBoneAgeDec(y, mo));
+  };
+
+  // type=number 스피너 화살표 제거([appearance:textfield] + webkit spin-button
+  // none) → 좁은 칸에서 화살표가 먹던 오른쪽 공간이 비어 입력한 숫자가 보인다.
+  const inputCls =
+    'h-9 w-full rounded-lg border border-slate-200 bg-white pl-2 pr-7 text-sm text-slate-900 shadow-sm transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100 [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none';
+
+  return (
+    <div className="flex min-w-0 flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+      <span className="text-center">뼈나이</span>
+      <div className="flex items-stretch gap-1.5">
+        <div className="relative flex-1">
+          <input
+            type="number"
+            step={1}
+            min={0}
+            className={inputCls}
+            value={y}
+            onFocus={() => setFocused(true)}
+            onChange={(e) => {
+              setDraft({ y: e.target.value, m: mo });
+              if (onLocal) onLocal(parseBoneAgeDec(e.target.value, mo));
+            }}
+            onBlur={commit}
+          />
+          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-normal normal-case text-slate-400">
+            년
+          </span>
+        </div>
+        <div className="relative flex-1">
+          <input
+            type="number"
+            step={1}
+            min={0}
+            max={11}
+            className={inputCls}
+            value={mo}
+            onFocus={() => setFocused(true)}
+            onChange={(e) => {
+              setDraft({ y, m: e.target.value });
+              if (onLocal) onLocal(parseBoneAgeDec(y, e.target.value));
+            }}
+            onBlur={commit}
+          />
+          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-normal normal-case text-slate-400">
+            개월
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 }
+
 
 function HelpTip({ text }: { text: string }) {
   return (
@@ -865,12 +1005,36 @@ function PandokmunPages({ child, visitId }: { child: Child; visitId: string }) {
     .map((fn) => ({ filename: fn, url: urlByName.get(fn) }))
     .filter((p): p is { filename: string; url: string } => !!p.url);
 
+  // 라이트박스(전체 보기)는 이 환자의 "모든 회차" 판독문을 넘겨볼 수 있게 한다 —
+  // 한 회차에 판독문이 1장뿐이어도 ←/→ 로 이전·다음 판독문 이동 가능.
+  const allPages = useMemo(
+    () =>
+      (rf?.pandokmun ?? []).filter(
+        (p): p is { filename: string; url: string } => !!p.url,
+      ),
+    [rf],
+  );
+
   const [idx, setIdx] = useState(0);
   const [zoomed, setZoomed] = useState(false);
+  const [lbIdx, setLbIdx] = useState(0); // 라이트박스 인덱스(allPages 기준)
   // Reset page pointer when switching visits.
   useEffect(() => {
     setIdx(0);
   }, [visitId]);
+
+  // 라이트박스에서 ←/→ 로 전체 판독문 이동, Esc 로 닫기.
+  const allCount = allPages.length;
+  useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') setLbIdx((i) => Math.max(0, i - 1));
+      else if (e.key === 'ArrowRight') setLbIdx((i) => Math.min(allCount - 1, i + 1));
+      else if (e.key === 'Escape') setZoomed(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [zoomed, allCount]);
 
   if (pages.length === 0) {
     return (
@@ -883,6 +1047,16 @@ function PandokmunPages({ child, visitId }: { child: Child; visitId: string }) {
   const current = pages[Math.min(idx, pages.length - 1)];
   const canPrev = idx > 0;
   const canNext = idx < pages.length - 1;
+
+  // 전체 보기 열기: 현재 보고 있는 페이지를 allPages 에서 찾아 거기서 시작.
+  const openLightbox = () => {
+    const i = allPages.findIndex((p) => p.filename === current.filename);
+    setLbIdx(i >= 0 ? i : 0);
+    setZoomed(true);
+  };
+  const lbCurrent = allPages[Math.min(lbIdx, Math.max(0, allPages.length - 1))] ?? current;
+  const lbCanPrev = lbIdx > 0;
+  const lbCanNext = lbIdx < allPages.length - 1;
 
   return (
     <div className="flex flex-col gap-2">
@@ -910,7 +1084,7 @@ function PandokmunPages({ child, visitId }: { child: Child; visitId: string }) {
         <span className="truncate text-slate-500">{current.filename}</span>
         <button
           type="button"
-          onClick={() => setZoomed(true)}
+          onClick={openLightbox}
           className="ml-auto rounded border border-slate-300 bg-white px-2 py-0.5 text-slate-700 hover:bg-slate-100"
         >
           전체 보기
@@ -920,7 +1094,7 @@ function PandokmunPages({ child, visitId }: { child: Child; visitId: string }) {
       {/* Main image */}
       <div
         className="cursor-zoom-in overflow-hidden rounded-lg border border-slate-200 bg-white"
-        onClick={() => setZoomed(true)}
+        onClick={openLightbox}
         title="클릭하여 전체 보기"
       >
         <img
@@ -957,18 +1131,73 @@ function PandokmunPages({ child, visitId }: { child: Child; visitId: string }) {
         </div>
       )}
 
-      {/* Fullscreen lightbox */}
+      {/* Fullscreen lightbox — ←/→ 키 또는 좌우 버튼으로 이전·다음, Esc/배경클릭 닫기 */}
       {zoomed && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
           onClick={() => setZoomed(false)}
         >
+          {/* 닫기 */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomed(false);
+            }}
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white hover:bg-white/20"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+
+          {/* 이전 */}
+          {allPages.length > 1 && (
+            <button
+              type="button"
+              disabled={!lbCanPrev}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLbIdx((i) => Math.max(0, i - 1));
+              }}
+              className="absolute left-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl text-white hover:bg-white/20 disabled:opacity-25"
+              aria-label="이전 판독문"
+            >
+              ‹
+            </button>
+          )}
+
           <img
-            src={current.url}
-            alt=""
-            className="max-h-[95vh] max-w-[95vw] object-contain"
+            src={lbCurrent.url}
+            alt={lbCurrent.filename}
+            className="max-h-[95vh] max-w-[90vw] object-contain"
             onClick={(e) => e.stopPropagation()}
           />
+
+          {/* 다음 */}
+          {allPages.length > 1 && (
+            <button
+              type="button"
+              disabled={!lbCanNext}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLbIdx((i) => Math.min(allPages.length - 1, i + 1));
+              }}
+              className="absolute right-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-3xl text-white hover:bg-white/20 disabled:opacity-25"
+              aria-label="다음 판독문"
+            >
+              ›
+            </button>
+          )}
+
+          {/* 페이지 카운터 + 파일명 */}
+          {allPages.length > 1 && (
+            <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-black/50 px-3 py-1 text-sm text-white">
+              <span className="tabular-nums">
+                {lbIdx + 1} / {allPages.length}
+              </span>
+              <span className="max-w-[50vw] truncate text-white/70">{lbCurrent.filename}</span>
+            </div>
+          )}
         </div>
       )}
     </div>

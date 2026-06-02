@@ -13,6 +13,7 @@ import {
 } from '@/features/bone-age/lib/atlas';
 import { computeAge, matchByAge } from '@/features/bone-age/lib/matcher';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
+import { splitBoneAgeYM, parseBoneAgeDec } from '@/shared/utils/boneAge';
 import type { AtlasEntry, Gender } from '@/features/bone-age/lib/types';
 import {
   createXrayReading,
@@ -20,6 +21,7 @@ import {
   getXrayImageSignedUrl,
   uploadXrayImage,
 } from '@/features/bone-age/services/xrayReadingService';
+import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
 import { logger } from '@/shared/lib/logger';
 import { ZoomModal } from '@/shared/components/ZoomModal';
 import { ZoomableImg } from '@/shared/components/ZoomableImg';
@@ -266,6 +268,15 @@ export function XrayPanel({
         bone_age_result: effectiveBoneAge,
         atlas_match_younger: effectiveYounger.file,
         atlas_match_older: effectiveOlder.file,
+      });
+      // X-ray 에서 확정한 BA 를 진료 내역(hospital_measurements.bone_age)에도
+      // 동기화 → 진료 내역 탭·오른쪽 성장 그래프가 같은 값을 쓰게 한다. 측정
+      // row 가 없으면 생성하고, PAH 도 자동 재계산된다(upsertMeasurementField).
+      await upsertMeasurementField({
+        visit_id: visit.id,
+        child_id: child.id,
+        measured_date: visit.visit_date,
+        patch: { bone_age: effectiveBoneAge },
       });
       setImageFile(null);
       onSaved();
@@ -603,15 +614,19 @@ function PatientPane({
   visitHeight: number | null;
 }) {
   const [drag, setDrag] = useState(false);
-  const [draft, setDraft] = useState<string>(boneAge != null ? boneAge.toFixed(1) : '');
+  // draft=null 이면 표시값을 boneAge(소수점 년)에서 직접 파생 → 기존 값이 항상
+  // 년/개월로 보임. 편집 중에만 draft 사용.
+  const [draft, setDraft] = useState<{ y: string; m: string } | null>(null);
   const { armed, wrapperProps } = usePasteTarget({
     onPaste: onFile,
     accept: (t) => t.startsWith('image/'),
   });
 
-  useEffect(() => {
-    setDraft(boneAge != null ? boneAge.toFixed(1) : '');
-  }, [boneAge]);
+  useEffect(() => setDraft(null), [boneAge]);
+  const shown = draft ?? splitBoneAgeYM(boneAge);
+  const y = shown.y;
+  const mo = shown.m;
+  const midShown = splitBoneAgeYM(midpointFallback);
 
   const handleFiles = (files: FileList | null | undefined) => {
     const f = files?.[0];
@@ -634,13 +649,12 @@ function PatientPane({
   };
 
   const commit = () => {
-    const trimmed = draft.trim();
-    if (trimmed === '') {
+    const dec = parseBoneAgeDec(y, mo);
+    if (dec == null) {
       onBoneAgeChange(null); // revert to midpoint
       return;
     }
-    const n = Number(trimmed);
-    if (!Number.isNaN(n) && n > 0 && n < 25) onBoneAgeChange(Number(n.toFixed(1)));
+    if (dec > 0 && dec < 25) onBoneAgeChange(dec);
   };
 
   return (
@@ -690,29 +704,42 @@ function PatientPane({
         )}
       </div>
 
-      {/* Editable bone-age (defaults to midpoint of younger+older).
-          단위는 소수점 년 (예: 13.5 = 13년 6개월). atlas 도 같은 표기. */}
+      {/* Editable bone-age (년/개월, defaults to midpoint of younger+older).
+          저장값은 소수점 년(13년 6개월 = 13.5). atlas 도 같은 표기. */}
       <div className="flex items-center justify-center gap-1 pt-1">
         <span className="text-[11px] whitespace-nowrap text-slate-500">뼈나이</span>
         <input
           type="number"
-          step="0.1"
+          step={1}
           min={0}
           max={25}
-          inputMode="decimal"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
+          inputMode="numeric"
+          value={y}
+          onChange={(e) => setDraft({ y: e.target.value, m: mo })}
           onBlur={commit}
           onKeyDown={(e) => {
             if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
           }}
-          placeholder={midpointFallback != null ? midpointFallback.toFixed(1) : '—'}
-          className="h-7 w-16 rounded border border-slate-200 bg-white px-2 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400"
+          placeholder={midShown.y || '—'}
+          className="h-7 w-11 rounded border border-slate-200 bg-white px-1.5 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400 [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
         />
-        <span className="text-[11px] text-slate-500">세</span>
-      </div>
-      <div className="text-center text-[10px] text-slate-400">
-        {formatBoneAgeHintXray(draft)}
+        <span className="text-[11px] text-slate-500">년</span>
+        <input
+          type="number"
+          step={1}
+          min={0}
+          max={11}
+          inputMode="numeric"
+          value={mo}
+          onChange={(e) => setDraft({ y, m: e.target.value })}
+          onBlur={commit}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') (e.target as HTMLInputElement).blur();
+          }}
+          placeholder={midShown.m || '—'}
+          className="h-7 w-11 rounded border border-slate-200 bg-white px-1.5 text-center text-[13px] font-semibold text-slate-900 outline-none focus:border-slate-400 [appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+        />
+        <span className="text-[11px] text-slate-500">개월</span>
       </div>
 
       {midpointFallback != null && boneAge != null && Math.abs(boneAge - midpointFallback) > 0.05 && (
@@ -757,16 +784,3 @@ function Placeholder({ text }: { text: string }) {
   );
 }
 
-/** "12.5" 같은 소수점 년 입력값 → "≈ 12년 6개월" 한글 환산 안내문.
- *  임상에서 "12세 6개월" 을 "12.6" 으로 줄여 쓰는 관습이 있어서 입력 단위
- *  혼동을 막기 위한 라이브 가이드. */
-function formatBoneAgeHintXray(draft: string): string {
-  const trimmed = draft.trim();
-  if (trimmed === '') return '예: 13.5 = 13년 6개월';
-  const n = Number(trimmed);
-  if (Number.isNaN(n) || n < 0 || n > 25) return '소수점 년 (예: 13.5 = 13년 6개월)';
-  const years = Math.floor(n);
-  const months = Math.round((n - years) * 12);
-  if (months === 12) return `≈ ${years + 1}년 0개월`;
-  return `≈ ${years}년 ${months}개월`;
-}

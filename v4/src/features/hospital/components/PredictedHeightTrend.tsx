@@ -15,6 +15,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { heightAtSamePercentile, type Nationality } from '@/features/bone-age/lib/growthStandard';
 import { calculateAgeAtDate } from '@/shared/utils/age';
+import { splitBoneAgeYM } from '@/shared/utils/boneAge';
 import type { Child, HospitalMeasurement } from '@/shared/types';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Filler);
@@ -26,10 +27,24 @@ const PAD_R = 12;
 // "2021-11-29" → "21.11.29"
 const fmtDate = (d: string) => d.slice(2, 10).replace(/-/g, '.');
 
+// 뼈−만 차이(소수점 년) → 개월 기준 표기. 예: 0.7 → "+8개월", -1.33 → "-1년 4개월".
+function fmtDeltaYM(decYears: number): string {
+  const total = Math.round(decYears * 12);
+  const sign = total > 0 ? '+' : total < 0 ? '-' : '';
+  const abs = Math.abs(total);
+  const y = Math.floor(abs / 12);
+  const mo = abs % 12;
+  if (y === 0) return `${sign}${mo}개월`;
+  if (mo === 0) return `${sign}${y}년`;
+  return `${sign}${y}년 ${mo}개월`;
+}
+
 interface TrendRow {
   key: string;
   date: string; // YYYY-MM-DD
-  ca: number;
+  ca: number; // 만나이 소수점(Δ 계산용)
+  caY: number; // 만나이 년
+  caM: number; // 만나이 개월
   ba: number;
   height: number;
   pah: number;
@@ -50,7 +65,7 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
         (a, b) => new Date(a.measured_date).getTime() - new Date(b.measured_date).getTime(),
       )
       .map((m, idx) => {
-        const ca = calculateAgeAtDate(child.birth_date, new Date(m.measured_date)).decimal;
+        const age = calculateAgeAtDate(child.birth_date, new Date(m.measured_date));
         const ba = m.bone_age as number;
         const pah = Number(
           heightAtSamePercentile(m.height as number, ba, 18, child.gender, nat).toFixed(1),
@@ -58,7 +73,9 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
         return {
           key: m.id ?? `${idx}`,
           date: m.measured_date.slice(0, 10),
-          ca,
+          ca: age.decimal,
+          caY: age.years,
+          caM: age.months,
           ba,
           height: m.height as number,
           pah,
@@ -127,14 +144,18 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
         {rows.map((r) => {
           const d = r.ba - r.ca; // 뼈나이 − 만나이
           const good = d <= 0;
+          const baYM = splitBoneAgeYM(r.ba);
           return (
             <div key={r.key} className="leading-[1.35]">
               <div className="text-[10px] font-bold text-slate-700">{fmtDate(r.date)}</div>
-              <div className="text-[10px] text-slate-400">만 {r.ca.toFixed(1)}세</div>
-              <div className="text-[10px] text-orange-500">뼈 {r.ba.toFixed(1)}세</div>
+              <div className="text-[10px] text-slate-400">
+                만 {r.caY}세 {r.caM}개월
+              </div>
+              <div className="text-[10px] text-orange-500">
+                뼈 {baYM.y}세 {baYM.m}개월
+              </div>
               <div className={`text-[10px] font-bold ${good ? 'text-emerald-600' : 'text-rose-500'}`}>
-                {d >= 0 ? '+' : ''}
-                {d.toFixed(1)}
+                {fmtDeltaYM(d)}
               </div>
             </div>
           );
