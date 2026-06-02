@@ -68,6 +68,18 @@ const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
 
 // Marketing hub (PIN-protected standalone section)
 const MarketingLayout = lazy(() => import('@/features/marketing/components/MarketingLayout'));
+const MarketingDashboard = lazy(() =>
+  import('@/features/marketing/components/MarketingDashboard').then((m) => ({ default: m.MarketingDashboard })),
+);
+const StrategyViewer = lazy(() =>
+  import('@/features/marketing/components/StrategyViewer').then((m) => ({ default: m.StrategyViewer })),
+);
+const KeywordTable = lazy(() =>
+  import('@/features/marketing/components/KeywordTable').then((m) => ({ default: m.KeywordTable })),
+);
+const TopicBoard = lazy(() =>
+  import('@/features/marketing/components/TopicBoard').then((m) => ({ default: m.TopicBoard })),
+);
 
 function SuspenseFallback() {
   return (
@@ -203,10 +215,38 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
     children: [
-      { index: true, element: <div className="p-8 text-gray-500">대시보드 (작업 예정)</div> },
-      { path: 'strategy', element: <div className="p-8 text-gray-500">전략 문서 (작업 예정)</div> },
-      { path: 'keywords', element: <div className="p-8 text-gray-500">키워드 DB (작업 예정)</div> },
-      { path: 'topics', element: <div className="p-8 text-gray-500">주제 백로그 (작업 예정)</div> },
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingDashboard />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'strategy',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <StrategyViewer />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'keywords',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <KeywordTable />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'topics',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <TopicBoard />
+          </Suspense>
+        ),
+      },
     ],
   },
 
