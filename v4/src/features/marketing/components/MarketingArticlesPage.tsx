@@ -35,6 +35,7 @@ export function MarketingArticlesPage() {
       onNew={() => setView({ mode: 'edit', article: null })}
       onEdit={(a) => setView({ mode: 'edit', article: a })}
       onDelete={async (id) => {
+        if (!window.confirm('이 글을 삭제할까요?')) return;
         await deleteArticle(id);
         reload();
       }}

@@ -36,7 +36,7 @@ export function ArticleList({
                 <span>{a.updatedAt.slice(0, 10)}</span>
               </div>
             </button>
-            <button type="button" onClick={() => onDelete(a.id)} className="px-2 text-gray-300 hover:text-red-500">
+            <button type="button" aria-label="삭제" onClick={() => onDelete(a.id)} className="px-2 text-gray-300 hover:text-red-500">
               🗑
             </button>
           </div>
