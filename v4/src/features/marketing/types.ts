@@ -55,3 +55,18 @@ export interface MarketingConfig {
   targetLanguages: string[];
   aiModel: string;
 }
+
+export type ArticleStatus = 'draft' | 'done';
+
+export interface MarketingArticle {
+  id: string;
+  topicId: string | null;
+  title: string;
+  body: string;
+  category: string;
+  keywords: string[];
+  language: string;
+  status: ArticleStatus;
+  createdAt: string;
+  updatedAt: string;
+}
