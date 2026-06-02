@@ -11,6 +11,7 @@
     "build": "tsc -b && npm run build:i18n && vite build && npm run build:blog",
     "build:blog": "node scripts/build-blog.mjs",
     "build:i18n": "node scripts/build-i18n.mjs",
+    "extract:marketing": "node scripts/extract-marketing-data.mjs",
     "test:i18n": "node --test scripts/test/*.mjs",
     "start": "vite preview --port ${PORT:-3000} --host 0.0.0.0",
     "lint": "eslint .",

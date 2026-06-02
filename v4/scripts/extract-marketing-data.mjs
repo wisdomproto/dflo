@@ -5,9 +5,10 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = resolve(process.cwd());
-const SRC_HTML = resolve(ROOT, 'public/marketing/strategy/domestic-strategy.html');
-const OUT_DIR = resolve(ROOT, 'src/features/marketing/data');
+// Anchor to this script's dir (not cwd) so it runs from anywhere — parity with build-i18n.mjs.
+const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
+const SRC_HTML = resolve(SCRIPT_DIR, '../public/marketing/strategy/domestic-strategy.html');
+const OUT_DIR = resolve(SCRIPT_DIR, '../src/features/marketing/data');
 
 // 8-doc viewer manifest (filenames fixed by Task 1.1).
 export const STRATEGY_INDEX = [
@@ -22,6 +23,8 @@ export const STRATEGY_INDEX = [
 ];
 
 // Bracket-depth scanner (string/escape aware) → JSON.parse a `const NAME=[ ... ];` array.
+// Assumes the source declares `const NAME=[` with the literal adjacent (no space around `=`).
+// A source reformat would break this, but validate() catches the resulting count drift before any write.
 function extractArray(html, name) {
   const start = html.indexOf('const ' + name + '=');
   if (start < 0) throw new Error(`array not found: ${name}`);
@@ -61,13 +64,16 @@ export function extractDomestic(html) {
 
   const keywords = kwData.map((r) => {
     const tag = String(r[5] ?? '');
+    // Golden-ness is captured separately (isGolden); strip the 'gold' token so `category`
+    // holds only the semantic taxonomy (core/habit/product/'') the UI groups+filters by.
+    const category = tag.split(',').map((s) => s.trim()).filter((t) => t && t !== 'gold').join(',');
     return {
       keyword: String(r[0] ?? ''),
       pcSearch: Number(r[1]) || 0,
       mobileSearch: Number(r[2]) || 0,
       totalSearch: Number(r[3]) || 0,
       competition: toCompetition(String(r[4] ?? '')),
-      category: tag,
+      category,
       isGolden: tag.includes('gold'),
     };
   }).filter((k) => k.keyword);

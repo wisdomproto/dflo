@@ -23,7 +23,7 @@
     "mobileSearch": 6770,
     "totalSearch": 7560,
     "competition": "medium",
-    "category": "gold",
+    "category": "",
     "isGolden": true
   },
   {
@@ -113,7 +113,7 @@
     "mobileSearch": 3120,
     "totalSearch": 4130,
     "competition": "medium",
-    "category": "gold,core",
+    "category": "core",
     "isGolden": true
   },
   {
@@ -122,7 +122,7 @@
     "mobileSearch": 3450,
     "totalSearch": 3840,
     "competition": "medium",
-    "category": "gold,habit",
+    "category": "habit",
     "isGolden": true
   },
   {
@@ -140,7 +140,7 @@
     "mobileSearch": 2760,
     "totalSearch": 3060,
     "competition": "low",
-    "category": "gold,habit",
+    "category": "habit",
     "isGolden": true
   },
   {

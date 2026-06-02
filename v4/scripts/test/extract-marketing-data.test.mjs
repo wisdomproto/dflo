@@ -2,11 +2,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { extractDomestic, STRATEGY_INDEX } from '../extract-marketing-data.mjs';
 
+const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const HTML = readFileSync(
-  resolve(process.cwd(), 'public/marketing/strategy/domestic-strategy.html'),
+  resolve(SCRIPT_DIR, '../../public/marketing/strategy/domestic-strategy.html'),
   'utf8',
 );
 
@@ -18,6 +20,8 @@ test('extracts 72 keywords with 4 golden', () => {
   assert.ok(typeof sample.keyword === 'string' && sample.keyword.length > 0);
   assert.ok(['high', 'medium', 'low'].includes(sample.competition));
   assert.equal(typeof sample.totalSearch, 'number');
+  // category must not leak the golden marker (golden-ness lives on isGolden)
+  assert.ok(keywords.every((k) => !k.category.includes('gold')));
 });
 
 test('extracts 78 topics with correct category + status distribution', () => {
