@@ -31,3 +31,27 @@ export interface StrategyDoc {
   group: '국내' | '글로벌' | '국가별 작전' | '채널분석';
   order: number;
 }
+
+export interface BlogCategory {
+  code: string;
+  name: string;
+  context: string;
+}
+
+export interface MarketingConfig {
+  brandName: string;
+  brandDescription: string;
+  targetAudience: string;
+  usp: string;
+  brandTone: string;
+  bannedKeywords: string[];
+  marketerName: string;
+  marketerExpertise: string;
+  marketerStyle: string;
+  marketerPhrases: string[];
+  blogRules: string;
+  blogCategories: BlogCategory[];
+  blogImageStyle: string;
+  targetLanguages: string[];
+  aiModel: string;
+}
