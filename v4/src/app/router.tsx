@@ -66,6 +66,9 @@ const AdminDiagramPreviewPage = lazy(() => import('@/pages/admin/AdminDiagramPre
 const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
 const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
 
+// Marketing hub (PIN-protected standalone section)
+const MarketingLayout = lazy(() => import('@/features/marketing/components/MarketingLayout'));
+
 function SuspenseFallback() {
   return (
     <div className="flex h-screen items-center justify-center">
@@ -191,6 +194,20 @@ export const router = createBrowserRouter([
         <AdminAppHomePage />
       </Suspense>
     ),
+  },
+  {
+    path: '/marketing',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <MarketingLayout />
+      </Suspense>
+    ),
+    children: [
+      { index: true, element: <div className="p-8 text-gray-500">대시보드 (작업 예정)</div> },
+      { path: 'strategy', element: <div className="p-8 text-gray-500">전략 문서 (작업 예정)</div> },
+      { path: 'keywords', element: <div className="p-8 text-gray-500">키워드 DB (작업 예정)</div> },
+      { path: 'topics', element: <div className="p-8 text-gray-500">주제 백로그 (작업 예정)</div> },
+    ],
   },
 
   // Legacy /test/* URLs — redirect to the promoted /{lang}/ paths so old bookmarks and
