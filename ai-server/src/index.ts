@@ -12,6 +12,7 @@ import { analyticsRouter } from './routes/analytics.js';
 import { embeddingsRouter } from './routes/embeddings.js';
 import { similarCasesRouter } from './routes/similarCases.js';
 import { coachingRouter } from './routes/coaching.js';
+import { marketingRouter } from './routes/marketing.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -77,6 +78,7 @@ app.use('/api/analytics', analyticsRouter);
 app.use('/api/embeddings', ...middlewares, embeddingsRouter);
 app.use('/api/similar-cases', ...middlewares, similarCasesRouter);
 app.use('/api/coaching', ...middlewares, coachingRouter);
+app.use('/api/marketing', ...middlewares, marketingRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
