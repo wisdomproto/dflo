@@ -80,6 +80,9 @@ const KeywordTable = lazy(() =>
 const TopicBoard = lazy(() =>
   import('@/features/marketing/components/TopicBoard').then((m) => ({ default: m.TopicBoard })),
 );
+const MarketingSettings = lazy(() =>
+  import('@/features/marketing/components/MarketingSettings').then((m) => ({ default: m.MarketingSettings })),
+);
 
 function SuspenseFallback() {
   return (
@@ -244,6 +247,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <TopicBoard />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'settings',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingSettings />
           </Suspense>
         ),
       },

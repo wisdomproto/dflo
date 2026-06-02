@@ -6,6 +6,7 @@ const NAV = [
   { to: '/marketing/strategy', label: '전략 문서', end: false },
   { to: '/marketing/keywords', label: '키워드 DB', end: false },
   { to: '/marketing/topics', label: '주제 백로그', end: false },
+  { to: '/marketing/settings', label: '설정', end: false },
 ];
 
 export function MarketingSidebar() {
