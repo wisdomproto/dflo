@@ -21,12 +21,14 @@ marketingRouter.post('/generate-article', async (req: Request, res: Response) =>
     return res.status(400).json({ success: false, error: 'title required' });
   }
   try {
-    const { data: config } = await sb
+    const { data: config, error: cfgErr } = await sb
       .from('marketing_config')
       .select('*')
       .eq('id', 1)
       .maybeSingle();
+    if (cfgErr) console.warn('[marketing] config read failed — using empty config:', cfgErr.message);
     const prompt = buildArticlePrompt((config ?? {}) as ArticleConfig, body);
+    // ai_model intentionally ignored: generateText is fixed-model (gemini-2.5-flash).
     const content = await generateText(prompt);
     const clean = (content ?? '').trim();
     if (clean.length < 100) {
