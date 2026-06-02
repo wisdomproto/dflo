@@ -53,10 +53,14 @@ interface TrendRow {
 interface Props {
   child: Child;
   measurements: HospitalMeasurement[];
+  /** 확대 모달용 — 텍스트·점·축 폰트를 키운다. */
+  enlarged?: boolean;
 }
 
-export function PredictedHeightTrend({ child, measurements }: Props) {
+export function PredictedHeightTrend({ child, measurements, enlarged = false }: Props) {
   const nat: Nationality = child.nationality ?? 'KR';
+  const yAxisW = enlarged ? 64 : Y_AXIS_W;
+  const cellTxt = enlarged ? 'text-[15px]' : 'text-[10px]';
 
   const rows = useMemo<TrendRow[]>(() => {
     return [...measurements]
@@ -100,9 +104,9 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
         borderColor: COLOR_PAH,
         backgroundColor: COLOR_PAH,
         tension: 0.3,
-        borderWidth: 2.5,
-        pointRadius: 4,
-        pointHoverRadius: 6,
+        borderWidth: enlarged ? 3.5 : 2.5,
+        pointRadius: enlarged ? 6 : 4,
+        pointHoverRadius: enlarged ? 8 : 6,
       },
     ],
   };
@@ -119,10 +123,15 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
     scales: {
       x: { grid: { display: false }, ticks: { display: false } },
       y: {
-        title: { display: true, text: '예측키 (cm)' },
+        title: {
+          display: true,
+          text: '예측키 (cm)',
+          font: { size: enlarged ? 17 : 12 },
+        },
+        ticks: { font: { size: enlarged ? 15 : 11 } },
         grid: { color: 'rgba(0,0,0,0.04)' },
         afterFit: (axis: any) => {
-          axis.width = Y_AXIS_W;
+          axis.width = yAxisW;
         },
       },
     },
@@ -134,10 +143,10 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
         <Line data={data} options={options} />
       </div>
       <div
-        className="grid border-t border-slate-100 pt-1.5 text-center"
+        className={`grid border-t border-slate-100 text-center ${enlarged ? 'pt-3' : 'pt-1.5'}`}
         style={{
           gridTemplateColumns: `repeat(${rows.length}, minmax(0,1fr))`,
-          paddingLeft: Y_AXIS_W,
+          paddingLeft: yAxisW,
           paddingRight: PAD_R,
         }}
       >
@@ -146,15 +155,15 @@ export function PredictedHeightTrend({ child, measurements }: Props) {
           const good = d <= 0;
           const baYM = splitBoneAgeYM(r.ba);
           return (
-            <div key={r.key} className="leading-[1.35]">
-              <div className="text-[10px] font-bold text-slate-700">{fmtDate(r.date)}</div>
-              <div className="text-[10px] text-slate-400">
+            <div key={r.key} className={enlarged ? 'leading-[1.6]' : 'leading-[1.35]'}>
+              <div className={`${cellTxt} font-bold text-slate-700`}>{fmtDate(r.date)}</div>
+              <div className={`${cellTxt} text-slate-400`}>
                 만 {r.caY}세 {r.caM}개월
               </div>
-              <div className="text-[10px] text-orange-500">
+              <div className={`${cellTxt} text-orange-500`}>
                 뼈 {baYM.y}세 {baYM.m}개월
               </div>
-              <div className={`text-[10px] font-bold ${good ? 'text-emerald-600' : 'text-rose-500'}`}>
+              <div className={`${cellTxt} font-bold ${good ? 'text-emerald-600' : 'text-rose-500'}`}>
                 {fmtDeltaYM(d)}
               </div>
             </div>

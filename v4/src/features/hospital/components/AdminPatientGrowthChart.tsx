@@ -74,6 +74,8 @@ interface Props {
   /** Called when the user clicks a measurement point. Useful in simplified
    *  mode where the parent doesn't already track a selected visit. */
   onVisitSelect?: (visitId: string) => void;
+  /** 확대 모달용 — 축 제목·눈금 폰트를 키운다. */
+  enlarged?: boolean;
 }
 
 function buildProjection(
@@ -123,6 +125,7 @@ export function AdminPatientGrowthChart({
   simplified = false,
   defaultHidePrediction = false,
   onVisitSelect,
+  enlarged = false,
 }: Props) {
   const [visible, setVisible] = useState<Record<ToggleKey, boolean>>({
     boneAge: true,
@@ -506,21 +509,21 @@ export function AdminPatientGrowthChart({
     scales: {
       x: {
         type: 'linear',
-        title: { display: true, text: 'Age (years)', font: { size: 12 } },
+        title: { display: true, text: 'Age (years)', font: { size: enlarged ? 16 : 12 } },
         min: X_MIN,
         max: X_MAX,
         ticks: {
           stepSize: 1,
-          font: { size: 11 },
+          font: { size: enlarged ? 14 : 11 },
           callback: (v) => (Number.isInteger(Number(v)) ? `${v}` : ''),
         },
         grid: { color: 'rgba(0,0,0,0.04)' },
       },
       y: {
-        title: { display: true, text: 'Height (cm)', font: { size: 12 } },
+        title: { display: true, text: 'Height (cm)', font: { size: enlarged ? 16 : 12 } },
         min: Y_MIN,
         max: Y_MAX,
-        ticks: { stepSize: 5, font: { size: 11 } },
+        ticks: { stepSize: 5, font: { size: enlarged ? 14 : 11 } },
         grid: { color: 'rgba(0,0,0,0.04)' },
       },
     },

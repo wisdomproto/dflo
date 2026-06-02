@@ -63,10 +63,7 @@ export default function AdminLayout() {
         }`}
       >
         {!collapsed && (
-          <div>
-            <h2 className="text-lg font-bold text-gray-900">187 성장케어</h2>
-            <p className="text-xs text-gray-500 mt-0.5">관리자 대시보드</p>
-          </div>
+          <img src="/images/logo.jpg" alt="187 성장클리닉" className="h-9 w-auto" />
         )}
         <button
           type="button"

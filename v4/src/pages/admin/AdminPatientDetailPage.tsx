@@ -15,22 +15,19 @@ import { updateChildField } from '@/features/hospital/services/intakeSurveyServi
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
 import { ZoomModal } from '@/shared/components/ZoomModal';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
-import { calculateAge } from '@/shared/utils/age';
-import type { Child, HospitalMeasurement, User, Visit } from '@/shared/types';
-
-type ParentInfo = Pick<User, 'id' | 'name' | 'email' | 'phone'>;
+import type { Child, HospitalMeasurement, Visit } from '@/shared/types';
 
 export default function AdminPatientDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [child, setChild] = useState<Child | null>(null);
   const [measurements, setMeasurements] = useState<HospitalMeasurement[]>([]);
-  const [parent, setParent] = useState<ParentInfo | null>(null);
   const [visits, setVisits] = useState<Visit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVisitId, setSelectedVisitId] = useState<string | null>(null);
   const [chartCollapsed, setChartCollapsed] = useState(false);
   const [chartTab, setChartTab] = useState<'curve' | 'trend'>('curve');
+  const [chartZoomed, setChartZoomed] = useState(false);
   const [detailCollapsed, setDetailCollapsed] = useState(false);
   const [comparisonOpen, setComparisonOpen] = useState(false);
   // 기본 정보는 진료 기록 상단에 접힌 채로 고정 — 필요할 때만 펼침
@@ -47,7 +44,6 @@ export default function AdminPatientDetailPage() {
     ]);
     setChild(detail.child);
     setMeasurements(detail.measurements as HospitalMeasurement[]);
-    setParent(detail.parent);
     setVisits(vs);
     return { visits: vs };
   };
@@ -124,25 +120,27 @@ export default function AdminPatientDetailPage() {
   if (error) return <div className="p-6 text-sm text-red-500">{error}</div>;
   if (!child) return <div className="p-6 text-sm text-red-500">환자를 찾을 수 없습니다.</div>;
 
-  const age = calculateAge(child.birth_date);
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-3">
       {/* Slim header */}
       <div className="flex shrink-0 items-center justify-between gap-4 rounded-lg border border-slate-200 bg-white px-3 py-2">
         <div className="flex items-center gap-3">
-          <img src="/images/logo.jpg" alt="187 성장클리닉" className="h-8 w-auto" />
           <div>
-            <h1 className="flex items-center gap-2 text-base font-bold leading-tight text-slate-900">
+            <h1 className="flex items-baseline gap-2 text-base font-bold leading-tight text-slate-900">
               <span className="font-mono text-[12px] text-slate-500">#{child.chart_number}</span>
               <span>{child.name}</span>
+              <span className="text-[12px] font-normal text-slate-500">
+                {child.gender === 'male' ? '남' : '여'} · {child.birth_date}
+              </span>
             </h1>
-            <div className="text-[11px] text-slate-500">
-              {child.gender === 'male' ? '남' : '여'} · {child.birth_date} · 만 {age.years}세{age.months}개월
-              {child.father_height ? ` · 父 ${child.father_height}cm` : ''}
-              {child.mother_height ? ` · 母 ${child.mother_height}cm` : ''}
-              {parent ? ` · 보호자 ${parent.name}` : ''}
-            </div>
+            {(child.father_height || child.mother_height) && (
+              <div className="text-[11px] text-slate-500">
+                {child.father_height ? `父 ${child.father_height}cm` : ''}
+                {child.father_height && child.mother_height ? ' · ' : ''}
+                {child.mother_height ? `母 ${child.mother_height}cm` : ''}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -467,15 +465,26 @@ export default function AdminPatientDetailPage() {
                     예측키 추세
                   </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setChartCollapsed(true)}
-                  title="성장 그래프 접기"
-                  aria-label="성장 그래프 접기"
-                  className="h-7 w-7 shrink-0 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
-                >
-                  ›
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setChartZoomed(true)}
+                    title="크게 보기"
+                    aria-label="크게 보기"
+                    className="h-7 w-7 shrink-0 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  >
+                    ⤢
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setChartCollapsed(true)}
+                    title="성장 그래프 접기"
+                    aria-label="성장 그래프 접기"
+                    className="h-7 w-7 shrink-0 rounded border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  >
+                    ›
+                  </button>
+                </div>
               </div>
               <div className="min-h-0 flex-1">
                 {chartTab === 'curve' ? (
@@ -500,6 +509,56 @@ export default function AdminPatientDetailPage() {
             </>
           )}
         </section>
+
+        {/* 성장 그래프 크게 보기 — 현재 선택된 탭(곡선/추세)을 모달로 확대 */}
+        {chartZoomed && (
+          <ZoomModal
+            onClose={() => setChartZoomed(false)}
+            title="성장 그래프"
+            maxWidth="min(1400px, 96vw)"
+          >
+            <div className="flex h-[82vh] w-full flex-col">
+              {/* 모달 안에서도 탭으로 곡선/추세 전환 */}
+              <div className="mb-2 flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => setChartTab('curve')}
+                  className={`rounded px-3 py-1.5 text-sm font-semibold ${chartTab === 'curve' ? 'bg-slate-800 text-white' : 'text-slate-500 hover:bg-slate-100'}`}
+                >
+                  성장 곡선
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setChartTab('trend')}
+                  className={`rounded px-3 py-1.5 text-sm font-semibold ${chartTab === 'trend' ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:bg-slate-100'}`}
+                >
+                  예측키 추세
+                </button>
+              </div>
+              <div className="min-h-0 flex-1">
+                {chartTab === 'curve' ? (
+                  <AdminPatientGrowthChart
+                    child={child}
+                    measurements={measurements}
+                    selectedVisitId={selectedVisitId}
+                    defaultHidePrediction
+                    enlarged
+                    onNationalityChange={async (next) => {
+                      try {
+                        const updated = await updateChildField(child.id, { nationality: next });
+                        setChild(updated);
+                      } catch {
+                        /* noop */
+                      }
+                    }}
+                  />
+                ) : (
+                  <PredictedHeightTrend child={child} measurements={measurements} enlarged />
+                )}
+              </div>
+            </div>
+          </ZoomModal>
+        )}
       </div>
       )}
 

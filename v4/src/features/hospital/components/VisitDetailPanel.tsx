@@ -13,7 +13,6 @@ import {
 } from '@/features/hospital/services/labTestService';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
 import { splitBoneAgeYM, parseBoneAgeDec } from '@/shared/utils/boneAge';
-import { calculateAgeAtDate } from '@/shared/utils/age';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import { usePasteTarget } from '@/shared/hooks/usePasteTarget';
@@ -50,7 +49,6 @@ export function VisitDetailPanel({
   onNationalityChange,
 }: Props) {
   const m = measurements.find((x) => x.visit_id === visit.id) ?? null;
-  const chronoAge = calculateAgeAtDate(child.birth_date, new Date(visit.visit_date));
   const nationality = child.nationality ?? 'KR';
 
   // Live bone age + PAH from XrayPanel so the 측정 section shows the same
@@ -107,7 +105,8 @@ export function VisitDetailPanel({
     return () => {
       cancelled = true;
     };
-  }, [visit.id]);
+    // xrayRefreshKey: X-ray 저장 후 재실행 → 'X-ray 없음' 뱃지 즉시 갱신.
+  }, [visit.id, xrayRefreshKey]);
 
   // 측정 grid 입력 미리보기: NumberField 가 onBlur 시점에 saveField 를 호출해
   // measurements prop 이 갱신되기 전까지는 PAH/헤더 BA 가 stale 상태로 남는다.
@@ -238,15 +237,6 @@ export function VisitDetailPanel({
         <div className="flex items-baseline justify-between rounded-lg border border-slate-200 bg-white px-3 py-2">
           <div className="flex items-baseline gap-2">
             <span className="text-sm font-semibold text-slate-900">{visit.visit_date}</span>
-            <span className="text-[11px] text-slate-500">
-              CA {chronoAge.years}년 {chronoAge.months}개월
-            </span>
-            {effectiveBoneAge != null && (
-              <span className="text-[11px] text-slate-500">BA {effectiveBoneAge.toFixed(1)}</span>
-            )}
-            {pah != null && (
-              <span className="text-[11px] text-indigo-600">PAH {pah.toFixed(1)}</span>
-            )}
           </div>
         </div>
 
@@ -369,7 +359,11 @@ export function VisitDetailPanel({
             onToggleCollapse={() => {
               /* no-op inside VisitDetailPanel; zoom button handles expansion */
             }}
-            onSaved={onXraySaved}
+            onSaved={() => {
+              onXraySaved();
+              // 저장 후 presence probe 재실행 → 헤더 탭 'X-ray 없음' 뱃지 갱신.
+              setXrayRefreshKey((k) => k + 1);
+            }}
             embedded
             onNationalityChange={onNationalityChange}
             onLiveChange={setLiveXray}
