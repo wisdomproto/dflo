@@ -1,36 +1,85 @@
 // src/features/marketing/components/MarketingSidebar.tsx
 import { NavLink } from 'react-router-dom';
 
-const NAV = [
-  { to: '/marketing', label: '대시보드', end: true },
-  { to: '/marketing/strategy', label: '전략 문서', end: false },
-  { to: '/marketing/keywords', label: '키워드 DB', end: false },
-  { to: '/marketing/topics', label: '주제 백로그', end: false },
-  { to: '/marketing/settings', label: '설정', end: false },
-  { to: '/marketing/articles', label: '글 생성', end: false },
+interface NavItem {
+  to: string;
+  icon: string;
+  label: string;
+  soon?: boolean;
+}
+
+const SETTINGS: NavItem = { to: '/marketing/settings', icon: '⚙️', label: '설정' };
+
+const GROUPS: { label: string; items: NavItem[] }[] = [
+  {
+    label: '오가닉 마케팅',
+    items: [
+      { to: '/marketing/keywords', icon: '💡', label: '키워드 / 아이디어' },
+      { to: '/marketing/content', icon: '📝', label: '콘텐츠 생성' },
+      { to: '/marketing/publish', icon: '🚀', label: '발행', soon: true },
+    ],
+  },
+  {
+    label: '성장',
+    items: [{ to: '/marketing/monitoring', icon: '💬', label: '모니터링 / 댓글', soon: true }],
+  },
+  {
+    label: '유료 마케팅',
+    items: [{ to: '/marketing/ads', icon: '📢', label: '광고 관리', soon: true }],
+  },
+  {
+    label: '분석',
+    items: [
+      { to: '/marketing/site-analysis', icon: '📊', label: '사이트 분석', soon: true },
+      { to: '/marketing/channel-analytics', icon: '📱', label: '채널 분석', soon: true },
+      { to: '/marketing/competitors', icon: '🎯', label: '경쟁사', soon: true },
+    ],
+  },
+  {
+    label: '전략',
+    items: [{ to: '/marketing/strategy', icon: '💡', label: '마케팅 전략' }],
+  },
 ];
+
+function Item({ item }: { item: NavItem }) {
+  return (
+    <NavLink
+      to={item.to}
+      className={({ isActive }) =>
+        `flex items-center gap-2 rounded-lg px-3 py-2 text-sm ${
+          isActive
+            ? 'bg-[#4A2D6B] text-white'
+            : `${item.soon ? 'text-gray-400' : 'text-gray-600'} hover:bg-gray-100`
+        }`
+      }
+    >
+      <span>{item.icon}</span>
+      <span className="flex-1">{item.label}</span>
+      {item.soon && (
+        <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] text-amber-700">준비 중</span>
+      )}
+    </NavLink>
+  );
+}
 
 export function MarketingSidebar() {
   return (
-    <aside className="flex w-52 flex-shrink-0 flex-col border-r border-gray-200 bg-white">
+    <aside className="flex w-52 flex-shrink-0 flex-col overflow-y-auto border-r border-gray-200 bg-white">
       <div className="px-5 py-5">
         <div className="text-base font-bold text-[#4A2D6B]">187 마케팅 센터</div>
         <div className="text-xs text-gray-400">연세새봄의원</div>
       </div>
-      <nav className="flex flex-col gap-1 px-3">
-        {NAV.map((n) => (
-          <NavLink
-            key={n.to}
-            to={n.to}
-            end={n.end}
-            className={({ isActive }) =>
-              `rounded-lg px-3 py-2 text-sm ${
-                isActive ? 'bg-[#4A2D6B] text-white' : 'text-gray-600 hover:bg-gray-100'
-              }`
-            }
-          >
-            {n.label}
-          </NavLink>
+      <nav className="flex flex-col gap-3 px-3 pb-4">
+        <Item item={SETTINGS} />
+        {GROUPS.map((g) => (
+          <div key={g.label} className="flex flex-col gap-0.5">
+            <div className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-gray-400">
+              {g.label}
+            </div>
+            {g.items.map((it) => (
+              <Item key={it.to} item={it} />
+            ))}
+          </div>
         ))}
       </nav>
       <a href="/" className="mt-auto px-5 py-4 text-xs text-gray-400 hover:text-gray-600">

@@ -68,8 +68,8 @@ const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
 
 // Marketing hub (PIN-protected standalone section)
 const MarketingLayout = lazy(() => import('@/features/marketing/components/MarketingLayout'));
-const MarketingDashboard = lazy(() =>
-  import('@/features/marketing/components/MarketingDashboard').then((m) => ({ default: m.MarketingDashboard })),
+const MarketingPlaceholder = lazy(() =>
+  import('@/features/marketing/components/MarketingPlaceholder').then((m) => ({ default: m.MarketingPlaceholder })),
 );
 const StrategyViewer = lazy(() =>
   import('@/features/marketing/components/StrategyViewer').then((m) => ({ default: m.StrategyViewer })),
@@ -221,14 +221,7 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
     children: [
-      {
-        index: true,
-        element: (
-          <Suspense fallback={<SuspenseFallback />}>
-            <MarketingDashboard />
-          </Suspense>
-        ),
-      },
+      { index: true, element: <Navigate to="/marketing/keywords" replace /> },
       {
         path: 'strategy',
         element: (
@@ -262,10 +255,59 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: 'articles',
+        path: 'content',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <MarketingArticlesPage />
+          </Suspense>
+        ),
+      },
+      { path: 'articles', element: <Navigate to="/marketing/content" replace /> },
+      {
+        path: 'publish',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingPlaceholder title="발행" planned="전 채널 발행 큐·예약·Meta/YouTube 발행 (ContentFlow 발행 이식 예정)" />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'monitoring',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingPlaceholder title="모니터링 / 댓글" planned="키워드 소셜 리스닝 + AI 댓글 생성 (ContentFlow 모니터링 이식 예정)" />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'ads',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingPlaceholder title="광고 관리" planned="Meta·YouTube 광고 성과 관리 (ContentFlow 광고 이식 예정)" />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'site-analysis',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingPlaceholder title="사이트 분석" planned="GA4 트래픽 + SEO/GEO 감사 (dflo banner-admin GA4 연동 예정)" />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'channel-analytics',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingPlaceholder title="채널 분석" planned="Meta·YouTube 채널 인사이트 (ContentFlow 채널분석 이식 예정)" />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'competitors',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <MarketingPlaceholder title="경쟁사" planned="AI 경쟁사 순위·콘텐츠 갭 분석 (ContentFlow 경쟁사 이식 예정)" />
           </Suspense>
         ),
       },

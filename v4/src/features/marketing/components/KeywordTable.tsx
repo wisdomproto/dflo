@@ -44,6 +44,9 @@ export function KeywordTable() {
 
   return (
     <div className="p-6">
+      <div className="mb-4 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
+        💡 현재는 <b>보관함</b>(추출된 키워드 72개)입니다. 라이브 키워드 분석(네이버·DataForSEO)은 준비 중.
+      </div>
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <input
           value={q}
