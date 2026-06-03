@@ -37,6 +37,7 @@ export async function searchGoogle(keywords: string[]): Promise<KeywordHit[]> {
   }));
 }
 
+// Keep field lists in sync: 018 migration columns ↔ savePin row ↔ rowToSaved ↔ SavedKeyword/KeywordHit.
 type Row = Record<string, unknown>;
 function rowToSaved(r: Row): SavedKeyword {
   return {
