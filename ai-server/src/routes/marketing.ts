@@ -5,6 +5,7 @@ import { Router, type Request, type Response } from 'express';
 import { createClient } from '@supabase/supabase-js';
 import { generateText } from '../services/gemini.js';
 import { buildArticlePrompt, type ArticleConfig, type ArticleRequest } from '../services/articleGenerator.js';
+import { searchNaverKeywords, searchGoogleKeywords } from '../services/keywordSearch.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -39,5 +40,35 @@ marketingRouter.post('/generate-article', async (req: Request, res: Response) =>
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] generate-article failed', e);
     res.status(500).json({ success: false, error: msg });
+  }
+});
+
+marketingRouter.post('/naver-keywords', async (req: Request, res: Response) => {
+  const keywords = (req.body?.keywords ?? []) as string[];
+  if (!Array.isArray(keywords) || keywords.length === 0) {
+    return res.status(400).json({ success: false, error: 'keywords required' });
+  }
+  try {
+    const results = await searchNaverKeywords(keywords);
+    res.json({ success: true, results });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] naver-keywords failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+marketingRouter.post('/google-keywords', async (req: Request, res: Response) => {
+  const keywords = (req.body?.keywords ?? []) as string[];
+  if (!Array.isArray(keywords) || keywords.length === 0) {
+    return res.status(400).json({ success: false, error: 'keywords required' });
+  }
+  try {
+    const results = await searchGoogleKeywords(keywords);
+    res.json({ success: true, results });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] google-keywords failed', e);
+    res.status(502).json({ success: false, error: msg });
   }
 });
