@@ -67,10 +67,11 @@ export async function runAudit(url: string): Promise<AuditResult> {
 
 /** Gemini-gated AI improvement suggestions. */
 export async function getSuggestions(payload: SuggestPayload): Promise<string[]> {
+  // Server re-audits the URL authoritatively, so only the URL is sent on the wire.
   const res = await fetch(`${BASE}/api/marketing/seo-suggest`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ url: payload.url }),
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok || !body.success) throw new Error(body.error || `제안 실패: ${res.status}`);

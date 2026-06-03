@@ -16,8 +16,8 @@ const COMP_COLOR: Record<Competition, string> = {
 
 const TIER_META: Record<GoldenTier, { icon: string; label: string; chip: string }> = {
   gold: { icon: '🏆', label: '황금', chip: 'bg-amber-400 text-amber-900' },
-  silver: { icon: '🥇', label: '유망', chip: 'bg-slate-200 text-slate-700' },
-  bronze: { icon: '🥈', label: '일반', chip: 'bg-orange-100 text-orange-700' },
+  silver: { icon: '🥈', label: '유망', chip: 'bg-slate-200 text-slate-700' },
+  bronze: { icon: '🥉', label: '일반', chip: 'bg-orange-100 text-orange-700' },
 };
 const TIER_ORDER: GoldenTier[] = ['gold', 'silver', 'bronze'];
 

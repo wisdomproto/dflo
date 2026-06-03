@@ -41,6 +41,28 @@ export interface AuditResult {
 
 const clamp = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 
+const MAX_REDIRECTS = 5;
+const MAX_BYTES = 5_000_000;
+
+/** Block SSRF to internal/loopback/link-local/private hosts (defense-in-depth behind the PIN gate). */
+function assertPublicHost(hostname: string): void {
+  const h = hostname.toLowerCase().replace(/^\[/, '').replace(/\]$/, '');
+  const blocked =
+    h === 'localhost' ||
+    h.endsWith('.localhost') ||
+    h === '0.0.0.0' ||
+    h === '::1' ||
+    h === '::' ||
+    /^127\./.test(h) ||
+    /^10\./.test(h) ||
+    /^192\.168\./.test(h) ||
+    /^169\.254\./.test(h) ||
+    /^172\.(1[6-9]|2[0-9]|3[01])\./.test(h) ||
+    /^f[cd][0-9a-f]{0,2}:/i.test(h) || // IPv6 ULA fc00::/7
+    /^fe[89ab][0-9a-f]?:/i.test(h); // IPv6 link-local fe80::/10
+  if (blocked) throw new Error('내부/사설 주소는 분석할 수 없습니다.');
+}
+
 /**
  * Fetch a URL and run the rule-based on-page audit.
  * SSRF/hang guard: http(s) scheme only, custom User-Agent, 8s AbortController
@@ -62,31 +84,57 @@ export async function fetchAndAudit(rawUrl: string): Promise<AuditResult> {
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8000);
-  let res: Response;
   try {
-    res = await fetch(parsed.toString(), {
-      method: 'GET',
-      redirect: 'follow',
-      signal: controller.signal,
-      headers: { 'User-Agent': 'dflo SEO Bot/1.0' },
-    });
+    // Follow redirects manually, re-validating the host at every hop (SSRF defense).
+    let current = parsed;
+    let res: Response | null = null;
+    for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
+      if (current.protocol !== 'http:' && current.protocol !== 'https:') {
+        throw new Error('http 또는 https URL만 분석할 수 있습니다.');
+      }
+      assertPublicHost(current.hostname);
+      const r = await fetch(current.toString(), {
+        method: 'GET',
+        redirect: 'manual',
+        signal: controller.signal,
+        headers: { 'User-Agent': 'dflo SEO Bot/1.0' },
+      });
+      if (r.status >= 300 && r.status < 400) {
+        const loc = r.headers.get('location');
+        if (!loc) {
+          res = r;
+          break;
+        }
+        if (hop === MAX_REDIRECTS) throw new Error('리다이렉트가 너무 많습니다.');
+        current = new URL(loc, current); // resolve relative; re-validated on next loop
+        continue;
+      }
+      res = r;
+      break;
+    }
+    if (!res) throw new Error('페이지를 불러오지 못했습니다.');
+    if (!res.ok) throw new Error(`페이지 응답 오류 (${res.status}).`);
+    const contentType = res.headers.get('content-type') ?? '';
+    if (!contentType.includes('text/html')) {
+      throw new Error('HTML 페이지가 아닙니다 (text/html 아님).');
+    }
+    const declaredLen = Number(res.headers.get('content-length') ?? '0');
+    if (declaredLen && declaredLen > MAX_BYTES) {
+      throw new Error('페이지가 너무 큽니다 (5MB 초과).');
+    }
+    const html = await res.text();
+    if (html.length > MAX_BYTES) {
+      throw new Error('페이지가 너무 큽니다 (5MB 초과).');
+    }
+    return auditHtml(html, current);
   } catch (e) {
-    clearTimeout(timer);
     if (e instanceof Error && e.name === 'AbortError') {
       throw new Error('페이지 응답이 너무 느립니다 (8초 초과).');
     }
-    throw new Error(`페이지를 불러오지 못했습니다: ${e instanceof Error ? e.message : String(e)}`);
+    throw e instanceof Error ? e : new Error(String(e));
+  } finally {
+    clearTimeout(timer);
   }
-  clearTimeout(timer);
-
-  if (!res.ok) throw new Error(`페이지 응답 오류 (${res.status}).`);
-  const contentType = res.headers.get('content-type') ?? '';
-  if (!contentType.includes('text/html')) {
-    throw new Error('HTML 페이지가 아닙니다 (text/html 아님).');
-  }
-
-  const html = await res.text();
-  return auditHtml(html, parsed);
 }
 
 /** Pure scorer over parsed HTML — separated for testability. */
@@ -122,10 +170,9 @@ function auditHtml(html: string, parsed: URL): AuditResult {
   const robotsMeta = ($('meta[name="robots"]').attr('content') || '').toLowerCase();
   const robotsOk = !robotsMeta.includes('noindex');
 
-  // Body text length (strip script/style).
-  const bodyClone = cheerio.load(html);
-  bodyClone('script, style, noscript').remove();
-  const textLength = bodyClone('body').text().replace(/\s+/g, ' ').trim().length;
+  // Body text length (strip script/style). Reuse $ — all other reads above are done.
+  $('script, style, noscript').remove();
+  const textLength = $('body').text().replace(/\s+/g, ' ').trim().length;
 
   const questionH2 = h2s.some((t) => t.includes('?') || t.includes('？'));
 

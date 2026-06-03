@@ -67,14 +67,14 @@ function rowToCompetitor(r: Row): Competitor {
 }
 
 // id 제외(insert 시 DB 생성, update 시 eq로 지정). updated_at은 항상 now.
+// 제공된 키만 emit — 부분 patch(update)가 미지정 컬럼을 기본값으로 덮어쓰지 않도록.
 function competitorToRow(c: Partial<Competitor>): Row {
-  return {
-    name: c.name ?? '',
-    url: c.url ?? null,
-    kind: c.kind ?? 'direct',
-    memo: c.memo ?? null,
-    updated_at: new Date().toISOString(),
-  };
+  const row: Row = { updated_at: new Date().toISOString() };
+  if (c.name !== undefined) row.name = c.name;
+  if (c.url !== undefined) row.url = c.url ?? null;
+  if (c.kind !== undefined) row.kind = c.kind;
+  if (c.memo !== undefined) row.memo = c.memo ?? null;
+  return row;
 }
 
 export async function fetchCompetitors(): Promise<Competitor[]> {

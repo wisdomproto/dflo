@@ -13,8 +13,8 @@ function BreakdownBlock({ title, rows }: { title: string; rows: ChannelRow[] }) 
         <p className="py-6 text-center text-xs text-gray-400">데이터 없음</p>
       ) : (
         <div className="space-y-2">
-          {rows.map((r) => (
-            <div key={r.label}>
+          {rows.map((r, i) => (
+            <div key={`${r.label}-${i}`}>
               <div className="mb-0.5 flex items-baseline justify-between gap-2 text-xs">
                 <span className="min-w-0 truncate font-medium text-gray-700">{r.label}</span>
                 <span className="shrink-0 tabular-nums text-gray-500">

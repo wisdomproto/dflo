@@ -84,6 +84,10 @@ export function PublishQueuePage() {
         window.alert(body.error || `발행 실패 (${res.status})`);
         return;
       }
+      // 자동 발행 성공 시(키 활성화 후) 큐 행을 published 로 전이 — published_url 보존.
+      if (body.publishedUrl) {
+        await markPublished(id, String(body.publishedUrl));
+      }
       reload();
     } catch (e) {
       window.alert(e instanceof Error ? e.message : '발행 요청 실패');
