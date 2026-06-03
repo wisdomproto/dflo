@@ -70,3 +70,24 @@ export interface MarketingArticle {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface KeywordHit {
+  keyword: string;
+  pcSearch: number;
+  mobileSearch: number;
+  totalSearch: number;
+  competition: string;
+  cpc: number;
+  source: 'naver' | 'google';
+}
+
+export interface SavedKeyword {
+  keyword: string;
+  pcSearch: number;
+  mobileSearch: number;
+  totalSearch: number;
+  competition: string;
+  cpc: number;
+  source: string;
+  createdAt: string;
+}
