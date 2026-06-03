@@ -16,23 +16,23 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     items: [
       { to: '/marketing/keywords', icon: '💡', label: '키워드 / 아이디어' },
       { to: '/marketing/content', icon: '📝', label: '콘텐츠 생성' },
-      { to: '/marketing/publish', icon: '🚀', label: '발행', soon: true },
+      { to: '/marketing/publish', icon: '🚀', label: '발행' },
     ],
   },
   {
     label: '성장',
-    items: [{ to: '/marketing/monitoring', icon: '💬', label: '모니터링 / 댓글', soon: true }],
+    items: [{ to: '/marketing/monitoring', icon: '💬', label: '모니터링 / 댓글' }],
   },
   {
     label: '유료 마케팅',
-    items: [{ to: '/marketing/ads', icon: '📢', label: '광고 관리', soon: true }],
+    items: [{ to: '/marketing/ads', icon: '📢', label: '광고 관리' }],
   },
   {
     label: '분석',
     items: [
-      { to: '/marketing/site-analysis', icon: '📊', label: '사이트 분석', soon: true },
-      { to: '/marketing/channel-analytics', icon: '📱', label: '채널 분석', soon: true },
-      { to: '/marketing/competitors', icon: '🎯', label: '경쟁사', soon: true },
+      { to: '/marketing/site-analysis', icon: '📊', label: '사이트 분석' },
+      { to: '/marketing/channel-analytics', icon: '📱', label: '채널 분석' },
+      { to: '/marketing/competitors', icon: '🎯', label: '경쟁사' },
     ],
   },
   {

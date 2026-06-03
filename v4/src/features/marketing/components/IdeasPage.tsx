@@ -5,6 +5,8 @@ import type { Keyword, Competition, SavedKeyword } from '../types';
 import { fetchPins } from '../services/marketingKeywordService';
 import { KeywordAnalysisTab } from './KeywordAnalysisTab';
 import { KeywordTable } from './KeywordTable';
+import { GoldenKeywordTab } from './GoldenKeywordTab';
+import { KeywordIdeasTab } from './KeywordIdeasTab';
 
 const STATIC = keywordsRaw as Keyword[];
 
@@ -30,6 +32,8 @@ function savedToKeyword(s: SavedKeyword): Keyword {
 const TABS = [
   { id: 'naver', label: '🟢 네이버 분석' },
   { id: 'google', label: '🔵 구글 분석' },
+  { id: 'golden', label: '🏆 황금 키워드' },
+  { id: 'ideas', label: '✨ AI 아이디어' },
   { id: 'pins', label: '📁 보관함' },
 ] as const;
 type TabId = (typeof TABS)[number]['id'];
@@ -37,6 +41,7 @@ type TabId = (typeof TABS)[number]['id'];
 export function IdeasPage() {
   const [tab, setTab] = useState<TabId>('naver');
   const [pins, setPins] = useState<SavedKeyword[]>([]);
+  const [seed, setSeed] = useState('');
 
   const reloadPins = () => {
     fetchPins().then(setPins);
@@ -52,7 +57,7 @@ export function IdeasPage() {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex gap-1 border-b border-gray-200 px-6 pt-4">
+      <div className="flex flex-wrap gap-1 border-b border-gray-200 px-6 pt-4">
         {TABS.map((t) => (
           <button
             type="button"
@@ -70,6 +75,16 @@ export function IdeasPage() {
       <div className="min-h-0 flex-1 overflow-y-auto">
         {tab === 'naver' && <KeywordAnalysisTab source="naver" onPinned={reloadPins} />}
         {tab === 'google' && <KeywordAnalysisTab source="google" onPinned={reloadPins} />}
+        {tab === 'golden' && (
+          <GoldenKeywordTab
+            keywords={merged}
+            onSeedToIdeas={(kw) => {
+              setSeed(kw);
+              setTab('ideas');
+            }}
+          />
+        )}
+        {tab === 'ideas' && <KeywordIdeasTab seed={seed} onSeedChange={setSeed} />}
         {tab === 'pins' && <KeywordTable keywords={merged} />}
       </div>
     </div>
