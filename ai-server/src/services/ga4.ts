@@ -217,3 +217,82 @@ export async function fetchOverview(p: OverviewParams): Promise<AnalyticsOvervie
     byLocale,
   };
 }
+
+// ── 채널 분석 (유입 분해) ─────────────────────────────────────────────
+// sessionDefaultChannelGroup / sessionSource+sessionMedium / country 는 모두
+// GA4 표준 측정기준이므로 tryRunReport 폴백 불필요 — runReport 직접 사용.
+
+export interface ChannelRow {
+  label: string;
+  sessions: number;
+  users: number;
+  percentage: number;
+}
+
+export interface ChannelBreakdown {
+  channelGroups: ChannelRow[];
+  sourceMedium: ChannelRow[];
+  countries: ChannelRow[];
+}
+
+// 표준 RunReport 응답을 {label,sessions,users,percentage} 행으로 매핑.
+// labelFn 으로 1개 이상의 차원 값을 라벨로 조합(소스/매체는 "source / medium").
+function mapChannelRows(
+  resp: analyticsdata_v1beta.Schema$RunReportResponse,
+  labelFn: (dims: string[]) => string,
+): ChannelRow[] {
+  const rows = (resp.rows ?? []).map((row) => {
+    const dims = (row.dimensionValues ?? []).map((d) => d.value ?? '');
+    return {
+      label: labelFn(dims) || '(not set)',
+      sessions: Number(row.metricValues?.[0]?.value ?? 0),
+      users: Number(row.metricValues?.[1]?.value ?? 0),
+    };
+  });
+  const totalSessions = rows.reduce((s, r) => s + r.sessions, 0);
+  return rows.map((r) => ({
+    ...r,
+    percentage: totalSessions > 0 ? +((r.sessions / totalSessions) * 100).toFixed(1) : 0,
+  }));
+}
+
+export async function fetchChannels(days: number): Promise<ChannelBreakdown> {
+  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: 'today' }];
+  const metrics = [{ name: 'sessions' }, { name: 'totalUsers' }];
+  const orderBys = [{ metric: { metricName: 'sessions' }, desc: true }];
+
+  // 1) 채널 그룹 (Organic Search / Direct / Referral …)
+  const channelResp = await runReport({
+    dateRanges,
+    dimensions: [{ name: 'sessionDefaultChannelGroup' }],
+    metrics,
+    orderBys,
+    limit: '20',
+  });
+
+  // 2) 소스 / 매체 (google / organic …)
+  const sourceMediumResp = await runReport({
+    dateRanges,
+    dimensions: [{ name: 'sessionSource' }, { name: 'sessionMedium' }],
+    metrics,
+    orderBys,
+    limit: '20',
+  });
+
+  // 3) 국가
+  const countryResp = await runReport({
+    dateRanges,
+    dimensions: [{ name: 'country' }],
+    metrics,
+    orderBys,
+    limit: '20',
+  });
+
+  return {
+    channelGroups: mapChannelRows(channelResp, (d) => d[0] ?? ''),
+    sourceMedium: mapChannelRows(sourceMediumResp, (d) =>
+      [d[0], d[1]].filter(Boolean).join(' / '),
+    ),
+    countries: mapChannelRows(countryResp, (d) => d[0] ?? ''),
+  };
+}
