@@ -18,6 +18,7 @@ export function KeywordAnalysisTab({ source, onPinned }: { source: 'naver' | 'go
     }
     setLoading(true);
     setErr(null);
+    setPinned(new Set()); // fresh search → reset per-result pin state
     try {
       const r = source === 'naver' ? await searchNaver(kws) : await searchGoogle(kws);
       setResults(r);
