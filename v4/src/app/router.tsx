@@ -74,8 +74,8 @@ const MarketingPlaceholder = lazy(() =>
 const StrategyViewer = lazy(() =>
   import('@/features/marketing/components/StrategyViewer').then((m) => ({ default: m.StrategyViewer })),
 );
-const KeywordTable = lazy(() =>
-  import('@/features/marketing/components/KeywordTable').then((m) => ({ default: m.KeywordTable })),
+const IdeasPage = lazy(() =>
+  import('@/features/marketing/components/IdeasPage').then((m) => ({ default: m.IdeasPage })),
 );
 const TopicBoard = lazy(() =>
   import('@/features/marketing/components/TopicBoard').then((m) => ({ default: m.TopicBoard })),
@@ -234,7 +234,7 @@ export const router = createBrowserRouter([
         path: 'keywords',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
-            <KeywordTable />
+            <IdeasPage />
           </Suspense>
         ),
       },

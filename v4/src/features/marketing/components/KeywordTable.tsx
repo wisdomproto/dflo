@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import keywordsRaw from '../data/keywords.json';
 import type { Keyword, Competition } from '../types';
 
-const KEYWORDS = keywordsRaw as Keyword[];
+const STATIC_KEYWORDS = keywordsRaw as Keyword[];
 type SortKey = 'keyword' | 'pcSearch' | 'mobileSearch' | 'totalSearch';
 const COMP_LABEL: Record<Competition, string> = { high: '높음', medium: '중간', low: '낮음' };
 const COMP_COLOR: Record<Competition, string> = {
@@ -12,7 +12,7 @@ const COMP_COLOR: Record<Competition, string> = {
   low: 'bg-emerald-100 text-emerald-700',
 };
 
-export function KeywordTable() {
+export function KeywordTable({ keywords = STATIC_KEYWORDS }: { keywords?: Keyword[] }) {
   const [q, setQ] = useState('');
   const [comp, setComp] = useState<'all' | Competition>('all');
   const [goldenOnly, setGoldenOnly] = useState(false);
@@ -20,7 +20,7 @@ export function KeywordTable() {
   const [asc, setAsc] = useState(false);
 
   const rows = useMemo(() => {
-    let r = KEYWORDS.filter((k) => k.keyword.includes(q));
+    let r = keywords.filter((k) => k.keyword.includes(q));
     if (comp !== 'all') r = r.filter((k) => k.competition === comp);
     if (goldenOnly) r = r.filter((k) => k.isGolden);
     r = [...r].sort((a, b) => {
@@ -32,7 +32,7 @@ export function KeywordTable() {
       return asc ? cmp : -cmp;
     });
     return r;
-  }, [q, comp, goldenOnly, sortKey, asc]);
+  }, [keywords, q, comp, goldenOnly, sortKey, asc]);
 
   const toggleSort = (k: SortKey) => {
     if (sortKey === k) setAsc((v) => !v);
@@ -44,9 +44,6 @@ export function KeywordTable() {
 
   return (
     <div className="p-6">
-      <div className="mb-4 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
-        💡 현재는 <b>보관함</b>(추출된 키워드 72개)입니다. 라이브 키워드 분석(네이버·DataForSEO)은 준비 중.
-      </div>
       <div className="mb-4 flex flex-wrap items-center gap-2">
         <input
           value={q}
