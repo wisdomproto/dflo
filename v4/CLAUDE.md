@@ -128,7 +128,7 @@ scripts/
   - **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick
   - **Right**: Growth chart — `[성장 곡선][예측키 추세]` 2-tab (`chartTab` state)
     - **성장 곡선** (`AdminPatientGrowthChart`): KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips. `baOnly`(뼈나이 측정만) 기본 ON, Y축 90~190(`Y_MAX`). 예측키(baProj) 곡선 기본 off — `defaultHidePrediction` prop, 상단 `BA 예측` 칩으로 켜기 (simplified/첫상담 미영향)
-    - **예측키 추세** (`PredictedHeightTrend`, 신규): 예측키(키+뼈나이 18세 예측) 라인 한 줄 + X축 아래 측정날짜/만나이/뼈나이/Δ(뼈−만, 조숙 +빨강·지연 −초록), 호버 툴팁 없음, Y축 폭 `afterFit` 고정으로 HTML 행 정렬
+    - **예측키 추세** (`PredictedHeightTrend`, 신규): 예측키(키+뼈나이 18세 예측) 라인 한 줄 + 각 포인트 위에 백분위 라벨(`30%ile`, `pctLabels` Chart.js 플러그인, 예측키가 백분위 유지 투영이라 또래 18세 백분위와 동일) + X축 아래 측정날짜/만나이/뼈나이/Δ(뼈−만, 조숙 +빨강·지연 −초록), 호버 툴팁 없음, Y축 폭 `afterFit` 고정으로 HTML 행 정렬
   - Grid: visits `minmax(220px, 1fr)` | X-ray `360px/44px` | chart `60%`
   - Chart: BA 예측 (indigo dashed) + CA 예측 (teal dashed) + solid horizontal lines at predicted adult heights
   - 좌하단 `🔍 비슷한 케이스`/`🧠 환자 분석` 플로팅 버튼은 숨김 (JSX 주석 처리, 모달·state 보존 → 되살리기 쉬움)

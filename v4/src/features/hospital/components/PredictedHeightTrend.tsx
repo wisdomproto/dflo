@@ -13,7 +13,11 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { heightAtSamePercentile, type Nationality } from '@/features/bone-age/lib/growthStandard';
+import {
+  heightAtSamePercentile,
+  calculateHeightPercentileLMS,
+  type Nationality,
+} from '@/features/bone-age/lib/growthStandard';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { splitBoneAgeYM } from '@/shared/utils/boneAge';
 import type { Child, HospitalMeasurement } from '@/shared/types';
@@ -48,6 +52,7 @@ interface TrendRow {
   ba: number;
   height: number;
   pah: number;
+  pct: number; // 예측키의 또래(18세) 백분위 — 키+뼈나이 백분위와 동일
 }
 
 interface Props {
@@ -74,6 +79,7 @@ export function PredictedHeightTrend({ child, measurements, enlarged = false }: 
         const pah = Number(
           heightAtSamePercentile(m.height as number, ba, 18, child.gender, nat).toFixed(1),
         );
+        const pct = calculateHeightPercentileLMS(m.height as number, ba, child.gender, nat);
         return {
           key: m.id ?? `${idx}`,
           date: m.measured_date.slice(0, 10),
@@ -83,6 +89,7 @@ export function PredictedHeightTrend({ child, measurements, enlarged = false }: 
           ba,
           height: m.height as number,
           pah,
+          pct,
         };
       });
   }, [child, measurements, nat]);
@@ -111,10 +118,31 @@ export function PredictedHeightTrend({ child, measurements, enlarged = false }: 
     ],
   };
 
+  // 각 포인트 위에 백분위(또래 18세 기준 상위/하위) 라벨을 그린다.
+  const pctLabelPlugin: any = {
+    id: 'pctLabels',
+    afterDatasetsDraw(chart: any) {
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+      if (!meta?.data) return;
+      ctx.save();
+      ctx.font = `700 ${enlarged ? 14 : 10}px sans-serif`;
+      ctx.fillStyle = COLOR_PAH;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      meta.data.forEach((pt: any, i: number) => {
+        const r = rows[i];
+        if (!r) return;
+        ctx.fillText(`${Math.round(r.pct)}%ile`, pt.x, pt.y - (enlarged ? 12 : 8));
+      });
+      ctx.restore();
+    },
+  };
+
   const options: any = {
     responsive: true,
     maintainAspectRatio: false,
-    layout: { padding: { right: PAD_R, top: 6 } },
+    layout: { padding: { right: PAD_R, top: enlarged ? 26 : 18 } },
     interaction: { mode: 'index', intersect: false },
     plugins: {
       legend: { display: false },
@@ -142,7 +170,7 @@ export function PredictedHeightTrend({ child, measurements, enlarged = false }: 
   return (
     <div className="flex h-full flex-col">
       <div className="min-h-0 flex-1">
-        <Line data={data} options={options} />
+        <Line data={data} options={options} plugins={[pctLabelPlugin]} />
       </div>
       <div
         className={`grid border-t border-slate-100 text-center ${enlarged ? 'pt-3' : 'pt-1.5'}`}
