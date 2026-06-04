@@ -26,6 +26,7 @@ export interface IntakeSubmission {
   mother_height?: number;
   desired_height?: number;
   current_height?: number;
+  current_weight?: number;
   grade?: string;
   class_height_rank?: string;
   phone?: string;
@@ -51,6 +52,7 @@ export interface IntakeFormState {
   mother_height: string;
   desired_height: string;
   current_height: string;
+  current_weight: string;
   grade: string;
   class_height_rank: string;
   phone: string;

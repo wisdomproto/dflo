@@ -88,11 +88,18 @@ export function StepBasic({ state, set, L, errors }: StepProps) {
         error={errors.country}
       />
 
-      <NumberField
-        label={L.currentH}
-        value={state.current_height}
-        onChange={(v) => set({ current_height: v })}
-      />
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <NumberField
+          label={L.currentH}
+          value={state.current_height}
+          onChange={(v) => set({ current_height: v })}
+        />
+        <NumberField
+          label={L.currentW}
+          value={state.current_weight}
+          onChange={(v) => set({ current_weight: v })}
+        />
+      </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
         <NumberField

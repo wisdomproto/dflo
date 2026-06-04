@@ -43,6 +43,7 @@ export interface IntakeLabelSet {
   motherH: string;
   desiredH: string;
   currentH: string;
+  currentW: string;
   grade: string;
   classRank: string;
   phone: string;
@@ -109,6 +110,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     motherH: '어머니 키 (cm)',
     desiredH: '희망 키 (cm)',
     currentH: '현재 키 (cm)',
+    currentW: '현재 몸무게 (kg)',
     grade: '학년',
     classRank: '학급 내 키번호',
     phone: '연락처',
@@ -182,6 +184,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     motherH: 'ส่วนสูงของแม่ (ซม.)',
     desiredH: 'ส่วนสูงที่ต้องการ (ซม.)',
     currentH: 'ส่วนสูงปัจจุบัน (ซม.)',
+    currentW: 'น้ำหนักปัจจุบัน (กก.)',
     grade: 'ระดับชั้น',
     classRank: 'ลำดับส่วนสูงในชั้น',
     phone: 'เบอร์โทรศัพท์',
@@ -255,6 +258,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     motherH: 'Chiều cao của mẹ (cm)',
     desiredH: 'Chiều cao mong muốn (cm)',
     currentH: 'Chiều cao hiện tại (cm)',
+    currentW: 'Cân nặng hiện tại (kg)',
     grade: 'Lớp học',
     classRank: 'Thứ hạng chiều cao trong lớp',
     phone: 'Số điện thoại',
@@ -328,6 +332,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     motherH: "Mother's height (cm)",
     desiredH: 'Desired height (cm)',
     currentH: 'Current height (cm)',
+    currentW: 'Current weight (kg)',
     grade: 'School grade',
     classRank: 'Height rank in class',
     phone: 'Phone number',

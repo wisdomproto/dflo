@@ -74,6 +74,7 @@ export async function submitIntake(lang: IntakeLang, s: IntakeFormState): Promis
     mother_height: num(s.mother_height) ?? null,
     desired_height: num(s.desired_height) ?? null,
     current_height: num(s.current_height) ?? null,
+    current_weight: num(s.current_weight) ?? null,
     grade: s.grade || null,
     class_height_rank: s.class_height_rank || null,
     phone: s.phone || null,

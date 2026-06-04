@@ -87,20 +87,23 @@ export async function approveSubmission(
     intake_survey: sub.intake_survey ?? undefined,
   });
 
-  // 1-b) 현재 키가 있으면 초진(is_intake) visit + 측정값 생성 →
-  //      첫 상담 성장그래프·예측키가 채워진다. (실패해도 환자 생성은 유지)
-  if (sub.current_height != null) {
+  // 1-b) 현재 키/몸무게가 있으면 초진(is_intake) visit + 측정값 생성 →
+  //      첫 상담 성장그래프·예측키·BMI 가 채워진다. (실패해도 환자 생성은 유지)
+  if (sub.current_height != null || sub.current_weight != null) {
     try {
       const measuredDate = (sub.created_at ?? new Date().toISOString()).slice(0, 10);
       const visit = await getOrCreateIntakeVisit(child.id, measuredDate);
+      const patch: { height?: number; weight?: number } = {};
+      if (sub.current_height != null) patch.height = sub.current_height;
+      if (sub.current_weight != null) patch.weight = sub.current_weight;
       await upsertMeasurementField({
         visit_id: visit.id,
         child_id: child.id,
         measured_date: measuredDate,
-        patch: { height: sub.current_height },
+        patch,
       });
     } catch (e) {
-      logger.error('intake current-height seeding failed', e);
+      logger.error('intake current measurement seeding failed', e);
     }
   }
 
