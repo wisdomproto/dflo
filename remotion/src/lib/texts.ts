@@ -1,6 +1,7 @@
 export interface LocaleTexts {
   // Brand
   logo: string;
+  logoWhite: string; // white wordmark on transparent bg (for purple scenes)
   // HookScene
   hookBadge: string;
   hookTitle: string;
@@ -48,14 +49,19 @@ export interface LocaleTexts {
   clinicKoreaBadge: string;
   clinicName: string;
   clinicYears: string;
+  clinicDesc1: string;
+  clinicDesc2: string;
+  directorName: string;
   clinicChips: string[];
   casesActorsLine: string;
   casesBarsLine: string;
   ctaPromoHeading: string;
+  ctaStartLine: string;
   ctaSiteMeasure: string;
   ctaLinePill: string;
   ctaMessengerBg: string;
   ctaMessengerFg: string;
+  ctaRemote: string;
   siteUrl: string;
   // Promo reel v2 — hope/stats scene
   statsHeading: string;
@@ -69,6 +75,7 @@ export interface LocaleTexts {
   // ── Marketing reel (KR) — new-scene copy ──
   fearLine1: string;
   fearQuestion: string;
+  fearExpert: string;
   fearGolden: string;
   clinicPos: string;
   clinicLecture: string;
@@ -80,6 +87,7 @@ export interface LocaleTexts {
   vsRightTitle: string;
   vsItems: string[];
   vsPunch: string;
+  integratedPunch: string;
   casesCelebLine: string;
   demoMeasureLine: string;
   demoFreeSite: string;
@@ -89,6 +97,7 @@ export interface LocaleTexts {
 
 export const ko: LocaleTexts = {
   logo: "images/logo.jpg",
+  logoWhite: "images/logo_white.png",
   hookBadge: "187 성장클리닉",
   hookTitle: "우리 아이,\n얼마나 클까?",
   hookSubtitle: "지금 바로 예상 키를 무료로 측정해보세요",
@@ -128,14 +137,19 @@ export const ko: LocaleTexts = {
   clinicKoreaBadge: "대한민국 강남 · 성장 전문 클리닉",
   clinicName: "187 성장클리닉\n연세새봄의원",
   clinicYears: "한국 강남 · 성장 진료 10년",
+  clinicDesc1: "한국 강남에 위치한\n187 성장클리닉",
+  clinicDesc2: "지난 10년간 전 세계 수많은 아이들의\n키를 성공적으로 관리해왔습니다",
+  directorName: "채용현 대표원장",
   clinicChips: ["뼈나이", "호르몬", "성장곡선"],
   casesActorsLine: "아이의 키 성장, 187이 함께합니다",
   casesBarsLine: "예측보다 더 자란 아이들",
   ctaPromoHeading: "지금 무료로\n예상키 측정",
+  ctaStartLine: "우리 아이의 키 성장,\n지금 시작하세요",
   ctaSiteMeasure: "홈페이지에서 직접 측정할 수 있어요",
   ctaLinePill: "카카오톡 상담하기",
   ctaMessengerBg: "#FEE500",
   ctaMessengerFg: "#3C1E1E",
+  ctaRemote: "🌏 전국 어디서나 원격 상담 가능",
   siteUrl: "www.dr187growup.com",
   statsHeading: "키 성장, 함께라면\n충분히 가능합니다",
   statsCount1: 1000,
@@ -146,18 +160,21 @@ export const ko: LocaleTexts = {
   statsLabel2: "치료 성공률",
   statsFootnote: "실제 사례는 홈페이지에서 확인하세요",
   fearLine1: "또래보다 작은 우리 아이…",
-  fearQuestion: "아이 키가 고민이신가요?",
-  fearGolden: "우리 아이 키 성장,\n지금이 바로 골든타임입니다",
+  fearQuestion: "우리 아이 키, 걱정되시나요?",
+  fearExpert: "아시아 최고의 전문가와\n함께하세요",
+  fearGolden: "이제 태국에서\n아시아 최고의 성장 치료를\n받을 수 있습니다",
   clinicPos: "아시아 최고의\n성장 클리닉",
   clinicLecture: "채용현 원장 · 말레이시아·태국\n국제 학회 초청 강연",
   clinicNations: "실제 내원 환자 국적",
-  celebLine: "각국에서\n배우·가수·운동선수를 꿈꾸는\n아이들이 다녀갔습니다",
+  celebLine: "수많은\n배우·가수·운동선수를 꿈꾸는\n아이들이 다녀갔습니다",
   celebSub: "187 성장클리닉",
   vsLeftTitle: "타 클리닉",
   vsLeftDesc: "단순 성장호르몬 주사",
   vsRightTitle: "187 통합 성장 관리",
   vsItems: ["성장호르몬 밸런스", "성호르몬·갑상선", "곧은 발육", "키자극 운동", "수면 관리", "체중·영양"],
   vsPunch: "성장호르몬 하나만 보지 않습니다\n키 성장은 다방면으로 관리해야 합니다",
+  integratedPunch:
+    "아이의 상태에 맞춰 다양한 방면으로\n키 성장을 관리합니다",
   casesCelebLine: "한국 아역배우부터 태국 셀럽까지\n그들이 선택한 클리닉",
   demoMeasureLine: "우리 아이, 얼마나 클까?\n직접 측정해보세요",
   demoFreeSite: "홈페이지에서 무료로 측정해보세요",
@@ -167,6 +184,7 @@ export const ko: LocaleTexts = {
 
 export const th: LocaleTexts = {
   logo: "images/logo_en.png",
+  logoWhite: "images/logo_en_white.png",
   hookBadge: "187 Growth Clinic",
   hookTitle: "ลูกของเรา\nจะสูงเท่าไหร่?",
   hookSubtitle: "ทำนายส่วนสูงของลูกฟรี ตอนนี้เลย",
@@ -205,15 +223,20 @@ export const th: LocaleTexts = {
   bridgeLine: "อยากให้ลูกสูงกว่านี้?\nช่วงเวลาทองคือตอนนี้",
   clinicKoreaBadge: "คลินิกเฉพาะทางด้านความสูง · กังนัม เกาหลี",
   clinicName: "187 Growth Clinic\nYonsei Saebom",
+  clinicDesc1: "187 Growth Clinic\nกังนัม เกาหลี",
+  clinicDesc2: "ดูแลความสูงของเด็กหลายพันคน\nทั่วโลกมากว่า 10 ปี",
+  directorName: "ผอ. แช ยงฮยอน",
   clinicYears: "คลินิกเพิ่มความสูง · กังนัม เกาหลี · 10 ปี",
   clinicChips: ["อายุกระดูก", "ฮอร์โมน", "กราฟการเจริญเติบโต"],
   casesActorsLine: "187 ดูแลการเติบโตของลูกคุณ",
   casesBarsLine: "เด็กที่สูงเกินกว่าที่คาดการณ์",
   ctaPromoHeading: "วัดส่วนสูงฟรี\nตอนนี้เลย",
+  ctaStartLine: "เริ่มเพิ่มความสูง\nให้ลูกวันนี้",
   ctaSiteMeasure: "วัดด้วยตัวเองได้ที่เว็บไซต์",
   ctaLinePill: "ปรึกษาผ่าน LINE @894qhqtu",
   ctaMessengerBg: "#06C755",
   ctaMessengerFg: "#FFFFFF",
+  ctaRemote: "🌏 Online consultation available anywhere",
   siteUrl: "www.dr187growup.com/th",
   statsHeading: "ให้ลูกสูงขึ้น\nเราทำได้จริง",
   statsCount1: 1000,
@@ -225,7 +248,8 @@ export const th: LocaleTexts = {
   statsFootnote: "ดูเคสจริงทั้งหมดได้ที่เว็บไซต์",
   fearLine1: "ลูกของเราตัวเล็กกว่าเพื่อน…",
   fearQuestion: "กังวลเรื่องส่วนสูงของลูกไหม?",
-  fearGolden: "การเติบโตของลูกเรา\nช่วงเวลาทองคือตอนนี้",
+  fearExpert: "พร้อมผู้เชี่ยวชาญ\nอันดับหนึ่งของเอเชีย",
+  fearGolden: "ตอนนี้ที่ประเทศไทย\nรับการดูแลการเติบโต\nที่ดีที่สุดในเอเชียได้แล้ว",
   clinicPos: "คลินิกเพิ่มความสูง 187\nกังนัม เกาหลี",
   clinicLecture: "ผอ.แช ยงฮยอน · บรรยาย\nงานประชุมนานาชาติ มาเลเซีย·ไทย",
   clinicNations: "สัญชาติของผู้ป่วยจริง",
@@ -236,6 +260,8 @@ export const th: LocaleTexts = {
   vsRightTitle: "187 ดูแลครบวงจร",
   vsItems: ["สมดุลฮอร์โมน", "ฮอร์โมนเพศ·ไทรอยด์", "พัฒนาการที่ดี", "ออกกำลังกาย", "การนอน", "โภชนาการ"],
   vsPunch: "ไม่ได้ดูแค่โกรทฮอร์โมน\nแต่ดูแลการเติบโตอย่างรอบด้าน",
+  integratedPunch:
+    "187 Growth Clinic ไม่ได้ดูแค่โกรทฮอร์โมน\nแต่ดูแลการเติบโตอย่างรอบด้าน",
   casesCelebLine: "ตั้งแต่นักแสดงเด็กเกาหลี\nถึงเซเลบไทยที่เลือก",
   demoMeasureLine: "ลูกเราจะสูงแค่ไหน?\nวัดด้วยตัวเองเลย",
   demoFreeSite: "วัดฟรีได้ที่เว็บไซต์",

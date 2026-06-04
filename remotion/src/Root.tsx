@@ -4,6 +4,7 @@ import { HeightReelsTH } from "./HeightReelsTH";
 import { HeightReelsTHPromo } from "./HeightReelsTHPromo";
 import { HeightReelsKRPromo } from "./HeightReelsKRPromo";
 import { HeightReelsKRMarketing } from "./HeightReelsKRMarketing";
+import { CelebReel } from "./CelebReel";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -46,7 +47,15 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="HeightReelsKRMarketing"
         component={HeightReelsKRMarketing}
-        durationInFrames={735}
+        durationInFrames={720}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="CelebReel"
+        component={CelebReel}
+        durationInFrames={286}
         fps={30}
         width={1080}
         height={1920}
