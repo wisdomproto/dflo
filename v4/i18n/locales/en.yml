@@ -385,6 +385,10 @@ clinic:
       - "NABBA / WFF Medical Advisor"
   intro:
     h2: "187 Growth Clinic — Yonsei Saebom"
+    stat_cases_num: "3,000+"
+    stat_cases_label: "Growth treatment cases"
+    stat_success_num: "97%+"
+    stat_success_label: "Success rate"
     p1: "Pediatric height growth isn't decided by growth hormone alone. Because thyroid, sex hormones, nutrition, sleep, and stress all play a role, an <strong>integrated hormonal perspective</strong> is essential."
     p2: "187 Growth Clinic delivers personalized care for every child — from precision bone-age assessment to comprehensive hormone testing and lifestyle coaching. Families overseas can also receive video consultations without traveling to Korea."
   video:

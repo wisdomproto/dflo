@@ -385,6 +385,10 @@ clinic:
       - "Cố vấn Y khoa NABBA / WFF"
   intro:
     h2: "187 Growth Clinic — Yonsei Saebom"
+    stat_cases_num: "3,000+"
+    stat_cases_label: "Ca điều trị tăng trưởng"
+    stat_success_num: "97%+"
+    stat_success_label: "Tỷ lệ thành công"
     p1: "Sự tăng trưởng chiều cao của trẻ không chỉ phụ thuộc vào hormone tăng trưởng. Tuyến giáp, hormone giới tính, dinh dưỡng, giấc ngủ và căng thẳng đều có vai trò, vì vậy <strong>góc nhìn hormone tích hợp</strong> là cần thiết."
     p2: "187 Growth Clinic chăm sóc cá nhân hóa cho từng trẻ — từ đánh giá tuổi xương chính xác, xét nghiệm hormone toàn diện đến tư vấn lối sống. Gia đình ở nước ngoài có thể nhận tư vấn qua video mà không cần đến Hàn Quốc."
   video:
