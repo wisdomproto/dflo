@@ -42,6 +42,7 @@ const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomePage'));
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
+const PublicIntakePage = lazy(() => import('@/features/intake/pages/PublicIntakePage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
 const CasesEmbedPage = lazy(() => import('@/features/website/pages/CasesEmbedPage'));
@@ -179,6 +180,16 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <IntakeDiagnosisPage />
+      </Suspense>
+    ),
+  },
+  // Public patient self-service intake survey (login-free, per language)
+  { path: '/intake', element: <Navigate to="/intake/ko" replace /> },
+  {
+    path: '/intake/:lang',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <PublicIntakePage />
       </Suspense>
     ),
   },
