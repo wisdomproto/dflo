@@ -1,0 +1,182 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchSubmissions } from '@/features/admin/services/intakeSubmissionService';
+import IntakeSubmissionDetail from '@/features/admin/components/IntakeSubmissionDetail';
+import { countryFlag } from '@/shared/data/countries';
+import type { IntakeSubmission } from '@/features/intake/types';
+
+// ================================================
+// AdminIntakePage — 설문 접수함
+// 공개 설문 제출 목록(대기/승인/반려/전체) + 우측 상세 + 승인/반려.
+// ================================================
+
+type StatusFilter = 'pending' | 'approved' | 'rejected' | 'all';
+
+const FILTERS: { key: StatusFilter; label: string }[] = [
+  { key: 'pending', label: '대기' },
+  { key: 'approved', label: '승인' },
+  { key: 'rejected', label: '반려' },
+  { key: 'all', label: '전체' },
+];
+
+function fmtDate(iso: string): string {
+  return iso ? iso.slice(0, 10) : '—';
+}
+
+function StatusBadge({ status }: { status: IntakeSubmission['status'] }) {
+  const map: Record<IntakeSubmission['status'], string> = {
+    pending: 'bg-amber-100 text-amber-700',
+    approved: 'bg-emerald-100 text-emerald-700',
+    rejected: 'bg-red-100 text-red-600',
+  };
+  const label: Record<IntakeSubmission['status'], string> = {
+    pending: '대기',
+    approved: '승인',
+    rejected: '반려',
+  };
+  return (
+    <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${map[status]}`}>
+      {label[status]}
+    </span>
+  );
+}
+
+export default function AdminIntakePage() {
+  const navigate = useNavigate();
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('pending');
+  const [subs, setSubs] = useState<IntakeSubmission[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  async function load(filter: StatusFilter) {
+    try {
+      setLoading(true);
+      const data = await fetchSubmissions(filter);
+      setSubs(data);
+      // Keep selection if still present, otherwise clear.
+      setSelectedId((prev) => (prev && data.some((s) => s.id === prev) ? prev : null));
+    } catch {
+      setSubs([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    load(statusFilter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [statusFilter]);
+
+  const selected = subs.find((s) => s.id === selectedId) ?? null;
+
+  return (
+    <div className="space-y-4">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <h1 className="text-xl font-bold text-gray-900">설문 접수함</h1>
+        {!loading && (
+          <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
+            {subs.length}
+          </span>
+        )}
+      </div>
+
+      {/* Status filter tabs */}
+      <div className="flex flex-wrap gap-1.5">
+        {FILTERS.map((f) => (
+          <button
+            key={f.key}
+            type="button"
+            onClick={() => setStatusFilter(f.key)}
+            className={
+              'rounded-full px-3 py-1 text-xs font-medium transition ' +
+              (statusFilter === f.key
+                ? 'bg-slate-900 text-white'
+                : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50')
+            }
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1.4fr]">
+        {/* List */}
+        <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+          {loading ? (
+            <div className="flex items-center justify-center py-20 text-sm text-gray-400">
+              불러오는 중...
+            </div>
+          ) : subs.length === 0 ? (
+            <div className="flex items-center justify-center py-20 text-sm text-gray-400">
+              {statusFilter === 'pending'
+                ? '대기 중인 설문이 없습니다'
+                : '해당하는 설문이 없습니다'}
+            </div>
+          ) : (
+            <ul className="divide-y divide-gray-100">
+              {subs.map((s) => {
+                const active = s.id === selectedId;
+                return (
+                  <li key={s.id}>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedId(s.id)}
+                      className={
+                        'flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors ' +
+                        (active ? 'bg-blue-50' : 'hover:bg-gray-50')
+                      }
+                    >
+                      <div className="flex items-center gap-2">
+                        {countryFlag(s.country) && (
+                          <span>{countryFlag(s.country)}</span>
+                        )}
+                        <span className="font-medium text-gray-900">
+                          {s.name || '(미입력)'}
+                        </span>
+                        <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-500">
+                          {s.lang.toUpperCase()}
+                        </span>
+                        <div className="ml-auto">
+                          <StatusBadge status={s.status} />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-[11px] text-slate-500">
+                        <span className="font-mono">{fmtDate(s.created_at)}</span>
+                        <span>·</span>
+                        <span>{s.uploads.length}개 첨부</span>
+                      </div>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+
+        {/* Detail */}
+        <div>
+          {selected ? (
+            <IntakeSubmissionDetail
+              key={selected.id}
+              sub={selected}
+              onApproved={(childId) => {
+                load(statusFilter);
+                navigate(`/admin/patients/${childId}`);
+              }}
+              onRejected={() => {
+                setSelectedId(null);
+                load(statusFilter);
+              }}
+            />
+          ) : (
+            <div className="flex items-center justify-center rounded-xl border border-dashed border-slate-200 bg-white py-20 text-sm text-gray-400">
+              왼쪽 목록에서 설문을 선택하세요
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
