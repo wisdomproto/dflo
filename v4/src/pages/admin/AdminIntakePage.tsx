@@ -64,7 +64,6 @@ export default function AdminIntakePage() {
 
   useEffect(() => {
     load(statusFilter);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusFilter]);
 
   const selected = subs.find((s) => s.id === selectedId) ?? null;

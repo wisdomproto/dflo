@@ -68,7 +68,6 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
   // Load signed URLs for each upload.
   useEffect(() => {
     let cancelled = false;
-    setUrls({});
     (async () => {
       const map: Record<string, string> = {};
       for (const u of sub.uploads) {
