@@ -8,16 +8,20 @@ test('buildSeo returns ko-specific title/description', () => {
   assert.ok(seo.description.length > 50);
 });
 
-test('buildHreflang emits 7 alternates + x-default', () => {
+test('buildHreflang emits only the 4 active langs + x-default', () => {
   const tags = buildHreflang();
   assert.ok(tags.includes('hreflang="ko"'));
   assert.ok(tags.includes('hreflang="th"'));
   assert.ok(tags.includes('hreflang="vi"'));
   assert.ok(tags.includes('hreflang="en"'));
-  assert.ok(tags.includes('hreflang="ja"'));
-  assert.ok(tags.includes('hreflang="zh-TW"'));
-  assert.ok(tags.includes('hreflang="id"'));
   assert.ok(tags.includes('hreflang="x-default"'));
+  // ja/zh-tw/id are planned stubs, not yet built — emitting them would create 404
+  // hreflang targets that invalidate the cluster. They must NOT appear.
+  assert.ok(!tags.includes('hreflang="ja"'));
+  assert.ok(!tags.includes('hreflang="zh-TW"'));
+  assert.ok(!tags.includes('hreflang="id"'));
+  const alternates = tags.match(/rel="alternate"/g) || [];
+  assert.equal(alternates.length, 5); // 4 active langs + x-default
 });
 
 test('buildHead includes canonical for the given lang', () => {

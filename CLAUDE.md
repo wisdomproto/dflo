@@ -43,7 +43,8 @@ v4/public/sitemap.xml         ← hreflang = ACTIVE_LANGS(4) + x-default 자동 
 ```
 
 ### 핵심 파일 (`v4/scripts/`)
-- `build-i18n.mjs`: 빌드 오케스트레이터 (async main, `--refetch` 플래그). 비한국어 빌드 시 후처리로 `/programs/images/` → `/programs/images/{lang}/`, `/images/logo.jpg` → `/images/logo_en.png` swap
+- `build-i18n.mjs`: 빌드 오케스트레이터 (async main, `--refetch` 플래그). 후처리로 프로그램 이미지를 1단계 fallback 해석(`lib/program-img.mjs`) + 비한국어는 `/images/logo.jpg` → `/images/logo_en.png` swap
+- `lib/program-img.mjs`: 프로그램 이미지 경로 리졸버. 렌더된 HTML의 각 `/programs/images/{slug}/{file}` 참조를 `{lang}/{slug}/{file}` 있으면 그것, 없으면 `_common/{slug}/{file}`(한국어 기본본), 둘 다 없으면 빌드 경고. 순수 함수 `resolveProgramImgPath` + FS 후처리 `localizeProgramImages`
 - `lib/render.mjs`: `{{placeholder}}` + `{{#each list}}` 미니 렌더러 (마커 누락 시 throw)
 - `lib/messenger.mjs`: `getMessengerCTA(lang, {requireLiveUrl})` — TBD URL이 활성 언어에 있으면 빌드 실패
 - `lib/seo.mjs`: meta/canonical/hreflang/OG/Twitter Card + `PATH_PREFIX` env-var (기본 `''`, staging에서 `/test` 오버라이드 가능). **`ACTIVE_LANGS`(ko/th/vi/en) 단일 소스** — `build-i18n.mjs`가 여기서 import. hreflang·sitemap·빌드 루프가 절대 어긋나지 않게(미빌드 ja/zh-tw/id 를 hreflang 으로 내보내면 404 타겟이라 클러스터 무효화). 언어 활성화 = 이 배열에만 추가
@@ -52,7 +53,7 @@ v4/public/sitemap.xml         ← hreflang = ACTIVE_LANGS(4) + x-default 자동 
 - `lib/fetch-contentflow-posts.mjs`: ContentFlow API에서 블로그 fetch → `i18n/blog-cache/` JSON 캐시
 - `lib/blog.mjs`: `renderPost` + `renderIndex` + `loadCachedPosts`
 
-빌드 산출(`public/{ko,th,vi,en}/`, `sitemap.xml`, `i18n/blog-cache/`)은 `.gitignore`. 소스(`public/_shell.css`, `_shell.js`, `og/`, `robots.txt`, `images/logo_en.png`, `programs/images/{lang}/{slug}/`)는 tracked.
+빌드 산출(`public/{ko,th,vi,en}/`, `sitemap.xml`, `i18n/blog-cache/`)은 `.gitignore`. 소스(`public/_shell.css`, `_shell.js`, `og/`, `robots.txt`, `images/logo_en.png`, `programs/images/{_common,th,vi,en}/{slug}/`)는 tracked.
 
 ### 환경변수
 ```
@@ -75,7 +76,7 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 - 기존 `/program/:slug`, `/guide`, `/diagnosis`, `/banner-admin`, `/app/*`, `/admin/*` 변동 없음
 
 ### 다국어 자산 처리
-- **프로그램 이미지**: 한국어는 기존 `public/programs/images/{slug}/` 유지. 비한국어는 `public/programs/images/{lang}/{slug}/` (사용자가 직접 채움 — 공통 이미지도 복사). 빌드가 lang별로 URL swap
+- **프로그램 이미지**: `_common/{slug}/` = 한국어 기본본(전 언어 fallback), `{lang}/{slug}/` = 번역 오버라이드만. 빌드(`lib/program-img.mjs`)가 참조마다 1단계 fallback 해석: `{lang}/{slug}/{file}` 있으면 그것, 없으면 `_common/{slug}/{file}`. 미번역 언어는 자동으로 한국어본 노출(404 차단). 별도 `ko/` 폴더 없음 — 한국어 빌드도 `_common`을 봄. 안 쓰는 orphan·정적 상세 HTML(폐기)·옛 사본은 정리 완료(2026-06-02)
 - **로고**: 한국어 = `public/images/logo.jpg`. 비한국어 = `public/images/logo_en.png` (1832×560 PNG, ~860KB, 고해상도 영문 워드마크). `_shell.js`가 runtime `__I18N_LOCALE` 보고 분기, 빌드는 hero masthead용으로 URL swap
 - **HeightCalculator 생년월일 input**: `<input type="date">`가 Chromium에서 lang 속성 무시하는 문제 회피 — 3개 number 필드(년/월/일)로 분리, `calcLabels.ts`의 `fieldBirthYear/Month/Day` 라벨로 locale별 placeholder
 - **예측키 성장 표준 (계산기 전용)**: `growthStandard.ts` 에 `GrowthStandard='KR'|'TH'` 분기. th 는 TSPE 2022(WHO 2-5세 + 태국 국가 성장 기준 2020) PDF 차트를 P3/P50/P97 → LMS(L=1, M=P50, S=(P97-P3)/(3.7616·M)) 로 디지털화한 `MALE/FEMALE_HEIGHT_LMS_TH`. `HeightCalculator`/`Result` 가 `lang==='th'?'TH':'KR'` 로 전달. **계산기에만 적용** — 치료사례 차트(`SectionCarousel` cases)는 환자가 한국인이라 ko/th/vi/en 전부 한국 LMS 유지. `?` 도움말·footer 카피는 LMS 전문용어 제거하고 "국가 표준 성장 데이터 기반" 으로 톤다운
@@ -85,7 +86,7 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 ### 1차 활성화 스코프 (Phase 6 완료)
 - 시장 4개: 🇰🇷 ko / 🇹🇭 th / 🇻🇳 vi / 🇺🇸 en
 - 메신저: ko/vi/en 은 KakaoTalk (`pf.kakao.com/_ZxneSb`), **th 는 LINE OA `@894qhqtu`** (2026-05-18 전환). `messenger.yml` 만 교체 → `_shell.js` 가 `window.__I18N__.messenger` 에서 읽어 헤더 pill·계산기 결과 CTA·5개 케이스 인라인 CTA 동적 렌더 (인라인 색상 + filter:brightness hover). 빌드가 `messenger_json` 으로 JSON-encode 해 안전 주입
-- 프로그램 이미지: ko + **th 완료** (`public/programs/images/th/{slug}/`, 7 프로그램 78 장, 2026-05-18). vi/en 은 추후 채울 예정 — 빌드가 lang 별로 자동 URL swap
+- 프로그램 이미지: `_common`(한국어 기본본 + index 아이콘 세트 `need-1~6`·`pstep-1~7`) + **th 번역 오버라이드 6개**(`director`,`golden-time`,`fat-cell`,`arrow-illust`,`ratio`,`comparison`). vi/en 은 미번역 → `_common` fallback. 추후 번역 시 `{lang}/{slug}/`에 파일만 추가
 - 남은 작업: vi/en 프로그램 이미지 + Railway 프로덕션 배포 검증
 
 ### 위성 콘텐츠 배포 정책
@@ -252,6 +253,7 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 - Phase 31: COMPLETE (진료내역 측정 UX 정리 + 뼈나이 양방향 동기화 + 판독문 라이트박스 네비 — **뼈나이 입력 = 년/개월 2칸**(공용 `shared/utils/boneAge.ts` `splitBoneAgeYM`/`parseBoneAgeDec`, 진료내역 측정칸 + X-ray 탭 동일). 측정칸 표시값을 헤더와 같은 `effectiveBoneAge`(=liveXray ?? draft ?? m.bone_age)로 통일해 X-ray·판독문에서 온 BA도 보이게 함. **0년 0개월 → null(미측정)**: `parseBoneAgeDec` 가 0 을 null 로 반환 + `boneAgeTouched` 플래그로 "안 건드림"과 "0,0 으로 지움" 구분 → 명시적으로 BA 비우기 가능(그래프 BA점·예측키추세에서 빠짐) / **측정 섹션 명시적 "저장" 버튼**: 키·몸무게·뼈나이 자동(blur) 저장 끄고(`NumberField`/`BoneAgeYMField` `autoSave` prop) 한 번에 저장(`upsertMeasurementField` 멀티필드 patch) + `✓ 저장됨` 배지. 입력 중엔 PAH 미리보기만 실시간 / **뼈나이 양방향 동기화**: 진료내역 BA 저장 → `syncXrayReadingBoneAge`(xray_readings) + `onMeasurementChanged`/`refreshData`(그래프). **X-ray `handleSave` 에 `upsertMeasurementField({bone_age})` 추가** → X-ray 에서 BA 확정 시 hospital_measurements·PAH·그래프까지 동기화(기존엔 xray_readings 만 써서 누락됐던 버그 fix) / **헤더 CA + 예측키추세 X축 = 년/개월 표기**(CA `14세 6개월`, 만/뼈 `세 개월`, Δ `+8개월`·`-1년 4개월`) / type=number 스피너 화살표 제거(측정·X-ray 입력 전부), 측정 그리드 폭 재배분(`[3fr_3fr_6fr_4fr]` + input `w-full min-w-0` — 너비 없던 input 이 컬럼 못 줄이던 문제 fix) / **판독문 원본 라이트박스**: 전체 보기에서 ←/→ 키 + 좌우 ‹ › 버튼으로 **이 환자의 전체 회차 판독문**(`raw_files.pandokmun` 전수) 넘겨보기 + Esc/배경 닫기 + 카운터·파일명. 회차당 1장뿐이어도 이동 가능)
 - Phase 32: COMPLETE (X-ray 뷰 상태 저장·복원 — 환자 X-ray 이미지의 **줌 배율·패닝 위치·빨간 펜 마킹**(일반/확대 뷰 각각)을 `xray_readings.view_state jsonb`(migration 016)에 저장해 다음에 열 때 그대로 복원. **좌표 0~1 정규화**(`ZoomableImg` 의 `normStrokes`/`denormStrokes` + offset 비율) → 화면·모달 크기가 달라도 마킹 위치 일치. `ZoomableImg` 에 `initialViewState`(마운트 시 복원, 컨테이너 측정될 때까지 ResizeObserver 로 1회 적용) + `onViewStateChange`(줌/패닝/그리기/지우기 시 **600ms 디바운스 자동 저장**, `interactedRef` 로 첫 조작 후부터) prop 추가. 인라인 패널 + 확대 모달 둘 다 복원·저장(같은 view_state 공유, 정규화라 양쪽 크기 차이 무관). 서비스 `updateXrayViewState(visitId, vs)` 는 판독 row 없으면(이미지 미저장) no-op + 컬럼/오류 시 throw 안 함 → migration 미적용이어도 뷰어 정상 동작. `handleViewStateChange` 가 로컬 `existing.view_state` 도 갱신해 같은 세션 모달 재오픈 시에도 최신 마킹 복원. **migration 016 수동 실행 필요**(MCP 권한 차단))
 - Phase 33: COMPLETE (어드민 환자 화면 정리 + 성장 그래프 확대 — **X-ray 탭 '없음' 뱃지 버그 fix**: presence probe(`hasXrayImage`)가 `[visit.id]`에서만 돌아 이미지 저장 후 갱신 안 되던 것 → X-ray `onSaved` 시 `xrayRefreshKey` bump + probe 가 그 키에 의존하게 해 저장 직후 재조회 / **헤더·사이드바 정리**: AdminLayout 좌상단 "187 성장케어/관리자 대시보드" 텍스트 → 로고 이미지(`/images/logo.jpg`). 환자 헤더에서 로고·만나이·"보호자 …(placeholder)" 제거, 성별·생년월일을 이름 옆 한 줄로(父/母 키만 아래 작게). 미사용 `calculateAge`/`parent` state 정리 / **진료내역 헤더**: 날짜만 남기고 `CA/BA/PAH` 칩 제거(`chronoAge` 정리) / **성장 그래프 확대 모달**: 차트 패널 우상단 `⤢` 버튼 → `ZoomModal`(min(1400px,96vw)×82vh)로 확대. 모달 안에도 `[성장 곡선][예측키 추세]` 탭(`chartTab` 공유)으로 전환. `AdminPatientGrowthChart`/`PredictedHeightTrend` 에 `enlarged` prop 추가 → 확대 시 축 제목·눈금 폰트(12→16/11→14) + 예측키추세 X축 아래 라벨(10→15px)·점·Y축폭 키움. 인라인 뷰는 기존 크기 유지)
+- Phase 34: COMPLETE (프로그램 index 페이지 가독성·카피 마감 + 이미지 폴더 리졸버 — **이미지 폴더 1단계 fallback 리졸버**(`scripts/lib/program-img.mjs` + 테스트): `{slug}/` 평면 구조 폐기, `_common/{slug}/`(한국어 기본본·전 언어 fallback) + `{lang}/{slug}/`(번역 오버라이드만) 으로 재편. 빌드가 렌더된 HTML 의 `/programs/images/{slug}/{file}` 참조마다 `{lang}` 있으면 그것·없으면 `_common` 으로 해석(404 차단). 안 쓰는 orphan·정적 상세 HTML 8개·옛 사본 정리. design/plan: `docs/superpowers/{specs,plans}/2026-06-02-program-images-cleanup*` / **CHECK(자가진단) 섹션 한 줄 리스트화**: 6칸 이미지+캡션 그리드 → `.need-list`(한 줄 [아이콘+텍스트], 사용자 제공 `6icons.png` 크롭 → `_common/.../need-1~6.webp`) / **PROCESS(진료 과정) 한 줄 리스트화**: 동일 [아이콘+텍스트] (`process.png` 크롭 → `pstep-1~7.webp`), 하단 애들 이미지(`process-grid`) 폐기 → th 오버라이드 7→6. eyebrow 를 헤더로 승격("진료 과정") + 중복 h3 제거, pill "진료 과정은 아래와 같습니다" / **1vs6 비교 이미지 카드화**: `.compare-card` 래퍼(연파랑 `--brand-soft` 매트 + 12px 패딩 + 라운드·옅은 보더·파란 톤 그림자) 로 감싸 흰 윗부분(187 로고)이 페이지 배경에 떠 보이던 것 해결 / **`hormone_consult` CTA 톤다운**: "성장호르몬만으로 부족하다면?" 자극적 호크 → "상담이 필요하시면 1:1 상담받기"(4개 언어). 4개 언어 모두 적용)
 
 ## Remotion (Instagram Reels)
 - **Directory**: `./remotion/` — Remotion 4 + TypeScript
