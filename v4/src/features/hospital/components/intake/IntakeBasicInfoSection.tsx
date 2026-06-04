@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Child } from '@/shared/types';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
+import { COUNTRIES } from '@/shared/data/countries';
 import { SectionCard } from './SectionCard';
 
 interface Props {
@@ -43,7 +44,7 @@ export function IntakeBasicInfoSection({ child, onSaved }: Props) {
           onSave={(v) => save({ birth_date: v })}
         />
         <div className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
-          <span>성별 · 국적</span>
+          <span>성별 · 성장표준</span>
           <div className="flex items-center gap-2">
             <GenderToggle
               value={child.gender}
@@ -56,6 +57,11 @@ export function IntakeBasicInfoSection({ child, onSaved }: Props) {
           </div>
         </div>
 
+        <CountrySelect
+          value={child.country ?? ''}
+          onChange={(v) => save({ country: v || undefined })}
+        />
+
         <FieldNumber
           label="출생 임신주수 (주)"
           value={child.birth_week ?? null}
@@ -67,7 +73,6 @@ export function IntakeBasicInfoSection({ child, onSaved }: Props) {
           step={0.01}
           onSave={(v) => save({ birth_weight: v ?? undefined })}
         />
-        <div />
 
         <div className="md:col-span-3">
           <FieldText
@@ -176,6 +181,32 @@ function NationalityToggle({
         </button>
       ))}
     </div>
+  );
+}
+
+function CountrySelect({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <label className="flex flex-col gap-1.5 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+      <span>국적</span>
+      <select
+        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm transition focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        <option value="">— 미입력 —</option>
+        {COUNTRIES.map((c) => (
+          <option key={c.code} value={c.code}>
+            {c.flag} {c.ko}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 

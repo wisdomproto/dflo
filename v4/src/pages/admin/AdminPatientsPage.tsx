@@ -16,6 +16,7 @@ import {
   type PatientCategoryId,
 } from '@/features/admin/utils/patientCategories';
 import { regionSortKey } from '@/features/admin/utils/region';
+import { countryFlag, countryLabel } from '@/shared/data/countries';
 import { fetchStoryChildIds } from '@/features/admin/services/patientStoryService';
 import PatientStoryModal from '@/features/admin/components/PatientStoryModal';
 import { useFavoritePatients } from '@/features/admin/hooks/useFavoritePatients';
@@ -448,6 +449,9 @@ export default function AdminPatientsPage() {
                       <span className="inline-flex items-center gap-1.5">
                         <GenderIcon gender={p.gender as Gender} size="sm" />
                         {p.name}
+                        {countryFlag(p.country) && (
+                          <span title={countryLabel(p.country)}>{countryFlag(p.country)}</span>
+                        )}
                       </span>
                     </td>
                     <td className="px-4 py-3">
@@ -550,6 +554,9 @@ export default function AdminPatientsPage() {
                         #{p.chart_number}
                       </span>
                       <span className="font-medium text-gray-900 truncate">{p.name}</span>
+                      {countryFlag(p.country) && (
+                        <span title={countryLabel(p.country)}>{countryFlag(p.country)}</span>
+                      )}
                       <StatusBadge active={p.is_active} />
                     </div>
                     <div className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
