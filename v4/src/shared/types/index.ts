@@ -43,7 +43,10 @@ export interface Child {
   password?: string;
   grade?: string;
   class_height_rank?: string;
+  /** 성장곡선 표준 선택 전용 (한국/중국 LMS). 일반 국적은 `country` 사용. */
   nationality?: 'KR' | 'CN';
+  /** 환자 국적(범용) — 분류·필터·통계용. ISO 3166-1 alpha-2 코드 또는 'OTHER'. migration 017. */
+  country?: string;
   intake_survey?: IntakeSurvey | null;
   is_patient?: boolean;
   /** 의사가 수동으로 토글하는 환자 단계.
@@ -414,3 +417,5 @@ export interface ChildWithMeasurements extends Child {
   measurements: Measurement[];
   latestMeasurement?: Measurement;
 }
+
+export type { IntakeSubmission, UploadMeta, IntakeLang } from '@/features/intake/types';
