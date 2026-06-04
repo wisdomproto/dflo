@@ -2,6 +2,8 @@ import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import type { IntakeSubmission } from '@/features/intake/types';
 import { createPatient } from './adminService';
+import { getOrCreateIntakeVisit } from '@/features/hospital/services/visitService';
+import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
 
 export async function fetchSubmissions(
   status: 'pending' | 'approved' | 'rejected' | 'all' = 'pending',
@@ -84,6 +86,23 @@ export async function approveSubmission(
     class_height_rank: sub.class_height_rank ?? undefined,
     intake_survey: sub.intake_survey ?? undefined,
   });
+
+  // 1-b) 현재 키가 있으면 초진(is_intake) visit + 측정값 생성 →
+  //      첫 상담 성장그래프·예측키가 채워진다. (실패해도 환자 생성은 유지)
+  if (sub.current_height != null) {
+    try {
+      const measuredDate = (sub.created_at ?? new Date().toISOString()).slice(0, 10);
+      const visit = await getOrCreateIntakeVisit(child.id, measuredDate);
+      await upsertMeasurementField({
+        visit_id: visit.id,
+        child_id: child.id,
+        measured_date: measuredDate,
+        patch: { height: sub.current_height },
+      });
+    } catch (e) {
+      logger.error('intake current-height seeding failed', e);
+    }
+  }
 
   // 2) 제출 상태 갱신 (환자는 이미 생성됨 — 실패해도 로깅만)
   const { error } = await supabase

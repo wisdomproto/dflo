@@ -42,6 +42,7 @@ function initialState(lang: IntakeLang): IntakeFormState {
     father_height: '',
     mother_height: '',
     desired_height: '',
+    current_height: '',
     grade: '',
     class_height_rank: '',
     phone: '',

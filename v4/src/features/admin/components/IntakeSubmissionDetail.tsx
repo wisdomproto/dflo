@@ -98,6 +98,7 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
         />
         <Row label="생년월일" value={str(sub.birth_date)} />
         <Row label="국가" value={countryLabel(sub.country)} />
+        <Row label="현재 키" value={str(sub.current_height)} />
         <Row label="아버지 키" value={str(sub.father_height)} />
         <Row label="어머니 키" value={str(sub.mother_height)} />
         <Row label="목표 키" value={str(sub.desired_height)} />

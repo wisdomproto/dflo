@@ -31,6 +31,7 @@ export default function AdminPatientsPage() {
   const [addOpen, setAddOpen] = useState(false);
   const [activeCategories, setActiveCategories] = useState<Set<PatientCategoryId>>(new Set());
   const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [countryFilter, setCountryFilter] = useState<string>(''); // '' = 전체
   const [storyChildIds, setStoryChildIds] = useState<Set<string>>(new Set());
   const [storyOpenFor, setStoryOpenFor] = useState<PatientWithParent | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
@@ -61,6 +62,7 @@ export default function AdminPatientsPage() {
   const filteredPatients = useMemo(() => {
     let list = patients;
     if (favoritesOnly) list = list.filter((p) => favorites.has(p.id));
+    if (countryFilter) list = list.filter((p) => (p.country ?? '') === countryFilter);
     if (activeCategories.size) {
       list = list.filter((p) => {
         const cats = categoriesById.get(p.id) ?? [];
@@ -69,7 +71,18 @@ export default function AdminPatientsPage() {
       });
     }
     return list;
-  }, [patients, categoriesById, activeCategories, favoritesOnly, favorites]);
+  }, [patients, categoriesById, activeCategories, favoritesOnly, favorites, countryFilter]);
+
+  // 환자들에 실제로 존재하는 국가 + 건수 (국가 필터 드롭다운 옵션).
+  const countryOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const p of patients) {
+      const c = p.country ?? '';
+      if (!c) continue;
+      counts.set(c, (counts.get(c) ?? 0) + 1);
+    }
+    return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  }, [patients]);
 
   // Column sorting — chart / name / region / first visit / last visit / categories / measurements / labs / status.
   type SortKey =
@@ -282,8 +295,28 @@ export default function AdminPatientsPage() {
         className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
       />
 
-      {/* Filter chips: favorites + categories */}
-      <div className="flex flex-wrap gap-1.5">
+      {/* Filter chips: 국가 + favorites + categories */}
+      <div className="flex flex-wrap items-center gap-1.5">
+        {countryOptions.length > 0 && (
+          <select
+            value={countryFilter}
+            onChange={(e) => setCountryFilter(e.target.value)}
+            className={
+              'rounded-full border px-2.5 py-1 text-xs font-medium transition ' +
+              (countryFilter
+                ? 'border-indigo-300 bg-indigo-50 text-indigo-700 ring-2 ring-indigo-200'
+                : 'border-slate-200 bg-white text-slate-600')
+            }
+            title="국가별 필터"
+          >
+            <option value="">🌐 전체 국가</option>
+            {countryOptions.map(([code, count]) => (
+              <option key={code} value={code}>
+                {countryLabel(code)} ({count})
+              </option>
+            ))}
+          </select>
+        )}
         <button
           type="button"
           onClick={() => setFavoritesOnly((v) => !v)}
@@ -325,12 +358,13 @@ export default function AdminPatientsPage() {
             </button>
           );
         })}
-        {(activeCategories.size > 0 || favoritesOnly) && (
+        {(activeCategories.size > 0 || favoritesOnly || countryFilter) && (
           <button
             type="button"
             onClick={() => {
               setActiveCategories(new Set());
               setFavoritesOnly(false);
+              setCountryFilter('');
             }}
             className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 hover:bg-slate-50"
           >
