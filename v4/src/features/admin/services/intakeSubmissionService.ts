@@ -1,6 +1,6 @@
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
+import type { IntakeSubmission } from '@/features/intake/types';
 import { createPatient } from './adminService';
 
 export async function fetchSubmissions(
@@ -52,29 +52,13 @@ export async function suggestChartNumber(country?: string | null): Promise<strin
   return (data as string) ?? '';
 }
 
-/** intake-uploads 의 파일을 정식 버킷(xray-images / raw-records)으로 복사. 대상 경로 반환. */
-async function copyUpload(u: UploadMeta, chartNumber: string): Promise<string> {
-  const destBucket = u.kind === 'xray' ? 'xray-images' : 'raw-records';
-  const destPath = `intake/${chartNumber}/${u.path.split('/').pop()}`;
-  const { data, error } = await supabase.storage.from('intake-uploads').download(u.path);
-  if (error || !data) {
-    logger.error('intake file download failed', error);
-    throw new Error('파일 복사 실패');
-  }
-  const { error: upErr } = await supabase.storage.from(destBucket).upload(destPath, data, {
-    contentType: u.contentType || undefined,
-    upsert: true,
-  });
-  if (upErr) {
-    logger.error('intake file copy upload failed', upErr);
-    throw new Error('파일 복사 실패');
-  }
-  return destPath;
-}
-
 /**
- * 제출 승인 → children 생성 + 파일 복사 + intake_survey(raw_files 포함) 이식.
+ * 제출 승인 → children 생성 + intake_survey 이식 + 제출에 child_id 연결.
  * 생성된 child id 반환.
+ *
+ * 업로드한 X-ray·검사 파일은 intake-uploads 버킷에 그대로 두고, 승인된 제출
+ * (status='approved', child_id 연결)을 통해 어드민이 접수함에서 계속 열람한다.
+ * 환자 진료 화면(visit + xray_readings/lab_tests)으로의 surfacing 은 후속 작업.
  */
 export async function approveSubmission(
   sub: IntakeSubmission,
@@ -82,19 +66,7 @@ export async function approveSubmission(
 ): Promise<string> {
   if (!chartNumber.trim()) throw new Error('환자번호를 입력하세요.');
 
-  // 1) 업로드 파일을 정식 버킷으로 복사 + raw_files 메타 구성
-  const xray: string[] = [];
-  const lab: string[] = [];
-  for (const u of sub.uploads) {
-    const dest = await copyUpload(u, chartNumber.trim());
-    (u.kind === 'xray' ? xray : lab).push(dest);
-  }
-  const survey = {
-    ...(sub.intake_survey ?? {}),
-    raw_files: { pandokmun: [] as string[], lab, xray },
-  };
-
-  // 2) children 생성
+  // 1) children 생성 (먼저 생성해 채번 충돌 등 실패 시 다른 부작용 없게)
   const child = await createPatient({
     chart_number: chartNumber.trim(),
     name: sub.name ?? '(미입력)',
@@ -110,10 +82,10 @@ export async function approveSubmission(
     address: sub.address ?? undefined,
     grade: sub.grade ?? undefined,
     class_height_rank: sub.class_height_rank ?? undefined,
-    intake_survey: survey,
+    intake_survey: sub.intake_survey ?? undefined,
   });
 
-  // 3) 제출 상태 갱신 (환자는 이미 생성됨 — 실패해도 로깅만)
+  // 2) 제출 상태 갱신 (환자는 이미 생성됨 — 실패해도 로깅만)
   const { error } = await supabase
     .from('intake_submissions')
     .update({

@@ -4,17 +4,22 @@ import { validateFile } from '../publicIntakeService';
 
 type Kind = 'xray' | 'lab';
 
+const MAX_PER_KIND = 10;
+
 export function StepUploads({ state, set, L }: StepProps) {
-  // Per-kind inline rejection messages (e.g. unsupported / too_large).
+  // Per-kind inline rejection messages (e.g. unsupported / too_large / too_many).
   const [rejected, setRejected] = useState<Record<Kind, string[]>>({ xray: [], lab: [] });
 
   const pick = (kind: Kind, fileList: FileList | null) => {
     if (!fileList) return;
+    const current = kind === 'xray' ? state.xrayFiles : state.labFiles;
     const accepted: File[] = [];
     const bad: string[] = [];
     Array.from(fileList).forEach((f) => {
       const err = validateFile(f);
       if (err) bad.push(`${f.name} — ${err}`);
+      else if (current.length + accepted.length >= MAX_PER_KIND)
+        bad.push(`${f.name} — max ${MAX_PER_KIND}`);
       else accepted.push(f);
     });
     setRejected((r) => ({ ...r, [kind]: bad }));
