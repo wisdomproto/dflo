@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>태국 환자 상담 매뉴얼 (Q&A 편집기)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --bg: #f4f5fb;
+    --card: #ffffff;
+    --border: #e6e8f2;
+    --text: #2b2d42;
+    --muted: #8a8fa3;
+    --green: #2ecc71;
+    --radius: 14px;
+    --shadow: 0 4px 18px rgba(102, 126, 234, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* ---------- header ---------- */
+  header.app {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 22px 18px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 4px 20px rgba(118, 75, 162, 0.25);
+  }
+  header.app .inner { max-width: 880px; margin: 0 auto; }
+  header.app h1 { font-size: 19px; font-weight: 900; letter-spacing: -0.3px; }
+  header.app p { font-size: 12.5px; opacity: 0.85; margin-top: 3px; }
+  .toolbar {
+    max-width: 880px;
+    margin: 12px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .btn {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    transition: transform 0.12s, filter 0.12s, background 0.12s;
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn-light { background: rgba(255,255,255,0.18); color: #fff; }
+  .btn-light:hover { background: rgba(255,255,255,0.30); }
+  .btn-solid { background: #fff; color: var(--secondary); }
+  .btn-solid:hover { filter: brightness(0.96); }
+  .save-state { font-size: 12px; opacity: 0.9; margin-left: auto; }
+
+  /* ---------- layout ---------- */
+  main { max-width: 880px; margin: 0 auto; padding: 18px 14px 120px; }
+
+  .cat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .cat-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(102,126,234,0.10), rgba(118,75,162,0.10));
+    border-bottom: 1px solid var(--border);
+  }
+  .cat-head .num {
+    width: 26px; height: 26px; flex: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff; font-weight: 900; font-size: 13px;
+    display: grid; place-items: center;
+  }
+  .cat-head input.cat-title {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 4px 6px;
+    border-radius: 8px;
+  }
+  .cat-head input.cat-title:focus { outline: none; background: #fff; box-shadow: 0 0 0 2px var(--primary); }
+  .cat-body { padding: 12px 14px; }
+
+  /* ---------- question card ---------- */
+  .q {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    background: #fcfcff;
+  }
+  .q.is-public { border-color: rgba(46,204,113,0.5); background: #f6fdf9; }
+  .q-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  /* collapse chevrons */
+  .chev {
+    border: none; background: transparent; cursor: pointer;
+    color: var(--muted); font-size: 12px; flex: none;
+    width: 20px; height: 20px; display: grid; place-items: center;
+    transition: transform 0.18s; border-radius: 5px;
+  }
+  .chev:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+  .collapsed > .chev, .q.collapsed .chev-q { transform: rotate(-90deg); }
+  /* category collapse */
+  .cat.collapsed .cat-body { display: none; }
+  .cat-head { cursor: pointer; }
+  .cat-count {
+    font-size: 12px; font-weight: 700; color: var(--muted);
+    background: rgba(118,75,162,0.10); padding: 2px 9px; border-radius: 999px;
+    flex: none;
+  }
+  /* question answer collapse */
+  .q.collapsed { padding-bottom: 12px; margin-bottom: 8px; }
+  .q.collapsed .q-top { margin-bottom: 0; }
+  .q.collapsed .q-ans, .q.collapsed .q-actions { display: none; }
+  .ans-badge {
+    font-size: 11px; font-weight: 700; flex: none;
+    padding: 2px 8px; border-radius: 999px;
+  }
+  .ans-badge.done { color: var(--green); background: rgba(46,204,113,0.12); }
+  .ans-badge.todo { color: #c98a00; background: rgba(241,196,15,0.15); }
+  .ans-btn {
+    border: 1px solid var(--primary); background: rgba(102,126,234,0.06); cursor: pointer;
+    font-family: inherit; font-size: 12px; font-weight: 700; color: var(--primary);
+    padding: 5px 12px; border-radius: 999px; flex: none; white-space: nowrap;
+    transition: background 0.12s;
+  }
+  .ans-btn:hover { background: rgba(102,126,234,0.16); }
+  .q-label {
+    font-size: 11px; font-weight: 700; color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; user-select: none;
+    margin-left: auto;
+    font-size: 12.5px; font-weight: 700; color: var(--muted);
+  }
+  .toggle input { display: none; }
+  .switch {
+    width: 38px; height: 22px; border-radius: 999px;
+    background: #cfd3e4; position: relative; transition: background 0.18s;
+  }
+  .switch::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 18px; height: 18px; border-radius: 50%; background: #fff;
+    transition: transform 0.18s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle input:checked + .switch { background: var(--green); }
+  .toggle input:checked + .switch::after { transform: translateX(16px); }
+  .toggle .on-text { color: var(--green); }
+
+  .q input.q-text {
+    flex: 1;
+    min-width: 180px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 9px 11px;
+  }
+  .q textarea.q-ans {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: var(--text);
+    padding: 9px 11px;
+    min-height: 64px;
+    resize: vertical;
+    line-height: 1.55;
+  }
+  .q input.q-text:focus, .q textarea.q-ans:focus {
+    outline: none; border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(102,126,234,0.18);
+  }
+  .q textarea.q-ans::placeholder { color: #b9bdcf; }
+
+  .q-actions { display: flex; justify-content: flex-end; margin-top: 6px; }
+  .icon-btn {
+    border: none; background: transparent; cursor: pointer;
+    color: var(--muted); font-size: 12.5px; font-weight: 700;
+    padding: 4px 8px; border-radius: 6px;
+  }
+  .icon-btn:hover { color: #e74c3c; background: #fdecec; }
+
+  .add-q {
+    width: 100%;
+    border: 1.5px dashed var(--border);
+    background: transparent;
+    color: var(--primary);
+    font-family: inherit; font-weight: 700; font-size: 13px;
+    padding: 10px; border-radius: 10px; cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+  }
+  .add-q:hover { background: rgba(102,126,234,0.06); border-color: var(--primary); }
+
+  .add-cat {
+    width: 100%;
+    border: 1.5px dashed #c7c3de;
+    background: #fff;
+    color: var(--secondary);
+    font-family: inherit; font-weight: 700; font-size: 14px;
+    padding: 14px; border-radius: var(--radius); cursor: pointer;
+  }
+  .add-cat:hover { background: rgba(118,75,162,0.05); }
+  .cat-del {
+    border: none; background: transparent; cursor: pointer;
+    color: var(--muted); font-size: 18px; line-height: 1; padding: 4px 8px;
+    border-radius: 6px;
+  }
+  .cat-del:hover { color: #e74c3c; background: #fdecec; }
+
+  /* ---------- preview ---------- */
+  .preview-banner {
+    display: none;
+    background: #fff4d6; border: 1px solid #f1d488;
+    color: #8a6d1a; font-size: 12.5px; font-weight: 700;
+    padding: 8px 14px; border-radius: 10px;
+    max-width: 880px; margin: 0 auto 14px;
+  }
+  body.preview .preview-banner { display: block; }
+  body.preview .editor-only { display: none !important; }
+  body.preview .q:not(.is-public) { display: none; }
+  body.preview .cat-empty { display: none; }
+  body.preview .q { background: #fff; border-color: var(--border); }
+  body.preview .q input.q-text {
+    border: none; padding: 0 0 6px; font-size: 16px; pointer-events: none; background: transparent;
+  }
+  body.preview .q textarea.q-ans {
+    border: none; padding: 0; pointer-events: none; background: transparent;
+    min-height: auto; height: auto; color: #4a4d63;
+  }
+  body.preview .cat-head input.cat-title { pointer-events: none; }
+  /* preview: ignore collapse, hide editor chrome */
+  body.preview .chev, body.preview .ans-badge, body.preview .cat-count, body.preview .ans-btn { display: none; }
+  body.preview .cat.collapsed .cat-body { display: block; }
+  body.preview .q.collapsed .q-ans { display: block; }
+  body.preview .cat-head { cursor: default; }
+  .hidden { display: none !important; }
+
+  footer.note {
+    max-width: 880px; margin: 0 auto; padding: 0 14px;
+    font-size: 11.5px; color: var(--muted); text-align: center;
+  }
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="inner">
+    <h1>🇹🇭 태국 환자 상담 매뉴얼 — Q&A 편집기</h1>
+    <p>원장님과 함께 답변을 채워주세요 · 변경사항은 이 브라우저에 자동 저장됩니다</p>
+  </div>
+  <div class="toolbar">
+    <button class="btn btn-light" id="btnPreview">👁️ 공개 미리보기</button>
+    <button class="btn btn-light" id="btnToggleAll">▾ 답변 모두 펼치기</button>
+    <button class="btn btn-light" id="btnRefresh">🔄 새로고침</button>
+    <button class="btn btn-light" id="btnExport">⬇️ JSON 내보내기</button>
+    <button class="btn btn-light" id="btnImport">⬆️ JSON 불러오기</button>
+    <button class="btn btn-light" id="btnReset">↺ 초기화</button>
+    <span class="save-state" id="saveState">연결 중…</span>
+  </div>
+</header>
+
+<div class="preview-banner">👁️ 공개 미리보기 모드 — 공개(ON)로 설정된 질문만 표시됩니다. 편집하려면 다시 버튼을 누르세요.</div>
+
+<main id="app"></main>
+
+<button class="add-cat editor-only" id="btnAddCat" style="max-width:880px;margin:0 auto 24px;display:block;">＋ 카테고리 추가</button>
+
+<footer class="note">
+  데이터는 서버가 아닌 이 브라우저(localStorage)에만 저장됩니다. 다른 PC에서 이어 작업하거나 백업하려면 <b>JSON 내보내기</b>를 사용하세요.
+</footer>
+
+<input type="file" id="fileInput" accept="application/json" class="hidden" />
+
+<script>
+(function () {
+  'use strict';
+  const STORAGE_KEY = 'dflo_consulting_qa_v1';
+
+  // ---------- Supabase ----------
+  const SUPABASE_URL = 'https://txirmofdvuljkrjkpzdg.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4aXJtb2ZkdnVsamtyamtwemRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNTE0MjMsImV4cCI6MjA5MTgyNzQyM30.yBEnRDrresPy-pexp8DLhRo-8MlXjxvEC3Wh3hIqqfQ';
+  const sb = (window.supabase && window.supabase.createClient)
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+  let online = false; // DB 사용 가능 여부
+
+  // ---------- seed data (브레인스토밍에서 뽑은 예상 질문) ----------
+  const SEED = [
+    { title: '신뢰 · 효과', qs: [
+      '진짜 키가 크는 게 맞나요? 과학적 근거가 있나요?',
+      '우리 아이도 효과를 볼 수 있나요? (성장판이 닫혔다면?)',
+      '치료 사례나 전후 데이터가 있나요? 태국 아이도 받은 적 있나요?',
+      '부작용은 없나요? 호르몬 치료는 위험하지 않나요?',
+      '얼마 만에 몇 cm 정도 자라나요?',
+    ]},
+    { title: '상담 · 진료 프로세스', qs: [
+      '상담은 어떻게 진행되나요? (LINE / 화상 / 대면)',
+      '태국에 있는데 어떻게 진료받나요? 한국에 꼭 가야 하나요?',
+      '첫 상담 → 검사 → 치료까지 단계가 어떻게 되나요?',
+      '한국 방문 시 며칠 머물러야 하나요? 몇 번 방문해야 하나요?',
+      '검사(엑스레이·혈액·뼈나이)를 태국에서 받아 보내도 되나요?',
+      '치료 시작 후 약·주사는 태국에서 어떻게 이어받나요?',
+    ]},
+    { title: '언어 · 소통', qs: [
+      '태국어/영어 상담이 가능한가요? 통역 지원이 되나요?',
+      '한국 방문 시 의사소통은 어떻게 하나요?',
+      '검사 결과지·처방전을 태국어/영어로 받을 수 있나요?',
+    ]},
+    { title: '비용', qs: [
+      '상담 비용은 얼마인가요? (무료 / 유료)',
+      '진료·검사 비용은? 치료 전체 예상 비용은?',
+      '태국 바트(฿)로 얼마인가요? 결제는 어떻게 하나요?',
+      '태국 보험이 적용되나요? 영수증·서류 발급이 되나요?',
+      '약값·재방문 비용은 별도인가요?',
+    ]},
+    { title: '체류 · 실무 (방한)', qs: [
+      '비자가 필요한가요? 의료 목적 입국 절차는?',
+      '병원 근처 숙소·교통 안내가 되나요?',
+      '아이가 학교를 다니는데 최소 며칠이면 되나요?',
+    ]},
+    { title: '적합성 · 대상', qs: [
+      '몇 살부터 몇 살까지 치료가 가능한가요?',
+      '우리 아이 키가 OOcm인데 치료 대상인가요?',
+      '사춘기가 빠른 아이 / 저신장 / 비만도 모두 가능한가요?',
+    ]},
+  ];
+
+  function uid() { return 'q' + Math.random().toString(36).slice(2, 9); }
+
+  function buildFromSeed() {
+    return SEED.map(function (c) {
+      return {
+        id: uid(),
+        title: c.title,
+        questions: c.qs.map(function (q) {
+          return { id: uid(), q: q, a: '', isPublic: false };
+        }),
+      };
+    });
+  }
+
+  // ---------- state ----------
+  // 즉시 표시용으로 로컬 캐시 먼저 사용, 이후 DB 값으로 덮어씀.
+  let state = loadCache() || buildFromSeed();
+
+  function loadCache() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function writeCache() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function flash(t) { document.getElementById('saveState').textContent = t; }
+
+  // DB(또는 캐시) 저장. DB 실패 시 자동으로 로컬 전용 모드로 전환.
+  let saveTimer = null;
+  function queueSave() {
+    flash('저장 중…');
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 500);
+  }
+  async function save() {
+    writeCache();
+    if (online && sb) {
+      const { error } = await sb.from('consulting_qa')
+        .upsert({ id: 1, categories: state, updated_at: new Date().toISOString() });
+      if (error) { online = false; flash('⚠️ DB 저장 실패 — 로컬에만 저장됨'); return; }
+      flash('☁️ 저장됨 ✓');
+    } else {
+      flash('💾 로컬 저장됨 (DB 미연결)');
+    }
+  }
+
+  // 최초 로드 + 새로고침: DB → state.
+  async function pullRemote(opts) {
+    opts = opts || {};
+    if (!sb) { online = false; flash('💾 로컬 모드 (supabase-js 로드 실패)'); return; }
+    flash('동기화 중…');
+    const { data, error } = await sb.from('consulting_qa')
+      .select('categories').eq('id', 1).maybeSingle();
+    if (error) {
+      online = false;
+      flash('💾 로컬 모드 (DB 미연결 — 마이그레이션 029 적용 필요)');
+      return;
+    }
+    online = true;
+    const remote = data && Array.isArray(data.categories) ? data.categories : [];
+    if (remote.length > 0) {
+      state = remote; writeCache(); render();
+      flash('☁️ 불러옴 ✓');
+    } else {
+      // DB 비어있음 → 현재(시드 또는 캐시) 내용을 DB로 올림.
+      await save();
+      flash('☁️ 초기 데이터 업로드됨 ✓');
+    }
+  }
+
+  // ---------- render ----------
+  const appEl = document.getElementById('app');
+  // UI 전용 상태(DB 비저장): 펼침 여부
+  const collapsedCat = new Set();          // 접힌 카테고리 id
+  const openQ = new Set();                  // 답변 펼친 질문 id (기본: 접힘)
+
+  function render() {
+    appEl.innerHTML = '';
+    state.forEach(function (cat, ci) {
+      appEl.appendChild(renderCat(cat, ci));
+    });
+  }
+
+  function renderCat(cat, ci) {
+    const sec = el('section', 'cat');
+    if (collapsedCat.has(cat.id)) sec.classList.add('collapsed');
+
+    const head = el('div', 'cat-head');
+    const chev = el('button', 'chev'); chev.textContent = '▾'; chev.title = '접기/펼치기';
+    const num = el('div', 'num'); num.textContent = ci + 1;
+    const title = document.createElement('input');
+    title.className = 'cat-title';
+    title.value = cat.title;
+    title.placeholder = '카테고리 이름';
+    title.addEventListener('input', function () { cat.title = title.value; queueSave(); });
+    title.addEventListener('click', function (e) { e.stopPropagation(); });
+    const count = el('span', 'cat-count'); count.textContent = cat.questions.length + '문항';
+    const del = el('button', 'cat-del editor-only'); del.textContent = '🗑';
+    del.title = '카테고리 삭제';
+    del.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (confirm('이 카테고리와 안의 질문을 모두 삭제할까요?')) {
+        state.splice(ci, 1); save(); render();
+      }
+    });
+    function toggleCat() {
+      if (collapsedCat.has(cat.id)) collapsedCat.delete(cat.id);
+      else collapsedCat.add(cat.id);
+      sec.classList.toggle('collapsed');
+    }
+    head.addEventListener('click', toggleCat);
+    head.append(chev, num, title, count, del);
+
+    const body = el('div', 'cat-body');
+    if (cat.questions.length === 0) {
+      const empty = el('div', 'cat-empty'); empty.style.cssText = 'color:#b9bdcf;font-size:13px;padding:6px 2px 12px;';
+      empty.textContent = '질문이 없습니다.';
+      body.appendChild(empty);
+    }
+    cat.questions.forEach(function (q, qi) {
+      body.appendChild(renderQ(cat, q, qi));
+    });
+
+    const addQ = el('button', 'add-q editor-only'); addQ.textContent = '＋ 질문 추가';
+    addQ.addEventListener('click', function () {
+      cat.questions.push({ id: uid(), q: '', a: '', isPublic: false });
+      save(); render();
+    });
+    body.appendChild(addQ);
+
+    sec.append(head, body);
+    return sec;
+  }
+
+  function renderQ(cat, q, qi) {
+    const wrap = el('div', 'q' + (q.isPublic ? ' is-public' : ''));
+    if (!openQ.has(q.id)) wrap.classList.add('collapsed');
+
+    const top = el('div', 'q-top');
+    const lab = el('span', 'q-label'); lab.textContent = 'Q' + (qi + 1);
+
+    const badge = el('span', 'ans-badge'); updateBadge();
+    function updateBadge() {
+      const done = !!(q.a && q.a.trim());
+      badge.textContent = done ? '✓ 작성됨' : '미작성';
+      badge.className = 'ans-badge ' + (done ? 'done' : 'todo');
+    }
+
+    const toggle = document.createElement('label'); toggle.className = 'toggle editor-only';
+    const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!q.isPublic;
+    const sw = el('span', 'switch');
+    const txt = el('span', 'tg-text'); setToggleText(txt, q.isPublic);
+    cb.addEventListener('change', function () {
+      q.isPublic = cb.checked;
+      wrap.classList.toggle('is-public', cb.checked);
+      setToggleText(txt, cb.checked);
+      queueSave();
+    });
+    toggle.append(cb, sw, txt);
+
+    const qText = document.createElement('input');
+    qText.className = 'q-text'; qText.value = q.q; qText.placeholder = '질문을 입력하세요';
+    qText.addEventListener('input', function () { q.q = qText.value; queueSave(); });
+
+    const ansBtn = el('button', 'ans-btn');
+    function setAnsBtnText() { ansBtn.textContent = wrap.classList.contains('collapsed') ? '▶ 답변 보기' : '▼ 답변 닫기'; }
+    setAnsBtnText();
+
+    top.append(lab, qText, badge, toggle, ansBtn);
+
+    const ans = document.createElement('textarea');
+    ans.className = 'q-ans'; ans.value = q.a;
+    ans.placeholder = '답변을 입력하세요 (원장님과 함께 작성)';
+    ans.addEventListener('input', function () {
+      q.a = ans.value; updateBadge(); queueSave();
+      ans.style.height = 'auto'; ans.style.height = ans.scrollHeight + 'px';
+    });
+
+    function toggleAns() {
+      const opening = wrap.classList.contains('collapsed');
+      if (opening) { openQ.add(q.id); wrap.classList.remove('collapsed'); ans.style.height = 'auto'; ans.style.height = ans.scrollHeight + 'px'; }
+      else { openQ.delete(q.id); wrap.classList.add('collapsed'); }
+      setAnsBtnText();
+    }
+    ansBtn.addEventListener('click', toggleAns);
+    lab.style.cursor = 'pointer'; lab.addEventListener('click', toggleAns);
+    badge.style.cursor = 'pointer'; badge.addEventListener('click', toggleAns);
+
+    const actions = el('div', 'q-actions editor-only');
+    const delQ = el('button', 'icon-btn'); delQ.textContent = '삭제';
+    delQ.addEventListener('click', function () {
+      cat.questions.splice(qi, 1); save(); render();
+    });
+    actions.appendChild(delQ);
+
+    wrap.append(top, ans, actions);
+    return wrap;
+  }
+
+  function setToggleText(span, on) {
+    span.textContent = on ? '공개' : '비공개';
+    span.classList.toggle('on-text', on);
+  }
+
+  function el(tag, cls) { const e = document.createElement(tag); if (cls) e.className = cls; return e; }
+
+  // ---------- toolbar ----------
+  document.getElementById('btnAddCat').addEventListener('click', function () {
+    state.push({ id: uid(), title: '새 카테고리', questions: [] });
+    save(); render();
+  });
+
+  document.getElementById('btnPreview').addEventListener('click', function () {
+    const on = document.body.classList.toggle('preview');
+    this.textContent = on ? '✏️ 편집으로 돌아가기' : '👁️ 공개 미리보기';
+    if (on) {
+      // auto-resize textareas for clean reading
+      document.querySelectorAll('textarea.q-ans').forEach(function (t) {
+        t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px';
+      });
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('btnExport').addEventListener('click', function () {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const d = new Date().toISOString().slice(0, 10);
+    a.href = url; a.download = 'consulting-qa-' + d + '.json';
+    a.click(); URL.revokeObjectURL(url);
+  });
+
+  const fileInput = document.getElementById('fileInput');
+  document.getElementById('btnImport').addEventListener('click', function () { fileInput.click(); });
+  fileInput.addEventListener('change', function (e) {
+    const f = e.target.files[0]; if (!f) return;
+    const reader = new FileReader();
+    reader.onload = function () {
+      try {
+        const data = JSON.parse(reader.result);
+        if (!Array.isArray(data)) throw new Error('형식 오류');
+        state = data; save(); render();
+        alert('불러오기 완료');
+      } catch (err) { alert('불러오기 실패: 올바른 JSON 파일이 아닙니다.'); }
+      fileInput.value = '';
+    };
+    reader.readAsText(f);
+  });
+
+  document.getElementById('btnReset').addEventListener('click', function () {
+    if (confirm('모든 내용을 초기 질문 세트로 되돌릴까요? (현재 입력 내용이 사라집니다)')) {
+      state = buildFromSeed(); save(); render();
+    }
+  });
+
+  document.getElementById('btnToggleAll').addEventListener('click', function () {
+    const allOpen = state.every(function (c) { return c.questions.every(function (q) { return openQ.has(q.id); }); });
+    openQ.clear();
+    if (!allOpen) {
+      state.forEach(function (c) { c.questions.forEach(function (q) { openQ.add(q.id); }); });
+    }
+    this.textContent = allOpen ? '▾ 답변 모두 펼치기' : '▸ 답변 모두 접기';
+    render();
+  });
+
+  document.getElementById('btnRefresh').addEventListener('click', function () {
+    if (state && hasContent() && !confirm('DB의 최신 내용을 불러옵니다. 저장하지 않은 변경이 있으면 덮어쓰여질 수 있어요. 계속할까요?')) return;
+    pullRemote({ force: true });
+  });
+  function hasContent() {
+    return state.some(function (c) { return c.questions.some(function (q) { return q.a || q.q; }); });
+  }
+
+  render();
+  pullRemote();
+})();
+</script>
+</body>
+</html>

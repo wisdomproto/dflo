@@ -99,6 +99,7 @@ scripts/
 | `recipes` | id, title, image_url, is_published, order_index | Recipes |
 | `growth_guides` | id, title, image_url, content, is_published, order_index | Guides |
 | `growth_cases` | id, chart_number, patient_name, gender, is_published | Website treatment cases |
+| `consulting_qa` | id(=1 singleton), categories(jsonb), updated_at | 태국 환자 상담 매뉴얼 Q&A. `/consulting.html` 편집기가 읽고 씀 (migration 029) |
 
 ## Storage Buckets
 - `content-images` (public, 5MB) — guides/recipes/cases + lab attachments
@@ -118,6 +119,8 @@ scripts/
 - 범용 국적: `017_children_country.sql` (수동 적용 필요)
 - 환자 셀프 설문 대기함 + 채번 함수 + intake-uploads 버킷: `018_intake_submissions.sql` (수동 적용 필요)
 - 설문 현재 키·몸무게: `019_intake_current_height.sql` (수동 적용 필요)
+- 마케팅 도구: `020_marketing_config.sql` ~ `028_marketing_ad_campaigns.sql`
+- 상담 매뉴얼 Q&A 싱글톤: `029_consulting_qa.sql` (적용 완료)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
@@ -172,6 +175,7 @@ scripts/
 | `/diagnosis` | IntakeDiagnosisPage (AI 진단 intake) |
 | `/intake/:lang` | PublicIntakePage (환자 셀프 설문, 공개 6스텝 마법사, ko/th/vi/en). 어드민 검토는 `/admin/intake` |
 | `/banner-admin` | AdminWebsitePage (PIN 보호) |
+| `/consulting.html` | 태국 환자 상담 매뉴얼 Q&A 편집기 (정적 HTML, noindex). 카테고리/질문/답변 + 질문별 공개토글, Supabase `consulting_qa` 싱글톤에 저장, supabase-js CDN 직접 연동 |
 
 ## Legacy Route Redirects
 router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmarks and banner `cta_target` values in R2 keep working:
