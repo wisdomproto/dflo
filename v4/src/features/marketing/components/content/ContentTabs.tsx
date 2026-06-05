@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import type { MarketingArticle } from '../../types';
 import { BaseArticlePanel } from './BaseArticlePanel';
 import { BlogPanel } from './BlogPanel';
+import { CardNewsPanel } from './CardNewsPanel';
 
 const ACCENT = '#4A2D6B';
 
@@ -58,9 +59,7 @@ export function ContentTabs({ article, onSaved }: Props) {
         ) : tab === 'blog' ? (
           <BlogPanel article={article} />
         ) : (
-          <div className="flex h-full items-center justify-center text-sm text-gray-400">
-            준비 중입니다 (Phase 3)
-          </div>
+          <CardNewsPanel article={article} />
         )}
       </div>
     </div>

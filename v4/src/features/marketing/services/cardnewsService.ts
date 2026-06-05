@@ -6,6 +6,29 @@ import type { Cardnews, CardnewsSlide, CardCanvasData } from '../types';
 // Keep field lists in sync: 032 migration columns ↔ mappers ↔ Cardnews/CardnewsSlide.
 type Row = Record<string, unknown>;
 
+const AI_BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:3001';
+
+export interface GeneratedSlide {
+  headline: string;
+  body: string;
+  imagePrompt: string;
+}
+
+export async function generateCardnewsSlides(req: {
+  title: string;
+  body?: string;
+  count?: number;
+}): Promise<GeneratedSlide[]> {
+  const res = await fetch(`${AI_BASE}/api/marketing/cardnews-generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `카드뉴스 생성 실패: ${res.status}`);
+  return (b.slides ?? []) as GeneratedSlide[];
+}
+
 const EMPTY_CANVAS: CardCanvasData = {
   bgColor: '#ffffff',
   imageUrl: null,
