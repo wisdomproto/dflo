@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import type { MarketingArticle } from '../../types';
 import { BaseArticlePanel } from './BaseArticlePanel';
+import { BlogPanel } from './BlogPanel';
 
 const ACCENT = '#4A2D6B';
 
@@ -54,9 +55,11 @@ export function ContentTabs({ article, onSaved }: Props) {
       <div className="flex-1 overflow-y-auto">
         {tab === 'base' ? (
           <BaseArticlePanel article={article} onSaved={onSaved} />
+        ) : tab === 'blog' ? (
+          <BlogPanel article={article} />
         ) : (
           <div className="flex h-full items-center justify-center text-sm text-gray-400">
-            준비 중입니다 (Phase 2/3)
+            준비 중입니다 (Phase 3)
           </div>
         )}
       </div>
