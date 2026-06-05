@@ -1,6 +1,7 @@
 // src/features/marketing/components/content/ContentTabs.tsx
 import { useEffect, useState } from 'react';
 import type { MarketingArticle } from '../../types';
+import { LanguageSelector } from './LanguageSelector';
 import { BaseArticlePanel } from './BaseArticlePanel';
 import { BlogPanel } from './BlogPanel';
 import { CardNewsPanel } from './CardNewsPanel';
@@ -16,22 +17,25 @@ interface Props {
 
 export function ContentTabs({ article, onSaved }: Props) {
   const [tab, setTab] = useState<Tab>('base');
+  const [language, setLanguage] = useState('ko');
 
-  // Switching articles resets to 기본글 (avoids stranding on a now-hidden tab).
+  // Switching articles resets to 기본글 + 한국어 원본.
   useEffect(() => {
     setTab('base');
+    setLanguage('ko');
   }, [article.id]);
-
-  const showBlog = article.language === 'ko';
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'base', label: '기본글' },
-    ...(showBlog ? [{ key: 'blog' as Tab, label: 'N블로그' }] : []),
+    { key: 'blog', label: 'N블로그' },
     { key: 'cardnews', label: '카드뉴스' },
   ];
 
   return (
     <div className="flex h-full flex-col">
+      {/* Language selector (applies to 기본글) */}
+      <LanguageSelector article={article} language={language} onChange={setLanguage} />
+
       {/* Tab bar */}
       <div className="flex shrink-0 gap-1 border-b border-gray-200 px-4">
         {tabs.map((t) => {
@@ -55,7 +59,7 @@ export function ContentTabs({ article, onSaved }: Props) {
       {/* Tab body */}
       <div className="flex-1 overflow-y-auto">
         {tab === 'base' ? (
-          <BaseArticlePanel article={article} onSaved={onSaved} />
+          <BaseArticlePanel article={article} language={language} onSaved={onSaved} />
         ) : tab === 'blog' ? (
           <BlogPanel article={article} />
         ) : (

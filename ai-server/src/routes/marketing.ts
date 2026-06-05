@@ -13,7 +13,7 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt } from '../services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt } from '../services/contentPrompts.js';
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
@@ -363,6 +363,28 @@ marketingRouter.post('/rewrite', async (req: Request, res: Response) => {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] rewrite failed', e);
     res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// POST /translate : 한국어 master 글 → 대상 언어 {title, body} JSON (Gemini 게이트).
+marketingRouter.post('/translate', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title && !body.body) return res.status(400).json({ success: false, error: 'title/body required' });
+  if (!body.targetLang || !String(body.targetLang).trim()) return res.status(400).json({ success: false, error: 'targetLang required' });
+  try {
+    const raw = await generateText(buildTranslatePrompt(await readMarketingConfig(), {
+      title: String(body.title ?? ''), body: String(body.body ?? ''), targetLang: String(body.targetLang),
+    }));
+    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+    if (s < 0 || e <= s) return res.status(502).json({ success: false, error: '번역 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    let parsed: { title?: string; body?: string };
+    try { parsed = JSON.parse(raw.slice(s, e + 1)); }
+    catch { return res.status(502).json({ success: false, error: '번역 결과 JSON 파싱 실패. 다시 시도해주세요.' }); }
+    res.json({ success: true, title: parsed.title ?? '', body: parsed.body ?? '' });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] translate failed', e);
+    res.status(502).json({ success: false, error: msg });
   }
 });
 

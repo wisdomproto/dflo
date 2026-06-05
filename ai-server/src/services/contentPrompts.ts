@@ -152,6 +152,41 @@ ${r.selection}
 - 다시 작성한 HTML 조각만 출력하세요. 설명, 마크다운, 코드펜스는 절대 포함하지 마세요.`;
 }
 
+export interface TranslateRequest {
+  title: string;
+  body: string;
+  targetLang: string;
+}
+
+const LANG_NAMES: Record<string, string> = {
+  th: '태국어', vi: '베트남어', en: '영어', ja: '일본어',
+  'zh-tw': '대만 중국어', zh: '중국어', id: '인도네시아어', ms: '말레이어',
+};
+
+/**
+ * 번역 프롬프트. 한국어 master 글(제목+HTML 본문)을 대상 언어로 번역해
+ * { "title", "body" } JSON 으로 반환하도록 지시한다. HTML 구조는 보존.
+ */
+export function buildTranslatePrompt(c: ArticleConfig, r: TranslateRequest): string {
+  const lang = LANG_NAMES[r.targetLang] || r.targetLang;
+  const tone = c.brand_tone?.trim();
+
+  return `당신은 ${c.brand_name?.trim() || '187 성장클리닉'}의 전문 번역가입니다.
+아래 한국어 블로그 글을 ${lang}로 번역하세요.
+${tone ? `브랜드 톤(${tone})을 유지하되 ` : ''}현지 독자에게 자연스럽게 읽히도록, 의료 정보의 정확성을 지키며 번역합니다.
+HTML 태그 구조(<h1>/<h2>/<p>/<ul>/<li> 등)는 그대로 두고 텍스트만 번역하세요.
+
+## 출력 형식 (중요)
+- 반드시 아래 JSON 객체만 출력하세요. 다른 텍스트, 마크다운, 코드펜스는 절대 포함하지 마세요.
+{"title": "번역된 제목", "body": "번역된 HTML 본문"}
+
+## [원문 제목]
+${r.title}
+
+## [원문 본문 HTML]
+${r.body}`;
+}
+
 /** blog channel code → 한국어 채널 이름 */
 function channelLabel(code?: string): string {
   if (code === 'wordpress') return '워드프레스';

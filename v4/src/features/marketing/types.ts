@@ -58,6 +58,14 @@ export interface MarketingConfig {
 
 export type ArticleStatus = 'draft' | 'done';
 
+// Per-language version of a content's base article. The master row holds the
+// Korean original (title/body); other languages live in `translations[lang]`.
+export interface ArticleTranslation {
+  title: string;
+  body: string;
+  status?: 'none' | 'translating' | 'completed';
+}
+
 export interface MarketingArticle {
   id: string;
   topicId: string | null;
@@ -65,12 +73,13 @@ export interface MarketingArticle {
   body: string;
   category: string;
   keywords: string[];
-  language: string;
+  language: string; // master language (always 'ko' for content-studio articles)
   status: ArticleStatus;
   createdAt: string;
   updatedAt: string;
   confirmed: boolean;
   sortOrder: number;
+  translations: Record<string, ArticleTranslation>; // keyed by lang, e.g. { th: {...} }
 }
 
 export interface KeywordHit {

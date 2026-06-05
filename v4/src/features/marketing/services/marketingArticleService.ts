@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleTranslation } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -22,6 +22,7 @@ function rowToArticle(r: Row): MarketingArticle {
     updatedAt: (r.updated_at as string) ?? '',
     confirmed: (r.confirmed as boolean) ?? false,
     sortOrder: (r.sort_order as number) ?? 0,
+    translations: (r.translations as Record<string, ArticleTranslation>) ?? {},
   };
 }
 
@@ -38,6 +39,8 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     updated_at: new Date().toISOString(),
     confirmed: a.confirmed ?? false,
     sort_order: a.sortOrder ?? 0,
+    // Only write translations when explicitly provided, so partial saves don't wipe them.
+    ...(a.translations !== undefined ? { translations: a.translations } : {}),
   };
 }
 
@@ -141,6 +144,22 @@ export async function rewriteSelection(p: {
   const b = await res.json().catch(() => ({}));
   if (!res.ok || !b.success) throw new Error(b.error || `재작성 실패: ${res.status}`);
   return b.html as string;
+}
+
+// Translate the master (Korean) title+body into a target language via Gemini.
+export async function translateArticle(p: {
+  title: string;
+  body: string;
+  targetLang: string;
+}): Promise<{ title: string; body: string }> {
+  const res = await fetch(`${BASE}/api/marketing/translate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `번역 실패: ${res.status}`);
+  return { title: (b.title as string) ?? '', body: (b.body as string) ?? '' };
 }
 
 export async function setConfirmed(id: string, confirmed: boolean): Promise<void> {

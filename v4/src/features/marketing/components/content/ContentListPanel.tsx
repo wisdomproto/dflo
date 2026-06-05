@@ -10,6 +10,7 @@ import { CSS } from '@dnd-kit/utilities';
 import type { MarketingArticle } from '../../types';
 
 const ACCENT = '#4A2D6B';
+const LANG_FLAG: Record<string, string> = { th: '🇹🇭', vi: '🇻🇳', en: '🇺🇸', ja: '🇯🇵', zh: '🇨🇳' };
 
 interface Props {
   articles: MarketingArticle[];
@@ -76,7 +77,14 @@ function SortableRow({
           {article.category && (
             <span className="truncate max-w-[110px]">{article.category}</span>
           )}
-          <span className="px-1 rounded bg-gray-100 text-gray-500 uppercase">{article.language}</span>
+          {/* 번역 보유 언어 플래그 (master 는 한국어 원본) */}
+          <span className="shrink-0">
+            🇰🇷
+            {Object.entries(article.translations ?? {})
+              .filter(([, t]) => t?.body?.trim())
+              .map(([lang]) => LANG_FLAG[lang] ?? '🌐')
+              .join('')}
+          </span>
         </div>
       </div>
 
