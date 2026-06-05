@@ -8,11 +8,17 @@ import { pendingCount } from '@/features/admin/services/intakeSubmissionService'
 // 사이드바 + 관리자 레이아웃
 // ================================================
 
+// 일반 관리 항목.
 const NAV_ITEMS = [
   { to: '/admin', icon: '📊', label: '대시보드', end: true },
   { to: '/admin/patients', icon: '👥', label: '환자 관리', end: false },
-  { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
   { to: '/admin/medications', icon: '💊', label: '약품 마스터', end: false },
+  { to: '/marketing', icon: '📣', label: '마케팅', end: false },
+];
+
+// 상담 직원용 그룹 (설문 접수 + 상담 매뉴얼).
+const CONSULT_ITEMS = [
+  { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
 ];
 
 const BM_DOCS = [
@@ -70,6 +76,37 @@ export default function AdminLayout() {
     navigate('/admin/login');
   };
 
+  const renderNavLink = (item: { to: string; icon: string; label: string; end: boolean }) => {
+    const badge = item.to === '/admin/intake' && intakePending > 0 ? intakePending : 0;
+    return (
+      <NavLink
+        key={item.to}
+        to={item.to}
+        end={item.end}
+        className={({ isActive }) =>
+          `relative flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
+            collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
+          } ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-100'}`
+        }
+        onClick={() => setSidebarOpen(false)}
+        title={collapsed ? item.label : undefined}
+      >
+        <span className="text-lg">{item.icon}</span>
+        {!collapsed && <span>{item.label}</span>}
+        {badge > 0 &&
+          (collapsed ? (
+            <span className="absolute right-1 top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white">
+              {badge}
+            </span>
+          ) : (
+            <span className="ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 text-[11px] font-bold leading-none text-white">
+              {badge}
+            </span>
+          ))}
+      </NavLink>
+    );
+  };
+
   const sidebar = (
     <nav className="flex flex-col h-full">
       {/* Logo / collapse header */}
@@ -94,40 +131,20 @@ export default function AdminLayout() {
 
       {/* Nav Links */}
       <div className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
-        {NAV_ITEMS.map((item) => {
-          const badge = item.to === '/admin/intake' && intakePending > 0 ? intakePending : 0;
-          return (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.end}
-              className={({ isActive }) =>
-                `relative flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
-                  collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
-                } ${
-                  isActive ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-100'
-                }`
-              }
-              onClick={() => setSidebarOpen(false)}
-              title={collapsed ? item.label : undefined}
-            >
-              <span className="text-lg">{item.icon}</span>
-              {!collapsed && <span>{item.label}</span>}
-              {badge > 0 &&
-                (collapsed ? (
-                  <span className="absolute right-1 top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white">
-                    {badge}
-                  </span>
-                ) : (
-                  <span className="ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 text-[11px] font-bold leading-none text-white">
-                    {badge}
-                  </span>
-                ))}
-            </NavLink>
-          );
-        })}
+        {NAV_ITEMS.map(renderNavLink)}
 
-        {/* 정적 도구 (SPA 라우트 아님 → 새 탭 외부 링크) */}
+        {/* 상담 직원용 그룹 — 구분선 + 라벨 */}
+        {collapsed ? (
+          <div className="my-2 border-t border-gray-200" />
+        ) : (
+          <p className="px-4 pt-4 pb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+            상담 직원용
+          </p>
+        )}
+
+        {CONSULT_ITEMS.map(renderNavLink)}
+
+        {/* 상담 매뉴얼 = 정적 페이지 (SPA 라우트 아님 → 새 탭 외부 링크) */}
         <a
           href="/consulting.html"
           target="_blank"
