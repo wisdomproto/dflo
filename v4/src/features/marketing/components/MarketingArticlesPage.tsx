@@ -1,44 +1,69 @@
 // src/features/marketing/components/MarketingArticlesPage.tsx
 import { useEffect, useState } from 'react';
 import type { MarketingArticle } from '../types';
-import { fetchArticles, deleteArticle } from '../services/marketingArticleService';
-import { ArticleList } from './ArticleList';
-import { ArticleEditor } from './ArticleEditor';
+import {
+  fetchArticles,
+  saveArticle,
+  deleteArticle,
+  reorderArticles,
+} from '../services/marketingArticleService';
+import { ContentListPanel } from './content/ContentListPanel';
+import { ContentTabs } from './content/ContentTabs';
 
 export function MarketingArticlesPage() {
   const [articles, setArticles] = useState<MarketingArticle[]>([]);
-  const [view, setView] = useState<{ mode: 'list' } | { mode: 'edit'; article: MarketingArticle | null }>({
-    mode: 'list',
-  });
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const reload = () => {
-    fetchArticles().then(setArticles);
+  const reload = () => fetchArticles().then(setArticles);
+  useEffect(() => {
+    reload();
+  }, []);
+
+  const selected = articles.find((a) => a.id === selectedId) ?? null;
+
+  const handleNew = async () => {
+    const a = await saveArticle({
+      title: '새 글',
+      language: 'ko',
+      status: 'draft',
+      keywords: [],
+      category: '',
+    });
+    await reload();
+    setSelectedId(a.id);
   };
-  useEffect(reload, []);
 
-  if (view.mode === 'edit') {
-    return (
-      <ArticleEditor
-        article={view.article}
-        onSaved={() => {
-          setView({ mode: 'list' });
-          reload();
-        }}
-        onCancel={() => setView({ mode: 'list' })}
-      />
-    );
-  }
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('이 글을 삭제할까요?')) return;
+    await deleteArticle(id);
+    if (selectedId === id) setSelectedId(null);
+    reload();
+  };
+
+  const handleReorder = async (ids: string[]) => {
+    await reorderArticles(ids);
+    reload();
+  };
 
   return (
-    <ArticleList
-      articles={articles}
-      onNew={() => setView({ mode: 'edit', article: null })}
-      onEdit={(a) => setView({ mode: 'edit', article: a })}
-      onDelete={async (id) => {
-        if (!window.confirm('이 글을 삭제할까요?')) return;
-        await deleteArticle(id);
-        reload();
-      }}
-    />
+    <div className="flex h-full">
+      <ContentListPanel
+        articles={articles}
+        selectedId={selectedId}
+        onSelect={setSelectedId}
+        onNew={handleNew}
+        onDelete={handleDelete}
+        onReorder={handleReorder}
+      />
+      <div className="flex-1 overflow-y-auto">
+        {selected ? (
+          <ContentTabs key={selected.id} article={selected} onSaved={reload} />
+        ) : (
+          <div className="flex h-full items-center justify-center text-sm text-gray-400">
+            왼쪽에서 글을 선택하거나 + 새 글 으로 시작하세요.
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
