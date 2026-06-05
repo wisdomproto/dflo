@@ -117,6 +117,7 @@ scripts/
 - Intake survey columns: `003_children_intake_survey.sql`
 - 범용 국적: `017_children_country.sql` (수동 적용 필요)
 - 환자 셀프 설문 대기함 + 채번 함수 + intake-uploads 버킷: `018_intake_submissions.sql` (수동 적용 필요)
+- 설문 현재 키·몸무게: `019_intake_current_height.sql` (수동 적용 필요)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
