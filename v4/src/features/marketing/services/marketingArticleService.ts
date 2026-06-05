@@ -98,3 +98,66 @@ export async function generateArticle(req: GenerateArticleReq): Promise<string> 
   if (!res.ok || !body.success) throw new Error(body.error || `생성 실패: ${res.status}`);
   return body.content as string;
 }
+
+export async function generateBaseArticle(req: GenerateArticleReq): Promise<string> {
+  const res = await fetch(`${BASE}/api/marketing/base-article`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `생성 실패: ${res.status}`);
+  return b.html as string;
+}
+
+export interface TopicSuggestion {
+  title: string;
+  angle: string;
+  keywords: string[];
+}
+
+export async function suggestTopics(
+  p: { count?: number; category?: string; seed?: string }
+): Promise<TopicSuggestion[]> {
+  const res = await fetch(`${BASE}/api/marketing/topics`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `추천 실패: ${res.status}`);
+  return (b.topics ?? []) as TopicSuggestion[];
+}
+
+export async function rewriteSelection(p: {
+  selection: string;
+  instruction?: string;
+}): Promise<string> {
+  const res = await fetch(`${BASE}/api/marketing/rewrite`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `재작성 실패: ${res.status}`);
+  return b.html as string;
+}
+
+export async function setConfirmed(id: string, confirmed: boolean): Promise<void> {
+  const { error } = await supabase
+    .from('marketing_articles')
+    .update({ confirmed })
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+export async function reorderArticles(ids: string[]): Promise<void> {
+  await Promise.all(
+    ids.map((id, i) =>
+      supabase
+        .from('marketing_articles')
+        .update({ sort_order: i })
+        .eq('id', id)
+    )
+  );
+}
