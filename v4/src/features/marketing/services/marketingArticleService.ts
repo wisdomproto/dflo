@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, TopicSuggestion } from '../types';
+import type { MarketingArticle, ArticleStatus } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -20,6 +20,8 @@ function rowToArticle(r: Row): MarketingArticle {
     status: ((r.status as ArticleStatus) ?? 'draft'),
     createdAt: (r.created_at as string) ?? '',
     updatedAt: (r.updated_at as string) ?? '',
+    confirmed: (r.confirmed as boolean) ?? false,
+    sortOrder: (r.sort_order as number) ?? 0,
   };
 }
 
@@ -34,6 +36,8 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     language: a.language ?? 'ko',
     status: a.status ?? 'draft',
     updated_at: new Date().toISOString(),
+    confirmed: a.confirmed ?? false,
+    sort_order: a.sortOrder ?? 0,
   };
 }
 
@@ -95,22 +99,65 @@ export async function generateArticle(req: GenerateArticleReq): Promise<string> 
   return body.content as string;
 }
 
-export interface SuggestTopicsReq {
-  count?: number;
-  category?: string;
-  seed?: string;
-}
-
-export async function suggestTopics(req: SuggestTopicsReq): Promise<TopicSuggestion[]> {
-  const res = await fetch(`${BASE}/api/marketing/suggest-topics`, {
+export async function generateBaseArticle(req: GenerateArticleReq): Promise<string> {
+  const res = await fetch(`${BASE}/api/marketing/base-article`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(req),
   });
-  const body = await res.json().catch(() => ({}));
-  if (!res.ok || !body.success) {
-    logger.warn('[marketing] suggestTopics failed:', body.error);
-    throw new Error(body.error || `주제 추천 실패: ${res.status}`);
-  }
-  return (body.topics ?? []) as TopicSuggestion[];
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `생성 실패: ${res.status}`);
+  return b.html as string;
+}
+
+export interface TopicSuggestion {
+  title: string;
+  angle: string;
+  keywords: string[];
+}
+
+export async function suggestTopics(
+  p: { count?: number; category?: string; seed?: string }
+): Promise<TopicSuggestion[]> {
+  const res = await fetch(`${BASE}/api/marketing/topics`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `추천 실패: ${res.status}`);
+  return (b.topics ?? []) as TopicSuggestion[];
+}
+
+export async function rewriteSelection(p: {
+  selection: string;
+  instruction?: string;
+}): Promise<string> {
+  const res = await fetch(`${BASE}/api/marketing/rewrite`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `재작성 실패: ${res.status}`);
+  return b.html as string;
+}
+
+export async function setConfirmed(id: string, confirmed: boolean): Promise<void> {
+  const { error } = await supabase
+    .from('marketing_articles')
+    .update({ confirmed })
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+export async function reorderArticles(ids: string[]): Promise<void> {
+  await Promise.all(
+    ids.map((id, i) =>
+      supabase
+        .from('marketing_articles')
+        .update({ sort_order: i })
+        .eq('id', id)
+    )
+  );
 }

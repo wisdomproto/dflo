@@ -13,6 +13,8 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt } from '../services/contentPrompts.js';
+import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -20,6 +22,12 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.warn('[marketing] Missing Supabase URL/KEY — generate-article will use empty config.');
 }
 const sb = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
+
+async function readMarketingConfig(): Promise<ArticleConfig> {
+  const { data, error } = await sb.from('marketing_config').select('*').eq('id', 1).maybeSingle();
+  if (error) console.warn('[marketing] config read failed — using empty config:', error.message);
+  return (data ?? {}) as ArticleConfig;
+}
 
 export const marketingRouter = Router();
 
@@ -285,6 +293,110 @@ marketingRouter.post('/keyword-ideas', async (req: Request, res: Response) => {
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] keyword-ideas failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// ── content-studio (콘텐츠 스튜디오) ───────────────────────────────────────
+// POST /base-article : 제목 → TipTap 에디터용 HTML 본문 (Gemini 게이트).
+marketingRouter.post('/base-article', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) {
+    return res.status(400).json({ success: false, error: 'title required' });
+  }
+  try {
+    const html = (await generateText(buildBasePrompt(await readMarketingConfig(), body))).trim();
+    if (html.length < 50) return res.status(502).json({ success: false, error: '생성 결과가 너무 짧습니다. 다시 시도해주세요.' });
+    res.json({ success: true, html });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] base-article failed', e);
+    res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// POST /topics : 브랜드/카테고리 → 주제 제안 JSON 배열 (Gemini 게이트).
+marketingRouter.post('/topics', async (req: Request, res: Response) => {
+  try {
+    const raw = await generateText(buildTopicPrompt(await readMarketingConfig(), req.body ?? {}));
+    const s = raw.indexOf('['), e = raw.lastIndexOf(']');
+    const topics = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : [];
+    if (!Array.isArray(topics) || topics.length === 0) {
+      return res.status(502).json({ success: false, error: '주제 추천 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    }
+    res.json({ success: true, topics });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] topics failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /blog-generate : 기본 글/제목 → 채널 SEO 섹션 카드 JSON 배열 (Gemini 게이트).
+marketingRouter.post('/blog-generate', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) return res.status(400).json({ success: false, error: 'title required' });
+  try {
+    const raw = await generateText(buildBlogPrompt(await readMarketingConfig(), body));
+    const s = raw.indexOf('['), e = raw.lastIndexOf(']');
+    const cards = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : [];
+    if (!Array.isArray(cards) || cards.length === 0) return res.status(502).json({ success: false, error: '블로그 생성 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    res.json({ success: true, cards });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] blog-generate failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /rewrite : 선택 구간 → 수정 지시대로 재작성한 HTML 조각 (Gemini 게이트).
+marketingRouter.post('/rewrite', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.selection || !String(body.selection).trim()) {
+    return res.status(400).json({ success: false, error: 'selection required' });
+  }
+  try {
+    const html = (await generateText(buildRewritePrompt(await readMarketingConfig(), body))).trim();
+    if (!html) return res.status(502).json({ success: false, error: '재작성 결과가 비어 있습니다. 다시 시도해주세요.' });
+    res.json({ success: true, html });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] rewrite failed', e);
+    res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// POST /cardnews-generate : 주제(+선택 원본) → 인스타 카드뉴스 슬라이드 JSON 배열 (Gemini 게이트).
+marketingRouter.post('/cardnews-generate', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) return res.status(400).json({ success: false, error: 'title required' });
+  try {
+    const raw = await generateText(buildCardNewsPrompt(await readMarketingConfig(), body));
+    const s = raw.indexOf('['), e = raw.lastIndexOf(']');
+    const slides = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : [];
+    if (!Array.isArray(slides) || slides.length === 0) return res.status(502).json({ success: false, error: '카드뉴스 생성 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    res.json({ success: true, slides });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] cardnews-generate failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /generate-image : 프롬프트 → Gemini 네이티브 이미지 생성 (base64 반환). GEMINI_API_KEY 게이트.
+marketingRouter.post('/generate-image', async (req: Request, res: Response) => {
+  const prompt = String(req.body?.prompt ?? '').trim();
+  const aspectRatio = req.body?.aspectRatio ? String(req.body.aspectRatio) : '4:5';
+  if (!prompt) return res.status(400).json({ success: false, error: 'prompt required' });
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) return res.status(500).json({ success: false, error: 'GEMINI_API_KEY 미설정' });
+  try {
+    const gen = createImageGenerator(DEFAULT_IMAGE_MODEL, apiKey);
+    const result = await gen.generate({ prompt, aspectRatio: aspectRatio as AspectRatio });
+    res.json({ success: true, image: result.base64, mimeType: result.mimeType });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] generate-image failed', e);
     res.status(502).json({ success: false, error: msg });
   }
 });
