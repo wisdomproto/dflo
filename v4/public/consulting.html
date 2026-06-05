@@ -290,8 +290,6 @@
     <button class="btn btn-light" id="btnPreview">👁️ 공개 미리보기</button>
     <button class="btn btn-light" id="btnToggleAll">▾ 답변 모두 펼치기</button>
     <button class="btn btn-light" id="btnRefresh">🔄 새로고침</button>
-    <button class="btn btn-light" id="btnExport">⬇️ JSON 내보내기</button>
-    <button class="btn btn-light" id="btnImport">⬆️ JSON 불러오기</button>
     <button class="btn btn-light" id="btnReset">↺ 초기화</button>
     <span class="save-state" id="saveState">연결 중…</span>
   </div>
@@ -304,10 +302,8 @@
 <button class="add-cat editor-only" id="btnAddCat" style="max-width:880px;margin:0 auto 24px;display:block;">＋ 카테고리 추가</button>
 
 <footer class="note">
-  데이터는 서버가 아닌 이 브라우저(localStorage)에만 저장됩니다. 다른 PC에서 이어 작업하거나 백업하려면 <b>JSON 내보내기</b>를 사용하세요.
+  입력 내용은 자동으로 DB에 저장됩니다(☁️ 표시). 원장님과 함께 쓸 땐 편집 전 <b>🔄 새로고침</b>으로 최신본을 받아오세요.
 </footer>
-
-<input type="file" id="fileInput" accept="application/json" class="hidden" />
 
 <script>
 (function () {
@@ -588,32 +584,6 @@
       });
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  document.getElementById('btnExport').addEventListener('click', function () {
-    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    const d = new Date().toISOString().slice(0, 10);
-    a.href = url; a.download = 'consulting-qa-' + d + '.json';
-    a.click(); URL.revokeObjectURL(url);
-  });
-
-  const fileInput = document.getElementById('fileInput');
-  document.getElementById('btnImport').addEventListener('click', function () { fileInput.click(); });
-  fileInput.addEventListener('change', function (e) {
-    const f = e.target.files[0]; if (!f) return;
-    const reader = new FileReader();
-    reader.onload = function () {
-      try {
-        const data = JSON.parse(reader.result);
-        if (!Array.isArray(data)) throw new Error('형식 오류');
-        state = data; save(); render();
-        alert('불러오기 완료');
-      } catch (err) { alert('불러오기 실패: 올바른 JSON 파일이 아닙니다.'); }
-      fileInput.value = '';
-    };
-    reader.readAsText(f);
   });
 
   document.getElementById('btnReset').addEventListener('click', function () {

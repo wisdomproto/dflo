@@ -126,6 +126,21 @@ export default function AdminLayout() {
             </NavLink>
           );
         })}
+
+        {/* 정적 도구 (SPA 라우트 아님 → 새 탭 외부 링크) */}
+        <a
+          href="/consulting.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`relative flex items-center gap-3 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-gray-100 ${
+            collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
+          }`}
+          title={collapsed ? '상담 매뉴얼' : undefined}
+          onClick={() => setSidebarOpen(false)}
+        >
+          <span className="text-lg">💬</span>
+          {!collapsed && <span>상담 매뉴얼</span>}
+        </a>
       </div>
 
       {/* BM 자료 dropdown */}
