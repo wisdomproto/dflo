@@ -69,6 +69,8 @@ export interface MarketingArticle {
   status: ArticleStatus;
   createdAt: string;
   updatedAt: string;
+  confirmed: boolean;
+  sortOrder: number;
 }
 
 export interface KeywordHit {

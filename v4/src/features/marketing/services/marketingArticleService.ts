@@ -20,6 +20,8 @@ function rowToArticle(r: Row): MarketingArticle {
     status: ((r.status as ArticleStatus) ?? 'draft'),
     createdAt: (r.created_at as string) ?? '',
     updatedAt: (r.updated_at as string) ?? '',
+    confirmed: (r.confirmed as boolean) ?? false,
+    sortOrder: (r.sort_order as number) ?? 0,
   };
 }
 
@@ -34,6 +36,8 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     language: a.language ?? 'ko',
     status: a.status ?? 'draft',
     updated_at: new Date().toISOString(),
+    confirmed: a.confirmed ?? false,
+    sort_order: a.sortOrder ?? 0,
   };
 }
 
