@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus } from '../types';
+import type { MarketingArticle, ArticleStatus, TopicSuggestion } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -93,4 +93,24 @@ export async function generateArticle(req: GenerateArticleReq): Promise<string> 
   const body = await res.json().catch(() => ({}));
   if (!res.ok || !body.success) throw new Error(body.error || `생성 실패: ${res.status}`);
   return body.content as string;
+}
+
+export interface SuggestTopicsReq {
+  count?: number;
+  category?: string;
+  seed?: string;
+}
+
+export async function suggestTopics(req: SuggestTopicsReq): Promise<TopicSuggestion[]> {
+  const res = await fetch(`${BASE}/api/marketing/suggest-topics`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) {
+    logger.warn('[marketing] suggestTopics failed:', body.error);
+    throw new Error(body.error || `주제 추천 실패: ${res.status}`);
+  }
+  return (body.topics ?? []) as TopicSuggestion[];
 }

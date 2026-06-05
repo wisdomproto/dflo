@@ -91,3 +91,9 @@ export interface SavedKeyword {
   source: string;
   createdAt: string;
 }
+
+export interface TopicSuggestion {
+  title: string;
+  angle: string;
+  keywords: string[];
+}
