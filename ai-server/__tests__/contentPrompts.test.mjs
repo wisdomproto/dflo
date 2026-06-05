@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt } from '../dist/services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt } from '../dist/services/contentPrompts.js';
 
 const cfg = { brand_name: '187', brand_description: '소아 성장', blog_rules: 'R', blog_categories: [{ code: 'A', name: '성장과학', context: 'ctx' }] };
 
@@ -25,4 +25,10 @@ test('buildRewritePrompt embeds the selected passage and instruction', () => {
   const p = buildRewritePrompt(cfg, { selection: '이 문장', instruction: '더 짧게' });
   assert.match(p, /이 문장/);
   assert.match(p, /더 짧게/);
+});
+test('buildBlogPrompt mentions JSON, keyword, and channel', () => {
+  const p = buildBlogPrompt(cfg, { title: '키 크는 법', primaryKeyword: '성장호르몬', channel: 'naver_blog' });
+  assert.match(p, /JSON/);
+  assert.match(p, /성장호르몬/);
+  assert.match(p, /키 크는 법/);
 });

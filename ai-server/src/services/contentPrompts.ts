@@ -28,6 +28,14 @@ export interface RewriteRequest {
   instruction?: string;
 }
 
+export interface BlogGenRequest {
+  title: string;
+  body?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  channel?: string;
+}
+
 const DEFAULT_HTML_RULES = `1. 부모 눈높이에 맞는 쉽고 따뜻한 설명
 2. 의학적 근거 + 실제 임상 경험 기반, 과장 금지 (의료 광고법 준수)
 3. 1500~2500자 분량
@@ -136,4 +144,60 @@ ${r.selection}
 ## 출력 형식 (중요)
 - 위 [선택 구간]을 같은 맥락과 톤을 유지하면서 수정 지시에 맞게 다시 작성하세요.
 - 다시 작성한 HTML 조각만 출력하세요. 설명, 마크다운, 코드펜스는 절대 포함하지 마세요.`;
+}
+
+/** blog channel code → 한국어 채널 이름 */
+function channelLabel(code?: string): string {
+  if (code === 'wordpress') return '워드프레스';
+  return '네이버 블로그';
+}
+
+/**
+ * 블로그 카드 생성 프롬프트. 기본 글(또는 제목)을 채널 SEO 섹션 카드 배열(JSON)로
+ * 재구성하도록 지시한다. 각 요소는 dflo `BlogCard` 로 매핑된다.
+ * ContentFlow buildBlogPrompt 를 dflo BlogCard(JSON 배열) 출력에 맞게 적응.
+ */
+export function buildBlogPrompt(c: ArticleConfig, r: BlogGenRequest): string {
+  const channel = channelLabel(r.channel);
+  const primary = r.primaryKeyword?.trim();
+  const secondary = (r.secondaryKeywords ?? []).map((k) => k?.trim()).filter(Boolean).join(', ');
+  const source = r.body?.trim();
+
+  return `당신은 ${channel} SEO 전문가이자 ${c.brand_name?.trim() || '187 성장클리닉'}의 마케팅 콘텐츠 작가입니다.
+아래 주제로 ${channel} 게시글을 섹션 카드 배열로 작성하세요. SEO 최고점을 목표로 합니다.
+
+${brandBlock(c)}
+
+## 주제
+- 제목: ${r.title}
+- 채널: ${channel}
+${primary ? `- 핵심 키워드: ${primary} (본문 전체에 3~5회 자연스럽게 반복)` : ''}
+${secondary ? `- 보조 키워드: ${secondary} (각각 1~2회 포함)` : ''}
+${source ? `\n## 원본 기본 글 (이 글을 ${channel} 형식으로 재구성하세요)\n${source.slice(0, 4000)}` : ''}
+
+## ${channel} SEO 작성 규칙
+- 제목(소제목)은 15~25자, 핵심 키워드를 앞쪽에 배치.
+- 소제목은 h2 태그로 구조화 (3개 이상).
+- 전체 본문 2,000~3,000자 분량.
+- 리스트(ul/ol)를 적극 활용 — 나열 정보는 리스트로.
+- 첫 단락 150자 안에 핵심 키워드 + 글의 요점 제시.
+- 모바일 가독성: 한 단락 3~4줄(200~300자) 이내, 중요 정보는 <strong> 처리.
+- 마지막 섹션에 "결론" 또는 "정리"를 포함.
+- 의료 광고법 준수 — 과장·단정 표현 금지.
+
+## 출력 형식 (매우 중요)
+- 반드시 JSON 배열만 출력하세요. 다른 텍스트, 설명, 마크다운, 코드펜스(\`\`\`)는 절대 포함하지 마세요.
+- 배열의 각 요소는 하나의 섹션 카드입니다. 6~10개의 카드로 구성하세요.
+- 카드 형식:
+[
+  { "cardType": "text", "text": "<h2>소제목</h2><p>본문 HTML</p>" },
+  { "cardType": "image", "imagePrompt": "English image generation prompt: style, subject, composition, mood" },
+  { "cardType": "list", "text": "<h2>소제목</h2><ul><li>항목</li></ul>" },
+  { "cardType": "quote", "text": "<blockquote>인용/강조 문구</blockquote>" },
+  { "cardType": "divider" }
+]
+- cardType 은 "text" | "image" | "divider" | "quote" | "list" 중 하나입니다.
+- text/quote/list 카드: \`text\` 필드에 HTML(h2/p/ul/li/blockquote)을 담습니다.
+- image 카드: \`imagePrompt\` 필드에만 영어 이미지 생성 프롬프트를 담습니다 (text 없음). 섹션마다 1장 권장.
+- divider 카드: 필드 없이 구분선 용도로만 사용.`;
 }

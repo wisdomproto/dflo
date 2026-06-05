@@ -13,7 +13,7 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt } from '../services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt } from '../services/contentPrompts.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -327,6 +327,23 @@ marketingRouter.post('/topics', async (req: Request, res: Response) => {
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] topics failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /blog-generate : 기본 글/제목 → 채널 SEO 섹션 카드 JSON 배열 (Gemini 게이트).
+marketingRouter.post('/blog-generate', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) return res.status(400).json({ success: false, error: 'title required' });
+  try {
+    const raw = await generateText(buildBlogPrompt(await readMarketingConfig(), body));
+    const s = raw.indexOf('['), e = raw.lastIndexOf(']');
+    const cards = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : [];
+    if (!Array.isArray(cards) || cards.length === 0) return res.status(502).json({ success: false, error: '블로그 생성 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    res.json({ success: true, cards });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] blog-generate failed', e);
     res.status(502).json({ success: false, error: msg });
   }
 });

@@ -140,3 +140,29 @@ export async function reorderCards(ids: string[]): Promise<void> {
     )
   );
 }
+
+// ── AI blog card generation ─────────────────────────────────────────────────
+const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:3001';
+
+export interface GeneratedBlogCard {
+  cardType: BlogCardType;
+  text?: string;
+  imagePrompt?: string;
+}
+
+export async function generateBlog(req: {
+  title: string;
+  body?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  channel?: string;
+}): Promise<GeneratedBlogCard[]> {
+  const res = await fetch(`${BASE}/api/marketing/blog-generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(req),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `블로그 생성 실패: ${res.status}`);
+  return (b.cards ?? []) as GeneratedBlogCard[];
+}
