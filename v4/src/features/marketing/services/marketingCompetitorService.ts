@@ -37,7 +37,7 @@ export interface Competitor {
   createdAt: string;
 }
 
-// Keep field lists in sync: 021 migration columns ↔ competitorToRow ↔ rowToCompetitor ↔ Competitor.
+// Keep field lists in sync: 025 migration columns ↔ competitorToRow ↔ rowToCompetitor ↔ Competitor.
 type Row = Record<string, unknown>;
 
 function normKind(k: unknown): CompetitorKind {

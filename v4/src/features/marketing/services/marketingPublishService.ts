@@ -27,7 +27,7 @@ export interface PublishQueueItem {
   viewCount?: number;
 }
 
-// Keep field lists in sync: 022 migration columns ↔ queueItemToRow ↔ rowToQueueItem ↔ PublishQueueItem.
+// Keep field lists in sync: 026 migration columns ↔ queueItemToRow ↔ rowToQueueItem ↔ PublishQueueItem.
 type Row = Record<string, unknown>;
 
 function rowToQueueItem(r: Row): PublishQueueItem {

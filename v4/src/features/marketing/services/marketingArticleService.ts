@@ -5,7 +5,7 @@ import type { MarketingArticle, ArticleStatus } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
-// Keep field lists in sync: 017 migration columns ↔ articleToRow ↔ rowToArticle ↔ MarketingArticle.
+// Keep field lists in sync: 021 migration columns ↔ articleToRow ↔ rowToArticle ↔ MarketingArticle.
 type Row = Record<string, unknown>;
 
 function rowToArticle(r: Row): MarketingArticle {

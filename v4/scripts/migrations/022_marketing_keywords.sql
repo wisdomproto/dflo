@@ -1,4 +1,4 @@
--- 018_marketing_keywords.sql
+-- 022_marketing_keywords.sql
 -- 마케팅 R1-키워드: 라이브 분석에서 보관함에 추가한 키워드 영속. Supabase Dashboard 적용.
 create table if not exists marketing_keywords (
   keyword       text primary key,

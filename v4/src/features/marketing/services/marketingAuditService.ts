@@ -78,7 +78,7 @@ export async function getSuggestions(payload: SuggestPayload): Promise<string[]>
   return (body.suggestions as string[]) ?? [];
 }
 
-// Keep field lists in sync: 019 migration columns ↔ saveAudit row ↔ rowToSaved ↔ SavedAudit.
+// Keep field lists in sync: 023 migration columns ↔ saveAudit row ↔ rowToSaved ↔ SavedAudit.
 type Row = Record<string, unknown>;
 function rowToSaved(r: Row): SavedAudit {
   return {

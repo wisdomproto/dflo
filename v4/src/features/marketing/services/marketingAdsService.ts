@@ -37,7 +37,7 @@ export interface CampaignDerived {
   convRate: number;
 }
 
-// Keep field lists in sync: 024 migration columns ↔ campaignToRow ↔ rowToCampaign ↔ AdCampaign.
+// Keep field lists in sync: 028 migration columns ↔ campaignToRow ↔ rowToCampaign ↔ AdCampaign.
 type Row = Record<string, unknown>;
 
 function rowToCampaign(r: Row): AdCampaign {

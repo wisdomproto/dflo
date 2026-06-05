@@ -1,4 +1,4 @@
--- 024_marketing_ad_campaigns.sql
+-- 028_marketing_ad_campaigns.sql
 -- 마케팅 유료광고: 캠페인 수동 트래커. 노출/클릭/전환/지출/매출을 직접 입력하면
 -- CTR·CPC·CPA·ROAS·전환율은 클라이언트에서 파생 계산. Supabase Dashboard SQL Editor에서 1회 적용.
 -- (Meta/Google Ads API 자동 동기화는 deferred — external_id 컬럼 미포함.)

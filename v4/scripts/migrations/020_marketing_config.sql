@@ -1,4 +1,4 @@
--- 016_marketing_config.sql
+-- 020_marketing_config.sql
 -- 마케팅 SP1: 연세새봄 브랜드 보이스 설정 (단일 행). Supabase Dashboard SQL Editor에서 1회 적용.
 create table if not exists marketing_config (
   id            int primary key default 1,

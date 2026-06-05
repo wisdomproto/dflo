@@ -32,7 +32,7 @@ export interface GenerateReplyReq {
   language?: string;
 }
 
-// Keep field lists in sync: 023 migration columns ↔ mentionToRow ↔ rowToMention ↔ Mention.
+// Keep field lists in sync: 027 migration columns ↔ mentionToRow ↔ rowToMention ↔ Mention.
 type Row = Record<string, unknown>;
 
 function rowToMention(r: Row): Mention {

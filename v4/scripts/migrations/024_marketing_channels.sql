@@ -1,4 +1,4 @@
--- 020_marketing_channels.sql
+-- 024_marketing_channels.sql
 -- 마케팅 채널 분석: 운영 채널(Instagram/YouTube/Threads/네이버블로그 등) 레지스트리.
 -- 핸들·URL·팔로워 스냅샷을 수동 관리. Supabase Dashboard SQL Editor에서 1회 적용.
 create extension if not exists pgcrypto;

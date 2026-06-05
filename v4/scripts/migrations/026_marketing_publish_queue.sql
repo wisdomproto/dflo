@@ -1,4 +1,4 @@
--- 022_marketing_publish_queue.sql
+-- 026_marketing_publish_queue.sql
 -- 마케팅 발행: marketing_articles 글을 채널별 발행 큐에 올려 상태/예약을 관리.
 -- 한 글이 채널당 1행. status: draft|scheduled|publishing|published|failed (CHECK 없이 text, dflo 컨벤션).
 -- Supabase Dashboard SQL Editor에서 1회 수동 적용.

@@ -1,4 +1,4 @@
--- 017_marketing_articles.sql
+-- 021_marketing_articles.sql
 -- 마케팅 SP3a: 생성·편집된 블로그 글 저장. Supabase Dashboard SQL Editor에서 1회 적용.
 create table if not exists marketing_articles (
   id          uuid primary key default gen_random_uuid(),

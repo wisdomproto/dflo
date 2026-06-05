@@ -1,4 +1,4 @@
--- 023_marketing_mentions.sql
+-- 027_marketing_mentions.sql
 -- 마케팅 모니터링: 마케터가 외부에서 발견한 브랜드 멘션(지식인/블로그/인스타/유튜브/카페 등)을
 -- 출처·URL·본문·감성으로 수동 기록 + AI 답글 초안 보관. Supabase Dashboard SQL Editor에서 1회 적용.
 create extension if not exists pgcrypto;

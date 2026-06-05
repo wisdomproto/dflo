@@ -49,7 +49,7 @@ export async function fetchChannelBreakdown(days: number): Promise<ChannelBreakd
 }
 
 // ── (B) 채널 레지스트리 CRUD — supabase 직접 (anon, RLS) ──
-// Keep field lists in sync: 020 migration columns ↔ channelToRow ↔ rowToChannel ↔ MarketingChannel.
+// Keep field lists in sync: 024 migration columns ↔ channelToRow ↔ rowToChannel ↔ MarketingChannel.
 type Row = Record<string, unknown>;
 
 function rowToChannel(r: Row): MarketingChannel {

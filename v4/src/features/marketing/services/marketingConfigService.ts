@@ -21,7 +21,7 @@ const EMPTY: MarketingConfig = {
   aiModel: 'gemini-2.5-flash',
 };
 
-// Keep field lists in sync: 016 migration columns ↔ configToRow ↔ rowToConfig ↔ MarketingConfig.
+// Keep field lists in sync: 020 migration columns ↔ configToRow ↔ rowToConfig ↔ MarketingConfig.
 type Row = Record<string, unknown>;
 
 function rowToConfig(r: Row | null): MarketingConfig {

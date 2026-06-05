@@ -1,4 +1,4 @@
--- 019_marketing_audits.sql
+-- 023_marketing_audits.sql
 -- 마케팅 사이트 분석: 규칙 기반 SEO 감사 결과를 1행씩 영속해 URL별 점수 추이 비교. Supabase Dashboard 적용.
 create extension if not exists pgcrypto;
 create table if not exists marketing_audits (
