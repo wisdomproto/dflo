@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 import { useParams } from 'react-router-dom';
 import type { IntakeFormState, IntakeLang } from '../types';
 import { INTAKE_LANGS } from '../types';
@@ -55,7 +55,7 @@ function initialState(lang: IntakeLang): IntakeFormState {
   };
 }
 
-const STEPS: ((p: StepProps) => JSX.Element)[] = [
+const STEPS: ((p: StepProps) => ReactElement)[] = [
   StepBasic,
   StepGrowth,
   StepFamily,
