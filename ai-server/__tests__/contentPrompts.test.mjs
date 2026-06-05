@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt } from '../dist/services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt } from '../dist/services/contentPrompts.js';
 
 const cfg = { brand_name: '187', brand_description: '소아 성장', blog_rules: 'R', blog_categories: [{ code: 'A', name: '성장과학', context: 'ctx' }] };
 
@@ -31,4 +31,10 @@ test('buildBlogPrompt mentions JSON, keyword, and channel', () => {
   assert.match(p, /JSON/);
   assert.match(p, /성장호르몬/);
   assert.match(p, /키 크는 법/);
+});
+test('buildCardNewsPrompt asks for JSON slides with count', () => {
+  const p = buildCardNewsPrompt(cfg, { title: '키 성장 5가지 습관', count: 6 });
+  assert.match(p, /JSON/);
+  assert.match(p, /6/);
+  assert.match(p, /키 성장 5가지 습관/);
 });

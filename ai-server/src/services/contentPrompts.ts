@@ -36,6 +36,12 @@ export interface BlogGenRequest {
   channel?: string;
 }
 
+export interface CardNewsRequest {
+  title: string;
+  body?: string;
+  count?: number;
+}
+
 const DEFAULT_HTML_RULES = `1. 부모 눈높이에 맞는 쉽고 따뜻한 설명
 2. 의학적 근거 + 실제 임상 경험 기반, 과장 금지 (의료 광고법 준수)
 3. 1500~2500자 분량
@@ -200,4 +206,38 @@ ${source ? `\n## 원본 기본 글 (이 글을 ${channel} 형식으로 재구성
 - text/quote/list 카드: \`text\` 필드에 HTML(h2/p/ul/li/blockquote)을 담습니다.
 - image 카드: \`imagePrompt\` 필드에만 영어 이미지 생성 프롬프트를 담습니다 (text 없음). 섹션마다 1장 권장.
 - divider 카드: 필드 없이 구분선 용도로만 사용.`;
+}
+
+/**
+ * 인스타그램 카드뉴스 프롬프트. 주제(+선택 원본)를 N장의 카드 슬라이드 배열(JSON)로
+ * 재구성하도록 지시한다. 각 슬라이드는 headline/body/imagePrompt 를 가진다.
+ */
+export function buildCardNewsPrompt(c: ArticleConfig, r: CardNewsRequest): string {
+  const count = r.count ?? 6;
+  const source = r.body?.trim();
+
+  return `당신은 ${c.brand_name?.trim() || '187 성장클리닉'}의 인스타그램 콘텐츠 디자이너입니다.
+아래 주제로 모바일에서 넘겨보는 인스타그램 카드뉴스 ${count}장을 기획하세요.
+
+${brandBlock(c)}
+
+## 주제
+- 제목: ${r.title}
+${source ? `\n## 원본 자료 (이 내용을 카드뉴스로 요약·재구성하세요)\n${source.slice(0, 4000)}` : ''}
+
+## 카드뉴스 작성 규칙
+- 정확히 ${count}장의 슬라이드로 구성하세요.
+- 1번 슬라이드는 시선을 끄는 후크(hook)/표지 역할을 하세요.
+- 마지막 슬라이드는 행동 유도(CTA, 예: 상담/문의 안내) 역할을 하세요.
+- 본문은 모바일 화면에 맞게 짧고 간결하게 (한 슬라이드 1~2문장).
+- 의학적 근거 기반, 과장·단정 표현 금지 (의료광고법 준수).
+- imagePrompt 는 해당 슬라이드 분위기에 맞는 이미지 생성 프롬프트를 영문으로 작성하세요.
+
+## 출력 형식 (매우 중요)
+- 반드시 JSON 배열만 출력하세요. 다른 텍스트, 설명, 마크다운, 코드펜스(\`\`\`)는 절대 포함하지 마세요.
+- 배열 길이는 정확히 ${count} 입니다.
+- 각 슬라이드 형식:
+[
+  { "headline": "짧은 제목", "body": "1-2문장 본문", "imagePrompt": "이 슬라이드용 이미지 생성 프롬프트(영문)" }
+]`;
 }

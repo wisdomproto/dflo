@@ -13,7 +13,8 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt } from '../services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt } from '../services/contentPrompts.js';
+import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -362,5 +363,40 @@ marketingRouter.post('/rewrite', async (req: Request, res: Response) => {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] rewrite failed', e);
     res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// POST /cardnews-generate : 주제(+선택 원본) → 인스타 카드뉴스 슬라이드 JSON 배열 (Gemini 게이트).
+marketingRouter.post('/cardnews-generate', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) return res.status(400).json({ success: false, error: 'title required' });
+  try {
+    const raw = await generateText(buildCardNewsPrompt(await readMarketingConfig(), body));
+    const s = raw.indexOf('['), e = raw.lastIndexOf(']');
+    const slides = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : [];
+    if (!Array.isArray(slides) || slides.length === 0) return res.status(502).json({ success: false, error: '카드뉴스 생성 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    res.json({ success: true, slides });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] cardnews-generate failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /generate-image : 프롬프트 → Gemini 네이티브 이미지 생성 (base64 반환). GEMINI_API_KEY 게이트.
+marketingRouter.post('/generate-image', async (req: Request, res: Response) => {
+  const prompt = String(req.body?.prompt ?? '').trim();
+  const aspectRatio = req.body?.aspectRatio ? String(req.body.aspectRatio) : '4:5';
+  if (!prompt) return res.status(400).json({ success: false, error: 'prompt required' });
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) return res.status(500).json({ success: false, error: 'GEMINI_API_KEY 미설정' });
+  try {
+    const gen = createImageGenerator(DEFAULT_IMAGE_MODEL, apiKey);
+    const result = await gen.generate({ prompt, aspectRatio: aspectRatio as AspectRatio });
+    res.json({ success: true, image: result.base64, mimeType: result.mimeType });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] generate-image failed', e);
+    res.status(502).json({ success: false, error: msg });
   }
 });
