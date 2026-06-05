@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
+import { pendingCount } from '@/features/admin/services/intakeSubmissionService';
 
 // ================================================
 // AdminLayout - 187 성장케어 v4
@@ -10,6 +11,7 @@ import { useAuthStore } from '@/stores/authStore';
 const NAV_ITEMS = [
   { to: '/admin', icon: '📊', label: '대시보드', end: true },
   { to: '/admin/patients', icon: '👥', label: '환자 관리', end: false },
+  { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
   { to: '/admin/medications', icon: '💊', label: '약품 마스터', end: false },
 ];
 
@@ -49,6 +51,20 @@ export default function AdminLayout() {
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
 
+  // 설문 접수 대기 건수 배지.
+  const [intakePending, setIntakePending] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    pendingCount()
+      .then((n) => {
+        if (!cancelled) setIntakePending(n);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const handleSignOut = async () => {
     await signOut();
     navigate('/admin/login');
@@ -78,25 +94,38 @@ export default function AdminLayout() {
 
       {/* Nav Links */}
       <div className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
-        {NAV_ITEMS.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            end={item.end}
-            className={({ isActive }) =>
-              `flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
-                collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
-              } ${
-                isActive ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-100'
-              }`
-            }
-            onClick={() => setSidebarOpen(false)}
-            title={collapsed ? item.label : undefined}
-          >
-            <span className="text-lg">{item.icon}</span>
-            {!collapsed && <span>{item.label}</span>}
-          </NavLink>
-        ))}
+        {NAV_ITEMS.map((item) => {
+          const badge = item.to === '/admin/intake' && intakePending > 0 ? intakePending : 0;
+          return (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                `relative flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
+                  collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
+                } ${
+                  isActive ? 'bg-primary/10 text-primary' : 'text-gray-600 hover:bg-gray-100'
+                }`
+              }
+              onClick={() => setSidebarOpen(false)}
+              title={collapsed ? item.label : undefined}
+            >
+              <span className="text-lg">{item.icon}</span>
+              {!collapsed && <span>{item.label}</span>}
+              {badge > 0 &&
+                (collapsed ? (
+                  <span className="absolute right-1 top-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white">
+                    {badge}
+                  </span>
+                ) : (
+                  <span className="ml-auto inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1.5 text-[11px] font-bold leading-none text-white">
+                    {badge}
+                  </span>
+                ))}
+            </NavLink>
+          );
+        })}
       </div>
 
       {/* BM 자료 dropdown */}

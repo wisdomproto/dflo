@@ -99,8 +99,18 @@
   .intro p { font-size: 15px; color: var(--muted); line-height: 1.82; }
   .intro strong, .lead strong { color: var(--ink); font-weight: 800; }
 
-  /* compare image (ko only) sits full-width right under INTRO */
-  .compare-img { margin-top: 6px; }
+  /* compare image (ko only) sits full-width right under INTRO.
+     A tinted mat wraps the image so the white top-right (187 logo) reads
+     as an intentional panel instead of floating on the page background. */
+  .compare-card {
+    margin-top: 6px;
+    background: var(--brand-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 8px 28px rgba(36, 81, 196, 0.12);
+  }
+  .compare-card .compare-img { display: block; border-radius: 10px; }
 
   section[id] { position: relative; padding-top: 64px; }
   section[id]::before {
@@ -211,26 +221,30 @@
     box-shadow: 0 3px 8px rgba(36,81,196,0.18);
   }
 
-  /* ================= CHECK GRID ================= */
-  .need-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px 12px;
+  /* ================= CHECK LIST ================= */
+  .need-list {
+    list-style: none; margin: 0;
     padding: 0 20px 12px;
+    display: flex; flex-direction: column; gap: 10px;
   }
-  .need-card { text-align: center; }
-  .need-card .photo {
-    width: 100%; aspect-ratio: 1/1; overflow: hidden;
-    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
+  .need-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--soft); border-radius: 14px;
+    padding: 12px 16px;
   }
-  .need-card img { width: 100%; height: 100%; object-fit: cover; }
-  .need-card .cap {
-    font-size: 12.5px; color: var(--ink);
-    font-weight: 700; line-height: 1.55;
+  .need-ico {
+    flex: 0 0 52px; width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .need-ico img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .need-txt {
+    font-size: 16px; color: var(--ink);
+    font-weight: 700; line-height: 1.45;
+    word-break: keep-all;
   }
 
   /* ================= CARD COMMON ================= */
-  .solution-img, .equipment-block, .process-grid-img, .chart-block {
+  .solution-img, .equipment-block, .chart-block {
     padding: 0 16px;
   }
 
@@ -294,8 +308,11 @@
     gap: 24px 12px; padding: 0 20px;
   }
   .cause-grid-3 {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px 10px; padding: 0 20px;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 24px 14px; padding: 0 20px;
+  }
+  @media (min-width: 560px) {
+    .cause-grid-3 { grid-template-columns: repeat(3, 1fr); }
   }
   .cause-grid-2 .item, .cause-grid-3 .item, .problem-grid .item { text-align: center; }
 
@@ -320,6 +337,7 @@
   }
   .cause-grid-2 .desc, .cause-grid-3 .cap {
     font-size: 12px; color: var(--body); line-height: 1.55;
+    word-break: keep-all; text-wrap: balance;
   }
 
   .risk-grid {
@@ -401,7 +419,39 @@
     padding: 10px 22px; border-radius: 999px;
     margin-top: 18px; letter-spacing: -0.2px;
   }
-  .process-grid-img { margin-top: 28px; }
+
+  /* 7-step process — one row per step (icon + text), replaces the baked grid image */
+  .process-steps {
+    max-width: 560px; margin: 28px auto 0; padding: 0 20px;
+    display: flex; flex-direction: column; gap: 12px; text-align: left;
+  }
+  .pstep {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--soft); border-radius: 14px; padding: 16px 18px;
+  }
+  .pnum {
+    flex-shrink: 0; width: 24px;
+    font-size: 13px; font-weight: 800; color: var(--accent);
+  }
+  .picon { flex-shrink: 0; width: 52px; height: 52px; }
+  .picon img { width: 100%; height: 100%; object-fit: contain; }
+  .ptext { flex: 1; min-width: 0; }
+  .pbadge {
+    display: inline-block; margin-bottom: 6px;
+    background: var(--accent); color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: -0.2px;
+    padding: 3px 11px; border-radius: 999px;
+  }
+  .pbadge:empty { display: none; }
+  .ptitle {
+    font-size: 14px; font-weight: 700; color: var(--ink);
+    line-height: 1.5; letter-spacing: -0.3px; word-break: keep-all;
+  }
+  .pdesc {
+    margin-top: 3px; font-size: 12.5px; color: var(--body);
+    line-height: 1.5; word-break: keep-all;
+  }
+  .pdesc:empty { display: none; }
 
   .director {
     padding: 36px 24px 58px;
@@ -490,7 +540,10 @@
     .sec-head h3 { font-size: 22px; }
     .sec-head .lead { font-size: 16.5px; }
     .subhead { font-size: 17.5px; }
-    .need-card .cap { font-size: 14px; }
+    .need-list { max-width: 560px; margin: 0 auto; }
+    .need-item { padding: 14px 20px; gap: 18px; }
+    .need-ico { flex-basis: 60px; width: 60px; height: 60px; }
+    .need-txt { font-size: 18px; }
     .feature-3 h4, .life-card h4 { font-size: 17px; }
     .feature-3 p, .life-card .desc { font-size: 14.5px; }
     .feature-3 .num, .life-card .num { font-size: 13px; }
@@ -548,14 +601,14 @@
     <h3>{{check.heading_part1}}<span class="accent">{{check.heading_accent}}</span></h3>
   </div>
 
-  <div class="need-grid">
+  <ul class="need-list">
     {{#each check.cards}}
-    <div class="need-card">
-      <div class="photo"><img src="/programs/images/growth-hormone-balance/need-{{@index1}}.jpg" alt="{{alt}}"></div>
-      <div class="cap">{{caption_line1}}<br>{{caption_line2}}</div>
-    </div>
+    <li class="need-item">
+      <span class="need-ico"><img src="/programs/images/growth-hormone-balance/need-{{@index1}}.webp" alt="{{alt}}"></span>
+      <span class="need-txt">{{caption_line1}} {{caption_line2}}</span>
+    </li>
     {{/each}}
-  </div>
+  </ul>
 
   <!-- soft self-check CTA: free height prediction (internal calculator, not the messenger) -->
   <a class="case-cta-inline" href="/{{meta.lang}}/calculator.html">
@@ -596,7 +649,9 @@
          Replaces the old 6-icon solution-diagram + "3가지 핵심 관리" cards (both redundant: the
          1-vs-6 right half already lists the 6 areas; 사춘기/체중 have dedicated case sections below). -->
     {{#each compare}}
-    <img class="full-img compare-img" src="/programs/images/growth-hormone-balance/compare-1vs6.webp" alt="{{img_alt}}">
+    <div class="compare-card">
+      <img class="full-img compare-img" src="/programs/images/growth-hormone-balance/compare-1vs6.webp" alt="{{img_alt}}">
+    </div>
     {{/each}}
 
     <!-- strong consult CTA right after the differentiation peak (trust is built here) -->
@@ -946,15 +1001,24 @@
   <section id="process" class="process">
     <div class="sec-head">
       <h2 class="sec-eyebrow">{{process.eyebrow}}</h2>
-      <h3><span class="accent">{{process.heading_accent}}</span></h3>
       <p class="lead">
         {{process.lead}}
       </p>
       <div class="pill">{{process.pill}}</div>
     </div>
 
-    <div class="process-grid-img">
-      <img src="/programs/images/growth-hormone-balance/process-grid.jpg" alt="{{process.grid_img_alt}}">
+    <div class="process-steps">
+      {{#each process.steps}}
+      <div class="pstep">
+        <span class="pnum">{{num}}</span>
+        <div class="picon"><img src="/programs/images/growth-hormone-balance/pstep-{{@index1}}.webp" alt="{{icon_alt}}"></div>
+        <div class="ptext">
+          <span class="pbadge">{{badge}}</span>
+          <p class="ptitle">{{title}}</p>
+          <p class="pdesc">{{desc}}</p>
+        </div>
+      </div>
+      {{/each}}
     </div>
   </section>
 

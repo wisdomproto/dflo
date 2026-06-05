@@ -1,4 +1,4 @@
-import type { Child, Measurement, User } from '@/shared/types';
+import type { Child, IntakeSurvey, Measurement, User } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import { regionFromAddress, type Region } from '@/features/admin/utils/region';
@@ -327,6 +327,15 @@ export async function createPatient(input: {
   mother_height?: number;
   desired_height?: number;
   parent_email?: string;
+  // Optional intake fields (used by the intake-submission approval flow).
+  country?: string;
+  name_en?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  grade?: string;
+  class_height_rank?: string;
+  intake_survey?: IntakeSurvey | null;
 }): Promise<Child> {
   // Reuse the shared "cases" parent user by default so we don't demand a
   // boho account for every new patient. Admin can reassign later via the
@@ -373,6 +382,14 @@ export async function createPatient(input: {
       father_height: input.father_height,
       mother_height: input.mother_height,
       desired_height: input.desired_height,
+      country: input.country,
+      name_en: input.name_en,
+      phone: input.phone,
+      email: input.email,
+      address: input.address,
+      grade: input.grade,
+      class_height_rank: input.class_height_rank,
+      intake_survey: input.intake_survey ?? undefined,
       is_active: true,
     })
     .select('*')

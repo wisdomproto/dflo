@@ -16,7 +16,10 @@ ensureFonts();
 const PURPLE_BG =
   "linear-gradient(180deg, #667eea 0%, #764ba2 60%, #5b3a8c 100%)";
 
-export const CtaPromoScene: React.FC<{ heading?: string }> = ({ heading }) => {
+export const CtaPromoScene: React.FC<{ heading?: string; minimal?: boolean }> = ({
+  heading,
+  minimal,
+}) => {
   const L = t();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -38,26 +41,17 @@ export const CtaPromoScene: React.FC<{ heading?: string }> = ({ heading }) => {
         padding: "0 70px",
       }}
     >
-      {/* English wordmark logo */}
+      {/* Wordmark logo (white on transparent bg) */}
       <div style={{ ...item(0) }}>
-        <div
+        <Img
+          src={staticFile(L.logoWhite)}
           style={{
-            backgroundColor: COLORS.white,
-            borderRadius: 28,
-            padding: "26px 36px",
-            boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+            width: 480,
+            height: "auto",
+            objectFit: "contain",
+            display: "block",
           }}
-        >
-          <Img
-            src={staticFile(L.logo)}
-            style={{
-              width: 440,
-              height: "auto",
-              objectFit: "contain",
-              display: "block",
-            }}
-          />
-        </div>
+        />
       </div>
 
       {/* Heading */}
@@ -77,53 +71,57 @@ export const CtaPromoScene: React.FC<{ heading?: string }> = ({ heading }) => {
       </div>
 
       {/* Primary CTA: homepage measure */}
-      <div
-        style={{
-          ...item(16),
-          backgroundColor: COLORS.white,
-          borderRadius: 24,
-          padding: "26px 56px",
-          display: "flex",
-          alignItems: "center",
-          gap: 16,
-          boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
-        }}
-      >
-        <span style={{ fontSize: 36 }}>📐</span>
-        <span
+      {!minimal && (
+        <div
           style={{
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 40,
-            fontWeight: 800,
-            color: COLORS.teal,
+            ...item(16),
+            backgroundColor: COLORS.white,
+            borderRadius: 24,
+            padding: "26px 56px",
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+            boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
           }}
         >
-          {L.ctaButton}
-        </span>
-      </div>
+          <span style={{ fontSize: 36 }}>📐</span>
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 40,
+              fontWeight: 800,
+              color: COLORS.teal,
+            }}
+          >
+            {L.ctaButton}
+          </span>
+        </div>
+      )}
 
       {/* "measure it yourself on the website" line */}
-      <div style={{ ...item(21), textAlign: "center", marginTop: -16 }}>
-        <span
-          style={{
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 32,
-            fontWeight: 600,
-            color: COLORS.white,
-          }}
-        >
-          {L.ctaSiteMeasure}
-        </span>
-      </div>
+      {!minimal && (
+        <div style={{ ...item(21), textAlign: "center", marginTop: -16 }}>
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 32,
+              fontWeight: 600,
+              color: COLORS.white,
+            }}
+          >
+            {L.ctaSiteMeasure}
+          </span>
+        </div>
+      )}
 
       {/* Homepage URL */}
       <div
         style={{
-          ...item(24),
+          ...item(minimal ? 16 : 24),
           backgroundColor: COLORS.whiteAlpha15,
           borderRadius: 18,
           padding: "16px 40px",
-          marginTop: -20,
+          marginTop: minimal ? 0 : -20,
         }}
       >
         <span
@@ -139,43 +137,49 @@ export const CtaPromoScene: React.FC<{ heading?: string }> = ({ heading }) => {
       </div>
 
       {/* Secondary CTA: messenger pill (locale-aware — LINE for th, KakaoTalk for ko) */}
-      <div
-        style={{
-          ...item(28),
-          backgroundColor: L.ctaMessengerBg,
-          borderRadius: 50,
-          padding: "18px 44px",
-          display: "flex",
-          alignItems: "center",
-          gap: 14,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
-        }}
-      >
-        <span style={{ fontSize: 32 }}>💬</span>
-        <span
+      {!minimal && (
+        <div
           style={{
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 36,
-            fontWeight: 700,
-            color: L.ctaMessengerFg,
+            ...item(28),
+            backgroundColor: L.ctaMessengerBg,
+            borderRadius: 50,
+            padding: "18px 44px",
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.25)",
           }}
         >
-          {L.ctaLinePill}
-        </span>
-      </div>
+          <span style={{ fontSize: 32 }}>💬</span>
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 36,
+              fontWeight: 700,
+              color: L.ctaMessengerFg,
+            }}
+          >
+            {L.ctaLinePill}
+          </span>
+        </div>
+      )}
 
-      {/* Clinic subtext */}
-      <div style={{ ...item(34) }}>
-        <span
-          style={{
-            fontFamily: NOTO_SANS_KR,
-            fontSize: 32,
-            color: COLORS.whiteAlpha65,
-          }}
-        >
-          {L.ctaClinic}
-        </span>
-      </div>
+      {/* 원격 상담 안내 */}
+      {!minimal && (
+        <div style={{ ...item(33) }}>
+          <span
+            style={{
+              fontFamily: NOTO_SANS_KR,
+              fontSize: 32,
+              fontWeight: 600,
+              color: COLORS.whiteAlpha80,
+            }}
+          >
+            {L.ctaRemote}
+          </span>
+        </div>
+      )}
+
     </AbsoluteFill>
   );
 };

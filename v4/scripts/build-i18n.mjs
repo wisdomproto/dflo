@@ -8,6 +8,7 @@ import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS } from '
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
+import { localizeProgramImages } from './lib/program-img.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -87,14 +88,13 @@ async function main() {
     locale.messenger_json = JSON.stringify(messenger);
     locale.shell_json = JSON.stringify(locale.shell || {});
 
-    // Non-Korean locales pull per-language program images from /programs/images/{lang}/{slug}/
-    // and use the English-style logo. Korean keeps the original paths (legacy program HTML
-    // pages and the existing logo.jpg masthead depend on them).
+    // 프로그램 이미지: 언어 폴더 우선 → _common(한국어 기본본) 1단계 fallback (lib/program-img.mjs).
+    // 로고: 비한국어는 영문 워드마크로 swap.
+    const IMAGES_ROOT = join(ROOT, 'public/programs/images');
     const localizeProgramImg = (html) => {
-      if (lang === 'ko') return html;
-      return html
-        .replaceAll('/programs/images/', `/programs/images/${lang}/`)
-        .replaceAll('/images/logo.jpg', '/images/logo_en.png');
+      let out = localizeProgramImages(html, lang, IMAGES_ROOT);
+      if (lang !== 'ko') out = out.replaceAll('/images/logo.jpg', '/images/logo_en.png');
+      return out;
     };
 
     // Home
