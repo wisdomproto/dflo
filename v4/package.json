@@ -8,8 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && npm run build:i18n && vite build && npm run build:blog",
-    "build:blog": "node scripts/build-blog.mjs",
+    "build": "tsc -b && npm run build:i18n && vite build",
     "build:i18n": "node scripts/build-i18n.mjs",
     "extract:marketing": "node scripts/extract-marketing-data.mjs",
     "test:i18n": "node --test scripts/test/*.mjs",

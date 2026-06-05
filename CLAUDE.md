@@ -68,10 +68,13 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 ### 블로그 연동 (ContentFlow ↔ dflo)
 ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={lang}` (service-role + `!inner` 조인으로 프로젝트 격리)가 published 글을 JSON 반환. dflo가 빌드 시 fetch → 캐시 → `blog-post.html`/`blog-index.html` 템플릿 → `/{lang}/blog/{slug}/index.html`.
 
+**블로그 = 이 i18n 정적 빌드 단일 소스** (2026-06-05 정리). 과거 ko+th 전용 React-SPA 블로그(`src/pages/Blog/{BlogList,BlogPost}` + `usePosts` 클라 fetch + `scripts/build-blog.mjs` 프리렌더러)는 폐기. 그 라우트가 i18n 정적 빌드와 충돌했었음 — `router.tsx` flatMap 의 `/th/blog` HardRedirect 가 명시적 `/th/blog` React 라우트를 가려(같은 path → 배열 먼저 등록된 쪽이 매칭) 인덱스는 정적·글은 React 로 갈리던 버그. 수정: 옛 `/blog`·`/th/blog` React 라우트 제거, ko `/blog`·`/blog/:slug` 는 정적 `/ko/blog/…index.html` 로 리다이렉트(옛 유입 링크 보존, `BlogPostRedirect`), th 는 flatMap `/{lang}/blog` HardRedirect 로 정적 페이지 일원화. `package.json` build 체인에서 `build:blog` 제거(이게 `vite build` 뒤 실행돼 th 정적 글을 SPA 셸로 덮어쓰던 잠복 회귀도 함께 제거).
+
 ### 라우터 (Phase 6 후)
 `v4/src/app/router.tsx`:
 - `/` → `HardRedirect('/ko/index.html')`. 기존 React `WebsiteHomePage`는 `/home-legacy`에 보존 (롤백용)
 - `/{ko,th,vi,en}` · `/{lang}/blog` · `/{lang}/` · `/{lang}/blog/` → `HardRedirect` 정적 `index.html` (4 lang × 4 변형 = 16 routes, `I18N_LANGS` 배열에서 flatMap)
+- 레거시 `/blog` → `HardRedirect /ko/blog/index.html`, `/blog/:slug` → `BlogPostRedirect`(→ 정적 `/ko/blog/{slug}/index.html`). 폐기된 React-SPA 블로그의 ko 유입 링크 보존용 (th 라우트는 위 flatMap 으로 흡수)
 - `/test`, `/test/`, `/test/:lang(/blog)?` → `Navigate(replace)` 새 경로로 (SEO + 북마크 보존)
 - 기존 `/program/:slug`, `/guide`, `/diagnosis`, `/banner-admin`, `/app/*`, `/admin/*` 변동 없음
 

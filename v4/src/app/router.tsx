@@ -50,10 +50,6 @@ const CalcEmbedPage = lazy(() => import('@/features/website/pages/CalcEmbedPage'
 const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
 const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
 
-// Blog pages
-const BlogList = lazy(() => import('@/pages/Blog/BlogList'));
-const BlogPost = lazy(() => import('@/pages/Blog/BlogPost'));
-
 // Admin pages
 const AdminLayout = lazy(() => import('@/features/admin/components/AdminLayout'));
 const AdminDashboardPage = lazy(() => import('@/pages/admin/AdminDashboardPage'));
@@ -150,6 +146,16 @@ function RedirectProgram() {
 function RedirectGuideDetail() {
   const { cardId } = useParams<{ cardId: string }>();
   return <Navigate to={`/guide/${cardId ?? ''}`} replace />;
+}
+
+// Legacy ko blog post (React SPA, retired) → static i18n /ko/blog/{slug}/.
+// Full reload so Vite serves the static file instead of client-routing.
+function BlogPostRedirect() {
+  const { slug } = useParams<{ slug: string }>();
+  useEffect(() => {
+    window.location.replace(`/ko/blog/${slug ?? ''}/index.html`);
+  }, [slug]);
+  return null;
 }
 
 export const router = createBrowserRouter([
@@ -573,37 +579,10 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // Blog routes — React SPA (list + detail) for ko and th
-  {
-    path: '/blog',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <BlogList lang="ko" />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/blog/:slug',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <BlogPost lang="ko" />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/th/blog',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <BlogList lang="th" />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/th/blog/:slug',
-    element: (
-      <Suspense fallback={<SuspenseFallback />}>
-        <BlogPost lang="th" />
-      </Suspense>
-    ),
-  },
+  // Legacy React-SPA blog (retired). The canonical blog is the static i18n build under
+  // /{lang}/blog — see the I18N_LANGS HardRedirects above (covers ko/th/vi/en). Thai now
+  // resolves entirely to the static pages; old ko /blog URLs redirect to /ko/blog so
+  // existing inbound links keep working.
+  { path: '/blog', element: <HardRedirect to="/ko/blog/index.html" /> },
+  { path: '/blog/:slug', element: <BlogPostRedirect /> },
 ]);
