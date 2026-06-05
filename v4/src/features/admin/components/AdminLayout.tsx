@@ -13,8 +13,10 @@ const NAV_ITEMS = [
   { to: '/admin', icon: '📊', label: '대시보드', end: true },
   { to: '/admin/patients', icon: '👥', label: '환자 관리', end: false },
   { to: '/admin/medications', icon: '💊', label: '약품 마스터', end: false },
-  { to: '/marketing', icon: '📣', label: '마케팅', end: false },
 ];
+
+// 마케팅 센터 — 사이드바 하단 별도 항목.
+const MARKETING_ITEM = { to: '/marketing', icon: '📣', label: '마케팅', end: false };
 
 // 상담 직원용 그룹 (설문 접수 + 상담 매뉴얼).
 const CONSULT_ITEMS = [
@@ -158,6 +160,16 @@ export default function AdminLayout() {
           <span className="text-lg">💬</span>
           {!collapsed && <span>상담 매뉴얼</span>}
         </a>
+
+        {/* 마케팅 센터 — 하단 별도 구역 */}
+        {collapsed ? (
+          <div className="my-2 border-t border-gray-200" />
+        ) : (
+          <p className="px-4 pt-4 pb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+            마케팅
+          </p>
+        )}
+        {renderNavLink(MARKETING_ITEM)}
       </div>
 
       {/* BM 자료 dropdown */}
