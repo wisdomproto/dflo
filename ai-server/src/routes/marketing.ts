@@ -15,9 +15,9 @@ import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsIn
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
 import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt } from '../services/contentPrompts.js';
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
-import { getConnectionPublic, getBundle, findPageToken, deleteConnection } from '../services/metaConnectionStore.js';
-import { validatePublish, targetIdFor, htmlToText, type Platform } from '../services/metaPublishPrep.js';
-import { publishFacebook, publishInstagram, publishThreads } from '../services/metaPublish.js';
+import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
+import { publishQueueItem } from '../services/publishExecutor.js';
+import { triggerDeploy } from '../services/deployHook.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -446,63 +446,12 @@ marketingRouter.delete('/meta/connection', async (_req, res) => {
   }
 });
 
-// POST /meta/publish { queueId } — 실제 발행 후 큐 행 갱신
-marketingRouter.post('/meta/publish', async (req, res) => {
+// POST /publish/run { queueId } — 큐 1건 실제 발행(meta/website 공용). website면 배포 훅.
+marketingRouter.post('/publish/run', async (req, res) => {
   const { queueId } = (req.body ?? {}) as { queueId?: string };
   if (!queueId) return res.status(400).json({ success: false, error: 'queueId 필요' });
-  try {
-    const { data: q } = await sb.from('marketing_publish_queue').select('*').eq('id', queueId).single();
-    if (!q) return res.status(404).json({ success: false, error: '큐 항목 없음' });
-    const platform = q.channel as Platform;
-    if (!['facebook', 'instagram', 'threads'].includes(platform)) {
-      return res.status(400).json({ success: false, error: 'Meta 채널이 아닙니다' });
-    }
-    const { data: ch } = await sb.from('marketing_channels').select('*').eq('id', q.channel_id).single();
-    if (!ch) return res.status(400).json({ success: false, error: '채널 없음' });
-
-    let caption = '';
-    let imageUrls: string[] = [];
-    if (q.content_kind === 'cardnews') {
-      const { data: cn } = await sb.from('marketing_cardnews').select('id, caption, hashtags').eq('content_id', q.article_id).limit(1).single();
-      if (cn) {
-        const tags = ((cn.hashtags ?? []) as string[]).map((h) => (h.startsWith('#') ? h : `#${h}`)).join(' ');
-        caption = [cn.caption as string, tags].filter(Boolean).join('\n\n');
-        const { data: slides } = await sb.from('marketing_cardnews_slides').select('canvas, sort_order').eq('cardnews_id', cn.id as string).order('sort_order');
-        imageUrls = ((slides ?? []) as Array<{ canvas?: { imageUrl?: string | null } }>)
-          .map((s) => s.canvas?.imageUrl)
-          .filter((u): u is string => typeof u === 'string' && u.length > 0);
-      }
-    } else {
-      const { data: art } = await sb.from('marketing_articles').select('title, body, translations').eq('id', q.article_id).single();
-      const lang = (q.language as string) || 'ko';
-      const body = lang === 'ko'
-        ? (art as { body?: string } | null)?.body
-        : (art as { translations?: Record<string, { body?: string }> } | null)?.translations?.[lang]?.body;
-      caption = htmlToText(body || '');
-    }
-
-    const v = validatePublish(platform, imageUrls);
-    if (!v.ok) return res.status(400).json({ success: false, error: v.reason });
-    const targetId = targetIdFor(ch as { platform: string; meta_page_id?: string | null; meta_ig_id?: string | null; meta_threads_id?: string | null }, platform);
-    if (!targetId) return res.status(400).json({ success: false, error: '채널에 Meta 타겟 id가 없습니다. 연결/매핑 필요.' });
-    const bundle = await getBundle();
-    if (!bundle) return res.status(400).json({ success: false, error: 'Meta 연결이 없습니다.' });
-    const token = findPageToken(bundle, targetId);
-    if (!token) return res.status(400).json({ success: false, error: '해당 타겟의 토큰을 찾을 수 없습니다(재연결 필요).' });
-
-    let postId = '';
-    if (platform === 'facebook') postId = await publishFacebook(targetId, token, caption);
-    else if (platform === 'instagram') postId = await publishInstagram(targetId, token, caption, imageUrls);
-    else postId = await publishThreads(targetId, token, caption, imageUrls);
-
-    await sb.from('marketing_publish_queue').update({
-      status: 'published', platform_post_id: postId, published_at: new Date().toISOString(),
-      error_message: null, updated_at: new Date().toISOString(),
-    }).eq('id', queueId);
-    res.json({ success: true, postId });
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : '발행 실패';
-    await sb.from('marketing_publish_queue').update({ status: 'failed', error_message: msg, updated_at: new Date().toISOString() }).eq('id', queueId);
-    res.status(500).json({ success: false, error: msg });
-  }
+  const r = await publishQueueItem(queueId);
+  if (r.ok && r.kind === 'website') await triggerDeploy();
+  if (!r.ok) return res.status(400).json({ success: false, error: r.error });
+  res.json({ success: true, postId: r.postId });
 });

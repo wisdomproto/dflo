@@ -15,6 +15,7 @@ import { coachingRouter } from './routes/coaching.js';
 import { marketingRouter } from './routes/marketing.js';
 import { knowledgeRouter } from './routes/knowledge.js';
 import { metaAuthRouter } from './routes/metaAuth.js';
+import { startScheduler } from './services/scheduler.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -91,3 +92,4 @@ app.get('/health', (_req, res) => {
 app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`AI Server running on http://0.0.0.0:${PORT}`);
 });
+startScheduler();
