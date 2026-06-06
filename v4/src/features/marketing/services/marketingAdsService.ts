@@ -8,6 +8,14 @@ export type AdPlatform = 'meta' | 'google' | 'youtube' | 'naver';
 export type AdStatus = 'active' | 'paused' | 'ended' | 'draft';
 export type BudgetType = 'daily' | 'lifetime';
 
+export const AD_REGIONS: { code: string; label: string }[] = [
+  { code: 'kr', label: '🇰🇷 한국' },
+  { code: 'th', label: '🇹🇭 태국' },
+  { code: 'vi', label: '🇻🇳 베트남' },
+  { code: 'sea_en', label: '🌏 동남아 영어권' },
+  { code: 'global', label: '🌐 글로벌' },
+];
+
 export interface AdCampaign {
   id: string;
   platform: AdPlatform;
@@ -24,6 +32,8 @@ export interface AdCampaign {
   clicks: number;
   conversions: number;
   revenue: number;
+  region: string;
+  channelId: string | null;
   note: string;
   createdAt: string;
   updatedAt: string;
@@ -57,6 +67,8 @@ function rowToCampaign(r: Row): AdCampaign {
     clicks: (r.clicks as number) ?? 0,
     conversions: (r.conversions as number) ?? 0,
     revenue: Number(r.revenue) || 0,
+    region: (r.region as string) ?? '',
+    channelId: (r.channel_id as string | null) ?? null,
     note: (r.note as string) ?? '',
     createdAt: (r.created_at as string) ?? '',
     updatedAt: (r.updated_at as string) ?? '',
@@ -80,6 +92,8 @@ function campaignToRow(c: Partial<AdCampaign>): Row {
     clicks: c.clicks ?? 0,
     conversions: c.conversions ?? 0,
     revenue: c.revenue ?? 0,
+    region: c.region ?? '',
+    channel_id: c.channelId ?? null,
     note: c.note ?? '',
     updated_at: new Date().toISOString(),
   };
