@@ -8,6 +8,7 @@ import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS } from '
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
+import { loadPublishedBlogAll } from './lib/blog-supabase.mjs';
 import { localizeProgramImages } from './lib/program-img.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -26,9 +27,7 @@ function writeFile(path, contents) {
   console.log(`  wrote ${path}`);
 }
 
-async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate }) {
-  const posts = loadCachedPosts(CACHE_DIR, lang);
-
+async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts }) {
   const indexHtml = renderIndex({
     posts, template: indexTemplate, locale,
     seoHead: buildBlogIndexHead(lang),
@@ -64,6 +63,9 @@ async function main() {
       blogSlugs[lang] = loadCachedPosts(CACHE_DIR, lang).map((p) => p.slug);
     }
   }
+
+  // 자체 사이트 published 블로그 (Supabase) — ContentFlow 캐시와 병합. published 우선.
+  const publishedByLang = await loadPublishedBlogAll(ACTIVE_LANGS);
 
   const homeTemplate = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
   const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
@@ -110,9 +112,17 @@ async function main() {
       writeFile(join(ROOT, 'public', lang, sub.file), localizeProgramImg(render(sub.template, locale)));
     }
 
-    if (blogSlugs[lang] && blogSlugs[lang].length > 0) {
-      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate });
-      console.log(`  [blog] ${n} posts rendered for ${lang}`);
+    const cached = loadCachedPosts(CACHE_DIR, lang);
+    const published = publishedByLang[lang] ?? [];
+    // slug 기준 dedup, published 우선
+    const bySlug = new Map();
+    for (const p of cached) bySlug.set(p.slug, p);
+    for (const p of published) bySlug.set(p.slug, p);
+    const posts = [...bySlug.values()];
+    blogSlugs[lang] = posts.map((p) => p.slug);
+    if (posts.length > 0) {
+      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts });
+      console.log(`  [blog] ${n} posts rendered for ${lang} (cached ${cached.length} + published ${published.length})`);
     }
   }
 
