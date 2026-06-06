@@ -52,6 +52,9 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
     (c) => c.isActive && c.locale === language && SOCIAL_PLATFORMS.includes(c.platform as PublishChannel),
   );
 
+  const igSelectedForText = contentKind === 'post' &&
+    matchingChannels.some((c) => selected.has(c.id) && c.platform === 'instagram');
+
   const toggle = (id: string) =>
     setSelected((prev) => {
       const next = new Set(prev);
@@ -161,7 +164,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
             </span>
             {matchingChannels.length === 0 ? (
               <p className="rounded-lg bg-gray-50 px-3 py-2 text-xs text-gray-400">
-                이 언어의 활성 IG/FB/Threads 계정이 없습니다. "채널 관리"에서 먼저 등록하세요.
+                이 언어의 활성 IG/FB/Threads 계정이 없습니다. "채널 설정"에서 먼저 등록하세요.
               </p>
             ) : (
               <div className="flex flex-wrap gap-2">
@@ -180,10 +183,13 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
                 })}
               </div>
             )}
+            {igSelectedForText && (
+              <p className="text-[11px] text-amber-600">⚠️ 기본글(텍스트)은 Instagram에 발행할 수 없습니다 — IG는 카드뉴스(이미지)만.</p>
+            )}
             <button
               type="button"
               onClick={publishSocial}
-              disabled={busy || matchingChannels.length === 0}
+              disabled={busy || matchingChannels.length === 0 || igSelectedForText}
               className="w-full rounded-lg bg-[#4A2D6B] px-3 py-2 text-sm font-semibold text-white disabled:opacity-40"
             >
               발행 큐에 추가
