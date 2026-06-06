@@ -13,6 +13,7 @@ import { embeddingsRouter } from './routes/embeddings.js';
 import { similarCasesRouter } from './routes/similarCases.js';
 import { coachingRouter } from './routes/coaching.js';
 import { marketingRouter } from './routes/marketing.js';
+import { knowledgeRouter } from './routes/knowledge.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -79,6 +80,7 @@ app.use('/api/embeddings', ...middlewares, embeddingsRouter);
 app.use('/api/similar-cases', ...middlewares, similarCasesRouter);
 app.use('/api/coaching', ...middlewares, coachingRouter);
 app.use('/api/marketing', ...middlewares, marketingRouter);
+app.use('/api/knowledge', knowledgeRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
