@@ -5,6 +5,8 @@ import { LanguageSelector } from './LanguageSelector';
 import { BaseArticlePanel } from './BaseArticlePanel';
 import { BlogPanel } from './BlogPanel';
 import { CardNewsPanel } from './CardNewsPanel';
+import { PublishDialog } from './PublishDialog';
+import type { ContentKind } from '../../utils/publishRows';
 
 const ACCENT = '#4A2D6B';
 
@@ -18,6 +20,8 @@ interface Props {
 export function ContentTabs({ article, onSaved }: Props) {
   const [tab, setTab] = useState<Tab>('base');
   const [language, setLanguage] = useState('ko');
+  const [showPublish, setShowPublish] = useState(false);
+  const contentKind: ContentKind = tab === 'blog' ? 'blog' : tab === 'cardnews' ? 'cardnews' : 'post';
 
   // Switching articles resets to 기본글 + 한국어 원본.
   useEffect(() => {
@@ -37,23 +41,33 @@ export function ContentTabs({ article, onSaved }: Props) {
       <LanguageSelector article={article} language={language} onChange={setLanguage} />
 
       {/* Tab bar */}
-      <div className="flex shrink-0 gap-1 border-b border-gray-200 px-4">
-        {tabs.map((t) => {
-          const active = tab === t.key;
-          return (
-            <button
-              key={t.key}
-              type="button"
-              onClick={() => setTab(t.key)}
-              className={`-mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors ${
-                active ? 'text-[#4A2D6B]' : 'border-transparent text-gray-400 hover:text-gray-600'
-              }`}
-              style={active ? { borderColor: ACCENT } : undefined}
-            >
-              {t.label}
-            </button>
-          );
-        })}
+      <div className="flex shrink-0 items-center justify-between border-b border-gray-200 px-4">
+        <div className="flex gap-1">
+          {tabs.map((t) => {
+            const active = tab === t.key;
+            return (
+              <button
+                key={t.key}
+                type="button"
+                onClick={() => setTab(t.key)}
+                className={`-mb-px border-b-2 px-4 py-2.5 text-sm font-semibold transition-colors ${
+                  active ? 'text-[#4A2D6B]' : 'border-transparent text-gray-400 hover:text-gray-600'
+                }`}
+                style={active ? { borderColor: ACCENT } : undefined}
+              >
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
+        <button
+          type="button"
+          onClick={() => setShowPublish(true)}
+          className="rounded-lg px-3 py-1.5 text-sm font-semibold text-white"
+          style={{ backgroundColor: ACCENT }}
+        >
+          🚀 발행
+        </button>
       </div>
 
       {/* Tab body */}
@@ -66,6 +80,15 @@ export function ContentTabs({ article, onSaved }: Props) {
           <CardNewsPanel article={article} />
         )}
       </div>
+      {showPublish && (
+        <PublishDialog
+          article={article}
+          contentKind={contentKind}
+          initialLanguage={language}
+          onClose={() => setShowPublish(false)}
+          onDone={() => setShowPublish(false)}
+        />
+      )}
     </div>
   );
 }
