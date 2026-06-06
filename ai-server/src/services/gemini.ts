@@ -49,13 +49,16 @@ export async function generateText(prompt: string): Promise<string> {
 }
 
 /**
- * Embed text using Gemini text-embedding-004 (768 dim).
+ * Embed text using Gemini gemini-embedding-001, reduced to 768 dim
+ * (matches vector(768) columns). text-embedding-004 is no longer available
+ * on this key, so we use gemini-embedding-001 with outputDimensionality=768.
  * Direct REST call to avoid SDK version drift.
  */
 export async function embedText(text: string): Promise<number[]> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key=${apiKey}`;
   const body = {
     content: { parts: [{ text }] },
+    outputDimensionality: 768,
   };
   const res = await fetch(url, {
     method: 'POST',
