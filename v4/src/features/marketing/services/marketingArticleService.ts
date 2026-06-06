@@ -48,6 +48,7 @@ export async function fetchArticles(): Promise<MarketingArticle[]> {
   const { data, error } = await supabase
     .from('marketing_articles')
     .select('*')
+    .order('sort_order', { ascending: true })
     .order('updated_at', { ascending: false });
   if (error) {
     logger.warn('[marketing] fetchArticles failed:', error.message);

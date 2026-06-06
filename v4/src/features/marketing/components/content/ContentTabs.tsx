@@ -31,7 +31,7 @@ export function ContentTabs({ article, onSaved }: Props) {
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'base', label: '기본글' },
-    { key: 'blog', label: 'N블로그' },
+    { key: 'blog', label: '블로그' },
     { key: 'cardnews', label: '카드뉴스' },
   ];
 
@@ -66,7 +66,7 @@ export function ContentTabs({ article, onSaved }: Props) {
           className="rounded-lg px-3 py-1.5 text-sm font-semibold text-white"
           style={{ backgroundColor: ACCENT }}
         >
-          🚀 발행
+          📥 발행 큐에 넣기
         </button>
       </div>
 

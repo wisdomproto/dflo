@@ -23,9 +23,10 @@ interface Props {
 
 // ── Sortable row ────────────────────────────────────────────────────────────
 function SortableRow({
-  article, isSelected, draggable, onSelect, onDelete,
+  article, index, isSelected, draggable, onSelect, onDelete,
 }: {
   article: MarketingArticle;
+  index: number;
   isSelected: boolean;
   draggable: boolean;
   onSelect: () => void;
@@ -62,6 +63,9 @@ function SortableRow({
       >
         ⠿
       </span>
+
+      {/* 순서 번호 (부모 관점 우선순위) */}
+      <span className="shrink-0 w-6 text-right text-[11px] tabular-nums text-gray-400">{index}</span>
 
       {/* Body */}
       <div className="flex-1 min-w-0">
@@ -130,6 +134,7 @@ export function ContentListPanel({
         <SortableRow
           key={a.id}
           article={a}
+          index={articles.findIndex((x) => x.id === a.id) + 1}
           isSelected={a.id === selectedId}
           draggable={canDrag}
           onSelect={() => onSelect(a.id)}

@@ -1,5 +1,6 @@
 // src/features/marketing/components/PublishQueueList.tsx
 import type { PublishChannel, PublishQueueItem } from '../services/marketingPublishService';
+import { localeFlag } from '../services/marketingChannelService';
 
 import { STATUS_LABELS, STATUS_COLORS, channelMeta } from '../utils/publishConstants';
 
@@ -9,15 +10,10 @@ const BEST_POST_TIMES: Record<string, Partial<Record<PublishChannel, string>>> =
     instagram: '평일 19~21시 / 일 11시',
     facebook: '평일 12~13시',
     threads: '평일 20~22시',
-    youtube: '주말 10~12시 / 평일 18시',
-    naver_blog: '평일 오전 9~11시',
-    wordpress: '평일 오전 10시',
   },
   th: {
     instagram: '19~21시 (ICT)',
     facebook: '12~13시 (ICT)',
-    youtube: '주말 오전',
-    naver_blog: '오전 9~11시',
   },
 };
 
@@ -78,6 +74,9 @@ export function PublishQueueList({ items, onSetSchedule, onMarkPublished, onPush
         return (
           <div key={it.id} className="rounded-xl border border-gray-200 bg-white p-3">
             <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded bg-[#4A2D6B]/10 px-1.5 py-0.5 text-xs font-semibold text-[#4A2D6B]">
+                {localeFlag(it.language)} {it.language}
+              </span>
               <span className={`rounded px-2 py-0.5 text-xs font-semibold ${meta.badge}`}>{meta.label}</span>
               {it.channelName && (
                 <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600">{it.channelName}</span>
@@ -85,7 +84,6 @@ export function PublishQueueList({ items, onSetSchedule, onMarkPublished, onPush
               <span className="min-w-0 flex-1 truncate text-sm font-medium text-gray-800">
                 {it.articleTitle || '(제목 없음)'}
               </span>
-              <span className="text-xs text-gray-400">{it.language}</span>
               {it.articleCategory && (
                 <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500">{it.articleCategory}</span>
               )}

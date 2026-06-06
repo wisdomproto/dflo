@@ -79,7 +79,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
           contentKind: 'blog',
           targets: [{ channelId: null, channel: 'website' }],
         });
-        setMsg(`정식 발행 저장 완료. 다음 배포 시 ${blogStaticPath(language, pub.slug)} 로 반영됩니다.`);
+        setMsg(`발행 큐에 등록 완료. 다음 배포 시 ${blogStaticPath(language, pub.slug)} 로 반영됩니다.`);
         onDone();
       }
     } catch (e) {
@@ -117,7 +117,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
       <div className="w-full max-w-md space-y-4 rounded-2xl bg-white p-5 shadow-xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-gray-800">
-            발행 — {contentKind === 'blog' ? '자체 사이트 블로그' : contentKind === 'cardnews' ? '카드뉴스' : '기본글'}
+            발행 큐에 넣기 — {contentKind === 'blog' ? '자체 사이트 블로그' : contentKind === 'cardnews' ? '카드뉴스' : '기본글'}
           </h2>
           <button type="button" aria-label="닫기" onClick={onClose} className="text-gray-400 hover:text-gray-600">✕</button>
         </div>
@@ -145,7 +145,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
                 disabled={busy}
                 className="flex-1 rounded-lg border border-[#4A2D6B] px-3 py-2 text-sm font-semibold text-[#4A2D6B] disabled:opacity-40"
               >
-                미리보기 발행
+                미리보기
               </button>
               <button
                 type="button"
@@ -153,7 +153,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
                 disabled={busy}
                 className="flex-1 rounded-lg bg-[#4A2D6B] px-3 py-2 text-sm font-semibold text-white disabled:opacity-40"
               >
-                정식 발행
+                발행 큐에 넣기
               </button>
             </div>
           </div>
@@ -192,7 +192,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
               disabled={busy || matchingChannels.length === 0 || igSelectedForText}
               className="w-full rounded-lg bg-[#4A2D6B] px-3 py-2 text-sm font-semibold text-white disabled:opacity-40"
             >
-              발행 큐에 추가
+              발행 큐에 넣기
             </button>
           </div>
         )}
