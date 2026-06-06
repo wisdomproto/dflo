@@ -10,6 +10,7 @@ import {
   deleteCampaign,
   deriveMetrics,
   requestAdsInsights,
+  AD_REGIONS,
 } from '../services/marketingAdsService';
 import { AdCampaignForm } from './AdCampaignForm';
 
@@ -52,6 +53,7 @@ export function AdsManagerPage() {
   const [overview, setOverview] = useState<AnalyticsOverview | null>(null);
   const [gaError, setGaError] = useState<string | null>(null);
   const [platform, setPlatform] = useState<'all' | AdPlatform>('all');
+  const [region, setRegion] = useState<string>('all');
   const [editing, setEditing] = useState<{ open: boolean; campaign: AdCampaign | null }>({ open: false, campaign: null });
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -76,8 +78,13 @@ export function AdsManagerPage() {
   useEffect(reload, []);
 
   const filtered = useMemo(
-    () => (platform === 'all' ? campaigns : campaigns.filter((c) => c.platform === platform)),
-    [campaigns, platform],
+    () =>
+      campaigns.filter(
+        (c) =>
+          (platform === 'all' || c.platform === platform) &&
+          (region === 'all' || c.region === region),
+      ),
+    [campaigns, platform, region],
   );
 
   const summary = useMemo(() => {
@@ -164,6 +171,22 @@ export function AdsManagerPage() {
         ))}
       </div>
 
+      {/* 지역 필터 */}
+      <div className="flex flex-wrap gap-1">
+        {[{ code: 'all', label: '전체 지역' }, ...AD_REGIONS].map((r) => (
+          <button
+            type="button"
+            key={r.code}
+            onClick={() => setRegion(r.code)}
+            className={`rounded-full px-3 py-1 text-xs ${
+              region === r.code ? 'bg-[#4A2D6B] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            {r.label}
+          </button>
+        ))}
+      </div>
+
       {/* 요약 메트릭 카드 */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <MetricCard label="총 지출" value={formatCurrency(summary.totals.spend)} />
@@ -222,6 +245,7 @@ export function AdsManagerPage() {
             <tr className="border-b-2 border-gray-200 text-left text-xs text-gray-400">
               <th className="px-3 py-2">캠페인</th>
               <th className="px-3 py-2">플랫폼</th>
+              <th className="px-3 py-2">지역</th>
               <th className="px-3 py-2">상태</th>
               <th className="px-3 py-2 text-right">지출</th>
               <th className="px-3 py-2 text-right">노출</th>
@@ -246,6 +270,9 @@ export function AdsManagerPage() {
                     </button>
                   </td>
                   <td className="px-3 py-2 text-xs text-gray-500">{PLATFORM_LABEL[c.platform]}</td>
+                  <td className="px-3 py-2 text-xs text-gray-500">
+                    {AD_REGIONS.find((r) => r.code === c.region)?.label ?? '—'}
+                  </td>
                   <td className="px-3 py-2">
                     <span className={`rounded-full px-2 py-0.5 text-[10px] ${st.cls}`}>{st.label}</span>
                   </td>

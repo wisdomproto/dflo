@@ -1,7 +1,7 @@
 // src/features/marketing/components/AdCampaignForm.tsx
 import { useState } from 'react';
 import type { AdCampaign, AdPlatform, AdStatus, BudgetType } from '../services/marketingAdsService';
-import { deriveMetrics } from '../services/marketingAdsService';
+import { deriveMetrics, AD_REGIONS } from '../services/marketingAdsService';
 
 const PLATFORMS: { id: AdPlatform; label: string }[] = [
   { id: 'meta', label: 'Meta' },
@@ -38,6 +38,7 @@ export function AdCampaignForm({
   const [status, setStatus] = useState<AdStatus>(initial?.status ?? 'active');
   const [objective, setObjective] = useState(initial?.objective ?? '');
   const [language, setLanguage] = useState(initial?.language ?? 'ko');
+  const [region, setRegion] = useState(initial?.region ?? '');
   const [budget, setBudget] = useState(String(initial?.budget ?? 0));
   const [budgetType, setBudgetType] = useState<BudgetType>(initial?.budgetType ?? 'daily');
   const [periodStart, setPeriodStart] = useState(initial?.periodStart ?? '');
@@ -66,6 +67,8 @@ export function AdCampaignForm({
       status,
       objective: objective.trim(),
       language: language.trim() || 'ko',
+      region,
+      channelId: initial?.channelId ?? null,
       budget: numOr0(budget),
       budgetType,
       periodStart: periodStart || null,
@@ -121,6 +124,15 @@ export function AdCampaignForm({
         <div>
           <label className={labelCls}>언어</label>
           <input value={language} onChange={(e) => setLanguage(e.target.value)} placeholder="ko" className={fieldCls} />
+        </div>
+        <div>
+          <label className={labelCls}>지역 (광고 타겟)</label>
+          <select value={region} onChange={(e) => setRegion(e.target.value)} className={fieldCls}>
+            <option value="">미지정</option>
+            {AD_REGIONS.map((r) => (
+              <option key={r.code} value={r.code}>{r.label}</option>
+            ))}
+          </select>
         </div>
 
         <div>
