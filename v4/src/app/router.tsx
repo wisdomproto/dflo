@@ -81,6 +81,9 @@ const MarketingSettings = lazy(() =>
 const MarketingArticlesPage = lazy(() =>
   import('@/features/marketing/components/MarketingArticlesPage').then((m) => ({ default: m.MarketingArticlesPage })),
 );
+const ChannelRegistryTab = lazy(() =>
+  import('@/features/marketing/components/ChannelRegistryTab').then((m) => ({ default: m.ChannelRegistryTab })),
+);
 const SiteAnalysisPage = lazy(() =>
   import('@/features/marketing/components/SiteAnalysisPage').then((m) => ({ default: m.SiteAnalysisPage })),
 );
@@ -341,6 +344,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <CompetitorsPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'channels',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <ChannelRegistryTab />
           </Suspense>
         ),
       },

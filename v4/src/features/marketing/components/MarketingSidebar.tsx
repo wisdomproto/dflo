@@ -20,6 +20,10 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     ],
   },
   {
+    label: '채널 관리',
+    items: [{ to: '/marketing/channels', icon: '🗂', label: '채널 (언어별)' }],
+  },
+  {
     label: '성장',
     items: [{ to: '/marketing/monitoring', icon: '💬', label: '모니터링 / 댓글' }],
   },
