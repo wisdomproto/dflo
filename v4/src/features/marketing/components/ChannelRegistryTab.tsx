@@ -9,13 +9,12 @@ import {
   LOCALES,
   localeFlag,
 } from '../services/marketingChannelService';
+import { getMetaConnection, startMetaConnect, disconnectMeta, type MetaConnection } from '../services/metaConnectionService';
 
 const PLATFORMS = [
   { id: 'instagram', label: '📷 Instagram' },
-  { id: 'youtube', label: '▶️ YouTube' },
   { id: 'threads', label: '🧵 Threads' },
   { id: 'facebook', label: '👍 Facebook' },
-  { id: 'naver_blog', label: '🟢 네이버 블로그' },
   { id: 'tiktok', label: '🎵 TikTok' },
   { id: 'website', label: '🌐 웹사이트' },
 ] as const;
@@ -135,11 +134,21 @@ export function ChannelRegistryTab() {
   const [syncing, setSyncing] = useState<string | null>(null);
   const [localeFilter, setLocaleFilter] = useState<string>('all');
   const visible = localeFilter === 'all' ? channels : channels.filter((c) => c.locale === localeFilter);
+  const [meta, setMeta] = useState<MetaConnection>({ connected: false });
+  const reloadMeta = () => getMetaConnection().then(setMeta).catch(() => setMeta({ connected: false }));
 
   const reload = () => {
     fetchChannels().then(setChannels);
   };
   useEffect(reload, []);
+  useEffect(() => { reloadMeta(); }, []);
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('meta_connected') === '1') {
+      reloadMeta();
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
 
   const add = async () => {
     if (!draft.name?.trim()) return;
@@ -201,8 +210,60 @@ export function ChannelRegistryTab() {
     }
   };
 
+  const addMetaChannel = async (
+    platform: 'facebook' | 'instagram' | 'threads',
+    pg: NonNullable<MetaConnection['pages']>[number],
+  ) => {
+    const locale = localeFilter === 'all' ? 'ko' : localeFilter;
+    await saveChannel({
+      platform,
+      name: platform === 'instagram' ? (pg.instagram?.username ?? pg.name) : pg.name,
+      locale,
+      isActive: true,
+      metaPageId: pg.id,
+      metaIgId: pg.instagram?.id ?? null,
+      metaThreadsId: pg.threadsId,
+    });
+    reload();
+  };
+
   return (
     <div className="space-y-3 p-6">
+      <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white p-3">
+        <div className="text-sm">
+          <span className="font-semibold text-gray-800">Meta 연결</span>{' '}
+          {meta.connected ? (
+            <span className="text-emerald-600">✓ {meta.userName} · 페이지 {meta.pages?.length ?? 0}개</span>
+          ) : (
+            <span className="text-gray-400">미연결</span>
+          )}
+        </div>
+        {meta.connected ? (
+          <button type="button" onClick={async () => { await disconnectMeta(); reloadMeta(); }}
+            className="rounded-lg border border-gray-300 px-3 py-1.5 text-xs text-gray-600">연결 해제</button>
+        ) : (
+          <button type="button" onClick={() => startMetaConnect(window.location.origin + '/marketing/channels')}
+            className="rounded-lg bg-[#1877f2] px-3 py-1.5 text-xs font-semibold text-white">Meta 연결</button>
+        )}
+      </div>
+      {meta.connected && meta.pages && meta.pages.length > 0 && (
+        <div className="rounded-xl border border-gray-200 bg-gray-50 p-3">
+          <div className="mb-2 text-xs font-semibold text-gray-500">연결된 페이지에서 채널 추가 (언어 {localeFilter === 'all' ? 'ko' : localeFilter})</div>
+          <div className="flex flex-wrap gap-2">
+            {meta.pages.map((pg) => (
+              <div key={pg.id} className="flex items-center gap-1 rounded-lg border border-gray-200 bg-white px-2 py-1 text-xs">
+                <span className="font-medium text-gray-700">{pg.name}</span>
+                <button type="button" title="Facebook 채널 추가" onClick={() => addMetaChannel('facebook', pg)} className="rounded bg-[#1877f2] px-1.5 text-white">FB</button>
+                {pg.instagram && (
+                  <button type="button" title="Instagram 채널 추가" onClick={() => addMetaChannel('instagram', pg)} className="rounded bg-pink-500 px-1.5 text-white">IG</button>
+                )}
+                <button type="button" title="Threads 채널 추가" onClick={() => addMetaChannel('threads', pg)} className="rounded bg-gray-900 px-1.5 text-white">TH</button>
+              </div>
+            ))}
+          </div>
+          <p className="mt-1 text-[10px] text-gray-400">현재 선택된 언어로 채널이 추가됩니다(전체일 땐 ko).</p>
+        </div>
+      )}
       <ChannelFormRow draft={draft} setDraft={setDraft} onSubmit={add} submitLabel="+ 추가" />
       <div className="flex flex-wrap gap-1">
         {[{ code: 'all', flag: '🌐', label: '전체' }, ...LOCALES].map((l) => (
