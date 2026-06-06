@@ -14,6 +14,7 @@ import {
 import { CARDNEWS_TEMPLATES } from '../../data/cardnewsTemplates';
 import { CardCanvas } from './CardCanvas';
 import { ImageGenButton } from './ImageGenButton';
+import { uploadImageFile } from '../../services/aiImageService';
 
 interface Props {
   article: MarketingArticle;
@@ -62,6 +63,7 @@ export function CardNewsPanel({ article }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [generating, setGenerating] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   // Local header field state (debounced to DB).
   const [caption, setCaption] = useState('');
@@ -154,6 +156,25 @@ export function CardNewsPanel({ article }: Props) {
     }
   };
 
+  const handleUpload = async (files: FileList | null) => {
+    if (!cardnews || !files || files.length === 0) return;
+    setUploading(true);
+    setError(null);
+    try {
+      const arr = Array.from(files);
+      for (let i = 0; i < arr.length; i++) {
+        const url = await uploadImageFile(arr[i]);
+        const canvas: CardCanvasData = { bgColor: '#000000', imageUrl: url, imageY: 50, textBlocks: [] };
+        await addSlide(cardnews.id, canvas, slides.length + i);
+      }
+      await reload();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : '이미지 업로드 실패');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleDelete = async (id: string) => {
     try {
       await deleteSlide(id);
@@ -227,6 +248,17 @@ export function CardNewsPanel({ article }: Props) {
           >
             {generating ? '생성 중… (수십 초)' : '✨ 슬라이드 생성'}
           </button>
+          <label className="shrink-0 cursor-pointer rounded px-3 py-1.5 text-sm font-semibold text-[#4A2D6B] ring-1 ring-[#4A2D6B] hover:bg-[#4A2D6B]/5">
+            {uploading ? '업로드 중…' : '🖼 이미지 업로드'}
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              className="hidden"
+              disabled={uploading}
+              onChange={(e) => { void handleUpload(e.target.files); e.target.value = ''; }}
+            />
+          </label>
         </div>
         <input
           value={hashtags}
