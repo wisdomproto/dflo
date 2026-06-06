@@ -10,6 +10,7 @@ import {
   type PublishQueueItem,
   type PublishStatus,
 } from '../services/marketingPublishService';
+import { publishToMeta } from '../services/metaConnectionService';
 import { PublishQueueList } from './PublishQueueList';
 import { CHANNELS, STATUS_LABELS } from '../utils/publishConstants';
 import { PublishCalendar } from './PublishCalendar';
@@ -71,22 +72,26 @@ export function PublishQueuePage() {
     guard(() => markPublished(id, url.trim()));
   };
 
-  // 실제 자동 발행 (게이트) — 키 부재 시 ai-server가 {success:false,error} 반환 → alert.
+  // 실제 자동 발행 (게이트) — Meta 채널이면 Graph API 직접 발행, 그 외는 ai-server publish-push.
   const handlePush = async (id: string, channel: PublishChannel) => {
     try {
-      const res = await fetch(`${BASE}/api/marketing/publish-push`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ queueItemId: id, channel }),
-      });
-      const body = await res.json().catch(() => ({}));
-      if (!res.ok || !body.success) {
-        window.alert(body.error || `발행 실패 (${res.status})`);
-        return;
-      }
-      // 자동 발행 성공 시(키 활성화 후) 큐 행을 published 로 전이 — published_url 보존.
-      if (body.publishedUrl) {
-        await markPublished(id, String(body.publishedUrl));
+      if (channel === 'facebook' || channel === 'instagram' || channel === 'threads') {
+        await publishToMeta(id);
+      } else {
+        const res = await fetch(`${BASE}/api/marketing/publish-push`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ queueItemId: id, channel }),
+        });
+        const body = await res.json().catch(() => ({}));
+        if (!res.ok || !body.success) {
+          window.alert(body.error || `발행 실패 (${res.status})`);
+          return;
+        }
+        // 자동 발행 성공 시(키 활성화 후) 큐 행을 published 로 전이 — published_url 보존.
+        if (body.publishedUrl) {
+          await markPublished(id, String(body.publishedUrl));
+        }
       }
       reload();
     } catch (e) {
