@@ -1,0 +1,102 @@
+// 발행 큐 1건을 실제 발행하는 공용 실행기. 수동(/publish/run)·자동(scheduler) 공용.
+// deploy hook은 호출하지 않음(호출자가 배치 단위로 트리거).
+import { createClient } from '@supabase/supabase-js';
+import { validatePublish, targetIdFor, htmlToText, type Platform } from './metaPublishPrep.js';
+import { publishFacebook, publishInstagram, publishThreads } from './metaPublish.js';
+import { getBundle, findPageToken } from './metaConnectionStore.js';
+
+const sb = createClient(
+  process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '',
+  { auth: { persistSession: false } },
+);
+
+export interface ExecResult {
+  ok: boolean;
+  kind: 'meta' | 'website';
+  postId?: string;
+  error?: string;
+}
+
+async function fail(queueId: string, kind: 'meta' | 'website', error: string): Promise<ExecResult> {
+  await sb.from('marketing_publish_queue').update({
+    status: 'failed', error_message: error, updated_at: new Date().toISOString(),
+  }).eq('id', queueId);
+  return { ok: false, kind, error };
+}
+
+export async function publishQueueItem(queueId: string): Promise<ExecResult> {
+  const { data: q } = await sb.from('marketing_publish_queue').select('*').eq('id', queueId).single();
+  if (!q) return { ok: false, kind: 'meta', error: '큐 항목 없음' };
+  const channel = q.channel as string;
+
+  // ── website (자체 사이트 블로그): blog_published draft → published ──
+  if (channel === 'website') {
+    const lang = (q.language as string) || 'ko';
+    const { data: rows, error } = await sb.from('blog_published')
+      .update({ status: 'published', published_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+      .eq('article_id', q.article_id).eq('language', lang).eq('status', 'draft').select('id');
+    if (error) return fail(queueId, 'website', error.message);
+    if (!rows || rows.length === 0) {
+      const { data: existing } = await sb.from('blog_published').select('id').eq('article_id', q.article_id).eq('language', lang).limit(1);
+      if (!existing || existing.length === 0) return fail(queueId, 'website', '블로그 발행본이 없습니다.');
+    }
+    await sb.from('marketing_publish_queue').update({
+      status: 'published', published_at: new Date().toISOString(), error_message: null, updated_at: new Date().toISOString(),
+    }).eq('id', queueId);
+    return { ok: true, kind: 'website' };
+  }
+
+  // ── meta (ig/fb/threads) ──
+  const platform = channel as Platform;
+  if (!['facebook', 'instagram', 'threads'].includes(platform)) return fail(queueId, 'meta', 'Meta 채널이 아닙니다');
+  const { data: ch } = await sb.from('marketing_channels').select('*').eq('id', q.channel_id).single();
+  if (!ch) return fail(queueId, 'meta', '채널 없음');
+
+  let caption = '';
+  let imageUrls: string[] = [];
+  if (q.content_kind === 'cardnews') {
+    const { data: cn } = await sb.from('marketing_cardnews').select('id, caption, hashtags').eq('content_id', q.article_id).limit(1).single();
+    if (cn) {
+      const tags = ((cn.hashtags ?? []) as string[]).map((h) => (h.startsWith('#') ? h : `#${h}`)).join(' ');
+      caption = [cn.caption as string, tags].filter(Boolean).join('\n\n');
+      const { data: slides } = await sb.from('marketing_cardnews_slides').select('canvas, sort_order').eq('cardnews_id', cn.id as string).order('sort_order');
+      imageUrls = ((slides ?? []) as Array<{ canvas?: { imageUrl?: string | null } }>)
+        .map((s) => s.canvas?.imageUrl)
+        .filter((u): u is string => typeof u === 'string' && u.length > 0);
+    }
+  } else {
+    const { data: art } = await sb.from('marketing_articles').select('title, body, translations').eq('id', q.article_id).single();
+    const lang = (q.language as string) || 'ko';
+    const body = lang === 'ko'
+      ? (art as { body?: string } | null)?.body
+      : (art as { translations?: Record<string, { body?: string }> } | null)?.translations?.[lang]?.body;
+    caption = htmlToText(body || '');
+  }
+
+  const v = validatePublish(platform, imageUrls);
+  if (!v.ok) return fail(queueId, 'meta', v.reason || '발행 불가');
+  const targetId = targetIdFor(
+    ch as { platform: string; meta_page_id?: string | null; meta_ig_id?: string | null; meta_threads_id?: string | null },
+    platform,
+  );
+  if (!targetId) return fail(queueId, 'meta', '채널에 Meta 타겟 id가 없습니다. 연결/매핑 필요.');
+  const bundle = await getBundle();
+  if (!bundle) return fail(queueId, 'meta', 'Meta 연결이 없습니다.');
+  const token = findPageToken(bundle, targetId);
+  if (!token) return fail(queueId, 'meta', '해당 타겟의 토큰을 찾을 수 없습니다(재연결 필요).');
+
+  try {
+    let postId = '';
+    if (platform === 'facebook') postId = await publishFacebook(targetId, token, caption);
+    else if (platform === 'instagram') postId = await publishInstagram(targetId, token, caption, imageUrls);
+    else postId = await publishThreads(targetId, token, caption, imageUrls);
+    await sb.from('marketing_publish_queue').update({
+      status: 'published', platform_post_id: postId, published_at: new Date().toISOString(),
+      error_message: null, updated_at: new Date().toISOString(),
+    }).eq('id', queueId);
+    return { ok: true, kind: 'meta', postId };
+  } catch (e) {
+    return fail(queueId, 'meta', e instanceof Error ? e.message : '발행 실패');
+  }
+}
