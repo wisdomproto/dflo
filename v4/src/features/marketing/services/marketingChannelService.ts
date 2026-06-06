@@ -30,6 +30,9 @@ export interface MarketingChannel {
   note: string;
   sortOrder: number;
   isActive: boolean;
+  metaPageId: string | null;
+  metaIgId: string | null;
+  metaThreadsId: string | null;
 }
 
 // 언어(시장) 단일 소스 — 채널/발행/광고 UI 공용.
@@ -78,6 +81,9 @@ function rowToChannel(r: Row): MarketingChannel {
     note: (r.note as string) ?? '',
     sortOrder: (r.sort_order as number) ?? 0,
     isActive: (r.is_active as boolean) ?? true,
+    metaPageId: (r.meta_page_id as string | null) ?? null,
+    metaIgId: (r.meta_ig_id as string | null) ?? null,
+    metaThreadsId: (r.meta_threads_id as string | null) ?? null,
   };
 }
 
@@ -94,6 +100,9 @@ function channelToRow(c: Partial<MarketingChannel>): Row {
     note: c.note ?? '',
     sort_order: c.sortOrder ?? 0,
     is_active: c.isActive ?? true,
+    meta_page_id: c.metaPageId ?? null,
+    meta_ig_id: c.metaIgId ?? null,
+    meta_threads_id: c.metaThreadsId ?? null,
     updated_at: new Date().toISOString(),
   };
 }
