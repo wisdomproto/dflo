@@ -79,6 +79,9 @@ export function PublishQueueList({ items, onSetSchedule, onMarkPublished, onPush
           <div key={it.id} className="rounded-xl border border-gray-200 bg-white p-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className={`rounded px-2 py-0.5 text-xs font-semibold ${meta.badge}`}>{meta.label}</span>
+              {it.channelName && (
+                <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600">{it.channelName}</span>
+              )}
               <span className="min-w-0 flex-1 truncate text-sm font-medium text-gray-800">
                 {it.articleTitle || '(제목 없음)'}
               </span>
