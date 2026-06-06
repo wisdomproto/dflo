@@ -3,11 +3,16 @@
 // marketing_articles 글을 채널별로 큐에 올려 status/예약/published_url을 전이한다.
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
+import {
+  buildQueueRows,
+  type PublishStatus,
+  type PublishChannel,
+  type ContentKind,
+  type BuildQueueInput,
+} from '../utils/publishRows';
+export type { PublishStatus, PublishChannel, ContentKind } from '../utils/publishRows';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
-
-export type PublishStatus = 'draft' | 'scheduled' | 'publishing' | 'published' | 'failed';
-export type PublishChannel = 'wordpress' | 'instagram' | 'facebook' | 'threads' | 'youtube' | 'naver_blog';
 
 export interface PublishQueueItem {
   id: string;
@@ -24,6 +29,9 @@ export interface PublishQueueItem {
   // joined / derived (not DB columns):
   articleTitle?: string;
   articleCategory?: string;
+  channelId?: string | null;
+  channelName?: string;
+  contentKind?: ContentKind;
   viewCount?: number;
 }
 
@@ -32,6 +40,7 @@ type Row = Record<string, unknown>;
 
 function rowToQueueItem(r: Row): PublishQueueItem {
   const article = (r.marketing_articles ?? null) as Row | null;
+  const ch = (r.marketing_channels ?? null) as Row | null;
   return {
     id: r.id as string,
     articleId: (r.article_id as string | null) ?? null,
@@ -46,6 +55,9 @@ function rowToQueueItem(r: Row): PublishQueueItem {
     updatedAt: (r.updated_at as string) ?? '',
     articleTitle: article ? ((article.title as string) ?? '') : undefined,
     articleCategory: article ? ((article.category as string) ?? '') : undefined,
+    channelId: (r.channel_id as string | null) ?? null,
+    channelName: ch ? ((ch.name as string) ?? '') : undefined,
+    contentKind: (r.content_kind as ContentKind) ?? 'post',
   };
 }
 
@@ -67,7 +79,7 @@ export async function fetchQueue(): Promise<PublishQueueItem[]> {
   // marketing_articles 조인으로 제목/카테고리 표시. 조인 실패(미적용/권한)면 빈 배열로 graceful.
   const { data, error } = await supabase
     .from('marketing_publish_queue')
-    .select('*, marketing_articles(title, category)')
+    .select('*, marketing_articles(title, category), marketing_channels(name, platform, locale)')
     .order('created_at', { ascending: false });
   if (error) {
     logger.warn('[marketing] fetchQueue failed:', error.message);
@@ -76,20 +88,11 @@ export async function fetchQueue(): Promise<PublishQueueItem[]> {
   return (data ?? []).map((r) => rowToQueueItem(r as Row));
 }
 
-// 채널 배열을 받아 채널당 1행 insert. 한 글이 여러 채널 큐 행을 가진다.
-export async function enqueue(
-  articleId: string,
-  channels: PublishChannel[],
-  language: string,
-): Promise<void> {
-  if (!channels.length) return;
-  const rows = channels.map((channel) => ({
-    article_id: articleId,
-    channel,
-    language: language || 'ko',
-    status: 'draft' as PublishStatus,
-    updated_at: new Date().toISOString(),
-  }));
+// BuildQueueInput(순수 빌더)로 행 생성 후 insert. updated_at만 비순수로 부착.
+export async function enqueue(input: BuildQueueInput): Promise<void> {
+  if (!input.targets.length) return;
+  const now = new Date().toISOString();
+  const rows = buildQueueRows(input).map((r) => ({ ...r, updated_at: now }));
   const { error } = await supabase.from('marketing_publish_queue').insert(rows);
   if (error) throw new Error(error.message);
 }

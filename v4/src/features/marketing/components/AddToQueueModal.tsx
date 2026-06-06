@@ -42,7 +42,12 @@ export function AddToQueueModal({ onClose, onAdded }: { onClose: () => void; onA
     setSaving(true);
     setErr(null);
     try {
-      await enqueue(articleId, [...channels], selectedArticle?.language ?? 'ko');
+      await enqueue({
+        articleId,
+        language: selectedArticle?.language ?? 'ko',
+        contentKind: 'post',
+        targets: [...channels].map((channel) => ({ channelId: null, channel })),
+      });
       onAdded();
       onClose();
     } catch (e) {

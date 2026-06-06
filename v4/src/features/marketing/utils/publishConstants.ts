@@ -33,6 +33,7 @@ export const CHANNELS: ChannelMeta[] = [
   { id: 'threads', label: 'Threads', badge: 'bg-gray-900 text-white', dot: '#000000' },
   { id: 'youtube', label: 'YouTube', badge: 'bg-[#ff0000] text-white', dot: '#ff0000' },
   { id: 'naver_blog', label: '네이버블로그', badge: 'bg-[#03c75a] text-white', dot: '#03c75a' },
+  { id: 'website', label: '자체 사이트', badge: 'bg-emerald-600 text-white', dot: '#059669' },
 ];
 
 export function channelMeta(ch: PublishChannel): ChannelMeta {
