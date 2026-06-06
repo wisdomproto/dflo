@@ -102,6 +102,9 @@ const MentionsPage = lazy(() =>
 const AdsManagerPage = lazy(() =>
   import('@/features/marketing/components/AdsManagerPage').then((m) => ({ default: m.AdsManagerPage })),
 );
+const BlogPreviewPage = lazy(() =>
+  import('@/features/marketing/components/BlogPreviewPage').then((m) => ({ default: m.BlogPreviewPage })),
+);
 
 function SuspenseFallback() {
   return (
@@ -352,6 +355,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <ChannelRegistryTab />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'blog-preview/:articleId',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <BlogPreviewPage />
           </Suspense>
         ),
       },
