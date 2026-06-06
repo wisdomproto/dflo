@@ -121,6 +121,10 @@ scripts/
 - 설문 현재 키·몸무게: `019_intake_current_height.sql` (수동 적용 필요)
 - 마케팅 도구: `020_marketing_config.sql` ~ `028_marketing_ad_campaigns.sql`
 - 상담 매뉴얼 Q&A 싱글톤: `029_consulting_qa.sql` (적용 완료)
+- 마케팅 확장: `030_marketing_articles_confirmed.sql` ~ `033_marketing_article_translations.sql`
+- 클리니컬 RAG: `034_medication_legend.sql` ~ `036_clinical_insights.sql`
+- 마케팅/발행 확장: `037_marketing_channel_active.sql` ~ `042_channels_meta_target_and_queue_result.sql`
+- 치료완료 단계: `043_children_treatment_completed.sql` — treatment_status CHECK 에 `completed` 추가 (**MCP 권한 차단으로 Dashboard 수동 적용 필요**)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
@@ -162,7 +166,7 @@ scripts/
 | `/app/info[/*]` | 성장가이드 / 레시피 / 케이스 (탭 없음, 홈에서 진입) | consultation |
 | 1:1상담 | (외부) 카카오톡 https://pf.kakao.com/_ZxneSb | both |
 
-**`treatment_status` 의사 수동 토글** — AdminPatientDetailPage 헤더 좌측 `[상담][치료]` 버튼. 즉시 저장. `migration 014` 의 자동 백필 (visits 1건 이상 → treatment) 결과 244명 전원 `treatment` 로 시작.
+**`treatment_status` 의사 수동 토글 (3단계)** — `consultation`(상담) / `treatment`(치료 중) / `completed`(완료). AdminPatientDetailPage 헤더 좌측 `[상담][치료 중][완료]` 버튼 + AdminPatientsPage(환자 관리) 목록의 "단계" 컬럼 인라인 셀렉트(표시+변경) + 단계 필터칩(완료 환자는 행 opacity 흐림). 라벨/색상은 `shared/utils/treatmentStage.ts` 단일 소스. **`completed`는 환자앱에선 `treatment`와 동일 취급**(BottomNav·HomePage가 `consultation`만 별도 분기 → 완료해도 진료기록 뷰 유지). `migration 014` 의 자동 백필 (visits 1건 이상 → treatment) 결과 244명 전원 `treatment` 로 시작, `completed`는 `migration 043` 으로 CHECK 확장.
 
 **헤더** (Layout.tsx): 로고(앱홈으로) + ← 화살표 + "홈페이지" pill 버튼(공식 사이트로 빠져나가는 동선) + 톱니바퀴(콘텐츠 관리 PIN) + 햄버거(로그아웃).
 

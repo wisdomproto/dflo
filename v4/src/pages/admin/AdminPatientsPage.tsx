@@ -20,6 +20,12 @@ import { countryFlag, countryLabel } from '@/shared/data/countries';
 import { fetchStoryChildIds } from '@/features/admin/services/patientStoryService';
 import PatientStoryModal from '@/features/admin/components/PatientStoryModal';
 import { useFavoritePatients } from '@/features/admin/hooks/useFavoritePatients';
+import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
+import { TREATMENT_STAGES, type TreatmentStatus } from '@/shared/utils/treatmentStage';
+
+// 국가 탭 순서 — 한국 클리닉 기준 + 동남아/미국 확장.
+// 한국 탭은 국적 미설정 환자도 포함 (filteredPatients 참조).
+const COUNTRY_TABS = ['KR', 'TH', 'MY', 'ID', 'VN', 'US'] as const;
 
 export default function AdminPatientsPage() {
   const navigate = useNavigate();
@@ -32,6 +38,7 @@ export default function AdminPatientsPage() {
   const [activeCategories, setActiveCategories] = useState<Set<PatientCategoryId>>(new Set());
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [countryFilter, setCountryFilter] = useState<string>(''); // '' = 전체
+  const [stageFilter, setStageFilter] = useState<TreatmentStatus | ''>(''); // '' = 전체 단계
   const [storyChildIds, setStoryChildIds] = useState<Set<string>>(new Set());
   const [storyOpenFor, setStoryOpenFor] = useState<PatientWithParent | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
@@ -40,7 +47,7 @@ export default function AdminPatientsPage() {
   // Precompute categories per patient once per list load.
   const categoriesById = useMemo(() => {
     const map = new Map<string, PatientCategoryId[]>();
-    for (const p of patients) map.set(p.id, classifyPatient(p));
+    for (const p of patients) map.set(p.id, classifyPatient(p, p.clinical));
     return map;
   }, [patients]);
 
@@ -62,7 +69,16 @@ export default function AdminPatientsPage() {
   const filteredPatients = useMemo(() => {
     let list = patients;
     if (favoritesOnly) list = list.filter((p) => favorites.has(p.id));
-    if (countryFilter) list = list.filter((p) => (p.country ?? '') === countryFilter);
+    if (countryFilter) {
+      // 한국 탭은 국적 미설정 환자(기존 244명 다수)도 포함 — 한국 클리닉 기본값.
+      list = list.filter((p) => {
+        const c = p.country ?? '';
+        return countryFilter === 'KR' ? c === 'KR' || c === '' : c === countryFilter;
+      });
+    }
+    if (stageFilter) {
+      list = list.filter((p) => (p.treatment_status ?? 'consultation') === stageFilter);
+    }
     if (activeCategories.size) {
       list = list.filter((p) => {
         const cats = categoriesById.get(p.id) ?? [];
@@ -71,20 +87,41 @@ export default function AdminPatientsPage() {
       });
     }
     return list;
-  }, [patients, categoriesById, activeCategories, favoritesOnly, favorites, countryFilter]);
+  }, [patients, categoriesById, activeCategories, favoritesOnly, favorites, countryFilter, stageFilter]);
 
-  // 환자들에 실제로 존재하는 국가 + 건수 (국가 필터 드롭다운 옵션).
-  const countryOptions = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const p of patients) {
-      const c = p.country ?? '';
-      if (!c) continue;
-      counts.set(c, (counts.get(c) ?? 0) + 1);
-    }
-    return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+  // 단계별 건수 (필터칩 배지) — 미설정은 상담으로 집계.
+  const stageCounts = useMemo(() => {
+    const c: Record<TreatmentStatus, number> = { consultation: 0, treatment: 0, completed: 0 };
+    for (const p of patients) c[(p.treatment_status ?? 'consultation') as TreatmentStatus]++;
+    return c;
   }, [patients]);
 
-  // Column sorting — chart / name / region / first visit / last visit / categories / measurements / labs / status.
+  // 단계 변경 — 낙관적 업데이트 후 실패 시 롤백.
+  async function changeStage(p: PatientWithParent, val: TreatmentStatus) {
+    const prev = p.treatment_status;
+    setPatients((list) => list.map((x) => (x.id === p.id ? { ...x, treatment_status: val } : x)));
+    try {
+      await updateChildField(p.id, { treatment_status: val });
+    } catch {
+      setPatients((list) => list.map((x) => (x.id === p.id ? { ...x, treatment_status: prev } : x)));
+      addToast('error', '단계 변경에 실패했습니다');
+    }
+  }
+
+  // 국가 탭 건수 — 한국 = KR + 국적 미설정, 그 외는 해당 코드.
+  const countryCounts = useMemo(() => {
+    const counts: Record<string, number> = Object.fromEntries(
+      COUNTRY_TABS.map((c) => [c, 0]),
+    );
+    for (const p of patients) {
+      const c = p.country ?? '';
+      if (c === '' || c === 'KR') counts.KR++;
+      else if (c in counts) counts[c]++;
+    }
+    return { all: patients.length, ...counts };
+  }, [patients]);
+
+  // Column sorting — chart / name / region / first visit / last visit / categories / measurements / labs.
   type SortKey =
     | 'chart'
     | 'name'
@@ -93,8 +130,7 @@ export default function AdminPatientsPage() {
     | 'lastVisit'
     | 'categories'
     | 'measurements'
-    | 'labs'
-    | 'status';
+    | 'labs';
   const [sort, setSort] = useState<{ key: SortKey; dir: 'asc' | 'desc' } | null>(null);
 
   const sortedPatients = useMemo(() => {
@@ -138,8 +174,6 @@ export default function AdminPatientsPage() {
           return p.measurementCount ?? 0;
         case 'labs':
           return p.labCount ?? 0;
-        case 'status':
-          return p.is_active ? 1 : 0;
       }
     };
     return [...filteredPatients].sort((a, b) => {
@@ -231,10 +265,28 @@ export default function AdminPatientsPage() {
     );
   }
 
-  function StatusBadge({ active }: { active: boolean }) {
-    return active
-      ? <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">활성</span>
-      : <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 text-gray-500">비활성</span>;
+  // 치료 단계 인라인 선택 (상담 / 치료 중 / 완료). 행 클릭(네비)과 분리.
+  function StageSelect({ p }: { p: PatientWithParent }) {
+    const cur = (p.treatment_status ?? 'consultation') as TreatmentStatus;
+    const stage = TREATMENT_STAGES.find((s) => s.value === cur)!;
+    return (
+      <select
+        value={cur}
+        onClick={(e) => e.stopPropagation()}
+        onChange={(e) => {
+          e.stopPropagation();
+          changeStage(p, e.target.value as TreatmentStatus);
+        }}
+        title="치료 단계 변경"
+        className={'cursor-pointer rounded-full px-2 py-0.5 text-[11px] font-medium outline-none ' + stage.badge}
+      >
+        {TREATMENT_STAGES.map((s) => (
+          <option key={s.value} value={s.value}>
+            {s.label}
+          </option>
+        ))}
+      </select>
+    );
   }
 
   function RegionBadge({ patient }: { patient: PatientWithParent }) {
@@ -286,6 +338,43 @@ export default function AdminPatientsPage() {
         </div>
       </div>
 
+      {/* 국가별 탭 */}
+      <div className="flex flex-wrap items-center gap-1 border-b border-slate-200">
+        {[
+          { value: '', label: '🌐 전체', count: countryCounts.all },
+          ...COUNTRY_TABS.map((code) => ({
+            value: code as string,
+            label: countryLabel(code),
+            count: countryCounts[code],
+          })),
+        ].map((t) => {
+          const active = countryFilter === t.value;
+          return (
+            <button
+              key={t.value}
+              type="button"
+              onClick={() => setCountryFilter(t.value)}
+              className={
+                'flex items-center gap-1.5 border-b-2 px-3 py-2 text-sm font-medium transition ' +
+                (active
+                  ? 'border-indigo-500 text-indigo-700'
+                  : 'border-transparent text-slate-500 hover:text-slate-700')
+              }
+            >
+              <span>{t.label}</span>
+              <span
+                className={
+                  'rounded-full px-1.5 text-[10px] font-semibold ' +
+                  (active ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-100 text-slate-500')
+                }
+              >
+                {t.count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
       {/* Search */}
       <input
         type="text"
@@ -295,28 +384,8 @@ export default function AdminPatientsPage() {
         className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
       />
 
-      {/* Filter chips: 국가 + favorites + categories */}
+      {/* Filter chips: favorites + categories */}
       <div className="flex flex-wrap items-center gap-1.5">
-        {countryOptions.length > 0 && (
-          <select
-            value={countryFilter}
-            onChange={(e) => setCountryFilter(e.target.value)}
-            className={
-              'rounded-full border px-2.5 py-1 text-xs font-medium transition ' +
-              (countryFilter
-                ? 'border-indigo-300 bg-indigo-50 text-indigo-700 ring-2 ring-indigo-200'
-                : 'border-slate-200 bg-white text-slate-600')
-            }
-            title="국가별 필터"
-          >
-            <option value="">🌐 전체 국가</option>
-            {countryOptions.map(([code, count]) => (
-              <option key={code} value={code}>
-                {countryLabel(code)} ({count})
-              </option>
-            ))}
-          </select>
-        )}
         <button
           type="button"
           onClick={() => setFavoritesOnly((v) => !v)}
@@ -334,6 +403,28 @@ export default function AdminPatientsPage() {
             {favorites.size}
           </span>
         </button>
+        {/* 치료 단계 필터 */}
+        <span className="mx-0.5 h-4 w-px bg-slate-200" aria-hidden />
+        {TREATMENT_STAGES.map((s) => {
+          const active = stageFilter === s.value;
+          return (
+            <button
+              key={s.value}
+              type="button"
+              onClick={() => setStageFilter(active ? '' : s.value)}
+              className={
+                'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition ' +
+                (active ? s.active + ' shadow-sm' : s.badge + ' opacity-70 hover:opacity-100')
+              }
+            >
+              <span>{s.label}</span>
+              <span className="ml-0.5 rounded-full bg-white/70 px-1.5 text-[10px] font-semibold">
+                {stageCounts[s.value]}
+              </span>
+            </button>
+          );
+        })}
+        <span className="mx-0.5 h-4 w-px bg-slate-200" aria-hidden />
         {CATEGORY_ORDER.map((id) => {
           const cat = PATIENT_CATEGORIES[id];
           const active = activeCategories.has(id);
@@ -358,13 +449,14 @@ export default function AdminPatientsPage() {
             </button>
           );
         })}
-        {(activeCategories.size > 0 || favoritesOnly || countryFilter) && (
+        {(activeCategories.size > 0 || favoritesOnly || countryFilter || stageFilter) && (
           <button
             type="button"
             onClick={() => {
               setActiveCategories(new Set());
               setFavoritesOnly(false);
               setCountryFilter('');
+              setStageFilter('');
             }}
             className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 hover:bg-slate-50"
           >
@@ -440,12 +532,7 @@ export default function AdminPatientsPage() {
                   >
                     Lab{sortIndicator('labs')}
                   </th>
-                  <th
-                    onClick={() => toggleSort('status')}
-                    className="cursor-pointer px-4 py-3 text-center hover:text-slate-700"
-                  >
-                    상태{sortIndicator('status')}
-                  </th>
+                  <th className="px-4 py-3 text-center">단계</th>
                   <th className="px-3 py-3 text-center">스토리</th>
                   <th className="px-2 py-3"></th>
                 </tr>
@@ -455,7 +542,10 @@ export default function AdminPatientsPage() {
                   <tr
                     key={p.id}
                     onClick={() => navigate(`/admin/patients/${p.id}`)}
-                    className="group cursor-pointer transition-colors hover:bg-gray-50"
+                    className={
+                      'group cursor-pointer transition-colors hover:bg-gray-50 ' +
+                      (p.treatment_status === 'completed' ? 'opacity-50' : '')
+                    }
                   >
                     <td className="px-2 py-3 text-center">
                       <button
@@ -513,7 +603,7 @@ export default function AdminPatientsPage() {
                         {p.labCount ?? 0}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-center"><StatusBadge active={p.is_active} /></td>
+                    <td className="px-4 py-3 text-center"><StageSelect p={p} /></td>
                     <td className="px-3 py-3 text-center">
                       <button
                         type="button"
@@ -564,7 +654,10 @@ export default function AdminPatientsPage() {
                 <div
                   key={p.id}
                   onClick={() => navigate(`/admin/patients/${p.id}`)}
-                  className="flex items-center gap-3 px-4 py-3 active:bg-gray-50 cursor-pointer"
+                  className={
+                    'flex items-center gap-3 px-4 py-3 active:bg-gray-50 cursor-pointer ' +
+                    (p.treatment_status === 'completed' ? 'opacity-50' : '')
+                  }
                 >
                   <button
                     type="button"
@@ -591,7 +684,7 @@ export default function AdminPatientsPage() {
                       {countryFlag(p.country) && (
                         <span title={countryLabel(p.country)}>{countryFlag(p.country)}</span>
                       )}
-                      <StatusBadge active={p.is_active} />
+                      <StageSelect p={p} />
                     </div>
                     <div className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
                       <RegionBadge patient={p} />

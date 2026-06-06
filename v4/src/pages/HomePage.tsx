@@ -64,7 +64,11 @@ export default function HomePage() {
 
   // 치료 단계 환자가 /app 으로 진입하면 진료기록 페이지로 자동 이동.
   // 모든 hooks 호출 후에 early return 해야 hook 순서가 일관됨.
-  if (isLoggedIn && selectedChild?.treatment_status === 'treatment') {
+  if (
+    isLoggedIn &&
+    (selectedChild?.treatment_status === 'treatment' ||
+      selectedChild?.treatment_status === 'completed')
+  ) {
     return <Navigate to="/app/records" replace />;
   }
 
@@ -101,7 +105,9 @@ export default function HomePage() {
           <EmptyState onAdd={openAddModal} />
         ) : selectedChild ? (
           (() => {
-            const isTreatment = selectedChild.treatment_status === 'treatment';
+            const isTreatment =
+              selectedChild.treatment_status === 'treatment' ||
+              selectedChild.treatment_status === 'completed';
             return (
               <>
                 {isTreatment ? (

@@ -2,6 +2,11 @@ import type { Child, IntakeSurvey, Measurement, User } from '@/shared/types';
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import { regionFromAddress, type Region } from '@/features/admin/utils/region';
+import {
+  analyzeLabRow,
+  deriveGrowthSignals,
+  type ClinicalSignals,
+} from '@/features/admin/utils/patientCategories';
 
 // ================================================
 // Admin Service - 187 성장케어 v4
@@ -129,6 +134,8 @@ export interface PatientWithParent extends Child {
   lastVisitDate?: string;
   /** Parsed from `intake_survey.contact.address` — null if unknown. */
   region?: Region | null;
+  /** Real clinical signals fed into classifyPatient (Rx / labs / bone age). */
+  clinical?: ClinicalSignals;
 }
 
 const PAGE = 1000;
@@ -206,14 +213,17 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     return out;
   }
 
-  // Lab tests — same paging pattern since the ceiling could eventually trip us.
-  async function fetchAllLabIds(): Promise<Array<{ child_id: string }>> {
-    const out: Array<{ child_id: string }> = [];
+  // Lab tests — now pull test_type + result_data so we can derive clinical
+  // signals (allergy positives, organic-acid dysbiosis, blood flags), not just
+  // a count. Same paging pattern since the ceiling could eventually trip us.
+  type LabRow = { child_id: string; test_type: string; result_data: Record<string, unknown> | null };
+  async function fetchAllLabs(): Promise<LabRow[]> {
+    const out: LabRow[] = [];
     let from = 0;
     while (true) {
       const { data, error } = await supabase
         .from('lab_tests')
-        .select('child_id')
+        .select('child_id, test_type, result_data')
         .in('child_id', childIds)
         .range(from, from + PAGE - 1);
       if (error) {
@@ -221,7 +231,31 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
         return out;
       }
       if (!data || data.length === 0) break;
-      out.push(...(data as Array<{ child_id: string }>));
+      out.push(...(data as LabRow[]));
+      if (data.length < PAGE) break;
+      from += PAGE;
+    }
+    return out;
+  }
+
+  // Prescriptions joined to medication_legend.drug_class — gives us the
+  // puberty-blocker / sleep-aid signals the classifier needs. We fetch the
+  // legend once (small) and map prescriptions → drug class client-side.
+  async function fetchAllPrescriptions(): Promise<Array<{ child_id: string; medication_id: string }>> {
+    const out: Array<{ child_id: string; medication_id: string }> = [];
+    let from = 0;
+    while (true) {
+      const { data, error } = await supabase
+        .from('prescriptions')
+        .select('child_id, medication_id')
+        .in('child_id', childIds)
+        .range(from, from + PAGE - 1);
+      if (error) {
+        logger.error('fetchPatients prescriptions:', error);
+        return out;
+      }
+      if (!data || data.length === 0) break;
+      out.push(...(data as Array<{ child_id: string; medication_id: string }>));
       if (data.length < PAGE) break;
       from += PAGE;
     }
@@ -253,16 +287,19 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     return out;
   }
 
-  const [parentsRes, measurements, labs, visitDates] = await Promise.all([
+  const [parentsRes, measurements, labs, visitDates, prescriptions, legendRes] = await Promise.all([
     parentIds.length
       ? supabase.from('users').select('id, name, email, phone').in('id', parentIds)
       : Promise.resolve({ data: [], error: null }),
     fetchAllMeasurements(),
-    fetchAllLabIds(),
+    fetchAllLabs(),
     fetchAllVisitDates(),
+    fetchAllPrescriptions(),
+    supabase.from('medication_legend').select('medication_id, drug_class'),
   ]);
 
   if (parentsRes.error) logger.error('fetchPatients parents:', parentsRes.error);
+  if (legendRes.error) logger.error('fetchPatients medication_legend:', legendRes.error);
 
   // 3) Index parents by id, group measurements + lab counts by child_id.
   const parentMap = new Map<string, PatientWithParent['parent']>();
@@ -277,9 +314,39 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     measurementsByChild.set(m.child_id, arr);
   }
 
+  // Lab counts + per-child lab signal flags in one pass.
   const labCountByChild = new Map<string, number>();
+  const labSignalByChild = new Map<
+    string,
+    { allergyPositive: boolean; organicAcidAbnormal: boolean; bloodAbnormal: boolean }
+  >();
   for (const l of labs) {
     labCountByChild.set(l.child_id, (labCountByChild.get(l.child_id) ?? 0) + 1);
+    const r = analyzeLabRow(l.test_type, l.result_data);
+    const cur = labSignalByChild.get(l.child_id) ?? {
+      allergyPositive: false,
+      organicAcidAbnormal: false,
+      bloodAbnormal: false,
+    };
+    cur.allergyPositive ||= r.allergy;
+    cur.organicAcidAbnormal ||= r.organicAcid;
+    cur.bloodAbnormal ||= r.blood;
+    labSignalByChild.set(l.child_id, cur);
+  }
+
+  // medication_id → drug_class, then drug classes per child.
+  const classByMedication = new Map<string, string>();
+  for (const row of legendRes.data ?? []) {
+    const r = row as { medication_id: string; drug_class: string | null };
+    if (r.drug_class) classByMedication.set(r.medication_id, r.drug_class);
+  }
+  const drugClassesByChild = new Map<string, Set<string>>();
+  for (const p of prescriptions) {
+    const cls = classByMedication.get(p.medication_id);
+    if (!cls) continue;
+    const set = drugClassesByChild.get(p.child_id) ?? new Set<string>();
+    set.add(cls);
+    drugClassesByChild.set(p.child_id, set);
   }
 
   // Track first/last non-intake visit per child in one pass.
@@ -303,6 +370,17 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
     // the roster importer under intake_survey.contact.address.
     const contact = (patient.intake_survey as { contact?: { address?: string | null } } | null | undefined)?.contact;
     const region = regionFromAddress(contact?.address ?? null);
+
+    const labSig = labSignalByChild.get(patient.id);
+    const growth = deriveGrowthSignals(patient, ms);
+    const clinical: ClinicalSignals = {
+      drugClasses: drugClassesByChild.get(patient.id) ?? new Set<string>(),
+      allergyPositive: labSig?.allergyPositive ?? false,
+      organicAcidAbnormal: labSig?.organicAcidAbnormal ?? false,
+      bloodAbnormal: labSig?.bloodAbnormal ?? false,
+      ...growth,
+    };
+
     return {
       ...patient,
       parent: parentMap.get(patient.parent_id),
@@ -312,6 +390,7 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
       firstVisitDate: range?.first,
       lastVisitDate: range?.last,
       region,
+      clinical,
     };
   });
 }

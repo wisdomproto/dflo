@@ -41,7 +41,8 @@ export default function BottomNav() {
 
   const navItems = !isLoggedIn
     ? guestNavItems
-    : selectedChild?.treatment_status === 'treatment'
+    : selectedChild?.treatment_status === 'treatment' ||
+      selectedChild?.treatment_status === 'completed'
     ? treatmentNavItems
     : consultationNavItems;
 

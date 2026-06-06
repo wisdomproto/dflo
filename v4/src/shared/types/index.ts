@@ -52,8 +52,9 @@ export interface Child {
   /** 의사가 수동으로 토글하는 환자 단계.
    *  - 'consultation' (기본) — 상담만 한 환자, 치료 시작 유도 대상
    *  - 'treatment'           — 실제 진료 중인 환자
+   *  - 'completed'           — 치료 완료 (환자앱에선 treatment 와 동일 취급)
    */
-  treatment_status?: 'consultation' | 'treatment';
+  treatment_status?: 'consultation' | 'treatment' | 'completed';
   created_at: string;
   updated_at: string;
   is_active: boolean;

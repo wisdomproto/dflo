@@ -13,6 +13,7 @@ import { PatientAnalysisModal } from '@/features/hospital/components/PatientAnal
 import { SimilarCasesModal } from '@/features/hospital/components/SimilarCasesModal';
 import { RxRecommendModal } from '@/features/hospital/components/RxRecommendModal';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
+import { TREATMENT_STAGES } from '@/shared/utils/treatmentStage';
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
 import { ZoomModal } from '@/shared/components/ZoomModal';
 import { predictAdultHeightByBonePercentile } from '@/features/bone-age/lib/growthPrediction';
@@ -150,20 +151,21 @@ export default function AdminPatientDetailPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {/* 상담 / 치료 단계 토글 — 의사 수동 분류 */}
+          {/* 상담 / 치료 중 / 완료 단계 토글 — 의사 수동 분류 */}
           <div className="inline-flex h-8 overflow-hidden rounded border border-slate-300">
-            {(['consultation', 'treatment'] as const).map((status) => {
+            {TREATMENT_STAGES.map((stage) => {
               const cur = child.treatment_status ?? 'consultation';
-              const active = cur === status;
-              const label = status === 'consultation' ? '상담' : '치료';
+              const active = cur === stage.value;
               return (
                 <button
-                  key={status}
+                  key={stage.value}
                   type="button"
                   onClick={async () => {
                     if (active) return;
                     try {
-                      const updated = await updateChildField(child.id, { treatment_status: status });
+                      const updated = await updateChildField(child.id, {
+                        treatment_status: stage.value,
+                      });
                       setChild(updated);
                     } catch (e) {
                       const msg = e instanceof Error ? e.message : 'Unknown';
@@ -171,15 +173,10 @@ export default function AdminPatientDetailPage() {
                     }
                   }}
                   className={`px-3 text-xs font-semibold transition ${
-                    active
-                      ? status === 'treatment'
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-amber-500 text-white'
-                      : 'bg-white text-slate-600 hover:bg-slate-50'
+                    active ? stage.active : 'bg-white text-slate-600 hover:bg-slate-50'
                   }`}
-                  title={status === 'treatment' ? '실제 진료 중' : '상담만 한 환자 (치료 시작 유도 대상)'}
                 >
-                  {label}
+                  {stage.label}
                 </button>
               );
             })}
