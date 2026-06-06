@@ -38,6 +38,10 @@ export default function AdminPatientDetailPage() {
   const [analysisOpen, setAnalysisOpen] = useState(false);
   const [similarOpen, setSimilarOpen] = useState(false);
   const [showRx, setShowRx] = useState(false);
+  // 새 진료 생성 시 사용할 날짜 (기본값 = 오늘, 로컬 시간 기준)
+  const [newVisitDate, setNewVisitDate] = useState(() =>
+    new Date().toLocaleDateString('sv-SE'),
+  );
 
   const refreshData = async (childId: string) => {
     const [detail, vs] = await Promise.all([
@@ -322,26 +326,38 @@ export default function AdminPatientDetailPage() {
               onVisitDeleted={() => {
                 if (id) refreshData(id).catch(() => undefined);
               }}
+              onVisitUpdated={() => {
+                if (id) refreshData(id).catch(() => undefined);
+              }}
             />
           </div>
-          <div className="shrink-0 border-t border-slate-200 p-2">
+          <div className="shrink-0 space-y-1.5 border-t border-slate-200 p-2">
+            <input
+              type="date"
+              value={newVisitDate}
+              onChange={(e) => setNewVisitDate(e.target.value)}
+              aria-label="새 진료 날짜"
+              className="w-full rounded border border-slate-200 px-2 py-1 text-xs text-slate-700"
+            />
             <button
               type="button"
+              disabled={!newVisitDate}
               onClick={async () => {
-                if (!id) return;
+                if (!id || !newVisitDate) return;
                 try {
                   const v = await createVisit({
                     child_id: id,
-                    visit_date: new Date().toISOString().slice(0, 10),
+                    visit_date: newVisitDate,
                     is_intake: false,
                   });
                   await refreshData(id);
                   setSelectedVisitId(v.id);
+                  setNewVisitDate(new Date().toLocaleDateString('sv-SE'));
                 } catch (e) {
                   logger.error('inline visit create failed', e);
                 }
               }}
-              className="flex w-full items-center justify-center rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800"
+              className="flex w-full items-center justify-center rounded bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800 disabled:opacity-50"
             >
               + 새 진료
             </button>

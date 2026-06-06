@@ -4,7 +4,7 @@
 // center column via VisitDetailPanel.
 
 import { useMemo, useState } from 'react';
-import { deleteVisit } from '@/features/hospital/services/visitService';
+import { deleteVisit, updateVisit } from '@/features/hospital/services/visitService';
 import { logger } from '@/shared/lib/logger';
 import type { HospitalMeasurement, Visit } from '@/shared/types';
 
@@ -16,6 +16,8 @@ interface Props {
   onSelectVisit: (visitId: string | null) => void;
   /** Parent refreshes after a row is removed. */
   onVisitDeleted?: () => void;
+  /** Parent refreshes after a row's date is edited. */
+  onVisitUpdated?: () => void;
 }
 
 export function VisitList({
@@ -25,6 +27,7 @@ export function VisitList({
   selectedVisitId,
   onSelectVisit,
   onVisitDeleted,
+  onVisitUpdated,
 }: Props) {
   // BA measurements are per-visit but rare — pre-index so row rendering is cheap.
   const baByVisitId = useMemo(() => {
@@ -35,6 +38,23 @@ export function VisitList({
     return map;
   }, [measurements]);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editDate, setEditDate] = useState('');
+
+  async function saveDate(visitId: string) {
+    if (!editDate) return;
+    setBusyId(visitId);
+    try {
+      await updateVisit(visitId, { visit_date: editDate });
+      setEditingId(null);
+      onVisitUpdated?.();
+    } catch (err) {
+      logger.error('update visit date failed', err);
+      alert('날짜 수정에 실패했습니다.');
+    } finally {
+      setBusyId(null);
+    }
+  }
 
   if (visits.length === 0) {
     return (
@@ -69,6 +89,47 @@ export function VisitList({
             key={v.id}
             className={`group relative overflow-hidden rounded-lg border transition-colors ${rowClass}`}
           >
+            {editingId === v.id ? (
+              <div className="flex w-full items-center gap-1.5 px-2 py-2">
+                <span
+                  className={'shrink-0 rounded px-1.5 py-0.5 text-[11px] font-bold ' + idxBadgeClass}
+                >
+                  #{idx}
+                </span>
+                <input
+                  type="date"
+                  value={editDate}
+                  autoFocus
+                  disabled={busyId === v.id}
+                  onChange={(e) => setEditDate(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') saveDate(v.id);
+                    if (e.key === 'Escape') setEditingId(null);
+                  }}
+                  className="min-w-0 flex-1 rounded border border-slate-300 px-1.5 py-1 text-xs text-slate-800"
+                />
+                <button
+                  type="button"
+                  title="저장"
+                  aria-label="날짜 저장"
+                  disabled={busyId === v.id}
+                  onClick={() => saveDate(v.id)}
+                  className="shrink-0 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white hover:bg-indigo-700 disabled:opacity-50"
+                >
+                  ✓
+                </button>
+                <button
+                  type="button"
+                  title="취소"
+                  aria-label="취소"
+                  disabled={busyId === v.id}
+                  onClick={() => setEditingId(null)}
+                  className="shrink-0 rounded border border-slate-300 px-2 py-1 text-xs text-slate-500 hover:bg-slate-50"
+                >
+                  ✕
+                </button>
+              </div>
+            ) : (
             <button
               type="button"
               onClick={() => onSelectVisit(v.id)}
@@ -97,6 +158,36 @@ export function VisitList({
                 </span>
               )}
             </button>
+            )}
+            {editingId !== v.id && (
+            <button
+              type="button"
+              title="진료 날짜 수정"
+              aria-label="진료 날짜 수정"
+              onClick={(e) => {
+                e.stopPropagation();
+                setEditDate(v.visit_date);
+                setEditingId(v.id);
+              }}
+              className="absolute right-8 top-1/2 hidden -translate-y-1/2 rounded p-1 text-slate-400 shadow-sm ring-1 ring-slate-100 hover:bg-slate-50 hover:text-slate-700 group-hover:inline-flex"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+            </button>
+            )}
+            {editingId !== v.id && (
             <button
               type="button"
               title="진료 기록 삭제"
@@ -141,6 +232,7 @@ export function VisitList({
                 <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
               </svg>
             </button>
+            )}
           </li>
         );
       })}

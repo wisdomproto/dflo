@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchSubmissions } from '@/features/admin/services/intakeSubmissionService';
 import IntakeSubmissionDetail from '@/features/admin/components/IntakeSubmissionDetail';
 import { countryFlag } from '@/shared/data/countries';
-import type { IntakeSubmission } from '@/features/intake/types';
+import type { IntakeSubmission, IntakeLang } from '@/features/intake/types';
 
 // ================================================
 // AdminIntakePage — 설문 접수함
@@ -18,6 +18,62 @@ const FILTERS: { key: StatusFilter; label: string }[] = [
   { key: 'rejected', label: '반려' },
   { key: 'all', label: '전체' },
 ];
+
+const SHARE_LANGS: { lang: IntakeLang; flag: string; label: string }[] = [
+  { lang: 'ko', flag: '🇰🇷', label: '한국어' },
+  { lang: 'th', flag: '🇹🇭', label: 'ไทย' },
+  { lang: 'vi', flag: '🇻🇳', label: 'Tiếng Việt' },
+  { lang: 'en', flag: '🇺🇸', label: 'English' },
+];
+
+function ShareLinkBar() {
+  const [copied, setCopied] = useState<IntakeLang | null>(null);
+
+  async function copy(lang: IntakeLang) {
+    const url = `${window.location.origin}/intake/${lang}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // Fallback for non-secure contexts where Clipboard API is blocked.
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    setCopied(lang);
+    setTimeout(() => setCopied((c) => (c === lang ? null : c)), 1500);
+  }
+
+  return (
+    <div className="flex flex-wrap items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2.5">
+      <span className="text-xs font-semibold text-slate-500">설문 링크 복사</span>
+      {SHARE_LANGS.map((s) => (
+        <button
+          key={s.lang}
+          type="button"
+          onClick={() => copy(s.lang)}
+          title={`${window.location.origin}/intake/${s.lang}`}
+          className={
+            'flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition ' +
+            (copied === s.lang
+              ? 'bg-emerald-500 text-white'
+              : 'border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100')
+          }
+        >
+          <span>{s.flag}</span>
+          <span>{s.label}</span>
+          <span className="text-[10px] opacity-70">
+            {copied === s.lang ? '복사됨 ✓' : '📋'}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function fmtDate(iso: string): string {
   return iso ? iso.slice(0, 10) : '—';
@@ -71,13 +127,16 @@ export default function AdminIntakePage() {
   return (
     <div className="space-y-4">
       {/* Header */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <h1 className="text-xl font-bold text-gray-900">설문 접수함</h1>
         {!loading && (
           <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
             {subs.length}
           </span>
         )}
+        <div className="w-full sm:ml-auto sm:w-auto">
+          <ShareLinkBar />
+        </div>
       </div>
 
       {/* Status filter tabs */}
