@@ -49,3 +49,14 @@ export async function uploadGeneratedImage(dataUrl: string): Promise<string> {
 export async function generateAndUpload(prompt: string, aspectRatio = '4:5'): Promise<string> {
   return uploadGeneratedImage(await generateImage(prompt, aspectRatio));
 }
+
+/** Uploads a user-selected image File to R2 as WebP. Returns the public URL. */
+export async function uploadImageFile(file: File): Promise<string> {
+  const dataUrl = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(new Error('파일 읽기 실패'));
+    reader.readAsDataURL(file);
+  });
+  return uploadGeneratedImage(dataUrl);
+}
