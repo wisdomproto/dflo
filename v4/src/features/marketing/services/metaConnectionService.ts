@@ -25,11 +25,12 @@ export async function disconnectMeta(): Promise<void> {
   if (!res.ok || !b.success) throw new Error(b.error || '연결 해제 실패');
 }
 
-export async function publishToMeta(queueId: string): Promise<string> {
-  const res = await fetch(`${BASE}/api/marketing/meta/publish`, {
+// 큐 1건 즉시 발행(meta/website 공용). ai-server executor 경유.
+export async function runPublish(queueId: string): Promise<string> {
+  const res = await fetch(`${BASE}/api/marketing/publish/run`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ queueId }),
   });
   const b = await res.json().catch(() => ({}));
   if (!res.ok || !b.success) throw new Error(b.error || '발행 실패');
-  return b.postId as string;
+  return (b.postId as string) ?? '';
 }

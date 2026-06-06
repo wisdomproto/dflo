@@ -68,7 +68,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
     setErr(null);
     setMsg(null);
     try {
-      const pub = await upsertPublishedBlog(article, language, status);
+      const pub = await upsertPublishedBlog(article, language, 'draft');
       if (status === 'draft') {
         window.open(blogPreviewPath(article.id, language), '_blank');
         setMsg('미리보기로 저장했습니다. 새 탭에서 확인하세요.');

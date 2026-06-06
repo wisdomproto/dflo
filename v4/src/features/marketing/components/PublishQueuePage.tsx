@@ -10,13 +10,11 @@ import {
   type PublishQueueItem,
   type PublishStatus,
 } from '../services/marketingPublishService';
-import { publishToMeta } from '../services/metaConnectionService';
+import { runPublish } from '../services/metaConnectionService';
 import { PublishQueueList } from './PublishQueueList';
 import { CHANNELS, STATUS_LABELS } from '../utils/publishConstants';
 import { PublishCalendar } from './PublishCalendar';
 import { AddToQueueModal } from './AddToQueueModal';
-
-const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
 const STATUS_FILTERS: PublishStatus[] = ['draft', 'scheduled', 'publishing', 'published', 'failed'];
 const LANG_FILTERS = ['ko', 'th', 'vi', 'en'];
@@ -72,27 +70,10 @@ export function PublishQueuePage() {
     guard(() => markPublished(id, url.trim()));
   };
 
-  // 실제 자동 발행 (게이트) — Meta 채널이면 Graph API 직접 발행, 그 외는 ai-server publish-push.
-  const handlePush = async (id: string, channel: PublishChannel) => {
+  // 즉시 발행 — 모든 채널을 executor(/publish/run) 경유. 성공 시 큐 새로고침.
+  const handlePush = async (id: string, _channel: PublishChannel) => {
     try {
-      if (channel === 'facebook' || channel === 'instagram' || channel === 'threads') {
-        await publishToMeta(id);
-      } else {
-        const res = await fetch(`${BASE}/api/marketing/publish-push`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ queueItemId: id, channel }),
-        });
-        const body = await res.json().catch(() => ({}));
-        if (!res.ok || !body.success) {
-          window.alert(body.error || `발행 실패 (${res.status})`);
-          return;
-        }
-        // 자동 발행 성공 시(키 활성화 후) 큐 행을 published 로 전이 — published_url 보존.
-        if (body.publishedUrl) {
-          await markPublished(id, String(body.publishedUrl));
-        }
-      }
+      await runPublish(id);
       reload();
     } catch (e) {
       window.alert(e instanceof Error ? e.message : '발행 요청 실패');
