@@ -33,6 +33,8 @@ export interface PublishQueueItem {
   channelName?: string;
   contentKind?: ContentKind;
   viewCount?: number;
+  platformPostId?: string | null;
+  errorMessage?: string | null;
 }
 
 // Keep field lists in sync: 026 migration columns ↔ queueItemToRow ↔ rowToQueueItem ↔ PublishQueueItem.
@@ -44,7 +46,7 @@ function rowToQueueItem(r: Row): PublishQueueItem {
   return {
     id: r.id as string,
     articleId: (r.article_id as string | null) ?? null,
-    channel: ((r.channel as PublishChannel) ?? 'naver_blog'),
+    channel: ((r.channel as PublishChannel) ?? 'website'),
     language: (r.language as string) ?? 'ko',
     scheduledAt: (r.scheduled_at as string | null) ?? null,
     status: ((r.status as PublishStatus) ?? 'draft'),
@@ -58,6 +60,8 @@ function rowToQueueItem(r: Row): PublishQueueItem {
     channelId: (r.channel_id as string | null) ?? null,
     channelName: ch ? ((ch.name as string) ?? '') : undefined,
     contentKind: (r.content_kind as ContentKind) ?? 'post',
+    platformPostId: (r.platform_post_id as string | null) ?? null,
+    errorMessage: (r.error_message as string | null) ?? null,
   };
 }
 
