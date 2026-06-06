@@ -109,7 +109,7 @@ export default function AdminPatientsPage() {
   }
 
   // 국가 탭 건수 — 한국 = KR + 국적 미설정, 그 외는 해당 코드.
-  const countryCounts = useMemo(() => {
+  const countryCounts = useMemo<Record<string, number>>(() => {
     const counts: Record<string, number> = Object.fromEntries(
       COUNTRY_TABS.map((c) => [c, 0]),
     );
