@@ -6,6 +6,8 @@ import {
   saveChannel,
   deleteChannel,
   syncYoutubeChannel,
+  LOCALES,
+  localeFlag,
 } from '../services/marketingChannelService';
 
 const PLATFORMS = [
@@ -24,7 +26,10 @@ function platformLabel(id: string): string {
 
 type Draft = Partial<MarketingChannel>;
 
-const EMPTY: Draft = { platform: 'instagram', name: '', handle: '', url: '', followers: 0, note: '' };
+const EMPTY: Draft = {
+  platform: 'instagram', name: '', handle: '', url: '',
+  followers: 0, note: '', locale: 'ko', isActive: true,
+};
 
 function ChannelFormRow({
   draft,
@@ -84,6 +89,25 @@ function ChannelFormRow({
         placeholder="메모"
         className={`${cls} min-w-[110px] flex-1`}
       />
+      <select
+        value={draft.locale ?? 'ko'}
+        onChange={(e) => setDraft({ ...draft, locale: e.target.value })}
+        className={cls}
+      >
+        {LOCALES.map((l) => (
+          <option key={l.code} value={l.code}>
+            {l.flag} {l.label}
+          </option>
+        ))}
+      </select>
+      <label className="flex items-center gap-1 text-xs text-gray-500">
+        <input
+          type="checkbox"
+          checked={draft.isActive ?? true}
+          onChange={(e) => setDraft({ ...draft, isActive: e.target.checked })}
+        />
+        활성
+      </label>
       <button
         type="button"
         onClick={onSubmit}
@@ -109,6 +133,8 @@ export function ChannelRegistryTab() {
   const [err, setErr] = useState<string | null>(null);
   const [syncMsg, setSyncMsg] = useState<Record<string, string>>({});
   const [syncing, setSyncing] = useState<string | null>(null);
+  const [localeFilter, setLocaleFilter] = useState<string>('all');
+  const visible = localeFilter === 'all' ? channels : channels.filter((c) => c.locale === localeFilter);
 
   const reload = () => {
     fetchChannels().then(setChannels);
@@ -178,13 +204,27 @@ export function ChannelRegistryTab() {
   return (
     <div className="space-y-3 p-6">
       <ChannelFormRow draft={draft} setDraft={setDraft} onSubmit={add} submitLabel="+ 추가" />
+      <div className="flex flex-wrap gap-1">
+        {[{ code: 'all', flag: '🌐', label: '전체' }, ...LOCALES].map((l) => (
+          <button
+            key={l.code}
+            type="button"
+            onClick={() => setLocaleFilter(l.code)}
+            className={`rounded-full px-2.5 py-0.5 text-xs ${
+              localeFilter === l.code ? 'bg-[#4A2D6B] text-white' : 'bg-gray-100 text-gray-600'
+            }`}
+          >
+            {l.flag} {l.label}
+          </button>
+        ))}
+      </div>
       {err && <p className="text-xs text-red-500">{err}</p>}
 
-      {channels.length === 0 ? (
+      {visible.length === 0 ? (
         <p className="py-12 text-center text-sm text-gray-400">등록된 채널이 없습니다.</p>
       ) : (
         <div className="space-y-2">
-          {channels.map((c) =>
+          {visible.map((c) =>
             editId === c.id ? (
               <ChannelFormRow
                 key={c.id}
@@ -198,7 +238,9 @@ export function ChannelRegistryTab() {
               <div key={c.id} className="flex flex-wrap items-center gap-3 rounded-xl border border-gray-200 bg-white p-3">
                 <span className="text-sm">{platformLabel(c.platform)}</span>
                 <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-medium text-gray-800">{c.name}</div>
+                  <div className={`truncate text-sm font-medium ${c.isActive ? 'text-gray-800' : 'text-gray-400 line-through'}`}>
+                    {localeFlag(c.locale)} {c.name}
+                  </div>
                   <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-gray-400">
                     {c.handle && <span>{c.handle}</span>}
                     {c.url && (
