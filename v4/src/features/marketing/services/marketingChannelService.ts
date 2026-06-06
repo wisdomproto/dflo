@@ -29,6 +29,19 @@ export interface MarketingChannel {
   locale: string;
   note: string;
   sortOrder: number;
+  isActive: boolean;
+}
+
+// 언어(시장) 단일 소스 — 채널/발행/광고 UI 공용.
+export const LOCALES: { code: string; label: string; flag: string }[] = [
+  { code: 'ko', label: '한국어', flag: '🇰🇷' },
+  { code: 'en', label: 'English', flag: '🇺🇸' },
+  { code: 'th', label: 'ไทย', flag: '🇹🇭' },
+  { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
+];
+
+export function localeFlag(code: string): string {
+  return LOCALES.find((l) => l.code === code)?.flag ?? '🌐';
 }
 
 export interface YoutubeChannelStats {
@@ -64,6 +77,7 @@ function rowToChannel(r: Row): MarketingChannel {
     locale: (r.locale as string) ?? 'ko',
     note: (r.note as string) ?? '',
     sortOrder: (r.sort_order as number) ?? 0,
+    isActive: (r.is_active as boolean) ?? true,
   };
 }
 
@@ -79,6 +93,7 @@ function channelToRow(c: Partial<MarketingChannel>): Row {
     locale: c.locale ?? 'ko',
     note: c.note ?? '',
     sort_order: c.sortOrder ?? 0,
+    is_active: c.isActive ?? true,
     updated_at: new Date().toISOString(),
   };
 }
