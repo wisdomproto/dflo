@@ -1,0 +1,86 @@
+{
+  "slug": "부작용",
+  "src": "videos/부작용-src.mp4",
+  "fps": 30,
+  "title": "성장호르몬 주사 부작용",
+  "_note": "다크/드라마틱 테마 → 헤더 박스 빨강(headerStyle). 자막 상단-중앙(이동폭 커서 cover 밴드 큼 [486,308]). cover=언어무관.",
+  "headerStyle": { "markBg": "#D81E34", "markFg": "#ffffff" },
+  "header": {
+    "en": { "top": "Growth hormone shots —", "mark": "scary side effects?!" },
+    "th": { "top": "ฉีดโกรทฮอร์โมน", "mark": "ผลข้างเคียงน่ากลัว?!" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 5.0, "capY": 640, "cover": [486, 308],
+      "ko": "성장 클리닉의 비밀, 성장 호르몬 주사의 부작용을 알고 계신가요?",
+      "en": "Do you know the side effects of growth hormone injections?",
+      "cap_en": ["GH injections —", "the side effects?"], "hl_en": "side effects",
+      "th": "ความลับของคลินิกความสูง คุณรู้ผลข้างเคียงของการฉีดโกรทฮอร์โมนไหมคะ",
+      "cap_th": ["ฉีดโกรทฮอร์โมน", "ผลข้างเคียง?"], "hl_th": "ผลข้างเคียง"
+    },
+    {
+      "id": "c2", "start": 5.0, "end": 11.3, "capY": 640, "cover": [486, 308],
+      "ko": "우리 아이 키 크는 주사, 받고 싶어도 검색하면 나오는 이 부작용, 바로 척추측만증입니다.",
+      "en": "Search for height-boosting shots, and one side effect keeps showing up — scoliosis.",
+      "cap_en": ["The side effect:", "scoliosis"], "hl_en": "scoliosis",
+      "th": "พอค้นหาเข็มเพิ่มความสูง ผลข้างเคียงที่เจอบ่อยก็คือ กระดูกสันหลังคด",
+      "cap_th": ["ผลข้างเคียงคือ", "กระดูกสันหลังคด"], "hl_th": "กระดูกสันหลังคด"
+    },
+    {
+      "id": "c3", "start": 11.3, "end": 17.7, "capY": 640, "cover": [486, 308],
+      "ko": "사진을 앞에서 봤을 때 척추가 뱀처럼 휘어 있는 것을 측만증이라고 합니다.",
+      "en": "From the front, the spine curves like a snake — that's scoliosis.",
+      "cap_en": ["Spine curves", "like a snake"], "hl_en": "like a snake",
+      "th": "เมื่อมองจากด้านหน้า กระดูกสันหลังจะคดเหมือนงู เรียกว่าภาวะกระดูกสันหลังคด",
+      "cap_th": ["กระดูกสันหลังคด", "เหมือนงู"], "hl_th": "เหมือนงู"
+    },
+    {
+      "id": "c4", "start": 17.7, "end": 25.1, "capY": 640, "cover": [486, 308],
+      "ko": "아무리 효과가 좋아도 '이거 어떻게 치료해'. 그런데 주위에서 둘러보면 이런 아이들을 본 적이 없는데?",
+      "en": "Even if it works — 'how do we treat this?' But have you ever seen such a child around you?",
+      "cap_en": ["Ever seen such", "a kid? Probably not"], "hl_en": "Probably not",
+      "th": "ต่อให้ได้ผลดีแค่ไหน ก็คิดว่าจะรักษายังไง แต่ลองมองรอบตัว เคยเห็นเด็กแบบนี้ไหมคะ",
+      "cap_th": ["เคยเห็นเด็กแบบนี้", "รอบตัวไหม?"], "hl_th": "เคยเห็น"
+    },
+    {
+      "id": "c5", "start": 25.1, "end": 30.5, "capY": 640, "cover": [486, 308],
+      "ko": "이러한 부작용은 의사들이 더 무서워합니다. 그래서 만든 대책이 있는데요.",
+      "en": "Doctors fear this side effect even more — so we built three safeguards.",
+      "cap_en": ["Doctors built", "3 safeguards"], "hl_en": "3 safeguards",
+      "th": "ผลข้างเคียงนี้ หมอยิ่งกลัวกว่าอีกค่ะ เลยมีมาตรการป้องกัน 3 ข้อ",
+      "cap_th": ["หมอทำมาตรการ", "ป้องกัน 3 ข้อ"], "hl_th": "3 ข้อ"
+    },
+    {
+      "id": "c6", "start": 30.5, "end": 42.0, "capY": 640, "cover": [486, 308],
+      "ko": "첫째, 치료 전에 엑스레이를 꼭 확인합니다. 측만증은 치료로 더 심해지는 경우가 많기 때문이죠. 원래 없었다면 더 심해지지 않습니다.",
+      "en": "First, always check an X-ray before treatment. Scoliosis often worsens with treatment — but it won't appear if it wasn't there before.",
+      "cap_en": ["1. X-ray", "before treatment"], "hl_en": "X-ray",
+      "th": "ข้อแรก ก่อนรักษาต้องเอกซเรย์เช็กก่อนเสมอ เพราะกระดูกคดมักแย่ลงตอนรักษา แต่ถ้าไม่เคยคดมาก่อน ก็จะไม่เกิดขึ้น",
+      "cap_th": ["1. เอกซเรย์", "ก่อนรักษา"], "hl_th": "เอกซเรย์"
+    },
+    {
+      "id": "c7", "start": 42.0, "end": 49.0, "capY": 640, "cover": [486, 308],
+      "ko": "둘째, 6개월마다 정기적인 엑스레이 검사를 시행하십시오. 치료 기간을 짧게 2~3년으로 끝내는 거죠.",
+      "en": "Second, get a regular X-ray every six months, and keep treatment short — two to three years.",
+      "cap_en": ["2. X-ray every", "6 months"], "hl_en": "6 months",
+      "th": "ข้อสอง เอกซเรย์ตรวจทุก 6 เดือน และรักษาให้สั้น แค่ 2 ถึง 3 ปี",
+      "cap_th": ["2. เอกซเรย์ทุก", "6 เดือน"], "hl_th": "6 เดือน"
+    },
+    {
+      "id": "c8", "start": 49.0, "end": 53.4, "capY": 640, "cover": [486, 308],
+      "ko": "셋째, 체형을 바로잡는 규칙적인 운동을 시행하는 겁니다.",
+      "en": "Third, do regular exercise to straighten posture.",
+      "cap_en": ["3. Posture", "exercise"], "hl_en": "exercise",
+      "th": "ข้อสาม ออกกำลังกายสม่ำเสมอเพื่อจัดรูปร่างให้ตรง",
+      "cap_th": ["3. ออกกำลังกาย", "จัดท่าทาง"], "hl_th": "ออกกำลังกาย"
+    },
+    {
+      "id": "c9", "start": 53.4, "end": 56.6, "capY": 640, "cover": [486, 308],
+      "ko": "나도 오늘 우리 쌍둥이랑 운동하러 가야겠네.",
+      "en": "I should go work out with my twins today too!",
+      "cap_en": ["Time to exercise!"], "hl_en": "exercise",
+      "th": "วันนี้ผมก็ต้องไปออกกำลังกายกับลูกแฝดด้วยแล้วล่ะ",
+      "cap_th": ["ไปออกกำลังกาย", "กับลูกกันเถอะ!"], "hl_th": "ออกกำลังกาย"
+    }
+  ]
+}

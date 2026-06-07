@@ -77,6 +77,9 @@ export const FaithfulShort: React.FC<{
   chunks.forEach((c, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
   const total = chunks.reduce((n, c) => n + c.durFrames, 0);
   const head = script.header[lang] || { top: "", mark: "" };
+  const hs = (script as { headerStyle?: { markBg?: string; markFg?: string } }).headerStyle || {};
+  const markBg = hs.markBg || YELLOW;
+  const markFg = hs.markFg || "#111";
 
   const tOp = interpolate(frame, [0, 8], [0, 1], clamp);
   const slam = spring({ frame: frame - 6, fps, config: { damping: 13, stiffness: 220, mass: 0.6 } });
@@ -104,7 +107,7 @@ export const FaithfulShort: React.FC<{
           <div style={{ position: "absolute", top: 30, left: 30, right: 30, height: 430, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", fontFamily: NOTO_SANS_KR }}>
             <div style={{ fontSize: 64, fontWeight: 900, color: "#fff", textShadow: stroke, opacity: tOp, marginBottom: 20 }}>{head.top}</div>
             <div style={{ opacity: markOp, transform: `scale(${markScale})`, lineHeight: 1.5 }}>
-              <span style={{ display: "inline", background: YELLOW, color: "#111", fontWeight: 900, fontSize: 78, padding: "8px 22px", borderRadius: 10, WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}>{head.mark}</span>
+              <span style={{ display: "inline", background: markBg, color: markFg, fontWeight: 900, fontSize: 78, padding: "8px 22px", borderRadius: 10, WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}>{head.mark}</span>
             </div>
           </div>
 

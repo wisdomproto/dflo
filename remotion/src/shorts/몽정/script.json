@@ -1,0 +1,78 @@
+{
+  "slug": "몽정",
+  "src": "videos/몽정-src.mp4",
+  "fps": 30,
+  "title": "몽정하면 최종키는?",
+  "_note": "보이스오버 몽타주 → 립싱크 X (스톡 속 아이 얼굴 보호). 제목 초록박스. 나레이션 자막 상단-중앙 cover 밴드. c3=영어 Wikipedia 표라 안 덮음. c4=한글 콜아웃 덮게 밴드 큼. videoMode=perchunk가 곧 최종.",
+  "headerStyle": { "markBg": "#A2E0A0", "markFg": "#10260f" },
+  "header": {
+    "en": { "top": "First wet dream —", "mark": "how tall will he be?" },
+    "th": { "top": "ฝันเปียกครั้งแรก —", "mark": "จะสูงเท่าไหร่?" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 5.0, "capY": 600, "cover": [448, 300],
+      "ko": "첫 몽정은 여자아이의 초경에 대응하는 남성의 발달단계입니다.",
+      "en": "A boy's first wet dream is the male milestone that mirrors a girl's first period.",
+      "cap_en": ["First wet dream =", "a boy's milestone"], "hl_en": "milestone",
+      "th": "ฝันเปียกครั้งแรกของเด็กผู้ชาย เทียบได้กับการมีประจำเดือนครั้งแรกของเด็กผู้หญิงค่ะ",
+      "cap_th": ["ฝันเปียกครั้งแรก", "= ก้าวสำคัญของเด็กชาย"], "hl_th": "ก้าวสำคัญ"
+    },
+    {
+      "id": "c2", "start": 5.0, "end": 8.0, "capY": 600, "cover": [448, 300],
+      "ko": "영어로는 '스퍼마르케'(spermarche). 아 왜 이렇게 어려워.",
+      "en": "In English it's called 'spermarche.' Ugh, why is it so hard to say?",
+      "cap_en": ["In English:", "'spermarche'"], "hl_en": "'spermarche'",
+      "th": "ภาษาอังกฤษเรียกว่า 'spermarche' โอ๊ย ทำไมยากจัง",
+      "cap_th": ["ภาษาอังกฤษ:", "'spermarche'"], "hl_th": "'spermarche'"
+    },
+    {
+      "id": "c3", "start": 8.0, "end": 16.0, "capY": 600, "cover": [448, 300],
+      "ko": "연구결과에 따르면 첫 몽정은 일반적으로 남자의 11세부터 15세 사이에 합니다.",
+      "en": "Studies show the first wet dream usually happens between ages 11 and 15.",
+      "cap_en": ["Usually between", "ages 11–15"], "hl_en": "11–15",
+      "th": "งานวิจัยพบว่า ฝันเปียกครั้งแรกมักเกิดช่วงอายุ 11 ถึง 15 ปี",
+      "cap_th": ["มักเกิดช่วง", "อายุ 11–15 ปี"], "hl_th": "11–15"
+    },
+    {
+      "id": "c4", "start": 16.0, "end": 19.6, "capY": 615, "cover": [448, 410],
+      "ko": "평균은 약 13.5세에서 14세라고 합니다.",
+      "en": "The average is about 13.5 to 14 years old.",
+      "cap_en": ["Average:", "13.5–14 yrs"], "hl_en": "13.5–14",
+      "th": "เฉลี่ยประมาณ 13.5 ถึง 14 ปีค่ะ",
+      "cap_th": ["เฉลี่ย:", "13.5–14 ปี"], "hl_th": "13.5–14"
+    },
+    {
+      "id": "c5", "start": 19.6, "end": 25.5, "capY": 600, "cover": [448, 300],
+      "ko": "우리나라 남자아이들은 이때부터 평균 한 10에서 12cm가량 더 자라게 됩니다.",
+      "en": "From that point, boys grow about 10 to 12 cm more on average.",
+      "cap_en": ["Boys grow about", "10–12 cm more"], "hl_en": "10–12 cm",
+      "th": "เด็กผู้ชายจะสูงขึ้นอีกเฉลี่ยประมาณ 10 ถึง 12 ซม. หลังจากนั้น",
+      "cap_th": ["หลังจากนั้นสูงอีก", "ราว 10–12 ซม."], "hl_th": "10–12 ซม."
+    },
+    {
+      "id": "c6", "start": 25.5, "end": 34.5, "capY": 600, "cover": [448, 300],
+      "ko": "예를 들어 중학교 1학년(만 13세) 162cm에 우리 아이가 첫 몽정을 했다면 성인 키는 174cm가 되겠네요.",
+      "en": "For example, a 7th grader at 162 cm who has his first wet dream would reach about 174 cm as an adult.",
+      "cap_en": ["162cm at 13", "→ 174cm adult"], "hl_en": "174cm",
+      "th": "เช่น ม.1 (อายุ 13) สูง 162 ซม. ถ้าฝันเปียกครั้งแรก ตอนโตจะสูงราว 174 ซม.",
+      "cap_th": ["162ซม. ตอน 13", "→ โต 174ซม."], "hl_th": "174ซม."
+    },
+    {
+      "id": "c7", "start": 34.5, "end": 40.1, "capY": 600, "cover": [448, 300],
+      "ko": "유전적 요인, 생활습관 요인, 성 성숙도에 따라 약간의 차이가 있을 수 있습니다.",
+      "en": "It can vary a bit with genes, lifestyle, and sexual maturity.",
+      "cap_en": ["Varies by genes", "& lifestyle"], "hl_en": "Varies",
+      "th": "อาจต่างกันเล็กน้อยตามพันธุกรรม ไลฟ์สไตล์ และวุฒิภาวะทางเพศ",
+      "cap_th": ["ต่างกันตามพันธุกรรม", "และไลฟ์สไตล์"], "hl_th": "พันธุกรรม"
+    },
+    {
+      "id": "c8", "start": 40.1, "end": 46.6, "capY": 600, "cover": [448, 300],
+      "ko": "우리 아이가 첫 몽정을 했다면 12cm를 더해 보세요. 성인 키를 알 수 있는 매직!",
+      "en": "If your son has had his first wet dream, just add 12 cm — the magic to know his adult height!",
+      "cap_en": ["Add 12 cm —", "the magic!"], "hl_en": "12 cm",
+      "th": "ถ้าลูกฝันเปียกครั้งแรกแล้ว ลองบวก 12 ซม. เวทมนตร์รู้ส่วนสูงตอนโต!",
+      "cap_th": ["บวก 12 ซม. —", "เวทมนตร์รู้ส่วนสูง!"], "hl_th": "12 ซม."
+    }
+  ]
+}
