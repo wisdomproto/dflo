@@ -3,54 +3,97 @@
   "src": "videos/초경-src.mp4",
   "fps": 30,
   "title": "초경하면 키 안 크나요?",
+  "_note": "cover:[top,height] = 전체폭 솔리드 덮개 (언어무관 — footage 타이밍이 언어마다 달라도 원본 한글 자막 위치를 고정 밴드로 덮음). capY = 그 위 현지어 자막 중앙Y. ⚠️ zh = ElevenLabs 광동어 미지원 → 표준중국어(만다린) 발음.",
   "header": {
     "th": { "top": "มีประจำเดือนแล้ว", "mark": "ส่วนสูงหยุดไหม?" },
     "en": { "top": "After her first period,", "mark": "does growth stop?" },
-    "vi": { "top": "Sau kỳ kinh đầu tiên,", "mark": "chiều cao dừng lại?" },
-    "zh": { "top": "嚟咗初經之後,", "mark": "係咪唔再長高?" }
+    "vi": { "top": "Sau kỳ kinh đầu tiên,", "mark": "có ngừng cao không?" },
+    "zh": { "top": "初經來了之後,", "mark": "還會長高嗎?" }
   },
   "chunks": [
     {
-      "id": "c1", "start": 0.0, "end": 4.0, "capY": 625,
+      "id": "c1", "start": 0.0, "end": 4.0, "capY": 685, "cover": [548, 278],
       "ko": "요즘 여자아이들의 초경 시기가 좀 빨라진 것 같은 느낌이 있습니다.",
       "th": "ช่วงนี้รู้สึกว่าเด็กผู้หญิงมีประจำเดือนครั้งแรกเร็วขึ้นนะคะ",
-      "cap_th": ["ประจำเดือนครั้งแรก", "มาเร็วขึ้น"], "hl_th": "เร็วขึ้น"
+      "cap_th": ["ประจำเดือนครั้งแรก", "มาเร็วขึ้น"], "hl_th": "เร็วขึ้น",
+      "en": "These days, girls seem to be getting their first period earlier.",
+      "cap_en": ["First period", "coming earlier"], "hl_en": "earlier",
+      "vi": "Dạo này, các bé gái dường như có kinh nguyệt lần đầu sớm hơn.",
+      "cap_vi": ["Kinh nguyệt lần đầu", "đến sớm hơn"], "hl_vi": "sớm hơn",
+      "zh": "最近女孩子的初經，好像來得越來越早了。",
+      "cap_zh": ["初經", "來得更早"], "hl_zh": "更早"
     },
     {
-      "id": "c2", "start": 4.0, "end": 11.9, "capY": 660,
+      "id": "c2", "start": 4.0, "end": 11.9, "capY": 690, "cover": [555, 278],
       "ko": "만약 5학년 초에 우리 아이가 가슴에 몽우리가 만져졌다면, 평균적으로 사춘기 시작이라고 볼 수 있고요.",
       "th": "ถ้าช่วงต้น ป.5 ลูกเริ่มคลำเจอไตเต้านม ก็ถือว่าเข้าสู่วัยรุ่นตามเกณฑ์เฉลี่ยค่ะ",
-      "cap_th": ["ป.5 คลำเจอไตเต้านม", "= เริ่มเข้าวัยรุ่น"], "hl_th": "วัยรุ่น"
+      "cap_th": ["ป.5 คลำเจอไตเต้านม", "= เริ่มเข้าวัยรุ่น"], "hl_th": "วัยรุ่น",
+      "en": "If your daughter develops breast buds in early 5th grade, that's usually the start of puberty.",
+      "cap_en": ["Breast buds in 5th grade", "= puberty begins"], "hl_en": "puberty",
+      "vi": "Nếu đầu lớp 5 bé đã có chồi ngực, thường đó là dấu hiệu bắt đầu dậy thì.",
+      "cap_vi": ["Chồi ngực ở lớp 5", "= bắt đầu dậy thì"], "hl_vi": "dậy thì",
+      "zh": "如果孩子小五就摸到乳房硬塊，通常代表青春期開始了。",
+      "cap_zh": ["小五摸到乳房硬塊", "= 青春期開始"], "hl_zh": "青春期"
     },
     {
-      "id": "c3", "start": 11.9, "end": 16.3, "capY": 650,
+      "id": "c3", "start": 11.9, "end": 16.3, "capY": 685, "cover": [550, 272],
       "ko": "초등학교 6학년 때 초경을 하는 경우가 아주 많죠.",
       "th": "หลายคนมีประจำเดือนครั้งแรกตอน ป.6 กันเยอะเลยค่ะ",
-      "cap_th": ["หลายคนเริ่มตอน ป.6"], "hl_th": "ป.6"
+      "cap_th": ["หลายคนเริ่มตอน ป.6"], "hl_th": "ป.6",
+      "en": "Many girls get their first period in 6th grade.",
+      "cap_en": ["Many start in 6th grade"], "hl_en": "6th grade",
+      "vi": "Rất nhiều bé có kinh lần đầu vào lớp 6.",
+      "cap_vi": ["Nhiều bé bắt đầu ở lớp 6"], "hl_vi": "lớp 6",
+      "zh": "很多女孩在小六來初經。",
+      "cap_zh": ["很多人小六開始"], "hl_zh": "小六"
     },
     {
-      "id": "c4", "start": 16.3, "end": 21.85, "capY": 635,
+      "id": "c4", "start": 16.3, "end": 21.85, "capY": 682, "cover": [545, 278],
       "ko": "초경을 시작하면 성장이 바로 멈추는 것이 아닙니다. 아직 성장판이 열려 있기 때문인데요.",
       "th": "พอเริ่มมีประจำเดือน ส่วนสูงไม่ได้หยุดทันทีนะคะ เพราะแผ่นการเจริญเติบโตยังเปิดอยู่",
-      "cap_th": ["มีประจำเดือนแล้ว", "ส่วนสูงไม่หยุดทันที"], "hl_th": "ไม่หยุด"
+      "cap_th": ["มีประจำเดือนแล้ว", "ส่วนสูงไม่หยุดทันที"], "hl_th": "ไม่หยุด",
+      "en": "After the first period, growth doesn't stop right away. The growth plates are still open.",
+      "cap_en": ["Period started —", "growth doesn't stop"], "hl_en": "doesn't stop",
+      "vi": "Sau khi có kinh, chiều cao không dừng lại ngay. Sụn tăng trưởng vẫn còn mở.",
+      "cap_vi": ["Có kinh rồi —", "vẫn chưa ngừng cao"], "hl_vi": "chưa ngừng",
+      "zh": "來了初經，身高不會馬上停。因為生長板還開著。",
+      "cap_zh": ["來了初經", "身高不會馬上停"], "hl_zh": "不會馬上停"
     },
     {
-      "id": "c5", "start": 21.85, "end": 29.1, "capY": 675,
+      "id": "c5", "start": 21.85, "end": 29.1, "capY": 700, "cover": [565, 278],
       "ko": "일반적으로는 초경을 한 시점을 기준으로 6cm가량 더 크고, 성인기가 마무리되는 것으로 되어 있습니다.",
       "th": "โดยทั่วไป นับจากวันที่มีประจำเดือนครั้งแรก จะสูงขึ้นอีกประมาณ 6 ซม. แล้วจึงโตเต็มที่ค่ะ",
-      "cap_th": ["นับจากวันนั้น สูงอีก", "ประมาณ 6 ซม."], "hl_th": "6 ซม."
+      "cap_th": ["นับจากวันนั้น สูงอีก", "ประมาณ 6 ซม."], "hl_th": "6 ซม.",
+      "en": "On average, a girl grows about 6 more centimeters after her first period before reaching adult height.",
+      "cap_en": ["After that, about", "6 more cm"], "hl_en": "6 more cm",
+      "vi": "Trung bình, bé cao thêm khoảng 6 cm sau kỳ kinh đầu trước khi đạt chiều cao trưởng thành.",
+      "cap_vi": ["Sau đó cao thêm", "khoảng 6 cm"], "hl_vi": "6 cm",
+      "zh": "一般來說，初經之後還會長高約 6 公分，才到成年身高。",
+      "cap_zh": ["之後還會長", "約 6 公分"], "hl_zh": "6 公分"
     },
     {
       "id": "c6", "start": 29.1, "end": 36.9, "capY": 1040, "cover": [928, 248],
       "ko": "대략 열 명 중에서 일곱 명의 아이가 이와 비슷한 성장 패턴을 보이게 됩니다.",
       "th": "ประมาณ 7 ใน 10 คน จะมีรูปแบบการเติบโตแบบนี้ค่ะ",
-      "cap_th": ["ประมาณ 7 ใน 10 คน", "เป็นแบบนี้"], "hl_th": "7 ใน 10"
+      "cap_th": ["ประมาณ 7 ใน 10 คน", "เป็นแบบนี้"], "hl_th": "7 ใน 10",
+      "en": "About 7 out of 10 girls follow this same growth pattern.",
+      "cap_en": ["About 7 in 10 girls", "follow this"], "hl_en": "7 in 10",
+      "vi": "Khoảng 7 trong 10 bé có cùng kiểu tăng trưởng này.",
+      "cap_vi": ["Khoảng 7/10 bé", "đều như vậy"], "hl_vi": "7/10",
+      "zh": "大約十個有七個女孩，都是這樣的成長模式。",
+      "cap_zh": ["十個有七個", "都是這樣"], "hl_zh": "十個有七個"
     },
     {
-      "id": "c7", "start": 36.9, "end": 41.0, "capY": 650,
+      "id": "c7", "start": 36.9, "end": 41.0, "capY": 665, "cover": [530, 272],
       "ko": "부모님께서는 지속적으로 우리 아이의 신장 변화를 지켜보며 응원해 주는 것이 중요합니다.",
       "th": "คุณพ่อคุณแม่ควรติดตามการเปลี่ยนแปลงส่วนสูงของลูกอย่างต่อเนื่อง และคอยเป็นกำลังใจให้นะคะ",
-      "cap_th": ["ติดตามส่วนสูงของลูก", "และให้กำลังใจ"], "hl_th": "กำลังใจ"
+      "cap_th": ["ติดตามส่วนสูงของลูก", "และให้กำลังใจ"], "hl_th": "กำลังใจ",
+      "en": "Parents, keep tracking your child's height and cheer them on.",
+      "cap_en": ["Track their height", "and cheer them on"], "hl_en": "cheer",
+      "vi": "Cha mẹ hãy tiếp tục theo dõi chiều cao của con và động viên con nhé.",
+      "cap_vi": ["Theo dõi chiều cao con", "và động viên con"], "hl_vi": "động viên",
+      "zh": "爸爸媽媽要持續觀察孩子的身高變化，並多多鼓勵他們。",
+      "cap_zh": ["持續觀察身高", "多鼓勵孩子"], "hl_zh": "鼓勵"
     }
   ]
 }
