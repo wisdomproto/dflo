@@ -1,0 +1,48 @@
+{
+  "fps": 30,
+  "totalFrames": 1698,
+  "chunks": [
+    {
+      "id": "c1",
+      "startFrame": 0,
+      "durFrames": 228,
+      "natSec": 7.62,
+      "factor": 1
+    },
+    {
+      "id": "c2",
+      "startFrame": 240,
+      "durFrames": 159,
+      "natSec": 5.29,
+      "factor": 1
+    },
+    {
+      "id": "c3",
+      "startFrame": 420,
+      "durFrames": 130,
+      "natSec": 4.32,
+      "factor": 1
+    },
+    {
+      "id": "c4",
+      "startFrame": 600,
+      "durFrames": 283,
+      "natSec": 9.43,
+      "factor": 1
+    },
+    {
+      "id": "c5",
+      "startFrame": 960,
+      "durFrames": 476,
+      "natSec": 15.88,
+      "factor": 1
+    },
+    {
+      "id": "c6",
+      "startFrame": 1470,
+      "durFrames": 189,
+      "natSec": 6.32,
+      "factor": 1
+    }
+  ]
+}

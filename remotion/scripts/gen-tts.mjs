@@ -14,6 +14,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+try { process.loadEnvFile(join(__dirname, "..", ".env")); } catch {} // remotion/.env 자동 로드(없으면 셸 env 사용)
 const OUT_DIR = join(__dirname, "..", "public", "audio", "narration");
 
 const API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
