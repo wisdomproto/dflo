@@ -1,0 +1,4 @@
+# Derived / large artifacts (regenerable from scripts + DB)
+_src/
+_out/
+*.html

@@ -80,7 +80,33 @@ export interface MarketingArticle {
   confirmed: boolean;
   sortOrder: number;
   translations: Record<string, ArticleTranslation>; // keyed by lang, e.g. { th: {...} }
+  blog: BlogSeoMap; // SEO blog (migration 045): per-language structured article
 }
+
+// ── SEO blog (migration 045) ────────────────────────────────────────────────
+export type BlogSeoLangCode = 'ko' | 'en' | 'th' | 'vi';
+export const BLOG_SEO_LANGS: BlogSeoLangCode[] = ['ko', 'en', 'th', 'vi'];
+export interface BlogSeoSection {
+  heading: string;
+  html: string;
+  imagePrompt: string;
+  imageUrl: string | null;
+}
+export interface BlogSeoFaq {
+  q: string;
+  a: string;
+}
+export interface BlogSeoArticle {
+  seoTitle: string;
+  slug: string;
+  metaDescription: string;
+  h1: string;
+  primaryKeyword: string;
+  secondaryKeywords: string[];
+  sections: BlogSeoSection[];
+  faq: BlogSeoFaq[];
+}
+export type BlogSeoMap = Partial<Record<BlogSeoLangCode, BlogSeoArticle>>;
 
 export interface KeywordHit {
   keyword: string;
@@ -170,12 +196,24 @@ export interface CardCanvasData {
   textBlocks: TextBlock[];
 }
 
+export type CardLang = 'ko' | 'en' | 'th' | 'vi' | 'ch';
+export const CARD_LANGS: CardLang[] = ['ko', 'en', 'th', 'vi', 'ch'];
+export interface CardSlideText {
+  headline: string;
+  subtext: string;
+}
+
 export interface CardnewsSlide {
   id: string;
   cardnewsId: string;
   canvas: CardCanvasData;
   imagePrompt: string;
   sortOrder: number;
+  // i18n (migration 044): 일러스트는 언어공통, 텍스트만 언어별
+  illustration: string;
+  texts: Record<CardLang, CardSlideText>;
+  role: string;
+  isCta: boolean;
 }
 
 export interface Cardnews {
@@ -184,6 +222,9 @@ export interface Cardnews {
   caption: string;
   hashtags: string[];
   slides: CardnewsSlide[];
+  // i18n (migration 044)
+  captions: Record<CardLang, string>;
+  hashtagsI18n: Record<CardLang, string>;
 }
 
 export interface CardnewsTemplate {

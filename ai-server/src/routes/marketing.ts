@@ -13,7 +13,7 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt } from '../services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt } from '../services/contentPrompts.js';
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
 import { publishQueueItem } from '../services/publishExecutor.js';
@@ -404,6 +404,39 @@ marketingRouter.post('/cardnews-generate', async (req: Request, res: Response) =
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] cardnews-generate failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /cardnews-i18n : 다국어 카드뉴스 슬라이드(언어공통 일러스트 + 5개 언어 텍스트) JSON 배열 (Gemini 게이트).
+marketingRouter.post('/cardnews-i18n', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) return res.status(400).json({ success: false, error: 'title required' });
+  try {
+    const raw = await generateText(buildCardnewsI18nPrompt(await readMarketingConfig(), body));
+    const s = raw.indexOf('['), e = raw.lastIndexOf(']');
+    const slides = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : [];
+    if (!Array.isArray(slides) || slides.length === 0) return res.status(502).json({ success: false, error: '카드뉴스 생성 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    res.json({ success: true, slides });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] cardnews-i18n failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /cardnews-captions : 카드뉴스 캡션 + 해시태그 5개 언어 JSON (Gemini 게이트).
+marketingRouter.post('/cardnews-captions', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.title || !String(body.title).trim()) return res.status(400).json({ success: false, error: 'title required' });
+  try {
+    const raw = await generateText(buildCaptionHashtagPrompt(await readMarketingConfig(), body));
+    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+    const obj = s >= 0 && e > s ? JSON.parse(raw.slice(s, e + 1)) : {};
+    res.json({ success: true, captions: obj.captions ?? {}, hashtags: obj.hashtags ?? {} });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] cardnews-captions failed', e);
     res.status(502).json({ success: false, error: msg });
   }
 });

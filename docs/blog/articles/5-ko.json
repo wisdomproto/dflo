@@ -1,0 +1,66 @@
+{
+  "n": 5,
+  "language": "ko",
+  "primaryKeyword": "뼈나이 검사 방법",
+  "secondaryKeywords": [
+    "성장판 엑스레이 검사",
+    "뼈나이 실제나이 차이",
+    "골연령 검사"
+  ],
+  "seoTitle": "뼈나이 검사 방법 완전 가이드 — X-ray로 알 수 있는 것",
+  "slug": "bone-age-test-method-xray-growth-plate",
+  "metaDescription": "뼈나이 검사 방법부터 골연령 해석, 뼈나이 실제나이 차이가 성장에 미치는 영향까지 성장 전문의가 알기 쉽게 설명합니다.",
+  "h1": "뼈나이 검사 방법과 X-ray로 알 수 있는 것 — 성장판 열림부터 최종 키 예측까지",
+  "sections": [
+    {
+      "heading": "뼈나이란 무엇이고, 왜 실제나이와 다를까?",
+      "html": "<p>뼈나이 검사 방법을 이해하려면 먼저 '뼈나이(골연령)'가 무엇인지 알아야 합니다. 우리가 흔히 말하는 나이는 생년월일로 계산하는 실제나이이지만, 아이의 몸은 저마다 다른 속도로 성숙합니다. 뼈나이는 이 생물학적 성숙도를 뼈의 발달 정도로 측정한 나이입니다.</p><p>뼈나이 실제나이 차이는 아이마다 다르게 나타납니다. 실제나이가 8세인 아이의 골연령이 10세로 나왔다면, 뼈는 이미 10세 수준으로 성숙해 있다는 의미입니다. 반대로 6세로 나왔다면 성장 속도가 또래보다 느린 것입니다. 이 차이가 클수록 성장 관리에서 특별한 주의가 필요하다는 신호가 됩니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. Left side shows a child silhouette with a glowing skeleton overlay on the left hand and wrist, right side shows two timeline bars side by side labeled with growth stages — one shorter (bone age) and one longer (actual age). Pastel background in mint and soft lavender tones, clean white space, subtle drop shadows on graphic elements. No text or numbers in the image."
+    },
+    {
+      "heading": "뼈나이 검사 방법 — 왼손 X-ray 한 장으로 시작",
+      "html": "<p>뼈나이 검사 방법은 매우 간단합니다. 아이의 왼손과 손목을 X-ray로 촬영하는 것이 전부입니다. 왼손을 택하는 이유는 손뼈가 많고 성장 단계가 뚜렷하게 관찰되기 때문입니다. 검사 시간은 촬영 자체만 놓고 보면 수 초에 불과하며, 방사선 노출량도 일상적인 자연 방사선 수준에 가까워 어린 아이에게도 안전하게 적용됩니다.</p><p>성장판 엑스레이 검사에서 전문의는 손목·손가락 뼈의 크기와 모양, 그리고 성장판의 열림 정도를 분석합니다. 이 결과를 동일 연령대 표준 골연령 데이터(그뤼리히-파일 아틀라스 또는 TW3 방법)와 비교하여 아이의 골연령을 산출합니다. 필요에 따라 엉덩이나 무릎 부위 X-ray를 추가로 촬영하기도 합니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A doctor in a white coat holds up a stylized X-ray image of a child's left hand and wrist against a soft light box. On the right, a simple chart compares two horizontal bars indicating different growth stages. Mint green and soft coral accent colors on a pastel white background, flat clean icons, gentle drop shadow. No text or numbers in the image."
+    },
+    {
+      "heading": "성장판 엑스레이 검사로 무엇을 확인하나?",
+      "html": "<p>성장판 엑스레이 검사의 핵심 정보는 성장판(골단판)의 열림과 닫힘 상태입니다. 성장판은 긴 뼈의 양 끝에 있는 연골 조직으로, 이곳에서 새로운 뼈세포가 만들어지며 키가 자랍니다. X-ray에서는 뼈와 뼈 사이의 검은 선으로 보이며, 이 선이 뚜렷할수록 성장판이 아직 열려 있다는 의미입니다.</p><p>사춘기가 끝나갈수록 성호르몬과 성장호르몬의 영향으로 이 선이 점점 희미해지고, 결국 뼈와 뼈가 완전히 합쳐지면 성장판이 닫힌 것입니다. 성장판이 닫히면 그 이후로는 키가 더 이상 자라지 않습니다. 따라서 성장판의 열림 정도를 정확히 파악하는 것이 남은 성장 가능성과 최종 키를 예측하는 데 핵심적인 역할을 합니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. Two side-by-side close-up diagrams of a stylized long bone: left shows a clear gap (open growth plate) highlighted in mint green, right shows the same bone fully fused with no gap (closed growth plate) highlighted in soft coral. Clean pastel grey background, simple anatomical shapes, flat 2D style with gentle shadows. No text or numbers in the image."
+    },
+    {
+      "heading": "뼈나이 실제나이 차이가 성장에 미치는 영향",
+      "html": "<p>뼈나이 실제나이 차이를 해석하는 방식은 다음과 같습니다. 골연령이 실제나이보다 1~2년 앞서 있다면 성장판이 또래보다 일찍 닫힐 가능성이 있고, 그만큼 최종 키가 예상보다 작아질 수 있습니다. 이런 경우는 성조숙증이나 비만이 원인인 경우가 많아 원인 파악이 우선입니다.</p><p>반대로 골연령이 실제나이보다 느리다면 성장판이 더 오래 열려 있다는 의미이므로, 적절한 관리를 통해 키가 더 클 여지가 있습니다. 다만 골연령이 지나치게 느릴 경우 성장호르몬 결핍 등을 의심해 볼 수 있습니다. 어느 쪽이든 뼈나이 검사 방법을 통해 얻은 결과는 맞춤형 성장 계획을 세우는 데 꼭 필요한 기초 데이터가 됩니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A visual scale or balance with two child silhouettes on each side — one with an accelerated growth arrow (bone ahead of age) in coral, and one with a delayed growth arrow (bone behind age) in mint. Background is soft pastel lavender with clean white scale lines, flat graphic style, gentle shadows. No text or numbers in the image."
+    },
+    {
+      "heading": "골연령 검사가 필요한 대표적인 상황",
+      "html": "<p>골연령 검사는 아이의 성장에 의문이 생겼을 때 가장 먼저 시행하는 기초 검사입니다. 특히 다음과 같은 상황에서 검사를 고려할 수 있습니다.</p><ul><li><strong>또래보다 키가 뚜렷이 작거나 성장 속도가 느린 경우:</strong> 성장판 상태와 성장호르몬 분비 여부를 확인하는 출발점이 됩니다.</li><li><strong>사춘기 증상이 일찍 나타나는 경우:</strong> 여아 만 8세 이전, 남아 만 9세 이전에 2차 성징이 보이면 골연령이 실제나이보다 2년 이상 앞서 있는지 확인이 필요합니다.</li><li><strong>최종 키를 예측하고 싶은 경우:</strong> 뼈나이, 현재 키, 부모 키를 종합해 더 정확한 성인 키 예측이 가능합니다.</li><li><strong>성장호르몬 치료 중인 경우:</strong> 치료 효과를 모니터링하고 용량을 조절하기 위해 6~12개월 간격으로 골연령을 확인합니다.</li></ul>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. Four simple icon panels arranged in a 2x2 grid: top-left shows a small child silhouette next to a taller peer, top-right shows a calendar with an early marker, bottom-left shows an adult and child silhouette with height arrows, bottom-right shows a syringe and a chart line trending up. Mint and soft coral accent colors on a clean pastel white background, flat style, subtle drop shadows. No text or numbers in the image."
+    },
+    {
+      "heading": "뼈나이 검사 방법의 한계와 올바른 활용법",
+      "html": "<p>뼈나이 검사 방법은 강력하지만 모든 것을 알려 주지는 않습니다. 골연령 검사는 성장 가능성을 추정하는 도구이지, 최종 키를 확정하는 수치가 아닙니다. 같은 골연령이라도 아이의 영양 상태, 수면 습관, 운동량, 스트레스 수준에 따라 실제 성장 결과는 달라질 수 있습니다.</p><p>또한 판독 전문의의 경험과 판독 방법(아틀라스 방식 또는 TW3 방식)에 따라 결과가 다소 다르게 나올 수 있습니다. 그러므로 뼈나이 검사 한 장의 수치에만 집중하기보다는, 성장판 엑스레이 검사 결과를 바탕으로 아이의 생활 습관·호르몬·영양 상태를 함께 평가하는 종합적인 접근이 중요합니다. 검사 결과가 걱정된다면 소아 성장 전문의와 상담을 통해 정확한 해석을 받아 보시길 권합니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A magnifying glass hovering over a simplified X-ray image of a child's hand, with small icon bubbles around it showing nutrition (apple), sleep (moon), exercise (jumping figure), and stress (cloud) — each connected by dotted lines to the central X-ray. Soft pastel mint and lavender palette, clean white background, flat 2D style, gentle shadows. No text or numbers in the image."
+    }
+  ],
+  "faq": [
+    {
+      "q": "뼈나이 검사는 방사선이 많이 나와서 위험하지 않나요?",
+      "a": "뼈나이 검사에 사용하는 성장판 엑스레이 검사의 방사선량은 매우 낮아, 일상생활에서 자연적으로 받는 방사선 수준과 비슷하거나 그보다 낮습니다. 연 1~2회 정도의 검사는 의학적으로 안전한 범위로 평가됩니다."
+    },
+    {
+      "q": "뼈나이 실제나이 차이가 2년이면 치료가 꼭 필요한가요?",
+      "a": "골연령이 실제나이보다 2년 이상 앞선다면 성조숙증 등의 가능성을 배제하기 위해 추가 검사가 권장됩니다. 다만 치료 여부는 골연령 단독 수치가 아니라 성장 속도, 사춘기 진행 단계, 예측 최종 키 등을 종합적으로 평가한 후 결정됩니다."
+    },
+    {
+      "q": "집에서 하는 예상키 계산과 뼈나이 검사 결과가 많이 다를 수 있나요?",
+      "a": "부모 키를 기반으로 한 예상키 공식은 유전적 가능성을 추정하는 방법이고, 골연령 검사는 아이의 현재 생물학적 성숙도를 반영합니다. 뼈나이 실제나이 차이가 크거나 성장 속도가 느린 경우에는 두 결과 사이에 상당한 차이가 날 수 있으므로, 정확한 예측은 전문의의 종합 평가가 필요합니다."
+    }
+  ],
+  "_seo": {
+    "score": 100,
+    "grade": "A",
+    "tries": 0,
+    "issues": []
+  }
+}

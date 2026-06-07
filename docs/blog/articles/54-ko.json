@@ -1,0 +1,68 @@
+{
+  "n": 54,
+  "language": "ko",
+  "primaryKeyword": "초등학생 평균 키 학년별",
+  "secondaryKeywords": [
+    "초등 학년별 평균키 표",
+    "우리 아이 키 또래 비교",
+    "초등생 키 성장 표준"
+  ],
+  "seoTitle": "초등학생 평균 키 학년별 총정리 — 우리 아이 위치는?",
+  "slug": "elementary-school-average-height-by-grade",
+  "metaDescription": "초등학생 평균 키 학년별 데이터와 초등생 키 성장 표준을 한눈에 확인하세요. 우리 아이 키 또래 비교부터 성장 부진 신호, 뼈나이 검사까지 소아 성장 전문의가 안내합니다.",
+  "h1": "초등학생 평균 키 학년별로 보면 우리 아이는 어디쯤 있을까?",
+  "sections": [
+    {
+      "heading": "초등학생 평균 키, 학년별로 얼마나 될까?",
+      "html": "<p>초등학생 평균 키 학년별 수치는 부모라면 한 번쯤 검색해 본 정보입니다. 교육부·질병관리청이 발표하는 학생 건강검사 통계에 따르면 초등학생의 평균 신장은 매년 조금씩 높아지는 추세입니다. 대략적인 기준으로 보면, 1학년(만 7세) 남아 약 122cm·여아 약 121cm에서 시작해 6학년(만 12세)에는 남아 약 151cm·여아 약 152cm 수준에 이릅니다. 여아가 고학년에서 남아를 추월하는 현상은 사춘기 성장급증이 여아에서 먼저 나타나기 때문입니다. 이 수치는 전국 평균이므로 개인차가 크게 존재하며, 같은 학년이라도 10cm 이상 차이가 나는 것은 드물지 않습니다. 숫자 자체보다 아이가 매년 꾸준히 자라고 있는지, 성장 속도가 유지되고 있는지를 함께 살펴보는 것이 중요합니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A clean pastel-toned infographic layout showing a side-by-side height comparison of children at different elementary school grades (1st to 6th). Six child silhouettes in soft mint, peach, and sky-blue tones stand in a row from shortest to tallest against a light cream background. Horizontal growth arrows between each figure. Gentle shadow under each figure. No text or numbers in the image."
+    },
+    {
+      "heading": "초등 학년별 평균키 표, 어떻게 읽어야 할까?",
+      "html": "<p>초등 학년별 평균키 표에서 흔히 사용되는 개념이 '백분위'입니다. 평균(50백분위)은 같은 나이·성별 아이 100명 중 50번째 키를 뜻하고, 3백분위 미만이면 저신장의 임상 기준에 해당합니다. 부모님들이 표를 볼 때 주의해야 할 점은 두 가지입니다. 첫째, 해당 연도에 측정된 데이터인지 확인하세요. 영양 환경이 개선되면서 평균치는 10년 주기로 꾸준히 올라갑니다. 둘째, 출생 월령을 고려하세요. 같은 학년이라도 1월생과 12월생은 최대 11개월 차이가 나며, 어린 나이일수록 그 영향이 두드러집니다. 표의 숫자가 우리 아이보다 크다고 해서 바로 걱정할 필요는 없습니다. 중요한 것은 우리 아이 키 또래 비교를 통해 성장 궤도가 일정하게 유지되고 있는지 흐름을 보는 것입니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A friendly parent and child sitting together at a table, looking at a large simplified growth chart on a tablet screen. Soft mint and pastel yellow tones. The chart shows a smooth upward curve with a highlighted zone. Clean white background with subtle rounded shapes. Soft drop shadow on the table. No text or numbers visible."
+    },
+    {
+      "heading": "우리 아이 키가 또래보다 작다면 — 성장 부진 신호 확인하기",
+      "html": "<p>우리 아이 키 또래 비교에서 평균보다 작다고 해서 모두 문제는 아닙니다. 그러나 아래 신호 중 하나라도 해당된다면 좀 더 주의 깊게 살펴볼 필요가 있습니다.</p><ul><li><strong>연간 성장 속도가 4cm 미만</strong>인 경우 — 초등학생의 정상 성장 속도는 연 5~7cm입니다.</li><li><strong>성장 곡선이 꺾이거나 백분위가 지속적으로 낮아지는</strong> 경우 — 일시적 정체가 아닌 추세적 하락은 점검이 필요합니다.</li><li><strong>또래보다 현저히 작아 본인도 신경 쓰는</strong> 경우 — 심리적 위축이 스트레스 호르몬을 높여 성장에 이중으로 영향을 줄 수 있습니다.</li></ul><p>성장이 느린 원인은 유전적 소인, 영양 불균형, 수면 부족, 과도한 학업 스트레스, 또는 성장호르몬 분비 문제나 갑상선 이상 같은 내분비 질환까지 다양합니다. 원인에 따라 접근 방식이 달라지기 때문에, 막연한 걱정보다는 정확한 원인 파악이 먼저입니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A gentle scene of a parent kneeling beside a child, measuring the child's height against a wall growth chart. Soft mint and warm peach pastel tones. The wall chart shows a smooth ascending line. Clean rounded shapes, minimal decorative elements, soft shadow under figures. Light cream background. No text or numbers in the image."
+    },
+    {
+      "heading": "초등생 키 성장 표준 — 키를 결정하는 5가지 요인",
+      "html": "<p>초등생 키 성장 표준에서 눈여겨볼 것은 평균 수치만이 아닙니다. 아이의 최종 키는 복수의 요인이 상호작용하며 결정됩니다.</p><ol><li><strong>유전</strong>: 부모 키의 영향은 약 70~80%로 추산됩니다. 하지만 같은 유전자를 가진 형제 사이에서도 5cm 이상 차이가 나는 경우가 흔한 만큼, 나머지 환경 요인을 얼마나 잘 관리하느냐가 중요합니다.</li><li><strong>영양</strong>: 단백질·칼슘·아연·비타민 D는 뼈와 근육 성장에 직접 관여합니다. 정크푸드와 과도한 당분은 혈당 스파이크를 유발해 성장호르몬 분비를 방해할 수 있습니다.</li><li><strong>수면</strong>: 성장호르몬의 60~70%는 깊은 수면(서파수면) 중에 분비됩니다. 초등학생에게 권장되는 수면 시간은 9~11시간입니다.</li><li><strong>운동</strong>: 줄넘기·농구·수영처럼 성장판에 적절한 자극을 주는 유산소·점프 운동은 성장호르몬 분비를 자연스럽게 촉진합니다.</li><li><strong>스트레스</strong>: 과도한 학원이나 학업 압박은 코르티솔 분비를 높이고 성장호르몬과 길항 작용을 합니다. 정서적 안정이 키 성장에도 영향을 미칩니다.</li></ol>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. Five rounded icon panels arranged horizontally on a pastel cream background. Each panel shows a different child activity: eating a healthy meal, sleeping peacefully, jumping rope, stretching, and smiling calmly. Soft mint, peach, and lavender tones with gentle drop shadows. Clean minimal style, no text or numbers in the image."
+    },
+    {
+      "heading": "뼈나이 검사가 평균키 비교보다 더 정확한 이유",
+      "html": "<p>학년별 평균키 표와 우리 아이를 단순히 비교하는 것은 시작점일 뿐입니다. 같은 초등학교 4학년이라도 성장판이 거의 닫혀 가는 아이가 있는 반면, 아직 성장 여력이 3~4년이나 남아 있는 아이가 있습니다. 이 차이를 구별하는 핵심 검사가 바로 뼈나이(골연령) 검사입니다. 왼손 손목 X-ray 한 장으로 뼈의 성숙 정도를 평가해 실제 나이와 비교하면, 현재의 성장 속도가 아이에게 적절한지, 성장판이 얼마나 남았는지를 구체적으로 파악할 수 있습니다. 뼈나이가 실제 나이보다 2년 이상 앞서 있다면 성장판 조기 폐쇄 위험이 있어 보다 빠른 개입이 도움이 될 수 있고, 반대로 뼈나이가 어리다면 아직 충분한 성장 기회가 남아 있다는 의미입니다. 소아 성장 전문 의료진을 통해 뼈나이 분석을 받아 보면 평균키 수치만으로는 알 수 없는 우리 아이만의 성장 지도를 그릴 수 있습니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A calm clinical scene with a friendly doctor figure holding a simplified X-ray image of a child's hand. On one side, a timeline shows bone development stages with rounded milestone markers. Soft mint and light blue tones on a cream background. Clean minimal shapes, gentle drop shadows. No text or numbers in the image."
+    },
+    {
+      "heading": "성장호르몬 치료, 모든 아이에게 필요한 것은 아닙니다",
+      "html": "<p>성장에 관심 있는 부모라면 자연스럽게 성장호르몬 치료를 궁금해합니다. 성장호르몬은 뇌하수체에서 분비되어 뼈와 연골 성장을 직접 촉진하는 호르몬으로, 결핍이 확인된 경우 주사 치료가 성장 속도를 의미 있게 개선할 수 있습니다. 그러나 학년별 평균키 표에서 조금 낮게 나왔다는 이유만으로 곧바로 치료가 필요한 것은 아닙니다. 치료 적응증은 성장호르몬 결핍증, 터너증후군 등 의학적으로 명확한 진단이 있는 경우에 한정됩니다. 치료 여부는 뼈나이·연간 성장 속도·호르몬 분비 검사를 종합해 소아 성장 전문의가 판단하며, 필요한 경우 아이에게 맞는 용량과 계획으로 진행하게 됩니다. 평균키 숫자에 집착하기보다 아이의 전체적인 성장 맥락을 전문가와 함께 살피는 것이 현명한 출발점입니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9. A warm scene of a pediatric doctor in a white coat having a calm consultation with a parent and child in a softly lit clinic room. A growth chart is visible on the wall behind. Mint and warm cream tones, rounded furniture shapes, gentle window light effect. No text or numbers in the image."
+    }
+  ],
+  "faq": [
+    {
+      "q": "초등학생 평균 키 학년별로 얼마나 차이가 나나요?",
+      "a": "질병관리청 통계 기준으로 1학년(만 7세)은 남아 약 122cm, 여아 약 121cm이며, 6학년(만 12세)에는 남아 약 151cm, 여아 약 152cm 수준입니다. 학년이 올라갈수록 성장 속도가 달라지고, 고학년에서는 사춘기 시작 시기에 따라 개인차가 더 커집니다."
+    },
+    {
+      "q": "우리 아이 키가 초등 학년별 평균보다 낮으면 바로 병원에 가야 하나요?",
+      "a": "단순히 평균보다 낮다는 이유만으로 즉각적인 치료가 필요한 것은 아닙니다. 다만 연간 성장 속도가 4cm 미만이거나, 성장 곡선이 지속적으로 하락하거나, 3백분위 미만에 해당하는 경우에는 소아 성장 전문의를 통해 뼈나이 검사와 성장 평가를 받아 보는 것이 도움이 됩니다."
+    },
+    {
+      "q": "초등생 키 성장 표준에서 뼈나이 검사는 언제 받는 것이 좋나요?",
+      "a": "특별한 이상이 없어도 초등학교 입학 전후(만 6~7세)와 사춘기 진입 전후(여아 만 8~9세, 남아 만 9~10세)에 한 번씩 받아 두면 성장 계획을 세우는 데 유용합니다. 연간 키 성장이 4cm 미만이거나 평균보다 현저히 작다면 해당 시기와 무관하게 상담을 받아 보시길 권장합니다."
+    }
+  ],
+  "_seo": {
+    "score": 98,
+    "grade": "A",
+    "tries": 0,
+    "issues": [
+      "키워드 사용"
+    ]
+  }
+}

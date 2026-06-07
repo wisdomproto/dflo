@@ -1,0 +1,61 @@
+{
+  "n": 45,
+  "language": "ko",
+  "primaryKeyword": "성장클리닉 방문 적절한 나이",
+  "secondaryKeywords": [
+    "성장 병원 몇 살부터",
+    "성장클리닉 언제 가야 하나",
+    "소아과 성장 검사 시기"
+  ],
+  "seoTitle": "성장클리닉 방문 적절한 나이 — 나이별 방문 가이드",
+  "slug": "growth-clinic-right-age-visit-guide",
+  "metaDescription": "성장클리닉 방문 적절한 나이가 궁금하신가요? 성장 병원 몇 살부터 가야 하는지, 소아과 성장 검사 시기를 나이별로 정리했습니다.",
+  "h1": "성장클리닉 방문 적절한 나이, 나이별로 알아보는 최적 타이밍",
+  "sections": [
+    {
+      "heading": "성장클리닉, 꼭 가야 할까요?",
+      "html": "<p><strong>성장클리닉 방문 적절한 나이</strong>를 고민하기 전에 먼저 확인해야 할 것이 있습니다. 또래보다 키가 작다고 해서 무조건 병원이 필요한 것은 아니지만, '어느 정도가 작은 것인지' 부모님 혼자 판단하기는 쉽지 않습니다. 일반적으로 같은 나이 또래 100명 중 3번째 이내로 작거나, 1년에 4cm 미만으로 자라거나, 사춘기 징후가 너무 일찍 나타난다면 전문적인 평가를 받아볼 필요가 있습니다.</p><p>아이의 성장은 키만의 문제가 아닙니다. 영양 상태, 수면의 질, 운동 습관, 성장판 상태, 호르몬 균형이 모두 맞물려 있습니다. 성장클리닉에서는 이 복합적인 요소들을 종합적으로 분석하여 아이에게 맞는 방향을 제시합니다. 막연하게 기다리기보다 정확한 현황을 파악하는 것이 현명한 출발점입니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint accent. Center: a calm parent and child sitting across a friendly doctor at a simple clinic desk. Doctor holds a clipboard with a growth chart visible. Soft shadows, clean minimal background in light cream. No text or numbers in image."
+    },
+    {
+      "heading": "성장 병원 몇 살부터? 나이별 방문 체크리스트",
+      "html": "<p>성장클리닉 언제 가야 하나 고민이라면, 아이의 나이별로 아래 기준을 참고하세요.</p><p><strong>만 6~8세 (초등학교 입학 전후)</strong><br>성장 잠재력을 파악하기 좋은 시기입니다. 이 시기에 여자아이에게 유방 발달이나 음모 발달 같은 성조숙증 징후가 보인다면 지체 없이 전문의 진료를 받아야 합니다. 성조숙증은 성장판을 일찍 닫히게 해 최종 키에 직접적인 영향을 줍니다.</p><p><strong>만 9~11세 (사춘기 직전)</strong><br>이 시기가 성장클리닉 방문의 '골든타임'입니다. 사춘기가 시작되면 성장 속도가 급격히 올라가는 동시에 성장판이 닫히는 속도도 빨라집니다. 성장 급증기가 오기 전, 뼈나이와 예측 키를 확인하고 필요한 경우 적절한 개입을 시작하면 최종 키를 최대한 이끌어낼 수 있습니다.</p><p><strong>만 12세 이상 (사춘기 진행 중)</strong><br>이미 사춘기가 시작됐더라도 성장판이 완전히 닫히지 않았다면 남은 가능성을 활용할 수 있습니다. 성장호르몬 치료, 생활 습관 최적화 등을 통해 성장 속도를 개선하거나 성장판이 닫히는 시기를 늦출 수 있습니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint accent. Left to right: three child silhouettes at different ages (young child, pre-teen, teen) each standing under a soft arc shape representing a growth stage. Mint progress indicators beneath each figure. Clean white background with subtle pastel gradient. No text or numbers in image."
+    },
+    {
+      "heading": "소아과 성장 검사 시기 — 즉시 방문이 필요한 신호들",
+      "html": "<p>소아과 성장 검사 시기는 나이만으로 결정되지 않습니다. 나이에 관계없이 아래 신호 중 하나라도 해당된다면 빠른 시일 내에 전문의 상담을 받는 것이 좋습니다.</p><ul><li>또래 대비 키가 눈에 띄게 작거나, 연간 성장 속도가 갑자기 느려진 경우</li><li>부모 키가 작아 유전적으로 키 걱정이 있는 경우</li><li>여아의 유방 발달, 남아의 고환 크기 증가 등 성조숙증 의심 증상</li><li>잦은 편식, 만성적인 수면 부족, 심한 스트레스가 지속되는 경우</li><li>만성 질환이나 갑상선 이상 등으로 성장이 부진한 경우</li></ul><p>이러한 상황에서는 기다리는 것이 오히려 기회를 좁히는 결과로 이어질 수 있습니다. 성장은 시간이 지나면 저절로 해결되는 문제가 아니기 때문입니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint accent. Center: a simple checklist icon made of clean lines, with soft mint checkmarks beside five rounded icon shapes representing sleep, food, exercise, medical, and family. Light beige background with subtle soft shadow beneath the checklist panel. No text or numbers in image."
+    },
+    {
+      "heading": "성장클리닉에서 받을 수 있는 전문적 도움",
+      "html": "<p>성장 전문 의료기관에서는 단순히 키를 측정하는 것을 넘어 아이의 성장 상태를 다각도로 분석합니다.</p><p><strong>뼈나이(골연령) 검사</strong>는 X-ray 한 장으로 아이의 생물학적 나이와 성장판 상태를 파악합니다. 실제 나이보다 뼈나이가 앞서 있다면 성장판이 일찍 닫힐 가능성이 높으므로 조기 대응이 필요합니다. 반대로 뼈나이가 실제 나이보다 늦다면 앞으로 성장 여력이 충분하다는 신호입니다.</p><p><strong>성장호르몬 치료</strong>는 성장호르몬 결핍이 확인된 경우나 저신장 진단을 받은 아이에게 고려될 수 있습니다. 전문의가 아이의 상태를 면밀히 검토한 뒤 적합한 경우에 한해 신중하게 접근합니다.</p><p><strong>생활 습관 코칭</strong>도 중요한 축입니다. 올바른 영양 섭취, 충분한 수면, 규칙적인 운동 습관은 성장호르몬 분비와 직결됩니다. 아이의 생활 패턴을 파악해 개인 맞춤형 개선 방향을 제안받을 수 있습니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint accent. Three equal panels side by side: first shows an x-ray bone icon with a magnifying glass overlay, second shows a syringe with a gentle growth arrow, third shows a daily routine calendar with sleep and food icons. Soft dividers between panels, light lavender background. No text or numbers in image."
+    },
+    {
+      "heading": "성장클리닉 방문, 망설임보다 결단이 중요한 이유",
+      "html": "<p>성장은 시간이 정해져 있습니다. 성장판이 닫히고 나면 의학적 방법으로 키를 더 크게 할 수 없습니다. 성장클리닉 방문 적절한 나이를 놓쳤다고 느끼더라도, 지금 당장 현재 상태를 파악하는 것이 무조건 기다리는 것보다 낫습니다.</p><p>성장은 단순히 유전으로만 결정되지 않습니다. 뼈나이 상태, 호르몬 균형, 생활 습관이 모두 영향을 미칩니다. 전문의의 객관적인 진단을 통해 아이에게 지금 필요한 것이 무엇인지 파악하고, 남아 있는 성장 가능성을 최대한 활용하는 것이 부모님이 해줄 수 있는 가장 현실적인 지원입니다.</p><p>조금이라도 걱정이 된다면 전문적인 도움을 받아보는 것을 권장합니다.</p>",
+      "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint accent. Center: a large hourglass with mint-colored sand flowing, surrounded by soft circular icons representing growth milestones (small seedling growing into a tall plant). Gentle clock overlay in the background. Warm beige background with soft pastel glow. No text or numbers in image."
+    }
+  ],
+  "faq": [
+    {
+      "q": "성장 병원은 몇 살부터 가는 게 좋나요?",
+      "a": "일반적으로 만 6세 전후부터 성장클리닉 방문을 고려할 수 있습니다. 특히 성조숙증 징후가 보이는 경우에는 나이에 관계없이 빠른 시일 내에 소아과 성장 검사를 받아보는 것이 좋습니다. 사춘기 직전인 만 9~11세는 성장 골든타임으로 전문의 상담 효과가 가장 큰 시기입니다."
+    },
+    {
+      "q": "성장클리닉에서는 어떤 검사를 하나요?",
+      "a": "성장클리닉에서는 주로 손목 X-ray를 통한 뼈나이(골연령) 검사, 성장호르몬 분비 여부 검사, 신체 측정, 가족력 및 생활 습관 상담 등을 진행합니다. 이를 종합해 현재 성장판 상태와 예측 최종 키를 확인합니다."
+    },
+    {
+      "q": "사춘기가 이미 시작됐는데 성장클리닉에 가도 의미가 있나요?",
+      "a": "네, 의미가 있습니다. 사춘기가 시작됐더라도 성장판이 완전히 닫히지 않은 경우 남은 성장 여력을 최대화할 수 있습니다. 성장호르몬 치료나 생활 습관 개선을 통해 성장 속도를 높이거나 성장판이 닫히는 시기를 최대한 활용하는 방향으로 접근할 수 있습니다."
+    }
+  ],
+  "_seo": {
+    "score": 100,
+    "grade": "A",
+    "tries": 0,
+    "issues": []
+  }
+}

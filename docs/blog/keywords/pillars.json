@@ -1,0 +1,196 @@
+{
+  "ko": [
+    {
+      "name": "성장과학 기초",
+      "headKeyword": "키 성장 원리",
+      "intent": "informational",
+      "note": "유전·호르몬·성장판·뼈나이 등 성장의 과학적 메커니즘을 궁금해하는 부모 대상. 검색량 규모 대형이나 경쟁도 높음. 긴 포스트 클러스터로 authority 구축."
+    },
+    {
+      "name": "성조숙증",
+      "headKeyword": "성조숙증",
+      "intent": "informational",
+      "note": "네이버 proxy 13,540 — Google에서도 최상위 수요. 여아 가슴·남아 조기 변성기 등 세부 long-tail 다수. 클리닉 핵심 진료과목이라 상업적 연결 높음."
+    },
+    {
+      "name": "키 성장 생활습관",
+      "headKeyword": "키 크는 방법",
+      "intent": "informational",
+      "note": "수면·운동·식단·자세 등 부모가 집에서 실천할 수 있는 생활 가이드. 검색량 중·고. 실용 콘텐츠라 체류시간·공유율 높고 내부 링크 허브 역할."
+    },
+    {
+      "name": "영양·보충제",
+      "headKeyword": "키 크는 영양제",
+      "intent": "commercial",
+      "note": "네이버 proxy 17,260 — 시장 최대 검색량. 구매 의도 혼재. 팩트 중심 포스트(영양소 근거 + 주의사항)로 신뢰도 확보하며 클리닉 상담 CTA 연결."
+    },
+    {
+      "name": "성장클리닉 상담",
+      "headKeyword": "성장클리닉",
+      "intent": "commercial",
+      "note": "클리닉 방문·검사·치료 의향 부모. 성장판 검사, 성장호르몬 주사, 뼈나이 검사 등 transactional 키워드와 연결. 직접 전환 유입 핵심 pillar."
+    },
+    {
+      "name": "사춘기 발달",
+      "headKeyword": "사춘기 증상",
+      "intent": "informational",
+      "note": "초경·고환 발달 등 2차 성징 시기를 걱정하는 부모. 성조숙증 pillar와 인접하지만 '정상 범위 확인' intent 중심. 여아·남아 각각 세분화."
+    },
+    {
+      "name": "아이 키 평균·예측",
+      "headKeyword": "아이 예상키 계산",
+      "intent": "informational",
+      "note": "초등학생 평균키·나이별 키 성장표·예상키 계산 등 비교·측정 욕구. 검색량 중. 계산기 도구 페이지로 연결해 클리닉 인지도 강화."
+    }
+  ],
+  "en": [
+    {
+      "name": "Height Growth Science",
+      "headKeyword": "how to grow taller",
+      "intent": "informational",
+      "note": "Broadest informational pillar. Covers the science behind height — genetics, hormones, growth plates, puberty stages. US+India both have huge volume (22K+49K). This is the top-of-funnel entry point for worried parents."
+    },
+    {
+      "name": "Growth Hormone & Medical Treatment",
+      "headKeyword": "growth hormone for children",
+      "intent": "informational",
+      "note": "HGH-related searches total 60K+ in US, 18K+ in India. Parents researching medical options, HGH injections, side effects. Core E-E-A-T content for Korean specialist credibility. SEO-only for US; ads viable in India."
+    },
+    {
+      "name": "Precocious Puberty",
+      "headKeyword": "precocious puberty",
+      "intent": "informational",
+      "note": "27K monthly US, 8K India. High medical intent, very low competition. Parents alarmed by early puberty signs searching for causes and treatment. Strong SEO opportunity across all 4 English markets."
+    },
+    {
+      "name": "Height Prediction Tools",
+      "headKeyword": "height calculator for kids",
+      "intent": "informational",
+      "note": "Tool-intent pillar. 'height calculator' alone is 110K US monthly — the single largest traffic engine. Low competition (CPC $2.35). Drives return visits, time-on-site, and consultation funnel. Also 33K in India."
+    },
+    {
+      "name": "Child Nutrition & Height",
+      "headKeyword": "foods that help children grow taller",
+      "intent": "informational",
+      "note": "Parents actively searching diet, calcium, vitamins, supplements for child height. High India+Philippines traffic. Actionable how-to content converts well. Bridge between lifestyle and medical pillars."
+    },
+    {
+      "name": "Sleep & Lifestyle for Growth",
+      "headKeyword": "sleep and growth hormone in children",
+      "intent": "informational",
+      "note": "Covers sleep routines, screen time, stress, posture — the environmental 20% of height. Strong parent education angle. Differentiates from supplement brands by providing medical-backed lifestyle guidance."
+    },
+    {
+      "name": "Exercise & Physical Activity for Height",
+      "headKeyword": "exercises to grow taller for kids",
+      "intent": "informational",
+      "note": "Distinct pillar from nutrition. Jump rope, stretching, sports — parents look for age-appropriate exercise that stimulates growth plates. Works across all 4 English markets, especially Philippines."
+    },
+    {
+      "name": "Korean Growth Clinic",
+      "headKeyword": "korean growth clinic",
+      "intent": "commercial",
+      "note": "Commercial pillar — the clinic's core differentiation. Targets parents already considering medical treatment who search for Korean specialist credentials, real cases, doctor profiles. Trust-building + conversion funnel."
+    },
+    {
+      "name": "Parent Concerns & Child Height Worries",
+      "headKeyword": "my child is too short what to do",
+      "intent": "informational",
+      "note": "Emotional, empathy-driven pillar. Parents worried about short stature, class ranking, self-esteem, late bloomers. High share-ability and emotional search intent. Bridge from concern to consultation."
+    },
+    {
+      "name": "Supplements & Height",
+      "headKeyword": "height growth supplements for kids",
+      "intent": "commercial",
+      "note": "5.4K US, 5.4K India. NuBest Tall competitor gap in India (only 110 branded searches). Medical-credential angle vs supplement brands. Positions clinic as evidence-based alternative to supplements."
+    }
+  ],
+  "th": [
+    {
+      "name": "ฮอร์โมนและวิทยาศาสตร์การเจริญเติบโต",
+      "headKeyword": "โกรทฮอร์โมนเด็ก",
+      "intent": "informational",
+      "note": "โกรทฮอร์โมน 3,600/เดือน — หมวดหลักที่แข็งแกร่งที่สุดในไทย ครอบคลุมเนื้อหาวิทยาศาสตร์การเติบโต ฮอร์โมน แผ่นกระดูก และกลไกการเจริญเติบโต"
+    },
+    {
+      "name": "ส่วนสูงเด็กและการติดตามการเติบโต",
+      "headKeyword": "ส่วนสูงเด็กไทย",
+      "intent": "informational",
+      "note": "ส่วนสูงเด็ก 2,400 + ความสูงเด็ก 1,300 — ผู้ปกครองค้นหาข้อมูลค่าเฉลี่ย เปอร์เซ็นไทล์ และการติดตามพัฒนาการลูก"
+    },
+    {
+      "name": "วิธีเพิ่มความสูงและพัฒนาการ",
+      "headKeyword": "วิธีเพิ่มความสูงเด็ก",
+      "intent": "informational",
+      "note": "วิธีเพิ่มความสูง 1,300 — ครอบคลุมโภชนาการ การออกกำลังกาย การนอนหลับ และวิธีปฏิบัติตัวในชีวิตประจำวันเพื่อเพิ่มความสูง"
+    },
+    {
+      "name": "ภาวะเจริญพันธุ์ก่อนวัยและปัญหาการเจริญเติบโต",
+      "headKeyword": "ภาวะเจริญพันธุ์ก่อนวัยในเด็ก",
+      "intent": "informational",
+      "note": "ปัญหาสุขภาพที่กระทบการเติบโต เช่น ภาวะเจริญพันธุ์ก่อนวัย (precocious puberty) โรคอ้วน ความเครียด และปัจจัยที่ขัดขวางความสูง — กลุ่มผู้ปกครองที่กังวลสูง"
+    },
+    {
+      "name": "คลินิกส่วนสูงและการรักษาทางการแพทย์",
+      "headKeyword": "คลินิกเพิ่มความสูง",
+      "intent": "commercial",
+      "note": "คลินิกเพิ่มความสูง 260 + ฉีดโกรทฮอร์โมน ~1,000 — B2C conversion keyword หลัก ครอบคลุมการรักษาในคลินิก การฉีดฮอร์โมน และการปรึกษาแพทย์"
+    },
+    {
+      "name": "โภชนาการและอาหารเพื่อการเจริญเติบโต",
+      "headKeyword": "อาหารเพิ่มความสูงเด็ก",
+      "intent": "informational",
+      "note": "แคลเซียมเพิ่มความสูง 1,000 + นมเพิ่มความสูง 720 — ผู้ปกครองค้นหาอาหาร วิตามิน แคลเซียม และโภชนาการที่ช่วยให้ลูกสูงขึ้น"
+    },
+    {
+      "name": "คำถามผู้ปกครองและข้อกังวลเรื่องส่วนสูงลูก",
+      "headKeyword": "ลูกตัวเตี้ยกว่าเพื่อน",
+      "intent": "informational",
+      "note": "ช่องทาง empathy — ผู้ปกครองที่กังวลเรื่องส่วนสูงลูก ค้นหาคำตอบสำหรับสถานการณ์เฉพาะ เช่น ลูกเตี้ยกว่าเพื่อน ลูกกินเก่งแต่ไม่สูง และคำถามที่พบบ่อย"
+    }
+  ],
+  "vi": [
+    {
+      "name": "Cách tăng chiều cao cho trẻ",
+      "headKeyword": "cách tăng chiều cao cho trẻ",
+      "intent": "informational",
+      "note": "Pillar rộng nhất — bố mẹ Việt tìm kiếm phương pháp cụ thể giúp con cao thêm. Bao gồm khoa học tăng trưởng, hormone, di truyền, thời điểm vàng."
+    },
+    {
+      "name": "Thực đơn và dinh dưỡng tăng chiều cao",
+      "headKeyword": "thực đơn tăng chiều cao cho trẻ",
+      "intent": "informational",
+      "note": "Xu hướng bùng nổ 11 lần từ Hà Nội — cơ hội dẫn đầu SEO. Bao gồm chế độ ăn, thực phẩm, thói quen ăn sáng, canxi, vitamin D."
+    },
+    {
+      "name": "Giấc ngủ và thói quen sống tăng trưởng",
+      "headKeyword": "giấc ngủ tăng chiều cao",
+      "intent": "informational",
+      "note": "Phụ huynh quan tâm lối sống: giấc ngủ sâu, hormone tăng trưởng ban đêm, thói quen buổi sáng, vận động, tư thế. Ít cạnh tranh, chuyên sâu."
+    },
+    {
+      "name": "Dậy thì sớm và sức khỏe xương",
+      "headKeyword": "dậy thì sớm ở trẻ em",
+      "intent": "informational",
+      "note": "Lo lắng phổ biến của bố mẹ Việt — dậy thì sớm đóng sụn tăng trưởng sớm, ảnh hưởng chiều cao tương lai. Bao gồm tuổi đóng sụn, tuổi xương, béo phì."
+    },
+    {
+      "name": "Dự đoán chiều cao và theo dõi tăng trưởng",
+      "headKeyword": "dự đoán chiều cao của trẻ",
+      "intent": "informational",
+      "note": "Phụ huynh muốn biết con sẽ cao bao nhiêu — công cụ dự đoán, bảng tăng trưởng, bách phân vị, so sánh với bạn cùng lớp."
+    },
+    {
+      "name": "Phòng khám tăng trưởng Hàn Quốc",
+      "headKeyword": "bác sĩ tăng chiều cao Hàn Quốc",
+      "intent": "commercial",
+      "note": "Keyword chuyển đổi cao nhất — bố mẹ đã tìm kiếm giải pháp y tế chuyên sâu. Định vị phòng khám 187 là y tế Hàn Quốc chính thống, khác biệt với thực phẩm chức năng NuBest."
+    },
+    {
+      "name": "Hormone tăng trưởng và điều trị y tế",
+      "headKeyword": "hormone tăng trưởng ở trẻ em",
+      "intent": "informational",
+      "note": "Nội dung chuyên sâu y tế — hormone tăng trưởng, tuyến giáp, điều trị, tác dụng phụ. Xây dựng E-E-A-T và uy tín chuyên môn cho bác sĩ Chae."
+    }
+  ]
+}

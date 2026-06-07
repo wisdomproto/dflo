@@ -1,5 +1,5 @@
 // src/features/marketing/services/aiImageService.ts
-const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:3001';
+const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 const PIN = '8054';
 
 /** Calls ai-server image generation; returns a data URL (data:<mime>;base64,<data>). */

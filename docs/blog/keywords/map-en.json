@@ -1,0 +1,746 @@
+[
+  {
+    "n": 1,
+    "primaryKeyword": "genetics vs environment height",
+    "secondaryKeywords": [
+      "how much does genetics affect height",
+      "can you grow taller than your parents",
+      "height and heredity"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Genetics vs. Environment: What Really Determines Your Child's Height?"
+  },
+  {
+    "n": 2,
+    "primaryKeyword": "best age to grow taller",
+    "secondaryKeywords": [
+      "child growth stages by age",
+      "golden window for height growth",
+      "when do kids grow fastest"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "The 4 Critical Growth Windows: When Your Child Grows the Most (And What Parents Can Do)"
+  },
+  {
+    "n": 3,
+    "primaryKeyword": "growth plate closure age",
+    "secondaryKeywords": [
+      "when do growth plates close in boys",
+      "when do growth plates close in girls",
+      "growth plate x-ray"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "When Do Growth Plates Close? Age-by-Age Guide for Boys and Girls"
+  },
+  {
+    "n": 4,
+    "primaryKeyword": "growth hormone release during sleep",
+    "secondaryKeywords": [
+      "when is growth hormone released at night",
+      "deep sleep and height growth",
+      "children sleep growth hormone"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "When Does Growth Hormone Release During Sleep? The Science Behind the 10 PM Myth"
+  },
+  {
+    "n": 5,
+    "primaryKeyword": "bone age x-ray for height prediction",
+    "secondaryKeywords": [
+      "skeletal age vs chronological age",
+      "bone age test child",
+      "how bone age predicts adult height"
+    ],
+    "pillar": "Growth Hormone & Medical Treatment",
+    "intent": "informational",
+    "titleIdea": "Bone Age X-Ray: What It Is, How It Works, and What Doctors Learn From It"
+  },
+  {
+    "n": 6,
+    "primaryKeyword": "mid-parental height formula accuracy",
+    "secondaryKeywords": [
+      "predicted adult height calculator parents",
+      "how accurate is height prediction from parents",
+      "target height formula"
+    ],
+    "pillar": "Height Prediction Tools",
+    "intent": "informational",
+    "titleIdea": "Why the Parent Height Formula for Predicting Your Child's Height Is Often Wrong"
+  },
+  {
+    "n": 7,
+    "primaryKeyword": "grandparents height genetics children",
+    "secondaryKeywords": [
+      "does height skip a generation",
+      "multigenerational height inheritance",
+      "grandparent height influence"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Why Your Child's Height May Come From Grandparents, Not Just You"
+  },
+  {
+    "n": 8,
+    "primaryKeyword": "precocious puberty stunted growth",
+    "secondaryKeywords": [
+      "early puberty stops growth",
+      "precocious puberty and short stature",
+      "early puberty growth plate closure"
+    ],
+    "pillar": "Precocious Puberty",
+    "intent": "informational",
+    "titleIdea": "How Precocious Puberty Can Stunt Your Child's Final Height (And What to Do)"
+  },
+  {
+    "n": 9,
+    "primaryKeyword": "childhood obesity and early puberty",
+    "secondaryKeywords": [
+      "overweight children puberty early",
+      "obesity precocious puberty girls",
+      "fat cells estrogen puberty"
+    ],
+    "pillar": "Precocious Puberty",
+    "intent": "informational",
+    "titleIdea": "Why Overweight Children Hit Puberty Earlier — and Stop Growing Sooner"
+  },
+  {
+    "n": 10,
+    "primaryKeyword": "stages of puberty in girls",
+    "secondaryKeywords": [
+      "girl puberty stages order",
+      "Tanner stages girls",
+      "puberty signs in girls age chart"
+    ],
+    "pillar": "Precocious Puberty",
+    "intent": "informational",
+    "titleIdea": "Puberty Stages in Girls: A Complete Parent Guide (With Height Growth Timeline)"
+  },
+  {
+    "n": 11,
+    "primaryKeyword": "first signs of puberty in boys",
+    "secondaryKeywords": [
+      "early puberty signs boys",
+      "Tanner stages boys",
+      "puberty age boys average"
+    ],
+    "pillar": "Precocious Puberty",
+    "intent": "informational",
+    "titleIdea": "First Signs of Puberty in Boys: What Parents Need to Know About the Growth Surge"
+  },
+  {
+    "n": 12,
+    "primaryKeyword": "stress stunts growth in children",
+    "secondaryKeywords": [
+      "cortisol and growth hormone suppression",
+      "academic stress child height",
+      "chronic stress effects on child development"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "Can Stress Stunt Your Child's Growth? What Cortisol Does to Growth Hormone"
+  },
+  {
+    "n": 13,
+    "primaryKeyword": "growing pains in children",
+    "secondaryKeywords": [
+      "are growing pains a sign of height growth",
+      "growing pains vs joint pain children",
+      "growing pains at night legs"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Growing Pains in Children: Are They a Sign Your Child Is Actually Growing Taller?"
+  },
+  {
+    "n": 14,
+    "primaryKeyword": "thyroid problems and growth in children",
+    "secondaryKeywords": [
+      "hypothyroidism stunted growth child",
+      "thyroid and height in kids",
+      "thyroid hormone growth plate"
+    ],
+    "pillar": "Growth Hormone & Medical Treatment",
+    "intent": "informational",
+    "titleIdea": "How Thyroid Problems Can Stop Your Child From Growing — What Parents Need to Know"
+  },
+  {
+    "n": 15,
+    "primaryKeyword": "allergies affect child growth",
+    "secondaryKeywords": [
+      "chronic inflammation stunts height",
+      "food allergy and growth in children",
+      "atopy and short stature"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Do Allergies and Chronic Inflammation Steal Your Child's Height Energy?"
+  },
+  {
+    "n": 16,
+    "primaryKeyword": "endocrine disruptors and early puberty",
+    "secondaryKeywords": [
+      "BPA precocious puberty",
+      "environmental chemicals puberty children",
+      "plastics hormones puberty"
+    ],
+    "pillar": "Precocious Puberty",
+    "intent": "informational",
+    "titleIdea": "How Environmental Hormones Trigger Early Puberty — and What Parents Can Avoid"
+  },
+  {
+    "n": 17,
+    "primaryKeyword": "heavy metals affect child growth",
+    "secondaryKeywords": [
+      "lead exposure stunted growth",
+      "mercury and child development height",
+      "heavy metal toxicity children height"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Can Lead, Mercury, and Cadmium Affect Your Child's Height? The Research Explained"
+  },
+  {
+    "n": 18,
+    "primaryKeyword": "ADHD medication effect on height",
+    "secondaryKeywords": [
+      "Ritalin stunts growth myth",
+      "stimulant medication children height",
+      "ADHD drugs and height suppression"
+    ],
+    "pillar": "Growth Hormone & Medical Treatment",
+    "intent": "informational",
+    "titleIdea": "Do ADHD Medications Stunt Growth? What the Research Actually Shows"
+  },
+  {
+    "n": 19,
+    "primaryKeyword": "steroid medication effect on child height",
+    "secondaryKeywords": [
+      "inhaled steroids and growth in children",
+      "corticosteroids stunt growth kids",
+      "eczema cream and height growth"
+    ],
+    "pillar": "Growth Hormone & Medical Treatment",
+    "intent": "informational",
+    "titleIdea": "Do Steroids Stunt Children's Growth? Inhaled vs. Oral vs. Topical — What Parents Should Know"
+  },
+  {
+    "n": 20,
+    "primaryKeyword": "small for gestational age catch up growth",
+    "secondaryKeywords": [
+      "low birth weight child growth later",
+      "SGA child height",
+      "premature baby final height"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Low Birth Weight and Catch-Up Growth: Can Small Babies Reach Normal Height?"
+  },
+  {
+    "n": 21,
+    "primaryKeyword": "best breakfast foods for child height growth",
+    "secondaryKeywords": [
+      "morning nutrition child development",
+      "breakfast routine kids grow taller",
+      "protein breakfast child height"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "The Best Breakfast Routine to Help Your Child Grow Taller (Backed by Science)"
+  },
+  {
+    "n": 22,
+    "primaryKeyword": "diet plan to help child grow taller",
+    "secondaryKeywords": [
+      "foods that stunt growth in children",
+      "height growth nutrition plan kids",
+      "what to eat to grow taller child"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "The Height-Boosting Diet Plan for Kids: Foods to Eat, Foods to Avoid"
+  },
+  {
+    "n": 23,
+    "primaryKeyword": "how much sleep do kids need to grow taller",
+    "secondaryKeywords": [
+      "sleep hours for growth hormone release kids",
+      "deep sleep stages growth hormone",
+      "children sleep schedule height"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "How Much Sleep Do Kids Really Need to Grow Taller? A Doctor's Guide"
+  },
+  {
+    "n": 24,
+    "primaryKeyword": "circadian rhythm and child growth",
+    "secondaryKeywords": [
+      "morning light sleep routine children",
+      "body clock growth hormone kids",
+      "sleep hygiene child height"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "Open the Curtains: How to Reset Your Child's Body Clock for Better Growth"
+  },
+  {
+    "n": 25,
+    "primaryKeyword": "screen time before bed stunts growth",
+    "secondaryKeywords": [
+      "blue light melatonin children sleep",
+      "phone before bed affects height",
+      "screen time growth hormone suppression"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "How Late-Night Screens Block Growth Hormone in Children — And What to Do About It"
+  },
+  {
+    "n": 26,
+    "primaryKeyword": "best sports for child height growth",
+    "secondaryKeywords": [
+      "age appropriate exercise to grow taller",
+      "physical activity and height by age",
+      "toddler to teen growth exercises"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "Best Exercises and Sports for Each Age to Help Kids Grow Taller"
+  },
+  {
+    "n": 27,
+    "primaryKeyword": "exercises to stimulate growth plates",
+    "secondaryKeywords": [
+      "jump rope height growth",
+      "stretching for height kids",
+      "which exercise is best for height"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "Jump Rope vs. Swimming vs. Basketball: Which Exercise Actually Stimulates Growth Plates?"
+  },
+  {
+    "n": 28,
+    "primaryKeyword": "calcium and vitamin D for child height",
+    "secondaryKeywords": [
+      "calcium absorption vitamin D children",
+      "vitamin D deficiency short stature",
+      "best calcium supplement for kids height"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "Why Calcium Alone Won't Help Your Child Grow Taller — The Role of Vitamin D"
+  },
+  {
+    "n": 29,
+    "primaryKeyword": "picky eater not growing well",
+    "secondaryKeywords": [
+      "how to get picky eater to eat vegetables",
+      "hiding vegetables for picky kids",
+      "fussy eater child height impact"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "7 Tricks to Get Picky Eaters to Eat Vegetables (Without a Battle)"
+  },
+  {
+    "n": 30,
+    "primaryKeyword": "sugar and junk food stunts growth in kids",
+    "secondaryKeywords": [
+      "fast food and growth plate closure",
+      "processed food early puberty children",
+      "high sugar diet child height"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "How Too Much Sugar and Junk Food Can Close Growth Plates Early in Kids"
+  },
+  {
+    "n": 31,
+    "primaryKeyword": "poor posture affect height children",
+    "secondaryKeywords": [
+      "forward head posture kids shorter",
+      "slouching children height",
+      "correcting posture to appear taller"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "Is Slouching Making Your Child Look (and Be) Shorter? Posture Correction Guide"
+  },
+  {
+    "n": 32,
+    "primaryKeyword": "bow legs and height in children",
+    "secondaryKeywords": [
+      "genu varum child height",
+      "correcting bow legs kids taller",
+      "bow leg correction affect growth"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "Can Correcting Bow Legs Help Kids Grow Taller? What Parents Need to Know"
+  },
+  {
+    "n": 33,
+    "primaryKeyword": "scoliosis affect height in children",
+    "secondaryKeywords": [
+      "spinal curve and height loss kids",
+      "scoliosis child shorter",
+      "scoliosis treatment and growth"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "Does Scoliosis Prevent Children From Growing Taller? A Doctor Explains"
+  },
+  {
+    "n": 34,
+    "primaryKeyword": "heavy metal detox diet for children",
+    "secondaryKeywords": [
+      "foods to avoid heavy metal exposure kids",
+      "reduce lead exposure child diet",
+      "mercury safe foods children"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "Eating to Reduce Heavy Metal Exposure in Children: Table Habits That Protect Growth"
+  },
+  {
+    "n": 35,
+    "primaryKeyword": "child growth tracking journal",
+    "secondaryKeywords": [
+      "how to track child height growth",
+      "growth chart for kids at home",
+      "monthly height tracking children"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "How to Create a Child Growth Journal: The Parent's Guide to Tracking Height Month by Month"
+  },
+  {
+    "n": 36,
+    "primaryKeyword": "signs child is not growing normally",
+    "secondaryKeywords": [
+      "growth problems checklist children",
+      "is my child growing slow",
+      "red flags stunted growth child"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "Growth Problem Checklist: 10 Signs Your Child May Not Be Growing Normally"
+  },
+  {
+    "n": 37,
+    "primaryKeyword": "what to expect at a pediatric growth clinic",
+    "secondaryKeywords": [
+      "first visit growth clinic child",
+      "growth clinic evaluation what happens",
+      "preparing for growth specialist appointment"
+    ],
+    "pillar": "Korean Growth Clinic",
+    "intent": "commercial",
+    "titleIdea": "Your Child's First Visit to a Growth Clinic: What to Bring, Expect, and Ask"
+  },
+  {
+    "n": 38,
+    "primaryKeyword": "late bloomer child height will they catch up",
+    "secondaryKeywords": [
+      "constitutional growth delay",
+      "late growth spurt children",
+      "how long to wait if child is short"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "Late Bloomer or Growth Problem? How Long Should You Wait Before Seeing a Doctor?"
+  },
+  {
+    "n": 39,
+    "primaryKeyword": "child height percentile explained",
+    "secondaryKeywords": [
+      "what is a normal height percentile",
+      "reading growth chart for kids",
+      "my child is in the 3rd percentile"
+    ],
+    "pillar": "Height Prediction Tools",
+    "intent": "informational",
+    "titleIdea": "How to Read Your Child's Growth Chart: What Height Percentiles Actually Mean"
+  },
+  {
+    "n": 40,
+    "primaryKeyword": "child eats well but not growing taller",
+    "secondaryKeywords": [
+      "good appetite but short stature child",
+      "why is my child not growing despite eating well",
+      "nutrition absorption problems in kids"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "My Child Eats Well But Is Still Short — Could It Be a Nutrient Absorption Problem?"
+  },
+  {
+    "n": 41,
+    "primaryKeyword": "short parents can child be taller",
+    "secondaryKeywords": [
+      "both parents short child taller",
+      "can environment overcome genetics height",
+      "help child grow taller than parents"
+    ],
+    "pillar": "Height Growth Science",
+    "intent": "informational",
+    "titleIdea": "Both Parents Are Short — Can Your Child Still Grow Taller?"
+  },
+  {
+    "n": 42,
+    "primaryKeyword": "child with low self-esteem about height",
+    "secondaryKeywords": [
+      "short child bullied at school",
+      "how to talk to child about being short",
+      "building confidence short stature child"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "When Your Child Is Self-Conscious About Being Short: What to Say and Do"
+  },
+  {
+    "n": 43,
+    "primaryKeyword": "can a 13 year old still grow taller",
+    "secondaryKeywords": [
+      "height growth after puberty",
+      "teenage growth spurt timing",
+      "can boys still grow at 14 15"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "Can a 13-Year-Old Still Grow Taller? What Determines the Teen Growth Spurt"
+  },
+  {
+    "n": 44,
+    "primaryKeyword": "breast development at age 8 precocious puberty",
+    "secondaryKeywords": [
+      "breast buds early signs puberty girls",
+      "precocious puberty 7 year old girl",
+      "early breast development what to do"
+    ],
+    "pillar": "Precocious Puberty",
+    "intent": "informational",
+    "titleIdea": "My 8-Year-Old Has Breast Buds — Is It Precocious Puberty? A Parent's Guide"
+  },
+  {
+    "n": 45,
+    "primaryKeyword": "what age should child see growth specialist",
+    "secondaryKeywords": [
+      "when to visit pediatric endocrinologist",
+      "growth clinic referral age",
+      "signs child needs growth evaluation"
+    ],
+    "pillar": "Korean Growth Clinic",
+    "intent": "commercial",
+    "titleIdea": "What Age Should Your Child See a Growth Specialist? Signs You Should Not Wait"
+  },
+  {
+    "n": 46,
+    "primaryKeyword": "low predicted height how reliable is it",
+    "secondaryKeywords": [
+      "height prediction accuracy bone age",
+      "how accurate is predicted adult height",
+      "can predicted height change with treatment"
+    ],
+    "pillar": "Height Prediction Tools",
+    "intent": "informational",
+    "titleIdea": "My Child's Predicted Height Is Low — How Reliable Is the Estimate, and Can It Change?"
+  },
+  {
+    "n": 47,
+    "primaryKeyword": "growth hormone therapy side effects children",
+    "secondaryKeywords": [
+      "HGH injection risks kids",
+      "is growth hormone treatment safe",
+      "side effects of growth hormone injections"
+    ],
+    "pillar": "Growth Hormone & Medical Treatment",
+    "intent": "informational",
+    "titleIdea": "Growth Hormone Therapy Side Effects in Children: What Parents Need to Know Before Starting"
+  },
+  {
+    "n": 48,
+    "primaryKeyword": "does milk help children grow taller",
+    "secondaryKeywords": [
+      "calcium in milk height growth",
+      "how much milk for child height",
+      "milk myth height growth"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "Does Drinking Milk Every Day Make Kids Taller? The Science Behind the Calcium Myth"
+  },
+  {
+    "n": 49,
+    "primaryKeyword": "height growth supplements for kids do they work",
+    "secondaryKeywords": [
+      "NuBest tall alternatives",
+      "children height vitamins review",
+      "are height supplements effective"
+    ],
+    "pillar": "Supplements & Height",
+    "intent": "commercial",
+    "titleIdea": "Do Height Growth Supplements for Kids Actually Work? A Doctor's Honest Review"
+  },
+  {
+    "n": 50,
+    "primaryKeyword": "over-scheduled child stress and growth",
+    "secondaryKeywords": [
+      "too many after school activities child health",
+      "academic pressure stunts growth",
+      "busy child cortisol height"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "Could Too Many After-School Activities Be Stopping Your Child From Growing?"
+  },
+  {
+    "n": 51,
+    "primaryKeyword": "how to measure child height accurately at home",
+    "secondaryKeywords": [
+      "measuring child height correctly",
+      "why height changes during the day",
+      "child height varies morning vs evening"
+    ],
+    "pillar": "Height Prediction Tools",
+    "intent": "informational",
+    "titleIdea": "Why Your Child's Height Changes Every Day — and How to Measure It Accurately at Home"
+  },
+  {
+    "n": 52,
+    "primaryKeyword": "breastfed vs formula fed baby height",
+    "secondaryKeywords": [
+      "does breastfeeding affect height",
+      "formula fed babies grow taller",
+      "breastmilk formula growth comparison"
+    ],
+    "pillar": "Child Nutrition & Height",
+    "intent": "informational",
+    "titleIdea": "Breastfed vs. Formula-Fed: Does Feeding Method Affect How Tall Your Baby Grows?"
+  },
+  {
+    "n": 53,
+    "primaryKeyword": "common questions parents ask about child height",
+    "secondaryKeywords": [
+      "height FAQ for parents",
+      "child growth FAQ pediatrician",
+      "top parent questions about kids height"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "Top 10 Questions Parents Google About Child Height — Answered by a Growth Specialist"
+  },
+  {
+    "n": 54,
+    "primaryKeyword": "average height for children by age",
+    "secondaryKeywords": [
+      "height chart by age and gender",
+      "is my child average height",
+      "normal height for 10 year old"
+    ],
+    "pillar": "Height Prediction Tools",
+    "intent": "informational",
+    "titleIdea": "Average Height for Children by Age and Gender — Where Does Your Child Stand?"
+  },
+  {
+    "n": 55,
+    "primaryKeyword": "school physical exam child short stature",
+    "secondaryKeywords": [
+      "annual checkup height concern",
+      "pediatrician said child is short",
+      "school health screening height"
+    ],
+    "pillar": "Parent Concerns & Child Height Worries",
+    "intent": "informational",
+    "titleIdea": "The School Physical Said Your Child Is Short: Here's What to Do Next"
+  },
+  {
+    "n": 56,
+    "primaryKeyword": "habits that prevent children from growing taller",
+    "secondaryKeywords": [
+      "things that stunt child growth",
+      "bad habits affecting child height",
+      "lifestyle mistakes stunting growth"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "5 Common Habits That Are Secretly Preventing Your Child From Reaching Full Height"
+  },
+  {
+    "n": 57,
+    "primaryKeyword": "child height prediction app review",
+    "secondaryKeywords": [
+      "best app to predict child height",
+      "height predictor tool online",
+      "online height calculator kids accuracy"
+    ],
+    "pillar": "Height Prediction Tools",
+    "intent": "informational",
+    "titleIdea": "Testing Child Height Prediction Apps: What They Get Right and Where They Fall Short"
+  },
+  {
+    "n": 58,
+    "primaryKeyword": "winter break height growth tips for kids",
+    "secondaryKeywords": [
+      "school holiday child growth routine",
+      "maximize height growth during vacation",
+      "winter growth spurt children"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "How to Use Winter Break to Maximize Your Child's Height Growth (A Doctor's Plan)"
+  },
+  {
+    "n": 59,
+    "primaryKeyword": "summer height growth challenge for kids",
+    "secondaryKeywords": [
+      "summer growth spurt children",
+      "school summer break height routine",
+      "30 day height growth challenge"
+    ],
+    "pillar": "Exercise & Physical Activity for Height",
+    "intent": "informational",
+    "titleIdea": "Summer Height Growth Challenge: A 30-Day Plan to Help Kids Grow Taller"
+  },
+  {
+    "n": 60,
+    "primaryKeyword": "pediatrician sleep routine experiment for child growth",
+    "secondaryKeywords": [
+      "doctor parent sleep experiment children",
+      "clinical sleep routine height children",
+      "doctor tries sleep schedule child growth"
+    ],
+    "pillar": "Sleep & Lifestyle for Growth",
+    "intent": "informational",
+    "titleIdea": "I'm a Pediatrician and Father of Twins — Here's What Happened When I Tested a Sleep Routine for 30 Days"
+  },
+  {
+    "n": 61,
+    "primaryKeyword": "why parents choose korean growth clinic",
+    "secondaryKeywords": [
+      "korean medical tourism child height",
+      "K-medicine growth treatment abroad",
+      "korean specialist pediatric height"
+    ],
+    "pillar": "Korean Growth Clinic",
+    "intent": "commercial",
+    "titleIdea": "Why International Parents Are Traveling to Korea for Their Child's Growth Treatment"
+  },
+  {
+    "n": 62,
+    "primaryKeyword": "korean growth clinic for asian children",
+    "secondaryKeywords": [
+      "chinese thai parents korean growth doctor",
+      "asian children height treatment korea",
+      "pediatric growth medicine korea"
+    ],
+    "pillar": "Korean Growth Clinic",
+    "intent": "commercial",
+    "titleIdea": "Why Chinese and Thai Parents Are Choosing Korean Growth Clinics for Their Children"
+  }
+]

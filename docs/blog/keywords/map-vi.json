@@ -1,0 +1,746 @@
+[
+  {
+    "n": 1,
+    "primaryKeyword": "di truyền chiều cao từ bố mẹ",
+    "secondaryKeywords": [
+      "yếu tố ảnh hưởng chiều cao trẻ",
+      "gen và chiều cao",
+      "môi trường ảnh hưởng chiều cao"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Di truyền chiều cao: Gen quyết định 80% nhưng 20% môi trường quan trọng thế nào?"
+  },
+  {
+    "n": 2,
+    "primaryKeyword": "thời điểm vàng tăng chiều cao của trẻ",
+    "secondaryKeywords": [
+      "giai đoạn tăng chiều cao nhanh",
+      "chiều cao tăng mạnh khi nào",
+      "cơ hội tăng trưởng của trẻ"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "4 Thời Điểm Vàng Tăng Chiều Cao: Sơ sinh, Tiểu học, Dậy thì và Giai đoạn Quyết định"
+  },
+  {
+    "n": 3,
+    "primaryKeyword": "sụn tăng trưởng đóng lại ở tuổi nào",
+    "secondaryKeywords": [
+      "tuổi đóng sụn tăng trưởng",
+      "sụn tăng trưởng còn mở không",
+      "kiểm tra sụn tăng trưởng"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Sụn Tăng Trưởng Đóng Lại Lúc Mấy Tuổi? Khác Nhau Giữa Bé Trai và Bé Gái"
+  },
+  {
+    "n": 4,
+    "primaryKeyword": "hormone tăng trưởng tiết ra lúc mấy giờ",
+    "secondaryKeywords": [
+      "ngủ sâu tiết hormone tăng trưởng",
+      "giờ vàng hormone tăng trưởng",
+      "trẻ ngủ sớm cao hơn"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Hormone Tăng Trưởng Tiết Ra Lúc Mấy Giờ? Giải Mã Bí Ẩn Giấc Ngủ Giúp Con Cao"
+  },
+  {
+    "n": 5,
+    "primaryKeyword": "chụp x-quang xương để biết còn tăng chiều cao không",
+    "secondaryKeywords": [
+      "tuổi xương là gì",
+      "xét nghiệm sụn tăng trưởng",
+      "x-quang tay đánh giá tăng trưởng"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Chụp X-quang Xương Biết Được Gì? Tuổi Xương vs Tuổi Thật và Cơ Hội Tăng Chiều Cao"
+  },
+  {
+    "n": 6,
+    "primaryKeyword": "cách tính chiều cao tối đa của trẻ theo bố mẹ",
+    "secondaryKeywords": [
+      "công thức dự đoán chiều cao",
+      "chiều cao dự đoán có chính xác không",
+      "tính chiều cao tương lai"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Công Thức Tính Chiều Cao Theo Bố Mẹ Có Chính Xác Không? Sai Số Cần Biết"
+  },
+  {
+    "n": 7,
+    "primaryKeyword": "ông bà ảnh hưởng chiều cao của cháu",
+    "secondaryKeywords": [
+      "di truyền chiều cao qua thế hệ",
+      "gen chiều cao ông nội bà ngoại",
+      "lùn có di truyền cho cháu không"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Tại Sao Chiều Cao Của Ông Bà Lại Quan Trọng? Khoa Học Về Di Truyền Qua Thế Hệ"
+  },
+  {
+    "n": 8,
+    "primaryKeyword": "dậy thì sớm ảnh hưởng chiều cao như thế nào",
+    "secondaryKeywords": [
+      "dậy thì sớm làm thấp lùn",
+      "dậy thì sớm đóng sụn",
+      "dậy thì sớm có hết chiều cao không"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Dậy Thì Sớm Phá Hoại Chiều Cao Trẻ Như Thế Nào? Cơ Chế Đóng Sụn Sớm"
+  },
+  {
+    "n": 9,
+    "primaryKeyword": "trẻ béo phì tăng chiều cao rồi dừng sớm",
+    "secondaryKeywords": [
+      "béo phì ảnh hưởng chiều cao",
+      "béo phì dậy thì sớm",
+      "trẻ thừa cân cao nhanh rồi lùn"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Vì Sao Trẻ Béo Phì Cao Nhanh Lúc Nhỏ Rồi Lùn Hơn Bạn Khi Lớn?"
+  },
+  {
+    "n": 10,
+    "primaryKeyword": "thứ tự dậy thì của bé gái",
+    "secondaryKeywords": [
+      "các giai đoạn dậy thì bé gái",
+      "bé gái dậy thì bao nhiêu tuổi",
+      "kinh nguyệt lần đầu và chiều cao"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Thứ Tự Dậy Thì Của Bé Gái: Hướng Dẫn Đầy Đủ Từ Dấu Hiệu Đầu Tiên Đến Kinh Nguyệt"
+  },
+  {
+    "n": 11,
+    "primaryKeyword": "dấu hiệu dậy thì ở bé trai",
+    "secondaryKeywords": [
+      "bé trai dậy thì mấy tuổi",
+      "dấu hiệu đầu tiên dậy thì bé trai",
+      "vỡ giọng và chiều cao"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Dấu Hiệu Dậy Thì Đầu Tiên Ở Bé Trai: Điều Bố Mẹ Cần Biết Để Không Bỏ Lỡ"
+  },
+  {
+    "n": 12,
+    "primaryKeyword": "căng thẳng học hành ảnh hưởng chiều cao trẻ",
+    "secondaryKeywords": [
+      "stress cản trở tăng chiều cao",
+      "cortisol cản trở hormone tăng trưởng",
+      "trẻ áp lực học tập thấp lùn"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Căng Thẳng Học Tập Ngăn Trẻ Cao Lên: Cortisol Phá Hoại Hormone Tăng Trưởng Thế Nào?"
+  },
+  {
+    "n": 13,
+    "primaryKeyword": "đau xương tăng trưởng ở trẻ em có bình thường không",
+    "secondaryKeywords": [
+      "trẻ đau chân ban đêm",
+      "đau xương trẻ em nguyên nhân",
+      "đau tăng trưởng có phải con đang cao không"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Trẻ Đau Xương Ban Đêm Có Phải Đang Cao Không? Nguyên Nhân Thật Và Cách Xử Lý"
+  },
+  {
+    "n": 14,
+    "primaryKeyword": "tuyến giáp ảnh hưởng chiều cao trẻ em",
+    "secondaryKeywords": [
+      "suy giáp trẻ em chậm tăng trưởng",
+      "rối loạn hormone tuyến giáp và chiều cao",
+      "trẻ chậm lớn kiểm tra tuyến giáp"
+    ],
+    "pillar": "Hormone tăng trưởng và điều trị y tế",
+    "intent": "informational",
+    "titleIdea": "Tuyến Giáp Ảnh Hưởng Chiều Cao Trẻ: Khi Nào Cần Kiểm Tra và Điều Trị?"
+  },
+  {
+    "n": 15,
+    "primaryKeyword": "dị ứng mãn tính ảnh hưởng chiều cao trẻ",
+    "secondaryKeywords": [
+      "viêm mũi dị ứng và chiều cao",
+      "trẻ hay bệnh tăng chiều cao kém",
+      "viêm mãn tính cản trở tăng trưởng"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Dị Ứng và Viêm Mãn Tính Đang Cướp Đi Chiều Cao Của Con Bạn Như Thế Nào?"
+  },
+  {
+    "n": 16,
+    "primaryKeyword": "hóa chất môi trường gây dậy thì sớm",
+    "secondaryKeywords": [
+      "chất xenoestrogen dậy thì sớm",
+      "nhựa BPA dậy thì sớm",
+      "ô nhiễm môi trường ảnh hưởng hormone trẻ"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Hóa Chất Trong Đồ Nhựa Gây Dậy Thì Sớm Cho Con: Con Đường Ảnh Hưởng Hormone"
+  },
+  {
+    "n": 17,
+    "primaryKeyword": "kim loại nặng ảnh hưởng chiều cao trẻ em",
+    "secondaryKeywords": [
+      "chì thủy ngân ảnh hưởng tăng trưởng",
+      "ngộ độc kim loại nặng trẻ chậm lớn",
+      "xét nghiệm kim loại nặng cho trẻ"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Kim Loại Nặng Chì, Thủy Ngân Ảnh Hưởng Chiều Cao Trẻ Như Thế Nào?"
+  },
+  {
+    "n": 18,
+    "primaryKeyword": "thuốc ADHD ảnh hưởng chiều cao trẻ em",
+    "secondaryKeywords": [
+      "thuốc tăng động giảm chiều cao",
+      "ADHD điều trị và tăng trưởng",
+      "con uống thuốc ADHD có thấp lùn không"
+    ],
+    "pillar": "Hormone tăng trưởng và điều trị y tế",
+    "intent": "informational",
+    "titleIdea": "Thuốc Trị ADHD Ảnh Hưởng Chiều Cao Trẻ: Sự Thật Bố Mẹ Cần Biết"
+  },
+  {
+    "n": 19,
+    "primaryKeyword": "thuốc corticoid ảnh hưởng chiều cao trẻ",
+    "secondaryKeywords": [
+      "dùng corticoid dài ngày trẻ chậm lớn",
+      "xịt mũi corticoid trẻ em có hại không",
+      "steroid và tăng trưởng"
+    ],
+    "pillar": "Hormone tăng trưởng và điều trị y tế",
+    "intent": "informational",
+    "titleIdea": "Thuốc Corticoid Có Làm Con Thấp Lùn Không? Phân Biệt Xịt Mũi, Bôi Da, Uống"
+  },
+  {
+    "n": 20,
+    "primaryKeyword": "trẻ sinh non nhẹ cân có tăng chiều cao bình thường không",
+    "secondaryKeywords": [
+      "trẻ nhẹ cân khi sinh tăng chiều cao",
+      "bắt kịp tăng trưởng trẻ sinh non",
+      "trẻ suy dinh dưỡng bẩm sinh chiều cao"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Trẻ Sinh Nhẹ Cân Có Thể Bắt Kịp Chiều Cao Không? Khoa Học Nói Gì?"
+  },
+  {
+    "n": 21,
+    "primaryKeyword": "bữa sáng giúp trẻ tăng chiều cao",
+    "secondaryKeywords": [
+      "ăn sáng giúp con cao",
+      "thực đơn bữa sáng cho trẻ tăng trưởng",
+      "trẻ bỏ bữa sáng thấp lùn"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Bữa Sáng Lý Tưởng Giúp Trẻ Tăng Chiều Cao: Thực Đơn và Thói Quen Buổi Sáng"
+  },
+  {
+    "n": 22,
+    "primaryKeyword": "thực đơn tăng chiều cao cho trẻ theo tuần",
+    "secondaryKeywords": [
+      "thực phẩm giúp con cao hơn",
+      "dinh dưỡng cần thiết để tăng chiều cao",
+      "nên ăn gì để cao hơn"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Thực Đơn Tăng Chiều Cao Cho Trẻ: Kim Tự Tháp Dinh Dưỡng — Ăn Gì và Tránh Gì"
+  },
+  {
+    "n": 23,
+    "primaryKeyword": "ngủ sâu giúp tăng chiều cao như thế nào",
+    "secondaryKeywords": [
+      "hormone tăng trưởng tiết khi ngủ sâu",
+      "giấc ngủ ngon trẻ em chiều cao",
+      "cách cho trẻ ngủ sâu giấc"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Không Phải 10 Giờ Tối, Mà Ngủ Sâu Mới Là Chìa Khóa: 5 Bước Xây Thói Quen Ngủ Tốt"
+  },
+  {
+    "n": 24,
+    "primaryKeyword": "thói quen buổi sáng giúp trẻ tăng chiều cao",
+    "secondaryKeywords": [
+      "đồng hồ sinh học và tăng trưởng",
+      "mở rèm buổi sáng hormone melatonin",
+      "lịch sinh hoạt giúp con cao"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Bắt Đầu Từ Việc Mở Rèm Cửa Sổ: Thói Quen Buổi Sáng Điều Chỉnh Đồng Hồ Sinh Học Giúp Con Cao"
+  },
+  {
+    "n": 25,
+    "primaryKeyword": "điện thoại trước giờ ngủ ảnh hưởng chiều cao trẻ",
+    "secondaryKeywords": [
+      "ánh sáng xanh cản hormone tăng trưởng",
+      "smartphone và giấc ngủ trẻ em",
+      "trẻ thức khuya xem điện thoại thấp lùn"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Tại Sao Điện Thoại Trước Giờ Ngủ Cản Trở Chiều Cao Của Con? Ánh Sáng Xanh và Hormone"
+  },
+  {
+    "n": 26,
+    "primaryKeyword": "bài tập thể dục giúp trẻ tăng chiều cao theo từng độ tuổi",
+    "secondaryKeywords": [
+      "vận động giúp con cao theo tuổi",
+      "trẻ mấy tuổi nên chơi môn gì để cao",
+      "thể dục tăng chiều cao trẻ em"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Bài Tập Giúp Trẻ Tăng Chiều Cao Theo Từng Độ Tuổi: Từ Mầm Non Đến Trung Học"
+  },
+  {
+    "n": 27,
+    "primaryKeyword": "môn thể thao nào giúp trẻ cao hơn",
+    "secondaryKeywords": [
+      "nhảy dây bơi lội bóng rổ tăng chiều cao",
+      "thể thao kích thích sụn tăng trưởng",
+      "bơi lội hay nhảy dây tốt hơn cho chiều cao"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Nhảy Dây Không Phải Duy Nhất: So Sánh Các Môn Thể Thao Kích Thích Sụn Tăng Trưởng"
+  },
+  {
+    "n": 28,
+    "primaryKeyword": "canxi và vitamin D uống cùng nhau giúp trẻ cao hơn không",
+    "secondaryKeywords": [
+      "bổ sung canxi cho trẻ đúng cách",
+      "thiếu vitamin D trẻ chậm lớn",
+      "canxi vitamin D kết hợp hiệu quả"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Uống Canxi Một Mình Không Đủ: Vì Sao Phải Kết Hợp Với Vitamin D Để Trẻ Cao"
+  },
+  {
+    "n": 29,
+    "primaryKeyword": "cách cho trẻ kén ăn ăn rau củ",
+    "secondaryKeywords": [
+      "trẻ không chịu ăn rau phải làm sao",
+      "mẹo cho trẻ biếng ăn ăn rau",
+      "thực đơn ngon cho trẻ kén chọn"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "7 Cách Cho Trẻ Kén Ăn Chịu Ăn Rau Củ: Bí Quyết Của Bố Mẹ Thông Minh"
+  },
+  {
+    "n": 30,
+    "primaryKeyword": "thức ăn ngọt béo làm đóng sụn tăng trưởng sớm",
+    "secondaryKeywords": [
+      "đường làm trẻ dậy thì sớm",
+      "đồ ăn nhanh ảnh hưởng chiều cao",
+      "tránh gì để con không thấp lùn"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Tại Sao Đồ Ngọt Béo Làm Đóng Sụn Tăng Trưởng Sớm? Thực Phẩm Cần Hạn Chế"
+  },
+  {
+    "n": 31,
+    "primaryKeyword": "tư thế xấu làm trẻ trông thấp hơn thực tế",
+    "secondaryKeywords": [
+      "chỉnh tư thế để cao hơn",
+      "gù lưng cổ rùa ảnh hưởng chiều cao",
+      "bài tập chỉnh tư thế cho trẻ"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Tư Thế Xấu Làm Trẻ Trông Thấp Hơn: Cách Chỉnh Gù Lưng và Cổ Rùa Cho Trẻ"
+  },
+  {
+    "n": 32,
+    "primaryKeyword": "chân vòng kiềng có ảnh hưởng chiều cao không",
+    "secondaryKeywords": [
+      "nắn chân vòng kiềng trẻ em",
+      "chân chữ O chữ X và chiều cao",
+      "chỉnh chân vòng kiềng có cao thêm không"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Chân Vòng Kiềng Có Làm Con Lùn Hơn Không? Khi Nào Cần Chỉnh Và Hiệu Quả Đến Đâu?"
+  },
+  {
+    "n": 33,
+    "primaryKeyword": "vẹo cột sống ảnh hưởng chiều cao trẻ em",
+    "secondaryKeywords": [
+      "cong vẹo cột sống trẻ em và chiều cao",
+      "xử lý vẹo cột sống để con cao hơn",
+      "kiểm tra vẹo cột sống ở đâu"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Vẹo Cột Sống Có Làm Trẻ Không Cao Được Không? Những Điều Bố Mẹ Cần Biết"
+  },
+  {
+    "n": 34,
+    "primaryKeyword": "thói quen ăn uống phòng tránh kim loại nặng cho trẻ",
+    "secondaryKeywords": [
+      "thực phẩm sạch tránh ngộ độc kim loại",
+      "rau củ an toàn cho trẻ em",
+      "phòng tránh chì thủy ngân trong thức ăn"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Bảng Ăn Uống Phòng Tránh Kim Loại Nặng Cho Trẻ: Thói Quen Bữa Cơm An Toàn"
+  },
+  {
+    "n": 35,
+    "primaryKeyword": "cách ghi nhật ký theo dõi chiều cao trẻ em",
+    "secondaryKeywords": [
+      "theo dõi tăng trưởng con hàng tháng",
+      "sổ nhật ký chiều cao trẻ",
+      "cách đo và ghi lại chiều cao"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Cách Lập Nhật Ký Theo Dõi Chiều Cao Cho Con: Bố Mẹ Cần Ghi Lại Những Gì?"
+  },
+  {
+    "n": 36,
+    "primaryKeyword": "kiểm tra các yếu tố cản trở chiều cao trẻ",
+    "secondaryKeywords": [
+      "danh sách yếu tố làm trẻ không cao",
+      "tự kiểm tra con có vấn đề tăng trưởng không",
+      "dấu hiệu trẻ tăng chiều cao kém"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Checklist Tự Kiểm Tra: Những Yếu Tố Đang Cản Trở Chiều Cao Của Con Bạn"
+  },
+  {
+    "n": 37,
+    "primaryKeyword": "lần đầu đến phòng khám tăng trưởng cần chuẩn bị gì",
+    "secondaryKeywords": [
+      "đến bác sĩ tăng chiều cao cần mang gì",
+      "khám chiều cao trẻ cần giấy tờ gì",
+      "chuẩn bị trước khi khám tăng trưởng"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "Lần Đầu Đến Phòng Khám Tăng Trưởng: Checklist Đầy Đủ Cần Chuẩn Bị Gì"
+  },
+  {
+    "n": 38,
+    "primaryKeyword": "chờ đợi thêm con tự cao có được không",
+    "secondaryKeywords": [
+      "bao lâu thì nên đưa con đi khám chiều cao",
+      "bố mẹ lùn mà chờ con tự cao được không",
+      "khi nào không nên chờ thêm"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "\"Chờ Con Tự Cao\" — Đến Bao Lâu Thì Quá Muộn? Thời Điểm Không Thể Trì Hoãn"
+  },
+  {
+    "n": 39,
+    "primaryKeyword": "bảng bách phân vị chiều cao trẻ em Việt Nam",
+    "secondaryKeywords": [
+      "chuẩn chiều cao theo tuổi trẻ em",
+      "con thấp hơn bạn bao nhiêu mới lo",
+      "bảng tăng trưởng chuẩn WHO"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Con Thấp Nhất Lớp: Cách Đọc Bảng Bách Phân Vị Chiều Cao và Khi Nào Thật Sự Lo"
+  },
+  {
+    "n": 40,
+    "primaryKeyword": "ăn nhiều mà trẻ vẫn không cao lý do gì",
+    "secondaryKeywords": [
+      "con ăn tốt nhưng chiều cao không tăng",
+      "hấp thụ dinh dưỡng kém trẻ em",
+      "ăn đủ mà vẫn thấp là vì sao"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Con Ăn Nhiều Mà Vẫn Không Cao: Vấn Đề Hấp Thụ Dinh Dưỡng Bố Mẹ Hay Bỏ Qua"
+  },
+  {
+    "n": 41,
+    "primaryKeyword": "bố mẹ thấp có thể cho con cao hơn không",
+    "secondaryKeywords": [
+      "con cao hơn bố mẹ có thể không",
+      "gia đình lùn có cải thiện chiều cao con không",
+      "bố mẹ lùn con có cao không"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Bố Mẹ Thấp Có Thể Cho Con Cao Hơn Không? Những Gì Khoa Học Nói Về Điều Này"
+  },
+  {
+    "n": 42,
+    "primaryKeyword": "trẻ tự ti vì thấp lùn phải làm gì",
+    "secondaryKeywords": [
+      "con buồn vì thấp hơn bạn bè",
+      "trẻ mặc cảm về chiều cao",
+      "nói gì với con về chiều cao"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "informational",
+    "titleIdea": "Con Bị Bạn Trêu Vì Thấp Lùn: Bố Mẹ Nên Nói Gì Và Làm Gì Để Con Tự Tin Hơn"
+  },
+  {
+    "n": 43,
+    "primaryKeyword": "học sinh cấp 2 còn có thể cao thêm không",
+    "secondaryKeywords": [
+      "14 15 tuổi còn cao không",
+      "sau dậy thì có còn tăng chiều cao không",
+      "trẻ trung học còn tăng trưởng không"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Học Sinh Cấp 2 Còn Cơ Hội Cao Thêm Không? Sự Thật Về Tăng Trưởng Sau Dậy Thì"
+  },
+  {
+    "n": 44,
+    "primaryKeyword": "bé gái ngực phát triển sớm có phải dậy thì sớm không",
+    "secondaryKeywords": [
+      "con gái 8 tuổi có ngực bình thường không",
+      "dấu hiệu dậy thì sớm ở bé gái",
+      "tuổi nào bé gái bắt đầu phát triển ngực"
+    ],
+    "pillar": "Dậy thì sớm và sức khỏe xương",
+    "intent": "informational",
+    "titleIdea": "Con Gái Tiểu Học Ngực Phát Triển Sớm: Dậy Thì Sớm Hay Bình Thường? Khi Nào Cần Khám?"
+  },
+  {
+    "n": 45,
+    "primaryKeyword": "nên đưa con đi khám chiều cao năm mấy tuổi",
+    "secondaryKeywords": [
+      "phòng khám tăng trưởng phù hợp mấy tuổi",
+      "độ tuổi tốt nhất khám chiều cao",
+      "khi nào nên lo về chiều cao trẻ"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "Nên Đưa Con Đi Khám Chiều Cao Lúc Mấy Tuổi? Thời Điểm Lý Tưởng Theo Bác Sĩ"
+  },
+  {
+    "n": 46,
+    "primaryKeyword": "kết quả dự đoán chiều cao thấp có đúng không",
+    "secondaryKeywords": [
+      "chiều cao dự đoán có thể thay đổi không",
+      "dự đoán chiều cao sai bao nhiêu",
+      "con dự đoán lùn còn can thiệp được không"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Kết Quả Dự Đoán Chiều Cao Thấp Thì Đáng Tin Đến Đâu? Có Thể Thay Đổi Không?"
+  },
+  {
+    "n": 47,
+    "primaryKeyword": "tiêm hormone tăng trưởng có tác dụng phụ không",
+    "secondaryKeywords": [
+      "hormone tăng trưởng có an toàn không",
+      "tác dụng phụ mũi tăng trưởng",
+      "rủi ro điều trị hormone tăng trưởng"
+    ],
+    "pillar": "Hormone tăng trưởng và điều trị y tế",
+    "intent": "informational",
+    "titleIdea": "Tiêm Hormone Tăng Trưởng Có Tác Dụng Phụ Nguy Hiểm Không? Sự Thật Từ Bác Sĩ"
+  },
+  {
+    "n": 48,
+    "primaryKeyword": "uống sữa mỗi ngày có giúp trẻ tăng chiều cao không",
+    "secondaryKeywords": [
+      "sữa giúp cao thật không",
+      "canxi trong sữa tốt cho chiều cao",
+      "sữa tươi hay sữa tăng chiều cao tốt hơn"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Uống Sữa Mỗi Ngày Có Giúp Con Cao Hơn Không? Sự Thật Về Canxi và Chiều Cao"
+  },
+  {
+    "n": 49,
+    "primaryKeyword": "thực phẩm chức năng tăng chiều cao có hiệu quả không",
+    "secondaryKeywords": [
+      "thuốc tăng chiều cao trẻ em có tốt không",
+      "NuBest tăng chiều cao có thật không",
+      "thực phẩm bổ sung cho trẻ thấp lùn"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "Thực Phẩm Chức Năng Tăng Chiều Cao Có Thật Sự Hiệu Quả? Y Tế Nói Gì?"
+  },
+  {
+    "n": 50,
+    "primaryKeyword": "học thêm nhiều áp lực học tập có ảnh hưởng chiều cao không",
+    "secondaryKeywords": [
+      "con học nhiều quá có bị thấp lùn không",
+      "áp lực điểm số cản trở tăng trưởng",
+      "lịch học dày đặc và hormone tăng trưởng"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Con Học Thêm 3-4 Ca Mỗi Ngày: Áp Lực Học Tập Có Đang Cản Trở Chiều Cao Không?"
+  },
+  {
+    "n": 51,
+    "primaryKeyword": "cách đo chiều cao trẻ em chính xác tại nhà",
+    "secondaryKeywords": [
+      "đo chiều cao tại nhà chuẩn nhất",
+      "tại sao chiều cao đo lúc sáng khác tối",
+      "hướng dẫn đo chiều cao trẻ em"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Tại Sao Chiều Cao Con Ngày Nào Cũng Khác? Cách Đo Chiều Cao Tại Nhà Chính Xác Nhất"
+  },
+  {
+    "n": 52,
+    "primaryKeyword": "nuôi con bằng sữa mẹ hay sữa công thức con cao hơn",
+    "secondaryKeywords": [
+      "sữa mẹ sữa công thức ảnh hưởng chiều cao",
+      "bú mẹ hay bú bình con cao hơn",
+      "dinh dưỡng cho trẻ sơ sinh và chiều cao"
+    ],
+    "pillar": "Thực đơn và dinh dưỡng tăng chiều cao",
+    "intent": "informational",
+    "titleIdea": "Trẻ Bú Mẹ Hay Bú Sữa Công Thức Cao Hơn? Nghiên Cứu Thực Sự Nói Gì?"
+  },
+  {
+    "n": 53,
+    "primaryKeyword": "câu hỏi phổ biến nhất về chiều cao trẻ em",
+    "secondaryKeywords": [
+      "bố mẹ lo lắng chiều cao con hay hỏi gì",
+      "thắc mắc phổ biến về tăng trưởng trẻ",
+      "giải đáp thắc mắc về chiều cao"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Top 10 Câu Hỏi Thường Gặp Nhất Của Bố Mẹ Lo Lắng Về Chiều Cao Con"
+  },
+  {
+    "n": 54,
+    "primaryKeyword": "chiều cao trung bình học sinh tiểu học hiện nay",
+    "secondaryKeywords": [
+      "chuẩn chiều cao trẻ em theo tuổi",
+      "con học tiểu học cao bao nhiêu là bình thường",
+      "bảng chiều cao trung bình trẻ em Việt Nam"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Chiều Cao Trung Bình Học Sinh Tiểu Học Hiện Nay Bao Nhiêu? Con Bạn Đang Ở Đâu?"
+  },
+  {
+    "n": 55,
+    "primaryKeyword": "kết quả kiểm tra sức khỏe trường học con thấp phải làm gì",
+    "secondaryKeywords": [
+      "con khám sức khỏe trường thấp hơn chuẩn",
+      "phiếu sức khỏe học sinh chiều cao thấp",
+      "sau kết quả khám trường cần làm gì"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "Con Bị Đánh Giá Thấp Trong Kiểm Tra Sức Khỏe Trường: Bước Tiếp Theo Là Gì?"
+  },
+  {
+    "n": 56,
+    "primaryKeyword": "thói quen xấu làm trẻ không cao được",
+    "secondaryKeywords": [
+      "hành động hàng ngày cản trở chiều cao",
+      "trẻ thấp thường có thói quen gì",
+      "sai lầm của bố mẹ khiến con không cao"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "5 Thói Quen Xấu Phổ Biến Khiến Trẻ Không Đạt Chiều Cao Tiềm Năng"
+  },
+  {
+    "n": 57,
+    "primaryKeyword": "ứng dụng dự đoán chiều cao trẻ em trên điện thoại",
+    "secondaryKeywords": [
+      "app tính chiều cao tương lai",
+      "công cụ dự đoán chiều cao online",
+      "tính chiều cao dự đoán theo bố mẹ"
+    ],
+    "pillar": "Dự đoán chiều cao và theo dõi tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Đã Dùng Thử Ứng Dụng Dự Đoán Chiều Cao: Kết Quả Và Bước Tiếp Theo Cần Làm"
+  },
+  {
+    "n": 58,
+    "primaryKeyword": "kỳ nghỉ đông trẻ tăng chiều cao nhiều không",
+    "secondaryKeywords": [
+      "mùa đông trẻ cao nhanh hơn không",
+      "nghỉ học dài ngày cơ hội tăng chiều cao",
+      "kế hoạch tăng chiều cao cho con kỳ nghỉ"
+    ],
+    "pillar": "Cách tăng chiều cao cho trẻ",
+    "intent": "informational",
+    "titleIdea": "Kỳ Nghỉ Đông — Cơ Hội Cuối Để Tăng Chiều Cao Cho Con: Kế Hoạch Chi Tiết"
+  },
+  {
+    "n": 59,
+    "primaryKeyword": "kỳ nghỉ hè tăng chiều cao cho con thế nào",
+    "secondaryKeywords": [
+      "thách thức tăng chiều cao mùa hè",
+      "nghỉ hè con có cao hơn không",
+      "lịch tập thể dục dinh dưỡng mùa hè cho trẻ"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Thử Thách Tăng Chiều Cao Mùa Hè Cho Con: Kế Hoạch 3 Tháng Chi Tiết"
+  },
+  {
+    "n": 60,
+    "primaryKeyword": "bác sĩ nhi thử nghiệm thói quen ngủ 30 ngày kết quả",
+    "secondaryKeywords": [
+      "bác sĩ chia sẻ kinh nghiệm thực tế về giấc ngủ",
+      "thực nghiệm thói quen ngủ tốt 1 tháng",
+      "bác sĩ nhi chia sẻ bí quyết nuôi con"
+    ],
+    "pillar": "Giấc ngủ và thói quen sống tăng trưởng",
+    "intent": "informational",
+    "titleIdea": "Bác Sĩ Nhi Thử Nghiệm Thói Quen Ngủ 30 Ngày Cho Cặp Song Sinh: Kết Quả Bất Ngờ"
+  },
+  {
+    "n": 61,
+    "primaryKeyword": "tại sao bố mẹ nước ngoài đến Hàn Quốc khám chiều cao",
+    "secondaryKeywords": [
+      "phòng khám tăng chiều cao Hàn Quốc nổi tiếng vì sao",
+      "y tế Hàn Quốc điều trị chiều cao uy tín",
+      "du lịch y tế Hàn Quốc tăng trưởng"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "Vì Sao Bố Mẹ Từ Khắp Châu Á Đến Hàn Quốc Để Điều Trị Chiều Cao Cho Con?"
+  },
+  {
+    "n": 62,
+    "primaryKeyword": "bố mẹ Trung Quốc Thái Lan đến phòng khám chiều cao Hàn Quốc vì sao",
+    "secondaryKeywords": [
+      "phòng khám tăng trưởng 187 Hàn Quốc dịch vụ quốc tế",
+      "khám chiều cao tại Hàn Quốc cho người nước ngoài",
+      "điều trị chiều cao Hàn Quốc chi phí và quy trình"
+    ],
+    "pillar": "Phòng khám tăng trưởng Hàn Quốc",
+    "intent": "commercial",
+    "titleIdea": "Bố Mẹ Trung Quốc và Thái Lan Chọn Phòng Khám Chiều Cao Hàn Quốc: Lý Do Thực Sự"
+  }
+]
