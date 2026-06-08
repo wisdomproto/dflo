@@ -12,6 +12,7 @@ import type {
 import { BLOG_SEO_LANGS } from '../../types';
 import { saveBlogSeo } from '../../services/marketingArticleService';
 import { uploadImageFile } from '../../services/aiImageService';
+import { ImageDropzone } from './ImageDropzone';
 
 const ACCENT = '#4A2D6B';
 const LANG_LABEL: Record<BlogSeoLangCode, { flag: string; label: string }> = {
@@ -44,7 +45,6 @@ function fullText(a: BlogSeoArticle): string {
 export function BlogSeoPanel({ article }: { article: MarketingArticle }) {
   const [blog, setBlog] = useState<BlogSeoMap>(article.blog ?? {});
   const [lang, setLang] = useState<BlogSeoLangCode>('ko');
-  const [uploadingIdx, setUploadingIdx] = useState<number | null>(null);
   const [bulkProgress, setBulkProgress] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -87,20 +87,6 @@ export function BlogSeoPanel({ article }: { article: MarketingArticle }) {
       setCopied(id);
       setTimeout(() => setCopied((c) => (c === id ? null : c)), 1200);
     });
-  };
-
-  const onUploadImg = async (i: number, file?: File | null) => {
-    if (!file) return;
-    setUploadingIdx(i);
-    setErr(null);
-    try {
-      const url = await uploadImageFile(file);
-      patchSection(i, { imageUrl: url });
-    } catch (e) {
-      setErr(e instanceof Error ? e.message : '이미지 업로드 실패');
-    } finally {
-      setUploadingIdx(null);
-    }
   };
 
   const onBulkUpload = async (files?: FileList | null) => {
@@ -238,26 +224,13 @@ export function BlogSeoPanel({ article }: { article: MarketingArticle }) {
                 <div className="flex flex-col gap-3 sm:flex-row">
                   {/* Image */}
                   <div className="sm:w-56 shrink-0">
-                    {s.imageUrl ? (
-                      <div className="relative">
-                        <img src={s.imageUrl} alt={s.heading} className="w-full rounded-lg border border-gray-200 object-cover" style={{ aspectRatio: '16/9' }} />
-                        <button
-                          type="button"
-                          onClick={() => patchSection(i, { imageUrl: null })}
-                          className="absolute right-1 top-1 rounded-full bg-black/60 px-2 text-xs text-white"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    ) : (
-                      <label
-                        className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-xs text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]"
-                        style={{ aspectRatio: '16/9' }}
-                      >
-                        {uploadingIdx === i ? '업로드 중…' : '🖼 이미지 업로드 (16:9)'}
-                        <input type="file" accept="image/*" className="hidden" onChange={(e) => onUploadImg(i, e.target.files?.[0])} />
-                      </label>
-                    )}
+                    <ImageDropzone
+                      url={s.imageUrl}
+                      alt={s.heading}
+                      onUploaded={(u) => patchSection(i, { imageUrl: u })}
+                      onClear={() => patchSection(i, { imageUrl: null })}
+                      aspectRatio="16/9"
+                    />
                     <div className="mt-1 flex items-start gap-1">
                       <p className="flex-1 text-[11px] leading-snug text-gray-400">🎨 {s.imagePrompt}</p>
                       <button

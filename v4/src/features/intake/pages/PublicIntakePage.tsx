@@ -26,6 +26,7 @@ function emptySurvey(): IntakeSurvey {
     tanner_stage: null,
     short_stature_causes: [],
     short_stature_other: '',
+    acquisition_channel: null,
     updated_at: '',
   };
 }

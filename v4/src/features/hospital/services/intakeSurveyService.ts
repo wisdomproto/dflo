@@ -14,6 +14,7 @@ export const DEFAULT_INTAKE_SURVEY: IntakeSurvey = {
   tanner_stage: null,
   short_stature_causes: [],
   short_stature_other: '',
+  acquisition_channel: null,
   updated_at: new Date(0).toISOString(),
 };
 

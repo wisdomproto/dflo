@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { BlogCard, BlogCardContent, BlogCardType, GlobalCardStyle } from '../../types';
 import { RichTextEditor } from './RichTextEditor';
+import { ImageDropzone } from './ImageDropzone';
 
 const ACCENT = '#4A2D6B';
 
@@ -78,17 +79,12 @@ export function BlogCardItem({ card, globalStyle, onChange, onDelete, dragHandle
 
       {cardType === 'image' && (
         <div className="space-y-2">
-          {content.url ? (
-            <img
-              src={content.url}
-              alt={content.alt ?? ''}
-              className="max-h-64 w-full rounded-lg object-cover"
-            />
-          ) : (
-            <div className="flex h-32 items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-50 text-sm text-gray-400">
-              이미지 (Phase 3에서 생성)
-            </div>
-          )}
+          <ImageDropzone
+            url={content.url ?? null}
+            alt={content.alt}
+            onUploaded={(u) => onChange({ ...content, url: u })}
+            onClear={() => onChange({ ...content, url: '' })}
+          />
           <label className="block text-xs font-medium text-gray-500">
             이미지 프롬프트
             <input

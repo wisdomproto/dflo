@@ -1,5 +1,5 @@
 import type { StepProps } from './StepBasic';
-import { YesNoField, TextField } from './fields';
+import { YesNoField, TextField, SelectField } from './fields';
 
 export function StepFamily({ state, set, L }: StepProps) {
   const s = state.survey;
@@ -9,6 +9,13 @@ export function StepFamily({ state, set, L }: StepProps) {
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-lg font-bold text-slate-800">{L.s3Title}</h2>
+
+      <SelectField
+        label={L.acquisitionChannel}
+        value={s.acquisition_channel ?? ''}
+        onChange={(v) => setSurvey({ acquisition_channel: v || null })}
+        options={L.acquisitionChannelOpts}
+      />
 
       <YesNoField
         label={L.pastConsult}

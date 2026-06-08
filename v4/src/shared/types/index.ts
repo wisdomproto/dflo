@@ -105,6 +105,8 @@ export interface IntakeSurvey {
   short_stature_causes: ShortStatureCause[];
   /** Q16 기타 원인 자유 서술 */
   short_stature_other: string;
+  /** 유입 경로 */
+  acquisition_channel: string | null;
   /** ISO timestamp, 마지막 저장 시각 */
   updated_at: string;
 }

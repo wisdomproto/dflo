@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchSubmissions } from '@/features/admin/services/intakeSubmissionService';
 import IntakeSubmissionDetail from '@/features/admin/components/IntakeSubmissionDetail';
-import { countryFlag } from '@/shared/data/countries';
+import { countryFlag, countryLabel } from '@/shared/data/countries';
 import type { IntakeSubmission, IntakeLang } from '@/features/intake/types';
 
 // ================================================
@@ -100,16 +100,17 @@ function StatusBadge({ status }: { status: IntakeSubmission['status'] }) {
 export default function AdminIntakePage() {
   const navigate = useNavigate();
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('pending');
+  const [countryFilter, setCountryFilter] = useState<string>('all');
   const [subs, setSubs] = useState<IntakeSubmission[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  async function load(filter: StatusFilter) {
+  // 전체를 한 번 fetch → 국가/상태는 클라에서 필터링(국가별 미처리 배지 계산 위해).
+  async function load() {
     try {
       setLoading(true);
-      const data = await fetchSubmissions(filter);
+      const data = await fetchSubmissions('all');
       setSubs(data);
-      // Keep selection if still present, otherwise clear.
       setSelectedId((prev) => (prev && data.some((s) => s.id === prev) ? prev : null));
     } catch {
       setSubs([]);
@@ -119,10 +120,27 @@ export default function AdminIntakePage() {
   }
 
   useEffect(() => {
-    load(statusFilter);
-  }, [statusFilter]);
+    load();
+  }, []);
+
+  // 국가 목록 + 국가별 미처리(pending) 카운트
+  const countries = [...new Set(subs.map((s) => s.country).filter(Boolean))].sort();
+  const pendingByCountry = subs.reduce<Record<string, number>>((acc, s) => {
+    if (s.status === 'pending' && s.country) acc[s.country] = (acc[s.country] ?? 0) + 1;
+    return acc;
+  }, {});
+  const totalPending = subs.filter((s) => s.status === 'pending').length;
+
+  // 국가 → 상태 순으로 필터
+  const byCountry = countryFilter === 'all' ? subs : subs.filter((s) => s.country === countryFilter);
+  const filtered = statusFilter === 'all' ? byCountry : byCountry.filter((s) => s.status === statusFilter);
 
   const selected = subs.find((s) => s.id === selectedId) ?? null;
+
+  const countryTabs = [
+    { code: 'all', label: '전체', flag: '🌐' },
+    ...countries.map((c) => ({ code: c, label: countryLabel(c) || c, flag: countryFlag(c) || '🏳️' })),
+  ];
 
   return (
     <div className="space-y-4">
@@ -131,12 +149,47 @@ export default function AdminIntakePage() {
         <h1 className="text-xl font-bold text-gray-900">설문 접수함</h1>
         {!loading && (
           <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-semibold text-blue-700">
-            {subs.length}
+            {filtered.length}
           </span>
         )}
         <div className="w-full sm:ml-auto sm:w-auto">
           <ShareLinkBar />
         </div>
+      </div>
+
+      {/* Country tabs (with pending badge) */}
+      <div className="flex flex-wrap gap-1.5">
+        {countryTabs.map((c) => {
+          const pending = c.code === 'all' ? totalPending : pendingByCountry[c.code] ?? 0;
+          const active = countryFilter === c.code;
+          return (
+            <button
+              key={c.code}
+              type="button"
+              onClick={() => setCountryFilter(c.code)}
+              className={
+                'flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition ' +
+                (active
+                  ? 'bg-slate-900 text-white'
+                  : 'border border-slate-200 bg-white text-slate-600 hover:bg-slate-50')
+              }
+            >
+              <span>{c.flag}</span>
+              <span>{c.label}</span>
+              {pending > 0 && (
+                <span
+                  className={
+                    'rounded-full px-1.5 py-0.5 text-[10px] font-bold tabular-nums ' +
+                    (active ? 'bg-amber-400 text-amber-950' : 'bg-amber-500 text-white')
+                  }
+                  title={`미처리 ${pending}건`}
+                >
+                  {pending}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {/* Status filter tabs */}
@@ -166,7 +219,7 @@ export default function AdminIntakePage() {
             <div className="flex items-center justify-center py-20 text-sm text-gray-400">
               불러오는 중...
             </div>
-          ) : subs.length === 0 ? (
+          ) : filtered.length === 0 ? (
             <div className="flex items-center justify-center py-20 text-sm text-gray-400">
               {statusFilter === 'pending'
                 ? '대기 중인 설문이 없습니다'
@@ -174,7 +227,7 @@ export default function AdminIntakePage() {
             </div>
           ) : (
             <ul className="divide-y divide-gray-100">
-              {subs.map((s) => {
+              {filtered.map((s) => {
                 const active = s.id === selectedId;
                 return (
                   <li key={s.id}>
@@ -220,12 +273,12 @@ export default function AdminIntakePage() {
               key={selected.id}
               sub={selected}
               onApproved={(childId) => {
-                load(statusFilter);
+                load();
                 navigate(`/admin/patients/${childId}`);
               }}
               onRejected={() => {
                 setSelectedId(null);
-                load(statusFilter);
+                load();
               }}
             />
           ) : (

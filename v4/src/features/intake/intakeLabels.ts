@@ -72,6 +72,9 @@ export interface IntakeLabelSet {
   causes: string;
   causeOpts: { value: string; label: string }[];
   causesOther: string;
+  // step3 acquisition channel
+  acquisitionChannel: string;
+  acquisitionChannelOpts: { value: string; label: string }[];
   // step6 uploads
   xrayUpload: string;
   labUpload: string;
@@ -129,6 +132,16 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     sportsAthlete: '체육 특기생입니까?',
     sportsEvent: '종목',
     childInterested: '아이도 키 크는 것에 관심이 있습니까?',
+    acquisitionChannel: '저희를 어떻게 알게 되셨나요?',
+    acquisitionChannelOpts: [
+      { value: 'google', label: '구글 검색' },
+      { value: 'naver', label: '네이버 검색' },
+      { value: 'instagram', label: '인스타그램' },
+      { value: 'facebook', label: '페이스북' },
+      { value: 'youtube', label: '유튜브' },
+      { value: 'referral', label: '지인 소개' },
+      { value: 'other', label: '기타' },
+    ],
     chronic: '과거 또는 현재 치료 중인 질환이 있다면 적어 주세요.',
     tanner: '사춘기 단계 (Tanner 단계)',
     tannerOpts: [
@@ -203,6 +216,15 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     sportsAthlete: 'เด็กเป็นนักกีฬาหรือสมาชิกทีมกีฬาหรือไม่?',
     sportsEvent: 'ชนิดกีฬา',
     childInterested: 'เด็กสนใจที่จะสูงขึ้นด้วยตนเองหรือไม่?',
+    acquisitionChannel: 'คุณรู้จักเราได้อย่างไร?',
+    acquisitionChannelOpts: [
+      { value: 'google', label: 'ค้นหา Google' },
+      { value: 'instagram', label: 'Instagram' },
+      { value: 'facebook', label: 'Facebook' },
+      { value: 'youtube', label: 'YouTube' },
+      { value: 'referral', label: 'แนะนำจากคนรู้จัก' },
+      { value: 'other', label: 'อื่นๆ' },
+    ],
     chronic: 'กรุณาระบุโรคประจำตัวหรือโรคที่กำลังรักษาอยู่ (ถ้ามี)',
     tanner: 'ระยะวัยรุ่น (Tanner Stage)',
     tannerOpts: [
@@ -277,6 +299,15 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     sportsAthlete: 'Trẻ có tham gia đội thể thao hoặc là vận động viên không?',
     sportsEvent: 'Môn thể thao',
     childInterested: 'Bản thân trẻ có muốn cao hơn không?',
+    acquisitionChannel: 'Bạn biết đến chúng tôi qua đâu?',
+    acquisitionChannelOpts: [
+      { value: 'google', label: 'Tìm kiếm Google' },
+      { value: 'instagram', label: 'Instagram' },
+      { value: 'facebook', label: 'Facebook' },
+      { value: 'youtube', label: 'YouTube' },
+      { value: 'referral', label: 'Người quen giới thiệu' },
+      { value: 'other', label: 'Khác' },
+    ],
     chronic: 'Vui lòng ghi lại bệnh lý đang điều trị hoặc bệnh mãn tính (nếu có).',
     tanner: 'Giai đoạn dậy thì (Tanner Stage)',
     tannerOpts: [
@@ -351,6 +382,15 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     sportsAthlete: 'Is the child a member of a sports team or competitive athlete?',
     sportsEvent: 'Sport',
     childInterested: 'Is the child personally motivated to grow taller?',
+    acquisitionChannel: 'How did you hear about us?',
+    acquisitionChannelOpts: [
+      { value: 'google', label: 'Google search' },
+      { value: 'instagram', label: 'Instagram' },
+      { value: 'facebook', label: 'Facebook' },
+      { value: 'youtube', label: 'YouTube' },
+      { value: 'referral', label: 'Friend/family referral' },
+      { value: 'other', label: 'Other' },
+    ],
     chronic: 'Please list any ongoing or past medical conditions being treated.',
     tanner: 'Puberty stage (Tanner Stage)',
     tannerOpts: [
@@ -374,6 +414,16 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     labUpload: 'Attach lab results',
     uploadHint: 'Please attach an image or PDF file (optional).',
   },
+};
+
+export const ACQUISITION_KO: Record<string, string> = {
+  google: '구글 검색',
+  naver: '네이버 검색',
+  instagram: '인스타그램',
+  facebook: '페이스북',
+  youtube: '유튜브',
+  referral: '지인 소개',
+  other: '기타',
 };
 
 export function getLabels(lang: IntakeLang): IntakeLabelSet {

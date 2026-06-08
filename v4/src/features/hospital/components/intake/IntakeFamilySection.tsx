@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { IntakeSurvey } from '@/shared/types';
 import { SectionCard } from './SectionCard';
+import { ACQUISITION_KO } from '../../../intake/intakeLabels';
 
 interface Props {
   survey: IntakeSurvey;
@@ -43,6 +44,14 @@ export function IntakeFamilySection({ survey, onSave }: Props) {
           value={survey.child_interested}
           onChange={(v) => onSave({ child_interested: v })}
         />
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2">
+          <span className="text-sm text-slate-700">유입 경로</span>
+          <span className="text-sm font-medium text-slate-900">
+            {survey.acquisition_channel
+              ? (ACQUISITION_KO[survey.acquisition_channel] ?? survey.acquisition_channel)
+              : '—'}
+          </span>
+        </div>
       </div>
     </SectionCard>
   );

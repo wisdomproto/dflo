@@ -9,6 +9,7 @@ import {
   generateCardnewsI18n, generateCaptions,
 } from '../../services/cardnewsService';
 import { uploadImageFile } from '../../services/aiImageService';
+import { ImageDropzone } from './ImageDropzone';
 
 interface Props { article: MarketingArticle; }
 
@@ -54,7 +55,6 @@ export function CardNewsPanel({ article }: Props) {
   const [genSlides, setGenSlides] = useState(false);
   const [genCap, setGenCap] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
-  const [uploadingImg, setUploadingImg] = useState<string | null>(null);
   const [bulkProgress, setBulkProgress] = useState<string | null>(null);
 
   const slideTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
@@ -120,17 +120,11 @@ export function CardNewsPanel({ article }: Props) {
     patchLocal(s.id, { texts }); queueSlide(s.id, { texts });
   };
 
-  // ── 완성 이미지 업로드(GPT로 만든 이미지) — canvas.imageUrl 저장 ──
-  const onUploadImg = async (s: CardnewsSlide, file?: File) => {
-    if (!file) return;
-    setUploadingImg(s.id); setError(null);
-    try {
-      const url = await uploadImageFile(file);
-      const canvas = { ...s.canvas, imageUrl: url };
-      patchLocal(s.id, { canvas });
-      await updateSlide(s.id, { canvas });
-    } catch (e) { setError(e instanceof Error ? e.message : '이미지 업로드 실패'); }
-    finally { setUploadingImg(null); }
+  // ── 완성 이미지 — canvas.imageUrl 저장/삭제 (업로드는 ImageDropzone 내부 처리) ──
+  const setSlideImage = (s: CardnewsSlide, url: string) => {
+    const canvas = { ...s.canvas, imageUrl: url };
+    patchLocal(s.id, { canvas });
+    void updateSlide(s.id, { canvas });
   };
   const removeImg = async (s: CardnewsSlide) => {
     const canvas = { ...s.canvas, imageUrl: null };
@@ -275,25 +269,15 @@ export function CardNewsPanel({ article }: Props) {
                   </div>
                 </div>
 
-                {/* 완성 이미지 (GPT로 만든 이미지 업로드) */}
-                {s.canvas.imageUrl ? (
-                  <div className="relative mb-2">
-                    <img src={s.canvas.imageUrl} alt="" className="w-full rounded border border-gray-200" style={{ aspectRatio: '2 / 3', objectFit: 'cover' }} />
-                    <label className="absolute bottom-1 left-1 cursor-pointer rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">
-                      {uploadingImg === s.id ? '교체 중…' : '🔄 교체'}
-                      <input type="file" accept="image/*" hidden disabled={uploadingImg === s.id}
-                        onChange={(e) => { void onUploadImg(s, e.target.files?.[0] ?? undefined); e.target.value = ''; }} />
-                    </label>
-                    <button type="button" onClick={() => removeImg(s)}
-                      className="absolute right-1 top-1 rounded bg-black/60 px-2 py-0.5 text-[11px] text-white">✕</button>
-                  </div>
-                ) : (
-                  <label className="mb-2 block cursor-pointer rounded border border-dashed border-gray-300 py-6 text-center text-xs text-gray-500 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
-                    {uploadingImg === s.id ? '업로드 중…' : '🖼 GPT로 만든 이미지 업로드 (1024×1536)'}
-                    <input type="file" accept="image/*" hidden disabled={uploadingImg === s.id}
-                      onChange={(e) => { void onUploadImg(s, e.target.files?.[0] ?? undefined); e.target.value = ''; }} />
-                  </label>
-                )}
+                {/* 완성 이미지 — 드래그앤드롭 / 붙여넣기(클릭→Ctrl+V) / 파일 선택 */}
+                <div className="mb-2">
+                  <ImageDropzone
+                    url={s.canvas.imageUrl}
+                    onUploaded={(url) => setSlideImage(s, url)}
+                    onClear={() => void removeImg(s)}
+                    aspectRatio="2/3"
+                  />
+                </div>
 
                 <textarea value={s.illustration} onChange={(e) => onIllustration(s, e.target.value)} placeholder="일러스트 프롬프트 (언어 공통)"
                   rows={4} className="mb-2 w-full rounded border border-gray-300 px-2 py-1.5 text-xs" />

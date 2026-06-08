@@ -7,6 +7,7 @@ import {
   suggestChartNumber,
 } from '@/features/admin/services/intakeSubmissionService';
 import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
+import { ACQUISITION_KO } from '@/features/intake/intakeLabels';
 
 // ================================================
 // IntakeSubmissionDetail
@@ -145,6 +146,14 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
 
       {/* 가족·관심 */}
       <Section title="가족·관심">
+        <Row
+          label="유입 경로"
+          value={
+            survey?.acquisition_channel
+              ? (ACQUISITION_KO[survey.acquisition_channel] ?? survey.acquisition_channel)
+              : '-'
+          }
+        />
         <Row label="과거 클리닉 상담" value={yesNo(survey?.past_clinic_consult)} />
         <Row label="부모 관심" value={yesNo(survey?.parents_interested)} />
         <Row label="체육 특기생" value={yesNo(survey?.sports_athlete)} />
