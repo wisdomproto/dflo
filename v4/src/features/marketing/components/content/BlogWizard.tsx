@@ -15,6 +15,26 @@ const STEPS: { n: Step; label: string }[] = [
   { n: 1, label: '키워드' }, { n: 2, label: '구조' }, { n: 3, label: '글쓰기' },
 ];
 
+// 블로그 본문 삽화 공통 스타일 — 전 섹션 동일(카드뉴스 COMMON_STYLE 과 동일한 운용).
+const BLOG_IMG_STYLE = [
+  '· 비율: 가로 16:9 (1600×900), 블로그 본문 삽화용.',
+  '· 아트 스타일: 플랫 2D 벡터 일러스트. 굵고 둥근 형태, 단색 면(그라데이션 최소)에 옅은 드롭섀도우만. 사진·3D 아님.',
+  '· 색감: 브랜드 보라(#667eea→#764ba2) 계열 + 민트(#33D6B5) 절제된 포인트. 밝고 깨끗한 톤.',
+  '· 인물: 등장 시 7~9세 한국 어린이(밝은 표정, 파스텔 옷). 의료·성장 주제에 맞는 따뜻하고 신뢰감 있는 분위기.',
+  '· 구성: 넓은 여백, 단순한 배경, 한눈에 핵심 개념 하나가 읽히도록.',
+  '· 텍스트: 일러스트 안에 글자/숫자 넣지 않기. 워터마크·로고 없음.',
+  '· 피할 것: 사실적 사진, 무섭거나 우울한 분위기, 복잡한 배경, 글자, 잘린 형태.',
+].join('\n');
+
+function allImagePrompts(a: BlogSeoArticle): string {
+  let p = `[공통 스타일 — 모든 섹션 동일]\n${BLOG_IMG_STYLE}\n`;
+  a.sections.forEach((s, i) => {
+    if (!s.imagePrompt?.trim()) return;
+    p += `\n\n=== #${i + 1}. ${s.heading || '섹션'} ===\n${s.imagePrompt}`;
+  });
+  return p;
+}
+
 function emptyArticle(): BlogSeoArticle {
   return { seoTitle: '', slug: '', metaDescription: '', h1: '', primaryKeyword: '', secondaryKeywords: [], sections: [], faq: [] };
 }
@@ -142,9 +162,15 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
     setBulk(null);
   };
 
+  const flashCopy = (key: string) => { setCopied(key); setTimeout(() => setCopied((c) => (c === key ? null : c)), 1200); };
   const onCopyPrompt = (i: number, prompt: string) => {
-    navigator.clipboard.writeText(prompt).then(() => { setCopied(`p${i}`); setTimeout(() => setCopied((c) => (c === `p${i}` ? null : c)), 1200); });
+    void navigator.clipboard.writeText(`[공통 스타일]\n${BLOG_IMG_STYLE}\n\n${prompt}`).then(() => flashCopy(`p${i}`));
   };
+  const copyAllPrompts = () => {
+    if (!cur) return;
+    void navigator.clipboard.writeText(allImagePrompts(cur)).then(() => flashCopy('all-prompts'));
+  };
+  const hasAnyPrompt = !!cur?.sections.some((s) => s.imagePrompt?.trim());
 
   const measure = () => cur && setMeasured(scoreArticle(cur, language));
   const btn = 'rounded-lg px-4 py-2 text-sm font-semibold text-white disabled:opacity-60';
@@ -162,6 +188,12 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
         ))}
         <div className="flex-1" />
         {savedAt && <span className="text-xs text-green-600">✓ 저장됨</span>}
+        {cur && step >= 3 && (
+          <button type="button" onClick={copyAllPrompts} disabled={!hasAnyPrompt}
+            className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 disabled:opacity-40">
+            {copied === 'all-prompts' ? '✅ 복사됨' : '📋 이미지 프롬프트 전체 복사'}
+          </button>
+        )}
         {cur && step >= 3 && (
           <label className="cursor-pointer rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700">
             🖼 이미지 일괄 업로드
@@ -221,6 +253,10 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
             {cur ? (
               <>
                 {measured && <BlogSeoScorePanel result={measured} onFix={fixWeak} fixing={fixing} />}
+                <details className="rounded-lg bg-[#1a1a2e] p-3 text-[11px] text-gray-300">
+                  <summary className="cursor-pointer font-semibold text-indigo-300">🎨 이미지 공통 스타일 — 모든 섹션 동일 (복사 시 자동 포함)</summary>
+                  <pre className="mt-2 whitespace-pre-wrap font-sans">{BLOG_IMG_STYLE}</pre>
+                </details>
                 <BlogSeoEditor data={cur} mode="full" onPatch={patch} onPatchSection={patchSection} onAddSection={addSection} onRemoveSection={removeSection} onMoveSection={moveSection} onCopyPrompt={onCopyPrompt} copiedKey={copied} />
               </>
             ) : <p className="text-sm text-gray-400">구조를 먼저 만드세요.</p>}

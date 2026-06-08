@@ -250,8 +250,8 @@ export function CardNewsPanel({ article }: Props) {
           <pre className="mt-2 whitespace-pre-wrap font-sans">{COMMON_STYLE}</pre>
         </details>
 
-        {/* 슬라이드 */}
-        <div className="flex flex-col gap-3">
+        {/* 슬라이드 — 한 줄에 3개 그리드 */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {slides.map((s) => {
             const t = s.texts[lang] ?? { headline: '', subtext: '' };
             return (
