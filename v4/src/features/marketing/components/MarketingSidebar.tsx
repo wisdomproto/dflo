@@ -8,9 +8,14 @@ interface NavItem {
   soon?: boolean;
 }
 
-const SETTINGS: NavItem = { to: '/marketing/settings', icon: '⚙️', label: '설정' };
-
 const GROUPS: { label: string; items: NavItem[] }[] = [
+  {
+    label: '설정',
+    items: [
+      { to: '/marketing/settings', icon: '⚙️', label: '프로젝트 설정' },
+      { to: '/marketing/channels', icon: '🗂', label: '채널 설정' },
+    ],
+  },
   {
     label: '오가닉 마케팅',
     items: [
@@ -18,10 +23,6 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
       { to: '/marketing/content', icon: '📝', label: '콘텐츠 생성' },
       { to: '/marketing/publish', icon: '🚀', label: '발행' },
     ],
-  },
-  {
-    label: '채널 설정',
-    items: [{ to: '/marketing/channels', icon: '🗂', label: '채널 설정' }],
   },
   {
     label: '성장',
@@ -74,7 +75,6 @@ export function MarketingSidebar() {
         <div className="text-xs text-gray-400">연세새봄의원</div>
       </div>
       <nav className="flex flex-col gap-3 px-3 pb-4">
-        <Item item={SETTINGS} />
         {GROUPS.map((g) => (
           <div key={g.label} className="flex flex-col gap-0.5">
             <div className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-gray-400">

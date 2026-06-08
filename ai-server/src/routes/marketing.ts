@@ -13,7 +13,7 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt } from '../services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt, buildBlogSeoOutlinePrompt, buildBlogSeoBodyPrompt } from '../services/contentPrompts.js';
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
 import { publishQueueItem } from '../services/publishExecutor.js';
@@ -348,6 +348,63 @@ marketingRouter.post('/blog-generate', async (req: Request, res: Response) => {
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] blog-generate failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /blog-seo-outline : 키워드+주제 → 언어별 구조화 블로그 아웃라인 JSON (Gemini 게이트).
+marketingRouter.post('/blog-seo-outline', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!body.primaryKeyword || !String(body.primaryKeyword).trim()) {
+    return res.status(400).json({ success: false, error: 'primaryKeyword required' });
+  }
+  try {
+    const raw = await generateText(buildBlogSeoOutlinePrompt(await readMarketingConfig(), {
+      lang: String(body.lang ?? 'ko'),
+      primaryKeyword: String(body.primaryKeyword),
+      secondaryKeywords: Array.isArray(body.secondaryKeywords) ? body.secondaryKeywords : [],
+      topicTitle: String(body.topicTitle ?? ''),
+      baseBody: body.baseBody ? String(body.baseBody) : undefined,
+    }));
+    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+    if (s < 0 || e <= s) return res.status(502).json({ success: false, error: '아웃라인 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    let parsed: Record<string, unknown>;
+    try { parsed = JSON.parse(raw.slice(s, e + 1)); }
+    catch { return res.status(502).json({ success: false, error: '아웃라인 JSON 파싱 실패. 다시 시도해주세요.' }); }
+    res.json({ success: true, outline: parsed });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] blog-seo-outline failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /blog-seo-body : 아웃라인 → 섹션 본문 + FAQ 답변 + 이미지 프롬프트 JSON (Gemini 게이트).
+marketingRouter.post('/blog-seo-body', async (req: Request, res: Response) => {
+  const body = req.body ?? {};
+  if (!Array.isArray(body.sectionHeadings) || body.sectionHeadings.length === 0) {
+    return res.status(400).json({ success: false, error: 'sectionHeadings required' });
+  }
+  try {
+    const raw = await generateText(buildBlogSeoBodyPrompt(await readMarketingConfig(), {
+      lang: String(body.lang ?? 'ko'),
+      primaryKeyword: String(body.primaryKeyword ?? ''),
+      secondaryKeywords: Array.isArray(body.secondaryKeywords) ? body.secondaryKeywords : [],
+      seoTitle: String(body.seoTitle ?? ''),
+      h1: String(body.h1 ?? ''),
+      sectionHeadings: body.sectionHeadings.map((h: unknown) => String(h)),
+      faqQuestions: Array.isArray(body.faqQuestions) ? body.faqQuestions.map((q: unknown) => String(q)) : [],
+      baseBody: body.baseBody ? String(body.baseBody) : undefined,
+    }));
+    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+    if (s < 0 || e <= s) return res.status(502).json({ success: false, error: '본문 결과를 해석하지 못했습니다. 다시 시도해주세요.' });
+    let parsed: { sections?: unknown; faq?: unknown };
+    try { parsed = JSON.parse(raw.slice(s, e + 1)); }
+    catch { return res.status(502).json({ success: false, error: '본문 JSON 파싱 실패. 다시 시도해주세요.' }); }
+    res.json({ success: true, sections: parsed.sections ?? [], faq: parsed.faq ?? [] });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] blog-seo-body failed', e);
     res.status(502).json({ success: false, error: msg });
   }
 });

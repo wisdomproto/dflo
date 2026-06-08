@@ -324,3 +324,102 @@ export function buildCaptionHashtagPrompt(c: ArticleConfig, r: CardnewsI18nReque
 ## 출력 (JSON 객체만 — 코드펜스/설명 금지, 줄바꿈은 \\n)
 {"captions":{"ko":"","en":"","th":"","vi":"","ch":""},"hashtags":{"ko":"#태그 #태그","en":"","th":"","vi":"","ch":""}}`;
 }
+
+// ── SEO blog (통합 블로그 위저드, marketing_articles.blog) ────────────────────
+export interface BlogSeoOutlineRequest {
+  lang: string;
+  primaryKeyword: string;
+  secondaryKeywords?: string[];
+  topicTitle: string;
+  baseBody?: string;
+}
+
+export interface BlogSeoBodyRequest {
+  lang: string;
+  primaryKeyword: string;
+  secondaryKeywords?: string[];
+  seoTitle: string;
+  h1: string;
+  sectionHeadings: string[];
+  faqQuestions: string[];
+  baseBody?: string;
+}
+
+function langName(code: string): string {
+  return code === 'ko' ? '한국어' : LANG_NAMES[code] || code;
+}
+
+/**
+ * 아웃라인 프롬프트. 키워드+주제(+한국어 기본글 참고)로 언어별 네이티브 구조를
+ * 제안한다. 직역이 아니라 해당 언어권 부모가 검색하는 방식의 transcreation.
+ */
+export function buildBlogSeoOutlinePrompt(c: ArticleConfig, r: BlogSeoOutlineRequest): string {
+  const brand = c.brand_name?.trim() || '187 성장클리닉';
+  const lang = langName(r.lang);
+  const secondary = (r.secondaryKeywords ?? []).filter(Boolean).join(', ');
+  const ref = r.baseBody?.trim();
+  return `당신은 ${brand}의 구글 SEO 블로그 전략가입니다. 아래 주제로 ${lang} 블로그 글의 구조(아웃라인)를 설계하세요.
+직역이 아니라 ${lang}권 부모가 실제 검색하는 방식의 네이티브 표현으로 작성합니다.
+
+${brandBlock(c)}
+
+## 주제
+- 주제: ${r.topicTitle}
+- 핵심 키워드(primary): ${r.primaryKeyword}
+${secondary ? `- 보조 키워드(secondary): ${secondary}` : ''}
+${ref ? `\n## 한국어 기본글 (의미 참고용 — 번역하지 말고 ${lang} 네이티브로 재구성)\n${ref.slice(0, 3000)}` : ''}
+
+## 규칙
+- seoTitle: 핵심 키워드를 앞쪽에 포함, ${r.lang === 'ko' || r.lang === 'th' ? '40자' : '60자'} 이내 권장.
+- slug: 영문 소문자-하이픈(kebab-case), 3~6 단어.
+- metaDescription: 핵심 키워드 포함, ${r.lang === 'ko' || r.lang === 'th' ? '50~120자' : '110~160자'}.
+- h1: 핵심 키워드 포함.
+- sectionHeadings: H2 소제목 4~7개(빈 본문). 첫 섹션은 도입/요점, 마지막은 정리/결론.
+- faqQuestions: 2~4개, 실제로 검색되는 질문 형태.
+- 의료광고법 준수(과장·단정 금지).
+
+## 출력 형식 (매우 중요)
+- 반드시 아래 JSON 객체만 출력하세요. 설명/마크다운/코드펜스 절대 금지.
+{"seoTitle":"","slug":"","metaDescription":"","h1":"","sectionHeadings":["",""],"faqQuestions":["",""]}`;
+}
+
+/**
+ * 본문 프롬프트. 확정된 아웃라인을 각 섹션 HTML + 이미지 프롬프트 + FAQ 답변으로 채운다.
+ */
+export function buildBlogSeoBodyPrompt(c: ArticleConfig, r: BlogSeoBodyRequest): string {
+  const brand = c.brand_name?.trim() || '187 성장클리닉';
+  const lang = langName(r.lang);
+  const secondary = (r.secondaryKeywords ?? []).filter(Boolean).join(', ');
+  const ref = r.baseBody?.trim();
+  const headings = r.sectionHeadings.map((h, i) => `${i + 1}. ${h}`).join('\n');
+  const faqs = r.faqQuestions.map((q, i) => `${i + 1}. ${q}`).join('\n');
+  return `당신은 ${brand}의 구글 SEO 블로그 작가입니다. 아래 ${lang} 아웃라인의 각 섹션 본문과 FAQ 답변을 작성하세요.
+직역이 아니라 ${lang}권 독자에게 자연스러운 네이티브 문장으로 씁니다.
+
+${brandBlock(c)}
+
+## 메타
+- 제목: ${r.seoTitle}
+- H1: ${r.h1}
+- 핵심 키워드(primary): ${r.primaryKeyword} (본문 전체에 3~5회 자연스럽게 반복, 첫 섹션 도입부에 포함)
+${secondary ? `- 보조 키워드(secondary): ${secondary} (각 1~2회)` : ''}
+
+## 섹션 제목 (이 순서/개수 그대로)
+${headings}
+
+## FAQ 질문 (이 순서/개수 그대로)
+${faqs}
+${ref ? `\n## 한국어 기본글 (의미 참고용 — 번역 말고 ${lang} 네이티브로 재구성)\n${ref.slice(0, 4000)}` : ''}
+
+## 규칙
+- 각 섹션 html: <p>/<ul>/<li>/<strong>만 사용(섹션 제목 h2는 넣지 말 것 — heading 필드로 별도 관리). 한 단락 2~4문장.
+- 최소 한 섹션에는 <ul> 리스트 포함.
+- imagePrompt: 해당 섹션 분위기의 16:9 플랫 일러스트 영문 프롬프트(스타일/주제/구도/색).
+- faq.a: 2~4문장 답변.
+- 의료광고법 준수(과장·단정 금지).
+
+## 출력 형식 (매우 중요)
+- 반드시 아래 JSON 객체만 출력하세요. 설명/마크다운/코드펜스 절대 금지. 문자열 안 큰따옴표는 「」로 대체.
+- sections 길이 = 섹션 제목 개수(${r.sectionHeadings.length}), faq 길이 = 질문 개수(${r.faqQuestions.length}). heading 은 위 제목 그대로.
+{"sections":[{"heading":"","html":"","imagePrompt":""}],"faq":[{"q":"","a":""}]}`;
+}

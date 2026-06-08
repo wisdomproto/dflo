@@ -192,3 +192,65 @@ export async function saveBlogSeo(id: string, blog: BlogSeoMap): Promise<void> {
     .eq('id', id);
   if (error) throw new Error(error.message);
 }
+
+// ── 통합 블로그 위저드 (SEO blog) AI 생성 ─────────────────────────────────────
+export interface BlogSeoOutline {
+  seoTitle: string;
+  slug: string;
+  metaDescription: string;
+  h1: string;
+  sectionHeadings: string[];
+  faqQuestions: string[];
+}
+
+export async function generateBlogSeoOutline(p: {
+  lang: string;
+  primaryKeyword: string;
+  secondaryKeywords: string[];
+  topicTitle: string;
+  baseBody?: string;
+}): Promise<BlogSeoOutline> {
+  const res = await fetch(`${BASE}/api/marketing/blog-seo-outline`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `아웃라인 생성 실패: ${res.status}`);
+  const o = (b.outline ?? {}) as Partial<BlogSeoOutline>;
+  return {
+    seoTitle: o.seoTitle ?? '',
+    slug: o.slug ?? '',
+    metaDescription: o.metaDescription ?? '',
+    h1: o.h1 ?? '',
+    sectionHeadings: Array.isArray(o.sectionHeadings) ? o.sectionHeadings : [],
+    faqQuestions: Array.isArray(o.faqQuestions) ? o.faqQuestions : [],
+  };
+}
+
+export async function generateBlogSeoBody(p: {
+  lang: string;
+  primaryKeyword: string;
+  secondaryKeywords: string[];
+  seoTitle: string;
+  h1: string;
+  sectionHeadings: string[];
+  faqQuestions: string[];
+  baseBody?: string;
+}): Promise<{ sections: { heading: string; html: string; imagePrompt: string }[]; faq: { q: string; a: string }[] }> {
+  const res = await fetch(`${BASE}/api/marketing/blog-seo-body`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(p),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `본문 생성 실패: ${res.status}`);
+  const sections = Array.isArray(b.sections) ? b.sections : [];
+  const faq = Array.isArray(b.faq) ? b.faq : [];
+  return {
+    sections: sections.map((s: Record<string, unknown>) => ({
+      heading: String(s.heading ?? ''), html: String(s.html ?? ''), imagePrompt: String(s.imagePrompt ?? ''),
+    })),
+    faq: faq.map((f: Record<string, unknown>) => ({ q: String(f.q ?? ''), a: String(f.a ?? '') })),
+  };
+}

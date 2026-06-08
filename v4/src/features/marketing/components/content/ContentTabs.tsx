@@ -3,15 +3,14 @@ import { useEffect, useState } from 'react';
 import type { MarketingArticle } from '../../types';
 import { LanguageSelector } from './LanguageSelector';
 import { BaseArticlePanel } from './BaseArticlePanel';
-import { BlogSeoPanel } from './BlogSeoPanel';
-import { BlogPanel } from './BlogPanel';
+import { BlogWizard } from './BlogWizard';
 import { CardNewsPanel } from './CardNewsPanel';
 import { PublishDialog } from './PublishDialog';
 import type { ContentKind } from '../../utils/publishRows';
 
 const ACCENT = '#4A2D6B';
 
-type Tab = 'base' | 'blogseo' | 'blog' | 'cardnews';
+type Tab = 'base' | 'blog' | 'cardnews';
 
 interface Props {
   article: MarketingArticle;
@@ -22,7 +21,7 @@ export function ContentTabs({ article, onSaved }: Props) {
   const [tab, setTab] = useState<Tab>('base');
   const [language, setLanguage] = useState('ko');
   const [showPublish, setShowPublish] = useState(false);
-  const contentKind: ContentKind = tab === 'blog' || tab === 'blogseo' ? 'blog' : tab === 'cardnews' ? 'cardnews' : 'post';
+  const contentKind: ContentKind = tab === 'blog' ? 'blog' : tab === 'cardnews' ? 'cardnews' : 'post';
 
   // Switching articles resets to 기본글 + 한국어 원본.
   useEffect(() => {
@@ -32,7 +31,6 @@ export function ContentTabs({ article, onSaved }: Props) {
 
   const tabs: { key: Tab; label: string }[] = [
     { key: 'base', label: '기본글' },
-    { key: 'blogseo', label: '블로그(SEO)' },
     { key: 'blog', label: '블로그' },
     { key: 'cardnews', label: '카드뉴스' },
   ];
@@ -76,10 +74,8 @@ export function ContentTabs({ article, onSaved }: Props) {
       <div className="flex-1 overflow-y-auto">
         {tab === 'base' ? (
           <BaseArticlePanel article={article} language={language} onSaved={onSaved} />
-        ) : tab === 'blogseo' ? (
-          <BlogSeoPanel article={article} />
         ) : tab === 'blog' ? (
-          <BlogPanel article={article} />
+          <BlogWizard article={article} language={language} />
         ) : (
           <CardNewsPanel article={article} />
         )}
