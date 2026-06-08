@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   fetchPatients,
+  getCachedRoster,
   createPatient,
   deletePatient,
   fetchChildByChartNumber,
@@ -34,9 +35,10 @@ export default function AdminPatientsPage() {
   const navigate = useNavigate();
   const addToast = useUIStore((s) => s.addToast);
 
-  const [patients, setPatients] = useState<PatientWithParent[]>([]);
+  // 모듈 캐시가 있으면 즉시 시드(stale) — 재진입 시 스피너 없이 바로 표시.
+  const [patients, setPatients] = useState<PatientWithParent[]>(() => getCachedRoster() ?? []);
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => getCachedRoster() === null);
   const [addOpen, setAddOpen] = useState(false);
   const [dataEntryOpen, setDataEntryOpen] = useState(false);
   // "환자 데이터 입력"에서 없는 번호로 새 환자 등록할 때 환자번호 미리 채움.
@@ -227,20 +229,27 @@ export default function AdminPatientsPage() {
     }
   };
 
+  // 검색 디바운스 effect 의 첫 실행(마운트 시 search='')은 건너뛴다 —
+  // 초기 로드는 아래 마운트 effect 가 담당. (예전엔 둘 다 돌아 풀 fetch 2회)
+  const firstSearchRun = useRef(true);
+
   useEffect(() => {
-    loadPatients('');
+    // 캐시가 있으면 백그라운드 갱신(스피너 숨김), 없으면 일반 로드.
+    loadPatients('', { background: getCachedRoster() !== null });
     fetchStoryChildIds().then(setStoryChildIds).catch(() => {});
   }, []);
 
   useEffect(() => {
+    if (firstSearchRun.current) { firstSearchRun.current = false; return; }
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => loadPatients(search), 300);
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [search]);
 
-  async function loadPatients(q: string) {
+  async function loadPatients(q: string, opts?: { background?: boolean }) {
     try {
-      setLoading(true);
+      // 이미 보여줄 데이터가 있는 백그라운드 갱신이면 스피너를 띄우지 않는다.
+      if (!opts?.background) setLoading(true);
       const data = await fetchPatients(q || undefined);
       setPatients(data);
     } catch {

@@ -140,6 +140,25 @@ export interface PatientWithParent extends Child {
 
 const PAGE = 1000;
 
+// 환자 목록이 실제로 쓰는 children 컬럼만 — classifyPatient(분류)·deriveGrowthSignals·
+// region 파서·행 표시에 필요한 것. select('*') 가 끌고오던 미사용 컬럼(name_en·
+// desired_height·grade·class_height_rank·nationality·is_active·updated_at 등)과
+// 특히 password(레거시 평문) 를 클라이언트로 내려보내지 않는다. intake_survey JSONB 는
+// 설문 기반 분류·주소(region)에 필수라 유지.
+const LIST_CHILD_COLUMNS =
+  'id, parent_id, name, gender, birth_date, birth_week, birth_weight, father_height, mother_height, chart_number, country, intake_survey, treatment_status, created_at';
+
+// 검색이 없는 "전체 로스터" 결과를 모듈 레벨에 캐시한다. 환자관리 페이지를
+// 다시 열 때 이 캐시를 즉시 렌더(stale)하고 백그라운드에서 새로 받아 교체
+// (stale-while-revalidate)하기 위함 — 매 진입마다 풀 로딩으로 멈추는 문제 해소.
+let rosterCache: PatientWithParent[] | null = null;
+export function getCachedRoster(): PatientWithParent[] | null {
+  return rosterCache;
+}
+export function clearRosterCache(): void {
+  rosterCache = null;
+}
+
 // Generic paginator — PostgREST caps a single response at 1000 rows, so any
 // table that can exceed that needs explicit paging. Clinical filtering and
 // category chips run client-side, so the list page depends on fetching the
@@ -169,7 +188,7 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
   const patients = await fetchAllRows<Child>(async (from, to) => {
     let q = supabase
       .from('children')
-      .select('*')
+      .select(LIST_CHILD_COLUMNS)
       .order('created_at', { ascending: false })
       .range(from, to);
     if (search) {
@@ -363,7 +382,7 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
   }
 
   // 4) Assemble without any extra round-trips.
-  return patients.map((patient) => {
+  const assembled = patients.map((patient) => {
     const ms = measurementsByChild.get(patient.id) ?? [];
     const range = visitRangeByChild.get(patient.id);
     // intake_survey is typed narrowly in shared/types; contact is stashed by
@@ -393,6 +412,10 @@ export async function fetchPatients(search?: string): Promise<PatientWithParent[
       clinical,
     };
   });
+
+  // 검색 없는 전체 로스터만 캐시(검색 결과는 부분집합이라 캐시하지 않음).
+  if (!search) rosterCache = assembled;
+  return assembled;
 }
 
 // ---------- Create / Delete ----------
