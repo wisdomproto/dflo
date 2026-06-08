@@ -124,7 +124,7 @@ export default function AdminIntakePage() {
   }, []);
 
   // 국가 목록 + 국가별 미처리(pending) 카운트
-  const countries = [...new Set(subs.map((s) => s.country).filter(Boolean))].sort();
+  const countries = [...new Set(subs.map((s) => s.country).filter((c): c is string => !!c))].sort();
   const pendingByCountry = subs.reduce<Record<string, number>>((acc, s) => {
     if (s.status === 'pending' && s.country) acc[s.country] = (acc[s.country] ?? 0) + 1;
     return acc;
