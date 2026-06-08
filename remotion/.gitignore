@@ -7,3 +7,7 @@ public/videos/*-lipsync-*.mp4
 public/videos/*-panel.mp4
 .env
 .env.local
+
+# main clip source video (large) — only the asset dirs, NOT src/mainclip code
+/public/mainclip/
+/mainclip/

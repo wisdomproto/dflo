@@ -19,6 +19,7 @@ import { MongjeongEN, MONGJEONG_EN_DURATION, MongjeongTH, MONGJEONG_TH_DURATION 
 import { KicheukjeongEN, KICHEUKJEONG_EN_DURATION, KicheukjeongENFootage } from "./shorts/키측정";
 import { SeongjosukEN, SeongjosukENPreview, SeongjosukENFootage, SEONGJOSUK_EN_DURATION, SeongjosukTH, SeongjosukTHFootage, SEONGJOSUK_TH_DURATION } from "./shorts/성조숙음식";
 import { CalciumEN, CalciumENPreview, CalciumENFootage, CALCIUM_EN_DURATION, CalciumTH, CalciumTHFootage, CALCIUM_TH_DURATION } from "./shorts/칼슘영양제";
+import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -143,6 +144,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="calcium-th-footage" component={CalciumTHFootage} durationInFrames={CALCIUM_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="calcium-th" component={CalciumTH} durationInFrames={CALCIUM_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="kicheukjeong-en" component={KicheukjeongEN} durationInFrames={KICHEUKJEONG_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="MainClipTH" component={MainClipTH} durationInFrames={MAINCLIP_DURATION} fps={30} width={1920} height={1080} />
     </>
   );
 };

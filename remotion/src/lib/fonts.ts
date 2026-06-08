@@ -41,4 +41,5 @@ export function ensureFonts() {
 }
 
 export const NOTO_SANS_KR = "'Noto Sans KR', 'Noto Sans Thai', sans-serif";
+export const NOTO_SANS_THAI = "'Noto Sans Thai', 'Noto Sans KR', sans-serif";
 export const INTER = "'Inter', sans-serif";
