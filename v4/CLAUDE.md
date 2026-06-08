@@ -168,6 +168,8 @@ scripts/
 
 **`treatment_status` 의사 수동 토글 (3단계)** — `consultation`(상담) / `treatment`(치료 중) / `completed`(완료). AdminPatientDetailPage 헤더 좌측 `[상담][치료 중][완료]` 버튼 + AdminPatientsPage(환자 관리) 목록의 "단계" 컬럼 인라인 셀렉트(표시+변경) + 단계 필터칩(완료 환자는 행 opacity 흐림). 라벨/색상은 `shared/utils/treatmentStage.ts` 단일 소스. **`completed`는 환자앱에선 `treatment`와 동일 취급**(BottomNav·HomePage가 `consultation`만 별도 분기 → 완료해도 진료기록 뷰 유지). `migration 014` 의 자동 백필 (visits 1건 이상 → treatment) 결과 244명 전원 `treatment` 로 시작, `completed`는 `migration 043` 으로 CHECK 확장.
 
+**환자 빠른 데이터 입력** — `AdminPatientsPage` 우상단 "+ 환자 추가" 아래 "＋ 환자 데이터 입력"(`PatientDataEntryModal`). 환자번호 입력(디바운스 `fetchChildByChartNumber` 정확 조회)→이름 자동 채움, 날짜(기본 오늘·변경 가능)+키(필수)+몸무게로 해당 날짜 측정 저장(같은 날짜 일반 visit 재사용·없으면 `createVisit`, 후 `createMeasurement`). 없는 번호면 안내 + "새 환자 등록" → `AddPatientModal`(`initialChartNumber` 미리채움) 로 전환.
+
 **헤더** (Layout.tsx): 로고(앱홈으로) + ← 화살표 + "홈페이지" pill 버튼(공식 사이트로 빠져나가는 동선) + 톱니바퀴(콘텐츠 관리 PIN) + 햄버거(로그아웃).
 
 ## Website Navigation (public, root)

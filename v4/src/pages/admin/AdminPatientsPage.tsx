@@ -4,8 +4,11 @@ import {
   fetchPatients,
   createPatient,
   deletePatient,
+  fetchChildByChartNumber,
   type PatientWithParent,
 } from '@/features/admin/services/adminService';
+import { fetchVisitsForChild, createVisit } from '@/features/hospital/services/visitService';
+import { createMeasurement } from '@/features/hospital/services/hospitalMeasurementService';
 import { useUIStore } from '@/stores/uiStore';
 import GenderIcon from '@/shared/components/GenderIcon';
 import type { Gender } from '@/shared/types';
@@ -35,6 +38,9 @@ export default function AdminPatientsPage() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [addOpen, setAddOpen] = useState(false);
+  const [dataEntryOpen, setDataEntryOpen] = useState(false);
+  // "환자 데이터 입력"에서 없는 번호로 새 환자 등록할 때 환자번호 미리 채움.
+  const [prefillChart, setPrefillChart] = useState('');
   const [activeCategories, setActiveCategories] = useState<Set<PatientCategoryId>>(new Set());
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [countryFilter, setCountryFilter] = useState<string>(''); // '' = 전체
@@ -327,13 +333,23 @@ export default function AdminPatientsPage() {
             )}
           </span>
         )}
-        <div className="ml-auto">
+        <div className="ml-auto flex flex-col items-stretch gap-1.5">
           <button
             type="button"
-            onClick={() => setAddOpen(true)}
+            onClick={() => {
+              setPrefillChart('');
+              setAddOpen(true);
+            }}
             className="rounded-lg bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
           >
             + 환자 추가
+          </button>
+          <button
+            type="button"
+            onClick={() => setDataEntryOpen(true)}
+            className="rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
+          >
+            ＋ 환자 데이터 입력
           </button>
         </div>
       </div>
@@ -746,11 +762,26 @@ export default function AdminPatientsPage() {
       </div>
       {addOpen && (
         <AddPatientModal
+          initialChartNumber={prefillChart}
           onClose={() => setAddOpen(false)}
           onCreated={(id) => {
             setAddOpen(false);
             loadPatients(search);
             navigate(`/admin/patients/${id}`);
+          }}
+        />
+      )}
+      {dataEntryOpen && (
+        <PatientDataEntryModal
+          onClose={() => setDataEntryOpen(false)}
+          onSaved={() => {
+            setDataEntryOpen(false);
+            loadPatients(search);
+          }}
+          onRegisterNew={(chart) => {
+            setDataEntryOpen(false);
+            setPrefillChart(chart);
+            setAddOpen(true);
           }}
         />
       )}
@@ -769,12 +800,14 @@ export default function AdminPatientsPage() {
 function AddPatientModal({
   onClose,
   onCreated,
+  initialChartNumber = '',
 }: {
   onClose: () => void;
   onCreated: (id: string) => void;
+  initialChartNumber?: string;
 }) {
   const addToast = useUIStore((s) => s.addToast);
-  const [chartNumber, setChartNumber] = useState('');
+  const [chartNumber, setChartNumber] = useState(initialChartNumber);
   const [name, setName] = useState('');
   const [gender, setGender] = useState<'male' | 'female'>('male');
   const [birthDate, setBirthDate] = useState('');
@@ -890,6 +923,216 @@ function AddPatientModal({
             className="rounded bg-indigo-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {submitting ? '생성 중…' : '환자 추가'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * 빠른 환자 데이터 입력 — 환자번호를 넣으면 이름을 자동으로 찾아 채우고,
+ * 날짜(기본 오늘)·키·몸무게만 입력해 해당 날짜의 측정값을 저장한다.
+ * 없는 번호면 새 환자 등록 안내 → AddPatientModal 로 연결(onRegisterNew).
+ */
+function PatientDataEntryModal({
+  onClose,
+  onSaved,
+  onRegisterNew,
+}: {
+  onClose: () => void;
+  onSaved: () => void;
+  onRegisterNew: (chartNumber: string) => void;
+}) {
+  const addToast = useUIStore((s) => s.addToast);
+  // 로컬 시간 기준 오늘(YYYY-MM-DD). toISOString 은 UTC라 날짜가 밀릴 수 있어 sv-SE 사용.
+  const todayIso = new Date().toLocaleDateString('sv-SE');
+
+  const [chartNumber, setChartNumber] = useState('');
+  const [date, setDate] = useState(todayIso);
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  // 환자 조회 상태: idle(미입력) / loading / found / notfound.
+  const [lookup, setLookup] = useState<
+    | { status: 'idle' | 'loading' | 'notfound' }
+    | { status: 'found'; child: { id: string; name: string; gender: string } }
+  >({ status: 'idle' });
+  const lookupTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // 환자번호 입력 디바운스 조회 → 이름 자동 채움 / 없음 안내.
+  useEffect(() => {
+    const c = chartNumber.trim();
+    if (!c) {
+      setLookup({ status: 'idle' });
+      return;
+    }
+    setLookup({ status: 'loading' });
+    if (lookupTimer.current) clearTimeout(lookupTimer.current);
+    lookupTimer.current = setTimeout(async () => {
+      try {
+        const child = await fetchChildByChartNumber(c);
+        // 조회 결과 도착 시 입력값이 그대로인지 확인(빠른 타이핑 경합 방지).
+        setLookup(child ? { status: 'found', child } : { status: 'notfound' });
+      } catch {
+        setLookup({ status: 'notfound' });
+      }
+    }, 400);
+    return () => {
+      if (lookupTimer.current) clearTimeout(lookupTimer.current);
+    };
+  }, [chartNumber]);
+
+  const canSubmit =
+    lookup.status === 'found' && date !== '' && height.trim() !== '' && !submitting;
+
+  const submit = async () => {
+    if (lookup.status !== 'found' || !canSubmit) return;
+    const h = parseFloat(height);
+    if (!Number.isFinite(h) || h <= 0) {
+      addToast('error', '키를 올바르게 입력하세요');
+      return;
+    }
+    const w = weight.trim() ? parseFloat(weight) : undefined;
+    if (w != null && !Number.isFinite(w)) {
+      addToast('error', '몸무게를 올바르게 입력하세요');
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const childId = lookup.child.id;
+      // 같은 날짜 일반 visit 이 있으면 재사용(중복 방지), 없으면 생성.
+      const visits = await fetchVisitsForChild(childId);
+      const visit =
+        visits.find((v) => v.visit_date === date) ??
+        (await createVisit({ child_id: childId, visit_date: date }));
+      await createMeasurement({
+        visit_id: visit.id,
+        child_id: childId,
+        measured_date: date,
+        height: h,
+        weight: w,
+      });
+      addToast('success', `${lookup.child.name} 환자 데이터를 저장했습니다`);
+      onSaved();
+    } catch (e) {
+      addToast('error', e instanceof Error ? e.message : '저장에 실패했습니다');
+      setSubmitting(false);
+    }
+  };
+
+  const inputCls =
+    'h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-900 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100';
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md rounded-2xl bg-white shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3">
+          <h2 className="text-sm font-semibold text-slate-900">환자 데이터 입력</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-7 w-7 rounded text-slate-500 hover:bg-slate-100"
+            aria-label="닫기"
+          >
+            ✕
+          </button>
+        </div>
+        <div className="flex flex-col gap-3 px-5 py-4">
+          <label className="flex flex-col gap-1 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+            환자번호 *
+            <input
+              autoFocus
+              value={chartNumber}
+              onChange={(e) => setChartNumber(e.target.value)}
+              placeholder="예) 3177"
+              className={inputCls}
+            />
+          </label>
+
+          {/* 조회 상태 표시 */}
+          {lookup.status === 'loading' && (
+            <div className="rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-500">
+              조회 중…
+            </div>
+          )}
+          {lookup.status === 'found' && (
+            <div className="rounded-lg bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700">
+              ✓ {lookup.child.name} 환자
+            </div>
+          )}
+          {lookup.status === 'notfound' && (
+            <div className="flex flex-col gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5">
+              <span className="text-xs font-medium text-amber-800">
+                존재하지 않는 환자번호입니다. 환자를 새로 등록하시겠습니까?
+              </span>
+              <button
+                type="button"
+                onClick={() => onRegisterNew(chartNumber.trim())}
+                className="self-start rounded-md bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-amber-700"
+              >
+                이 번호로 새 환자 등록 →
+              </button>
+            </div>
+          )}
+
+          <label className="flex flex-col gap-1 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+            날짜 *
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className={inputCls}
+            />
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <label className="flex flex-col gap-1 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+              키 (cm) *
+              <input
+                type="number"
+                inputMode="decimal"
+                step={0.1}
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                placeholder="예) 142.5"
+                className={inputCls}
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-[11px] font-medium uppercase tracking-wide text-slate-500">
+              몸무게 (kg)
+              <input
+                type="number"
+                inputMode="decimal"
+                step={0.1}
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                placeholder="예) 38.2"
+                className={inputCls}
+              />
+            </label>
+          </div>
+        </div>
+        <div className="flex justify-end gap-2 border-t border-slate-200 bg-slate-50 px-5 py-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+          >
+            취소
+          </button>
+          <button
+            type="button"
+            onClick={submit}
+            disabled={!canSubmit}
+            className="rounded bg-indigo-600 px-4 py-1.5 text-xs font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {submitting ? '저장 중…' : '데이터 저장'}
           </button>
         </div>
       </div>

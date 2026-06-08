@@ -484,6 +484,25 @@ export async function createPatient(input: {
 }
 
 /**
+ * 환자번호(chart_number) 정확 일치로 환자 1명 조회. 빠른 데이터 입력
+ * 모달에서 이름 자동 채움 + 존재 여부 확인용. 없으면 null.
+ */
+export async function fetchChildByChartNumber(
+  chartNumber: string,
+): Promise<{ id: string; name: string; gender: string } | null> {
+  const { data, error } = await supabase
+    .from('children')
+    .select('id, name, gender')
+    .eq('chart_number', chartNumber)
+    .maybeSingle();
+  if (error) {
+    logger.error('fetchChildByChartNumber failed', error);
+    throw new Error('환자 조회에 실패했습니다.');
+  }
+  return (data as { id: string; name: string; gender: string } | null) ?? null;
+}
+
+/**
  * Delete a patient AND every clinical record hanging off of them
  * (visits CASCADE → measurements, X-ray, labs, prescriptions).
  * Supabase Storage files are NOT cleaned up here.
