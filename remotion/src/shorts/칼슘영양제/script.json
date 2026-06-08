@@ -1,0 +1,63 @@
+{
+  "slug": "칼슘영양제",
+  "src": "videos/칼슘영양제-src.mp4",
+  "fps": 30,
+  "title": "칼슘 영양제 Best 3",
+  "_note": "🎙️원장 토킹헤드(보라배경) + 칼슘 제품·산호 인서트. 통영상 LatentSync → no-face 패치가 인서트 통과 = 원장만 립싱크(영양제/부작용 방식). FaithfulShort linear. 영어는 한국 브랜드(코라아·우리원) 대신 칼슘 종류로 일반화(산호유래/구연산/D+K2) → 글로벌 통용. baked: 상단 타이틀카드(header) + 큰 한글자막(이동) + 작은 영어자막(원본 baked, 더빙과 안맞아 덮음). 원장 입 y~790, 영어자막 y~830 → 밴드 820~ (입 안가림); 인서트는 한글 낮아 765~.",
+  "headerStyle": { "markBg": "#8B5CF6", "markFg": "#ffffff" },
+  "header": {
+    "en": { "top": "Best calcium", "mark": "for kids — Top 3" },
+    "th": { "top": "แคลเซียมที่ดีที่สุด", "mark": "สำหรับลูก — Top 3" },
+    "ko": { "top": "우리 아이 키 크는", "mark": "칼슘제 Best 3" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 12.0, "capY": 560, "cover": [[420, 280]],
+      "ko": "칼슘은 성장에 중요하지만, 우리 아이들은 아직도 칼슘이 부족합니다. 그래서 골라주는 칼슘 영양제 Best 3.",
+      "en": "Calcium is vital for growth, but studies show most kids still fall short. So here are the 3 best calcium supplements.",
+      "cap_en": ["3 best calcium", "supplements"], "hl_en": "calcium",
+      "th": "แคลเซียมสำคัญต่อการเติบโต แต่ผลสำรวจพบว่าเด็กส่วนใหญ่ยังได้รับไม่พอ นี่คือ 3 อาหารเสริมแคลเซียมที่ดีที่สุด",
+      "cap_th": ["3 แคลเซียม", "ที่ดีที่สุด"], "hl_th": "แคลเซียม"
+    },
+    {
+      "id": "c2", "start": 12.0, "end": 19.0, "capY": 560, "cover": [[420, 280]],
+      "ko": "첨가 영양도 확인하세요. 합성 비타민 없이 자연 칼슘을 먹이고 싶다면?",
+      "en": "Also check the added nutrients. Want natural calcium, without synthetic vitamins?",
+      "cap_en": ["Natural calcium,", "no synthetics?"], "hl_en": "Natural",
+      "th": "เช็กสารอาหารที่เติมด้วย อยากได้แคลเซียมธรรมชาติ ไม่มีวิตามินสังเคราะห์ไหม?",
+      "cap_th": ["แคลเซียมธรรมชาติ", "ไม่สังเคราะห์?"], "hl_th": "ธรรมชาติ"
+    },
+    {
+      "id": "c3", "start": 19.0, "end": 31.0, "capY": 560, "cover": [[420, 280]],
+      "ko": "첫째, 산호에서 추출한 자연 칼슘. 칼슘·마그네슘이 자연 비율, 흡수율 높고 위장 부담 적어 배탈 잦은 아이에게 좋습니다.",
+      "en": "Number one: coral-derived calcium. Natural calcium and magnesium, high absorption, and gentle on the stomach — great for sensitive tummies.",
+      "cap_en": ["1. Coral calcium", "gentle, absorbs well"], "hl_en": "Coral calcium",
+      "th": "หนึ่ง แคลเซียมจากปะการัง มีแคลเซียมและแมกนีเซียมตามธรรมชาติ ดูดซึมดี อ่อนโยนต่อกระเพาะ เหมาะกับเด็กท้องไส้บอบบาง",
+      "cap_th": ["1. แคลเซียมปะการัง", "ดูดซึมดี อ่อนโยน"], "hl_th": "ปะการัง"
+    },
+    {
+      "id": "c4", "start": 31.0, "end": 45.0, "capY": 560, "cover": [[420, 280]],
+      "ko": "둘째, 구연산 칼슘. 흔한 탄산 칼슘보다 흡수율이 좋고, 매일 먹기에 가격도 저렴합니다.",
+      "en": "Number two: calcium citrate. It absorbs far better than common carbonate, and it's affordable for everyday use.",
+      "cap_en": ["2. Calcium citrate", "affordable, absorbs"], "hl_en": "citrate",
+      "th": "สอง แคลเซียมซิเตรต ดูดซึมดีกว่าแคลเซียมคาร์บอเนตทั่วไป และราคาประหยัด กินได้ทุกวัน",
+      "cap_th": ["2. แคลเซียมซิเตรต", "ดูดซึม·ประหยัด"], "hl_th": "ซิเตรต"
+    },
+    {
+      "id": "c5", "start": 45.0, "end": 54.0, "capY": 560, "cover": [[420, 280]],
+      "ko": "셋째, 자연 칼슘에 비타민 D와 K2까지 모두 함유한 칼슘. 뼈 건강의 끝판왕입니다.",
+      "en": "Number three: calcium with vitamin D and K2 — the all-in-one for strong bones.",
+      "cap_en": ["3. Calcium + D + K2", "for strong bones"], "hl_en": "+ D + K2",
+      "th": "สาม แคลเซียมที่มีทั้งวิตามินดีและเคทู ครบในตัวเดียว เพื่อกระดูกแข็งแรง",
+      "cap_th": ["3. แคลเซียม + D + K2", "กระดูกแข็งแรง"], "hl_th": "+ D + K2"
+    },
+    {
+      "id": "c6", "start": 54.0, "end": 59.7, "capY": 560, "cover": [[420, 280]],
+      "ko": "적절한 칼슘 용량은 하루 700에서 800mg입니다.",
+      "en": "And the right dose? About 700 to 800 milligrams a day.",
+      "cap_en": ["Dose: 700–800mg", "per day"], "hl_en": "700–800mg",
+      "th": "แล้วปริมาณที่เหมาะสม? วันละประมาณ 700 ถึง 800 มิลลิกรัม",
+      "cap_th": ["ปริมาณ 700–800mg", "ต่อวัน"], "hl_th": "700–800mg"
+    }
+  ]
+}

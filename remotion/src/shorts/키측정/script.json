@@ -1,0 +1,91 @@
+{
+  "slug": "키측정",
+  "src": "videos/키측정-src.mp4",
+  "panelSrc": "videos/키측정-src-panel.mp4",
+  "fps": 30,
+  "title": "왜 키가 잴 때마다 다를까",
+  "_note": "🔀MIX → 도입부 2인 만담 + 원장 토킹헤드 + 척추 디스크 일러스트. 2인 만담이라 립싱크 X → 단일 내레이터(원장 클론음성) 보이스오버 몽타주(perchunk). 원본 baked 한글 多: 상단 타이틀바(header 스크림이 덮음) + 하단 영구 브랜딩바(bottomScrim) + 청크별 이동 자막(cover, 만담은 큰밴드/교육은 하단밴드) + c6 '압력' 일러스트 라벨(label_en→PRESSURE, ko는 원본 유지). videoMode=perchunk가 곧 최종.",
+  "headerStyle": { "markBg": "#38BDF8", "markFg": "#082233" },
+  "bottomScrim": 640,
+  "header": {
+    "en": { "top": "Same you —", "mark": "different height?!" },
+    "ko": { "top": "똑같은 나인데", "mark": "키가 달라진다?!" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 8.55, "capY": 730, "cover": [[440, 600]],
+      "koAudio": true,
+      "ko": "키를 아침에 쟀다가 밤에 다시 재면, 숫자가 달라집니다.",
+      "cap_ko": ["아침과 밤,", "키가 달라져요"], "hl_ko": "달라져요",
+      "en": "Measure your height in the morning, then again at night — and the number changes!",
+      "cap_en": ["Morning vs night —", "height changes!"], "hl_en": "changes"
+    },
+    {
+      "id": "c2", "start": 8.55, "end": 14.85, "capY": 730, "cover": [[440, 620]],
+      "koAudio": true,
+      "ko": "솔직히 말하면, 아침에 키가 더 큽니다.",
+      "cap_ko": ["아침엔 키가", "더 커요"], "hl_ko": "더 커요",
+      "en": "Honestly? You really are a little taller in the morning.",
+      "cap_en": ["Taller in the", "morning — really"], "hl_en": "Taller"
+    },
+    {
+      "id": "c3", "start": 14.85, "end": 18.73, "capY": 850, "cover": [[600, 700]],
+      "koAudio": true,
+      "ko": "단순히 그날 컨디션 때문이 아니에요.",
+      "cap_ko": ["컨디션 탓이", "아닙니다"], "hl_ko": "아닙니다",
+      "en": "And no — it's not just your condition that day.",
+      "cap_en": ["Not just your", "condition"], "hl_en": "Not just"
+    },
+    {
+      "id": "c4", "start": 18.73, "end": 23.06, "capY": 1200, "cover": [[1070, 300]], "lipsync": true, "lipsyncFrom": 256,
+      "ko": "도대체 내 진짜 키는 뭘까요? 한 번쯤 궁금했을 겁니다.",
+      "cap_ko": ["내 진짜 키는", "뭘까?"], "hl_ko": "진짜 키",
+      "en": "So what on earth is your real height? You've wondered, right?",
+      "cap_en": ["So what's your", "REAL height?"], "hl_en": "REAL"
+    },
+    {
+      "id": "c5", "start": 23.06, "end": 29.95, "capY": 1195, "cover": [[1090, 250]], "lipsync": true, "lipsyncFrom": 342,
+      "ko": "범인은 척추 속, 뼈 사이를 받치는 디스크입니다.",
+      "cap_ko": ["범인은 척추", "디스크"], "hl_ko": "디스크",
+      "en": "The culprit is hidden in your spine — the discs that cushion it.",
+      "cap_en": ["The culprit:", "your spinal discs"], "hl_en": "spinal discs"
+    },
+    {
+      "id": "c6", "start": 29.95, "end": 34.2, "capY": 1195, "cover": [[1080, 290]],
+      "label_en": { "text": "PRESSURE", "y": 560 },
+      "ko": "낮 동안엔 압력에 눌려 키가 살짝 줄어듭니다.",
+      "cap_ko": ["낮엔 눌려서", "키가 줄고"], "hl_ko": "줄고",
+      "en": "By day, pressure squeezes them, and you shrink just a little.",
+      "cap_en": ["By day: pressure", "→ you shrink"], "hl_en": "shrink"
+    },
+    {
+      "id": "c7", "start": 34.2, "end": 38.25, "capY": 1195, "cover": [[1090, 250]],
+      "ko": "밤에 푹 쉬면 다시 쭉 늘어나죠.",
+      "cap_ko": ["밤엔 다시", "늘어나요"], "hl_ko": "늘어나요",
+      "en": "By night, they bounce back — and your height returns.",
+      "cap_en": ["By night:", "you grow back"], "hl_en": "grow back"
+    },
+    {
+      "id": "c8", "start": 38.25, "end": 45.05, "capY": 1200, "cover": [[820, 560]], "lipsync": true, "lipsyncFrom": 588,
+      "panelMask": [[840, 250]],
+      "ko": "그럼 진짜 키는 언제 재야 할까요? 아침에 일어나자마자입니다.",
+      "cap_ko": ["아침 기상 직후", "재세요"], "hl_ko": "기상 직후",
+      "en": "So when is your true height? Right after you wake up.",
+      "cap_en": ["Measure right", "after waking up"], "hl_en": "after waking up"
+    },
+    {
+      "id": "c9", "start": 45.05, "end": 50.09, "capY": 1200, "cover": [[1070, 300]], "lipsync": true, "lipsyncFrom": 666,
+      "ko": "키가 큰 사람일수록 아침저녁 차이가 더 큽니다.",
+      "cap_ko": ["키 클수록", "차이 커요"], "hl_ko": "차이 커요",
+      "en": "Taller people swing the most between morning and night.",
+      "cap_en": ["Taller = bigger", "AM/PM gap"], "hl_en": "bigger"
+    },
+    {
+      "id": "c10", "start": 50.09, "end": 56.97, "capY": 1200, "cover": [[1070, 300]], "lipsync": true, "lipsyncFrom": 744,
+      "ko": "특히 성장기 아이는 디스크가 더 말랑해서 차이가 가장 큽니다.",
+      "cap_ko": ["성장기 아이가", "차이 최대"], "hl_ko": "최대",
+      "en": "And growing kids? Their discs are softest — so they change the most of all.",
+      "cap_en": ["Kids' discs are", "softest of all"], "hl_en": "softest"
+    }
+  ]
+}

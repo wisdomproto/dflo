@@ -1,0 +1,48 @@
+{
+  "locale": "en",
+  "fps": 30,
+  "chunks": [
+    {
+      "id": "c1",
+      "durFrames": 237,
+      "origStartF": 0,
+      "rate": 1.013,
+      "natSec": 7.9
+    },
+    {
+      "id": "c2",
+      "durFrames": 116,
+      "origStartF": 240,
+      "rate": 1.556,
+      "natSec": 3.85
+    },
+    {
+      "id": "c3",
+      "durFrames": 131,
+      "origStartF": 420,
+      "rate": 1.374,
+      "natSec": 4.37
+    },
+    {
+      "id": "c4",
+      "durFrames": 203,
+      "origStartF": 600,
+      "rate": 1.77,
+      "natSec": 6.78
+    },
+    {
+      "id": "c5",
+      "durFrames": 293,
+      "origStartF": 960,
+      "rate": 1.743,
+      "natSec": 9.75
+    },
+    {
+      "id": "c6",
+      "durFrames": 142,
+      "origStartF": 1470,
+      "rate": 1.604,
+      "natSec": 4.74
+    }
+  ]
+}

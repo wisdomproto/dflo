@@ -4,5 +4,6 @@ sources/
 # 작업 영상 (대용량·재생성 가능: yt-dlp 다운로드 + LatentSync 립싱크 출력)
 public/videos/*-src.mp4
 public/videos/*-lipsync-*.mp4
+public/videos/*-panel.mp4
 .env
 .env.local

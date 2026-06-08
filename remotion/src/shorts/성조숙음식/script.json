@@ -1,0 +1,71 @@
+{
+  "slug": "성조숙음식",
+  "src": "videos/성조숙음식-src.mp4",
+  "fps": 30,
+  "title": "성조숙증 유발 음식 (우유)",
+  "_note": "📋몽타주(우유↔성조숙증 Q&A). 원장 내레이션 주도 + 일러스트(소·우유)·데이터표 인서트. 통영상 LatentSync → no-face 패치가 인서트 통과 = 원장 얼굴만 립싱크(부작용/영양제 방식). FaithfulShort linear. baked 한글: 상단 타이틀카드(header가 덮음) + 청크별 상단-중앙 자막(cover) + c5 풀스크린 알러지 데이터표(큰 cover). 글로벌 OK(연예인 X, 우유=만국 부모 관심).",
+  "headerStyle": { "markBg": "#FB923C", "markFg": "#3a1500" },
+  "header": {
+    "en": { "top": "Does milk cause", "mark": "early puberty?!" },
+    "th": { "top": "ดื่มนมทำให้", "mark": "โตก่อนวัย?!" },
+    "ko": { "top": "우유가", "mark": "성조숙증을?!" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 3.67, "capY": 610, "cover": [[480, 320]],
+      "ko": "우유를 먹으면 성조숙증이 온다는 게 정말일까요?",
+      "en": "Is it true that drinking milk gives kids early puberty?",
+      "cap_en": ["Is that", "really true?!"], "hl_en": "really",
+      "th": "จริงไหมที่ว่าดื่มนมแล้วทำให้เด็กโตเป็นหนุ่มสาวก่อนวัย?",
+      "cap_th": ["จริงเหรอ", "เนี่ย?!"], "hl_th": "จริงเหรอ"
+    },
+    {
+      "id": "c2", "start": 3.75, "end": 11.26, "capY": 610, "cover": [[480, 320]],
+      "ko": "우유는 키 크는 데 좋지만, 잘못 먹으면 성조숙증을 부를 수 있어요.",
+      "en": "We all know milk helps kids grow. But the wrong milk can actually trigger it.",
+      "cap_en": ["The wrong milk", "can trigger it"], "hl_en": "wrong",
+      "th": "เรารู้ว่านมช่วยให้เด็กสูง แต่นมที่ไม่ถูกต้องอาจกระตุ้นให้โตก่อนวัยได้",
+      "cap_th": ["นมผิดประเภท", "อาจกระตุ้นได้"], "hl_th": "นมผิดประเภท"
+    },
+    {
+      "id": "c3", "start": 11.39, "end": 21.69, "capY": 610, "cover": [[480, 320]],
+      "ko": "첫째, 임신한 젖소면 우유 속 에스트로겐 농도가 높아집니다.",
+      "en": "One: if the cow is pregnant, estrogen in the milk rises, and that's linked to early puberty.",
+      "cap_en": ["1. Pregnant cow", "→ estrogen ↑"], "hl_en": "estrogen",
+      "th": "หนึ่ง ถ้าวัวตั้งท้อง เอสโตรเจนในนมจะสูงขึ้น ซึ่งเชื่อมโยงกับการโตก่อนวัย",
+      "cap_th": ["1. วัวตั้งท้อง", "→ เอสโตรเจน ↑"], "hl_th": "เอสโตรเจน"
+    },
+    {
+      "id": "c4", "start": 21.69, "end": 34.08, "capY": 610, "cover": [[480, 320]],
+      "ko": "둘째, 소가 노출된 환경호르몬이 여성호르몬과 비슷한 구조입니다.",
+      "en": "Two: the environmental hormones a cow absorbs mimic female hormones, and that's been linked to it too.",
+      "cap_en": ["2. Eco-hormones", "act like estrogen"], "hl_en": "Eco-hormones",
+      "th": "สอง ฮอร์โมนสิ่งแวดล้อมที่วัวได้รับ มีโครงสร้างคล้ายฮอร์โมนเพศหญิง ก็เชื่อมโยงเช่นกัน",
+      "cap_th": ["2. ฮอร์โมนสวล.", "เลียนแบบเอสโตรเจน"], "hl_th": "เอสโตรเจน"
+    },
+    {
+      "id": "c5", "start": 34.08, "end": 46.46, "capY": 610, "cover": [[480, 320]],
+      "ko": "셋째, 우유 알러지 양성 아이가 많아 먹을 때마다 염증이 생깁니다.",
+      "en": "Three: more and more kids test positive for milk allergy. Every glass sparks inflammation, which can trigger it.",
+      "cap_en": ["3. Milk allergy", "→ inflammation"], "hl_en": "inflammation",
+      "th": "สาม เด็กที่ตรวจแพ้นมมีมากขึ้น ทุกแก้วทำให้เกิดการอักเสบ ซึ่งกระตุ้นการโตก่อนวัยได้",
+      "cap_th": ["3. แพ้นม", "→ การอักเสบ"], "hl_th": "การอักเสบ"
+    },
+    {
+      "id": "c6", "start": 46.46, "end": 52.22, "capY": 610, "cover": [[480, 320]],
+      "ko": "그럼 어떻게? 하루 400cc 이하면 큰 문제 없습니다.",
+      "en": "So how much is safe? Under 400cc a day is generally fine.",
+      "cap_en": ["Under 400cc/day", "is generally safe"], "hl_en": "400cc",
+      "th": "แล้วดื่มเท่าไหร่ถึงปลอดภัย? วันละไม่เกิน 400 ซีซี โดยทั่วไปไม่มีปัญหา",
+      "cap_th": ["ไม่เกิน 400cc/วัน", "ปลอดภัย"], "hl_th": "400cc"
+    },
+    {
+      "id": "c7", "start": 52.22, "end": 60.0, "capY": 610, "cover": [[480, 320]],
+      "ko": "많이 먹기보다 채소·건강한 음식과 함께 드세요.",
+      "en": "Don't overdo it just because it's healthy — pair milk with vegetables and healthy food.",
+      "cap_en": ["Pair it with", "vegetables"], "hl_en": "vegetables",
+      "th": "อย่าดื่มเยอะเกินเพราะคิดว่าดี ดื่มนมคู่กับผักและอาหารที่ดีต่อสุขภาพ",
+      "cap_th": ["ดื่มคู่กับ", "ผัก"], "hl_th": "ผัก"
+    }
+  ]
+}

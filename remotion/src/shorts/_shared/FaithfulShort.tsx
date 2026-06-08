@@ -14,7 +14,13 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const stroke = "2px 2px 7px rgba(0,0,0,0.92), 0 0 16px rgba(0,0,0,0.7)";
 
 type Timing = { id: string; durFrames: number; origStartF: number; rate: number };
-type Script = { src: string; header: Record<string, { top: string; mark: string }>; chunks: any[] };
+type Script = {
+  src: string;
+  header: Record<string, { top: string; mark: string }>;
+  chunks: any[];
+  headerStyle?: { markBg?: string; markFg?: string };
+  bottomScrim?: number; // 하단 영구 브랜딩바 마스킹용 그라데이션 높이(px)
+};
 
 const fill = { position: "absolute", width: "100%", height: "100%", objectFit: "cover" } as const;
 
@@ -41,14 +47,23 @@ const Caption: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
   const op =
     interpolate(frame, [0, 5], [0, 1], clamp) *
     interpolate(frame, [c.durFrames - 7, c.durFrames], [1, 0], clamp);
-  const cover = c.cover as number[] | undefined; // [top, height] 전체폭 덮개 (넓은 한글 자막용)
+  // cover: [top,h] 단일 또는 [[top,h],...] 다중 밴드 (청크 내 한글 자막이 여러 위치일 때)
+  const raw = c.cover as number[] | number[][] | undefined;
+  const bands: number[][] = raw ? (Array.isArray(raw[0]) ? (raw as number[][]) : [raw as number[]]) : [];
+  const hasCover = bands.length > 0;
+  const label = (c["label_" + lang] || c.label) as { text: string; y: number; size?: number } | undefined; // 일러스트 한글 라벨 교체(언어별 label_<lang> 우선, 예 압력→PRESSURE)
   return (
     <>
-      {cover && (
-        <div style={{ position: "absolute", left: 22, right: 22, top: cover[0], height: cover[1], background: "rgb(12,13,15)", borderRadius: 26, opacity: op, boxShadow: "0 6px 26px rgba(0,0,0,0.5)" }} />
+      {bands.map((b, bi) => (
+        <div key={bi} style={{ position: "absolute", left: 22, right: 22, top: b[0], height: b[1], background: "rgb(12,13,15)", borderRadius: 26, opacity: op, boxShadow: "0 6px 26px rgba(0,0,0,0.5)" }} />
+      ))}
+      {label && (
+        <div style={{ position: "absolute", top: label.y, left: 0, right: 0, textAlign: "center", opacity: op, fontFamily: NOTO_SANS_KR }}>
+          <span style={{ display: "inline-block", background: "rgb(12,13,15)", color: "#fff", fontWeight: 900, fontSize: label.size || 52, padding: "6px 22px", borderRadius: 14, textShadow: stroke }}>{label.text}</span>
+        </div>
       )}
       <div style={{ position: "absolute", top: c.capY ?? 830, left: 40, right: 40, textAlign: "center", fontFamily: NOTO_SANS_KR, opacity: op, transform: `translateY(-50%) scale(${interpolate(pop, [0, 1], [0.72, 1])})` }}>
-        <div style={{ display: "inline-flex", flexDirection: "column", justifyContent: "center", minHeight: cover ? 0 : (c.capH || 0), background: cover ? "transparent" : "rgba(8,9,11,0.96)", borderRadius: 22, padding: cover ? "4px 16px" : "38px 36px", backdropFilter: cover ? "none" : "blur(10px)", WebkitBackdropFilter: cover ? "none" : "blur(10px)", boxShadow: cover ? "none" : "0 6px 26px rgba(0,0,0,0.55)" }}>
+        <div style={{ display: "inline-flex", flexDirection: "column", justifyContent: "center", minHeight: hasCover ? 0 : (c.capH || 0), background: hasCover ? "transparent" : "rgba(8,9,11,0.96)", borderRadius: 22, padding: hasCover ? "4px 16px" : "38px 36px", backdropFilter: hasCover ? "none" : "blur(10px)", WebkitBackdropFilter: hasCover ? "none" : "blur(10px)", boxShadow: hasCover ? "none" : "0 6px 26px rgba(0,0,0,0.55)" }}>
           {lines.map((ln, k) => (
             <div key={k} style={{ fontSize: 58, fontWeight: 900, color: "#fff", lineHeight: 1.38, textShadow: stroke }}>
               {hlLine(ln, hl)}
@@ -77,7 +92,7 @@ export const FaithfulShort: React.FC<{
   chunks.forEach((c, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
   const total = chunks.reduce((n, c) => n + c.durFrames, 0);
   const head = script.header[lang] || { top: "", mark: "" };
-  const hs = (script as { headerStyle?: { markBg?: string; markFg?: string } }).headerStyle || {};
+  const hs = script.headerStyle || {};
   const markBg = hs.markBg || YELLOW;
   const markFg = hs.markFg || "#111";
 
@@ -110,6 +125,10 @@ export const FaithfulShort: React.FC<{
               <span style={{ display: "inline", background: markBg, color: markFg, fontWeight: 900, fontSize: 78, padding: "8px 22px", borderRadius: 10, WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}>{head.mark}</span>
             </div>
           </div>
+
+          {(script.bottomScrim ?? 0) > 0 && (
+            <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: script.bottomScrim, background: "linear-gradient(0deg, rgba(8,9,11,1) 0%, rgba(8,9,11,1) 86%, rgba(8,9,11,0) 100%)" }} />
+          )}
 
           {chunks.map((c, i) => (
             <Sequence key={"cap" + c.id} from={FROM[i]} durationInFrames={c.durFrames}>

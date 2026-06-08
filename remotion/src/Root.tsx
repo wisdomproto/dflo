@@ -7,6 +7,7 @@ import { HeightReelsKRMarketing } from "./HeightReelsKRMarketing";
 import { CelebReel } from "./CelebReel";
 import { SupplementSyncKR, SUPP_SYNC_DURATION } from "./shorts/supplement/SupplementSync";
 import { SupplementFaithfulTH, SupplementFootageTH, SUPP_FAITHFUL_TH_DURATION } from "./shorts/supplement/SupplementFaithfulTH";
+import { SupplementFaithfulEN, SupplementFootageEN, SUPP_FAITHFUL_EN_DURATION } from "./shorts/supplement/SupplementFaithfulEN";
 import {
   ChogyeongTHPreview, ChogyeongTHFootage, ChogyeongTH, CHOGYEONG_TH_DURATION,
   ChogyeongENPreview, ChogyeongENFootage, ChogyeongEN, CHOGYEONG_EN_DURATION,
@@ -15,6 +16,9 @@ import {
 } from "./shorts/초경";
 import { BujakyongENPreview, BujakyongENFootage, BujakyongEN, BUJAKYONG_EN_DURATION, BujakyongTHFootage, BujakyongTH, BUJAKYONG_TH_DURATION } from "./shorts/부작용";
 import { MongjeongEN, MONGJEONG_EN_DURATION, MongjeongTH, MONGJEONG_TH_DURATION } from "./shorts/몽정";
+import { KicheukjeongEN, KICHEUKJEONG_EN_DURATION, KicheukjeongENFootage } from "./shorts/키측정";
+import { SeongjosukEN, SeongjosukENPreview, SeongjosukENFootage, SEONGJOSUK_EN_DURATION, SeongjosukTH, SeongjosukTHFootage, SEONGJOSUK_TH_DURATION } from "./shorts/성조숙음식";
+import { CalciumEN, CalciumENPreview, CalciumENFootage, CALCIUM_EN_DURATION, CalciumTH, CalciumTHFootage, CALCIUM_TH_DURATION } from "./shorts/칼슘영양제";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -94,6 +98,22 @@ export const RemotionRoot: React.FC = () => {
         width={1080}
         height={1920}
       />
+      <Composition
+        id="SupplementFaithfulEN"
+        component={SupplementFaithfulEN}
+        durationInFrames={SUPP_FAITHFUL_EN_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="SupplementFootageEN"
+        component={SupplementFootageEN}
+        durationInFrames={SUPP_FAITHFUL_EN_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
       <Composition id="chogyeong-preview" component={ChogyeongTHPreview} durationInFrames={CHOGYEONG_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="chogyeong-footage" component={ChogyeongTHFootage} durationInFrames={CHOGYEONG_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="chogyeong" component={ChogyeongTH} durationInFrames={CHOGYEONG_TH_DURATION} fps={30} width={1080} height={1920} />
@@ -111,6 +131,18 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="bujakyong-th" component={BujakyongTH} durationInFrames={BUJAKYONG_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="mongjeong-en" component={MongjeongEN} durationInFrames={MONGJEONG_EN_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="mongjeong-th" component={MongjeongTH} durationInFrames={MONGJEONG_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="kicheukjeong-en-footage" component={KicheukjeongENFootage} durationInFrames={KICHEUKJEONG_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="seongjosuk-en-preview" component={SeongjosukENPreview} durationInFrames={SEONGJOSUK_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="seongjosuk-en-footage" component={SeongjosukENFootage} durationInFrames={SEONGJOSUK_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="seongjosuk-en" component={SeongjosukEN} durationInFrames={SEONGJOSUK_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="seongjosuk-th-footage" component={SeongjosukTHFootage} durationInFrames={SEONGJOSUK_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="seongjosuk-th" component={SeongjosukTH} durationInFrames={SEONGJOSUK_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calcium-en-preview" component={CalciumENPreview} durationInFrames={CALCIUM_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calcium-en-footage" component={CalciumENFootage} durationInFrames={CALCIUM_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calcium-en" component={CalciumEN} durationInFrames={CALCIUM_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calcium-th-footage" component={CalciumTHFootage} durationInFrames={CALCIUM_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calcium-th" component={CalciumTH} durationInFrames={CALCIUM_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="kicheukjeong-en" component={KicheukjeongEN} durationInFrames={KICHEUKJEONG_EN_DURATION} fps={30} width={1080} height={1920} />
     </>
   );
 };
