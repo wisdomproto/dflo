@@ -11,7 +11,6 @@ import { IntakeSurveyPanel } from '@/features/hospital/components/intake/IntakeS
 import { FirstConsultPanel } from '@/features/hospital/components/intake/FirstConsultPanel';
 import { PatientAnalysisModal } from '@/features/hospital/components/PatientAnalysisModal';
 import { SimilarCasesModal } from '@/features/hospital/components/SimilarCasesModal';
-import { RxRecommendModal } from '@/features/hospital/components/RxRecommendModal';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
 import { TREATMENT_STAGES } from '@/shared/utils/treatmentStage';
 import { GrowthComparisonDiagram } from '@/features/hospital/components/intake/GrowthComparisonDiagram';
@@ -38,7 +37,6 @@ export default function AdminPatientDetailPage() {
   const [consultExpanded, setConsultExpanded] = useState(false);
   const [analysisOpen, setAnalysisOpen] = useState(false);
   const [similarOpen, setSimilarOpen] = useState(false);
-  const [showRx, setShowRx] = useState(false);
   // 새 진료 생성 시 사용할 날짜 (기본값 = 오늘, 로컬 시간 기준)
   const [newVisitDate, setNewVisitDate] = useState(() =>
     new Date().toLocaleDateString('sv-SE'),
@@ -600,21 +598,7 @@ export default function AdminPatientDetailPage() {
       </div>
       */}
 
-      {/* Floating action button — AI 처방 추천 */}
-      <div className="fixed bottom-4 right-4 z-30 flex flex-col gap-2">
-        <button
-          type="button"
-          onClick={() => setShowRx(true)}
-          title="AI 처방 추천 (논문 근거)"
-          className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:opacity-90"
-          style={{ backgroundColor: '#667eea' }}
-        >
-          <span>🧠</span>
-          <span>AI 처방 추천</span>
-        </button>
-      </div>
-
-      {showRx && <RxRecommendModal childId={child.id} onClose={() => setShowRx(false)} />}
+      {/* AI 처방 추천 버튼은 VisitDetailPanel 의 생활습관 탭 옆으로 이동(현재 숨김). */}
 
       {analysisOpen && child && (
         <PatientAnalysisModal

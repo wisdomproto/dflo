@@ -24,6 +24,7 @@ import { XrayPanel } from './XrayPanel';
 import { PrescriptionsBlock } from './PrescriptionsBlock';
 import { LifestylePanel } from './LifestylePanel';
 import { PanelContent, panelTypeOf } from './LabHistoryPanel';
+import { RxRecommendModal } from './RxRecommendModal';
 
 interface Props {
   child: Child;
@@ -207,6 +208,9 @@ export function VisitDetailPanel({
   type TabKey = 'clinical' | 'xray' | 'lab' | 'lifestyle';
   const [tab, setTab] = useState<TabKey>('clinical');
 
+  // AI 처방 추천 모달 — 현재 숨김(탭 바의 버튼 주석 처리). 되살리려면 주석 해제.
+  const [showRx, setShowRx] = useState(false);
+
   // Summary badge shape: text + flag so empty/populated states can be styled
   // differently in the tab bar (e.g. muted red for missing data).
   type TabSummary = { text: string; empty: boolean };
@@ -271,6 +275,18 @@ export function VisitDetailPanel({
             </button>
           );
         })}
+        {/* AI 처방 추천 — 생활습관 탭 옆. 숨김 처리(되살리려면 아래 버튼 주석 해제).
+        <button
+          type="button"
+          onClick={() => setShowRx(true)}
+          title="AI 처방 추천 (논문 근거)"
+          className="ml-auto inline-flex items-center gap-1.5 self-center rounded-full px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-90"
+          style={{ backgroundColor: '#667eea' }}
+        >
+          <span>🧠</span>
+          <span>AI 처방 추천</span>
+        </button>
+        */}
         </div>
       </div>
 
@@ -387,6 +403,8 @@ export function VisitDetailPanel({
           <LifestylePanel childId={child.id} anchorDate={visit.visit_date} />
         </Section>
       )}
+
+      {showRx && <RxRecommendModal childId={child.id} onClose={() => setShowRx(false)} />}
     </div>
   );
 }

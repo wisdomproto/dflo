@@ -62,6 +62,7 @@ const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
 const AdminDiagramPreviewPage = lazy(() => import('@/pages/admin/AdminDiagramPreviewPage'));
 const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
 const AdminIntakePage = lazy(() => import('@/pages/admin/AdminIntakePage'));
+const AdminConsultingPage = lazy(() => import('@/pages/admin/AdminConsultingPage'));
 const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
 
 // Marketing hub (PIN-protected standalone section)
@@ -577,6 +578,14 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <AdminIntakePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/consulting',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminConsultingPage />
               </Suspense>
             ),
           },

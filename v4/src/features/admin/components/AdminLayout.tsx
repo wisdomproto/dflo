@@ -8,11 +8,11 @@ import { pendingCount } from '@/features/admin/services/intakeSubmissionService'
 // 사이드바 + 관리자 레이아웃
 // ================================================
 
-// 일반 관리 항목.
+// 의사용 항목 (대시보드 · 환자 · 약품).
 const NAV_ITEMS = [
   { to: '/admin', icon: '📊', label: '대시보드', end: true },
   { to: '/admin/patients', icon: '👥', label: '환자 관리', end: false },
-  { to: '/admin/medications', icon: '💊', label: '약품 마스터', end: false },
+  { to: '/admin/medications', icon: '💊', label: '약품 관리', end: false },
 ];
 
 // 마케팅 센터 — 사이드바 하단 별도 항목.
@@ -21,6 +21,7 @@ const MARKETING_ITEM = { to: '/marketing', icon: '📣', label: '마케팅', end
 // 상담 직원용 그룹 (설문 접수 + 상담 매뉴얼).
 const CONSULT_ITEMS = [
   { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
+  { to: '/admin/consulting', icon: '💬', label: '상담 매뉴얼', end: false },
 ];
 
 const BM_DOCS = [
@@ -133,6 +134,12 @@ export default function AdminLayout() {
 
       {/* Nav Links */}
       <div className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+        {/* 의사용 그룹 — 라벨 */}
+        {!collapsed && (
+          <p className="px-4 pb-1 text-[11px] font-semibold uppercase tracking-wide text-gray-400">
+            의사용
+          </p>
+        )}
         {NAV_ITEMS.map(renderNavLink)}
 
         {/* 상담 직원용 그룹 — 구분선 + 라벨 */}
@@ -145,21 +152,6 @@ export default function AdminLayout() {
         )}
 
         {CONSULT_ITEMS.map(renderNavLink)}
-
-        {/* 상담 매뉴얼 = 정적 페이지 (SPA 라우트 아님 → 새 탭 외부 링크) */}
-        <a
-          href="/consulting.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`relative flex items-center gap-3 rounded-lg text-sm font-medium transition-colors text-gray-600 hover:bg-gray-100 ${
-            collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
-          }`}
-          title={collapsed ? '상담 매뉴얼' : undefined}
-          onClick={() => setSidebarOpen(false)}
-        >
-          <span className="text-lg">💬</span>
-          {!collapsed && <span>상담 매뉴얼</span>}
-        </a>
 
         {/* 마케팅 센터 — 하단 별도 구역 */}
         {collapsed ? (

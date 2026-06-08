@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>태국 환자 상담 매뉴얼 (Q&A 편집기)</title>
+<title>해외 환자 상담 매뉴얼 (Q&A 편집기)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -43,6 +43,26 @@
   header.app .inner { max-width: 880px; margin: 0 auto; }
   header.app h1 { font-size: 19px; font-weight: 900; letter-spacing: -0.3px; }
   header.app p { font-size: 12.5px; opacity: 0.85; margin-top: 3px; }
+
+  /* ---------- market tabs ---------- */
+  .tabs {
+    max-width: 880px;
+    margin: 14px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tab {
+    border: none; cursor: pointer; font-family: inherit;
+    font-size: 13px; font-weight: 700;
+    padding: 8px 16px; border-radius: 999px;
+    background: rgba(255,255,255,0.16); color: #fff; opacity: 0.85;
+    transition: background 0.12s, opacity 0.12s, transform 0.1s;
+  }
+  .tab:hover { background: rgba(255,255,255,0.28); opacity: 1; }
+  .tab.active { background: #fff; color: var(--secondary); opacity: 1; }
+  .tab:active { transform: scale(0.96); }
+
   .toolbar {
     max-width: 880px;
     margin: 12px auto 0;
@@ -51,6 +71,24 @@
     gap: 8px;
     align-items: center;
   }
+  /* ---------- language segment ---------- */
+  .langseg {
+    display: inline-flex;
+    background: rgba(255,255,255,0.16);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .langbtn {
+    border: none; cursor: pointer; font-family: inherit;
+    font-size: 12.5px; font-weight: 700;
+    padding: 6px 15px; border-radius: 999px;
+    background: transparent; color: #fff; opacity: 0.85;
+    transition: background 0.12s, color 0.12s, opacity 0.12s;
+  }
+  .langbtn:hover { opacity: 1; }
+  .langbtn.active { background: #fff; color: var(--secondary); opacity: 1; }
+
   .btn {
     border: none;
     cursor: pointer;
@@ -66,6 +104,16 @@
   .btn-light:hover { background: rgba(255,255,255,0.30); }
   .btn-solid { background: #fff; color: var(--secondary); }
   .btn-solid:hover { filter: brightness(0.96); }
+  /* toolbar grouping */
+  .tb-group { display: inline-flex; align-items: center; gap: 6px; }
+  .tb-divider {
+    width: 1px; height: 20px; flex: none;
+    background: rgba(255,255,255,0.28); margin: 0 4px;
+  }
+  .btn-icon {
+    width: 36px; padding: 8px 0; text-align: center;
+    font-size: 15px; line-height: 1;
+  }
   .save-state { font-size: 12px; opacity: 0.9; margin-left: auto; }
 
   /* ---------- layout ---------- */
@@ -283,14 +331,25 @@
 <body>
 <header class="app">
   <div class="inner">
-    <h1>🇹🇭 태국 환자 상담 매뉴얼 — Q&A 편집기</h1>
-    <p>원장님과 함께 답변을 채워주세요 · 변경사항은 이 브라우저에 자동 저장됩니다</p>
+    <h1 id="manualTitle">상담 매뉴얼 — Q&A 편집기</h1>
+    <p>원장님과 함께 답변을 채워주세요 · 변경사항은 자동 저장됩니다</p>
   </div>
+  <div class="tabs" id="marketTabs"></div>
   <div class="toolbar">
-    <button class="btn btn-light" id="btnPreview">👁️ 공개 미리보기</button>
-    <button class="btn btn-light" id="btnToggleAll">▾ 답변 모두 펼치기</button>
-    <button class="btn btn-light" id="btnRefresh">🔄 새로고침</button>
-    <button class="btn btn-light" id="btnReset">↺ 초기화</button>
+    <div class="tb-group" id="langGroup">
+      <div class="langseg" id="langSeg"></div>
+      <button class="btn btn-solid" id="btnTranslate">🌐 현지어 번역</button>
+    </div>
+    <span class="tb-divider" id="langDivider"></span>
+    <div class="tb-group">
+      <button class="btn btn-light" id="btnPreview">👁️ 미리보기</button>
+      <button class="btn btn-light" id="btnToggleAll">▾ 모두 펼치기</button>
+    </div>
+    <span class="tb-divider"></span>
+    <div class="tb-group">
+      <button class="btn btn-light btn-icon" id="btnRefresh" title="DB에서 새로고침">🔄</button>
+      <button class="btn btn-light btn-icon" id="btnReset" title="이 탭 초기화">↺</button>
+    </div>
     <span class="save-state" id="saveState">연결 중…</span>
   </div>
 </header>
@@ -302,13 +361,29 @@
 <button class="add-cat editor-only" id="btnAddCat" style="max-width:880px;margin:0 auto 24px;display:block;">＋ 카테고리 추가</button>
 
 <footer class="note">
-  입력 내용은 자동으로 DB에 저장됩니다(☁️ 표시). 원장님과 함께 쓸 땐 편집 전 <b>🔄 새로고침</b>으로 최신본을 받아오세요.
+  입력 내용은 자동으로 DB에 저장됩니다(☁️ 표시). 시장(국가) 탭마다 별도 매뉴얼이며, 각 탭에서 <b>한글/현지어</b>를 전환해 작성·확인할 수 있습니다.
 </footer>
 
 <script>
 (function () {
   'use strict';
   const STORAGE_KEY = 'dflo_consulting_qa_v1';
+
+  // ---------- markets (시장별 매뉴얼) ----------
+  // bilingual=true 인 시장은 [한글 / 현지어] 전환 가능. kr 은 한국어 단일.
+  const MARKETS = [
+    { key: 'kr', tab: '🇰🇷 한글',   title: '🇰🇷 한국 환자 상담 매뉴얼',   locName: '한국어',      bilingual: false },
+    { key: 'en', tab: '🇺🇸 영어',   title: '🇺🇸 영어권 환자 상담 매뉴얼', locName: 'English',     bilingual: true },
+    { key: 'th', tab: '🇹🇭 태국어', title: '🇹🇭 태국 환자 상담 매뉴얼',   locName: 'ภาษาไทย',     bilingual: true },
+    { key: 'vn', tab: '🇻🇳 베트남어', title: '🇻🇳 베트남 환자 상담 매뉴얼', locName: 'Tiếng Việt', bilingual: true },
+  ];
+  const MARKET_KEYS = MARKETS.map(function (m) { return m.key; });
+
+  // 번역 대상 언어 키 (ai-server /api/marketing/translate 가 받는 코드). 베트남어는 'vi'.
+  const TRANSLATE_LANG = { en: 'en', th: 'th', vn: 'vi' };
+  // AI 서버 URL — dev(localhost)에서만 동작. prod 는 marketing 라우터 auth 게이트라 미동작.
+  const AI_SERVER = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? 'http://localhost:3001' : '';
 
   // ---------- Supabase ----------
   const SUPABASE_URL = 'https://txirmofdvuljkrjkpzdg.supabase.co';
@@ -323,28 +398,28 @@
     { title: '신뢰 · 효과', qs: [
       '진짜 키가 크는 게 맞나요? 과학적 근거가 있나요?',
       '우리 아이도 효과를 볼 수 있나요? (성장판이 닫혔다면?)',
-      '치료 사례나 전후 데이터가 있나요? 태국 아이도 받은 적 있나요?',
+      '치료 사례나 전후 데이터가 있나요? 외국 아이도 받은 적 있나요?',
       '부작용은 없나요? 호르몬 치료는 위험하지 않나요?',
       '얼마 만에 몇 cm 정도 자라나요?',
     ]},
     { title: '상담 · 진료 프로세스', qs: [
-      '상담은 어떻게 진행되나요? (LINE / 화상 / 대면)',
-      '태국에 있는데 어떻게 진료받나요? 한국에 꼭 가야 하나요?',
+      '상담은 어떻게 진행되나요? (메신저 / 화상 / 대면)',
+      '해외에 있는데 어떻게 진료받나요? 한국에 꼭 가야 하나요?',
       '첫 상담 → 검사 → 치료까지 단계가 어떻게 되나요?',
       '한국 방문 시 며칠 머물러야 하나요? 몇 번 방문해야 하나요?',
-      '검사(엑스레이·혈액·뼈나이)를 태국에서 받아 보내도 되나요?',
-      '치료 시작 후 약·주사는 태국에서 어떻게 이어받나요?',
+      '검사(엑스레이·혈액·뼈나이)를 현지에서 받아 보내도 되나요?',
+      '치료 시작 후 약·주사는 현지에서 어떻게 이어받나요?',
     ]},
     { title: '언어 · 소통', qs: [
-      '태국어/영어 상담이 가능한가요? 통역 지원이 되나요?',
+      '현지어/영어 상담이 가능한가요? 통역 지원이 되나요?',
       '한국 방문 시 의사소통은 어떻게 하나요?',
-      '검사 결과지·처방전을 태국어/영어로 받을 수 있나요?',
+      '검사 결과지·처방전을 현지어/영어로 받을 수 있나요?',
     ]},
     { title: '비용', qs: [
       '상담 비용은 얼마인가요? (무료 / 유료)',
       '진료·검사 비용은? 치료 전체 예상 비용은?',
-      '태국 바트(฿)로 얼마인가요? 결제는 어떻게 하나요?',
-      '태국 보험이 적용되나요? 영수증·서류 발급이 되나요?',
+      '현지 통화로 얼마인가요? 결제는 어떻게 하나요?',
+      '현지 보험이 적용되나요? 영수증·서류 발급이 되나요?',
       '약값·재방문 비용은 별도인가요?',
     ]},
     { title: '체류 · 실무 (방한)', qs: [
@@ -361,26 +436,108 @@
 
   function uid() { return 'q' + Math.random().toString(36).slice(2, 9); }
 
-  function buildFromSeed() {
-    return SEED.map(function (c) {
+  // ---------- 데이터 형태 헬퍼 (이중언어 {ko, loc}) ----------
+  function coerceText(v) {
+    if (v && typeof v === 'object') {
+      return { ko: v.ko || '', loc: (v.loc != null ? v.loc : (v.ko || '')) };
+    }
+    return { ko: v || '', loc: v || '' };
+  }
+  // 카테고리 배열을 {ko,loc} 이중언어 형태로 정규화 (id 보존).
+  function coerceCats(arr) {
+    return (arr || []).map(function (c) {
       return {
-        id: uid(),
-        title: c.title,
-        questions: c.qs.map(function (q) {
-          return { id: uid(), q: q, a: '', isPublic: false };
+        id: c.id || uid(),
+        title: coerceText(c.title),
+        questions: (c.questions || []).map(function (q) {
+          return {
+            id: q.id || uid(),
+            q: coerceText(q.q),
+            a: coerceText(q.a),
+            isPublic: !!q.isPublic,
+          };
         }),
       };
     });
   }
+  // id 를 새로 부여한 깊은 복사 (시장 간 독립성 보장).
+  function regenCats(cats) {
+    return cats.map(function (c) {
+      return {
+        id: uid(),
+        title: { ko: c.title.ko, loc: c.title.loc },
+        questions: c.questions.map(function (q) {
+          return {
+            id: uid(),
+            q: { ko: q.q.ko, loc: q.q.loc },
+            a: { ko: q.a.ko, loc: q.a.loc },
+            isPublic: q.isPublic,
+          };
+        }),
+      };
+    });
+  }
+  // 시드(한국어) → 한 시장의 카테고리 배열.
+  function freshSeedCats() {
+    return SEED.map(function (c) {
+      return {
+        id: uid(),
+        title: { ko: c.title, loc: c.title },
+        questions: c.qs.map(function (q) {
+          return { id: uid(), q: { ko: q, loc: q }, a: { ko: '', loc: '' }, isPublic: false };
+        }),
+      };
+    });
+  }
+  // 레거시 단일 배열 → 4개 시장(전부 동일 복사).
+  function marketsFromLegacy(legacyArr) {
+    const base = coerceCats(legacyArr);
+    const markets = {};
+    MARKET_KEYS.forEach(function (k) { markets[k] = regenCats(base); });
+    return markets;
+  }
+  function buildFromSeed() {
+    const markets = {};
+    MARKET_KEYS.forEach(function (k) { markets[k] = freshSeedCats(); });
+    return { version: 2, markets: markets };
+  }
+  // 저장된 객체 형태({markets}) 정규화 + 누락 시장 보강.
+  function ensureShape(stored) {
+    const mk = (stored && stored.markets) || {};
+    const krCats = coerceCats(mk.kr || []);
+    const out = { version: 2, markets: {} };
+    MARKET_KEYS.forEach(function (k) {
+      let cats = coerceCats(mk[k] || []);
+      if (cats.length === 0 && krCats.length > 0) cats = regenCats(krCats); // 새 시장은 kr 복사
+      out.markets[k] = cats;
+    });
+    return out;
+  }
+  // 임의 입력(레거시 배열 / 신규 객체) → 표준 state. 비면 null.
+  function normalize(stored) {
+    if (!stored) return null;
+    if (Array.isArray(stored)) {
+      if (stored.length === 0) return null;
+      return { version: 2, markets: marketsFromLegacy(stored) };
+    }
+    if (stored.markets) return ensureShape(stored);
+    return null;
+  }
 
   // ---------- state ----------
-  // 즉시 표시용으로 로컬 캐시 먼저 사용, 이후 DB 값으로 덮어씀.
   let state = loadCache() || buildFromSeed();
+  let currentMarket = 'kr';
+  const langByMarket = { kr: 'ko', en: 'ko', th: 'ko', vn: 'ko' };
+
+  function market() { return MARKETS.filter(function (m) { return m.key === currentMarket; })[0]; }
+  function curLang() { return market().bilingual ? (langByMarket[currentMarket] || 'ko') : 'ko'; }
+  function cats() { return state.markets[currentMarket]; }
 
   function loadCache() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
+      if (!raw) return null;
+      return normalize(JSON.parse(raw));
     } catch (e) { return null; }
   }
   function writeCache() {
@@ -421,9 +578,9 @@
       return;
     }
     online = true;
-    const remote = data && Array.isArray(data.categories) ? data.categories : [];
-    if (remote.length > 0) {
-      state = remote; writeCache(); render();
+    const remote = normalize(data && data.categories);
+    if (remote) {
+      state = remote; writeCache(); renderAll();
       flash('☁️ 불러옴 ✓');
     } else {
       // DB 비어있음 → 현재(시드 또는 캐시) 내용을 DB로 올림.
@@ -434,18 +591,67 @@
 
   // ---------- render ----------
   const appEl = document.getElementById('app');
+  const tabsEl = document.getElementById('marketTabs');
+  const langSegEl = document.getElementById('langSeg');
+  const langGroupEl = document.getElementById('langGroup');
+  const langDividerEl = document.getElementById('langDivider');
+  const titleEl = document.getElementById('manualTitle');
   // UI 전용 상태(DB 비저장): 펼침 여부
   const collapsedCat = new Set();          // 접힌 카테고리 id
   const openQ = new Set();                  // 답변 펼친 질문 id (기본: 접힘)
 
+  function renderTabs() {
+    tabsEl.innerHTML = '';
+    MARKETS.forEach(function (m) {
+      const b = el('button', 'tab' + (m.key === currentMarket ? ' active' : ''));
+      b.textContent = m.tab;
+      b.addEventListener('click', function () {
+        if (currentMarket === m.key) return;
+        currentMarket = m.key;
+        collapsedCat.clear(); openQ.clear();
+        renderAll();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      tabsEl.appendChild(b);
+    });
+  }
+
+  function renderLangSeg() {
+    const m = market();
+    langSegEl.innerHTML = '';
+    if (!m.bilingual) { langSegEl.style.display = 'none'; return; }
+    langSegEl.style.display = 'inline-flex';
+    [['ko', '한글'], ['loc', m.locName]].forEach(function (pair) {
+      const b = el('button', 'langbtn' + (curLang() === pair[0] ? ' active' : ''));
+      b.textContent = pair[1];
+      b.addEventListener('click', function () {
+        langByMarket[currentMarket] = pair[0];
+        render(); renderLangSeg();
+      });
+      langSegEl.appendChild(b);
+    });
+  }
+
+  function renderAll() {
+    const m = market();
+    titleEl.textContent = m.title + ' — Q&A 편집기';
+    renderTabs();
+    renderLangSeg();
+    // 언어 도구(한글/현지어 토글 + 번역) 묶음은 다국어 시장에서만.
+    langGroupEl.style.display = m.bilingual ? '' : 'none';
+    langDividerEl.style.display = m.bilingual ? '' : 'none';
+    render();
+  }
+
   function render() {
     appEl.innerHTML = '';
-    state.forEach(function (cat, ci) {
+    cats().forEach(function (cat, ci) {
       appEl.appendChild(renderCat(cat, ci));
     });
   }
 
   function renderCat(cat, ci) {
+    const lang = curLang();
     const sec = el('section', 'cat');
     if (collapsedCat.has(cat.id)) sec.classList.add('collapsed');
 
@@ -454,9 +660,9 @@
     const num = el('div', 'num'); num.textContent = ci + 1;
     const title = document.createElement('input');
     title.className = 'cat-title';
-    title.value = cat.title;
-    title.placeholder = '카테고리 이름';
-    title.addEventListener('input', function () { cat.title = title.value; queueSave(); });
+    title.value = cat.title[lang];
+    title.placeholder = lang === 'ko' ? '카테고리 이름' : '현지어 카테고리 이름';
+    title.addEventListener('input', function () { cat.title[lang] = title.value; queueSave(); });
     title.addEventListener('click', function (e) { e.stopPropagation(); });
     const count = el('span', 'cat-count'); count.textContent = cat.questions.length + '문항';
     const del = el('button', 'cat-del editor-only'); del.textContent = '🗑';
@@ -464,7 +670,7 @@
     del.addEventListener('click', function (e) {
       e.stopPropagation();
       if (confirm('이 카테고리와 안의 질문을 모두 삭제할까요?')) {
-        state.splice(ci, 1); save(); render();
+        cats().splice(ci, 1); save(); render();
       }
     });
     function toggleCat() {
@@ -487,7 +693,7 @@
 
     const addQ = el('button', 'add-q editor-only'); addQ.textContent = '＋ 질문 추가';
     addQ.addEventListener('click', function () {
-      cat.questions.push({ id: uid(), q: '', a: '', isPublic: false });
+      cat.questions.push({ id: uid(), q: { ko: '', loc: '' }, a: { ko: '', loc: '' }, isPublic: false });
       save(); render();
     });
     body.appendChild(addQ);
@@ -497,6 +703,7 @@
   }
 
   function renderQ(cat, q, qi) {
+    const lang = curLang();
     const wrap = el('div', 'q' + (q.isPublic ? ' is-public' : ''));
     if (!openQ.has(q.id)) wrap.classList.add('collapsed');
 
@@ -505,7 +712,7 @@
 
     const badge = el('span', 'ans-badge'); updateBadge();
     function updateBadge() {
-      const done = !!(q.a && q.a.trim());
+      const done = !!(q.a[lang] && q.a[lang].trim());
       badge.textContent = done ? '✓ 작성됨' : '미작성';
       badge.className = 'ans-badge ' + (done ? 'done' : 'todo');
     }
@@ -523,8 +730,9 @@
     toggle.append(cb, sw, txt);
 
     const qText = document.createElement('input');
-    qText.className = 'q-text'; qText.value = q.q; qText.placeholder = '질문을 입력하세요';
-    qText.addEventListener('input', function () { q.q = qText.value; queueSave(); });
+    qText.className = 'q-text'; qText.value = q.q[lang];
+    qText.placeholder = lang === 'ko' ? '질문을 입력하세요' : '현지어 질문을 입력하세요';
+    qText.addEventListener('input', function () { q.q[lang] = qText.value; queueSave(); });
 
     const ansBtn = el('button', 'ans-btn');
     function setAnsBtnText() { ansBtn.textContent = wrap.classList.contains('collapsed') ? '▶ 답변 보기' : '▼ 답변 닫기'; }
@@ -533,10 +741,10 @@
     top.append(lab, qText, badge, toggle, ansBtn);
 
     const ans = document.createElement('textarea');
-    ans.className = 'q-ans'; ans.value = q.a;
-    ans.placeholder = '답변을 입력하세요 (원장님과 함께 작성)';
+    ans.className = 'q-ans'; ans.value = q.a[lang];
+    ans.placeholder = lang === 'ko' ? '답변을 입력하세요 (원장님과 함께 작성)' : '현지어 답변을 입력하세요';
     ans.addEventListener('input', function () {
-      q.a = ans.value; updateBadge(); queueSave();
+      q.a[lang] = ans.value; updateBadge(); queueSave();
       ans.style.height = 'auto'; ans.style.height = ans.scrollHeight + 'px';
     });
 
@@ -568,15 +776,70 @@
 
   function el(tag, cls) { const e = document.createElement(tag); if (cls) e.className = cls; return e; }
 
+  // ---------- 번역 (한국어 → 현지어) ----------
+  const btnTranslate = document.getElementById('btnTranslate');
+
+  // 한 항목(질문+답변 또는 카테고리 제목) 번역. 실패 시 throw.
+  async function translateText(title, bodyText, langKey) {
+    const res = await fetch(AI_SERVER + '/api/marketing/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: title || '', body: bodyText || '', targetLang: langKey }),
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok || !data.success) throw new Error(data.error || ('HTTP ' + res.status));
+    return { title: data.title || '', body: data.body || '' };
+  }
+
+  async function runTranslate() {
+    const m = market();
+    if (!m.bilingual) return;
+    if (!AI_SERVER) { flash('⚠️ AI 서버 URL 미설정 — dev(localhost)에서만 번역됩니다'); return; }
+    const langKey = TRANSLATE_LANG[m.key];
+    if (!confirm('“한글” 내용을 ' + m.locName + '(으)로 번역해 현지어 필드를 채웁니다.\n비어있지 않은 기존 현지어 입력은 덮어쓰여집니다. 계속할까요?')) return;
+
+    const list = cats();
+    const total = list.reduce(function (n, c) { return n + 1 + c.questions.length; }, 0);
+    let done = 0, fails = 0, lastErr = '';
+    btnTranslate.disabled = true;
+    try {
+      for (const c of list) {
+        if (c.title.ko && c.title.ko.trim()) {
+          try { c.title.loc = (await translateText(c.title.ko, '', langKey)).title || c.title.loc; }
+          catch (e) { fails++; lastErr = e.message; }
+        }
+        done++; flash('번역 중… ' + done + '/' + total);
+        for (const q of c.questions) {
+          if ((q.q.ko && q.q.ko.trim()) || (q.a.ko && q.a.ko.trim())) {
+            try {
+              const r = await translateText(q.q.ko, q.a.ko, langKey);
+              if (r.title) q.q.loc = r.title;
+              if (r.body) q.a.loc = r.body;
+            } catch (e) { fails++; lastErr = e.message; }
+          }
+          done++; flash('번역 중… ' + done + '/' + total);
+        }
+      }
+      langByMarket[currentMarket] = 'loc';
+      renderAll();
+      save();
+      if (fails === 0) flash('🌐 ' + m.locName + ' 번역 완료 ✓');
+      else flash('🌐 번역 일부 실패(' + fails + '건) — ' + lastErr);
+    } finally {
+      btnTranslate.disabled = false;
+    }
+  }
+  btnTranslate.addEventListener('click', runTranslate);
+
   // ---------- toolbar ----------
   document.getElementById('btnAddCat').addEventListener('click', function () {
-    state.push({ id: uid(), title: '새 카테고리', questions: [] });
+    cats().push({ id: uid(), title: { ko: '새 카테고리', loc: '새 카테고리' }, questions: [] });
     save(); render();
   });
 
   document.getElementById('btnPreview').addEventListener('click', function () {
     const on = document.body.classList.toggle('preview');
-    this.textContent = on ? '✏️ 편집으로 돌아가기' : '👁️ 공개 미리보기';
+    this.textContent = on ? '✏️ 편집' : '👁️ 미리보기';
     if (on) {
       // auto-resize textareas for clean reading
       document.querySelectorAll('textarea.q-ans').forEach(function (t) {
@@ -587,18 +850,19 @@
   });
 
   document.getElementById('btnReset').addEventListener('click', function () {
-    if (confirm('모든 내용을 초기 질문 세트로 되돌릴까요? (현재 입력 내용이 사라집니다)')) {
-      state = buildFromSeed(); save(); render();
+    if (confirm('“' + market().tab + '” 매뉴얼을 초기 질문 세트로 되돌릴까요? (이 탭의 입력 내용이 사라집니다)')) {
+      state.markets[currentMarket] = freshSeedCats(); save(); render();
     }
   });
 
   document.getElementById('btnToggleAll').addEventListener('click', function () {
-    const allOpen = state.every(function (c) { return c.questions.every(function (q) { return openQ.has(q.id); }); });
+    const list = cats();
+    const allOpen = list.every(function (c) { return c.questions.every(function (q) { return openQ.has(q.id); }); });
     openQ.clear();
     if (!allOpen) {
-      state.forEach(function (c) { c.questions.forEach(function (q) { openQ.add(q.id); }); });
+      list.forEach(function (c) { c.questions.forEach(function (q) { openQ.add(q.id); }); });
     }
-    this.textContent = allOpen ? '▾ 답변 모두 펼치기' : '▸ 답변 모두 접기';
+    this.textContent = allOpen ? '▾ 모두 펼치기' : '▸ 모두 접기';
     render();
   });
 
@@ -607,10 +871,14 @@
     pullRemote({ force: true });
   });
   function hasContent() {
-    return state.some(function (c) { return c.questions.some(function (q) { return q.a || q.q; }); });
+    return MARKET_KEYS.some(function (k) {
+      return state.markets[k].some(function (c) {
+        return c.questions.some(function (q) { return q.a.ko || q.a.loc || q.q.ko || q.q.loc; });
+      });
+    });
   }
 
-  render();
+  renderAll();
   pullRemote();
 })();
 </script>
