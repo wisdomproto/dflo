@@ -8,10 +8,11 @@ export const META_SCOPES = [
   'pages_show_list',
   'pages_manage_posts',
   'pages_read_engagement',
+  'pages_manage_metadata',
   'instagram_basic',
   'instagram_content_publish',
-  'threads_basic',
-  'threads_content_publish',
+  // ⚠️ threads_basic / threads_content_publish 는 Facebook 로그인 다이얼로그에서 Invalid Scope
+  // (Threads API 는 별도 OAuth — graph.threads.net). 여기 넣으면 다이얼로그 전체가 막힘. 추후 별도 연동.
 ];
 
 export function buildAuthUrl(opts: { appId: string; redirectUri: string; state: string }): string {

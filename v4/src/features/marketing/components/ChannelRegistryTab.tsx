@@ -215,9 +215,19 @@ export function ChannelRegistryTab() {
     pg: NonNullable<MetaConnection['pages']>[number],
   ) => {
     const locale = localeFilter === 'all' ? 'ko' : localeFilter;
+    const igUser = pg.instagram?.username ?? '';
+    const handle = platform === 'instagram' || platform === 'threads' ? (igUser ? `@${igUser}` : '') : pg.name;
+    const url =
+      platform === 'instagram'
+        ? (igUser ? `https://instagram.com/${igUser}` : '')
+        : platform === 'threads'
+          ? (igUser ? `https://www.threads.net/@${igUser}` : '')
+          : `https://www.facebook.com/${pg.id}`;
     await saveChannel({
       platform,
-      name: platform === 'instagram' ? (pg.instagram?.username ?? pg.name) : pg.name,
+      name: platform === 'instagram' ? (igUser || pg.name) : pg.name,
+      handle,
+      url,
       locale,
       isActive: true,
       metaPageId: pg.id,

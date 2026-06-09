@@ -2,7 +2,7 @@
 // deploy hook은 호출하지 않음(호출자가 배치 단위로 트리거).
 import { createClient } from '@supabase/supabase-js';
 import { validatePublish, targetIdFor, htmlToText, type Platform } from './metaPublishPrep.js';
-import { publishFacebook, publishInstagram, publishThreads } from './metaPublish.js';
+import { publishFacebook, publishInstagram, publishThreads, fetchPermalink } from './metaPublish.js';
 import { getBundle, findPageToken } from './metaConnectionStore.js';
 
 const sb = createClient(
@@ -56,10 +56,17 @@ export async function publishQueueItem(queueId: string): Promise<ExecResult> {
   let caption = '';
   let imageUrls: string[] = [];
   if (q.content_kind === 'cardnews') {
-    const { data: cn } = await sb.from('marketing_cardnews').select('id, caption, hashtags').eq('content_id', q.article_id).limit(1).single();
+    const lang = (q.language as string) || 'ko';
+    const { data: cn } = await sb.from('marketing_cardnews').select('id, caption, hashtags, captions, hashtags_i18n').eq('content_id', q.article_id).limit(1).single();
     if (cn) {
-      const tags = ((cn.hashtags ?? []) as string[]).map((h) => (h.startsWith('#') ? h : `#${h}`)).join(' ');
-      caption = [cn.caption as string, tags].filter(Boolean).join('\n\n');
+      // i18n: 언어별 captions/hashtags_i18n 우선, 없으면 flat caption/hashtags 폴백
+      const capI18n = (cn.captions as Record<string, string> | null)?.[lang];
+      const tagI18n = (cn.hashtags_i18n as Record<string, string> | null)?.[lang];
+      const captionText = (capI18n && capI18n.trim()) || (cn.caption as string) || '';
+      const tags = (tagI18n && tagI18n.trim())
+        ? tagI18n
+        : ((cn.hashtags ?? []) as string[]).map((h) => (h.startsWith('#') ? h : `#${h}`)).join(' ');
+      caption = [captionText, tags].filter(Boolean).join('\n\n');
       const { data: slides } = await sb.from('marketing_cardnews_slides').select('canvas, sort_order').eq('cardnews_id', cn.id as string).order('sort_order');
       imageUrls = ((slides ?? []) as Array<{ canvas?: { imageUrl?: string | null } }>)
         .map((s) => s.canvas?.imageUrl)
@@ -88,12 +95,13 @@ export async function publishQueueItem(queueId: string): Promise<ExecResult> {
 
   try {
     let postId = '';
-    if (platform === 'facebook') postId = await publishFacebook(targetId, token, caption);
+    if (platform === 'facebook') postId = await publishFacebook(targetId, token, caption, imageUrls);
     else if (platform === 'instagram') postId = await publishInstagram(targetId, token, caption, imageUrls);
     else postId = await publishThreads(targetId, token, caption, imageUrls);
+    const publishedUrl = await fetchPermalink(platform, postId, token);
     await sb.from('marketing_publish_queue').update({
-      status: 'published', platform_post_id: postId, published_at: new Date().toISOString(),
-      error_message: null, updated_at: new Date().toISOString(),
+      status: 'published', platform_post_id: postId, published_url: publishedUrl,
+      published_at: new Date().toISOString(), error_message: null, updated_at: new Date().toISOString(),
     }).eq('id', queueId);
     return { ok: true, kind: 'meta', postId };
   } catch (e) {

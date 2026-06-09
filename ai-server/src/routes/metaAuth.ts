@@ -19,7 +19,10 @@ metaAuthRouter.get('/', (req, res) => {
 
 metaAuthRouter.get('/callback', async (req, res) => {
   const spa = String(req.query['state'] || process.env.CORS_ORIGIN || '');
-  const fail = (msg: string) => res.redirect(`${spa}?meta_error=${encodeURIComponent(msg)}`);
+  const fail = (msg: string) => {
+    console.error('[meta/callback] FAIL:', msg);
+    return res.redirect(`${spa}?meta_error=${encodeURIComponent(msg)}`);
+  };
   const code = req.query['code'] ? String(req.query['code']) : '';
   if (!code) return fail(String(req.query['error'] || 'no_code'));
   try {

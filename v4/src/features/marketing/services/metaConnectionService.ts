@@ -1,6 +1,6 @@
 // src/features/marketing/services/metaConnectionService.ts
 // Meta 연결 상태/연결시작/해제/발행 — ai-server 프록시(토큰은 절대 클라로 안 옴).
-const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:3001';
+const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
 export interface MetaConnection {
   connected: boolean;
