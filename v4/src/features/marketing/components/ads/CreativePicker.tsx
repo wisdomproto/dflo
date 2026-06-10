@@ -1,25 +1,28 @@
 // src/features/marketing/components/ads/CreativePicker.tsx
-// 광고 소재 선택 — 이미 만든 카드뉴스/릴스를 광고 크리에이티브로 연결.
-// 좌: 콘텐츠 목록 / 우: 선택 콘텐츠의 해당 시장(언어) 카드뉴스·릴스 미리보기.
-// 소재 선택 시 그 시장의 캡션도 함께 넘겨 광고 본문 카피 기본값으로 쓴다.
+// 광고 소재 선택 — 소스 탭 2개:
+//  📡 채널 피드 = 채널에 이미 발행된 게시물을 골라 증폭(boosting, 소셜 프루프 누적)
+//  ⬆️ 직접 업로드 = 광고 전용 소재(마케팅 릴·이미지)를 올려 다크 포스트(피드 미노출)로 집행
+// 옛 "콘텐츠 스튜디오에서 고르기" 패널은 폐기 — 스튜디오 콘텐츠는 발행 후 채널 피드에서
+// 부스팅하고, 광고 전용 소재는 스튜디오에 없는 파일이라 직접 업로드가 맞다.
 import { useEffect, useState } from 'react';
 import { fetchArticles } from '../../services/marketingArticleService';
-import { fetchCardnews } from '../../services/cardnewsService';
-import type { MarketingArticle, CardLang, Cardnews } from '../../types';
+import type { MarketingArticle } from '../../types';
 import type { CreativeKind } from '../../services/adWorkspaceService';
+import { ChannelFeedTab } from './ChannelFeedTab';
+import { DirectUploadTab } from './DirectUploadTab';
 
 export interface PickedCreative {
   kind: CreativeKind;
-  articleId: string;
+  articleId: string | null;
   lang: string;
   thumbnailUrl: string;
   mediaUrl: string;
   name: string;
   caption: string;
-}
-
-function toCardLang(lang: string): CardLang {
-  return (['ko', 'en', 'th', 'vi', 'ch', 'cn'].includes(lang) ? lang : 'ko') as CardLang;
+  // 기존 게시물(boosting) 선택 시에만 채워진다.
+  sourcePostId?: string;
+  sourceChannel?: string;
+  sourceUrl?: string;
 }
 
 export function CreativePicker({
@@ -31,124 +34,47 @@ export function CreativePicker({
   onPick: (c: PickedCreative) => void;
   onClose: () => void;
 }) {
+  const [tab, setTab] = useState<'feed' | 'upload'>('feed');
   const [articles, setArticles] = useState<MarketingArticle[]>([]);
-  const [q, setQ] = useState('');
-  const [sel, setSel] = useState<MarketingArticle | null>(null);
-  const [cn, setCn] = useState<Cardnews | null>(null);
-  const [loading, setLoading] = useState(false);
-  const lang = toCardLang(market);
 
   useEffect(() => {
-    fetchArticles().then(setArticles);
+    fetchArticles().then(setArticles); // 채널 피드 탭의 콘텐츠 제목 enrich 용
   }, []);
 
-  useEffect(() => {
-    if (!sel) {
-      setCn(null);
-      return;
-    }
-    setLoading(true);
-    fetchCardnews(sel.id)
-      .then(setCn)
-      .finally(() => setLoading(false));
-  }, [sel]);
-
-  const caption = cn?.captions?.[lang] ?? '';
-  const cardImgs = (cn?.slides ?? []).map((s) => s.canvas.images?.[lang] ?? s.canvas.imageUrl ?? '').filter(Boolean);
-  const reel = sel?.reels?.[market];
-  // coverUrl 은 릴스-커버 기능(types.ts) 머지 전일 수 있어 옵셔널 접근으로 빌드 안전 확보.
-  const reelCover = (reel as { videoUrl?: string | null; coverUrl?: string | null } | undefined)?.coverUrl ?? '';
-  const filtered = articles.filter((a) => !q || a.title.toLowerCase().includes(q.toLowerCase()));
-
-  const pickCard = (url: string) =>
-    sel && onPick({ kind: 'cardnews', articleId: sel.id, lang: market, thumbnailUrl: url, mediaUrl: url, name: sel.title, caption });
-  const pickReel = () =>
-    sel && reel?.videoUrl &&
-    onPick({ kind: 'reels', articleId: sel.id, lang: market, thumbnailUrl: reelCover, mediaUrl: reel.videoUrl, name: sel.title, caption });
+  const tabBtn = (id: 'feed' | 'upload', label: string) => (
+    <button
+      type="button"
+      onClick={() => setTab(id)}
+      className={`rounded-lg px-3 py-1.5 text-sm ${
+        tab === id ? 'bg-[#4A2D6B] font-semibold text-white' : 'text-gray-500 hover:bg-gray-100'
+      }`}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
-      <div className="flex h-[80vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-2xl" onClick={(e) => e.stopPropagation()}>
-        {/* 좌: 콘텐츠 목록 */}
-        <div className="flex w-64 flex-shrink-0 flex-col border-r border-gray-200">
-          <div className="border-b border-gray-100 p-3">
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="콘텐츠 검색…"
-              className="w-full rounded-lg border border-gray-200 px-3 py-1.5 text-sm focus:outline-none"
-            />
+      <div className="flex h-[80vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        {/* 헤더: 소스 탭 + 닫기 */}
+        <div className="flex items-center justify-between border-b border-gray-100 px-4 py-2.5">
+          <div className="flex items-center gap-1.5">
+            <h3 className="mr-2 text-sm font-bold text-gray-800">소재 선택 · {market.toUpperCase()}</h3>
+            {tabBtn('feed', '📡 채널 피드')}
+            {tabBtn('upload', '⬆️ 직접 업로드')}
           </div>
-          <div className="flex-1 overflow-y-auto">
-            {filtered.map((a) => (
-              <button
-                key={a.id}
-                type="button"
-                onClick={() => setSel(a)}
-                className={`block w-full truncate px-3 py-2 text-left text-sm ${
-                  sel?.id === a.id ? 'bg-[#4A2D6B]/10 font-medium text-[#4A2D6B]' : 'text-gray-600 hover:bg-gray-50'
-                }`}
-              >
-                {a.sortOrder ? `${a.sortOrder}. ` : ''}
-                {a.title}
-              </button>
-            ))}
-          </div>
+          <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600">✕</button>
         </div>
+        <p className="border-b border-gray-50 px-4 py-1.5 text-[11px] text-gray-400">
+          {tab === 'feed'
+            ? '채널에 이미 발행된 게시물을 광고로 증폭(부스팅) — 좋아요·댓글이 한 게시물에 누적됩니다.'
+            : '광고 전용 소재를 직접 업로드 — 다크 포스트로 피드에 노출되지 않고 타겟에게만 보입니다.'}
+        </p>
 
-        {/* 우: 소재 미리보기 */}
-        <div className="flex-1 overflow-y-auto p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-bold text-gray-800">소재 선택 · {market.toUpperCase()}</h3>
-            <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600">✕</button>
-          </div>
-          {!sel ? (
-            <p className="grid h-[60%] place-items-center text-sm text-gray-400">왼쪽에서 콘텐츠를 선택하세요</p>
-          ) : (
-            <div className="space-y-4">
-              <div className="text-sm font-semibold text-gray-800">{sel.title}</div>
-
-              {reel?.videoUrl && (
-                <div>
-                  <div className="mb-1 text-xs font-medium text-gray-400">릴스</div>
-                  <button
-                    type="button"
-                    onClick={pickReel}
-                    className="group relative aspect-[9/16] w-28 overflow-hidden rounded-lg border-2 border-transparent hover:border-[#4A2D6B]"
-                  >
-                    {reelCover ? (
-                      <img src={reelCover} alt="" className="h-full w-full object-cover" />
-                    ) : (
-                      <div className="grid h-full place-items-center bg-gray-100 text-2xl">🎬</div>
-                    )}
-                    <span className="absolute inset-x-0 bottom-0 bg-black/60 py-0.5 text-center text-[10px] text-white opacity-0 group-hover:opacity-100">
-                      이 릴스 선택
-                    </span>
-                  </button>
-                </div>
-              )}
-
-              <div>
-                <div className="mb-1 text-xs font-medium text-gray-400">카드뉴스{loading ? ' · 불러오는 중…' : ''}</div>
-                {cardImgs.length === 0 && !loading ? (
-                  <p className="text-xs text-gray-400">이 시장({market})의 카드뉴스 이미지가 없습니다.</p>
-                ) : (
-                  <div className="grid grid-cols-4 gap-2">
-                    {cardImgs.map((url, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => pickCard(url)}
-                        className="aspect-[4/5] overflow-hidden rounded-lg border-2 border-transparent hover:border-[#4A2D6B]"
-                      >
-                        <img src={url} alt="" className="h-full w-full object-cover" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
+        <div className="min-h-0 flex-1 overflow-y-auto p-4">
+          {tab === 'feed'
+            ? <ChannelFeedTab market={market} articles={articles} onPick={onPick} />
+            : <DirectUploadTab market={market} onPick={onPick} />}
         </div>
       </div>
     </div>

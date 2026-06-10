@@ -16,6 +16,7 @@ import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasReques
 import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt, buildBlogSeoOutlinePrompt, buildBlogSeoBodyPrompt } from '../services/contentPrompts.js';
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
+import { fetchChannelFeed } from '../services/metaFeed.js';
 import { publishQueueItem } from '../services/publishExecutor.js';
 import { triggerDeploy } from '../services/deployHook.js';
 
@@ -533,6 +534,17 @@ marketingRouter.delete('/meta/connection', async (_req, res) => {
     res.json({ success: true });
   } catch (e) {
     res.status(500).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
+// GET /meta/feed/:channelId — 채널(페이지/IG)에 올라간 실제 게시물 피드(읽기 전용).
+// 광고 워크스페이스 "기존 게시물(boosting)" 소재 선택용 — 수동 업로드 게시물까지 잡힌다.
+marketingRouter.get('/meta/feed/:channelId', async (req, res) => {
+  try {
+    const r = await fetchChannelFeed(req.params.channelId);
+    res.json({ success: true, ...r });
+  } catch (e) {
+    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
   }
 });
 

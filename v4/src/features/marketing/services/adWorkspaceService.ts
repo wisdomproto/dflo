@@ -72,6 +72,11 @@ export interface Ad {
   headline: string;
   primaryText: string;
   landingUrl: string;
+  // 기존 게시물(boosting) 소재 — 채널 피드에서 골랐을 때만 채워진다 (migration 052).
+  // Meta API 푸시 시 object_story_id = sourcePostId 로 1:1 매핑.
+  sourcePostId: string;
+  sourceChannel: string; // facebook | instagram
+  sourceUrl: string; // 게시물 공개 URL(permalink)
   sortOrder: number;
   createdAt: string;
   updatedAt: string;
@@ -240,13 +245,16 @@ function rowToAd(r: Row): Ad {
     headline: (r.headline as string) ?? '',
     primaryText: (r.primary_text as string) ?? '',
     landingUrl: (r.landing_url as string) ?? '',
+    sourcePostId: (r.source_post_id as string) ?? '',
+    sourceChannel: (r.source_channel as string) ?? '',
+    sourceUrl: (r.source_url as string) ?? '',
     sortOrder: (r.sort_order as number) ?? 0,
     createdAt: (r.created_at as string) ?? '',
     updatedAt: (r.updated_at as string) ?? '',
   };
 }
 function adToRow(a: Partial<Ad>): Row {
-  return {
+  const row: Row = {
     ad_set_id: a.adSetId,
     name: a.name ?? '',
     status: a.status ?? 'active',
@@ -261,6 +269,11 @@ function adToRow(a: Partial<Ad>): Row {
     sort_order: a.sortOrder ?? 0,
     updated_at: new Date().toISOString(),
   };
+  // 소스 게시물 필드는 값이 있을 때만 포함 — migration 052 미적용이어도 스튜디오 소재 저장은 동작.
+  if (a.sourcePostId) row.source_post_id = a.sourcePostId;
+  if (a.sourceChannel) row.source_channel = a.sourceChannel;
+  if (a.sourceUrl) row.source_url = a.sourceUrl;
+  return row;
 }
 
 export async function fetchAds(adSetId: string): Promise<Ad[]> {

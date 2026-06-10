@@ -96,6 +96,25 @@ export async function uploadCoverImage(file: File): Promise<string> {
 }
 
 /**
+ * Uploads an AD CREATIVE (image or video) to R2 as-is — no WebP conversion.
+ * Meta 광고 소재는 원본 보존(JPG/PNG/mp4)이 안전(IG가 WebP 거부한 전례). folder: marketing/ads.
+ * Returns the public URL.
+ */
+export async function uploadAdCreativeFile(file: File): Promise<string> {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('folder', 'marketing/ads');
+  const res = await fetch(`${BASE}/api/r2/upload`, {
+    method: 'POST',
+    headers: { 'x-admin-pin': PIN },
+    body: fd,
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `소재 업로드 실패: ${res.status}`);
+  return b.url as string;
+}
+
+/**
  * Uploads a reel INFOGRAPHIC image to R2, preserving the original format (PNG/JPG —
  * NOT WebP). 텍스트 없는 언어공용 인서트 이미지로, 렌더가 insertLabels 로 언어별 텍스트를 얹는다.
  * Returns the public URL.

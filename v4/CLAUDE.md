@@ -125,6 +125,7 @@ scripts/
 - 클리니컬 RAG: `034_medication_legend.sql` ~ `036_clinical_insights.sql`
 - 마케팅/발행 확장: `037_marketing_channel_active.sql` ~ `042_channels_meta_target_and_queue_result.sql`
 - 치료완료 단계: `043_children_treatment_completed.sql` — treatment_status CHECK 에 `completed` 추가 (**MCP 권한 차단으로 Dashboard 수동 적용 필요**)
+- 광고 소재 기존게시물(boosting): `052_marketing_ads_source_post.sql` — marketing_ads 에 source_post_id/source_channel/source_url (적용 완료)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail

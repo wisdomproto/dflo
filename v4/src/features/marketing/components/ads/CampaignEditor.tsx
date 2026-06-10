@@ -20,6 +20,10 @@ interface ContentDraft {
   mediaUrl: string;
   name: string;
   caption: string;
+  // 기존 게시물(boosting) 소재 — 채널 피드에서 골랐을 때만 채워진다.
+  sourcePostId: string;
+  sourceChannel: string;
+  sourceUrl: string;
 }
 
 let _k = 0;
@@ -74,14 +78,14 @@ export function CampaignEditor({
       setBudgetType(s.budgetType);
       setPerf({ spend: String(s.spend), impressions: String(s.impressions), clicks: String(s.clicks), conversions: String(s.conversions), revenue: String(s.revenue) });
       fetchAds(s.id).then((ads) => {
-        setContents(ads.map((a) => ({ key: nextKey(), id: a.id, kind: a.creativeKind, articleId: a.articleId, lang: a.creativeLang, thumbnailUrl: a.thumbnailUrl, mediaUrl: a.mediaUrl, name: a.name, caption: a.primaryText })));
+        setContents(ads.map((a) => ({ key: nextKey(), id: a.id, kind: a.creativeKind, articleId: a.articleId, lang: a.creativeLang, thumbnailUrl: a.thumbnailUrl, mediaUrl: a.mediaUrl, name: a.name, caption: a.primaryText, sourcePostId: a.sourcePostId, sourceChannel: a.sourceChannel, sourceUrl: a.sourceUrl })));
         if (ads[0]?.landingUrl) setLandingUrl(ads[0].landingUrl);
       });
     });
   }, [initial]);
 
   const onPick = (c: PickedCreative) => {
-    setContents((arr) => [...arr, { key: nextKey(), kind: c.kind, articleId: c.articleId, lang: c.lang, thumbnailUrl: c.thumbnailUrl, mediaUrl: c.mediaUrl, name: c.name, caption: c.caption }]);
+    setContents((arr) => [...arr, { key: nextKey(), kind: c.kind, articleId: c.articleId, lang: c.lang, thumbnailUrl: c.thumbnailUrl, mediaUrl: c.mediaUrl, name: c.name, caption: c.caption, sourcePostId: c.sourcePostId ?? '', sourceChannel: c.sourceChannel ?? '', sourceUrl: c.sourceUrl ?? '' }]);
     setPicking(false);
   };
   const removeContent = (key: string) => {
@@ -112,6 +116,7 @@ export function CampaignEditor({
           id: c.id, adSetId: set.id, name: c.name, status: 'active',
           creativeKind: c.kind, articleId: c.articleId, creativeLang: c.lang,
           thumbnailUrl: c.thumbnailUrl, mediaUrl: c.mediaUrl, headline: '', primaryText: c.caption, landingUrl: landingUrl.trim(),
+          sourcePostId: c.sourcePostId, sourceChannel: c.sourceChannel, sourceUrl: c.sourceUrl,
         });
       }
       onSaved();
@@ -203,7 +208,12 @@ export function CampaignEditor({
                 {c.thumbnailUrl ? <img src={c.thumbnailUrl} alt="" className="h-full w-full object-cover" /> : <div className="grid h-full place-items-center text-xl text-gray-300">🖼</div>}
               </div>
               <button type="button" onClick={() => removeContent(c.key)} className="absolute right-1 top-1 rounded-full bg-black/50 px-1.5 text-xs text-white opacity-0 group-hover:opacity-100">✕</button>
-              <div className="truncate px-1.5 py-1 text-[10px] text-gray-500">{CREATIVE_KIND_LABEL[c.kind]}</div>
+              <div className="flex items-center justify-between gap-1 px-1.5 py-1 text-[10px] text-gray-500">
+                <span className="truncate">{c.sourcePostId || c.sourceUrl ? '📡 기존 게시물' : CREATIVE_KIND_LABEL[c.kind]}</span>
+                {c.sourceUrl && (
+                  <a href={c.sourceUrl} target="_blank" rel="noreferrer" className="shrink-0 text-[#4A2D6B] hover:underline">↗</a>
+                )}
+              </div>
             </div>
           ))}
           <button type="button" onClick={() => setPicking(true)} className="grid aspect-[4/5] place-items-center rounded-lg border-2 border-dashed border-gray-300 text-xs text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
