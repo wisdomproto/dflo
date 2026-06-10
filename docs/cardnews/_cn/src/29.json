@@ -1,0 +1,78 @@
+{
+ "idx": 29,
+ "cardnewsId": "8ecb99f8-7a3c-41fd-8ae8-00721f530e36",
+ "captionCh": "您的孩子是否因為身高而感到沮喪呢？ 💙\n\n當孩子因為比同齡人矮而感到自卑時，父母的一句話往往能帶來巨大的改變。試著把「你怎麼都不長高？」換成「你蔬菜吃得很好！」，用肯定努力的語言取代比較。先同理孩子的感受，再一起發掘身高以外的優點，才是建立孩子自信與健康成長的起點。 🌱\n\n想了解更多關於孩子成長的資訊，歡迎點擊個人頁面的連結。",
+ "hashtagsCh": "#兒童身高 #孩子自信 #身高成長 #親子教育 #低身高 #成長診所 #台灣親子 #育兒技巧 #孩子自尊 #身高煩惱 #兒童發展 #正向育兒 #187成長診所 #健康成長",
+ "slides": [
+  {
+   "slideId": "8dfc89fd-42cc-42ca-ae9c-aaba92b1d332",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "因身高而感到自卑的孩子",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "96e3a0f3-c956-40c1-8d8b-24eaecfb2578",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "先同理孩子的感受",
+    "subtext": "「因為身高難過啊」——先同理，再給建議"
+   }
+  },
+  {
+   "slideId": "d465da02-d94e-4051-94b7-c666a0164bf2",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "具體稱讚孩子的努力",
+    "subtext": "「這麼早去睡覺，真的很棒！」"
+   }
+  },
+  {
+   "slideId": "14a97aa6-a87f-46cf-8ff1-ce37a5c00ffc",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "發掘身高以外的優點",
+    "subtext": "身高只是孩子眾多優點之一"
+   }
+  },
+  {
+   "slideId": "b482537d-2173-4f5a-b5f3-2185883868a9",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "一句話能改變孩子的自信",
+    "subtext": "把「你怎麼都不長高？」換成「你蔬菜吃得很好！」"
+   }
+  },
+  {
+   "slideId": "156b650d-1565-4b54-8d90-9489884ddd16",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "幫助生長的4個生活習慣",
+    "subtext": "睡眠 · 營養 · 運動 · 骨齡檢查"
+   }
+  },
+  {
+   "slideId": "73fa6f0a-a8c1-4577-90ab-3de3626d20c8",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "心靈與身高，一起守護",
+    "subtext": "與專業醫師一起確認孩子的自信與成長狀況"
+   }
+  }
+ ]
+}

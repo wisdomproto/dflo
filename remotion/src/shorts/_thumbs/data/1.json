@@ -1,0 +1,12 @@
+{
+  "n": 1,
+  "slug": "유전80환경20",
+  "langs": {
+    "ko": { "kicker": "오해 풀자!", "subject": "우리 아이 키 유전", "number": "80%", "numLabel": "진짜 의미는?", "tagline": "유전은 잠재력 · 환경이 키운다" },
+    "th": { "kicker": "เข้าใจผิดกันเยอะ!", "subject": "ส่วนสูงลูก · พันธุกรรม", "number": "80%", "numLabel": "ความหมายจริงคือ?", "tagline": "พันธุกรรมคือศักยภาพ · สิ่งแวดล้อมทำให้สูง" },
+    "vi": { "kicker": "Hiểu lầm rồi!", "subject": "Chiều cao con · di truyền", "number": "80%", "numLabel": "Nghĩa thật là gì?", "tagline": "Gen là tiềm năng · môi trường nuôi lớn" },
+    "en": { "kicker": "Myth, busted!", "subject": "Your child's height · genes", "number": "80%", "numLabel": "what it really means", "tagline": "Genes set potential · environment grows it" },
+    "cn": { "kicker": "别误会了！", "subject": "孩子身高 · 遗传", "number": "80%", "numLabel": "真正含义是？", "tagline": "遗传是潜力 · 环境来成就" },
+    "ch": { "kicker": "別誤會了！", "subject": "孩子身高 · 遺傳", "number": "80%", "numLabel": "真正含義是？", "tagline": "遺傳是潛力 · 環境來成就" }
+  }
+}

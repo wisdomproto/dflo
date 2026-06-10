@@ -1,0 +1,12 @@
+{
+  "n": 55,
+  "slug": "신체검사키작음",
+  "langs": {
+    "ko": { "kicker": "당황 말아요!", "subject": "우리 아이 신체검사 키 작음", "number": "3가지", "numLabel": "만 확인", "tagline": "키 작음은 진단 아닌 신호" },
+    "th": { "kicker": "ไม่ต้องตกใจ!", "subject": "ผลตรวจลูกเตี้ย", "number": "3 อย่าง", "numLabel": "เช็กแค่นี้", "tagline": "เตี้ยคือสัญญาณ ไม่ใช่คำตัดสิน" },
+    "vi": { "kicker": "Đừng hoảng!", "subject": "Khám sức khỏe con thấp", "number": "3 điều", "numLabel": "chỉ cần kiểm tra", "tagline": "Thấp là tín hiệu, không phải kết luận" },
+    "en": { "kicker": "Don't panic!", "subject": "Your child's checkup: short", "number": "3 things", "numLabel": "just check these", "tagline": "Short is a signal, not a verdict" },
+    "cn": { "kicker": "别慌！", "subject": "孩子体检偏矮", "number": "3 件事", "numLabel": "确认就好", "tagline": "偏矮是信号 不是结论" },
+    "ch": { "kicker": "別慌！", "subject": "孩子體檢偏矮", "number": "3 件事", "numLabel": "確認就好", "tagline": "偏矮是信號 不是結論" }
+  }
+}

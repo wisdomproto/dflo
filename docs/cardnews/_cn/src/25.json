@@ -1,0 +1,88 @@
+{
+ "idx": 25,
+ "cardnewsId": "8ac1fb0d-0ba0-4c62-a5ee-6f2f7f8a6104",
+ "captionCh": "你還在等孩子「以後自然會長高」嗎？🤔\n\n當孩子的身高低於同齡人時，單純等待未必是最好的選擇。有些情況下，原因可能來自荷爾蒙失調、營養不足或慢性疾病等醫學因素，需要專業評估。青春期前後是骨骺板仍然開放的黃金時期，一旦錯過，之後的努力效果將大打折扣。\n\n值得留意的訊號：身高低於第3百分位、每年增高不足4公分，或是成長速度突然減緩。如果孩子出現這些情形，與專科醫師討論會是很好的第一步。🌱\n\n想了解更多關於孩子成長的資訊，歡迎點擊個人檔案中的連結。",
+ "hashtagsCh": "#兒童身高 #矮小症 #生長激素 #骨骺板 #兒童成長 #青春期 #成長遲緩 #長高方法 #親子健康 #兒科門診 #成長黃金期 #187成長診所 #韓國兒科 #身高管理 #兒童健康",
+ "slides": [
+  {
+   "slideId": "047c1b41-4d8b-4d6e-9199-c3825f89668a",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "「以後會長高的」— 真的沒關係嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "31768aec-6627-43e8-89a9-33141d50a955",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "個子矮不一定只是長得慢",
+    "subtext": "可能有荷爾蒙、營養或慢性疾病等醫學原因"
+   }
+  },
+  {
+   "slideId": "ead9b325-9b93-41cf-8ff9-e75e10067df0",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "成長的黃金期，就是現在",
+    "subtext": "青春期前後，是一生中長高最快的階段"
+   }
+  },
+  {
+   "slideId": "00cc6368-86ac-4040-a373-695bc986ecc3",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨骺板一旦閉合，身高就停止增長",
+    "subtext": "隨著青春期進行，骨骺板會逐漸閉合"
+   }
+  },
+  {
+   "slideId": "c4730c9a-ba5c-41af-8308-fbdb603f17b5",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "這些信號，別輕忽 ①",
+    "subtext": "低於第3百分位 · 每年不足4公分 · 成長速度突然變慢"
+   }
+  },
+  {
+   "slideId": "7eac8a67-ff25-4055-bb8a-b7ed578fcea5",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "這些信號，別輕忽 ②",
+    "subtext": "青春期異常 · 父母都偏矮 · 伴隨睡眠或食欲問題"
+   }
+  },
+  {
+   "slideId": "4abcb968-e427-48d7-9d76-18b9be807da8",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "長高，是孩子自信的基礎",
+    "subtext": "沒有「以後」— 現在才是最重要的時機"
+   }
+  },
+  {
+   "slideId": "ee2c1b09-a205-415e-8606-6ba4463ec41e",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "立即確認孩子的成長潛力",
+    "subtext": ""
+   }
+  }
+ ]
+}

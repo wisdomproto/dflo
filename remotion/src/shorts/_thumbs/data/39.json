@@ -1,0 +1,12 @@
+{
+  "n": 39,
+  "slug": "백분위수읽는법",
+  "langs": {
+    "ko": { "kicker": "숫자에 속지 마세요", "subject": "우리 아이 백분위", "number": "25", "numLabel": "작은 거 아니에요", "tagline": "자기 선 따라가면 OK" },
+    "th": { "kicker": "อย่าหลงตัวเลข", "subject": "เปอร์เซ็นไทล์ของลูก", "number": "25", "numLabel": "ไม่ได้เตี้ยนะ", "tagline": "ตามเส้นตัวเองก็โอเค" },
+    "vi": { "kicker": "Đừng để con số đánh lừa", "subject": "Bách phân vị của con", "number": "25", "numLabel": "không hề thấp", "tagline": "Theo đúng đường mình là ổn" },
+    "en": { "kicker": "Don't trust the number", "subject": "Your child's percentile", "number": "25", "numLabel": "isn't short at all", "tagline": "Stay on your own line, it's OK" },
+    "cn": { "kicker": "别被数字骗了", "subject": "孩子的百分位", "number": "25", "numLabel": "并不算矮", "tagline": "沿着自己的线就好" },
+    "ch": { "kicker": "別被數字騙了", "subject": "孩子的百分位", "number": "25", "numLabel": "並不算矮", "tagline": "沿著自己的線就好" }
+  }
+}

@@ -35,14 +35,20 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
-  // 발행 가능한 언어 = 마스터(ko) + 본문 있는 번역
+  // 발행 가능한 언어: 릴스 = 영상 올린 언어 / 그 외 = 마스터(ko) + 본문 있는 번역
   const languageOptions = useMemo(() => {
+    if (contentKind === 'reels') {
+      const langs = Object.entries(article.reels ?? {})
+        .filter(([, r]) => r?.videoUrl)
+        .map(([l]) => l);
+      return langs.length ? langs : [initialLanguage];
+    }
     const opts = ['ko'];
     for (const [lang, t] of Object.entries(article.translations ?? {})) {
       if (t?.body?.trim()) opts.push(lang);
     }
     return opts;
-  }, [article.translations]);
+  }, [article.translations, article.reels, contentKind, initialLanguage]);
 
   useEffect(() => {
     fetchChannels().then(setChannels).catch(() => setChannels([]));
@@ -54,6 +60,8 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
 
   const igSelectedForText = contentKind === 'post' &&
     matchingChannels.some((c) => selected.has(c.id) && c.platform === 'instagram');
+  // 릴스: 선택 언어에 영상이 없으면 발행 불가
+  const reelsNoVideo = contentKind === 'reels' && !article.reels?.[language]?.videoUrl;
 
   const toggle = (id: string) =>
     setSelected((prev) => {
@@ -117,7 +125,7 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
       <div className="w-full max-w-md space-y-4 rounded-2xl bg-white p-5 shadow-xl" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-gray-800">
-            발행 큐에 넣기 — {contentKind === 'blog' ? '자체 사이트 블로그' : contentKind === 'cardnews' ? '카드뉴스' : '기본글'}
+            발행 큐에 넣기 — {contentKind === 'blog' ? '자체 사이트 블로그' : contentKind === 'cardnews' ? '카드뉴스' : contentKind === 'reels' ? '릴스' : '기본글'}
           </h2>
           <button type="button" aria-label="닫기" onClick={onClose} className="text-gray-400 hover:text-gray-600">✕</button>
         </div>
@@ -186,10 +194,16 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
             {igSelectedForText && (
               <p className="text-[11px] text-amber-600">⚠️ 기본글(텍스트)은 Instagram에 발행할 수 없습니다 — IG는 카드뉴스(이미지)만.</p>
             )}
+            {contentKind === 'reels' && !reelsNoVideo && (
+              <p className="text-[11px] text-gray-500">🎬 이 언어의 릴스 영상이 IG/FB/Threads에 발행됩니다. (캡션·해시태그는 카드뉴스 공용)</p>
+            )}
+            {reelsNoVideo && (
+              <p className="text-[11px] text-amber-600">⚠️ 이 언어의 릴스 영상이 없습니다. '영상 제작' 탭에서 먼저 올리세요.</p>
+            )}
             <button
               type="button"
               onClick={publishSocial}
-              disabled={busy || matchingChannels.length === 0 || igSelectedForText}
+              disabled={busy || matchingChannels.length === 0 || igSelectedForText || reelsNoVideo}
               className="w-full rounded-lg bg-[#4A2D6B] px-3 py-2 text-sm font-semibold text-white disabled:opacity-40"
             >
               발행 큐에 넣기

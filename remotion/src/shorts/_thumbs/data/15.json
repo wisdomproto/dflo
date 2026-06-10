@@ -1,0 +1,12 @@
+{
+  "n": 15,
+  "slug": "알레르기성장도둑",
+  "langs": {
+    "ko": { "kicker": "잘 챙겨도 안 큰다?", "subject": "우리 아이 키 훔치는", "number": "도둑", "numLabel": "알레르기·염증", "tagline": "도둑 잡으면 키로 간다" },
+    "th": { "kicker": "ดูแลดีแล้วก็ไม่สูง?", "subject": "ตัวขโมยส่วนสูงลูก", "number": "หัวขโมย", "numLabel": "ภูมิแพ้·อักเสบ", "tagline": "จับโจรได้ · พลังกลับมาเป็นส่วนสูง" },
+    "vi": { "kicker": "Chăm kỹ vẫn không cao?", "subject": "Kẻ trộm chiều cao của con", "number": "Kẻ trộm", "numLabel": "dị ứng · viêm", "tagline": "Bắt được trộm · cao trở lại" },
+    "en": { "kicker": "Cared for, still short?", "subject": "What steals your child's height", "number": "The thief", "numLabel": "allergy & inflammation", "tagline": "Catch it, height returns" },
+    "cn": { "kicker": "用心养还不长？", "subject": "偷走孩子身高的", "number": "小偷", "numLabel": "过敏·炎症", "tagline": "抓住小偷 · 能量回到长高" },
+    "ch": { "kicker": "用心養還不長？", "subject": "偷走孩子身高的", "number": "小偷", "numLabel": "過敏·發炎", "tagline": "抓住小偷 · 能量回到長高" }
+  }
+}

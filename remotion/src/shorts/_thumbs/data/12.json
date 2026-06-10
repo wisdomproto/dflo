@@ -1,0 +1,12 @@
+{
+  "n": 12,
+  "slug": "코르티솔키",
+  "langs": {
+    "ko": { "kicker": "잘 먹고 잘 자는데도?", "subject": "우리 아이 키 막는", "number": "코르티솔", "numLabel": "스트레스 호르몬", "tagline": "마음이 편해야 키가 큰다" },
+    "th": { "kicker": "กินดีนอนดีก็ยังไม่สูง?", "subject": "ตัวขวางส่วนสูงลูก", "number": "คอร์ติซอล", "numLabel": "ฮอร์โมนความเครียด", "tagline": "ใจสบาย ลูกถึงสูง" },
+    "vi": { "kicker": "Ăn ngủ tốt vẫn thấp?", "subject": "Thứ chặn chiều cao con", "number": "Cortisol", "numLabel": "hormone căng thẳng", "tagline": "Tâm an, con mới cao" },
+    "en": { "kicker": "Eats & sleeps well, still short?", "subject": "What blocks your child's height", "number": "Cortisol", "numLabel": "the stress hormone", "tagline": "A calm mind grows height" },
+    "cn": { "kicker": "吃好睡好还不长？", "subject": "挡住孩子身高的", "number": "皮质醇", "numLabel": "压力荷尔蒙", "tagline": "心放松 · 个子才长" },
+    "ch": { "kicker": "吃好睡好還不長？", "subject": "擋住孩子身高的", "number": "皮質醇", "numLabel": "壓力荷爾蒙", "tagline": "心放鬆 · 個子才長" }
+  }
+}

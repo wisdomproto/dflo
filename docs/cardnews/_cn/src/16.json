@@ -1,0 +1,78 @@
+{
+ "idx": 16,
+ "cardnewsId": "5eda3a8d-80e1-42f8-964a-5766ba71ff04",
+ "captionCh": "孩子的日常習慣，是否正在悄悄阻礙他的成長？ 🌱\n\n睡眠、飲食、運動、姿勢與情緒穩定——五個面向缺一不可，才能讓孩子充分發揮身高潛力。生長激素在深度睡眠後1~2小時分泌最旺盛，而長期壓力會抑制分泌、也會降低睡眠品質。小小的生活習慣持之以恆，對孩子身高的影響往往超乎預期。\n\n滑動查看自我檢核表，更多詳細說明請點選個人頁連結瀏覽完整指南。",
+ "hashtagsCh": "#兒童身高 #生長激素 #長高方法 #兒童健康 #生活習慣 #兒童發育 #生長板 #睡眠與身高 #均衡飲食 #正確姿勢 #成長診所 #兒童成長 #育兒知識 #台灣媽媽 #187成長診所",
+ "slides": [
+  {
+   "slideId": "aa7adeee-2366-40c4-b540-79e348921574",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "有什麼在阻礙孩子的成長嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "504e3d0e-26db-43e6-84a8-2133d0de47ab",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "睡覺時，身高正在增長",
+    "subtext": "生長激素在深度睡眠後1~2小時分泌最旺盛"
+   }
+  },
+  {
+   "slideId": "915bd8b1-7ec1-4e04-b248-6c515306b49c",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "均衡飲食，骨骼才能好好生長",
+    "subtext": "蛋白質、鈣質、維生素D等多種營養素缺一不可"
+   }
+  },
+  {
+   "slideId": "3992bf1a-c0e0-4d07-b14f-ff6eab4ba520",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "跳躍運動能喚醒生長板",
+    "subtext": "每天30分鐘跳繩、跑步等有氧運動持之以恆效果佳"
+   }
+  },
+  {
+   "slideId": "3ec0853a-a092-4127-8dc7-723e82f0d90e",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "正確姿勢能找回孩子隱藏的身高",
+    "subtext": "駝背姿勢壓迫脊椎，可能妨礙孩子生長"
+   }
+  },
+  {
+   "slideId": "bc47d9ac-47b1-4917-8d4b-930236be9454",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "心理穩定也是成長的必要條件",
+    "subtext": "壓力會抑制生長激素分泌，也會降低睡眠品質"
+   }
+  },
+  {
+   "slideId": "ca8e5017-b448-47a0-9aba-aafef6f75b8e",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "一個小習慣，就能改變孩子的身高",
+    "subtext": "立即查看孩子的預測身高"
+   }
+  }
+ ]
+}

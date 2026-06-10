@@ -1,0 +1,12 @@
+{
+  "n": 24,
+  "slug": "수면루틴",
+  "langs": {
+    "ko": { "kicker": "오늘 밤부터!", "subject": "우리 아이 키 키우는", "number": "수면", "numLabel": "스위치", "tagline": "아침 햇살이 수면 스위치" },
+    "th": { "kicker": "เริ่มคืนนี้เลย!", "subject": "ส่วนสูงลูก", "number": "การนอน", "numLabel": "สวิตช์เร่งสูง", "tagline": "แสงเช้าคือสวิตช์การนอน" },
+    "vi": { "kicker": "Bắt đầu tối nay!", "subject": "Chiều cao con", "number": "Giấc ngủ", "numLabel": "Công tắc tăng cao", "tagline": "Nắng sáng bật công tắc giấc ngủ" },
+    "en": { "kicker": "Start tonight!", "subject": "Your child's height", "number": "Sleep", "numLabel": "The switch", "tagline": "Morning light flips the switch" },
+    "cn": { "kicker": "今晚就开始！", "subject": "孩子身高", "number": "睡眠", "numLabel": "长高开关", "tagline": "晨光开启睡眠开关" },
+    "ch": { "kicker": "今晚就開始！", "subject": "孩子身高", "number": "睡眠", "numLabel": "長高開關", "tagline": "晨光開啟睡眠開關" }
+  }
+}

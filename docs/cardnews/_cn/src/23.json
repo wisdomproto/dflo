@@ -1,0 +1,78 @@
+{
+ "idx": 23,
+ "cardnewsId": "7db31c18-fa22-4ba6-a5a4-1b4c400a1bd4",
+ "captionCh": "喝母乳的孩子會長不高嗎？🍼 讓我們來釐清真相。\n\n孩子的最終身高是由遺傳（80%）和生活習慣（20%）決定的，而不是哺餵方式。喝配方奶的寶寶在初期體重可能增加較快，但這與身高無關。母乳是「活的營養來源」，會隨著寶寶的成長階段自動調整，並有助於降低長期肥胖風險。\n\n從現在起，營養、睡眠和運動才是影響身高最關鍵的因素。更多資訊請點擊個人頁面連結查看 🌱",
+ "hashtagsCh": "#母乳哺育 #配方奶 #兒童身高 #孩子發育 #長高方法 #兒童成長 #育兒知識 #嬰幼兒營養 #身高管理 #台灣媽媽 #育兒分享 #兒科門診 #孩子健康 #親子健康 #成長診所",
+ "slides": [
+  {
+   "slideId": "f61002f7-689e-4b85-82db-0def14f32ba5",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "母乳 vs 配方奶，身高真的不一樣嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "5a6ff7f3-2cd0-4922-b9ee-ad05b2439284",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "初期配方奶寶寶體重增加較快",
+    "subtext": "3–6個月後配方奶寶寶體重增加較快——但那是體重，不是身高"
+   }
+  },
+  {
+   "slideId": "86953050-345e-4efb-9274-ad7e7eaa126e",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "母乳是「活的營養來源」",
+    "subtext": "營養成分隨成長階段自動調整，長期還能降低肥胖風險"
+   }
+  },
+  {
+   "slideId": "09ddea81-5104-4953-b46b-e3a186a0efbd",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "身高：遺傳80%，環境20%",
+    "subtext": "單憑哺餵方式，並不能決定孩子的最終身高"
+   }
+  },
+  {
+   "slideId": "3e2c0d0d-a4bc-420b-a2c3-b1c3857c649a",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "最終重要的是整體生活管理",
+    "subtext": "營養 · 睡眠 · 運動 · 壓力——這4件事決定身高"
+   }
+  },
+  {
+   "slideId": "0115c025-34e0-4d4c-84c3-b50594abd1ac",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "成長是一段長遠的旅程",
+    "subtext": "現在開始的健康習慣，比早期哺餵方式更能決定最終身高"
+   }
+  },
+  {
+   "slideId": "46213e73-585a-4a22-baa3-c8d4d7e746f0",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "不論哺餵方式，孩子都還能再長高",
+    "subtext": "立即確認孩子的成長潛力"
+   }
+  }
+ ]
+}

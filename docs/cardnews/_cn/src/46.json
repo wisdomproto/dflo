@@ -1,0 +1,78 @@
+{
+ "idx": 46,
+ "cardnewsId": "ca629782-6edb-4b9b-9e2e-840efd1b63c6",
+ "captionCh": "📏 你有沒有用過預測孩子身高的App？\n\n大多數App用父母平均身高來推算——看起來很有趣，但實際上無法反映每個孩子的個人差異。App最常忽略的關鍵因素，正是「骨齡」。如果孩子的骨齡超前實際年齡，生長板可能提早關閉，進而影響最終身高。營養、睡眠、運動和荷爾蒙狀態等環境因素，也佔了身高發育的20~30%。🌱\n\nApp的結果可以輕鬆參考，但若想真正了解孩子的成長潛力，專業評估才能提供完整的答案。更多資訊請點選檔案中的連結查看。",
+ "hashtagsCh": "#孩子身高 #身高預測 #骨齡 #生長板 #兒童發育 #成長診所 #生長激素 #性早熟 #兒童健康 #育兒知識 #身高管理 #兒科成長 #發育檢查 #親子健康 #187成長診所",
+ "slides": [
+  {
+   "slideId": "f9a690c9-1ad5-4928-b24e-8fcfa523de9a",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "預測身高的App，可以相信嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "002771b4-f3ce-4a54-bbc5-80693e16e0d5",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "App靠的是「統計公式」",
+    "subtext": "只是以父母平均身高來推估，無法反映個人差異"
+   }
+  },
+  {
+   "slideId": "6de4b175-17c3-43b4-8ea2-b3b4f92e79b1",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "App不知道的——骨齡",
+    "subtext": "骨齡超前會讓生長板提早關閉，最終身高因此改變"
+   }
+  },
+  {
+   "slideId": "1c80207e-2901-4ab9-a85a-8d6b618981c3",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "環境因素也被遺漏了",
+    "subtext": "營養 · 睡眠 · 運動 · 荷爾蒙狀態影響了20~30%"
+   }
+  },
+  {
+   "slideId": "c15e194e-26b4-4e00-9553-f4705bce8de5",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "精密檢查看3件事",
+    "subtext": "骨齡X光 · 血液檢查 · 性早熟診斷"
+   }
+  },
+  {
+   "slideId": "654878d2-ab1f-4b73-b85e-128a8814df1b",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "健康成長的5件事",
+    "subtext": "營養 · 睡眠 · 運動 · 壓力管理 · 定期檢查"
+   }
+  },
+  {
+   "slideId": "cf561504-7d21-4b20-9404-939b878edf3d",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "想要比App更準確的預測嗎？",
+    "subtext": "透過骨齡檢查，精確掌握孩子的成長潛力"
+   }
+  }
+ ]
+}

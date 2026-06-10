@@ -1,0 +1,64 @@
+{
+ "h1": "生长发育门诊首次就诊准备完全指南 — 初诊前必须备齐的事项",
+ "faq": [
+  {
+   "a": "骨龄检查（手腕X光）属于生长发育门诊检查项目中的核心。确认实际年龄与骨龄之间的差距，可以更准确地推算孩子还剩余的成长潜力，因此大多数门诊在初诊时都会建议进行。",
+   "q": "第一次去生长发育门诊一定要做骨龄检查吗？"
+  },
+  {
+   "a": "即使没有记录，前往就诊也没有问题。不过如果有过去的成长记录，分析的精确度会更高。就诊前哪怕只找到学校体检结果单或育儿手册带过去，都会很有帮助。",
+   "q": "去生长发育医院初诊要带的东西如果没有，需要推迟就诊吗？"
+  },
+  {
+   "a": "虽然没有特别的年龄限制，但生长板处于打开状态的时期，介入的效果越大，因此在国小低年级之前接受咨询比较有利。当感觉孩子身高明显比同龄人矮，或成长速度急剧变慢时，可以考虑接受专业的检查确认。",
+   "q": "生长发育门诊首次就诊准备中，孩子有年龄限制吗？"
+  }
+ ],
+ "slug": "growth-clinic-first-visit-checklist",
+ "sections": [
+  {
+   "html": "<p>如果把生长发育门诊首次就诊准备做得充分，就能在同样的就诊时间内获得深入得多的咨询。成长专科医生不会仅凭孩子当下的身高和体重来判断。从出生到现在持续不断的成长轨迹、家族的遗传背景、生活习惯的方方面面，都需要综合地审视，才能做出准确的评估。如果毫无准备就前往就诊，传达的便是依赖记忆的不准确信息，诊断的精确度也会随之下降。尤其是成长黄金期无法倒流，因此在第一次咨询中尽可能多地交流信息，才能为孩子的成长提供实实在在的帮助。</p>",
+   "heading": "生长发育门诊首次就诊准备，为什么如此重要？",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A calm clinic waiting area with a parent and child sitting together, the parent holding a folder of documents and a small notebook. Pastel background with mint accent tones, soft shadows, clean lines. No text or numbers in the image."
+  },
+  {
+   "html": "<p>去生长发育医院初诊要带的东西中，最重要的就是过去的成长记录。如果有学校体检结果单、婴幼儿健康检查记录、育儿手册上记下的身高和体重数据，请全部带来。专科医生会把这些记录与国家标准成长曲线对照，分析孩子的成长速度（growth velocity）。因为如果一年长高不足4厘米，就可以视为成长迟缓的信号。</p><p>此外，过去就诊过的医院记录以及正在服用的药物清单也最好准备好。如果因哮喘或异位性皮肤炎而长期服用类固醇，可能会影响生长激素分泌或营养吸收，因此务必需要确认。如果有过敏，也请一并告知致敏物质的信息。</p>",
+   "heading": "成长记录文件 — 生长发育医院初诊最先查看的东西",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A growth chart document laid on a desk next to a child's health record booklet and a pencil. Soft pastel tones with mint accent color on the chart lines, gentle shadows, minimal clean background. No text or numbers in the image."
+  },
+  {
+   "html": "<p>如果您好奇生长发育门诊都看些什么，家族史就是其中之一。孩子的最终身高很大程度上受遗传因素影响。以父母双方的身高为基础计算出的遗传预测身高（mid-parental height），是衡量孩子成长潜力的基准。在此基础上，父母或兄弟姐妹是在何时迎来青春期的，也是重要的信息。</p><p>举例来说，如果父亲是在高中时突然长高很多的情况，那么孩子也有可能较晚成长。相反，如果家族中有许多人经历过较早的青春期，那么就需要提前确认生长板是否有提早闭合的风险。如果家族中有身高特别矮小或经历过性早熟的成员，这些信息也会对诊疗有帮助。</p>",
+   "heading": "整理家族史与遗传背景",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A simple family silhouette of different heights (grandparents, parents, child) arranged side by side like a visual comparison, set against a soft pastel background with mint accent highlights and gentle shadow. No text or numbers in the image."
+  },
+  {
+   "html": "<p>生长发育门诊检查项目可能因门诊而异，但一般来说，初诊当天会包括精密的身高、体重测量，用于确认骨龄的手腕X光摄影，以及检测生长激素和甲状腺激素水平的血液检查。骨龄是确认相比实际年龄是超前还是落后的指标，在衡量剩余的成长可能性方面发挥着核心作用。</p><p>血液检查不仅会确认生长激素的分泌状态，还会一并确认是否贫血、甲状腺功能、维生素D水平、过敏相关指标等。如果孩子当天要接受检查，事先询问是否需要空腹会比较好。</p>",
+   "heading": "生长发育门诊检查项目 — 当天进行的内容",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A clinic examination scene with a child standing on a measurement scale next to an X-ray viewer on the wall, and a doctor in a white coat taking notes. Pastel room tones with mint accent on the measurement scale, clean soft shadows. No text or numbers in the image."
+  },
+  {
+   "html": "<p>影响成长的生活习惯信息，在初诊咨询中也不可或缺。如果把孩子平时几点入睡、几点起床，睡眠中是否经常醒来或打鼾等情况简单记下来带过去，会很有帮助。生长激素在深度睡眠阶段活跃地分泌，因此睡眠的质量和模式与成长直接相关。</p><p>饮食习惯也是如此。请把孩子偏食的食物种类、一天的用餐次数和时段、目前正在给孩子吃的营养剂种类和剂量整理好。过量摄取某些特定成分反而可能成为问题，因此可以由专科医生判断其必要性后再加以调整。运动习惯同样与生长板刺激有关，因此把孩子做什么运动、做得多频繁也告知一下会更好。</p>",
+   "heading": "生活习惯信息 — 备齐睡眠、饮食、运动记录",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. Three small lifestyle icons arranged horizontally: a child sleeping peacefully in bed, a bowl of colorful food, and a child jumping rope. Pastel background with mint accent on each icon, light shadows, clean minimal style. No text or numbers in the image."
+  },
+  {
+   "html": "<p>与文件和记录同样重要的，是提前向孩子说明气氛、让孩子不至于紧张。可以自然地引导：「今天我们要去一个有医生帮助你身体健康的地方哦。」初诊咨询是解开父母的担忧、为孩子寻找合适成长方向的过程，而不是当场就要开始治疗的场合。</p><p>咨询过程中，最好积极运用准备好的记录，把平时好奇的问题自由地提出来。准备得越充分，与专家的对话就越能具体、实在地展开。生长发育门诊首次就诊准备做得越扎实的父母，在那个场合中能带回去的收获也会多得多。</p>",
+   "heading": "初诊当天的心理准备 — 和孩子一起从容应对",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A warm clinic consultation scene with a smiling doctor seated across from a parent and child, a folder open on the desk. Soft pastel walls, mint accent on the doctor's stethoscope, natural light from a window, clean and calm atmosphere. No text or numbers in the image."
+  }
+ ],
+ "seoTitle": "生长发育门诊首次就诊准备 — 初诊前要带的东西总整理",
+ "primaryKeyword": "生长发育门诊首次就诊准备",
+ "metaDescription": "生长发育门诊首次就诊准备，应该带些什么？从初诊会看的生长发育门诊检查项目，到生长发育医院初诊要带的东西，一次为您整理清楚。",
+ "secondaryKeywords": [
+  "生长发育门诊检查项目",
+  "生长发育医院初诊要带的东西",
+  "生长发育门诊看什么"
+ ]
+}

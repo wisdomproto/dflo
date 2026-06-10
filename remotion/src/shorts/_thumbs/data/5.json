@@ -1,0 +1,12 @@
+{
+  "n": 5,
+  "slug": "뼈나이xray",
+  "langs": {
+    "ko": { "kicker": "같은 나이라도 달라요!", "subject": "우리 아이 진짜 키 나이", "number": "뼈나이", "numLabel": "X-ray 한 장", "tagline": "X-ray로 미래 키가 보인다" },
+    "th": { "kicker": "อายุเท่ากันก็ต่างได้!", "subject": "อายุสูงจริงของลูก", "number": "อายุกระดูก", "numLabel": "X-ray ใบเดียว", "tagline": "X-ray ใบเดียวเห็นส่วนสูงอนาคต" },
+    "vi": { "kicker": "Cùng tuổi vẫn khác!", "subject": "Tuổi chiều cao thật của con", "number": "Tuổi xương", "numLabel": "một tấm X-quang", "tagline": "Một tấm X-quang thấy chiều cao tương lai" },
+    "en": { "kicker": "Same age, different!", "subject": "Your child's real height age", "number": "Bone age", "numLabel": "one X-ray", "tagline": "One X-ray reveals future height" },
+    "cn": { "kicker": "同龄也不同！", "subject": "孩子真正的长高年龄", "number": "骨龄", "numLabel": "一张X光", "tagline": "一张X光看见未来身高" },
+    "ch": { "kicker": "同齡也不同！", "subject": "孩子真正的長高年齡", "number": "骨齡", "numLabel": "一張X光", "tagline": "一張X光看見未來身高" }
+  }
+}

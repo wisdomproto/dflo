@@ -1,0 +1,12 @@
+{
+  "n": 30,
+  "slug": "단음식성장판",
+  "langs": {
+    "ko": { "kicker": "간식의 함정!", "subject": "우리 아이 키, 단 음식이", "number": "성장판", "numLabel": "일찍 닫는다", "tagline": "식단 바꾸면 골든타임 지킨다" },
+    "th": { "kicker": "กับดักของหวาน!", "subject": "ส่วนสูงลูก · ของหวาน", "number": "แผ่นเติบโต", "numLabel": "ปิดเร็วขึ้น", "tagline": "เปลี่ยนอาหาร รักษาช่วงทอง" },
+    "vi": { "kicker": "Bẫy đồ ngọt!", "subject": "Chiều cao con · đồ ngọt", "number": "Sụn tăng trưởng", "numLabel": "đóng sớm hơn", "tagline": "Đổi thực đơn, giữ thời điểm vàng" },
+    "en": { "kicker": "The sweets trap!", "subject": "Your child's height · sweets", "number": "Growth plates", "numLabel": "close sooner", "tagline": "Change the diet, keep golden time" },
+    "cn": { "kicker": "零食的陷阱！", "subject": "孩子身高 · 甜食", "number": "生长板", "numLabel": "提早闭合", "tagline": "改饮食 守住黄金期" },
+    "ch": { "kicker": "零食的陷阱！", "subject": "孩子身高 · 甜食", "number": "生長板", "numLabel": "提早閉合", "tagline": "改飲食 守住黃金期" }
+  }
+}

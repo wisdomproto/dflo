@@ -1,0 +1,12 @@
+{
+  "n": 37,
+  "slug": "첫방문준비",
+  "langs": {
+    "ko": { "kicker": "이것 빼먹으면 손해", "subject": "성장클리닉 첫 방문", "number": "4", "numLabel": "가지 꼭 챙겨!", "tagline": "성장 추이가 진단의 핵심" },
+    "th": { "kicker": "ลืมแล้วเสียดาย", "subject": "ครั้งแรกที่คลินิกการเติบโต", "number": "4", "numLabel": "อย่างต้องเตรียม!", "tagline": "แนวโน้มการเติบโตคือหัวใจ" },
+    "vi": { "kicker": "Quên là thiệt!", "subject": "Lần đầu đến phòng khám tăng trưởng", "number": "4", "numLabel": "thứ phải mang!", "tagline": "Xu hướng tăng trưởng là then chốt" },
+    "en": { "kicker": "Forget these, lose out", "subject": "First growth-clinic visit", "number": "4", "numLabel": "things to bring!", "tagline": "Growth trend is the key" },
+    "cn": { "kicker": "漏带就吃亏", "subject": "首次就诊生长门诊", "number": "4", "numLabel": "样必带！", "tagline": "生长趋势才是关键" },
+    "ch": { "kicker": "漏帶就吃虧", "subject": "首次就診生長門診", "number": "4", "numLabel": "樣必帶！", "tagline": "生長趨勢才是關鍵" }
+  }
+}

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { MarketingArticle, ReelsMap, ReelsLangData, Cardnews, CardLang } from '../../types';
 import { saveReels } from '../../services/marketingArticleService';
-import { uploadVideoFile } from '../../services/aiImageService';
+import { uploadVideoFile, uploadCoverImage } from '../../services/aiImageService';
 import { fetchCardnews } from '../../services/cardnewsService';
 
 interface Props { article: MarketingArticle; language: string; }
@@ -12,7 +12,7 @@ const ACCENT = '#4A2D6B';
 const LANG_LABELS: Record<string, string> = {
   ko: '🇰🇷 한국어', th: '🇹🇭 TH', vi: '🇻🇳 VI', en: '🇺🇸 EN', ch: '🇹🇼 中文(번체)', cn: '🇨🇳 中文(간체)',
 };
-const EMPTY: ReelsLangData = { videoUrl: null };
+const EMPTY: ReelsLangData = { videoUrl: null, coverUrl: null };
 type Sub = 'storyboard' | 'video';
 const SUBS: { key: Sub; label: string }[] = [
   { key: 'storyboard', label: '📋 스토리보드' },
@@ -36,6 +36,7 @@ export function ReelsPanel({ article, language }: Props) {
   const [reels, setReels] = useState<ReelsMap>(article.reels ?? {});
   const [cardnews, setCardnews] = useState<Cardnews | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [coverUploading, setCoverUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -89,6 +90,19 @@ export function ReelsPanel({ article, language }: Props) {
     }
   };
 
+  const onCover = async (file?: File | null) => {
+    if (!file) return;
+    setCoverUploading(true); setError(null);
+    try {
+      const url = await uploadCoverImage(file);
+      patch({ coverUrl: url });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : '커버 업로드 실패');
+    } finally {
+      setCoverUploading(false);
+    }
+  };
+
   const copy = () => {
     void navigator.clipboard.writeText(`${caption}\n\n${hashtags}`.trim()).then(() => {
       setCopied(true); setTimeout(() => setCopied(false), 1200);
@@ -106,7 +120,7 @@ export function ReelsPanel({ article, language }: Props) {
             {s.label}
           </button>
         ))}
-        <span className="ml-auto rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700">발행 준비 중 · 저장 전용</span>
+        <span className="ml-auto rounded-full bg-gray-50 px-2 py-0.5 text-[11px] text-gray-500">발행은 상단 📥 발행 큐에 넣기</span>
       </div>
 
       {/* 스토리보드 — HTML 뷰어 (전 언어 공용, 생성은 추후) */}
@@ -128,31 +142,61 @@ export function ReelsPanel({ article, language }: Props) {
         <div className="flex-1 overflow-y-auto p-4">
           {error && <div className="mb-2 text-[11px] text-red-600">{error}</div>}
 
-          {/* 영상 */}
-          <div className="mb-4 rounded-lg border border-gray-200 p-3">
-            <div className="mb-2 text-xs font-semibold text-gray-500">🎬 영상 ({label})</div>
-            {cur.videoUrl ? (
-              <div className="space-y-2">
-                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                <video src={cur.videoUrl} controls className="mx-auto max-h-[440px] rounded-lg bg-black" style={{ aspectRatio: '9 / 16' }} />
-                <div className="flex flex-wrap items-center gap-2">
-                  <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
-                    {uploading ? '업로드 중…' : '영상 교체'}
-                    <input type="file" accept="video/*" hidden disabled={uploading}
-                      onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
-                  </label>
-                  <button type="button" onClick={() => patch({ videoUrl: null })}
-                    className="rounded border border-gray-300 px-3 py-1 text-xs text-gray-500 hover:text-red-600">삭제</button>
-                  <a href={cur.videoUrl} target="_blank" rel="noreferrer" className="text-xs text-[#4A2D6B] underline">새 탭에서 열기 ↗</a>
+          {/* 섬네일(커버) + 영상 — 왼쪽 커버 / 오른쪽 영상 */}
+          <div className="mb-4 grid grid-cols-2 gap-3">
+            {/* 왼쪽: 섬네일 / 커버 (인스타 릴스 커버) */}
+            <div className="rounded-lg border border-gray-200 p-3">
+              <div className="mb-2 text-xs font-semibold text-gray-500">🖼️ 섬네일 · 커버 ({label})</div>
+              {cur.coverUrl ? (
+                <div className="space-y-2">
+                  <img src={cur.coverUrl} alt="릴스 커버" className="mx-auto max-h-[440px] rounded-lg bg-black object-contain" style={{ aspectRatio: '9 / 16' }} />
+                  <div className="flex flex-wrap items-center gap-2">
+                    <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
+                      {coverUploading ? '업로드 중…' : '커버 교체'}
+                      <input type="file" accept="image/*" hidden disabled={coverUploading}
+                        onChange={(e) => { void onCover(e.target.files?.[0]); e.target.value = ''; }} />
+                    </label>
+                    <button type="button" onClick={() => patch({ coverUrl: null })}
+                      className="rounded border border-gray-300 px-3 py-1 text-xs text-gray-500 hover:text-red-600">삭제</button>
+                    <a href={cur.coverUrl} target="_blank" rel="noreferrer" className="text-xs text-[#4A2D6B] underline">열기 ↗</a>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
-                {uploading ? '업로드 중…' : '📹 영상 파일 올리기 (mp4 · 최대 100MB)'}
-                <input type="file" accept="video/*" hidden disabled={uploading}
-                  onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
-              </label>
-            )}
+              ) : (
+                <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
+                  {coverUploading ? '업로드 중…' : '🖼️ 커버 이미지 올리기 (9:16)'}
+                  <input type="file" accept="image/*" hidden disabled={coverUploading}
+                    onChange={(e) => { void onCover(e.target.files?.[0]); e.target.value = ''; }} />
+                </label>
+              )}
+              <p className="mt-2 text-[11px] text-gray-400">인스타 릴스 커버 · 중앙 3:4 안전영역(프로필 그리드 크롭) 고려</p>
+            </div>
+
+            {/* 오른쪽: 영상 */}
+            <div className="rounded-lg border border-gray-200 p-3">
+              <div className="mb-2 text-xs font-semibold text-gray-500">🎬 영상 ({label})</div>
+              {cur.videoUrl ? (
+                <div className="space-y-2">
+                  {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                  <video src={cur.videoUrl} controls className="mx-auto max-h-[440px] rounded-lg bg-black" style={{ aspectRatio: '9 / 16' }} />
+                  <div className="flex flex-wrap items-center gap-2">
+                    <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
+                      {uploading ? '업로드 중…' : '영상 교체'}
+                      <input type="file" accept="video/*" hidden disabled={uploading}
+                        onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
+                    </label>
+                    <button type="button" onClick={() => patch({ videoUrl: null })}
+                      className="rounded border border-gray-300 px-3 py-1 text-xs text-gray-500 hover:text-red-600">삭제</button>
+                    <a href={cur.videoUrl} target="_blank" rel="noreferrer" className="text-xs text-[#4A2D6B] underline">새 탭에서 열기 ↗</a>
+                  </div>
+                </div>
+              ) : (
+                <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
+                  {uploading ? '업로드 중…' : '📹 영상 올리기 (mp4 · 최대 100MB)'}
+                  <input type="file" accept="video/*" hidden disabled={uploading}
+                    onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
+                </label>
+              )}
+            </div>
           </div>
 
           {/* 캡션 / 해시태그 — 카드뉴스 단일 소스(읽기 전용) */}

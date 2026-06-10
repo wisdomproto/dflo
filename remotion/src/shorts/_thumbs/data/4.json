@@ -1,0 +1,12 @@
+{
+  "n": 4,
+  "slug": "성장호르몬10시",
+  "langs": {
+    "ko": { "kicker": "10시 신화의 진실", "subject": "우리 아이 키", "number": "깊은 잠", "numLabel": "이 만든다", "tagline": "시간보다 깊은 잠의 질" },
+    "th": { "kicker": "ความจริงเรื่อง 4 ทุ่ม", "subject": "ส่วนสูงลูกเรา", "number": "หลับลึก", "numLabel": "ต่างหากที่สร้าง", "tagline": "ลึกแค่ไหน สำคัญกว่ากี่โมง" },
+    "vi": { "kicker": "Sự thật giờ ngủ", "subject": "Chiều cao của con", "number": "Ngủ sâu", "numLabel": "mới làm nên", "tagline": "Ngủ sâu quan trọng hơn ngủ sớm" },
+    "en": { "kicker": "The 10pm myth", "subject": "Your child's height", "number": "Deep sleep", "numLabel": "builds it", "tagline": "Depth matters more than the clock" },
+    "cn": { "kicker": "十点神话真相", "subject": "孩子的身高", "number": "深睡眠", "numLabel": "才长高", "tagline": "睡得深比睡得早更重要" },
+    "ch": { "kicker": "十點神話真相", "subject": "孩子的身高", "number": "深睡眠", "numLabel": "才長高", "tagline": "睡得深比睡得早更重要" }
+  }
+}

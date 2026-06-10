@@ -1,0 +1,78 @@
+{
+ "idx": 57,
+ "cardnewsId": "e48e9e2e-4a2f-45c9-8d25-f13f8944cfc6",
+ "captionCh": "您的孩子正在做適合這個年齡的運動嗎？🤔\n\n跳躍和跑步等活動有助於刺激生長板、促進生長激素分泌，對身高發育有正面影響。不同年齡段適合的運動種類和強度各有不同，因此選擇符合年齡的運動方式非常重要。\n\n幼兒期以自由遊戲為主，國小低年級適合跳繩與游泳，高年級可嘗試籃球與徒手訓練，青少年則可透過瑜伽與散步持續維持。🌱\n\n各年齡完整指南請點擊個人頁面連結查看。",
+ "hashtagsCh": "#長高運動 #生長板刺激 #兒童運動 #身高發育 #生長激素 #兒童健康 #親子運動 #小學生運動 #青少年成長 #187成長診所 #增高方法 #兒童發展 #跳繩運動 #游泳長高 #育兒知識",
+ "slides": [
+  {
+   "slideId": "5b1441a8-98cf-4512-a928-8ca59389317b",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "各年齡最適成長運動指南",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "4b472af9-a9a6-4e8c-a67b-b7d44be05a8a",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "運動為何能促進身高成長",
+    "subtext": "跳躍與跑步刺激生長板，促進生長激素分泌"
+   }
+  },
+  {
+   "slideId": "2807e9c4-bb18-45a7-998b-faa267c456ac",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "0–6歲：透過遊戲自由活動",
+    "subtext": "捉迷藏、盪鞦韆、徒手體操 — 自由活動是關鍵"
+   }
+  },
+  {
+   "slideId": "2dd04f7f-1b97-427a-93a5-4b0f3c8f1e50",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "7–9歲：打好基礎體能",
+    "subtext": "跳繩、跑步、游泳 — 每週3次以上，每次30~60分鐘"
+   }
+  },
+  {
+   "slideId": "23c72e03-c78e-4bbe-98a8-a29b7560930b",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "10–12歲：全身運動的黃金期",
+    "subtext": "籃球、排球、游泳＋徒手肌力訓練 — 生長板最活躍的時期"
+   }
+  },
+  {
+   "slideId": "b2d1eb77-5d36-4ac7-a2e3-9214dcbb3ffe",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "13–18歲：持之以恆才是答案",
+    "subtext": "游泳、瑜伽、散步 — 用姿勢矯正與柔軟度守護最後的成長"
+   }
+  },
+  {
+   "slideId": "267b5069-6dd8-4642-842e-7cc8fa46d368",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "從現在開始，做對年齡的運動",
+    "subtext": "正確的運動習慣，成就孩子完整的成長"
+   }
+  }
+ ]
+}

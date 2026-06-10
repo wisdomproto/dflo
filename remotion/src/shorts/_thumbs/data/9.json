@@ -1,0 +1,12 @@
+{
+  "n": 9,
+  "slug": "비만일찍멈춤",
+  "langs": {
+    "ko": { "kicker": "일찍 크면 손해?", "subject": "우리 아이 키 일찍 크고", "number": "일찍 STOP", "numLabel": "비만의 함정", "tagline": "관리하면 충분히 지킬 수 있다" },
+    "th": { "kicker": "โตเร็วเสียเปรียบ?", "subject": "ลูกโตเร็วแต่...", "number": "หยุดเร็ว", "numLabel": "กับดักความอ้วน", "tagline": "ดูแลดีๆ รักษาส่วนสูงได้" },
+    "vi": { "kicker": "Cao sớm thiệt?", "subject": "Con cao sớm rồi", "number": "Dừng sớm", "numLabel": "bẫy của béo phì", "tagline": "Quản lý tốt vẫn giữ được chiều cao" },
+    "en": { "kicker": "Early growth, loss?", "subject": "Grows early, then", "number": "Stops early", "numLabel": "the obesity trap", "tagline": "Managed well, height is kept" },
+    "cn": { "kicker": "早长吃亏？", "subject": "孩子早长却", "number": "早停", "numLabel": "肥胖的陷阱", "tagline": "管理好身高守得住" },
+    "ch": { "kicker": "早長吃虧？", "subject": "孩子早長卻", "number": "早停", "numLabel": "肥胖的陷阱", "tagline": "管理好身高守得住" }
+  }
+}

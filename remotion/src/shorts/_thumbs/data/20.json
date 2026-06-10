@@ -1,0 +1,12 @@
+{
+  "n": 20,
+  "slug": "따라잡기성장",
+  "langs": {
+    "ko": { "kicker": "작아도 괜찮아!", "subject": "작게 태어난 우리 아이", "number": "80~90%", "numLabel": "따라잡는다", "tagline": "조기 관리로 충분히 큰다" },
+    "th": { "kicker": "ตัวเล็กก็ไม่เป็นไร!", "subject": "ลูกที่เกิดมาตัวเล็ก", "number": "80~90%", "numLabel": "ตามทันเพื่อนได้", "tagline": "ดูแลแต่เนิ่นๆ · โตทันได้" },
+    "vi": { "kicker": "Nhỏ cũng không sao!", "subject": "Con sinh ra nhẹ cân", "number": "80~90%", "numLabel": "sẽ bắt kịp", "tagline": "Chăm sớm · cao kịp bạn" },
+    "en": { "kicker": "Small is okay!", "subject": "Your small-born child", "number": "80~90%", "numLabel": "catch up", "tagline": "Early care closes the gap" },
+    "cn": { "kicker": "小一点没关系！", "subject": "出生偏小的孩子", "number": "80~90%", "numLabel": "会追上同龄", "tagline": "早管理 · 完全追得上" },
+    "ch": { "kicker": "小一點沒關係！", "subject": "出生偏小的孩子", "number": "80~90%", "numLabel": "會追上同齡", "tagline": "早管理 · 完全追得上" }
+  }
+}

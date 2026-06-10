@@ -1,0 +1,88 @@
+{
+ "idx": 22,
+ "cardnewsId": "785e7949-272e-46df-9e9e-ac5b537ac2d6",
+ "captionCh": "孩子長得比同齡人快？這其實可能是需要留意的訊號。🌱\n\n性早熟是指女孩在未滿8歲、男孩在未滿9歲前就出現青春期徵兆。初期確實會比同齡孩子高，但性荷爾蒙同時也會讓生長板提早閉合，最終身高反而可能低於預期。\n\n若孩子的骨齡比實際年齡超前1.5年以上，建議密切追蹤生長板狀況。\n\n更多資訊請點擊個人檔案中的連結了解。",
+ "hashtagsCh": "#性早熟 #生長板 #身高成長 #兒童發育 #骨齡 #青春期提早 #兒科 #孩子身高 #生長激素 #育兒知識 #台灣媽媽 #成長診所 #兒童健康 #187成長診所 #親子健康",
+ "slides": [
+  {
+   "slideId": "fc2e3906-8966-4278-bc5d-53a51a480801",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "性早熟，究竟會讓身高矮多少？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "2f9b86b2-706f-4b06-b6e9-44be4c0a481b",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "性早熟，究竟是什麼狀況？",
+    "subtext": "女孩未滿8歲、男孩未滿9歲即出現青春期徵兆"
+   }
+  },
+  {
+   "slideId": "289702fa-8847-46ec-9d7a-12f8ae03db14",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長板是長高的關鍵",
+    "subtext": "骨端軟骨組織 — 這座「工廠」持續運作，才能長高"
+   }
+  },
+  {
+   "slideId": "a32fa4e3-0b46-4660-a36c-7975eba2ee79",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "起初猛長，然後突然停止",
+    "subtext": "性荷爾蒙先加速生長板運作，同時也引發提早閉合"
+   }
+  },
+  {
+   "slideId": "2e73f95f-b2e2-4eed-b7e4-dad449ab6c22",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "起初看起來比同齡高，最終卻被超越",
+    "subtext": "生長板提早閉合，同齡孩子還在長高時，成長卻停了"
+   }
+  },
+  {
+   "slideId": "4802ee67-3fc4-4758-b8bd-ea85f6caf981",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "從生長曲線圖一眼看懂",
+    "subtext": "早期猛長→提早停止 vs 穩定成長→最終身高更高"
+   }
+  },
+  {
+   "slideId": "06301bd9-a885-4b1f-b11e-c9e5a71787e5",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡檢查可以讓真相浮現",
+    "subtext": "若骨齡比實際年齡超前1.5年以上，需密切留意生長板閉合時機"
+   }
+  },
+  {
+   "slideId": "e0d8da8d-a677-4625-9604-1bc7b1bb9e5b",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "孩子的生長板還開著嗎？",
+    "subtext": "透過骨齡評估，確認現在的狀況"
+   }
+  }
+ ]
+}

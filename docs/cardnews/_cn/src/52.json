@@ -1,0 +1,88 @@
+{
+ "idx": 52,
+ "cardnewsId": "d4785a81-8aa2-4c6a-9515-e526940e06ff",
+ "captionCh": "孩子每天吃早餐，但吃對了嗎？🌅\n\n經過一整夜空腹，孩子的身體需要穩定的血糖，生長激素才能順暢分泌。蛋白質（雞蛋、豆腐、牛奶）+ 全穀物碳水化合物 + 鈣、維生素D、鋅，這個組合每天早晨累積，有助於建立良好的成長環境。\n\n試著從明天早上開始，逐步加入卡片中的6步驟早晨習慣清單吧。更多成長資訊請見個人頁面連結。🌱",
+ "hashtagsCh": "#兒童長高 #早餐營養 #生長激素 #兒童飲食 #健康早餐 #成長期飲食 #兒童發育 #早晨習慣 #蛋白質早餐 #鈣質補充 #長高方法 #兒童成長 #育兒知識 #成長診所 #親子健康",
+ "slides": [
+  {
+   "slideId": "e8a619cf-943f-4320-82b8-3e461a4bf952",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "早餐讓孩子長得高",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "83af4d78-c9d5-46fa-a781-1b6177298b00",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "不吃早餐，生長激素也跟著休息",
+    "subtext": "血糖穩定才能創造有利生長激素分泌的環境"
+   }
+  },
+  {
+   "slideId": "3adf5743-7eca-4be2-b02c-146ce5e05c54",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "蛋白質，是生長激素的原料",
+    "subtext": "每天早上補充雞蛋、豆腐、牛奶等食物"
+   }
+  },
+  {
+   "slideId": "e7974529-58a8-4c2d-851f-f8fb49464d4d",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "碳水化合物，種類比份量更重要",
+    "subtext": "全穀物很好；含糖穀片會干擾生長激素"
+   }
+  },
+  {
+   "slideId": "0e29af26-3f5f-41bd-98fe-74fb77dc1e40",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "打造骨骼的3種營養素",
+    "subtext": "鈣 · 維生素D · 鋅 — 透過當季蔬果充分補充"
+   }
+  },
+  {
+   "slideId": "401232ef-832c-4fb2-bf41-ddf8127eed98",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "早晨6步驟習慣清單",
+    "subtext": "定時起床 · 提前準備 · 喝水 · 全家共餐 · 細嚼慢嚥 · 曬太陽"
+   }
+  },
+  {
+   "slideId": "58c36857-bf91-4f7a-a8c3-da828c5b0f18",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "搭配早餐一起做的好習慣",
+    "subtext": "睡眠 · 運動 · 正確姿勢 — 三者合一才能成就完整的成長"
+   }
+  },
+  {
+   "slideId": "474b1754-6c63-4009-a41c-c31f05e07f6a",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "小小的早晨習慣，改變孩子的身高",
+    "subtext": "每天早晨的累積，造就成長的不同"
+   }
+  }
+ ]
+}

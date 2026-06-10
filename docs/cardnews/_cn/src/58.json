@@ -1,0 +1,88 @@
+{
+ "idx": 58,
+ "cardnewsId": "e5cf8be3-3acf-49d6-b35e-2cdc5f82fe03",
+ "captionCh": "你正在讓孩子吃補充品，希望他能長高嗎？🤔\n\n事實是，醫學上幾乎沒有經過驗證的「增高補充品」。如果孩子的飲食已經均衡，額外補充也不會讓身高突然猛長。\n\n蛋白質、鈣、維生素D、鋅和鐵對成長都很重要——但比補充品更關鍵的是均衡飲食、充足睡眠和規律運動。\n\n只有在孩子偏食嚴重、有過敏或消化問題、或吸收障礙時，才考慮補充品，且務必先諮詢專業醫師。\n\n想了解更多關於孩子成長的資訊，歡迎點選個人頁面的連結 🌱",
+ "hashtagsCh": "#兒童成長 #長高方法 #營養補充品 #孩子身高 #兒童營養 #成長診所 #鈣質補充 #維生素D #均衡飲食 #兒童健康 #生長發育 #親子健康 #長高秘訣 #兒科成長 #台灣媽媽",
+ "slides": [
+  {
+   "slideId": "5a61997d-3378-44ce-9e18-fe5777785d99",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "營養補充品真的能讓孩子長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "5d2e4ae7-9e56-4fdb-aaa5-69af4f21d58c",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "大多數補品「難期望顯著效果」",
+    "subtext": "醫學上幾乎沒有經過驗證的「增高補充品」"
+   }
+  },
+  {
+   "slideId": "e37673a3-6dc7-4fc4-8622-a40807bb3cd0",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長不可缺的5種營養素",
+    "subtext": "蛋白質 · 鈣 · 維生素D · 鋅 · 鐵"
+   }
+  },
+  {
+   "slideId": "8369b08e-bbcb-44ac-81b3-233f4296da18",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "飲食均衡的話，額外補充效果有限",
+    "subtext": "若無缺乏，補充品只是補足不足，並不會讓身高突然猛長"
+   }
+  },
+  {
+   "slideId": "04ec8ee2-14f3-4f86-82aa-b18c8a723622",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "只有在這些情況下才考慮補充品",
+    "subtext": "偏食嚴重 · 過敏或消化疾病 · 日照不足 · 吸收障礙"
+   }
+  },
+  {
+   "slideId": "c380aa33-ac51-4171-bd9c-b9ee51e73f35",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "比補充品更重要的4件事",
+    "subtext": "均衡飲食 · 充足睡眠 · 規律運動 · 壓力管理"
+   }
+  },
+  {
+   "slideId": "e3a1f2f2-bd48-4408-a556-4013abf00ae3",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "遺傳70–80%，環境20–30%",
+    "subtext": "飲食、睡眠、運動與定期檢查，正是填滿那20–30%的關鍵"
+   }
+  },
+  {
+   "slideId": "b5d34504-48a1-40d0-9de0-5e7090330d64",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "基本功才是長高的關鍵",
+    "subtext": "用均衡飲食、睡眠、運動與定期檢查，為孩子打造良好的成長環境"
+   }
+  }
+ ]
+}

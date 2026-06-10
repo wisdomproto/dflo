@@ -1,0 +1,78 @@
+{
+ "idx": 28,
+ "cardnewsId": "8da0584a-b944-4e16-8615-4980ef470403",
+ "captionCh": "你知道孩子的身高，哪個階段最關鍵嗎？🌱\n\n每個孩子都有4次重要的生長機會。嬰兒期（0–2歲），寶寶光是第一年就能長高約25公分。兒童期（3歲至青春期前），每年穩定增長4–6公分，為下一階段打好基礎。青春期每年可急速長高7–12公分，但若青春期來得太早，骨骺板也可能提前關閉。最後是「黃金期」——骨骺板關閉前的最後機會，把握住了，最終身高就大不同。\n\n了解每個階段的特性，才能在對的時機為孩子做出正確選擇。更多資訊請點選個人頁面連結 👆",
+ "hashtagsCh": "#孩子長高 #兒童身高 #青春期發育 #骨骺板 #黃金生長期 #骨齡檢測 #身高管理 #性早熟 #兒童成長 #長高秘訣 #發育期 #台灣育兒 #兒童健康 #成長荷爾蒙 #增高方法",
+ "slides": [
+  {
+   "slideId": "e9236b65-8698-4845-816d-c7440eca3dd3",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子的長高機會，只有4次",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "351ee31e-bf4d-4b2c-ba55-213eb6b30c5b",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "0–2歲：生長速度最快的時期",
+    "subtext": "第一年約長25公分，第二年再長10–12公分"
+   }
+  },
+  {
+   "slideId": "67439648-e47f-46a2-b1c7-45de05bef2a4",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "3歲至青春期前：穩定成長期",
+    "subtext": "每年平均長4–6公分，良好生活習慣為下一階段的急速生長打好基礎"
+   }
+  },
+  {
+   "slideId": "d7cd6281-7d92-4c8a-87a6-aeeeff141e7f",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "青春期：每年急速長高7–12公分",
+    "subtext": "但若青春期來得太早，骨骺板也可能提早關閉"
+   }
+  },
+  {
+   "slideId": "f6a2f571-65b1-4f16-a1ce-6ee883937fed",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "黃金期：骨骺板關閉前的最後機會",
+    "subtext": "透過骨齡分析，可以了解還剩多少生長潛力"
+   }
+  },
+  {
+   "slideId": "b70850f8-d6a5-44ac-9bb8-171208240fdd",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "4次機會都珍貴，每個階段都不能錯過",
+    "subtext": "了解每個階段的特性，就能在對的時機做出更明智的選擇"
+   }
+  },
+  {
+   "slideId": "50b168a2-20eb-4b29-b2d9-fa3050fcc854",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "孩子的生長，時機就是一切",
+    "subtext": "立即線上確認您孩子現在的生長階段"
+   }
+  }
+ ]
+}

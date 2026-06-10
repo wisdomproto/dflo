@@ -1,0 +1,12 @@
+{
+  "n": 27,
+  "slug": "키크는운동비교",
+  "langs": {
+    "ko": { "kicker": "줄넘기만 시켰다면?", "subject": "우리 아이 키 크는 운동", "number": "5", "numLabel": "가지 비교", "tagline": "다양하게 · 꾸준히 · 즐겁게" },
+    "th": { "kicker": "ให้กระโดดเชือกอย่างเดียว?", "subject": "ออกกำลังเร่งสูงลูก", "number": "5", "numLabel": "แบบเทียบกัน", "tagline": "หลากหลาย · สม่ำเสมอ · สนุก" },
+    "vi": { "kicker": "Chỉ nhảy dây thôi?", "subject": "Vận động giúp con cao", "number": "5", "numLabel": "Môn so sánh", "tagline": "Đa dạng · đều đặn · vui vẻ" },
+    "en": { "kicker": "Just jump rope?", "subject": "Workouts that grow height", "number": "5", "numLabel": "Compared", "tagline": "Varied · consistent · fun" },
+    "cn": { "kicker": "只让跳绳？", "subject": "助孩子长高的运动", "number": "5", "numLabel": "种对比", "tagline": "多样 · 坚持 · 快乐" },
+    "ch": { "kicker": "只讓跳繩？", "subject": "助孩子長高的運動", "number": "5", "numLabel": "種對比", "tagline": "多樣 · 堅持 · 快樂" }
+  }
+}

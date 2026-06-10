@@ -1,0 +1,12 @@
+{
+  "n": 41,
+  "slug": "부모키작아도",
+  "langs": {
+    "ko": { "kicker": "유전이 끝 아냐!", "subject": "부모 작아도 아이 키", "number": "20%", "numLabel": "가 바꾼다", "tagline": "후천 관리가 최종 키를 가른다" },
+    "th": { "kicker": "พันธุกรรมไม่ใช่ทั้งหมด!", "subject": "พ่อแม่เตี้ย ลูกก็สูงได้", "number": "20%", "numLabel": "นี่แหละเปลี่ยนเกม", "tagline": "การดูแลกำหนดส่วนสูงสุดท้าย" },
+    "vi": { "kicker": "Gen chưa phải tất cả!", "subject": "Bố mẹ thấp con vẫn cao", "number": "20%", "numLabel": "thay đổi tất cả", "tagline": "Chăm sóc quyết định chiều cao cuối" },
+    "en": { "kicker": "Genes aren't the end!", "subject": "Short parents, tall kid", "number": "20%", "numLabel": "changes everything", "tagline": "Care decides the final height" },
+    "cn": { "kicker": "遗传不是终点！", "subject": "父母矮 孩子照样高", "number": "20%", "numLabel": "改变结局", "tagline": "后天管理定最终身高" },
+    "ch": { "kicker": "遺傳不是終點！", "subject": "父母矮 孩子照樣高", "number": "20%", "numLabel": "改變結局", "tagline": "後天管理定最終身高" }
+  }
+}

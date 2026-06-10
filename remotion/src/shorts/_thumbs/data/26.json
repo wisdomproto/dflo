@@ -1,0 +1,12 @@
+{
+  "n": 26,
+  "slug": "나이별운동",
+  "langs": {
+    "ko": { "kicker": "나이마다 다르다!", "subject": "우리 아이 키 크는", "number": "운동", "numLabel": "나이별 가이드", "tagline": "나이 맞춤 운동이 핵심" },
+    "th": { "kicker": "แต่ละวัยไม่เหมือนกัน!", "subject": "ส่วนสูงลูก", "number": "ออกกำลัง", "numLabel": "ตามช่วงวัย", "tagline": "ออกกำลังให้ตรงวัยคือกุญแจ" },
+    "vi": { "kicker": "Mỗi tuổi mỗi khác!", "subject": "Chiều cao con", "number": "Vận động", "numLabel": "Theo độ tuổi", "tagline": "Vận động đúng tuổi là chìa khóa" },
+    "en": { "kicker": "Differs by age!", "subject": "Your child's height", "number": "Exercise", "numLabel": "By-age guide", "tagline": "Age-fit moves are the key" },
+    "cn": { "kicker": "每个年龄不同！", "subject": "孩子身高", "number": "运动", "numLabel": "分龄指南", "tagline": "按年龄运动才是关键" },
+    "ch": { "kicker": "每個年齡不同！", "subject": "孩子身高", "number": "運動", "numLabel": "分齡指南", "tagline": "按年齡運動才是關鍵" }
+  }
+}

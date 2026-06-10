@@ -1,0 +1,12 @@
+{
+  "n": 57,
+  "slug": "예상키앱후기",
+  "langs": {
+    "ko": { "kicker": "앱, 믿어도 돼?", "subject": "우리 아이 예상키", "number": "70%", "numLabel": "만 보는 앱", "tagline": "진짜 예측키는 뼈나이로" },
+    "th": { "kicker": "แอปเชื่อได้ไหม?", "subject": "ส่วนสูงคาดการณ์ของลูก", "number": "70%", "numLabel": "แอปเห็นแค่นี้", "tagline": "ค่าจริงต้องดูอายุกระดูก" },
+    "vi": { "kicker": "Tin app được không?", "subject": "Chiều cao dự đoán của con", "number": "70%", "numLabel": "app chỉ thấy vậy", "tagline": "Dự đoán thật nhờ tuổi xương" },
+    "en": { "kicker": "Trust the app?", "subject": "Your child's predicted height", "number": "70%", "numLabel": "all the app sees", "tagline": "Real prediction needs bone age" },
+    "cn": { "kicker": "APP能信吗？", "subject": "孩子预测身高", "number": "70%", "numLabel": "APP只看这些", "tagline": "真实预测靠骨龄" },
+    "ch": { "kicker": "APP能信嗎？", "subject": "孩子預測身高", "number": "70%", "numLabel": "APP只看這些", "tagline": "真實預測靠骨齡" }
+  }
+}

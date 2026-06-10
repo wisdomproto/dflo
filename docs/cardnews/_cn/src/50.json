@@ -1,0 +1,78 @@
+{
+ "idx": 50,
+ "cardnewsId": "d3e19729-64f6-4456-82ce-b984b496b2a3",
+ "captionCh": "孩子睡前總是放不下手機嗎？ 📱\n\n螢幕發出的藍光會讓大腦誤以為現在還是白天，進而抑制褪黑激素的分泌。褪黑激素不足，就難以進入深度睡眠；而深度睡眠正是生長激素大量分泌的關鍵時段。第一步很簡單：睡前1至2小時放下手機，改換成閱讀或輕聲聊天吧。 🌙\n\n想了解更多睡眠與孩子成長的關係？請點擊個人頁面的連結查看詳情。",
+ "hashtagsCh": "#兒童身高成長 #生長激素 #睡眠與成長 #藍光 #睡前手機 #褪黑激素 #深度睡眠 #兒童健康 #小兒科 #187成長診所 #長高方法 #睡眠習慣 #育兒知識 #兒童發育 #台灣親子",
+ "slides": [
+  {
+   "slideId": "e6d72d72-7411-400c-9d33-40fc091ba300",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "智慧型手機真的會影響孩子長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "25a8a2f1-6ca6-4fe5-aaac-b326f88aec26",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子在深度睡眠中長高",
+    "subtext": "生長激素在入睡後1–2小時的深度睡眠（慢波睡眠）階段大量分泌"
+   }
+  },
+  {
+   "slideId": "d3c08810-a240-40f8-8520-2b7710c14ff9",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "藍光奪走孩子的睡眠",
+    "subtext": "藍光欺騙大腦以為是白天，抑制褪黑激素的分泌"
+   }
+  },
+  {
+   "slideId": "c3144af1-d951-440e-83e8-1d0d829afb86",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "褪黑激素 → 睡眠 → 生長激素",
+    "subtext": "褪黑激素不足 → 睡不深 → 生長激素分泌減少"
+   }
+  },
+  {
+   "slideId": "e9eb7b9b-2b14-454a-af34-f90ce18b030b",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "現在就能改變的5個習慣",
+    "subtext": "睡前遠離螢幕 · 規律作息 · 黑暗安靜的環境 · 白天充分活動 · 均衡飲食"
+   }
+  },
+  {
+   "slideId": "71d12c84-ed19-4c92-9dbd-a947eba0e1a6",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "睡前1–2小時是最關鍵的時段",
+    "subtext": "放下手機，改以閱讀或安靜交流等輕鬆活動取代"
+   }
+  },
+  {
+   "slideId": "1574e117-b863-4aa5-a735-f5218f70ec6e",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "優質睡眠，是長高的起點",
+    "subtext": "從今晚開始——改掉睡前滑手機的習慣"
+   }
+  }
+ ]
+}

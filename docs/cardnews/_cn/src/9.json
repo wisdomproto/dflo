@@ -1,0 +1,88 @@
+{
+ "idx": 9,
+ "cardnewsId": "45bc108f-5951-4b84-9c97-7802f975f486",
+ "captionCh": "孩子的預測身高比預期低，讓你感到擔憂嗎？🤔\n\n預測身高只是根據骨齡與父母身高所推算的統計數值，本身有 ±5 公分的誤差範圍。更重要的是，只要骨骺板仍在生長，營養、睡眠與運動等環境因素都能影響最終的結果。\n今天看到的數字只是起點，不是定論。🌱\n\n完整文章請點個人頁面連結閱讀。",
+ "hashtagsCh": "#兒童身高 #預測身高 #骨齡 #骨骺板 #生長激素 #長高方法 #兒童發育 #兒童健康 #低身材 #身高管理 #成長診所 #台灣媽媽 #親子健康 #187成長診所 #韓國成長治療",
+ "slides": [
+  {
+   "slideId": "7124b485-c337-40b1-8aaa-ce2d8c83a40d",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "預測身高，能直接相信嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "b50b7122-ef5f-4c21-b74b-48a3a47082f6",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "預測方式① 遺傳目標身高",
+    "subtext": "由父母身高推算 — 僅供參考，非絕對值"
+   }
+  },
+  {
+   "slideId": "582d56e7-f854-4a0a-8955-7fa52ac0d684",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "預測方式② 骨齡預測法",
+    "subtext": "透過手部X光判讀骨骺板成熟度 — 更精準的預測"
+   }
+  },
+  {
+   "slideId": "387efc4d-7330-4b4c-8be0-78bef716559c",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "預測身高存在 ±5 公分的誤差",
+    "subtext": "這是統計模型，並非100%確定的結果"
+   }
+  },
+  {
+   "slideId": "41751ee4-4175-4b3b-b428-eae4503d4e15",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "改變環境，成長也會跟著改變",
+    "subtext": "骨骺板還開著的現在，營養、睡眠、運動都能改變結果"
+   }
+  },
+  {
+   "slideId": "e45e543b-0c1c-4156-a011-d51ca2b20330",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨骺板還開著 就還有機會",
+    "subtext": "骨齡比實際年齡小，代表還有更多成長時間"
+   }
+  },
+  {
+   "slideId": "26bdaad8-dcc0-4139-9b43-9fed57c79e54",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "現在就能改變的4件事",
+    "subtext": "營養 · 睡眠 · 運動 · 壓力管理"
+   }
+  },
+  {
+   "slideId": "c48e2f57-317d-411a-bf6e-3576cc62fc0d",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "預測身高是起點，不是終點",
+    "subtext": "現在的努力，能改變孩子的身高"
+   }
+  }
+ ]
+}

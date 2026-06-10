@@ -1,0 +1,12 @@
+{
+  "n": 14,
+  "slug": "갑상선성장",
+  "langs": {
+    "ko": { "kicker": "숨은 범인?", "subject": "우리 아이 키 멈춤", "number": "갑상선", "numLabel": "호르몬", "tagline": "찾아 채우면 다시 자란다" },
+    "th": { "kicker": "ตัวร้ายที่ซ่อนอยู่?", "subject": "ส่วนสูงลูกหยุดนิ่ง", "number": "ไทรอยด์", "numLabel": "ฮอร์โมน", "tagline": "เจอแล้วเติม · กลับมาสูงต่อ" },
+    "vi": { "kicker": "Thủ phạm ẩn?", "subject": "Con ngừng cao", "number": "Tuyến giáp", "numLabel": "hormone", "tagline": "Tìm ra & bổ sung · cao lại" },
+    "en": { "kicker": "Hidden culprit?", "subject": "Your child's height stalled", "number": "Thyroid", "numLabel": "hormone", "tagline": "Find it, fix it, grow again" },
+    "cn": { "kicker": "隐藏元凶？", "subject": "孩子身高停滞", "number": "甲状腺", "numLabel": "荷尔蒙", "tagline": "查出补上 · 重新长高" },
+    "ch": { "kicker": "隱藏元兇？", "subject": "孩子身高停滯", "number": "甲狀腺", "numLabel": "荷爾蒙", "tagline": "查出補上 · 重新長高" }
+  }
+}

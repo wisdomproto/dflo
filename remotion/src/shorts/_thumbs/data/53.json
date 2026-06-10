@@ -1,0 +1,12 @@
+{
+  "n": 53,
+  "slug": "키질문톱텐",
+  "langs": {
+    "ko": { "kicker": "제일 많이 검색!", "subject": "우리 아이 키 질문", "number": "TOP 10", "numLabel": "정답은 하나", "tagline": "답은 뼈나이에 있다" },
+    "th": { "kicker": "ค้นหามากสุด!", "subject": "คำถามส่วนสูงลูก", "number": "TOP 10", "numLabel": "คำตอบมีหนึ่ง", "tagline": "คำตอบอยู่ที่อายุกระดูก" },
+    "vi": { "kicker": "Tìm nhiều nhất!", "subject": "Câu hỏi chiều cao con", "number": "TOP 10", "numLabel": "chỉ một đáp án", "tagline": "Câu trả lời ở tuổi xương" },
+    "en": { "kicker": "Most searched!", "subject": "Your child height Qs", "number": "TOP 10", "numLabel": "one answer", "tagline": "The answer is bone age" },
+    "cn": { "kicker": "搜索最多！", "subject": "孩子身高问题", "number": "TOP 10", "numLabel": "答案只有一个", "tagline": "答案就在骨龄" },
+    "ch": { "kicker": "搜尋最多！", "subject": "孩子身高問題", "number": "TOP 10", "numLabel": "答案只有一個", "tagline": "答案就在骨齡" }
+  }
+}

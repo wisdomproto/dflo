@@ -1,0 +1,12 @@
+{
+  "n": 7,
+  "slug": "격세유전조부모키",
+  "langs": {
+    "ko": { "kicker": "부모만 보면 착각!", "subject": "우리 아이 키", "number": "조부모", "numLabel": "키가 답이다", "tagline": "조부모 키까지 봐야 진짜 잠재력" },
+    "th": { "kicker": "ดูแค่พ่อแม่ผิดได้!", "subject": "ส่วนสูงลูกเรา", "number": "ปู่ย่าตายาย", "numLabel": "ก็คือคำตอบ", "tagline": "ดูถึงรุ่นปู่ย่าจึงเห็นศักยภาพจริง" },
+    "vi": { "kicker": "Chỉ nhìn bố mẹ là nhầm!", "subject": "Chiều cao của con", "number": "Ông bà", "numLabel": "mới là đáp án", "tagline": "Nhìn cả ông bà mới thấy tiềm năng thật" },
+    "en": { "kicker": "Parents aren't all!", "subject": "Your child's height", "number": "Grandparents", "numLabel": "hold the answer", "tagline": "Grandparents reveal true potential" },
+    "cn": { "kicker": "只看父母会错！", "subject": "孩子的身高", "number": "祖父母", "numLabel": "才是答案", "tagline": "看到祖辈才见真潜力" },
+    "ch": { "kicker": "只看父母會錯！", "subject": "孩子的身高", "number": "祖父母", "numLabel": "才是答案", "tagline": "看到祖輩才見真潛力" }
+  }
+}

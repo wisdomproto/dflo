@@ -1,0 +1,12 @@
+{
+  "n": 11,
+  "slug": "고환크기신호",
+  "langs": {
+    "ko": { "kicker": "부모 90%가 놓침", "subject": "우리 아들 사춘기 첫 신호", "number": "고환", "numLabel": "크기였다", "tagline": "일찍 알면 최종 키 지킨다" },
+    "th": { "kicker": "พ่อแม่ 90% พลาด", "subject": "สัญญาณวัยรุ่นแรกของลูกชาย", "number": "อัณฑะ", "numLabel": "คือขนาดที่บอก", "tagline": "รู้เร็วรักษาส่วนสูงสุดท้าย" },
+    "vi": { "kicker": "90% bố mẹ bỏ qua", "subject": "Dấu hiệu dậy thì đầu của con trai", "number": "Tinh hoàn", "numLabel": "chính là kích thước", "tagline": "Biết sớm giữ được chiều cao cuối" },
+    "en": { "kicker": "90% of parents miss it", "subject": "Your son's first puberty sign", "number": "Testes", "numLabel": "it's the size", "tagline": "Spot it early, keep final height" },
+    "cn": { "kicker": "90%父母错过", "subject": "儿子青春期第一信号", "number": "睾丸", "numLabel": "大小是关键", "tagline": "早发现守住最终身高" },
+    "ch": { "kicker": "90%父母錯過", "subject": "兒子青春期第一信號", "number": "睪丸", "numLabel": "大小是關鍵", "tagline": "早發現守住最終身高" }
+  }
+}

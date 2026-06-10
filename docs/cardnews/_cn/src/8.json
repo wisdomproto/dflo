@@ -1,0 +1,78 @@
+{
+ "idx": 8,
+ "cardnewsId": "40476ea1-c731-43eb-801e-fa216ad02432",
+ "captionCh": "你是否一直以為孩子的身高完全由父母的基因決定？🤔\n\n「遺傳佔80%」並不代表孩子的身高已被父母的身高鎖定。遺傳基因只是設定了孩子「能攀登的山有多高」，真正決定能否登頂的，是營養、睡眠、運動與壓力管理等環境因素。\n\n即使擁有相同的遺傳潛力，照顧方式的不同也可能讓最終身高出現明顯差距。🌱\n\n完整內容請點選個人檔案連結的部落格閱讀。",
+ "hashtagsCh": "#長高 #兒童身高 #成長診所 #生長激素 #遺傳與身高 #兒童成長 #長高方法 #成長潛力 #兒童健康 #營養與身高 #187成長診所 #韓國醫療 #成長管理 #親子健康 #身高潛力",
+ "slides": [
+  {
+   "slideId": "f134b417-8106-490d-9496-b18fb2041c07",
+   "sort_order": 1,
+   "role": "표지",
+   "isCta": false,
+   "ch": {
+    "headline": "身高80%靠遺傳，真的就註定了嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "3a3ccb78-a5fc-41e7-85fe-6fd55ce3a43b",
+   "sort_order": 2,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "那個80:20，你其實誤會了",
+    "subtext": "它真正說的是「環境」有多重要"
+   }
+  },
+  {
+   "slideId": "0fe67a8d-3466-41ac-a706-08bce2891e40",
+   "sort_order": 3,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "遺傳決定「能爬的山有多高」",
+    "subtext": "不是指80%由父母身高決定"
+   }
+  },
+  {
+   "slideId": "98bfcd29-cad5-4162-87d6-dfa11adec0fd",
+   "sort_order": 4,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "環境是登上山頂的力量",
+    "subtext": "這20%決定潛力能否成真"
+   }
+  },
+  {
+   "slideId": "c679d680-1e79-4de3-9596-8fab7735f1a6",
+   "sort_order": 5,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "相同潛力，不同結果",
+    "subtext": "照顧方式能讓孩子比同齡矮，也能更高"
+   }
+  },
+  {
+   "slideId": "6fbf0daf-442e-4704-b42e-840e1a57b83e",
+   "sort_order": 6,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "釋放潛力的4件事",
+    "subtext": "營養 · 睡眠 · 運動 · 壓力管理"
+   }
+  },
+  {
+   "slideId": "a57e9156-1243-45b7-9ea7-0ecef593182c",
+   "sort_order": 7,
+   "role": "CTA",
+   "isCta": true,
+   "ch": {
+    "headline": "超越遺傳，還能再長高",
+    "subtext": "環境能提升遺傳設定的潛力"
+   }
+  }
+ ]
+}

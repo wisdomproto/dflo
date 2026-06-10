@@ -1,0 +1,12 @@
+{
+  "n": 13,
+  "slug": "성장통신호",
+  "langs": {
+    "ko": { "kicker": "오해 ❌", "subject": "우리 아이 다리 통증", "number": "신호 아님", "numLabel": "진짜 원인은 따로!", "tagline": "키 점검 신호로 삼자" },
+    "th": { "kicker": "เข้าใจผิด ❌", "subject": "อาการปวดขาของลูก", "number": "ไม่ใช่สัญญาณ", "numLabel": "สาเหตุจริงอยู่ที่อื่น!", "tagline": "ใช้เป็นจังหวะเช็กส่วนสูง" },
+    "vi": { "kicker": "Hiểu lầm ❌", "subject": "Đau chân ở con", "number": "Không phải dấu hiệu", "numLabel": "Nguyên nhân thật khác!", "tagline": "Dịp để kiểm tra chiều cao" },
+    "en": { "kicker": "Myth ❌", "subject": "Your child's leg pain", "number": "Not a sign", "numLabel": "the real cause differs!", "tagline": "A cue to check growth" },
+    "cn": { "kicker": "误会 ❌", "subject": "孩子的腿痛", "number": "不是信号", "numLabel": "真正原因在别处！", "tagline": "正好检查长高进度" },
+    "ch": { "kicker": "誤會 ❌", "subject": "孩子的腿痛", "number": "不是信號", "numLabel": "真正原因在別處！", "tagline": "正好檢查長高進度" }
+  }
+}

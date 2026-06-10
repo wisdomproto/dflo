@@ -1,0 +1,78 @@
+{
+ "idx": 11,
+ "cardnewsId": "47d08712-b3d6-4de5-a40b-3f2ccf5b2d3d",
+ "captionCh": "你知道孩子每天喝水用的塑膠杯，可能影響他的生長板嗎？🌿\n\n內分泌干擾物質（EDCs）會模仿真實荷爾蒙，與受體結合後干擾身體的訊號傳遞。部分物質的作用類似雌激素——可能促使青春期提早到來，使生長板過早閉合，進而影響最終身高。\n\n需要留意的主要來源：塑膠製品（BPA、鄰苯二甲酸酯）、個人護理產品（防腐劑 paraben）、蔬果上的農藥殘留，以及加工食品包裝。改用玻璃容器、仔細清洗蔬果、每天通風 2–3 次、以天然食物為主——這些小改變都有助於降低暴露風險。\n\n如果您擔心孩子的生長速度或有性早熟的跡象，歡迎點擊個人頁面連結，了解更多相關資訊。",
+ "hashtagsCh": "#環境荷爾蒙 #內分泌干擾 #生長板 #性早熟 #兒童身高 #BPA #無塑生活 #兒童健康 #成長門診 #187成長門診 #生長激素 #骨齡 #育兒知識 #健康飲食 #親子健康",
+ "slides": [
+  {
+   "slideId": "5962eda4-5f8b-44b5-9d4c-14af89591466",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "日常用品正在干擾孩子的生長板？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "0486afac-3060-42dd-8766-918fe91b5ab1",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "模仿荷爾蒙的化學物質",
+    "subtext": "內分泌干擾物質與荷爾蒙受體結合，干擾身體的化學訊號"
+   }
+  },
+  {
+   "slideId": "f8ae012f-8914-46c4-940d-b1de874670bb",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "假雌激素提前觸發青春期",
+    "subtext": "內分泌干擾物質能模仿雌激素，可能引發性早熟"
+   }
+  },
+  {
+   "slideId": "92b5857d-813e-4aa7-8ad0-c9dc0fe521c1",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長板提早閉合，最終身高就會縮短",
+    "subtext": "性早熟會短暫加速生長，但最終導致生長板提早閉合，影響最終身高"
+   }
+  },
+  {
+   "slideId": "19e596af-5397-4e67-9f11-a04f45841d2f",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "環境荷爾蒙躲藏的4個地方",
+    "subtext": "塑膠容器 · 個人護理產品 · 農藥殘留 · 加工食品包裝"
+   }
+  },
+  {
+   "slideId": "271d3caf-a432-4248-98e4-4cfbf79506a8",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "日常4個預防好習慣",
+    "subtext": "使用玻璃和不鏽鋼容器 · 徹底清洗蔬果 · 每天通風2–3次 · 以天然食物取代加工食品"
+   }
+  },
+  {
+   "slideId": "430c8b69-b7ff-4cdd-8b90-f4b72de7442f",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "守護孩子的成長，從日常小習慣開始",
+    "subtext": "若擔心孩子的生長速度或早期發育跡象，骨齡檢查有助於釐清狀況"
+   }
+  }
+ ]
+}

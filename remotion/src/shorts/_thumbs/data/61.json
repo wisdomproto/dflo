@@ -1,0 +1,12 @@
+{
+  "n": 61,
+  "slug": "K성장클리닉",
+  "langs": {
+    "ko": { "kicker": "세계가 주목!", "subject": "우리 아이 키, 왜", "number": "한국", "numLabel": "으로 올까?", "tagline": "정밀 진단이 키를 가른다" },
+    "th": { "kicker": "ทั่วโลกจับตา!", "subject": "ส่วนสูงลูก ทำไมมา", "number": "เกาหลี", "numLabel": "ทำไมต้องที่นี่?", "tagline": "วินิจฉัยแม่นยำ ชี้ส่วนสูง" },
+    "vi": { "kicker": "Cả thế giới chú ý!", "subject": "Chiều cao con, vì sao đến", "number": "Hàn Quốc", "numLabel": "vì sao chọn?", "tagline": "Chẩn đoán chính xác quyết định" },
+    "en": { "kicker": "The world's watching!", "subject": "Your child's height — why", "number": "Korea", "numLabel": "why come here?", "tagline": "Precise diagnosis sets height" },
+    "cn": { "kicker": "全球都在看！", "subject": "孩子身高，为何来", "number": "韩国", "numLabel": "为何选这里？", "tagline": "精准诊断 决定身高" },
+    "ch": { "kicker": "全球都在看！", "subject": "孩子身高，為何來", "number": "韓國", "numLabel": "為何選這裡？", "tagline": "精準診斷 決定身高" }
+  }
+}

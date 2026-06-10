@@ -1,0 +1,12 @@
+{
+  "n": 43,
+  "slug": "중2키성장",
+  "langs": {
+    "ko": { "kicker": "중2면 끝? NO", "subject": "우리 아이 키", "number": "+7~12cm", "numLabel": "아직 큰다", "tagline": "성장판 열렸으면 아직 골든타임" },
+    "th": { "kicker": "ม.2 จบแล้ว? ไม่!", "subject": "ส่วนสูงลูก", "number": "+7~12cm", "numLabel": "ยังสูงได้อีก", "tagline": "แผ่นเติบโตยังเปิด · ยังมีโอกาส" },
+    "vi": { "kicker": "Lớp 8 hết cao? KHÔNG", "subject": "Chiều cao con", "number": "+7~12cm", "numLabel": "vẫn còn cao", "tagline": "Sụn còn mở · vẫn là thời điểm vàng" },
+    "en": { "kicker": "8th grade = done? NO", "subject": "Your child's height", "number": "+7~12cm", "numLabel": "still growing", "tagline": "Plates open means still golden time" },
+    "cn": { "kicker": "初二就停了？不！", "subject": "孩子身高", "number": "+7~12cm", "numLabel": "还能长", "tagline": "生长板没闭 · 仍是黄金期" },
+    "ch": { "kicker": "國二就停了？不！", "subject": "孩子身高", "number": "+7~12cm", "numLabel": "還能長", "tagline": "生長板沒閉 · 仍是黃金期" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "n": 8,
+  "slug": "성조숙증성장판",
+  "langs": {
+    "ko": { "kicker": "일찍 크면 손해?", "subject": "우리 아이 키", "number": "성조숙증", "numLabel": "의 함정", "tagline": "조기 관리로 키 클 시간 지킨다" },
+    "th": { "kicker": "โตเร็วเสียเปรียบ?", "subject": "ส่วนสูงลูกเรา", "number": "หนุ่มสาวก่อนวัย", "numLabel": "กับดักที่ซ่อนอยู่", "tagline": "ดูแลแต่เนิ่นๆ รักษาเวลาสูง" },
+    "vi": { "kicker": "Cao sớm thiệt?", "subject": "Chiều cao của con", "number": "Dậy thì sớm", "numLabel": "cái bẫy ngầm", "tagline": "Quản lý sớm giữ thời gian cao" },
+    "en": { "kicker": "Early growth, loss?", "subject": "Your child's height", "number": "Early puberty", "numLabel": "the hidden trap", "tagline": "Early care keeps growth time" },
+    "cn": { "kicker": "早长吃亏？", "subject": "孩子的身高", "number": "性早熟", "numLabel": "的陷阱", "tagline": "早管理守住长高时间" },
+    "ch": { "kicker": "早長吃虧？", "subject": "孩子的身高", "number": "性早熟", "numLabel": "的陷阱", "tagline": "早管理守住長高時間" }
+  }
+}

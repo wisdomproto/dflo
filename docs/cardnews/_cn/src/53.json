@@ -1,0 +1,78 @@
+{
+ "idx": 53,
+ "cardnewsId": "d4a6e156-6e68-40cd-bd5f-54d1cfd8e851",
+ "captionCh": "你的孩子有這5個習慣嗎？🤔\n\n身高不只是遺傳的問題——日常生活習慣同樣舉足輕重。兒童生長專科醫師在臨床上發現，個子較矮的孩子普遍有5個共同習慣：睡眠不足、偏食或飲食不規律、缺乏運動、吃消夜，以及過度使用智慧型手機。生長激素在深度睡眠中分泌最旺盛，搭配均衡營養與適度運動才能充分發揮作用。\n\n收藏這篇貼文，今天就來檢視孩子的日常作息吧 🌱\n更多資訊請點選個人頁面連結查看。",
+ "hashtagsCh": "#兒童身高 #生長激素 #孩子長高 #兒童健康 #生長板 #偏食改善 #睡眠品質 #運動習慣 #螢幕時間 #兒科 #親子健康 #育兒知識 #長高方法 #生活習慣 #187成長診所",
+ "slides": [
+  {
+   "slideId": "a481d9ea-bdc3-485e-8584-e4ee9778ef4c",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "個子矮的孩子共同的5個習慣",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "3457082e-50b3-4f43-9605-49dd89e7474d",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "習慣① 睡眠不足",
+    "subtext": "生長激素在深度睡眠中分泌最旺盛"
+   }
+  },
+  {
+   "slideId": "9df9ba65-0fbd-4955-975c-882ff9f7fe96",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "習慣② 偏食與飲食不規律",
+    "subtext": "蛋白質、鈣、維生素D、鋅，缺一不可"
+   }
+  },
+  {
+   "slideId": "47395fae-1dd4-4b39-bfd9-9b270eeae1e5",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "習慣③ 身體活動量不足",
+    "subtext": "運動刺激生長板並促進生長激素分泌"
+   }
+  },
+  {
+   "slideId": "bcfdebd1-8887-409f-88d7-3e6998fd2c52",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "習慣④ 吃消夜與加工食品",
+    "subtext": "血糖驟升會抑制生長激素的分泌"
+   }
+  },
+  {
+   "slideId": "36716dbe-a659-4840-95f3-14250f5fb8c9",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "習慣⑤ 過度使用智慧型手機",
+    "subtext": "睡眠差、缺乏運動、姿勢不良，三重問題同時出現"
+   }
+  },
+  {
+   "slideId": "c73d0a7f-ef11-4267-a57e-b6fcce941ffd",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "改變習慣，身高就會不同",
+    "subtext": "生活習慣後天完全可以改善"
+   }
+  }
+ ]
+}

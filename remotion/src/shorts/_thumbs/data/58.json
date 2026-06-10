@@ -1,0 +1,12 @@
+{
+  "n": 58,
+  "slug": "겨울방학키",
+  "langs": {
+    "ko": { "kicker": "방학이 기회!", "subject": "우리 아이 키", "number": "골든타임", "numLabel": "겨울방학에 끌어올리기", "tagline": "겨울방학에 키 쑥" },
+    "th": { "kicker": "ปิดเทอมคือโอกาส!", "subject": "ส่วนสูงลูก", "number": "ช่วงทอง", "numLabel": "ดันสูงช่วงปิดเทอมหนาว", "tagline": "ปิดเทอมหนาว สูงพุ่ง" },
+    "vi": { "kicker": "Nghỉ đông là cơ hội!", "subject": "Chiều cao của con", "number": "Thời điểm vàng", "numLabel": "bứt phá kỳ nghỉ đông", "tagline": "Nghỉ đông, cao vọt" },
+    "en": { "kicker": "Break = chance!", "subject": "Your child's height", "number": "Golden time", "numLabel": "boost it over winter break", "tagline": "Winter break, grow tall" },
+    "cn": { "kicker": "寒假是机会！", "subject": "孩子身高", "number": "黄金期", "numLabel": "寒假冲一波", "tagline": "寒假身高蹿一蹿" },
+    "ch": { "kicker": "寒假是機會！", "subject": "孩子身高", "number": "黃金期", "numLabel": "寒假衝一波", "tagline": "寒假身高竄一竄" }
+  }
+}

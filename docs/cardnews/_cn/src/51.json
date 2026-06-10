@@ -1,0 +1,88 @@
+{
+ "idx": 51,
+ "cardnewsId": "d439b5f3-e1e5-445d-bbc7-eb8a451dec0e",
+ "captionCh": "國中二年級，孩子還能再長高嗎？🤔\n\n很多家長擔心孩子已經「長完了」，但其實關鍵不在年齡，而在於骨骺板是否還開著。只要骨骺板未閉合，即使國二也還有充分的長高潛力。對男生來說，國二可能正是青春期生長衝刺的高峰，每年可長7至12公分。把握這段黃金期，做好營養、睡眠、運動和姿勢管理，影響非常關鍵。🌱\n\n想了解孩子的成長潛力，歡迎點擊個人主頁連結查看更多資訊。",
+ "hashtagsCh": "#長高 #骨骺板 #青春期成長 #增高 #生長激素 #骨齡 #身高管理 #成長潛力 #成長診所 #兒童發育 #187成長診所 #黃金期 #國中生身高 #成長衝刺 #長高方法",
+ "slides": [
+  {
+   "slideId": "af9b14ec-c444-4d9e-b275-a4a7e216b842",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "國中二年級，還能再長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "c919baad-d08f-4456-9dd5-87ae563c5790",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨骺板比年齡更重要",
+    "subtext": "骨骺板未閉合，即使國二也有長高的充分潛力"
+   }
+  },
+  {
+   "slideId": "709ad2b1-70ed-4b59-8ef3-8023a16257cf",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "青春期生長衝刺：每年7–12公分",
+    "subtext": "對男生來說，國二可能正是這個衝刺期的高峰"
+   }
+  },
+  {
+   "slideId": "1e90ccba-e42f-4fdf-87ac-c84424091acf",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "青春期後仍可繼續長高2至3年",
+    "subtext": "骨骺板完全閉合之前，身高都還在持續生長"
+   }
+  },
+  {
+   "slideId": "be4433cf-e83f-4434-8123-76aac0f814c0",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "在家就能做的4項成長管理",
+    "subtext": "營養 · 睡眠 · 運動 · 姿勢管理"
+   }
+  },
+  {
+   "slideId": "610636ad-01e0-42e1-9092-c0d5c98af6a7",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "專業檢查確認成長潛力",
+    "subtext": "骨齡判讀 · 生長激素檢查 · 個人化方案"
+   }
+  },
+  {
+   "slideId": "a868f756-03e3-4c9c-af9e-1358a26737da",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "現在正是關鍵黃金期",
+    "subtext": "骨骺板閉合之前，好好把握這段時間最關鍵"
+   }
+  },
+  {
+   "slideId": "a695d6c6-226c-47b0-b348-47af960c06b1",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "長高，現在還不晚",
+    "subtext": "骨骺板還開著，現在就請專家確認孩子的成長潛力"
+   }
+  }
+ ]
+}

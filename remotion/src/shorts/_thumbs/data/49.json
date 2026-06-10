@@ -1,0 +1,12 @@
+{
+  "n": 49,
+  "slug": "키영양제효과",
+  "langs": {
+    "ko": { "kicker": "광고에 속지 마세요", "subject": "우리 아이 키", "number": "영양제", "numLabel": "진짜 클까?", "tagline": "기본과 검진이 키를 만든다" },
+    "th": { "kicker": "อย่าหลงโฆษณา", "subject": "ส่วนสูงลูก", "number": "อาหารเสริม", "numLabel": "ช่วยสูงจริงไหม?", "tagline": "พื้นฐานและตรวจสม่ำเสมอสร้างความสูง" },
+    "vi": { "kicker": "Đừng tin quảng cáo", "subject": "Chiều cao con", "number": "Thực phẩm chức năng", "numLabel": "có cao thật?", "tagline": "Nền tảng và khám định kỳ tạo chiều cao" },
+    "en": { "kicker": "Don't fall for ads", "subject": "Your child's height", "number": "Supplements", "numLabel": "do they work?", "tagline": "Basics & checkups build height" },
+    "cn": { "kicker": "别被广告骗了", "subject": "孩子身高", "number": "保健品", "numLabel": "真能长高？", "tagline": "基本功和定期检查成就身高" },
+    "ch": { "kicker": "別被廣告騙了", "subject": "孩子身高", "number": "保健品", "numLabel": "真能長高？", "tagline": "基本功和定期檢查成就身高" }
+  }
+}

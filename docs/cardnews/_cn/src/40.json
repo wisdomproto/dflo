@@ -1,0 +1,78 @@
+{
+ "idx": 40,
+ "cardnewsId": "ac4b0b49-3951-4442-ad46-78ca22323ade",
+ "captionCh": "您是否擔心孩子的身高發展？🌱\n\n繼K-pop、K-drama之後，K-Medical成長診所如今也吸引了全球父母的目光。韓國成長診所的核心優勢在於精準的骨齡分析，能夠評估孩子的生長潛力，並結合遺傳、睡眠、營養與運動等多項因素，為每個孩子量身訂製成長計畫。孩子的成長有其黃金期，把握時機至關重要。\n\n想了解孩子的預測身高嗎？歡迎前往我們的網站立即查看。🔗 個人頁面連結",
+ "hashtagsCh": "#韓國成長診所 #兒童身高 #骨齡分析 #生長荷爾蒙 #K醫療 #身高發育 #生長潛力 #醫療旅遊 #兒科診所 #成長黃金期 #187成長診所 #個人化成長計畫 #生長板 #兒童發育 #韓國健康",
+ "slides": [
+  {
+   "slideId": "0641e92a-8254-45e6-9251-1c4b60f99713",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼全球父母要來韓國？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "dc25b74c-68dc-4ce6-b57a-2eefb75129f6",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡精準揭示孩子的生長潛力",
+    "subtext": "分析生長板狀態，精準判斷最佳介入時機"
+   }
+  },
+  {
+   "slideId": "104a5377-02c1-4324-9129-b29bb6ca78a3",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "從遺傳到生活習慣，全方位綜合分析",
+    "subtext": "個人化生長計畫源自多角度綜合評估"
+   }
+  },
+  {
+   "slideId": "effbbbda-5d75-4d99-9e06-4d3a890ff7b4",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "晚上10點至凌晨2點：生長的黃金時段",
+    "subtext": "這段時間的深層睡眠能最大化生長荷爾蒙的分泌"
+   }
+  },
+  {
+   "slideId": "56779413-26b2-46d6-b8cb-c34fbb5b125e",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "海外父母選擇韓國的3個理由",
+    "subtext": "專業技術 · 一站式服務 · 頂尖醫療科技"
+   }
+  },
+  {
+   "slideId": "7b690812-479d-420f-9eee-f4514073ed18",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "生長有黃金期，把握時機至關重要",
+    "subtext": "越早進行精準評估並採取合適方案，孩子的生長空間就越大"
+   }
+  },
+  {
+   "slideId": "da2188c8-bf46-432c-b9c3-68af915e8bee",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "想了解孩子的生長狀況？",
+    "subtext": "立即前往網站查看孩子的預測身高"
+   }
+  }
+ ]
+}

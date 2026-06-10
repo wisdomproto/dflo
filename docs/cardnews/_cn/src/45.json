@@ -1,0 +1,78 @@
+{
+ "idx": 45,
+ "cardnewsId": "c978b40d-3e47-47e3-9869-6670e0f5f87d",
+ "captionCh": "學校體檢結果寫著「身高偏矮」，讓你擔心不已嗎？ 😟\n\n孩子的身高是遺傳、營養、睡眠、運動、壓力等多重因素共同決定的結果。數值低於標準，並不代表一定有問題。更重要的是：孩子的成長速度是否穩定，以及骨齡與實際年齡的差距有多少。\n\n透過骨齡分析，才能全面掌握孩子真正的生長潛力。 🌱\n\n更多資訊請點擊個人頁面連結查看。",
+ "hashtagsCh": "#兒童成長 #身高發育 #骨齡檢查 #生長板 #身高偏矮 #成長速度 #兒科 #生長激素 #親子育兒 #健康成長 #台灣媽媽 #兒童健康 #成長診所 #育兒知識",
+ "slides": [
+  {
+   "slideId": "f1455706-5444-4f7a-851d-c20aba96458f",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "體檢說「身高偏矮」，該怎麼看待？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "3ce64ecc-695e-4c4a-851d-fefdf8bcf15b",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "身高不是單一原因決定的",
+    "subtext": "遺傳・營養・睡眠・運動・壓力，都會影響身高"
+   }
+  },
+  {
+   "slideId": "1d84d4eb-7a09-4022-9241-d8aad88fd14e",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "要看「成長速度」，而不只是「現在的身高」",
+    "subtext": "個子小但持續穩定生長，可能完全沒問題"
+   }
+  },
+  {
+   "slideId": "1e1b24ce-e749-406e-9417-a3a24a69cf9a",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡分析是關鍵的診斷工具",
+    "subtext": "骨齡可能與實際年齡不同，這個差距是生長診斷的線索"
+   }
+  },
+  {
+   "slideId": "88679c23-3bb1-45e0-8515-b8aab0578fa2",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡快 vs 慢，意義完全不同",
+    "subtext": "快：留意骨骺板提早閉合 · 慢：需查明其他原因"
+   }
+  },
+  {
+   "slideId": "d90790d9-42e0-4847-9d6e-b69307ec8b8b",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨骺板閉合之前，現在就是機會",
+    "subtext": "骨骺板一旦閉合就無法再開。現在的關注將改變孩子未來的身高"
+   }
+  },
+  {
+   "slideId": "46628ef8-a5cc-42e0-86e1-d7b4a3f4e826",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "把體檢結果當作第一個訊號，而非最終判決",
+    "subtext": "全面了解孩子的生長狀況，才是正確的起點"
+   }
+  }
+ ]
+}

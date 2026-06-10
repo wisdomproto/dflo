@@ -1,0 +1,78 @@
+{
+ "idx": 10,
+ "cardnewsId": "46add74b-1612-4851-a715-6fdbec31b3c5",
+ "captionCh": "🥦 孩子的餐桌，有在防範重金屬嗎？\n\n鉛、鎘、汞等重金屬會悄悄阻礙鈣、鋅、鐵的吸收——這些都是長高不可缺少的營養素——還可能干擾生長激素的分泌。海藻類食物如昆布、海帶芽富含藻酸，能與重金屬結合並幫助排出體外；維生素C、硒與鋅含量豐富的天然食材則能強化身體的防禦能力。選擇沙丁魚、鯖魚等小型魚取代大型魚，並養成多喝水的習慣，都是簡單有效的日常防護。 🐟\n\n更多孩子成長資訊，歡迎點擊個人頁連結了解。",
+ "hashtagsCh": "#重金屬預防 #孩子成長 #長高飲食 #兒童健康 #海藻功效 #生長激素 #健康餐桌 #兒童營養 #排毒食物 #台灣媽媽 #成長診所 #187成長診所 #小兒科 #飲食習慣 #親子健康",
+ "slides": [
+  {
+   "slideId": "b4af2fdd-fc36-4a46-9d0d-9c39e619fb18",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "餐桌就是孩子的防護盾",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "fb2d571c-28c3-4c88-a155-cc34deba9cd0",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "重金屬如何阻礙孩子長高",
+    "subtext": "阻礙鈣·鋅·鐵吸收，並干擾生長激素分泌"
+   }
+  },
+  {
+   "slideId": "485892be-503e-4ed1-959b-f296f0de1ffc",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "① 每天吃海藻與深綠色蔬菜",
+    "subtext": "藻酸與重金屬結合，協助排出體外"
+   }
+  },
+  {
+   "slideId": "8570db6f-f30f-4ba1-819a-b35be87f4321",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "② 維生素C · 硒 · 鋅的食物來源",
+    "subtext": "幫助中和與排出重金屬毒素的三種礦物質"
+   }
+  },
+  {
+   "slideId": "43930c2b-d6dd-4914-9dd3-9f8aca838b2c",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "③ 食材選擇也是一門學問",
+    "subtext": "少吃大型魚，多吃小魚、充足飲水並使用玻璃餐具"
+   }
+  },
+  {
+   "slideId": "5f6f79f8-5927-40c1-811a-a0fad1576bb6",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "3個餐桌好習慣總整理",
+    "subtext": "從今天的餐桌開始小小的改變"
+   }
+  },
+  {
+   "slideId": "19a6ade6-8658-4ccd-ad7d-dba4891be670",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "健康的餐桌，讓孩子長得更高",
+    "subtext": "每天的飲食習慣，塑造孩子的成長環境"
+   }
+  }
+ ]
+}

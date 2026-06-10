@@ -1,0 +1,62 @@
+{
+ "n": 33,
+ "topicTitle": "척추측만증이 있으면 키가 안 크나요? 각도별 성장 영향과 교정 후 변화",
+ "ko": {
+  "h1": "척추측만증이 있으면 키가 안 크나요? 각도별 성장 영향과 교정 후 변화",
+  "faq": [
+   {
+    "a": "경미한 척추측만증(콥 각도 20도 미만)은 성장판 폐쇄를 직접 유발하지 않습니다. 성장판은 주로 성호르몬 분비에 의해 닫히며, 측만증 자체는 이 시계를 앞당기지 않습니다. 다만 중증 측만증이 진행되면 몸통 길이 단축과 폐 기능 저하로 간접적인 영향을 줄 수 있으므로 정기 추적 관찰이 중요합니다.",
+    "q": "척추측만증이 있으면 성장판이 일찍 닫히나요?"
+   },
+   {
+    "a": "보조기나 교정 운동으로 자세가 개선되면 휘어진 척추가 더 곧게 펴지면서 측정 키가 1~3cm 증가하는 사례가 흔합니다. 뼈 자체가 자란 것이 아니라 측만증으로 인해 '숨어 있던' 키가 드러나는 원리입니다. 성장판이 열려 있는 시기에 개입할수록 이 효과가 더 크게 나타납니다.",
+    "q": "측만증 교정 치료를 받으면 키가 실제로 커지나요?"
+   },
+   {
+    "a": "한쪽 신체를 집중적으로 사용하는 운동(배드민턴·야구·테니스 등)은 근육 불균형을 심화시킬 수 있어 주의가 필요합니다. 반면 수영, 좌우 균형 스트레칭, 코어 강화 운동은 척추측만증 아이에게 매우 적합합니다. 단, 운동 종류와 강도는 측만증의 각도와 진행 상태에 따라 전문가와 상의한 뒤 결정하는 것이 가장 안전합니다.",
+    "q": "척추측만증 아이에게 피해야 할 운동이 있나요?"
+   }
+  ],
+  "slug": "scoliosis-height-growth-impact-correction",
+  "sections": [
+   {
+    "html": "<p>척추측만증 키 성장 영향은 부모가 가장 먼저 걱정하는 부분입니다. 아이가 척추측만증 진단을 받으면 '이제 키가 더 이상 안 크는 건 아닐까?'라는 불안이 따라옵니다. 결론부터 말씀드리면, 경미한 척추측만증(콥 각도 20도 미만)은 성장판을 직접 막거나 뼈의 길이 성장을 방해하지 않습니다. 다만 척추가 옆으로 휘면서 키를 측정할 때 실제보다 작게 나오거나, 겉으로 보기에 왜소해 보이는 경우가 생깁니다. 문제는 각도가 40~50도를 넘어서는 중증 측만증인데, 이 경우 척추 자체의 변형이 몸통 길이를 줄여 최종 키에 실질적인 영향을 줄 수 있습니다. 또한 심한 변형은 폐 기능 저하로 이어져 전신 성장에 간접적인 부담을 줍니다. 따라서 측만증 각도 성장 관계를 파악하고, 진행 속도를 주기적으로 추적하는 것이 핵심입니다.</p>",
+    "heading": "척추측만증 키 성장 영향, 사실부터 확인하세요",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Center: a gentle side-by-side comparison of two child silhouettes — one with a slightly curved spine highlighted in coral-pink, one with a straight spine in mint-green. Both children are the same height. Soft pastel background with light beige. Clean minimal lines, subtle drop shadow. No text, no numbers."
+   },
+   {
+    "html": "<p>척추측만증 아이 성장을 이해하려면 콥 각도(Cobb angle)를 기준으로 나누어 살펴보는 것이 좋습니다.</p><ul><li><strong>경증(10~20도)</strong>: 성장판 기능 정상. 키 성장에 직접적인 영향 거의 없음. 단, 성장기에 진행 속도가 빨라질 수 있으므로 6개월마다 추적 관찰 권장.</li><li><strong>중등도(20~40도)</strong>: 자세 불균형으로 실측 키와 서 있을 때의 키 차이가 1~3cm 발생할 수 있음. 보조기 착용 치료가 진행을 늦추는 데 효과적이며, 교정 후 자세 개선으로 실질적인 키 회복이 가능.</li><li><strong>중증(40도 이상)</strong>: 척추 변형이 몸통 단축으로 이어져 최종 키 손실 가능성 증가. 폐활량 감소로 산소 공급 및 전신 대사에 부담. 수술적 교정을 고려하는 단계.</li></ul><p>성장기(초등 고학년~중학교)에는 성장호르몬이 활발히 분비되는 만큼 측만증의 진행 속도도 빨라집니다. 이 시기에 측만증 각도 성장 관계를 정기적으로 점검하는 것이 무엇보다 중요합니다.</p>",
+    "heading": "측만증 각도 성장 관계 — 경증·중등도·중증으로 나누어 보기",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Three diagrams of a spine in sequence from left to right — mild curve (slight lean, mint), moderate curve (noticeable S-shape, amber), severe curve (pronounced curve, coral). Each spine sits inside a soft rounded card on a light lavender background. Simple icons only, no labels or text inside the image."
+   },
+   {
+    "html": "<p>측만증 교정 키 회복이 가능한지 궁금해하는 부모님이 많습니다. 교정 치료의 주된 목적은 '각도 진행 억제'이지만, 자세 개선에 따른 실제 키 변화도 기대할 수 있습니다.</p><p>척추가 휘어 있을 때는 척주의 길이가 실제보다 짧게 측정됩니다. 보조기 치료나 물리치료·교정 운동을 통해 자세가 바로잡히면 척추가 더 곧게 서면서 측정 키가 1~3cm 커지는 사례를 임상에서 흔히 관찰합니다. 이는 뼈 자체가 더 자란 것이 아니라 숨어 있던 키가 드러난 것이지만, 아이의 체형 인식과 자신감에 큰 영향을 줍니다. 중요한 것은 교정 시작 시점입니다. 성장판이 열려 있는 시기, 즉 초등학교 고학년에서 중학교 초반 사이에 개입할수록 효과가 더 크게 나타납니다. 교정 후에는 올바른 자세 유지 훈련과 코어 근육 강화 운동을 병행해 재발을 방지하는 것이 중요합니다.</p>",
+    "heading": "측만증 교정 키 회복 — 교정 후 얼마나 달라질 수 있을까",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Before-and-after style: left panel shows a child silhouette with rounded shoulders and tilted posture in muted peach tones; right panel shows the same child standing tall, spine straight, in bright mint-green. A gentle upward arrow between the two panels. Soft cream background with minimal geometric accents. No text or numbers inside image."
+   },
+   {
+    "html": "<p>척추측만증 아이 성장을 지원하려면 의료적 치료와 함께 일상 속 습관이 뒷받침되어야 합니다.</p><ol><li><strong>바른 자세 의식화</strong>: 앉을 때 등받이에 등 전체를 붙이고 발이 바닥에 닿도록 합니다. 스마트폰·책상 사용 시 눈높이를 맞추어 목과 등에 편향 하중이 걸리지 않게 합니다.</li><li><strong>충분한 수면</strong>: 성장호르몬은 깊은 수면(서파수면) 중에 집중 분비됩니다. 성장기 아이에게는 하루 9~10시간 수면을 권장합니다. 취침 1시간 전 스마트폰 사용을 줄이고 어둡고 시원한 환경을 조성하면 수면의 질이 높아집니다.</li><li><strong>균형 잡힌 영양</strong>: 단백질(살코기·콩류·달걀), 칼슘(유제품·멸치), 비타민 D(연어·햇볕)를 균형 있게 섭취합니다. 인스턴트식품과 당분 많은 음료는 성장 에너지를 소모시키므로 제한합니다.</li><li><strong>코어 중심 운동</strong>: 수영은 척추에 하중을 주지 않으면서 코어 근육을 고르게 강화하는 최적의 운동입니다. 줄넘기·점프 동작은 성장판을 자극합니다. 스트레칭과 필라테스도 척추 주변 유연성을 높이는 데 효과적입니다.</li><li><strong>스트레스 관리</strong>: 코르티솔이 지속적으로 높으면 성장호르몬 분비가 억제됩니다. 아이의 감정을 공감하고 취미 활동·야외 놀이 시간을 확보해 심리적 안정감을 유지하게 해 줍니다.</li></ol>",
+    "heading": "척추측만증 아이 성장을 돕는 생활습관 5가지",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Five pastel-colored icon cards arranged in a horizontal row on a light mint background: 1) child sitting upright at a desk, 2) child sleeping peacefully, 3) a bowl of colorful food, 4) child swimming, 5) child playing outdoors with a kite. Rounded card borders, soft drop shadows, simple icons. No text inside the image."
+   },
+   {
+    "html": "<p>다음과 같은 신호가 보인다면 소아 성장 전문가와 상담하는 것이 좋습니다.</p><ul><li>양쪽 어깨 높이가 눈에 띄게 다르거나, 한쪽 견갑골(날개뼈)이 더 튀어나온 경우</li><li>허리선이 비대칭이거나 몸이 한쪽으로 기울어 보이는 경우</li><li>사춘기 전후로 측만증 각도가 빠르게 진행되는 것으로 의심되는 경우</li><li>또래 대비 키 성장 속도가 연간 4cm에 현저히 못 미치는 경우</li><li>기존 측만증 진단 후 마지막 엑스레이 추적 검사로부터 6개월이 지난 경우</li></ul><p>성장 전문의는 뼈나이 분석, 성장판 상태 평가, 생활습관 코칭 등을 종합적으로 검토합니다. 척추측만증이 있더라도 각 아이의 상태에 맞는 성장 전략을 수립하면 충분히 건강하게 자랄 수 있습니다. 조기 발견과 꾸준한 관리가 결국 아이의 척추 건강과 키 성장을 동시에 지키는 가장 확실한 방법입니다.</p>",
+    "heading": "전문가 상담이 필요한 신호 — 언제 병원에 가야 할까",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. A caring doctor in a white coat gently examining a child's back posture in a bright clinic room. The doctor uses a simple posture-check tool. Warm pastel tones — light blue walls, mint accents, peach skin tones. Clean simple shapes, soft shadows. No text, no numbers on equipment."
+   }
+  ],
+  "seoTitle": "척추측만증 키 성장 영향 — 각도별 차이와 교정 후 변화",
+  "primaryKeyword": "척추측만증 키 성장 영향",
+  "metaDescription": "척추측만증 키 성장 영향이 걱정되시나요? 측만증 각도별 성장 차이, 교정 후 키 회복 가능성, 생활습관 관리법을 알기 쉽게 정리했습니다.",
+  "secondaryKeywords": [
+   "측만증 교정 키 회복",
+   "척추측만증 아이 성장",
+   "측만증 각도 성장 관계"
+  ]
+ }
+}

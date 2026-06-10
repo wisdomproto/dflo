@@ -1,0 +1,78 @@
+{
+ "idx": 31,
+ "cardnewsId": "984f3080-dc7b-43b9-a3bc-06a30cc9fa17",
+ "captionCh": "你曾用爸媽的身高公式來預測孩子的最終身高嗎？🤔\n\n『(爸爸身高 + 媽媽身高 ± 13) ÷ 2』這個公式只反映遺傳平均值，完全忽略了營養、睡眠、運動和骨齡等關鍵因素——這些非遺傳因素佔了孩子最終身高的 20–30%。\n\n每個孩子的骨骺板狀態和骨骼成熟度都不同，即使是同一父母所生的兄弟姊妹，最終身高也可能差異很大。🦴\n\n想了解更準確的生長資訊，歡迎透過個人頁面的連結前往官網查看。",
+ "hashtagsCh": "#兒童身高 #骨齡 #生長板 #孩子成長 #預測身高 #生長激素 #兒童發育 #長高方法 #青春期 #性早熟 #兒科成長門診 #187成長診所 #身高管理 #骨骼健康",
+ "slides": [
+  {
+   "slideId": "13e24427-5471-446e-a0a9-2cc8602ba3ac",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "把爸媽身高加起來除以二，就能預測孩子身高？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "163827af-0b91-458e-812a-21bef5693c6e",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "這個公式只看「平均值」",
+    "subtext": "它完全忽略了遺傳以外的眾多影響因素"
+   }
+  },
+  {
+   "slideId": "b1e204b7-6869-478b-bd6c-a6d3059045e0",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "遺傳並不是全部",
+    "subtext": "20–30%的生長由生活環境與習慣決定"
+   }
+  },
+  {
+   "slideId": "a67c76bc-0256-4b2f-b338-c830bf058938",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "這5件事左右孩子的身高",
+    "subtext": "營養 · 睡眠 · 運動 · 壓力 · 健康狀況"
+   }
+  },
+  {
+   "slideId": "5569ae2b-0817-4458-a3ec-39a8060c9df3",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "「骨齡」才是真正的關鍵",
+    "subtext": "一張手腕X光片，就能知道孩子還有多少生長時間"
+   }
+  },
+  {
+   "slideId": "2f45cbd7-6bc8-417e-aff5-da4fb95bc085",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "專科醫師綜合評估4項指標",
+    "subtext": "生長速度 · 青春期階段 · 精密檢查 · 生活習慣"
+   }
+  },
+  {
+   "slideId": "b082c92a-3efc-4b52-aa77-39938a629451",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "比公式更準確的預測，現在就來了解",
+    "subtext": ""
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "n": 47,
+  "slug": "성장주사부작용",
+  "langs": {
+    "ko": { "kicker": "괴담 끝!", "subject": "성장주사 부작용", "number": "진짜?", "numLabel": "암·당뇨 오해와 진실", "tagline": "적정 용량은 안전하다" },
+    "th": { "kicker": "เลิกเชื่อข่าวลือ!", "subject": "ผลข้างเคียงฉีดโต' จริงไหม?", "number": "จริงเหรอ?", "numLabel": "มะเร็ง·เบาหวาน จริงหรือลวง", "tagline": "ใช้ขนาดที่เหมาะสมปลอดภัย" },
+    "vi": { "kicker": "Hết tin đồn!", "subject": "Tác dụng phụ tiêm tăng trưởng", "number": "Thật à?", "numLabel": "ung thư·tiểu đường hiểu lầm", "tagline": "Đúng liều thì an toàn" },
+    "en": { "kicker": "Myths, gone!", "subject": "Growth shot side effects", "number": "Really?", "numLabel": "cancer·diabetes truth", "tagline": "At proper dose, it's safe" },
+    "cn": { "kicker": "谣言终结！", "subject": "生长针副作用", "number": "真的吗？", "numLabel": "癌症·糖尿病误解真相", "tagline": "适量使用很安全" },
+    "ch": { "kicker": "謠言終結！", "subject": "生長針副作用", "number": "真的嗎？", "numLabel": "癌症·糖尿病誤解真相", "tagline": "適量使用很安全" }
+  }
+}

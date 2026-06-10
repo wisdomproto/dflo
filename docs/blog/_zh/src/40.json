@@ -1,0 +1,74 @@
+{
+ "n": 40,
+ "topicTitle": "잘 먹어도 키 안 크는 이유 — 영양 흡수 문제 5가지 점검",
+ "ko": {
+  "h1": "잘 먹어도 키 안 크는 이유 — 영양 흡수 문제 5가지 점검",
+  "faq": [
+   {
+    "a": "잘 먹어도 키 안 크는 이유는 섭취량보다 흡수 효율에 있는 경우가 많습니다. 장 점막 기능 저하, 식품 알레르기, 칼슘·비타민 D 같은 핵심 영양소 결핍, 수면 부족으로 인한 성장호르몬 감소 등이 복합적으로 작용할 수 있습니다. 뼈나이 검사와 혈액 검사를 통해 실제 원인을 확인하는 것이 정확합니다.",
+    "q": "밥을 잘 먹는데도 키가 또래보다 작은 이유는 무엇인가요?"
+   },
+   {
+    "a": "배탈·설사·변비가 잦은지, 특정 음식 후 컨디션이 나빠지는지, 식사 후 복부 불편감을 호소하는지 관찰해보세요. 이런 신호가 반복된다면 영양 흡수 문제 아이일 가능성이 있습니다. 정확한 판단은 혈액 검사(비타민 D·아연·철분 농도 등)와 전문가 상담을 통해 이루어집니다.",
+    "q": "아이의 영양 흡수 문제를 집에서 간단히 확인할 수 있는 방법이 있나요?"
+   },
+   {
+    "a": "성장호르몬의 대부분은 깊은 수면 중에 분비됩니다. 수면 시간이 부족하거나 수면 질이 낮으면 아무리 영양 섭취가 충분해도 성장호르몬이 충분히 나오지 않습니다. 초등학생 기준 하루 9~10시간, 규칙적인 취침 시간을 유지하는 것이 키 성장에 도움이 됩니다.",
+    "q": "수면이 키 성장에 얼마나 중요한가요?"
+   }
+  ],
+  "slug": "jal-meogeo-do-ki-an-keuneun-iyu-yeongyang-heupsu",
+  "sections": [
+   {
+    "html": "<p>잘 먹어도 키 안 크는 이유를 찾기 전에, 먼저 한 가지 오해부터 풀어야 합니다. 많이 먹는 것과 영양소가 몸에 잘 흡수되는 것은 전혀 다른 문제입니다. 아이가 밥도 잘 먹고, 고기도 좋아하고, 채소도 곧잘 먹는데 또래보다 작다면 많은 부모님들이 당황하게 됩니다. \"뭐가 부족한 걸까?\" 하고 고민하지만, 사실 문제는 '먹는 양'보다 '흡수 효율'에 있는 경우가 많습니다.</p><p>소화 기관이 섭취한 영양소를 혈액으로 제대로 끌어들이지 못하면, 아무리 좋은 음식도 성장에 활용되지 못합니다. 먹는데 안 크는 아이를 둔 부모라면, 이 흡수 과정에 어떤 걸림돌이 있는지 차근차근 살펴보는 것이 먼저입니다.</p>",
+    "heading": "잘 먹는 것과 잘 흡수되는 것은 다릅니다",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Center: a simple digestive system diagram shaped like a gentle U-curve with pastel green walls. On the left, colorful food icons (rice bowl, carrot, protein block) flow in. On the right, hollow arrow outlines drift away unused. Soft mint and cream background with light shadow. No text or numbers inside the image."
+   },
+   {
+    "html": "<p>영양 흡수 문제 아이에게 가장 흔한 원인은 장 점막 기능 저하입니다. 배탈이 잦거나 변비와 설사를 반복하고, 복통을 자주 호소하는 아이라면 장 점막이 손상되어 있을 가능성이 있습니다. 장 점막이 건강해야 음식 속 영양소가 혈액으로 넘어갈 수 있는데, 이 관문이 약해지면 영양소는 그대로 통과해버리고 오히려 독소나 미생물이 체내로 침투하기 쉬워집니다.</p><p>만성적인 장 염증이 있으면 몸은 성장에 써야 할 에너지를 염증 대응에 쏟게 됩니다. 과민성 장 증후군이나 장 누수 증후군은 소아에서도 드물지 않으니, 아이의 배 건강 상태를 꾸준히 관찰하는 것이 중요합니다.</p>",
+    "heading": "장 건강 문제 — 흡수의 첫 번째 관문",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Center: cross-section view of an intestinal wall shown as layered pastel pink and mint bands. Small nutrient particles (circle icons) are blocked at a gap in the wall layer. Gentle red glow marks the gap area, while healthy sections show particles flowing through smoothly. Soft white background with light drop shadows. No text or numbers inside the image."
+   },
+   {
+    "html": "<p>키 안 크는 원인 점검에서 빠지지 말아야 할 항목이 식품 알레르기와 불내증입니다. 우유 속 유당을 소화하지 못하는 유당 불내증, 밀가루 글루텐에 과민 반응하는 셀리악병 등이 대표적입니다. 이런 아이들은 해당 식품을 먹을 때마다 장에 반복적인 염증 반응이 생기고, 그로 인해 다른 영양소의 흡수까지 방해받습니다.</p><p>문제는 증상이 뚜렷하지 않을 때입니다. 심한 설사나 두드러기가 없어도 만성적으로 가벼운 복부 불편감만 있는 경우도 많습니다. 아이가 특정 음식을 먹은 뒤 피로감이 늘거나 컨디션이 나빠진다면, 식품 알레르기 검사를 통해 원인 음식을 파악해보는 것이 도움이 됩니다.</p>",
+    "heading": "음식 알레르기와 불내증 — 숨어 있는 방해꾼",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Left side: a milk carton and wheat bread icon with a soft red caution ring around them. Right side: a cartoon intestine outline showing small red dots indicating irritation along its inner surface. Pastel yellow and mint background, clean and simple composition. No text or numbers inside the image."
+   },
+   {
+    "html": "<p>아토피, 천식, 알레르기 비염처럼 만성 염증성 질환을 앓는 아이는 성장에 필요한 에너지가 지속적인 면역 반응에 쓰입니다. 몸이 늘 염증과 싸우는 상태이다 보니 성장에 할당할 자원이 줄어드는 것입니다. 여기에 장기간 특정 약물을 복용하는 경우, 약물 부작용으로 영양 흡수 기능이 추가로 저하될 수 있습니다.</p><p>먹는데 안 크는 아이에게 만성 알레르기 질환이 있다면, 성장 문제와 알레르기 관리를 따로 보지 말고 통합적으로 접근하는 것이 효과적입니다. 알레르기 치료가 잘 되면 성장 에너지를 되찾을 가능성이 높아집니다.</p>",
+    "heading": "만성 질환·약물 복용 — 에너지를 빼앗아 가는 요인",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Center: a small child silhouette with a soft glowing aura split into two zones — upper body shows immune system icons (shield, cell shapes) consuming energy, lower body shows a smaller growth bar indicator nearly empty. Pastel blue and mint tones, clean background. No text or numbers inside the image."
+   },
+   {
+    "html": "<p>아무리 많이 먹어도 칼슘, 비타민 D, 아연, 철분 같은 성장 핵심 영양소가 부족하면 키 성장이 더뎌집니다. 비타민 D는 칼슘이 뼈에 실제로 쌓이도록 돕는 역할을 하며, 아연은 성장호르몬 분비와 면역 기능에 직접 관여합니다. 이 영양소들은 특정 조건이 갖춰져야 제대로 흡수됩니다.</p><p>예를 들어 칼슘은 비타민 D 없이는 흡수율이 크게 떨어지고, 철분은 비타민 C와 함께 섭취해야 흡수 효율이 높아집니다. 영양 흡수 문제 아이를 살필 때는 단순히 '먹었는가'를 넘어, '어떤 조합으로, 어떤 환경에서 먹었는가'까지 확인해야 합니다. 혈액 검사로 실제 혈중 농도를 확인하는 것이 가장 정확합니다.</p>",
+    "heading": "필수 영양소 결핍 — 양보다 질이 문제",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Center: a flat periodic-table style grid of four nutrient tiles (calcium icon, sun/vitamin D icon, zinc crystal shape, iron droplet). Each tile is connected by dotted arrows showing dependency relationships. Pastel mint and cream color scheme with simple rounded shapes and soft shadows. No text or numbers inside the image."
+   },
+   {
+    "html": "<p>잘 먹어도 키 안 크는 이유 중에서 생활 습관 요인도 결코 가볍지 않습니다. 성장호르몬은 깊은 잠에 들었을 때 집중적으로 분비됩니다. 수면이 부족하거나 수면 질이 낮으면 성장호르몬이 충분히 나오지 않아, 영양은 충분히 섭취해도 성장에 쓰이지 못합니다.</p><p>스트레스도 마찬가지입니다. 학업이나 또래 관계로 스트레스를 많이 받는 아이는 코르티솔 수치가 올라가고, 이는 성장호르몬 분비를 억제합니다. 키 안 크는 원인 점검 시 식단과 함께 수면 시간, 취침 루틴, 아이의 심리적 상태까지 함께 살피는 것이 중요한 이유입니다.</p>",
+    "heading": "수면 부족과 스트레스 — 성장호르몬의 적",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Left: a child silhouette lying in bed under a mint blanket, with a soft golden glow emanating from the body representing growth hormone release during sleep. Right: a clock showing late-night time with a small stress icon (jagged speech bubble) nearby, and the glow shrinking. Pastel night-blue background with stars, calm mood. No text or numbers inside the image."
+   },
+   {
+    "html": "<p>위의 요인들을 스스로 점검해보는 것이 첫걸음이지만, 원인이 복합적일 때는 전문적인 평가가 훨씬 정확합니다. 뼈나이(골연령) 검사로 성장 잠재력을 확인하고, 혈액 검사로 영양 상태와 호르몬 수치를 분석하면 잘 먹어도 키 안 크는 이유가 보다 구체적으로 밝혀집니다.</p><p>소아 성장을 전문으로 보는 클리닉에서는 식습관, 수면 패턴, 장 건강, 알레르기 이력 등을 종합적으로 파악한 뒤 아이 개개인에게 맞는 관리 방향을 제안합니다. 막연한 걱정보다 정확한 원인 파악이 먼저라는 점을 기억하세요. 먹는데 안 크는 아이라면, 흡수 효율을 높이는 방향으로 접근했을 때 변화가 나타나는 경우가 많습니다.</p>",
+    "heading": "언제, 어떻게 전문적인 도움을 받을 수 있나",
+    "imageUrl": null,
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Center: a friendly doctor figure in a white coat (minimal flat design, no face details) beside a height measurement chart on a wall. In front, a small child silhouette stands being measured. Icons around them show a blood-drop, bone x-ray shape, and a checklist. Pastel mint and white background, warm and reassuring mood. No text or numbers inside the image."
+   }
+  ],
+  "seoTitle": "잘 먹어도 키 안 크는 이유 — 영양 흡수 문제 점검",
+  "primaryKeyword": "잘 먹어도 키 안 크는 이유",
+  "metaDescription": "잘 먹어도 키 안 크는 이유는 단순히 식사량이 아니라 영양 흡수 문제에 있습니다. 장 건강, 알레르기, 수면 부족까지 원인별로 점검하세요.",
+  "secondaryKeywords": [
+   "영양 흡수 문제 아이",
+   "키 안 크는 원인 점검",
+   "먹는데 안 크는 아이"
+  ]
+ }
+}

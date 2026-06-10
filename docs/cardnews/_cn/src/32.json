@@ -1,0 +1,88 @@
+{
+ "idx": 32,
+ "cardnewsId": "9e54e484-a320-4635-8c2c-dd6762807a8e",
+ "captionCh": "你的孩子只靠跳繩來幫助長高嗎？ 🤸\n\n生長板位於骨頭末端，對不同類型的刺激都有反應。跳繩藉由落地衝擊刺激生長板，游泳讓全身均衡伸展且不造成關節負擔，伸展與瑜伽則幫助打開脊椎空間。重點不在於堅持單一運動，而是多元嘗試、持之以恆。搭配充足睡眠與均衡飲食，讓孩子的成長事半功倍。 🌱\n\n收藏這篇貼文，下次幫孩子選運動時可以參考。更多成長相關資訊，請點選個人頁連結查看。",
+ "hashtagsCh": "#兒童長高 #生長板 #增高運動 #跳繩效果 #游泳長高 #兒童運動 #成長期 #187生長診所 #韓國兒科 #兒童發育 #瑜伽兒童 #黃金成長期 #骨骼發育 #親子運動 #長高方法",
+ "slides": [
+  {
+   "slideId": "ded3c636-e83a-4653-b307-4b26f82efd5f",
+   "sort_order": 1,
+   "role": "표지",
+   "isCta": false,
+   "ch": {
+    "headline": "跳繩真的是唯一解答嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "da5d7114-e609-42de-86bd-324ebac2c497",
+   "sort_order": 2,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼要刺激生長板？",
+    "subtext": "骨頭末端軟骨的細胞分裂，不斷生成新骨骼"
+   }
+  },
+  {
+   "slideId": "2d835f1b-7df5-46d3-ac3f-e9923e20d6b0",
+   "sort_order": 3,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "跳繩：落地衝擊就是刺激",
+    "subtext": "每天持續20–30分鐘，落地時膝蓋稍微彎曲"
+   }
+  },
+  {
+   "slideId": "5d5e8015-076c-4667-a373-f7558bd6e7dd",
+   "sort_order": 4,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "游泳：全身均衡伸展，關節無負擔",
+    "subtext": "均衡使用全身肌肉且關節壓力極小，同時有助睡眠品質"
+   }
+  },
+  {
+   "slideId": "3c6b1d3f-4945-4673-9cad-cffb8dbcfb8d",
+   "sort_order": 5,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "伸展與瑜伽：打開脊椎空間",
+    "subtext": "正確姿勢讓生長板不受壓迫，擁有充足空間"
+   }
+  },
+  {
+   "slideId": "00160c32-83e4-4cc5-8b57-3645a9032bd9",
+   "sort_order": 6,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "籃球與腳踏車：玩得開心，效果更好",
+    "subtext": "跳躍與跑步複合動作刺激全身生長板 · 戶外騎車還能補充維生素D"
+   }
+  },
+  {
+   "slideId": "f5e2b066-7326-43c6-88d5-d4f34def643d",
+   "sort_order": 7,
+   "role": "본문",
+   "isCta": false,
+   "ch": {
+    "headline": "選對運動的5大原則",
+    "subtext": "多元嘗試 · 持之以恆 · 樂在其中 · 安全第一 · 搭配健康生活習慣"
+   }
+  },
+  {
+   "slideId": "bd93c0cd-cb9f-4cc9-982a-3ba70d86eccd",
+   "sort_order": 8,
+   "role": "CTA",
+   "isCta": true,
+   "ch": {
+    "headline": "多元嘗試、持之以恆，才是關鍵",
+    "subtext": ""
+   }
+  }
+ ]
+}

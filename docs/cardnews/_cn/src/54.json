@@ -1,0 +1,88 @@
+{
+ "idx": 54,
+ "cardnewsId": "dec13f53-dcb9-4e77-9032-4a3e7bf0e3f9",
+ "captionCh": "孩子出生時體重偏輕，現在擔心身高嗎？🌱\n\n出生體重未滿 2.5 kg 的低體重兒中，有 80～90% 能在出生後 2～3 年內追上同齡兒童的平均身高。6 個月到 2 歲是最關鍵的「黃金期」，這段時間的營養、睡眠與生活環境，對追趕成長有決定性的影響。\n\n不過，仍有 10～20% 的孩子可能無法充分追趕。若觀察到成長速度偏慢，建議及早請專業人員評估骨齡與生活習慣，掌握更清楚的方向。\n\n詳細內容請參閱個人頁面連結中的官方網站。",
+ "hashtagsCh": "#低體重兒 #追趕成長 #兒童身高 #成長診所 #兒童健康 #骨齡 #生長激素 #兒童發育 #早產兒 #育兒資訊 #成長專科 #187成長診所 #身高成長 #兒科 #寶寶成長",
+ "slides": [
+  {
+   "slideId": "eefc21b1-0a4e-45df-b34c-35efcc57467d",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "出生體重輕，還能追上嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "c0b6f6d2-ab04-4763-85b3-007110179335",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "出生未滿 2.5 kg 即為低體重兒",
+    "subtext": "無論是早產或胎兒過小 — 不論原因為何"
+   }
+  },
+  {
+   "slideId": "707afe52-67f2-4a27-bb3b-6b8e76ed04a0",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "80～90% 能成功追趕上來",
+    "subtext": "出生後 2～3 年，身體會自然尋回正常的成長軌道"
+   }
+  },
+  {
+   "slideId": "d2ccd44a-4e95-4358-a4c9-a42223a78c1e",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "黃金期：出生後 6 個月到 2 歲",
+    "subtext": "這段時期的營養與環境，是追趕成長的關鍵"
+   }
+  },
+  {
+   "slideId": "d35aed4e-c04e-4dac-a01f-b6117adb541b",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "幫助成長的因素 vs 阻礙成長的因素",
+    "subtext": "營養 · 睡眠 · 運動 vs 營養不足 · 頻繁生病 · 壓力"
+   }
+  },
+  {
+   "slideId": "24785c62-86ad-46ca-a27d-c2e695e374e4",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "10～20% 可能無法充分追趕",
+    "subtext": "若成長出現遲緩跡象，及早請專業人員評估至關重要"
+   }
+  },
+  {
+   "slideId": "90892787-908a-4247-9ea2-e8156da15399",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "專科評估能確認的事項",
+    "subtext": "骨齡分析 · 成長支持 · 生活習慣指導 · 個人化監測"
+   }
+  },
+  {
+   "slideId": "0310b222-b2e1-4b96-af2d-7db762b22f4c",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "出生時小小的，也能長得高高的",
+    "subtext": "成長的可能性仍然開放著"
+   }
+  }
+ ]
+}

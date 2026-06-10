@@ -1,0 +1,12 @@
+{
+  "n": 2,
+  "slug": "성장타이밍4",
+  "langs": {
+    "ko": { "kicker": "놓치면 끝!", "subject": "우리 아이 키 크는", "number": "4", "numLabel": "번의 기회", "tagline": "시기 관리가 최종 키를 가른다" },
+    "th": { "kicker": "พลาดไม่ได้!", "subject": "ลูกเราสูงได้", "number": "4", "numLabel": "ช่วงทอง", "tagline": "ดูแลถูกช่วง = สูงสุดศักยภาพ" },
+    "vi": { "kicker": "Bỏ lỡ là tiếc!", "subject": "Con cao lên nhờ", "number": "4", "numLabel": "cơ hội vàng", "tagline": "Đúng giai đoạn quyết định chiều cao" },
+    "en": { "kicker": "Don't miss it!", "subject": "Your child grows in", "number": "4", "numLabel": "windows", "tagline": "Each window shapes final height" },
+    "cn": { "kicker": "错过就晚了！", "subject": "孩子长高有", "number": "4", "numLabel": "次机会", "tagline": "把握每个阶段决定最终身高" },
+    "ch": { "kicker": "錯過就晚了！", "subject": "孩子長高有", "number": "4", "numLabel": "次機會", "tagline": "把握每個階段決定最終身高" }
+  }
+}

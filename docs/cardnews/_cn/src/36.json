@@ -1,0 +1,78 @@
+{
+ "idx": 36,
+ "cardnewsId": "a60b4251-a232-45ff-acb6-abde5120233c",
+ "captionCh": "孩子的身高，不只是基因的問題 🌱\n\n鉛、汞、鎘等重金屬，會直接干擾骨骼生長板、阻礙生長激素分泌，並奪走骨骼中的鈣與磷。成長中的孩子對重金屬的吸收率比成人更高，解毒能力也尚未成熟，因此需要特別留意。\n\n均衡飲食、安全的生活環境、定期請專家評估 — 只要做到這三點，就能為孩子打造更好的成長環境。\n\n更多資訊請點選檔案中的連結 🔗",
+ "hashtagsCh": "#重金屬 #兒童身高 #生長板 #生長激素 #兒童健康 #鉛污染 #汞 #鎘 #骨骼發育 #成長發育 #親子健康 #兒科 #187成長診所 #健康飲食 #兒童發展",
+ "slides": [
+  {
+   "slideId": "e962cae5-aff5-4fef-a740-c92596e64995",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "阻礙孩子長高的隱形威脅",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "7a9d4e75-9f74-44a1-bb66-536394487d04",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子比大人更容易吸收重金屬",
+    "subtext": "吸收率高，解毒能力卻尚未成熟"
+   }
+  },
+  {
+   "slideId": "f5583f61-93b4-4d7e-81e5-dd9086f69ced",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鉛直接干擾骨骼生長板",
+    "subtext": "阻礙鈣代謝，也干擾生長激素的分泌"
+   }
+  },
+  {
+   "slideId": "50fd01c7-3443-4f64-b1ee-0dbc09551694",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "汞阻礙與生長相關的荷爾蒙分泌",
+    "subtext": "藉由大型魚類進入人體，並可能損害甲狀腺功能"
+   }
+  },
+  {
+   "slideId": "3af97c13-e91f-4012-aebb-af31c6ad2343",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鎘奪走關鍵礦物質，直接削弱骨骼",
+    "subtext": "損傷腎臟、將鈣與磷排出體外，並阻斷IGF-1作用"
+   }
+  },
+  {
+   "slideId": "254325a1-0ce2-4d10-8760-071862fd4d6a",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "3步驟保護孩子遠離重金屬",
+    "subtext": "均衡飲食 · 安全環境 · 定期專家諮詢"
+   }
+  },
+  {
+   "slideId": "e9a11648-4528-4177-9751-9b38d6f8b3ec",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "日常小習慣，守護孩子的成長",
+    "subtext": "減少重金屬暴露，為孩子創造更好的成長環境"
+   }
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+{
+ "idx": 2,
+ "cardnewsId": "0c6ee167-4c71-4f7f-8af8-9d80ccf75808",
+ "captionCh": "你是不是也覺得孩子一定要10點前睡覺才能長高？🌙\n\n其實，影響身高的關鍵不是幾點睡，而是睡得多深。生長激素在入睡後1~2小時的Non-REM深層睡眠階段分泌最為旺盛。規律的就寢時間、睡前1小時放下手機、保持房間黑暗涼爽——今天卡片裡的5步驟睡眠習慣，就是幫助孩子進入深層睡眠的關鍵。\n\n更多成長資訊請點擊個人頁面連結查看 🌱",
+ "hashtagsCh": "#兒童成長 #生長激素 #深層睡眠 #睡眠習慣 #孩子睡眠 #長高方法 #褪黑激素 #育兒知識 #睡前習慣 #兒童健康 #187成長診所 #身高增長 #規律作息 #親子育兒 #睡眠品質",
+ "slides": [
+  {
+   "slideId": "869db8a6-0dff-4717-8610-2d7daf12ed9e",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子必須10點前睡覺才能長高？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "bd7b0343-667a-481b-b391-83c8bbb3d71e",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "睡眠的「深度」比時間更重要",
+    "subtext": "關鍵不是幾點睡，而是睡得多深"
+   }
+  },
+  {
+   "slideId": "a850aaf7-aa83-4b2f-8ad7-c11ffb57006a",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "深層睡眠時生長激素大量分泌",
+    "subtext": "Non-REM第3~4階段，入睡後1~2小時是黃金時段"
+   }
+  },
+  {
+   "slideId": "895bd3a6-3ed9-4c2b-8676-2c42e33d18b9",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "破壞深層睡眠的5大因素",
+    "subtext": "螢幕·作息不規律·壓力·光線噪音·睡前咖啡因和糖分"
+   }
+  },
+  {
+   "slideId": "935e4da4-47f3-4016-84bd-0fb64f86e217",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "步驟1：固定就寢與起床時間",
+    "subtext": "週末也維持同一時間——穩定的生理時鐘帶來更深的睡眠"
+   }
+  },
+  {
+   "slideId": "8cb0475b-e70b-4ed2-9e70-b110aef781c6",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "步驟2：睡前1小時放下手機",
+    "subtext": "阻斷藍光 → 促進褪黑激素 → 進入深層睡眠"
+   }
+  },
+  {
+   "slideId": "64c00235-a666-472a-a234-8d1a4beed4a6",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "步驟3：黑暗涼爽的睡眠環境",
+    "subtext": "室溫20~22°C · 濕度50~60% · 遮光窗簾"
+   }
+  },
+  {
+   "slideId": "6c938c9e-2f2e-478c-9cd1-a05c225853b0",
+   "sort_order": 8,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "步驟4：睡前放鬆活動",
+    "subtext": "溫水沐浴·輕柔音樂·讀故事書，讓身心充分放鬆"
+   }
+  },
+  {
+   "slideId": "2411657c-53f1-4104-ad11-8038cba2929e",
+   "sort_order": 9,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "步驟5：白天充分曬太陽與活動",
+    "subtext": "白天活動與曬太陽，有助夜間褪黑激素的自然分泌"
+   }
+  },
+  {
+   "slideId": "cc1ec675-ad84-4510-a2aa-ab26764072c6",
+   "sort_order": 10,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "深層睡眠讓孩子長得更高",
+    "subtext": "從今晚就開始5步驟睡眠習慣吧"
+   }
+  }
+ ]
+}

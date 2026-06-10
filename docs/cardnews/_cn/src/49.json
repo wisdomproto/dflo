@@ -1,0 +1,128 @@
+{
+ "idx": 49,
+ "cardnewsId": "d1293bc6-9f10-4454-b405-3d8374ee89b7",
+ "captionCh": "你是否曾經一邊擔心孩子的身高，一邊反覆在搜尋框輸入各種問題？ 🤔\n\n「什麼時候該帶孩子看醫生？」「骨齡超前代表什麼？」「父母個子小，孩子就沒希望了嗎？」\n\n兒童生長專科醫師整理了父母最常搜尋的10大身高問題，提供清楚、有依據的解答。\n\n一張一張翻閱，掌握你最需要知道的關鍵資訊。 📋\n\n完整文章請點選個人頁面連結查閱。",
+ "hashtagsCh": "#兒童身高 #骨骺 #生長激素 #性早熟 #骨齡 #兒童生長 #長高方法 #兒科 #育兒知識 #台灣媽媽 #親子健康 #187成長診所 #生長專科 #兒童發育 #韓國醫療",
+ "slides": [
+  {
+   "slideId": "acacec1c-8c31-4206-9614-f8cfc1c8d1e3",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "父母最常搜尋的身高成長Q&A TOP 10",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "159875d1-b409-42ea-92c4-9e13b230fb22",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "什麼時候該帶孩子去看醫生？",
+    "subtext": "低於第3百分位數，或一年不足4cm — 建議及早檢查"
+   }
+  },
+  {
+   "slideId": "11845050-6e07-468b-8bf3-4ca902ac9746",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "何時檢查骨骺最合適？",
+    "subtext": "從5歲到青春期前，骨骺關閉之前檢查最有效"
+   }
+  },
+  {
+   "slideId": "142cc65b-41ec-4712-8c91-a2965632548f",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素治療一定必要嗎？",
+    "subtext": "僅適用於特定診斷，必須由專科醫師評估與開立"
+   }
+  },
+  {
+   "slideId": "e99e2e8d-96d2-44a2-b40b-1e65b9ca35f8",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "長高營養品真的有效嗎？",
+    "subtext": "均衡飲食是基礎，懷疑缺乏才在專科醫師建議下補充"
+   }
+  },
+  {
+   "slideId": "0976b8df-0ab3-4bc0-9c4f-54209f1ced4e",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "睡幾小時才能長高？",
+    "subtext": "幼兒10–13h / 學齡9–11h / 青少年8–10h · 深度睡眠時分泌生長激素"
+   }
+  },
+  {
+   "slideId": "a30f4e0c-5216-4e26-ba78-23f589d4fe4b",
+   "sort_order": 7,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "哪種運動最有助於長高？",
+    "subtext": "推薦跳繩、跑步、單槓 · 過重的重量訓練可能傷害骨骺"
+   }
+  },
+  {
+   "slideId": "58686776-63a0-4206-9551-8b8435eb0ad3",
+   "sort_order": 8,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "性早熟為何不利於長高？",
+    "subtext": "比同齡早2年以上進入青春期，骨骺可能提前關閉，影響最終身高"
+   }
+  },
+  {
+   "slideId": "8fe5c355-eb7e-4314-896a-98bbea332079",
+   "sort_order": 9,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡超前是否意味著長不高？",
+    "subtext": "骨齡越超前，骨骺提前關閉的風險越高"
+   }
+  },
+  {
+   "slideId": "f72cd70a-4050-4bfc-9d60-923899a1c312",
+   "sort_order": 10,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "父母矮，孩子一定矮嗎？",
+    "subtext": "遺傳佔70–80%；其餘20–30%可透過生活習慣、營養與運動改善"
+   }
+  },
+  {
+   "slideId": "9320ea3c-66a8-44a3-abf5-5d11d5989f14",
+   "sort_order": 11,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "挑食對長高的影響有多大？",
+    "subtext": "缺乏蛋白質、鈣、維生素D或鋅等關鍵營養素，會阻礙生長"
+   }
+  },
+  {
+   "slideId": "526d9dec-e328-4de5-8f97-3f2d8ef3c0a7",
+   "sort_order": 12,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "有疑問？諮詢成長專科醫師",
+    "subtext": "立即確認孩子的成長潛力"
+   }
+  }
+ ]
+}

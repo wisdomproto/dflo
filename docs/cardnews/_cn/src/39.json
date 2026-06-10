@@ -1,0 +1,88 @@
+{
+ "idx": 39,
+ "cardnewsId": "a89a2f70-5d87-4876-85cf-258cb8ae158a",
+ "captionCh": "孩子被診斷出脊椎側彎了嗎？🌱\n\n許多父母擔心：'孩子還能長高嗎？' 輕度脊椎側彎並不會直接封閉生長板。真正重要的是日常生活習慣——正確姿勢、充足睡眠、均衡營養、適合脊椎的運動，以及穩定的情緒。這五個面向正是守護孩子每一分成長潛力的關鍵。\n\n更多資訊請點擊個人頁面連結 💬",
+ "hashtagsCh": "#脊椎側彎 #兒童健康 #長高方法 #生長板 #生長激素 #成長期 #正確姿勢 #兒童營養 #睡眠健康 #脊椎健康 #親子健康 #成長診所 #187成長診所 #長高秘訣 #兒童成長",
+ "slides": [
+  {
+   "slideId": "ecaa1176-f253-4cb3-bc7f-8bfea85d039a",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "脊椎側彎，真的會長不高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "de30aee1-54e5-4c78-8bc1-7844932b1fc9",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "輕度 vs 重度，要區別看待",
+    "subtext": "輕度側彎不會直接封閉生長板"
+   }
+  },
+  {
+   "slideId": "e67916c8-6a3c-48b7-ae9c-0652580e4b1b",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "① 正確姿勢是基本功",
+    "subtext": "彎腰駝背可能使側彎加劇"
+   }
+  },
+  {
+   "slideId": "0cda5729-d895-46b7-b7f3-6b7cff86abd2",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "② 睡足9～10小時是關鍵",
+    "subtext": "深度睡眠時生長激素分泌最為旺盛"
+   }
+  },
+  {
+   "slideId": "3a433bcd-256c-46ac-8c37-0b3f3cbfafd9",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "③ 補充蛋白質、鈣質與維生素D",
+    "subtext": "強化骨骼與生長板細胞的三大營養素"
+   }
+  },
+  {
+   "slideId": "1adf9664-9d87-42f5-8125-982390b33f38",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "④ 選擇對脊椎友善的運動",
+    "subtext": "游泳與跳繩——刺激生長板並強化核心肌群"
+   }
+  },
+  {
+   "slideId": "7f7554e3-ca7a-4a03-be1e-63b29706760c",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "⑤ 情緒穩定也是成長的重要支柱",
+    "subtext": "長期壓力會抑制生長激素的分泌"
+   }
+  },
+  {
+   "slideId": "3c59b2d3-913c-4664-87fa-f3a208fc9509",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "脊椎側彎，不代表長高的路就此終止",
+    "subtext": "正確的生活習慣守護每一分成長潛力"
+   }
+  }
+ ]
+}

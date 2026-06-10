@@ -22,6 +22,7 @@ import { CalciumEN, CalciumENPreview, CalciumENFootage, CALCIUM_EN_DURATION, Cal
 import { FootsizeEN, FootsizeENPreview, FootsizeENFootage, FOOTSIZE_EN_DURATION, FootsizeTH, FootsizeTHPreview, FootsizeTHFootage, FOOTSIZE_TH_DURATION } from "./shorts/발사이즈";
 import { FakepubertyEN, FakepubertyENPreview, FakepubertyENFootage, FAKEPUB_EN_DURATION, FakepubertyTH, FakepubertyTHPreview, FakepubertyTHFootage, FAKEPUB_TH_DURATION, FakepubertyKO, FAKEPUB_KO_DURATION } from "./shorts/가짜성조숙증";
 import { HeightGenesKO, HEIGHTGENES_KO_DURATION, HeightGenesTH, HEIGHTGENES_TH_DURATION } from "./shorts/키유전80";
+import { Thumb } from "./shorts/_thumbs/Thumb";
 import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
@@ -162,6 +163,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="kicheukjeong-en" component={KicheukjeongEN} durationInFrames={KICHEUKJEONG_EN_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="heightgenes-ko" component={HeightGenesKO} durationInFrames={HEIGHTGENES_KO_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="heightgenes-th" component={HeightGenesTH} durationInFrames={HEIGHTGENES_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="thumb" component={Thumb} durationInFrames={1} fps={30} width={1080} height={1920} defaultProps={{ n: 1, lang: "ko" }} />
       <Composition id="MainClipTH" component={MainClipTH} durationInFrames={MAINCLIP_DURATION} fps={30} width={1920} height={1080} />
     </>
   );

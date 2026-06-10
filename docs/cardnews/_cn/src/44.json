@@ -1,0 +1,88 @@
+{
+ "idx": 44,
+ "cardnewsId": "bb5d54de-3cd3-442a-85eb-fac3dfdda2d9",
+ "captionCh": "孩子明明吃很多，為什麼還是長不高？🤔\n\n'吃得多'和'吸收得好'是兩回事。腸道健康問題、食物過敏與不耐症、慢性發炎、必需營養素缺乏，以及睡眠不足——這些因素都可能讓攝取的營養無法真正轉化為成長。\n\n想了解是什麼阻礙了孩子的成長？更多資訊請點個人頁連結 🌱",
+ "hashtagsCh": "#兒童成長 #生長診所 #營養吸收 #腸道健康 #小兒成長 #生長激素 #孩子長高 #兒童營養 #維生素D #食物過敏 #睡眠與生長 #慢性發炎 #成長發育 #韓國診所 #187成長診所",
+ "slides": [
+  {
+   "slideId": "32f0d2c8-5025-4ecd-bc57-d7767de8e4cf",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "吃得好，為何還是不長高？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "415edc9e-73cf-46f8-afdf-e86bf5821ec0",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "吃進去 ≠ 吸收得到",
+    "subtext": "吃得再好，腸道無法吸收，就無法幫助成長"
+   }
+  },
+  {
+   "slideId": "0bea28d0-0be8-4f6d-843e-1eb1cb4b58cd",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "原因 ① 腸道健康問題",
+    "subtext": "經常腹痛、腹瀉或便秘，會使腸黏膜無法正常吸收營養素"
+   }
+  },
+  {
+   "slideId": "3cce4c74-c951-45ff-b1db-6383e69f7c7d",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "原因 ② 食物過敏與不耐症",
+    "subtext": "對牛奶或小麥過敏會引起腸道發炎，也妨礙其他營養素的吸收"
+   }
+  },
+  {
+   "slideId": "ced1df07-28fa-4120-a752-797e439e02d3",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "原因 ③ 慢性疾病與藥物服用",
+    "subtext": "異位性皮膚炎、氣喘等慢性發炎持續消耗生長能量，並降低吸收功能"
+   }
+  },
+  {
+   "slideId": "6bc35725-50d7-4fb5-90cb-b54530ab0ee2",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "原因 ④ 必需營養素缺乏",
+    "subtext": "缺乏鈣、維生素D、鋅與鐵，骨骼發育就會變慢，再怎麼吃也沒用"
+   }
+  },
+  {
+   "slideId": "82a57677-4986-4625-9aed-d9aa28c3d892",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "原因 ⑤ 壓力與睡眠不足",
+    "subtext": "睡眠不足直接減少生長激素分泌，壓力則干擾消化功能"
+   }
+  },
+  {
+   "slideId": "152ae2ba-caf1-4c89-b907-845ab51827cb",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "吸收，和吃進去一樣重要",
+    "subtext": "逐一檢視可能阻礙孩子成長的原因"
+   }
+  }
+ ]
+}

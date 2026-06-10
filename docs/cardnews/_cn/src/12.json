@@ -1,0 +1,78 @@
+{
+ "idx": 12,
+ "cardnewsId": "4b218157-ba5d-4ae6-b2d4-fd635f01ccfa",
+ "captionCh": "孩子在班上個子最小，這樣需要擔心嗎？ 🌱\n\n成長百分位數代表孩子在100名同齡同性別孩子中排在第幾位。落在3到97之間都屬正常範圍，更重要的是觀察孩子是否穩定沿著同一條曲線成長，而不是單次數字高低。\n\n若百分位突然升降2級以上，建議結合生長速度、骨齡及父母身高一起請專科醫師評估。\n\n更多資訊請至官網查看 — 連結在個人頁面。",
+ "hashtagsCh": "#兒童成長 #百分位數 #孩子身高 #成長曲線 #低身材 #性早熟 #兒童健康 #骨齡 #生長激素 #兒科診所 #成長發育 #台灣父母 #育兒知識 #身高成長 #187成長診所",
+ "slides": [
+  {
+   "slideId": "be2e1b2e-30dc-4b6b-aebd-700a8d714380",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子的百分位數，該怎麼看？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "9af3e6cf-9a3e-4381-87a3-eb6c9f4d4189",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "百分位數＝在100個同齡孩子中排第幾",
+    "subtext": "25代表有25人比你矮，75人比你高"
+   }
+  },
+  {
+   "slideId": "4a5db8aa-c5f0-4fa6-bf09-d8fe26fa8ac1",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "第3到97百分位是正常範圍",
+    "subtext": "低於3或高於97，需要專科醫師評估"
+   }
+  },
+  {
+   "slideId": "c0e63407-8c2d-4b4f-af82-ecebece322a5",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "比起單次數字，「成長趨勢」更重要",
+    "subtext": "持續維持同一條曲線，就是健康的成長"
+   }
+  },
+  {
+   "slideId": "9bd24425-5643-4a06-a4a9-12cf19fbca1d",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "百分位驟升或驟降2級以上，需留意",
+    "subtext": "下降＝生長遲緩訊號 / 急升＝需確認是否性早熟"
+   }
+  },
+  {
+   "slideId": "85529998-5c9b-4999-be2e-da7e7037c424",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "除了百分位，還要一起看這4項",
+    "subtext": "生長速度 · 骨齡 · 父母身高 · 整體健康狀況"
+   }
+  },
+  {
+   "slideId": "90508c25-2a39-49f1-a1b4-4260de85b7da",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "立刻確認孩子的成長曲線吧",
+    "subtext": "在官網免費預測孩子的身高"
+   }
+  }
+ ]
+}

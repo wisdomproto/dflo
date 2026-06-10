@@ -1,0 +1,12 @@
+{
+  "n": 19,
+  "slug": "스테로이드키",
+  "langs": {
+    "ko": { "kicker": "막연한 걱정 그만!", "subject": "우리 아이 키", "number": "진짜 멈출까?", "numLabel": "스테로이드 약", "tagline": "흡입·연고는 거의 안전" },
+    "th": { "kicker": "เลิกกังวลลอยๆ!", "subject": "ส่วนสูงลูก", "number": "หยุดจริงไหม?", "numLabel": "ยาสเตียรอยด์", "tagline": "พ่น·ทา เกือบไม่มีผล" },
+    "vi": { "kicker": "Đừng lo mơ hồ!", "subject": "Chiều cao của con", "number": "Có ngừng thật?", "numLabel": "thuốc steroid", "tagline": "Xịt · bôi gần như an toàn" },
+    "en": { "kicker": "Stop vague worry!", "subject": "Your child's height", "number": "Really stop it?", "numLabel": "steroid meds", "tagline": "Inhaled & creams are safe" },
+    "cn": { "kicker": "别再瞎担心！", "subject": "孩子的身高", "number": "真会停吗？", "numLabel": "类固醇药", "tagline": "吸入·药膏几乎无害" },
+    "ch": { "kicker": "別再瞎擔心！", "subject": "孩子的身高", "number": "真會停嗎？", "numLabel": "類固醇藥", "tagline": "吸入·藥膏幾乎無害" }
+  }
+}

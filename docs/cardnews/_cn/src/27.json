@@ -1,0 +1,78 @@
+{
+ "idx": 27,
+ "cardnewsId": "8d44c88d-9560-4c90-9b05-28c3e1f5f783",
+ "captionCh": "孩子的身高昨天120cm，今天怎麼變成119.8cm了？😮 別擔心，不是你量錯了！\n\n白天重力持續壓縮椎間盤，到了晚上身高可能縮短1–2cm；睡眠時椎間盤重新吸水恢復，所以早上剛起床是一天中量身高最準確的時刻。\n在家量身高的方法：腳跟、臀部、肩膀、後腦勺全部貼牆站直，用書水平頂住頭頂再做記號。建議每月固定同一時間量一次，長期記錄才能看出真正的成長趨勢。 📐\n\n更多孩子成長的實用資訊，歡迎點擊個人頁面連結了解更多。",
+ "hashtagsCh": "#兒童身高 #量身高 #孩子成長 #身高測量 #兒童發育 #育兒知識 #成長板 #生長激素 #椎間盤 #兒童健康 #身高管理 #台灣父母 #育兒技巧 #成長曲線 #187成長診所",
+ "slides": [
+  {
+   "slideId": "a224d9bb-adf7-42f8-a501-0f3bc76f3114",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼身高每天都不一樣？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "b80e681c-b388-41b6-91cd-200cb5a73983",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "都是椎間盤在作怪",
+    "subtext": "白天重力壓縮椎間盤，睡眠時吸水恢復"
+   }
+  },
+  {
+   "slideId": "118fbadb-2285-4d00-982b-b5a2bcec1e3c",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "早晨量最準確",
+    "subtext": "剛起床時，脊椎已恢復，是一天中最高的時刻"
+   }
+  },
+  {
+   "slideId": "7662edb4-02a9-4d41-b0c4-538c1d46623a",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "在家精準量身高的方法",
+    "subtext": "腳跟、臀部、肩膀、頭部貼牆，用書水平標記後再量"
+   }
+  },
+  {
+   "slideId": "14c9efe9-fc09-4e40-9239-e53a1d9d5189",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "每月量一次就夠了",
+    "subtext": "每天量反而讓人困惑，固定間隔、相同時間記錄才有意義"
+   }
+  },
+  {
+   "slideId": "0663a8bf-9bbb-4de8-951a-74509ee87b16",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "這幾點一定要注意",
+    "subtext": "禁用彈性軟尺 · 每次姿勢一致 · 赤腳量 · 量身高不會傷害生長板"
+   }
+  },
+  {
+   "slideId": "7573bb07-5398-4a89-95da-616d60de5ea1",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "正確測量是成長的第一步",
+    "subtext": "長期持續記錄，就能清楚看見孩子的成長規律"
+   }
+  }
+ ]
+}

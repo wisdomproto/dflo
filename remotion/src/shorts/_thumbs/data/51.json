@@ -1,0 +1,12 @@
+{
+  "n": 51,
+  "slug": "키재는법",
+  "langs": {
+    "ko": { "kicker": "잴 때마다 달라요?", "subject": "우리 아이 키", "number": "1~2cm", "numLabel": "하루에 오르내림", "tagline": "아침·같은 시간 추이를 보자" },
+    "th": { "kicker": "วัดทีไรก็ไม่เท่ากัน?", "subject": "ส่วนสูงลูก", "number": "1~2cm", "numLabel": "ขึ้นลงในหนึ่งวัน", "tagline": "วัดตอนเช้าเวลาเดิม ดูแนวโน้ม" },
+    "vi": { "kicker": "Đo lần nào cũng khác?", "subject": "Chiều cao con", "number": "1~2cm", "numLabel": "lên xuống trong ngày", "tagline": "Đo sáng cùng giờ, xem xu hướng" },
+    "en": { "kicker": "Different every time?", "subject": "Your child's height", "number": "1~2cm", "numLabel": "swings in a day", "tagline": "Measure mornings, same time, watch the trend" },
+    "cn": { "kicker": "每次量都不一样？", "subject": "孩子身高", "number": "1~2cm", "numLabel": "一天内有起伏", "tagline": "早晨同一时间 · 看趋势" },
+    "ch": { "kicker": "每次量都不一樣？", "subject": "孩子身高", "number": "1~2cm", "numLabel": "一天內有起伏", "tagline": "早晨同一時間 · 看趨勢" }
+  }
+}

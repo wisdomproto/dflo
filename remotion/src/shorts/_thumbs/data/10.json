@@ -1,0 +1,12 @@
+{
+  "n": 10,
+  "slug": "사춘기순서",
+  "langs": {
+    "ko": { "kicker": "초경 오면 끝!", "subject": "우리 딸 키 클 시간", "number": "2년", "numLabel": "남았어요", "tagline": "초경 전이 마지막 골든타임" },
+    "th": { "kicker": "ประจำเดือนมา = จบ!", "subject": "เวลาสูงของลูกสาว", "number": "2 ปี", "numLabel": "เหลืออยู่", "tagline": "ก่อนประจำเดือนคือช่วงทองสุดท้าย" },
+    "vi": { "kicker": "Có kinh là hết!", "subject": "Thời gian cao của con gái", "number": "2 năm", "numLabel": "còn lại", "tagline": "Trước kỳ kinh là thời điểm vàng cuối" },
+    "en": { "kicker": "Period ends it!", "subject": "Your daughter's growth time", "number": "2 yrs", "numLabel": "left", "tagline": "Before menarche is the last window" },
+    "cn": { "kicker": "初潮就到头！", "subject": "女儿长高的时间", "number": "2年", "numLabel": "剩下", "tagline": "初潮前是最后黄金期" },
+    "ch": { "kicker": "初潮就到頭！", "subject": "女兒長高的時間", "number": "2年", "numLabel": "剩下", "tagline": "初潮前是最後黃金期" }
+  }
+}

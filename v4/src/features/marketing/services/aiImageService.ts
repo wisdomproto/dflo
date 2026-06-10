@@ -75,3 +75,22 @@ export async function uploadVideoFile(file: File): Promise<string> {
   if (!res.ok || !b.success) throw new Error(b.error || `영상 업로드 실패: ${res.status}`);
   return b.url as string;
 }
+
+/**
+ * Uploads a reel COVER image to R2, preserving the original format (PNG/JPG —
+ * NOT converted to WebP, since Instagram custom-cover upload rejects WebP).
+ * Returns the public URL.
+ */
+export async function uploadCoverImage(file: File): Promise<string> {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('folder', 'marketing/reels/covers');
+  const res = await fetch(`${BASE}/api/r2/upload`, {
+    method: 'POST',
+    headers: { 'x-admin-pin': PIN },
+    body: fd,
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `커버 업로드 실패: ${res.status}`);
+  return b.url as string;
+}

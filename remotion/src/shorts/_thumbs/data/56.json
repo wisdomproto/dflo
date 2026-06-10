@@ -1,0 +1,12 @@
+{
+  "n": 56,
+  "slug": "키습관5",
+  "langs": {
+    "ko": { "kicker": "혹시 우리 아이도?", "subject": "키 안 크는 아이 습관", "number": "5", "numLabel": "가지", "tagline": "습관 바꾸면 키도 큰다" },
+    "th": { "kicker": "ลูกเราด้วยไหม?", "subject": "นิสัยเด็กไม่สูง", "number": "5", "numLabel": "อย่าง", "tagline": "เปลี่ยนนิสัย ก็สูงได้" },
+    "vi": { "kicker": "Con mình cũng?", "subject": "Thói quen bé chậm cao", "number": "5", "numLabel": "điều", "tagline": "Đổi thói quen, con sẽ cao" },
+    "en": { "kicker": "Your child too?", "subject": "Habits of shorter kids", "number": "5", "numLabel": "habits", "tagline": "Change habits, grow taller" },
+    "cn": { "kicker": "你家也有？", "subject": "长不高孩子的习惯", "number": "5", "numLabel": "个", "tagline": "改掉习惯 也能长高" },
+    "ch": { "kicker": "你家也有？", "subject": "長不高孩子的習慣", "number": "5", "numLabel": "個", "tagline": "改掉習慣 也能長高" }
+  }
+}

@@ -1,0 +1,88 @@
+{
+ "idx": 1,
+ "cardnewsId": "08645697-cabd-42c3-a965-5fba2ed42e2a",
+ "captionCh": "孩子的飲食，真的有幫助長高嗎？🥦\n\n身高不只靠遺傳，每天『吃什麼』同樣關鍵。蛋白質、鈣質、維生素D、鋅、鐵等成長營養素需要每天均衡補充；而糖分、速食、過多鹽分和咖啡因則可能影響成長環境，建議盡量少吃。\n\n從今天開始，試試這三件事：定時吃飯、多吃彩色蔬果、選擇健康零食 🌿\n\n更多兒童成長飲食資訊，歡迎點選個人頁連結查看官網。",
+ "hashtagsCh": "#長高食譜 #孩子長高 #兒童營養 #成長飲食 #鈣質補充 #蛋白質 #維生素D #兒童成長 #親子健康 #育兒飲食 #長高方法 #成長營養素 #兒童保健 #成長診所 #187成長診所",
+ "slides": [
+  {
+   "slideId": "3e922675-901b-4608-8c36-7e3f9205e831",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "吃什麼，決定能長多高",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "9a1cec0e-4ef4-4512-8d41-00dc410e13c6",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "金字塔底部 ＝ 成長營養素",
+    "subtext": "每天都要充分補充最寬那一層"
+   }
+  },
+  {
+   "slideId": "55381a15-a677-482a-8689-0e11c98798bf",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "蛋白質—肌肉與骨骼的原料",
+    "subtext": "動物性與植物性蛋白質要均衡攝取"
+   }
+  },
+  {
+   "slideId": "b6691da8-3a37-46d0-a887-52967a528052",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鈣質＋維生素D ＝ 骨骼健康",
+    "subtext": "鈣質構建骨骼，維生素D幫助吸收"
+   }
+  },
+  {
+   "slideId": "12785409-7e3c-4a6d-a54f-b85c9da59ec9",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鋅、鐵、維生素與水分——缺一不可",
+    "subtext": "每天攝取各種顏色的蔬菜水果"
+   }
+  },
+  {
+   "slideId": "535984a3-d864-4f0d-ae14-8fcf86a483b1",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "金字塔頂端—需要遠離的食物",
+    "subtext": "減少糖分、速食、過多鹽分及咖啡因"
+   }
+  },
+  {
+   "slideId": "6bf32d80-daa6-413b-bbc1-e1c9c2692dc8",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "從今天開始實踐的3件事",
+    "subtext": "定時用餐・均衡飲食・健康零食"
+   }
+  },
+  {
+   "slideId": "6d26ecbc-fa6f-4b56-99ed-f20ca5a9153f",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "正確飲食，成就孩子的身高",
+    "subtext": "從飲食到成長，歡迎瀏覽官網了解更多"
+   }
+  }
+ ]
+}

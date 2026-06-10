@@ -1,0 +1,78 @@
+{
+ "idx": 37,
+ "cardnewsId": "a79b4238-bc4e-4348-8a2c-c8b04233b696",
+ "captionCh": "孩子開始服用ADHD藥物後，您有擔心過他的身高嗎？ 🤔\n\n部分ADHD藥物可能抑制食慾，因此許多家長擔心這會影響孩子的成長。然而，一項長達10年的追蹤研究顯示，服藥與未服藥兒童的最終身高在統計上並無顯著差異。即使成長暫時放緩，大多數孩子也能透過追趕性生長恢復正常。定期追蹤生長狀況並做好營養管理，就能好好守護孩子的成長。 🌱\n\n更多正確的成長資訊，請點擊個人資料中的連結查看。",
+ "hashtagsCh": "#ADHD #ADHD藥物 #兒童身高 #生長發育 #兒童成長 #成長診所 #187成長診所 #追趕性生長 #兒童健康 #生長監測 #ADHD家長 #身高管理 #骨齡 #兒科成長 #親子健康",
+ "slides": [
+  {
+   "slideId": "b5cfeb8d-2c43-4b16-a41d-fdbf37dd9442",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "ADHD藥物會影響身高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "e6d37fda-d1a5-4603-859c-6e2a78200374",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "食慾下降就會影響成長嗎？",
+    "subtext": "部分ADHD藥物可能會抑制食慾"
+   }
+  },
+  {
+   "slideId": "14ad3037-4ea6-405b-88de-e19e80b2b683",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "研究結果怎麼說？",
+    "subtext": "10年追蹤研究：最終身高差異無統計學意義"
+   }
+  },
+  {
+   "slideId": "ce103323-32df-40c5-86fa-a82bece0e8d1",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "短暫延遲後，多數能追趕回來",
+    "subtext": "追趕性生長使最終身高恢復正常"
+   }
+  },
+  {
+   "slideId": "8948d8b1-901e-49b5-b7f3-434f31c936a5",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "做好管理，結果大不同",
+    "subtext": "定期監測生長 · 掌握營養時機 · 與主治醫師溝通"
+   }
+  },
+  {
+   "slideId": "ca18e790-ed79-41c5-b9f3-67216fcf16ce",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "平衡管理比停藥更重要",
+    "subtext": "別讓對身高的擔憂遮蔽了治療ADHD的益處"
+   }
+  },
+  {
+   "slideId": "6bb55be6-dfd1-40f2-81e5-6663c338ca29",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "正確的成長資訊，就在這裡",
+    "subtext": ""
+   }
+  }
+ ]
+}

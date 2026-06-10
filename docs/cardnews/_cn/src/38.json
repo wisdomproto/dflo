@@ -1,0 +1,78 @@
+{
+ "idx": 38,
+ "cardnewsId": "a872813b-73fa-4ef7-b2f7-2f9e8d5d38dc",
+ "captionCh": "你有沒有發現，孩子放暑假後好像真的長高了一點？🌱\n\n暑假期間學業壓力減輕，身體更容易分泌生長激素。每天在戶外活動30分鐘以上，有助於合成維生素D，促進鈣質吸收與骨骼生長。再搭配充足的蛋白質、鈣質和鋅的攝取，以及晚上10點前規律入睡的習慣，暑假就能成為孩子長高的關鍵黃金期。☀️\n\n想進一步了解孩子的生長潛力，歡迎點選個人頁面的連結查看更多資訊。",
+ "hashtagsCh": "#長高 #暑假 #生長激素 #孩子長高 #兒童發育 #生長板 #維生素D #兒童健康 #親子健康 #骨骼發育 #均衡營養 #運動長高 #充足睡眠 #187成長診所 #長高秘訣",
+ "slides": [
+  {
+   "slideId": "ffa4b9e0-ca3e-4750-b6c3-c1ae59d88dd2",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "暑假是長高的黃金時機",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "74f9928e-f207-4422-8e6a-3ff66296f27f",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼孩子放假時長得更快",
+    "subtext": "學業壓力減輕 → 有利於生長激素的分泌"
+   }
+  },
+  {
+   "slideId": "5ff9e280-6546-47f9-8953-69c34ff2e4ed",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "陽光與運動促進骨骼生長",
+    "subtext": "戶外活動 → 合成維生素D → 鈣質吸收 · 刺激生長板"
+   }
+  },
+  {
+   "slideId": "e9c48978-825d-4de6-b70b-1315656a2582",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "長高不可缺少的關鍵營養素",
+    "subtext": "蛋白質 · 鈣質 · 維生素D · 鋅 — 是生長板細胞分裂與骨骼形成的必需營養素"
+   }
+  },
+  {
+   "slideId": "395dd706-8c03-4274-941a-5136fff785ca",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "每週運動3至5天，每次30分鐘以上",
+    "subtext": "跳繩、籃球、游泳、騎腳踏車等全身有氧運動，有效刺激生長板"
+   }
+  },
+  {
+   "slideId": "7b64c8cb-6c79-4efc-86a3-213db56ae873",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "入睡後1至2小時，生長激素分泌達到高峰",
+    "subtext": "規律睡足8至10小時 — 即使放假也應避免不規律的熬夜習慣"
+   }
+  },
+  {
+   "slideId": "c07267dd-0f79-4529-92cb-cb7e6592230b",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "把握這個暑假，抓住長高的機會",
+    "subtext": "在假期中持續實踐營養、運動與睡眠三大要素"
+   }
+  }
+ ]
+}

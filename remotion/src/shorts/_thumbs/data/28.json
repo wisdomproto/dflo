@@ -1,0 +1,12 @@
+{
+  "n": 28,
+  "slug": "칼슘비타민D",
+  "langs": {
+    "ko": { "kicker": "칼슘만으론 부족?", "subject": "우리 아이 키, 칼슘", "number": "50%", "numLabel": "는 그냥 샌다", "tagline": "비타민D가 흡수의 열쇠" },
+    "th": { "kicker": "แคลเซียมอย่างเดียวพอ?", "subject": "ส่วนสูงลูก · แคลเซียม", "number": "50%", "numLabel": "หลุดไปเปล่าๆ", "tagline": "วิตามินดีคือกุญแจการดูดซึม" },
+    "vi": { "kicker": "Chỉ canxi là đủ?", "subject": "Chiều cao con · canxi", "number": "50%", "numLabel": "trôi đi vô ích", "tagline": "Vitamin D là chìa khóa hấp thu" },
+    "en": { "kicker": "Calcium not enough?", "subject": "Your child's height · calcium", "number": "50%", "numLabel": "just leaks out", "tagline": "Vitamin D unlocks absorption" },
+    "cn": { "kicker": "光补钙不够？", "subject": "孩子身高 · 钙", "number": "50%", "numLabel": "白白流失", "tagline": "维生素D是吸收的钥匙" },
+    "ch": { "kicker": "光補鈣不夠？", "subject": "孩子身高 · 鈣", "number": "50%", "numLabel": "白白流失", "tagline": "維生素D是吸收的鑰匙" }
+  }
+}

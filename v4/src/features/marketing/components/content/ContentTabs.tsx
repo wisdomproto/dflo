@@ -22,7 +22,8 @@ export function ContentTabs({ article, onSaved }: Props) {
   const [tab, setTab] = useState<Tab>('base');
   const [language, setLanguage] = useState('ko');
   const [showPublish, setShowPublish] = useState(false);
-  const contentKind: ContentKind = tab === 'blog' ? 'blog' : tab === 'cardnews' ? 'cardnews' : 'post';
+  const contentKind: ContentKind =
+    tab === 'blog' ? 'blog' : tab === 'cardnews' ? 'cardnews' : tab === 'reels' ? 'reels' : 'post';
 
   // Switching articles resets to 기본글 + 한국어 원본.
   useEffect(() => {
@@ -65,9 +66,7 @@ export function ContentTabs({ article, onSaved }: Props) {
         <button
           type="button"
           onClick={() => setShowPublish(true)}
-          disabled={tab === 'reels'}
-          title={tab === 'reels' ? '릴스 발행은 준비 중입니다' : undefined}
-          className="rounded-lg px-3 py-1.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
+          className="rounded-lg px-3 py-1.5 text-sm font-semibold text-white"
           style={{ backgroundColor: ACCENT }}
         >
           📥 발행 큐에 넣기

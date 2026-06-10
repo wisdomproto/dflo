@@ -1,0 +1,12 @@
+{
+  "n": 40,
+  "slug": "잘먹는데안커",
+  "langs": {
+    "ko": { "kicker": "잘 먹는데 왜?", "subject": "우리 아이 키 안 크는 건", "number": "흡수", "numLabel": "가 문제!", "tagline": "원인 찾으면 다시 큰다" },
+    "th": { "kicker": "กินดีแต่ทำไม?", "subject": "ที่ลูกไม่สูงเพราะ", "number": "การดูดซึม", "numLabel": "ต่างหากที่ติด!", "tagline": "เจอสาเหตุ ก็สูงต่อได้" },
+    "vi": { "kicker": "Ăn tốt mà sao?", "subject": "Con không cao là do", "number": "Hấp thu", "numLabel": "mới là vấn đề!", "tagline": "Tìm ra nguyên nhân là cao lại" },
+    "en": { "kicker": "Eats well, so why?", "subject": "Why your child isn't growing", "number": "Absorption", "numLabel": "is the real issue!", "tagline": "Find the cause, growth returns" },
+    "cn": { "kicker": "吃得好为啥不长？", "subject": "孩子不长高其实是", "number": "吸收", "numLabel": "才是问题！", "tagline": "找到原因就能再长" },
+    "ch": { "kicker": "吃得好為啥不長？", "subject": "孩子不長高其實是", "number": "吸收", "numLabel": "才是問題！", "tagline": "找到原因就能再長" }
+  }
+}

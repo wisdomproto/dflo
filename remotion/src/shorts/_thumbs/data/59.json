@@ -1,0 +1,12 @@
+{
+  "n": 59,
+  "slug": "방학키성장",
+  "langs": {
+    "ko": { "kicker": "방학이 기회!", "subject": "우리 아이 키", "number": "방학", "numLabel": "에 더 큰다", "tagline": "방학에 숨은 키 키우기" },
+    "th": { "kicker": "ปิดเทอมคือโอกาส!", "subject": "ส่วนสูงลูก", "number": "ปิดเทอม", "numLabel": "ยิ่งสูงขึ้น", "tagline": "ปิดเทอมปลดล็อกส่วนสูง" },
+    "vi": { "kicker": "Nghỉ hè là cơ hội!", "subject": "Chiều cao của con", "number": "Nghỉ hè", "numLabel": "cao hơn hẳn", "tagline": "Nghỉ hè bứt phá chiều cao" },
+    "en": { "kicker": "Break = chance!", "subject": "Your child's height", "number": "Summer break", "numLabel": "grows more", "tagline": "Unlock height over break" },
+    "cn": { "kicker": "假期是机会！", "subject": "孩子身高", "number": "暑假", "numLabel": "长得更多", "tagline": "假期解锁隐藏身高" },
+    "ch": { "kicker": "假期是機會！", "subject": "孩子身高", "number": "暑假", "numLabel": "長得更多", "tagline": "假期解鎖隱藏身高" }
+  }
+}

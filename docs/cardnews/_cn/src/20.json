@@ -1,0 +1,78 @@
+{
+ "idx": 20,
+ "cardnewsId": "6cfee153-131e-43a8-9f9b-2d10c128d37a",
+ "captionCh": "你知道良好的睡眠可能是孩子長高的關鍵之一嗎？🌙\n\n生長激素在深度睡眠（慢波睡眠）時分泌最旺盛，與營養、運動並列為孩子成長的三大支柱。然而，許多孩子每天晚上都在錯過這段黃金時段。\n\n我們的院長同時也是雙胞胎的爸爸，他親自對兩個孩子進行了30天的睡眠習慣實驗。四個簡單原則：固定就寢時間、睡前1小時禁用電子產品、溫水澡或睡前閱讀、保持臥室昏暗涼爽——結果孩子們早晨精神明顯變好，白天專注力也大幅提升。\n\n不需要完美，持之以恆才是關鍵。想了解更多關於睡眠與孩子成長的資訊，歡迎點擊個人頁面連結查看。💚",
+ "hashtagsCh": "#兒童睡眠 #生長激素 #睡眠習慣 #孩子長高 #兒童健康 #育兒技巧 #睡眠教育 #深度睡眠 #成長科學 #親子育兒 #台灣媽媽 #生長期 #慢波睡眠 #187成長診所 #兒童發育",
+ "slides": [
+  {
+   "slideId": "9cc3b613-f061-495d-84a7-c1a637dcf16a",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "睡眠真的能讓孩子長高？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "5951bc46-eb4b-491e-9579-8bd8c7248700",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "深睡時生長激素分泌最旺盛",
+    "subtext": "進入慢波睡眠後分泌量最多"
+   }
+  },
+  {
+   "slideId": "f85c869b-66a7-4f9b-89c3-80d182a411c3",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "睡眠是成長三大支柱之一",
+    "subtext": "營養 · 運動 · 睡眠 — 三者缺一不可"
+   }
+  },
+  {
+   "slideId": "dcb254af-39ab-4c7c-b513-7f8535afa63b",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "30天睡眠習慣的4大原則",
+    "subtext": "包括週末都要一致 — 規律才是關鍵"
+   }
+  },
+  {
+   "slideId": "e9648f7f-a5f2-49bc-9dee-b01764ef41a7",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "30天後，有哪些改變",
+    "subtext": "鬧覺減少 · 夜醒次數降低 · 早晨清醒 · 白天專注力提升"
+   }
+  },
+  {
+   "slideId": "49f11dc4-7796-45e1-b4b1-0ac913a0f8ba",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "今天就能開始的睡眠習慣",
+    "subtext": "持之以恆比完美更重要"
+   }
+  },
+  {
+   "slideId": "4f0bbb74-f102-4d8f-b4fe-d78307c5bdb0",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "睡得好的孩子，長得更好",
+    "subtext": "一個睡眠習慣，守護孩子成長的黃金時段"
+   }
+  }
+ ]
+}

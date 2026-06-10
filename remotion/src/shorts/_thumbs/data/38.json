@@ -1,0 +1,12 @@
+{
+  "n": 38,
+  "slug": "나중에크겠지",
+  "langs": {
+    "ko": { "kicker": "언제까지 기다려?", "subject": "우리 아이 키 \"나중에\"", "number": "4cm", "numLabel": "안 크면 신호", "tagline": "신호 보이면 지금 확인" },
+    "th": { "kicker": "จะรอถึงเมื่อไหร่?", "subject": "ส่วนสูงลูก \"เดี๋ยวก็สูง\"", "number": "4ซม.", "numLabel": "ไม่ถึงคือสัญญาณ", "tagline": "เห็นสัญญาณ เช็กเลยตอนนี้" },
+    "vi": { "kicker": "Đợi đến bao giờ?", "subject": "Chiều cao con \"từ từ sẽ cao\"", "number": "4cm", "numLabel": "thiếu là dấu hiệu", "tagline": "Thấy dấu hiệu, kiểm tra ngay" },
+    "en": { "kicker": "Wait how long?", "subject": "Your child \"will grow later\"", "number": "4cm", "numLabel": "under is a signal", "tagline": "See the signal, check now" },
+    "cn": { "kicker": "还要等多久？", "subject": "孩子身高\"以后会长\"", "number": "4厘米", "numLabel": "不到是信号", "tagline": "看到信号 现在就查" },
+    "ch": { "kicker": "還要等多久？", "subject": "孩子身高\"以後會長\"", "number": "4公分", "numLabel": "不到是信號", "tagline": "看到信號 現在就查" }
+  }
+}

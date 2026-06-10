@@ -9,10 +9,12 @@ import {
 } from '../services/marketingArticleService';
 import { ContentListPanel } from './content/ContentListPanel';
 import { ContentTabs } from './content/ContentTabs';
+import { ContentStatusPanel } from './content/ContentStatusPanel';
 
 export function MarketingArticlesPage() {
   const [articles, setArticles] = useState<MarketingArticle[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [view, setView] = useState<'editor' | 'status'>('editor');
 
   const reload = () => fetchArticles().then(setArticles);
   useEffect(() => {
@@ -31,6 +33,7 @@ export function MarketingArticlesPage() {
     });
     await reload();
     setSelectedId(a.id);
+    setView('editor');
   };
 
   const handleDelete = async (id: string) => {
@@ -50,13 +53,17 @@ export function MarketingArticlesPage() {
       <ContentListPanel
         articles={articles}
         selectedId={selectedId}
-        onSelect={setSelectedId}
+        onSelect={(id) => { setSelectedId(id); setView('editor'); }}
         onNew={handleNew}
         onDelete={handleDelete}
         onReorder={handleReorder}
+        onStatus={() => setView('status')}
+        statusActive={view === 'status'}
       />
       <div className="flex-1 overflow-y-auto">
-        {selected ? (
+        {view === 'status' ? (
+          <ContentStatusPanel articles={articles} />
+        ) : selected ? (
           <ContentTabs key={selected.id} article={selected} onSaved={reload} />
         ) : (
           <div className="flex h-full items-center justify-center text-sm text-gray-400">

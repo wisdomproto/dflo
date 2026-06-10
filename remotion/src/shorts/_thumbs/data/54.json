@@ -1,0 +1,12 @@
+{
+  "n": 54,
+  "slug": "평균키위치",
+  "langs": {
+    "ko": { "kicker": "평균만 봤다간?", "subject": "우리 아이 키 진짜 위치는", "number": "몇 등", "numLabel": "?", "tagline": "평균보다 성장 속도가 답" },
+    "th": { "kicker": "ดูแค่ค่าเฉลี่ย?", "subject": "อันดับจริงของลูก", "number": "อันดับไหน", "numLabel": "?", "tagline": "ดูความเร็วโต ไม่ใช่ค่าเฉลี่ย" },
+    "vi": { "kicker": "Chỉ nhìn trung bình?", "subject": "Vị trí thật của con", "number": "hạng mấy", "numLabel": "?", "tagline": "Tốc độ tăng quan trọng hơn" },
+    "en": { "kicker": "Just the average?", "subject": "Your child's real rank", "number": "what rank", "numLabel": "?", "tagline": "Growth speed beats average" },
+    "cn": { "kicker": "只看平均？", "subject": "孩子真实排名", "number": "第几名", "numLabel": "？", "tagline": "看生长速度 别只看平均" },
+    "ch": { "kicker": "只看平均？", "subject": "孩子真實排名", "number": "第幾名", "numLabel": "？", "tagline": "看生長速度 別只看平均" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "n": 45,
+  "slug": "성장클리닉타이밍",
+  "langs": {
+    "ko": { "kicker": "늦으면 손해!", "subject": "우리 아이 성장클리닉", "number": "몇 살", "numLabel": "에 가야 할까?", "tagline": "방문에도 골든타임이 있다" },
+    "th": { "kicker": "ช้าไปเสียโอกาส!", "subject": "คลินิกความสูงของลูก", "number": "กี่ขวบ", "numLabel": "ควรไปเมื่อไหร่?", "tagline": "การไปพบก็มีเวลาทอง" },
+    "vi": { "kicker": "Trễ là thiệt!", "subject": "Phòng khám chiều cao cho con", "number": "Mấy tuổi", "numLabel": "nên đi khi nào?", "tagline": "Đi khám cũng có thời điểm vàng" },
+    "en": { "kicker": "Too late = a loss!", "subject": "Your child's growth clinic", "number": "What age", "numLabel": "should you go?", "tagline": "Even the visit has a golden time" },
+    "cn": { "kicker": "晚了就吃亏！", "subject": "孩子的成长门诊", "number": "几岁", "numLabel": "该去看？", "tagline": "就诊也有黄金期" },
+    "ch": { "kicker": "晚了就吃虧！", "subject": "孩子的成長門診", "number": "幾歲", "numLabel": "該去看？", "tagline": "就診也有黃金期" }
+  }
+}

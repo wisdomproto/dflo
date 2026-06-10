@@ -1,0 +1,88 @@
+{
+ "idx": 13,
+ "cardnewsId": "4e0c2169-b94a-452b-b698-07ba0b4ccb35",
+ "captionCh": "你每個月都幫孩子量身高嗎？📏\n\n成長日記不只是記錄數字，而是讓你看清孩子的成長曲線走向，並了解睡眠、飲食、運動等生活習慣與成長的關聯。只要每月在相同日期、相同條件下測量身高和體重，就可以輕鬆開始。\n\n不需要做到完美，持之以恆才是最重要的事。📓\n\n完整的成長日記撰寫指南請見個人頁面連結。",
+ "hashtagsCh": "#成長日記 #兒童身高 #孩子發育 #成長曲線 #兒童健康 #身高管理 #育兒知識 #親子生活 #健康成長 #成長紀錄 #兒童保健 #媽媽育兒 #小學生成長 #身高增長 #兒童成長追蹤",
+ "slides": [
+  {
+   "slideId": "af6d2385-472c-4703-ad7b-b48d7d3aaf02",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "製作孩子的成長日記",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "ba4a961f-7fcb-4532-9c0c-8c25d8b97b4f",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "成長日記為何如此重要",
+    "subtext": "掌握現況 · 及早發現異常 · 分析生活習慣 · 與醫師溝通"
+   }
+  },
+  {
+   "slideId": "23c68369-88b9-4d49-a9c5-bc03e85bc6a2",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "必填的4個記錄項目",
+    "subtext": "每月在相同日期、時間、條件下測量"
+   }
+  },
+  {
+   "slideId": "712a3a70-7736-4187-b6d4-9466d411d6a6",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "選填但非常有用的項目",
+    "subtext": "睡眠 · 飲食 · 運動 · 心理狀態 · 身體變化"
+   }
+  },
+  {
+   "slideId": "f479d576-0989-45ac-8d8e-5182e2886bab",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "選哪種記錄工具最好？",
+    "subtext": "手冊 · App · Excel — 持之以恆比工具更重要"
+   }
+  },
+  {
+   "slideId": "e9ab6315-af21-4b37-bdee-f26f35910544",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "如何解讀成長曲線圖",
+    "subtext": "曲線的走向比數字本身更重要"
+   }
+  },
+  {
+   "slideId": "ae61b28f-150b-4eaf-a180-08721a995400",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "持續記錄的4個小技巧",
+    "subtext": "持之以恆比完美更重要，這才是成長日記的精髓"
+   }
+  },
+  {
+   "slideId": "1a4c743d-a3ec-4282-afda-f39788712a67",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "從今天開始寫成長日記吧",
+    "subtext": "持續記錄守護孩子的健康成長"
+   }
+  }
+ ]
+}

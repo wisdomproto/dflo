@@ -1,0 +1,88 @@
+{
+ "idx": 48,
+ "cardnewsId": "cf349556-e72a-4f22-ae90-2ea34048b0fe",
+ "captionCh": "孩子吃得好、睡得足，身高卻遲遲不見長？🤔\n\n當孩子的免疫系統持續應對過敏或慢性炎症時，身體的能量可能大量消耗在免疫反應上，留給生長的資源因此減少。異位性皮膚炎與過敏性鼻炎會干擾睡眠品質，食物過敏則可能影響營養素的吸收。慢性低度炎症即使沒有明顯症狀，也可能悄悄影響孩子的生長進度。\n\n找出根本原因，是照顧孩子生長的第一步。完整文章請點選個人頁連結閱讀 🌱",
+ "hashtagsCh": "#過敏與身高 #兒童成長 #慢性炎症 #生長激素 #兒童健康 #異位性皮膚炎 #食物過敏 #過敏兒童 #身高成長 #成長板 #兒科診所 #台灣兒童健康 #187成長診所 #長高方法 #免疫與成長",
+ "slides": [
+  {
+   "slideId": "ec9a4dec-72b8-43c4-9c2c-20abe42b1dff",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "偷走孩子生長能量的小偷",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "e522a186-6a59-4ffe-8cc8-59ea31968d38",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "身體無法同時全力成長與抵抗炎症",
+    "subtext": "炎症持續時，免疫反應會優先消耗本應用於生長的能量"
+   }
+  },
+  {
+   "slideId": "09ede789-2f7d-4eb7-a74f-5582860d45e4",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "過敏以3種途徑阻礙生長",
+    "subtext": "抑制生長激素 · 阻礙營養吸收 · 降低睡眠品質"
+   }
+  },
+  {
+   "slideId": "582691a5-c4b5-40c6-ba48-6aac22542fef",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "各類過敏對生長的不同影響",
+    "subtext": "異位性皮膚炎/鼻炎干擾睡眠 → 激素減少 / 食物過敏影響營養吸收"
+   }
+  },
+  {
+   "slideId": "17faae8c-8312-4960-ba44-4830127f7b28",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "慢性炎症：體內永不熄滅的警報燈",
+    "subtext": "皮質醇升高會干擾生長激素運作，並使骨骼生長減緩"
+   }
+  },
+  {
+   "slideId": "62497b2b-5130-4709-af54-b88d69a2a11b",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "管理過敏與炎症的4個關鍵步驟",
+    "subtext": "準確診斷 · 抗炎飲食 · 優質睡眠與壓力管理 · 諮詢專科醫師"
+   }
+  },
+  {
+   "slideId": "3bb137ba-7823-4671-a3d2-59224101ede9",
+   "sort_order": 7,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "了解原因，就能積極管理",
+    "subtext": "即使症狀不明顯，過敏與慢性炎症仍可能影響孩子的身高"
+   }
+  },
+  {
+   "slideId": "585e7228-8b90-4d4d-9f0b-a170135ccd7a",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "一起找出阻礙生長的原因",
+    "subtext": ""
+   }
+  }
+ ]
+}

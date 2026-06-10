@@ -1,0 +1,12 @@
+{
+  "n": 44,
+  "slug": "가슴발달8세",
+  "langs": {
+    "ko": { "kicker": "당황 말고!", "subject": "우리 딸 가슴 발달", "number": "8세", "numLabel": "전이면 체크", "tagline": "골든타임 안에 충분히 대응 가능" },
+    "th": { "kicker": "อย่าเพิ่งตกใจ!", "subject": "หน้าอกลูกสาวเริ่มพัฒนา", "number": "8 ขวบ", "numLabel": "ก่อนวัยนี้ต้องเช็ก", "tagline": "ในเวลาทอง รับมือได้ทัน" },
+    "vi": { "kicker": "Đừng hốt hoảng!", "subject": "Ngực bé gái phát triển", "number": "8 tuổi", "numLabel": "trước tuổi này nên kiểm tra", "tagline": "Trong thời điểm vàng vẫn kịp xử lý" },
+    "en": { "kicker": "Don't panic!", "subject": "Your daughter's breast budding", "number": "age 8", "numLabel": "check if before this", "tagline": "Within golden time, fully manageable" },
+    "cn": { "kicker": "别慌！", "subject": "女儿乳房发育", "number": "8岁", "numLabel": "前出现要检查", "tagline": "黄金期内 · 完全来得及应对" },
+    "ch": { "kicker": "別慌！", "subject": "女兒乳房發育", "number": "8歲", "numLabel": "前出現要檢查", "tagline": "黃金期內 · 完全來得及應對" }
+  }
+}

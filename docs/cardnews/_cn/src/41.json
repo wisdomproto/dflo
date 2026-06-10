@@ -1,0 +1,78 @@
+{
+ "idx": 41,
+ "cardnewsId": "af0ae58e-5170-4003-9a67-ce3fb693b477",
+ "captionCh": "父母個子矮，孩子就一定長不高嗎？🤔\n\n其實，遺傳對身高的影響約佔70–80%，剩下的20–30%取決於營養、睡眠、運動及壓力管理等後天因素。遺傳只是給出一個身高區間，孩子能否達到這個區間的上限，關鍵在於後天的照顧與環境。透過骨齡檢查，可以準確了解孩子還有多少成長空間，這是非常重要的第一步。🌱\n\n更多資訊請至 187 成長診所官網查閱 — 連結在個人檔案。",
+ "hashtagsCh": "#兒童成長 #成長診所 #身高遺傳 #骨齡 #成長板 #生長激素 #兒童健康 #孩子長高 #親子健康 #187成長診所 #性早熟預防 #兒童營養 #父母個子矮 #後天努力",
+ "slides": [
+  {
+   "slideId": "c945483d-4006-44dc-9d6d-38b33e750540",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "父母個子矮，孩子還能長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "53787cf3-dc8d-4244-a5b4-873f09e3dc58",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "遺傳佔70–80%，但還有另一部分",
+    "subtext": "後天20–30%的努力能改變孩子的身高"
+   }
+  },
+  {
+   "slideId": "be71b82d-a5c7-48c0-8cd6-a242feec03d5",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "遺傳只給一個區間，不是固定數字",
+    "subtext": "停在170還是達到180 cm，取決於後天的照顧方式"
+   }
+  },
+  {
+   "slideId": "2a3b8b6a-cf82-4fcb-99be-5abec9f73efa",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "釋放生長潛力的5大因素",
+    "subtext": "營養 · 睡眠 · 運動 · 壓力管理 · 排除成長障礙因素"
+   }
+  },
+  {
+   "slideId": "9f257691-f342-44a7-b933-4e52531d7dfb",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "性早熟與肥胖會讓骨骺板提早關閉",
+    "subtext": "骨骺板一旦關閉，身高便停止增長。及早管理至關重要"
+   }
+  },
+  {
+   "slideId": "92a9792c-23c5-405d-b83a-2131c07c2ac1",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡揭示還有多少成長空間",
+    "subtext": "骨齡比實際年齡小，代表還有更多的成長潛力尚未開發"
+   }
+  },
+  {
+   "slideId": "fbddede8-286d-4425-b5de-c8deb97ce280",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "超越遺傳，孩子還能繼續長高",
+    "subtext": "透過正確的後天照顧，每個孩子都能充分發揮遺傳潛力的最大值"
+   }
+  }
+ ]
+}

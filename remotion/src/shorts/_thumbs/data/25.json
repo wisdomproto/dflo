@@ -1,0 +1,12 @@
+{
+  "n": 25,
+  "slug": "자기전폰수면",
+  "langs": {
+    "ko": { "kicker": "자기 전 1시간!", "subject": "우리 아이 키 막는", "number": "📱", "numLabel": "잠자리 스마트폰", "tagline": "폰만 내려놔도 황금 수면" },
+    "th": { "kicker": "1 ชม.ก่อนนอน!", "subject": "ตัวขวางความสูงลูก", "number": "📱", "numLabel": "มือถือก่อนนอน", "tagline": "วางมือถือ ได้นอนหลับทอง" },
+    "vi": { "kicker": "1 giờ trước ngủ!", "subject": "Thứ cản chiều cao con", "number": "📱", "numLabel": "Điện thoại trước ngủ", "tagline": "Bỏ điện thoại, giữ giấc ngủ vàng" },
+    "en": { "kicker": "1 hr before bed!", "subject": "Blocking your child's height", "number": "📱", "numLabel": "Phone at bedtime", "tagline": "Drop the phone, keep golden sleep" },
+    "cn": { "kicker": "睡前1小时！", "subject": "挡住孩子身高的", "number": "📱", "numLabel": "睡前玩手机", "tagline": "放下手机 守住黄金睡眠" },
+    "ch": { "kicker": "睡前1小時！", "subject": "擋住孩子身高的", "number": "📱", "numLabel": "睡前玩手機", "tagline": "放下手機 守住黃金睡眠" }
+  }
+}

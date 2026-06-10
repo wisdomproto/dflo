@@ -1,0 +1,12 @@
+{
+  "n": 32,
+  "slug": "오다리키",
+  "langs": {
+    "ko": { "kicker": "절반은 오해!", "subject": "우리 아이 O자 다리", "number": "펴면", "numLabel": "키 큰다?", "tagline": "교정이 키 크는 환경을 만든다" },
+    "th": { "kicker": "ครึ่งหนึ่งเข้าใจผิด!", "subject": "ขาโก่งของลูก", "number": "ดัดตรง", "numLabel": "แล้วสูงขึ้น?", "tagline": "จัดท่าทาง สร้างโอกาสให้สูง" },
+    "vi": { "kicker": "Một nửa là hiểu lầm!", "subject": "Chân vòng kiềng của con", "number": "Nắn thẳng", "numLabel": "sẽ cao hơn?", "tagline": "Chỉnh tư thế tạo đà cao lớn" },
+    "en": { "kicker": "Half a myth!", "subject": "Your child's bowlegs", "number": "Straighten", "numLabel": "to grow taller?", "tagline": "Posture builds room to grow" },
+    "cn": { "kicker": "一半是误会！", "subject": "孩子的O型腿", "number": "矫直", "numLabel": "就能长高？", "tagline": "矫正姿势 营造长高环境" },
+    "ch": { "kicker": "一半是誤會！", "subject": "孩子的O型腿", "number": "矯直", "numLabel": "就能長高？", "tagline": "矯正姿勢 營造長高環境" }
+  }
+}

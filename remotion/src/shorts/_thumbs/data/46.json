@@ -1,0 +1,12 @@
+{
+  "n": 46,
+  "slug": "예상키작게",
+  "langs": {
+    "ko": { "kicker": "작게 나왔어도!", "subject": "우리 아이 예상키", "number": "±5cm", "numLabel": "오차, 끝 아냐", "tagline": "예측은 선고가 아니다" },
+    "th": { "kicker": "ออกมาน้อยก็ไม่จบ!", "subject": "ส่วนสูงคาดการณ์ของลูก", "number": "±5cm", "numLabel": "คลาดเคลื่อนได้", "tagline": "การคาดการณ์ไม่ใช่คำตัดสิน" },
+    "vi": { "kicker": "Thấp cũng chưa hết!", "subject": "Chiều cao dự đoán của con", "number": "±5cm", "numLabel": "sai số, chưa kết thúc", "tagline": "Dự đoán không phải bản án" },
+    "en": { "kicker": "Low? Not the end!", "subject": "Your child's predicted height", "number": "±5cm", "numLabel": "margin, not final", "tagline": "A prediction isn't a verdict" },
+    "cn": { "kicker": "偏低也没结束！", "subject": "孩子的预测身高", "number": "±5cm", "numLabel": "误差 · 还没定", "tagline": "预测不是判决" },
+    "ch": { "kicker": "偏低也沒結束！", "subject": "孩子的預測身高", "number": "±5cm", "numLabel": "誤差 · 還沒定", "tagline": "預測不是判決" }
+  }
+}

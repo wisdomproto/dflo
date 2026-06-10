@@ -1,0 +1,12 @@
+{
+  "n": 36,
+  "slug": "성장체크리스트5",
+  "langs": {
+    "ko": { "kicker": "매일 막고 있다?", "subject": "우리 아이 키 막는", "number": "5", "numLabel": "가지 습관", "tagline": "습관 체크로 잠재력 깨우기" },
+    "th": { "kicker": "ขัดขวางอยู่ทุกวัน?", "subject": "ตัวขัดขวางส่วนสูงลูก", "number": "5", "numLabel": "นิสัยต้องเช็ก", "tagline": "เช็กนิสัย ปลุกศักยภาพการสูง" },
+    "vi": { "kicker": "Cản trở mỗi ngày?", "subject": "Điều cản chiều cao của con", "number": "5", "numLabel": "thói quen cần soát", "tagline": "Soát thói quen, đánh thức tiềm năng" },
+    "en": { "kicker": "Blocking it daily?", "subject": "What stalls your child's height", "number": "5", "numLabel": "habits to check", "tagline": "Check habits, unlock potential" },
+    "cn": { "kicker": "每天都在挡？", "subject": "挡住孩子长高的", "number": "5", "numLabel": "个习惯", "tagline": "查习惯 唤醒长高潜力" },
+    "ch": { "kicker": "每天都在擋？", "subject": "擋住孩子長高的", "number": "5", "numLabel": "個習慣", "tagline": "查習慣 喚醒長高潛力" }
+  }
+}

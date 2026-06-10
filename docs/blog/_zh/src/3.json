@@ -1,0 +1,68 @@
+{
+ "n": 3,
+ "topicTitle": "성장판 닫히는 나이 총정리 — 남녀별·부위별 차이와 조기 폐쇄 신호",
+ "ko": {
+  "h1": "성장판 닫히는 나이 총정리 — 남녀별·부위별 차이와 조기 폐쇄 신호",
+  "faq": [
+   {
+    "a": "일반적으로 여아는 만 14~16세, 남아의 성장판 닫히는 나이는 만 16~18세입니다. 하지만 개인차가 크기 때문에 뼈나이(골연령) X-ray 검사를 통해 실제 성장판 폐쇄 시기를 정확히 파악하는 것이 중요합니다.",
+    "q": "성장판 닫히는 나이는 정확히 언제인가요?"
+   },
+   {
+    "a": "성장판이 완전히 뼈로 대체되면 뼈 길이가 늘어나는 키 성장은 더 이상 일어나지 않습니다. 다만 자세 교정이나 근육 발달로 측정 키가 소폭 변동될 수는 있으나, 이는 뼈 자체의 성장이 아닙니다.",
+    "q": "성장판이 닫히면 어떻게 되나요? 키는 완전히 멈추나요?"
+   },
+   {
+    "a": "또래보다 사춘기 징후가 2년 이상 일찍 나타나거나, 연간 성장 속도가 4cm 이하로 떨어지거나, 성장 백분위가 지속 하락한다면 성장판 조기 폐쇄를 의심해볼 수 있습니다. 뼈나이 X-ray 검사와 전문가 상담을 통해 정확히 확인해보시길 권합니다.",
+    "q": "아이의 성장판이 일찍 닫히고 있는지 어떻게 알 수 있나요?"
+   }
+  ],
+  "slug": "growth-plate-closing-age-guide",
+  "sections": [
+   {
+    "html": "<p>성장판 닫히는 나이를 이해하려면, 먼저 성장판이 무엇인지 알아야 합니다. 성장판은 뼈 끝에 자리한 연골 조직(골단 연골)으로, 연골 세포가 끊임없이 분열·증식해 새로운 뼈를 만들어내는 곳입니다. 마치 뼈를 생산하는 소형 공장이라고 생각하면 이해하기 쉽습니다.</p><p>사춘기가 시작되면 에스트로겐이나 테스토스테론 같은 성호르몬이 증가하면서 이 공장이 서서히 가동을 멈추고, 연골이 딱딱한 뼈로 굳어집니다. 이것이 바로 '<strong>성장판 폐쇄</strong>'입니다. 성장판이 완전히 닫히고 나면 키가 더 이상 자라지 않기 때문에, 성장판 폐쇄 시기를 파악하는 것이 성장 관리의 출발점이 됩니다.</p>",
+    "heading": "성장판이란? 뼈 성장의 핵심 공장",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1780924576715-rgobik.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint accent. Center: a simplified long bone cross-section showing a glowing cartilage zone at the epiphysis labeled with a small factory icon. Surrounding cells shown as soft rounded shapes dividing outward. Clean white background, gentle drop shadows. No text or numbers in the image."
+   },
+   {
+    "html": "<p>성장판 닫히는 나이는 성별에 따라 뚜렷한 차이를 보입니다. 사춘기 시작 시점과 성호르몬 분비 패턴이 다르기 때문입니다.</p><p><strong>여아:</strong> 평균적으로 만 10세 전후 가슴 발달 등 사춘기 징후가 나타나고, 초경 이후 성장 속도가 급격히 줄어듭니다. 대부분의 여아에서 성장판 폐쇄 시기는 만 14~16세 사이이며, 초경 후 2~3년간 소폭 성장이 가능하지만 성장 폭은 눈에 띄게 작아집니다.</p><p><strong>남아의 성장판 닫히는 나이:</strong> 남아는 사춘기가 보통 만 11~12세에 시작되고, 성장 급진기가 더 길고 최고 성장 속도도 빠릅니다. 성장판은 대개 만 16~18세에 완전히 닫히며, 여아보다 약 2년 늦습니다. 이 차이는 에스트로겐이 테스토스테론보다 성장판 폐쇄를 더 빠르게 촉진하기 때문입니다.</p>",
+    "heading": "성장판 닫히는 나이 — 여아와 남아의 차이",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1780924593941-6oabfc.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with mint and peach accents. Two side-by-side timelines: left for a girl figure, right for a boy figure. Each timeline has soft rounded milestone markers at different age points with small bone icons indicating closure stages. Gentle gradient background in light lavender. No text or numbers in the image."
+   },
+   {
+    "html": "<p>우리 몸의 성장판은 한꺼번에 닫히지 않습니다. 부위별로 순차적으로 폐쇄되며, 일반적으로 말단 부위에서 몸의 중심부 방향으로, 하체에서 상체 방향으로 진행됩니다.</p><ul><li><strong>손·발 성장판:</strong> 가장 먼저 닫히기 시작합니다. 손목 뼈나이가 실제 나이보다 앞서 있다면 전신 성장판도 일찍 닫힐 가능성이 높습니다.</li><li><strong>무릎 성장판:</strong> 대퇴골과 경골에 있는 무릎 성장판은 키 성장에 매우 중요합니다. 손목보다 조금 늦게 닫히며, 이 부위가 완전히 폐쇄되면 키 성장은 거의 마무리됩니다.</li><li><strong>척추 성장판:</strong> 가장 마지막까지 열려 있는 부위입니다. 무릎 성장판이 닫힌 뒤에도 척추를 통해 1~2cm 정도의 미미한 추가 성장이 가능합니다.</li></ul><p>의학적 뼈나이 평가에는 주로 손목 X-ray가 사용되는데, 손목 뼈의 성숙도가 전신 성장판 폐쇄 정도를 가장 잘 반영하기 때문입니다.</p>",
+    "heading": "부위별 성장판 폐쇄 시기 — 어디가 먼저 닫힐까?",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1780924598697-1nhb3p.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9, pastel background with mint highlights. A simplified front-facing child body outline divided into three zones: hands and feet (warm peach shading, small clock icon), knees (mint shading, medium clock), spine (cool lavender shading, large clock). Arrows showing bottom-to-top closure order. No text or numbers in the image."
+   },
+   {
+    "html": "<p>성장판 닫히면 어떻게 되나 궁금해하는 부모님이 많습니다. 성장판이 완전히 뼈로 대체되고 나면 세포 분열을 통한 뼈 길이 증가, 즉 키 성장은 더 이상 일어나지 않습니다. 하지만 몇 가지 오해도 있습니다.</p><p>성장판이 닫혀도 <strong>근육량 증가, 자세 교정, 척추 디스크 수분 함량 변화</strong> 등으로 실측 키가 0.5~1cm 변동될 수 있습니다. 그러나 이는 뼈 자체의 성장이 아니므로 근본적인 키 증가라고 보기 어렵습니다.</p><p>또한 성장판 폐쇄 시기는 개인차가 상당합니다. 동일한 연령이라도 뼈나이(골연령)에 따라 성장 잠재력이 크게 다를 수 있으므로, X-ray를 통한 뼈나이 측정이 성장 가능성 평가의 기준이 됩니다.</p>",
+    "heading": "성장판 닫히면 어떻게 되나? 폐쇄 이후의 변화",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1780924635715-ghud6g.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9, soft pastel background. Left side: an open growth plate shown as a glowing cartilage layer with upward growth arrows. Right side: the same bone with the growth plate fully replaced by solid bone, growth arrows faded. A gentle gradient transition between the two states in the center. No text or numbers in the image."
+   },
+   {
+    "html": "<p>성장판 폐쇄 시기가 예상보다 빠르게 진행되면 최종 키 손실로 이어질 수 있습니다. 다음 신호들이 나타난다면 전문적인 평가를 받아보는 것이 좋습니다.</p><ul><li>또래보다 사춘기 징후(가슴 발달, 음모, 고환 크기 증가)가 <strong>2년 이상 일찍</strong> 나타날 때</li><li>한동안 잘 크던 아이의 성장 속도가 <strong>1년에 4cm 이하</strong>로 갑자기 느려질 때</li><li>성장 백분위가 지속적으로 하락할 때</li><li>성조숙증으로 진단받은 경우 — 에스트로겐 조기 급증이 성장판 폐쇄를 앞당깁니다</li></ul><p>성장판 폐쇄 시기가 임박했거나 이미 진행 중이라면, 뼈나이 X-ray 검사와 함께 성장 전문가와의 상담을 통해 남은 성장 잠재력을 정확하게 파악하는 것이 중요합니다.</p>",
+    "heading": "조기 성장판 폐쇄 신호 — 부모가 주목해야 할 징후",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1780924671202-jf4sdt.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9, pastel tones with warm amber accent. A parent and child silhouette with a magnifying glass hovering over a growth chart line that dips sharply. Small warning icons (gentle triangle shape) appear at key dip points on the chart. Clean light background with soft shadows. No text or numbers in the image."
+   },
+   {
+    "html": "<p>성장판이 완전히 닫히기 전까지는 아이의 키 성장을 도울 수 있는 시간이 있습니다. 성장 골든타임을 효과적으로 활용하려면 다음 세 가지 축이 중요합니다.</p><ol><li><strong>수면:</strong> 성장호르몬은 깊은 수면 중 가장 많이 분비됩니다. 초등학생은 9~10시간, 중학생은 8~9시간의 충분한 수면이 권장됩니다.</li><li><strong>운동:</strong> 줄넘기, 농구, 수영처럼 성장판을 자극하는 전신 운동이 성장호르몬 분비를 촉진합니다.</li><li><strong>영양:</strong> 칼슘·비타민D·단백질의 균형 잡힌 섭취가 뼈 생성의 재료를 공급합니다.</li></ol><p>뼈나이 분석을 통해 성장판 폐쇄 시기를 예측하고, 남은 성장 기간에 맞는 생활습관 코칭을 받는다면 아이의 성장 잠재력을 최대한 끌어낼 수 있습니다. 성장판이 닫히기 전, 전문가의 도움을 받아 맞춤형 성장 계획을 세워보는 것도 좋은 방법입니다.</p>",
+    "heading": "성장판 골든타임 — 폐쇄 전 할 수 있는 것들",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1780924675551-lxmuws.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9, mint and pastel lavender palette. Three rounded icon cards arranged horizontally: a moon with stars (sleep), a jumping child silhouette (exercise), a bowl with vegetables and fish (nutrition). A gentle arc connecting all three cards with a soft upward growth arrow at the end. Clean white background with subtle drop shadows. No text or numbers in the image."
+   }
+  ],
+  "seoTitle": "성장판 닫히는 나이 — 남녀별·부위별 폐쇄 시기 총정리",
+  "primaryKeyword": "성장판 닫히는 나이",
+  "metaDescription": "성장판 닫히는 나이, 남녀별·부위별로 언제 어떻게 다를까요? 성장판 폐쇄 시기와 조기 폐쇄 신호, 골든타임 활용법을 한눈에 정리합니다.",
+  "secondaryKeywords": [
+   "성장판 폐쇄 시기",
+   "성장판 닫히면 어떻게 되나",
+   "남자 성장판 닫히는 나이"
+  ]
+ }
+}

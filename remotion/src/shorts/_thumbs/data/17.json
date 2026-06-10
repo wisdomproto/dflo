@@ -1,0 +1,12 @@
+{
+  "n": 17,
+  "slug": "중금속키성장",
+  "langs": {
+    "ko": { "kicker": "잘 먹는데 왜?", "subject": "우리 아이 키 막는", "number": "숨은 적", "numLabel": "중금속", "tagline": "식단·환경으로 막고 배출" },
+    "th": { "kicker": "กินดีแต่ทำไม?", "subject": "ตัวขวางส่วนสูงลูก", "number": "ศัตรูซ่อนเร้น", "numLabel": "โลหะหนัก", "tagline": "กันด้วยอาหาร · ขับด้วยแร่ธาตุ" },
+    "vi": { "kicker": "Ăn tốt sao không cao?", "subject": "Thứ chặn chiều cao con", "number": "Kẻ thù ẩn", "numLabel": "kim loại nặng", "tagline": "Chặn bằng ăn uống · đào thải" },
+    "en": { "kicker": "Eats well, but why?", "subject": "What blocks your child's height", "number": "Hidden foe", "numLabel": "heavy metals", "tagline": "Block by diet, flush it out" },
+    "cn": { "kicker": "吃得好为啥不长？", "subject": "挡住孩子身高的", "number": "隐形敌人", "numLabel": "重金属", "tagline": "饮食阻挡 · 矿物质排出" },
+    "ch": { "kicker": "吃得好為啥不長？", "subject": "擋住孩子身高的", "number": "隱形敵人", "numLabel": "重金屬", "tagline": "飲食阻擋 · 礦物質排出" }
+  }
+}

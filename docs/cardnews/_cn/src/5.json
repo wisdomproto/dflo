@@ -1,0 +1,78 @@
+{
+ "idx": 5,
+ "cardnewsId": "30877eb2-f520-4fdc-b2b1-f132489be37f",
+ "captionCh": "類固醇藥物真的會影響孩子的身高嗎？🌱\n\n吸入型、外用型和口服型類固醇的作用方式各不相同，對生長的影響也大不一樣。吸入型類固醇進入全身血液循環的量極少，研究顯示對最終身高無顯著影響；外用型適量使用幾乎不必擔心；口服型若在一週內短期使用，也不會對生長造成永久性影響。事實上，若放任氣喘或異位性皮膚炎不治療，導致夜眠不足、活動量減少，對生長的傷害反而更大。\n\n了解正確資訊，就能減少不必要的擔憂。更多詳情請點選個人頁面連結查看。💚",
+ "hashtagsCh": "#類固醇與生長 #吸入型類固醇 #外用類固醇 #口服類固醇 #兒童身高 #生長診所 #兒童生長發育 #氣喘兒童 #異位性皮膚炎 #生長專科 #187生長診所 #長高方法 #生長荷爾蒙 #小兒科 #育兒知識",
+ "slides": [
+  {
+   "slideId": "eb7a8fe4-7fe5-4609-9141-82c84be36fcb",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "類固醇真的會讓孩子停止長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "e3c66700-15d9-4d68-84ed-3461a8b332aa",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "類固醇有三種，效果大不同",
+    "subtext": "吸入・外用・口服，依使用方式影響各不同"
+   }
+  },
+  {
+   "slideId": "5eef28c0-d0df-47f2-ad96-07cbfbc9a7cc",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "吸入型類固醇 — 不影響最終身高",
+    "subtext": "全身吸收量極少，研究顯示對生長無顯著影響"
+   }
+  },
+  {
+   "slideId": "e46a3be2-65aa-4d79-a9d6-e08968dd85d8",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "外用類固醇 — 局部作用，注意過度使用即可",
+    "subtext": "全身吸收率低，適量使用對生長幾乎無影響"
+   }
+  },
+  {
+   "slideId": "cbb55952-bb58-46f6-a0df-8d99fe5f01e5",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "口服類固醇 — 短期安全，長期需謹慎",
+    "subtext": "一週內短期使用不會對生長造成永久影響"
+   }
+  },
+  {
+   "slideId": "4ca87fc8-0650-44d7-a5ce-6b1cdd38de38",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "不治療疾病對生長傷害更大",
+    "subtext": "因病睡不好、活動減少，反而更容易影響生長"
+   }
+  },
+  {
+   "slideId": "20504201-7fa3-4466-ba4d-ce28424c46e4",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "正確治療，守護孩子的生長",
+    "subtext": "了解各類固醇種類與用法，就能減少不必要的擔憂"
+   }
+  }
+ ]
+}

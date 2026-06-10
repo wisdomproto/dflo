@@ -1,0 +1,12 @@
+{
+  "n": 35,
+  "slug": "성장일지",
+  "langs": {
+    "ko": { "kicker": "기록만 해도!", "subject": "우리 아이 키", "number": "한 줄", "numLabel": "기록의 힘", "tagline": "곡선의 방향이 보인다" },
+    "th": { "kicker": "แค่จดก็เปลี่ยน!", "subject": "ส่วนสูงของลูก", "number": "1 บรรทัด", "numLabel": "พลังของการจด", "tagline": "เห็นทิศทางของกราฟการเติบโต" },
+    "vi": { "kicker": "Chỉ cần ghi lại!", "subject": "Chiều cao của con", "number": "1 dòng", "numLabel": "sức mạnh ghi chép", "tagline": "Thấy được hướng đường cong" },
+    "en": { "kicker": "Just write it down!", "subject": "Your child's height", "number": "One line", "numLabel": "power of a log", "tagline": "See the curve's direction" },
+    "cn": { "kicker": "记录就有用！", "subject": "孩子的身高", "number": "一行", "numLabel": "记录的力量", "tagline": "看清生长曲线的走向" },
+    "ch": { "kicker": "記錄就有用！", "subject": "孩子的身高", "number": "一行", "numLabel": "記錄的力量", "tagline": "看清生長曲線的走向" }
+  }
+}

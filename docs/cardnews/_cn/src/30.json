@@ -1,0 +1,88 @@
+{
+ "idx": 30,
+ "cardnewsId": "91d5bd94-a433-494c-87fe-799909203473",
+ "captionCh": "不知道幾歲帶孩子去生長診所最合適？ 🌱\n\n其實沒有唯一的「最佳時機」，關鍵在於孩子的狀況。6–8歲是評估生長潛力、及早發現性早熟徵兆的黃金視窗；9–11歲則是在青春期急速生長前確認骨骺板狀態最有效的時期；12歲以上若骨骺板尚未完全閉合，仍有機會把握剩餘的生長空間。\n\n若孩子明顯比同齡人矮、每年增高不足4cm，或出現性早熟徵兆，不論幾歲都建議及早諮詢專科醫師。\n\n更多資訊請見個人頁面連結 🔗",
+ "hashtagsCh": "#生長診所 #兒童身高 #骨骺板 #性早熟 #骨齡 #兒童生長 #黃金期 #生長專科 #小兒科 #身高管理 #187生長診所 #韓國診所 #兒童健康 #家長必看",
+ "slides": [
+  {
+   "slideId": "49238d0b-e517-4c58-8307-61f66986c99f",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "幾歲去生長診所最合適？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "a168bf49-a249-4dd3-a5b2-4eb73e91d865",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "出現這些情況就要留意了",
+    "subtext": "身高低於同齡第3百分位 · 每年增高不足4cm · 青春期徵兆過早出現"
+   }
+  },
+  {
+   "slideId": "8d417a06-f682-43fe-8d2a-7558639e6a64",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "① 6–8歲 — 早期發現的黃金視窗",
+    "subtext": "最適合評估生長潛力與及早發現性早熟徵兆的時期"
+   }
+  },
+  {
+   "slideId": "782638cb-7c8f-42e0-9cb3-cf151aaf45d5",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "② 9–11歲 — 關鍵黃金時期",
+    "subtext": "在青春期急速生長前確認骨骺板狀態，是效果最佳的時機"
+   }
+  },
+  {
+   "slideId": "6367b92f-4854-421b-9c8d-a37f63ed9aba",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "③ 12歲以上 — 仍然有機會",
+    "subtext": "只要骨骺板尚未完全閉合，仍能盡力發揮剩餘的生長潛力"
+   }
+  },
+  {
+   "slideId": "7e973059-6e34-4080-a3bb-c31579ee5e72",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "不論幾歲，出現這些就要注意",
+    "subtext": "明顯比同齡矮 · 父母身高偏矮 · 性早熟徵兆 · 偏食或睡眠不足"
+   }
+  },
+  {
+   "slideId": "c7c33f33-f871-4813-9dc1-745f2e83b329",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "專科診所能做到的事",
+    "subtext": "骨齡分析預測生長潛力 · 生活習慣指導優化生長環境"
+   }
+  },
+  {
+   "slideId": "6dd6e85f-72ed-4a17-906f-ad5d84925953",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "時機決定結果",
+    "subtext": "只要有任何疑問，歡迎諮詢生長專科醫師"
+   }
+  }
+ ]
+}

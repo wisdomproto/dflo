@@ -1,0 +1,88 @@
+{
+ "idx": 59,
+ "cardnewsId": "e7cd2771-241c-493d-bcb8-52cc3d282306",
+ "captionCh": "您的孩子是否每天都離不開甜食或速食？ 🍔\n\n長期攝取高糖、高脂飲食，容易造成體脂肪堆積，進而使瘦素與性荷爾蒙過早大量分泌。一旦青春期提前啟動，生長板就可能在孩子發揮完整身高潛能之前提早關閉。基因相同，飲食不同，最終身高也可能截然不同。 🌱\n\n更多關於生長板與飲食調整的資訊，請點選個人頁面連結前往官網了解。",
+ "hashtagsCh": "#生長板 #孩子身高 #性早熟 #兒童飲食 #速食危害 #兒童肥胖 #成長荷爾蒙 #孩子健康 #台灣媽媽 #親子健康 #兒童營養 #長高秘訣 #187生長診所 #育兒知識 #健康成長",
+ "slides": [
+  {
+   "slideId": "b97b9a4f-c4b1-474d-940e-ed045be3fd9e",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "這些食物正在提早關閉生長板",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "80b1de73-1e34-44b8-8920-f867197be5bf",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長板開著，才能長高",
+    "subtext": "青春期後一旦關閉，身高就幾乎停止生長"
+   }
+  },
+  {
+   "slideId": "f88d4488-db09-4b8b-8712-18af1b468fdc",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "糖脂過多 → 胰島素阻抗",
+    "subtext": "體脂肪堆積可能使青春期提早、生長板提前關閉"
+   }
+  },
+  {
+   "slideId": "561777f1-1534-449b-9cb7-056d7924e948",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "體脂肪 → 瘦素 → 性荷爾蒙失衡",
+    "subtext": "性荷爾蒙提早升高，可能讓生長板比同齡孩子更快關閉"
+   }
+  },
+  {
+   "slideId": "7a9b33d3-182a-4d42-90d7-5adb126a2e08",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "加工食品缺乏骨骼生長所需的營養素",
+    "subtext": "鈣質、維生素D及膳食纖維等成長必需營養素嚴重不足"
+   }
+  },
+  {
+   "slideId": "4216865e-e2c1-4386-a1ef-8930b8edc61e",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "守護生長板的6大飲食原則",
+    "subtext": "減少糖分與速食 / 增加蛋白質、全穀、蔬果與水分"
+   }
+  },
+  {
+   "slideId": "57e560e2-dc89-442c-8efe-7b9298e54180",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "飲食決定孩子的最終身高",
+    "subtext": "相同的遺傳潛力，飲食習慣不同，最終身高也可能大不同"
+   }
+  },
+  {
+   "slideId": "14e4ce4e-d71f-48ac-936c-1f8b25b97aae",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "黃金時期還在——現在就行動",
+    "subtext": "趁生長板還開著，從調整飲食開始吧"
+   }
+  }
+ ]
+}

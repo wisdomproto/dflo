@@ -1,0 +1,78 @@
+{
+ "idx": 56,
+ "cardnewsId": "e3fce610-104c-4825-86c2-d9837cc0d90b",
+ "captionCh": "您是否聽說孩子一定要在晚上10點前入睡？🌙\n\n事實上，生長激素對應的是睡眠深度，而不是時鐘上的時間。它在慢波睡眠階段大量分泌，約在入睡後1小時。就算10點上床，若睡得淺，生長激素反而會減少。\n\n打造深層睡眠的4個關鍵：固定的睡眠時間、昏暗涼爽的環境、睡前放鬆儀式，以及白天充足的身體活動。\n\n比起幾點入睡，更重要的是睡眠的品質。更多資訊請點選個人檔案連結 ✨",
+ "hashtagsCh": "#生長激素 #兒童睡眠 #深層睡眠 #孩子長高 #睡眠品質 #育兒知識 #兒童健康 #睡眠習慣 #睡前儀式 #兒科成長 #187成長診所 #台灣育兒 #孩子發育 #健康成長",
+ "slides": [
+  {
+   "slideId": "721317fa-9171-4bae-91c2-529f3ce4db8e",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素在晚上10點分泌？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "894204a6-4027-47e7-9080-b17b0c0599c8",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "關鍵不是10點，而是「深層睡眠」",
+    "subtext": "生長激素對應的是睡眠深度，而不是時鐘上的時間"
+   }
+  },
+  {
+   "slideId": "ffc5477c-2ba3-4dd3-b0fe-b4a20ecc5b93",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "進入深眠，生長激素大量分泌",
+    "subtext": "入睡約1小時後進入慢波睡眠，此時分泌量最高"
+   }
+  },
+  {
+   "slideId": "ab88b4ba-2b0c-4eba-a551-0c100c199232",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "晚上11點睡也沒問題——關鍵是睡得深",
+    "subtext": "10點睡但睡得淺，生長激素反而減少"
+   }
+  },
+  {
+   "slideId": "55d31202-f56d-4649-9015-4a204bb97fa9",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "打造深層睡眠的4個習慣",
+    "subtext": "規律作息 · 舒適環境 · 睡前儀式 · 白天活動"
+   }
+  },
+  {
+   "slideId": "c468af31-6ae6-4757-9b24-5182a49c7e62",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "睡眠品質比入睡時間更重要",
+    "subtext": "睡得有多深，比幾點入睡更能決定孩子的成長"
+   }
+  },
+  {
+   "slideId": "f6829225-670b-42e7-86b3-223e30114a44",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "深眠，就是孩子成長的時刻",
+    "subtext": "現在就來檢視孩子的睡眠習慣吧"
+   }
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+ "idx": 18,
+ "cardnewsId": "66ad5a38-2333-4f57-bc17-e24a369b7372",
+ "captionCh": "終於預約了成長門診，卻不知道該帶什麼去？ 📋\n\n醫師最需要的不只是孩子現在的身高，而是完整的生長歷程。請提前備好4類資料：過去的身高體重紀錄（學校健康檢查紀錄、育兒手冊）、就醫紀錄與目前用藥、父母身高及青春期時間，以及孩子的睡眠、飲食與運動習慣。\n\n這4項資訊能幫助醫師從第一次就診就評估生長速度與遺傳潛力，讓診療更有方向。完整準備清單請點個人頁連結查看。",
+ "hashtagsCh": "#兒童成長 #身高增長 #成長門診 #生長激素 #矮小症 #成長板 #兒童發育 #親子健康 #韓國醫療 #成長紀錄 #育兒準備 #青春期發育 #遺傳身高 #生長黃金期 #健康寶貝",
+ "slides": [
+  {
+   "slideId": "729e9fda-41c7-4ec4-8793-fceabedae3bc",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "第一次就診，該帶什麼？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "0e4de14b-b65d-469e-8f56-bb002dd2595c",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "帶來過去的生長記錄",
+    "subtext": "身高體重的變化趨勢，是評估生長速度的關鍵"
+   }
+  },
+  {
+   "slideId": "62214022-eb02-4626-9dc3-416ea4cd8316",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "就醫紀錄與用藥資訊也不可少",
+    "subtext": "慢性病與特定藥物，都可能影響孩子的生長"
+   }
+  },
+  {
+   "slideId": "a7c97997-dfbb-4eaa-924a-e2cded3030ce",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "了解家人的身高與青春期時間",
+    "subtext": "這是推算遺傳生長潛力的重要依據"
+   }
+  },
+  {
+   "slideId": "2a995ebc-5836-473a-8c36-03ccad49be42",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "記錄睡眠習慣與飲食狀況再來",
+    "subtext": "睡眠與營養是生長的兩大核心支柱"
+   }
+  },
+  {
+   "slideId": "2a8abfb7-c52c-4431-bc7f-8e7cd0843bc6",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "記錄運動量與正在服用的保健品清單",
+    "subtext": "記下運動類型與頻率，以及保健品名稱與用量"
+   }
+  },
+  {
+   "slideId": "fccd9c0a-a834-4c9d-8d0b-8bb68a9e12cc",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "備好這4項，第一次就診就萬全了",
+    "subtext": "生長記錄 · 就醫藥物史 · 家族史 · 生活習慣"
+   }
+  },
+  {
+   "slideId": "292bfb89-1d2d-4d91-b8df-d1ab7e64ff1a",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "充分準備，把握生長黃金期",
+    "subtext": "預約前先確認好清單"
+   }
+  }
+ ]
+}

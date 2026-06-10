@@ -6,6 +6,10 @@ const NOTO_SANS_THAI_URL =
   "https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;900&display=swap";
 const INTER_URL =
   "https://fonts.googleapis.com/css2?family=Inter:wght@600;700;900&display=swap";
+const NOTO_SANS_SC_URL =
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap";
+const NOTO_SANS_TC_URL =
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap";
 
 let loaded = false;
 
@@ -30,6 +34,16 @@ export function ensureFonts() {
   link3.href = INTER_URL;
   document.head.appendChild(link3);
 
+  const link4 = document.createElement("link");
+  link4.rel = "stylesheet";
+  link4.href = NOTO_SANS_SC_URL;
+  document.head.appendChild(link4);
+
+  const link5 = document.createElement("link");
+  link5.rel = "stylesheet";
+  link5.href = NOTO_SANS_TC_URL;
+  document.head.appendChild(link5);
+
   Promise.all([
     document.fonts.load("700 16px 'Noto Sans KR'"),
     document.fonts.load("900 16px 'Noto Sans KR'"),
@@ -43,3 +57,5 @@ export function ensureFonts() {
 export const NOTO_SANS_KR = "'Noto Sans KR', 'Noto Sans Thai', sans-serif";
 export const NOTO_SANS_THAI = "'Noto Sans Thai', 'Noto Sans KR', sans-serif";
 export const INTER = "'Inter', sans-serif";
+export const NOTO_SANS_SC = "'Noto Sans SC', 'Noto Sans KR', sans-serif";
+export const NOTO_SANS_TC = "'Noto Sans TC', 'Noto Sans KR', sans-serif";

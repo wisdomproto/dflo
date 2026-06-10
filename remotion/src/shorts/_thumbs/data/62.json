@@ -1,0 +1,12 @@
+{
+  "n": 62,
+  "slug": "한국성장클리닉",
+  "langs": {
+    "ko": { "kicker": "왜 비행기까지?", "subject": "우리 아이 키, 한국으로", "number": "✈️", "numLabel": "오는 이유 4", "tagline": "우리 아이도 같은 진단" },
+    "th": { "kicker": "ทำไมต้องบินมา?", "subject": "ส่วนสูงลูก บินไปเกาหลี", "number": "✈️", "numLabel": "4 เหตุผลที่มา", "tagline": "ลูกเราก็ตรวจแบบนี้ได้" },
+    "vi": { "kicker": "Sao phải bay sang?", "subject": "Chiều cao con, bay tới Hàn", "number": "✈️", "numLabel": "4 lý do đến", "tagline": "Con bạn cũng được khám vậy" },
+    "en": { "kicker": "Why fly over?", "subject": "Your child's height — to Korea", "number": "✈️", "numLabel": "4 reasons they come", "tagline": "Your child can get it too" },
+    "cn": { "kicker": "为何坐飞机来？", "subject": "孩子身高，飞来韩国", "number": "✈️", "numLabel": "4个理由", "tagline": "你家孩子也能这样诊断" },
+    "ch": { "kicker": "為何坐飛機來？", "subject": "孩子身高，飛來韓國", "number": "✈️", "numLabel": "4個理由", "tagline": "你家孩子也能這樣診斷" }
+  }
+}

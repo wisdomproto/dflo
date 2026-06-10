@@ -1,0 +1,78 @@
+{
+ "idx": 35,
+ "cardnewsId": "a453fc79-1345-4cf8-b861-d41070198fcf",
+ "captionCh": "看著孩子的O型腿，你是否曾想過：「矯正了，孩子會長高嗎？」🦵\n\n矯正O型腿是將腿部對齊調整，並不會直接讓骨骼變長。不過，姿勢改善後，生長板能受到更均勻的刺激；腿部不適減少後，孩子也更樂意活動，有助於促進生長激素分泌。如果2歲後仍未改善、只有單側彎曲，或伴有疼痛，建議帶孩子諮詢專科醫師。✅\n\n孩子成長的每個細節都值得用心關注。更多資訊請點選個人頁連結查看。",
+ "hashtagsCh": "#O型腿 #內翻膝 #兒童長高 #生長板 #生長激素 #兒童健康 #長高方法 #姿勢矯正 #小兒科 #台灣媽媽 #育兒知識 #長高秘訣 #健康寶貝 #兒童發育 #187成長診所",
+ "slides": [
+  {
+   "slideId": "b295d61d-8d7f-4802-8a57-39ac23694f14",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "矯正O型腿，孩子真的會長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "60d99d1e-7faf-45a1-bec8-159b0685dc41",
+   "sort_order": 2,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "矯正並不會讓骨骼變長",
+    "subtext": "腿伸直只是顯現原本的長度，骨骼並不會因此生長"
+   }
+  },
+  {
+   "slideId": "37b62b48-72e6-49d9-b163-32446015f59c",
+   "sort_order": 3,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "姿勢正確 → 減少生長板的壓力",
+    "subtext": "腿部對齊讓脊椎和生長板受到均勻刺激"
+   }
+  },
+  {
+   "slideId": "70eafb97-f12e-48de-a959-a64376bf602a",
+   "sort_order": 4,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "活動順暢有助於分泌生長激素",
+    "subtext": "腿部不適減少，孩子活動更多，生長激素分泌也隨之增加"
+   }
+  },
+  {
+   "slideId": "b8bc7714-e2f9-4588-9412-e1f00f5bc40e",
+   "sort_order": 5,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "心情放鬆，身高也更容易長",
+    "subtext": "壓力會阻礙生長激素分泌，有自信、快樂的孩子往往長得更好"
+   }
+  },
+  {
+   "slideId": "8396516c-1623-407c-a3ee-a4b4c2b41633",
+   "sort_order": 6,
+   "role": "content",
+   "isCta": false,
+   "ch": {
+    "headline": "出現這些情況，需要尋求專業診療",
+    "subtext": "2歲後仍持續惡化 · 不對稱 · 疼痛 · 生長遲緩 · 步態異常"
+   }
+  },
+  {
+   "slideId": "d373bfe4-4878-4358-8fbb-acf787a34fdc",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "孩子的成長，每個細節都不容錯過",
+    "subtext": "一起全面了解孩子的成長環境"
+   }
+  }
+ ]
+}

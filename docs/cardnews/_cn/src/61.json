@@ -1,0 +1,78 @@
+{
+ "idx": 61,
+ "cardnewsId": "f7366fbe-6d64-49a6-8434-cde7cac36013",
+ "captionCh": "你知道為什麼來自中國和泰國的父母要特地飛往韓國，只為了孩子的身高發育嗎？🌱\n\nK-pop、K-劇之後，韓國醫療也在國際間受到高度關注。韓國兒童成長診所以精準的骨齡分析、個人化治療計畫和生活習慣指導見長，能以科學方式全面掌握每個孩子的成長潛力。生長激素療程僅在專科醫師評估確認有必要後，才會安全進行。\n\n想深入了解孩子的成長議題？歡迎點擊個人頁面連結查看 🔗",
+ "hashtagsCh": "#韓國成長診所 #兒童身高 #骨齡檢查 #生長激素 #韓國醫療 #小兒成長 #身高管理 #生長板 #個人化治療 #醫療旅遊 #兒童健康 #韓醫美容 #成長潛力 #矮小症 #K醫療",
+ "slides": [
+  {
+   "slideId": "6057a23c-ed1a-46b0-a230-08234618824e",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼選擇韓國成長診所？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "13c2894d-0034-45bd-a92e-f90815846485",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "韓流延伸至醫療領域",
+    "subtext": "K-pop、K-劇之後，輪到K醫療了"
+   }
+  },
+  {
+   "slideId": "344278ae-de29-4014-846c-0587d6a75160",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "精準診斷是核心",
+    "subtext": "骨齡與生長板分析，科學掌握成長潛力"
+   }
+  },
+  {
+   "slideId": "f0f6d328-7b7d-486c-a560-19f82521e072",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "4大核心差異化",
+    "subtext": "骨齡分析 · 個人化治療 · 生活習慣指導 · 一站式服務"
+   }
+  },
+  {
+   "slideId": "8bb93fe9-7475-4e84-9712-b3d18b4a14e4",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素：迷思與真相",
+    "subtext": "由專科醫師診斷確認不足後，才安全補充"
+   }
+  },
+  {
+   "slideId": "a62f7d4b-6849-4223-8fdc-0575965dcf28",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "父母能做的4件事",
+    "subtext": "觀察 · 飲食與睡眠 · 規律運動 · 定期健檢"
+   }
+  },
+  {
+   "slideId": "f3425e00-420b-4d55-b511-ba5acf17a8ec",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "一起了解孩子的成長",
+    "subtext": ""
+   }
+  }
+ ]
+}

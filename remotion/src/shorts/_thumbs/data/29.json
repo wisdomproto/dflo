@@ -1,0 +1,12 @@
+{
+  "n": 29,
+  "slug": "채소숨기기7",
+  "langs": {
+    "ko": { "kicker": "억지로 NO!", "subject": "채소 안 먹는 우리 아이", "number": "7", "numLabel": "가지 몰래 기술", "tagline": "강요 대신 즐거운 경험" },
+    "th": { "kicker": "ไม่ต้องบังคับ!", "subject": "ลูกไม่กินผัก", "number": "7", "numLabel": "เคล็ดลับแอบใส่", "tagline": "ไม่บังคับ แต่ทำให้สนุก" },
+    "vi": { "kicker": "Đừng ép!", "subject": "Con không chịu ăn rau", "number": "7", "numLabel": "Mẹo giấu rau", "tagline": "Không ép · tạo niềm vui" },
+    "en": { "kicker": "No forcing!", "subject": "Your veggie-refusing child", "number": "7", "numLabel": "Sneaky tricks", "tagline": "Make it fun, not forced" },
+    "cn": { "kicker": "别硬逼！", "subject": "不吃菜的孩子", "number": "7", "numLabel": "个藏菜妙招", "tagline": "不强迫 · 变好玩" },
+    "ch": { "kicker": "別硬逼！", "subject": "不吃菜的孩子", "number": "7", "numLabel": "個藏菜妙招", "tagline": "不強迫 · 變好玩" }
+  }
+}

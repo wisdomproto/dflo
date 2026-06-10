@@ -1,0 +1,12 @@
+{
+  "n": 18,
+  "slug": "adhd약키성장",
+  "langs": {
+    "ko": { "kicker": "끊지 마세요!", "subject": "ADHD 약 먹어도 키", "number": "따라잡아요", "numLabel": "관리만 하면", "tagline": "관리하며 뼈나이로 체크" },
+    "th": { "kicker": "อย่าหยุดยา!", "subject": "กินยาสมาธิสั้นก็ยังสูง", "number": "ตามทันได้", "numLabel": "แค่ดูแลให้ดี", "tagline": "ดูแลไป · เช็กอายุกระดูก" },
+    "vi": { "kicker": "Đừng ngừng thuốc!", "subject": "Uống thuốc ADHD vẫn cao", "number": "Bắt kịp được", "numLabel": "chỉ cần theo dõi", "tagline": "Theo dõi · soi tuổi xương" },
+    "en": { "kicker": "Don't stop the meds!", "subject": "Height even on ADHD meds", "number": "Catches up", "numLabel": "with the right care", "tagline": "Manage it, track bone age" },
+    "cn": { "kicker": "别停药！", "subject": "吃多动症药也能长高", "number": "会追上", "numLabel": "管理好就行", "tagline": "边管理 · 用骨龄追踪" },
+    "ch": { "kicker": "別停藥！", "subject": "吃過動症藥也能長高", "number": "會追上", "numLabel": "管理好就行", "tagline": "邊管理 · 用骨齡追蹤" }
+  }
+}

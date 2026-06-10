@@ -1,0 +1,88 @@
+{
+ "idx": 55,
+ "cardnewsId": "e0003981-c3b3-499c-a33c-41ac6c98872e",
+ "captionCh": "這個寒假，你的孩子能長多少呢？🌱\n\n學期間，壓力與不規律的睡眠往往讓生長激素難以充分分泌。寒假是建立規律作息、均衡飲食最好的時機。如果孩子比同齡人矮、每年長不到4公分，或有提早進入青春期的跡象，這個假期正是確認成長狀態的好時機。\n\n想了解更多骨齡檢測與促進成長的相關資訊，歡迎點擊個人頁面連結 🔗",
+ "hashtagsCh": "#孩子長高 #生長激素 #骨齡 #寒假 #低身高 #兒童成長 #青春期提早 #成長板 #小兒科 #育兒知識 #成長管理 #長高方法 #兒童健康 #親子育兒 #成長診所",
+ "slides": [
+  {
+   "slideId": "b11b5473-d686-48f9-b9da-cfcd678db5b8",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "寒假，長高的黃金時期",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "13006e4f-1fd2-4723-98a2-90a9404a7221",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼放假對生長激素更有利",
+    "subtext": "規律睡眠、壓力減少，有助生長激素分泌"
+   }
+  },
+  {
+   "slideId": "d56f492a-5e2c-4a25-a5e6-0030389bc0c2",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "你的孩子有這些信號嗎？",
+    "subtext": "比同齡矮 · 每年不足4cm · 衣服尺碼不變 · 父母個子小 · 青春期跡象提早"
+   }
+  },
+  {
+   "slideId": "483a05cf-e00f-4c4b-ad6a-3d8000fbce23",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡預測骨骺板何時閉合",
+    "subtext": "實際年齡與骨齡的差距，能看出剩餘的成長時間"
+   }
+  },
+  {
+   "slideId": "bfcc8dac-9e2b-4fac-b973-97577ce5f19a",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "睡眠就是生長激素",
+    "subtext": "生長激素在熟睡中分泌最旺盛。假期是建立規律最好的時機"
+   }
+  },
+  {
+   "slideId": "65cb5ad7-84b5-41f3-a610-b52733d24b0b",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "營養與運動，兩個輪子要一起轉",
+    "subtext": "均衡飲食＋規律運動，刺激生長板發育"
+   }
+  },
+  {
+   "slideId": "b85aad43-3eb1-417a-9e06-60e3d9f52c73",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "青春期提早，骨骺板也會更早閉合",
+    "subtext": "出現青春期跡象就及早確認，有助於保住最終身高"
+   }
+  },
+  {
+   "slideId": "01c47354-d8c5-4011-b5ec-1ff5762aa31a",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "假期結束，機會也跟著過去",
+    "subtext": "善用寒假，確認孩子的成長節奏"
+   }
+  }
+ ]
+}

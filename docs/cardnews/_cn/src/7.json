@@ -1,0 +1,78 @@
+{
+ "idx": 7,
+ "cardnewsId": "3e26f12a-e592-413b-b9ef-e05524c80ccb",
+ "captionCh": "你每天讓孩子喝牛奶，是為了讓他長高嗎？ 🥛\n\n鈣質確實能強化骨骼密度，但決定身高的關鍵其實是「生長板」的活躍程度，而不是鈣質本身。促進生長板的主要動力是生長激素——它在深度睡眠和運動時大量分泌。喝太多牛奶反而可能讓孩子吃不下其他食物，錯過蛋白質、維生素D、鋅等同樣重要的營養素。\n\n鈣質的來源不只有牛奶，小魚乾、菠菜、豆腐都是優質選擇。均衡飲食，才是長高的真正關鍵。 🌱\n\n想深入了解孩子的生長發育，歡迎到我們的網站閱讀更多——連結在 bio。",
+ "hashtagsCh": "#兒童長高 #生長激素 #鈣質補充 #牛奶迷思 #生長板 #兒童營養 #均衡飲食 #長高方法 #親子健康 #育兒知識 #維生素D #兒科 #台灣媽媽 #小兒科 #健康成長",
+ "slides": [
+  {
+   "slideId": "8fe8ad99-f408-428d-9f91-03be14454478",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "喝牛奶真的能長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "22c4f8f0-2a86-42e1-9032-5f7351f485df",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鈣質強化骨密度，不等於長高",
+    "subtext": "身高由生長板的活躍程度決定"
+   }
+  },
+  {
+   "slideId": "c754bcec-2227-4e7f-841a-52a4ee00d5fb",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素才是真正的關鍵",
+    "subtext": "充足睡眠與運動能促進分泌"
+   }
+  },
+  {
+   "slideId": "44ae03a1-e538-458c-9d9b-1348c719099b",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "光靠鈣質還不夠",
+    "subtext": "蛋白質 · 維生素D · 鋅同樣不可缺少"
+   }
+  },
+  {
+   "slideId": "39839392-f5ac-4463-98f1-60f732143725",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "喝太多牛奶的陷阱",
+    "subtext": "靠牛奶填飽肚子，反而錯失其他營養素"
+   }
+  },
+  {
+   "slideId": "dd7fbaa2-b422-482e-b331-52c677d43591",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鈣質不只來自牛奶",
+    "subtext": "小魚乾 · 菠菜 · 豆腐也是優質鈣質來源"
+   }
+  },
+  {
+   "slideId": "c26b4ede-b611-4300-9939-f25e79371c3b",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "均衡營養，才是長高的關鍵",
+    "subtext": "牛奶是好的鈣質來源，但均衡飲食更重要"
+   }
+  }
+ ]
+}

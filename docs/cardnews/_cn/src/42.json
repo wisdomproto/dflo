@@ -1,0 +1,108 @@
+{
+ "idx": 42,
+ "cardnewsId": "b1ecfe10-753d-4ab6-a40a-aae001f726be",
+ "captionCh": "孩子一看到蔬菜就把嘴閉得緊緊的嗎？🥦\n\n蔬菜富含維生素、礦物質與膳食纖維，是骨骼發育與免疫力不可或缺的營養素。強迫很少奏效，不妨試試把胡蘿蔔切碎藏進肉丸、把菠菜悄悄混入水果果昔，或把蔬菜切成星星和愛心造型，讓孩子眼睛一亮。\n\n7個隱藏蔬菜的小技巧，完整內容請點個人頁連結 🌿",
+ "hashtagsCh": "#挑食孩子 #蔬菜隱藏術 #孩子不吃菜 #兒童飲食 #挑食解決 #孩子成長 #育兒技巧 #兒童營養 #健康飲食習慣 #187成長診所 #台灣媽媽 #親子料理 #兒童發育 #蔬菜食譜 #挑食剋星",
+ "slides": [
+  {
+   "slideId": "d359ca3e-e203-4c63-9e13-8b5e6eb9e694",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子不吃蔬菜，家長該怎麼辦？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "c120d78a-1d04-4dd0-b391-dd7072ab8a43",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "蔬菜對成長為什麼這麼重要",
+    "subtext": "維生素、礦物質與膳食纖維 — 骨骼發育與免疫力的關鍵"
+   }
+  },
+  {
+   "slideId": "436d064e-406d-4965-80e3-45fa802d828f",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 1 — 切碎藏進喜愛的食物裡",
+    "subtext": "磨碎加進咖哩、肉丸或醬料，孩子完全察覺不到"
+   }
+  },
+  {
+   "slideId": "4cb074ac-398d-442c-a8f4-c8fe21a3b83a",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 2 — 把蔬菜藏進果昔裡",
+    "subtext": "水果的甜味蓋過蔬菜的苦味，孩子喝得津津有味"
+   }
+  },
+  {
+   "slideId": "04026331-9afe-4770-a479-1d35151e1009",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 3 — 把蔬菜變成零食",
+    "subtext": "蔬菜條搭配沾醬，讓孩子把吃菜當成零食時光"
+   }
+  },
+  {
+   "slideId": "1a6ab8bc-29c5-4a9e-8c40-1f1b7d5ceb05",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 4 — 和孩子一起下廚",
+    "subtext": "親手做的食物，孩子總是特別願意嘗試"
+   }
+  },
+  {
+   "slideId": "09c31a75-0272-4b5e-b8e3-dde662ba83ee",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 5 — 把蔬菜做成有趣的造型",
+    "subtext": "星星、愛心、小動物造型，孩子自己就會伸手去拿"
+   }
+  },
+  {
+   "slideId": "de850974-e013-409f-b527-c849d3e33717",
+   "sort_order": 8,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 6 — 用孩子喜歡的醬料搭配",
+    "subtext": "一開始為醬料而吃，慢慢就習慣了蔬菜本身的味道"
+   }
+  },
+  {
+   "slideId": "766b087d-4be3-47a8-bb8c-72ff2270a948",
+   "sort_order": 9,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "技巧 7 — 用鼓勵與獎勵激發動力",
+    "subtext": "正向體驗改變飲食習慣，遠比強迫有效"
+   }
+  },
+  {
+   "slideId": "ce92b917-1793-4484-b7c9-6d2b09c9eeaa",
+   "sort_order": 10,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "讓孩子愛上蔬菜需要時間與耐心",
+    "subtext": "持續嘗試，才能建立長久的健康飲食習慣"
+   }
+  }
+ ]
+}

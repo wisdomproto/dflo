@@ -1,0 +1,12 @@
+{
+  "n": 31,
+  "slug": "자세교정숨은키",
+  "langs": {
+    "ko": { "kicker": "가만 두면 손해!", "subject": "구부정한 우리 아이 키", "number": "−3cm", "numLabel": "가려졌다", "tagline": "바로 펴면 숨은 키가 보인다" },
+    "th": { "kicker": "ปล่อยไว้เสียดาย!", "subject": "ส่วนสูงลูกที่หลังค่อม", "number": "−3ซม.", "numLabel": "ถูกบดบัง", "tagline": "ยืดตัวตรง เผยส่วนสูงที่ซ่อนอยู่" },
+    "vi": { "kicker": "Để vậy thì thiệt!", "subject": "Chiều cao con bị gù", "number": "−3cm", "numLabel": "đang bị che", "tagline": "Đứng thẳng, lộ chiều cao ẩn" },
+    "en": { "kicker": "Don't ignore it!", "subject": "Your child's slouched height", "number": "−3cm", "numLabel": "hidden away", "tagline": "Stand tall, reveal hidden height" },
+    "cn": { "kicker": "放着就亏了！", "subject": "驼背的孩子身高", "number": "−3cm", "numLabel": "被藏住了", "tagline": "挺直腰 露出隐藏身高" },
+    "ch": { "kicker": "放著就虧了！", "subject": "駝背的孩子身高", "number": "−3cm", "numLabel": "被藏住了", "tagline": "挺直腰 露出隱藏身高" }
+  }
+}

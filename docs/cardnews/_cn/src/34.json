@@ -1,0 +1,78 @@
+{
+ "idx": 34,
+ "cardnewsId": "a27298bb-2ed8-4c58-b8ca-aad712a6e1c2",
+ "captionCh": "孩子同時補習3個科目，你擔心壓力正在悄悄影響他的身高嗎？ 😟\n\n長期的壓力會使皮質醇升高，進而抑制生長激素的分泌。生長激素在深度睡眠時分泌最旺盛，若孩子因課業負擔而晚睡或睡不深，可能對身高產生影響。\n\n從日常小習慣開始改變——多和孩子溝通、早點上床睡覺、均衡飲食，以及保留自由玩耍的時間。 🌱\n\n更多詳情請點擊個人頁面連結查看。",
+ "hashtagsCh": "#孩子身高 #生長激素 #壓力與身高 #補習壓力 #兒童健康 #身高成長 #深度睡眠 #皮質醇 #兒童發育 #育兒分享 #台灣媽媽 #親子健康 #長高方法 #187成長診所 #兒科診所",
+ "slides": [
+  {
+   "slideId": "e735d2a5-38db-4a35-9e37-c529c71faf6f",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "補習班上3個，壓力真的會影響身高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "197e72dd-feb6-4cb8-833a-c6b4b6d451c8",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "壓力會阻斷生長激素的分泌",
+    "subtext": "皮質醇升高時，生長激素的分泌就會減少"
+   }
+  },
+  {
+   "slideId": "8c1856df-d25c-46cb-8a71-8d6bf8479ac0",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素在深度睡眠時分泌最旺盛",
+    "subtext": "睡太晚或睡不深，對長高的傷害非常大"
+   }
+  },
+  {
+   "slideId": "f394e603-bd4e-43e8-956e-aa061492837f",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "壓力阻礙身高的4條途徑",
+    "subtext": "荷爾蒙受抑 · 食慾異常 · 慢性疲勞 · 心理退縮"
+   }
+  },
+  {
+   "slideId": "43387594-57ea-4b5c-adf4-57532768f46b",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "父母可以做的6件事",
+    "subtext": "溝通 · 調整學習量 · 睡眠 · 營養 · 運動 · 遊戲"
+   }
+  },
+  {
+   "slideId": "58ed9198-79ad-4018-ae9f-26f951a3d8d6",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "小改變，大影響",
+    "subtext": "減少壓力、守護睡眠，就是改變的起點"
+   }
+  },
+  {
+   "slideId": "d2a8ff64-7b6e-4222-8dd1-ac6bc870b034",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "壓力少一點，身高長一點",
+    "subtext": "現在就來檢視孩子的生活習慣吧"
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "n": 60,
+  "slug": "수면루틴30일",
+  "langs": {
+    "ko": { "kicker": "의사가 직접 해봄!", "subject": "우리 아이 키 크는", "number": "30일", "numLabel": "수면 루틴", "tagline": "깊은 잠이 키를 키운다" },
+    "th": { "kicker": "หมอลองเอง!", "subject": "ช่วยลูกสูงด้วย", "number": "30 วัน", "numLabel": "รูทีนการนอน", "tagline": "หลับลึก ช่วยให้สูง" },
+    "vi": { "kicker": "Bác sĩ tự thử!", "subject": "Giúp con cao nhờ", "number": "30 ngày", "numLabel": "thói quen ngủ", "tagline": "Ngủ sâu giúp con cao" },
+    "en": { "kicker": "A doctor tried it!", "subject": "Help your child grow:", "number": "30 days", "numLabel": "sleep routine", "tagline": "Deep sleep grows height" },
+    "cn": { "kicker": "医生亲测！", "subject": "帮孩子长高的", "number": "30天", "numLabel": "睡眠习惯", "tagline": "深睡眠 助长高" },
+    "ch": { "kicker": "醫生親測！", "subject": "幫孩子長高的", "number": "30天", "numLabel": "睡眠習慣", "tagline": "深睡眠 助長高" }
+  }
+}

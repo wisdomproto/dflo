@@ -1,0 +1,78 @@
+{
+ "idx": 15,
+ "cardnewsId": "5c14581e-12fc-475a-aa8d-880c13090a23",
+ "captionCh": "孩子的身高突然停止生長了嗎？或許是時候檢查甲狀腺了。🦋\n\n甲狀腺荷爾蒙是孩子生長的『總司令』，同時統籌骨骼發育、大腦成熟與能量代謝。當荷爾蒙不足時，生長速度會變慢，骨齡也可能比同齡孩子小。\n\n如果孩子還出現容易疲勞、體重增加、怕冷或注意力下降等情況，建議考慮做甲狀腺功能檢查。找出真正的原因，才是守護孩子生長黃金期的第一步。🌱\n\n詳細內容請點擊個人頁面的連結閱讀完整文章。",
+ "hashtagsCh": "#甲狀腺 #甲狀腺低下 #兒童生長 #孩子身高 #生長荷爾蒙 #骨齡 #生長遲緩 #兒科 #育兒知識 #身高管理 #187生長診所 #台灣媽媽 #兒童健康 #生長黃金期 #甲狀腺功能",
+ "slides": [
+  {
+   "slideId": "99f302ba-1fbe-4611-91d6-44138e08eea1",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子的身高突然停了？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "884790a9-2713-4bdb-8a22-8655457ce582",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "甲狀腺：掌控生長的總司令",
+    "subtext": "統籌骨骼生長、大腦發育與能量代謝"
+   }
+  },
+  {
+   "slideId": "bc943d6b-867e-4944-b6b3-89adaef65c66",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "荷爾蒙不足 → 骨骼生長停滯",
+    "subtext": "骨骼成熟延遲，骨齡看起來比同齡孩子小"
+   }
+  },
+  {
+   "slideId": "1c1a5d6c-7356-4dcf-b044-d4637a30c9fa",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "出現這些症狀要留意",
+    "subtext": "容易疲勞 · 體重增加 · 怕冷 · 注意力下降"
+   }
+  },
+  {
+   "slideId": "7159efd6-b95a-45af-a651-415924b5905b",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "早期發現，守住生長黃金期",
+    "subtext": "骨齡檢查加甲狀腺功能檢測，能精準找出原因"
+   }
+  },
+  {
+   "slideId": "564a356b-5b28-413c-8e64-bfcdd239f992",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "治療後，生長速度可以重新恢復",
+    "subtext": "持續補充荷爾蒙，數值恢復正常後，生長可以重新啟動"
+   }
+  },
+  {
+   "slideId": "25b1c397-c276-4286-a1ba-182fd96f2234",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "找到原因，就能解決",
+    "subtext": "生長停滯的原因很多，準確檢查才是第一步"
+   }
+  }
+ ]
+}

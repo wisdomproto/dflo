@@ -1,0 +1,88 @@
+{
+ "idx": 21,
+ "cardnewsId": "6f4ae176-1c7f-4dac-9a6d-0eeb1ffdffa1",
+ "captionCh": "曾經搜尋生長激素副作用，越看越害怕嗎？🤔\n\n事實是，在核准劑量範圍內，目前並無明確證據顯示會增加罹癌風險。常見副作用如注射部位反應、頭痛、輕微水腫，大多症狀輕微，在專科醫師的定期監測下皆可妥善處理。甲狀腺功能與血糖變化也能透過定期抽血及早發現。\n\n正確的資訊永遠比模糊的恐懼更有幫助。👨‍⚕️ 更多詳情請點選個人頁面連結，前往 187 成長診所官網查閱。",
+ "hashtagsCh": "#生長激素 #生長激素副作用 #生長激素治療 #兒童長高 #矮小症 #生長遲緩 #兒科內分泌 #小兒生長 #長高診所 #育兒知識 #孩子健康 #台灣親子 #兒童健康 #187生長診所 #生長荷爾蒙",
+ "slides": [
+  {
+   "slideId": "3966cadd-421a-4708-9372-cb682d63e7ff",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素注射，真的很危險嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "7d158c80-9a63-4932-874f-233ef9e85574",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "哪些孩子才真正需要治療？",
+    "subtext": "以醫學診斷為依據，不是單純因為個子矮"
+   }
+  },
+  {
+   "slideId": "e61ba930-ca6c-4171-b1b3-0666a757005e",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "會致癌或引發糖尿病？來查清楚",
+    "subtext": "核准劑量下無癌症風險證據 · 血糖可透過定期檢查管理"
+   }
+  },
+  {
+   "slideId": "a0170ba1-08af-489b-ad13-a869452dc234",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "4種常見副作用，大多輕微可控",
+    "subtext": "注射部位反應 · 頭痛噁心 · 關節疼痛 · 水腫"
+   }
+  },
+  {
+   "slideId": "a9045d83-2705-4fac-99b2-554c592cf293",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "罕見副作用——記住這兩點就夠了",
+    "subtext": "甲狀腺功能低下 & 顱內壓升高 — 定期檢查可及早發現"
+   }
+  },
+  {
+   "slideId": "b8cc3cc9-d545-4462-bc9b-541613c538a4",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "專科醫師守護安全的4個步驟",
+    "subtext": "精準診斷 · 定期監測 · 親師溝通 · 生活習慣指導"
+   }
+  },
+  {
+   "slideId": "c8a7d524-5775-4093-a187-04773ac25e25",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "正確資訊勝過模糊的恐懼",
+    "subtext": "大多數副作用輕微，在專科醫師監督下皆可管理"
+   }
+  },
+  {
+   "slideId": "0f58b6dc-39a6-4646-bf15-90610f66cd5e",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "有疑問的話，不妨和專科醫師聊聊",
+    "subtext": "準確的診斷能消除不必要的擔憂"
+   }
+  }
+ ]
+}

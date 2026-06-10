@@ -1,0 +1,78 @@
+{
+ "idx": 47,
+ "cardnewsId": "cb4853ba-6c20-4d3e-937e-8e688b77884d",
+ "captionCh": "您有沒有想過，孩子的身高在同齡人中究竟排在哪裡？📏\n\n近年來小學生的平均身高持續增高，這與營養改善和生活環境變化密切相關。但平均值越高，家長的擔憂也往往隨之增加。\n\n孩子的身高不只取決於遺傳（約佔70~80%），睡眠、營養、運動與壓力管理同樣扮演重要角色。如果孩子每年成長不足4公分，建議進一步確認。骨齡檢查能幫助了解孩子還有多少成長空間，讓家長可以更有方向地規劃。🌱\n\n與其模糊地等待，不如先準確掌握孩子目前的成長狀況。歡迎至我們的網站了解更多。👉 dr187growup.com",
+ "hashtagsCh": "#孩子身高 #兒童成長 #小學生身高 #骨齡 #成長激素 #長高 #成長板 #兒童健康 #小兒成長 #身高管理 #成長緩慢 #親子健康 #187成長診所 #兒童發育 #成長煩惱",
+ "slides": [
+  {
+   "slideId": "0e484844-3e17-4761-9048-fede59b7cb1e",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "您的孩子身高在哪個位置？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "9dbb58c8-02a1-4302-a3f5-4bc0bde09718",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "小學生平均身高持續增高",
+    "subtext": "營養改善與生活環境變化共同作用的結果"
+   }
+  },
+  {
+   "slideId": "0eae8341-e8cb-41e2-903c-7ef629b673e1",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "每年長不到4公分，需要留意",
+    "subtext": "尤其是身高低於平均且成長速度緩慢同時出現時"
+   }
+  },
+  {
+   "slideId": "0d465c1c-10c4-4fbe-af86-4acb7d2b3c72",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "決定身高的5大因素",
+    "subtext": "遺傳 · 營養 · 睡眠 · 運動 · 壓力"
+   }
+  },
+  {
+   "slideId": "ac965c96-91ad-4d92-bde7-08cbee680d6b",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡揭示孩子的成長潛力",
+    "subtext": "骨齡比實際年齡小，代表還有更多成長時間"
+   }
+  },
+  {
+   "slideId": "2dfb019f-69aa-4053-8812-b871af4a8d44",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長激素治療並非每個孩子都需要",
+    "subtext": "透過準確診斷找出原因，並在適當時機介入，才是關鍵"
+   }
+  },
+  {
+   "slideId": "e7b15568-181f-4db8-b1a9-910a2745aade",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "準確確認比模糊擔心更重要",
+    "subtext": "正確掌握孩子的成長狀況，才是明智的第一步"
+   }
+  }
+ ]
+}

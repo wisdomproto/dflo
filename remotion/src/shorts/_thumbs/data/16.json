@@ -1,0 +1,12 @@
+{
+  "n": 16,
+  "slug": "환경호르몬성조숙",
+  "langs": {
+    "ko": { "kicker": "성장판 비상!", "subject": "우리 아이 키 훔치는", "number": "가짜", "numLabel": "성호르몬", "tagline": "습관으로 줄이고 뼈나이로 확인" },
+    "th": { "kicker": "เตือนภัยแผ่นเจริญเติบโต!", "subject": "ตัวขโมยส่วนสูงลูก", "number": "ของปลอม", "numLabel": "ฮอร์โมนเพศปลอม", "tagline": "ลดด้วยพฤติกรรม · เช็กด้วยอายุกระดูก" },
+    "vi": { "kicker": "Báo động sụn tăng trưởng!", "subject": "Kẻ trộm chiều cao của con", "number": "Giả mạo", "numLabel": "hormone giới tính giả", "tagline": "Giảm bằng thói quen · soi tuổi xương" },
+    "en": { "kicker": "Growth plates at risk!", "subject": "What steals your child's height", "number": "Fake", "numLabel": "fake sex hormone", "tagline": "Cut by habits, check bone age" },
+    "cn": { "kicker": "生长板警报！", "subject": "偷走孩子身高的", "number": "假冒", "numLabel": "假性激素", "tagline": "靠习惯减少 · 用骨龄确认" },
+    "ch": { "kicker": "生長板警報！", "subject": "偷走孩子身高的", "number": "假冒", "numLabel": "假性荷爾蒙", "tagline": "靠習慣減少 · 用骨齡確認" }
+  }
+}

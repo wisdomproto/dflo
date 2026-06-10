@@ -115,6 +115,7 @@ export type BlogSeoMap = Partial<Record<BlogSeoLangCode, BlogSeoArticle>>;
 // they are shared (single source) from the cardnews (marketing_cardnews).
 export interface ReelsLangData {
   videoUrl: string | null;
+  coverUrl: string | null; // 인스타 릴스 커버(섬네일) — 언어별 (텍스트가 박혀 있어 per-lang)
 }
 export type ReelsMap = Partial<Record<string, ReelsLangData>>;
 

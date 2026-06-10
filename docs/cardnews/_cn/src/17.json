@@ -1,0 +1,78 @@
+{
+ "idx": 17,
+ "cardnewsId": "6259153a-17ee-4ff6-9d72-c7c29afa2fed",
+ "captionCh": "你知道孩子祖父母的身高嗎？🧬\n\n你是否曾疑惑，為什麼有些孩子比父母高很多，或者父母都高，孩子卻比同齡人矮？這背後往往藏著「隔代遺傳」的秘密——祖父母那一代沉睡的基因，可能在孫子女身上重新甦醒。因此，要準確評估孩子的成長潛力，了解四位祖父母的身高非常重要。\n\n孩子的可能性，也許比你想像的更大。更多資訊請點選個人頁面連結 🌱",
+ "hashtagsCh": "#隔代遺傳 #祖父母身高 #孩子身高 #身高遺傳 #成長潛力 #兒童生長 #生長激素 #骨齡檢查 #矮小症 #家族性矮小 #兒童健康 #187生長診所 #身高預測 #成長門診 #兒科醫師",
+ "slides": [
+  {
+   "slideId": "9b99dd7e-3900-4766-9e17-2cb29db757bc",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "祖父母的身高，為什麼重要？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "916bba05-1e27-4674-bd4a-483579ea5d7d",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "光看父母身高還不夠的原因",
+    "subtext": "遺傳不只來自父母，也來自祖父母"
+   }
+  },
+  {
+   "slideId": "2a01baa6-71a1-481d-95f2-06501c3959c2",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "隔代遺傳——沉睡的基因甦醒了",
+    "subtext": "在父母身上沉寂的基因，可能在孩子身上重新表現"
+   }
+  },
+  {
+   "slideId": "46e8c7e4-2bb4-4a7a-b75b-cff7e4d6ba37",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "父母高，孩子不一定也高",
+    "subtext": "祖父母潛藏的基因可能跨代出現在孫子身上"
+   }
+  },
+  {
+   "slideId": "98138473-a891-48c3-b6bf-763e46414c16",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "家族史要追溯到祖父母才完整",
+    "subtext": "了解四位祖父母的身高，才能更準確評估孩子的成長潛力"
+   }
+  },
+  {
+   "slideId": "d7cd869a-d861-46e0-a96e-be94c2167679",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "提升成長潛力的4個步驟",
+    "subtext": "家族史調查 · 骨齡分析 · 把握時機 · 個人化策略"
+   }
+  },
+  {
+   "slideId": "d5c6ed66-8281-4147-a238-8204855da917",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "一起探索孩子隱藏的成長潛力",
+    "subtext": "包含祖父母的完整家族史，能為孩子開啟更多可能性"
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "n": 48,
+  "slug": "우유칼슘신화",
+  "langs": {
+    "ko": { "kicker": "우유의 진실", "subject": "우리 아이 키 우유로", "number": "칼슘", "numLabel": "만으론 안 큰다", "tagline": "칼슘은 밀도 · 키는 균형이 답" },
+    "th": { "kicker": "ความจริงเรื่องนม", "subject": "ส่วนสูงลูก · ดื่มนม", "number": "แคลเซียม", "numLabel": "อย่างเดียวไม่พอ", "tagline": "แคลเซียมเพิ่มความหนาแน่น · ต้องสมดุล" },
+    "vi": { "kicker": "Sự thật về sữa", "subject": "Chiều cao con · uống sữa", "number": "Canxi", "numLabel": "một mình chưa đủ", "tagline": "Canxi tăng mật độ · cân bằng mới cao" },
+    "en": { "kicker": "The truth about milk", "subject": "Your child's height · milk", "number": "Calcium", "numLabel": "alone won't do it", "tagline": "Calcium builds density · balance grows height" },
+    "cn": { "kicker": "牛奶的真相", "subject": "孩子身高 · 喝牛奶", "number": "钙", "numLabel": "光靠它长不高", "tagline": "钙增密度 · 均衡才长高" },
+    "ch": { "kicker": "牛奶的真相", "subject": "孩子身高 · 喝牛奶", "number": "鈣", "numLabel": "光靠它長不高", "tagline": "鈣增密度 · 均衡才長高" }
+  }
+}

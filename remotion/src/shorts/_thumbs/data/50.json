@@ -1,0 +1,12 @@
+{
+  "n": 50,
+  "slug": "학원스트레스키",
+  "langs": {
+    "ko": { "kicker": "학원 3개?!", "subject": "우리 아이 키", "number": "STOP", "numLabel": "스트레스가 막는다", "tagline": "쉼과 잠으로 되돌릴 수 있다" },
+    "th": { "kicker": "เรียนพิเศษ 3 ที่?!", "subject": "ส่วนสูงลูก", "number": "STOP", "numLabel": "ความเครียดขวางไว้", "tagline": "พักและนอนช่วยฟื้นได้" },
+    "vi": { "kicker": "3 lớp học thêm?!", "subject": "Chiều cao con", "number": "STOP", "numLabel": "căng thẳng chặn lại", "tagline": "Nghỉ và ngủ giúp đảo ngược" },
+    "en": { "kicker": "3 academies?!", "subject": "Your child's height", "number": "STOP", "numLabel": "stress blocks it", "tagline": "Rest & sleep can reverse it" },
+    "cn": { "kicker": "3个补习班？！", "subject": "孩子身高", "number": "STOP", "numLabel": "压力在阻挡", "tagline": "休息和睡眠能扭转" },
+    "ch": { "kicker": "3個補習班？！", "subject": "孩子身高", "number": "STOP", "numLabel": "壓力在阻擋", "tagline": "休息和睡眠能扭轉" }
+  }
+}

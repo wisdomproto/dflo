@@ -1,0 +1,12 @@
+{
+  "n": 34,
+  "slug": "중금속식탁",
+  "langs": {
+    "ko": { "kicker": "잘 먹여도 키 안 커요?", "subject": "우리 아이 키 막는", "number": "숨은 적", "numLabel": "중금속", "tagline": "식탁으로 매일 배출하자" },
+    "th": { "kicker": "กินดีแต่ไม่สูง?", "subject": "ตัวขัดขวางส่วนสูงลูก", "number": "ศัตรูซ่อน", "numLabel": "โลหะหนัก", "tagline": "ขับออกได้ทุกวันด้วยมื้ออาหาร" },
+    "vi": { "kicker": "Ăn tốt mà không cao?", "subject": "Kẻ cản chiều cao của con", "number": "Kẻ ẩn", "numLabel": "kim loại nặng", "tagline": "Bữa ăn giúp đào thải mỗi ngày" },
+    "en": { "kicker": "Eats well but stays short?", "subject": "What blocks your child's growth", "number": "Hidden foe", "numLabel": "heavy metals", "tagline": "Flush it out at the dinner table" },
+    "cn": { "kicker": "吃得好却长不高？", "subject": "挡住孩子长高的", "number": "隐形敌人", "numLabel": "重金属", "tagline": "餐桌每天帮排出" },
+    "ch": { "kicker": "吃得好卻長不高？", "subject": "擋住孩子長高的", "number": "隱形敵人", "numLabel": "重金屬", "tagline": "餐桌每天幫排出" }
+  }
+}

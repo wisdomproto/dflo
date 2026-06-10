@@ -1,0 +1,68 @@
+{
+ "n": 22,
+ "topicTitle": "키 성장 식단 영양소 피라미드 — 먹어야 할 것 vs 피해야 할 것 완벽 가이드",
+ "ko": {
+  "h1": "키 성장 식단 영양소 피라미드 — 먹어야 할 것 vs 피해야 할 것 완벽 가이드",
+  "faq": [
+   {
+    "a": "단백질, 칼슘, 비타민 D가 가장 중요한 성장 필수 영양소입니다. 단백질은 뼈와 근육의 원료이고, 칼슘은 뼈 밀도를 높이며, 비타민 D는 칼슘이 실제로 뼈에 흡수·저장되도록 돕습니다. 이 세 가지가 동시에 충족될 때 키 성장 효과가 극대화됩니다.",
+    "q": "키 성장 식단에서 가장 중요한 영양소는 무엇인가요?"
+   },
+   {
+    "a": "완전히 금지할 필요는 없지만 빈도를 줄이는 것이 핵심입니다. 탄산음료·과자·패스트푸드는 주 1회 이하로 제한하고, 카페인이 든 음료(콜라, 에너지 드링크)는 가급적 피하는 것이 좋습니다. 성장기에는 이러한 음식이 혈당 스파이크와 칼슘 손실을 유발해 성장호르몬 분비를 방해할 수 있습니다.",
+    "q": "성장기 먹으면 안 되는 음식은 완전히 끊어야 하나요?"
+   },
+   {
+    "a": "학령기 아이(7~12세)의 하루 칼슘 권장량은 약 800~1,000mg입니다. 우유 1컵(200ml)에 칼슘이 약 220mg 들어 있으므로, 하루 2~3잔을 마시면 기본을 채울 수 있습니다. 우유를 소화하기 어렵다면 치즈·요거트·멸치·두부 등 다른 키 크는 음식 종류로 대체할 수 있습니다.",
+    "q": "하루에 우유를 몇 잔 먹여야 칼슘이 충분한가요?"
+   }
+  ],
+  "slug": "height-growth-diet-nutrients-guide",
+  "sections": [
+   {
+    "html": "<p>키 성장 식단 영양소는 수면이나 운동만큼 중요한 성장 인자입니다. 세포 분열, 뼈 형성, 성장호르몬 분비가 모두 식사에서 공급되는 원료에 달려 있기 때문입니다. 소아 성장 전문의로서 수백 명의 아이를 관찰한 결과, 식단의 질을 바꾼 것만으로도 연간 성장 속도가 눈에 띄게 달라지는 사례를 반복해서 확인했습니다. 성장은 한 번의 노력이 아니라 매 끼니가 쌓인 결과입니다. 오늘은 키 크는 음식 종류와 반드시 제한해야 할 음식을 피라미드 구조로 정리해 드립니다.</p>",
+    "heading": "키 성장 식단 영양소, 왜 '무엇을 먹느냐'가 결정적인가",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1781054231917-ltt0is.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9. A tall food pyramid diagram centered on a light mint background. Bottom layer shows protein foods, dairy, and vegetables in pastel colors. Middle layer shows whole grains and fruits. Top small layer shows processed snacks in muted tones. A small child figure stands next to the pyramid for scale. No text or numbers inside the image. Soft shadows, clean lines, pastel palette with mint accent."
+   },
+   {
+    "html": "<p>피라미드의 가장 넓은 하단 층에는 매일 충분히 섭취해야 할 성장 필수 영양소들이 자리합니다.</p><ul><li><strong>단백질</strong> — 세포·근육·뼈를 구성하는 핵심 원료입니다. 닭가슴살, 소고기, 두부, 달걀, 유제품을 통해 동물성·식물성 단백질을 균형 있게 섭취해야 성장호르몬 분비가 원활해집니다.</li><li><strong>칼슘</strong> — 뼈 밀도를 높이는 1순위 미네랄입니다. 우유·치즈·요거트뿐 아니라 멸치, 해조류, 시금치에도 풍부합니다.</li><li><strong>비타민 D</strong> — 칼슘이 실제로 뼈에 쌓이려면 비타민 D가 반드시 필요합니다. 고등어·연어, 버섯, 비타민 D 강화 우유로 보충할 수 있습니다.</li><li><strong>아연</strong> — 성장호르몬 분비와 세포 분열을 촉진합니다. 굴, 소고기, 견과류에 많습니다.</li><li><strong>철분</strong> — 산소 운반 능력을 유지해 성장 에너지를 지탱합니다. 붉은 고기, 시금치를 비타민 C와 함께 먹으면 흡수율이 높아집니다.</li><li><strong>복합 탄수화물</strong> — 현미, 잡곡밥, 고구마처럼 혈당을 천천히 올리는 에너지원이 활발한 성장기 아이에게 적합합니다.</li><li><strong>수분</strong> — 영양소 운반과 노폐물 배출의 기반입니다. 하루 6~8잔을 목표로 합니다.</li></ul>",
+    "heading": "피라미드 하단: 성장 필수 영양소 7가지",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1781054235480-kt3k89.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Seven food icons arranged in a horizontal row on a pastel cream background: a chicken leg, a glass of milk, a fish, an egg, a bowl of mixed grains, a green leafy vegetable bunch, and a water droplet. Each icon is a soft rounded shape in distinct pastel colors with mint accent outlines. Small sparkle details above each icon suggest nutrition and vitality. No text or letters. Clean white background with subtle shadow."
+   },
+   {
+    "html": "<p>성장 필수 영양소는 단독으로 먹을 때보다 조합이 중요합니다. 대표적인 시너지 예시를 확인하세요.</p><ul><li><strong>아침</strong>: 달걀 2개 + 통밀빵 + 저지방 우유 1컵 — 단백질, 칼슘, 복합 탄수화물이 한 번에.</li><li><strong>점심</strong>: 현미밥 + 고등어조림 + 시금치나물 + 요거트 — 칼슘·비타민 D·철분·아연이 균형 있게.</li><li><strong>저녁</strong>: 두부된장국 + 소고기볶음 + 브로콜리 — 단백질과 비타민 K(뼈 형성)를 동시에.</li><li><strong>간식</strong>: 과일 + 견과류 한 줌 + 치즈 — 설탕 없이 아연과 칼슘을 보충.</li></ul><p>편식하는 아이에게는 조리법 변화(스무디에 시금치 넣기, 두부를 볶음 요리에 섞기 등)가 실용적인 접근법입니다.</p>",
+    "heading": "키 크는 음식 종류별 식사 조합 예시",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1781054239938-t6f8sf.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9. Three meal plate icons arranged left to right labeled morning, noon, evening. Each plate shows different simplified food items in pastel colors: egg and bread, rice bowl with fish, tofu and broccoli. Plates have mint rims, arranged on a soft cream table surface with minimal shadows. A small fruit and nut snack icon sits in the corner. No text or numbers. Clean and cheerful."
+   },
+   {
+    "html": "<p>성장기 먹으면 안 되는 음식은 피라미드 꼭대기에 위치합니다. 적을수록 좋습니다.</p><ol><li><strong>설탕·가공식품</strong> — 혈당을 급격히 올리면 인슐린이 과다 분비되고, 이는 성장호르몬 분비를 억제합니다. 탄산음료, 과자, 아이스크림은 칼로리만 높고 성장 영양소는 거의 없습니다. 비만과 성조숙증 위험도 함께 높아집니다.</li><li><strong>패스트푸드·인스턴트</strong> — 햄버거, 라면, 냉동 피자는 나트륨과 포화지방 함량이 높습니다. 자주 먹을수록 균형 잡힌 식사 기회가 줄어 성장 영양소 결핍으로 이어집니다.</li><li><strong>과도한 염분</strong> — 짠 음식은 소변으로 칼슘 배출을 촉진합니다. 뼈가 자라는 시기에 칼슘을 쌓기는커녕 잃는 상황이 반복됩니다.</li><li><strong>카페인</strong> — 콜라, 에너지 드링크, 초콜릿의 카페인은 깊은 수면을 방해합니다. 수면 중에 분비되는 성장호르몬이 줄면 키 성장 속도도 함께 떨어집니다.</li></ol>",
+    "heading": "피라미드 상단: 성장기 먹으면 안 되는 음식 4가지",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1781054242502-or9sky.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9. A small inverted pyramid tip section shown at the top against a soft red-tinted pastel background. Inside are four food icons: a soda cup, a fast food burger box, a salt shaker, and a coffee cup, all in muted coral and grey tones. Red X marks float above each icon. The rest of the image fades to cream. No text. Clean flat design, soft shadows."
+   },
+   {
+    "html": "<p>좋은 재료를 알아도 실천이 어렵다면 의미가 없습니다. 바로 적용할 수 있는 습관 여섯 가지를 정리합니다.</p><ul><li><strong>규칙적인 식사 시간</strong>: 하루 세 끼를 일정한 시간에 먹으면 소화·흡수 리듬이 안정되고 성장호르몬 분비 패턴에도 긍정적 영향을 줍니다.</li><li><strong>골고루 먹는 습관</strong>: 편식은 특정 영양소 결핍으로 직결됩니다. 싫어하는 채소는 조리법이나 형태를 바꿔 노출 횟수를 늘리는 것이 효과적입니다.</li><li><strong>건강한 간식 전환</strong>: 과자 대신 과일·견과류·요거트·치즈를 선택하면 추가 영양소 없이 칼로리를 줄일 수 있습니다.</li><li><strong>즐거운 식사 분위기</strong>: 강압적인 식사 지도는 아이에게 스트레스를 주고 소화를 방해합니다. 가족이 함께 대화하며 먹는 환경이 오히려 식욕을 높입니다.</li><li><strong>식사 중 스마트폰 제한</strong>: 스마트폰을 보며 먹으면 포만감 신호를 놓쳐 과식하거나, 반대로 식사에 집중하지 못해 영양 섭취가 줄 수 있습니다.</li><li><strong>충분한 수분 섭취</strong>: 물을 식탁 위에 항상 두고 식전·식후·운동 후 마시는 습관을 들입니다.</li></ul>",
+    "heading": "성장 전문의가 권하는 일상 식습관 실천 팁",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1781054245594-bq6ky8.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9. A family dining scene from above-angle view. Two parent figures and a child figure seated at a round table with colorful food plates. Mint green table cloth, pastel yellow walls. A water glass is visible. No phone on the table. Warm, cheerful lighting effect. Soft rounded character shapes, no facial details. Pastel palette with mint accent. No text."
+   },
+   {
+    "html": "<p>키 성장 식단 영양소를 균형 있게 갖추려면 아래 체크리스트를 주 1회 점검해 보세요.</p><ul><li>단백질 식품(육류·생선·콩·달걀 중 하나)을 매 끼니 포함했는가?</li><li>유제품 또는 칼슘이 풍부한 식품을 하루 2회 이상 먹었는가?</li><li>탄산음료·과자를 이번 주에 3회 이상 먹지 않았는가?</li><li>라면·패스트푸드를 이번 주에 1회 이하로 제한했는가?</li><li>다양한 색깔의 채소(2종 이상)를 매일 먹었는가?</li></ul><p>아이의 성장이 또래에 비해 눈에 띄게 느리거나 걱정이 지속된다면, 식단 개선과 함께 성장 전문 의료기관에서 뼈나이 검사와 정밀 진찰을 받는 것이 도움이 될 수 있습니다. 전문적인 평가를 통해 현재 성장 상태를 정확히 파악하고 맞춤 방향을 찾을 수 있습니다.</p><p><em>※ 본 글은 의학적 정보 제공을 목적으로 하며, 개인마다 결과는 다를 수 있습니다.</em></p>",
+    "heading": "키 성장 식단, 이렇게 점검하세요",
+    "imageUrl": "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/images/marketing/1781054249625-4r9ahg.webp",
+    "imagePrompt": "Flat 2D vector illustration, 16:9. A clipboard with a simple checklist graphic showing five rounded checkbox rows, checkmarks in mint green on some rows, empty circles on others. A small magnifying glass hovers over the clipboard. Background is soft pastel blue-white gradient. A small plant sprout icon in the corner suggesting growth. No text or letters. Clean, minimal flat design with soft drop shadows."
+   }
+  ],
+  "seoTitle": "키 성장 식단 영양소 완벽 가이드 — 먹어야 vs 피해야",
+  "primaryKeyword": "키 성장 식단 영양소",
+  "metaDescription": "키 성장 식단 영양소를 피라미드로 정리했습니다. 성장 필수 영양소와 성장기 먹으면 안 되는 음식을 한눈에 확인하세요.",
+  "secondaryKeywords": [
+   "성장기 먹으면 안 되는 음식",
+   "키 크는 음식 종류",
+   "성장 필수 영양소"
+  ]
+ }
+}

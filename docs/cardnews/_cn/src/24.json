@@ -1,0 +1,78 @@
+{
+ "idx": 24,
+ "cardnewsId": "7f134893-573b-4ae4-8cc2-040d39bbd241",
+ "captionCh": "孩子最近是不是比較容易發脾氣，或者睡眠變差了呢？壓力的影響可能比你想像的更深遠。🤔\n\n壓力下分泌的「皮質醇」荷爾蒙，會直接抑制生長激素的分泌、減緩生長板細胞的活動，還會破壞深層睡眠——而深層睡眠正是孩子生長的黃金時段。就算營養充足，長期壓力仍可能悄悄拖慢孩子的身高發育。\n\n留意這些小訊號：情緒起伏、食慾改變、或夜眠不安。壓力管理，往往是守護孩子身高最容易被忽略的第一步。🌱\n\n詳細內容請點選個人頁面連結閱讀完整文章。",
+ "hashtagsCh": "#兒童身高 #生長激素 #皮質醇 #壓力與生長 #孩子長高 #生長板 #兒童健康 #育兒知識 #兒童發育 #睡眠與生長 #長高方法 #兒童營養 #187生長診所 #小兒成長 #親子健康",
+ "slides": [
+  {
+   "slideId": "62493d50-5833-42a4-a824-36601622ebbf",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "壓力真的會阻礙孩子長高嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "7e6ebd5a-8915-4c81-b6cc-9a3b5f545c89",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "皮質醇——生長激素的天敵",
+    "subtext": "壓力時腎上腺分泌的激素，過量會干擾生長"
+   }
+  },
+  {
+   "slideId": "be237de3-9a75-4afa-abb2-05c77af9ddf5",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "皮質醇阻礙長高的4條路徑",
+    "subtext": "① 抑制生長激素  ② 減緩生長板細胞  ③ 干擾睡眠  ④ 食慾不振與營養吸收下降"
+   }
+  },
+  {
+   "slideId": "6ce37b5c-e968-42d9-ac4a-f1c29bc82977",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "深度睡眠是生長激素的黃金時段",
+    "subtext": "壓力使皮質醇偏高，整夜難以分泌生長激素"
+   }
+  },
+  {
+   "slideId": "952837d0-f85b-4537-8d35-bf3ddac53f94",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "孩子有出現這些訊號嗎？",
+    "subtext": "易怒・食慾變化・睡眠異常・身體症狀・失去興趣・焦慮行為"
+   }
+  },
+  {
+   "slideId": "d9540dc6-c67b-4866-8083-ae39ac51642a",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "在壓力中守護身高的5個習慣",
+    "subtext": "充足睡眠・均衡飲食・規律運動・家庭對話・充分玩耍"
+   }
+  },
+  {
+   "slideId": "08e37ee0-cc35-4a75-8c50-48e8e2b66824",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "管理壓力，是長高的第一步",
+    "subtext": "孩子心情放鬆時，身體也會跟著成長"
+   }
+  }
+ ]
+}

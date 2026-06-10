@@ -1,0 +1,12 @@
+{
+  "n": 52,
+  "slug": "moyu-bunyu-ki",
+  "langs": {
+    "ko": { "kicker": "오해 풀어요", "subject": "모유 먹인 우리 아이 키", "number": "80%", "numLabel": "는 유전이 결정", "tagline": "모유·분유 키 차이 없어요" },
+    "th": { "kicker": "เลิกเข้าใจผิด", "subject": "ลูกกินนมแม่ · ส่วนสูง", "number": "80%", "numLabel": "มาจากพันธุกรรม", "tagline": "นมแม่นมผงสูงเท่ากัน" },
+    "vi": { "kicker": "Hết hiểu lầm", "subject": "Bé bú mẹ · chiều cao", "number": "80%", "numLabel": "do di truyền quyết định", "tagline": "Sữa mẹ sữa công thức cao như nhau" },
+    "en": { "kicker": "Myth, cleared", "subject": "Breastfed child's height", "number": "80%", "numLabel": "is set by genes", "tagline": "Breast or formula, same height" },
+    "cn": { "kicker": "别误会了", "subject": "母乳宝宝身高", "number": "80%", "numLabel": "由遗传决定", "tagline": "母乳奶粉一样高" },
+    "ch": { "kicker": "別誤會了", "subject": "母乳寶寶身高", "number": "80%", "numLabel": "由遺傳決定", "tagline": "母乳奶粉一樣高" }
+  }
+}

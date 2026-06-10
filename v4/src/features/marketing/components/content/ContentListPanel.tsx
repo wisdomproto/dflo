@@ -19,6 +19,8 @@ interface Props {
   onNew: () => void;
   onDelete: (id: string) => void;
   onReorder: (orderedIds: string[]) => void;
+  onStatus: () => void;
+  statusActive: boolean;
 }
 
 // ── Sortable row ────────────────────────────────────────────────────────────
@@ -106,7 +108,7 @@ function SortableRow({
 
 // ── Panel ───────────────────────────────────────────────────────────────────
 export function ContentListPanel({
-  articles, selectedId, onSelect, onNew, onDelete, onReorder,
+  articles, selectedId, onSelect, onNew, onDelete, onReorder, onStatus, statusActive,
 }: Props) {
   const [filter, setFilter] = useState<string>('전체');
 
@@ -152,13 +154,23 @@ export function ContentListPanel({
           <span className="text-sm font-semibold text-gray-800">
             콘텐츠 <span className="font-normal text-gray-400">({articles.length})</span>
           </span>
-          <button
-            onClick={onNew}
-            className="text-xs font-semibold px-2 py-1 rounded-md text-white"
-            style={{ backgroundColor: ACCENT }}
-          >
-            + 새 글
-          </button>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={onStatus}
+              title="콘텐츠 자산 현황 (언어별 × 채널별 업로드 상태)"
+              className={`text-xs font-semibold px-2 py-1 rounded-md ${statusActive ? 'text-white' : 'text-gray-600 ring-1 ring-gray-300 hover:bg-gray-100'}`}
+              style={statusActive ? { backgroundColor: ACCENT } : undefined}
+            >
+              📊 현황
+            </button>
+            <button
+              onClick={onNew}
+              className="text-xs font-semibold px-2 py-1 rounded-md text-white"
+              style={{ backgroundColor: ACCENT }}
+            >
+              + 새 글
+            </button>
+          </div>
         </div>
 
         {/* Category chips */}

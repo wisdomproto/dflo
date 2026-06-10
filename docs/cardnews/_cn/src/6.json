@@ -1,0 +1,78 @@
+{
+ "idx": 6,
+ "cardnewsId": "336fa6e4-12ce-4199-a6f1-5b33528cc826",
+ "captionCh": "每天讓孩子補鈣，卻還是擔心身高不夠理想？🤔\n\n鈣質對骨骼發育非常重要，但缺乏維生素D時，身體無法有效吸收鈣質，可能白白流失。這兩種營養素必須搭配使用才能發揮效果。\n\n每天曬15至20分鐘的太陽，並搭配鮭魚、菇類、蛋黃等食物，就能帶來明顯的改變。☀️\n\n想了解更多關於孩子成長所需的正確營養習慣？歡迎點擊個人頁面連結查看詳細資訊。",
+ "hashtagsCh": "#鈣質維生素D #兒童成長 #維生素D #骨骼健康 #長高方法 #兒童營養 #維生素D補充 #鈣質吸收 #生長板 #兒童健康 #育兒知識 #成長營養 #補鈣補D #台灣育兒 #187成長診所",
+ "slides": [
+  {
+   "slideId": "f93690cb-ac90-48dd-b91a-2aea914ab2e4",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "只吃鈣就夠了嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "c3715803-337a-4b10-88a9-d3f5a13df3cc",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鈣質是骨骼生長的主要原料",
+    "subtext": "攝取不足會讓骨骼變弱、生長遲緩"
+   }
+  },
+  {
+   "slideId": "ce531a07-dcf9-435d-b92a-ee24ba18aaa1",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "鈣質需要維生素D才能被吸收",
+    "subtext": "沒有維生素D，鈣質可能白白流失"
+   }
+  },
+  {
+   "slideId": "95f62625-19ca-43d2-9811-6b1fbe01b335",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "陽光是最好的維生素D來源",
+    "subtext": "每天曬15–20分鐘就足夠了"
+   }
+  },
+  {
+   "slideId": "85aa7694-2c65-47ba-8e64-035bea270b2c",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "也可以從食物中補充",
+    "subtext": "鮭魚 · 菇類 · 蛋黃 · 鯖魚"
+   }
+  },
+  {
+   "slideId": "66fac39e-45ec-433f-b78d-8a61422050ba",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "這樣補充鈣質＋維生素D",
+    "subtext": "曬太陽散步 · 飲食搭配 · 必要時諮詢醫師"
+   }
+  },
+  {
+   "slideId": "b8ca68ee-c162-4339-ad18-9cecffb3e431",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "鈣質＋維生素D，一起補才有效",
+    "subtext": "良好的營養習慣是孩子成長的基礎"
+   }
+  }
+ ]
+}

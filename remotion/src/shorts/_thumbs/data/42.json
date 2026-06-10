@@ -1,0 +1,12 @@
+{
+  "n": 42,
+  "slug": "자존감말하기",
+  "langs": {
+    "ko": { "kicker": "이 한마디가 중요!", "subject": "키 때문에 주눅 든 아이", "number": "3마디", "numLabel": "로 자존감 지키기", "tagline": "키는 수많은 장점 중 하나" },
+    "th": { "kicker": "คำพูดนี้สำคัญ!", "subject": "ลูกที่กังวลเรื่องส่วนสูง", "number": "3 คำ", "numLabel": "ปกป้องความมั่นใจ", "tagline": "ส่วนสูงเป็นแค่ข้อดีหนึ่งเดียว" },
+    "vi": { "kicker": "Một lời này quan trọng!", "subject": "Con tự ti vì chiều cao", "number": "3 câu", "numLabel": "giữ vững tự tin", "tagline": "Chiều cao chỉ là một ưu điểm" },
+    "en": { "kicker": "These words matter!", "subject": "A child shy about height", "number": "3 words", "numLabel": "to protect self-esteem", "tagline": "Height is just one of many strengths" },
+    "cn": { "kicker": "这句话很重要！", "subject": "因身高而自卑的孩子", "number": "3句话", "numLabel": "守住自信心", "tagline": "身高只是众多优点之一" },
+    "ch": { "kicker": "這句話很重要！", "subject": "因身高而自卑的孩子", "number": "3句話", "numLabel": "守住自信心", "tagline": "身高只是眾多優點之一" }
+  }
+}

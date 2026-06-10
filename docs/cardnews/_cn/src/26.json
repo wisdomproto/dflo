@@ -1,0 +1,78 @@
+{
+ "idx": 26,
+ "cardnewsId": "8ae08223-c517-40d9-af2a-949477542c21",
+ "captionCh": "女兒身體開始出現變化，這是正常的嗎？🌱\n\n女孩青春期通常在8至13歲之間，以乳房初發（乳核）為起點，接著出現陰毛生長、身高急速增長期，最後才迎來初經。了解這個順序，有助於家長判斷孩子的發育是否在正常範圍內。\n\n初經前的'黃金期'是每年可增長7至10公分的關鍵時段。初經來潮後，平均僅剩5至8公分的增長空間，這一點值得提前掌握。\n\n想了解更多青春期與身高管理的資訊，請點擊個人頁面連結前往官網。",
+ "hashtagsCh": "#女孩青春期 #青春期順序 #初經成長 #身高增長 #黃金期 #性早熟 #兒童發育 #生長板 #小兒成長 #青春期教育 #身高管理 #成長診所 #親子健康 #台灣育兒 #兒科健康",
+ "slides": [
+  {
+   "slideId": "04285b1b-529b-45ee-b80c-2410fc49b2f3",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "您了解女孩青春期的順序嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "85ff3ba1-e570-45d3-ad3c-9b717081db6b",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "第一個信號：乳房初發",
+    "subtext": "8至13歲間出現，通常從單側開始"
+   }
+  },
+  {
+   "slideId": "96ddeb14-506a-4a53-bc5c-4aa5bae3529a",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "第二階段：陰毛與腋毛生長",
+    "subtext": "在乳房發育開始後6個月至1年出現"
+   }
+  },
+  {
+   "slideId": "2dd44597-01a2-4604-915b-053e5a44767b",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "身高急速增長期來了",
+    "subtext": "每年增長7至10公分，是決定最終身高的黃金時期"
+   }
+  },
+  {
+   "slideId": "9933fa62-c02b-4e2f-be82-0a4114e1f519",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "初經後身高增長會放緩",
+    "subtext": "初經後平均只剩5至8公分的增長空間"
+   }
+  },
+  {
+   "slideId": "720e2c20-0d67-449b-9658-a41b17819485",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "為什麼要了解青春期的順序？",
+    "subtext": "早期發現 · 生長潛力 · 生活管理 · 情緒支持"
+   }
+  },
+  {
+   "slideId": "5ea081b5-53f8-4a50-85f6-db7fd89b6fb7",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "提前了解青春期變化，讓您更安心",
+    "subtext": "歡迎諮詢成長專科醫師，獲得個人化建議"
+   }
+  }
+ ]
+}

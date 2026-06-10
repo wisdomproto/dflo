@@ -1,0 +1,88 @@
+{
+ "idx": 4,
+ "cardnewsId": "2f7f401e-d873-4355-8d8f-ac48a16d9803",
+ "captionCh": "您知道兒子的青春期究竟從什麼時候開始的嗎？🤔\n\n許多父母習慣把突然抽高或變聲當作青春期開始的訊號，但真正的第一個訊號其實更早到來。男孩的睪丸體積達到 4 mL（或 2.5 cm）時，才是青春期正式啟動的時刻，而每年 8–12 cm 的身高驟增期通常在此後約 1 年才出現。若這些變化在 9 歲前發生，建議與專科醫師確認。\n\n詳細內容請點選個人頁面的連結 📎",
+ "hashtagsCh": "#男孩青春期 #性早熟 #兒童成長 #身高發育 #青春期訊號 #兒童健康 #育兒知識 #生長激素 #親子教育 #台灣家長 #小學男孩 #成長管理 #187成長診所 #青春期教育",
+ "slides": [
+  {
+   "slideId": "b6fd4881-5459-42cf-b80a-7eaeb6e54a11",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "您知道青春期的第一個訊號是什麼嗎？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "2cf12465-a53f-4c67-a821-984651d10cb6",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "有個訊號比長高來得更早",
+    "subtext": "青春期始於大腦向睪丸發出「啟動」指令的那一刻"
+   }
+  },
+  {
+   "slideId": "2fbafe2b-7b41-4cfb-94cd-2e096798607a",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "4 mL 或 2.5 cm 是判斷基準",
+    "subtext": "睪丸體積達 4 mL 以上，即視為青春期開始"
+   }
+  },
+  {
+   "slideId": "4f199cca-cd71-4895-add1-f18f246ba3e1",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "睪丸之後，身體照這個順序改變",
+    "subtext": "陰毛 → 身高驟增 → 變聲 → 腋毛與鬍鬚，依序出現"
+   }
+  },
+  {
+   "slideId": "df5e48ec-29d4-46ef-9808-8ec6eda102aa",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "這個階段，每年可以長高 8–12 cm",
+    "subtext": "身高驟增期通常在青春期開始後約1年出現"
+   }
+  },
+  {
+   "slideId": "e950d211-a34d-417f-9590-f54d49fc0291",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "9歲之前出現，需要特別留意",
+    "subtext": "比同齡孩子早2年以上進入青春期，可能是性早熟"
+   }
+  },
+  {
+   "slideId": "2950720d-ae9b-471e-86b2-4c0b363ab0f0",
+   "sort_order": 7,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "今天的4個重點",
+    "subtext": "第一訊號 · 荷爾蒙軸 · 9歲前 · 每年8–12 cm驟增"
+   }
+  },
+  {
+   "slideId": "40609bd0-33c8-4ec5-bf58-949d2bb99fbf",
+   "sort_order": 8,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "現在正是確認孩子生長狀況的好時機",
+    "subtext": ""
+   }
+  }
+ ]
+}

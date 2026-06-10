@@ -1,0 +1,12 @@
+{
+  "n": 21,
+  "slug": "아침밥키성장",
+  "langs": {
+    "ko": { "kicker": "의외의 한 끼!", "subject": "우리 아이 키 크는", "number": "아침밥", "numLabel": "한 끼의 힘", "tagline": "아침 한 끼가 키를 돕는다" },
+    "th": { "kicker": "มื้อที่คาดไม่ถึง!", "subject": "ลูกสูงขึ้นด้วย", "number": "มื้อเช้า", "numLabel": "พลังมื้อเดียว", "tagline": "มื้อเช้าช่วยให้สูง" },
+    "vi": { "kicker": "Bữa ăn bất ngờ!", "subject": "Giúp con cao lên", "number": "Bữa sáng", "numLabel": "sức mạnh một bữa", "tagline": "Bữa sáng giúp con cao" },
+    "en": { "kicker": "The surprise meal!", "subject": "Grows your child taller", "number": "Breakfast", "numLabel": "power of one meal", "tagline": "Breakfast helps height" },
+    "cn": { "kicker": "意外的一餐！", "subject": "助孩子长高的", "number": "早餐", "numLabel": "一餐的力量", "tagline": "一顿早餐助长高" },
+    "ch": { "kicker": "意外的一餐！", "subject": "助孩子長高的", "number": "早餐", "numLabel": "一餐的力量", "tagline": "一頓早餐助長高" }
+  }
+}

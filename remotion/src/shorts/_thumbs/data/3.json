@@ -1,0 +1,12 @@
+{
+  "n": 3,
+  "slug": "성장판나이",
+  "langs": {
+    "ko": { "kicker": "언제 멈출까?", "subject": "우리 아이 성장판", "number": "14~18세", "numLabel": "에 닫힌다", "tagline": "닫히기 전이 골든타임" },
+    "th": { "kicker": "หยุดเมื่อไหร่?", "subject": "แผ่นการเจริญลูก", "number": "14~18 ปี", "numLabel": "ปิดตัวลง", "tagline": "ก่อนปิดคือช่วงทอง" },
+    "vi": { "kicker": "Khi nào dừng?", "subject": "Sụn tăng trưởng của con", "number": "14~18 tuổi", "numLabel": "sẽ đóng lại", "tagline": "Trước khi đóng là thời điểm vàng" },
+    "en": { "kicker": "When does it stop?", "subject": "Your child's growth plates", "number": "age 14~18", "numLabel": "they close", "tagline": "Before they close is golden time" },
+    "cn": { "kicker": "何时停？", "subject": "孩子的生长板", "number": "14~18岁", "numLabel": "会闭合", "tagline": "闭合前就是黄金期" },
+    "ch": { "kicker": "何時停？", "subject": "孩子的生長板", "number": "14~18歲", "numLabel": "會閉合", "tagline": "閉合前就是黃金期" }
+  }
+}

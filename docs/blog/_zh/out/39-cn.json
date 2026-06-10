@@ -1,0 +1,64 @@
+{
+ "h1": "「我家孩子是全班最矮的」 — 成长百分位读法完全整理",
+ "faq": [
+  {
+   "a": "第3~10百分位虽然属于比平均偏矮，但还不符合矮小症的医学标准（低于第3百分位）。不过如果成长速度每年不足4厘米，或百分位持续下滑，就建议咨询专家。结合父母身高和成长曲线的走势一起判断，这一点很重要。",
+   "q": "成长百分位在3~10之间，就一定要去医院吗？"
+  },
+  {
+   "a": "是的。如果百分位在短期内急剧上升2个等级以上，可能是性早熟的信号。性早熟一开始会比同龄人长得快，但生长板会提早闭合，最终身高反而可能变矮，因此需要注意。这种情况下，最好通过骨龄检查来查明原因。",
+   "q": "成长百分位突然上升，也可能是问题吗？"
+  },
+  {
+   "a": "建议每隔6个月测量并记录一次身高。青春期前的儿童成长速度相对稳定，因此仅凭6个月的数据就能计算出成长速度。利用学校体检的结果，每年至少能确保获得一次正式数据。",
+   "q": "成长曲线解读应该多久做一次？"
+  }
+ ],
+ "slug": "growth-percentile-how-to-read",
+ "sections": [
+  {
+   "html": "<p>懂得成长百分位读法，简单的数字就会变成孩子健康的指南针。成长百分位数，是把同样年龄、同样性别的100名孩子按身高排序后，表示自家孩子排在第几位的指标。举例来说，第25百分位就意味着身高比100人中的25人高、比75人矮。这一数值是以疾病管理部门对数万人的数据进行统计分析后制定的「儿童青少年成长图表」为基准计算得出的。不仅是身高，体重、头围也适用同样的方式，用于掌握孩子整体的发育走势。重要的一点是，这一数值并非测量一次就结束，而是需要持续追踪才具有意义。</p>",
+   "heading": "什么是成长百分位？",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. Left side shows a row of ten child silhouettes of varying heights arranged smallest to tallest, with one figure highlighted in mint color at position 3. Right side shows a simple growth chart with a smooth ascending curve and a mint dot marker. Pastel background with soft shadows. No text or numbers inside the image."
+  },
+  {
+   "html": "<p>想正确理解孩子身高百分位的含义，首先要了解正常范围的标准。一般来说，第3百分位以上、第97百分位以下被视为正常范围。</p><ul><li><strong>第50百分位：</strong>相当于同龄100人中居中的、平均的成长速度。</li><li><strong>低于第3百分位（矮小症标准）：</strong>可能符合医学上的矮小症标准，需要鉴别生长激素缺乏、特纳综合征、慢性疾病等原因。</li><li><strong>第3~10百分位：</strong>比平均偏矮，但未达矮小症标准。最好结合成长速度的变化或父母身高，与专家进行咨询。</li><li><strong>超过第97百分位：</strong>即便比同龄人高出许多，也需要确认是否存在性早熟或特定激素过多。因为生长板可能提早闭合，最终身高反而可能变矮。</li></ul><p>比起百分位数值本身，那个数字是否在持续稳定地保持，才更为重要。</p>",
+   "heading": "孩子身高百分位的含义 — 正常范围与需注意区间",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A horizontal bar divided into color zones from left to right: red zone (very short), yellow zone (below average), mint/green zone (normal range), yellow zone (above average), red zone (very tall). A small child icon sits inside the mint normal zone. Pastel background, clean lines, no text or numbers."
+  },
+  {
+   "html": "<p>成长曲线解读中最常见的错误，就是只看单单一次的测量值便下结论。孩子是在猛长期和平缓成长期的反复交替中长大的，因此必须把多个测量值按时间顺序连接起来，画出一条「成长曲线」，才能掌握真实的走势。</p><p>最理想的模式，是沿着某条特定的百分位线持续稳定地保持。在第25百分位稳定成长的孩子，即便百分位偏低，也可以视为正在健康地成长。相反，如果原本维持在第50百分位的孩子突然下滑到第25百分位以下、跌落2个等级以上，或反过来急剧上升，就需要注意。前者可能存在营养失衡、睡眠不足、慢性疾病等成长延迟因素，后者则可能是性早熟的信号。每隔6个月到1年记录一次身高、观察走势的习惯很重要。</p>",
+   "heading": "成长曲线解读 — 比起单次数值，走势更重要",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A simple line graph showing two growth curve lines: one smooth mint-colored line staying steady along a percentile band, and one orange dashed line that drops sharply midway. Background is a soft pastel grid. A small magnifying glass icon highlights the drop point. No text or numbers inside the image."
+  },
+  {
+   "html": "<p>与同龄人平均身高比较只是起点而已，想准确评估孩子的成长状态，除了百分位之外，还要一并审视四个指标。</p><ol><li><strong>成长速度（Growth Velocity）：</strong>确认一年长高几厘米。4岁到青春期之前，每年4~6厘米属于正常范围。即便百分位偏低，只要成长速度正常，就不必太过担心。</li><li><strong>骨龄（骨龄）：</strong>通过左手X光评估生长板的成熟度。如果比实际年龄快2岁以上，存在生长板提早闭合的风险；如果落后很多，则可能是成长延迟的原因。</li><li><strong>目标身高（Target Height）：</strong>以父母身高为基础，计算出遗传上可期待的成人身高。需要一并评估孩子当前的成长是否在这一范围之内。</li><li><strong>整体健康状态：</strong>营养状态、睡眠质量、运动量、有无慢性疾病、压力水平都会影响成长。患有异位性皮肤炎或鼻炎等慢性炎症的孩子，成长能量可能被分散。</li></ol>",
+   "heading": "超越同龄人平均身高比较 — 需一并审视的4个指标",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. Four simple icon cards arranged in a 2x2 grid: top-left shows a ruler measuring a child silhouette (growth velocity), top-right shows an x-ray of a hand (bone age), bottom-left shows two adult figures and one child figure connected by a line (target height), bottom-right shows a heart with a leaf (health status). Mint accent color, pastel background, clean minimalist style. No text inside image."
+  },
+  {
+   "html": "<p>如果符合以下任何一种情况，最好前往成长专科门诊接受专科医生的帮助。</p><ul><li>身高百分位低于第3百分位的情况</li><li>身高百分位超过第97百分位的情况</li><li>原本稳定的百分位在6~12个月内下降2个等级（约15~20个百分位）以上的情况</li><li>4岁以后到青春期之前，每年成长速度不足4厘米，或6个月以上身高完全不长的情况</li><li>骨龄比实际年龄快2岁以上的情况</li><li>女孩8岁前乳房发育、男孩9岁前睾丸发育等出现性早熟疑似征兆的情况</li><li>父母身高属于平均，孩子却持续维持较低百分位的情况</li></ul><p>成长期出现的问题，一旦错过时机往往难以挽回。哪怕只是为了消除不安，接受专业的评估也会有帮助。</p>",
+   "heading": "出现这些情况，就需要专家咨询",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A parent and child walking through a clinic door, the door is open and has a mint-colored cross symbol on it. A friendly doctor silhouette stands inside welcoming them. Soft pastel walls, warm lighting effect, clean flat style. No text inside the image."
+  },
+  {
+   "html": "<p>成长百分位不是用来担忧的工具，而是用来观察的工具。通过以下三项实践，就能把百分位数值有效地利用起来。</p><p><strong>1. 定期记录：</strong>每隔6个月在同一时段（上午）给孩子量身高，并连同日期一起记录。利用手机备忘录或成长图表表格即可。</p><p><strong>2. 看走势来解读：</strong>看的不是单一数值，而是过去1~2年的趋势。百分位偏低，只要保持稳定，大多属于正常。</p><p><strong>3. 检查生活环境：</strong>充足的睡眠（小学9~10小时、国中8小时以上）、均衡的饮食、规律的运动，都会直接影响成长速度。如果成长百分位曲线解读的结果怀疑有异常，请先回头审视这三项。</p><p>孩子的成长应当以长期走势来理解，而非短期数值。父母持之以恒的观察和记录，会让与专家的咨询变得丰富得多。</p>",
+   "heading": "成长百分位，请这样运用 — 父母能做的事",
+   "imageUrl": null,
+   "imagePrompt": "Flat 2D vector illustration, 16:9. A parent sits at a desk holding a clipboard with a small growth chart on it, a child stands beside them smiling. On the desk there is a simple ruler and a calendar. Soft mint and pastel yellow tones, warm cozy home background, flat vector style. No text or numbers inside the image."
+  }
+ ],
+ "seoTitle": "成长百分位读法 — 一看就懂自家孩子的身高数值",
+ "primaryKeyword": "成长百分位读法",
+ "metaDescription": "不懂成长百分位读法，可能只看数字就白白担心。从孩子身高百分位的含义到成长曲线解读、同龄人平均身高比较，一目了然为您整理。",
+ "secondaryKeywords": [
+  "孩子身高百分位含义",
+  "成长曲线解读",
+  "同龄人平均身高比较"
+ ]
+}

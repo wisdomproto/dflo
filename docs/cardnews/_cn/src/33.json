@@ -1,0 +1,78 @@
+{
+ "idx": 33,
+ "cardnewsId": "a09c5289-1962-42df-90ff-69db30607c5c",
+ "captionCh": "📏 您是否擔心孩子的身高比同齡人矮一些？\n\n只需一張左手X光片，就能測出孩子的「骨齡」——這是反映骨骼成熟度的指標，比實際年齡更能說明生長狀況。同齡的孩子骨齡可能差異很大，而這個差距正是成長管理的重要線索。\n\n生長板開放的時間有限，把握好這段時期很重要。想了解骨齡檢查的詳細資訊，歡迎到我們的官網查看。 🌱",
+ "hashtagsCh": "#骨齡 #生長板 #兒童成長 #小孩身高 #骨齡檢查 #骨骼成熟度 #身高預測 #矮小症 #性早熟 #生長荷爾蒙 #187成長診所 #兒科成長 #台灣家長 #孩子發育 #成長管理",
+ "slides": [
+  {
+   "slideId": "ba4eabd6-aee1-4ca3-b33e-c1aa5be86a8c",
+   "sort_order": 1,
+   "role": "cover",
+   "isCta": false,
+   "ch": {
+    "headline": "一張X光片能預測孩子的身高？",
+    "subtext": ""
+   }
+  },
+  {
+   "slideId": "4caf2394-1e3b-4cc4-8bc3-43c783502b4a",
+   "sort_order": 2,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡為什麼和實際年齡不同？",
+    "subtext": "每個孩子的身體成熟速度都不一樣"
+   }
+  },
+  {
+   "slideId": "b40d1e43-1f01-48ba-8d15-25c062ab0d92",
+   "sort_order": 3,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "只需左手X光一張即可檢查",
+    "subtext": "手部骨骼最多，最容易觀察生長板狀態"
+   }
+  },
+  {
+   "slideId": "9e29f796-c75e-483e-807d-ec89f16de4fe",
+   "sort_order": 4,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "生長板開放或閉合——這才是關鍵",
+    "subtext": "生長板一旦閉合，身高就不再增長了"
+   }
+  },
+  {
+   "slideId": "28987d6a-0d26-4516-b478-0909f9f42526",
+   "sort_order": 5,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "骨齡超前 vs 落後——有什麼差別？",
+    "subtext": "超前代表生長板可能提早閉合；落後則有更多時間成長"
+   }
+  },
+  {
+   "slideId": "1c34b878-49bc-45a5-a1d1-e5c4b307014a",
+   "sort_order": 6,
+   "role": "body",
+   "isCta": false,
+   "ch": {
+    "headline": "什麼時候需要檢查骨齡？",
+    "subtext": "身材矮小 · 性早熟疑慮 · 身材過高 · 治療中監測 · 預測最終身高"
+   }
+  },
+  {
+   "slideId": "9152b547-d5c3-476f-a53b-9d664b5e8bef",
+   "sort_order": 7,
+   "role": "cta",
+   "isCta": true,
+   "ch": {
+    "headline": "想了解孩子的骨齡？",
+    "subtext": "檢查一次骨齡，就能掌握孩子的生長方向"
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "n": 22,
+  "slug": "식단피라미드",
+  "langs": {
+    "ko": { "kicker": "밥상이 키를 바꾼다", "subject": "우리 아이 키 크는", "number": "식단", "numLabel": "피라미드", "tagline": "매일 밥상이 최종 키를 바꾼다" },
+    "th": { "kicker": "มื้ออาหารเปลี่ยนความสูง", "subject": "ส่วนสูงลูก", "number": "อาหาร", "numLabel": "พีระมิด", "tagline": "มื้ออาหารทุกวันสร้างความสูง" },
+    "vi": { "kicker": "Bữa ăn quyết định!", "subject": "Chiều cao con", "number": "Thực đơn", "numLabel": "Tháp dinh dưỡng", "tagline": "Bữa ăn mỗi ngày tạo chiều cao" },
+    "en": { "kicker": "The plate decides", "subject": "Your child's height", "number": "Diet", "numLabel": "Food pyramid", "tagline": "Daily meals build final height" },
+    "cn": { "kicker": "餐桌决定身高", "subject": "孩子身高", "number": "饮食", "numLabel": "营养金字塔", "tagline": "每天的餐桌成就身高" },
+    "ch": { "kicker": "餐桌決定身高", "subject": "孩子身高", "number": "飲食", "numLabel": "營養金字塔", "tagline": "每天的餐桌成就身高" }
+  }
+}

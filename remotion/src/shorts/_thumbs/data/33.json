@@ -1,0 +1,12 @@
+{
+  "n": 33,
+  "slug": "checkchu",
+  "langs": {
+    "ko": { "kicker": "오해 풀기!", "subject": "척추 휘어도 우리 아이 키", "number": "OK", "numLabel": "충분히 큰다", "tagline": "조기 발견하면 끝까지 큰다" },
+    "th": { "kicker": "ไขข้อข้องใจ!", "subject": "กระดูกสันหลังคดก็สูงได้", "number": "OK", "numLabel": "สูงได้สบาย", "tagline": "เจอเร็ว ก็สูงได้เต็มที่" },
+    "vi": { "kicker": "Gỡ hiểu lầm!", "subject": "Vẹo cột sống con vẫn cao", "number": "OK", "numLabel": "vẫn cao tốt", "tagline": "Phát hiện sớm vẫn cao lớn" },
+    "en": { "kicker": "Myth cleared!", "subject": "Scoliosis, your child still", "number": "OK", "numLabel": "grows just fine", "tagline": "Caught early, growth stays on track" },
+    "cn": { "kicker": "解开误会！", "subject": "脊柱侧弯也能长高", "number": "OK", "numLabel": "照样能长高", "tagline": "早发现 照样长得高" },
+    "ch": { "kicker": "解開誤會！", "subject": "脊柱側彎也能長高", "number": "OK", "numLabel": "照樣能長高", "tagline": "早發現 照樣長得高" }
+  }
+}
