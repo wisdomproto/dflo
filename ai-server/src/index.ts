@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { authMiddleware } from './middleware/auth.js';
+import { marketingAuth } from './middleware/marketingAuth.js';
 import { mealRouter } from './routes/meal.js';
 import { bodyRouter } from './routes/body.js';
 import { allergyRouter } from './routes/allergy.js';
@@ -81,7 +82,9 @@ app.use('/api/analytics', analyticsRouter);
 app.use('/api/embeddings', ...middlewares, embeddingsRouter);
 app.use('/api/similar-cases', ...middlewares, similarCasesRouter);
 app.use('/api/coaching', ...middlewares, coachingRouter);
-app.use('/api/marketing', ...middlewares, marketingRouter);
+// 마케팅 센터는 PIN 보호(Supabase 로그인 X) → JWT 대신 MARKETING_KEY 시크릿 헤더로 보호.
+// 이렇게 해야 배포본(prod)에서도 발행(publish/run)·Meta 연결 호출이 통과한다.
+app.use('/api/marketing', analyzeLimit, marketingAuth, marketingRouter);
 app.use('/api/knowledge', knowledgeRouter);
 app.use('/api/auth/meta', metaAuthRouter);
 
