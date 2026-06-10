@@ -104,11 +104,23 @@ export function trackEvent(
   });
 }
 
+/** locale → 메신저 채널. 태국은 LINE, 그 외는 KakaoTalk. */
+function channelForLocale(locale: Locale): 'kakao' | 'line' {
+  return locale === 'th' ? 'line' : 'kakao';
+}
+
 /**
- * 핵심 전환 이벤트 — 카카오톡 상담 버튼 클릭.
- * source 로 어느 위치에서 눌렸는지 구분 (header_drawer, bottom_tabbar,
- * height_calc_result, case_slider, case_modal, cases_slide, guide_section 등).
+ * 핵심 전환 이벤트 — 메신저 상담 버튼 클릭.
+ * 정적 사이트(_shell.js)의 consult_click 과 단일 이벤트로 통일한다.
+ * 함수명은 기존 호출부 호환을 위해 유지(내부는 channel=kakao/line 자동 분기).
+ * source 로 위치 구분(header_drawer, height_calc_result, case_slider 등).
  */
 export function trackKakaoConsult(source: string): void {
-  trackEvent('kakao_consult_click', { source });
+  const locale = getLocale(window.location.pathname);
+  trackEvent('consult_click', { source, channel: channelForLocale(locale) });
+}
+
+/** 예상키 측정 완료 — React(SPA) 컨텍스트에서 직접 발사(정적은 _shell.js 가 처리). */
+export function trackHeightCalcComplete(source = 'calc_modal'): void {
+  trackEvent('height_calc_complete', { source });
 }
