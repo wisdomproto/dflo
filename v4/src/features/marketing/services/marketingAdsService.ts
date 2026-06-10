@@ -34,6 +34,8 @@ export interface AdCampaign {
   revenue: number;
   region: string;
   channelId: string | null;
+  accountId: string | null; // → marketing_ad_accounts.id (migration 047)
+  market: string; // 시장(언어): ko | en | th | vi (migration 047)
   note: string;
   createdAt: string;
   updatedAt: string;
@@ -69,6 +71,8 @@ function rowToCampaign(r: Row): AdCampaign {
     revenue: Number(r.revenue) || 0,
     region: (r.region as string) ?? '',
     channelId: (r.channel_id as string | null) ?? null,
+    accountId: (r.account_id as string | null) ?? null,
+    market: (r.market as string) ?? '',
     note: (r.note as string) ?? '',
     createdAt: (r.created_at as string) ?? '',
     updatedAt: (r.updated_at as string) ?? '',
@@ -94,6 +98,8 @@ function campaignToRow(c: Partial<AdCampaign>): Row {
     revenue: c.revenue ?? 0,
     region: c.region ?? '',
     channel_id: c.channelId ?? null,
+    account_id: c.accountId ?? null,
+    market: c.market ?? '',
     note: c.note ?? '',
     updated_at: new Date().toISOString(),
   };

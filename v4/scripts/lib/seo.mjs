@@ -55,6 +55,15 @@ export function gaSnippet() {
   ].join('\n  ');
 }
 
+// Meta Pixel base code — 빌드 env 의 픽셀ID(없으면 빈 문자열, graceful).
+// React 와 같은 VITE_META_PIXEL_ID 를 재사용해 단일 픽셀에 모인다. init + PageView 자동.
+export function pixelSnippet() {
+  const id = process.env.META_PIXEL_ID || process.env.VITE_META_PIXEL_ID;
+  // 픽셀 ID = 숫자만 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
+  if (!id || !/^\d{5,20}$/.test(id)) return '';
+  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${id}');fbq('track','PageView');</script>`;
+}
+
 export function buildBlogPostHead({ post, lang }) {
   const path = `/blog/${post.slug}/`;
   const description = post.meta_description || '';
@@ -74,7 +83,7 @@ export function buildBlogPostHead({ post, lang }) {
     `<meta name="twitter:description" content="${escapeAttr(description)}">`,
     renderJsonLd(blogPostingJsonLd({ post, lang })),
   ];
-  return (ga ? [ga, ...head] : head).join('\n  ');
+  return [ga, pixelSnippet(), ...head].filter(Boolean).join('\n  ');
 }
 
 export function buildBlogIndexHead(lang) {
@@ -85,7 +94,7 @@ export function buildBlogIndexHead(lang) {
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     buildHreflang(path),
   ];
-  return (ga ? [ga, ...head] : head).join('\n  ');
+  return [ga, pixelSnippet(), ...head].filter(Boolean).join('\n  ');
 }
 
 export function buildHead(lang, opts = {}) {
@@ -121,5 +130,5 @@ export function buildHead(lang, opts = {}) {
     );
   }
   const ga = gaSnippet();
-  return (ga ? [ga, ...head] : head).join('\n  ');
+  return [ga, pixelSnippet(), ...head].filter(Boolean).join('\n  ');
 }

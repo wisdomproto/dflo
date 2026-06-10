@@ -19,6 +19,8 @@
 // GA4 어드민에서 "주요 이벤트(Key event)" 로 마크해야 전환으로 집계됨.
 
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
+// Meta Pixel — 광고 전환 추적/리타게팅. 없으면 모든 픽셀 호출 no-op (GA4와 동일 패턴).
+const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
 
 const PRIVATE_PREFIXES = [
   '/app',
@@ -35,10 +37,13 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
+    _fbq?: unknown;
   }
 }
 
 let scriptInjected = false;
+let pixelInjected = false;
 
 function injectScriptOnce(): boolean {
   if (scriptInjected) return true;
@@ -62,6 +67,31 @@ function injectScriptOnce(): boolean {
   return true;
 }
 
+/** Meta Pixel base code 동적 로드 + init (1회). 측정ID 없으면 false. */
+function injectPixelOnce(): boolean {
+  if (pixelInjected) return true;
+  if (!META_PIXEL_ID || typeof window === 'undefined') return false;
+  if (!window.fbq) {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const n: any = function (...args: unknown[]) {
+      n.callMethod ? n.callMethod.apply(n, args) : n.queue.push(args);
+    };
+    n.queue = [];
+    n.loaded = true;
+    n.version = '2.0';
+    window.fbq = n;
+    window._fbq = n;
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(s);
+  }
+  window.fbq!('init', META_PIXEL_ID);
+  pixelInjected = true;
+  return true;
+}
+
 function isPrivatePath(pathname: string): boolean {
   return PRIVATE_PREFIXES.some(
     (p) => pathname === p || pathname.startsWith(`${p}/`),
@@ -79,15 +109,18 @@ export function getLocale(pathname: string): Locale {
 
 /** 라우트 변경 시 호출 — page_view 이벤트 발사. */
 export function trackPageView(pathname: string, search = ''): void {
-  if (!GA_ID || typeof window === 'undefined') return;
-  if (isPrivatePath(pathname)) return;
-  if (!injectScriptOnce() || !window.gtag) return;
-  window.gtag('event', 'page_view', {
-    page_path: pathname + search,
-    page_location: window.location.href,
-    page_title: document.title,
-    locale: getLocale(pathname),
-  });
+  if (typeof window === 'undefined' || isPrivatePath(pathname)) return;
+  if (GA_ID && injectScriptOnce() && window.gtag) {
+    window.gtag('event', 'page_view', {
+      page_path: pathname + search,
+      page_location: window.location.href,
+      page_title: document.title,
+      locale: getLocale(pathname),
+    });
+  }
+  if (injectPixelOnce() && window.fbq) {
+    window.fbq('track', 'PageView');
+  }
 }
 
 /** 일반 커스텀 이벤트 발사. 자동으로 locale 파라미터 부착. */
@@ -117,10 +150,19 @@ function channelForLocale(locale: Locale): 'kakao' | 'line' {
  */
 export function trackKakaoConsult(source: string): void {
   const locale = getLocale(window.location.pathname);
-  trackEvent('consult_click', { source, channel: channelForLocale(locale) });
+  const channel = channelForLocale(locale);
+  trackEvent('consult_click', { source, channel });
+  // Meta Pixel 핵심 전환 — 상담 문의 = Lead.
+  if (!isPrivatePath(window.location.pathname) && injectPixelOnce() && window.fbq) {
+    window.fbq('track', 'Lead', { source, channel, locale });
+  }
 }
 
 /** 예상키 측정 완료 — React(SPA) 컨텍스트에서 직접 발사(정적은 _shell.js 가 처리). */
 export function trackHeightCalcComplete(source = 'calc_modal'): void {
   trackEvent('height_calc_complete', { source });
+  // Meta Pixel 보조 전환 — 예측키 측정 완료(관심 강한 행동) = 커스텀 이벤트.
+  if (!isPrivatePath(window.location.pathname) && injectPixelOnce() && window.fbq) {
+    window.fbq('trackCustom', 'HeightCalcComplete', { source, locale: getLocale(window.location.pathname) });
+  }
 }

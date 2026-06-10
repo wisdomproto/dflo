@@ -13,13 +13,22 @@
 // Locale + channel injected by build-i18n via window.__I18N__.
 window.trackConsultClick = function (source) {
   var i18n = window.__I18N__ || {};
-  if (typeof gtag === 'undefined') return;
-  gtag('event', 'consult_click', {
-    channel: i18n.channel || 'unknown',
-    locale: i18n.locale || 'unknown',
-    source: source || 'unspecified',
-    page_type: i18n.page_type || 'home',
-  });
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'consult_click', {
+      channel: i18n.channel || 'unknown',
+      locale: i18n.locale || 'unknown',
+      source: source || 'unspecified',
+      page_type: i18n.page_type || 'home',
+    });
+  }
+  // Meta Pixel 핵심 전환 — 상담 문의 = Lead.
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead', {
+      source: source || 'unspecified',
+      channel: i18n.channel || 'unknown',
+      locale: i18n.locale || 'unknown',
+    });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -36,14 +45,19 @@ document.addEventListener('DOMContentLoaded', function () {
 window.addEventListener('message', function (e) {
   var d = e && e.data;
   if (!d || d.type !== 'height_calc_complete') return;
-  if (typeof gtag === 'undefined') return;
   var i18n = window.__I18N__ || {};
   var allowed = ['ko', 'th', 'vi', 'en'];
   var loc = allowed.indexOf(d.locale) >= 0 ? d.locale : (i18n.locale || 'unknown');
-  gtag('event', 'height_calc_complete', {
-    locale: loc,
-    page_type: i18n.page_type || 'home',
-  });
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'height_calc_complete', {
+      locale: loc,
+      page_type: i18n.page_type || 'home',
+    });
+  }
+  // Meta Pixel 보조 전환 — 예측키 측정 완료 = 커스텀 이벤트.
+  if (typeof fbq !== 'undefined') {
+    fbq('trackCustom', 'HeightCalcComplete', { locale: loc });
+  }
 });
 
 // ============= I18N HELPER =============
