@@ -10,6 +10,7 @@ import { scoreArticle, type SeoDetail, type SeoResult } from '../../utils/google
 import { BlogSeoEditor } from './BlogSeoEditor';
 import { BlogSeoScorePanel } from './BlogSeoScorePanel';
 import { BlogReferencesPanel } from './BlogReferencesPanel';
+import { BlogPreviewModal } from './BlogPreviewModal';
 
 const ACCENT = '#4A2D6B';
 type Step = 1 | 2 | 3;
@@ -65,6 +66,7 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
   const [copied, setCopied] = useState<string | null>(null);
   const [bulk, setBulk] = useState<string | null>(null);
   const [measured, setMeasured] = useState<SeoResult | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // 위저드가 blog 데이터의 단일 작성자라, 글 전환(article.id) 시에만 시드한다.
@@ -203,6 +205,12 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
         ))}
         <div className="flex-1" />
         {savedAt && <span className="text-xs text-green-600">✓ 저장됨</span>}
+        {cur && (
+          <button type="button" onClick={() => setShowPreview(true)}
+            className="rounded-lg border border-[#4A2D6B] px-3 py-1.5 text-xs font-semibold text-[#4A2D6B] hover:bg-[#4A2D6B]/5">
+            👁 미리보기
+          </button>
+        )}
         {cur && step >= 3 && (
           <button type="button" onClick={copyAllPrompts} disabled={!hasAnyPrompt}
             className="rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-700 disabled:opacity-40">
@@ -279,6 +287,9 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
           </div>
         )}
       </div>
+      {showPreview && cur && (
+        <BlogPreviewModal article={cur} language={language} onClose={() => setShowPreview(false)} />
+      )}
     </div>
   );
 }
