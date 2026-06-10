@@ -282,7 +282,7 @@ export interface CardnewsI18nRequest {
   body?: string;
 }
 
-const CN_LANGS = 'ko(한국어), en(영어), th(태국어), vi(베트남어), ch(중국어 번체)';
+const CN_LANGS = 'ko(한국어), en(영어), th(태국어), vi(베트남어), ch(중국어 번체/繁體), cn(중국어 간체/简体)';
 
 /**
  * 다국어 카드뉴스 슬라이드 — 언어공통 일러스트 + 5개 언어 텍스트. JSON 배열 반환.
@@ -300,19 +300,19 @@ export function buildCardnewsI18nPrompt(c: ArticleConfig, r: CardnewsI18nRequest
 - 정보성 톤만 (병원 홍보·"${brand}이 관리" 류·강한 상담유도 금지, 의료광고법 준수, 효과 단정·과장·공포 조장 금지)
 - 장수 가변: 표지 1 + 본문 N(핵심 포인트 수) + CTA 1, 보통 5~9장. "N가지" 리스트형이면 항목당 1장
 - illustration: 플랫 2D 벡터, 한국어로 [레이아웃][주체][디테일][배경][색] 정밀하게 (공통 스타일=플랫벡터/보라 #667eea→#764ba2/민트 #33D6B5/같은 7~9세 한국 아이 는 고정이니 그 장 고유 요소만)
-- 텍스트는 5개 언어: ${CN_LANGS}. 헤드라인 짧게, 보조문구 한 줄(없으면 "")
+- 텍스트는 6개 언어: ${CN_LANGS}. 헤드라인 짧게, 보조문구 한 줄(없으면 ""). ch=번체·cn=간체로 글자체 구분
 - 마지막 CTA 슬라이드만 isCta=true. **illustration에 로고·도메인·"로고 자리"·"빌드 단계 자동 삽입" 같은 표현 절대 금지** — 로고/도메인 처리는 앱이 별도로 붙인다. CTA의 illustration도 다른 장처럼 인물·성장 상징·배경 등 "장면"만 묘사하고, 상단을 비워둔다는 언급도 하지 말 것
 - 숫자/통계는 원본에 있는 것만
 
 ## 출력 (JSON 배열만 — 코드펜스/마크다운/설명 절대 금지, 문자열 안 큰따옴표는 「」로 대체)
-[{"role":"표지","illustration":"...","texts":{"ko":{"headline":"","subtext":""},"en":{"headline":"","subtext":""},"th":{"headline":"","subtext":""},"vi":{"headline":"","subtext":""},"ch":{"headline":"","subtext":""}},"isCta":false}]`;
+[{"role":"표지","illustration":"...","texts":{"ko":{"headline":"","subtext":""},"en":{"headline":"","subtext":""},"th":{"headline":"","subtext":""},"vi":{"headline":"","subtext":""},"ch":{"headline":"","subtext":""},"cn":{"headline":"","subtext":""}},"isCta":false}]`;
 }
 
 /** 카드뉴스 캡션 + 해시태그 5개 언어. JSON {captions, hashtags} 반환. */
 export function buildCaptionHashtagPrompt(c: ArticleConfig, r: CardnewsI18nRequest): string {
   const brand = c.brand_name?.trim() || '187 성장클리닉';
   const source = r.body?.trim();
-  return `당신은 ${brand}의 인스타그램 콘텐츠 에디터입니다. 아래 글의 카드뉴스용 캡션과 해시태그를 5개 언어로 만드세요: ${CN_LANGS}.
+  return `당신은 ${brand}의 인스타그램 콘텐츠 에디터입니다. 아래 글의 카드뉴스용 캡션과 해시태그를 6개 언어로 만드세요: ${CN_LANGS}.
 
 ## 주제
 - 제목: ${r.title}${source ? `\n\n## 원본\n${source.slice(0, 4000)}` : ''}
@@ -322,7 +322,7 @@ export function buildCaptionHashtagPrompt(c: ArticleConfig, r: CardnewsI18nReque
 - 해시태그: 각 언어 10~15개, 공백으로 구분한 한 줄 문자열, 그 언어권 부모가 실제 쓰는 태그로 현지화
 
 ## 출력 (JSON 객체만 — 코드펜스/설명 금지, 줄바꿈은 \\n)
-{"captions":{"ko":"","en":"","th":"","vi":"","ch":""},"hashtags":{"ko":"#태그 #태그","en":"","th":"","vi":"","ch":""}}`;
+{"captions":{"ko":"","en":"","th":"","vi":"","ch":"","cn":""},"hashtags":{"ko":"#태그 #태그","en":"","th":"","vi":"","ch":"","cn":""}}`;
 }
 
 // ── SEO blog (통합 블로그 위저드, marketing_articles.blog) ────────────────────

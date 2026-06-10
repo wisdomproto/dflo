@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap, ReelsMap } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -24,6 +24,7 @@ function rowToArticle(r: Row): MarketingArticle {
     sortOrder: (r.sort_order as number) ?? 0,
     translations: (r.translations as Record<string, ArticleTranslation>) ?? {},
     blog: (r.blog as BlogSeoMap) ?? {},
+    reels: (r.reels as ReelsMap) ?? {},
   };
 }
 
@@ -43,6 +44,7 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     // Only write translations when explicitly provided, so partial saves don't wipe them.
     ...(a.translations !== undefined ? { translations: a.translations } : {}),
     ...(a.blog !== undefined ? { blog: a.blog } : {}),
+    ...(a.reels !== undefined ? { reels: a.reels } : {}),
   };
 }
 
@@ -189,6 +191,15 @@ export async function saveBlogSeo(id: string, blog: BlogSeoMap): Promise<void> {
   const { error } = await supabase
     .from('marketing_articles')
     .update({ blog, updated_at: new Date().toISOString() })
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+/** Partial update of just the reels JSONB (migration 046) — does not touch title/body. */
+export async function saveReels(id: string, reels: ReelsMap): Promise<void> {
+  const { error } = await supabase
+    .from('marketing_articles')
+    .update({ reels, updated_at: new Date().toISOString() })
     .eq('id', id);
   if (error) throw new Error(error.message);
 }

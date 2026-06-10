@@ -68,8 +68,9 @@ export async function publishQueueItem(queueId: string): Promise<ExecResult> {
         : ((cn.hashtags ?? []) as string[]).map((h) => (h.startsWith('#') ? h : `#${h}`)).join(' ');
       caption = [captionText, tags].filter(Boolean).join('\n\n');
       const { data: slides } = await sb.from('marketing_cardnews_slides').select('canvas, sort_order').eq('cardnews_id', cn.id as string).order('sort_order');
-      imageUrls = ((slides ?? []) as Array<{ canvas?: { imageUrl?: string | null } }>)
-        .map((s) => s.canvas?.imageUrl)
+      // 완성 이미지는 언어별(canvas.images[lang]) — 교차 폴백 없음(각 언어 텍스트가 박혀 있어서).
+      imageUrls = ((slides ?? []) as Array<{ canvas?: { images?: Record<string, string | null> } }>)
+        .map((s) => s.canvas?.images?.[lang] ?? null)
         .filter((u): u is string => typeof u === 'string' && u.length > 0);
     }
   } else {

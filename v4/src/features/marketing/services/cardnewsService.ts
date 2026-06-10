@@ -55,7 +55,7 @@ export async function generateCaptions(req: {
 }
 
 // ── Mappers ─────────────────────────────────────────────────────────────────
-const EMPTY_CANVAS: CardCanvasData = { bgColor: '#ffffff', imageUrl: null, imageY: 50, textBlocks: [] };
+const EMPTY_CANVAS: CardCanvasData = { bgColor: '#ffffff', imageUrl: null, imageY: 50, textBlocks: [], images: {} };
 
 function rowToCardnews(r: Row, slides: CardnewsSlide[]): Cardnews {
   return {

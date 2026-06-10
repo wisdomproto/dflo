@@ -5,12 +5,13 @@ import { LanguageSelector } from './LanguageSelector';
 import { BaseArticlePanel } from './BaseArticlePanel';
 import { BlogWizard } from './BlogWizard';
 import { CardNewsPanel } from './CardNewsPanel';
+import { ReelsPanel } from './ReelsPanel';
 import { PublishDialog } from './PublishDialog';
 import type { ContentKind } from '../../utils/publishRows';
 
 const ACCENT = '#4A2D6B';
 
-type Tab = 'base' | 'blog' | 'cardnews';
+type Tab = 'base' | 'blog' | 'cardnews' | 'reels';
 
 interface Props {
   article: MarketingArticle;
@@ -33,6 +34,7 @@ export function ContentTabs({ article, onSaved }: Props) {
     { key: 'base', label: '기본글' },
     { key: 'blog', label: '블로그' },
     { key: 'cardnews', label: '카드뉴스' },
+    { key: 'reels', label: '릴스' },
   ];
 
   return (
@@ -63,7 +65,9 @@ export function ContentTabs({ article, onSaved }: Props) {
         <button
           type="button"
           onClick={() => setShowPublish(true)}
-          className="rounded-lg px-3 py-1.5 text-sm font-semibold text-white"
+          disabled={tab === 'reels'}
+          title={tab === 'reels' ? '릴스 발행은 준비 중입니다' : undefined}
+          className="rounded-lg px-3 py-1.5 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
           style={{ backgroundColor: ACCENT }}
         >
           📥 발행 큐에 넣기
@@ -76,8 +80,10 @@ export function ContentTabs({ article, onSaved }: Props) {
           <BaseArticlePanel article={article} language={language} onSaved={onSaved} />
         ) : tab === 'blog' ? (
           <BlogWizard article={article} language={language} />
+        ) : tab === 'cardnews' ? (
+          <CardNewsPanel article={article} language={language} />
         ) : (
-          <CardNewsPanel article={article} />
+          <ReelsPanel article={article} language={language} />
         )}
       </div>
       {showPublish && (

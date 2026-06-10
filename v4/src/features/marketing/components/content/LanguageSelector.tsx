@@ -9,6 +9,8 @@ const LANGS: { code: string; label: string; flag: string }[] = [
   { code: 'th', label: 'TH', flag: '🇹🇭' },
   { code: 'vi', label: 'VI', flag: '🇻🇳' },
   { code: 'en', label: 'EN', flag: '🇺🇸' },
+  { code: 'ch', label: '繁中', flag: '🇹🇼' },
+  { code: 'cn', label: '简中', flag: '🇨🇳' },
 ];
 
 interface Props {

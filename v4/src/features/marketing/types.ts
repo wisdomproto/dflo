@@ -81,6 +81,7 @@ export interface MarketingArticle {
   sortOrder: number;
   translations: Record<string, ArticleTranslation>; // keyed by lang, e.g. { th: {...} }
   blog: BlogSeoMap; // SEO blog (migration 045): per-language structured article
+  reels: ReelsMap; // reels (migration 046): per-language video + caption + hashtags
 }
 
 // ── SEO blog (migration 045) ────────────────────────────────────────────────
@@ -107,6 +108,15 @@ export interface BlogSeoArticle {
   faq: BlogSeoFaq[];
 }
 export type BlogSeoMap = Partial<Record<BlogSeoLangCode, BlogSeoArticle>>;
+
+// ── Reels (migration 046) ───────────────────────────────────────────────────
+// Per-language short-form video (mp4 on R2). Keyed by lang (ko/th/vi/en/ch —
+// same set as the top language selector). Caption/hashtags are NOT stored here —
+// they are shared (single source) from the cardnews (marketing_cardnews).
+export interface ReelsLangData {
+  videoUrl: string | null;
+}
+export type ReelsMap = Partial<Record<string, ReelsLangData>>;
 
 export interface KeywordHit {
   keyword: string;
@@ -148,13 +158,14 @@ export interface TextBlock {
 
 export interface CardCanvasData {
   bgColor: string;
-  imageUrl: string | null;
+  imageUrl: string | null; // legacy(언어공통). 완성 이미지는 images[lang] 사용 — 폐기 예정 백업
   imageY: number; // object-position Y %
   textBlocks: TextBlock[];
+  images?: Partial<Record<CardLang, string>>; // 언어별 완성 이미지 (canvas JSONB 내 저장, DDL 불필요)
 }
 
-export type CardLang = 'ko' | 'en' | 'th' | 'vi' | 'ch';
-export const CARD_LANGS: CardLang[] = ['ko', 'en', 'th', 'vi', 'ch'];
+export type CardLang = 'ko' | 'en' | 'th' | 'vi' | 'ch' | 'cn';
+export const CARD_LANGS: CardLang[] = ['ko', 'en', 'th', 'vi', 'ch', 'cn'];
 export interface CardSlideText {
   headline: string;
   subtext: string;

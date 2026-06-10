@@ -60,3 +60,18 @@ export async function uploadImageFile(file: File): Promise<string> {
   });
   return uploadGeneratedImage(dataUrl);
 }
+
+/** Uploads a raw file (e.g. video mp4) to R2 without conversion. Returns the public URL. */
+export async function uploadVideoFile(file: File): Promise<string> {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('folder', 'marketing/reels');
+  const res = await fetch(`${BASE}/api/r2/upload`, {
+    method: 'POST',
+    headers: { 'x-admin-pin': PIN },
+    body: fd,
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `영상 업로드 실패: ${res.status}`);
+  return b.url as string;
+}

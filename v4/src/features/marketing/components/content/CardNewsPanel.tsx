@@ -2,7 +2,6 @@
 // 프롬프트 중심 카드뉴스 패널: 언어 탭 + 슬라이드별 이미지 프롬프트 + 완성 이미지 업로드 + 전체 복사 + 인라인 편집 + AI 재생성.
 import { useEffect, useRef, useState } from 'react';
 import type { Cardnews, CardnewsSlide, CardLang, MarketingArticle } from '../../types';
-import { CARD_LANGS } from '../../types';
 import {
   fetchCardnews, createCardnews, updateCardnews,
   addSlide, updateSlide, deleteSlide,
@@ -11,13 +10,13 @@ import {
 import { uploadImageFile } from '../../services/aiImageService';
 import { ImageDropzone } from './ImageDropzone';
 
-interface Props { article: MarketingArticle; }
+interface Props { article: MarketingArticle; language: string; }
 
 const ACCENT = '#4A2D6B';
-const LANG_LABELS: Record<CardLang, string> = { ko: '🇰🇷 한국어', en: '🇬🇧 EN', th: '🇹🇭 TH', vi: '🇻🇳 VI', ch: '🇹🇼 中文' };
+const LANG_LABELS: Record<CardLang, string> = { ko: '🇰🇷 한국어', en: '🇬🇧 EN', th: '🇹🇭 TH', vi: '🇻🇳 VI', ch: '🇹🇼 中文(번체)', cn: '🇨🇳 中文(간체)' };
 const DOMAINS: Record<CardLang, string> = {
   ko: 'www.dr187growup.com', en: 'www.dr187growup.com/en', th: 'www.dr187growup.com/th',
-  vi: 'www.dr187growup.com/vi', ch: 'www.dr187growup.com/ch',
+  vi: 'www.dr187growup.com/vi', ch: 'www.dr187growup.com/ch', cn: 'www.dr187growup.com/cn',
 };
 const COMMON_STYLE = [
   '· 비율: 세로 2:3 (1024×1536)',
@@ -51,10 +50,10 @@ function allSlides(slides: CardnewsSlide[], lang: CardLang): string {
   return p;
 }
 
-export function CardNewsPanel({ article }: Props) {
+export function CardNewsPanel({ article, language }: Props) {
+  const lang = language as CardLang; // 위 언어 셀렉터(ko/th/vi/en/ch) = CardLang 집합
   const [cardnews, setCardnews] = useState<Cardnews | null>(null);
   const [slides, setSlides] = useState<CardnewsSlide[]>([]);
-  const [lang, setLang] = useState<CardLang>('ko');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [genSlides, setGenSlides] = useState(false);
@@ -125,14 +124,16 @@ export function CardNewsPanel({ article }: Props) {
     patchLocal(s.id, { texts }); queueSlide(s.id, { texts });
   };
 
-  // ── 완성 이미지 — canvas.imageUrl 저장/삭제 (업로드는 ImageDropzone 내부 처리) ──
+  // ── 완성 이미지 — canvas.images[lang] 언어별 저장/삭제 (업로드는 ImageDropzone 내부 처리) ──
   const setSlideImage = (s: CardnewsSlide, url: string) => {
-    const canvas = { ...s.canvas, imageUrl: url };
+    const canvas = { ...s.canvas, images: { ...(s.canvas.images ?? {}), [lang]: url } };
     patchLocal(s.id, { canvas });
     void updateSlide(s.id, { canvas });
   };
   const removeImg = async (s: CardnewsSlide) => {
-    const canvas = { ...s.canvas, imageUrl: null };
+    const images = { ...(s.canvas.images ?? {}) };
+    delete images[lang];
+    const canvas = { ...s.canvas, images };
     patchLocal(s.id, { canvas });
     await updateSlide(s.id, { canvas });
   };
@@ -148,7 +149,7 @@ export function CardNewsPanel({ article }: Props) {
       setBulkProgress(`${i + 1}/${count}`);
       try {
         const url = await uploadImageFile(arr[i]);
-        const canvas = { ...target[i].canvas, imageUrl: url };
+        const canvas = { ...target[i].canvas, images: { ...(target[i].canvas.images ?? {}), [lang]: url } };
         patchLocal(target[i].id, { canvas });
         await updateSlide(target[i].id, { canvas });
       } catch (e) { setError(`#${i + 1} 업로드 실패: ${e instanceof Error ? e.message : ''}`); }
@@ -201,15 +202,9 @@ export function CardNewsPanel({ article }: Props) {
 
   return (
     <div className="flex h-full flex-col">
-      {/* 언어 탭 + 액션 */}
+      {/* 현재 언어 + 액션 (언어 전환은 상단 언어 셀렉터) */}
       <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-gray-200 p-3">
-        {CARD_LANGS.map((l) => (
-          <button key={l} type="button" onClick={() => setLang(l)}
-            className={`rounded-full px-3 py-1 text-xs ${l === lang ? 'text-white' : 'text-gray-600 ring-1 ring-gray-300'}`}
-            style={l === lang ? { backgroundColor: ACCENT } : undefined}>
-            {LANG_LABELS[l]}
-          </button>
-        ))}
+        <span className="text-xs font-semibold text-gray-500">{LANG_LABELS[lang]} 카드뉴스</span>
         <div className="ml-auto flex gap-2">
           <button type="button" onClick={() => copy(allSlides(slides, lang), 'all')} disabled={!slides.length}
             className="rounded bg-emerald-600 px-3 py-1 text-xs font-semibold text-white disabled:opacity-40">
@@ -277,7 +272,7 @@ export function CardNewsPanel({ article }: Props) {
                 {/* 완성 이미지 — 드래그앤드롭 / 붙여넣기(클릭→Ctrl+V) / 파일 선택 */}
                 <div className="mb-2">
                   <ImageDropzone
-                    url={s.canvas.imageUrl}
+                    url={s.canvas.images?.[lang] ?? null}
                     onUploaded={(url) => setSlideImage(s, url)}
                     onClear={() => void removeImg(s)}
                     aspectRatio="2/3"

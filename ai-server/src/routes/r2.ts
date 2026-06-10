@@ -6,7 +6,7 @@ export const r2Router = Router();
 
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 15 * 1024 * 1024 }, // 15MB
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB (이미지 + 릴스 영상 mp4 허용)
 });
 
 // Shared admin PIN check (reuses existing website admin pin)
