@@ -1,0 +1,552 @@
+{
+  "slug": "성장타이밍4",
+  "fps": 30,
+  "title": "키 크는 데 4번의 기회가 있다 — 성장 타이밍",
+  "_note": "자동 생성(storyboard-to-reel 2). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "4번의 기회?"
+    },
+    "th": {
+      "top": "ส่วนสูงของลูก",
+      "mark": "4 ช่วงโอกาส?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키, 크는 데에는 '4번의 기회'가 있습니다.",
+      "cap_ko": [
+        "키 크는",
+        "4번의 기회"
+      ],
+      "hl_ko": "4번의 기회",
+      "th": "รู้ไหมว่าความสูงของลูกมี 4 ช่วงโอกาส?",
+      "cap_th": [
+        "มี",
+        "4 ช่วงโอกาส"
+      ],
+      "hl_th": "4 ช่วงโอกาส",
+      "vi": "Bạn có biết chiều cao của con có 4 cơ hội vàng không?",
+      "cap_vi": [
+        "Chiều cao có",
+        "4 cơ hội"
+      ],
+      "hl_vi": "4 cơ hội",
+      "en": "Did you know your child's height has 4 windows of opportunity?",
+      "cap_en": [
+        "Height has",
+        "4 windows"
+      ],
+      "hl_en": "4 windows",
+      "cn": "你知道孩子的身高有4次黄金机会吗？",
+      "cap_cn": [
+        "身高有",
+        "4次机会"
+      ],
+      "hl_cn": "4次机会",
+      "ch": "你知道孩子的身高有4次黃金機會嗎？",
+      "cap_ch": [
+        "身高有",
+        "4次機會"
+      ],
+      "hl_ch": "4次機會"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "키는 시간이 지난다고 저절로 크는 게 아닙니다. 타이밍이 핵심입니다.",
+      "cap_ko": [
+        "저절로 X",
+        "타이밍이 핵심"
+      ],
+      "hl_ko": "타이밍이 핵심",
+      "th": "ความสูงไม่ได้มาเองตามเวลา จังหวะคือหัวใจ",
+      "cap_th": [
+        "ไม่ได้มาเอง",
+        "จังหวะ"
+      ],
+      "hl_th": "จังหวะ",
+      "vi": "Chiều cao không tự đến theo thời gian — thời điểm mới là chìa khóa.",
+      "cap_vi": [
+        "Không tự đến",
+        "thời điểm"
+      ],
+      "hl_vi": "thời điểm",
+      "en": "Height doesn't just happen with time — timing is everything.",
+      "cap_en": [
+        "Not automatic",
+        "timing"
+      ],
+      "hl_en": "timing",
+      "cn": "身高不会随时间自动长高——时机才是关键。",
+      "cap_cn": [
+        "不会自动",
+        "时机"
+      ],
+      "hl_cn": "时机",
+      "ch": "身高不會隨時間自動長高——時機才是關鍵。",
+      "cap_ch": [
+        "不會自動",
+        "時機"
+      ],
+      "hl_ch": "時機"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "영아기, 아동기, 사춘기, 그리고 골든타임. 이 네 번입니다.",
+      "cap_ko": [
+        "영아·아동·사춘기",
+        "골든타임"
+      ],
+      "hl_ko": "골든타임",
+      "th": "วัยทารก วัยเด็ก วัยแรกรุ่น และช่วงเวลาทอง สี่ครั้ง",
+      "cap_th": [
+        "4 ระยะ",
+        "ช่วงเวลาทอง"
+      ],
+      "hl_th": "ช่วงเวลาทอง",
+      "vi": "Sơ sinh, tuổi nhỏ, dậy thì, và thời điểm vàng. Bốn cơ hội.",
+      "cap_vi": [
+        "4 giai đoạn",
+        "thời điểm vàng"
+      ],
+      "hl_vi": "thời điểm vàng",
+      "en": "Infancy, childhood, puberty — and the golden time. Four chances.",
+      "cap_en": [
+        "4 stages",
+        "golden time"
+      ],
+      "hl_en": "golden time",
+      "cn": "婴儿期、儿童期、青春期，还有黄金期。一共四次。",
+      "cap_cn": [
+        "四个阶段",
+        "黄金期"
+      ],
+      "hl_cn": "黄金期",
+      "ch": "嬰兒期、兒童期、青春期，還有黃金期。一共四次。",
+      "cap_ch": [
+        "四個階段",
+        "黃金期"
+      ],
+      "hl_ch": "黃金期",
+      "insert": "images/성장타이밍4/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.1,
+          "y": 0.93,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "영아기",
+          "en": "Infancy",
+          "th": "วัยทารก"
+        },
+        {
+          "x": 0.34,
+          "y": 0.93,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "아동기",
+          "en": "Childhood",
+          "th": "วัยเด็ก"
+        },
+        {
+          "x": 0.57,
+          "y": 0.93,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "사춘기",
+          "en": "Puberty",
+          "th": "วัยแรกรุ่น"
+        },
+        {
+          "x": 0.82,
+          "y": 0.93,
+          "size": 30,
+          "weight": 900,
+          "color": "#b8860b",
+          "ko": "골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "첫째 영아기, 0에서 2세. 평생 가장 빠릅니다. 첫 돌에만 25센티!",
+      "cap_ko": [
+        "영아기 0~2세",
+        "첫 돌 25cm!"
+      ],
+      "hl_ko": "25cm!",
+      "th": "หนึ่ง วัยทารก 0–2 ปี เร็วที่สุด ปีแรกถึง 25 ซม.!",
+      "cap_th": [
+        "ทารก",
+        "+25 ซม."
+      ],
+      "hl_th": "+25 ซม.",
+      "vi": "Đầu tiên, sơ sinh (0–2 tuổi): nhanh nhất đời — 25cm chỉ trong năm đầu!",
+      "cap_vi": [
+        "Sơ sinh",
+        "+25cm"
+      ],
+      "hl_vi": "+25cm",
+      "en": "First, infancy (0–2): fastest ever — 25cm in the first year alone!",
+      "cap_en": [
+        "Infancy",
+        "+25cm"
+      ],
+      "hl_en": "+25cm",
+      "cn": "第一，婴儿期（0–2岁）：一生最快——光第一年就长25厘米！",
+      "cap_cn": [
+        "婴儿期",
+        "+25厘米"
+      ],
+      "hl_cn": "+25厘米",
+      "ch": "第一，嬰兒期（0–2歲）：一生最快——光第一年就長25公分！",
+      "cap_ch": [
+        "嬰兒期",
+        "+25公分"
+      ],
+      "hl_ch": "+25公分",
+      "insert": "images/성장타이밍4/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.76,
+          "y": 0.17,
+          "size": 58,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "+25cm",
+          "en": "+25cm",
+          "th": "+25cm"
+        },
+        {
+          "x": 0.3,
+          "y": 0.92,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "0~2세 · 첫 돌",
+          "en": "age 0–2",
+          "th": "0–2 ขวบ"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "둘째 아동기엔 매년 4에서 6센티. 4센티가 안 되면 성장 부진 신호입니다.",
+      "cap_ko": [
+        "아동기 매년",
+        "4~6cm"
+      ],
+      "hl_ko": "4~6cm",
+      "th": "วัยเด็ก ปีละ 4–6 ซม. ต่ำกว่า 4 คือสัญญาณเตือน",
+      "cap_th": [
+        "วัยเด็ก",
+        "4–6 ซม."
+      ],
+      "hl_th": "4–6 ซม.",
+      "vi": "Tuổi nhỏ: 4–6cm mỗi năm. Dưới 4cm là dấu hiệu cảnh báo.",
+      "cap_vi": [
+        "Tuổi nhỏ",
+        "4–6cm"
+      ],
+      "hl_vi": "4–6cm",
+      "en": "Childhood: 4–6cm a year. Under 4cm is a warning sign.",
+      "cap_en": [
+        "Childhood",
+        "4–6cm"
+      ],
+      "hl_en": "4–6cm",
+      "cn": "儿童期：每年4到6厘米。低于4厘米就是警告信号。",
+      "cap_cn": [
+        "儿童期",
+        "4–6厘米"
+      ],
+      "hl_cn": "4–6厘米",
+      "ch": "兒童期：每年4到6公分。低於4公分就是警告信號。",
+      "cap_ch": [
+        "兒童期",
+        "4–6公分"
+      ],
+      "hl_ch": "4–6公分"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "셋째 사춘기, 제2의 급성장기. 1년에 7에서 12센티까지 큽니다.",
+      "cap_ko": [
+        "사춘기 급성장",
+        "7~12cm"
+      ],
+      "hl_ko": "7~12cm",
+      "th": "วัยแรกรุ่น พุ่งครั้งที่สอง 7–12 ซม. ต่อปี!",
+      "cap_th": [
+        "แรกรุ่น",
+        "7–12 ซม."
+      ],
+      "hl_th": "7–12 ซม.",
+      "vi": "Dậy thì: đợt tăng vọt thứ hai — 7 đến 12cm mỗi năm!",
+      "cap_vi": [
+        "Dậy thì",
+        "7–12cm"
+      ],
+      "hl_vi": "7–12cm",
+      "en": "Puberty: the second spurt — 7 to 12cm a year!",
+      "cap_en": [
+        "Puberty",
+        "7–12cm"
+      ],
+      "hl_en": "7–12cm",
+      "cn": "青春期：第二次猛长——一年长7到12厘米！",
+      "cap_cn": [
+        "青春期",
+        "7–12厘米"
+      ],
+      "hl_cn": "7–12厘米",
+      "ch": "青春期：第二次猛長——一年長7到12公分！",
+      "cap_ch": [
+        "青春期",
+        "7–12公分"
+      ],
+      "hl_ch": "7–12公分",
+      "insert": "images/성장타이밍4/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.63,
+          "y": 0.47,
+          "size": 52,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "7~12cm",
+          "en": "7–12cm",
+          "th": "7–12 ซม."
+        },
+        {
+          "x": 0.6,
+          "y": 0.11,
+          "size": 32,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "1년에!",
+          "en": "per year",
+          "th": "ต่อปี"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "그런데 사춘기가 너무 빨리 오면, 성장판도 일찍 닫혀 손해입니다.",
+      "cap_ko": [
+        "사춘기 빠르면",
+        "성장판 일찍 닫힘"
+      ],
+      "hl_ko": "성장판 일찍 닫힘",
+      "th": "แต่ถ้าแรกรุ่นมาเร็วไป แผ่นกระดูกปิดเร็ว เสียส่วนสูง",
+      "cap_th": [
+        "เร็วไป",
+        "ปิดเร็ว"
+      ],
+      "hl_th": "ปิดเร็ว",
+      "vi": "Nhưng nếu dậy thì quá sớm, sụn tăng trưởng đóng sớm — mất chiều cao.",
+      "cap_vi": [
+        "Quá sớm",
+        "sụn đóng sớm"
+      ],
+      "hl_vi": "sụn đóng sớm",
+      "en": "But if puberty comes too early, the plates close early — you lose height.",
+      "cap_en": [
+        "Too early",
+        "plates close"
+      ],
+      "hl_en": "plates close",
+      "cn": "但如果青春期来得太早，生长板提前闭合——身高吃亏。",
+      "cap_cn": [
+        "太早",
+        "生长板早闭"
+      ],
+      "hl_cn": "生长板早闭",
+      "ch": "但如果青春期來得太早，生長板提前閉合——身高吃虧。",
+      "cap_ch": [
+        "太早",
+        "生長板早閉"
+      ],
+      "hl_ch": "生長板早閉"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "그래서 성장판 닫히기 전, 이 마지막 골든타임이 가장 중요합니다.",
+      "cap_ko": [
+        "성장판 닫히기 전",
+        "골든타임"
+      ],
+      "hl_ko": "골든타임",
+      "th": "ดังนั้นช่วงเวลาทองก่อนแผ่นกระดูกปิดสำคัญที่สุด",
+      "cap_th": [
+        "ก่อนปิด",
+        "ช่วงเวลาทอง"
+      ],
+      "hl_th": "ช่วงเวลาทอง",
+      "vi": "Vì vậy thời điểm vàng — ngay trước khi sụn đóng — quan trọng nhất.",
+      "cap_vi": [
+        "Trước khi đóng",
+        "thời điểm vàng"
+      ],
+      "hl_vi": "thời điểm vàng",
+      "en": "So the golden time — right before the plates close — matters most.",
+      "cap_en": [
+        "Before close",
+        "golden time"
+      ],
+      "hl_en": "golden time",
+      "cn": "所以生长板闭合前的黄金期，最为关键。",
+      "cap_cn": [
+        "闭合前",
+        "黄金期"
+      ],
+      "hl_cn": "黄金期",
+      "ch": "所以生長板閉合前的黃金期，最為關鍵。",
+      "cap_ch": [
+        "閉合前",
+        "黃金期"
+      ],
+      "hl_ch": "黃金期",
+      "insert": "images/성장타이밍4/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.08,
+          "size": 34,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "마지막 기회",
+          "en": "Last window",
+          "th": "โอกาสสุดท้าย"
+        },
+        {
+          "x": 0.5,
+          "y": 0.92,
+          "size": 50,
+          "weight": 900,
+          "color": "#b8860b",
+          "ko": "골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이를 보면, 우리 아이에게 남은 기회가 얼마인지 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "남은 기회 확인"
+      ],
+      "hl_ko": "남은 기회 확인",
+      "th": "อายุกระดูกบอกว่าเหลือโอกาสอีกเท่าไร",
+      "cap_th": [
+        "อายุกระดูก",
+        "เวลาที่เหลือ"
+      ],
+      "hl_th": "เวลาที่เหลือ",
+      "vi": "Tuổi xương cho biết chính xác còn lại bao nhiêu cơ hội.",
+      "cap_vi": [
+        "Tuổi xương",
+        "thời gian còn lại"
+      ],
+      "hl_vi": "thời gian còn lại",
+      "en": "Bone age shows exactly how much chance is left.",
+      "cap_en": [
+        "Bone age",
+        "time left"
+      ],
+      "hl_en": "time left",
+      "cn": "骨龄能告诉你，孩子还剩多少机会。",
+      "cap_cn": [
+        "骨龄",
+        "剩余机会"
+      ],
+      "hl_cn": "剩余机会",
+      "ch": "骨齡能告訴你，孩子還剩多少機會。",
+      "cap_ch": [
+        "骨齡",
+        "剩餘機會"
+      ],
+      "hl_ch": "剩餘機會"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 36,
+      "ko": "우리 아이 성장 골든타임, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "성장 골든타임",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กช่วงเวลาทองของลูกวันนี้",
+      "cap_th": [
+        "ช่วงเวลาทอง",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra thời điểm vàng của con ngay hôm nay.",
+      "cap_vi": [
+        "Thời điểm vàng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's golden time today.",
+      "cap_en": [
+        "Golden time",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的成长黄金期吧。",
+      "cap_cn": [
+        "成长黄金期",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的成長黃金期吧。",
+      "cap_ch": [
+        "成長黃金期",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

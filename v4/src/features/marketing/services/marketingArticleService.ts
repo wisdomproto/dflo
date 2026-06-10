@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap, ReelsMap, BlogReference } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap, ReelsMap, ReelAssets, BlogReference } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -25,6 +25,7 @@ function rowToArticle(r: Row): MarketingArticle {
     translations: (r.translations as Record<string, ArticleTranslation>) ?? {},
     blog: (r.blog as BlogSeoMap) ?? {},
     reels: (r.reels as ReelsMap) ?? {},
+    reelAssets: (r.reel_assets as ReelAssets) ?? {},
     blogReferences: (r.blog_references as BlogReference[]) ?? [],
   };
 }
@@ -46,6 +47,7 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     ...(a.translations !== undefined ? { translations: a.translations } : {}),
     ...(a.blog !== undefined ? { blog: a.blog } : {}),
     ...(a.reels !== undefined ? { reels: a.reels } : {}),
+    // reel_assets(migration 050)는 전용 saveReelAssets 로만 기록 — 일반 저장이 미적용 컬럼을 건드려 깨지는 것 방지.
     ...(a.blogReferences !== undefined ? { blog_references: a.blogReferences } : {}),
   };
 }
@@ -202,6 +204,15 @@ export async function saveReels(id: string, reels: ReelsMap): Promise<void> {
   const { error } = await supabase
     .from('marketing_articles')
     .update({ reels, updated_at: new Date().toISOString() })
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+/** Partial update of just the reel_assets JSONB (migration 050, 인포그래픽 언어공용 이미지). */
+export async function saveReelAssets(id: string, reelAssets: ReelAssets): Promise<void> {
+  const { error } = await supabase
+    .from('marketing_articles')
+    .update({ reel_assets: reelAssets, updated_at: new Date().toISOString() })
     .eq('id', id);
   if (error) throw new Error(error.message);
 }

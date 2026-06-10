@@ -48,6 +48,10 @@ export function MarketingArticlesPage() {
     reload();
   };
 
+  // 패널이 저장(reels/reelAssets 등)하면 부모 articles 도 in-place 갱신 → 페이지 이동 후 재마운트해도 최신값 표시(stale 방지).
+  const patchSelected = (partial: Partial<MarketingArticle>) =>
+    setArticles((prev) => prev.map((a) => (a.id === selectedId ? { ...a, ...partial } : a)));
+
   return (
     <div className="flex h-full">
       <ContentListPanel
@@ -64,7 +68,7 @@ export function MarketingArticlesPage() {
         {view === 'status' ? (
           <ContentStatusPanel articles={articles} />
         ) : selected ? (
-          <ContentTabs key={selected.id} article={selected} onSaved={reload} />
+          <ContentTabs key={selected.id} article={selected} onSaved={reload} onPatch={patchSelected} />
         ) : (
           <div className="flex h-full items-center justify-center text-sm text-gray-400">
             왼쪽에서 글을 선택하거나 + 새 글 으로 시작하세요.

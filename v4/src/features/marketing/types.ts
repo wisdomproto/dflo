@@ -82,6 +82,7 @@ export interface MarketingArticle {
   translations: Record<string, ArticleTranslation>; // keyed by lang, e.g. { th: {...} }
   blog: BlogSeoMap; // SEO blog (migration 045): per-language structured article
   reels: ReelsMap; // reels (migration 046): per-language video + caption + hashtags
+  reelAssets: ReelAssets; // 릴스 인포그래픽 이미지 (migration 050): 언어공용 (텍스트 없음, 렌더가 언어별 오버레이)
   blogReferences: BlogReference[]; // 블로그 근거 논문 (migration 049), 아티클 단위·언어 독립
 }
 
@@ -131,6 +132,13 @@ export interface ReelsLangData {
   coverUrl: string | null; // 인스타 릴스 커버(섬네일) — 언어별 (텍스트가 박혀 있어 per-lang)
 }
 export type ReelsMap = Partial<Record<string, ReelsLangData>>;
+
+// ── Reel infographic assets (migration 050) ─────────────────────────────────
+// 인포그래픽 이미지 = 텍스트 없음(NO text) + 전 언어 공용 1장. 키 = 스토리보드 인포그래픽 id(ig1/ig2/…).
+// 텍스트는 렌더(PresenterShort)가 insertLabels 로 언어별 오버레이 → 이미지는 언어 무관.
+export interface ReelAssets {
+  infographics?: Record<string, string>; // { ig1: '<r2-url>', ... }
+}
 
 export interface KeywordHit {
   keyword: string;

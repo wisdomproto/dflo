@@ -16,9 +16,10 @@ type Tab = 'base' | 'blog' | 'cardnews' | 'reels';
 interface Props {
   article: MarketingArticle;
   onSaved: () => void;
+  onPatch?: (partial: Partial<MarketingArticle>) => void;
 }
 
-export function ContentTabs({ article, onSaved }: Props) {
+export function ContentTabs({ article, onSaved, onPatch }: Props) {
   const [tab, setTab] = useState<Tab>('base');
   const [language, setLanguage] = useState('ko');
   const [showPublish, setShowPublish] = useState(false);
@@ -82,7 +83,7 @@ export function ContentTabs({ article, onSaved }: Props) {
         ) : tab === 'cardnews' ? (
           <CardNewsPanel article={article} language={language} />
         ) : (
-          <ReelsPanel article={article} language={language} />
+          <ReelsPanel article={article} language={language} onPatch={onPatch} />
         )}
       </div>
       {showPublish && (

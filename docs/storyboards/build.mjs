@@ -12,12 +12,18 @@ mkdirSync(OUT, { recursive: true });
 
 const files = readdirSync(SPECS).filter((f) => f.endsWith('.json'));
 const ns = [];
+const igMap = {}; // n -> [{ ig, scene, title, motion, emojis, prompt, labels }] (인포그래픽 이미지 업로드 슬롯용)
 for (const f of files) {
   const spec = JSON.parse(readFileSync(join(SPECS, f), 'utf8'));
   writeFileSync(join(OUT, `${spec.n}.html`), renderStoryboard(spec));
   ns.push(spec.n);
-  console.log(`✓ ${spec.n}.html — ${spec.topicTitle || spec.title}`);
+  igMap[spec.n] = (spec.infographics || []).map((g) => ({
+    ig: g.ig, scene: g.scene, title: g.title, motion: g.motion,
+    emojis: g.emojis || [], prompt: g.prompt || '', labels: g.labels || [],
+  }));
+  console.log(`✓ ${spec.n}.html — ${spec.topicTitle || spec.title} (인포 ${igMap[spec.n].length})`);
 }
 ns.sort((a, b) => a - b);
 writeFileSync(join(OUT, 'index.json'), JSON.stringify(ns));
-console.log(`\n📄 manifest [${ns.join(', ')}] — ${ns.length} storyboards`);
+writeFileSync(join(OUT, 'infographics.json'), JSON.stringify(igMap));
+console.log(`\n📄 manifest [${ns.join(', ')}] — ${ns.length} storyboards + infographics.json`);

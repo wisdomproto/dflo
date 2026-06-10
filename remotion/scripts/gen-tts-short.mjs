@@ -56,7 +56,10 @@ async function main() {
     const raw = join(OUT_DIR, `${c.id}.raw.wav`), out = join(OUT_DIR, `${c.id}.wav`);
     try {
       await tts(text, raw);
-      execFileSync("ffmpeg", ["-y", "-i", raw, out], { stdio: "ignore" }); // 자연속도 그대로
+      // 앞뒤 무음 트림(0.08s 패딩 유지) — ElevenLabs 가 간혹 긴 선행 정적을 생성해 음성 갭이 생기는 것 방지.
+      execFileSync("ffmpeg", ["-y", "-i", raw, "-af",
+        "silenceremove=start_periods=1:start_silence=0.08:start_threshold=-40dB:detection=peak,areverse,silenceremove=start_periods=1:start_silence=0.08:start_threshold=-40dB:detection=peak,areverse",
+        out], { stdio: "ignore" });
       rmSync(raw, { force: true });
       const dur = wavDur(out);
       const slot = c.end - c.start;

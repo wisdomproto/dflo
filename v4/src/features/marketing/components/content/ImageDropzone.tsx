@@ -8,10 +8,16 @@ interface Props {
   onUploaded: (url: string) => void;
   onClear?: () => void;
   aspectRatio?: string; // e.g. '16/9'
+  /** 업로드 함수 (default: uploadImageFile → WebP). 인포그래픽은 uploadInfographicImage(원본 PNG) 주입. */
+  upload?: (file: File) => Promise<string>;
+  /** 📁 파일 선택 버튼 표시 (default true). false면 드래그앤드롭 + 붙여넣기만. */
+  showFilePicker?: boolean;
+  /** 빈 상태 안내 첫 줄 (default "🖼 드래그앤드롭 / 붙여넣기"). */
+  placeholder?: string;
 }
 
-// 이미지 입력 칸: 클릭하면 붙여넣기 대상으로 지정(하이라이트) → Ctrl+V, 드래그앤드롭, 파일선택 모두 지원.
-export function ImageDropzone({ url, alt, onUploaded, onClear, aspectRatio }: Props) {
+// 이미지 입력 칸: 클릭하면 붙여넣기 대상으로 지정(하이라이트) → Ctrl+V, 드래그앤드롭 (+선택적 파일선택).
+export function ImageDropzone({ url, alt, onUploaded, onClear, aspectRatio, upload = uploadImageFile, showFilePicker = true, placeholder }: Props) {
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -22,14 +28,14 @@ export function ImageDropzone({ url, alt, onUploaded, onClear, aspectRatio }: Pr
       setErr(null);
       setUploading(true);
       try {
-        onUploaded(await uploadImageFile(file));
+        onUploaded(await upload(file));
       } catch (e) {
         setErr(e instanceof Error ? e.message : '업로드 실패');
       } finally {
         setUploading(false);
       }
     },
-    [onUploaded],
+    [onUploaded, upload],
   );
 
   const { armed, wrapperProps } = usePasteTarget({
@@ -68,7 +74,7 @@ export function ImageDropzone({ url, alt, onUploaded, onClear, aspectRatio }: Pr
             className="flex flex-col items-center justify-center gap-1 p-2 text-center text-xs text-gray-400"
             style={aspectRatio ? { height: '100%' } : { height: '8rem' }}
           >
-            <span>🖼 드래그앤드롭 / 붙여넣기</span>
+            <span>{placeholder ?? '🖼 드래그앤드롭 / 붙여넣기'}</span>
             <span className={armed ? 'font-semibold text-[#4A2D6B]' : ''}>
               {armed ? 'Ctrl+V 로 붙여넣기' : '클릭하여 붙여넣기 대상 지정'}
             </span>
@@ -92,28 +98,34 @@ export function ImageDropzone({ url, alt, onUploaded, onClear, aspectRatio }: Pr
           </button>
         )}
       </div>
-      <div className="flex items-center gap-2">
-        <button
-          type="button"
-          onClick={() => fileRef.current?.click()}
-          className="rounded border border-gray-200 px-2 py-0.5 text-[11px] text-gray-600 hover:bg-gray-100"
-        >
-          📁 파일 선택
-        </button>
-        {armed && <span className="text-[11px] font-semibold text-[#4A2D6B]">← 붙여넣기 대상 (Ctrl+V)</span>}
-        {err && <span className="text-[11px] text-red-500">{err}</span>}
-      </div>
-      <input
-        ref={fileRef}
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={(e) => {
-          const f = e.target.files?.[0];
-          if (f) void handleFile(f);
-          e.target.value = '';
-        }}
-      />
+      {(showFilePicker || armed || err) && (
+        <div className="flex items-center gap-2">
+          {showFilePicker && (
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              className="rounded border border-gray-200 px-2 py-0.5 text-[11px] text-gray-600 hover:bg-gray-100"
+            >
+              📁 파일 선택
+            </button>
+          )}
+          {armed && <span className="text-[11px] font-semibold text-[#4A2D6B]">← 붙여넣기 대상 (Ctrl+V)</span>}
+          {err && <span className="text-[11px] text-red-500">{err}</span>}
+        </div>
+      )}
+      {showFilePicker && (
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            if (f) void handleFile(f);
+            e.target.value = '';
+          }}
+        />
+      )}
     </div>
   );
 }

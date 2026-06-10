@@ -1,0 +1,542 @@
+{
+  "slug": "성장판나이",
+  "fps": 30,
+  "title": "성장판은 언제 닫힐까? — 남녀·부위별 마감 시계",
+  "_note": "자동 생성(storyboard-to-reel 3). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "언제 멈출까?"
+    },
+    "th": {
+      "top": "ส่วนสูงของลูก",
+      "mark": "หยุดสูงเมื่อไหร่?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키, 도대체 언제까지 클까요? 그 답은 '성장판'에 있습니다.",
+      "cap_ko": [
+        "우리 아이 키",
+        "언제까지 클까?"
+      ],
+      "hl_ko": "언제까지 클까?",
+      "th": "ลูกของเราจะสูงได้ถึงเมื่อไหร่? คำตอบอยู่ที่ 'แผ่นการเจริญเติบโต'",
+      "cap_th": [
+        "ลูกจะสูง",
+        "ถึงเมื่อไหร่?"
+      ],
+      "hl_th": "ถึงเมื่อไหร่?",
+      "vi": "Con mình sẽ cao đến khi nào? Câu trả lời nằm ở 'sụn tăng trưởng'.",
+      "cap_vi": [
+        "Con cao",
+        "đến khi nào?"
+      ],
+      "hl_vi": "đến khi nào?",
+      "en": "Until when will your child keep growing? The answer is in the growth plates.",
+      "cap_en": [
+        "Your child grows",
+        "until when?"
+      ],
+      "hl_en": "until when?",
+      "cn": "孩子的身高到底能长到什么时候？答案就在'生长板'。",
+      "cap_cn": [
+        "孩子身高",
+        "长到何时?"
+      ],
+      "hl_cn": "长到何时?",
+      "ch": "孩子的身高到底能長到什麼時候？答案就在'生長板'。",
+      "cap_ch": [
+        "孩子身高",
+        "長到何時?"
+      ],
+      "hl_ch": "長到何時?"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "성장판은 뼈 끝의 연골입니다. 새 뼈를 찍어내는 작은 공장입니다.",
+      "cap_ko": [
+        "성장판 =",
+        "뼈 만드는 공장"
+      ],
+      "hl_ko": "뼈 만드는 공장",
+      "th": "แผ่นการเจริญเติบโตคือกระดูกอ่อนที่ปลายกระดูก เหมือนโรงงานสร้างกระดูก",
+      "cap_th": [
+        "แผ่นกระดูก =",
+        "โรงงานสร้างกระดูก"
+      ],
+      "hl_th": "โรงงานสร้างกระดูก",
+      "vi": "Sụn tăng trưởng nằm ở đầu xương — như một nhà máy tạo xương mới.",
+      "cap_vi": [
+        "Sụn tăng trưởng =",
+        "nhà máy tạo xương"
+      ],
+      "hl_vi": "nhà máy tạo xương",
+      "en": "Growth plates are cartilage at the bone ends — tiny factories making new bone.",
+      "cap_en": [
+        "Growth plate =",
+        "a bone factory"
+      ],
+      "hl_en": "a bone factory",
+      "cn": "生长板是骨头末端的软骨，是制造新骨的小工厂。",
+      "cap_cn": [
+        "生长板 =",
+        "造骨工厂"
+      ],
+      "hl_cn": "造骨工厂",
+      "ch": "生長板是骨頭末端的軟骨，是製造新骨的小工廠。",
+      "cap_ch": [
+        "生長板 =",
+        "造骨工廠"
+      ],
+      "hl_ch": "造骨工廠"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "그런데 사춘기 호르몬이 나오면, 이 공장이 점점 뼈로 굳어 닫힙니다.",
+      "cap_ko": [
+        "사춘기 호르몬에",
+        "공장이 닫힌다"
+      ],
+      "hl_ko": "공장이 닫힌다",
+      "th": "แต่เมื่อฮอร์โมนวัยแรกรุ่นมา โรงงานนี้ค่อยๆ แข็งเป็นกระดูกและปิดลง",
+      "cap_th": [
+        "ฮอร์โมนแรกรุ่น",
+        "ทำให้ปิด"
+      ],
+      "hl_th": "ทำให้ปิด",
+      "vi": "Nhưng khi hormone dậy thì xuất hiện, nhà máy này dần hóa xương và đóng lại.",
+      "cap_vi": [
+        "Hormone dậy thì",
+        "khiến nó đóng"
+      ],
+      "hl_vi": "khiến nó đóng",
+      "en": "But once puberty hormones kick in, this factory slowly hardens into bone and closes.",
+      "cap_en": [
+        "Puberty hormones",
+        "make it close"
+      ],
+      "hl_en": "make it close",
+      "cn": "但青春期激素一来，这座工厂就慢慢硬化成骨、关闭。",
+      "cap_cn": [
+        "青春期激素",
+        "让它关闭"
+      ],
+      "hl_cn": "让它关闭",
+      "ch": "但青春期激素一來，這座工廠就慢慢硬化成骨、關閉。",
+      "cap_ch": [
+        "青春期激素",
+        "讓它關閉"
+      ],
+      "hl_ch": "讓它關閉",
+      "insert": "images/성장판나이/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.26,
+          "y": 0.5,
+          "size": 32,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "열린 성장판",
+          "en": "Open plate",
+          "th": "แผ่นที่เปิด"
+        },
+        {
+          "x": 0.74,
+          "y": 0.5,
+          "size": 32,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "닫히는 중",
+          "en": "Closing",
+          "th": "กำลังปิด"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "성호르몬은 처음엔 키를 키우지만, 일정 농도를 넘으면 성장판을 닫습니다.",
+      "cap_ko": [
+        "성호르몬",
+        "키웠다가 닫는다"
+      ],
+      "hl_ko": "키웠다가 닫는다",
+      "th": "ฮอร์โมนเพศแรกช่วยเพิ่มความสูง แต่เกินระดับหนึ่งกลับปิดแผ่นกระดูก",
+      "cap_th": [
+        "ฮอร์โมนเพศ",
+        "เพิ่มแล้วปิด"
+      ],
+      "hl_th": "เพิ่มแล้วปิด",
+      "vi": "Hormone sinh dục đầu tiên giúp cao, nhưng vượt ngưỡng lại đóng sụn.",
+      "cap_vi": [
+        "Hormone sinh dục",
+        "tăng rồi đóng"
+      ],
+      "hl_vi": "tăng rồi đóng",
+      "en": "Sex hormones first boost height — but past a point, they close the plate.",
+      "cap_en": [
+        "Sex hormones",
+        "boost then close"
+      ],
+      "hl_en": "boost then close",
+      "cn": "性激素起初让孩子长高，但超过一定浓度反而关闭生长板。",
+      "cap_cn": [
+        "性激素",
+        "先长高后关闭"
+      ],
+      "hl_cn": "先长高后关闭",
+      "ch": "性激素起初讓孩子長高，但超過一定濃度反而關閉生長板。",
+      "cap_ch": [
+        "性激素",
+        "先長高後關閉"
+      ],
+      "hl_ch": "先長高後關閉"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "여아는 사춘기가 1~2년 빨라, 성장판이 보통 14에서 16세에 닫힙니다.",
+      "cap_ko": [
+        "여아 성장판",
+        "14~16세 닫힘"
+      ],
+      "hl_ko": "14~16세",
+      "th": "เด็กหญิงเข้าวัยแรกรุ่นเร็วกว่า 1-2 ปี แผ่นกระดูกมักปิดที่ 14-16 ปี",
+      "cap_th": [
+        "เด็กหญิง",
+        "ปิด 14-16 ปี"
+      ],
+      "hl_th": "14-16 ปี",
+      "vi": "Bé gái dậy thì sớm 1-2 năm, sụn thường đóng ở 14 đến 16 tuổi.",
+      "cap_vi": [
+        "Bé gái",
+        "đóng 14-16 tuổi"
+      ],
+      "hl_vi": "14-16 tuổi",
+      "en": "Girls hit puberty 1-2 years earlier, so plates usually close at 14 to 16.",
+      "cap_en": [
+        "Girls",
+        "close at 14-16"
+      ],
+      "hl_en": "14-16",
+      "cn": "女孩青春期早1到2年，生长板通常在14到16岁闭合。",
+      "cap_cn": [
+        "女孩",
+        "14-16岁闭合"
+      ],
+      "hl_cn": "14-16岁",
+      "ch": "女孩青春期早1到2年，生長板通常在14到16歲閉合。",
+      "cap_ch": [
+        "女孩",
+        "14-16歲閉合"
+      ],
+      "hl_ch": "14-16歲",
+      "insert": "images/성장판나이/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.29,
+          "y": 0.9,
+          "size": 30,
+          "weight": 900,
+          "color": "#db2777",
+          "ko": "여아 14~16세",
+          "en": "Girls 14-16",
+          "th": "หญิง 14-16"
+        },
+        {
+          "x": 0.72,
+          "y": 0.9,
+          "size": 30,
+          "weight": 900,
+          "color": "#2563eb",
+          "ko": "남아 16~18세",
+          "en": "Boys 16-18",
+          "th": "ชาย 16-18"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "남아는 약 2년 늦습니다. 16에서 18세까지 더 오래 자랄 수 있습니다.",
+      "cap_ko": [
+        "남아는",
+        "16~18세 닫힘"
+      ],
+      "hl_ko": "16~18세",
+      "th": "เด็กชายช้ากว่าราว 2 ปี สูงต่อได้ถึง 16-18 ปี",
+      "cap_th": [
+        "เด็กชาย",
+        "ปิด 16-18 ปี"
+      ],
+      "hl_th": "16-18 ปี",
+      "vi": "Bé trai muộn hơn khoảng 2 năm, có thể cao đến 16 đến 18 tuổi.",
+      "cap_vi": [
+        "Bé trai",
+        "đóng 16-18 tuổi"
+      ],
+      "hl_vi": "16-18 tuổi",
+      "en": "Boys close about 2 years later — they can keep growing to 16 to 18.",
+      "cap_en": [
+        "Boys",
+        "close at 16-18"
+      ],
+      "hl_en": "16-18",
+      "cn": "男孩大约晚2年，能长到16到18岁。",
+      "cap_cn": [
+        "男孩",
+        "16-18岁闭合"
+      ],
+      "hl_cn": "16-18岁",
+      "ch": "男孩大約晚2年，能長到16到18歲。",
+      "cap_ch": [
+        "男孩",
+        "16-18歲閉合"
+      ],
+      "hl_ch": "16-18歲"
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "성장판은 한 번에 닫히지 않습니다. 손과 발이 먼저, 그다음이 무릎입니다.",
+      "cap_ko": [
+        "손·발 먼저",
+        "다음은 무릎"
+      ],
+      "hl_ko": "다음은 무릎",
+      "th": "แผ่นกระดูกไม่ได้ปิดพร้อมกัน มือเท้าปิดก่อน แล้วค่อยหัวเข่า",
+      "cap_th": [
+        "มือเท้าก่อน",
+        "แล้วหัวเข่า"
+      ],
+      "hl_th": "แล้วหัวเข่า",
+      "vi": "Sụn không đóng cùng lúc. Tay chân đóng trước, rồi đến đầu gối.",
+      "cap_vi": [
+        "Tay chân trước",
+        "rồi đầu gối"
+      ],
+      "hl_vi": "rồi đầu gối",
+      "en": "Plates don't close all at once — hands and feet first, then the knees.",
+      "cap_en": [
+        "Hands & feet first",
+        "then knees"
+      ],
+      "hl_en": "then knees",
+      "cn": "生长板不是一起闭合：手脚先关，然后是膝盖。",
+      "cap_cn": [
+        "手脚先关",
+        "再到膝盖"
+      ],
+      "hl_cn": "再到膝盖",
+      "ch": "生長板不是一起閉合：手腳先關，然後是膝蓋。",
+      "cap_ch": [
+        "手腳先關",
+        "再到膝蓋"
+      ],
+      "hl_ch": "再到膝蓋",
+      "insert": "images/성장판나이/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.8,
+          "y": 0.55,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "1. 손·발",
+          "en": "1. Hands/feet",
+          "th": "1. มือเท้า"
+        },
+        {
+          "x": 0.62,
+          "y": 0.78,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "2. 무릎",
+          "en": "2. Knee",
+          "th": "2. หัวเข่า"
+        },
+        {
+          "x": 0.3,
+          "y": 0.4,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "3. 척추",
+          "en": "3. Spine",
+          "th": "3. สันหลัง"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 29.5,
+      "ko": "척추가 가장 마지막이라, 무릎이 닫혀도 1~2센티는 더 클 수 있습니다.",
+      "cap_ko": [
+        "척추 마지막",
+        "+1~2cm 여지"
+      ],
+      "hl_ko": "+1~2cm",
+      "th": "กระดูกสันหลังปิดท้ายสุด แม้หัวเข่าปิดแล้วก็ยังสูงได้อีก 1-2 ซม.",
+      "cap_th": [
+        "สันหลังท้ายสุด",
+        "+1-2 ซม."
+      ],
+      "hl_th": "+1-2 ซม.",
+      "vi": "Cột sống đóng cuối cùng, nên dù gối đã đóng vẫn cao thêm 1-2cm.",
+      "cap_vi": [
+        "Cột sống cuối",
+        "+1-2cm"
+      ],
+      "hl_vi": "+1-2cm",
+      "en": "The spine closes last, so even after the knees, you can gain 1 to 2cm.",
+      "cap_en": [
+        "Spine last",
+        "+1-2cm"
+      ],
+      "hl_en": "+1-2cm",
+      "cn": "脊椎最后闭合，所以膝盖关了还能再长1到2厘米。",
+      "cap_cn": [
+        "脊椎最后",
+        "+1-2厘米"
+      ],
+      "hl_cn": "+1-2厘米",
+      "ch": "脊椎最後閉合，所以膝蓋關了還能再長1到2公分。",
+      "cap_ch": [
+        "脊椎最後",
+        "+1-2公分"
+      ],
+      "hl_ch": "+1-2公分"
+    },
+    {
+      "id": "c9",
+      "start": 29.5,
+      "end": 32.5,
+      "ko": "손목 뼈나이를 보면, 성장판이 얼마나 남았는지 미리 알 수 있습니다.",
+      "cap_ko": [
+        "손목 뼈나이로",
+        "남은 시간 확인"
+      ],
+      "hl_ko": "남은 시간 확인",
+      "th": "อายุกระดูกข้อมือบอกได้ว่าแผ่นกระดูกเหลือเวลาอีกเท่าไร",
+      "cap_th": [
+        "อายุกระดูกข้อมือ",
+        "บอกเวลาที่เหลือ"
+      ],
+      "hl_th": "บอกเวลาที่เหลือ",
+      "vi": "Tuổi xương cổ tay cho biết sụn tăng trưởng còn lại bao nhiêu thời gian.",
+      "cap_vi": [
+        "Tuổi xương cổ tay",
+        "biết thời gian còn lại"
+      ],
+      "hl_vi": "biết thời gian còn lại",
+      "en": "A wrist bone-age X-ray shows exactly how much growth-plate time is left.",
+      "cap_en": [
+        "Wrist bone age",
+        "shows time left"
+      ],
+      "hl_en": "shows time left",
+      "cn": "看手腕骨龄，就能提前知道生长板还剩多少时间。",
+      "cap_cn": [
+        "手腕骨龄",
+        "看剩余时间"
+      ],
+      "hl_cn": "看剩余时间",
+      "ch": "看手腕骨齡，就能提前知道生長板還剩多少時間。",
+      "cap_ch": [
+        "手腕骨齡",
+        "看剩餘時間"
+      ],
+      "hl_ch": "看剩餘時間",
+      "insert": "images/성장판나이/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.42,
+          "y": 0.12,
+          "size": 32,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "손목 X-ray",
+          "en": "Wrist X-ray",
+          "th": "เอกซเรย์ข้อมือ"
+        },
+        {
+          "x": 0.8,
+          "y": 0.58,
+          "size": 30,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "남은 시간",
+          "en": "Time left",
+          "th": "เวลาที่เหลือ"
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "start": 32.5,
+      "end": 35,
+      "ko": "닫히기 전이 골든타임입니다! 우리 아이 뼈나이, 지금 바로 확인하십시오.",
+      "cap_ko": [
+        "성장판 골든타임",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "ก่อนปิดคือช่วงเวลาทอง! เช็กอายุกระดูกของลูกวันนี้",
+      "cap_th": [
+        "ช่วงเวลาทอง",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Trước khi đóng là thời điểm vàng! Kiểm tra tuổi xương của con ngay.",
+      "cap_vi": [
+        "Thời điểm vàng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Before it closes is the golden time! Check your child's bone age today.",
+      "cap_en": [
+        "Golden time",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "闭合前就是黄金期！现在就查查孩子的骨龄吧。",
+      "cap_cn": [
+        "黄金期",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "閉合前就是黃金期！現在就查查孩子的骨齡吧。",
+      "cap_ch": [
+        "黃金期",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

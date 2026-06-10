@@ -5,8 +5,9 @@ import type { MarketingArticle, ReelsMap, ReelsLangData, Cardnews, CardLang } fr
 import { saveReels } from '../../services/marketingArticleService';
 import { uploadVideoFile, uploadCoverImage } from '../../services/aiImageService';
 import { fetchCardnews } from '../../services/cardnewsService';
+import { InfographicAssetsPanel } from './InfographicAssetsPanel';
 
-interface Props { article: MarketingArticle; language: string; }
+interface Props { article: MarketingArticle; language: string; onPatch?: (partial: Partial<MarketingArticle>) => void; }
 
 const ACCENT = '#4A2D6B';
 const LANG_LABELS: Record<string, string> = {
@@ -31,12 +32,13 @@ function loadStoryboardManifest(): Promise<Set<number>> {
   return _sbManifest;
 }
 
-export function ReelsPanel({ article, language }: Props) {
+export function ReelsPanel({ article, language, onPatch }: Props) {
   const [sub, setSub] = useState<Sub>('storyboard');
   const [reels, setReels] = useState<ReelsMap>(article.reels ?? {});
   const [cardnews, setCardnews] = useState<Cardnews | null>(null);
   const [uploading, setUploading] = useState(false);
   const [coverUploading, setCoverUploading] = useState(false);
+  const [dragOver, setDragOver] = useState<'cover' | 'video' | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -74,6 +76,7 @@ export function ReelsPanel({ article, language }: Props) {
   const patch = (p: Partial<ReelsLangData>) => {
     const next: ReelsMap = { ...reels, [language]: { ...cur, ...p } };
     setReels(next);
+    onPatch?.({ reels: next }); // 부모 article 도 즉시 갱신 → 페이지 이동 후에도 stale 안 됨
     queueSave(next);
   };
 
@@ -123,19 +126,24 @@ export function ReelsPanel({ article, language }: Props) {
         <span className="ml-auto rounded-full bg-gray-50 px-2 py-0.5 text-[11px] text-gray-500">발행은 상단 📥 발행 큐에 넣기</span>
       </div>
 
-      {/* 스토리보드 — HTML 뷰어 (전 언어 공용, 생성은 추후) */}
+      {/* 스토리보드 — 좌: HTML 뷰어(전 언어 공용) / 우: 인포그래픽 이미지 업로드(언어 공용) */}
       {sub === 'storyboard' ? (
-        <div className="flex-1 overflow-hidden p-4">
-          {storyboardSrc ? (
-            <iframe src={storyboardSrc} title="릴스 스토리보드"
-              className="h-full w-full rounded-lg border border-gray-200 bg-white" />
-          ) : (
-            <div className="flex h-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-center text-gray-400">
-              <div className="text-3xl">📋</div>
-              <p className="mt-2 text-sm font-semibold text-gray-500">스토리보드 준비 중</p>
-              <p className="mt-1 max-w-xs text-xs">이 콘텐츠의 릴스 스토리보드는 아직 없어요. 생성되면 여기에 표시됩니다. (전 언어 공용)</p>
-            </div>
-          )}
+        <div className="flex flex-1 overflow-hidden">
+          <div className="min-w-0 flex-1 overflow-hidden p-4">
+            {storyboardSrc ? (
+              <iframe src={storyboardSrc} title="릴스 스토리보드"
+                className="h-full w-full rounded-lg border border-gray-200 bg-white" />
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-center text-gray-400">
+                <div className="text-3xl">📋</div>
+                <p className="mt-2 text-sm font-semibold text-gray-500">스토리보드 준비 중</p>
+                <p className="mt-1 max-w-xs text-xs">이 콘텐츠의 릴스 스토리보드는 아직 없어요. 생성되면 여기에 표시됩니다. (전 언어 공용)</p>
+              </div>
+            )}
+          </div>
+          <div className="w-[360px] shrink-0 overflow-hidden border-l border-gray-200">
+            <InfographicAssetsPanel article={article} onPatch={onPatch} />
+          </div>
         </div>
       ) : (
         /* 영상 제작 — 언어별 영상 + 카드뉴스 공용 캡션 */
@@ -144,8 +152,13 @@ export function ReelsPanel({ article, language }: Props) {
 
           {/* 섬네일(커버) + 영상 — 왼쪽 커버 / 오른쪽 영상 */}
           <div className="mb-4 grid grid-cols-2 gap-3">
-            {/* 왼쪽: 섬네일 / 커버 (인스타 릴스 커버) */}
-            <div className="rounded-lg border border-gray-200 p-3">
+            {/* 왼쪽: 섬네일 / 커버 (인스타 릴스 커버) — 드래그앤드롭 지원 */}
+            <div
+              className={`rounded-lg border p-3 transition ${dragOver === 'cover' ? 'border-[#4A2D6B] bg-[#4A2D6B]/5 ring-2 ring-[#4A2D6B]/30' : 'border-gray-200'}`}
+              onDragOver={(e) => { e.preventDefault(); setDragOver('cover'); }}
+              onDragLeave={() => setDragOver(null)}
+              onDrop={(e) => { e.preventDefault(); setDragOver(null); const f = e.dataTransfer.files?.[0]; if (f && f.type.startsWith('image/')) void onCover(f); }}
+            >
               <div className="mb-2 text-xs font-semibold text-gray-500">🖼️ 섬네일 · 커버 ({label})</div>
               {cur.coverUrl ? (
                 <div className="space-y-2">
@@ -163,7 +176,7 @@ export function ReelsPanel({ article, language }: Props) {
                 </div>
               ) : (
                 <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
-                  {coverUploading ? '업로드 중…' : '🖼️ 커버 이미지 올리기 (9:16)'}
+                  {coverUploading ? '업로드 중…' : '🖼️ 커버 올리기 · 드래그앤드롭 (9:16)'}
                   <input type="file" accept="image/*" hidden disabled={coverUploading}
                     onChange={(e) => { void onCover(e.target.files?.[0]); e.target.value = ''; }} />
                 </label>
@@ -171,8 +184,13 @@ export function ReelsPanel({ article, language }: Props) {
               <p className="mt-2 text-[11px] text-gray-400">인스타 릴스 커버 · 중앙 3:4 안전영역(프로필 그리드 크롭) 고려</p>
             </div>
 
-            {/* 오른쪽: 영상 */}
-            <div className="rounded-lg border border-gray-200 p-3">
+            {/* 오른쪽: 영상 — 드래그앤드롭 지원 */}
+            <div
+              className={`rounded-lg border p-3 transition ${dragOver === 'video' ? 'border-[#4A2D6B] bg-[#4A2D6B]/5 ring-2 ring-[#4A2D6B]/30' : 'border-gray-200'}`}
+              onDragOver={(e) => { e.preventDefault(); setDragOver('video'); }}
+              onDragLeave={() => setDragOver(null)}
+              onDrop={(e) => { e.preventDefault(); setDragOver(null); const f = e.dataTransfer.files?.[0]; if (f && f.type.startsWith('video/')) void onVideo(f); }}
+            >
               <div className="mb-2 text-xs font-semibold text-gray-500">🎬 영상 ({label})</div>
               {cur.videoUrl ? (
                 <div className="space-y-2">
@@ -191,7 +209,7 @@ export function ReelsPanel({ article, language }: Props) {
                 </div>
               ) : (
                 <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-center text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
-                  {uploading ? '업로드 중…' : '📹 영상 올리기 (mp4 · 최대 100MB)'}
+                  {uploading ? '업로드 중…' : '📹 영상 올리기 · 드래그앤드롭 (mp4 · 최대 100MB)'}
                   <input type="file" accept="video/*" hidden disabled={uploading}
                     onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
                 </label>
