@@ -43,7 +43,7 @@ export async function exchangeCodeForToken(opts: {
   };
 }
 
-export async function fetchAccounts(token: string): Promise<MetaBundle> {
+export async function fetchAccounts(token: string, extraPageIds: string[] = []): Promise<MetaBundle> {
   const [userRes, pagesRes] = await Promise.all([
     fetch(`${GRAPH}/me?fields=id,name&access_token=${token}`),
     fetch(`${GRAPH}/me/accounts?fields=id,name,access_token,instagram_business_account%7Bid,username%7D&access_token=${token}`),
@@ -61,6 +61,30 @@ export async function fetchAccounts(token: string): Promise<MetaBundle> {
       : null,
     threadsId: p.id,
   }));
+  // 보강: /me/accounts 에 안 나오는 페이지(비즈니스 포트폴리오 소유 — 예: IG 연결 후 자산화)를
+  // 알려진 page ID 로 직접 조회해서 합친다. (메모리 meta_connection_publishing 교훈 3)
+  const have = new Set(mapped.map((p) => p.id));
+  for (const pid of extraPageIds) {
+    if (!pid || have.has(pid)) continue;
+    try {
+      const r = await fetch(`${GRAPH}/${pid}?fields=id,name,access_token,instagram_business_account%7Bid,username%7D&access_token=${token}`);
+      const p = await r.json() as { id?: string; name?: string; access_token?: string; instagram_business_account?: { id: string; username: string } };
+      if (p.id && p.access_token) {
+        mapped.push({
+          id: p.id,
+          name: p.name ?? p.id,
+          pageAccessToken: p.access_token,
+          instagram: p.instagram_business_account
+            ? { id: p.instagram_business_account.id, username: p.instagram_business_account.username }
+            : null,
+          threadsId: p.id,
+        });
+        have.add(p.id);
+      }
+    } catch {
+      // 조회 실패한 페이지는 건너뜀
+    }
+  }
   return {
     userToken: token,
     userId: String(user['id'] ?? ''),

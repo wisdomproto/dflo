@@ -79,3 +79,11 @@ export async function deleteConnection(): Promise<void> {
   const { error } = await sb.from('marketing_meta_connection').delete().neq('id', '00000000-0000-0000-0000-000000000000');
   if (error) throw new Error(error.message);
 }
+
+// /me/accounts 에 안 나오는 비즈니스 포트폴리오 소유 페이지(예: IG 연결 후 자산화) 보강용.
+// 이미 채널로 등록된 page_id 들을 fetchAccounts 에서 직접 조회해 bundle 에 합친다.
+export async function getRegisteredPageIds(): Promise<string[]> {
+  const { data, error } = await sb.from('marketing_channels').select('meta_page_id').not('meta_page_id', 'is', null);
+  if (error || !data) return [];
+  return [...new Set(data.map((r) => (r as { meta_page_id: string }).meta_page_id).filter(Boolean))];
+}

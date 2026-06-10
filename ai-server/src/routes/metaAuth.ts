@@ -1,7 +1,7 @@
 // Meta OAuth 라우트(공개). SPA가 /api/auth/meta로 top-level redirect → FB → /callback → SPA 복귀.
 import { Router } from 'express';
 import { buildAuthUrl, exchangeCodeForToken, fetchAccounts } from '../services/metaOAuth.js';
-import { saveConnection } from '../services/metaConnectionStore.js';
+import { saveConnection, getRegisteredPageIds } from '../services/metaConnectionStore.js';
 
 export const metaAuthRouter = Router();
 
@@ -32,7 +32,8 @@ metaAuthRouter.get('/callback', async (req, res) => {
       redirectUri: `${redirectBase()}/api/auth/meta/callback`,
       code,
     });
-    const bundle = await fetchAccounts(token);
+    const extraPageIds = await getRegisteredPageIds();
+    const bundle = await fetchAccounts(token, extraPageIds);
     const expiresAt = new Date(Date.now() + expiresInSec * 1000).toISOString();
     await saveConnection(bundle, expiresAt);
     res.redirect(`${spa}?meta_connected=1`);
