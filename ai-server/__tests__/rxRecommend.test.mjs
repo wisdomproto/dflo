@@ -20,3 +20,23 @@ test('handles empty papers/cohort gracefully', () => {
   const p = buildRxPrompt({ profile: 'x', labText: 'y', cohortMeds: [], papers: [] });
   assert.match(p, /x/);
 });
+
+const base = { profile: '10세 남아', labText: '검사', cohortMeds: ['성장호르몬'] };
+
+test('buildRxPrompt injects abstract(트렁케이트 600) + key_finding when present', () => {
+  const p = buildRxPrompt({ ...base, papers: [{ title: 'T', journal: 'JCEM', year: 2020, pop_group: 'east_asian', key_finding: '+4.5cm', abstract: 'A'.repeat(800) }] });
+  assert.match(p, /\[1\] T \(JCEM 2020\)/);
+  assert.match(p, /핵심: \+4\.5cm/);
+  const m = p.match(/초록: (A+)/);
+  assert.ok(m && m[1].length === 600);
+});
+
+test('buildRxPrompt falls back to one-line when no abstract/key_finding', () => {
+  const p = buildRxPrompt({ ...base, papers: [{ title: 'T2', journal: 'J', year: 2019 }] });
+  assert.match(p, /\[1\] T2 \(J 2019\)/);
+  assert.ok(!p.includes('핵심:') && !p.includes('초록:'));
+});
+
+test('buildRxPrompt: no papers → 관련 논문 없음', () => {
+  assert.match(buildRxPrompt({ ...base, papers: [] }), /관련 논문 없음/);
+});

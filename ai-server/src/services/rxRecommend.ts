@@ -1,4 +1,4 @@
-export interface RxPaperRef { title: string; journal?: string; year?: number | null; url?: string; pop_group?: string; }
+export interface RxPaperRef { title: string; journal?: string; year?: number | null; url?: string; pop_group?: string; abstract?: string; key_finding?: string; }
 export interface RxPromptInput {
   profile: string;        // 환자 프로필 한 줄
   labText: string;        // 검사결과 텍스트 (피검사/알러지)
@@ -7,7 +7,12 @@ export interface RxPromptInput {
 }
 export function buildRxPrompt(i: RxPromptInput): string {
   const papers = i.papers.length
-    ? i.papers.map((p, n) => `[${n + 1}] ${p.title} (${p.journal ?? ''} ${p.year ?? ''}) ${p.pop_group ? `· 인구:${p.pop_group}` : ''}`).join('\n')
+    ? i.papers.map((p, n) => {
+        const head = `[${n + 1}] ${p.title} (${p.journal ?? ''} ${p.year ?? ''})${p.pop_group ? ` · 인구:${p.pop_group}` : ''}`;
+        const kf = p.key_finding ? `\n   핵심: ${p.key_finding}` : '';
+        const ab = p.abstract ? `\n   초록: ${p.abstract.slice(0, 600)}` : '';
+        return head + kf + ab;
+      }).join('\n')
     : '(관련 논문 없음)';
   return `당신은 소아 성장클리닉 원장의 진료 의사결정을 보조하는 AI입니다. 신규/현재 환자의 검사 결과를 보고 처방/관리 추천안을 제시하세요.
 

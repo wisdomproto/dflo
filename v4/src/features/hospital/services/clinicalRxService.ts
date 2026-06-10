@@ -9,6 +9,8 @@ export interface RxReference {
   pop_group?: string;
   pop_confidence?: string;
   similarity?: number;
+  korean_summary?: string;
+  key_finding?: string;
 }
 
 export interface RxRecommendation {

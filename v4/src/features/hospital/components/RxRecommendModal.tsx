@@ -141,6 +141,12 @@ export function RxRecommendModal({ childId, onClose }: Props) {
                         )}
                         {popBadge(ref.pop_group, ref.pop_confidence)}
                       </div>
+                      {ref.key_finding && (
+                        <div className="mt-1.5 text-[12px] font-semibold text-indigo-700">💡 {ref.key_finding}</div>
+                      )}
+                      {ref.korean_summary && (
+                        <div className="mt-0.5 text-[11px] leading-relaxed text-slate-600">{ref.korean_summary}</div>
+                      )}
                     </li>
                   ))}
                 </ul>

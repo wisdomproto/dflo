@@ -63,7 +63,8 @@ knowledgeRouter.post('/rx-recommend', async (req: Request, res: Response) => {
     const { papers } = await searchKnowledge(`${profile} ${labText}`.slice(0, 1500), { kPapers: 5, kInsights: 0 });
     const prompt = buildRxPrompt({ profile, labText, cohortMeds, papers });
     const recommendation = (await generateText(prompt)).trim();
-    res.json({ success: true, recommendation, references: papers });
+    const references = papers.map(({ abstract, ...rest }) => rest);
+    res.json({ success: true, recommendation, references });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[knowledge] rx-recommend failed', e);

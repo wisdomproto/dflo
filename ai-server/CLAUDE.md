@@ -28,6 +28,7 @@ middleware/
 - 사용: `node scripts/ingest-evidence.mjs [--dry-run] [--no-embed] [--only <topic>] [--limit N]`. `--no-embed`=무키(임베딩 생략, gemini import 안 함). 임베딩만 Gemini(없으면 null, Phase 2 백필). 테스트는 `dist/` import → 실행 전 `npm run build` 필수.
 - migration **048**(evidence_papers 품질 컬럼 12개). 적재: **250 SCI 논문**(15테마, txirmof). **Phase 2 임베딩 백필 완료**: `scripts/backfill-embeddings.mjs`(`embedding IS NULL` 행만 → resume 가능, 텍스트=`title\nabstract`, gemini-embedding-001 768d) 로 **281/281** 채움 + `validate-evidence-search.mjs`(한국어 쿼리↔영어 초록 교차언어 검증).
 - **마케팅 연결 = 블로그 참고문헌** (migration 049): `services/evidenceMatch.ts`(순수 `cosineSim`/`selectReferences`, 단위테스트) + `scripts/attach-references.mjs`(en/ko 블로그 대표텍스트 임베딩 → 281편 코사인 → sim≥0.66 top5 → `marketing_articles.blog_references` JSONB 스냅샷; `--dry-run`/`--force`/`--threshold`/`--top`/`--only`/`--allow-partial`). 적재 61/62 토픽. 상세 memory `research_evidence_library.md`·`blog_evidence_references.md`.
+- **Phase 2 ③ 클리니컬 RAG 심화** (migration 051): rx-recommend 프롬프트에 **초록+key_finding 주입**(`rxRecommend.buildRxPrompt`, 기존 제목만) + 논문 **한국어 요약 생성**(`services/evidenceSummary.ts` 순수 빌더+파서 + `scripts/backfill-summaries.mjs` resume·서킷브레이커, `korean_summary`/`key_finding`) + `match_evidence_papers` RPC 가 두 필드 반환(drop+recreate, 반환 시그니처 변경) + `knowledgeRetrieval` 타입 + `routes/knowledge.ts` references abstract strip. ⚠️ 요약 백필은 `generateText`(2.5-flash) **일일 쿼터(RPD)** 소진으로 19/281만 — 리셋 후 재실행(resume-safe, `--sleep`). 상세 memory `clinical_rag_deepening.md`.
 
 ## Endpoints
 | Method | Path | Description | Status |

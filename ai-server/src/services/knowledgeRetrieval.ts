@@ -8,7 +8,7 @@ const sb = createClient(
 );
 
 export interface KnowledgeResult {
-  papers: Array<{ pmid: string; title: string; abstract: string; journal: string; year: number | null; url: string; pop_group: string; pop_confidence: string; similarity: number }>;
+  papers: Array<{ pmid: string; title: string; abstract: string; journal: string; year: number | null; url: string; pop_group: string; pop_confidence: string; korean_summary: string; key_finding: string; similarity: number }>;
   insights: Array<{ category: string; cohort_n: number; summary: string; composite_case: string; similarity: number }>;
 }
 
