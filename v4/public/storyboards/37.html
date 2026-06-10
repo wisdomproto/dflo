@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 성장클리닉 첫 방문 준비</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #37</span>
+  <h1>성장클리닉 첫 방문, 이것만 챙기면 끝 — 가져갈 리스트</h1>
+  <div class="sub">성장기록·가족력·생활습관 — 4가지만 챙기면 첫 진료가 200% 정확해진다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>이것 빼먹으면 손해</b></div>
+      <div class="subj">성장클리닉 첫 방문</div>
+      <div class="big4"><div class="n" style="font-size:132px">4</div><div class="lab">가지 꼭 챙겨!</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>성장클리닉 첫 방문</b> 4가지 꼭 챙겨!"</li>
+        <li><b>거대 숫자 "4"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #37 「성장클리닉 첫 방문 준비」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"성장클리닉 첫 방문, '이것' 안 챙겨가면 절반만 보고 와요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>그냥 가서 키만 재면 되겠지 → 과거 기록 없으면 성장 속도·추이를 못 봄</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>첫 진료의 핵심은 '성장 추이'. 과거 키·몸무게 기록, 가족력, 생활습관 4가지만 챙기면 정확도가 확 올라간다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → "이것만 챙기면 첫 진료가 더 정확해져요" 긍정 준비 가이드. "우리 아이 키" 보편</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>첫 방문 전, 홈페이지에서 예측키·뼈나이 먼저 확인 → 준비 완료</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"첫 방문, 키만 재면 끝이 아니다 — 핵심은 성장 추이"</p></div><div class="act"><span class="n">ACT 2</span><h4>왜 기록인가</h4><p>c3–c4<br>"과거 키·몸무게로 성장 속도를 본다 (연 4cm 미만은 신호)"</p></div><div class="act"><span class="n">ACT 3</span><h4>가족력</h4><p>c5–c6<br>"부모 키로 유전 예측키 계산 → 챙길 리스트"</p></div><div class="act"><span class="n">ACT 4</span><h4>생활습관</h4><p>c7–c8<br>"수면·식습관·운동 = 성장호르몬 환경 / 4가지 체크리스트"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"집에서 예측키 먼저 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">뭘 챙겨가지?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📋✨</div></div>
+        <div class="ph-cap"><div class="l">첫 방문, 키만?</div><div class="l"><span class="y2">그게 다가 아니에요</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 3컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성장클리닉 첫 방문, 그냥 가서 키만 재면 된다고 생각하세요?</td><td><span class="cap2">첫 방문, <span class="y">키만?</span><br>그게 다가 아니에요</span></td><td class="mo">📋 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">진짜 중요한 건 한 시점이 아니라, 그동안의 '성장 추이'거든요.</td><td><span class="cap2">한 번 키 X<br><span class="y">성장 추이가 핵심</span></span></td><td class="mo">📈 추이 라인 그리기</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 성장기록</span></td><td class="narr">그래서 첫째, 과거 키·몸무게 기록을 다 챙겨오세요. 추이가 보여요.</td><td><span class="cap2">① <span class="y">과거 키·몸무게</span><br>기록 다 챙기기</span></td><td class="mo">📒 차곡차곡 + ↗ 라인</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">기록이 있어야 성장 속도를 봐요. 1년에 4센티 미만이면 신호거든요.</td><td><span class="cap2">성장 속도 체크<br><span class="y">연 4cm 미만은 신호</span></span></td><td class="mo">📏 펄스 · &lt;4면 ⚠️ 깜빡</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">둘째, 가족력이요. 엄마 아빠 키만 알아도 유전 예측키를 계산해요.</td><td><span class="cap2">② 가족력·부모 키<br><span class="y">유전 예측키 계산</span></span></td><td class="mo">👨‍👩‍👧 팝 + 키 합산</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG2 가족력 예측키</span></td><td class="narr">부모 키, 사춘기 시작 시기, 형제 성장 패턴도 같이 알려주세요.</td><td><span class="cap2"><span class="y">부모 키 + 사춘기 시기</span><br>형제 패턴까지</span></td><td class="mo">👪 + 예측 범위 슈웅</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">셋째, 생활습관! 수면·식습관·운동이 성장호르몬 환경을 만들거든요.</td><td><span class="cap2">③ 수면·식습관·운동<br><span class="y">성장호르몬 환경</span></span></td><td class="mo">😴🍚🏃 순차 팝</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG3 4가지 체크리스트</span></td><td class="narr">넷째, 검진 결과랑 먹는 영양제까지. 이 네 가지면 준비 끝이에요.</td><td><span class="cap2">④ 검진결과·영양제<br><span class="y">4가지면 준비 끝!</span></span></td><td class="mo">✅ 4개 순차 체크</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">방문 전에 집에서 예측키만 미리 봐도, 첫 상담이 훨씬 빨라져요.</td><td><span class="cap2"><span class="y">방문 전 예측키 먼저</span><br>상담이 빨라져요</span></td><td class="mo">📱🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">첫 방문 전, 우리 아이 예측키부터 지금 확인해 보세요.</td><td><span class="cap2">우리 아이 예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 3종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 📒 차곡차곡 + ↗ 라인</div><h3>성장 기록 — 추이가 보인다</h3></div>
+        <div class="body">
+          <div class="sketch">📒 📏 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly stack of growth notebooks and a child health record booklet on the left, connecting to a gently rising dotted growth-curve on the right with small height-marker dots along it. A simple measuring ruler leaning beside. Brand purple #667eea to mint #2dd4bf gradient on the curve, soft glow at the latest dot. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>노트 더미</td><td>과거 기록</td><td>Past records</td><td class="thai">บันทึกเก่า</td></tr><tr><td>곡선 위 점들</td><td>성장 추이</td><td>Growth trend</td><td class="thai">แนวโน้มการเติบโต</td></tr><tr><td>곡선 끝(글로우)</td><td>연 4cm 미만 신호</td><td>under 4cm/yr</td><td class="thai">ต่ำกว่า 4 ซม./ปี</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c6 · 모션: 👪 + 예측 범위 슈웅</div><h3>가족력 — 유전 예측키</h3></div>
+        <div class="body">
+          <div class="sketch">👨‍👩‍👧 🧬 📐</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A warm parent duo (tall dad, mom) on the left with simple height bars beside each, an arrow merging into a child silhouette on the right topped by a soft predicted-height range bracket reaching upward. A tiny DNA helix accent. Brand purple #667eea and mint #2dd4bf, friendly pediatric flat style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>부모 키 바</td><td>부모 키</td><td>Parents' height</td><td class="thai">ส่วนสูงพ่อแม่</td></tr><tr><td>아이 위 괄호</td><td>예측키 범위</td><td>Predicted range</td><td class="thai">ช่วงคาดการณ์</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c8 · 모션: ✅ 4개 순차 체크</div><h3>가져갈 4가지 체크리스트</h3></div>
+        <div class="body">
+          <div class="sketch">📋 ✅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A clean clipboard checklist with four empty rounded check-boxes in a vertical column, each box paired with a simple friendly icon to its right: a growth chart, a parent-and-child pair, a moon-and-fork (sleep &amp; meals), and a vitamin bottle. Mint green check shapes hovering, brand purple #667eea clipboard, soft rounded pediatric flat style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>1번 항목</td><td>성장 기록</td><td>Growth records</td><td class="thai">บันทึกการโต</td></tr><tr><td>2번 항목</td><td>가족력</td><td>Family history</td><td class="thai">ประวัติครอบครัว</td></tr><tr><td>3번 항목</td><td>수면·식습관</td><td>Sleep &amp; diet</td><td class="thai">การนอน·อาหาร</td></tr><tr><td>4번 항목</td><td>검진·영양제</td><td>Checkup·supplements</td><td class="thai">ผลตรวจ·อาหารเสริม</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📋</b> 체크리스트</span><span class="emo"><b>📒</b> 성장 기록</span><span class="emo"><b>📏</b> 키·성장속도</span><span class="emo"><b>📈</b> 성장 추이</span><span class="emo"><b>⚠️</b> 연 4cm 미만 신호</span><span class="emo"><b>👨‍👩‍👧</b> 가족력</span><span class="emo"><b>🧬</b> 유전 예측키</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🍚</b> 식습관</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>✅</b> 준비 완료·CTA</span><span class="emo"><b>✨</b> 강조</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>성장클리닉 첫 방문, 그냥 가서 키만 재면 된다고 생각하세요?<br><span class="cap2">첫 방문, 키만? · 그게 다가 아니에요</span></td></tr><tr><td class="c-id">c2</td><td>진짜 중요한 건 한 시점이 아니라, 그동안의 '성장 추이'거든요.<br><span class="cap2">한 번 키 X · <span class="y">성장 추이가 핵심</span></span></td></tr><tr><td class="c-id">c3</td><td>그래서 첫째, 과거 키·몸무게 기록을 다 챙겨오세요. 추이가 보여요.<br><span class="cap2">① 과거 키·몸무게 · 기록 다 챙기기</span></td></tr><tr><td class="c-id">c4</td><td>기록이 있어야 성장 속도를 봐요. 1년에 4센티 미만이면 신호거든요.<br><span class="cap2">성장 속도 체크 · <span class="y">연 4cm 미만은 신호</span></span></td></tr><tr><td class="c-id">c5</td><td>둘째, 가족력이요. 엄마 아빠 키만 알아도 유전 예측키를 계산해요.<br><span class="cap2">② 가족력·부모 키 · <span class="y">유전 예측키 계산</span></span></td></tr><tr><td class="c-id">c6</td><td>부모 키, 사춘기 시작 시기, 형제 성장 패턴도 같이 알려주세요.<br><span class="cap2">부모 키 + 사춘기 시기 · 형제 패턴까지</span></td></tr><tr><td class="c-id">c7</td><td>셋째, 생활습관! 수면·식습관·운동이 성장호르몬 환경을 만들거든요.<br><span class="cap2">③ 수면·식습관·운동 · <span class="y">성장호르몬 환경</span></span></td></tr><tr><td class="c-id">c8</td><td>넷째, 검진 결과랑 먹는 영양제까지. 이 네 가지면 준비 끝이에요.<br><span class="cap2">④ 검진결과·영양제 · <span class="y">4가지면 준비 끝!</span></span></td></tr><tr><td class="c-id">c9</td><td>방문 전에 집에서 예측키만 미리 봐도, 첫 상담이 훨씬 빨라져요.<br><span class="cap2">방문 전 예측키 먼저 · 상담이 빨라져요</span></td></tr><tr><td class="c-id">c10</td><td>첫 방문 전, 우리 아이 예측키부터 지금 확인해 보세요.<br><span class="cap2">우리 아이 예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ไปคลินิกครั้งแรก แค่วัดส่วนสูงก็พอจริงเหรอ?<br><span class="cap2">ครั้งแรก แค่วัด? · ยังไม่พอ</span></td></tr><tr><td class="c-id">c2</td><td>สิ่งสำคัญจริงคือแนวโน้มการเติบโต ไม่ใช่ครั้งเดียว<br><span class="cap2">ไม่ใช่ครั้งเดียว · <span class="y">ดูแนวโน้ม</span></span></td></tr><tr><td class="c-id">c3</td><td>อย่างแรก เอาบันทึกส่วนสูง น้ำหนักเก่ามาให้หมด<br><span class="cap2">① ส่วนสูง น้ำหนักเก่า · เอามาให้หมด</span></td></tr><tr><td class="c-id">c4</td><td>มีบันทึกถึงดูอัตราโตได้ ต่ำกว่า 4 ซม./ปี คือสัญญาณ<br><span class="cap2">ดูอัตราการโต · <span class="y">ต่ำกว่า 4 ซม./ปี</span></span></td></tr><tr><td class="c-id">c5</td><td>สอง ประวัติครอบครัว แค่รู้ส่วนสูงพ่อแม่ก็คำนวณได้<br><span class="cap2">② ส่วนสูงพ่อแม่ · <span class="y">คำนวณส่วนสูงพันธุกรรม</span></span></td></tr><tr><td class="c-id">c6</td><td>บอกส่วนสูงพ่อแม่ ช่วงเริ่มแรกรุ่น และพี่น้องด้วย<br><span class="cap2">พ่อแม่ + ช่วงแรกรุ่น · รวมพี่น้อง</span></td></tr><tr><td class="c-id">c7</td><td>สาม พฤติกรรม! การนอน อาหาร ออกกำลังกาย สร้างฮอร์โมนโต<br><span class="cap2">③ นอน·อาหาร·ออกกำลัง · <span class="y">สภาพฮอร์โมนโต</span></span></td></tr><tr><td class="c-id">c8</td><td>สี่ ผลตรวจสุขภาพและอาหารเสริม ครบสี่อย่างก็พร้อม<br><span class="cap2">④ ผลตรวจ·อาหารเสริม · <span class="y">ครบ 4 ก็พร้อม!</span></span></td></tr><tr><td class="c-id">c9</td><td>ก่อนมา เช็กส่วนสูงคาดการณ์ที่บ้าน ปรึกษาเร็วขึ้นมาก<br><span class="cap2">เช็กที่บ้านก่อน · ปรึกษาเร็วขึ้น</span></td></tr><tr><td class="c-id">c10</td><td>ก่อนมาครั้งแรก เช็กส่วนสูงคาดการณ์ของลูกเลย<br><span class="cap2">ส่วนสูงคาดการณ์ · <span class="y">เช็กเลย</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Lần đầu đến phòng khám, chỉ đo chiều cao là đủ sao?<br><span class="cap2">Chỉ đo thôi? · Chưa đủ đâu</span></td></tr><tr><td class="c-id">c2</td><td>Điều quan trọng là xu hướng tăng trưởng, không phải một lần đo.<br><span class="cap2">Không phải một lần · <span class="y">xu hướng</span></span></td></tr><tr><td class="c-id">c3</td><td>Thứ nhất, mang hết hồ sơ chiều cao, cân nặng cũ.<br><span class="cap2">① Chiều cao, cân nặng cũ · mang đầy đủ</span></td></tr><tr><td class="c-id">c4</td><td>Có hồ sơ mới biết tốc độ tăng. Dưới 4cm/năm là dấu hiệu.<br><span class="cap2">Xem tốc độ tăng · <span class="y">Dưới 4cm/năm</span></span></td></tr><tr><td class="c-id">c5</td><td>Thứ hai, tiền sử gia đình. Biết chiều cao bố mẹ là tính được.<br><span class="cap2">② Chiều cao bố mẹ · <span class="y">dự đoán di truyền</span></span></td></tr><tr><td class="c-id">c6</td><td>Cho biết chiều cao bố mẹ, tuổi dậy thì và anh chị em nữa.<br><span class="cap2">Bố mẹ + tuổi dậy thì · cả anh chị em</span></td></tr><tr><td class="c-id">c7</td><td>Thứ ba, lối sống! Ngủ, ăn, vận động tạo môi trường hormone.<br><span class="cap2">③ Ngủ·ăn·vận động · <span class="y">môi trường hormone</span></span></td></tr><tr><td class="c-id">c8</td><td>Thứ tư, kết quả khám và thực phẩm bổ sung. Đủ bốn là xong.<br><span class="cap2">④ Kết quả khám·bổ sung · <span class="y">Đủ 4 là xong!</span></span></td></tr><tr><td class="c-id">c9</td><td>Xem chiều cao dự đoán ở nhà trước, buổi tư vấn sẽ nhanh hơn nhiều.<br><span class="cap2">Dự đoán ở nhà trước · tư vấn nhanh hơn</span></td></tr><tr><td class="c-id">c10</td><td>Trước lần đầu đến, kiểm tra chiều cao dự đoán của con ngay.<br><span class="cap2">Chiều cao dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>First clinic visit — you think they just measure height?<br><span class="cap2">Just measuring? · Not enough</span></td></tr><tr><td class="c-id">c2</td><td>What matters is the growth trend over time, not one snapshot.<br><span class="cap2">Not one number · <span class="y">the trend</span></span></td></tr><tr><td class="c-id">c3</td><td>First, bring all past height and weight records — they show the trend.<br><span class="cap2">① Past height &amp; weight · bring them all</span></td></tr><tr><td class="c-id">c4</td><td>Records reveal growth speed. Under 4cm a year is a signal.<br><span class="cap2">Growth speed · <span class="y">Under 4cm/year</span></span></td></tr><tr><td class="c-id">c5</td><td>Second, family history. Just parents' heights predict the genetic target.<br><span class="cap2">② Parents' height · <span class="y">genetic target height</span></span></td></tr><tr><td class="c-id">c6</td><td>Share parents' height, when puberty started, and siblings' patterns.<br><span class="cap2">Height + puberty timing · plus siblings</span></td></tr><tr><td class="c-id">c7</td><td>Third, lifestyle! Sleep, diet, exercise set the growth-hormone stage.<br><span class="cap2">③ Sleep·diet·exercise · <span class="y">hormone environment</span></span></td></tr><tr><td class="c-id">c8</td><td>Fourth, checkup results and any supplements. Those four — you're set.<br><span class="cap2">④ Checkups·supplements · <span class="y">Four = ready!</span></span></td></tr><tr><td class="c-id">c9</td><td>Check predicted height at home first, and the first visit goes faster.<br><span class="cap2">Predict at home first · faster consult</span></td></tr><tr><td class="c-id">c10</td><td>Before that first visit, check your child's predicted height now.<br><span class="cap2">Predicted height · <span class="y">check now</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>第一次去成长门诊，以为只量个身高就行？<br><span class="cap2">只量身高？ · 还不够</span></td></tr><tr><td class="c-id">c2</td><td>真正重要的是成长趋势，而不是某一次的身高。<br><span class="cap2">不是一次 · <span class="y">看趋势</span></span></td></tr><tr><td class="c-id">c3</td><td>第一，把过去的身高体重记录全带上，能看出趋势。<br><span class="cap2">① 过去身高体重 · 全部带上</span></td></tr><tr><td class="c-id">c4</td><td>有记录才能看生长速度。每年不到4厘米就是信号。<br><span class="cap2">看生长速度 · <span class="y">每年不到4厘米</span></span></td></tr><tr><td class="c-id">c5</td><td>第二，家族史。光知道父母身高就能算遗传预测身高。<br><span class="cap2">② 父母身高 · 算<span class="y">遗传预测身高</span></span></td></tr><tr><td class="c-id">c6</td><td>也告诉医生父母身高、青春期开始时间和兄弟姐妹的情况。<br><span class="cap2">身高 + 青春期时间 · 加兄弟姐妹</span></td></tr><tr><td class="c-id">c7</td><td>第三，生活习惯！睡眠、饮食、运动决定生长激素环境。<br><span class="cap2">③ 睡眠·饮食·运动 · <span class="y">生长激素环境</span></span></td></tr><tr><td class="c-id">c8</td><td>第四，体检结果和在吃的营养品。这四样，准备就齐了。<br><span class="cap2">④ 体检·营养品 · <span class="y">四样就齐!</span></span></td></tr><tr><td class="c-id">c9</td><td>来之前在家先看看预测身高，第一次咨询会快很多。<br><span class="cap2">在家先预测 · 咨询更快</span></td></tr><tr><td class="c-id">c10</td><td>第一次就诊前，现在就查查孩子的预测身高。<br><span class="cap2">孩子预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>第一次去成長門診，以為只量個身高就行？<br><span class="cap2">只量身高？ · 還不夠</span></td></tr><tr><td class="c-id">c2</td><td>真正重要的是成長趨勢，而不是某一次的身高。<br><span class="cap2">不是一次 · <span class="y">看趨勢</span></span></td></tr><tr><td class="c-id">c3</td><td>第一，把過去的身高體重記錄全帶上，能看出趨勢。<br><span class="cap2">① 過去身高體重 · 全部帶上</span></td></tr><tr><td class="c-id">c4</td><td>有記錄才能看生長速度。每年不到4公分就是信號。<br><span class="cap2">看生長速度 · <span class="y">每年不到4公分</span></span></td></tr><tr><td class="c-id">c5</td><td>第二，家族史。光知道父母身高就能算遺傳預測身高。<br><span class="cap2">② 父母身高 · 算<span class="y">遺傳預測身高</span></span></td></tr><tr><td class="c-id">c6</td><td>也告訴醫生父母身高、青春期開始時間和兄弟姐妹的情況。<br><span class="cap2">身高 + 青春期時間 · 加兄弟姊妹</span></td></tr><tr><td class="c-id">c7</td><td>第三，生活習慣！睡眠、飲食、運動決定生長激素環境。<br><span class="cap2">③ 睡眠·飲食·運動 · <span class="y">生長激素環境</span></span></td></tr><tr><td class="c-id">c8</td><td>第四，體檢結果和在吃的營養品。這四樣，準備就齊了。<br><span class="cap2">④ 體檢·營養品 · <span class="y">四樣就齊!</span></span></td></tr><tr><td class="c-id">c9</td><td>來之前在家先看看預測身高，第一次諮詢會快很多。<br><span class="cap2">在家先預測 · 諮詢更快</span></td></tr><tr><td class="c-id">c10</td><td>第一次就診前，現在就查查孩子的預測身高。<br><span class="cap2">孩子預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/첫방문준비/</code> · <code>첫방문준비-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>3종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

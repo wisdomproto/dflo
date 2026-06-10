@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 자세 교정 키 성장 (거북목·굽은 등)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #31</span>
+  <h1>구부정해서 작아 보이는 키 — 숨은 키 되찾기</h1>
+  <div class="sub">거북목·굽은 등만 펴도 가려졌던 키가 보인다 — 자세 교정 5분 루틴</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>가만 두면 손해!</b></div>
+      <div class="subj">구부정한 우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">−3cm</div><div class="lab">가려졌다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>구부정한 우리 아이 키</b> −3cm가려졌다"</li>
+        <li><b>거대 숫자 "−3cm"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #31 「자세 교정 키 성장 (거북목·굽은 등)」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이, 자세 때문에 키가 가려져 있는 거 아세요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>자세는 그냥 보기에만 안 좋은 것 → 실제로는 재는 키가 작아지고 성장호르몬·혈액순환까지 방해</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>거북목·굽은 등은 뼈를 짧게 만드는 게 아니라 '이미 가진 키'를 가린다. 바로 펴면 숨은 키가 드러나고 숙면·성장호르몬·혈액순환도 함께 살아난다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정("가려진 키를 되찾자"). 뼈를 늘린다 과장 ❌(가진 키를 드러냄). "우리 아이 키" 보편. CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 자세·성장 상태, 홈페이지에서 뼈나이·예측키로 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"자세 때문에 키가 가려진다 — 재는 키가 작아짐"</p></div><div class="act"><span class="n">ACT 2</span><h4>왜 방해되나</h4><p>c3–c5<br>"척추 압박 → 숙면·성장호르몬·혈액순환 저하"</p></div><div class="act"><span class="n">ACT 3</span><h4>자가 진단</h4><p>c6–c7<br>"귀가 어깨보다 앞 → 3개 이상이면 신호"</p></div><div class="act"><span class="n">ACT 4</span><h4>해결 루틴</h4><p>c8–c9<br>"벽 자세·스트레칭으로 숨은 키 되찾기"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c10<br>"뼈나이·예측키로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">숨은 키 있다?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🧍✨</div></div>
+        <div class="ph-cap"><div class="l">자세 때문에</div><div class="l"><span class="y2">가려진 키</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이, 자세 때문에 키가 가려져 있는 거 아세요?</td><td><span class="cap2">자세 때문에<br><span class="y">가려진 키</span></span></td><td class="mo">🧍 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">거북목에 등이 굽으면, 잴 때 본래 키보다 작게 나와요.</td><td><span class="cap2">거북목·굽은 등<br><span class="y">재는 키 작아짐</span></span></td><td class="mo">📏 줄어듦 깜빡</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 척추 정렬</span></td><td class="narr">척추를 곧게 펴면, 가려졌던 키가 그대로 드러나요.</td><td><span class="cap2">척추 펴면<br><span class="y">숨은 키 드러남</span></span></td><td class="mo">🦴 펴짐 + ↕ 키업</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">게다가 굽은 자세는 숙면을 방해해서, 성장호르몬까지 줄여요.</td><td><span class="cap2">굽은 자세<br><span class="y">성장호르몬 ↓</span></span></td><td class="mo">😴 ZzZ 페이드</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr ig">🖼 IG2 피로·통증</span></td><td class="narr">목·어깨가 뭉치면 혈액순환이 막혀 쉽게 피로하고 활동량도 줄죠.</td><td><span class="cap2">혈액순환 막힘<br><span class="y">쉽게 피로</span></span></td><td class="mo">🩸 막힘 → 풀림</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23s</td><td><span class="scr ig">🖼 IG3 자가 진단</span></td><td class="narr">옆에서 봤을 때 귀가 어깨보다 앞이면, 거북목 신호예요.</td><td><span class="cap2">귀가 어깨보다<br><span class="y">앞이면 신호</span></span></td><td class="mo">✅ 체크 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">23–26.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">이런 신호가 세 가지 이상이면, 지금이 자세 잡을 때예요.</td><td><span class="cap2">3가지 이상이면<br><span class="y">지금 시작</span></span></td><td class="mo">3️⃣ 카운트 펄스</td></tr><tr><td class="c-id">c8</td><td class="c-time">26.5–30s</td><td><span class="scr ig">🖼 IG4 벽 자세 루틴</span></td><td class="narr">벽에 뒤통수·어깨·엉덩이를 붙이고 서기. 하루 1분이면 충분해요.</td><td><span class="cap2">벽 자세<br><span class="y">하루 1분</span></span></td><td class="mo">🧍 벽에 착 + 정렬선</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">줄넘기·수영처럼 몸을 쭉 펴는 운동도 자세와 키에 같이 좋아요.</td><td><span class="cap2">줄넘기·수영<br><span class="y">자세+키 ↑</span></span></td><td class="mo">🤸 쭉 스트레칭</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 자세와 성장, 지금 바로 확인해 보세요.</td><td><span class="cap2">자세 + 성장<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 척추 펴짐 + ↕ 키업</div><h3>척추 정렬 — 숨은 키 드러남</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🧍 ↕️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Side-by-side comparison of one friendly child silhouette: left version slouching with forward head and rounded back (shorter), right version standing tall with a straight aligned spine (taller). A subtle vertical double-arrow between them showing the height gain. Brand purple #667eea body, mint #2dd4bf spine highlight, soft glow on the upright pose. Friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 인물</td><td>구부정</td><td>Slouch</td><td class="thai">หลังค่อม</td></tr><tr><td>오른쪽 인물</td><td>바른 자세</td><td>Aligned</td><td class="thai">หลังตรง</td></tr><tr><td>가운데 화살표</td><td>숨은 키</td><td>Hidden height</td><td class="thai">ความสูงที่ซ่อน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 혈류 막힘 → 풀림</div><h3>혈액순환·피로</h3></div>
+        <div class="body">
+          <div class="sketch">🩸 💢 😮‍💨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly child bust seen from the side, neck and shoulder area highlighted with tense knotted muscle marks; a stylized blood-flow line through the neck shown pinched at the top then opening up smoothly. Small tiredness swirl near the head. Brand purple #667eea figure, mint #2dd4bf flow line, warm soft accent on the tense knot. Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>목·어깨 매듭</td><td>근육 뭉침</td><td>Tension</td><td class="thai">กล้ามเนื้อตึง</td></tr><tr><td>혈류선</td><td>순환 막힘</td><td>Blocked flow</td><td class="thai">เลือดติดขัด</td></tr><tr><td>머리 옆</td><td>피로</td><td>Fatigue</td><td class="thai">เหนื่อยล้า</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 체크 순차 점등</div><h3>거북목 자가 진단</h3></div>
+        <div class="body">
+          <div class="sketch">👂 🧍 ✅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Clean side-profile of a friendly child showing posture landmarks: ear, shoulder, hip, and ankle, with a vertical plumb reference line; the ear clearly placed forward of the shoulder line to show forward-head posture, a small marker ring on the ear. Brand purple #667eea figure, mint #2dd4bf plumb line. Friendly pediatric, diagnostic feel. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>귀 마커</td><td>귀</td><td>Ear</td><td class="thai">หู</td></tr><tr><td>어깨 마커</td><td>어깨</td><td>Shoulder</td><td class="thai">ไหล่</td></tr><tr><td>기준선 상단</td><td>앞으로 나옴</td><td>Forward head</td><td class="thai">คอยื่น</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 벽에 착 + 정렬선</div><h3>벽 자세 1분 루틴</h3></div>
+        <div class="body">
+          <div class="sketch">🧱 🧍 ✅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly child standing with back against a wall, three contact points highlighted (back of head, shoulders, hips/buttocks) each marked with a small mint check dot, a straight vertical alignment line down the body. Calm confident pose, chin gently tucked. Brand purple #667eea figure, mint #2dd4bf check dots and line, light wall block on the right. Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>머리 접점</td><td>뒤통수</td><td>Head</td><td class="thai">ท้ายทอย</td></tr><tr><td>어깨 접점</td><td>어깨</td><td>Shoulders</td><td class="thai">ไหล่</td></tr><tr><td>엉덩이 접점</td><td>엉덩이</td><td>Hips</td><td class="thai">สะโพก</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🧍</b> 바른 자세</span><span class="emo"><b>📏</b> 재는 키</span><span class="emo"><b>🦴</b> 척추</span><span class="emo"><b>↕️</b> 숨은 키</span><span class="emo"><b>😴</b> 숙면</span><span class="emo"><b>💉</b> 성장호르몬</span><span class="emo"><b>🩸</b> 혈액순환</span><span class="emo"><b>😮‍💨</b> 피로</span><span class="emo"><b>👂</b> 거북목 신호</span><span class="emo"><b>🧱</b> 벽 자세</span><span class="emo"><b>🤸</b> 스트레칭</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이, 자세 때문에 키가 가려져 있는 거 아세요?<br><span class="cap2">자세 때문에 · <span class="y">가려진 키</span></span></td></tr><tr><td class="c-id">c2</td><td>거북목에 등이 굽으면, 잴 때 본래 키보다 작게 나와요.<br><span class="cap2">거북목·굽은 등 · <span class="y">재는 키 작아짐</span></span></td></tr><tr><td class="c-id">c3</td><td>척추를 곧게 펴면, 가려졌던 키가 그대로 드러나요.<br><span class="cap2">척추 펴면 · <span class="y">숨은 키 드러남</span></span></td></tr><tr><td class="c-id">c4</td><td>게다가 굽은 자세는 숙면을 방해해서, 성장호르몬까지 줄여요.<br><span class="cap2">굽은 자세 · <span class="y">성장호르몬 ↓</span></span></td></tr><tr><td class="c-id">c5</td><td>목·어깨가 뭉치면 혈액순환이 막혀 쉽게 피로하고 활동량도 줄죠.<br><span class="cap2">혈액순환 막힘 · <span class="y">쉽게 피로</span></span></td></tr><tr><td class="c-id">c6</td><td>옆에서 봤을 때 귀가 어깨보다 앞이면, 거북목 신호예요.<br><span class="cap2">귀가 어깨보다 · <span class="y">앞이면 신호</span></span></td></tr><tr><td class="c-id">c7</td><td>이런 신호가 세 가지 이상이면, 지금이 자세 잡을 때예요.<br><span class="cap2">3가지 이상이면 · <span class="y">지금 시작</span></span></td></tr><tr><td class="c-id">c8</td><td>벽에 뒤통수·어깨·엉덩이를 붙이고 서기. 하루 1분이면 충분해요.<br><span class="cap2">벽 자세 · <span class="y">하루 1분</span></span></td></tr><tr><td class="c-id">c9</td><td>줄넘기·수영처럼 몸을 쭉 펴는 운동도 자세와 키에 같이 좋아요.<br><span class="cap2">줄넘기·수영 · <span class="y">자세+키 ↑</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 자세와 성장, 지금 바로 확인해 보세요.<br><span class="cap2">자세 + 성장 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่าท่าทางที่ไม่ดีทำให้ความสูงของลูกหายไป?<br><span class="cap2">ท่าทางไม่ดี · <span class="y">ความสูงหายไป</span></span></td></tr><tr><td class="c-id">c2</td><td>คอยื่นหลังค่อม วัดออกมาเตี้ยกว่าความสูงจริง<br><span class="cap2">คอยื่น หลังค่อม · <span class="y">วัดได้เตี้ยลง</span></span></td></tr><tr><td class="c-id">c3</td><td>แค่ยืดกระดูกสันหลังให้ตรง ความสูงที่ซ่อนอยู่ก็กลับมา<br><span class="cap2">ยืดหลังให้ตรง · <span class="y">ความสูงที่ซ่อน</span></span></td></tr><tr><td class="c-id">c4</td><td>ท่าค่อมยังรบกวนการนอนลึก ทำฮอร์โมนโตลดลงด้วย<br><span class="cap2">นอนไม่ลึก · <span class="y">ฮอร์โมนโต ↓</span></span></td></tr><tr><td class="c-id">c5</td><td>คอบ่าตึง เลือดไหลเวียนไม่ดี เหนื่อยง่าย ขยับน้อยลง<br><span class="cap2">เลือดไม่เดิน · <span class="y">เหนื่อยง่าย</span></span></td></tr><tr><td class="c-id">c6</td><td>มองด้านข้าง ถ้าหูล้ำหน้าไหล่ คือสัญญาณคอยื่น<br><span class="cap2">หูล้ำหน้าไหล่ · <span class="y">คือสัญญาณ</span></span></td></tr><tr><td class="c-id">c7</td><td>ถ้าเข้าข่ายตั้งแต่ 3 ข้อขึ้นไป ถึงเวลาปรับท่าทางแล้ว<br><span class="cap2">ตั้งแต่ 3 ข้อ · <span class="y">เริ่มเลย</span></span></td></tr><tr><td class="c-id">c8</td><td>ยืนพิงผนังให้ท้ายทอย ไหล่ สะโพกแตะผนัง วันละ 1 นาทีก็พอ<br><span class="cap2">ยืนพิงผนัง · <span class="y">วันละ 1 นาที</span></span></td></tr><tr><td class="c-id">c9</td><td>กระโดดเชือก ว่ายน้ำ ยืดตัวสุด ดีทั้งท่าทางและความสูง<br><span class="cap2">กระโดดเชือก ว่ายน้ำ · <span class="y">ท่าทาง+สูง ↑</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กท่าทางและการเติบโตของลูกวันนี้เลย<br><span class="cap2">ท่าทาง + การเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết tư thế xấu đang giấu mất chiều cao của con?<br><span class="cap2">Tư thế xấu · <span class="y">giấu chiều cao</span></span></td></tr><tr><td class="c-id">c2</td><td>Cổ rùa, lưng gù khiến số đo thấp hơn chiều cao thật.<br><span class="cap2">Cổ rùa, lưng gù · <span class="y">đo thấp hơn</span></span></td></tr><tr><td class="c-id">c3</td><td>Chỉ cần thẳng cột sống, chiều cao bị giấu sẽ hiện ra.<br><span class="cap2">Thẳng cột sống · <span class="y">chiều cao ẩn</span></span></td></tr><tr><td class="c-id">c4</td><td>Tư thế gù còn phá giấc ngủ sâu, làm giảm hormone tăng trưởng.<br><span class="cap2">Mất ngủ sâu · <span class="y">hormone ↓</span></span></td></tr><tr><td class="c-id">c5</td><td>Cổ vai căng cứng, máu kém lưu thông, mau mệt, ít vận động.<br><span class="cap2">Máu kém lưu thông · <span class="y">mau mệt</span></span></td></tr><tr><td class="c-id">c6</td><td>Nhìn ngang, nếu tai nhô trước vai thì đó là dấu hiệu cổ rùa.<br><span class="cap2">Tai trước vai · <span class="y">là dấu hiệu</span></span></td></tr><tr><td class="c-id">c7</td><td>Từ ba dấu hiệu trở lên, đây là lúc chỉnh tư thế cho con.<br><span class="cap2">Từ 3 dấu hiệu · <span class="y">bắt đầu ngay</span></span></td></tr><tr><td class="c-id">c8</td><td>Đứng tựa tường: gáy, vai, hông chạm tường. Mỗi ngày 1 phút là đủ.<br><span class="cap2">Đứng tựa tường · <span class="y">1 phút mỗi ngày</span></span></td></tr><tr><td class="c-id">c9</td><td>Nhảy dây, bơi lội kéo giãn cơ thể — tốt cho cả tư thế và chiều cao.<br><span class="cap2">Nhảy dây, bơi · <span class="y">tư thế+cao ↑</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tư thế và sự phát triển của con ngay hôm nay.<br><span class="cap2">Tư thế + tăng trưởng · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know bad posture is hiding your child's height?<br><span class="cap2">Bad posture · <span class="y">hidden height</span></span></td></tr><tr><td class="c-id">c2</td><td>Forward head and a rounded back measure shorter than you really are.<br><span class="cap2">Slouch · <span class="y">measures shorter</span></span></td></tr><tr><td class="c-id">c3</td><td>Straighten the spine and the hidden height shows up.<br><span class="cap2">Straight spine · <span class="y">hidden height</span></span></td></tr><tr><td class="c-id">c4</td><td>A slouch also breaks deep sleep — and lowers growth hormone.<br><span class="cap2">Poor deep sleep · <span class="y">growth hormone ↓</span></span></td></tr><tr><td class="c-id">c5</td><td>Tight neck and shoulders block circulation — easy fatigue, less activity.<br><span class="cap2">Poor circulation · <span class="y">easy fatigue</span></span></td></tr><tr><td class="c-id">c6</td><td>From the side, if the ear sits ahead of the shoulder — that's the sign.<br><span class="cap2">Ear ahead of shoulder · <span class="y">that's the sign</span></span></td></tr><tr><td class="c-id">c7</td><td>Three or more of these — now's the time to fix posture.<br><span class="cap2">3 or more signs · <span class="y">start now</span></span></td></tr><tr><td class="c-id">c8</td><td>Stand to a wall — head, shoulders, hips touching. One minute a day.<br><span class="cap2">Wall posture · <span class="y">1 min a day</span></span></td></tr><tr><td class="c-id">c9</td><td>Jump rope and swimming stretch the body — great for posture and height.<br><span class="cap2">Jump rope, swim · <span class="y">posture+height ↑</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's posture and growth today.<br><span class="cap2">Posture + growth · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道不良姿势正藏起孩子的身高吗？<br><span class="cap2">不良姿势 · <span class="y">藏起身高</span></span></td></tr><tr><td class="c-id">c2</td><td>乌龟颈、驼背，量出来比真实身高还矮。<br><span class="cap2">乌龟颈 驼背 · <span class="y">量得更矮</span></span></td></tr><tr><td class="c-id">c3</td><td>把脊柱挺直，被藏起的身高就显出来了。<br><span class="cap2">脊柱挺直 · <span class="y">显出身高</span></span></td></tr><tr><td class="c-id">c4</td><td>驼背还会破坏深睡眠，连生长激素都变少。<br><span class="cap2">深睡变差 · <span class="y">生长激素 ↓</span></span></td></tr><tr><td class="c-id">c5</td><td>颈肩僵硬、血流不畅，容易疲劳，活动也变少。<br><span class="cap2">血流不畅 · <span class="y">容易疲劳</span></span></td></tr><tr><td class="c-id">c6</td><td>侧面看，耳朵比肩膀靠前，就是乌龟颈信号。<br><span class="cap2">耳在肩前 · <span class="y">就是信号</span></span></td></tr><tr><td class="c-id">c7</td><td>符合三项以上，现在就是矫正姿势的好时机。<br><span class="cap2">3 项以上 · <span class="y">现在开始</span></span></td></tr><tr><td class="c-id">c8</td><td>靠墙站，后脑、肩膀、臀部贴墙，每天一分钟就够。<br><span class="cap2">靠墙站 · <span class="y">每天 1 分钟</span></span></td></tr><tr><td class="c-id">c9</td><td>跳绳、游泳能拉伸身体，对姿势和身高都好。<br><span class="cap2">跳绳 游泳 · <span class="y">姿势+身高 ↑</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的姿势和成长情况吧。<br><span class="cap2">姿势 + 成长 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道不良姿勢正藏起孩子的身高嗎？<br><span class="cap2">不良姿勢 · <span class="y">藏起身高</span></span></td></tr><tr><td class="c-id">c2</td><td>烏龜頸、駝背，量出來比真實身高還矮。<br><span class="cap2">烏龜頸 駝背 · <span class="y">量得更矮</span></span></td></tr><tr><td class="c-id">c3</td><td>把脊柱挺直，被藏起的身高就顯出來了。<br><span class="cap2">脊柱挺直 · <span class="y">顯出身高</span></span></td></tr><tr><td class="c-id">c4</td><td>駝背還會破壞深睡眠，連生長激素都變少。<br><span class="cap2">深睡變差 · <span class="y">生長激素 ↓</span></span></td></tr><tr><td class="c-id">c5</td><td>頸肩僵硬、血流不暢，容易疲勞，活動也變少。<br><span class="cap2">血流不暢 · <span class="y">容易疲勞</span></span></td></tr><tr><td class="c-id">c6</td><td>側面看，耳朵比肩膀靠前，就是烏龜頸信號。<br><span class="cap2">耳在肩前 · <span class="y">就是信號</span></span></td></tr><tr><td class="c-id">c7</td><td>符合三項以上，現在就是矯正姿勢的好時機。<br><span class="cap2">3 項以上 · <span class="y">現在開始</span></span></td></tr><tr><td class="c-id">c8</td><td>靠牆站，後腦、肩膀、臀部貼牆，每天一分鐘就夠。<br><span class="cap2">靠牆站 · <span class="y">每天 1 分鐘</span></span></td></tr><tr><td class="c-id">c9</td><td>跳繩、游泳能拉伸身體，對姿勢和身高都好。<br><span class="cap2">跳繩 游泳 · <span class="y">姿勢+身高 ↑</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的姿勢和成長情況吧。<br><span class="cap2">姿勢 + 成長 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/자세교정숨은키/</code> · <code>자세교정숨은키-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

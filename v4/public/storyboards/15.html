@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 알레르기·만성염증이 성장 에너지를 훔친다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #15</span>
+  <h1>우리 아이 키 크는 에너지를 훔치는 '도둑' — 알레르기·만성염증</h1>
+  <div class="sub">잘 먹이고 일찍 재워도 안 크는 진짜 이유 — 알레르기·만성염증이 성장 에너지를 가로챈다, 잡으면 다시 큰다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>잘 챙겨도 안 큰다?</b></div>
+      <div class="subj">우리 아이 키 훔치는</div>
+      <div class="big4"><div class="n" style="font-size:132px">도둑</div><div class="lab">알레르기·염증</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 훔치는</b> 도둑알레르기·염증"</li>
+        <li><b>거대 숫자 "도둑"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #15 「알레르기·만성염증이 성장 에너지를 훔친다」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"잘 먹이고 일찍 재워도 키가 안 큰다면, 성장 에너지를 훔치는 '도둑'이 있을 수 있어요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>잘 먹이고 운동시키고 일찍 재우면 알아서 큰다 → 알레르기·만성염증이 성장 에너지를 몰래 가로채면, 잘 챙겨도 키가 안 큰다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>몸은 성장과 면역을 동시에 못 한다. 알레르기·만성염증이 면역을 과하게 돌리면 사이토카인·코르티솔이 성장호르몬을 막고, 가려움·코막힘이 밤잠을 깨워 성장호르몬을 줄인다. 도둑을 잡아 염증을 잡으면 성장 에너지가 다시 키로 간다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("도둑만 잡으면 다시 큰다"). "우리 아이 키" 보편(잘 챙기는 부모도 해당). 시청자가 이미 알레르기 검사·진단 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 에너지가 새고 있는지, 뼈나이·예측키로 지금 확인 → 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·반전</h4><p>c1–c2<br>"잘 챙겨도 안 큰다 → 성장 에너지 도둑이 있다"</p></div><div class="act"><span class="n">ACT 2</span><h4>에너지 쟁탈</h4><p>c3–c4<br>"몸은 성장 vs 면역 동시에 못 함 → 면역이 에너지 가로챔"</p></div><div class="act"><span class="n">ACT 3</span><h4>메커니즘</h4><p>c5–c6<br>"사이토카인이 성장호르몬 차단 + 장 흡수 방해"</p></div><div class="act"><span class="n">ACT 4</span><h4>밤잠 도둑</h4><p>c7–c8<br>"가려움·코막힘이 밤잠 깨움 → 야간 성장호르몬↓"</p></div><div class="act"><span class="n">ACT 5</span><h4>회복·행동</h4><p>c9–c10<br>"도둑 잡으면 다시 큰다 → 뼈나이 확인 CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">왜 안 클까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🥷📉</div></div>
+        <div class="ph-cap"><div class="l">잘 챙겨도 안 큰다?</div><div class="l"><span class="y2">성장 도둑</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">잘 먹이고 일찍 재워도 키가 안 큰다면, 성장 에너지를 훔치는 '도둑'이 있을 수 있어요.</td><td><span class="cap2">잘 챙겨도 안 큰다?<br><span class="y">성장 도둑</span></span></td><td class="mo">🥷 슬램 인 + 그림자 스윽</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그 도둑의 정체는 바로 알레르기와 만성염증이에요.</td><td><span class="cap2">도둑의 정체<br><span class="y">알레르기·만성염증</span></span></td><td class="mo">💡 정체 공개 팝</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 에너지 쟁탈</span></td><td class="narr">몸은 성장과 면역, 둘을 동시에 못 해요. 에너지가 한정돼 있거든요.</td><td><span class="cap2">성장 vs 면역<br><span class="y">에너지는 하나</span></span></td><td class="mo">⚖️ 한쪽으로 기울기</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 사이토카인 차단</span></td><td class="narr">염증이 생기면 사이토카인이 나와 성장호르몬을 막아 버려요.</td><td><span class="cap2">염증 물질 사이토카인<br><span class="y">성장호르몬 차단</span></span></td><td class="mo">🚫 호르몬 막힘</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">게다가 장에도 염증이 생겨, 칼슘·비타민D·단백질 흡수까지 떨어뜨려요.</td><td><span class="cap2">장 염증<br><span class="y">영양 흡수 ↓</span></span></td><td class="mo">🥗 영양소 ↓ 빠짐</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 밤잠 도둑</span></td><td class="narr">가려움과 코막힘은 밤잠을 깨워요. 성장호르몬은 깊은 잠에 가장 많이 나오는데 말이죠.</td><td><span class="cap2">가려움·코막힘<br><span class="y">밤잠 깨움</span></span></td><td class="mo">🌙 깨움 + GH ↓</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">숨은 만성염증은 코르티솔까지 올려서, 뼈와 연골 성장을 눌러요.</td><td><span class="cap2">코르티솔 ↑<br><span class="y">뼈·연골 눌림</span></span></td><td class="mo">⚠️ 코르티솔 쉐이크</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 도둑 잡고 회복</span></td><td class="narr">좋은 소식은, 이 도둑을 잡아 염증을 가라앉히면 에너지가 다시 키로 간다는 거예요.</td><td><span class="cap2">염증 잡으면<br><span class="y">에너지 다시 키로</span></span></td><td class="mo">✨ 에너지 되돌아옴</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이와 예측키를 보면, 우리 아이 성장 에너지가 새고 있는지 알 수 있어요.</td><td><span class="cap2">뼈나이·예측키로<br><span class="y">에너지 누수 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 에너지, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장 에너지<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: ⚖️ 한쪽으로 기울기</div><h3>성장 vs 면역 — 에너지 쟁탈전</h3></div>
+        <div class="body">
+          <div class="sketch">⚖️ 📈 🛡️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly balance scale with two pans: one pan holds a small upward growth arrow / rising child silhouette, the other pan holds a shield (immune defense). A single battery / energy orb in the center connected to both pans, the scale tipping heavily toward the shield side so the growth side is starved. Brand purple growth side, mint shield side, soft glow on the central energy orb. Friendly pediatric, clean. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 접시</td><td>성장</td><td>Growth</td><td class="thai">การเติบโต</td></tr><tr><td>오른쪽 접시(기움)</td><td>면역·염증</td><td>Immunity</td><td class="thai">ภูมิคุ้มกัน</td></tr><tr><td>가운데 배터리</td><td>에너지 1개</td><td>One energy</td><td class="thai">พลังงานเดียว</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 🚫 차단 점등</div><h3>사이토카인이 성장호르몬을 막는다</h3></div>
+        <div class="body">
+          <div class="sketch">🔥 🚫 🧬</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Small angry inflammation particles (cytokines) drawn as little orange spiky orbs flowing toward a glowing purple growth-hormone capsule/molecule and forming a blocking barrier in front of it, like a 'no-entry' wall, so the hormone can't pass down toward a bone below. Brand purple hormone, orange cytokine sparks, mint bone hint at bottom. Friendly, clean. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>주황 입자</td><td>염증 사이토카인</td><td>Cytokines</td><td class="thai">ไซโตไคน์</td></tr><tr><td>보라 캡슐</td><td>성장호르몬</td><td>Growth hormone</td><td class="thai">ฮอร์โมนโต</td></tr><tr><td>막힌 벽</td><td>차단!</td><td>Blocked!</td><td class="thai">ถูกบล็อก!</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 🌙 깨움 + GH 하강</div><h3>밤잠 도둑 — 깊은 잠 방해</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 😣 📉</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child sleeping in bed at night under a crescent moon, but with an itch / runny-nose discomfort motif (a small scratch mark and a blocked-nose swirl) waking them, breaking the calm sleep. Above, a downward growth-hormone curve / falling droplet indicating reduced nighttime growth hormone. Deep purple night scene with mint moonlight, soft and gentle (not scary). Pediatric, clean. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이 주변</td><td>가려움·코막힘</td><td>Itch · stuffy nose</td><td class="thai">คัน·คัดจมูก</td></tr><tr><td>하강 곡선</td><td>성장호르몬 ↓</td><td>Growth hormone ↓</td><td class="thai">ฮอร์โมนโต ↓</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: ✨ 에너지 복귀</div><h3>도둑 잡고 — 에너지 다시 키로</h3></div>
+        <div class="body">
+          <div class="sketch">✅ 🌿 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A bright, hopeful scene: anti-inflammation leaf/shield calming the orange sparks (now fading), and a glowing energy orb flowing back up into a tall rising growth arrow with a happy child reaching upward. Brand purple→mint gradient arrow, warm mint glow of restored energy, fading orange. Conveys 'catch the thief, growth resumes.' Friendly, optimistic, clean. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>가라앉는 주황</td><td>염증 진정</td><td>Inflammation calmed</td><td class="thai">อักเสบสงบ</td></tr><tr><td>상승 화살표</td><td>에너지 → 키</td><td>Energy → height</td><td class="thai">พลังงาน → ส่วนสูง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🥷</b> 성장 도둑</span><span class="emo"><b>📉</b> 성장 저하</span><span class="emo"><b>🔥</b> 염증</span><span class="emo"><b>🧬</b> 사이토카인</span><span class="emo"><b>🚫</b> 성장호르몬 차단</span><span class="emo"><b>🥗</b> 영양 흡수</span><span class="emo"><b>🌙</b> 밤잠·수면</span><span class="emo"><b>⚠️</b> 코르티솔 경고</span><span class="emo"><b>⚖️</b> 에너지 쟁탈</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✨</b> 회복 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>잘 먹이고 일찍 재워도 키가 안 큰다면, 성장 에너지를 훔치는 '도둑'이 있을 수 있어요.<br><span class="cap2">잘 챙겨도 안 큰다? · <span class="y">성장 도둑</span></span></td></tr><tr><td class="c-id">c2</td><td>그 도둑의 정체는 바로 알레르기와 만성염증이에요.<br><span class="cap2">도둑의 정체 · <span class="y">알레르기·만성염증</span></span></td></tr><tr><td class="c-id">c3</td><td>몸은 성장과 면역, 둘을 동시에 못 해요. 에너지가 한정돼 있거든요.<br><span class="cap2">성장 vs 면역 · <span class="y">에너지는 하나</span></span></td></tr><tr><td class="c-id">c4</td><td>염증이 생기면 사이토카인이 나와 성장호르몬을 막아 버려요.<br><span class="cap2">염증 물질 사이토카인 · <span class="y">성장호르몬 차단</span></span></td></tr><tr><td class="c-id">c5</td><td>게다가 장에도 염증이 생겨, 칼슘·비타민D·단백질 흡수까지 떨어뜨려요.<br><span class="cap2">장 염증 · <span class="y">영양 흡수 ↓</span></span></td></tr><tr><td class="c-id">c6</td><td>가려움과 코막힘은 밤잠을 깨워요. 성장호르몬은 깊은 잠에 가장 많이 나오는데 말이죠.<br><span class="cap2">가려움·코막힘 · <span class="y">밤잠 깨움</span></span></td></tr><tr><td class="c-id">c7</td><td>숨은 만성염증은 코르티솔까지 올려서, 뼈와 연골 성장을 눌러요.<br><span class="cap2">코르티솔 ↑ · <span class="y">뼈·연골 눌림</span></span></td></tr><tr><td class="c-id">c8</td><td>좋은 소식은, 이 도둑을 잡아 염증을 가라앉히면 에너지가 다시 키로 간다는 거예요.<br><span class="cap2">염증 잡으면 · <span class="y">에너지 다시 키로</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이와 예측키를 보면, 우리 아이 성장 에너지가 새고 있는지 알 수 있어요.<br><span class="cap2">뼈나이·예측키로 · <span class="y">에너지 누수 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 에너지, 지금 바로 확인해 보세요.<br><span class="cap2">성장 에너지 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>กินดี นอนเร็ว แต่ลูกยังไม่สูง? อาจมี 'ขโมย' แอบขโมยพลังการโต<br><span class="cap2">ดูแลดีแต่ไม่สูง? · <span class="y">ขโมยการโต</span></span></td></tr><tr><td class="c-id">c2</td><td>ตัวขโมยนั้นคือภูมิแพ้และการอักเสบเรื้อรัง<br><span class="cap2">ตัวขโมยคือ · <span class="y">ภูมิแพ้·อักเสบ</span></span></td></tr><tr><td class="c-id">c3</td><td>ร่างกายทำสองอย่างพร้อมกันไม่ได้ ทั้งโตและภูมิคุ้มกัน เพราะพลังงานมีจำกัด<br><span class="cap2">โต vs ภูมิคุ้มกัน · <span class="y">พลังงานมีจำกัด</span></span></td></tr><tr><td class="c-id">c4</td><td>เมื่ออักเสบ ไซโตไคน์จะหลั่งออกมาขัดขวางฮอร์โมนการเจริญเติบโต<br><span class="cap2">ไซโตไคน์ · <span class="y">บล็อกฮอร์โมนโต</span></span></td></tr><tr><td class="c-id">c5</td><td>ยิ่งกว่านั้น ลำไส้ก็อักเสบ ทำให้ดูดซึมแคลเซียม วิตามินดี โปรตีนได้น้อยลง<br><span class="cap2">ลำไส้อักเสบ · <span class="y">ดูดซึมลดลง</span></span></td></tr><tr><td class="c-id">c6</td><td>อาการคันและคัดจมูกปลุกให้ตื่นกลางดึก ทั้งที่ฮอร์โมนโตหลั่งมากตอนหลับลึก<br><span class="cap2">คัน·คัดจมูก · <span class="y">ปลุกกลางดึก</span></span></td></tr><tr><td class="c-id">c7</td><td>การอักเสบเรื้อรังที่ซ่อนอยู่ยังเพิ่มคอร์ติซอล กดการโตของกระดูกและกระดูกอ่อน<br><span class="cap2">คอร์ติซอลขึ้น · <span class="y">กดการโตกระดูก</span></span></td></tr><tr><td class="c-id">c8</td><td>ข่าวดีคือ ถ้าจับขโมยและลดการอักเสบ พลังงานจะกลับไปสร้างความสูงอีกครั้ง<br><span class="cap2">ลดการอักเสบ · <span class="y">พลังกลับมาโต</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกและส่วนสูงที่คาดการณ์บอกได้ว่าพลังการโตของลูกกำลังรั่วไหลหรือไม่<br><span class="cap2">อายุกระดูก·คาดส่วนสูง · <span class="y">เช็กพลังรั่ว</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กพลังการเติบโตของลูกวันนี้<br><span class="cap2">พลังการเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Ăn đủ, ngủ sớm mà con vẫn không cao? Có thể có 'kẻ trộm' lấy mất năng lượng tăng trưởng.<br><span class="cap2">Chăm kỹ vẫn thấp? · <span class="y">kẻ trộm chiều cao</span></span></td></tr><tr><td class="c-id">c2</td><td>Kẻ trộm đó chính là dị ứng và viêm mạn tính.<br><span class="cap2">Kẻ trộm là · <span class="y">dị ứng·viêm mạn</span></span></td></tr><tr><td class="c-id">c3</td><td>Cơ thể không thể vừa lớn vừa chống viêm — năng lượng có hạn.<br><span class="cap2">Lớn vs miễn dịch · <span class="y">năng lượng có hạn</span></span></td></tr><tr><td class="c-id">c4</td><td>Khi viêm, cytokine tiết ra chặn hormone tăng trưởng.<br><span class="cap2">Cytokine từ viêm · <span class="y">chặn hormone tăng trưởng</span></span></td></tr><tr><td class="c-id">c5</td><td>Hơn nữa, ruột bị viêm làm giảm hấp thu canxi, vitamin D, đạm.<br><span class="cap2">Ruột viêm · <span class="y">hấp thu giảm</span></span></td></tr><tr><td class="c-id">c6</td><td>Ngứa và nghẹt mũi phá giấc ngủ đêm — đúng lúc hormone tăng trưởng tiết nhiều nhất.<br><span class="cap2">Ngứa·nghẹt mũi · <span class="y">phá giấc ngủ</span></span></td></tr><tr><td class="c-id">c7</td><td>Viêm mạn ẩn còn làm tăng cortisol, kìm hãm xương và sụn phát triển.<br><span class="cap2">Cortisol tăng · <span class="y">ép xương·sụn</span></span></td></tr><tr><td class="c-id">c8</td><td>Tin tốt: bắt được kẻ trộm, giảm viêm thì năng lượng quay về với chiều cao.<br><span class="cap2">Giảm viêm · <span class="y">năng lượng trở lại</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương và chiều cao dự đoán cho biết năng lượng tăng trưởng của con có đang rò rỉ.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra rò rỉ</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra năng lượng tăng trưởng của con ngay hôm nay.<br><span class="cap2">Năng lượng tăng trưởng · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Eating well, sleeping early, but still not growing? A 'thief' may be stealing growth energy.<br><span class="cap2">Doing everything right? · <span class="y">a growth thief</span></span></td></tr><tr><td class="c-id">c2</td><td>That thief is allergies and chronic inflammation.<br><span class="cap2">The thief is · <span class="y">allergy·inflammation</span></span></td></tr><tr><td class="c-id">c3</td><td>The body can't do both — grow and fight inflammation. Energy is limited.<br><span class="cap2">Growth vs immunity · <span class="y">one energy pool</span></span></td></tr><tr><td class="c-id">c4</td><td>Inflammation releases cytokines that block growth hormone.<br><span class="cap2">Cytokines · <span class="y">block growth hormone</span></span></td></tr><tr><td class="c-id">c5</td><td>Inflammation also hits the gut, cutting calcium, vitamin D and protein absorption.<br><span class="cap2">Gut inflammation · <span class="y">absorption drops</span></span></td></tr><tr><td class="c-id">c6</td><td>Itching and congestion wake them at night — just when growth hormone peaks.<br><span class="cap2">Itch·congestion · <span class="y">wreck deep sleep</span></span></td></tr><tr><td class="c-id">c7</td><td>Hidden chronic inflammation raises cortisol, which suppresses bone and cartilage growth.<br><span class="cap2">Cortisol rises · <span class="y">bone·cartilage suppressed</span></span></td></tr><tr><td class="c-id">c8</td><td>Good news: catch the thief, calm the inflammation, and energy goes back to growth.<br><span class="cap2">Calm inflammation · <span class="y">energy back to growth</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age and predicted height show if your child's growth energy is leaking.<br><span class="cap2">Bone age·prediction · <span class="y">check the leak</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth energy today.<br><span class="cap2">Growth energy · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>吃得好、睡得早，孩子却不长个？也许有个'小偷'在偷走成长能量。<br><span class="cap2">都做对了还不长？ · <span class="y">成长小偷</span></span></td></tr><tr><td class="c-id">c2</td><td>这个小偷就是过敏和慢性炎症。<br><span class="cap2">小偷就是 · <span class="y">过敏·慢性炎症</span></span></td></tr><tr><td class="c-id">c3</td><td>身体无法同时长高和抗炎，因为能量有限。<br><span class="cap2">长高 vs 免疫 · <span class="y">能量就一份</span></span></td></tr><tr><td class="c-id">c4</td><td>炎症会释放细胞因子，阻断生长激素。<br><span class="cap2">炎症细胞因子 · <span class="y">阻断生长激素</span></span></td></tr><tr><td class="c-id">c5</td><td>而且肠道也发炎，钙、维生素D、蛋白质的吸收都下降。<br><span class="cap2">肠道发炎 · <span class="y">吸收下降</span></span></td></tr><tr><td class="c-id">c6</td><td>瘙痒和鼻塞会扰乱夜间睡眠，而生长激素恰恰在深睡时分泌最多。<br><span class="cap2">瘙痒·鼻塞 · <span class="y">扰乱夜睡</span></span></td></tr><tr><td class="c-id">c7</td><td>隐藏的慢性炎症还会升高皮质醇，压制骨骼和软骨生长。<br><span class="cap2">皮质醇升高 · <span class="y">压制骨·软骨</span></span></td></tr><tr><td class="c-id">c8</td><td>好消息是，抓住小偷、平息炎症，能量就会重新用来长高。<br><span class="cap2">平息炎症 · <span class="y">能量回到长高</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄和预测身高能看出孩子的成长能量是否在流失。<br><span class="cap2">骨龄·预测身高 · <span class="y">查能量流失</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的成长能量吧。<br><span class="cap2">成长能量 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>吃得好、睡得早，孩子卻不長個？也許有個'小偷'在偷走成長能量。<br><span class="cap2">都做對了還不長？ · <span class="y">成長小偷</span></span></td></tr><tr><td class="c-id">c2</td><td>這個小偷就是過敏和慢性發炎。<br><span class="cap2">小偷就是 · <span class="y">過敏·慢性發炎</span></span></td></tr><tr><td class="c-id">c3</td><td>身體無法同時長高和抗炎，因為能量有限。<br><span class="cap2">長高 vs 免疫 · <span class="y">能量就一份</span></span></td></tr><tr><td class="c-id">c4</td><td>發炎會釋放細胞激素，阻斷生長激素。<br><span class="cap2">發炎細胞激素 · <span class="y">阻斷生長激素</span></span></td></tr><tr><td class="c-id">c5</td><td>而且腸道也發炎，鈣、維生素D、蛋白質的吸收都下降。<br><span class="cap2">腸道發炎 · <span class="y">吸收下降</span></span></td></tr><tr><td class="c-id">c6</td><td>搔癢和鼻塞會擾亂夜間睡眠，而生長激素恰恰在深睡時分泌最多。<br><span class="cap2">搔癢·鼻塞 · <span class="y">擾亂夜睡</span></span></td></tr><tr><td class="c-id">c7</td><td>隱藏的慢性發炎還會升高皮質醇，壓制骨骼和軟骨生長。<br><span class="cap2">皮質醇升高 · <span class="y">壓制骨·軟骨</span></span></td></tr><tr><td class="c-id">c8</td><td>好消息是，抓住小偷、平息發炎，能量就會重新用來長高。<br><span class="cap2">平息發炎 · <span class="y">能量回到長高</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡和預測身高能看出孩子的成長能量是否在流失。<br><span class="cap2">骨齡·預測身高 · <span class="y">查能量流失</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的成長能量吧。<br><span class="cap2">成長能量 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/알레르기성장도둑/</code> · <code>알레르기성장도둑-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

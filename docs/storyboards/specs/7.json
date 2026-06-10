@@ -1,0 +1,794 @@
+{
+  "n": 7,
+  "slug": "격세유전조부모키",
+  "title": "부모 키가 다가 아니다 — 조부모 키와 격세유전",
+  "sub": "유전 80%, 잠자던 조부모 유전자가 우리 아이에게 — 부모만 보면 놓친다",
+  "category": "A. 성장과학",
+  "topicTitle": "조부모 키와 격세유전",
+  "duration": 35,
+  "headerTop": "우리 아이 키",
+  "headerMark": "부모만 보면 될까?",
+  "accentEmoji": "🧬👵",
+  "thumb": {
+    "kicker": "부모만 보면 착각!",
+    "subject": "우리 아이 키",
+    "number": "조부모",
+    "numLabel": "키가 답이다"
+  },
+  "hook": "우리 아이 키, 부모 키만 보면 안 되는 거 아세요?",
+  "misconception": "부모가 크면 아이도 크고, 부모가 작으면 아이도 작다 → 잠자던 조부모 유전자가 한 세대 건너뛰어 발현될 수 있음(격세유전)",
+  "message": "키 유전은 80%지만 부모만의 몫이 아니다. 조부모 키까지 본 가족력 + 뼈나이로 봐야 우리 아이 진짜 잠재력이 보인다",
+  "tone": "협박 ❌ → 긍정(\"부모가 작아도 조부모가 크면 우리 아이도 클 수 있다\"). \"우리 아이 키\" 보편. 단정 ❌ → 가족력+측정으로 확인 유도",
+  "cta": "조부모 키까지 넣어 우리 아이 예측키·뼈나이 지금 확인 → 홈페이지 측정 유도",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"부모 키만 보면 착각 — 유전은 80%, 근데 부모만이 아니다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "격세유전이란",
+      "scenes": "c3–c4",
+      "desc": "\"잠자던 조부모 유전자가 한 세대 건너뛰어 우리 아이에게\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "양방향",
+      "scenes": "c5–c6",
+      "desc": "\"부모 커도 작을 수, 부모 작아도 클 수 있다\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "가족성 저신장·골든타임",
+      "scenes": "c7–c8",
+      "desc": "\"가족력 미리 알면 성장판 닫히기 전 도울 수 있다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"가족력+뼈나이로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "👵 슬램 인 + 🧬 스파클",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 부모 키만 보면 안 되는 거 아세요?",
+          "cap": [
+            "부모 키만으론",
+            "답이 안 나와요"
+          ],
+          "hl": "부모 키만으론"
+        },
+        "th": {
+          "narr": "รู้ไหมว่าความสูงของลูก ดูแค่พ่อแม่ไม่พอ?",
+          "cap": [
+            "ดูแค่พ่อแม่",
+            "ยังไม่พอ"
+          ],
+          "hl": "ดูแค่พ่อแม่"
+        },
+        "vi": {
+          "narr": "Bạn có biết chiều cao của con không thể chỉ nhìn vào bố mẹ?",
+          "cap": [
+            "Chỉ nhìn bố mẹ",
+            "là chưa đủ"
+          ],
+          "hl": "Chỉ nhìn bố mẹ"
+        },
+        "en": {
+          "narr": "Did you know your child's height isn't just about the parents?",
+          "cap": [
+            "Parents alone",
+            "aren't the answer"
+          ],
+          "hl": "Parents alone"
+        },
+        "cn": {
+          "narr": "你知道孩子的身高，只看父母是不够的吗？",
+          "cap": [
+            "只看父母",
+            "还不够"
+          ],
+          "hl": "只看父母"
+        },
+        "ch": {
+          "narr": "你知道孩子的身高，只看父母是不夠的嗎？",
+          "cap": [
+            "只看父母",
+            "還不夠"
+          ],
+          "hl": "只看父母"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🧬 80% 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전이 약 80%예요. 근데 그 유전, 부모만의 몫이 아니거든요.",
+          "cap": [
+            "유전 약 80%",
+            "부모만이 아니다"
+          ],
+          "hl": "유전 약 80%"
+        },
+        "th": {
+          "narr": "ความสูงเป็นพันธุกรรมราว 80% แต่ไม่ได้มาจากพ่อแม่เท่านั้น",
+          "cap": [
+            "พันธุกรรม 80%",
+            "ไม่ใช่แค่พ่อแม่"
+          ],
+          "hl": "พันธุกรรม 80%"
+        },
+        "vi": {
+          "narr": "Chiều cao do di truyền khoảng 80% — nhưng không chỉ từ bố mẹ.",
+          "cap": [
+            "Di truyền ~80%",
+            "không chỉ bố mẹ"
+          ],
+          "hl": "Di truyền ~80%"
+        },
+        "en": {
+          "narr": "Height is about 80% genetic — but that's not just from the parents.",
+          "cap": [
+            "~80% genetic",
+            "not just parents"
+          ],
+          "hl": "~80% genetic"
+        },
+        "cn": {
+          "narr": "身高约80%由遗传决定——但不只来自父母。",
+          "cap": [
+            "遗传约80%",
+            "不只是父母"
+          ],
+          "hl": "遗传约80%"
+        },
+        "ch": {
+          "narr": "身高約80%由遺傳決定——但不只來自父母。",
+          "cap": [
+            "遺傳約80%",
+            "不只是父母"
+          ],
+          "hl": "遺傳約80%"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "ig",
+      "igLabel": "IG1 격세유전",
+      "motion": "👴→(건너뛰기)→🧒 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "바로 '격세유전'이에요. 부모에겐 안 나타난 형질이 한 세대를 건너뛰어 나타나는 거죠.",
+          "cap": [
+            "한 세대 건너뛰는",
+            "격세유전"
+          ],
+          "hl": "격세유전"
+        },
+        "th": {
+          "narr": "นั่นคือ 'การถ่ายทอดข้ามรุ่น' ลักษณะที่ข้ามพ่อแม่ไปโผล่ที่หลาน",
+          "cap": [
+            "ข้ามรุ่น",
+            "สู่หลาน"
+          ],
+          "hl": "ข้ามรุ่น"
+        },
+        "vi": {
+          "narr": "Đó là 'di truyền cách đời' — đặc điểm bỏ qua bố mẹ, hiện ở đời cháu.",
+          "cap": [
+            "Di truyền",
+            "cách đời"
+          ],
+          "hl": "cách đời"
+        },
+        "en": {
+          "narr": "It's called atavism — a trait that skips the parents and reappears in the child.",
+          "cap": [
+            "Skips a generation",
+            "atavism"
+          ],
+          "hl": "atavism"
+        },
+        "cn": {
+          "narr": "这叫'隔代遗传'——跳过父母，在孙辈重新出现。",
+          "cap": [
+            "跳过一代",
+            "隔代遗传"
+          ],
+          "hl": "隔代遗传"
+        },
+        "ch": {
+          "narr": "這叫'隔代遺傳'——跳過父母，在孫輩重新出現。",
+          "cap": [
+            "跳過一代",
+            "隔代遺傳"
+          ],
+          "hl": "隔代遺傳"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14s",
+      "kind": "ig",
+      "igLabel": "IG2 잠자는 유전자",
+      "motion": "💤 유전자 → ✨ 발현 팝",
+      "copy": {
+        "ko": {
+          "narr": "우성·열성이 있어서, 조부모의 키 유전자가 부모를 건너 아이에게서 깨어날 수 있어요.",
+          "cap": [
+            "조부모 키 유전자",
+            "아이에게서 깨어남"
+          ],
+          "hl": "조부모 키 유전자"
+        },
+        "th": {
+          "narr": "มียีนเด่นยีนด้อย ยีนความสูงของปู่ย่าอาจตื่นขึ้นในตัวหลาน",
+          "cap": [
+            "ยีนของปู่ย่า",
+            "ตื่นในหลาน"
+          ],
+          "hl": "ยีนของปู่ย่า"
+        },
+        "vi": {
+          "narr": "Có gen trội gen lặn — gen chiều cao của ông bà có thể thức dậy ở cháu.",
+          "cap": [
+            "Gen của ông bà",
+            "thức dậy ở cháu"
+          ],
+          "hl": "Gen của ông bà"
+        },
+        "en": {
+          "narr": "With dominant and recessive genes, grandparents' height genes can wake up in the child.",
+          "cap": [
+            "Grandparents' genes",
+            "wake up in the child"
+          ],
+          "hl": "Grandparents' genes"
+        },
+        "cn": {
+          "narr": "有显性隐性之分，祖父母的身高基因可能在孩子身上苏醒。",
+          "cap": [
+            "祖父母的基因",
+            "在孩子身上苏醒"
+          ],
+          "hl": "祖父母的基因"
+        },
+        "ch": {
+          "narr": "有顯性隱性之分，祖父母的身高基因可能在孩子身上甦醒。",
+          "cap": [
+            "祖父母的基因",
+            "在孩子身上甦醒"
+          ],
+          "hl": "祖父母的基因"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14–18s",
+      "kind": "doctor",
+      "motion": "⬆️⬇️ 양방향 토글",
+      "copy": {
+        "ko": {
+          "narr": "그래서 부모가 커도 조부모가 작으면 아이가 작을 수 있어요.",
+          "cap": [
+            "부모 커도",
+            "작을 수 있다"
+          ],
+          "hl": "부모 커도"
+        },
+        "th": {
+          "narr": "พ่อแม่สูง แต่ถ้าปู่ย่าตัวเล็ก ลูกก็อาจเตี้ยได้",
+          "cap": [
+            "พ่อแม่สูง",
+            "แต่ลูกอาจเตี้ย"
+          ],
+          "hl": "พ่อแม่สูง"
+        },
+        "vi": {
+          "narr": "Nên bố mẹ cao mà ông bà thấp, con vẫn có thể thấp.",
+          "cap": [
+            "Bố mẹ cao",
+            "con vẫn có thể thấp"
+          ],
+          "hl": "Bố mẹ cao"
+        },
+        "en": {
+          "narr": "So even tall parents can have a shorter child if the grandparents were short.",
+          "cap": [
+            "Tall parents",
+            "child can be short"
+          ],
+          "hl": "Tall parents"
+        },
+        "cn": {
+          "narr": "所以父母高，若祖父母矮，孩子也可能矮。",
+          "cap": [
+            "父母高",
+            "孩子也可能矮"
+          ],
+          "hl": "父母高"
+        },
+        "ch": {
+          "narr": "所以父母高，若祖父母矮，孩子也可能矮。",
+          "cap": [
+            "父母高",
+            "孩子也可能矮"
+          ],
+          "hl": "父母高"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–22s",
+      "kind": "ig",
+      "igLabel": "IG3 숨은 잠재력",
+      "motion": "🌱 위로 슈웅 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "반대로 부모가 작아도, 조부모가 크셨다면 아이는 훌쩍 클 잠재력이 있어요.",
+          "cap": [
+            "부모 작아도",
+            "훌쩍 클 잠재력"
+          ],
+          "hl": "훌쩍 클 잠재력"
+        },
+        "th": {
+          "narr": "กลับกัน พ่อแม่ตัวเล็ก แต่ถ้าปู่ย่าสูง ลูกก็มีศักยภาพสูงได้",
+          "cap": [
+            "พ่อแม่เล็ก",
+            "แต่มีศักยภาพสูง"
+          ],
+          "hl": "ศักยภาพสูง"
+        },
+        "vi": {
+          "narr": "Ngược lại, bố mẹ thấp mà ông bà cao, con vẫn có tiềm năng cao vượt trội.",
+          "cap": [
+            "Bố mẹ thấp",
+            "vẫn có tiềm năng cao"
+          ],
+          "hl": "tiềm năng cao"
+        },
+        "en": {
+          "narr": "And short parents whose own parents were tall can still have a child with big potential.",
+          "cap": [
+            "Short parents",
+            "still big potential"
+          ],
+          "hl": "big potential"
+        },
+        "cn": {
+          "narr": "反过来，父母矮但祖父母高，孩子也有长高的潜力。",
+          "cap": [
+            "父母矮",
+            "也有长高潜力"
+          ],
+          "hl": "长高潜力"
+        },
+        "ch": {
+          "narr": "反過來，父母矮但祖父母高，孩子也有長高的潛力。",
+          "cap": [
+            "父母矮",
+            "也有長高潛力"
+          ],
+          "hl": "長高潛力"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "👨‍👩‍👧‍👦 가계도 펼침",
+      "copy": {
+        "ko": {
+          "narr": "조부모 중 작은 분이 계시면 '가족성 저신장'을 미리 살필 수 있어요.",
+          "cap": [
+            "가족력 보면",
+            "가족성 저신장 미리 파악"
+          ],
+          "hl": "가족성 저신장"
+        },
+        "th": {
+          "narr": "ถ้าปู่ย่าตัวเล็ก เราเฝ้าระวัง 'ภาวะเตี้ยจากพันธุกรรม' ได้แต่เนิ่นๆ",
+          "cap": [
+            "ดูประวัติครอบครัว",
+            "เตี้ยจากพันธุกรรม"
+          ],
+          "hl": "เตี้ยจากพันธุกรรม"
+        },
+        "vi": {
+          "narr": "Nếu ông bà thấp, ta có thể tầm soát sớm 'thấp lùn gia đình'.",
+          "cap": [
+            "Xem tiền sử",
+            "thấp lùn gia đình"
+          ],
+          "hl": "thấp lùn gia đình"
+        },
+        "en": {
+          "narr": "If grandparents were short, we can watch early for 'familial short stature.'",
+          "cap": [
+            "Family history",
+            "familial short stature"
+          ],
+          "hl": "familial short stature"
+        },
+        "cn": {
+          "narr": "若祖父母矮，可及早留意'家族性矮小'。",
+          "cap": [
+            "看家族史",
+            "家族性矮小"
+          ],
+          "hl": "家族性矮小"
+        },
+        "ch": {
+          "narr": "若祖父母矮，可及早留意'家族性矮小'。",
+          "cap": [
+            "看家族史",
+            "家族性矮小"
+          ],
+          "hl": "家族性矮小"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "ig",
+      "igLabel": "IG4 골든타임",
+      "motion": "⏳ + 🦴 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "미리 알면 성장판 닫히기 전에 도울 수 있으니까요.",
+          "cap": [
+            "성장판 닫히기 전",
+            "도울 수 있다"
+          ],
+          "hl": "성장판 닫히기 전"
+        },
+        "th": {
+          "narr": "รู้ก่อน เราช่วยได้ก่อนแผ่นกระดูกปิด",
+          "cap": [
+            "ก่อนแผ่นกระดูกปิด",
+            "ช่วยได้"
+          ],
+          "hl": "ก่อนแผ่นกระดูกปิด"
+        },
+        "vi": {
+          "narr": "Biết sớm thì giúp được — trước khi sụn tăng trưởng đóng lại.",
+          "cap": [
+            "Trước khi sụn đóng",
+            "còn giúp được"
+          ],
+          "hl": "Trước khi sụn đóng"
+        },
+        "en": {
+          "narr": "Knowing early means we can help — before the growth plates close.",
+          "cap": [
+            "Before plates close",
+            "we can help"
+          ],
+          "hl": "Before plates close"
+        },
+        "cn": {
+          "narr": "早知道，就能在生长板闭合前帮上忙。",
+          "cap": [
+            "生长板闭合前",
+            "就能帮上忙"
+          ],
+          "hl": "生长板闭合前"
+        },
+        "ch": {
+          "narr": "早知道，就能在生長板閉合前幫上忙。",
+          "cap": [
+            "生長板閉合前",
+            "就能幫上忙"
+          ],
+          "hl": "生長板閉合前"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "조부모 키까지 넣은 가족력에 뼈나이를 더하면, 진짜 잠재력이 보여요.",
+          "cap": [
+            "가족력 + 뼈나이",
+            "진짜 잠재력"
+          ],
+          "hl": "진짜 잠재력"
+        },
+        "th": {
+          "narr": "ใส่ความสูงปู่ย่าในประวัติครอบครัว บวกอายุกระดูก เห็นศักยภาพจริง",
+          "cap": [
+            "ประวัติ + อายุกระดูก",
+            "ศักยภาพจริง"
+          ],
+          "hl": "ศักยภาพจริง"
+        },
+        "vi": {
+          "narr": "Thêm chiều cao ông bà vào tiền sử, cộng tuổi xương — thấy rõ tiềm năng thật.",
+          "cap": [
+            "Tiền sử + tuổi xương",
+            "tiềm năng thật"
+          ],
+          "hl": "tiềm năng thật"
+        },
+        "en": {
+          "narr": "Add grandparents' height to the family history plus bone age — you see the real potential.",
+          "cap": [
+            "Family + bone age",
+            "real potential"
+          ],
+          "hl": "real potential"
+        },
+        "cn": {
+          "narr": "把祖父母身高加进家族史，再看骨龄，真正的潜力就清楚了。",
+          "cap": [
+            "家族史 + 骨龄",
+            "真正的潜力"
+          ],
+          "hl": "真正的潜力"
+        },
+        "ch": {
+          "narr": "把祖父母身高加進家族史，再看骨齡，真正的潛力就清楚了。",
+          "cap": [
+            "家族史 + 骨齡",
+            "真正的潛力"
+          ],
+          "hl": "真正的潛力"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "조부모 키까지 넣어서, 우리 아이 예측키 지금 확인해 보세요.",
+          "cap": [
+            "우리 아이 예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ใส่ความสูงปู่ย่าด้วย เช็กความสูงที่คาดการณ์ของลูกวันนี้",
+          "cap": [
+            "ความสูงที่คาดการณ์",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Thêm cả chiều cao ông bà — kiểm tra chiều cao dự đoán của con ngay.",
+          "cap": [
+            "Chiều cao dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Add the grandparents' height and check your child's predicted height now.",
+          "cap": [
+            "Predicted height",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "把祖父母身高也算上，现在就查孩子的预测身高吧。",
+          "cap": [
+            "孩子预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "把祖父母身高也算上，現在就查孩子的預測身高吧。",
+          "cap": [
+            "孩子預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "세대 노드 순차 점등 + 건너뛰기 호",
+      "title": "격세유전 — 한 세대 건너뛰기",
+      "emojis": [
+        "👴",
+        "👨",
+        "🧒"
+      ],
+      "prompt": "Flat vector, square, white background. A simple three-generation family tree top to bottom: grandparent node (tall figure) at top, parent node (shorter figure) in the middle, child node at the bottom. A glowing brand-purple-to-mint dashed arc curves from the grandparent node, bypassing the parent node, down to the child node, with a soft sparkle where it lands on the child. Friendly rounded pediatric silhouettes. NO text.",
+      "labels": [
+        {
+          "pos": "상단 노드",
+          "ko": "조부모",
+          "en": "Grandparent",
+          "th": "ปู่ย่าตายาย"
+        },
+        {
+          "pos": "가운데 노드",
+          "ko": "부모",
+          "en": "Parent",
+          "th": "พ่อแม่"
+        },
+        {
+          "pos": "하단 노드",
+          "ko": "우리 아이",
+          "en": "Child",
+          "th": "ลูก"
+        },
+        {
+          "pos": "건너뛰는 호",
+          "ko": "한 세대 건너뜀",
+          "en": "Skips a generation",
+          "th": "ข้ามรุ่น"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "잠자던 유전자 점등 + 발현 팝",
+      "title": "잠자는 유전자 — 우성·열성",
+      "emojis": [
+        "🧬",
+        "💤",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly DNA double helix in brand purple and mint. Along the helix, some gene segments glow brightly (dominant, awake) while one dimmed segment is asleep with a small soft 'zzz' glow; that dimmed segment is now lighting up with a sparkle burst, showing a hidden trait switching on. Soft, hopeful, pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "밝은 분절",
+          "ko": "우성",
+          "en": "Dominant",
+          "th": "ลักษณะเด่น"
+        },
+        {
+          "pos": "흐린 분절",
+          "ko": "열성(잠재)",
+          "en": "Recessive",
+          "th": "ลักษณะด้อย"
+        },
+        {
+          "pos": "점등 분절",
+          "ko": "다시 발현",
+          "en": "Switches on",
+          "th": "แสดงออกอีกครั้ง"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "새싹 슈웅 + 스파클",
+      "title": "숨은 잠재력 — 부모를 뛰어넘다",
+      "emojis": [
+        "🌱",
+        "📈",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. Two short adult silhouettes at the bottom (parents) and between them a child silhouette growing tall on an upward arrow/sprout shooting up past their head height, with mint sparkles at the top. Brand purple and mint gradient, optimistic 'exceeds expectations' feel. Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "하단 두 실루엣",
+          "ko": "부모",
+          "en": "Parents",
+          "th": "พ่อแม่"
+        },
+        {
+          "pos": "위로 솟는 화살표",
+          "ko": "숨은 잠재력",
+          "en": "Hidden potential",
+          "th": "ศักยภาพที่ซ่อนอยู่"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "⏳ 골드 글로우 + 성장판 살짝 닫힘",
+      "title": "골든타임 — 성장판 닫히기 전",
+      "emojis": [
+        "⏳",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white background. A stylized knee growth plate shown as an open glowing gap that is gently narrowing/closing, beside an hourglass with warm golden sand running down. Soft golden glow conveys a last window of opportunity. Brand purple base with gold accents, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "성장판 틈",
+          "ko": "성장판",
+          "en": "Growth plate",
+          "th": "แผ่นกระดูก"
+        },
+        {
+          "pos": "모래시계(글로우)",
+          "ko": "골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🧬",
+      "label": "키 유전 80%"
+    },
+    {
+      "e": "👴",
+      "label": "조부모"
+    },
+    {
+      "e": "👵",
+      "label": "조부모"
+    },
+    {
+      "e": "👨",
+      "label": "부모"
+    },
+    {
+      "e": "🧒",
+      "label": "우리 아이"
+    },
+    {
+      "e": "💤",
+      "label": "잠자는 유전자"
+    },
+    {
+      "e": "✨",
+      "label": "발현·강조"
+    },
+    {
+      "e": "🌱",
+      "label": "숨은 잠재력"
+    },
+    {
+      "e": "📈",
+      "label": "성장"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이·성장판"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

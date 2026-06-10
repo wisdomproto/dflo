@@ -1,0 +1,796 @@
+{
+  "n": 62,
+  "slug": "한국성장클리닉",
+  "title": "중국·태국 부모가 비행기 타고 오는 곳 — 한국 성장클리닉",
+  "sub": "K-의료 한류, 정밀 뼈나이 진단·맞춤 치료·생활습관 코칭 — 우리 아이도 같은 케어를 받을 수 있다",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "중국·태국 부모들이 한국 성장클리닉 찾는 이유",
+  "headerTop": "우리 아이 키",
+  "headerMark": "왜 비행기까지 타고?",
+  "accentEmoji": "✈️💜",
+  "hook": "중국·태국 부모들이 비행기 타고 한국 성장클리닉을 찾는 거, 아세요?",
+  "misconception": "키 크는 병원은 다 비슷하겠지 → 정밀 뼈나이 진단·맞춤 치료·생활습관 코칭까지 묶인 곳은 드물다",
+  "message": "해외 부모가 한국을 찾는 이유 4가지(정밀 뼈나이 진단 → 맞춤 성장 치료 → 생활습관 코칭 → 원스톱 케어). 우리 아이도 같은 진단을 받을 수 있다",
+  "tone": "자랑·협박 ❌ → 긍정 골든타임(\\\"우리 아이도 같은 케어 가능\\\"). 해외 부모 사례로 신뢰를 보여주되 주인공은 \\\"우리 아이 키\\\" 보편. CTA는 측정 초대",
+  "cta": "멀리서도 찾아오는 그 정밀 진단, 우리 아이 뼈나이/예측키부터 지금 홈페이지에서 확인",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"중국·태국 부모가 비행기 타고 한국에? 왜?\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "이유1 정밀 진단",
+      "scenes": "c3–c4",
+      "desc": "\"뼈나이·성장판으로 남은 키를 과학적으로 예측\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "이유2 맞춤 치료",
+      "scenes": "c5–c6",
+      "desc": "\"아이마다 다른 맞춤 성장 치료 + 정기 모니터링\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "이유3·4 코칭·원스톱",
+      "scenes": "c7–c8",
+      "desc": "\"영양·수면·운동 코칭 + 통역·픽업 원스톱\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"우리 아이도 같은 진단 가능 → CTA\""
+    }
+  ],
+  "thumb": {
+    "kicker": "왜 비행기까지?",
+    "subject": "우리 아이 키, 한국으로",
+    "number": "✈️",
+    "numLabel": "오는 이유 4"
+  },
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "✈️ 슬램 인 + 💜 스파클",
+      "copy": {
+        "ko": {
+          "narr": "중국·태국 부모들이 비행기까지 타고 한국 성장클리닉을 찾는 거, 아세요?",
+          "cap": [
+            "비행기 타고",
+            "한국 성장클리닉"
+          ],
+          "hl": "한국 성장클리닉"
+        },
+        "th": {
+          "narr": "รู้ไหมว่าพ่อแม่จีนและไทยบินมาคลินิกเพิ่มความสูงที่เกาหลี?",
+          "cap": [
+            "บินมา",
+            "คลินิกเกาหลี"
+          ],
+          "hl": "คลินิกเกาหลี"
+        },
+        "vi": {
+          "narr": "Bạn có biết bố mẹ Trung Quốc, Thái Lan bay sang Hàn tìm phòng khám tăng chiều cao không?",
+          "cap": [
+            "Bay sang Hàn",
+            "phòng khám tăng chiều cao"
+          ],
+          "hl": "phòng khám tăng chiều cao"
+        },
+        "en": {
+          "narr": "Did you know Chinese and Thai parents fly to Korea for growth clinics?",
+          "cap": [
+            "Flying to Korea",
+            "growth clinics"
+          ],
+          "hl": "growth clinics"
+        },
+        "cn": {
+          "narr": "你知道中国、泰国父母坐飞机来韩国找成长门诊吗？",
+          "cap": [
+            "飞来韩国",
+            "成长门诊"
+          ],
+          "hl": "成长门诊"
+        },
+        "ch": {
+          "narr": "你知道中國、泰國父母坐飛機來韓國找成長門診嗎？",
+          "cap": [
+            "飛來韓國",
+            "成長門診"
+          ],
+          "hl": "成長門診"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🌊 한류 물결 + 💜 글로우",
+      "copy": {
+        "ko": {
+          "narr": "K-팝, K-드라마에 이어 이제는 K-의료. 한국이 '성장 치료의 메카'로 떠올랐거든요.",
+          "cap": [
+            "이제는 K-의료",
+            "성장 치료의 메카"
+          ],
+          "hl": "성장 치료의 메카"
+        },
+        "th": {
+          "narr": "ต่อจาก K-POP, K-Drama ตอนนี้คือ K-Medical เกาหลีคือศูนย์กลางการเพิ่มความสูง",
+          "cap": [
+            "K-Medical",
+            "ศูนย์กลางความสูง"
+          ],
+          "hl": "ศูนย์กลางความสูง"
+        },
+        "vi": {
+          "narr": "Sau K-pop, K-drama, giờ là K-medical. Hàn Quốc thành trung tâm điều trị tăng trưởng.",
+          "cap": [
+            "K-medical",
+            "trung tâm tăng trưởng"
+          ],
+          "hl": "trung tâm tăng trưởng"
+        },
+        "en": {
+          "narr": "After K-pop and K-drama, now it's K-medical. Korea is the hub for growth care.",
+          "cap": [
+            "Now K-medical",
+            "growth-care hub"
+          ],
+          "hl": "growth-care hub"
+        },
+        "cn": {
+          "narr": "继K-pop、K-剧之后，现在是K-医疗。韩国成了成长治疗中心。",
+          "cap": [
+            "现在是K-医疗",
+            "成长治疗中心"
+          ],
+          "hl": "成长治疗中心"
+        },
+        "ch": {
+          "narr": "繼K-pop、K-劇之後，現在是K-醫療。韓國成了成長治療中心。",
+          "cap": [
+            "現在是K-醫療",
+            "成長治療中心"
+          ],
+          "hl": "成長治療中心"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 이유 4가지",
+      "motion": "① ② ③ ④ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "이유는 크게 네 가지예요. 정밀 진단, 맞춤 치료, 생활습관 코칭, 그리고 원스톱 케어.",
+          "cap": [
+            "부모가 찾는",
+            "이유 4가지"
+          ],
+          "hl": "이유 4가지"
+        },
+        "th": {
+          "narr": "เหตุผลหลักมี 4 ข้อ วินิจฉัยแม่นยำ รักษาเฉพาะบุคคล โค้ชการใช้ชีวิต และบริการครบวงจร",
+          "cap": [
+            "มี",
+            "4 เหตุผล"
+          ],
+          "hl": "4 เหตุผล"
+        },
+        "vi": {
+          "narr": "Có bốn lý do: chẩn đoán chính xác, điều trị riêng, huấn luyện lối sống và chăm sóc trọn gói.",
+          "cap": [
+            "Có",
+            "4 lý do"
+          ],
+          "hl": "4 lý do"
+        },
+        "en": {
+          "narr": "Four big reasons: precise diagnosis, custom treatment, lifestyle coaching, and one-stop care.",
+          "cap": [
+            "Why parents come:",
+            "4 reasons"
+          ],
+          "hl": "4 reasons"
+        },
+        "cn": {
+          "narr": "主要有四个原因：精准诊断、个性化治疗、生活习惯指导，还有一站式服务。",
+          "cap": [
+            "父母选择的",
+            "4个原因"
+          ],
+          "hl": "4个原因"
+        },
+        "ch": {
+          "narr": "主要有四個原因：精準診斷、個人化治療、生活習慣指導，還有一站式服務。",
+          "cap": [
+            "父母選擇的",
+            "4個原因"
+          ],
+          "hl": "4個原因"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 정밀 진단",
+      "motion": "🦴🔍 스캔 라인 + 글로우",
+      "copy": {
+        "ko": {
+          "narr": "첫째, 정밀 진단. 뼈나이와 성장판을 분석해 앞으로 얼마나 더 클지 과학적으로 예측해요.",
+          "cap": [
+            "뼈나이·성장판으로",
+            "남은 키 예측"
+          ],
+          "hl": "남은 키 예측"
+        },
+        "th": {
+          "narr": "หนึ่ง วินิจฉัยแม่นยำ วิเคราะห์อายุกระดูกและแผ่นกระดูก คาดการณ์ว่าจะสูงอีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "คาดการณ์ความสูง"
+          ],
+          "hl": "คาดการณ์ความสูง"
+        },
+        "vi": {
+          "narr": "Một, chẩn đoán chính xác: phân tích tuổi xương và sụn tăng trưởng để dự đoán còn cao bao nhiêu.",
+          "cap": [
+            "Tuổi xương · sụn",
+            "dự đoán chiều cao"
+          ],
+          "hl": "dự đoán chiều cao"
+        },
+        "en": {
+          "narr": "One: precise diagnosis. Bone age and growth plates predict how much height is left.",
+          "cap": [
+            "Bone age · plates",
+            "predict height left"
+          ],
+          "hl": "predict height left"
+        },
+        "cn": {
+          "narr": "第一，精准诊断。分析骨龄和生长板，科学预测还能长多少。",
+          "cap": [
+            "骨龄·生长板",
+            "预测剩余身高"
+          ],
+          "hl": "预测剩余身高"
+        },
+        "ch": {
+          "narr": "第一，精準診斷。分析骨齡和生長板，科學預測還能長多少。",
+          "cap": [
+            "骨齡·生長板",
+            "預測剩餘身高"
+          ],
+          "hl": "預測剩餘身高"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🎯 핀 꽂힘 + 펄스",
+      "copy": {
+        "ko": {
+          "narr": "둘째, 맞춤 치료. 모든 아이에게 같은 치료는 없어요. 성장 단계에 맞춰 계획을 세우죠.",
+          "cap": [
+            "아이마다 다른",
+            "맞춤 치료"
+          ],
+          "hl": "맞춤 치료"
+        },
+        "th": {
+          "narr": "สอง รักษาเฉพาะบุคคล ไม่มีวิธีเดียวกันสำหรับทุกคน วางแผนตามระยะการเติบโต",
+          "cap": [
+            "ไม่เหมือนกัน",
+            "รักษาเฉพาะบุคคล"
+          ],
+          "hl": "รักษาเฉพาะบุคคล"
+        },
+        "vi": {
+          "narr": "Hai, điều trị riêng. Không một phác đồ chung cho mọi trẻ — kế hoạch theo từng giai đoạn.",
+          "cap": [
+            "Mỗi trẻ khác nhau",
+            "điều trị riêng"
+          ],
+          "hl": "điều trị riêng"
+        },
+        "en": {
+          "narr": "Two: custom treatment. No one-size-fits-all — a plan built for each child's stage.",
+          "cap": [
+            "Not one-size-fits-all",
+            "custom treatment"
+          ],
+          "hl": "custom treatment"
+        },
+        "cn": {
+          "narr": "第二，个性化治疗。没有人人相同的方案，按成长阶段量身定制。",
+          "cap": [
+            "因人而异",
+            "个性化治疗"
+          ],
+          "hl": "个性化治疗"
+        },
+        "ch": {
+          "narr": "第二，個人化治療。沒有人人相同的方案，按成長階段量身定制。",
+          "cap": [
+            "因人而異",
+            "個人化治療"
+          ],
+          "hl": "個人化治療"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 맞춤 치료·모니터링",
+      "motion": "📈 곡선 따라 체크 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬은 부족할 때만 보충하고, 정기 검사로 안전하게 모니터링해요.",
+          "cap": [
+            "부족할 때만 보충",
+            "정기 모니터링"
+          ],
+          "hl": "정기 모니터링"
+        },
+        "th": {
+          "narr": "ฮอร์โมนเสริมเฉพาะตอนขาด ตรวจติดตามสม่ำเสมอเพื่อความปลอดภัย",
+          "cap": [
+            "เสริมเมื่อขาด",
+            "ติดตามสม่ำเสมอ"
+          ],
+          "hl": "ติดตามสม่ำเสมอ"
+        },
+        "vi": {
+          "narr": "Hormone chỉ bổ sung khi thiếu, theo dõi định kỳ để an toàn.",
+          "cap": [
+            "Chỉ bù khi thiếu",
+            "theo dõi định kỳ"
+          ],
+          "hl": "theo dõi định kỳ"
+        },
+        "en": {
+          "narr": "Growth hormone only when it's lacking, with regular checks to stay safe.",
+          "cap": [
+            "Only if lacking",
+            "regular monitoring"
+          ],
+          "hl": "regular monitoring"
+        },
+        "cn": {
+          "narr": "生长激素只在缺乏时补充，定期检查、安全监测。",
+          "cap": [
+            "缺乏才补充",
+            "定期监测"
+          ],
+          "hl": "定期监测"
+        },
+        "ch": {
+          "narr": "生長激素只在缺乏時補充，定期檢查、安全監測。",
+          "cap": [
+            "缺乏才補充",
+            "定期監測"
+          ],
+          "hl": "定期監測"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "🥗😴🏀 아이콘 팝업",
+      "copy": {
+        "ko": {
+          "narr": "셋째, 생활습관 코칭. 균형 잡힌 영양, 하루 8~10시간 수면, 규칙적인 운동까지 함께 봐요.",
+          "cap": [
+            "영양·수면·운동",
+            "생활습관 코칭"
+          ],
+          "hl": "생활습관 코칭"
+        },
+        "th": {
+          "narr": "สาม โค้ชการใช้ชีวิต โภชนาการ นอน 8–10 ชม. และออกกำลังกายสม่ำเสมอ",
+          "cap": [
+            "โภชนาการ·นอน·ออกกำลัง",
+            "โค้ชการใช้ชีวิต"
+          ],
+          "hl": "โค้ชการใช้ชีวิต"
+        },
+        "vi": {
+          "narr": "Ba, huấn luyện lối sống: dinh dưỡng cân bằng, ngủ 8–10 tiếng, vận động đều đặn.",
+          "cap": [
+            "Dinh dưỡng·ngủ·vận động",
+            "huấn luyện lối sống"
+          ],
+          "hl": "huấn luyện lối sống"
+        },
+        "en": {
+          "narr": "Three: lifestyle coaching — balanced nutrition, 8–10 hours of sleep, regular exercise.",
+          "cap": [
+            "Food · sleep · exercise",
+            "lifestyle coaching"
+          ],
+          "hl": "lifestyle coaching"
+        },
+        "cn": {
+          "narr": "第三，生活习惯指导：均衡营养、每天8到10小时睡眠、规律运动。",
+          "cap": [
+            "营养·睡眠·运动",
+            "生活习惯指导"
+          ],
+          "hl": "生活习惯指导"
+        },
+        "ch": {
+          "narr": "第三，生活習慣指導：均衡營養、每天8到10小時睡眠、規律運動。",
+          "cap": [
+            "營養·睡眠·運動",
+            "生活習慣指導"
+          ],
+          "hl": "生活習慣指導"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 원스톱 케어",
+      "motion": "🛬🏨🗣️ 한 줄로 연결 점등",
+      "copy": {
+        "ko": {
+          "narr": "넷째, 원스톱 케어. 통역, 숙소, 공항 픽업까지 묶여 있어 멀리서도 안심하고 와요.",
+          "cap": [
+            "통역·숙소·픽업",
+            "원스톱 케어"
+          ],
+          "hl": "원스톱 케어"
+        },
+        "th": {
+          "narr": "สี่ บริการครบวงจร ล่าม ที่พัก รับส่งสนามบิน มาไกลก็สบายใจ",
+          "cap": [
+            "ล่าม·ที่พัก·รับส่ง",
+            "บริการครบวงจร"
+          ],
+          "hl": "บริการครบวงจร"
+        },
+        "vi": {
+          "narr": "Bốn, chăm sóc trọn gói: phiên dịch, chỗ ở, đón sân bay — ở xa vẫn yên tâm.",
+          "cap": [
+            "Phiên dịch·chỗ ở·đón",
+            "chăm sóc trọn gói"
+          ],
+          "hl": "chăm sóc trọn gói"
+        },
+        "en": {
+          "narr": "Four: one-stop care — interpretation, lodging, airport pickup, all handled.",
+          "cap": [
+            "Interpreter·stay·pickup",
+            "one-stop care"
+          ],
+          "hl": "one-stop care"
+        },
+        "cn": {
+          "narr": "第四，一站式服务：医疗翻译、住宿、机场接送，全部安排。",
+          "cap": [
+            "翻译·住宿·接送",
+            "一站式服务"
+          ],
+          "hl": "一站式服务"
+        },
+        "ch": {
+          "narr": "第四，一站式服務：醫療翻譯、住宿、機場接送，全部安排。",
+          "cap": [
+            "翻譯·住宿·接送",
+            "一站式服務"
+          ],
+          "hl": "一站式服務"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🏠📏 팝 + 💜 글로우",
+      "copy": {
+        "ko": {
+          "narr": "멀리서도 찾는 그 정밀 진단, 우리 아이도 똑같이 받을 수 있어요.",
+          "cap": [
+            "우리 아이도",
+            "같은 진단 가능"
+          ],
+          "hl": "같은 진단 가능"
+        },
+        "th": {
+          "narr": "การวินิจฉัยที่คนบินมาหา ลูกของคุณก็รับได้เช่นกัน",
+          "cap": [
+            "ลูกคุณก็",
+            "ตรวจได้เหมือนกัน"
+          ],
+          "hl": "ตรวจได้เหมือนกัน"
+        },
+        "vi": {
+          "narr": "Chẩn đoán mà người ở xa cũng tìm đến, con bạn cũng nhận được như vậy.",
+          "cap": [
+            "Con bạn cũng",
+            "được chẩn đoán như thế"
+          ],
+          "hl": "được chẩn đoán như thế"
+        },
+        "en": {
+          "narr": "That same precise diagnosis people fly in for — your child can get it too.",
+          "cap": [
+            "Your child too",
+            "same diagnosis"
+          ],
+          "hl": "same diagnosis"
+        },
+        "cn": {
+          "narr": "远道而来寻求的精准诊断，你的孩子同样能得到。",
+          "cap": [
+            "你的孩子也",
+            "能做同样诊断"
+          ],
+          "hl": "能做同样诊断"
+        },
+        "ch": {
+          "narr": "遠道而來尋求的精準診斷，你的孩子同樣能得到。",
+          "cap": [
+            "你的孩子也",
+            "能做同樣診斷"
+          ],
+          "hl": "能做同樣診斷"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–36s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 뼈나이와 예측키, 지금 홈페이지에서 바로 확인해 보세요.",
+          "cap": [
+            "뼈나이·예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กอายุกระดูกและความสูงที่คาดการณ์ของลูกได้เลยวันนี้",
+          "cap": [
+            "อายุกระดูก·ความสูง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tuổi xương và chiều cao dự đoán của con ngay hôm nay.",
+          "cap": [
+            "Tuổi xương·chiều cao",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's bone age and predicted height right now.",
+          "cap": [
+            "Bone age·height",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "现在就在官网查查孩子的骨龄和预测身高吧。",
+          "cap": [
+            "骨龄·预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就在官網查查孩子的骨齡和預測身高吧。",
+          "cap": [
+            "骨齡·預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "4점 순차 점등",
+      "title": "부모가 한국을 찾는 이유 4가지",
+      "emojis": [
+        "🔬",
+        "🎯",
+        "🥗",
+        "🛬"
+      ],
+      "prompt": "Flat vector, square, white bg. Four friendly circular icon badges arranged in a 2x2 grid, connected by a soft gradient path: a microscope/scan badge, a target/dartboard badge, a healthy-meal badge, and an airplane-landing service badge. Brand purple to mint gradient, soft glow, friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "배지1",
+          "ko": "정밀 진단",
+          "en": "Precise dx",
+          "th": "วินิจฉัยแม่นยำ"
+        },
+        {
+          "pos": "배지2",
+          "ko": "맞춤 치료",
+          "en": "Custom care",
+          "th": "รักษาเฉพาะบุคคล"
+        },
+        {
+          "pos": "배지3",
+          "ko": "생활습관 코칭",
+          "en": "Lifestyle coaching",
+          "th": "โค้ชการใช้ชีวิต"
+        },
+        {
+          "pos": "배지4",
+          "ko": "원스톱 케어",
+          "en": "One-stop care",
+          "th": "บริการครบวงจร"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "스캔 라인 + 글로우",
+      "title": "정밀 진단 — 뼈나이·성장판",
+      "emojis": [
+        "🖐️",
+        "🦴",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized child's hand X-ray with a soft scanning line over the bones, beside a small rising growth curve with a glowing endpoint marker. Conveys 'bone age scan predicts remaining height.' Brand purple with mint scan-line accents, friendly clinical style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "스캔 위",
+          "ko": "뼈나이 분석",
+          "en": "Bone age scan",
+          "th": "วิเคราะห์อายุกระดูก"
+        },
+        {
+          "pos": "곡선 끝(글로우)",
+          "ko": "남은 키 예측",
+          "en": "Height left",
+          "th": "คาดการณ์ความสูง"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "곡선 따라 체크 순차 점등",
+      "title": "맞춤 치료 + 정기 모니터링",
+      "emojis": [
+        "💉",
+        "✅",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A gentle upward growth curve with several small check-mark milestone dots along it, and a tiny friendly syringe/vial icon to one side representing supplementation only when needed. Soft purple+mint, reassuring safe medical tone. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선 위 점들",
+          "ko": "정기 검사",
+          "en": "Regular checks",
+          "th": "ตรวจสม่ำเสมอ"
+        },
+        {
+          "pos": "하단",
+          "ko": "맞춤 계획",
+          "en": "Custom plan",
+          "th": "แผนเฉพาะบุคคล"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "한 줄로 연결 점등",
+      "title": "원스톱 해외환자 케어",
+      "emojis": [
+        "🗣️",
+        "🏨",
+        "🛬"
+      ],
+      "prompt": "Flat vector, square, white bg. Three connected service icons in a row linked by a soft dotted path: a speech-bubble interpreter icon, a hotel/bed lodging icon, and an airplane-pickup icon, with a friendly building/clinic at the end of the path. Brand purple to mint gradient, warm welcoming pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "의료 통역",
+          "en": "Interpreter",
+          "th": "ล่ามการแพทย์"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "숙소 연계",
+          "en": "Lodging",
+          "th": "ที่พัก"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "공항 픽업",
+          "en": "Airport pickup",
+          "th": "รับส่งสนามบิน"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "✈️",
+      "label": "의료관광"
+    },
+    {
+      "e": "🌊",
+      "label": "한류·K-의료"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🔬",
+      "label": "정밀 진단"
+    },
+    {
+      "e": "🎯",
+      "label": "맞춤 치료"
+    },
+    {
+      "e": "📈",
+      "label": "예측키·성장곡선"
+    },
+    {
+      "e": "💉",
+      "label": "성장호르몬"
+    },
+    {
+      "e": "🥗",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🛬",
+      "label": "원스톱 케어"
+    },
+    {
+      "e": "💜",
+      "label": "신뢰·강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ],
+  "duration": 36
+}

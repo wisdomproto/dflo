@@ -1,0 +1,789 @@
+{
+  "n": 15,
+  "slug": "알레르기성장도둑",
+  "title": "우리 아이 키 크는 에너지를 훔치는 '도둑' — 알레르기·만성염증",
+  "sub": "잘 먹이고 일찍 재워도 안 크는 진짜 이유 — 알레르기·만성염증이 성장 에너지를 가로챈다, 잡으면 다시 큰다",
+  "category": "A. 성장과학",
+  "topicTitle": "알레르기·만성염증이 성장 에너지를 훔친다",
+  "headerTop": "우리 아이 키",
+  "headerMark": "왜 안 클까?",
+  "accentEmoji": "🥷📉",
+  "hook": "잘 먹이고 일찍 재워도 키가 안 큰다면, 성장 에너지를 훔치는 '도둑'이 있을 수 있어요.",
+  "misconception": "잘 먹이고 운동시키고 일찍 재우면 알아서 큰다 → 알레르기·만성염증이 성장 에너지를 몰래 가로채면, 잘 챙겨도 키가 안 큰다",
+  "message": "몸은 성장과 면역을 동시에 못 한다. 알레르기·만성염증이 면역을 과하게 돌리면 사이토카인·코르티솔이 성장호르몬을 막고, 가려움·코막힘이 밤잠을 깨워 성장호르몬을 줄인다. 도둑을 잡아 염증을 잡으면 성장 에너지가 다시 키로 간다.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"도둑만 잡으면 다시 큰다\"). \"우리 아이 키\" 보편(잘 챙기는 부모도 해당). 시청자가 이미 알레르기 검사·진단 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대",
+  "cta": "우리 아이 성장 에너지가 새고 있는지, 뼈나이·예측키로 지금 확인 → 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "잘 챙겨도 안 큰다?",
+    "subject": "우리 아이 키 훔치는",
+    "number": "도둑",
+    "numLabel": "알레르기·염증"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"잘 챙겨도 안 큰다 → 성장 에너지 도둑이 있다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "에너지 쟁탈",
+      "scenes": "c3–c4",
+      "desc": "\"몸은 성장 vs 면역 동시에 못 함 → 면역이 에너지 가로챔\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "메커니즘",
+      "scenes": "c5–c6",
+      "desc": "\"사이토카인이 성장호르몬 차단 + 장 흡수 방해\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "밤잠 도둑",
+      "scenes": "c7–c8",
+      "desc": "\"가려움·코막힘이 밤잠 깨움 → 야간 성장호르몬↓\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "회복·행동",
+      "scenes": "c9–c10",
+      "desc": "\"도둑 잡으면 다시 큰다 → 뼈나이 확인 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🥷 슬램 인 + 그림자 스윽",
+      "copy": {
+        "ko": {
+          "narr": "잘 먹이고 일찍 재워도 키가 안 큰다면, 성장 에너지를 훔치는 '도둑'이 있을 수 있어요.",
+          "cap": [
+            "잘 챙겨도 안 큰다?",
+            "성장 도둑"
+          ],
+          "hl": "성장 도둑"
+        },
+        "th": {
+          "narr": "กินดี นอนเร็ว แต่ลูกยังไม่สูง? อาจมี 'ขโมย' แอบขโมยพลังการโต",
+          "cap": [
+            "ดูแลดีแต่ไม่สูง?",
+            "ขโมยการโต"
+          ],
+          "hl": "ขโมยการโต"
+        },
+        "vi": {
+          "narr": "Ăn đủ, ngủ sớm mà con vẫn không cao? Có thể có 'kẻ trộm' lấy mất năng lượng tăng trưởng.",
+          "cap": [
+            "Chăm kỹ vẫn thấp?",
+            "kẻ trộm chiều cao"
+          ],
+          "hl": "kẻ trộm chiều cao"
+        },
+        "en": {
+          "narr": "Eating well, sleeping early, but still not growing? A 'thief' may be stealing growth energy.",
+          "cap": [
+            "Doing everything right?",
+            "a growth thief"
+          ],
+          "hl": "a growth thief"
+        },
+        "cn": {
+          "narr": "吃得好、睡得早，孩子却不长个？也许有个'小偷'在偷走成长能量。",
+          "cap": [
+            "都做对了还不长？",
+            "成长小偷"
+          ],
+          "hl": "成长小偷"
+        },
+        "ch": {
+          "narr": "吃得好、睡得早，孩子卻不長個？也許有個'小偷'在偷走成長能量。",
+          "cap": [
+            "都做對了還不長？",
+            "成長小偷"
+          ],
+          "hl": "成長小偷"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💡 정체 공개 팝",
+      "copy": {
+        "ko": {
+          "narr": "그 도둑의 정체는 바로 알레르기와 만성염증이에요.",
+          "cap": [
+            "도둑의 정체",
+            "알레르기·만성염증"
+          ],
+          "hl": "알레르기·만성염증"
+        },
+        "th": {
+          "narr": "ตัวขโมยนั้นคือภูมิแพ้และการอักเสบเรื้อรัง",
+          "cap": [
+            "ตัวขโมยคือ",
+            "ภูมิแพ้·อักเสบ"
+          ],
+          "hl": "ภูมิแพ้·อักเสบ"
+        },
+        "vi": {
+          "narr": "Kẻ trộm đó chính là dị ứng và viêm mạn tính.",
+          "cap": [
+            "Kẻ trộm là",
+            "dị ứng·viêm mạn"
+          ],
+          "hl": "dị ứng·viêm mạn"
+        },
+        "en": {
+          "narr": "That thief is allergies and chronic inflammation.",
+          "cap": [
+            "The thief is",
+            "allergy·inflammation"
+          ],
+          "hl": "allergy·inflammation"
+        },
+        "cn": {
+          "narr": "这个小偷就是过敏和慢性炎症。",
+          "cap": [
+            "小偷就是",
+            "过敏·慢性炎症"
+          ],
+          "hl": "过敏·慢性炎症"
+        },
+        "ch": {
+          "narr": "這個小偷就是過敏和慢性發炎。",
+          "cap": [
+            "小偷就是",
+            "過敏·慢性發炎"
+          ],
+          "hl": "過敏·慢性發炎"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 에너지 쟁탈",
+      "motion": "⚖️ 한쪽으로 기울기",
+      "copy": {
+        "ko": {
+          "narr": "몸은 성장과 면역, 둘을 동시에 못 해요. 에너지가 한정돼 있거든요.",
+          "cap": [
+            "성장 vs 면역",
+            "에너지는 하나"
+          ],
+          "hl": "에너지는 하나"
+        },
+        "th": {
+          "narr": "ร่างกายทำสองอย่างพร้อมกันไม่ได้ ทั้งโตและภูมิคุ้มกัน เพราะพลังงานมีจำกัด",
+          "cap": [
+            "โต vs ภูมิคุ้มกัน",
+            "พลังงานมีจำกัด"
+          ],
+          "hl": "พลังงานมีจำกัด"
+        },
+        "vi": {
+          "narr": "Cơ thể không thể vừa lớn vừa chống viêm — năng lượng có hạn.",
+          "cap": [
+            "Lớn vs miễn dịch",
+            "năng lượng có hạn"
+          ],
+          "hl": "năng lượng có hạn"
+        },
+        "en": {
+          "narr": "The body can't do both — grow and fight inflammation. Energy is limited.",
+          "cap": [
+            "Growth vs immunity",
+            "one energy pool"
+          ],
+          "hl": "one energy pool"
+        },
+        "cn": {
+          "narr": "身体无法同时长高和抗炎，因为能量有限。",
+          "cap": [
+            "长高 vs 免疫",
+            "能量就一份"
+          ],
+          "hl": "能量就一份"
+        },
+        "ch": {
+          "narr": "身體無法同時長高和抗炎，因為能量有限。",
+          "cap": [
+            "長高 vs 免疫",
+            "能量就一份"
+          ],
+          "hl": "能量就一份"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 사이토카인 차단",
+      "motion": "🚫 호르몬 막힘",
+      "copy": {
+        "ko": {
+          "narr": "염증이 생기면 사이토카인이 나와 성장호르몬을 막아 버려요.",
+          "cap": [
+            "염증 물질 사이토카인",
+            "성장호르몬 차단"
+          ],
+          "hl": "성장호르몬 차단"
+        },
+        "th": {
+          "narr": "เมื่ออักเสบ ไซโตไคน์จะหลั่งออกมาขัดขวางฮอร์โมนการเจริญเติบโต",
+          "cap": [
+            "ไซโตไคน์",
+            "บล็อกฮอร์โมนโต"
+          ],
+          "hl": "บล็อกฮอร์โมนโต"
+        },
+        "vi": {
+          "narr": "Khi viêm, cytokine tiết ra chặn hormone tăng trưởng.",
+          "cap": [
+            "Cytokine từ viêm",
+            "chặn hormone tăng trưởng"
+          ],
+          "hl": "chặn hormone tăng trưởng"
+        },
+        "en": {
+          "narr": "Inflammation releases cytokines that block growth hormone.",
+          "cap": [
+            "Cytokines",
+            "block growth hormone"
+          ],
+          "hl": "block growth hormone"
+        },
+        "cn": {
+          "narr": "炎症会释放细胞因子，阻断生长激素。",
+          "cap": [
+            "炎症细胞因子",
+            "阻断生长激素"
+          ],
+          "hl": "阻断生长激素"
+        },
+        "ch": {
+          "narr": "發炎會釋放細胞激素，阻斷生長激素。",
+          "cap": [
+            "發炎細胞激素",
+            "阻斷生長激素"
+          ],
+          "hl": "阻斷生長激素"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🥗 영양소 ↓ 빠짐",
+      "copy": {
+        "ko": {
+          "narr": "게다가 장에도 염증이 생겨, 칼슘·비타민D·단백질 흡수까지 떨어뜨려요.",
+          "cap": [
+            "장 염증",
+            "영양 흡수 ↓"
+          ],
+          "hl": "영양 흡수 ↓"
+        },
+        "th": {
+          "narr": "ยิ่งกว่านั้น ลำไส้ก็อักเสบ ทำให้ดูดซึมแคลเซียม วิตามินดี โปรตีนได้น้อยลง",
+          "cap": [
+            "ลำไส้อักเสบ",
+            "ดูดซึมลดลง"
+          ],
+          "hl": "ดูดซึมลดลง"
+        },
+        "vi": {
+          "narr": "Hơn nữa, ruột bị viêm làm giảm hấp thu canxi, vitamin D, đạm.",
+          "cap": [
+            "Ruột viêm",
+            "hấp thu giảm"
+          ],
+          "hl": "hấp thu giảm"
+        },
+        "en": {
+          "narr": "Inflammation also hits the gut, cutting calcium, vitamin D and protein absorption.",
+          "cap": [
+            "Gut inflammation",
+            "absorption drops"
+          ],
+          "hl": "absorption drops"
+        },
+        "cn": {
+          "narr": "而且肠道也发炎，钙、维生素D、蛋白质的吸收都下降。",
+          "cap": [
+            "肠道发炎",
+            "吸收下降"
+          ],
+          "hl": "吸收下降"
+        },
+        "ch": {
+          "narr": "而且腸道也發炎，鈣、維生素D、蛋白質的吸收都下降。",
+          "cap": [
+            "腸道發炎",
+            "吸收下降"
+          ],
+          "hl": "吸收下降"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 밤잠 도둑",
+      "motion": "🌙 깨움 + GH ↓",
+      "copy": {
+        "ko": {
+          "narr": "가려움과 코막힘은 밤잠을 깨워요. 성장호르몬은 깊은 잠에 가장 많이 나오는데 말이죠.",
+          "cap": [
+            "가려움·코막힘",
+            "밤잠 깨움"
+          ],
+          "hl": "밤잠 깨움"
+        },
+        "th": {
+          "narr": "อาการคันและคัดจมูกปลุกให้ตื่นกลางดึก ทั้งที่ฮอร์โมนโตหลั่งมากตอนหลับลึก",
+          "cap": [
+            "คัน·คัดจมูก",
+            "ปลุกกลางดึก"
+          ],
+          "hl": "ปลุกกลางดึก"
+        },
+        "vi": {
+          "narr": "Ngứa và nghẹt mũi phá giấc ngủ đêm — đúng lúc hormone tăng trưởng tiết nhiều nhất.",
+          "cap": [
+            "Ngứa·nghẹt mũi",
+            "phá giấc ngủ"
+          ],
+          "hl": "phá giấc ngủ"
+        },
+        "en": {
+          "narr": "Itching and congestion wake them at night — just when growth hormone peaks.",
+          "cap": [
+            "Itch·congestion",
+            "wreck deep sleep"
+          ],
+          "hl": "wreck deep sleep"
+        },
+        "cn": {
+          "narr": "瘙痒和鼻塞会扰乱夜间睡眠，而生长激素恰恰在深睡时分泌最多。",
+          "cap": [
+            "瘙痒·鼻塞",
+            "扰乱夜睡"
+          ],
+          "hl": "扰乱夜睡"
+        },
+        "ch": {
+          "narr": "搔癢和鼻塞會擾亂夜間睡眠，而生長激素恰恰在深睡時分泌最多。",
+          "cap": [
+            "搔癢·鼻塞",
+            "擾亂夜睡"
+          ],
+          "hl": "擾亂夜睡"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "⚠️ 코르티솔 쉐이크",
+      "copy": {
+        "ko": {
+          "narr": "숨은 만성염증은 코르티솔까지 올려서, 뼈와 연골 성장을 눌러요.",
+          "cap": [
+            "코르티솔 ↑",
+            "뼈·연골 눌림"
+          ],
+          "hl": "뼈·연골 눌림"
+        },
+        "th": {
+          "narr": "การอักเสบเรื้อรังที่ซ่อนอยู่ยังเพิ่มคอร์ติซอล กดการโตของกระดูกและกระดูกอ่อน",
+          "cap": [
+            "คอร์ติซอลขึ้น",
+            "กดการโตกระดูก"
+          ],
+          "hl": "กดการโตกระดูก"
+        },
+        "vi": {
+          "narr": "Viêm mạn ẩn còn làm tăng cortisol, kìm hãm xương và sụn phát triển.",
+          "cap": [
+            "Cortisol tăng",
+            "ép xương·sụn"
+          ],
+          "hl": "ép xương·sụn"
+        },
+        "en": {
+          "narr": "Hidden chronic inflammation raises cortisol, which suppresses bone and cartilage growth.",
+          "cap": [
+            "Cortisol rises",
+            "bone·cartilage suppressed"
+          ],
+          "hl": "bone·cartilage suppressed"
+        },
+        "cn": {
+          "narr": "隐藏的慢性炎症还会升高皮质醇，压制骨骼和软骨生长。",
+          "cap": [
+            "皮质醇升高",
+            "压制骨·软骨"
+          ],
+          "hl": "压制骨·软骨"
+        },
+        "ch": {
+          "narr": "隱藏的慢性發炎還會升高皮質醇，壓制骨骼和軟骨生長。",
+          "cap": [
+            "皮質醇升高",
+            "壓制骨·軟骨"
+          ],
+          "hl": "壓制骨·軟骨"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 도둑 잡고 회복",
+      "motion": "✨ 에너지 되돌아옴",
+      "copy": {
+        "ko": {
+          "narr": "좋은 소식은, 이 도둑을 잡아 염증을 가라앉히면 에너지가 다시 키로 간다는 거예요.",
+          "cap": [
+            "염증 잡으면",
+            "에너지 다시 키로"
+          ],
+          "hl": "에너지 다시 키로"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ ถ้าจับขโมยและลดการอักเสบ พลังงานจะกลับไปสร้างความสูงอีกครั้ง",
+          "cap": [
+            "ลดการอักเสบ",
+            "พลังกลับมาโต"
+          ],
+          "hl": "พลังกลับมาโต"
+        },
+        "vi": {
+          "narr": "Tin tốt: bắt được kẻ trộm, giảm viêm thì năng lượng quay về với chiều cao.",
+          "cap": [
+            "Giảm viêm",
+            "năng lượng trở lại"
+          ],
+          "hl": "năng lượng trở lại"
+        },
+        "en": {
+          "narr": "Good news: catch the thief, calm the inflammation, and energy goes back to growth.",
+          "cap": [
+            "Calm inflammation",
+            "energy back to growth"
+          ],
+          "hl": "energy back to growth"
+        },
+        "cn": {
+          "narr": "好消息是，抓住小偷、平息炎症，能量就会重新用来长高。",
+          "cap": [
+            "平息炎症",
+            "能量回到长高"
+          ],
+          "hl": "能量回到长高"
+        },
+        "ch": {
+          "narr": "好消息是，抓住小偷、平息發炎，能量就會重新用來長高。",
+          "cap": [
+            "平息發炎",
+            "能量回到長高"
+          ],
+          "hl": "能量回到長高"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이와 예측키를 보면, 우리 아이 성장 에너지가 새고 있는지 알 수 있어요.",
+          "cap": [
+            "뼈나이·예측키로",
+            "에너지 누수 확인"
+          ],
+          "hl": "에너지 누수 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกและส่วนสูงที่คาดการณ์บอกได้ว่าพลังการโตของลูกกำลังรั่วไหลหรือไม่",
+          "cap": [
+            "อายุกระดูก·คาดส่วนสูง",
+            "เช็กพลังรั่ว"
+          ],
+          "hl": "เช็กพลังรั่ว"
+        },
+        "vi": {
+          "narr": "Tuổi xương và chiều cao dự đoán cho biết năng lượng tăng trưởng của con có đang rò rỉ.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "kiểm tra rò rỉ"
+          ],
+          "hl": "kiểm tra rò rỉ"
+        },
+        "en": {
+          "narr": "Bone age and predicted height show if your child's growth energy is leaking.",
+          "cap": [
+            "Bone age·prediction",
+            "check the leak"
+          ],
+          "hl": "check the leak"
+        },
+        "cn": {
+          "narr": "骨龄和预测身高能看出孩子的成长能量是否在流失。",
+          "cap": [
+            "骨龄·预测身高",
+            "查能量流失"
+          ],
+          "hl": "查能量流失"
+        },
+        "ch": {
+          "narr": "骨齡和預測身高能看出孩子的成長能量是否在流失。",
+          "cap": [
+            "骨齡·預測身高",
+            "查能量流失"
+          ],
+          "hl": "查能量流失"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 에너지, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 에너지",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กพลังการเติบโตของลูกวันนี้",
+          "cap": [
+            "พลังการเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra năng lượng tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Năng lượng tăng trưởng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth energy today.",
+          "cap": [
+            "Growth energy",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的成长能量吧。",
+          "cap": [
+            "成长能量",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的成長能量吧。",
+          "cap": [
+            "成長能量",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "⚖️ 한쪽으로 기울기",
+      "title": "성장 vs 면역 — 에너지 쟁탈전",
+      "emojis": [
+        "⚖️",
+        "📈",
+        "🛡️"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly balance scale with two pans: one pan holds a small upward growth arrow / rising child silhouette, the other pan holds a shield (immune defense). A single battery / energy orb in the center connected to both pans, the scale tipping heavily toward the shield side so the growth side is starved. Brand purple growth side, mint shield side, soft glow on the central energy orb. Friendly pediatric, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 접시",
+          "ko": "성장",
+          "en": "Growth",
+          "th": "การเติบโต"
+        },
+        {
+          "pos": "오른쪽 접시(기움)",
+          "ko": "면역·염증",
+          "en": "Immunity",
+          "th": "ภูมิคุ้มกัน"
+        },
+        {
+          "pos": "가운데 배터리",
+          "ko": "에너지 1개",
+          "en": "One energy",
+          "th": "พลังงานเดียว"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🚫 차단 점등",
+      "title": "사이토카인이 성장호르몬을 막는다",
+      "emojis": [
+        "🔥",
+        "🚫",
+        "🧬"
+      ],
+      "prompt": "Flat vector, square, white bg. Small angry inflammation particles (cytokines) drawn as little orange spiky orbs flowing toward a glowing purple growth-hormone capsule/molecule and forming a blocking barrier in front of it, like a 'no-entry' wall, so the hormone can't pass down toward a bone below. Brand purple hormone, orange cytokine sparks, mint bone hint at bottom. Friendly, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "주황 입자",
+          "ko": "염증 사이토카인",
+          "en": "Cytokines",
+          "th": "ไซโตไคน์"
+        },
+        {
+          "pos": "보라 캡슐",
+          "ko": "성장호르몬",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมนโต"
+        },
+        {
+          "pos": "막힌 벽",
+          "ko": "차단!",
+          "en": "Blocked!",
+          "th": "ถูกบล็อก!"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "🌙 깨움 + GH 하강",
+      "title": "밤잠 도둑 — 깊은 잠 방해",
+      "emojis": [
+        "🌙",
+        "😣",
+        "📉"
+      ],
+      "prompt": "Flat vector, square, white bg. A child sleeping in bed at night under a crescent moon, but with an itch / runny-nose discomfort motif (a small scratch mark and a blocked-nose swirl) waking them, breaking the calm sleep. Above, a downward growth-hormone curve / falling droplet indicating reduced nighttime growth hormone. Deep purple night scene with mint moonlight, soft and gentle (not scary). Pediatric, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "아이 주변",
+          "ko": "가려움·코막힘",
+          "en": "Itch · stuffy nose",
+          "th": "คัน·คัดจมูก"
+        },
+        {
+          "pos": "하강 곡선",
+          "ko": "성장호르몬 ↓",
+          "en": "Growth hormone ↓",
+          "th": "ฮอร์โมนโต ↓"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "✨ 에너지 복귀",
+      "title": "도둑 잡고 — 에너지 다시 키로",
+      "emojis": [
+        "✅",
+        "🌿",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A bright, hopeful scene: anti-inflammation leaf/shield calming the orange sparks (now fading), and a glowing energy orb flowing back up into a tall rising growth arrow with a happy child reaching upward. Brand purple→mint gradient arrow, warm mint glow of restored energy, fading orange. Conveys 'catch the thief, growth resumes.' Friendly, optimistic, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "가라앉는 주황",
+          "ko": "염증 진정",
+          "en": "Inflammation calmed",
+          "th": "อักเสบสงบ"
+        },
+        {
+          "pos": "상승 화살표",
+          "ko": "에너지 → 키",
+          "en": "Energy → height",
+          "th": "พลังงาน → ส่วนสูง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🥷",
+      "label": "성장 도둑"
+    },
+    {
+      "e": "📉",
+      "label": "성장 저하"
+    },
+    {
+      "e": "🔥",
+      "label": "염증"
+    },
+    {
+      "e": "🧬",
+      "label": "사이토카인"
+    },
+    {
+      "e": "🚫",
+      "label": "성장호르몬 차단"
+    },
+    {
+      "e": "🥗",
+      "label": "영양 흡수"
+    },
+    {
+      "e": "🌙",
+      "label": "밤잠·수면"
+    },
+    {
+      "e": "⚠️",
+      "label": "코르티솔 경고"
+    },
+    {
+      "e": "⚖️",
+      "label": "에너지 쟁탈"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✨",
+      "label": "회복 강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

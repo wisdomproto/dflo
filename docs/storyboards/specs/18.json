@@ -1,0 +1,789 @@
+{
+  "n": 18,
+  "slug": "adhd약키성장",
+  "title": "ADHD 약 먹으면 키 안 큰다? 진짜 답",
+  "sub": "식욕억제는 일시적 — 따라잡기 성장으로 회복, 끊지 말고 관리하며 키우자",
+  "category": "A. 성장과학",
+  "topicTitle": "ADHD 약물이 키 성장에 미치는 실제 영향",
+  "headerTop": "우리 아이 키",
+  "headerMark": "ADHD 약 괜찮을까?",
+  "accentEmoji": "💊📈",
+  "hook": "ADHD 약 먹으면 키가 안 큰다? 부모님들 제일 걱정하시는 거, 오늘 정리해 드릴게요.",
+  "misconception": "ADHD 약은 키를 영구적으로 막는다 → 그래서 약을 끊어야 한다",
+  "message": "식욕억제로 일시적 지연은 있어도 따라잡기 성장으로 회복 — MTA 10년 추적상 최종 키 차이 없음. 끊지 말고 관리하며 뼈나이로 모니터링",
+  "tone": "협박·불안 조장 ❌ → 긍정·안심(\"일시적이고 관리하면 따라잡는다\"). 약 끊으라 X. \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "약 끊지 말고 뼈나이·예측키로 성장 모니터링 시작 → 홈페이지에서 지금 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "끊지 마세요!",
+    "subject": "ADHD 약 먹어도 키",
+    "number": "따라잡아요",
+    "numLabel": "관리만 하면"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·걱정",
+      "scenes": "c1–c2",
+      "desc": "\"ADHD 약 먹으면 키 안 큰다? 왜 이 걱정이 생길까 — 식욕억제\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "진짜 원인",
+      "scenes": "c3–c4",
+      "desc": "\"각성제가 식욕을 눌러 일시적 지연 — 하지만 그게 끝이 아님\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "반전·근거",
+      "scenes": "c5–c6",
+      "desc": "\"따라잡기 성장으로 회복 → MTA 10년 추적: 최종 키 차이 없음\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "관리법",
+      "scenes": "c7–c8",
+      "desc": "\"끊지 말고 관리 — 저녁 고칼로리·뼈나이 모니터링·주치의 소통\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 성장 추적 → CTA 측정\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "💊 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "ADHD 약 먹으면 키가 안 큰다? 부모님들 제일 걱정하시는 거, 오늘 정리해 드릴게요.",
+          "cap": [
+            "ADHD 약 먹으면",
+            "키 안 큰다?"
+          ],
+          "hl": "키 안 큰다?"
+        },
+        "th": {
+          "narr": "ยา ADHD ทำให้ลูกตัวไม่สูง? วันนี้เคลียร์ให้ชัด",
+          "cap": [
+            "ยา ADHD",
+            "ตัวไม่สูง?"
+          ],
+          "hl": "ตัวไม่สูง?"
+        },
+        "vi": {
+          "narr": "Uống thuốc ADHD thì con không cao? Hôm nay giải đáp rõ.",
+          "cap": [
+            "Thuốc ADHD",
+            "khiến thấp?"
+          ],
+          "hl": "khiến thấp?"
+        },
+        "en": {
+          "narr": "Does ADHD medication stunt your child's height? Let's set it straight today.",
+          "cap": [
+            "ADHD meds",
+            "stunt height?"
+          ],
+          "hl": "stunt height?"
+        },
+        "cn": {
+          "narr": "吃ADHD药孩子就长不高？今天讲清楚。",
+          "cap": [
+            "ADHD药",
+            "长不高？"
+          ],
+          "hl": "长不高？"
+        },
+        "ch": {
+          "narr": "吃ADHD藥孩子就長不高？今天講清楚。",
+          "cap": [
+            "ADHD藥",
+            "長不高？"
+          ],
+          "hl": "長不高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🍽️ 흔들 · 화살표 ↓",
+      "copy": {
+        "ko": {
+          "narr": "이 걱정, 약이 식욕을 떨어뜨려서 생기는 거예요. 밥을 잘 안 먹으니까요.",
+          "cap": [
+            "약이 식욕을",
+            "떨어뜨려서"
+          ],
+          "hl": "식욕을"
+        },
+        "th": {
+          "narr": "ความกังวลนี้มาจากยาทำให้ความอยากอาหารลด เด็กกินน้อยลง",
+          "cap": [
+            "ยาลด",
+            "ความอยากอาหาร"
+          ],
+          "hl": "ความอยากอาหาร"
+        },
+        "vi": {
+          "narr": "Lo lắng này đến từ việc thuốc làm giảm thèm ăn, con ăn ít đi.",
+          "cap": [
+            "Thuốc giảm",
+            "thèm ăn"
+          ],
+          "hl": "thèm ăn"
+        },
+        "en": {
+          "narr": "This worry comes from the meds curbing appetite — kids eat less.",
+          "cap": [
+            "Meds curb",
+            "appetite"
+          ],
+          "hl": "appetite"
+        },
+        "cn": {
+          "narr": "这担心来自药物抑制食欲，孩子吃得少了。",
+          "cap": [
+            "药物抑制",
+            "食欲"
+          ],
+          "hl": "食欲"
+        },
+        "ch": {
+          "narr": "這擔心來自藥物抑制食慾，孩子吃得少了。",
+          "cap": [
+            "藥物抑制",
+            "食慾"
+          ],
+          "hl": "食慾"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 식욕억제",
+      "motion": "💊→🍽️ 화살표 점등",
+      "copy": {
+        "ko": {
+          "narr": "ADHD 약은 각성제라 집중은 올리지만 식욕을 눌러요. 그래서 초반엔 살짝 더디게 클 수 있죠.",
+          "cap": [
+            "각성제가",
+            "식욕 억제"
+          ],
+          "hl": "식욕 억제"
+        },
+        "th": {
+          "narr": "ยา ADHD เป็นยากระตุ้น เพิ่มสมาธิแต่กดความอยากอาหาร ช่วงแรกอาจโตช้าลง",
+          "cap": [
+            "ยากระตุ้น",
+            "กดความอยากอาหาร"
+          ],
+          "hl": "กดความอยากอาหาร"
+        },
+        "vi": {
+          "narr": "Thuốc ADHD là chất kích thích, tăng tập trung nhưng ức chế thèm ăn — đầu có thể chậm lớn.",
+          "cap": [
+            "Chất kích thích",
+            "ức chế thèm ăn"
+          ],
+          "hl": "ức chế thèm ăn"
+        },
+        "en": {
+          "narr": "ADHD meds are stimulants — they boost focus but suppress appetite, so growth may slow at first.",
+          "cap": [
+            "Stimulant",
+            "suppresses appetite"
+          ],
+          "hl": "suppresses appetite"
+        },
+        "cn": {
+          "narr": "ADHD药是兴奋剂，提升专注却抑制食欲，初期可能长得慢些。",
+          "cap": [
+            "兴奋剂",
+            "抑制食欲"
+          ],
+          "hl": "抑制食欲"
+        },
+        "ch": {
+          "narr": "ADHD藥是興奮劑，提升專注卻抑制食慾，初期可能長得慢些。",
+          "cap": [
+            "興奮劑",
+            "抑制食慾"
+          ],
+          "hl": "抑制食慾"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "✋ \"잠깐\" 정지 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "그런데 여기서 중요한 게 있어요. 이 지연은 '일시적'이라는 거예요.",
+          "cap": [
+            "이 지연은",
+            "일시적!"
+          ],
+          "hl": "일시적!"
+        },
+        "th": {
+          "narr": "แต่จุดสำคัญคือ การโตช้านี้เป็นแค่ชั่วคราว",
+          "cap": [
+            "โตช้านี้",
+            "แค่ชั่วคราว"
+          ],
+          "hl": "แค่ชั่วคราว"
+        },
+        "vi": {
+          "narr": "Nhưng điểm quan trọng: sự chậm này chỉ là tạm thời.",
+          "cap": [
+            "Chậm này",
+            "chỉ tạm thời"
+          ],
+          "hl": "chỉ tạm thời"
+        },
+        "en": {
+          "narr": "But here's the key — this slowdown is only temporary.",
+          "cap": [
+            "This slowdown",
+            "only temporary"
+          ],
+          "hl": "only temporary"
+        },
+        "cn": {
+          "narr": "但关键在于：这种变慢只是暂时的。",
+          "cap": [
+            "这种变慢",
+            "只是暂时"
+          ],
+          "hl": "只是暂时"
+        },
+        "ch": {
+          "narr": "但關鍵在於：這種變慢只是暫時的。",
+          "cap": [
+            "這種變慢",
+            "只是暫時"
+          ],
+          "hl": "只是暫時"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 따라잡기 성장",
+      "motion": "📈 딥 후 반등 ↗",
+      "copy": {
+        "ko": {
+          "narr": "용량을 조절하거나 잘 관리하면, '따라잡기 성장'으로 다시 정상 궤도로 돌아와요.",
+          "cap": [
+            "따라잡기 성장으로",
+            "정상 회복"
+          ],
+          "hl": "따라잡기 성장"
+        },
+        "th": {
+          "narr": "ปรับขนาดยาหรือดูแลดีๆ จะกลับมาปกติด้วยการโตชดเชย",
+          "cap": [
+            "การโตชดเชย",
+            "กลับมาปกติ"
+          ],
+          "hl": "การโตชดเชย"
+        },
+        "vi": {
+          "narr": "Chỉnh liều và quản lý tốt, con quay lại quỹ đạo nhờ tăng trưởng bù.",
+          "cap": [
+            "Tăng trưởng bù",
+            "về bình thường"
+          ],
+          "hl": "Tăng trưởng bù"
+        },
+        "en": {
+          "narr": "Adjust the dose and manage it well, and catch-up growth brings them back on track.",
+          "cap": [
+            "Catch-up growth",
+            "back on track"
+          ],
+          "hl": "Catch-up growth"
+        },
+        "cn": {
+          "narr": "调整剂量、管理得当，靠追赶性生长就能回到正轨。",
+          "cap": [
+            "追赶性生长",
+            "回到正轨"
+          ],
+          "hl": "追赶性生长"
+        },
+        "ch": {
+          "narr": "調整劑量、管理得當，靠追趕性生長就能回到正軌。",
+          "cap": [
+            "追趕性生長",
+            "回到正軌"
+          ],
+          "hl": "追趕性生長"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG3 MTA 10년 추적",
+      "motion": "⚖️ 양팔 균형 + 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "유명한 MTA 연구, 10년을 추적했는데 최종 성인 키는 차이가 없었어요. 있어봐야 1~2센티예요.",
+          "cap": [
+            "10년 추적: 최종 키",
+            "차이 없음"
+          ],
+          "hl": "차이 없음"
+        },
+        "th": {
+          "narr": "งานวิจัย MTA ติดตาม 10 ปี ส่วนสูงสุดท้ายไม่ต่างกัน อย่างมากแค่ 1–2 ซม.",
+          "cap": [
+            "ติดตาม 10 ปี",
+            "ไม่ต่างกัน"
+          ],
+          "hl": "ไม่ต่างกัน"
+        },
+        "vi": {
+          "narr": "Nghiên cứu MTA theo dõi 10 năm: chiều cao cuối không khác biệt, cùng lắm 1–2cm.",
+          "cap": [
+            "10 năm: chiều cao",
+            "không khác biệt"
+          ],
+          "hl": "không khác biệt"
+        },
+        "en": {
+          "narr": "The famous MTA study tracked 10 years — final adult height showed no real difference, 1–2cm at most.",
+          "cap": [
+            "10-yr: final height",
+            "no difference"
+          ],
+          "hl": "no difference"
+        },
+        "cn": {
+          "narr": "著名的MTA研究追踪10年，最终成年身高没有差异，最多1～2厘米。",
+          "cap": [
+            "追踪10年: 终身高",
+            "无差异"
+          ],
+          "hl": "无差异"
+        },
+        "ch": {
+          "narr": "著名的MTA研究追蹤10年，最終成年身高沒有差異，最多1～2公分。",
+          "cap": [
+            "追蹤10年: 終身高",
+            "無差異"
+          ],
+          "hl": "無差異"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26s",
+      "kind": "doctor",
+      "motion": "🚫💊 가위표 + 고개 저음",
+      "copy": {
+        "ko": {
+          "narr": "그러니까 키 걱정 때문에 약을 끊는 건 오히려 손해예요. 끊지 말고 관리가 답이에요.",
+          "cap": [
+            "약 끊지 말고",
+            "관리가 답"
+          ],
+          "hl": "관리가 답"
+        },
+        "th": {
+          "narr": "ดังนั้นหยุดยาเพราะกลัวเตี้ยกลับเสียมากกว่า อย่าหยุด แต่จัดการ",
+          "cap": [
+            "อย่าหยุดยา",
+            "แต่จัดการ"
+          ],
+          "hl": "แต่จัดการ"
+        },
+        "vi": {
+          "narr": "Nên ngừng thuốc vì sợ thấp lại thiệt hơn — đừng ngừng, hãy quản lý.",
+          "cap": [
+            "Đừng ngừng thuốc",
+            "hãy quản lý"
+          ],
+          "hl": "hãy quản lý"
+        },
+        "en": {
+          "narr": "So stopping the meds over height fears backfires — don't quit, manage it.",
+          "cap": [
+            "Don't quit meds",
+            "manage it"
+          ],
+          "hl": "manage it"
+        },
+        "cn": {
+          "narr": "所以因怕长不高就停药反而吃亏，别停药，要管理。",
+          "cap": [
+            "别停药",
+            "要管理"
+          ],
+          "hl": "要管理"
+        },
+        "ch": {
+          "narr": "所以因怕長不高就停藥反而吃虧，別停藥，要管理。",
+          "cap": [
+            "別停藥",
+            "要管理"
+          ],
+          "hl": "要管理"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 3가지 관리법",
+      "motion": "1️⃣2️⃣3️⃣ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "관리는 세 가지. 저녁에 고칼로리로 영양 채우고, 뼈나이로 성장을 추적하고, 주치의와 복용 시간을 맞춰요.",
+          "cap": [
+            "영양·뼈나이 추적",
+            "주치의 소통"
+          ],
+          "hl": "뼈나이 추적"
+        },
+        "th": {
+          "narr": "จัดการ 3 อย่าง: เติมแคลอรีมื้อเย็น ติดตามด้วยอายุกระดูก คุยกับแพทย์เรื่องเวลายา",
+          "cap": [
+            "โภชนาการ·อายุกระดูก",
+            "คุยกับแพทย์"
+          ],
+          "hl": "อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Ba cách: bữa tối giàu calo, theo dõi bằng tuổi xương, bàn với bác sĩ về giờ uống.",
+          "cap": [
+            "Dinh dưỡng·tuổi xương",
+            "trao đổi bác sĩ"
+          ],
+          "hl": "tuổi xương"
+        },
+        "en": {
+          "narr": "Three steps: high-calorie dinners, track with bone age, and time the dose with the doctor.",
+          "cap": [
+            "Nutrition·bone age",
+            "talk to doctor"
+          ],
+          "hl": "bone age"
+        },
+        "cn": {
+          "narr": "管理三招：晚餐补高热量、用骨龄追踪、和医生协调服药时间。",
+          "cap": [
+            "营养·骨龄追踪",
+            "医生沟通"
+          ],
+          "hl": "骨龄追踪"
+        },
+        "ch": {
+          "narr": "管理三招：晚餐補高熱量、用骨齡追蹤、和醫生協調服藥時間。",
+          "cap": [
+            "營養·骨齡追蹤",
+            "醫生溝通"
+          ],
+          "hl": "骨齡追蹤"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이랑 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있어요.",
+          "cap": [
+            "뼈나이·예측키로",
+            "성장 확인"
+          ],
+          "hl": "성장 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกและส่วนสูงที่คาดการณ์ บอกได้ทันทีว่าลูกโตดีไหม",
+          "cap": [
+            "อายุกระดูก·คาดการณ์",
+            "เช็กการโต"
+          ],
+          "hl": "เช็กการโต"
+        },
+        "vi": {
+          "narr": "Tuổi xương và chiều cao dự đoán cho biết ngay con có lớn tốt không.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "kiểm tra tăng trưởng"
+          ],
+          "hl": "kiểm tra tăng trưởng"
+        },
+        "en": {
+          "narr": "Bone age and predicted height tell you right away if your child's growing well.",
+          "cap": [
+            "Bone age·prediction",
+            "check growth"
+          ],
+          "hl": "check growth"
+        },
+        "cn": {
+          "narr": "看骨龄和预测身高，马上知道孩子长得好不好。",
+          "cap": [
+            "骨龄·预测身高",
+            "查看成长"
+          ],
+          "hl": "查看成长"
+        },
+        "ch": {
+          "narr": "看骨齡和預測身高，馬上知道孩子長得好不好。",
+          "cap": [
+            "骨齡·預測身高",
+            "查看成長"
+          ],
+          "hl": "查看成長"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보세요.",
+          "cap": [
+            "뼈나이·예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้",
+          "cap": [
+            "อายุกระดูก·คาดการณ์",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth with bone age and predicted height today.",
+          "cap": [
+            "Bone age·height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就用骨龄和预测身高查查孩子的成长吧。",
+          "cap": [
+            "骨龄·预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就用骨齡和預測身高查查孩子的成長吧。",
+          "cap": [
+            "骨齡·預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "💊→🍽️ 화살표 점등",
+      "title": "각성제 → 식욕억제 메커니즘",
+      "emojis": [
+        "💊",
+        "🧠",
+        "🍽️"
+      ],
+      "prompt": "Flat vector, square, white bg. Left: a friendly medicine pill with a small spark/brain icon (focus boost). A purple arrow flows right toward a dinner plate with a gentle downward dimming overlay (appetite turned down). Soft brand purple #667eea with mint #2dd4bf accents, friendly pediatric style. Clean simple cause-and-effect layout. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(알약)",
+          "ko": "각성제",
+          "en": "Stimulant",
+          "th": "ยากระตุ้น"
+        },
+        {
+          "pos": "오른쪽(접시)",
+          "ko": "식욕 ↓",
+          "en": "Appetite ↓",
+          "th": "ความอยากอาหาร ↓"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "딥 후 반등 ↗",
+      "title": "따라잡기 성장 — 회복 곡선",
+      "emojis": [
+        "📉",
+        "📈",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A growth curve that dips slightly in the middle then rebounds and rises back up to rejoin a dashed normal-growth reference line, with a sparkle where it catches up. A small cheerful child silhouette climbing alongside the curve. Brand purple→mint gradient line, friendly pediatric. Conveys 'temporary dip then catch-up recovery.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선 저점",
+          "ko": "일시적 지연",
+          "en": "Temporary dip",
+          "th": "ชะลอชั่วคราว"
+        },
+        {
+          "pos": "곡선 회복점",
+          "ko": "따라잡기 성장",
+          "en": "Catch-up",
+          "th": "โตชดเชย"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "양팔 균형 + 카운트업",
+      "title": "MTA 10년 — 최종 키 차이 없음",
+      "emojis": [
+        "⚖️",
+        "📏",
+        "🟰"
+      ],
+      "prompt": "Flat vector, square, white bg. A balanced scale or two child height bars of nearly equal height standing side by side (one with a tiny pill icon, one without), an equals-sign feeling between them, soft mint checkmark glow. Conveys 'final adult height is the same.' Brand purple #667eea + mint #2dd4bf, friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 막대",
+          "ko": "약물 복용군",
+          "en": "On meds",
+          "th": "กลุ่มใช้ยา"
+        },
+        {
+          "pos": "오른쪽 막대",
+          "ko": "비복용군",
+          "en": "No meds",
+          "th": "กลุ่มไม่ใช้ยา"
+        },
+        {
+          "pos": "가운데",
+          "ko": "≈ 차이 없음",
+          "en": "≈ same",
+          "th": "≈ เท่ากัน"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "1·2·3 순차 점등",
+      "title": "3가지 성장 관리법",
+      "emojis": [
+        "🍗",
+        "🦴",
+        "🩺"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly circular icons in a row: 1) a hearty high-calorie dinner plate, 2) a hand-bone / X-ray bone-age icon with a magnifier, 3) a doctor stethoscope with a clock for dose timing. Even spacing, soft connecting line. Brand purple #667eea with mint #2dd4bf accents, friendly pediatric. Conveys 'three management steps.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "뼈나이 추적",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "주치의 소통",
+          "en": "Doctor",
+          "th": "ปรึกษาแพทย์"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "💊",
+      "label": "ADHD 약물"
+    },
+    {
+      "e": "🍽️",
+      "label": "식욕억제"
+    },
+    {
+      "e": "🧠",
+      "label": "각성제·집중"
+    },
+    {
+      "e": "📉",
+      "label": "일시적 지연"
+    },
+    {
+      "e": "📈",
+      "label": "따라잡기 성장"
+    },
+    {
+      "e": "⚖️",
+      "label": "최종 키 차이 없음"
+    },
+    {
+      "e": "🚫",
+      "label": "끊지 마세요"
+    },
+    {
+      "e": "🍗",
+      "label": "고칼로리 영양"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🩺",
+      "label": "주치의 소통"
+    },
+    {
+      "e": "✨",
+      "label": "안심·강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

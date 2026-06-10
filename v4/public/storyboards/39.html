@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 성장 백분위수 읽는 법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #39</span>
+  <h1>"반에서 제일 작아요" — 키 백분위수 진짜 읽는 법</h1>
+  <div class="sub">25백분위는 나쁜 게 아니다 — 숫자보다 '자기 선'을 따라가는 곡선이 핵심</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>숫자에 속지 마세요</b></div>
+      <div class="subj">우리 아이 백분위</div>
+      <div class="big4"><div class="n" style="font-size:132px">25</div><div class="lab">작은 거 아니에요</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 백분위</b> 25작은 거 아니에요"</li>
+        <li><b>거대 숫자 "25"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #39 「성장 백분위수 읽는 법」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">""우리 아이 반에서 제일 작아요" — 근데 백분위 25는 나쁜 숫자가 아니에요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>백분위 숫자가 낮으면 키가 문제 → 사실은 '자기 선'을 따라 꾸준히 크면 건강한 성장</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>백분위는 한 번의 점수가 아니라 곡선. 낮아도 선을 따라가면 OK, 갑자기 2단계 떨어지면 그때가 진짜 신호</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>불안 자극 ❌ → 낮은 숫자도 곡선 따라가면 건강. "우리 아이 키" 보편. CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 백분위·성장 곡선 지금 확인 → 예측키/뼈나이 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"반에서 제일 작아요" 걱정 → 백분위가 뭔지</p></div><div class="act"><span class="n">ACT 2</span><h4>숫자 해석</h4><p>c3–c4<br>"25=26번째, 3~97이 정상, 50은 중간"</p></div><div class="act"><span class="n">ACT 3</span><h4>안심 반전</h4><p>c5–c6<br>"한 점 X, 곡선이 핵심 → 낮아도 선 따라가면 OK"</p></div><div class="act"><span class="n">ACT 4</span><h4>진짜 신호</h4><p>c7–c8<br>"갑자기 2단계 하락이 진짜 신호 → 곁들여 볼 것들"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"곡선·뼈나이로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">25면 작은 거예요?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📊✨</div></div>
+        <div class="ph-cap"><div class="l">반에서</div><div class="l"><span class="y2">제일 작아요</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">"우리 아이 반에서 제일 작아요" — 진료실에서 제일 많이 듣는 말이에요.</td><td><span class="cap2">반에서<br><span class="y">제일 작아요</span></span></td><td class="mo">📊 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그때 보는 게 백분위수예요. 같은 나이 100명을 키 순으로 세운 등수죠.</td><td><span class="cap2">100명 중<br><span class="y">우리 아이 등수</span></span></td><td class="mo">🔢 팝 + 줄세우기</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 100명 줄세우기</span></td><td class="narr">백분위 25면, 우리 아이보다 작은 친구가 25명. 100명 중 26번째예요.</td><td><span class="cap2">백분위 25 =<br><span class="y">26번째</span></span></td><td class="mo">👦 25번째 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 3~97 정상범위</span></td><td class="narr">3에서 97까지가 정상 범위. 50이 딱 중간이에요.</td><td><span class="cap2"><span class="y">정상 3~97</span><br>중간은 50</span></td><td class="mo">📏 3·50·97 순차 점등</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">중요한 건 한 번의 숫자가 아니에요. 점을 이은 '곡선'을 봐야 해요.</td><td><span class="cap2">숫자 한 점 X<br><span class="y">곡선을 보세요</span></span></td><td class="mo">✨ 안심 글로우</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 자기 선 따라가기</span></td><td class="narr">그래서 25백분위라도, 자기 선을 따라 쭉 크면 건강한 성장이에요.</td><td><span class="cap2">낮아도 OK<br><span class="y">자기 선 따라</span></span></td><td class="mo">📈 선 따라 ↗ 안심</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">진짜 신호는 잘 크던 아이가 갑자기 2단계, 50에서 25 아래로 뚝 떨어질 때예요.</td><td><span class="cap2">진짜 신호 =<br><span class="y">갑자기 2단계 ↓</span></span></td><td class="mo">⚠️ 쉐이크 + 빨강 플래시</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 함께 볼 3가지</span></td><td class="narr">그래서 성장 속도, 뼈나이, 부모 키까지 같이 봐야 정확해요.</td><td><span class="cap2">속도·뼈나이·부모키<br><span class="y">같이 보기</span></span></td><td class="mo">🧩 3조각 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성장 곡선이랑 뼈나이를 보면, 우리 아이가 어디쯤인지 정확히 알 수 있어요.</td><td><span class="cap2">곡선+뼈나이로<br><span class="y">정확히 확인</span></span></td><td class="mo">📈🦴 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 백분위와 성장 곡선, 지금 바로 확인해 보세요.</td><td><span class="cap2">백분위·성장 곡선<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 25번째 아이 점등</div><h3>100명 줄세우기 — 26번째</h3></div>
+        <div class="body">
+          <div class="sketch">👦 📊 👧</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A long row of small friendly child silhouettes lined up by increasing height from left to right, like a height-ordered queue. One child near the lower-left quarter is highlighted in brand purple with a soft glow, the rest in light gray-mint. Conveys ranking a child among a crowd of 100. Brand purple #667eea and mint #2dd4bf. Friendly pediatric, clean. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>강조 아이</td><td>우리 아이</td><td>your child</td><td class="thai">ลูกของเรา</td></tr><tr><td>하단 전체</td><td>100명</td><td>100 kids</td><td class="thai">100 คน</td></tr><tr><td>강조 아이 위</td><td>26번째</td><td>26th</td><td class="thai">อันดับ 26</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 3·50·97 순차 점등</div><h3>정상 범위 3~97, 중간 50</h3></div>
+        <div class="body">
+          <div class="sketch">📏 ✅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A vertical growth-chart band with three soft horizontal guide lines (low, middle, high), a gentle smooth percentile curve sweeping upward across the band, three small dot markers on the low / middle / high lines. The middle line slightly emphasized. Brand purple-to-mint gradient curve, soft pastel band. Friendly, medical but warm. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>하단 선</td><td>3</td><td>3rd</td><td class="thai">3</td></tr><tr><td>가운데 선(강조)</td><td>50 · 중간</td><td>50 · mid</td><td class="thai">50 · กลาง</td></tr><tr><td>상단 선</td><td>97</td><td>97th</td><td class="thai">97</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 선 따라 ↗ 안심</div><h3>낮아도 자기 선 따라가면 OK</h3></div>
+        <div class="body">
+          <div class="sketch">📈 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child silhouette walking upward along a single steady curved percentile line that runs in the lower portion of a growth chart, parallel to faint upper guide lines, with a reassuring soft glow and small sparkles along the path. Conveys 'staying on your own track is healthy.' Brand purple line, mint sparkles, calm and positive. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>곡선 위</td><td>꾸준히 ↗</td><td>steady ↗</td><td class="thai">สม่ำเสมอ ↗</td></tr><tr><td>하단</td><td>자기 백분위 선</td><td>own line</td><td class="thai">เส้นของตัวเอง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 3조각 순차 점등</div><h3>함께 볼 3가지</h3></div>
+        <div class="body">
+          <div class="sketch">📏 🦴 👪</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly circular icon badges in a row: a measuring ruler/growth arrow, a hand X-ray bone (bone age), and a parent-and-child pair. Connected by a thin soft line into one assessment. Brand purple and mint, rounded, warm pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 배지</td><td>성장 속도</td><td>Growth speed</td><td class="thai">อัตราการโต</td></tr><tr><td>가운데 배지</td><td>뼈나이</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr><tr><td>오른쪽 배지</td><td>부모 키</td><td>Parents' height</td><td class="thai">ส่วนสูงพ่อแม่</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📊</b> 백분위수</span><span class="emo"><b>🔢</b> 등수/숫자</span><span class="emo"><b>👦</b> 우리 아이</span><span class="emo"><b>📏</b> 정상 범위·성장속도</span><span class="emo"><b>📈</b> 성장 곡선</span><span class="emo"><b>✨</b> 안심 강조</span><span class="emo"><b>⚠️</b> 경고(2단계 하락)</span><span class="emo"><b>🧩</b> 종합 평가</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>👪</b> 부모 키</span><span class="emo"><b>✅</b> CTA</span><span class="emo"><b>💜</b> 브랜드</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"우리 아이 반에서 제일 작아요" — 진료실에서 제일 많이 듣는 말이에요.<br><span class="cap2">반에서 · <span class="y">제일 작아요</span></span></td></tr><tr><td class="c-id">c2</td><td>그때 보는 게 백분위수예요. 같은 나이 100명을 키 순으로 세운 등수죠.<br><span class="cap2">100명 중 · <span class="y">우리 아이 등수</span></span></td></tr><tr><td class="c-id">c3</td><td>백분위 25면, 우리 아이보다 작은 친구가 25명. 100명 중 26번째예요.<br><span class="cap2">백분위 25 = · <span class="y">26번째</span></span></td></tr><tr><td class="c-id">c4</td><td>3에서 97까지가 정상 범위. 50이 딱 중간이에요.<br><span class="cap2">정상 3~97 · 중간은 50</span></td></tr><tr><td class="c-id">c5</td><td>중요한 건 한 번의 숫자가 아니에요. 점을 이은 '곡선'을 봐야 해요.<br><span class="cap2">숫자 한 점 X · <span class="y">곡선을 보세요</span></span></td></tr><tr><td class="c-id">c6</td><td>그래서 25백분위라도, 자기 선을 따라 쭉 크면 건강한 성장이에요.<br><span class="cap2">낮아도 OK · <span class="y">자기 선 따라</span></span></td></tr><tr><td class="c-id">c7</td><td>진짜 신호는 잘 크던 아이가 갑자기 2단계, 50에서 25 아래로 뚝 떨어질 때예요.<br><span class="cap2">진짜 신호 = · <span class="y">갑자기 2단계 ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>그래서 성장 속도, 뼈나이, 부모 키까지 같이 봐야 정확해요.<br><span class="cap2">속도·뼈나이·부모키 · <span class="y">같이 보기</span></span></td></tr><tr><td class="c-id">c9</td><td>성장 곡선이랑 뼈나이를 보면, 우리 아이가 어디쯤인지 정확히 알 수 있어요.<br><span class="cap2">곡선+뼈나이로 · <span class="y">정확히 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 백분위와 성장 곡선, 지금 바로 확인해 보세요.<br><span class="cap2">백분위·성장 곡선 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"ลูกตัวเล็กที่สุดในห้อง" คือคำที่ได้ยินบ่อยที่สุดในคลินิก<br><span class="cap2">เล็กที่สุด · ในห้อง</span></td></tr><tr><td class="c-id">c2</td><td>สิ่งที่ดูคือเปอร์เซ็นไทล์ คือลำดับเมื่อเรียงเด็ก 100 คนตามส่วนสูง<br><span class="cap2">จาก 100 คน · <span class="y">ลำดับของลูก</span></span></td></tr><tr><td class="c-id">c3</td><td>เปอร์เซ็นไทล์ 25 คือมีเด็กเตี้ยกว่าลูก 25 คน ลูกอยู่อันดับที่ 26<br><span class="cap2">เปอร์เซ็นไทล์ 25 · <span class="y">อันดับ 26</span></span></td></tr><tr><td class="c-id">c4</td><td>ช่วงปกติคือ 3 ถึง 97 ค่า 50 คือตรงกลางพอดี<br><span class="cap2">ปกติ 3–97 · กลางคือ 50</span></td></tr><tr><td class="c-id">c5</td><td>สำคัญไม่ใช่ตัวเลขครั้งเดียว แต่ดูที่ 'เส้นกราฟ' ที่ลากต่อกัน<br><span class="cap2">ไม่ใช่จุดเดียว · <span class="y">ดูเส้นกราฟ</span></span></td></tr><tr><td class="c-id">c6</td><td>ดังนั้นแม้อยู่ที่ 25 ถ้าโตตามเส้นของตัวเองก็แข็งแรงดี<br><span class="cap2">ต่ำก็ไม่เป็นไร · <span class="y">ตามเส้นตัวเอง</span></span></td></tr><tr><td class="c-id">c7</td><td>สัญญาณจริงคือเด็กที่โตดีอยู่ๆ ตกลง 2 ระดับ จาก 50 ลงต่ำกว่า 25<br><span class="cap2">สัญญาณจริง · <span class="y">ตก 2 ระดับ</span></span></td></tr><tr><td class="c-id">c8</td><td>จึงต้องดูอัตราการโต อายุกระดูก และส่วนสูงพ่อแม่ร่วมกัน<br><span class="cap2">อัตรา·กระดูก·พ่อแม่ · <span class="y">ดูร่วมกัน</span></span></td></tr><tr><td class="c-id">c9</td><td>ดูเส้นกราฟกับอายุกระดูก จะรู้ชัดว่าลูกอยู่ตรงไหน<br><span class="cap2">กราฟ+อายุกระดูก · <span class="y">รู้ชัด</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กเปอร์เซ็นไทล์และกราฟการเติบโตของลูกวันนี้<br><span class="cap2">เปอร์เซ็นไทล์·กราฟ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"Con thấp nhất lớp" — câu mẹ nói nhiều nhất ở phòng khám.<br><span class="cap2">Thấp nhất · trong lớp</span></td></tr><tr><td class="c-id">c2</td><td>Lúc đó ta xem bách phân vị — thứ hạng khi xếp 100 trẻ theo chiều cao.<br><span class="cap2">Trong 100 trẻ · <span class="y">thứ hạng của con</span></span></td></tr><tr><td class="c-id">c3</td><td>Bách phân vị 25 nghĩa là 25 bạn thấp hơn — con đứng thứ 26.<br><span class="cap2">Bách phân vị 25 · <span class="y">thứ 26</span></span></td></tr><tr><td class="c-id">c4</td><td>Bình thường là từ 3 đến 97. Mốc 50 là chính giữa.<br><span class="cap2">Bình thường 3–97 · giữa là 50</span></td></tr><tr><td class="c-id">c5</td><td>Quan trọng không phải một con số, mà là 'đường cong' nối các điểm.<br><span class="cap2">Không phải một điểm · <span class="y">xem đường cong</span></span></td></tr><tr><td class="c-id">c6</td><td>Nên dù ở mức 25, cứ bám theo đường của mình là phát triển khỏe.<br><span class="cap2">Thấp vẫn ổn · <span class="y">bám đường của mình</span></span></td></tr><tr><td class="c-id">c7</td><td>Dấu hiệu thật là trẻ đang tốt bỗng tụt 2 bậc — từ 50 xuống dưới 25.<br><span class="cap2">Dấu hiệu thật · <span class="y">tụt 2 bậc</span></span></td></tr><tr><td class="c-id">c8</td><td>Nên phải xem cả tốc độ tăng, tuổi xương và chiều cao bố mẹ.<br><span class="cap2">Tốc độ·tuổi xương·bố mẹ · <span class="y">xem cùng nhau</span></span></td></tr><tr><td class="c-id">c9</td><td>Nhìn đường cong và tuổi xương, sẽ biết chính xác con đang ở đâu.<br><span class="cap2">Đường cong + tuổi xương · <span class="y">biết chính xác</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra bách phân vị và đường cong tăng trưởng của con ngay hôm nay.<br><span class="cap2">Bách phân vị·đường cong · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"My child is the shortest in class" — the line we hear most.<br><span class="cap2">Shortest · in class</span></td></tr><tr><td class="c-id">c2</td><td>That's where percentile comes in — your child's rank among 100 kids.<br><span class="cap2">Out of 100 · <span class="y">your child's rank</span></span></td></tr><tr><td class="c-id">c3</td><td>At the 25th percentile, 25 kids are shorter — your child is 26th.<br><span class="cap2">25th percentile · <span class="y">= 26th</span></span></td></tr><tr><td class="c-id">c4</td><td>3 to 97 is the normal range. 50 is right in the middle.<br><span class="cap2">Normal 3–97 · 50 = middle</span></td></tr><tr><td class="c-id">c5</td><td>What matters isn't one number — it's the curve connecting the dots.<br><span class="cap2">Not one dot · <span class="y">watch the curve</span></span></td></tr><tr><td class="c-id">c6</td><td>So even at the 25th, if it follows its own line, that's healthy growth.<br><span class="cap2">Low is OK · <span class="y">stays on its line</span></span></td></tr><tr><td class="c-id">c7</td><td>The real signal: a steady child suddenly drops 2 lines — 50 to below 25.<br><span class="cap2">Real signal · <span class="y">drops 2 lines</span></span></td></tr><tr><td class="c-id">c8</td><td>So we read growth speed, bone age, and parents' height together.<br><span class="cap2">Speed·bone age·parents · <span class="y">read together</span></span></td></tr><tr><td class="c-id">c9</td><td>The growth curve plus bone age show exactly where your child stands.<br><span class="cap2">Curve + bone age · <span class="y">know for sure</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's percentile and growth curve today.<br><span class="cap2">Percentile · curve · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"我家孩子全班最矮"——诊室里最常听到的一句话。<br><span class="cap2">全班 · <span class="y">最矮</span></span></td></tr><tr><td class="c-id">c2</td><td>这时看的就是百分位——把100个同龄娃按身高排，你家排第几。<br><span class="cap2">100个里 · <span class="y">你家排第几</span></span></td></tr><tr><td class="c-id">c3</td><td>百分位25，就是有25个娃比他矮——你家排第26。<br><span class="cap2">百分位 25 · <span class="y">第26名</span></span></td></tr><tr><td class="c-id">c4</td><td>3到97都是正常范围，50正好是中间。<br><span class="cap2">正常 3–97 · 50居中</span></td></tr><tr><td class="c-id">c5</td><td>关键不是单次的数字，而是把点连起来的那条'曲线'。<br><span class="cap2">不是单点 · <span class="y">看曲线</span></span></td></tr><tr><td class="c-id">c6</td><td>所以哪怕在25，只要沿着自己那条线一路长，就是健康成长。<br><span class="cap2">低也没关系 · <span class="y">沿自己的线</span></span></td></tr><tr><td class="c-id">c7</td><td>真正的信号是一直长得好的娃突然掉2档——从50跌到25以下。<br><span class="cap2">真正的信号 · <span class="y">骤降2档</span></span></td></tr><tr><td class="c-id">c8</td><td>所以要把生长速度、骨龄、父母身高一起看才准。<br><span class="cap2">速度·骨龄·父母 · <span class="y">一起看</span></span></td></tr><tr><td class="c-id">c9</td><td>看成长曲线加骨龄，就能准确知道孩子现在在哪个位置。<br><span class="cap2">曲线+骨龄 · <span class="y">准确知道</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的百分位和成长曲线吧。<br><span class="cap2">百分位·成长曲线 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"我家孩子全班最矮"——診間裡最常聽到的一句話。<br><span class="cap2">全班 · <span class="y">最矮</span></span></td></tr><tr><td class="c-id">c2</td><td>這時看的就是百分位——把100個同齡娃按身高排，你家排第幾。<br><span class="cap2">100個裡 · <span class="y">你家排第幾</span></span></td></tr><tr><td class="c-id">c3</td><td>百分位25，就是有25個娃比他矮——你家排第26。<br><span class="cap2">百分位 25 · <span class="y">第26名</span></span></td></tr><tr><td class="c-id">c4</td><td>3到97都是正常範圍，50正好是中間。<br><span class="cap2">正常 3–97 · 50居中</span></td></tr><tr><td class="c-id">c5</td><td>關鍵不是單次的數字，而是把點連起來的那條'曲線'。<br><span class="cap2">不是單點 · <span class="y">看曲線</span></span></td></tr><tr><td class="c-id">c6</td><td>所以哪怕在25，只要沿著自己那條線一路長，就是健康成長。<br><span class="cap2">低也沒關係 · <span class="y">沿自己的線</span></span></td></tr><tr><td class="c-id">c7</td><td>真正的信號是一直長得好的娃突然掉2檔——從50跌到25以下。<br><span class="cap2">真正的信號 · <span class="y">驟降2檔</span></span></td></tr><tr><td class="c-id">c8</td><td>所以要把生長速度、骨齡、父母身高一起看才準。<br><span class="cap2">速度·骨齡·父母 · <span class="y">一起看</span></span></td></tr><tr><td class="c-id">c9</td><td>看成長曲線加骨齡，就能準確知道孩子現在在哪個位置。<br><span class="cap2">曲線+骨齡 · <span class="y">準確知道</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的百分位和成長曲線吧。<br><span class="cap2">百分位·成長曲線 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/백분위수읽는법/</code> · <code>백분위수읽는법-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

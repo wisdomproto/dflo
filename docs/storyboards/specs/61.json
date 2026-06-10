@@ -1,0 +1,810 @@
+{
+  "n": 61,
+  "slug": "K성장클리닉",
+  "title": "왜 전 세계 부모가 한국으로 오나 — K-성장클리닉",
+  "sub": "뼈나이 정밀진단 · 호르몬 치료 · 생활습관 코칭 — 세계가 인정한 한국식 성장 시스템",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "한국 성장클리닉 — 왜 해외 부모가 오나",
+  "headerTop": "우리 아이 키",
+  "headerMark": "왜 한국으로?",
+  "accentEmoji": "🌏✨",
+  "duration": 35,
+  "hook": "K-팝, K-드라마 다음은 K-성장클리닉 — 전 세계 부모가 아이 키 때문에 한국으로 옵니다.",
+  "misconception": "키는 크고 싶다고 병원 간다고 크는 게 아니다 → 사실은 '정밀 진단 + 시기 맞춤 관리'가 최종 키를 가른다",
+  "message": "한국식 성장 시스템 = 뼈나이 정밀진단 + 안전한 호르몬 치료 + 생활습관 코칭의 통합 관리. 그래서 세계가 한국을 찾는다",
+  "tone": "협박 ❌ → 긍정 골든타임(\"아직 기회 있다\"). 국적·소득 좁히지 않고 \"우리 아이 키\" 보편. CTA는 측정 초대(시술 단정 금지)",
+  "cta": "우리 아이 성장 골든타임, 지금 홈페이지에서 뼈나이·예측키로 확인",
+  "thumb": {
+    "kicker": "세계가 주목!",
+    "subject": "우리 아이 키, 왜",
+    "number": "한국",
+    "numLabel": "으로 올까?"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"K-팝 다음은 K-성장클리닉 — 왜 한국으로?\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "정밀 진단",
+      "scenes": "c3–c4",
+      "desc": "\"뼈나이로 성장판·예측키·시기까지\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "안전한 치료",
+      "scenes": "c5–c6",
+      "desc": "\"전문의 판단 하 호르몬 치료 = 최종 키 향상\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "통합 관리",
+      "scenes": "c7–c8",
+      "desc": "\"수면·영양·운동 생활습관 코칭의 시너지\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"골든타임 한정 → 뼈나이/예측키 확인 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🌏 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "K-팝, K-드라마 다음은요, 'K-성장클리닉'이에요. 전 세계 부모가 아이 키 때문에 한국으로 옵니다.",
+          "cap": [
+            "K-팝 다음은",
+            "K-성장클리닉"
+          ],
+          "hl": "K-성장클리닉"
+        },
+        "th": {
+          "narr": "ถัดจาก K-pop, K-drama คือ 'คลินิกโตเกาหลี' พ่อแม่ทั่วโลกพาลูกมาเกาหลีเพื่อความสูง",
+          "cap": [
+            "ถัดจาก K-pop",
+            "คลินิกโตเกาหลี"
+          ],
+          "hl": "คลินิกโตเกาหลี"
+        },
+        "vi": {
+          "narr": "Sau K-pop, K-drama là 'phòng khám tăng chiều cao Hàn Quốc'. Cha mẹ khắp nơi đưa con đến Hàn.",
+          "cap": [
+            "Sau K-pop là",
+            "phòng khám Hàn Quốc"
+          ],
+          "hl": "phòng khám Hàn Quốc"
+        },
+        "en": {
+          "narr": "After K-pop and K-drama comes the K-growth clinic — parents worldwide bring their kids to Korea.",
+          "cap": [
+            "Next after K-pop:",
+            "K-growth clinic"
+          ],
+          "hl": "K-growth clinic"
+        },
+        "cn": {
+          "narr": "继K-pop、K-剧之后是'韩国成长门诊'，全世界父母为孩子身高来韩国。",
+          "cap": [
+            "K-pop之后是",
+            "韩国成长门诊"
+          ],
+          "hl": "韩国成长门诊"
+        },
+        "ch": {
+          "narr": "繼K-pop、K-劇之後是『韓國成長門診』，全世界父母為孩子身高來韓國。",
+          "cap": [
+            "K-pop之後是",
+            "韓國成長門診"
+          ],
+          "hl": "韓國成長門診"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "❓ 흔들 + 🌏 회전",
+      "copy": {
+        "ko": {
+          "narr": "멀리 한국까지 왜 올까요? 비결은 한국식 '정밀 진단과 체계적 관리' 시스템에 있어요.",
+          "cap": [
+            "왜 한국까지?",
+            "정밀 진단 시스템"
+          ],
+          "hl": "정밀 진단 시스템"
+        },
+        "th": {
+          "narr": "ทำไมต้องมาไกลถึงเกาหลี? เคล็ดลับคือระบบ 'วินิจฉัยแม่นยำและดูแลเป็นระบบ'",
+          "cap": [
+            "ทำไมต้องเกาหลี?",
+            "ระบบแม่นยำ"
+          ],
+          "hl": "ระบบแม่นยำ"
+        },
+        "vi": {
+          "narr": "Vì sao đến tận Hàn? Bí quyết là hệ thống 'chẩn đoán chính xác và chăm sóc bài bản'.",
+          "cap": [
+            "Vì sao đến Hàn?",
+            "chẩn đoán chính xác"
+          ],
+          "hl": "chẩn đoán chính xác"
+        },
+        "en": {
+          "narr": "Why fly all the way to Korea? The secret is precise, systematic diagnosis and care.",
+          "cap": [
+            "Why Korea?",
+            "precise diagnosis"
+          ],
+          "hl": "precise diagnosis"
+        },
+        "cn": {
+          "narr": "为什么远道来韩国？秘诀就在'精准诊断＋系统管理'。",
+          "cap": [
+            "为何来韩国？",
+            "精准诊断"
+          ],
+          "hl": "精准诊断"
+        },
+        "ch": {
+          "narr": "為什麼遠道來韓國？秘訣就在『精準診斷＋系統管理』。",
+          "cap": [
+            "為何來韓國？",
+            "精準診斷"
+          ],
+          "hl": "精準診斷"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 뼈나이 정밀진단",
+      "motion": "🦴🔍 X-ray 점등",
+      "copy": {
+        "ko": {
+          "narr": "한국 클리닉은 뼈나이부터 봐요. 성장판 상태를 정확히 읽어 최종 키까지 예측합니다.",
+          "cap": [
+            "뼈나이로 성장판",
+            "최종 키 예측"
+          ],
+          "hl": "최종 키 예측"
+        },
+        "th": {
+          "narr": "คลินิกเกาหลีเริ่มจากอายุกระดูก อ่านแผ่นกระดูกแม่นยำ คาดการณ์ความสูงสุดท้าย",
+          "cap": [
+            "อายุกระดูก",
+            "คาดการณ์ส่วนสูง"
+          ],
+          "hl": "คาดการณ์ส่วนสูง"
+        },
+        "vi": {
+          "narr": "Phòng khám Hàn xem tuổi xương trước, đọc chính xác sụn tăng trưởng, dự đoán chiều cao cuối.",
+          "cap": [
+            "Tuổi xương",
+            "dự đoán chiều cao"
+          ],
+          "hl": "dự đoán chiều cao"
+        },
+        "en": {
+          "narr": "Korean clinics start with bone age — reading the growth plates to predict final height.",
+          "cap": [
+            "Bone age reads",
+            "final height"
+          ],
+          "hl": "final height"
+        },
+        "cn": {
+          "narr": "韩国门诊先看骨龄，精准读出生长板，预测最终身高。",
+          "cap": [
+            "骨龄读生长板",
+            "预测最终身高"
+          ],
+          "hl": "预测最终身高"
+        },
+        "ch": {
+          "narr": "韓國門診先看骨齡，精準讀出生長板，預測最終身高。",
+          "cap": [
+            "骨齡讀生長板",
+            "預測最終身高"
+          ],
+          "hl": "預測最終身高"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 맞춤 성장계획",
+      "motion": "🧩 4요소 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "유전, 영양, 수면, 스트레스까지 다각도로 분석해 아이마다 맞춤 성장 계획을 세워요.",
+          "cap": [
+            "유전·영양·수면",
+            "맞춤 성장 계획"
+          ],
+          "hl": "맞춤 성장 계획"
+        },
+        "th": {
+          "narr": "วิเคราะห์รอบด้าน ทั้งพันธุกรรม โภชนาการ การนอน ความเครียด สร้างแผนเฉพาะลูก",
+          "cap": [
+            "พันธุกรรม·โภชนาการ",
+            "แผนเฉพาะลูก"
+          ],
+          "hl": "แผนเฉพาะลูก"
+        },
+        "vi": {
+          "narr": "Phân tích đa chiều: di truyền, dinh dưỡng, giấc ngủ, stress — lập kế hoạch riêng cho bé.",
+          "cap": [
+            "Di truyền·dinh dưỡng",
+            "kế hoạch riêng"
+          ],
+          "hl": "kế hoạch riêng"
+        },
+        "en": {
+          "narr": "Genes, nutrition, sleep, stress — analyzed together into a plan made for your child.",
+          "cap": [
+            "Genes·sleep·diet",
+            "a custom plan"
+          ],
+          "hl": "custom plan"
+        },
+        "cn": {
+          "narr": "遗传、营养、睡眠、压力多角度分析，为每个孩子定制成长方案。",
+          "cap": [
+            "遗传·营养·睡眠",
+            "定制成长方案"
+          ],
+          "hl": "定制成长方案"
+        },
+        "ch": {
+          "narr": "遺傳、營養、睡眠、壓力多角度分析，為每個孩子量身定制成長方案。",
+          "cap": [
+            "遺傳·營養·睡眠",
+            "定制成長方案"
+          ],
+          "hl": "定制成長方案"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "💉 펄스 + 🛡️ 가드",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬 치료, 걱정되시죠? 전문의의 철저한 검사와 판단 하에서만 진행돼 안전해요.",
+          "cap": [
+            "전문의 판단 하",
+            "안전한 치료"
+          ],
+          "hl": "안전한 치료"
+        },
+        "th": {
+          "narr": "การรักษาด้วยฮอร์โมนกังวลใช่ไหม? ทำภายใต้แพทย์ผู้เชี่ยวชาญตรวจละเอียด จึงปลอดภัย",
+          "cap": [
+            "ภายใต้แพทย์",
+            "จึงปลอดภัย"
+          ],
+          "hl": "จึงปลอดภัย"
+        },
+        "vi": {
+          "narr": "Lo về hormone tăng trưởng? Chỉ thực hiện dưới chẩn đoán kỹ của bác sĩ nên an toàn.",
+          "cap": [
+            "Dưới bác sĩ",
+            "nên an toàn"
+          ],
+          "hl": "nên an toàn"
+        },
+        "en": {
+          "narr": "Worried about growth hormone? It's done only under a specialist's careful exams — safely.",
+          "cap": [
+            "Specialist-led",
+            "and safe"
+          ],
+          "hl": "and safe"
+        },
+        "cn": {
+          "narr": "担心生长激素治疗？只在专科医生周密检查与判断下进行，所以安全。",
+          "cap": [
+            "专科医生主导",
+            "安全进行"
+          ],
+          "hl": "安全进行"
+        },
+        "ch": {
+          "narr": "擔心生長激素治療？只在專科醫師周密檢查與判斷下進行，所以安全。",
+          "cap": [
+            "專科醫師主導",
+            "安全進行"
+          ],
+          "hl": "安全進行"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 잠재력 끌어올림",
+      "motion": "📈 카운트업 ↗",
+      "copy": {
+        "ko": {
+          "narr": "부족한 호르몬을 채워 아이의 잠재력을 끌어올리고, 최종 키를 유의미하게 높여줍니다.",
+          "cap": [
+            "잠재력 끌어올려",
+            "최종 키 ↑"
+          ],
+          "hl": "최종 키 ↑"
+        },
+        "th": {
+          "narr": "เติมฮอร์โมนที่ขาด ดึงศักยภาพออกมา และเพิ่มความสูงสุดท้ายอย่างมีนัยสำคัญ",
+          "cap": [
+            "ดึงศักยภาพ",
+            "ความสูง ↑"
+          ],
+          "hl": "ความสูง ↑"
+        },
+        "vi": {
+          "narr": "Bù hormone thiếu, khơi dậy tiềm năng và nâng chiều cao cuối một cách rõ rệt.",
+          "cap": [
+            "Khơi tiềm năng",
+            "chiều cao ↑"
+          ],
+          "hl": "chiều cao ↑"
+        },
+        "en": {
+          "narr": "Topping up the missing hormone unlocks potential and meaningfully raises final height.",
+          "cap": [
+            "Unlock potential",
+            "height ↑"
+          ],
+          "hl": "height ↑"
+        },
+        "cn": {
+          "narr": "补足不足的激素，释放潜能，显著提升最终身高。",
+          "cap": [
+            "释放潜能",
+            "身高 ↑"
+          ],
+          "hl": "身高 ↑"
+        },
+        "ch": {
+          "narr": "補足不足的激素，釋放潛能，顯著提升最終身高。",
+          "cap": [
+            "釋放潛能",
+            "身高 ↑"
+          ],
+          "hl": "身高 ↑"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "🌙 달 뜸 + 10→2 똑딱",
+      "copy": {
+        "ko": {
+          "narr": "치료가 다가 아니에요. 밤 10시에서 2시 숙면 때 성장호르몬이 가장 많이 나옵니다.",
+          "cap": [
+            "밤 10시~2시",
+            "숙면이 핵심"
+          ],
+          "hl": "숙면이 핵심"
+        },
+        "th": {
+          "narr": "การรักษาไม่ใช่ทั้งหมด ฮอร์โมนหลั่งมากสุดตอนหลับลึก 22.00–02.00 น.",
+          "cap": [
+            "22.00–02.00 น.",
+            "หลับลึกสำคัญ"
+          ],
+          "hl": "หลับลึกสำคัญ"
+        },
+        "vi": {
+          "narr": "Điều trị chưa đủ. Hormone tiết nhiều nhất khi ngủ sâu từ 10 giờ tối đến 2 giờ sáng.",
+          "cap": [
+            "22h–2h sáng",
+            "ngủ sâu là chìa khóa"
+          ],
+          "hl": "ngủ sâu là chìa khóa"
+        },
+        "en": {
+          "narr": "Treatment isn't all. Growth hormone peaks during deep sleep, 10 pm to 2 am.",
+          "cap": [
+            "10pm–2am sleep",
+            "deep sleep is key"
+          ],
+          "hl": "deep sleep is key"
+        },
+        "cn": {
+          "narr": "治疗并非全部。晚上10点到凌晨2点深睡时，生长激素分泌最多。",
+          "cap": [
+            "晚10点~凌晨2点",
+            "深睡是关键"
+          ],
+          "hl": "深睡是关键"
+        },
+        "ch": {
+          "narr": "治療並非全部。晚上10點到凌晨2點深睡時，生長激素分泌最多。",
+          "cap": [
+            "晚10點~凌晨2點",
+            "深睡是關鍵"
+          ],
+          "hl": "深睡是關鍵"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 생활습관 코칭",
+      "motion": "😴🥗🏀 3요소 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "수면, 영양, 줄넘기·농구 같은 운동까지 함께 코칭해 성장의 시너지를 만들어요.",
+          "cap": [
+            "수면·영양·운동",
+            "통합 코칭"
+          ],
+          "hl": "통합 코칭"
+        },
+        "th": {
+          "narr": "โค้ชทั้งการนอน โภชนาการ และออกกำลังกายเช่นกระโดดเชือก บาส สร้างพลังร่วม",
+          "cap": [
+            "นอน·อาหาร·ออกกำลัง",
+            "โค้ชครบวงจร"
+          ],
+          "hl": "โค้ชครบวงจร"
+        },
+        "vi": {
+          "narr": "Coaching cả giấc ngủ, dinh dưỡng và vận động như nhảy dây, bóng rổ — tạo cộng hưởng.",
+          "cap": [
+            "Ngủ·ăn·vận động",
+            "coaching toàn diện"
+          ],
+          "hl": "coaching toàn diện"
+        },
+        "en": {
+          "narr": "Sleep, nutrition, and exercise like jump rope and basketball — coached together for synergy.",
+          "cap": [
+            "Sleep·food·exercise",
+            "full coaching"
+          ],
+          "hl": "full coaching"
+        },
+        "cn": {
+          "narr": "睡眠、营养，加上跳绳、篮球等运动，一起辅导，形成成长合力。",
+          "cap": [
+            "睡眠·营养·运动",
+            "整合辅导"
+          ],
+          "hl": "整合辅导"
+        },
+        "ch": {
+          "narr": "睡眠、營養，加上跳繩、籃球等運動，一起輔導，形成成長合力。",
+          "cap": [
+            "睡眠·營養·運動",
+            "整合輔導"
+          ],
+          "hl": "整合輔導"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "⏳ 골드 글로우 + 🦴 팝",
+      "copy": {
+        "ko": {
+          "narr": "성장 골든타임은 정해져 있어요. 뼈나이를 보면 우리 아이한테 남은 시간이 보입니다.",
+          "cap": [
+            "골든타임은 한정",
+            "뼈나이로 확인"
+          ],
+          "hl": "뼈나이로 확인"
+        },
+        "th": {
+          "narr": "ช่วงเวลาทองมีจำกัด อายุกระดูกบอกว่าลูกเหลือเวลาอีกเท่าไร",
+          "cap": [
+            "เวลาทองมีจำกัด",
+            "เช็กอายุกระดูก"
+          ],
+          "hl": "เช็กอายุกระดูก"
+        },
+        "vi": {
+          "narr": "Thời điểm vàng có hạn. Tuổi xương cho thấy con còn lại bao nhiêu thời gian.",
+          "cap": [
+            "Thời điểm vàng có hạn",
+            "xem tuổi xương"
+          ],
+          "hl": "xem tuổi xương"
+        },
+        "en": {
+          "narr": "The golden time is limited. Bone age shows how much time your child has left.",
+          "cap": [
+            "Golden time is limited",
+            "check bone age"
+          ],
+          "hl": "check bone age"
+        },
+        "cn": {
+          "narr": "成长黄金期是有限的。骨龄能看出孩子还剩多少时间。",
+          "cap": [
+            "黄金期有限",
+            "查骨龄"
+          ],
+          "hl": "查骨龄"
+        },
+        "ch": {
+          "narr": "成長黃金期是有限的。骨齡能看出孩子還剩多少時間。",
+          "cap": [
+            "黃金期有限",
+            "查骨齡"
+          ],
+          "hl": "查骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "세계가 찾는 한국식 성장 관리, 우리 아이 골든타임 지금 확인해 보세요.",
+          "cap": [
+            "골든타임",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "การดูแลแบบเกาหลีที่ทั่วโลกเลือก เช็กช่วงเวลาทองของลูกวันนี้",
+          "cap": [
+            "ช่วงเวลาทอง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Chăm sóc kiểu Hàn cả thế giới tin chọn — kiểm tra thời điểm vàng của con ngay.",
+          "cap": [
+            "Thời điểm vàng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "The Korean-style care the world chooses — check your child's golden time now.",
+          "cap": [
+            "Golden time",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "全世界都选择的韩式成长管理，现在就查查孩子的黄金期。",
+          "cap": [
+            "成长黄金期",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "全世界都選擇的韓式成長管理，現在就查查孩子的黃金期。",
+          "cap": [
+            "成長黃金期",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "X-ray 점등",
+      "title": "뼈나이 정밀진단 — 성장판 읽기",
+      "emojis": [
+        "🦴",
+        "🔍",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly hand X-ray panel on the left with a soft glowing wrist growth-plate gap, connected by a dotted line to a rising growth curve on the right ending in a sparkle. A small magnifier hovers over the growth plate. Brand purple #667eea to mint #2dd4bf gradient, gentle glow, friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(엑스레이)",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "성장판(글로우)",
+          "ko": "성장판",
+          "en": "Growth plate",
+          "th": "แผ่นกระดูก"
+        },
+        {
+          "pos": "곡선 끝",
+          "ko": "예측키",
+          "en": "Predicted height",
+          "th": "ความสูงที่คาด"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "4요소 순차 점등",
+      "title": "맞춤 성장 계획 — 4요소 분석",
+      "emojis": [
+        "🧬",
+        "🥗",
+        "😴",
+        "🧩"
+      ],
+      "prompt": "Flat vector, square, white bg. Four soft rounded icon tiles arranged around a central child silhouette: a DNA helix, a balanced meal plate, a crescent moon for sleep, and a calm face for stress — each tile connected to the child by a thin line, forming a custom plan. Brand purple #667eea and mint #2dd4bf, friendly pediatric flat style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "타일1",
+          "ko": "유전",
+          "en": "Genes",
+          "th": "พันธุกรรม"
+        },
+        {
+          "pos": "타일2",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "타일3",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "타일4",
+          "ko": "스트레스",
+          "en": "Stress",
+          "th": "ความเครียด"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "카운트업 ↗",
+      "title": "호르몬 보충 — 잠재력 끌어올림",
+      "emojis": [
+        "💉",
+        "📈",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A cheerful child standing beside a vertical growth bar, a gentle upward arrow rising past a faint dashed 'baseline' line to a higher glowing point with sparkles, suggesting potential reached. A small soft hormone droplet icon at the base. Brand purple #667eea plus mint #2dd4bf accents, friendly pediatric flat style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "점선(기준선)",
+          "ko": "원래 예측",
+          "en": "Baseline",
+          "th": "เดิม"
+        },
+        {
+          "pos": "화살표 끝(글로우)",
+          "ko": "잠재력 도달",
+          "en": "Potential reached",
+          "th": "ถึงศักยภาพ"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "3요소 순차 점등",
+      "title": "생활습관 코칭 — 성장의 시너지",
+      "emojis": [
+        "😴",
+        "🥗",
+        "🏀"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly circular badges in a row — a crescent moon with stars for deep sleep, a calcium milk-and-veggie plate for nutrition, and a child jumping rope / a basketball for exercise — overlapping slightly to form a synergy cluster with a soft central glow. Brand purple #667eea and mint #2dd4bf, warm friendly pediatric flat style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 배지",
+          "ko": "숙면 10~2시",
+          "en": "Deep sleep",
+          "th": "หลับลึก"
+        },
+        {
+          "pos": "가운데 배지",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "오른쪽 배지",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลังกาย"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🌏",
+      "label": "전 세계·K-Medical"
+    },
+    {
+      "e": "🇰🇷",
+      "label": "한국"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🔍",
+      "label": "정밀진단"
+    },
+    {
+      "e": "📈",
+      "label": "예측키·성장"
+    },
+    {
+      "e": "🧬",
+      "label": "유전"
+    },
+    {
+      "e": "💉",
+      "label": "호르몬 치료"
+    },
+    {
+      "e": "🛡️",
+      "label": "안전"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🥗",
+      "label": "영양"
+    },
+    {
+      "e": "🏀",
+      "label": "운동"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

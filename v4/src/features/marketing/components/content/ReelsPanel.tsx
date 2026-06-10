@@ -19,6 +19,18 @@ const SUBS: { key: Sub; label: string }[] = [
   { key: 'video', label: '🎬 영상 제작' },
 ];
 
+// 스토리보드 매니페스트(sortOrder[] — 어느 콘텐츠에 스토리보드가 있는지). 1회 로드 후 캐시.
+let _sbManifest: Promise<Set<number>> | null = null;
+function loadStoryboardManifest(): Promise<Set<number>> {
+  if (!_sbManifest) {
+    _sbManifest = fetch('/storyboards/index.json')
+      .then((r) => (r.ok ? (r.json() as Promise<number[]>) : []))
+      .then((arr) => new Set(arr))
+      .catch(() => new Set<number>());
+  }
+  return _sbManifest;
+}
+
 export function ReelsPanel({ article, language }: Props) {
   const [sub, setSub] = useState<Sub>('storyboard');
   const [reels, setReels] = useState<ReelsMap>(article.reels ?? {});
@@ -27,6 +39,12 @@ export function ReelsPanel({ article, language }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [sbSet, setSbSet] = useState<Set<number> | null>(null);
+  useEffect(() => {
+    let alive = true;
+    void loadStoryboardManifest().then((s) => { if (alive) setSbSet(s); });
+    return () => { alive = false; };
+  }, []);
 
   // 콘텐츠(article) 전환 시 로컬 상태 리셋 + 카드뉴스(캡션/해시태그 소스) 로드.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -43,8 +61,8 @@ export function ReelsPanel({ article, language }: Props) {
   const hashtags = cardnews?.hashtagsI18n[language as CardLang] ?? '';
   const hasCaption = !!(caption.trim() || hashtags.trim());
 
-  // 스토리보드 HTML(전 언어 공용). 생성 기능은 추후 구현 — 지금은 항상 빈 뷰어(플레이스홀더).
-  const storyboardHtml: string | null = null;
+  // 스토리보드(전 언어 공용) — sortOrder 매칭 정적 HTML(/storyboards/{n}.html). 없으면 플레이스홀더.
+  const storyboardSrc = sbSet && sbSet.has(article.sortOrder) ? `/storyboards/${article.sortOrder}.html` : null;
 
   const queueSave = (next: ReelsMap) => {
     if (timer.current) clearTimeout(timer.current);
@@ -94,14 +112,14 @@ export function ReelsPanel({ article, language }: Props) {
       {/* 스토리보드 — HTML 뷰어 (전 언어 공용, 생성은 추후) */}
       {sub === 'storyboard' ? (
         <div className="flex-1 overflow-hidden p-4">
-          {storyboardHtml ? (
-            <iframe srcDoc={storyboardHtml} title="릴스 스토리보드"
+          {storyboardSrc ? (
+            <iframe src={storyboardSrc} title="릴스 스토리보드"
               className="h-full w-full rounded-lg border border-gray-200 bg-white" />
           ) : (
             <div className="flex h-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-center text-gray-400">
               <div className="text-3xl">📋</div>
-              <p className="mt-2 text-sm font-semibold text-gray-500">스토리보드 생성 준비 중</p>
-              <p className="mt-1 max-w-xs text-xs">생성 기능은 추후 구현됩니다. 생성되면 여기에 <b>HTML</b>로 표시돼요. (전 언어 공용)</p>
+              <p className="mt-2 text-sm font-semibold text-gray-500">스토리보드 준비 중</p>
+              <p className="mt-1 max-w-xs text-xs">이 콘텐츠의 릴스 스토리보드는 아직 없어요. 생성되면 여기에 표시됩니다. (전 언어 공용)</p>
             </div>
           )}
         </div>

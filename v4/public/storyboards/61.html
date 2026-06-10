@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 한국 성장클리닉 — 왜 해외 부모가 오나</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #61</span>
+  <h1>왜 전 세계 부모가 한국으로 오나 — K-성장클리닉</h1>
+  <div class="sub">뼈나이 정밀진단 · 호르몬 치료 · 생활습관 코칭 — 세계가 인정한 한국식 성장 시스템</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>세계가 주목!</b></div>
+      <div class="subj">우리 아이 키, 왜</div>
+      <div class="big4"><div class="n" style="font-size:132px">한국</div><div class="lab">으로 올까?</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키, 왜</b> 한국으로 올까?"</li>
+        <li><b>거대 숫자 "한국"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #61 「한국 성장클리닉 — 왜 해외 부모가 오나」 (D. 기타/트렌드)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"K-팝, K-드라마 다음은 K-성장클리닉 — 전 세계 부모가 아이 키 때문에 한국으로 옵니다."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>키는 크고 싶다고 병원 간다고 크는 게 아니다 → 사실은 '정밀 진단 + 시기 맞춤 관리'가 최종 키를 가른다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>한국식 성장 시스템 = 뼈나이 정밀진단 + 안전한 호르몬 치료 + 생활습관 코칭의 통합 관리. 그래서 세계가 한국을 찾는다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("아직 기회 있다"). 국적·소득 좁히지 않고 "우리 아이 키" 보편. CTA는 측정 초대(시술 단정 금지)</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 골든타임, 지금 홈페이지에서 뼈나이·예측키로 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"K-팝 다음은 K-성장클리닉 — 왜 한국으로?"</p></div><div class="act"><span class="n">ACT 2</span><h4>정밀 진단</h4><p>c3–c4<br>"뼈나이로 성장판·예측키·시기까지"</p></div><div class="act"><span class="n">ACT 3</span><h4>안전한 치료</h4><p>c5–c6<br>"전문의 판단 하 호르몬 치료 = 최종 키 향상"</p></div><div class="act"><span class="n">ACT 4</span><h4>통합 관리</h4><p>c7–c8<br>"수면·영양·운동 생활습관 코칭의 시너지"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"골든타임 한정 → 뼈나이/예측키 확인 CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">왜 한국으로?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🌏✨</div></div>
+        <div class="ph-cap"><div class="l">K-팝 다음은</div><div class="l"><span class="y2">K-성장클리닉</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">K-팝, K-드라마 다음은요, 'K-성장클리닉'이에요. 전 세계 부모가 아이 키 때문에 한국으로 옵니다.</td><td><span class="cap2">K-팝 다음은<br><span class="y">K-성장클리닉</span></span></td><td class="mo">🌏 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">멀리 한국까지 왜 올까요? 비결은 한국식 '정밀 진단과 체계적 관리' 시스템에 있어요.</td><td><span class="cap2">왜 한국까지?<br><span class="y">정밀 진단 시스템</span></span></td><td class="mo">❓ 흔들 + 🌏 회전</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 뼈나이 정밀진단</span></td><td class="narr">한국 클리닉은 뼈나이부터 봐요. 성장판 상태를 정확히 읽어 최종 키까지 예측합니다.</td><td><span class="cap2">뼈나이로 성장판<br><span class="y">최종 키 예측</span></span></td><td class="mo">🦴🔍 X-ray 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 맞춤 성장계획</span></td><td class="narr">유전, 영양, 수면, 스트레스까지 다각도로 분석해 아이마다 맞춤 성장 계획을 세워요.</td><td><span class="cap2">유전·영양·수면<br><span class="y">맞춤 성장 계획</span></span></td><td class="mo">🧩 4요소 순차 점등</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성장호르몬 치료, 걱정되시죠? 전문의의 철저한 검사와 판단 하에서만 진행돼 안전해요.</td><td><span class="cap2">전문의 판단 하<br><span class="y">안전한 치료</span></span></td><td class="mo">💉 펄스 + 🛡️ 가드</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 잠재력 끌어올림</span></td><td class="narr">부족한 호르몬을 채워 아이의 잠재력을 끌어올리고, 최종 키를 유의미하게 높여줍니다.</td><td><span class="cap2">잠재력 끌어올려<br><span class="y">최종 키 ↑</span></span></td><td class="mo">📈 카운트업 ↗</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">치료가 다가 아니에요. 밤 10시에서 2시 숙면 때 성장호르몬이 가장 많이 나옵니다.</td><td><span class="cap2">밤 10시~2시<br><span class="y">숙면이 핵심</span></span></td><td class="mo">🌙 달 뜸 + 10→2 똑딱</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 생활습관 코칭</span></td><td class="narr">수면, 영양, 줄넘기·농구 같은 운동까지 함께 코칭해 성장의 시너지를 만들어요.</td><td><span class="cap2">수면·영양·운동<br><span class="y">통합 코칭</span></span></td><td class="mo">😴🥗🏀 3요소 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성장 골든타임은 정해져 있어요. 뼈나이를 보면 우리 아이한테 남은 시간이 보입니다.</td><td><span class="cap2">골든타임은 한정<br><span class="y">뼈나이로 확인</span></span></td><td class="mo">⏳ 골드 글로우 + 🦴 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">세계가 찾는 한국식 성장 관리, 우리 아이 골든타임 지금 확인해 보세요.</td><td><span class="cap2">골든타임<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: X-ray 점등</div><h3>뼈나이 정밀진단 — 성장판 읽기</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🔍 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly hand X-ray panel on the left with a soft glowing wrist growth-plate gap, connected by a dotted line to a rising growth curve on the right ending in a sparkle. A small magnifier hovers over the growth plate. Brand purple #667eea to mint #2dd4bf gradient, gentle glow, friendly pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(엑스레이)</td><td>뼈나이</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr><tr><td>성장판(글로우)</td><td>성장판</td><td>Growth plate</td><td class="thai">แผ่นกระดูก</td></tr><tr><td>곡선 끝</td><td>예측키</td><td>Predicted height</td><td class="thai">ความสูงที่คาด</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 4요소 순차 점등</div><h3>맞춤 성장 계획 — 4요소 분석</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🥗 😴 🧩</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Four soft rounded icon tiles arranged around a central child silhouette: a DNA helix, a balanced meal plate, a crescent moon for sleep, and a calm face for stress — each tile connected to the child by a thin line, forming a custom plan. Brand purple #667eea and mint #2dd4bf, friendly pediatric flat style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>타일1</td><td>유전</td><td>Genes</td><td class="thai">พันธุกรรม</td></tr><tr><td>타일2</td><td>영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr><tr><td>타일3</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>타일4</td><td>스트레스</td><td>Stress</td><td class="thai">ความเครียด</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 카운트업 ↗</div><h3>호르몬 보충 — 잠재력 끌어올림</h3></div>
+        <div class="body">
+          <div class="sketch">💉 📈 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A cheerful child standing beside a vertical growth bar, a gentle upward arrow rising past a faint dashed 'baseline' line to a higher glowing point with sparkles, suggesting potential reached. A small soft hormone droplet icon at the base. Brand purple #667eea plus mint #2dd4bf accents, friendly pediatric flat style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>점선(기준선)</td><td>원래 예측</td><td>Baseline</td><td class="thai">เดิม</td></tr><tr><td>화살표 끝(글로우)</td><td>잠재력 도달</td><td>Potential reached</td><td class="thai">ถึงศักยภาพ</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 3요소 순차 점등</div><h3>생활습관 코칭 — 성장의 시너지</h3></div>
+        <div class="body">
+          <div class="sketch">😴 🥗 🏀</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly circular badges in a row — a crescent moon with stars for deep sleep, a calcium milk-and-veggie plate for nutrition, and a child jumping rope / a basketball for exercise — overlapping slightly to form a synergy cluster with a soft central glow. Brand purple #667eea and mint #2dd4bf, warm friendly pediatric flat style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 배지</td><td>숙면 10~2시</td><td>Deep sleep</td><td class="thai">หลับลึก</td></tr><tr><td>가운데 배지</td><td>영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr><tr><td>오른쪽 배지</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🌏</b> 전 세계·K-Medical</span><span class="emo"><b>🇰🇷</b> 한국</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>🔍</b> 정밀진단</span><span class="emo"><b>📈</b> 예측키·성장</span><span class="emo"><b>🧬</b> 유전</span><span class="emo"><b>💉</b> 호르몬 치료</span><span class="emo"><b>🛡️</b> 안전</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🥗</b> 영양</span><span class="emo"><b>🏀</b> 운동</span><span class="emo"><b>⏳</b> 골든타임</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>K-팝, K-드라마 다음은요, 'K-성장클리닉'이에요. 전 세계 부모가 아이 키 때문에 한국으로 옵니다.<br><span class="cap2">K-팝 다음은 · <span class="y">K-성장클리닉</span></span></td></tr><tr><td class="c-id">c2</td><td>멀리 한국까지 왜 올까요? 비결은 한국식 '정밀 진단과 체계적 관리' 시스템에 있어요.<br><span class="cap2">왜 한국까지? · <span class="y">정밀 진단 시스템</span></span></td></tr><tr><td class="c-id">c3</td><td>한국 클리닉은 뼈나이부터 봐요. 성장판 상태를 정확히 읽어 최종 키까지 예측합니다.<br><span class="cap2">뼈나이로 성장판 · <span class="y">최종 키 예측</span></span></td></tr><tr><td class="c-id">c4</td><td>유전, 영양, 수면, 스트레스까지 다각도로 분석해 아이마다 맞춤 성장 계획을 세워요.<br><span class="cap2">유전·영양·수면 · <span class="y">맞춤 성장 계획</span></span></td></tr><tr><td class="c-id">c5</td><td>성장호르몬 치료, 걱정되시죠? 전문의의 철저한 검사와 판단 하에서만 진행돼 안전해요.<br><span class="cap2">전문의 판단 하 · <span class="y">안전한 치료</span></span></td></tr><tr><td class="c-id">c6</td><td>부족한 호르몬을 채워 아이의 잠재력을 끌어올리고, 최종 키를 유의미하게 높여줍니다.<br><span class="cap2">잠재력 끌어올려 · <span class="y">최종 키 ↑</span></span></td></tr><tr><td class="c-id">c7</td><td>치료가 다가 아니에요. 밤 10시에서 2시 숙면 때 성장호르몬이 가장 많이 나옵니다.<br><span class="cap2">밤 10시~2시 · <span class="y">숙면이 핵심</span></span></td></tr><tr><td class="c-id">c8</td><td>수면, 영양, 줄넘기·농구 같은 운동까지 함께 코칭해 성장의 시너지를 만들어요.<br><span class="cap2">수면·영양·운동 · <span class="y">통합 코칭</span></span></td></tr><tr><td class="c-id">c9</td><td>성장 골든타임은 정해져 있어요. 뼈나이를 보면 우리 아이한테 남은 시간이 보입니다.<br><span class="cap2">골든타임은 한정 · <span class="y">뼈나이로 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>세계가 찾는 한국식 성장 관리, 우리 아이 골든타임 지금 확인해 보세요.<br><span class="cap2">골든타임 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ถัดจาก K-pop, K-drama คือ 'คลินิกโตเกาหลี' พ่อแม่ทั่วโลกพาลูกมาเกาหลีเพื่อความสูง<br><span class="cap2">ถัดจาก K-pop · <span class="y">คลินิกโตเกาหลี</span></span></td></tr><tr><td class="c-id">c2</td><td>ทำไมต้องมาไกลถึงเกาหลี? เคล็ดลับคือระบบ 'วินิจฉัยแม่นยำและดูแลเป็นระบบ'<br><span class="cap2">ทำไมต้องเกาหลี? · <span class="y">ระบบแม่นยำ</span></span></td></tr><tr><td class="c-id">c3</td><td>คลินิกเกาหลีเริ่มจากอายุกระดูก อ่านแผ่นกระดูกแม่นยำ คาดการณ์ความสูงสุดท้าย<br><span class="cap2">อายุกระดูก · <span class="y">คาดการณ์ส่วนสูง</span></span></td></tr><tr><td class="c-id">c4</td><td>วิเคราะห์รอบด้าน ทั้งพันธุกรรม โภชนาการ การนอน ความเครียด สร้างแผนเฉพาะลูก<br><span class="cap2">พันธุกรรม·โภชนาการ · <span class="y">แผนเฉพาะลูก</span></span></td></tr><tr><td class="c-id">c5</td><td>การรักษาด้วยฮอร์โมนกังวลใช่ไหม? ทำภายใต้แพทย์ผู้เชี่ยวชาญตรวจละเอียด จึงปลอดภัย<br><span class="cap2">ภายใต้แพทย์ · <span class="y">จึงปลอดภัย</span></span></td></tr><tr><td class="c-id">c6</td><td>เติมฮอร์โมนที่ขาด ดึงศักยภาพออกมา และเพิ่มความสูงสุดท้ายอย่างมีนัยสำคัญ<br><span class="cap2">ดึงศักยภาพ · <span class="y">ความสูง ↑</span></span></td></tr><tr><td class="c-id">c7</td><td>การรักษาไม่ใช่ทั้งหมด ฮอร์โมนหลั่งมากสุดตอนหลับลึก 22.00–02.00 น.<br><span class="cap2">22.00–02.00 น. · <span class="y">หลับลึกสำคัญ</span></span></td></tr><tr><td class="c-id">c8</td><td>โค้ชทั้งการนอน โภชนาการ และออกกำลังกายเช่นกระโดดเชือก บาส สร้างพลังร่วม<br><span class="cap2">นอน·อาหาร·ออกกำลัง · <span class="y">โค้ชครบวงจร</span></span></td></tr><tr><td class="c-id">c9</td><td>ช่วงเวลาทองมีจำกัด อายุกระดูกบอกว่าลูกเหลือเวลาอีกเท่าไร<br><span class="cap2">เวลาทองมีจำกัด · <span class="y">เช็กอายุกระดูก</span></span></td></tr><tr><td class="c-id">c10</td><td>การดูแลแบบเกาหลีที่ทั่วโลกเลือก เช็กช่วงเวลาทองของลูกวันนี้<br><span class="cap2">ช่วงเวลาทอง · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Sau K-pop, K-drama là 'phòng khám tăng chiều cao Hàn Quốc'. Cha mẹ khắp nơi đưa con đến Hàn.<br><span class="cap2">Sau K-pop là · <span class="y">phòng khám Hàn Quốc</span></span></td></tr><tr><td class="c-id">c2</td><td>Vì sao đến tận Hàn? Bí quyết là hệ thống 'chẩn đoán chính xác và chăm sóc bài bản'.<br><span class="cap2">Vì sao đến Hàn? · <span class="y">chẩn đoán chính xác</span></span></td></tr><tr><td class="c-id">c3</td><td>Phòng khám Hàn xem tuổi xương trước, đọc chính xác sụn tăng trưởng, dự đoán chiều cao cuối.<br><span class="cap2">Tuổi xương · <span class="y">dự đoán chiều cao</span></span></td></tr><tr><td class="c-id">c4</td><td>Phân tích đa chiều: di truyền, dinh dưỡng, giấc ngủ, stress — lập kế hoạch riêng cho bé.<br><span class="cap2">Di truyền·dinh dưỡng · <span class="y">kế hoạch riêng</span></span></td></tr><tr><td class="c-id">c5</td><td>Lo về hormone tăng trưởng? Chỉ thực hiện dưới chẩn đoán kỹ của bác sĩ nên an toàn.<br><span class="cap2">Dưới bác sĩ · <span class="y">nên an toàn</span></span></td></tr><tr><td class="c-id">c6</td><td>Bù hormone thiếu, khơi dậy tiềm năng và nâng chiều cao cuối một cách rõ rệt.<br><span class="cap2">Khơi tiềm năng · <span class="y">chiều cao ↑</span></span></td></tr><tr><td class="c-id">c7</td><td>Điều trị chưa đủ. Hormone tiết nhiều nhất khi ngủ sâu từ 10 giờ tối đến 2 giờ sáng.<br><span class="cap2">22h–2h sáng · <span class="y">ngủ sâu là chìa khóa</span></span></td></tr><tr><td class="c-id">c8</td><td>Coaching cả giấc ngủ, dinh dưỡng và vận động như nhảy dây, bóng rổ — tạo cộng hưởng.<br><span class="cap2">Ngủ·ăn·vận động · <span class="y">coaching toàn diện</span></span></td></tr><tr><td class="c-id">c9</td><td>Thời điểm vàng có hạn. Tuổi xương cho thấy con còn lại bao nhiêu thời gian.<br><span class="cap2">Thời điểm vàng có hạn · <span class="y">xem tuổi xương</span></span></td></tr><tr><td class="c-id">c10</td><td>Chăm sóc kiểu Hàn cả thế giới tin chọn — kiểm tra thời điểm vàng của con ngay.<br><span class="cap2">Thời điểm vàng · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>After K-pop and K-drama comes the K-growth clinic — parents worldwide bring their kids to Korea.<br><span class="cap2">Next after K-pop: · <span class="y">K-growth clinic</span></span></td></tr><tr><td class="c-id">c2</td><td>Why fly all the way to Korea? The secret is precise, systematic diagnosis and care.<br><span class="cap2">Why Korea? · <span class="y">precise diagnosis</span></span></td></tr><tr><td class="c-id">c3</td><td>Korean clinics start with bone age — reading the growth plates to predict final height.<br><span class="cap2">Bone age reads · <span class="y">final height</span></span></td></tr><tr><td class="c-id">c4</td><td>Genes, nutrition, sleep, stress — analyzed together into a plan made for your child.<br><span class="cap2">Genes·sleep·diet · a <span class="y">custom plan</span></span></td></tr><tr><td class="c-id">c5</td><td>Worried about growth hormone? It's done only under a specialist's careful exams — safely.<br><span class="cap2">Specialist-led · <span class="y">and safe</span></span></td></tr><tr><td class="c-id">c6</td><td>Topping up the missing hormone unlocks potential and meaningfully raises final height.<br><span class="cap2">Unlock potential · <span class="y">height ↑</span></span></td></tr><tr><td class="c-id">c7</td><td>Treatment isn't all. Growth hormone peaks during deep sleep, 10 pm to 2 am.<br><span class="cap2">10pm–2am sleep · <span class="y">deep sleep is key</span></span></td></tr><tr><td class="c-id">c8</td><td>Sleep, nutrition, and exercise like jump rope and basketball — coached together for synergy.<br><span class="cap2">Sleep·food·exercise · <span class="y">full coaching</span></span></td></tr><tr><td class="c-id">c9</td><td>The golden time is limited. Bone age shows how much time your child has left.<br><span class="cap2">Golden time is limited · <span class="y">check bone age</span></span></td></tr><tr><td class="c-id">c10</td><td>The Korean-style care the world chooses — check your child's golden time now.<br><span class="cap2">Golden time · <span class="y">check now</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>继K-pop、K-剧之后是'韩国成长门诊'，全世界父母为孩子身高来韩国。<br><span class="cap2">K-pop之后是 · <span class="y">韩国成长门诊</span></span></td></tr><tr><td class="c-id">c2</td><td>为什么远道来韩国？秘诀就在'精准诊断＋系统管理'。<br><span class="cap2">为何来韩国？ · <span class="y">精准诊断</span></span></td></tr><tr><td class="c-id">c3</td><td>韩国门诊先看骨龄，精准读出生长板，预测最终身高。<br><span class="cap2">骨龄读生长板 · <span class="y">预测最终身高</span></span></td></tr><tr><td class="c-id">c4</td><td>遗传、营养、睡眠、压力多角度分析，为每个孩子定制成长方案。<br><span class="cap2">遗传·营养·睡眠 · <span class="y">定制成长方案</span></span></td></tr><tr><td class="c-id">c5</td><td>担心生长激素治疗？只在专科医生周密检查与判断下进行，所以安全。<br><span class="cap2">专科医生主导 · <span class="y">安全进行</span></span></td></tr><tr><td class="c-id">c6</td><td>补足不足的激素，释放潜能，显著提升最终身高。<br><span class="cap2">释放潜能 · <span class="y">身高 ↑</span></span></td></tr><tr><td class="c-id">c7</td><td>治疗并非全部。晚上10点到凌晨2点深睡时，生长激素分泌最多。<br><span class="cap2">晚10点~凌晨2点 · <span class="y">深睡是关键</span></span></td></tr><tr><td class="c-id">c8</td><td>睡眠、营养，加上跳绳、篮球等运动，一起辅导，形成成长合力。<br><span class="cap2">睡眠·营养·运动 · <span class="y">整合辅导</span></span></td></tr><tr><td class="c-id">c9</td><td>成长黄金期是有限的。骨龄能看出孩子还剩多少时间。<br><span class="cap2">黄金期有限 · <span class="y">查骨龄</span></span></td></tr><tr><td class="c-id">c10</td><td>全世界都选择的韩式成长管理，现在就查查孩子的黄金期。<br><span class="cap2">成长黄金期 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>繼K-pop、K-劇之後是『韓國成長門診』，全世界父母為孩子身高來韓國。<br><span class="cap2">K-pop之後是 · <span class="y">韓國成長門診</span></span></td></tr><tr><td class="c-id">c2</td><td>為什麼遠道來韓國？秘訣就在『精準診斷＋系統管理』。<br><span class="cap2">為何來韓國？ · <span class="y">精準診斷</span></span></td></tr><tr><td class="c-id">c3</td><td>韓國門診先看骨齡，精準讀出生長板，預測最終身高。<br><span class="cap2">骨齡讀生長板 · <span class="y">預測最終身高</span></span></td></tr><tr><td class="c-id">c4</td><td>遺傳、營養、睡眠、壓力多角度分析，為每個孩子量身定制成長方案。<br><span class="cap2">遺傳·營養·睡眠 · <span class="y">定制成長方案</span></span></td></tr><tr><td class="c-id">c5</td><td>擔心生長激素治療？只在專科醫師周密檢查與判斷下進行，所以安全。<br><span class="cap2">專科醫師主導 · <span class="y">安全進行</span></span></td></tr><tr><td class="c-id">c6</td><td>補足不足的激素，釋放潛能，顯著提升最終身高。<br><span class="cap2">釋放潛能 · <span class="y">身高 ↑</span></span></td></tr><tr><td class="c-id">c7</td><td>治療並非全部。晚上10點到凌晨2點深睡時，生長激素分泌最多。<br><span class="cap2">晚10點~凌晨2點 · <span class="y">深睡是關鍵</span></span></td></tr><tr><td class="c-id">c8</td><td>睡眠、營養，加上跳繩、籃球等運動，一起輔導，形成成長合力。<br><span class="cap2">睡眠·營養·運動 · <span class="y">整合輔導</span></span></td></tr><tr><td class="c-id">c9</td><td>成長黃金期是有限的。骨齡能看出孩子還剩多少時間。<br><span class="cap2">黃金期有限 · <span class="y">查骨齡</span></span></td></tr><tr><td class="c-id">c10</td><td>全世界都選擇的韓式成長管理，現在就查查孩子的黃金期。<br><span class="cap2">成長黃金期 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/K성장클리닉/</code> · <code>K성장클리닉-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

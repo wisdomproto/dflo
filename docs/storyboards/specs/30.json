@@ -1,0 +1,791 @@
+{
+  "n": 30,
+  "slug": "단음식성장판",
+  "title": "달콤한 간식이 성장판을 일찍 닫는다? — 식습관과 키",
+  "sub": "당·기름 과다 → 비만 → 사춘기·뼈나이 가속 → 성장판 조기 폐쇄. 식단만 바꿔도 골든타임을 지킨다",
+  "category": "B. 생활습관",
+  "topicTitle": "단 음식·패스트푸드와 성장판",
+  "headerTop": "우리 아이 키",
+  "headerMark": "간식이 키를 줄인다?",
+  "accentEmoji": "🍔⏳",
+  "hook": "우리 아이가 좋아하는 그 간식이, 키 클 시간을 앞당겨 끝낼 수 있어요.",
+  "misconception": "잘 먹으면 키도 잘 큰다 → 달고 기름진 음식은 비만→사춘기 가속→성장판 조기 폐쇄로 오히려 최종 키를 깎는다",
+  "message": "당분이 성장판을 직접 닫는 게 아니라, 비만·렙틴·성호르몬을 거쳐 사춘기와 뼈나이를 앞당겨 성장판을 일찍 닫는다. 식단을 바꾸면 골든타임을 지킬 수 있다",
+  "tone": "협박 ❌ → 긍정 골든타임(\"지금 식단 바꾸면 성장판 지킨다\"). \"우리 아이 키\" 보편. 당분=악마 단정 대신 메커니즘(비만 경유) 정확히. CTA는 측정 유도",
+  "cta": "우리 아이 뼈나이·예측키로 남은 성장 시간 지금 확인 → 식단부터 점검",
+  "duration": 35,
+  "thumb": {
+    "kicker": "간식의 함정!",
+    "subject": "우리 아이 키, 단 음식이",
+    "number": "성장판",
+    "numLabel": "일찍 닫는다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"좋아하는 간식이 키 클 시간을 줄인다?\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "성장판·오해",
+      "scenes": "c3–c4",
+      "desc": "\"성장판=키 크는 공장, 잘 먹으면 큰다는 오해\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "메커니즘",
+      "scenes": "c5–c6",
+      "desc": "\"비만→사춘기 가속, 렙틴→성호르몬→성장판 조기 폐쇄\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "반전·해법",
+      "scenes": "c7–c8",
+      "desc": "\"비만 아이 일찍 크고 일찍 멈춤 → 식단 바꾸면 지킨다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 남은 시간 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🍔 슬램 인 + ⏳ 똑딱",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이가 좋아하는 그 달콤한 간식이, 키 클 시간을 앞당겨 끝낼 수 있어요.",
+          "cap": [
+            "그 달콤한 간식이",
+            "키 클 시간을 줄인다"
+          ],
+          "hl": "키 클 시간을 줄인다"
+        },
+        "th": {
+          "narr": "ขนมหวานที่ลูกชอบ อาจเร่งให้เวลาสูงของลูกหมดเร็วขึ้น",
+          "cap": [
+            "ขนมหวานที่ลูกชอบ",
+            "ลดเวลาสูงของลูก"
+          ],
+          "hl": "ลดเวลาสูงของลูก"
+        },
+        "vi": {
+          "narr": "Món ngọt con bạn thích có thể rút ngắn thời gian con cao lên.",
+          "cap": [
+            "Món ngọt yêu thích",
+            "rút ngắn thời gian cao"
+          ],
+          "hl": "rút ngắn thời gian cao"
+        },
+        "en": {
+          "narr": "That sweet snack your child loves can cut their growing time short.",
+          "cap": [
+            "That sweet snack",
+            "cuts growing time"
+          ],
+          "hl": "cuts growing time"
+        },
+        "cn": {
+          "narr": "孩子爱吃的甜食，可能让他长高的时间提前结束。",
+          "cap": [
+            "爱吃的甜食",
+            "缩短长高时间"
+          ],
+          "hl": "缩短长高时间"
+        },
+        "ch": {
+          "narr": "孩子愛吃的甜食，可能讓他長高的時間提前結束。",
+          "cap": [
+            "愛吃的甜食",
+            "縮短長高時間"
+          ],
+          "hl": "縮短長高時間"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🚫 흔들 + ❗",
+      "copy": {
+        "ko": {
+          "narr": "잘 먹으면 키도 잘 크겠지, 하시죠? 달고 기름진 음식은 그 반대일 수 있어요.",
+          "cap": [
+            "잘 먹으면 큰다?",
+            "오히려 반대"
+          ],
+          "hl": "오히려 반대"
+        },
+        "th": {
+          "narr": "คิดว่ากินเยอะแล้วสูง? อาหารหวานมันอาจตรงกันข้าม",
+          "cap": [
+            "กินเยอะแล้วสูง?",
+            "อาจตรงกันข้าม"
+          ],
+          "hl": "อาจตรงกันข้าม"
+        },
+        "vi": {
+          "narr": "Ăn nhiều là cao? Đồ ngọt nhiều dầu mỡ có thể ngược lại.",
+          "cap": [
+            "Ăn nhiều là cao?",
+            "có thể ngược lại"
+          ],
+          "hl": "có thể ngược lại"
+        },
+        "en": {
+          "narr": "Eat more, grow more — right? Sugary, greasy food can do the opposite.",
+          "cap": [
+            "Eat more = taller?",
+            "the opposite"
+          ],
+          "hl": "the opposite"
+        },
+        "cn": {
+          "narr": "吃得多就长得高？甜腻食物可能恰恰相反。",
+          "cap": [
+            "吃多就长高?",
+            "恰恰相反"
+          ],
+          "hl": "恰恰相反"
+        },
+        "ch": {
+          "narr": "吃得多就長得高？甜膩食物可能恰恰相反。",
+          "cap": [
+            "吃多就長高?",
+            "恰恰相反"
+          ],
+          "hl": "恰恰相反"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 성장판",
+      "motion": "🦴 글로우 + 새 뼈 ↑",
+      "copy": {
+        "ko": {
+          "narr": "키는 뼈 끝 성장판에서 새 뼈가 만들어지며 자라요. 닫히면 거기서 끝이죠.",
+          "cap": [
+            "성장판이",
+            "키 크는 공장"
+          ],
+          "hl": "키 크는 공장"
+        },
+        "th": {
+          "narr": "กระดูกยาวขึ้นที่แผ่นการเจริญ พอปิดก็หยุดสูง",
+          "cap": [
+            "แผ่นการเจริญ",
+            "โรงงานสร้างความสูง"
+          ],
+          "hl": "โรงงานสร้างความสูง"
+        },
+        "vi": {
+          "narr": "Xương dài ra ở sụn tăng trưởng; sụn đóng là dừng cao.",
+          "cap": [
+            "Sụn tăng trưởng",
+            "nhà máy chiều cao"
+          ],
+          "hl": "nhà máy chiều cao"
+        },
+        "en": {
+          "narr": "Bones lengthen at the growth plate; once it closes, growth stops.",
+          "cap": [
+            "The growth plate",
+            "your height factory"
+          ],
+          "hl": "height factory"
+        },
+        "cn": {
+          "narr": "骨头在生长板处长长，一旦闭合就不再长高。",
+          "cap": [
+            "生长板是",
+            "长高的工厂"
+          ],
+          "hl": "长高的工厂"
+        },
+        "ch": {
+          "narr": "骨頭在生長板處長長，一旦閉合就不再長高。",
+          "cap": [
+            "生長板是",
+            "長高的工廠"
+          ],
+          "hl": "長高的工廠"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "⚖️ 시소 기울기",
+      "copy": {
+        "ko": {
+          "narr": "문제는 당분이 성장판을 직접 닫는 게 아니라, 비만을 거쳐서 닫는다는 거예요.",
+          "cap": [
+            "당분이 직접 X",
+            "비만을 거쳐서"
+          ],
+          "hl": "비만을 거쳐서"
+        },
+        "th": {
+          "narr": "น้ำตาลไม่ได้ปิดแผ่นกระดูกตรงๆ แต่ผ่านโรคอ้วน",
+          "cap": [
+            "ไม่ใช่ตรงๆ",
+            "ผ่านโรคอ้วน"
+          ],
+          "hl": "ผ่านโรคอ้วน"
+        },
+        "vi": {
+          "narr": "Đường không đóng sụn trực tiếp — mà qua con đường béo phì.",
+          "cap": [
+            "Không trực tiếp",
+            "qua béo phì"
+          ],
+          "hl": "qua béo phì"
+        },
+        "en": {
+          "narr": "Sugar doesn't close the plate directly — it works through obesity.",
+          "cap": [
+            "Not directly",
+            "through obesity"
+          ],
+          "hl": "through obesity"
+        },
+        "cn": {
+          "narr": "糖不是直接关闭生长板，而是通过肥胖。",
+          "cap": [
+            "不是直接",
+            "通过肥胖"
+          ],
+          "hl": "通过肥胖"
+        },
+        "ch": {
+          "narr": "糖不是直接關閉生長板，而是透過肥胖。",
+          "cap": [
+            "不是直接",
+            "透過肥胖"
+          ],
+          "hl": "透過肥胖"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 도미노",
+      "motion": "🁢 도미노 순차 쓰러짐",
+      "copy": {
+        "ko": {
+          "narr": "달고 기름진 음식 → 체지방 증가 → 렙틴 과다 → 성호르몬이 빨라져요.",
+          "cap": [
+            "체지방 → 렙틴",
+            "성호르몬 가속"
+          ],
+          "hl": "성호르몬 가속"
+        },
+        "th": {
+          "narr": "อาหารหวานมัน เพิ่มไขมัน เลปตินพุ่ง ฮอร์โมนเพศมาเร็ว",
+          "cap": [
+            "ไขมัน → เลปติน",
+            "ฮอร์โมนเพศเร็วขึ้น"
+          ],
+          "hl": "ฮอร์โมนเพศเร็วขึ้น"
+        },
+        "vi": {
+          "narr": "Đồ ngọt béo → tăng mỡ → leptin cao → hormone giới tính sớm.",
+          "cap": [
+            "Mỡ → leptin",
+            "hormone đến sớm"
+          ],
+          "hl": "hormone đến sớm"
+        },
+        "en": {
+          "narr": "Sugary, greasy food → more body fat → leptin → earlier sex hormones.",
+          "cap": [
+            "Fat → leptin",
+            "hormones sooner"
+          ],
+          "hl": "hormones sooner"
+        },
+        "cn": {
+          "narr": "甜腻食物 → 体脂增加 → 瘦素升高 → 性激素提前。",
+          "cap": [
+            "体脂 → 瘦素",
+            "性激素提前"
+          ],
+          "hl": "性激素提前"
+        },
+        "ch": {
+          "narr": "甜膩食物 → 體脂增加 → 瘦素升高 → 性激素提前。",
+          "cap": [
+            "體脂 → 瘦素",
+            "性激素提前"
+          ],
+          "hl": "性激素提前"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG3 조기 폐쇄",
+      "motion": "⏳ 모래 빨리 + 성장판 닫힘",
+      "copy": {
+        "ko": {
+          "narr": "성호르몬이 빨라지면 사춘기와 뼈나이가 앞서고, 성장판이 일찍 닫혀요.",
+          "cap": [
+            "뼈나이가 앞서",
+            "성장판 일찍 닫힘"
+          ],
+          "hl": "성장판 일찍 닫힘"
+        },
+        "th": {
+          "narr": "ฮอร์โมนเร็ว อายุกระดูกล้ำหน้า แผ่นกระดูกปิดเร็ว",
+          "cap": [
+            "อายุกระดูกล้ำ",
+            "ปิดเร็ว"
+          ],
+          "hl": "ปิดเร็ว"
+        },
+        "vi": {
+          "narr": "Hormone sớm khiến tuổi xương vượt trước, sụn đóng sớm.",
+          "cap": [
+            "Tuổi xương vượt",
+            "sụn đóng sớm"
+          ],
+          "hl": "sụn đóng sớm"
+        },
+        "en": {
+          "narr": "Earlier hormones push bone age ahead, so the plate closes early.",
+          "cap": [
+            "Bone age races",
+            "plate closes early"
+          ],
+          "hl": "plate closes early"
+        },
+        "cn": {
+          "narr": "性激素提前，骨龄超前，生长板提早闭合。",
+          "cap": [
+            "骨龄超前",
+            "生长板早闭"
+          ],
+          "hl": "生长板早闭"
+        },
+        "ch": {
+          "narr": "性激素提前，骨齡超前，生長板提早閉合。",
+          "cap": [
+            "骨齡超前",
+            "生長板早閉"
+          ],
+          "hl": "生長板早閉"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26.5s",
+      "kind": "doctor",
+      "motion": "📉 일찍 큰 막대 → 멈춤",
+      "copy": {
+        "ko": {
+          "narr": "그래서 비만한 아이는 어릴 땐 또래보다 크지만, 일찍 멈춰 최종 키는 손해예요.",
+          "cap": [
+            "어릴 땐 크지만",
+            "일찍 멈춤"
+          ],
+          "hl": "일찍 멈춤"
+        },
+        "th": {
+          "narr": "เด็กอ้วนตอนเล็กสูงกว่าเพื่อน แต่หยุดเร็ว สุดท้ายเตี้ยกว่า",
+          "cap": [
+            "ตอนเล็กสูงกว่า",
+            "แต่หยุดเร็ว"
+          ],
+          "hl": "แต่หยุดเร็ว"
+        },
+        "vi": {
+          "narr": "Trẻ béo phì cao sớm hơn bạn, nhưng dừng sớm, chiều cao cuối thiệt.",
+          "cap": [
+            "Cao sớm hơn",
+            "nhưng dừng sớm"
+          ],
+          "hl": "nhưng dừng sớm"
+        },
+        "en": {
+          "narr": "So heavier kids are taller young, but stop early and lose final height.",
+          "cap": [
+            "Taller young",
+            "but stops early"
+          ],
+          "hl": "but stops early"
+        },
+        "cn": {
+          "narr": "所以肥胖的孩子小时候更高，却停得早，最终身高吃亏。",
+          "cap": [
+            "小时候更高",
+            "却停得早"
+          ],
+          "hl": "却停得早"
+        },
+        "ch": {
+          "narr": "所以肥胖的孩子小時候更高，卻停得早，最終身高吃虧。",
+          "cap": [
+            "小時候更高",
+            "卻停得早"
+          ],
+          "hl": "卻停得早"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26.5–30.5s",
+      "kind": "ig",
+      "igLabel": "IG4 건강한 식단",
+      "motion": "🥦 순차 점등 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "좋은 소식은, 설탕·패스트푸드 줄이고 단백질·칼슘 챙기면 성장판을 지킬 수 있어요.",
+          "cap": [
+            "식단만 바꿔도",
+            "성장판 지킨다"
+          ],
+          "hl": "성장판 지킨다"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ ลดน้ำตาลฟาสต์ฟู้ด เพิ่มโปรตีนแคลเซียม ก็รักษาได้",
+          "cap": [
+            "แค่เปลี่ยนอาหาร",
+            "รักษาแผ่นกระดูก"
+          ],
+          "hl": "รักษาแผ่นกระดูก"
+        },
+        "vi": {
+          "narr": "Tin vui: giảm đường, đồ ăn nhanh, thêm đạm và canxi là giữ được sụn.",
+          "cap": [
+            "Đổi bữa ăn",
+            "giữ được sụn"
+          ],
+          "hl": "giữ được sụn"
+        },
+        "en": {
+          "narr": "Good news: cut sugar and fast food, add protein and calcium — you protect the plate.",
+          "cap": [
+            "Just fix the diet",
+            "protect the plate"
+          ],
+          "hl": "protect the plate"
+        },
+        "cn": {
+          "narr": "好消息：少糖少快餐，多补蛋白和钙，就能守住生长板。",
+          "cap": [
+            "调整饮食",
+            "守住生长板"
+          ],
+          "hl": "守住生长板"
+        },
+        "ch": {
+          "narr": "好消息：少糖少快餐，多補蛋白和鈣，就能守住生長板。",
+          "cap": [
+            "調整飲食",
+            "守住生長板"
+          ],
+          "hl": "守住生長板"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30.5–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면, 우리 아이한테 남은 성장 시간이 얼마인지 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "남은 시간 확인"
+          ],
+          "hl": "남은 시간 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกว่าลูกเหลือเวลาสูงอีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "เวลาที่เหลือ"
+          ],
+          "hl": "เวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết con còn lại bao nhiêu thời gian để cao.",
+          "cap": [
+            "Tuổi xương",
+            "thời gian còn lại"
+          ],
+          "hl": "thời gian còn lại"
+        },
+        "en": {
+          "narr": "Bone age shows exactly how much growing time is left.",
+          "cap": [
+            "Bone age",
+            "time left"
+          ],
+          "hl": "time left"
+        },
+        "cn": {
+          "narr": "骨龄能告诉你，孩子还剩多少长高的时间。",
+          "cap": [
+            "骨龄",
+            "剩余时间"
+          ],
+          "hl": "剩余时间"
+        },
+        "ch": {
+          "narr": "骨齡能告訴你，孩子還剩多少長高的時間。",
+          "cap": [
+            "骨齡",
+            "剩餘時間"
+          ],
+          "hl": "剩餘時間"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 남은 성장 시간, 지금 바로 확인해 보세요.",
+          "cap": [
+            "남은 성장 시간",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กเวลาสูงที่เหลือของลูกวันนี้",
+          "cap": [
+            "เวลาที่เหลือ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra thời gian cao còn lại của con ngay hôm nay.",
+          "cap": [
+            "Thời gian còn lại",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check how much growing time your child has left today.",
+          "cap": [
+            "Time left",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子还剩多少长高时间吧。",
+          "cap": [
+            "剩余时间",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子還剩多少長高時間吧。",
+          "cap": [
+            "剩餘時間",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🦴 글로우 + 새 뼈 ↑",
+      "title": "성장판 — 키 크는 공장",
+      "emojis": [
+        "🦴",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized long leg bone standing upright with a clearly highlighted growth-plate band near the top end, soft mint glow at the plate, tiny new bone segments stacking upward with little sparkles to show lengthening. Friendly pediatric style, brand purple #667eea bone with #2dd4bf mint glow. NO text.",
+      "labels": [
+        {
+          "pos": "성장판 밴드",
+          "ko": "성장판",
+          "en": "Growth plate",
+          "th": "แผ่นการเจริญ"
+        },
+        {
+          "pos": "상단 화살표",
+          "ko": "키 ↑",
+          "en": "Height ↑",
+          "th": "สูงขึ้น ↑"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "🁢 도미노 순차 쓰러짐",
+      "title": "비만 → 호르몬 도미노",
+      "emojis": [
+        "🍔",
+        "🧬"
+      ],
+      "prompt": "Flat vector, square, white bg. A left-to-right row of four toppling domino tiles, each tile bearing a simple language-neutral icon: a burger/fries, a rounded body silhouette (body fat), a fat cell, and a hormone droplet. The dominoes fall in sequence toward the right. Brand purple #667eea and mint #2dd4bf, friendly. NO text.",
+      "labels": [
+        {
+          "pos": "도미노1",
+          "ko": "단·기름 음식",
+          "en": "Sugary food",
+          "th": "อาหารหวานมัน"
+        },
+        {
+          "pos": "도미노2",
+          "ko": "체지방 ↑",
+          "en": "Body fat ↑",
+          "th": "ไขมัน ↑"
+        },
+        {
+          "pos": "도미노3",
+          "ko": "렙틴",
+          "en": "Leptin",
+          "th": "เลปติน"
+        },
+        {
+          "pos": "도미노4",
+          "ko": "성호르몬",
+          "en": "Sex hormone",
+          "th": "ฮอร์โมนเพศ"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "⏳ 모래 빨리 + 성장판 닫힘",
+      "title": "성장판 조기 폐쇄",
+      "emojis": [
+        "⏳",
+        "🦵"
+      ],
+      "prompt": "Flat vector, square, white bg. On the left a stylized knee with a growth-plate gap shown nearly closed (gap shrinking), on the right an hourglass whose sand is running down fast. A small fast-forward arrow motif connects them. Warm urgency but friendly, brand purple #667eea with amber-gold sand accents and mint detail. NO text.",
+      "labels": [
+        {
+          "pos": "무릎 성장판",
+          "ko": "일찍 닫힘",
+          "en": "Closes early",
+          "th": "ปิดเร็ว"
+        },
+        {
+          "pos": "모래시계",
+          "ko": "시간 단축",
+          "en": "Time cut short",
+          "th": "เวลาสั้นลง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🥦 순차 점등 + ✨",
+      "title": "성장판 지키는 식단",
+      "emojis": [
+        "🥦",
+        "🥛"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly balanced plate seen from above divided into healthy portions: lean protein (fish/meat), whole grains, colorful vegetables and fruit, with a glass of milk and small calcium/vitamin-D droplet icons beside it. A faint sugary-soda-and-burger icon sits crossed-out and faded to the side. Brand purple #667eea plate rim with mint #2dd4bf fresh accents, warm and wholesome. NO text.",
+      "labels": [
+        {
+          "pos": "접시 중앙",
+          "ko": "균형 식단",
+          "en": "Balanced diet",
+          "th": "อาหารสมดุล"
+        },
+        {
+          "pos": "우유 옆",
+          "ko": "칼슘·비타민D",
+          "en": "Calcium · Vit D",
+          "th": "แคลเซียม·วิตามินดี"
+        },
+        {
+          "pos": "흐린 패스트푸드",
+          "ko": "줄이기",
+          "en": "Cut back",
+          "th": "ลดลง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🍔",
+      "label": "패스트푸드"
+    },
+    {
+      "e": "🍩",
+      "label": "단 음식"
+    },
+    {
+      "e": "🥤",
+      "label": "탄산음료"
+    },
+    {
+      "e": "⚖️",
+      "label": "비만"
+    },
+    {
+      "e": "🧬",
+      "label": "성호르몬"
+    },
+    {
+      "e": "⏳",
+      "label": "시간 단축"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판"
+    },
+    {
+      "e": "📉",
+      "label": "일찍 멈춤"
+    },
+    {
+      "e": "🥦",
+      "label": "균형 식단"
+    },
+    {
+      "e": "🥛",
+      "label": "칼슘"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

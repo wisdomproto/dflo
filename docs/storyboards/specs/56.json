@@ -1,0 +1,797 @@
+{
+  "n": 56,
+  "slug": "키습관5",
+  "title": "키 작은 아이들이 공통으로 하는 습관 5가지",
+  "sub": "수면·편식·운동부족·야식·스마트폰 — 유전 아니라 습관, 바꾸면 키가 달라진다",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "키 안 크는 아이 습관 5가지",
+  "headerTop": "우리 아이 키",
+  "headerMark": "혹시 이 습관?",
+  "accentEmoji": "5️⃣😴",
+  "hook": "키 작은 아이들이 공통으로 하는 습관 5가지, 혹시 우리 아이도?",
+  "misconception": "키는 유전이라 어쩔 수 없다 → 후천적 생활습관이 최종 키를 크게 가른다",
+  "message": "키 안 크는 아이 습관 5가지(늦잠·편식·운동부족·야식·스마트폰)는 전부 바꿀 수 있다. 습관 교정이 건강한 성장의 첫걸음",
+  "tone": "습관을 협박/비난 ❌ → \"바꾸면 달라진다\" 긍정 골든타임. \"우리 아이 키\" 보편. 셀럽/효과 직결 ❌",
+  "cta": "우리 아이 생활습관 점검 + 뼈나이·예측키 측정으로 남은 성장 기회 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "혹시 우리 아이도?",
+    "subject": "키 안 크는 아이 습관",
+    "number": "5",
+    "numLabel": "가지"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"키 작은 아이 공통 습관 5가지 — 유전 아니라 습관\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "수면·식습관",
+      "scenes": "c3–c5",
+      "desc": "\"깊은 잠 8~10시간 / 단백질·칼슘·비타민D·아연\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "운동·야식",
+      "scenes": "c6–c7",
+      "desc": "\"줄넘기 30분 / 야식이 성장호르몬 억제\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "스마트폰·핵심",
+      "scenes": "c8–c9",
+      "desc": "\"미디어 줄이기 → 습관은 바꿀 수 있다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c10",
+      "desc": "\"습관 점검 + 뼈나이 측정 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "5️⃣ 슬램 인 + 😴 팝",
+      "copy": {
+        "ko": {
+          "narr": "키 작은 아이들이 공통으로 하는 습관 5가지, 혹시 우리 아이도 있을까요?",
+          "cap": [
+            "키 작은 아이",
+            "공통 습관 5가지"
+          ],
+          "hl": "공통 습관 5가지"
+        },
+        "th": {
+          "narr": "5 พฤติกรรมที่เด็กตัวเล็กมักทำเหมือนกัน ลูกเราเป็นไหม?",
+          "cap": [
+            "เด็กตัวเล็ก",
+            "5 พฤติกรรมร่วม"
+          ],
+          "hl": "5 พฤติกรรมร่วม"
+        },
+        "vi": {
+          "narr": "5 thói quen mà trẻ thấp bé thường có — con bạn có không?",
+          "cap": [
+            "Trẻ thấp bé",
+            "5 thói quen chung"
+          ],
+          "hl": "5 thói quen chung"
+        },
+        "en": {
+          "narr": "5 habits short-height kids tend to share — does yours have any?",
+          "cap": [
+            "Short-height kids",
+            "5 shared habits"
+          ],
+          "hl": "5 shared habits"
+        },
+        "cn": {
+          "narr": "个子矮的孩子常有的5个习惯，你家孩子中招了吗？",
+          "cap": [
+            "个子矮的孩子",
+            "5个共同习惯"
+          ],
+          "hl": "5个共同习惯"
+        },
+        "ch": {
+          "narr": "個子矮的孩子常有的5個習慣，你家孩子中了嗎？",
+          "cap": [
+            "個子矮的孩子",
+            "5個共同習慣"
+          ],
+          "hl": "5個共同習慣"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🧬➡️🔧 전환",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전이 다라고요? 사실 후천적 습관이 최종 키를 크게 바꿔요.",
+          "cap": [
+            "유전이 다 X",
+            "습관이 바꾼다"
+          ],
+          "hl": "습관이 바꾼다"
+        },
+        "th": {
+          "narr": "คิดว่าความสูงคือพันธุกรรม? จริงๆ พฤติกรรมเปลี่ยนได้มาก",
+          "cap": [
+            "ไม่ใช่แค่พันธุกรรม",
+            "พฤติกรรมเปลี่ยนได้"
+          ],
+          "hl": "พฤติกรรมเปลี่ยนได้"
+        },
+        "vi": {
+          "narr": "Tưởng chiều cao là do gen? Thật ra thói quen thay đổi rất nhiều.",
+          "cap": [
+            "Không chỉ là gen",
+            "thói quen đổi được"
+          ],
+          "hl": "thói quen đổi được"
+        },
+        "en": {
+          "narr": "Think height is all genes? Habits actually shift the final height a lot.",
+          "cap": [
+            "Not just genes",
+            "habits change it"
+          ],
+          "hl": "habits change it"
+        },
+        "cn": {
+          "narr": "以为身高全靠基因？其实习惯能大大改变最终身高。",
+          "cap": [
+            "不只是基因",
+            "习惯能改变"
+          ],
+          "hl": "习惯能改变"
+        },
+        "ch": {
+          "narr": "以為身高全靠基因？其實習慣能大大改變最終身高。",
+          "cap": [
+            "不只是基因",
+            "習慣能改變"
+          ],
+          "hl": "習慣能改變"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "ig",
+      "igLabel": "IG1 습관 5가지",
+      "motion": "① ② ③ ④ ⑤ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "늦잠, 편식, 운동 부족, 야식, 스마트폰. 이 다섯 가지예요.",
+          "cap": [
+            "늦잠·편식·운동",
+            "야식·스마트폰"
+          ],
+          "hl": "야식·스마트폰"
+        },
+        "th": {
+          "narr": "นอนดึก กินเลือก ไม่ออกกำลัง กินดึก มือถือ ห้าอย่างนี้",
+          "cap": [
+            "5 พฤติกรรม",
+            "ที่ต้องระวัง"
+          ],
+          "hl": "5 พฤติกรรม"
+        },
+        "vi": {
+          "narr": "Ngủ muộn, kén ăn, ít vận động, ăn khuya, điện thoại. Năm thứ này.",
+          "cap": [
+            "5 thói quen",
+            "cần để ý"
+          ],
+          "hl": "5 thói quen"
+        },
+        "en": {
+          "narr": "Late nights, picky eating, no exercise, late snacks, screens. These five.",
+          "cap": [
+            "Sleep · food · move",
+            "snacks · screens"
+          ],
+          "hl": "snacks · screens"
+        },
+        "cn": {
+          "narr": "熬夜、挑食、缺运动、夜宵、手机。就这五个。",
+          "cap": [
+            "5个习惯",
+            "要当心"
+          ],
+          "hl": "5个习惯"
+        },
+        "ch": {
+          "narr": "熬夜、挑食、缺運動、宵夜、手機。就這五個。",
+          "cap": [
+            "5個習慣",
+            "要當心"
+          ],
+          "hl": "5個習慣"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14s",
+      "kind": "ig",
+      "igLabel": "IG2 깊은 잠",
+      "motion": "😴 + \"8~10h\" 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "첫째 수면. 성장호르몬은 깊은 잠에서 폭발해요. 하루 8에서 10시간!",
+          "cap": [
+            "깊은 잠에 분비",
+            "하루 8~10시간"
+          ],
+          "hl": "하루 8~10시간"
+        },
+        "th": {
+          "narr": "หนึ่ง การนอน โกรทฮอร์โมนหลั่งตอนหลับลึก วันละ 8–10 ชม.!",
+          "cap": [
+            "หลับลึก",
+            "8–10 ชม./วัน"
+          ],
+          "hl": "8–10 ชม./วัน"
+        },
+        "vi": {
+          "narr": "Thứ nhất, giấc ngủ. Hormone tăng trưởng bùng nổ khi ngủ sâu — 8–10 giờ!",
+          "cap": [
+            "Ngủ sâu",
+            "8–10 giờ/ngày"
+          ],
+          "hl": "8–10 giờ/ngày"
+        },
+        "en": {
+          "narr": "First, sleep. Growth hormone peaks in deep sleep — 8 to 10 hours a day!",
+          "cap": [
+            "Deep sleep",
+            "8–10 hrs/day"
+          ],
+          "hl": "8–10 hrs/day"
+        },
+        "cn": {
+          "narr": "第一，睡眠。生长激素在深睡时爆发——每天8到10小时！",
+          "cap": [
+            "深睡分泌",
+            "每天8~10小时"
+          ],
+          "hl": "每天8~10小时"
+        },
+        "ch": {
+          "narr": "第一，睡眠。生長激素在深睡時爆發——每天8到10小時！",
+          "cap": [
+            "深睡分泌",
+            "每天8~10小時"
+          ],
+          "hl": "每天8~10小時"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14–18s",
+      "kind": "doctor",
+      "motion": "🍗🥛 팝 + 영양소 점등",
+      "copy": {
+        "ko": {
+          "narr": "둘째 식습관. 단백질, 칼슘, 비타민D, 아연을 골고루 챙겨야 잘 커요.",
+          "cap": [
+            "편식 대신",
+            "단백질·칼슘·D·아연"
+          ],
+          "hl": "단백질·칼슘·D·아연"
+        },
+        "th": {
+          "narr": "สอง การกิน โปรตีน แคลเซียม วิตามินดี สังกะสี ครบถึงจะสูง",
+          "cap": [
+            "ไม่กินเลือก",
+            "โปรตีน·แคลเซียม·D·สังกะสี"
+          ],
+          "hl": "โปรตีน·แคลเซียม·D·สังกะสี"
+        },
+        "vi": {
+          "narr": "Thứ hai, ăn uống. Đủ đạm, canxi, vitamin D, kẽm thì con mới cao.",
+          "cap": [
+            "Hết kén ăn",
+            "đạm·canxi·D·kẽm"
+          ],
+          "hl": "đạm·canxi·D·kẽm"
+        },
+        "en": {
+          "narr": "Second, food. Protein, calcium, vitamin D, zinc — balanced means taller.",
+          "cap": [
+            "No picky eating",
+            "protein·calcium·D·zinc"
+          ],
+          "hl": "protein·calcium·D·zinc"
+        },
+        "cn": {
+          "narr": "第二，饮食。蛋白质、钙、维生素D、锌，均衡才长得高。",
+          "cap": [
+            "告别挑食",
+            "蛋白·钙·D·锌"
+          ],
+          "hl": "蛋白·钙·D·锌"
+        },
+        "ch": {
+          "narr": "第二，飲食。蛋白質、鈣、維生素D、鋅，均衡才長得高。",
+          "cap": [
+            "告別挑食",
+            "蛋白·鈣·D·鋅"
+          ],
+          "hl": "蛋白·鈣·D·鋅"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–22s",
+      "kind": "ig",
+      "igLabel": "IG3 운동 자극",
+      "motion": "🤸 점프 + 🦴 펄스",
+      "copy": {
+        "ko": {
+          "narr": "셋째 운동. 줄넘기, 농구처럼 점프 운동이 성장판을 자극해요. 하루 30분!",
+          "cap": [
+            "줄넘기·점프 운동",
+            "하루 30분"
+          ],
+          "hl": "하루 30분"
+        },
+        "th": {
+          "narr": "สาม ออกกำลัง กระโดดเชือก บาส กระตุ้นแผ่นกระดูก วันละ 30 นาที!",
+          "cap": [
+            "กระโดด·บาส",
+            "วันละ 30 นาที"
+          ],
+          "hl": "วันละ 30 นาที"
+        },
+        "vi": {
+          "narr": "Thứ ba, vận động. Nhảy dây, bóng rổ kích thích sụn tăng trưởng — 30 phút!",
+          "cap": [
+            "Nhảy dây·bật nhảy",
+            "30 phút/ngày"
+          ],
+          "hl": "30 phút/ngày"
+        },
+        "en": {
+          "narr": "Third, exercise. Jump rope, basketball stimulate the growth plates — 30 min!",
+          "cap": [
+            "Jump · basketball",
+            "30 min a day"
+          ],
+          "hl": "30 min a day"
+        },
+        "cn": {
+          "narr": "第三，运动。跳绳、篮球能刺激生长板——每天30分钟！",
+          "cap": [
+            "跳绳·弹跳",
+            "每天30分钟"
+          ],
+          "hl": "每天30分钟"
+        },
+        "ch": {
+          "narr": "第三，運動。跳繩、籃球能刺激生長板——每天30分鐘！",
+          "cap": [
+            "跳繩·彈跳",
+            "每天30分鐘"
+          ],
+          "hl": "每天30分鐘"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "🌙🍔 → 📉 GH 다운",
+      "copy": {
+        "ko": {
+          "narr": "넷째 야식. 자기 전 먹으면 인슐린이 올라가 성장호르몬을 눌러요.",
+          "cap": [
+            "자기 전 야식",
+            "성장호르몬 억제"
+          ],
+          "hl": "성장호르몬 억제"
+        },
+        "th": {
+          "narr": "สี่ กินดึก กินก่อนนอนทำอินซูลินขึ้น กดโกรทฮอร์โมน",
+          "cap": [
+            "กินก่อนนอน",
+            "กดโกรทฮอร์โมน"
+          ],
+          "hl": "กดโกรทฮอร์โมน"
+        },
+        "vi": {
+          "narr": "Thứ tư, ăn khuya. Ăn trước khi ngủ làm insulin tăng, ép hormone tăng trưởng.",
+          "cap": [
+            "Ăn trước khi ngủ",
+            "ép hormone"
+          ],
+          "hl": "ép hormone"
+        },
+        "en": {
+          "narr": "Fourth, late snacks. Eating before bed spikes insulin, suppressing growth hormone.",
+          "cap": [
+            "Snacks before bed",
+            "suppress GH"
+          ],
+          "hl": "suppress GH"
+        },
+        "cn": {
+          "narr": "第四，夜宵。睡前吃使胰岛素升高，压制生长激素。",
+          "cap": [
+            "睡前吃东西",
+            "压制生长激素"
+          ],
+          "hl": "压制生长激素"
+        },
+        "ch": {
+          "narr": "第四，宵夜。睡前吃使胰島素升高，壓制生長激素。",
+          "cap": [
+            "睡前吃東西",
+            "壓制生長激素"
+          ],
+          "hl": "壓制生長激素"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "ig",
+      "igLabel": "IG4 스마트폰",
+      "motion": "📱⏳ + 거북목 알림",
+      "copy": {
+        "ko": {
+          "narr": "다섯째 스마트폰. 늦게까지 보면 수면이 깨지고 거북목까지 와요.",
+          "cap": [
+            "스마트폰 줄이기",
+            "수면·자세 보호"
+          ],
+          "hl": "수면·자세 보호"
+        },
+        "th": {
+          "narr": "ห้า มือถือ ดูดึกทำให้นอนเสียและคอยื่น",
+          "cap": [
+            "ลดมือถือ",
+            "ปกป้องการนอน·ท่าทาง"
+          ],
+          "hl": "ลดมือถือ"
+        },
+        "vi": {
+          "narr": "Thứ năm, điện thoại. Xem khuya phá giấc ngủ và gây cổ rùa.",
+          "cap": [
+            "Giảm điện thoại",
+            "giữ giấc ngủ·tư thế"
+          ],
+          "hl": "giữ giấc ngủ·tư thế"
+        },
+        "en": {
+          "narr": "Fifth, screens. Late screen time breaks sleep and brings tech neck.",
+          "cap": [
+            "Less screen time",
+            "protect sleep·posture"
+          ],
+          "hl": "protect sleep·posture"
+        },
+        "cn": {
+          "narr": "第五，手机。看到太晚会破坏睡眠，还会乌龟颈。",
+          "cap": [
+            "减少手机",
+            "护睡眠·护体态"
+          ],
+          "hl": "护睡眠·护体态"
+        },
+        "ch": {
+          "narr": "第五，手機。看到太晚會破壞睡眠，還會烏龜頸。",
+          "cap": [
+            "減少手機",
+            "護睡眠·護體態"
+          ],
+          "hl": "護睡眠·護體態"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "💪✨ 희망 글로우",
+      "copy": {
+        "ko": {
+          "narr": "다행히 이 다섯 습관은 전부 바꿀 수 있어요. 지금 시작하면 돼요.",
+          "cap": [
+            "5가지 습관",
+            "전부 바꿀 수 있다"
+          ],
+          "hl": "전부 바꿀 수 있다"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ ทั้ง 5 พฤติกรรมเปลี่ยนได้หมด เริ่มวันนี้ได้เลย",
+          "cap": [
+            "ทั้ง 5 อย่าง",
+            "เปลี่ยนได้หมด"
+          ],
+          "hl": "เปลี่ยนได้หมด"
+        },
+        "vi": {
+          "narr": "May là cả 5 thói quen đều đổi được. Bắt đầu ngay từ bây giờ.",
+          "cap": [
+            "Cả 5 thói quen",
+            "đều đổi được"
+          ],
+          "hl": "đều đổi được"
+        },
+        "en": {
+          "narr": "Good news — all five habits can change. You can start right now.",
+          "cap": [
+            "All 5 habits",
+            "can change"
+          ],
+          "hl": "can change"
+        },
+        "cn": {
+          "narr": "好消息是，这5个习惯全都能改。现在开始就行。",
+          "cap": [
+            "5个习惯",
+            "全都能改"
+          ],
+          "hl": "全都能改"
+        },
+        "ch": {
+          "narr": "好消息是，這5個習慣全都能改。現在開始就行。",
+          "cap": [
+            "5個習慣",
+            "全都能改"
+          ],
+          "hl": "全都能改"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 생활습관과 남은 성장 기회, 지금 바로 확인해 보세요.",
+          "cap": [
+            "생활습관 점검",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กพฤติกรรมและโอกาสเติบโตของลูกวันนี้",
+          "cap": [
+            "เช็กพฤติกรรม",
+            "วันนี้เลย"
+          ],
+          "hl": "วันนี้เลย"
+        },
+        "vi": {
+          "narr": "Kiểm tra thói quen và cơ hội tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Kiểm tra thói quen",
+            "ngay hôm nay"
+          ],
+          "hl": "ngay hôm nay"
+        },
+        "en": {
+          "narr": "Check your child's habits and growth chances today.",
+          "cap": [
+            "Check habits",
+            "start today"
+          ],
+          "hl": "start today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的习惯和成长机会吧。",
+          "cap": [
+            "检查习惯",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的習慣和成長機會吧。",
+          "cap": [
+            "檢查習慣",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "5점 순차 점등",
+      "title": "키 안 크는 습관 5가지",
+      "emojis": [
+        "😴",
+        "🍽️",
+        "🤸",
+        "🌙",
+        "📱"
+      ],
+      "prompt": "Flat vector, square, white background. Five friendly circular icon badges arranged in a gentle arc: a sleeping moon-and-pillow, a plate with utensils, a child jumping/exercising, a late-night snack with a clock, and a smartphone. Soft brand purple #667eea and mint #2dd4bf accents, rounded shapes, friendly pediatric style. Each badge has a soft glow. NO text.",
+      "labels": [
+        {
+          "pos": "배지1",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "배지2",
+          "ko": "식습관",
+          "en": "Diet",
+          "th": "การกิน"
+        },
+        {
+          "pos": "배지3",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลัง"
+        },
+        {
+          "pos": "배지4",
+          "ko": "야식",
+          "en": "Late snacks",
+          "th": "กินดึก"
+        },
+        {
+          "pos": "배지5",
+          "ko": "스마트폰",
+          "en": "Screens",
+          "th": "มือถือ"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "8~10h 카운트업 + 💤",
+      "title": "깊은 잠 — 성장호르몬 분비",
+      "emojis": [
+        "😴",
+        "🌙",
+        "💤"
+      ],
+      "prompt": "Flat vector, square, white background. A child sleeping peacefully in bed under a crescent moon and soft stars, with gentle glowing sparkles rising from the body to suggest growth hormone release during deep sleep. Calm brand purple gradient with mint sparkles, cozy night scene. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단(별/달)",
+          "ko": "깊은 잠",
+          "en": "Deep sleep",
+          "th": "หลับลึก"
+        },
+        {
+          "pos": "가운데(스파클)",
+          "ko": "8~10시간",
+          "en": "8–10 hrs",
+          "th": "8–10 ชม."
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "🤸 점프 + 🦴 펄스",
+      "title": "점프 운동 — 성장판 자극",
+      "emojis": [
+        "🤸",
+        "🏀",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white background. An energetic child mid-jump with a jump rope, a basketball bouncing nearby, and a subtle highlighted knee growth-plate glowing to show stimulation. Dynamic upward motion lines, brand purple and mint, cheerful active pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "성장판 자극",
+          "en": "Plate boost",
+          "th": "กระตุ้นกระดูก"
+        },
+        {
+          "pos": "하단",
+          "ko": "하루 30분",
+          "en": "30 min/day",
+          "th": "30 นาที/วัน"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "📱 다운 + 거북목 알림",
+      "title": "스마트폰 — 수면·자세 위협",
+      "emojis": [
+        "📱",
+        "🐢",
+        "🌙"
+      ],
+      "prompt": "Flat vector, square, white background. A child hunched over a glowing smartphone at night with a subtly curved 'turtle neck' posture and a sleepless moon above; a gentle red-orange warning glow around the neck and screen. Brand purple base with a soft warning accent, friendly but cautionary pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "화면 주변",
+          "ko": "수면 방해",
+          "en": "Sleep loss",
+          "th": "นอนเสีย"
+        },
+        {
+          "pos": "목(곡선)",
+          "ko": "거북목",
+          "en": "Tech neck",
+          "th": "คอยื่น"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "5️⃣",
+      "label": "습관 5가지"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🍽️",
+      "label": "식습관"
+    },
+    {
+      "e": "🤸",
+      "label": "운동"
+    },
+    {
+      "e": "🌙",
+      "label": "야식"
+    },
+    {
+      "e": "📱",
+      "label": "스마트폰"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판/뼈나이"
+    },
+    {
+      "e": "💪",
+      "label": "습관 개선"
+    },
+    {
+      "e": "🐢",
+      "label": "거북목"
+    },
+    {
+      "e": "🥛",
+      "label": "영양"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

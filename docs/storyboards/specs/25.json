@@ -1,0 +1,795 @@
+{
+  "n": 25,
+  "slug": "자기전폰수면",
+  "title": "자기 전 스마트폰이 키를 막는다 — 황금 수면 시간",
+  "sub": "잠든 후 1~2시간, 성장호르몬이 쏟아진다 — 블루라이트만 막으면 우리 아이 키가 자란다",
+  "category": "B. 생활습관",
+  "topicTitle": "잠들기 전 스마트폰과 키 성장",
+  "headerTop": "우리 아이 키",
+  "headerMark": "자기 전 폰 때문에?",
+  "accentEmoji": "📱🌙",
+  "hook": "우리 아이 키, 혹시 '자기 전 스마트폰' 때문에 덜 크고 있는 거 아세요?",
+  "misconception": "자기 전에 폰 좀 보는 게 키랑 무슨 상관이야? → 블루라이트가 멜라토닌을 막아 깊은 잠을 깨고, 성장호르몬 분비까지 줄인다",
+  "message": "성장호르몬은 잠든 후 1~2시간 깊은 잠에 가장 많이 나온다. 자기 1~2시간 전 폰만 내려놓으면 그 황금 시간을 지킬 수 있다",
+  "tone": "협박 ❌ → 긍정 골든타임(\"폰만 내려놔도 더 클 수 있어요\"). \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이 수면·성장 상태, 뼈나이·예측키로 지금 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "자기 전 1시간!",
+    "subject": "우리 아이 키 막는",
+    "number": "📱",
+    "numLabel": "잠자리 스마트폰"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"자기 전 폰, 키랑 상관있어요\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "황금 수면",
+      "scenes": "c3–c4",
+      "desc": "\"잠든 후 1~2시간, 성장호르몬 폭발\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "블루라이트 범인",
+      "scenes": "c5–c6",
+      "desc": "\"블루라이트→멜라토닌 차단→얕은 잠\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "해법",
+      "scenes": "c7–c8",
+      "desc": "\"자기 1~2시간 전 폰 OFF → 깊은 잠 회복\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📱 슬램 인 + 🌙 페이드",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 혹시 자기 전 스마트폰 때문에 덜 크고 있는 건 아닐까요?",
+          "cap": [
+            "자기 전 스마트폰",
+            "키를 막는다?"
+          ],
+          "hl": "키를 막는다?"
+        },
+        "th": {
+          "narr": "ความสูงของลูก อาจถูกมือถือก่อนนอนขัดขวางอยู่หรือเปล่า?",
+          "cap": [
+            "มือถือก่อนนอน",
+            "ขวางความสูง?"
+          ],
+          "hl": "ขวางความสูง?"
+        },
+        "vi": {
+          "narr": "Chiều cao của con có đang bị điện thoại trước khi ngủ cản trở không?",
+          "cap": [
+            "Điện thoại trước ngủ",
+            "cản chiều cao?"
+          ],
+          "hl": "cản chiều cao?"
+        },
+        "en": {
+          "narr": "Could your child's height be held back by the phone right before bed?",
+          "cap": [
+            "Phone before bed",
+            "blocks height?"
+          ],
+          "hl": "blocks height?"
+        },
+        "cn": {
+          "narr": "孩子的身高，会不会正被睡前的手机悄悄拖住？",
+          "cap": [
+            "睡前手机",
+            "拖住身高？"
+          ],
+          "hl": "拖住身高？"
+        },
+        "ch": {
+          "narr": "孩子的身高，會不會正被睡前的手機悄悄拖住？",
+          "cap": [
+            "睡前手機",
+            "拖住身高？"
+          ],
+          "hl": "拖住身高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💡 팝 + 끄덕",
+      "copy": {
+        "ko": {
+          "narr": "걱정 마세요. 원리만 알면 폰 하나로 키를 지킬 수 있어요.",
+          "cap": [
+            "걱정 마세요",
+            "지킬 수 있어요"
+          ],
+          "hl": "지킬 수 있어요"
+        },
+        "th": {
+          "narr": "ไม่ต้องกังวล รู้หลักแล้ว แค่จัดการมือถือก็รักษาความสูงได้",
+          "cap": [
+            "ไม่ต้องกังวล",
+            "รักษาได้"
+          ],
+          "hl": "รักษาได้"
+        },
+        "vi": {
+          "narr": "Đừng lo. Hiểu nguyên lý rồi, chỉ cần điện thoại là giữ được chiều cao.",
+          "cap": [
+            "Đừng lo",
+            "giữ được"
+          ],
+          "hl": "giữ được"
+        },
+        "en": {
+          "narr": "Don't worry — once you get how it works, you can protect that height.",
+          "cap": [
+            "Don't worry",
+            "you can protect"
+          ],
+          "hl": "you can protect"
+        },
+        "cn": {
+          "narr": "别担心，懂了原理，一部手机也能守住身高。",
+          "cap": [
+            "别担心",
+            "能守住"
+          ],
+          "hl": "能守住"
+        },
+        "ch": {
+          "narr": "別擔心，懂了原理，一支手機也能守住身高。",
+          "cap": [
+            "別擔心",
+            "能守住"
+          ],
+          "hl": "能守住"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 황금 수면 시간",
+      "motion": "🌙 + \"1~2h\" 글로우 점등",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬은 잠든 후 1에서 2시간, 가장 깊은 잠에서 쏟아져 나와요.",
+          "cap": [
+            "잠든 후 1~2시간",
+            "성장호르몬 폭발"
+          ],
+          "hl": "성장호르몬 폭발"
+        },
+        "th": {
+          "narr": "ฮอร์โมนการเจริญเติบโตหลั่งมากที่สุดใน 1–2 ชั่วโมงแรกของการหลับลึก",
+          "cap": [
+            "1–2 ชม.แรก",
+            "ฮอร์โมนพุ่ง"
+          ],
+          "hl": "ฮอร์โมนพุ่ง"
+        },
+        "vi": {
+          "narr": "Hormone tăng trưởng tiết ra nhiều nhất trong 1–2 giờ đầu của giấc ngủ sâu.",
+          "cap": [
+            "1–2 giờ đầu ngủ",
+            "hormone bùng nổ"
+          ],
+          "hl": "hormone bùng nổ"
+        },
+        "en": {
+          "narr": "Growth hormone pours out in the first 1 to 2 hours of deep sleep.",
+          "cap": [
+            "First 1–2 hours",
+            "GH surges"
+          ],
+          "hl": "GH surges"
+        },
+        "cn": {
+          "narr": "生长激素在入睡后头1到2小时的深睡里大量分泌。",
+          "cap": [
+            "入睡头1–2小时",
+            "生长激素爆发"
+          ],
+          "hl": "生长激素爆发"
+        },
+        "ch": {
+          "narr": "生長激素在入睡後頭1到2小時的深睡裡大量分泌。",
+          "cap": [
+            "入睡頭1–2小時",
+            "生長激素爆發"
+          ],
+          "hl": "生長激素爆發"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "😴 페이드 + 부드러운 펄스",
+      "copy": {
+        "ko": {
+          "narr": "그래서 얼마나 자느냐보다, 얼마나 깊이 자느냐가 키를 좌우해요.",
+          "cap": [
+            "깊은 잠이",
+            "키를 만든다"
+          ],
+          "hl": "키를 만든다"
+        },
+        "th": {
+          "narr": "ดังนั้นหลับลึกแค่ไหน สำคัญต่อความสูงยิ่งกว่าหลับนานแค่ไหน",
+          "cap": [
+            "หลับลึก",
+            "สร้างความสูง"
+          ],
+          "hl": "สร้างความสูง"
+        },
+        "vi": {
+          "narr": "Nên ngủ sâu đến đâu, quyết định chiều cao hơn cả ngủ bao lâu.",
+          "cap": [
+            "Ngủ sâu",
+            "tạo chiều cao"
+          ],
+          "hl": "tạo chiều cao"
+        },
+        "en": {
+          "narr": "So how deeply they sleep matters for height even more than how long.",
+          "cap": [
+            "Deep sleep",
+            "builds height"
+          ],
+          "hl": "builds height"
+        },
+        "cn": {
+          "narr": "所以睡得多深，比睡得多久更决定身高。",
+          "cap": [
+            "深睡",
+            "决定身高"
+          ],
+          "hl": "决定身高"
+        },
+        "ch": {
+          "narr": "所以睡得多深，比睡得多久更決定身高。",
+          "cap": [
+            "深睡",
+            "決定身高"
+          ],
+          "hl": "決定身高"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 블루라이트 → 멜라토닌 차단",
+      "motion": "📱 블루라이트 빔 + 🚫 멜라토닌",
+      "copy": {
+        "ko": {
+          "narr": "그런데 스마트폰 블루라이트가 잠을 부르는 멜라토닌을 딱 막아버려요.",
+          "cap": [
+            "블루라이트가",
+            "멜라토닌 차단"
+          ],
+          "hl": "멜라토닌 차단"
+        },
+        "th": {
+          "narr": "แต่แสงสีฟ้าจากมือถือ ไปสกัดเมลาโทนินที่ช่วยให้หลับ",
+          "cap": [
+            "แสงสีฟ้า",
+            "สกัดเมลาโทนิน"
+          ],
+          "hl": "สกัดเมลาโทนิน"
+        },
+        "vi": {
+          "narr": "Nhưng ánh sáng xanh từ điện thoại chặn đứng melatonin gây buồn ngủ.",
+          "cap": [
+            "Ánh sáng xanh",
+            "chặn melatonin"
+          ],
+          "hl": "chặn melatonin"
+        },
+        "en": {
+          "narr": "But the phone's blue light blocks melatonin, the hormone that brings sleep.",
+          "cap": [
+            "Blue light",
+            "blocks melatonin"
+          ],
+          "hl": "blocks melatonin"
+        },
+        "cn": {
+          "narr": "可手机的蓝光，会挡住帮你入睡的褪黑素。",
+          "cap": [
+            "蓝光",
+            "挡住褪黑素"
+          ],
+          "hl": "挡住褪黑素"
+        },
+        "ch": {
+          "narr": "可手機的藍光，會擋住幫你入睡的褪黑激素。",
+          "cap": [
+            "藍光",
+            "擋住褪黑激素"
+          ],
+          "hl": "擋住褪黑激素"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "🧠 \"낮인 줄\" 깜빡 + 살짝 흔들",
+      "copy": {
+        "ko": {
+          "narr": "뇌는 아직 낮인 줄 착각하고, 깊은 잠도 성장호르몬도 같이 줄어들죠.",
+          "cap": [
+            "뇌는 낮으로 착각",
+            "성장호르몬 ↓"
+          ],
+          "hl": "성장호르몬 ↓"
+        },
+        "th": {
+          "narr": "สมองเข้าใจผิดว่ายังกลางวัน หลับลึกและฮอร์โมนเลยลดลงตาม",
+          "cap": [
+            "สมองนึกว่ากลางวัน",
+            "ฮอร์โมนลดลง"
+          ],
+          "hl": "ฮอร์โมนลดลง"
+        },
+        "vi": {
+          "narr": "Não tưởng vẫn là ban ngày, nên ngủ sâu và hormone đều giảm theo.",
+          "cap": [
+            "Não tưởng ban ngày",
+            "hormone giảm"
+          ],
+          "hl": "hormone giảm"
+        },
+        "en": {
+          "narr": "The brain thinks it's still daytime, so deep sleep and GH both drop.",
+          "cap": [
+            "Brain thinks daytime",
+            "GH drops"
+          ],
+          "hl": "GH drops"
+        },
+        "cn": {
+          "narr": "大脑误以为还是白天，深睡和生长激素就一起变少。",
+          "cap": [
+            "大脑误当白天",
+            "生长激素↓"
+          ],
+          "hl": "生长激素↓"
+        },
+        "ch": {
+          "narr": "大腦誤以為還是白天，深睡和生長激素就一起變少。",
+          "cap": [
+            "大腦誤當白天",
+            "生長激素↓"
+          ],
+          "hl": "生長激素↓"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 자기 1~2시간 전 폰 OFF",
+      "motion": "📵 스위치 OFF + 🌙 평온",
+      "copy": {
+        "ko": {
+          "narr": "해법은 간단해요. 자기 1에서 2시간 전, 스마트폰만 내려놓으면 돼요.",
+          "cap": [
+            "자기 1~2시간 전",
+            "폰 내려놓기"
+          ],
+          "hl": "폰 내려놓기"
+        },
+        "th": {
+          "narr": "ทางแก้ง่ายมาก แค่วางมือถือ 1–2 ชั่วโมงก่อนนอน",
+          "cap": [
+            "1–2 ชม.ก่อนนอน",
+            "วางมือถือ"
+          ],
+          "hl": "วางมือถือ"
+        },
+        "vi": {
+          "narr": "Cách rất đơn giản: đặt điện thoại xuống 1–2 giờ trước khi ngủ.",
+          "cap": [
+            "1–2 giờ trước ngủ",
+            "buông điện thoại"
+          ],
+          "hl": "buông điện thoại"
+        },
+        "en": {
+          "narr": "The fix is simple: just put the phone down 1 to 2 hours before bed.",
+          "cap": [
+            "1–2 hours before bed",
+            "put phone down"
+          ],
+          "hl": "put phone down"
+        },
+        "cn": {
+          "narr": "办法很简单：睡前1到2小时，把手机放下就好。",
+          "cap": [
+            "睡前1–2小时",
+            "放下手机"
+          ],
+          "hl": "放下手机"
+        },
+        "ch": {
+          "narr": "辦法很簡單：睡前1到2小時，把手機放下就好。",
+          "cap": [
+            "睡前1–2小時",
+            "放下手機"
+          ],
+          "hl": "放下手機"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 황금 수면 루틴",
+      "motion": "📖🌙💪 순차 점등 + 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "대신 독서나 대화, 어둡고 조용한 방. 그것만으로 키가 자라요.",
+          "cap": [
+            "어둡고 조용한 방",
+            "키가 자란다"
+          ],
+          "hl": "키가 자란다"
+        },
+        "th": {
+          "narr": "แทนด้วยการอ่านหรือพูดคุย ห้องมืดเงียบ เท่านี้ความสูงก็มา",
+          "cap": [
+            "ห้องมืดเงียบ",
+            "ความสูงมาเอง"
+          ],
+          "hl": "ความสูงมาเอง"
+        },
+        "vi": {
+          "narr": "Thay bằng đọc sách, trò chuyện, phòng tối yên tĩnh — vậy là con cao lên.",
+          "cap": [
+            "Phòng tối yên tĩnh",
+            "con cao lên"
+          ],
+          "hl": "con cao lên"
+        },
+        "en": {
+          "narr": "Swap in reading or talking, a dark quiet room — that alone grows height.",
+          "cap": [
+            "Dark, quiet room",
+            "height grows"
+          ],
+          "hl": "height grows"
+        },
+        "cn": {
+          "narr": "换成阅读、聊天，昏暗安静的房间，光这样身高就长。",
+          "cap": [
+            "昏暗安静房间",
+            "身高就长"
+          ],
+          "hl": "身高就长"
+        },
+        "ch": {
+          "narr": "換成閱讀、聊天，昏暗安靜的房間，光這樣身高就長。",
+          "cap": [
+            "昏暗安靜房間",
+            "身高就長"
+          ],
+          "hl": "身高就長"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이가 잘 자고 잘 크고 있는지는, 뼈나이로 정확히 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "성장 상태 확인"
+          ],
+          "hl": "성장 상태 확인"
+        },
+        "th": {
+          "narr": "ลูกหลับดีและโตดีไหม ดูได้ชัดจากอายุกระดูก",
+          "cap": [
+            "อายุกระดูก",
+            "เช็กการเติบโต"
+          ],
+          "hl": "เช็กการเติบโต"
+        },
+        "vi": {
+          "narr": "Con ngủ tốt và lớn tốt chưa, tuổi xương cho biết chính xác.",
+          "cap": [
+            "Tuổi xương",
+            "kiểm tra tăng trưởng"
+          ],
+          "hl": "kiểm tra tăng trưởng"
+        },
+        "en": {
+          "narr": "Whether your child sleeps and grows well — bone age tells you precisely.",
+          "cap": [
+            "Bone age",
+            "check growth"
+          ],
+          "hl": "check growth"
+        },
+        "cn": {
+          "narr": "孩子睡得好不好、长得好不好，骨龄能精准告诉你。",
+          "cap": [
+            "骨龄",
+            "查看成长"
+          ],
+          "hl": "查看成长"
+        },
+        "ch": {
+          "narr": "孩子睡得好不好、長得好不好，骨齡能精準告訴你。",
+          "cap": [
+            "骨齡",
+            "查看成長"
+          ],
+          "hl": "查看成長"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 수면과 성장, 지금 바로 확인해 보세요.",
+          "cap": [
+            "수면·성장 상태",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กการนอนและการเติบโตของลูกวันนี้",
+          "cap": [
+            "การนอน·การโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra giấc ngủ và tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Giấc ngủ·tăng trưởng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's sleep and growth today.",
+          "cap": [
+            "Sleep & growth",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的睡眠和成长吧。",
+          "cap": [
+            "睡眠和成长",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的睡眠和成長吧。",
+          "cap": [
+            "睡眠和成長",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "1~2h 글로우 점등",
+      "title": "황금 수면 시간 — 성장호르몬 분비",
+      "emojis": [
+        "🌙",
+        "📈",
+        "💤"
+      ],
+      "prompt": "Flat vector, square, white bg. A peaceful sleeping child curled under a blanket at night with a crescent moon and tiny stars above; a soft glowing curve rises from the child showing a hormone surge peaking just after falling asleep, with sparkles at the peak. Brand purple #667eea to mint #2dd4bf gradient glow, gentle and friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "곡선 피크",
+          "ko": "성장호르몬 폭발",
+          "en": "GH surge",
+          "th": "ฮอร์โมนพุ่ง"
+        },
+        {
+          "pos": "하단",
+          "ko": "잠든 후 1~2시간",
+          "en": "1–2h after sleep",
+          "th": "1–2 ชม.หลังหลับ"
+        },
+        {
+          "pos": "달 옆",
+          "ko": "깊은 잠",
+          "en": "deep sleep",
+          "th": "หลับลึก"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "블루빔 + 멜라토닌 🚫",
+      "title": "블루라이트가 멜라토닌을 막는다",
+      "emojis": [
+        "📱",
+        "🚫",
+        "🌙"
+      ],
+      "prompt": "Flat vector, square, white bg. A smartphone in the dark emitting a cone of cold blue light toward a child's face; on the other side a dimming melatonin moon icon with a soft 'blocked' barrier between the blue beam and the moon. Cold blue beam contrasts with warm calm tones; brand purple #667eea accents. Friendly pediatric, simple shapes. NO text.",
+      "labels": [
+        {
+          "pos": "폰 빔",
+          "ko": "블루라이트",
+          "en": "Blue light",
+          "th": "แสงสีฟ้า"
+        },
+        {
+          "pos": "달 아이콘",
+          "ko": "멜라토닌 차단",
+          "en": "Melatonin blocked",
+          "th": "เมลาโทนินถูกสกัด"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "스위치 OFF + 평온",
+      "title": "자기 1~2시간 전 폰 OFF",
+      "emojis": [
+        "📵",
+        "🌙",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A smartphone face-down on a nightstand with a gentle power-off toggle, beside a cozy bed where a calm child rests; a soft moon and a warm glow fill the room signaling restored deep sleep. Brand purple #667eea to mint #2dd4bf, soothing nighttime, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "폰 위",
+          "ko": "1~2시간 전 OFF",
+          "en": "Off 1–2h before",
+          "th": "ปิด 1–2 ชม.ก่อน"
+        },
+        {
+          "pos": "침대 옆",
+          "ko": "깊은 잠 회복",
+          "en": "Deep sleep restored",
+          "th": "หลับลึกกลับมา"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "순차 점등 골드 글로우",
+      "title": "황금 수면 루틴 4가지",
+      "emojis": [
+        "📖",
+        "🌙",
+        "💪"
+      ],
+      "prompt": "Flat vector, square, white bg. Four soft rounded icons arranged in a gentle arc: an open book (reading), a dark crescent-moon room (dark & quiet), a child running/playing in daylight (daytime activity), and a balanced healthy plate; a warm golden glow links them as a bedtime routine. Brand purple #667eea + mint #2dd4bf with soft gold accents, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "독서·대화",
+          "en": "Read & talk",
+          "th": "อ่าน·พูดคุย"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "어둡고 조용한 방",
+          "en": "Dark quiet room",
+          "th": "ห้องมืดเงียบ"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "낮 신체활동",
+          "en": "Daytime activity",
+          "th": "ออกกำลังกลางวัน"
+        },
+        {
+          "pos": "아이콘4",
+          "ko": "균형 식단",
+          "en": "Balanced diet",
+          "th": "อาหารสมดุล"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📱",
+      "label": "스마트폰"
+    },
+    {
+      "e": "🌙",
+      "label": "밤·수면"
+    },
+    {
+      "e": "💤",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "📈",
+      "label": "성장호르몬"
+    },
+    {
+      "e": "🧠",
+      "label": "뇌 착각"
+    },
+    {
+      "e": "🚫",
+      "label": "멜라토닌 차단"
+    },
+    {
+      "e": "📵",
+      "label": "폰 OFF"
+    },
+    {
+      "e": "📖",
+      "label": "독서·대화"
+    },
+    {
+      "e": "💪",
+      "label": "낮 활동"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

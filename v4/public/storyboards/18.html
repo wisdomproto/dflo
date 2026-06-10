@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — ADHD 약물이 키 성장에 미치는 실제 영향</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #18</span>
+  <h1>ADHD 약 먹으면 키 안 큰다? 진짜 답</h1>
+  <div class="sub">식욕억제는 일시적 — 따라잡기 성장으로 회복, 끊지 말고 관리하며 키우자</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>끊지 마세요!</b></div>
+      <div class="subj">ADHD 약 먹어도 키</div>
+      <div class="big4"><div class="n" style="font-size:66px">따라잡아요</div><div class="lab">관리만 하면</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>ADHD 약 먹어도 키</b> 따라잡아요관리만 하면"</li>
+        <li><b>거대 숫자 "따라잡아요"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #18 「ADHD 약물이 키 성장에 미치는 실제 영향」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"ADHD 약 먹으면 키가 안 큰다? 부모님들 제일 걱정하시는 거, 오늘 정리해 드릴게요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>ADHD 약은 키를 영구적으로 막는다 → 그래서 약을 끊어야 한다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>식욕억제로 일시적 지연은 있어도 따라잡기 성장으로 회복 — MTA 10년 추적상 최종 키 차이 없음. 끊지 말고 관리하며 뼈나이로 모니터링</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박·불안 조장 ❌ → 긍정·안심("일시적이고 관리하면 따라잡는다"). 약 끊으라 X. "우리 아이 키" 보편. CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>약 끊지 말고 뼈나이·예측키로 성장 모니터링 시작 → 홈페이지에서 지금 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·걱정</h4><p>c1–c2<br>"ADHD 약 먹으면 키 안 큰다? 왜 이 걱정이 생길까 — 식욕억제"</p></div><div class="act"><span class="n">ACT 2</span><h4>진짜 원인</h4><p>c3–c4<br>"각성제가 식욕을 눌러 일시적 지연 — 하지만 그게 끝이 아님"</p></div><div class="act"><span class="n">ACT 3</span><h4>반전·근거</h4><p>c5–c6<br>"따라잡기 성장으로 회복 → MTA 10년 추적: 최종 키 차이 없음"</p></div><div class="act"><span class="n">ACT 4</span><h4>관리법</h4><p>c7–c8<br>"끊지 말고 관리 — 저녁 고칼로리·뼈나이 모니터링·주치의 소통"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 성장 추적 → CTA 측정"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">ADHD 약 괜찮을까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">💊📈</div></div>
+        <div class="ph-cap"><div class="l">ADHD 약 먹으면</div><div class="l"><span class="y2">키 안 큰다?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">ADHD 약 먹으면 키가 안 큰다? 부모님들 제일 걱정하시는 거, 오늘 정리해 드릴게요.</td><td><span class="cap2">ADHD 약 먹으면<br><span class="y">키 안 큰다?</span></span></td><td class="mo">💊 슬램 인 + ❓ 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">이 걱정, 약이 식욕을 떨어뜨려서 생기는 거예요. 밥을 잘 안 먹으니까요.</td><td><span class="cap2">약이 <span class="y">식욕을</span><br>떨어뜨려서</span></td><td class="mo">🍽️ 흔들 · 화살표 ↓</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 식욕억제</span></td><td class="narr">ADHD 약은 각성제라 집중은 올리지만 식욕을 눌러요. 그래서 초반엔 살짝 더디게 클 수 있죠.</td><td><span class="cap2">각성제가<br><span class="y">식욕 억제</span></span></td><td class="mo">💊→🍽️ 화살표 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 여기서 중요한 게 있어요. 이 지연은 '일시적'이라는 거예요.</td><td><span class="cap2">이 지연은<br><span class="y">일시적!</span></span></td><td class="mo">✋ "잠깐" 정지 + ✨</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 따라잡기 성장</span></td><td class="narr">용량을 조절하거나 잘 관리하면, '따라잡기 성장'으로 다시 정상 궤도로 돌아와요.</td><td><span class="cap2"><span class="y">따라잡기 성장</span>으로<br>정상 회복</span></td><td class="mo">📈 딥 후 반등 ↗</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22.5s</td><td><span class="scr ig">🖼 IG3 MTA 10년 추적</span></td><td class="narr">유명한 MTA 연구, 10년을 추적했는데 최종 성인 키는 차이가 없었어요. 있어봐야 1~2센티예요.</td><td><span class="cap2">10년 추적: 최종 키<br><span class="y">차이 없음</span></span></td><td class="mo">⚖️ 양팔 균형 + 카운트업</td></tr><tr><td class="c-id">c7</td><td class="c-time">22.5–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그러니까 키 걱정 때문에 약을 끊는 건 오히려 손해예요. 끊지 말고 관리가 답이에요.</td><td><span class="cap2">약 끊지 말고<br><span class="y">관리가 답</span></span></td><td class="mo">🚫💊 가위표 + 고개 저음</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 3가지 관리법</span></td><td class="narr">관리는 세 가지. 저녁에 고칼로리로 영양 채우고, 뼈나이로 성장을 추적하고, 주치의와 복용 시간을 맞춰요.</td><td><span class="cap2">영양·<span class="y">뼈나이 추적</span><br>주치의 소통</span></td><td class="mo">1️⃣2️⃣3️⃣ 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이랑 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있어요.</td><td><span class="cap2">뼈나이·예측키로<br><span class="y">성장 확인</span></span></td><td class="mo">🦴🔍 팝 + ✨</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보세요.</td><td><span class="cap2">뼈나이·예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 💊→🍽️ 화살표 점등</div><h3>각성제 → 식욕억제 메커니즘</h3></div>
+        <div class="body">
+          <div class="sketch">💊 🧠 🍽️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Left: a friendly medicine pill with a small spark/brain icon (focus boost). A purple arrow flows right toward a dinner plate with a gentle downward dimming overlay (appetite turned down). Soft brand purple #667eea with mint #2dd4bf accents, friendly pediatric style. Clean simple cause-and-effect layout. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(알약)</td><td>각성제</td><td>Stimulant</td><td class="thai">ยากระตุ้น</td></tr><tr><td>오른쪽(접시)</td><td>식욕 ↓</td><td>Appetite ↓</td><td class="thai">ความอยากอาหาร ↓</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 딥 후 반등 ↗</div><h3>따라잡기 성장 — 회복 곡선</h3></div>
+        <div class="body">
+          <div class="sketch">📉 📈 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A growth curve that dips slightly in the middle then rebounds and rises back up to rejoin a dashed normal-growth reference line, with a sparkle where it catches up. A small cheerful child silhouette climbing alongside the curve. Brand purple→mint gradient line, friendly pediatric. Conveys 'temporary dip then catch-up recovery.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>곡선 저점</td><td>일시적 지연</td><td>Temporary dip</td><td class="thai">ชะลอชั่วคราว</td></tr><tr><td>곡선 회복점</td><td>따라잡기 성장</td><td>Catch-up</td><td class="thai">โตชดเชย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 양팔 균형 + 카운트업</div><h3>MTA 10년 — 최종 키 차이 없음</h3></div>
+        <div class="body">
+          <div class="sketch">⚖️ 📏 🟰</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A balanced scale or two child height bars of nearly equal height standing side by side (one with a tiny pill icon, one without), an equals-sign feeling between them, soft mint checkmark glow. Conveys 'final adult height is the same.' Brand purple #667eea + mint #2dd4bf, friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 막대</td><td>약물 복용군</td><td>On meds</td><td class="thai">กลุ่มใช้ยา</td></tr><tr><td>오른쪽 막대</td><td>비복용군</td><td>No meds</td><td class="thai">กลุ่มไม่ใช้ยา</td></tr><tr><td>가운데</td><td>≈ 차이 없음</td><td>≈ same</td><td class="thai">≈ เท่ากัน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 1·2·3 순차 점등</div><h3>3가지 성장 관리법</h3></div>
+        <div class="body">
+          <div class="sketch">🍗 🦴 🩺</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly circular icons in a row: 1) a hearty high-calorie dinner plate, 2) a hand-bone / X-ray bone-age icon with a magnifier, 3) a doctor stethoscope with a clock for dose timing. Even spacing, soft connecting line. Brand purple #667eea with mint #2dd4bf accents, friendly pediatric. Conveys 'three management steps.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr><tr><td>아이콘2</td><td>뼈나이 추적</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr><tr><td>아이콘3</td><td>주치의 소통</td><td>Doctor</td><td class="thai">ปรึกษาแพทย์</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>💊</b> ADHD 약물</span><span class="emo"><b>🍽️</b> 식욕억제</span><span class="emo"><b>🧠</b> 각성제·집중</span><span class="emo"><b>📉</b> 일시적 지연</span><span class="emo"><b>📈</b> 따라잡기 성장</span><span class="emo"><b>⚖️</b> 최종 키 차이 없음</span><span class="emo"><b>🚫</b> 끊지 마세요</span><span class="emo"><b>🍗</b> 고칼로리 영양</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>🩺</b> 주치의 소통</span><span class="emo"><b>✨</b> 안심·강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ADHD 약 먹으면 키가 안 큰다? 부모님들 제일 걱정하시는 거, 오늘 정리해 드릴게요.<br><span class="cap2">ADHD 약 먹으면 · <span class="y">키 안 큰다?</span></span></td></tr><tr><td class="c-id">c2</td><td>이 걱정, 약이 식욕을 떨어뜨려서 생기는 거예요. 밥을 잘 안 먹으니까요.<br><span class="cap2">약이 식욕을 · 떨어뜨려서</span></td></tr><tr><td class="c-id">c3</td><td>ADHD 약은 각성제라 집중은 올리지만 식욕을 눌러요. 그래서 초반엔 살짝 더디게 클 수 있죠.<br><span class="cap2">각성제가 · <span class="y">식욕 억제</span></span></td></tr><tr><td class="c-id">c4</td><td>그런데 여기서 중요한 게 있어요. 이 지연은 '일시적'이라는 거예요.<br><span class="cap2">이 지연은 · <span class="y">일시적!</span></span></td></tr><tr><td class="c-id">c5</td><td>용량을 조절하거나 잘 관리하면, '따라잡기 성장'으로 다시 정상 궤도로 돌아와요.<br><span class="cap2">따라잡기 성장으로 · 정상 회복</span></td></tr><tr><td class="c-id">c6</td><td>유명한 MTA 연구, 10년을 추적했는데 최종 성인 키는 차이가 없었어요. 있어봐야 1~2센티예요.<br><span class="cap2">10년 추적: 최종 키 · <span class="y">차이 없음</span></span></td></tr><tr><td class="c-id">c7</td><td>그러니까 키 걱정 때문에 약을 끊는 건 오히려 손해예요. 끊지 말고 관리가 답이에요.<br><span class="cap2">약 끊지 말고 · <span class="y">관리가 답</span></span></td></tr><tr><td class="c-id">c8</td><td>관리는 세 가지. 저녁에 고칼로리로 영양 채우고, 뼈나이로 성장을 추적하고, 주치의와 복용 시간을 맞춰요.<br><span class="cap2">영양·뼈나이 추적 · 주치의 소통</span></td></tr><tr><td class="c-id">c9</td><td>뼈나이랑 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있어요.<br><span class="cap2">뼈나이·예측키로 · <span class="y">성장 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보세요.<br><span class="cap2">뼈나이·예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ยา ADHD ทำให้ลูกตัวไม่สูง? วันนี้เคลียร์ให้ชัด<br><span class="cap2">ยา ADHD · <span class="y">ตัวไม่สูง?</span></span></td></tr><tr><td class="c-id">c2</td><td>ความกังวลนี้มาจากยาทำให้ความอยากอาหารลด เด็กกินน้อยลง<br><span class="cap2">ยาลด · <span class="y">ความอยากอาหาร</span></span></td></tr><tr><td class="c-id">c3</td><td>ยา ADHD เป็นยากระตุ้น เพิ่มสมาธิแต่กดความอยากอาหาร ช่วงแรกอาจโตช้าลง<br><span class="cap2">ยากระตุ้น · <span class="y">กดความอยากอาหาร</span></span></td></tr><tr><td class="c-id">c4</td><td>แต่จุดสำคัญคือ การโตช้านี้เป็นแค่ชั่วคราว<br><span class="cap2">โตช้านี้ · <span class="y">แค่ชั่วคราว</span></span></td></tr><tr><td class="c-id">c5</td><td>ปรับขนาดยาหรือดูแลดีๆ จะกลับมาปกติด้วยการโตชดเชย<br><span class="cap2">การโตชดเชย · กลับมาปกติ</span></td></tr><tr><td class="c-id">c6</td><td>งานวิจัย MTA ติดตาม 10 ปี ส่วนสูงสุดท้ายไม่ต่างกัน อย่างมากแค่ 1–2 ซม.<br><span class="cap2">ติดตาม 10 ปี · <span class="y">ไม่ต่างกัน</span></span></td></tr><tr><td class="c-id">c7</td><td>ดังนั้นหยุดยาเพราะกลัวเตี้ยกลับเสียมากกว่า อย่าหยุด แต่จัดการ<br><span class="cap2">อย่าหยุดยา · <span class="y">แต่จัดการ</span></span></td></tr><tr><td class="c-id">c8</td><td>จัดการ 3 อย่าง: เติมแคลอรีมื้อเย็น ติดตามด้วยอายุกระดูก คุยกับแพทย์เรื่องเวลายา<br><span class="cap2">โภชนาการ·อายุกระดูก · คุยกับแพทย์</span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกและส่วนสูงที่คาดการณ์ บอกได้ทันทีว่าลูกโตดีไหม<br><span class="cap2">อายุกระดูก·คาดการณ์ · <span class="y">เช็กการโต</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้<br><span class="cap2">อายุกระดูก·คาดการณ์ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Uống thuốc ADHD thì con không cao? Hôm nay giải đáp rõ.<br><span class="cap2">Thuốc ADHD · <span class="y">khiến thấp?</span></span></td></tr><tr><td class="c-id">c2</td><td>Lo lắng này đến từ việc thuốc làm giảm thèm ăn, con ăn ít đi.<br><span class="cap2">Thuốc giảm · <span class="y">thèm ăn</span></span></td></tr><tr><td class="c-id">c3</td><td>Thuốc ADHD là chất kích thích, tăng tập trung nhưng ức chế thèm ăn — đầu có thể chậm lớn.<br><span class="cap2">Chất kích thích · <span class="y">ức chế thèm ăn</span></span></td></tr><tr><td class="c-id">c4</td><td>Nhưng điểm quan trọng: sự chậm này chỉ là tạm thời.<br><span class="cap2">Chậm này · <span class="y">chỉ tạm thời</span></span></td></tr><tr><td class="c-id">c5</td><td>Chỉnh liều và quản lý tốt, con quay lại quỹ đạo nhờ tăng trưởng bù.<br><span class="cap2">Tăng trưởng bù · về bình thường</span></td></tr><tr><td class="c-id">c6</td><td>Nghiên cứu MTA theo dõi 10 năm: chiều cao cuối không khác biệt, cùng lắm 1–2cm.<br><span class="cap2">10 năm: chiều cao · <span class="y">không khác biệt</span></span></td></tr><tr><td class="c-id">c7</td><td>Nên ngừng thuốc vì sợ thấp lại thiệt hơn — đừng ngừng, hãy quản lý.<br><span class="cap2">Đừng ngừng thuốc · <span class="y">hãy quản lý</span></span></td></tr><tr><td class="c-id">c8</td><td>Ba cách: bữa tối giàu calo, theo dõi bằng tuổi xương, bàn với bác sĩ về giờ uống.<br><span class="cap2">Dinh dưỡng·tuổi xương · trao đổi bác sĩ</span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương và chiều cao dự đoán cho biết ngay con có lớn tốt không.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra tăng trưởng</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Does ADHD medication stunt your child's height? Let's set it straight today.<br><span class="cap2">ADHD meds · <span class="y">stunt height?</span></span></td></tr><tr><td class="c-id">c2</td><td>This worry comes from the meds curbing appetite — kids eat less.<br><span class="cap2">Meds curb · <span class="y">appetite</span></span></td></tr><tr><td class="c-id">c3</td><td>ADHD meds are stimulants — they boost focus but suppress appetite, so growth may slow at first.<br><span class="cap2">Stimulant · <span class="y">suppresses appetite</span></span></td></tr><tr><td class="c-id">c4</td><td>But here's the key — this slowdown is only temporary.<br><span class="cap2">This slowdown · <span class="y">only temporary</span></span></td></tr><tr><td class="c-id">c5</td><td>Adjust the dose and manage it well, and catch-up growth brings them back on track.<br><span class="cap2">Catch-up growth · back on track</span></td></tr><tr><td class="c-id">c6</td><td>The famous MTA study tracked 10 years — final adult height showed no real difference, 1–2cm at most.<br><span class="cap2">10-yr: final height · <span class="y">no difference</span></span></td></tr><tr><td class="c-id">c7</td><td>So stopping the meds over height fears backfires — don't quit, manage it.<br><span class="cap2">Don't quit meds · <span class="y">manage it</span></span></td></tr><tr><td class="c-id">c8</td><td>Three steps: high-calorie dinners, track with bone age, and time the dose with the doctor.<br><span class="cap2">Nutrition·bone age · talk to doctor</span></td></tr><tr><td class="c-id">c9</td><td>Bone age and predicted height tell you right away if your child's growing well.<br><span class="cap2">Bone age·prediction · <span class="y">check growth</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth with bone age and predicted height today.<br><span class="cap2">Bone age·height · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>吃ADHD药孩子就长不高？今天讲清楚。<br><span class="cap2">ADHD药 · <span class="y">长不高？</span></span></td></tr><tr><td class="c-id">c2</td><td>这担心来自药物抑制食欲，孩子吃得少了。<br><span class="cap2">药物抑制 · <span class="y">食欲</span></span></td></tr><tr><td class="c-id">c3</td><td>ADHD药是兴奋剂，提升专注却抑制食欲，初期可能长得慢些。<br><span class="cap2">兴奋剂 · <span class="y">抑制食欲</span></span></td></tr><tr><td class="c-id">c4</td><td>但关键在于：这种变慢只是暂时的。<br><span class="cap2">这种变慢 · <span class="y">只是暂时</span></span></td></tr><tr><td class="c-id">c5</td><td>调整剂量、管理得当，靠追赶性生长就能回到正轨。<br><span class="cap2">追赶性生长 · 回到正轨</span></td></tr><tr><td class="c-id">c6</td><td>著名的MTA研究追踪10年，最终成年身高没有差异，最多1～2厘米。<br><span class="cap2">追踪10年: 终身高 · <span class="y">无差异</span></span></td></tr><tr><td class="c-id">c7</td><td>所以因怕长不高就停药反而吃亏，别停药，要管理。<br><span class="cap2">别停药 · <span class="y">要管理</span></span></td></tr><tr><td class="c-id">c8</td><td>管理三招：晚餐补高热量、用骨龄追踪、和医生协调服药时间。<br><span class="cap2">营养·骨龄追踪 · 医生沟通</span></td></tr><tr><td class="c-id">c9</td><td>看骨龄和预测身高，马上知道孩子长得好不好。<br><span class="cap2">骨龄·预测身高 · <span class="y">查看成长</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就用骨龄和预测身高查查孩子的成长吧。<br><span class="cap2">骨龄·预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>吃ADHD藥孩子就長不高？今天講清楚。<br><span class="cap2">ADHD藥 · <span class="y">長不高？</span></span></td></tr><tr><td class="c-id">c2</td><td>這擔心來自藥物抑制食慾，孩子吃得少了。<br><span class="cap2">藥物抑制 · <span class="y">食慾</span></span></td></tr><tr><td class="c-id">c3</td><td>ADHD藥是興奮劑，提升專注卻抑制食慾，初期可能長得慢些。<br><span class="cap2">興奮劑 · <span class="y">抑制食慾</span></span></td></tr><tr><td class="c-id">c4</td><td>但關鍵在於：這種變慢只是暫時的。<br><span class="cap2">這種變慢 · <span class="y">只是暫時</span></span></td></tr><tr><td class="c-id">c5</td><td>調整劑量、管理得當，靠追趕性生長就能回到正軌。<br><span class="cap2">追趕性生長 · 回到正軌</span></td></tr><tr><td class="c-id">c6</td><td>著名的MTA研究追蹤10年，最終成年身高沒有差異，最多1～2公分。<br><span class="cap2">追蹤10年: 終身高 · <span class="y">無差異</span></span></td></tr><tr><td class="c-id">c7</td><td>所以因怕長不高就停藥反而吃虧，別停藥，要管理。<br><span class="cap2">別停藥 · <span class="y">要管理</span></span></td></tr><tr><td class="c-id">c8</td><td>管理三招：晚餐補高熱量、用骨齡追蹤、和醫生協調服藥時間。<br><span class="cap2">營養·骨齡追蹤 · 醫生溝通</span></td></tr><tr><td class="c-id">c9</td><td>看骨齡和預測身高，馬上知道孩子長得好不好。<br><span class="cap2">骨齡·預測身高 · <span class="y">查看成長</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就用骨齡和預測身高查查孩子的成長吧。<br><span class="cap2">骨齡·預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/adhd약키성장/</code> · <code>adhd약키성장-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

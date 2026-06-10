@@ -1,0 +1,767 @@
+{
+  "n": 37,
+  "slug": "첫방문준비",
+  "title": "성장클리닉 첫 방문, 이것만 챙기면 끝 — 가져갈 리스트",
+  "sub": "성장기록·가족력·생활습관 — 4가지만 챙기면 첫 진료가 200% 정확해진다",
+  "category": "B. 생활습관",
+  "topicTitle": "성장클리닉 첫 방문 준비",
+  "headerTop": "우리 아이 키",
+  "headerMark": "뭘 챙겨가지?",
+  "accentEmoji": "📋✨",
+  "hook": "성장클리닉 첫 방문, '이것' 안 챙겨가면 절반만 보고 와요.",
+  "misconception": "그냥 가서 키만 재면 되겠지 → 과거 기록 없으면 성장 속도·추이를 못 봄",
+  "message": "첫 진료의 핵심은 '성장 추이'. 과거 키·몸무게 기록, 가족력, 생활습관 4가지만 챙기면 정확도가 확 올라간다",
+  "tone": "협박 ❌ → \"이것만 챙기면 첫 진료가 더 정확해져요\" 긍정 준비 가이드. \"우리 아이 키\" 보편",
+  "cta": "첫 방문 전, 홈페이지에서 예측키·뼈나이 먼저 확인 → 준비 완료",
+  "thumb": {
+    "kicker": "이것 빼먹으면 손해",
+    "subject": "성장클리닉 첫 방문",
+    "number": "4",
+    "numLabel": "가지 꼭 챙겨!"
+  },
+  "duration": 35,
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"첫 방문, 키만 재면 끝이 아니다 — 핵심은 성장 추이\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 기록인가",
+      "scenes": "c3–c4",
+      "desc": "\"과거 키·몸무게로 성장 속도를 본다 (연 4cm 미만은 신호)\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "가족력",
+      "scenes": "c5–c6",
+      "desc": "\"부모 키로 유전 예측키 계산 → 챙길 리스트\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "생활습관",
+      "scenes": "c7–c8",
+      "desc": "\"수면·식습관·운동 = 성장호르몬 환경 / 4가지 체크리스트\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"집에서 예측키 먼저 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📋 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "성장클리닉 첫 방문, 그냥 가서 키만 재면 된다고 생각하세요?",
+          "cap": [
+            "첫 방문, 키만?",
+            "그게 다가 아니에요"
+          ],
+          "hl": "키만?"
+        },
+        "th": {
+          "narr": "ไปคลินิกครั้งแรก แค่วัดส่วนสูงก็พอจริงเหรอ?",
+          "cap": [
+            "ครั้งแรก แค่วัด?",
+            "ยังไม่พอ"
+          ],
+          "hl": "แค่วัด?"
+        },
+        "vi": {
+          "narr": "Lần đầu đến phòng khám, chỉ đo chiều cao là đủ sao?",
+          "cap": [
+            "Chỉ đo thôi?",
+            "Chưa đủ đâu"
+          ],
+          "hl": "Chỉ đo thôi?"
+        },
+        "en": {
+          "narr": "First clinic visit — you think they just measure height?",
+          "cap": [
+            "Just measuring?",
+            "Not enough"
+          ],
+          "hl": "Just measuring?"
+        },
+        "cn": {
+          "narr": "第一次去成长门诊，以为只量个身高就行？",
+          "cap": [
+            "只量身高？",
+            "还不够"
+          ],
+          "hl": "只量身高？"
+        },
+        "ch": {
+          "narr": "第一次去成長門診，以為只量個身高就行？",
+          "cap": [
+            "只量身高？",
+            "還不夠"
+          ],
+          "hl": "只量身高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "📈 추이 라인 그리기",
+      "copy": {
+        "ko": {
+          "narr": "진짜 중요한 건 한 시점이 아니라, 그동안의 '성장 추이'거든요.",
+          "cap": [
+            "한 번 키 X",
+            "성장 추이가 핵심"
+          ],
+          "hl": "성장 추이가 핵심"
+        },
+        "th": {
+          "narr": "สิ่งสำคัญจริงคือแนวโน้มการเติบโต ไม่ใช่ครั้งเดียว",
+          "cap": [
+            "ไม่ใช่ครั้งเดียว",
+            "ดูแนวโน้ม"
+          ],
+          "hl": "ดูแนวโน้ม"
+        },
+        "vi": {
+          "narr": "Điều quan trọng là xu hướng tăng trưởng, không phải một lần đo.",
+          "cap": [
+            "Không phải một lần",
+            "xu hướng"
+          ],
+          "hl": "xu hướng"
+        },
+        "en": {
+          "narr": "What matters is the growth trend over time, not one snapshot.",
+          "cap": [
+            "Not one number",
+            "the trend"
+          ],
+          "hl": "the trend"
+        },
+        "cn": {
+          "narr": "真正重要的是成长趋势，而不是某一次的身高。",
+          "cap": [
+            "不是一次",
+            "看趋势"
+          ],
+          "hl": "看趋势"
+        },
+        "ch": {
+          "narr": "真正重要的是成長趨勢，而不是某一次的身高。",
+          "cap": [
+            "不是一次",
+            "看趨勢"
+          ],
+          "hl": "看趨勢"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 성장기록",
+      "motion": "📒 차곡차곡 + ↗ 라인",
+      "copy": {
+        "ko": {
+          "narr": "그래서 첫째, 과거 키·몸무게 기록을 다 챙겨오세요. 추이가 보여요.",
+          "cap": [
+            "① 과거 키·몸무게",
+            "기록 다 챙기기"
+          ],
+          "hl": "과거 키·몸무게"
+        },
+        "th": {
+          "narr": "อย่างแรก เอาบันทึกส่วนสูง น้ำหนักเก่ามาให้หมด",
+          "cap": [
+            "① ส่วนสูง น้ำหนักเก่า",
+            "เอามาให้หมด"
+          ],
+          "hl": "ส่วนสูง น้ำหนักเก่า"
+        },
+        "vi": {
+          "narr": "Thứ nhất, mang hết hồ sơ chiều cao, cân nặng cũ.",
+          "cap": [
+            "① Chiều cao, cân nặng cũ",
+            "mang đầy đủ"
+          ],
+          "hl": "Chiều cao, cân nặng cũ"
+        },
+        "en": {
+          "narr": "First, bring all past height and weight records — they show the trend.",
+          "cap": [
+            "① Past height & weight",
+            "bring them all"
+          ],
+          "hl": "Past height & weight"
+        },
+        "cn": {
+          "narr": "第一，把过去的身高体重记录全带上，能看出趋势。",
+          "cap": [
+            "① 过去身高体重",
+            "全部带上"
+          ],
+          "hl": "过去身高体重"
+        },
+        "ch": {
+          "narr": "第一，把過去的身高體重記錄全帶上，能看出趨勢。",
+          "cap": [
+            "① 過去身高體重",
+            "全部帶上"
+          ],
+          "hl": "過去身高體重"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "📏 펄스 · <4면 ⚠️ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "기록이 있어야 성장 속도를 봐요. 1년에 4센티 미만이면 신호거든요.",
+          "cap": [
+            "성장 속도 체크",
+            "연 4cm 미만은 신호"
+          ],
+          "hl": "연 4cm 미만은 신호"
+        },
+        "th": {
+          "narr": "มีบันทึกถึงดูอัตราโตได้ ต่ำกว่า 4 ซม./ปี คือสัญญาณ",
+          "cap": [
+            "ดูอัตราการโต",
+            "ต่ำกว่า 4 ซม./ปี"
+          ],
+          "hl": "ต่ำกว่า 4 ซม./ปี"
+        },
+        "vi": {
+          "narr": "Có hồ sơ mới biết tốc độ tăng. Dưới 4cm/năm là dấu hiệu.",
+          "cap": [
+            "Xem tốc độ tăng",
+            "Dưới 4cm/năm"
+          ],
+          "hl": "Dưới 4cm/năm"
+        },
+        "en": {
+          "narr": "Records reveal growth speed. Under 4cm a year is a signal.",
+          "cap": [
+            "Growth speed",
+            "Under 4cm/year"
+          ],
+          "hl": "Under 4cm/year"
+        },
+        "cn": {
+          "narr": "有记录才能看生长速度。每年不到4厘米就是信号。",
+          "cap": [
+            "看生长速度",
+            "每年不到4厘米"
+          ],
+          "hl": "每年不到4厘米"
+        },
+        "ch": {
+          "narr": "有記錄才能看生長速度。每年不到4公分就是信號。",
+          "cap": [
+            "看生長速度",
+            "每年不到4公分"
+          ],
+          "hl": "每年不到4公分"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "👨‍👩‍👧 팝 + 키 합산",
+      "copy": {
+        "ko": {
+          "narr": "둘째, 가족력이요. 엄마 아빠 키만 알아도 유전 예측키를 계산해요.",
+          "cap": [
+            "② 가족력·부모 키",
+            "유전 예측키 계산"
+          ],
+          "hl": "유전 예측키 계산"
+        },
+        "th": {
+          "narr": "สอง ประวัติครอบครัว แค่รู้ส่วนสูงพ่อแม่ก็คำนวณได้",
+          "cap": [
+            "② ส่วนสูงพ่อแม่",
+            "คำนวณส่วนสูงพันธุกรรม"
+          ],
+          "hl": "คำนวณส่วนสูงพันธุกรรม"
+        },
+        "vi": {
+          "narr": "Thứ hai, tiền sử gia đình. Biết chiều cao bố mẹ là tính được.",
+          "cap": [
+            "② Chiều cao bố mẹ",
+            "dự đoán di truyền"
+          ],
+          "hl": "dự đoán di truyền"
+        },
+        "en": {
+          "narr": "Second, family history. Just parents' heights predict the genetic target.",
+          "cap": [
+            "② Parents' height",
+            "genetic target height"
+          ],
+          "hl": "genetic target height"
+        },
+        "cn": {
+          "narr": "第二，家族史。光知道父母身高就能算遗传预测身高。",
+          "cap": [
+            "② 父母身高",
+            "算遗传预测身高"
+          ],
+          "hl": "遗传预测身高"
+        },
+        "ch": {
+          "narr": "第二，家族史。光知道父母身高就能算遺傳預測身高。",
+          "cap": [
+            "② 父母身高",
+            "算遺傳預測身高"
+          ],
+          "hl": "遺傳預測身高"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG2 가족력 예측키",
+      "motion": "👪 + 예측 범위 슈웅",
+      "copy": {
+        "ko": {
+          "narr": "부모 키, 사춘기 시작 시기, 형제 성장 패턴도 같이 알려주세요.",
+          "cap": [
+            "부모 키 + 사춘기 시기",
+            "형제 패턴까지"
+          ],
+          "hl": "부모 키 + 사춘기 시기"
+        },
+        "th": {
+          "narr": "บอกส่วนสูงพ่อแม่ ช่วงเริ่มแรกรุ่น และพี่น้องด้วย",
+          "cap": [
+            "พ่อแม่ + ช่วงแรกรุ่น",
+            "รวมพี่น้อง"
+          ],
+          "hl": "พ่อแม่ + ช่วงแรกรุ่น"
+        },
+        "vi": {
+          "narr": "Cho biết chiều cao bố mẹ, tuổi dậy thì và anh chị em nữa.",
+          "cap": [
+            "Bố mẹ + tuổi dậy thì",
+            "cả anh chị em"
+          ],
+          "hl": "Bố mẹ + tuổi dậy thì"
+        },
+        "en": {
+          "narr": "Share parents' height, when puberty started, and siblings' patterns.",
+          "cap": [
+            "Height + puberty timing",
+            "plus siblings"
+          ],
+          "hl": "Height + puberty timing"
+        },
+        "cn": {
+          "narr": "也告诉医生父母身高、青春期开始时间和兄弟姐妹的情况。",
+          "cap": [
+            "身高 + 青春期时间",
+            "加兄弟姐妹"
+          ],
+          "hl": "身高 + 青春期时间"
+        },
+        "ch": {
+          "narr": "也告訴醫生父母身高、青春期開始時間和兄弟姐妹的情況。",
+          "cap": [
+            "身高 + 青春期時間",
+            "加兄弟姊妹"
+          ],
+          "hl": "身高 + 青春期時間"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "😴🍚🏃 순차 팝",
+      "copy": {
+        "ko": {
+          "narr": "셋째, 생활습관! 수면·식습관·운동이 성장호르몬 환경을 만들거든요.",
+          "cap": [
+            "③ 수면·식습관·운동",
+            "성장호르몬 환경"
+          ],
+          "hl": "성장호르몬 환경"
+        },
+        "th": {
+          "narr": "สาม พฤติกรรม! การนอน อาหาร ออกกำลังกาย สร้างฮอร์โมนโต",
+          "cap": [
+            "③ นอน·อาหาร·ออกกำลัง",
+            "สภาพฮอร์โมนโต"
+          ],
+          "hl": "สภาพฮอร์โมนโต"
+        },
+        "vi": {
+          "narr": "Thứ ba, lối sống! Ngủ, ăn, vận động tạo môi trường hormone.",
+          "cap": [
+            "③ Ngủ·ăn·vận động",
+            "môi trường hormone"
+          ],
+          "hl": "môi trường hormone"
+        },
+        "en": {
+          "narr": "Third, lifestyle! Sleep, diet, exercise set the growth-hormone stage.",
+          "cap": [
+            "③ Sleep·diet·exercise",
+            "hormone environment"
+          ],
+          "hl": "hormone environment"
+        },
+        "cn": {
+          "narr": "第三，生活习惯！睡眠、饮食、运动决定生长激素环境。",
+          "cap": [
+            "③ 睡眠·饮食·运动",
+            "生长激素环境"
+          ],
+          "hl": "生长激素环境"
+        },
+        "ch": {
+          "narr": "第三，生活習慣！睡眠、飲食、運動決定生長激素環境。",
+          "cap": [
+            "③ 睡眠·飲食·運動",
+            "生長激素環境"
+          ],
+          "hl": "生長激素環境"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG3 4가지 체크리스트",
+      "motion": "✅ 4개 순차 체크",
+      "copy": {
+        "ko": {
+          "narr": "넷째, 검진 결과랑 먹는 영양제까지. 이 네 가지면 준비 끝이에요.",
+          "cap": [
+            "④ 검진결과·영양제",
+            "4가지면 준비 끝!"
+          ],
+          "hl": "4가지면 준비 끝!"
+        },
+        "th": {
+          "narr": "สี่ ผลตรวจสุขภาพและอาหารเสริม ครบสี่อย่างก็พร้อม",
+          "cap": [
+            "④ ผลตรวจ·อาหารเสริม",
+            "ครบ 4 ก็พร้อม!"
+          ],
+          "hl": "ครบ 4 ก็พร้อม!"
+        },
+        "vi": {
+          "narr": "Thứ tư, kết quả khám và thực phẩm bổ sung. Đủ bốn là xong.",
+          "cap": [
+            "④ Kết quả khám·bổ sung",
+            "Đủ 4 là xong!"
+          ],
+          "hl": "Đủ 4 là xong!"
+        },
+        "en": {
+          "narr": "Fourth, checkup results and any supplements. Those four — you're set.",
+          "cap": [
+            "④ Checkups·supplements",
+            "Four = ready!"
+          ],
+          "hl": "Four = ready!"
+        },
+        "cn": {
+          "narr": "第四，体检结果和在吃的营养品。这四样，准备就齐了。",
+          "cap": [
+            "④ 体检·营养品",
+            "四样就齐!"
+          ],
+          "hl": "四样就齐!"
+        },
+        "ch": {
+          "narr": "第四，體檢結果和在吃的營養品。這四樣，準備就齊了。",
+          "cap": [
+            "④ 體檢·營養品",
+            "四樣就齊!"
+          ],
+          "hl": "四樣就齊!"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "📱🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "방문 전에 집에서 예측키만 미리 봐도, 첫 상담이 훨씬 빨라져요.",
+          "cap": [
+            "방문 전 예측키 먼저",
+            "상담이 빨라져요"
+          ],
+          "hl": "방문 전 예측키 먼저"
+        },
+        "th": {
+          "narr": "ก่อนมา เช็กส่วนสูงคาดการณ์ที่บ้าน ปรึกษาเร็วขึ้นมาก",
+          "cap": [
+            "เช็กที่บ้านก่อน",
+            "ปรึกษาเร็วขึ้น"
+          ],
+          "hl": "เช็กที่บ้านก่อน"
+        },
+        "vi": {
+          "narr": "Xem chiều cao dự đoán ở nhà trước, buổi tư vấn sẽ nhanh hơn nhiều.",
+          "cap": [
+            "Dự đoán ở nhà trước",
+            "tư vấn nhanh hơn"
+          ],
+          "hl": "Dự đoán ở nhà trước"
+        },
+        "en": {
+          "narr": "Check predicted height at home first, and the first visit goes faster.",
+          "cap": [
+            "Predict at home first",
+            "faster consult"
+          ],
+          "hl": "Predict at home first"
+        },
+        "cn": {
+          "narr": "来之前在家先看看预测身高，第一次咨询会快很多。",
+          "cap": [
+            "在家先预测",
+            "咨询更快"
+          ],
+          "hl": "在家先预测"
+        },
+        "ch": {
+          "narr": "來之前在家先看看預測身高，第一次諮詢會快很多。",
+          "cap": [
+            "在家先預測",
+            "諮詢更快"
+          ],
+          "hl": "在家先預測"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "첫 방문 전, 우리 아이 예측키부터 지금 확인해 보세요.",
+          "cap": [
+            "우리 아이 예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ก่อนมาครั้งแรก เช็กส่วนสูงคาดการณ์ของลูกเลย",
+          "cap": [
+            "ส่วนสูงคาดการณ์",
+            "เช็กเลย"
+          ],
+          "hl": "เช็กเลย"
+        },
+        "vi": {
+          "narr": "Trước lần đầu đến, kiểm tra chiều cao dự đoán của con ngay.",
+          "cap": [
+            "Chiều cao dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Before that first visit, check your child's predicted height now.",
+          "cap": [
+            "Predicted height",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "第一次就诊前，现在就查查孩子的预测身高。",
+          "cap": [
+            "孩子预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "第一次就診前，現在就查查孩子的預測身高。",
+          "cap": [
+            "孩子預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "📒 차곡차곡 + ↗ 라인",
+      "title": "성장 기록 — 추이가 보인다",
+      "emojis": [
+        "📒",
+        "📏",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly stack of growth notebooks and a child health record booklet on the left, connecting to a gently rising dotted growth-curve on the right with small height-marker dots along it. A simple measuring ruler leaning beside. Brand purple #667eea to mint #2dd4bf gradient on the curve, soft glow at the latest dot. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "노트 더미",
+          "ko": "과거 기록",
+          "en": "Past records",
+          "th": "บันทึกเก่า"
+        },
+        {
+          "pos": "곡선 위 점들",
+          "ko": "성장 추이",
+          "en": "Growth trend",
+          "th": "แนวโน้มการเติบโต"
+        },
+        {
+          "pos": "곡선 끝(글로우)",
+          "ko": "연 4cm 미만 신호",
+          "en": "under 4cm/yr",
+          "th": "ต่ำกว่า 4 ซม./ปี"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c6",
+      "motion": "👪 + 예측 범위 슈웅",
+      "title": "가족력 — 유전 예측키",
+      "emojis": [
+        "👨‍👩‍👧",
+        "🧬",
+        "📐"
+      ],
+      "prompt": "Flat vector, square, white bg. A warm parent duo (tall dad, mom) on the left with simple height bars beside each, an arrow merging into a child silhouette on the right topped by a soft predicted-height range bracket reaching upward. A tiny DNA helix accent. Brand purple #667eea and mint #2dd4bf, friendly pediatric flat style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "부모 키 바",
+          "ko": "부모 키",
+          "en": "Parents' height",
+          "th": "ส่วนสูงพ่อแม่"
+        },
+        {
+          "pos": "아이 위 괄호",
+          "ko": "예측키 범위",
+          "en": "Predicted range",
+          "th": "ช่วงคาดการณ์"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c8",
+      "motion": "✅ 4개 순차 체크",
+      "title": "가져갈 4가지 체크리스트",
+      "emojis": [
+        "📋",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A clean clipboard checklist with four empty rounded check-boxes in a vertical column, each box paired with a simple friendly icon to its right: a growth chart, a parent-and-child pair, a moon-and-fork (sleep & meals), and a vitamin bottle. Mint green check shapes hovering, brand purple #667eea clipboard, soft rounded pediatric flat style. NO text.",
+      "labels": [
+        {
+          "pos": "1번 항목",
+          "ko": "성장 기록",
+          "en": "Growth records",
+          "th": "บันทึกการโต"
+        },
+        {
+          "pos": "2번 항목",
+          "ko": "가족력",
+          "en": "Family history",
+          "th": "ประวัติครอบครัว"
+        },
+        {
+          "pos": "3번 항목",
+          "ko": "수면·식습관",
+          "en": "Sleep & diet",
+          "th": "การนอน·อาหาร"
+        },
+        {
+          "pos": "4번 항목",
+          "ko": "검진·영양제",
+          "en": "Checkup·supplements",
+          "th": "ผลตรวจ·อาหารเสริม"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📋",
+      "label": "체크리스트"
+    },
+    {
+      "e": "📒",
+      "label": "성장 기록"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장속도"
+    },
+    {
+      "e": "📈",
+      "label": "성장 추이"
+    },
+    {
+      "e": "⚠️",
+      "label": "연 4cm 미만 신호"
+    },
+    {
+      "e": "👨‍👩‍👧",
+      "label": "가족력"
+    },
+    {
+      "e": "🧬",
+      "label": "유전 예측키"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🍚",
+      "label": "식습관"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "✅",
+      "label": "준비 완료·CTA"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    }
+  ]
+}

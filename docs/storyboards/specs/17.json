@@ -1,0 +1,783 @@
+{
+  "n": 17,
+  "slug": "중금속키성장",
+  "title": "밥 잘 먹는데 왜 안 클까? — 키 막는 숨은 적, 중금속",
+  "sub": "납·수은·카드뮴이 성장호르몬과 성장판을 방해 — 식단·환경으로 막고, 막힌 성장은 다시 되찾자",
+  "category": "A. 성장과학",
+  "topicTitle": "중금속(납·수은·카드뮴)이 키 성장에 미치는 영향",
+  "headerTop": "우리 아이 키",
+  "headerMark": "숨은 적이 있다?",
+  "accentEmoji": "🥢🦴",
+  "hook": "잘 먹고 잘 자는데도 키가 더디다면, 일상 속 '숨은 적'을 의심해 보세요.",
+  "misconception": "키는 유전·영양만으로 정해진다 → 사실 일상 속 중금속이 성장호르몬과 성장판을 방해할 수 있다",
+  "message": "납은 칼슘인 척 뼈에 쌓여 성장판을, 수은은 갑상선·성장호르몬을, 카드뮴은 IGF-1을 방해한다. 아이는 흡수율이 높아 더 취약하지만, 식단·환경 관리로 막고 좋은 미네랄로 배출을 도울 수 있다.",
+  "tone": "협박·공포 ❌ → 긍정·실천(\"막을 수 있고, 좋은 미네랄로 내보낼 수 있다\"). \"우리 아이 키\" 보편(잘 먹는 아이 부모도 해당). 시청자가 검사 이미 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대",
+  "cta": "우리 아이 성장, 잘 가고 있는지 지금 확인 → 뼈나이/예측키 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "잘 먹는데 왜?",
+    "subject": "우리 아이 키 막는",
+    "number": "숨은 적",
+    "numLabel": "중금속"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"잘 먹는데 더디다? 키엔 숨은 적이 있다 — 중금속\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 취약한가",
+      "scenes": "c3–c4",
+      "desc": "\"납은 칼슘인 척 뼈에 쌓여 성장판 방해 + 아이는 흡수율 높아 취약\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "수은·카드뮴",
+      "scenes": "c5–c6",
+      "desc": "\"수은=갑상선·성장호르몬 방해 / 카드뮴=IGF-1·골밀도 방해\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "막는 법",
+      "scenes": "c7–c8",
+      "desc": "\"좋은 미네랄이 흡수 막고 배출 도움 + 환기·KC 장난감으로 환경 차단\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"성장 잘 가는지 뼈나이로 확인 → CTA 측정\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🕵️ 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "잘 먹고 잘 자는데도 키가 더디다면, 일상 속 '숨은 적'을 의심해 보세요.",
+          "cap": [
+            "잘 먹는데 더디다면",
+            "숨은 적 의심"
+          ],
+          "hl": "숨은 적 의심"
+        },
+        "th": {
+          "narr": "กินดีนอนดีแต่ตัวไม่ค่อยสูง? อาจมี 'ศัตรูที่ซ่อนอยู่' ในชีวิตประจำวัน",
+          "cap": [
+            "กินดีแต่ไม่สูง?",
+            "ศัตรูที่ซ่อนอยู่"
+          ],
+          "hl": "ศัตรูที่ซ่อนอยู่"
+        },
+        "vi": {
+          "narr": "Ăn ngủ tốt mà con vẫn chậm cao? Hãy nghi ngờ 'kẻ thù giấu mặt' quanh ta.",
+          "cap": [
+            "Ăn tốt mà vẫn chậm?",
+            "kẻ thù giấu mặt"
+          ],
+          "hl": "kẻ thù giấu mặt"
+        },
+        "en": {
+          "narr": "Eating and sleeping well but still growing slow? Suspect a hidden enemy in daily life.",
+          "cap": [
+            "Eats well, grows slow?",
+            "a hidden enemy"
+          ],
+          "hl": "a hidden enemy"
+        },
+        "cn": {
+          "narr": "吃得好睡得好却长得慢？怀疑一下生活里的'隐形敌人'。",
+          "cap": [
+            "吃得好却长得慢？",
+            "隐形敌人"
+          ],
+          "hl": "隐形敌人"
+        },
+        "ch": {
+          "narr": "吃得好睡得好卻長得慢？懷疑一下生活裡的'隱形敵人'。",
+          "cap": [
+            "吃得好卻長得慢？",
+            "隱形敵人"
+          ],
+          "hl": "隱形敵人"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "☣️ 흔들 + 등장",
+      "copy": {
+        "ko": {
+          "narr": "그 정체는 일상에서 쉽게 노출되는 중금속, 납·수은·카드뮴이에요.",
+          "cap": [
+            "그 정체는",
+            "중금속 3가지"
+          ],
+          "hl": "중금속 3가지"
+        },
+        "th": {
+          "narr": "ตัวการคือโลหะหนักที่สัมผัสง่ายในชีวิตประจำวัน ตะกั่ว ปรอท แคดเมียม",
+          "cap": [
+            "ตัวการคือ",
+            "โลหะหนัก 3 ชนิด"
+          ],
+          "hl": "โลหะหนัก 3 ชนิด"
+        },
+        "vi": {
+          "narr": "Đó là kim loại nặng dễ nhiễm hằng ngày: chì, thủy ngân, cadmium.",
+          "cap": [
+            "Thủ phạm là",
+            "3 kim loại nặng"
+          ],
+          "hl": "3 kim loại nặng"
+        },
+        "en": {
+          "narr": "It's heavy metals we're exposed to daily — lead, mercury, and cadmium.",
+          "cap": [
+            "The culprit:",
+            "3 heavy metals"
+          ],
+          "hl": "3 heavy metals"
+        },
+        "cn": {
+          "narr": "它就是日常容易接触的重金属——铅、汞、镉。",
+          "cap": [
+            "真凶是",
+            "三种重金属"
+          ],
+          "hl": "三种重金属"
+        },
+        "ch": {
+          "narr": "它就是日常容易接觸的重金屬——鉛、汞、鎘。",
+          "cap": [
+            "真凶是",
+            "三種重金屬"
+          ],
+          "hl": "三種重金屬"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 납·칼슘 위장",
+      "motion": "🦴 점등 + 가짜 표시",
+      "copy": {
+        "ko": {
+          "narr": "납은 칼슘인 척 뼈에 쌓여서, 뼈를 키우는 성장판 세포를 망가뜨려요.",
+          "cap": [
+            "납은 칼슘인 척",
+            "성장판 방해"
+          ],
+          "hl": "성장판 방해"
+        },
+        "th": {
+          "narr": "ตะกั่วปลอมเป็นแคลเซียมสะสมในกระดูก ทำลายเซลล์แผ่นกระดูก",
+          "cap": [
+            "ตะกั่วปลอมเป็นแคลเซียม",
+            "ทำลายแผ่นกระดูก"
+          ],
+          "hl": "ทำลายแผ่นกระดูก"
+        },
+        "vi": {
+          "narr": "Chì giả làm canxi, tích trong xương và phá hỏng tế bào sụn tăng trưởng.",
+          "cap": [
+            "Chì giả làm canxi",
+            "hại sụn tăng trưởng"
+          ],
+          "hl": "hại sụn tăng trưởng"
+        },
+        "en": {
+          "narr": "Lead poses as calcium, piles into bone, and wrecks growth-plate cells.",
+          "cap": [
+            "Lead poses as calcium",
+            "harms growth plate"
+          ],
+          "hl": "harms growth plate"
+        },
+        "cn": {
+          "narr": "铅伪装成钙堆进骨头，破坏造骨的生长板细胞。",
+          "cap": [
+            "铅伪装成钙",
+            "破坏生长板"
+          ],
+          "hl": "破坏生长板"
+        },
+        "ch": {
+          "narr": "鉛偽裝成鈣堆進骨頭，破壞造骨的生長板細胞。",
+          "cap": [
+            "鉛偽裝成鈣",
+            "破壞生長板"
+          ],
+          "hl": "破壞生長板"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 아이가 더 취약",
+      "motion": "👶 펄스 + 흡수율 ↑",
+      "copy": {
+        "ko": {
+          "narr": "게다가 아이는 몸무게 대비 흡수율이 높고 해독 능력은 미숙해서 더 취약해요.",
+          "cap": [
+            "아이는 흡수율 ↑",
+            "해독은 미숙"
+          ],
+          "hl": "아이는 흡수율 ↑"
+        },
+        "th": {
+          "narr": "ยิ่งกว่านั้น เด็กดูดซึมสูงกว่าตามน้ำหนัก แต่ล้างพิษยังไม่เก่ง จึงเสี่ยงกว่า",
+          "cap": [
+            "เด็กดูดซึมสูง",
+            "ล้างพิษยังไม่เก่ง"
+          ],
+          "hl": "เด็กดูดซึมสูง"
+        },
+        "vi": {
+          "narr": "Hơn nữa, trẻ hấp thu nhiều hơn theo cân nặng nhưng thải độc còn non, nên dễ tổn thương.",
+          "cap": [
+            "Trẻ hấp thu cao",
+            "thải độc còn non"
+          ],
+          "hl": "Trẻ hấp thu cao"
+        },
+        "en": {
+          "narr": "And kids absorb more per body weight while their detox is immature — far more vulnerable.",
+          "cap": [
+            "Kids absorb more",
+            "detox immature"
+          ],
+          "hl": "Kids absorb more"
+        },
+        "cn": {
+          "narr": "而且孩子按体重吸收率更高，排毒能力却不成熟，所以更脆弱。",
+          "cap": [
+            "孩子吸收率高",
+            "排毒不成熟"
+          ],
+          "hl": "孩子吸收率高"
+        },
+        "ch": {
+          "narr": "而且孩子按體重吸收率更高，排毒能力卻不成熟，所以更脆弱。",
+          "cap": [
+            "孩子吸收率高",
+            "排毒不成熟"
+          ],
+          "hl": "孩子吸收率高"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🐟 펄스 + 🦋 방해",
+      "copy": {
+        "ko": {
+          "narr": "수은은 큰 생선을 통해 들어와, 갑상선과 성장호르몬을 방해해요.",
+          "cap": [
+            "수은은 큰 생선으로",
+            "호르몬 방해"
+          ],
+          "hl": "호르몬 방해"
+        },
+        "th": {
+          "narr": "ปรอทเข้าทางปลาตัวใหญ่ รบกวนไทรอยด์และฮอร์โมนการเจริญเติบโต",
+          "cap": [
+            "ปรอทจากปลาใหญ่",
+            "รบกวนฮอร์โมน"
+          ],
+          "hl": "รบกวนฮอร์โมน"
+        },
+        "vi": {
+          "narr": "Thủy ngân vào qua cá lớn, quấy rối tuyến giáp và hormone tăng trưởng.",
+          "cap": [
+            "Thủy ngân từ cá lớn",
+            "rối loạn hormone"
+          ],
+          "hl": "rối loạn hormone"
+        },
+        "en": {
+          "narr": "Mercury comes in through big fish and disrupts the thyroid and growth hormone.",
+          "cap": [
+            "Mercury via big fish",
+            "disrupts hormones"
+          ],
+          "hl": "disrupts hormones"
+        },
+        "cn": {
+          "narr": "汞通过大型鱼进入体内，干扰甲状腺和生长激素。",
+          "cap": [
+            "汞来自大型鱼",
+            "干扰激素"
+          ],
+          "hl": "干扰激素"
+        },
+        "ch": {
+          "narr": "汞透過大型魚進入體內，干擾甲狀腺和生長激素。",
+          "cap": [
+            "汞來自大型魚",
+            "干擾激素"
+          ],
+          "hl": "干擾激素"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG3 카드뮴·IGF-1",
+      "motion": "⛏️ 등장 + IGF-1 차단",
+      "copy": {
+        "ko": {
+          "narr": "카드뮴은 신장에서 칼슘을 빼내 골밀도를 낮추고, 성장인자 IGF-1까지 막아요.",
+          "cap": [
+            "카드뮴은 골밀도 ↓",
+            "IGF-1 차단"
+          ],
+          "hl": "IGF-1 차단"
+        },
+        "th": {
+          "narr": "แคดเมียมดึงแคลเซียมออกทางไต ลดความหนาแน่นกระดูก และขวาง IGF-1",
+          "cap": [
+            "แคดเมียมลดมวลกระดูก",
+            "ขวาง IGF-1"
+          ],
+          "hl": "ขวาง IGF-1"
+        },
+        "vi": {
+          "narr": "Cadmium rút canxi qua thận, giảm mật độ xương và chặn cả yếu tố tăng trưởng IGF-1.",
+          "cap": [
+            "Cadmium giảm mật độ xương",
+            "chặn IGF-1"
+          ],
+          "hl": "chặn IGF-1"
+        },
+        "en": {
+          "narr": "Cadmium pulls calcium out via the kidneys, lowering bone density and blocking growth factor IGF-1.",
+          "cap": [
+            "Cadmium lowers density",
+            "blocks IGF-1"
+          ],
+          "hl": "blocks IGF-1"
+        },
+        "cn": {
+          "narr": "镉经肾脏把钙排走，降低骨密度，还阻断生长因子IGF-1。",
+          "cap": [
+            "镉降低骨密度",
+            "阻断IGF-1"
+          ],
+          "hl": "阻断IGF-1"
+        },
+        "ch": {
+          "narr": "鎘經腎臟把鈣排走，降低骨密度，還阻斷生長因子IGF-1。",
+          "cap": [
+            "鎘降低骨密度",
+            "阻斷IGF-1"
+          ],
+          "hl": "阻斷IGF-1"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26s",
+      "kind": "ig",
+      "igLabel": "IG4 좋은 미네랄 방패",
+      "motion": "🛡️ 4점 점등 + ↘ 배출",
+      "copy": {
+        "ko": {
+          "narr": "좋은 소식! 칼슘·철·아연·셀레늄이 흡수를 막고 배출까지 도와요.",
+          "cap": [
+            "칼슘·철·아연·셀레늄",
+            "흡수 막고 배출"
+          ],
+          "hl": "흡수 막고 배출"
+        },
+        "th": {
+          "narr": "ข่าวดี! แคลเซียม เหล็ก สังกะสี ซีลีเนียม ช่วยกันดูดซึมและช่วยขับออก",
+          "cap": [
+            "แคลเซียม·เหล็ก·สังกะสี",
+            "กันดูดซึม ช่วยขับ"
+          ],
+          "hl": "กันดูดซึม ช่วยขับ"
+        },
+        "vi": {
+          "narr": "Tin vui! Canxi, sắt, kẽm, selen chặn hấp thu và còn giúp đào thải.",
+          "cap": [
+            "Canxi·sắt·kẽm·selen",
+            "chặn & đào thải"
+          ],
+          "hl": "chặn & đào thải"
+        },
+        "en": {
+          "narr": "Good news! Calcium, iron, zinc, and selenium block absorption and help flush it out.",
+          "cap": [
+            "Calcium·iron·zinc·selenium",
+            "block & flush out"
+          ],
+          "hl": "block & flush out"
+        },
+        "cn": {
+          "narr": "好消息！钙、铁、锌、硒能阻挡吸收，还帮助排出。",
+          "cap": [
+            "钙·铁·锌·硒",
+            "阻吸收助排出"
+          ],
+          "hl": "阻吸收助排出"
+        },
+        "ch": {
+          "narr": "好消息！鈣、鐵、鋅、硒能阻擋吸收，還幫助排出。",
+          "cap": [
+            "鈣·鐵·鋅·硒",
+            "阻吸收助排出"
+          ],
+          "hl": "阻吸收助排出"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "doctor",
+      "motion": "🪟 환기 + ✅ KC",
+      "copy": {
+        "ko": {
+          "narr": "여기에 자주 환기·청소하고, KC 인증 장난감만 골라도 노출을 확 줄여요.",
+          "cap": [
+            "환기·청소 +",
+            "KC 장난감"
+          ],
+          "hl": "KC 장난감"
+        },
+        "th": {
+          "narr": "เพิ่มการระบายอากาศ ทำความสะอาด เลือกของเล่นมีมาตรฐาน ก็ลดการสัมผัสได้มาก",
+          "cap": [
+            "ระบายอากาศ·ทำความสะอาด",
+            "ของเล่นมาตรฐาน"
+          ],
+          "hl": "ของเล่นมาตรฐาน"
+        },
+        "vi": {
+          "narr": "Thêm vào: năng thông gió, lau dọn và chọn đồ chơi đạt chuẩn là giảm hẳn phơi nhiễm.",
+          "cap": [
+            "Thông gió·lau dọn",
+            "đồ chơi đạt chuẩn"
+          ],
+          "hl": "đồ chơi đạt chuẩn"
+        },
+        "en": {
+          "narr": "Add frequent airing and cleaning, and pick certified-safe toys — exposure drops fast.",
+          "cap": [
+            "Air out & clean +",
+            "certified toys"
+          ],
+          "hl": "certified toys"
+        },
+        "cn": {
+          "narr": "再加上常通风清洁、只选合格认证玩具，接触就大大减少。",
+          "cap": [
+            "通风清洁 +",
+            "认证玩具"
+          ],
+          "hl": "认证玩具"
+        },
+        "ch": {
+          "narr": "再加上常通風清潔、只選合格認證玩具，接觸就大大減少。",
+          "cap": [
+            "通風清潔 +",
+            "認證玩具"
+          ],
+          "hl": "認證玩具"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이랑 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있어요.",
+          "cap": [
+            "뼈나이·예측키로",
+            "성장 확인"
+          ],
+          "hl": "성장 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกและส่วนสูงที่คาดการณ์ บอกได้ทันทีว่าลูกโตดีไหม",
+          "cap": [
+            "อายุกระดูก·คาดการณ์",
+            "เช็กการโต"
+          ],
+          "hl": "เช็กการโต"
+        },
+        "vi": {
+          "narr": "Tuổi xương và chiều cao dự đoán cho biết ngay con có lớn tốt không.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "kiểm tra tăng trưởng"
+          ],
+          "hl": "kiểm tra tăng trưởng"
+        },
+        "en": {
+          "narr": "Bone age and predicted height tell you right away if your child's growing well.",
+          "cap": [
+            "Bone age·prediction",
+            "check growth"
+          ],
+          "hl": "check growth"
+        },
+        "cn": {
+          "narr": "看骨龄和预测身高，马上知道孩子长得好不好。",
+          "cap": [
+            "骨龄·预测身高",
+            "查看成长"
+          ],
+          "hl": "查看成长"
+        },
+        "ch": {
+          "narr": "看骨齡和預測身高，馬上知道孩子長得好不好。",
+          "cap": [
+            "骨齡·預測身高",
+            "查看成長"
+          ],
+          "hl": "查看成長"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보세요.",
+          "cap": [
+            "뼈나이·예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้",
+          "cap": [
+            "อายุกระดูก·คาดการณ์",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth with bone age and predicted height today.",
+          "cap": [
+            "Bone age·height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就用骨龄和预测身高查查孩子的成长吧。",
+          "cap": [
+            "骨龄·预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就用骨齡和預測身高查查孩子的成長吧。",
+          "cap": [
+            "骨齡·預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "칼슘 위장 → 성장판 점등",
+      "title": "납 = 칼슘인 척 뼈에 쌓임",
+      "emojis": [
+        "🦴",
+        "🎭",
+        "⚠️"
+      ],
+      "prompt": "Flat vector, square, white bg. A long bone standing upright with a glowing mint growth-plate band near the top; small dark metallic particles wearing tiny 'calcium' disguise masks sneaking into the bone and dimming/cracking the growth-plate band. Brand purple #667eea bone, mint #2dd4bf growth plate, a few muted gray intruder dots with a soft warning glow. Friendly pediatric, clean. NO text.",
+      "labels": [
+        {
+          "pos": "침입 입자",
+          "ko": "납(칼슘 위장)",
+          "en": "Lead in disguise",
+          "th": "ตะกั่วปลอมตัว"
+        },
+        {
+          "pos": "성장판 밴드",
+          "ko": "성장판 손상",
+          "en": "Plate harmed",
+          "th": "แผ่นกระดูกเสียหาย"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "흡수율 ↑ 펄스",
+      "title": "아이가 더 취약 — 높은 흡수율",
+      "emojis": [
+        "👶",
+        "🧑",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A small child silhouette beside a taller adult silhouette; over the child, a larger upward absorption arrow and bigger inflow droplets, over the adult a much smaller one, showing kids take in more relative to size. A tiny weak shield over the child (immature detox). Brand purple #667eea with mint #2dd4bf accents, friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "아이 위(큰 화살표)",
+          "ko": "흡수율 높음",
+          "en": "Absorbs more",
+          "th": "ดูดซึมมากกว่า"
+        },
+        {
+          "pos": "아이 방패(작음)",
+          "ko": "해독 미숙",
+          "en": "Weak detox",
+          "th": "ล้างพิษอ่อน"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "골밀도 ↓ + IGF-1 차단",
+      "title": "카드뮴 — 골밀도·IGF-1 방해",
+      "emojis": [
+        "⛏️",
+        "🦴",
+        "🚫"
+      ],
+      "prompt": "Flat vector, square, white bg. Left: a kidney icon leaking calcium droplets outward (loss). Center: a bone cross-section whose dense lattice is thinning into gaps (lower density). Right: a small growth-factor key labeled by shape blocked by a tiny barrier. Brand purple #667eea bone with mint #2dd4bf, muted gray cadmium accent, soft warning tone (not scary). Friendly pediatric, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "신장(누수)",
+          "ko": "칼슘 빠짐",
+          "en": "Calcium lost",
+          "th": "แคลเซียมรั่ว"
+        },
+        {
+          "pos": "뼈 단면",
+          "ko": "골밀도 ↓",
+          "en": "Bone density ↓",
+          "th": "มวลกระดูก ↓"
+        },
+        {
+          "pos": "차단 막대",
+          "ko": "IGF-1 차단",
+          "en": "IGF-1 blocked",
+          "th": "ขวาง IGF-1"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "4 미네랄 순차 점등 + 배출 ↘",
+      "title": "좋은 미네랄 방패 — 흡수 차단·배출",
+      "emojis": [
+        "🛡️",
+        "🥛",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly glowing mint shield in front of a child's body deflecting incoming dark metallic dots; four bright mineral orbs orbit the shield, and a downward sweep arrow flushes the deflected dots out the bottom. Brand purple #667eea body, mint #2dd4bf shield with soft sparkles, muted gray metal dots being pushed away. Reassuring, friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "오브 4개",
+          "ko": "칼슘·철·아연·셀레늄",
+          "en": "Ca·Fe·Zn·Se",
+          "th": "แคลเซียม·เหล็ก·สังกะสี·ซีลีเนียม"
+        },
+        {
+          "pos": "하단 화살표",
+          "ko": "배출 ↓",
+          "en": "Flushed out ↓",
+          "th": "ขับออก ↓"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🕵️",
+      "label": "숨은 적"
+    },
+    {
+      "e": "☣️",
+      "label": "중금속"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판·뼈나이"
+    },
+    {
+      "e": "🎭",
+      "label": "납(칼슘 위장)"
+    },
+    {
+      "e": "👶",
+      "label": "아이 취약"
+    },
+    {
+      "e": "🐟",
+      "label": "수은(큰 생선)"
+    },
+    {
+      "e": "⛏️",
+      "label": "카드뮴"
+    },
+    {
+      "e": "🛡️",
+      "label": "좋은 미네랄 방패"
+    },
+    {
+      "e": "🪟",
+      "label": "환기·청소"
+    },
+    {
+      "e": "🔍",
+      "label": "확인·검사"
+    },
+    {
+      "e": "✨",
+      "label": "안심·강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

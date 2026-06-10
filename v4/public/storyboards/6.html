@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 예상키 계산법의 오차</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #6</span>
+  <h1>부모 키 더해서 나누면 끝? — 예상키 공식의 함정</h1>
+  <div class="sub">아빠+엄마 평균 공식은 '시작점'일 뿐 — 유전 70~80%, 나머지 20~30%와 뼈나이가 진짜 키를 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>공식이 틀린다?</b></div>
+      <div class="subj">우리 아이 예상키</div>
+      <div class="big4"><div class="n" style="font-size:132px">½</div><div class="lab">만 맞는 공식</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 예상키</b> ½만 맞는 공식"</li>
+        <li><b>거대 숫자 "½"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #6 「예상키 계산법의 오차」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"아빠 키 엄마 키 더해서 나누면 우리 아이 키가 나온다고요? 사실은 절반만 맞아요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>부모 키 평균 공식이면 우리 아이 키를 알 수 있다 → 공식은 '평균 경향'일 뿐, 뼈나이·성장속도·사춘기를 못 본다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>부모 키 공식(남아 (아빠+엄마+13)/2, 여아 -13)은 유전 70~80%만 반영한 시작점. 나머지 20~30%(영양·수면·운동)와 뼈나이·성장속도·사춘기 단계가 진짜 최종키를 가른다. 정확한 예측은 뼈나이로.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("공식보다 더 클 잠재력이 있다"). "우리 아이 키" 보편 메시지. CTA는 시청자의 과거 행동을 단정하지 않고 뼈나이/예측키 측정으로 초대.</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>공식 말고 진짜 예측키 — 우리 아이 뼈나이로 지금 바로 확인해 보세요.</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"부모 키 더해서 나누면 끝? 절반만 맞다"</p></div><div class="act"><span class="n">ACT 2</span><h4>공식의 한계</h4><p>c3–c4<br>"공식은 평균일 뿐 → 크게도 작게도 자란다"</p></div><div class="act"><span class="n">ACT 3</span><h4>유전 vs 환경</h4><p>c5–c6<br>"유전 70~80% · 나머지 20~30%가 가른다"</p></div><div class="act"><span class="n">ACT 4</span><h4>공식이 못 보는 것</h4><p>c7–c8<br>"뼈나이·성장속도·사춘기는 진단으로만"</p></div><div class="act"><span class="n">ACT 5</span><h4>골든타임·행동</h4><p>c9–c10<br>"뼈나이로 진짜 예측 → 측정 CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">공식이 맞을까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🧮❓</div></div>
+        <div class="ph-cap"><div class="l">부모 키 공식</div><div class="l"><span class="y2">절반만 맞다</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">아빠 키 엄마 키 더해서 나누면 우리 아이 키가 나온다고요? 사실은 절반만 맞아요.</td><td><span class="cap2">부모 키 공식<br><span class="y">절반만 맞다</span></span></td><td class="mo">🧮 슬램 인 + ❓ 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">이 공식은 유전이라는 '뼈대'일 뿐, 우리 아이 키의 전체 그림이 아니거든요.</td><td><span class="cap2"><span class="y">공식은 뼈대</span><br>전체 그림 X</span></td><td class="mo">🧬 펄스 · 시작점</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 부모 키 공식</span></td><td class="narr">공식은 이래요. 남아는 아빠 엄마 키 더하기 13 나누기 2, 여아는 빼기 13이죠.</td><td><span class="cap2"><span class="y">남아 +13÷2</span><br>여아 −13÷2</span></td><td class="mo">➕ ➗ 순차 등장</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">문제는 '평균'만 본다는 거예요. 부모가 작아도 크게, 커도 작게 자라는 아이가 많거든요.</td><td><span class="cap2">공식은 평균만<br><span class="y">예외가 많다</span></span></td><td class="mo">↕️ 위아래 흔들 · 평균선</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 유전 vs 환경</span></td><td class="narr">키는 유전이 70에서 80퍼센트예요. 하지만 나머지 20에서 30퍼센트가 진짜 변수죠.</td><td><span class="cap2"><span class="y">유전 70~80%</span><br>나머지 20~30%</span></td><td class="mo">🥧 70 → 30 채우기</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">영양, 수면, 운동. 이 셋이 타고난 잠재력을 다 채우게도, 못 채우게도 해요.</td><td><span class="cap2">영양·수면·운동<br><span class="y">잠재력 좌우</span></span></td><td class="mo">🍽️😴🏃 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG3 공식이 못 보는 3가지</span></td><td class="narr">게다가 공식은 뼈나이, 성장 속도, 사춘기 단계를 전혀 못 봐요. 가장 중요한 건데도요.</td><td><span class="cap2">뼈나이·속도·사춘기<br><span class="y">공식은 못 본다</span></span></td><td class="mo">🦴📏🌱 순차 점등</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–29.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">이런 건 전문의가 종합적으로 봐야 알 수 있어요. 공식과는 정확도가 차원이 달라요.</td><td><span class="cap2">전문의 종합진단<br><span class="y">정확도가 다르다</span></span></td><td class="mo">👨‍⚕️ 팝 · 종합 진단</td></tr><tr><td class="c-id">c9</td><td class="c-time">29.5–32.5s</td><td><span class="scr ig">🖼 IG4 뼈나이 예측</span></td><td class="narr">손목 뼈나이를 보면 남은 성장 기간까지 알 수 있어요. 진짜 예측키는 여기서 나와요.</td><td><span class="cap2">손목 뼈나이로<br><span class="y">진짜 예측키</span></span></td><td class="mo">🤚🔍 골드 글로우</td></tr><tr><td class="c-id">c10</td><td class="c-time">32.5–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">공식 말고 진짜 예측키! 우리 아이 뼈나이, 지금 바로 확인하세요.</td><td><span class="cap2">진짜 예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: ➕ ➗ 순차 등장</div><h3>부모 키 공식 도식</h3></div>
+        <div class="body">
+          <div class="sketch">👨 👩 🧮</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly dad figure and mom figure on the left, plus and division symbols flowing into a calculator/equation block in the center, and a single child figure on the right standing on a measuring ruler as the result. Two faint result arrows split upward and downward to hint the answer is only an average, not exact. Brand purple #667eea figures, mint #2dd4bf calculator and ruler, friendly pediatric style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(부모)</td><td>아빠 + 엄마</td><td>Dad + Mom</td><td class="thai">พ่อ + แม่</td></tr><tr><td>가운데(계산)</td><td>÷ 2 (±13)</td><td>÷ 2 (±13)</td><td class="thai">÷ 2 (±13)</td></tr><tr><td>오른쪽(결과)</td><td>= 평균치</td><td>= average</td><td class="thai">= ค่าเฉลี่ย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 70 → 30 채우기</div><h3>유전 vs 비유전 비율</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🥗 🥧</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A large friendly donut/pie chart split into a big dominant slice and a smaller slice. The big slice carries a DNA helix motif, the smaller slice carries small lifestyle icons (a plate of food, a moon for sleep, a running shoe). Soft glow rising on the smaller slice to signal 'this is the part you can change.' Brand purple #667eea big slice, mint #2dd4bf small slice, friendly pediatric style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>큰 조각</td><td>유전 70~80%</td><td>Genes 70-80%</td><td class="thai">พันธุกรรม 70-80%</td></tr><tr><td>작은 조각</td><td>환경 20~30%</td><td>Lifestyle 20-30%</td><td class="thai">สิ่งแวดล้อม 20-30%</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c7 · 모션: 🦴📏🌱 순차 점등</div><h3>공식이 못 보는 3가지 지표</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 📏 🌱</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly icon cards in a row, each glowing in sequence: a wrist X-ray panel for bone age, an upward growth-curve chart for growth speed, and a small sprout/teen sprouting up for the puberty stage. Above them a faded crossed-out calculator to hint the formula can't see these. Brand purple #667eea cards, mint #2dd4bf glow accents, friendly clinical pediatric style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>카드1</td><td>뼈나이</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr><tr><td>카드2</td><td>성장 속도</td><td>Growth speed</td><td class="thai">อัตราการโต</td></tr><tr><td>카드3</td><td>사춘기 단계</td><td>Puberty stage</td><td class="thai">ระยะแรกรุ่น</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c9 · 모션: 🤚🔍 골드 글로우</div><h3>손목 뼈나이로 진짜 예측</h3></div>
+        <div class="body">
+          <div class="sketch">🤚 🔍 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A stylized wrist/hand X-ray panel with a magnifier lens over the wrist bones and a small upward prediction curve rising out of it toward a target marker, warm golden glow on the wrist suggesting the true final height is read here. Brand purple #667eea frame, mint #2dd4bf and gold accents, friendly clinical style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>손목 X-ray</td><td>손목 X-ray</td><td>Wrist X-ray</td><td class="thai">เอกซเรย์ข้อมือ</td></tr><tr><td>예측 곡선</td><td>진짜 예측키</td><td>Real prediction</td><td class="thai">ทำนายตัวจริง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🧮</b> 예상키 공식</span><span class="emo"><b>❓</b> 의문/오차</span><span class="emo"><b>🧬</b> 유전</span><span class="emo"><b>🥗</b> 영양</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>📏</b> 성장 속도</span><span class="emo"><b>🌱</b> 사춘기 단계</span><span class="emo"><b>👨‍⚕️</b> 전문의 진단</span><span class="emo"><b>🔍</b> 뼈나이 측정</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>아빠 키 엄마 키 더해서 나누면 우리 아이 키가 나온다고요? 사실은 절반만 맞아요.<br><span class="cap2">부모 키 공식 · <span class="y">절반만 맞다</span></span></td></tr><tr><td class="c-id">c2</td><td>이 공식은 유전이라는 '뼈대'일 뿐, 우리 아이 키의 전체 그림이 아니거든요.<br><span class="cap2">공식은 뼈대 · 전체 그림 X</span></td></tr><tr><td class="c-id">c3</td><td>공식은 이래요. 남아는 아빠 엄마 키 더하기 13 나누기 2, 여아는 빼기 13이죠.<br><span class="cap2">남아 +13÷2 · 여아 −13÷2</span></td></tr><tr><td class="c-id">c4</td><td>문제는 '평균'만 본다는 거예요. 부모가 작아도 크게, 커도 작게 자라는 아이가 많거든요.<br><span class="cap2">공식은 평균만 · <span class="y">예외가 많다</span></span></td></tr><tr><td class="c-id">c5</td><td>키는 유전이 70에서 80퍼센트예요. 하지만 나머지 20에서 30퍼센트가 진짜 변수죠.<br><span class="cap2">유전 70~80% · 나머지 20~30%</span></td></tr><tr><td class="c-id">c6</td><td>영양, 수면, 운동. 이 셋이 타고난 잠재력을 다 채우게도, 못 채우게도 해요.<br><span class="cap2">영양·수면·운동 · <span class="y">잠재력 좌우</span></span></td></tr><tr><td class="c-id">c7</td><td>게다가 공식은 뼈나이, 성장 속도, 사춘기 단계를 전혀 못 봐요. 가장 중요한 건데도요.<br><span class="cap2">뼈나이·속도·사춘기 · <span class="y">공식은 못 본다</span></span></td></tr><tr><td class="c-id">c8</td><td>이런 건 전문의가 종합적으로 봐야 알 수 있어요. 공식과는 정확도가 차원이 달라요.<br><span class="cap2">전문의 종합진단 · <span class="y">정확도가 다르다</span></span></td></tr><tr><td class="c-id">c9</td><td>손목 뼈나이를 보면 남은 성장 기간까지 알 수 있어요. 진짜 예측키는 여기서 나와요.<br><span class="cap2">손목 뼈나이로 · <span class="y">진짜 예측키</span></span></td></tr><tr><td class="c-id">c10</td><td>공식 말고 진짜 예측키! 우리 아이 뼈나이, 지금 바로 확인하세요.<br><span class="cap2">진짜 예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>เอาส่วนสูงพ่อแม่มาบวกหารสองได้ความสูงลูกจริงเหรอ? จริงๆ ถูกแค่ครึ่งเดียว<br><span class="cap2">สูตรพ่อแม่ · <span class="y">ถูกแค่ครึ่ง</span></span></td></tr><tr><td class="c-id">c2</td><td>สูตรนี้เป็นแค่โครงจากพันธุกรรม ไม่ใช่ภาพรวมความสูงทั้งหมดของลูก<br><span class="cap2">แค่โครงพันธุกรรม · ไม่ใช่ทั้งหมด</span></td></tr><tr><td class="c-id">c3</td><td>สูตรเป็นแบบนี้ ชายคือพ่อบวกแม่บวก13หาร2 หญิงคือลบ13<br><span class="cap2">ชาย +13÷2 · หญิง −13÷2</span></td></tr><tr><td class="c-id">c4</td><td>ปัญหาคือมันดูแค่ค่าเฉลี่ย พ่อแม่เตี้ยลูกสูงก็มี พ่อแม่สูงลูกเตี้ยก็มี<br><span class="cap2">ดูแค่ค่าเฉลี่ย · <span class="y">มีข้อยกเว้นเยอะ</span></span></td></tr><tr><td class="c-id">c5</td><td>ความสูงเป็นพันธุกรรม 70 ถึง 80% แต่อีก 20 ถึง 30% คือตัวแปรจริง<br><span class="cap2">พันธุกรรม 70~80% · อีก 20~30%</span></td></tr><tr><td class="c-id">c6</td><td>อาหาร การนอน การออกกำลังกาย สามอย่างนี้ทำให้ลูกถึงศักยภาพหรือไม่ก็ได้<br><span class="cap2">อาหาร·นอน·ออกกำลัง · <span class="y">กำหนดศักยภาพ</span></span></td></tr><tr><td class="c-id">c7</td><td>ยิ่งกว่านั้น สูตรมองไม่เห็นอายุกระดูก อัตราการโต และวัยแรกรุ่นเลย ทั้งที่สำคัญที่สุด<br><span class="cap2">กระดูก·อัตราโต·แรกรุ่น · <span class="y">สูตรมองไม่เห็น</span></span></td></tr><tr><td class="c-id">c8</td><td>สิ่งเหล่านี้ต้องให้แพทย์เฉพาะทางดูรวมๆ ความแม่นยำต่างจากสูตรคนละระดับ<br><span class="cap2">แพทย์ดูรวม · <span class="y">แม่นยำกว่ามาก</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกข้อมือบอกได้ถึงเวลาที่เหลือ ความสูงที่แท้จริงทำนายจากตรงนี้<br><span class="cap2">อายุกระดูกข้อมือ · <span class="y">ทำนายตัวจริง</span></span></td></tr><tr><td class="c-id">c10</td><td>ไม่ใช่แค่สูตร แต่เป็นการทำนายจริง! เช็กอายุกระดูกของลูกวันนี้<br><span class="cap2">ทำนายตัวจริง · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Cộng chiều cao bố mẹ chia đôi là ra chiều cao con? Thật ra chỉ đúng một nửa.<br><span class="cap2">Công thức bố mẹ · <span class="y">chỉ đúng nửa</span></span></td></tr><tr><td class="c-id">c2</td><td>Công thức này chỉ là cái khung di truyền, không phải bức tranh đầy đủ về chiều cao của con.<br><span class="cap2">Chỉ là khung gen · không phải tất cả</span></td></tr><tr><td class="c-id">c3</td><td>Công thức là: bé trai = bố cộng mẹ cộng 13 chia 2, bé gái thì trừ 13.<br><span class="cap2">Trai +13÷2 · Gái −13÷2</span></td></tr><tr><td class="c-id">c4</td><td>Vấn đề là nó chỉ nhìn 'trung bình'. Bố mẹ thấp con vẫn cao, bố mẹ cao con vẫn thấp.<br><span class="cap2">Chỉ nhìn trung bình · <span class="y">nhiều ngoại lệ</span></span></td></tr><tr><td class="c-id">c5</td><td>Chiều cao do gen quyết định 70 đến 80%, nhưng 20 đến 30% còn lại mới là biến số thật.<br><span class="cap2">Gen 70~80% · còn 20~30%</span></td></tr><tr><td class="c-id">c6</td><td>Dinh dưỡng, giấc ngủ, vận động — ba thứ này quyết định con có đạt hết tiềm năng hay không.<br><span class="cap2">Ăn·ngủ·vận động · <span class="y">quyết định tiềm năng</span></span></td></tr><tr><td class="c-id">c7</td><td>Hơn nữa, công thức không thấy tuổi xương, tốc độ tăng trưởng và giai đoạn dậy thì — những thứ quan trọng nhất.<br><span class="cap2">Xương·tốc độ·dậy thì · <span class="y">công thức bỏ qua</span></span></td></tr><tr><td class="c-id">c8</td><td>Những điều này cần bác sĩ chuyên khoa đánh giá tổng thể — độ chính xác khác hẳn công thức.<br><span class="cap2">Bác sĩ đánh giá · <span class="y">chính xác hơn hẳn</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cổ tay còn cho biết thời gian tăng trưởng còn lại — chiều cao thật được dự đoán từ đây.<br><span class="cap2">Tuổi xương cổ tay · <span class="y">dự đoán thật</span></span></td></tr><tr><td class="c-id">c10</td><td>Không phải công thức — mà là dự đoán thật! Kiểm tra tuổi xương của con ngay.<br><span class="cap2">Dự đoán thật · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Add mom and dad's height, divide — and that's your child's height? It's only half true.<br><span class="cap2">Parent formula · <span class="y">only half true</span></span></td></tr><tr><td class="c-id">c2</td><td>This formula is just the genetic skeleton — not the whole picture of your child's height.<br><span class="cap2">Just the frame · not whole picture</span></td></tr><tr><td class="c-id">c3</td><td>The formula: boys are dad plus mom plus 13, over 2; girls are minus 13.<br><span class="cap2">Boys +13÷2 · Girls −13÷2</span></td></tr><tr><td class="c-id">c4</td><td>The catch: it only shows the average. Short parents have tall kids, tall parents have short kids.<br><span class="cap2">Just the average · <span class="y">many exceptions</span></span></td></tr><tr><td class="c-id">c5</td><td>Height is 70 to 80 percent genes — but the other 20 to 30 percent is the real variable.<br><span class="cap2">Genes 70~80% · rest 20~30%</span></td></tr><tr><td class="c-id">c6</td><td>Nutrition, sleep, exercise — these three decide whether your child reaches full potential.<br><span class="cap2">Food·sleep·exercise · <span class="y">decide potential</span></span></td></tr><tr><td class="c-id">c7</td><td>And the formula can't see bone age, growth speed, or puberty stage — the things that matter most.<br><span class="cap2">Bone·speed·puberty · <span class="y">formula misses</span></span></td></tr><tr><td class="c-id">c8</td><td>A specialist reads all of these together — far more accurate than any formula.<br><span class="cap2">Specialist exam · <span class="y">far more accurate</span></span></td></tr><tr><td class="c-id">c9</td><td>A wrist bone age even shows the growth time left — the real height prediction comes from here.<br><span class="cap2">Wrist bone age · <span class="y">real prediction</span></span></td></tr><tr><td class="c-id">c10</td><td>Not a formula — a real prediction! Check your child's bone age today.<br><span class="cap2">Real prediction · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>爸妈身高加起来除以二就是孩子身高？其实只对了一半。<br><span class="cap2">父母公式 · <span class="y">只对一半</span></span></td></tr><tr><td class="c-id">c2</td><td>这个公式只是遗传的'骨架'，不是孩子身高的完整画面。<br><span class="cap2">只是遗传骨架 · 非完整画面</span></td></tr><tr><td class="c-id">c3</td><td>公式是这样：男孩是爸加妈加13除以2，女孩是减13。<br><span class="cap2">男孩 +13÷2 · 女孩 −13÷2</span></td></tr><tr><td class="c-id">c4</td><td>问题是它只看'平均'。父母矮孩子高、父母高孩子矮的例子很多。<br><span class="cap2">只看平均 · <span class="y">例外很多</span></span></td></tr><tr><td class="c-id">c5</td><td>身高有70到80%靠遗传，但剩下的20到30%才是真正的变量。<br><span class="cap2">遗传 70~80% · 其余 20~30%</span></td></tr><tr><td class="c-id">c6</td><td>营养、睡眠、运动，这三样决定孩子能否发挥全部潜力。<br><span class="cap2">营养·睡眠·运动 · <span class="y">决定潜力</span></span></td></tr><tr><td class="c-id">c7</td><td>而且公式根本看不到骨龄、生长速度和青春期阶段，偏偏这些最重要。<br><span class="cap2">骨龄·速度·青春期 · <span class="y">公式看不到</span></span></td></tr><tr><td class="c-id">c8</td><td>这些需要专科医生综合判断，准确度和公式完全是两个级别。<br><span class="cap2">专科综合判断 · <span class="y">准确度更高</span></span></td></tr><tr><td class="c-id">c9</td><td>看手腕骨龄还能知道剩余生长时间，真正的预测身高就来自这里。<br><span class="cap2">手腕骨龄 · <span class="y">真正的预测</span></span></td></tr><tr><td class="c-id">c10</td><td>不是公式，而是真正的预测！现在就查查孩子的骨龄吧。<br><span class="cap2">真正的预测 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>爸媽身高加起來除以二就是孩子身高？其實只對了一半。<br><span class="cap2">父母公式 · <span class="y">只對一半</span></span></td></tr><tr><td class="c-id">c2</td><td>這個公式只是遺傳的'骨架'，不是孩子身高的完整畫面。<br><span class="cap2">只是遺傳骨架 · 非完整畫面</span></td></tr><tr><td class="c-id">c3</td><td>公式是這樣：男孩是爸加媽加13除以2，女孩是減13。<br><span class="cap2">男孩 +13÷2 · 女孩 −13÷2</span></td></tr><tr><td class="c-id">c4</td><td>問題是它只看'平均'。父母矮孩子高、父母高孩子矮的例子很多。<br><span class="cap2">只看平均 · <span class="y">例外很多</span></span></td></tr><tr><td class="c-id">c5</td><td>身高有70到80%靠遺傳，但剩下的20到30%才是真正的變數。<br><span class="cap2">遺傳 70~80% · 其餘 20~30%</span></td></tr><tr><td class="c-id">c6</td><td>營養、睡眠、運動，這三樣決定孩子能否發揮全部潛力。<br><span class="cap2">營養·睡眠·運動 · <span class="y">決定潛力</span></span></td></tr><tr><td class="c-id">c7</td><td>而且公式根本看不到骨齡、生長速度和青春期階段，偏偏這些最重要。<br><span class="cap2">骨齡·速度·青春期 · <span class="y">公式看不到</span></span></td></tr><tr><td class="c-id">c8</td><td>這些需要專科醫師綜合判斷，準確度和公式完全是兩個級別。<br><span class="cap2">專科綜合判斷 · <span class="y">準確度更高</span></span></td></tr><tr><td class="c-id">c9</td><td>看手腕骨齡還能知道剩餘生長時間，真正的預測身高就來自這裡。<br><span class="cap2">手腕骨齡 · <span class="y">真正的預測</span></span></td></tr><tr><td class="c-id">c10</td><td>不是公式，而是真正的預測！現在就查查孩子的骨齡吧。<br><span class="cap2">真正的預測 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/예상키공식오차/</code> · <code>예상키공식오차-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

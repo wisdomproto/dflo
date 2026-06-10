@@ -1,0 +1,769 @@
+{
+  "n": 4,
+  "slug": "성장호르몬10시",
+  "title": "성장호르몬 10시 신화의 진실 — 키는 '깊은 잠'이 만든다",
+  "sub": "밤 10시가 아니라 '깊은 잠'이 핵심 — 시계 시간보다 수면의 질이 키를 만든다",
+  "category": "A. 성장과학",
+  "topicTitle": "성장호르몬 분비 시간 — 10시 신화 해부",
+  "headerTop": "우리 아이 키",
+  "headerMark": "10시에 자야 큰다?",
+  "accentEmoji": "🌙✨",
+  "hook": "\"밤 10시에 재워야 키 큰다\" — 이거, 사실 아닐 수도 있어요.",
+  "misconception": "10시~새벽 2시에 성장호르몬이 가장 많이 나온다 → 시계 시간이 아니라 '깊은 잠'에 분비됨",
+  "message": "성장호르몬은 잠든 후 '깊은 잠(서파 수면)'에 집중 분비된다. 몇 시에 자느냐보다 얼마나 깊게 자느냐 — 특히 잠든 첫 3~4시간이 핵심",
+  "tone": "협박 ❌ → 긍정 골든타임(\"10시 못 지켜도 늦지 않았다, 깊은 잠이 답\"). \"우리 아이 키\" 보편. 시계 강박 줄이고 수면의 질로 안심시키기",
+  "cta": "우리 아이 성장 속도·뼈나이 지금 확인 → 예측키/뼈나이 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "10시 신화의 진실",
+    "subject": "우리 아이 키",
+    "number": "깊은 잠",
+    "numLabel": "이 만든다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"10시에 자야 큰다? 사실이 아닐 수도\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "진짜 원리",
+      "scenes": "c3–c4",
+      "desc": "\"시계 시간 X → 깊은 잠에 분비\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "골든존",
+      "scenes": "c5–c6",
+      "desc": "\"잠든 첫 3~4시간 = 분비 집중\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "질 vs 시간",
+      "scenes": "c7–c8",
+      "desc": "\"몇 시보다 얼마나 깊게 + 깊은 잠 루틴\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"성장 속도·뼈나이 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🌙 슬램 인 + ❓ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "\"밤 10시에 재워야 키 큰다\" — 이거, 사실 아닐 수도 있어요.",
+          "cap": [
+            "밤 10시에 자야",
+            "키 큰다?"
+          ],
+          "hl": "키 큰다?"
+        },
+        "th": {
+          "narr": "\"ต้องนอน 4 ทุ่มถึงจะสูง\" — อาจไม่จริงนะ",
+          "cap": [
+            "นอน 4 ทุ่ม",
+            "ถึงจะสูง?"
+          ],
+          "hl": "ถึงจะสูง?"
+        },
+        "vi": {
+          "narr": "\"Phải ngủ lúc 10 giờ mới cao\" — điều này có thể không đúng.",
+          "cap": [
+            "Ngủ lúc 10 giờ",
+            "mới cao?"
+          ],
+          "hl": "mới cao?"
+        },
+        "en": {
+          "narr": "\"Kids must sleep by 10 PM to grow tall\" — that might not be true.",
+          "cap": [
+            "Sleep by 10 PM",
+            "to grow tall?"
+          ],
+          "hl": "to grow tall?"
+        },
+        "cn": {
+          "narr": "\"必须10点睡觉才能长高\"——这可能不是真的。",
+          "cap": [
+            "10点睡觉",
+            "才能长高？"
+          ],
+          "hl": "才能长高？"
+        },
+        "ch": {
+          "narr": "\"必須10點睡覺才能長高\"——這可能不是真的。",
+          "cap": [
+            "10點睡覺",
+            "才能長高？"
+          ],
+          "hl": "才能長高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🕙 흔들 + 똑딱",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬은 '시계 시간'에 맞춰 나오는 게 아니거든요.",
+          "cap": [
+            "시계 시간이",
+            "아니에요"
+          ],
+          "hl": "시계 시간이"
+        },
+        "th": {
+          "narr": "ฮอร์โมนการเจริญเติบโตไม่ได้หลั่งตามเวลานาฬิกา",
+          "cap": [
+            "ไม่ได้หลั่ง",
+            "ตามเวลานาฬิกา"
+          ],
+          "hl": "ตามเวลานาฬิกา"
+        },
+        "vi": {
+          "narr": "Hormone tăng trưởng không tiết theo 'giờ đồng hồ'.",
+          "cap": [
+            "Không theo",
+            "giờ đồng hồ"
+          ],
+          "hl": "giờ đồng hồ"
+        },
+        "en": {
+          "narr": "Growth hormone doesn't release by the clock.",
+          "cap": [
+            "Not by",
+            "the clock"
+          ],
+          "hl": "the clock"
+        },
+        "cn": {
+          "narr": "生长激素不是按'钟点'分泌的。",
+          "cap": [
+            "不是按",
+            "钟点分泌"
+          ],
+          "hl": "钟点分泌"
+        },
+        "ch": {
+          "narr": "生長激素不是按'鐘點'分泌的。",
+          "cap": [
+            "不是按",
+            "鐘點分泌"
+          ],
+          "hl": "鐘點分泌"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 시계 vs 깊은잠",
+      "motion": "🕙 → 💤 크로스페이드",
+      "copy": {
+        "ko": {
+          "narr": "진짜 열쇠는 '깊은 잠'이에요. 깊이 잠들면 호르몬이 쏟아져요.",
+          "cap": [
+            "진짜 열쇠는",
+            "깊은 잠"
+          ],
+          "hl": "깊은 잠"
+        },
+        "th": {
+          "narr": "กุญแจที่แท้จริงคือ 'การหลับลึก' หลับลึกฮอร์โมนก็หลั่ง",
+          "cap": [
+            "กุญแจคือ",
+            "การหลับลึก"
+          ],
+          "hl": "การหลับลึก"
+        },
+        "vi": {
+          "narr": "Chìa khóa thật sự là 'giấc ngủ sâu' — ngủ sâu thì hormone tuôn trào.",
+          "cap": [
+            "Chìa khóa là",
+            "ngủ sâu"
+          ],
+          "hl": "ngủ sâu"
+        },
+        "en": {
+          "narr": "The real key is deep sleep — sleep deep and the hormone pours out.",
+          "cap": [
+            "The real key:",
+            "deep sleep"
+          ],
+          "hl": "deep sleep"
+        },
+        "cn": {
+          "narr": "真正的关键是'深度睡眠'——睡得深，激素就大量分泌。",
+          "cap": [
+            "真正关键：",
+            "深度睡眠"
+          ],
+          "hl": "深度睡眠"
+        },
+        "ch": {
+          "narr": "真正的關鍵是'深度睡眠'——睡得深，激素就大量分泌。",
+          "cap": [
+            "真正關鍵：",
+            "深度睡眠"
+          ],
+          "hl": "深度睡眠"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "💤 펄스 · ⏱️ \"1시간\" 팝",
+      "copy": {
+        "ko": {
+          "narr": "잠든 지 약 1시간 뒤부터 깊은 잠, '서파 수면'이 시작돼요.",
+          "cap": [
+            "잠든 후 1시간",
+            "서파 수면 시작"
+          ],
+          "hl": "서파 수면 시작"
+        },
+        "th": {
+          "narr": "ราว 1 ชั่วโมงหลังหลับ การหลับคลื่นช้าจะเริ่มขึ้น",
+          "cap": [
+            "หลับ 1 ชั่วโมง",
+            "หลับคลื่นช้า"
+          ],
+          "hl": "หลับคลื่นช้า"
+        },
+        "vi": {
+          "narr": "Khoảng 1 giờ sau khi ngủ, giấc ngủ sóng chậm bắt đầu.",
+          "cap": [
+            "Sau 1 giờ ngủ",
+            "ngủ sóng chậm"
+          ],
+          "hl": "ngủ sóng chậm"
+        },
+        "en": {
+          "narr": "About 1 hour after sleep, deep slow-wave sleep begins.",
+          "cap": [
+            "1 hr after sleep",
+            "slow-wave sleep"
+          ],
+          "hl": "slow-wave sleep"
+        },
+        "cn": {
+          "narr": "入睡约1小时后，深度的'慢波睡眠'开始。",
+          "cap": [
+            "入睡1小时后",
+            "慢波睡眠"
+          ],
+          "hl": "慢波睡眠"
+        },
+        "ch": {
+          "narr": "入睡約1小時後，深度的'慢波睡眠'開始。",
+          "cap": [
+            "入睡1小時後",
+            "慢波睡眠"
+          ],
+          "hl": "慢波睡眠"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 첫 3~4시간",
+      "motion": "🌙 첫 3~4시간 골드 점등",
+      "copy": {
+        "ko": {
+          "narr": "특히 잠든 첫 3에서 4시간, 이때 호르몬이 가장 집중적으로 나와요.",
+          "cap": [
+            "잠든 첫",
+            "3~4시간 집중"
+          ],
+          "hl": "3~4시간 집중"
+        },
+        "th": {
+          "narr": "โดยเฉพาะ 3–4 ชั่วโมงแรกหลังหลับ ฮอร์โมนหลั่งเข้มข้นที่สุด",
+          "cap": [
+            "3–4 ชั่วโมงแรก",
+            "หลั่งเข้มข้น"
+          ],
+          "hl": "3–4 ชั่วโมงแรก"
+        },
+        "vi": {
+          "narr": "Nhất là 3–4 giờ đầu sau khi ngủ, hormone tiết ra mạnh nhất.",
+          "cap": [
+            "3–4 giờ đầu",
+            "tiết mạnh nhất"
+          ],
+          "hl": "3–4 giờ đầu"
+        },
+        "en": {
+          "narr": "Especially the first 3–4 hours of sleep — that's the peak release.",
+          "cap": [
+            "First 3–4 hours",
+            "peak release"
+          ],
+          "hl": "First 3–4 hours"
+        },
+        "cn": {
+          "narr": "尤其是入睡后的头3到4小时，激素分泌最集中。",
+          "cap": [
+            "头3–4小时",
+            "分泌最集中"
+          ],
+          "hl": "头3–4小时"
+        },
+        "ch": {
+          "narr": "尤其是入睡後的頭3到4小時，激素分泌最集中。",
+          "cap": [
+            "頭3–4小時",
+            "分泌最集中"
+          ],
+          "hl": "頭3–4小時"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🆚 10시 vs 11시 교차",
+      "copy": {
+        "ko": {
+          "narr": "그래서 10시든 11시든, 깊이만 자면 호르몬은 똑같이 나와요.",
+          "cap": [
+            "10시든 11시든",
+            "깊이 자면 OK"
+          ],
+          "hl": "깊이 자면 OK"
+        },
+        "th": {
+          "narr": "ดังนั้น 4 ทุ่มหรือ 5 ทุ่ม ถ้าหลับลึกฮอร์โมนก็หลั่งเท่ากัน",
+          "cap": [
+            "กี่โมงก็ได้",
+            "ขอแค่หลับลึก"
+          ],
+          "hl": "ขอแค่หลับลึก"
+        },
+        "vi": {
+          "narr": "Nên 10 hay 11 giờ, miễn ngủ sâu thì hormone vẫn tiết như nhau.",
+          "cap": [
+            "10 hay 11 giờ",
+            "miễn ngủ sâu"
+          ],
+          "hl": "miễn ngủ sâu"
+        },
+        "en": {
+          "narr": "So 10 or 11 PM — if the sleep is deep, the hormone flows the same.",
+          "cap": [
+            "10 or 11 PM",
+            "if sleep is deep"
+          ],
+          "hl": "if sleep is deep"
+        },
+        "cn": {
+          "narr": "所以10点还是11点，只要睡得深，激素照样分泌。",
+          "cap": [
+            "10点11点都行",
+            "只要睡得深"
+          ],
+          "hl": "只要睡得深"
+        },
+        "ch": {
+          "narr": "所以10點還是11點，只要睡得深，激素照樣分泌。",
+          "cap": [
+            "10點11點都行",
+            "只要睡得深"
+          ],
+          "hl": "只要睡得深"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 깊은잠 루틴",
+      "motion": "🌑📵🛁📖 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "방은 어둡고 조용하게, 자기 1시간 전엔 스마트폰을 멀리해 주세요.",
+          "cap": [
+            "어둡게·조용히",
+            "자기 1시간 전 폰 OFF"
+          ],
+          "hl": "자기 1시간 전 폰 OFF"
+        },
+        "th": {
+          "narr": "ห้องมืดเงียบ และงดมือถืออย่างน้อย 1 ชั่วโมงก่อนนอน",
+          "cap": [
+            "มืดและเงียบ",
+            "งดมือถือ 1 ชม."
+          ],
+          "hl": "งดมือถือ 1 ชม."
+        },
+        "vi": {
+          "narr": "Phòng tối và yên tĩnh, tắt điện thoại ít nhất 1 giờ trước khi ngủ.",
+          "cap": [
+            "Tối và yên tĩnh",
+            "tắt điện thoại 1 giờ"
+          ],
+          "hl": "tắt điện thoại 1 giờ"
+        },
+        "en": {
+          "narr": "Keep the room dark and quiet, and put phones away an hour before bed.",
+          "cap": [
+            "Dark & quiet",
+            "phones off 1 hr before"
+          ],
+          "hl": "phones off 1 hr before"
+        },
+        "cn": {
+          "narr": "房间要暗要安静，睡前1小时远离手机。",
+          "cap": [
+            "又暗又安静",
+            "睡前1小时关手机"
+          ],
+          "hl": "睡前1小时关手机"
+        },
+        "ch": {
+          "narr": "房間要暗要安靜，睡前1小時遠離手機。",
+          "cap": [
+            "又暗又安靜",
+            "睡前1小時關手機"
+          ],
+          "hl": "睡前1小時關手機"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🛌 펄스 + ✨ 글로우",
+      "copy": {
+        "ko": {
+          "narr": "낮에 충분히 뛰어놀고, 매일 같은 시간에 자면 깊은 잠이 깊어져요.",
+          "cap": [
+            "낮엔 활동",
+            "규칙적 수면"
+          ],
+          "hl": "규칙적 수면"
+        },
+        "th": {
+          "narr": "กลางวันวิ่งเล่นให้พอ และนอนเวลาเดิมทุกวัน หลับลึกขึ้น",
+          "cap": [
+            "กลางวันออกแรง",
+            "นอนเวลาเดิม"
+          ],
+          "hl": "นอนเวลาเดิม"
+        },
+        "vi": {
+          "narr": "Ban ngày vận động đủ, mỗi ngày ngủ cùng giờ — giấc ngủ sẽ sâu hơn.",
+          "cap": [
+            "Ban ngày vận động",
+            "ngủ đúng giờ"
+          ],
+          "hl": "ngủ đúng giờ"
+        },
+        "en": {
+          "narr": "Active days and a steady bedtime make sleep go deeper.",
+          "cap": [
+            "Active by day",
+            "steady bedtime"
+          ],
+          "hl": "steady bedtime"
+        },
+        "cn": {
+          "narr": "白天多活动，每天同一时间睡，深睡会更深。",
+          "cap": [
+            "白天多活动",
+            "作息规律"
+          ],
+          "hl": "作息规律"
+        },
+        "ch": {
+          "narr": "白天多活動，每天同一時間睡，深睡會更深。",
+          "cap": [
+            "白天多活動",
+            "作息規律"
+          ],
+          "hl": "作息規律"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이가 잘 자고 잘 크고 있는지는, 성장 속도와 뼈나이로 확인할 수 있어요.",
+          "cap": [
+            "성장 속도·뼈나이로",
+            "확인하세요"
+          ],
+          "hl": "성장 속도·뼈나이로"
+        },
+        "th": {
+          "narr": "ลูกนอนดีและโตดีไหม เช็กได้จากอัตราการโตและอายุกระดูก",
+          "cap": [
+            "อัตราการโต·อายุกระดูก",
+            "เช็กได้"
+          ],
+          "hl": "อัตราการโต·อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Con ngủ tốt và lớn tốt chưa? Xem tốc độ tăng trưởng và tuổi xương.",
+          "cap": [
+            "Tốc độ lớn·tuổi xương",
+            "kiểm tra được"
+          ],
+          "hl": "Tốc độ lớn·tuổi xương"
+        },
+        "en": {
+          "narr": "Whether your child sleeps and grows well — growth rate and bone age show it.",
+          "cap": [
+            "Growth rate & bone age",
+            "show it"
+          ],
+          "hl": "Growth rate & bone age"
+        },
+        "cn": {
+          "narr": "孩子睡得好不好、长得好不好，看生长速度和骨龄就知道。",
+          "cap": [
+            "生长速度·骨龄",
+            "一看便知"
+          ],
+          "hl": "生长速度·骨龄"
+        },
+        "ch": {
+          "narr": "孩子睡得好不好、長得好不好，看生長速度和骨齡就知道。",
+          "cap": [
+            "生長速度·骨齡",
+            "一看便知"
+          ],
+          "hl": "生長速度·骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "igLabel": "",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 속도와 뼈나이, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 속도·뼈나이",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กอัตราการโตและอายุกระดูกของลูกวันนี้",
+          "cap": [
+            "อัตราการโต·อายุกระดูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tốc độ tăng trưởng và tuổi xương của con ngay hôm nay.",
+          "cap": [
+            "Tốc độ lớn·tuổi xương",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth rate and bone age today.",
+          "cap": [
+            "Growth rate & bone age",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的生长速度和骨龄吧。",
+          "cap": [
+            "生长速度·骨龄",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的生長速度和骨齡吧。",
+          "cap": [
+            "生長速度·骨齡",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🕙 → 💤 크로스페이드",
+      "title": "시계 시간 X → 깊은 잠 O",
+      "emojis": [
+        "🕙",
+        "💤",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. Left side: a wall clock pointing to 10 o'clock, faded and crossed out with a soft gray X. Right side (brighter): a peaceful sleeping child curled under a blanket with a glowing crescent moon and gentle sparkles radiating from the head, suggesting hormone release during deep sleep. An arrow flows from the faded clock to the glowing sleeping child. Brand purple to mint gradient, soft glow, friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(흐림)",
+          "ko": "시계 시간",
+          "en": "Clock time",
+          "th": "เวลานาฬิกา"
+        },
+        {
+          "pos": "오른쪽(글로우)",
+          "ko": "깊은 잠",
+          "en": "Deep sleep",
+          "th": "การหลับลึก"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "첫 3~4시간 골드 점등",
+      "title": "잠든 첫 3~4시간 = 분비 집중",
+      "emojis": [
+        "🌙",
+        "📈",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. A horizontal night-sleep timeline from left (falling asleep, small moon) to right (morning, small sun). Above the timeline, a wavy hormone-pulse curve with the FIRST two large peaks near the left glowing bright gold, and later peaks smaller and dimmer — showing growth hormone concentrated in the first part of the night. A small sleeping child silhouette under the timeline. Brand purple and mint with warm gold accents on the early peaks. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 큰 피크(골드)",
+          "ko": "분비 집중",
+          "en": "Peak release",
+          "th": "หลั่งเข้มข้น"
+        },
+        {
+          "pos": "하단 타임라인",
+          "ko": "잠든 첫 3~4시간",
+          "en": "First 3–4 hrs",
+          "th": "3–4 ชั่วโมงแรก"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "🌑📵🛁📖 순차 점등",
+      "title": "깊은 잠 만드는 4가지 루틴",
+      "emojis": [
+        "🌑",
+        "📵",
+        "🛁"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly 2x2 grid of four simple rounded icons, each in its own soft card: (1) a dark crescent moon with stars for a dark quiet room, (2) a smartphone with a small 'no/off' slash for screens off before bed, (3) a warm bathtub with steam for a warm bath routine, (4) a running child for daytime activity. Clean iconographic style, brand purple and mint, soft shadows, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "좌상",
+          "ko": "어둡게·조용히",
+          "en": "Dark & quiet",
+          "th": "มืดและเงียบ"
+        },
+        {
+          "pos": "우상",
+          "ko": "자기 1시간 전 폰 OFF",
+          "en": "Phones off",
+          "th": "งดมือถือ"
+        },
+        {
+          "pos": "좌하",
+          "ko": "따뜻한 샤워",
+          "en": "Warm bath",
+          "th": "อาบน้ำอุ่น"
+        },
+        {
+          "pos": "우하",
+          "ko": "낮엔 활동",
+          "en": "Active by day",
+          "th": "ออกแรงกลางวัน"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🌙",
+      "label": "밤·수면"
+    },
+    {
+      "e": "🕙",
+      "label": "10시 신화"
+    },
+    {
+      "e": "💤",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "📈",
+      "label": "호르몬 분비"
+    },
+    {
+      "e": "🛌",
+      "label": "숙면"
+    },
+    {
+      "e": "🌑",
+      "label": "어두운 방"
+    },
+    {
+      "e": "📵",
+      "label": "스마트폰 OFF"
+    },
+    {
+      "e": "🛁",
+      "label": "따뜻한 샤워"
+    },
+    {
+      "e": "🏃",
+      "label": "낮 활동"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 키 크는 영양제 효과</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #49</span>
+  <h1>키 크는 영양제, 먹이면 진짜 클까? — 소아과 전문의 팩트체크</h1>
+  <div class="sub">광고 속 '키 크는 영양제'의 진실 — 마법은 없지만, 우리 아이에게 진짜 필요한 건 따로 있다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>광고에 속지 마세요</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">영양제</div><div class="lab">진짜 클까?</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 영양제진짜 클까?"</li>
+        <li><b>거대 숫자 "영양제"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #49 「키 크는 영양제 효과」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"'키 크는 영양제' 먹이면 우리 아이, 진짜 더 클까요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>비싼 키 크는 영양제만 먹이면 쑥쑥 큰다 → 의학적으로 검증된 '키 크는 영양제'는 사실상 없다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>영양제는 부족분을 채울 뿐 성장 곡선을 뛰어넘진 못한다. 균형식·수면·운동 같은 '기본'과 정기 성장 검진이 키를 만든다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>광고 비방·협박 ❌ → "마법은 없지만 기회는 있다" 긍정 프레임. "우리 아이 키" 보편. CTA는 우리 아이에게 뭐가 부족한지 측정·검진 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이에게 정말 필요한 것 — 뼈나이·성장 검진으로 지금 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"영양제 먹이면 진짜 클까? 결론은 마법은 없다"</p></div><div class="act"><span class="n">ACT 2</span><h4>진실</h4><p>c3–c4<br>"검증된 키 영양제는 없다 → 유전 80 vs 환경 20"</p></div><div class="act"><span class="n">ACT 3</span><h4>진짜 영양소</h4><p>c5–c6<br>"단백질·칼슘·비타민D·아연·철분 5가지, 단 식탁에서"</p></div><div class="act"><span class="n">ACT 4</span><h4>기본이 답</h4><p>c7–c8<br>"필요한 아이도 있다 → 진짜는 균형식·수면·운동"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"우리 아이엔 뭐가 부족? 검진으로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">영양제로 클까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">💊✨</div></div>
+        <div class="ph-cap"><div class="l">키 크는 영양제</div><div class="l"><span class="y2">진짜 클까?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">'키 크는 영양제' 먹이면 우리 아이, 진짜 더 클까요?</td><td><span class="cap2">키 크는 영양제<br><span class="y">진짜 클까?</span></span></td><td class="mo">💊 슬램 인 + ❓ 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">결론부터요. 대부분의 키 영양제, 드라마틱한 효과는 기대하기 어려워요.</td><td><span class="cap2">대부분 영양제<br><span class="y">드라마틱 효과 X</span></span></td><td class="mo">🙅 가로젓기</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 검증된 영양제 없음</span></td><td class="narr">사실 의학적으로 검증된 '키 크는 영양제'는 없다고 보는 게 맞아요.</td><td><span class="cap2">검증된 키 영양제<br><span class="y">사실상 없음</span></span></td><td class="mo">🔬 + ✗ 스탬프 쾅</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 유전80 환경20</span></td><td class="narr">키는 유전이 70~80%, 환경이 20~30%. 영양제는 부족분을 채울 뿐이에요.</td><td><span class="cap2">유전 80 · 환경 20<br><span class="y">부족분만 채움</span></span></td><td class="mo">🧬 80 vs 🌱 20 카운트업</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래도 성장에 꼭 필요한 영양소는 있어요. 핵심은 이 다섯 가지.</td><td><span class="cap2">성장 필수 영양소<br><span class="y">핵심 5가지</span></span></td><td class="mo">✋ 5 손가락 펼침</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22.5s</td><td><span class="scr ig">🖼 IG3 핵심 영양소 5</span></td><td class="narr">단백질, 칼슘, 비타민D, 아연, 철분. 단, 알약보다 식탁에서요.</td><td><span class="cap2">단백질·칼슘·D·아연·철<br><span class="y">알약보다 식탁</span></span></td><td class="mo">🍗🥛☀️ 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">22.5–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">심한 편식이나 결핍이 있는 아이는 보충이 필요할 수 있어요. 단, 전문의 상담 후에요.</td><td><span class="cap2">편식·결핍 있으면<br><span class="y">전문의 상담 후</span></span></td><td class="mo">🍽️ 끄덕 + 체크</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 진짜 기본 4가지</span></td><td class="narr">사실 영양제보다 중요한 건 균형식, 깊은 잠, 그리고 운동이에요.</td><td><span class="cap2">영양제보다<br><span class="y">식·잠·운동</span></span></td><td class="mo">🍽️😴🏃 순차 점등 + ✨</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이한테 정말 뭐가 부족한지는, 성장 검진으로 정확히 알 수 있어요.</td><td><span class="cap2">우리 아이엔 뭐가?<br><span class="y">검진으로 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">광고 대신 우리 아이 데이터로. 뼈나이·예측키 지금 확인해 보세요.</td><td><span class="cap2">우리 아이 성장<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: ✗ 스탬프 쾅</div><h3>검증된 키 영양제는 없다</h3></div>
+        <div class="body">
+          <div class="sketch">💊 🔬 ❌</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A supplement bottle and a few scattered pills on the left under a magnifying glass / microscope lens, with a soft red circle-slash mark hovering over them (NOT drawn as text). Friendly pediatric style, brand purple #667eea accents with a muted red caution ring, mint #2dd4bf highlights. Conveys 'no scientific proof.' NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>병 위</td><td>키 영양제</td><td>Height pills</td><td class="thai">อาหารเสริมสูง</td></tr><tr><td>확대경 안</td><td>검증 ✗</td><td>Not proven</td><td class="thai">ไม่พิสูจน์</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 80 / 20 카운트업</div><h3>유전 80 vs 환경 20</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🌱</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A clean donut/pie split into a large segment (about 80%) and a small segment (about 20%); beside the big segment a friendly DNA double-helix icon, beside the small segment a small sprout/leaf with a sun. Brand purple #667eea for the large slice, mint #2dd4bf for the small slice. Conveys nature vs nurture proportion. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>큰 조각</td><td>유전 70~80%</td><td>Genes 70–80%</td><td class="thai">พันธุกรรม 70–80%</td></tr><tr><td>작은 조각</td><td>환경 20~30%</td><td>Environment 20–30%</td><td class="thai">สิ่งแวดล้อม 20–30%</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 5칸 순차 점등</div><h3>성장 핵심 영양소 5</h3></div>
+        <div class="body">
+          <div class="sketch">🍗 🥛 ☀️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly plate at center surrounded by five evenly spaced food icons in a ring: a chicken drumstick (protein), a glass of milk (calcium), a sun with a small fish (vitamin D), an oyster/nut (zinc), and spinach leaves (iron). Soft purple #667eea plate, mint #2dd4bf accents, warm friendly pediatric look. Conveys 'get nutrients from real food.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>단백질</td><td>Protein</td><td class="thai">โปรตีน</td></tr><tr><td>아이콘2</td><td>칼슘</td><td>Calcium</td><td class="thai">แคลเซียม</td></tr><tr><td>아이콘3</td><td>비타민D</td><td>Vitamin D</td><td class="thai">วิตามินดี</td></tr><tr><td>아이콘4·5</td><td>아연·철분</td><td>Zinc · Iron</td><td class="thai">สังกะสี·เหล็ก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 3아이콘 순차 + ✨</div><h3>진짜 기본 — 식·잠·운동</h3></div>
+        <div class="body">
+          <div class="sketch">🍽️ 😴 🏃</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly circular icons in a row on a gentle rising baseline: a balanced meal plate, a sleeping child with a crescent moon and 'z' swirls, and a child jumping rope / running. A soft upward growth arrow rises behind the three icons. Brand purple #667eea and mint #2dd4bf, warm pediatric style. Conveys 'the real growth basics.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>균형 식단</td><td>Balanced diet</td><td class="thai">กินครบหมู่</td></tr><tr><td>아이콘2</td><td>깊은 잠</td><td>Deep sleep</td><td class="thai">นอนลึก</td></tr><tr><td>아이콘3</td><td>운동 30분</td><td>30 min exercise</td><td class="thai">ออกกำลัง 30 นาที</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>💊</b> 영양제</span><span class="emo"><b>❓</b> 정말 효과?</span><span class="emo"><b>🔬</b> 검증·과학</span><span class="emo"><b>❌</b> 효과 없음</span><span class="emo"><b>🧬</b> 유전 80%</span><span class="emo"><b>🌱</b> 환경 20%</span><span class="emo"><b>🍗</b> 단백질</span><span class="emo"><b>🥛</b> 칼슘</span><span class="emo"><b>☀️</b> 비타민D</span><span class="emo"><b>😴</b> 깊은 잠</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🦴</b> 뼈나이·검진</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>'키 크는 영양제' 먹이면 우리 아이, 진짜 더 클까요?<br><span class="cap2">키 크는 영양제 · <span class="y">진짜 클까?</span></span></td></tr><tr><td class="c-id">c2</td><td>결론부터요. 대부분의 키 영양제, 드라마틱한 효과는 기대하기 어려워요.<br><span class="cap2">대부분 영양제 · <span class="y">드라마틱 효과 X</span></span></td></tr><tr><td class="c-id">c3</td><td>사실 의학적으로 검증된 '키 크는 영양제'는 없다고 보는 게 맞아요.<br><span class="cap2">검증된 키 영양제 · <span class="y">사실상 없음</span></span></td></tr><tr><td class="c-id">c4</td><td>키는 유전이 70~80%, 환경이 20~30%. 영양제는 부족분을 채울 뿐이에요.<br><span class="cap2">유전 80 · 환경 20 · <span class="y">부족분만 채움</span></span></td></tr><tr><td class="c-id">c5</td><td>그래도 성장에 꼭 필요한 영양소는 있어요. 핵심은 이 다섯 가지.<br><span class="cap2">성장 필수 영양소 · <span class="y">핵심 5가지</span></span></td></tr><tr><td class="c-id">c6</td><td>단백질, 칼슘, 비타민D, 아연, 철분. 단, 알약보다 식탁에서요.<br><span class="cap2">단백질·칼슘·D·아연·철 · <span class="y">알약보다 식탁</span></span></td></tr><tr><td class="c-id">c7</td><td>심한 편식이나 결핍이 있는 아이는 보충이 필요할 수 있어요. 단, 전문의 상담 후에요.<br><span class="cap2">편식·결핍 있으면 · <span class="y">전문의 상담 후</span></span></td></tr><tr><td class="c-id">c8</td><td>사실 영양제보다 중요한 건 균형식, 깊은 잠, 그리고 운동이에요.<br><span class="cap2">영양제보다 · <span class="y">식·잠·운동</span></span></td></tr><tr><td class="c-id">c9</td><td>우리 아이한테 정말 뭐가 부족한지는, 성장 검진으로 정확히 알 수 있어요.<br><span class="cap2">우리 아이엔 뭐가? · <span class="y">검진으로 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>광고 대신 우리 아이 데이터로. 뼈나이·예측키 지금 확인해 보세요.<br><span class="cap2">우리 아이 성장 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ให้ลูกกินอาหารเสริมเพิ่มความสูง แล้วสูงขึ้นจริงไหม?<br><span class="cap2">อาหารเสริมเพิ่มสูง · <span class="y">ได้ผลจริงไหม?</span></span></td></tr><tr><td class="c-id">c2</td><td>บอกก่อนเลย ส่วนใหญ่อย่าหวังผลแบบมหัศจรรย์<br><span class="cap2">ส่วนใหญ่ · <span class="y">ไม่มหัศจรรย์</span></span></td></tr><tr><td class="c-id">c3</td><td>จริงๆ อาหารเสริมเพิ่มสูงที่พิสูจน์ทางการแพทย์แทบไม่มี<br><span class="cap2">พิสูจน์ทางแพทย์ · <span class="y">แทบไม่มี</span></span></td></tr><tr><td class="c-id">c4</td><td>ความสูง 70–80% มาจากพันธุกรรม อาหารเสริมแค่เติมส่วนที่ขาด<br><span class="cap2">พันธุกรรม 80 · <span class="y">เติมส่วนที่ขาด</span></span></td></tr><tr><td class="c-id">c5</td><td>แต่สารอาหารที่จำเป็นต่อการเติบโตมีจริง หลักๆ 5 อย่างนี้<br><span class="cap2">สารอาหารจำเป็น · <span class="y">5 อย่างหลัก</span></span></td></tr><tr><td class="c-id">c6</td><td>โปรตีน แคลเซียม วิตามินดี สังกะสี ธาตุเหล็ก แต่จากจานอาหารดีกว่ายา<br><span class="cap2">5 สารอาหาร · <span class="y">จากอาหาร</span></span></td></tr><tr><td class="c-id">c7</td><td>เด็กที่เลือกกินมากหรือขาดสารอาหารอาจต้องเสริม แต่ต้องปรึกษาแพทย์ก่อน<br><span class="cap2">ถ้าขาดสารอาหาร · <span class="y">ปรึกษาแพทย์ก่อน</span></span></td></tr><tr><td class="c-id">c8</td><td>จริงๆ สำคัญกว่าอาหารเสริมคือ กินครบ นอนลึก ออกกำลังกาย<br><span class="cap2">สำคัญกว่าเสริม · <span class="y">กิน·นอน·ออกกำลัง</span></span></td></tr><tr><td class="c-id">c9</td><td>ลูกเราขาดอะไรกันแน่ ตรวจการเจริญเติบโตจะรู้ชัด<br><span class="cap2">ลูกขาดอะไร? · <span class="y">ตรวจให้รู้ชัด</span></span></td></tr><tr><td class="c-id">c10</td><td>ดูข้อมูลลูกแทนโฆษณา เช็กอายุกระดูกวันนี้<br><span class="cap2">การเติบโตของลูก · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Cho con uống thực phẩm tăng chiều cao, liệu có cao hơn thật không?<br><span class="cap2">TPCN tăng chiều cao · <span class="y">có thật không?</span></span></td></tr><tr><td class="c-id">c2</td><td>Nói thẳng nhé. Phần lớn không cho hiệu quả thần kỳ đâu.<br><span class="cap2">Phần lớn · <span class="y">không thần kỳ</span></span></td></tr><tr><td class="c-id">c3</td><td>Thật ra gần như không có loại nào được y học chứng minh.<br><span class="cap2">Y học chứng minh · <span class="y">gần như không có</span></span></td></tr><tr><td class="c-id">c4</td><td>Chiều cao 70–80% là di truyền. Thực phẩm chỉ bù phần thiếu thôi.<br><span class="cap2">Di truyền 80 · <span class="y">chỉ bù phần thiếu</span></span></td></tr><tr><td class="c-id">c5</td><td>Nhưng có những dưỡng chất thực sự cần cho tăng trưởng — 5 cái chính.<br><span class="cap2">Dưỡng chất cần · <span class="y">5 nhóm chính</span></span></td></tr><tr><td class="c-id">c6</td><td>Đạm, canxi, vitamin D, kẽm, sắt — nhưng từ bữa ăn hơn là viên thuốc.<br><span class="cap2">5 dưỡng chất · <span class="y">từ bữa ăn</span></span></td></tr><tr><td class="c-id">c7</td><td>Trẻ kén ăn nặng hay thiếu chất có thể cần bổ sung — nhưng phải hỏi bác sĩ trước.<br><span class="cap2">Nếu thiếu chất · <span class="y">hỏi bác sĩ trước</span></span></td></tr><tr><td class="c-id">c8</td><td>Thật ra quan trọng hơn cả là ăn cân đối, ngủ sâu và vận động.<br><span class="cap2">Hơn cả TPCN · <span class="y">ăn·ngủ·vận động</span></span></td></tr><tr><td class="c-id">c9</td><td>Con mình thực sự thiếu gì — khám tăng trưởng sẽ biết chính xác.<br><span class="cap2">Con thiếu gì? · <span class="y">khám để biết</span></span></td></tr><tr><td class="c-id">c10</td><td>Hãy tin dữ liệu của con, không phải quảng cáo. Kiểm tra ngay hôm nay.<br><span class="cap2">Tăng trưởng của con · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Do height-boosting supplements really make your child taller?<br><span class="cap2">Height supplements · <span class="y">really work?</span></span></td></tr><tr><td class="c-id">c2</td><td>Straight up: most of them won't give a dramatic effect.<br><span class="cap2">Most of them · <span class="y">no magic effect</span></span></td></tr><tr><td class="c-id">c3</td><td>Truth is, almost none are medically proven to boost height.<br><span class="cap2">Medically proven · <span class="y">almost none</span></span></td></tr><tr><td class="c-id">c4</td><td>Height is 70–80% genes. Supplements only fill what's missing.<br><span class="cap2">Genes 80 · <span class="y">just fill gaps</span></span></td></tr><tr><td class="c-id">c5</td><td>Still, some nutrients truly matter for growth — these five.<br><span class="cap2">Key nutrients · <span class="y">the big 5</span></span></td></tr><tr><td class="c-id">c6</td><td>Protein, calcium, vitamin D, zinc, iron — but from the plate, not a pill.<br><span class="cap2">The 5 nutrients · <span class="y">food, not pills</span></span></td></tr><tr><td class="c-id">c7</td><td>A very picky or deficient child may need a boost — but only after a doctor checks.<br><span class="cap2">If deficient · <span class="y">ask a doctor first</span></span></td></tr><tr><td class="c-id">c8</td><td>What beats any supplement: balanced meals, deep sleep, and exercise.<br><span class="cap2">Beats supplements · <span class="y">eat·sleep·move</span></span></td></tr><tr><td class="c-id">c9</td><td>What your child truly lacks — a growth check-up shows it clearly.<br><span class="cap2">What's missing? · <span class="y">a check-up shows</span></span></td></tr><tr><td class="c-id">c10</td><td>Trust your child's data, not the ads. Check bone age today.<br><span class="cap2">Your child's growth · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>给孩子吃增高营养品，真的能长更高吗？<br><span class="cap2">增高营养品 · <span class="y">真的有用吗?</span></span></td></tr><tr><td class="c-id">c2</td><td>先说结论：大多数别指望戏剧性的效果。<br><span class="cap2">大多数 · <span class="y">没有奇效</span></span></td></tr><tr><td class="c-id">c3</td><td>事实是，医学上几乎没有被证实的增高营养品。<br><span class="cap2">医学证实的 · <span class="y">几乎没有</span></span></td></tr><tr><td class="c-id">c4</td><td>身高70~80%靠遗传，营养品只是补足缺口而已。<br><span class="cap2">遗传80 环境20 · <span class="y">只补缺口</span></span></td></tr><tr><td class="c-id">c5</td><td>不过对成长真正重要的营养素是有的，关键是这五种。<br><span class="cap2">关键营养素 · <span class="y">这5种</span></span></td></tr><tr><td class="c-id">c6</td><td>蛋白质、钙、维生素D、锌、铁——但靠餐桌胜过药丸。<br><span class="cap2">5种营养素 · <span class="y">吃饭胜过药</span></span></td></tr><tr><td class="c-id">c7</td><td>严重挑食或缺乏的孩子可能需要补充，但要先咨询医生。<br><span class="cap2">若有缺乏 · <span class="y">先咨询医生</span></span></td></tr><tr><td class="c-id">c8</td><td>其实比营养品更重要的是均衡饮食、深睡和运动。<br><span class="cap2">比营养品更重要 · <span class="y">吃·睡·动</span></span></td></tr><tr><td class="c-id">c9</td><td>孩子到底缺什么，成长检查能精准看出来。<br><span class="cap2">孩子缺什么? · <span class="y">检查见分晓</span></span></td></tr><tr><td class="c-id">c10</td><td>相信孩子的数据，而非广告。现在就查骨龄和预测身高。<br><span class="cap2">孩子的成长 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>給孩子吃增高營養品，真的能長更高嗎？<br><span class="cap2">增高營養品 · <span class="y">真的有用嗎?</span></span></td></tr><tr><td class="c-id">c2</td><td>先說結論：大多數別指望戲劇性的效果。<br><span class="cap2">大多數 · <span class="y">沒有奇效</span></span></td></tr><tr><td class="c-id">c3</td><td>事實是，醫學上幾乎沒有被證實的增高營養品。<br><span class="cap2">醫學證實的 · <span class="y">幾乎沒有</span></span></td></tr><tr><td class="c-id">c4</td><td>身高70~80%靠遺傳，營養品只是補足缺口而已。<br><span class="cap2">遺傳80 環境20 · <span class="y">只補缺口</span></span></td></tr><tr><td class="c-id">c5</td><td>不過對成長真正重要的營養素是有的，關鍵是這五種。<br><span class="cap2">關鍵營養素 · <span class="y">這5種</span></span></td></tr><tr><td class="c-id">c6</td><td>蛋白質、鈣、維生素D、鋅、鐵——但靠餐桌勝過藥丸。<br><span class="cap2">5種營養素 · <span class="y">吃飯勝過藥</span></span></td></tr><tr><td class="c-id">c7</td><td>嚴重挑食或缺乏的孩子可能需要補充，但要先諮詢醫生。<br><span class="cap2">若有缺乏 · <span class="y">先諮詢醫生</span></span></td></tr><tr><td class="c-id">c8</td><td>其實比營養品更重要的是均衡飲食、深睡和運動。<br><span class="cap2">比營養品更重要 · <span class="y">吃·睡·動</span></span></td></tr><tr><td class="c-id">c9</td><td>孩子到底缺什麼，成長檢查能精準看出來。<br><span class="cap2">孩子缺什麼? · <span class="y">檢查見分曉</span></span></td></tr><tr><td class="c-id">c10</td><td>相信孩子的數據，而非廣告。現在就查骨齡與預測身高。<br><span class="cap2">孩子的成長 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/키영양제효과/</code> · <code>키영양제효과-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

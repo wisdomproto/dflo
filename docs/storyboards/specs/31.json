@@ -1,0 +1,801 @@
+{
+  "n": 31,
+  "slug": "자세교정숨은키",
+  "title": "구부정해서 작아 보이는 키 — 숨은 키 되찾기",
+  "sub": "거북목·굽은 등만 펴도 가려졌던 키가 보인다 — 자세 교정 5분 루틴",
+  "category": "B. 생활습관",
+  "topicTitle": "자세 교정 키 성장 (거북목·굽은 등)",
+  "headerTop": "우리 아이 키",
+  "headerMark": "숨은 키 있다?",
+  "accentEmoji": "🧍✨",
+  "hook": "우리 아이, 자세 때문에 키가 가려져 있는 거 아세요?",
+  "misconception": "자세는 그냥 보기에만 안 좋은 것 → 실제로는 재는 키가 작아지고 성장호르몬·혈액순환까지 방해",
+  "message": "거북목·굽은 등은 뼈를 짧게 만드는 게 아니라 '이미 가진 키'를 가린다. 바로 펴면 숨은 키가 드러나고 숙면·성장호르몬·혈액순환도 함께 살아난다",
+  "tone": "협박 ❌ → 긍정(\"가려진 키를 되찾자\"). 뼈를 늘린다 과장 ❌(가진 키를 드러냄). \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이 자세·성장 상태, 홈페이지에서 뼈나이·예측키로 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "가만 두면 손해!",
+    "subject": "구부정한 우리 아이 키",
+    "number": "−3cm",
+    "numLabel": "가려졌다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"자세 때문에 키가 가려진다 — 재는 키가 작아짐\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 방해되나",
+      "scenes": "c3–c5",
+      "desc": "\"척추 압박 → 숙면·성장호르몬·혈액순환 저하\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "자가 진단",
+      "scenes": "c6–c7",
+      "desc": "\"귀가 어깨보다 앞 → 3개 이상이면 신호\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "해결 루틴",
+      "scenes": "c8–c9",
+      "desc": "\"벽 자세·스트레칭으로 숨은 키 되찾기\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c10",
+      "desc": "\"뼈나이·예측키로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🧍 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이, 자세 때문에 키가 가려져 있는 거 아세요?",
+          "cap": [
+            "자세 때문에",
+            "가려진 키"
+          ],
+          "hl": "가려진 키"
+        },
+        "th": {
+          "narr": "รู้ไหมว่าท่าทางที่ไม่ดีทำให้ความสูงของลูกหายไป?",
+          "cap": [
+            "ท่าทางไม่ดี",
+            "ความสูงหายไป"
+          ],
+          "hl": "ความสูงหายไป"
+        },
+        "vi": {
+          "narr": "Bạn có biết tư thế xấu đang giấu mất chiều cao của con?",
+          "cap": [
+            "Tư thế xấu",
+            "giấu chiều cao"
+          ],
+          "hl": "giấu chiều cao"
+        },
+        "en": {
+          "narr": "Did you know bad posture is hiding your child's height?",
+          "cap": [
+            "Bad posture",
+            "hidden height"
+          ],
+          "hl": "hidden height"
+        },
+        "cn": {
+          "narr": "你知道不良姿势正藏起孩子的身高吗？",
+          "cap": [
+            "不良姿势",
+            "藏起身高"
+          ],
+          "hl": "藏起身高"
+        },
+        "ch": {
+          "narr": "你知道不良姿勢正藏起孩子的身高嗎？",
+          "cap": [
+            "不良姿勢",
+            "藏起身高"
+          ],
+          "hl": "藏起身高"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "📏 줄어듦 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "거북목에 등이 굽으면, 잴 때 본래 키보다 작게 나와요.",
+          "cap": [
+            "거북목·굽은 등",
+            "재는 키 작아짐"
+          ],
+          "hl": "재는 키 작아짐"
+        },
+        "th": {
+          "narr": "คอยื่นหลังค่อม วัดออกมาเตี้ยกว่าความสูงจริง",
+          "cap": [
+            "คอยื่น หลังค่อม",
+            "วัดได้เตี้ยลง"
+          ],
+          "hl": "วัดได้เตี้ยลง"
+        },
+        "vi": {
+          "narr": "Cổ rùa, lưng gù khiến số đo thấp hơn chiều cao thật.",
+          "cap": [
+            "Cổ rùa, lưng gù",
+            "đo thấp hơn"
+          ],
+          "hl": "đo thấp hơn"
+        },
+        "en": {
+          "narr": "Forward head and a rounded back measure shorter than you really are.",
+          "cap": [
+            "Slouch",
+            "measures shorter"
+          ],
+          "hl": "measures shorter"
+        },
+        "cn": {
+          "narr": "乌龟颈、驼背，量出来比真实身高还矮。",
+          "cap": [
+            "乌龟颈 驼背",
+            "量得更矮"
+          ],
+          "hl": "量得更矮"
+        },
+        "ch": {
+          "narr": "烏龜頸、駝背，量出來比真實身高還矮。",
+          "cap": [
+            "烏龜頸 駝背",
+            "量得更矮"
+          ],
+          "hl": "量得更矮"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 척추 정렬",
+      "motion": "🦴 펴짐 + ↕ 키업",
+      "copy": {
+        "ko": {
+          "narr": "척추를 곧게 펴면, 가려졌던 키가 그대로 드러나요.",
+          "cap": [
+            "척추 펴면",
+            "숨은 키 드러남"
+          ],
+          "hl": "숨은 키 드러남"
+        },
+        "th": {
+          "narr": "แค่ยืดกระดูกสันหลังให้ตรง ความสูงที่ซ่อนอยู่ก็กลับมา",
+          "cap": [
+            "ยืดหลังให้ตรง",
+            "ความสูงที่ซ่อน"
+          ],
+          "hl": "ความสูงที่ซ่อน"
+        },
+        "vi": {
+          "narr": "Chỉ cần thẳng cột sống, chiều cao bị giấu sẽ hiện ra.",
+          "cap": [
+            "Thẳng cột sống",
+            "chiều cao ẩn"
+          ],
+          "hl": "chiều cao ẩn"
+        },
+        "en": {
+          "narr": "Straighten the spine and the hidden height shows up.",
+          "cap": [
+            "Straight spine",
+            "hidden height"
+          ],
+          "hl": "hidden height"
+        },
+        "cn": {
+          "narr": "把脊柱挺直，被藏起的身高就显出来了。",
+          "cap": [
+            "脊柱挺直",
+            "显出身高"
+          ],
+          "hl": "显出身高"
+        },
+        "ch": {
+          "narr": "把脊柱挺直，被藏起的身高就顯出來了。",
+          "cap": [
+            "脊柱挺直",
+            "顯出身高"
+          ],
+          "hl": "顯出身高"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "doctor",
+      "motion": "😴 ZzZ 페이드",
+      "copy": {
+        "ko": {
+          "narr": "게다가 굽은 자세는 숙면을 방해해서, 성장호르몬까지 줄여요.",
+          "cap": [
+            "굽은 자세",
+            "성장호르몬 ↓"
+          ],
+          "hl": "성장호르몬 ↓"
+        },
+        "th": {
+          "narr": "ท่าค่อมยังรบกวนการนอนลึก ทำฮอร์โมนโตลดลงด้วย",
+          "cap": [
+            "นอนไม่ลึก",
+            "ฮอร์โมนโต ↓"
+          ],
+          "hl": "ฮอร์โมนโต ↓"
+        },
+        "vi": {
+          "narr": "Tư thế gù còn phá giấc ngủ sâu, làm giảm hormone tăng trưởng.",
+          "cap": [
+            "Mất ngủ sâu",
+            "hormone ↓"
+          ],
+          "hl": "hormone ↓"
+        },
+        "en": {
+          "narr": "A slouch also breaks deep sleep — and lowers growth hormone.",
+          "cap": [
+            "Poor deep sleep",
+            "growth hormone ↓"
+          ],
+          "hl": "growth hormone ↓"
+        },
+        "cn": {
+          "narr": "驼背还会破坏深睡眠，连生长激素都变少。",
+          "cap": [
+            "深睡变差",
+            "生长激素 ↓"
+          ],
+          "hl": "生长激素 ↓"
+        },
+        "ch": {
+          "narr": "駝背還會破壞深睡眠，連生長激素都變少。",
+          "cap": [
+            "深睡變差",
+            "生長激素 ↓"
+          ],
+          "hl": "生長激素 ↓"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "ig",
+      "igLabel": "IG2 피로·통증",
+      "motion": "🩸 막힘 → 풀림",
+      "copy": {
+        "ko": {
+          "narr": "목·어깨가 뭉치면 혈액순환이 막혀 쉽게 피로하고 활동량도 줄죠.",
+          "cap": [
+            "혈액순환 막힘",
+            "쉽게 피로"
+          ],
+          "hl": "쉽게 피로"
+        },
+        "th": {
+          "narr": "คอบ่าตึง เลือดไหลเวียนไม่ดี เหนื่อยง่าย ขยับน้อยลง",
+          "cap": [
+            "เลือดไม่เดิน",
+            "เหนื่อยง่าย"
+          ],
+          "hl": "เหนื่อยง่าย"
+        },
+        "vi": {
+          "narr": "Cổ vai căng cứng, máu kém lưu thông, mau mệt, ít vận động.",
+          "cap": [
+            "Máu kém lưu thông",
+            "mau mệt"
+          ],
+          "hl": "mau mệt"
+        },
+        "en": {
+          "narr": "Tight neck and shoulders block circulation — easy fatigue, less activity.",
+          "cap": [
+            "Poor circulation",
+            "easy fatigue"
+          ],
+          "hl": "easy fatigue"
+        },
+        "cn": {
+          "narr": "颈肩僵硬、血流不畅，容易疲劳，活动也变少。",
+          "cap": [
+            "血流不畅",
+            "容易疲劳"
+          ],
+          "hl": "容易疲劳"
+        },
+        "ch": {
+          "narr": "頸肩僵硬、血流不暢，容易疲勞，活動也變少。",
+          "cap": [
+            "血流不暢",
+            "容易疲勞"
+          ],
+          "hl": "容易疲勞"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23s",
+      "kind": "ig",
+      "igLabel": "IG3 자가 진단",
+      "motion": "✅ 체크 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "옆에서 봤을 때 귀가 어깨보다 앞이면, 거북목 신호예요.",
+          "cap": [
+            "귀가 어깨보다",
+            "앞이면 신호"
+          ],
+          "hl": "앞이면 신호"
+        },
+        "th": {
+          "narr": "มองด้านข้าง ถ้าหูล้ำหน้าไหล่ คือสัญญาณคอยื่น",
+          "cap": [
+            "หูล้ำหน้าไหล่",
+            "คือสัญญาณ"
+          ],
+          "hl": "คือสัญญาณ"
+        },
+        "vi": {
+          "narr": "Nhìn ngang, nếu tai nhô trước vai thì đó là dấu hiệu cổ rùa.",
+          "cap": [
+            "Tai trước vai",
+            "là dấu hiệu"
+          ],
+          "hl": "là dấu hiệu"
+        },
+        "en": {
+          "narr": "From the side, if the ear sits ahead of the shoulder — that's the sign.",
+          "cap": [
+            "Ear ahead of shoulder",
+            "that's the sign"
+          ],
+          "hl": "that's the sign"
+        },
+        "cn": {
+          "narr": "侧面看，耳朵比肩膀靠前，就是乌龟颈信号。",
+          "cap": [
+            "耳在肩前",
+            "就是信号"
+          ],
+          "hl": "就是信号"
+        },
+        "ch": {
+          "narr": "側面看，耳朵比肩膀靠前，就是烏龜頸信號。",
+          "cap": [
+            "耳在肩前",
+            "就是信號"
+          ],
+          "hl": "就是信號"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23–26.5s",
+      "kind": "doctor",
+      "motion": "3️⃣ 카운트 펄스",
+      "copy": {
+        "ko": {
+          "narr": "이런 신호가 세 가지 이상이면, 지금이 자세 잡을 때예요.",
+          "cap": [
+            "3가지 이상이면",
+            "지금 시작"
+          ],
+          "hl": "지금 시작"
+        },
+        "th": {
+          "narr": "ถ้าเข้าข่ายตั้งแต่ 3 ข้อขึ้นไป ถึงเวลาปรับท่าทางแล้ว",
+          "cap": [
+            "ตั้งแต่ 3 ข้อ",
+            "เริ่มเลย"
+          ],
+          "hl": "เริ่มเลย"
+        },
+        "vi": {
+          "narr": "Từ ba dấu hiệu trở lên, đây là lúc chỉnh tư thế cho con.",
+          "cap": [
+            "Từ 3 dấu hiệu",
+            "bắt đầu ngay"
+          ],
+          "hl": "bắt đầu ngay"
+        },
+        "en": {
+          "narr": "Three or more of these — now's the time to fix posture.",
+          "cap": [
+            "3 or more signs",
+            "start now"
+          ],
+          "hl": "start now"
+        },
+        "cn": {
+          "narr": "符合三项以上，现在就是矫正姿势的好时机。",
+          "cap": [
+            "3 项以上",
+            "现在开始"
+          ],
+          "hl": "现在开始"
+        },
+        "ch": {
+          "narr": "符合三項以上，現在就是矯正姿勢的好時機。",
+          "cap": [
+            "3 項以上",
+            "現在開始"
+          ],
+          "hl": "現在開始"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26.5–30s",
+      "kind": "ig",
+      "igLabel": "IG4 벽 자세 루틴",
+      "motion": "🧍 벽에 착 + 정렬선",
+      "copy": {
+        "ko": {
+          "narr": "벽에 뒤통수·어깨·엉덩이를 붙이고 서기. 하루 1분이면 충분해요.",
+          "cap": [
+            "벽 자세",
+            "하루 1분"
+          ],
+          "hl": "하루 1분"
+        },
+        "th": {
+          "narr": "ยืนพิงผนังให้ท้ายทอย ไหล่ สะโพกแตะผนัง วันละ 1 นาทีก็พอ",
+          "cap": [
+            "ยืนพิงผนัง",
+            "วันละ 1 นาที"
+          ],
+          "hl": "วันละ 1 นาที"
+        },
+        "vi": {
+          "narr": "Đứng tựa tường: gáy, vai, hông chạm tường. Mỗi ngày 1 phút là đủ.",
+          "cap": [
+            "Đứng tựa tường",
+            "1 phút mỗi ngày"
+          ],
+          "hl": "1 phút mỗi ngày"
+        },
+        "en": {
+          "narr": "Stand to a wall — head, shoulders, hips touching. One minute a day.",
+          "cap": [
+            "Wall posture",
+            "1 min a day"
+          ],
+          "hl": "1 min a day"
+        },
+        "cn": {
+          "narr": "靠墙站，后脑、肩膀、臀部贴墙，每天一分钟就够。",
+          "cap": [
+            "靠墙站",
+            "每天 1 分钟"
+          ],
+          "hl": "每天 1 分钟"
+        },
+        "ch": {
+          "narr": "靠牆站，後腦、肩膀、臀部貼牆，每天一分鐘就夠。",
+          "cap": [
+            "靠牆站",
+            "每天 1 分鐘"
+          ],
+          "hl": "每天 1 分鐘"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🤸 쭉 스트레칭",
+      "copy": {
+        "ko": {
+          "narr": "줄넘기·수영처럼 몸을 쭉 펴는 운동도 자세와 키에 같이 좋아요.",
+          "cap": [
+            "줄넘기·수영",
+            "자세+키 ↑"
+          ],
+          "hl": "자세+키 ↑"
+        },
+        "th": {
+          "narr": "กระโดดเชือก ว่ายน้ำ ยืดตัวสุด ดีทั้งท่าทางและความสูง",
+          "cap": [
+            "กระโดดเชือก ว่ายน้ำ",
+            "ท่าทาง+สูง ↑"
+          ],
+          "hl": "ท่าทาง+สูง ↑"
+        },
+        "vi": {
+          "narr": "Nhảy dây, bơi lội kéo giãn cơ thể — tốt cho cả tư thế và chiều cao.",
+          "cap": [
+            "Nhảy dây, bơi",
+            "tư thế+cao ↑"
+          ],
+          "hl": "tư thế+cao ↑"
+        },
+        "en": {
+          "narr": "Jump rope and swimming stretch the body — great for posture and height.",
+          "cap": [
+            "Jump rope, swim",
+            "posture+height ↑"
+          ],
+          "hl": "posture+height ↑"
+        },
+        "cn": {
+          "narr": "跳绳、游泳能拉伸身体，对姿势和身高都好。",
+          "cap": [
+            "跳绳 游泳",
+            "姿势+身高 ↑"
+          ],
+          "hl": "姿势+身高 ↑"
+        },
+        "ch": {
+          "narr": "跳繩、游泳能拉伸身體，對姿勢和身高都好。",
+          "cap": [
+            "跳繩 游泳",
+            "姿勢+身高 ↑"
+          ],
+          "hl": "姿勢+身高 ↑"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 자세와 성장, 지금 바로 확인해 보세요.",
+          "cap": [
+            "자세 + 성장",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กท่าทางและการเติบโตของลูกวันนี้เลย",
+          "cap": [
+            "ท่าทาง + การเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tư thế và sự phát triển của con ngay hôm nay.",
+          "cap": [
+            "Tư thế + tăng trưởng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's posture and growth today.",
+          "cap": [
+            "Posture + growth",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的姿势和成长情况吧。",
+          "cap": [
+            "姿势 + 成长",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的姿勢和成長情況吧。",
+          "cap": [
+            "姿勢 + 成長",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "척추 펴짐 + ↕ 키업",
+      "title": "척추 정렬 — 숨은 키 드러남",
+      "emojis": [
+        "🦴",
+        "🧍",
+        "↕️"
+      ],
+      "prompt": "Flat vector, square, white bg. Side-by-side comparison of one friendly child silhouette: left version slouching with forward head and rounded back (shorter), right version standing tall with a straight aligned spine (taller). A subtle vertical double-arrow between them showing the height gain. Brand purple #667eea body, mint #2dd4bf spine highlight, soft glow on the upright pose. Friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 인물",
+          "ko": "구부정",
+          "en": "Slouch",
+          "th": "หลังค่อม"
+        },
+        {
+          "pos": "오른쪽 인물",
+          "ko": "바른 자세",
+          "en": "Aligned",
+          "th": "หลังตรง"
+        },
+        {
+          "pos": "가운데 화살표",
+          "ko": "숨은 키",
+          "en": "Hidden height",
+          "th": "ความสูงที่ซ่อน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "혈류 막힘 → 풀림",
+      "title": "혈액순환·피로",
+      "emojis": [
+        "🩸",
+        "💢",
+        "😮‍💨"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly child bust seen from the side, neck and shoulder area highlighted with tense knotted muscle marks; a stylized blood-flow line through the neck shown pinched at the top then opening up smoothly. Small tiredness swirl near the head. Brand purple #667eea figure, mint #2dd4bf flow line, warm soft accent on the tense knot. Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "목·어깨 매듭",
+          "ko": "근육 뭉침",
+          "en": "Tension",
+          "th": "กล้ามเนื้อตึง"
+        },
+        {
+          "pos": "혈류선",
+          "ko": "순환 막힘",
+          "en": "Blocked flow",
+          "th": "เลือดติดขัด"
+        },
+        {
+          "pos": "머리 옆",
+          "ko": "피로",
+          "en": "Fatigue",
+          "th": "เหนื่อยล้า"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "체크 순차 점등",
+      "title": "거북목 자가 진단",
+      "emojis": [
+        "👂",
+        "🧍",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. Clean side-profile of a friendly child showing posture landmarks: ear, shoulder, hip, and ankle, with a vertical plumb reference line; the ear clearly placed forward of the shoulder line to show forward-head posture, a small marker ring on the ear. Brand purple #667eea figure, mint #2dd4bf plumb line. Friendly pediatric, diagnostic feel. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "귀 마커",
+          "ko": "귀",
+          "en": "Ear",
+          "th": "หู"
+        },
+        {
+          "pos": "어깨 마커",
+          "ko": "어깨",
+          "en": "Shoulder",
+          "th": "ไหล่"
+        },
+        {
+          "pos": "기준선 상단",
+          "ko": "앞으로 나옴",
+          "en": "Forward head",
+          "th": "คอยื่น"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "벽에 착 + 정렬선",
+      "title": "벽 자세 1분 루틴",
+      "emojis": [
+        "🧱",
+        "🧍",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly child standing with back against a wall, three contact points highlighted (back of head, shoulders, hips/buttocks) each marked with a small mint check dot, a straight vertical alignment line down the body. Calm confident pose, chin gently tucked. Brand purple #667eea figure, mint #2dd4bf check dots and line, light wall block on the right. Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "머리 접점",
+          "ko": "뒤통수",
+          "en": "Head",
+          "th": "ท้ายทอย"
+        },
+        {
+          "pos": "어깨 접점",
+          "ko": "어깨",
+          "en": "Shoulders",
+          "th": "ไหล่"
+        },
+        {
+          "pos": "엉덩이 접점",
+          "ko": "엉덩이",
+          "en": "Hips",
+          "th": "สะโพก"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🧍",
+      "label": "바른 자세"
+    },
+    {
+      "e": "📏",
+      "label": "재는 키"
+    },
+    {
+      "e": "🦴",
+      "label": "척추"
+    },
+    {
+      "e": "↕️",
+      "label": "숨은 키"
+    },
+    {
+      "e": "😴",
+      "label": "숙면"
+    },
+    {
+      "e": "💉",
+      "label": "성장호르몬"
+    },
+    {
+      "e": "🩸",
+      "label": "혈액순환"
+    },
+    {
+      "e": "😮‍💨",
+      "label": "피로"
+    },
+    {
+      "e": "👂",
+      "label": "거북목 신호"
+    },
+    {
+      "e": "🧱",
+      "label": "벽 자세"
+    },
+    {
+      "e": "🤸",
+      "label": "스트레칭"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

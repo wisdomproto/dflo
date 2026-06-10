@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 예상키 작게 나왔을 때 얼마나 믿어야 할까</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #46</span>
+  <h1>예상키 작게 나왔는데 — 얼마나 믿어야 할까?</h1>
+  <div class="sub">예상키는 '선고'가 아니라 '예측' — ±5cm 오차에, 환경을 바꾸면 더 클 수 있다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>작게 나왔어도!</b></div>
+      <div class="subj">우리 아이 예상키</div>
+      <div class="big4"><div class="n" style="font-size:98px">±5cm</div><div class="lab">오차, 끝 아냐</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 예상키</b> ±5cm오차, 끝 아냐"</li>
+        <li><b>거대 숫자 "±5cm"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #46 「예상키 작게 나왔을 때 얼마나 믿어야 할까」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">""예상키가 작게 나왔어요" — 그 숫자, 얼마나 믿어야 할까요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>"예상키 = 우리 아이 최종 키, 이미 정해졌다" → 예상키는 확정이 아니라 '예측', ±5cm 오차에 환경으로 더 클 수 있다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>예상키는 선고가 아니라 현재 시점의 예측치다. 골연령 예측엔 ±5cm 오차가 있고, 성장판이 열려 있는 동안 영양·수면·운동을 개선하면 예측을 뛰어넘을 수 있다. 그래서 절망 대신 지금 확인이 먼저다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → "아직 기회 있다" 긍정 골든타임. 작은 예상키에 절망한 부모를 비난·재촉하지 않고 부드럽게 공감 후, 예측의 한계와 할 수 있는 일로 안내. "우리 아이 키" 보편. 효과 단정 금지(치료는 가능성으로만).</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>숫자에 절망하지 말고 지금 확인 → 홈페이지 예측키 / 뼈나이 측정으로 남은 성장 기회 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"예상키 작게 나왔어요" 그 막막함, 잘 압니다 → 근데 그 숫자 끝일까?</p></div><div class="act"><span class="n">ACT 2</span><h4>예상키란</h4><p>c3–c4<br>예상키는 두 방식(유전·골연령)의 '예측' → 확정 아닌 추정</p></div><div class="act"><span class="n">ACT 3</span><h4>끝이 아닌 이유</h4><p>c5–c6<br>골연령 예측 ±5cm 오차 → 환경 바꾸면 예측 넘어선다</p></div><div class="act"><span class="n">ACT 4</span><h4>전환·핵심</h4><p>c7–c8<br>절망 ≠ 확인 → 성장판 열린 지금이 끌어올릴 골든타임</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>뼈나이로 남은 기회 확인 → CTA</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">예상키 작게 나왔는데?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📉💜</div></div>
+        <div class="ph-cap"><div class="l">"예상키 작게 나왔어요"</div><div class="l"><span class="y2">머릿속이 새하얘</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">"예상키가 작게 나왔어요." 그 말 듣는 순간, 머릿속이 새하얘지죠.</td><td><span class="cap2">"예상키 작게 나왔어요"<br><span class="y">머릿속이 새하얘</span></span></td><td class="mo">📉 슬램 인 + 페이드</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">'우리 아이 키는 이제 정해진 건가' 싶죠. 그 마음 충분히 이해해요. 그런데요.</td><td><span class="cap2">"이제 정해진 건가"<br><span class="y">그 마음 이해해요</span></span></td><td class="mo">💜 흔들 + 한숨</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 두 가지 예상키</span></td><td class="narr">예상키는 두 방식으로 나와요. 부모 키로 보는 유전 예상키, 그리고 뼈나이로 보는 골연령 예상키.</td><td><span class="cap2">유전 예상키<br><span class="y">골연령 예상키</span></span></td><td class="mo">🧬➕🦴 순차 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 둘 다 이름에 '예상'이 붙어요. 확정이 아니라, 지금까지를 바탕으로 한 '예측'이라는 뜻이에요.</td><td><span class="cap2">둘 다 '예상'<br><span class="y">확정이 아닌 예측</span></span></td><td class="mo">🔮 펄스 + 물음표 팝</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr ig">🖼 IG2 ±5cm 오차</span></td><td class="narr">골연령 예측엔 보통 ±5센티 정도 오차가 있어요. 예상키가 그 안에서 위아래로 움직일 수 있다는 뜻이죠.</td><td><span class="cap2">골연령 예측<br><span class="y">±5cm 오차</span></span></td><td class="mo">📏 ±5cm 양쪽 슬라이드</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23.5s</td><td><span class="scr ig">🖼 IG3 환경이 바꾼다</span></td><td class="narr">게다가 성장판이 열려 있는 동안엔 영양·수면·운동을 바꾸면 예측을 뛰어넘기도 해요.</td><td><span class="cap2">영양·수면·운동<br><span class="y">예측을 뛰어넘다</span></span></td><td class="mo">🍚😴🏃 순차 점등 ↗</td></tr><tr><td class="c-id">c7</td><td class="c-time">23.5–27.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래서 작은 숫자에 절망하는 것과, 확인하는 건 완전히 달라요. 확인은 아직 기회가 있을 때 하는 거예요.</td><td><span class="cap2">절망 ≠ 확인<br><span class="y">아직 기회 있을 때</span></span></td><td class="mo">💡 톤 전환 + 따뜻 글로우</td></tr><tr><td class="c-id">c8</td><td class="c-time">27.5–31s</td><td><span class="scr ig">🖼 IG4 골든타임</span></td><td class="narr">성장판이 열려 있는 지금이, 그 예상키를 끌어올릴 수 있는 골든타임이에요.</td><td><span class="cap2">열려 있는 지금<br><span class="y">끌어올릴 골든타임</span></span></td><td class="mo">⏳ 골드 글로우 + 따뜻 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">31–34s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면, 그 예상키 안에 우리 아이한테 기회가 얼마나 남았는지 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">남은 기회 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">34–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">숫자에 미리 무너지지 말고, 지금 우리 아이 남은 기회를 확인해 보세요.</td><td><span class="cap2">숫자에 무너지지 말고<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 두 경로 순차 점등</div><h3>예상키 두 가지 방식 (유전 · 골연령)</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Two friendly paths converging toward one child silhouette in the center: on the left a parent couple (tall and short figures) with a soft DNA helix motif, on the right a gentle hand X-ray / wrist bone motif. Both paths flow into the child with a soft question-mark glow above. Clean pediatric flat illustration. Brand purple #667eea to mint #2dd4bf gradient, soft glow. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽</td><td>유전 예상키</td><td>Genetic estimate</td><td class="thai">จากพ่อแม่</td></tr><tr><td>오른쪽</td><td>골연령 예상키</td><td>Bone-age estimate</td><td class="thai">จากอายุกระดูก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: ±5cm 양쪽 슬라이드</div><h3>예측의 오차 범위 ±5cm</h3></div>
+        <div class="body">
+          <div class="sketch">📏 ↔️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A central child silhouette beside a vertical measuring ruler, with a soft translucent band spanning a range above and below a marked point (showing an up-down tolerance zone), gentle double-headed arrow indicating the range. Hopeful, not clinical. Brand purple #667eea with mint #2dd4bf accents and a soft glow. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>밴드 위</td><td>위로 +5cm</td><td>up to +5cm</td><td class="thai">+5 ซม.</td></tr><tr><td>밴드 아래</td><td>아래로 −5cm</td><td>down to −5cm</td><td class="thai">−5 ซม.</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 3아이콘 순차 점등 + ↗</div><h3>환경이 예측을 끌어올린다</h3></div>
+        <div class="body">
+          <div class="sketch">🍚 😴 🏃</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Three friendly circular icons in a gentle upward arc — a balanced meal plate, a sleeping crescent moon with pillow, and a running child — feeding into a rising growth arrow that climbs past a faint dotted baseline at the top. Conveys 'improving environment lifts growth beyond the forecast.' Brand purple #667eea to mint #2dd4bf gradient, sparkle at the arrow tip. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>영양</td><td>Nutrition</td><td class="thai">อาหาร</td></tr><tr><td>아이콘2</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>아이콘3</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลัง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: ⏳ 골드 글로우 + 따뜻 점등</div><h3>골든타임 — 열려 있는 지금</h3></div>
+        <div class="body">
+          <div class="sketch">⏳ ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. An hourglass with golden sand still flowing beside a child reaching upward toward a bright sparkle, a stylized open knee growth-plate gap glowing softly mint to one side, warm golden glow surrounding the scene conveying 'there is still time, opportunity is now.' Hopeful and uplifting. Brand purple #667eea plus warm gold accents. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단</td><td>아직 기회 있음</td><td>Still time</td><td class="thai">ยังมีเวลา</td></tr><tr><td>가운데(글로우)</td><td>성장 골든타임</td><td>Golden time</td><td class="thai">ช่วงเวลาทอง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📉</b> 작게 나온 예상키</span><span class="emo"><b>💜</b> 부모 공감</span><span class="emo"><b>🧬</b> 유전 예상키</span><span class="emo"><b>🦴</b> 골연령/뼈나이</span><span class="emo"><b>🔮</b> 예측(확정 아님)</span><span class="emo"><b>📏</b> ±5cm 오차</span><span class="emo"><b>🍚</b> 영양</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>⏳</b> 골든타임</span><span class="emo"><b>✨</b> 희망·강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"예상키가 작게 나왔어요." 그 말 듣는 순간, 머릿속이 새하얘지죠.<br><span class="cap2">"예상키 작게 나왔어요" · <span class="y">머릿속이 새하얘</span></span></td></tr><tr><td class="c-id">c2</td><td>'우리 아이 키는 이제 정해진 건가' 싶죠. 그 마음 충분히 이해해요. 그런데요.<br><span class="cap2">"이제 정해진 건가" · <span class="y">그 마음 이해해요</span></span></td></tr><tr><td class="c-id">c3</td><td>예상키는 두 방식으로 나와요. 부모 키로 보는 유전 예상키, 그리고 뼈나이로 보는 골연령 예상키.<br><span class="cap2">유전 예상키 · <span class="y">골연령 예상키</span></span></td></tr><tr><td class="c-id">c4</td><td>그런데 둘 다 이름에 '예상'이 붙어요. 확정이 아니라, 지금까지를 바탕으로 한 '예측'이라는 뜻이에요.<br><span class="cap2">둘 다 '예상' · <span class="y">확정이 아닌 예측</span></span></td></tr><tr><td class="c-id">c5</td><td>골연령 예측엔 보통 ±5센티 정도 오차가 있어요. 예상키가 그 안에서 위아래로 움직일 수 있다는 뜻이죠.<br><span class="cap2">골연령 예측 · <span class="y">±5cm 오차</span></span></td></tr><tr><td class="c-id">c6</td><td>게다가 성장판이 열려 있는 동안엔 영양·수면·운동을 바꾸면 예측을 뛰어넘기도 해요.<br><span class="cap2">영양·수면·운동 · <span class="y">예측을 뛰어넘다</span></span></td></tr><tr><td class="c-id">c7</td><td>그래서 작은 숫자에 절망하는 것과, 확인하는 건 완전히 달라요. 확인은 아직 기회가 있을 때 하는 거예요.<br><span class="cap2">절망 ≠ 확인 · <span class="y">아직 기회 있을 때</span></span></td></tr><tr><td class="c-id">c8</td><td>성장판이 열려 있는 지금이, 그 예상키를 끌어올릴 수 있는 골든타임이에요.<br><span class="cap2">열려 있는 지금 · <span class="y">끌어올릴 골든타임</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면, 그 예상키 안에 우리 아이한테 기회가 얼마나 남았는지 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">남은 기회 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>숫자에 미리 무너지지 말고, 지금 우리 아이 남은 기회를 확인해 보세요.<br><span class="cap2">숫자에 무너지지 말고 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"ส่วนสูงคาดการณ์ออกมาน้อย" พอได้ยิน หัวก็โล่งว่างไปหมด<br><span class="cap2">"คาดการณ์ออกมาน้อย" · <span class="y">ใจหายวูบ</span></span></td></tr><tr><td class="c-id">c2</td><td>คิดว่า 'ส่วนสูงลูกถูกกำหนดแล้วหรือ' เข้าใจความรู้สึกนั้นดีค่ะ แต่ว่า<br><span class="cap2">"ถูกกำหนดแล้วหรือ" · <span class="y">เข้าใจดีค่ะ</span></span></td></tr><tr><td class="c-id">c3</td><td>ส่วนสูงคาดการณ์มาจากสองวิธี จากส่วนสูงพ่อแม่ และจากอายุกระดูก<br><span class="cap2">จากพ่อแม่ · <span class="y">จากอายุกระดูก</span></span></td></tr><tr><td class="c-id">c4</td><td>แต่ทั้งคู่คือ 'คาดการณ์' ไม่ใช่คำตัดสิน เป็นการประมาณจากข้อมูลตอนนี้<br><span class="cap2">ทั้งคู่คือคาดการณ์ · <span class="y">ไม่ใช่คำตัดสิน</span></span></td></tr><tr><td class="c-id">c5</td><td>การคาดการณ์จากอายุกระดูกมีค่าคลาดเคลื่อนราว ±5 ซม. ขยับขึ้นลงได้ในช่วงนั้น<br><span class="cap2">คาดการณ์อายุกระดูก · <span class="y">±5 ซม.</span></span></td></tr><tr><td class="c-id">c6</td><td>ยิ่งกว่านั้น ตอนแผ่นกระดูกยังเปิด ปรับอาหาร การนอน การออกกำลัง ก็แซงค่าคาดการณ์ได้<br><span class="cap2">อาหาร·นอน·ออกกำลัง · <span class="y">แซงค่าคาดการณ์</span></span></td></tr><tr><td class="c-id">c7</td><td>การท้อกับตัวเลขน้อย ต่างจากการตรวจสอบ ตรวจคือทำตอนที่ยังมีโอกาส<br><span class="cap2">ท้อ ≠ ตรวจ · <span class="y">ตอนยังมีโอกาส</span></span></td></tr><tr><td class="c-id">c8</td><td>ตอนนี้ที่แผ่นกระดูกยังเปิด คือช่วงเวลาทองที่จะดันส่วนสูงคาดการณ์ให้สูงขึ้น<br><span class="cap2">ตอนที่ยังเปิด · <span class="y">ช่วงเวลาทอง</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกบอกได้ว่าในค่าคาดการณ์นั้น ลูกเรายังเหลือโอกาสอีกเท่าไร<br><span class="cap2">อายุกระดูก · <span class="y">เวลาที่เหลือ</span></span></td></tr><tr><td class="c-id">c10</td><td>อย่าเพิ่งท้อกับตัวเลข มาเช็กโอกาสที่เหลือของลูกวันนี้<br><span class="cap2">อย่าเพิ่งท้อ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"Chiều cao dự đoán thấp." Nghe câu đó, đầu óc bỗng trống rỗng.<br><span class="cap2">"Dự đoán thấp" · <span class="y">đầu óc trống rỗng</span></span></td></tr><tr><td class="c-id">c2</td><td>Bạn nghĩ 'chiều cao con đã định rồi sao'. Tôi hiểu cảm giác đó. Nhưng mà…<br><span class="cap2">"Đã định rồi sao" · <span class="y">tôi hiểu mà</span></span></td></tr><tr><td class="c-id">c3</td><td>Chiều cao dự đoán có hai cách: theo chiều cao bố mẹ, và theo tuổi xương.<br><span class="cap2">Theo bố mẹ · <span class="y">theo tuổi xương</span></span></td></tr><tr><td class="c-id">c4</td><td>Nhưng cả hai đều là 'dự đoán', không phải bản án — chỉ là ước tính từ hiện tại.<br><span class="cap2">Đều là dự đoán · <span class="y">không phải bản án</span></span></td></tr><tr><td class="c-id">c5</td><td>Dự đoán theo tuổi xương thường sai số khoảng ±5cm — có thể dao động lên xuống.<br><span class="cap2">Dự đoán tuổi xương · <span class="y">±5cm sai số</span></span></td></tr><tr><td class="c-id">c6</td><td>Hơn nữa, khi sụn còn mở, cải thiện dinh dưỡng, giấc ngủ, vận động có thể vượt dự đoán.<br><span class="cap2">Dinh dưỡng·ngủ·vận động · <span class="y">vượt dự đoán</span></span></td></tr><tr><td class="c-id">c7</td><td>Nên tuyệt vọng vì con số thấp khác hẳn với việc kiểm tra. Kiểm tra là khi vẫn còn cơ hội.<br><span class="cap2">Tuyệt vọng ≠ kiểm tra · <span class="y">khi còn cơ hội</span></span></td></tr><tr><td class="c-id">c8</td><td>Ngay bây giờ, khi sụn còn mở, là thời điểm vàng để nâng chiều cao dự đoán lên.<br><span class="cap2">Khi sụn còn mở · <span class="y">thời điểm vàng</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cho biết trong con số dự đoán đó, con còn lại bao nhiêu cơ hội.<br><span class="cap2">Tuổi xương · <span class="y">cơ hội còn lại</span></span></td></tr><tr><td class="c-id">c10</td><td>Đừng vội gục ngã vì con số, hãy kiểm tra cơ hội còn lại của con ngay hôm nay.<br><span class="cap2">Đừng vội gục ngã · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"The predicted height came out low." The moment you hear it, your mind goes blank.<br><span class="cap2">"Predicted height is low" · <span class="y">mind goes blank</span></span></td></tr><tr><td class="c-id">c2</td><td>You think, 'Is my child's height already set?' I truly understand that feeling. But here's the thing.<br><span class="cap2">"Already set?" · <span class="y">I understand</span></span></td></tr><tr><td class="c-id">c3</td><td>Predicted height comes two ways: from the parents' height, and from bone age.<br><span class="cap2">From parents · <span class="y">from bone age</span></span></td></tr><tr><td class="c-id">c4</td><td>But both are 'predictions,' not verdicts — just estimates based on the present.<br><span class="cap2">Both are estimates · <span class="y">not a verdict</span></span></td></tr><tr><td class="c-id">c5</td><td>Bone-age prediction usually carries about a ±5cm margin — it can shift up or down within that.<br><span class="cap2">Bone-age estimate · <span class="y">±5cm margin</span></span></td></tr><tr><td class="c-id">c6</td><td>And while the plates are open, better nutrition, sleep and exercise can beat the prediction.<br><span class="cap2">Nutrition·sleep·exercise · <span class="y">beat the prediction</span></span></td></tr><tr><td class="c-id">c7</td><td>So despairing over a low number and checking are completely different. Checking is for while there's still time.<br><span class="cap2">Despair ≠ check · <span class="y">while time remains</span></span></td></tr><tr><td class="c-id">c8</td><td>Right now, while the plates are open, is the golden time to lift that predicted height.<br><span class="cap2">While still open · <span class="y">golden time</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows how much chance is still left inside that predicted number.<br><span class="cap2">Bone age · <span class="y">chance left</span></span></td></tr><tr><td class="c-id">c10</td><td>Don't crumble over the number — check your child's remaining chance today.<br><span class="cap2">Don't crumble · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"预测身高偏矮。"听到这句话，脑子一下就空白了。<br><span class="cap2">"预测身高偏矮" · <span class="y">脑子一片空白</span></span></td></tr><tr><td class="c-id">c2</td><td>你会想'孩子的身高就这样定了吗'。这份心情我完全理解。但是呢。<br><span class="cap2">"就这样定了吗" · <span class="y">这份心情我懂</span></span></td></tr><tr><td class="c-id">c3</td><td>预测身高有两种算法：用父母身高算，和用骨龄算。<br><span class="cap2">按父母身高 · <span class="y">按骨龄</span></span></td></tr><tr><td class="c-id">c4</td><td>但两个都叫'预测'，不是判决——只是根据现在做的估算。<br><span class="cap2">都是预测 · <span class="y">不是判决</span></span></td></tr><tr><td class="c-id">c5</td><td>骨龄预测通常有大约±5厘米的误差——可以在这个范围内上下浮动。<br><span class="cap2">骨龄预测 · <span class="y">±5厘米误差</span></span></td></tr><tr><td class="c-id">c6</td><td>而且生长板还开着时，改善营养、睡眠、运动，可以超过预测值。<br><span class="cap2">营养·睡眠·运动 · <span class="y">超过预测</span></span></td></tr><tr><td class="c-id">c7</td><td>所以为一个小数字绝望，和去确认，完全是两回事。确认是趁还有机会时做的。<br><span class="cap2">绝望 ≠ 确认 · <span class="y">趁还有机会</span></span></td></tr><tr><td class="c-id">c8</td><td>现在，生长板还开着的时候，正是把那个预测身高拉高的黄金期。<br><span class="cap2">趁还开着 · <span class="y">成长黄金期</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄能告诉你，在那个预测值里，孩子还剩多少机会。<br><span class="cap2">骨龄 · <span class="y">剩余机会</span></span></td></tr><tr><td class="c-id">c10</td><td>别被数字提前击垮，现在就查查孩子还剩多少机会吧。<br><span class="cap2">别被数字击垮 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"預測身高偏矮。"聽到這句話，腦子一下就空白了。<br><span class="cap2">"預測身高偏矮" · <span class="y">腦子一片空白</span></span></td></tr><tr><td class="c-id">c2</td><td>你會想'孩子的身高就這樣定了嗎'。這份心情我完全理解。但是呢。<br><span class="cap2">"就這樣定了嗎" · <span class="y">這份心情我懂</span></span></td></tr><tr><td class="c-id">c3</td><td>預測身高有兩種算法：用父母身高算，和用骨齡算。<br><span class="cap2">按父母身高 · <span class="y">按骨齡</span></span></td></tr><tr><td class="c-id">c4</td><td>但兩個都叫'預測'，不是判決——只是根據現在做的估算。<br><span class="cap2">都是預測 · <span class="y">不是判決</span></span></td></tr><tr><td class="c-id">c5</td><td>骨齡預測通常有大約±5公分的誤差——可以在這個範圍內上下浮動。<br><span class="cap2">骨齡預測 · <span class="y">±5公分誤差</span></span></td></tr><tr><td class="c-id">c6</td><td>而且生長板還開著時，改善營養、睡眠、運動，可以超過預測值。<br><span class="cap2">營養·睡眠·運動 · <span class="y">超過預測</span></span></td></tr><tr><td class="c-id">c7</td><td>所以為一個小數字絕望，和去確認，完全是兩回事。確認是趁還有機會時做的。<br><span class="cap2">絕望 ≠ 確認 · <span class="y">趁還有機會</span></span></td></tr><tr><td class="c-id">c8</td><td>現在，生長板還開著的時候，正是把那個預測身高拉高的黃金期。<br><span class="cap2">趁還開著 · <span class="y">成長黃金期</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡能告訴你，在那個預測值裡，孩子還剩多少機會。<br><span class="cap2">骨齡 · <span class="y">剩餘機會</span></span></td></tr><tr><td class="c-id">c10</td><td>別被數字提前擊垮，現在就查查孩子還剩多少機會吧。<br><span class="cap2">別被數字擊垮 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/예상키작게/</code> · <code>예상키작게-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

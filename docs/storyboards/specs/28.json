@@ -1,0 +1,783 @@
+{
+  "n": 28,
+  "slug": "칼슘비타민D",
+  "title": "칼슘만 먹이면 새는 이유 — 비타민D가 열쇠",
+  "sub": "칼슘은 흡수가 절반 — 비타민D가 있어야 뼈에 쌓인다. 햇볕 15분의 과학과, 우리 아이에게 맞는 똑똑한 영양 전략",
+  "category": "B. 생활습관",
+  "topicTitle": "칼슘 비타민D 함께 — 흡수의 과학",
+  "headerTop": "우리 아이 키",
+  "headerMark": "칼슘만으론 부족?",
+  "accentEmoji": "🥛☀️",
+  "hook": "칼슘 열심히 먹이는데 왜 안 클까요? 칼슘은 혼자선 절반도 일을 못 해요.",
+  "misconception": "칼슘만 많이 먹이면 뼈가 튼튼해지고 키가 큰다 → 비타민D가 없으면 칼슘은 흡수되지 못하고 그냥 몸 밖으로 빠져나간다",
+  "message": "칼슘은 뼈의 재료지만, 비타민D가 장에서 흡수를 열어주고 뼈에 쌓아줘야 제 역할을 한다. 햇볕 15~20분 + 칼슘·비타민D 식단 + 필요시 전문 상담이 키 성장의 똑똑한 전략.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"지금 채우면 된다\"). \"우리 아이 키\" 보편(영양제 챙기는 부모도, 안 챙기는 부모도 해당). 시청자가 검사·영양제 이미 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 + 맞춤 상담 초대",
+  "cta": "우리 아이에게 칼슘·비타민D가 부족한지, 성장 골든타임이 얼마나 남았는지 지금 확인 → 뼈나이/예측키 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "칼슘만으론 부족?",
+    "subject": "우리 아이 키, 칼슘",
+    "number": "50%",
+    "numLabel": "는 그냥 샌다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"칼슘 열심히 먹이는데 왜 안 커? → 혼자선 절반도 일 못 함\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "칼슘의 역할",
+      "scenes": "c3–c4",
+      "desc": "\"칼슘 = 뼈의 재료 · 골밀도 토대 → 근데 흡수가 문제\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "비타민D = 열쇠",
+      "scenes": "c5–c6",
+      "desc": "\"비타민D가 장에서 흡수 열고 뼈에 쌓아줌\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "햇볕·해법",
+      "scenes": "c7–c8",
+      "desc": "\"하루 15~20분 햇볕 → 칼슘+비타민D 식단\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "통합관리·행동",
+      "scenes": "c9–c10",
+      "desc": "\"영양만으론 부족, 수면·운동·맞춤 → 측정 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🥛 슬램 인 + ❓ 플립",
+      "copy": {
+        "ko": {
+          "narr": "칼슘 열심히 먹이는데 왜 안 크냐고요? 칼슘은 혼자선 절반도 일을 못 해요.",
+          "cap": [
+            "칼슘만 열심히?",
+            "혼자선 절반"
+          ],
+          "hl": "혼자선 절반"
+        },
+        "th": {
+          "narr": "ให้ลูกกินแคลเซียมตลอด แต่ทำไมไม่สูง? แคลเซียมลำพังทำงานไม่ถึงครึ่ง",
+          "cap": [
+            "กินแคลเซียมอย่างเดียว?",
+            "ลำพังไม่พอ"
+          ],
+          "hl": "ลำพังไม่พอ"
+        },
+        "vi": {
+          "narr": "Cho con uống canxi đều mà sao không cao? Canxi một mình làm chưa được nửa việc.",
+          "cap": [
+            "Chỉ uống canxi?",
+            "Một mình chưa đủ"
+          ],
+          "hl": "Một mình chưa đủ"
+        },
+        "en": {
+          "narr": "Loading up on calcium but still not growing? Calcium alone does half the job.",
+          "cap": [
+            "Calcium alone?",
+            "Only half"
+          ],
+          "hl": "Only half"
+        },
+        "cn": {
+          "narr": "一直给孩子补钙怎么还不长高？钙单打独斗连一半都做不到。",
+          "cap": [
+            "只补钙？",
+            "单独不够"
+          ],
+          "hl": "单独不够"
+        },
+        "ch": {
+          "narr": "一直給孩子補鈣怎麼還不長高？鈣單打獨鬥連一半都做不到。",
+          "cap": [
+            "只補鈣？",
+            "單獨不夠"
+          ],
+          "hl": "單獨不夠"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💧 빠져나감",
+      "copy": {
+        "ko": {
+          "narr": "비타민D가 없으면, 먹은 칼슘이 그냥 몸 밖으로 빠져나가거든요.",
+          "cap": [
+            "비타민D 없으면",
+            "칼슘이 샌다"
+          ],
+          "hl": "칼슘이 샌다"
+        },
+        "th": {
+          "narr": "ถ้าไม่มีวิตามินดี แคลเซียมที่กินเข้าไปก็แค่ถูกขับออก",
+          "cap": [
+            "ไม่มีวิตามินดี",
+            "แคลเซียมรั่ว"
+          ],
+          "hl": "แคลเซียมรั่ว"
+        },
+        "vi": {
+          "narr": "Thiếu vitamin D, canxi ăn vào chỉ bị thải ra ngoài.",
+          "cap": [
+            "Thiếu vitamin D",
+            "canxi thất thoát"
+          ],
+          "hl": "canxi thất thoát"
+        },
+        "en": {
+          "narr": "Without vitamin D, the calcium you eat just washes back out.",
+          "cap": [
+            "No vitamin D",
+            "calcium leaks out"
+          ],
+          "hl": "calcium leaks out"
+        },
+        "cn": {
+          "narr": "没有维生素D，吃进去的钙就只是被排出去。",
+          "cap": [
+            "没有维D",
+            "钙就流走"
+          ],
+          "hl": "钙就流走"
+        },
+        "ch": {
+          "narr": "沒有維生素D，吃進去的鈣就只是被排出去。",
+          "cap": [
+            "沒有維D",
+            "鈣就流走"
+          ],
+          "hl": "鈣就流走"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 뼈의 재료",
+      "motion": "🧱 차곡 쌓임",
+      "copy": {
+        "ko": {
+          "narr": "칼슘은 뼈와 치아의 주재료예요. 골밀도를 높여 키 클 토대를 만들죠.",
+          "cap": [
+            "칼슘은",
+            "뼈의 재료"
+          ],
+          "hl": "뼈의 재료"
+        },
+        "th": {
+          "narr": "แคลเซียมเป็นวัตถุดิบหลักของกระดูกและฟัน สร้างรากฐานให้สูง",
+          "cap": [
+            "แคลเซียมคือ",
+            "วัตถุดิบกระดูก"
+          ],
+          "hl": "วัตถุดิบกระดูก"
+        },
+        "vi": {
+          "narr": "Canxi là vật liệu chính của xương và răng, tạo nền để cao lên.",
+          "cap": [
+            "Canxi là",
+            "vật liệu xương"
+          ],
+          "hl": "vật liệu xương"
+        },
+        "en": {
+          "narr": "Calcium is the main material for bone and teeth — the base to grow on.",
+          "cap": [
+            "Calcium is",
+            "bone material"
+          ],
+          "hl": "bone material"
+        },
+        "cn": {
+          "narr": "钙是骨骼和牙齿的主要材料，打下长高的根基。",
+          "cap": [
+            "钙是",
+            "造骨材料"
+          ],
+          "hl": "造骨材料"
+        },
+        "ch": {
+          "narr": "鈣是骨骼和牙齒的主要材料，打下長高的根基。",
+          "cap": [
+            "鈣是",
+            "造骨材料"
+          ],
+          "hl": "造骨材料"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 닫힌 문",
+      "motion": "🚪 쾅 닫힘 + 💧",
+      "copy": {
+        "ko": {
+          "narr": "문제는 흡수예요. 아무리 많이 먹어도 장에서 못 들어가면 소용없죠.",
+          "cap": [
+            "많이 먹어도",
+            "흡수가 문제"
+          ],
+          "hl": "흡수가 문제"
+        },
+        "th": {
+          "narr": "ปัญหาคือการดูดซึม กินมากแค่ไหนถ้าลำไส้ไม่รับก็ไร้ผล",
+          "cap": [
+            "กินมากเท่าไร",
+            "อยู่ที่ดูดซึม"
+          ],
+          "hl": "อยู่ที่ดูดซึม"
+        },
+        "vi": {
+          "narr": "Vấn đề là hấp thu. Ăn nhiều mà ruột không nhận thì vô ích.",
+          "cap": [
+            "Ăn nhiều mấy",
+            "vẫn kẹt hấp thu"
+          ],
+          "hl": "kẹt hấp thu"
+        },
+        "en": {
+          "narr": "The catch is absorption. Eat all you want — if the gut can't take it in, it's wasted.",
+          "cap": [
+            "No matter how much",
+            "absorption is key"
+          ],
+          "hl": "absorption is key"
+        },
+        "cn": {
+          "narr": "问题在吸收。吃再多，肠道进不去也是白费。",
+          "cap": [
+            "吃再多",
+            "关键在吸收"
+          ],
+          "hl": "关键在吸收"
+        },
+        "ch": {
+          "narr": "問題在吸收。吃再多，腸道進不去也是白費。",
+          "cap": [
+            "吃再多",
+            "關鍵在吸收"
+          ],
+          "hl": "關鍵在吸收"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🔑 찰칵 열림",
+      "copy": {
+        "ko": {
+          "narr": "여기서 비타민D가 열쇠예요. 장에서 칼슘 흡수를 열고, 뼈에 쌓이게 도와줘요.",
+          "cap": [
+            "비타민D가",
+            "칼슘의 열쇠"
+          ],
+          "hl": "칼슘의 열쇠"
+        },
+        "th": {
+          "narr": "ตรงนี้วิตามินดีคือกุญแจ เปิดการดูดซึมในลำไส้ และพาแคลเซียมเข้ากระดูก",
+          "cap": [
+            "วิตามินดีคือ",
+            "กุญแจแคลเซียม"
+          ],
+          "hl": "กุญแจแคลเซียม"
+        },
+        "vi": {
+          "narr": "Đây là lúc vitamin D vào cuộc: mở hấp thu ở ruột, đưa canxi vào xương.",
+          "cap": [
+            "Vitamin D là",
+            "chìa khóa canxi"
+          ],
+          "hl": "chìa khóa canxi"
+        },
+        "en": {
+          "narr": "Here's the key: vitamin D. It opens absorption in the gut and locks calcium into bone.",
+          "cap": [
+            "Vitamin D is",
+            "the calcium key"
+          ],
+          "hl": "the calcium key"
+        },
+        "cn": {
+          "narr": "这里维生素D就是钥匙：打开肠道吸收，把钙送进骨头。",
+          "cap": [
+            "维生素D是",
+            "钙的钥匙"
+          ],
+          "hl": "钙的钥匙"
+        },
+        "ch": {
+          "narr": "這裡維生素D就是鑰匙：打開腸道吸收，把鈣送進骨頭。",
+          "cap": [
+            "維生素D是",
+            "鈣的鑰匙"
+          ],
+          "hl": "鈣的鑰匙"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 흡수 파트너",
+      "motion": "🤝 연결 + ↑ 흐름",
+      "copy": {
+        "ko": {
+          "narr": "그래서 칼슘과 비타민D는 짝꿍이에요. 둘이 함께여야 뼈가 진짜 단단해져요.",
+          "cap": [
+            "칼슘＋비타민D",
+            "함께라야 흡수"
+          ],
+          "hl": "함께라야 흡수"
+        },
+        "th": {
+          "narr": "แคลเซียมกับวิตามินดีจึงเป็นคู่หู ต้องอยู่ด้วยกันกระดูกถึงแข็งจริง",
+          "cap": [
+            "แคลเซียม＋วิตามินดี",
+            "คู่หูดูดซึม"
+          ],
+          "hl": "คู่หูดูดซึม"
+        },
+        "vi": {
+          "narr": "Nên canxi và vitamin D là cặp đôi — có nhau xương mới chắc thật sự.",
+          "cap": [
+            "Canxi＋vitamin D",
+            "cặp đôi hấp thu"
+          ],
+          "hl": "cặp đôi hấp thu"
+        },
+        "en": {
+          "narr": "So calcium and vitamin D are partners — together they make bone truly strong.",
+          "cap": [
+            "Calcium＋vitamin D",
+            "a team for absorption"
+          ],
+          "hl": "a team for absorption"
+        },
+        "cn": {
+          "narr": "所以钙和维生素D是搭档，在一起骨头才真正结实。",
+          "cap": [
+            "钙＋维生素D",
+            "搭档才吸收"
+          ],
+          "hl": "搭档才吸收"
+        },
+        "ch": {
+          "narr": "所以鈣和維生素D是搭檔，在一起骨頭才真正結實。",
+          "cap": [
+            "鈣＋維生素D",
+            "搭檔才吸收"
+          ],
+          "hl": "搭檔才吸收"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "☀️ 햇살 펄스",
+      "copy": {
+        "ko": {
+          "narr": "비타민D는 햇볕이 최고예요. 하루 15분에서 20분만 쬐어도 충분히 만들어져요.",
+          "cap": [
+            "햇볕 15~20분",
+            "비타민D 충전"
+          ],
+          "hl": "햇볕 15~20분"
+        },
+        "th": {
+          "narr": "วิตามินดีได้ดีที่สุดจากแสงแดด แค่วันละ 15–20 นาทีก็พอ",
+          "cap": [
+            "แดด 15–20 นาที",
+            "เติมวิตามินดี"
+          ],
+          "hl": "แดด 15–20 นาที"
+        },
+        "vi": {
+          "narr": "Vitamin D tốt nhất từ nắng — chỉ 15 đến 20 phút mỗi ngày là đủ.",
+          "cap": [
+            "Nắng 15–20 phút",
+            "nạp vitamin D"
+          ],
+          "hl": "Nắng 15–20 phút"
+        },
+        "en": {
+          "narr": "Sunlight makes vitamin D best — just 15 to 20 minutes a day is enough.",
+          "cap": [
+            "Sun 15–20 min",
+            "tops up vitamin D"
+          ],
+          "hl": "Sun 15–20 min"
+        },
+        "cn": {
+          "narr": "维生素D靠晒太阳最好，每天15到20分钟就够了。",
+          "cap": [
+            "晒太阳15~20分",
+            "补足维生素D"
+          ],
+          "hl": "晒太阳15~20分"
+        },
+        "ch": {
+          "narr": "維生素D靠曬太陽最好，每天15到20分鐘就夠了。",
+          "cap": [
+            "曬太陽15~20分",
+            "補足維生素D"
+          ],
+          "hl": "曬太陽15~20分"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 함께 먹는 식단",
+      "motion": "🍽️ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "식단으론 우유·멸치에, 비타민D 많은 연어·버섯·달걀노른자를 함께 챙겨주세요.",
+          "cap": [
+            "우유·멸치 ＋",
+            "연어·버섯·노른자"
+          ],
+          "hl": "연어·버섯·노른자"
+        },
+        "th": {
+          "narr": "มื้ออาหารใส่นม ปลาเล็ก คู่กับแซลมอน เห็ด ไข่แดงที่มีวิตามินดีสูง",
+          "cap": [
+            "นม·ปลาเล็ก ＋",
+            "แซลมอน·เห็ด·ไข่แดง"
+          ],
+          "hl": "แซลมอน·เห็ด·ไข่แดง"
+        },
+        "vi": {
+          "narr": "Bữa ăn thêm sữa, cá nhỏ cùng cá hồi, nấm, lòng đỏ trứng giàu vitamin D.",
+          "cap": [
+            "Sữa·cá nhỏ ＋",
+            "cá hồi·nấm·lòng đỏ"
+          ],
+          "hl": "cá hồi·nấm·lòng đỏ"
+        },
+        "en": {
+          "narr": "On the plate: milk and small fish plus vitamin-D-rich salmon, mushrooms, egg yolk.",
+          "cap": [
+            "Milk·fish ＋",
+            "salmon·mushroom·yolk"
+          ],
+          "hl": "salmon·mushroom·yolk"
+        },
+        "cn": {
+          "narr": "饮食上牛奶、小鱼，再配富含维D的三文鱼、蘑菇、蛋黄。",
+          "cap": [
+            "牛奶·小鱼 ＋",
+            "三文鱼·蘑菇·蛋黄"
+          ],
+          "hl": "三文鱼·蘑菇·蛋黄"
+        },
+        "ch": {
+          "narr": "飲食上牛奶、小魚，再配富含維D的鮭魚、蘑菇、蛋黃。",
+          "cap": [
+            "牛奶·小魚 ＋",
+            "鮭魚·蘑菇·蛋黃"
+          ],
+          "hl": "鮭魚·蘑菇·蛋黃"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🌙🏃 통합 팝",
+      "copy": {
+        "ko": {
+          "narr": "영양만으론 부족해요. 충분한 수면, 운동, 그리고 우리 아이 맞춤 관리가 함께 가야죠.",
+          "cap": [
+            "영양 ＋ 수면·운동",
+            "맞춤 관리"
+          ],
+          "hl": "맞춤 관리"
+        },
+        "th": {
+          "narr": "แค่สารอาหารไม่พอ ต้องมีนอนพอ ออกกำลังกาย และดูแลเฉพาะลูกด้วย",
+          "cap": [
+            "โภชนาการ ＋ นอน·ออกกำลัง",
+            "ดูแลเฉพาะคน"
+          ],
+          "hl": "ดูแลเฉพาะคน"
+        },
+        "vi": {
+          "narr": "Dinh dưỡng thôi chưa đủ — cần ngủ đủ, vận động, và chăm sóc riêng cho con.",
+          "cap": [
+            "Dinh dưỡng ＋ ngủ·vận động",
+            "chăm sóc riêng"
+          ],
+          "hl": "chăm sóc riêng"
+        },
+        "en": {
+          "narr": "Nutrition alone isn't enough — add good sleep, exercise, and care tailored to your child.",
+          "cap": [
+            "Nutrition ＋ sleep·move",
+            "tailored care"
+          ],
+          "hl": "tailored care"
+        },
+        "cn": {
+          "narr": "光靠营养还不够，要加上充足睡眠、运动和适合孩子的个性化管理。",
+          "cap": [
+            "营养 ＋ 睡眠·运动",
+            "个性化管理"
+          ],
+          "hl": "个性化管理"
+        },
+        "ch": {
+          "narr": "光靠營養還不夠，要加上充足睡眠、運動和適合孩子的個人化管理。",
+          "cap": [
+            "營養 ＋ 睡眠·運動",
+            "個人化管理"
+          ],
+          "hl": "個人化管理"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이에게 뭐가 부족한지, 성장 골든타임이 얼마나 남았는지 지금 확인해 보세요.",
+          "cap": [
+            "뭐가 부족한지",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กวันนี้ว่าลูกขาดอะไร และเหลือช่วงเวลาทองอีกเท่าไร",
+          "cap": [
+            "ลูกขาดอะไร",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra ngay hôm nay con đang thiếu gì và còn bao nhiêu thời điểm vàng.",
+          "cap": [
+            "Con thiếu gì",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check today what your child is missing and how much golden time is left.",
+          "cap": [
+            "What's missing",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子缺什么，还剩多少成长黄金期。",
+          "cap": [
+            "缺什么",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子缺什麼，還剩多少成長黃金期。",
+          "cap": [
+            "缺什麼",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🧱 차곡 쌓임",
+      "title": "칼슘 = 뼈의 재료",
+      "emojis": [
+        "🦴",
+        "🧱",
+        "🥛"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly upright long bone being built up from small rounded calcium blocks/bricks stacking neatly from the bottom, like laying a strong foundation; a small milk-drop motif as a building block. Brand purple bone with mint calcium blocks, soft clean pediatric style, gentle glow at the base. NO text.",
+      "labels": [
+        {
+          "pos": "블록(쌓임)",
+          "ko": "칼슘 블록",
+          "en": "Calcium blocks",
+          "th": "บล็อกแคลเซียม"
+        },
+        {
+          "pos": "하단(토대)",
+          "ko": "튼튼한 토대",
+          "en": "Strong base",
+          "th": "รากฐานแข็งแรง"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🚪 쾅 닫힘 + 💧",
+      "title": "흡수 안 되면 그냥 샌다",
+      "emojis": [
+        "🚪",
+        "💧",
+        "🚫"
+      ],
+      "prompt": "Flat vector, square, white background. A stylized intestine/gut wall shown as a closed door or shut gate, with little mint calcium droplets bouncing off the closed door and flowing away/down (not getting in). Conveys 'calcium can't be absorbed, washes out.' Brand purple gut, mint droplets, gentle and clean (not scary), soft motion lines downward. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "닫힌 문",
+          "ko": "흡수 차단",
+          "en": "Blocked",
+          "th": "ถูกปิดกั้น"
+        },
+        {
+          "pos": "흘러나가는 방울",
+          "ko": "칼슘 배출 ↓",
+          "en": "Calcium out ↓",
+          "th": "แคลเซียมหลุด ↓"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "🤝 연결 + ↑ 흐름",
+      "title": "칼슘＋비타민D 짝꿍",
+      "emojis": [
+        "🥛",
+        "☀️",
+        "🤝"
+      ],
+      "prompt": "Flat vector, square, white background. Two friendly rounded character orbs side by side holding hands: one is a milk/calcium drop, the other is a little sun (vitamin D). Together they open a now-glowing gut gateway and an upward mint flow of particles streams into a strong bone above them. Conveys 'partners that unlock absorption into bone.' Brand purple + mint with a warm golden sun accent, soft glow, pediatric clean. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 오브",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        },
+        {
+          "pos": "오른쪽 오브",
+          "ko": "비타민D",
+          "en": "Vitamin D",
+          "th": "วิตามินดี"
+        },
+        {
+          "pos": "위쪽 흐름",
+          "ko": "뼈로 흡수 ↑",
+          "en": "Into bone ↑",
+          "th": "เข้ากระดูก ↑"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🍽️ 순차 점등",
+      "title": "함께 먹는 식단 한 접시",
+      "emojis": [
+        "🥛",
+        "🐟",
+        "🍄"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly round meal plate viewed top-down with cute simple food icons arranged around it: a glass of milk, small dried fish, a salmon fillet, a mushroom, and an egg yolk. Tiny sparkles indicating 'good combo.' Brand purple plate rim with mint and warm accents, soft clean pediatric illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽(칼슘)",
+          "ko": "칼슘 식품",
+          "en": "Calcium foods",
+          "th": "อาหารแคลเซียม"
+        },
+        {
+          "pos": "오른쪽(비타민D)",
+          "ko": "비타민D 식품",
+          "en": "Vitamin D foods",
+          "th": "อาหารวิตามินดี"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🥛",
+      "label": "칼슘·우유"
+    },
+    {
+      "e": "☀️",
+      "label": "햇볕·비타민D"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈·골밀도"
+    },
+    {
+      "e": "🔑",
+      "label": "흡수의 열쇠"
+    },
+    {
+      "e": "💧",
+      "label": "새는 칼슘"
+    },
+    {
+      "e": "🚪",
+      "label": "흡수 차단"
+    },
+    {
+      "e": "🤝",
+      "label": "칼슘＋비타민D 짝꿍"
+    },
+    {
+      "e": "🐟",
+      "label": "연어·등푸른생선"
+    },
+    {
+      "e": "🍄",
+      "label": "버섯·식품원"
+    },
+    {
+      "e": "🌙",
+      "label": "수면·통합관리"
+    },
+    {
+      "e": "🏃",
+      "label": "운동·생활습관"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

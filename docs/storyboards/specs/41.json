@@ -1,0 +1,811 @@
+{
+  "n": 41,
+  "slug": "부모키작아도",
+  "title": "부모가 작아도 아이는 크게 — 유전 너머 20%",
+  "sub": "유전 70~80%는 '범위', 나머지 20~30%가 우리 아이 키를 바꾼다",
+  "category": "C. 부모공감",
+  "topicTitle": "부모 작아도 아이 키 크게",
+  "headerTop": "우리 아이 키",
+  "headerMark": "유전이 전부?",
+  "accentEmoji": "🧬✨",
+  "duration": 35,
+  "hook": "부모가 작으면 아이도 작다? 그 20%가 모든 걸 바꿉니다.",
+  "misconception": "부모가 작으니 아이도 작게 태어났다 → 유전은 '범위'일 뿐, 어디에 도달할지는 후천 관리가 결정",
+  "message": "유전 70~80%는 도달 '범위'를 정할 뿐. 나머지 20~30%(영양·수면·운동·성조숙 관리)가 같은 범위 안에서 최종 키를 가른다",
+  "tone": "협박 ❌ → 긍정(\"부모 작아도 크게 키울 수 있다, 기회는 늘 열려 있다\"). \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이 잠재 키, 뼈나이·예측키로 지금 확인 → 남은 20% 끌어내기",
+  "thumb": {
+    "kicker": "유전이 끝 아냐!",
+    "subject": "부모 작아도 아이 키",
+    "number": "20%",
+    "numLabel": "가 바꾼다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감·훅",
+      "scenes": "c1–c2",
+      "desc": "\"부모가 작으면 아이도? 그 걱정, 절반만 맞아요\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "유전의 진실",
+      "scenes": "c3–c4",
+      "desc": "\"유전 70~80%는 '범위', 20~30%는 우리 몫\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "범위 안의 선택",
+      "scenes": "c5–c6",
+      "desc": "\"같은 유전, 170 vs 180 — 후천이 가른다\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "끌어올리는 법",
+      "scenes": "c7–c8",
+      "desc": "\"영양·수면·운동 + 성조숙 관리\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "확인·행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 잠재키 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🧬 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "\"부모가 작으면, 우리 아이도 작게 크겠죠?\" 그 걱정, 절반만 맞아요.",
+          "cap": [
+            "부모가 작으면",
+            "아이도 작다?"
+          ],
+          "hl": "아이도 작다?"
+        },
+        "th": {
+          "narr": "พ่อแม่ตัวเล็ก ลูกก็จะตัวเล็กไหม? คำตอบคือ ถูกแค่ครึ่งเดียว",
+          "cap": [
+            "พ่อแม่ตัวเล็ก",
+            "ลูกก็เล็ก?"
+          ],
+          "hl": "ลูกก็เล็ก?"
+        },
+        "vi": {
+          "narr": "Bố mẹ thấp thì con cũng thấp? Lo lắng đó chỉ đúng một nửa.",
+          "cap": [
+            "Bố mẹ thấp",
+            "con cũng thấp?"
+          ],
+          "hl": "con cũng thấp?"
+        },
+        "en": {
+          "narr": "Short parents mean a short child? That worry is only half true.",
+          "cap": [
+            "Short parents,",
+            "short child?"
+          ],
+          "hl": "short child?"
+        },
+        "cn": {
+          "narr": "父母矮，孩子就一定矮吗？这个担心，只对了一半。",
+          "cap": [
+            "父母矮",
+            "孩子也矮？"
+          ],
+          "hl": "孩子也矮？"
+        },
+        "ch": {
+          "narr": "父母矮，孩子就一定矮嗎？這個擔心，只對了一半。",
+          "cap": [
+            "父母矮",
+            "孩子也矮？"
+          ],
+          "hl": "孩子也矮？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "✋ 끄덕 + 💜 안심",
+      "copy": {
+        "ko": {
+          "narr": "성장클리닉에서 가장 많이 듣는 걱정이에요. 그런데 유전이 전부는 아니거든요.",
+          "cap": [
+            "유전이",
+            "전부는 아니에요"
+          ],
+          "hl": "전부는 아니에요"
+        },
+        "th": {
+          "narr": "เป็นคำถามที่ได้ยินบ่อยที่สุดในคลินิก แต่พันธุกรรมไม่ใช่ทั้งหมด",
+          "cap": [
+            "พันธุกรรม",
+            "ไม่ใช่ทั้งหมด"
+          ],
+          "hl": "ไม่ใช่ทั้งหมด"
+        },
+        "vi": {
+          "narr": "Đây là nỗi lo phổ biến nhất ở phòng khám. Nhưng gen không phải tất cả.",
+          "cap": [
+            "Gen không phải",
+            "tất cả"
+          ],
+          "hl": "tất cả"
+        },
+        "en": {
+          "narr": "It's the most common worry we hear. But genes aren't everything.",
+          "cap": [
+            "Genes aren't",
+            "everything"
+          ],
+          "hl": "everything"
+        },
+        "cn": {
+          "narr": "这是诊室里最常听到的担心。但基因，并不是全部。",
+          "cap": [
+            "基因",
+            "并不是全部"
+          ],
+          "hl": "并不是全部"
+        },
+        "ch": {
+          "narr": "這是診間裡最常聽到的擔心。但基因，並不是全部。",
+          "cap": [
+            "基因",
+            "並不是全部"
+          ],
+          "hl": "並不是全部"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 70:30 도넛",
+      "motion": "🧬 70% 채우기 + ✨ 30% 점등",
+      "copy": {
+        "ko": {
+          "narr": "키에서 유전이 차지하는 건 약 70에서 80퍼센트. 나머지 20에서 30은 우리 몫이에요.",
+          "cap": [
+            "유전 70~80%",
+            "나머지 20~30%"
+          ],
+          "hl": "나머지 20~30%"
+        },
+        "th": {
+          "narr": "พันธุกรรมมีผลราว 70–80% ที่เหลืออีก 20–30% อยู่ในมือเรา",
+          "cap": [
+            "พันธุกรรม 70–80%",
+            "อีก 20–30%"
+          ],
+          "hl": "อีก 20–30%"
+        },
+        "vi": {
+          "narr": "Gen quyết định khoảng 70–80%. Còn 20–30% là phần của chúng ta.",
+          "cap": [
+            "Gen 70–80%",
+            "còn 20–30%"
+          ],
+          "hl": "còn 20–30%"
+        },
+        "en": {
+          "narr": "Genes account for about 70–80%. The other 20–30% is up to us.",
+          "cap": [
+            "Genes 70–80%",
+            "the other 20–30%"
+          ],
+          "hl": "the other 20–30%"
+        },
+        "cn": {
+          "narr": "基因大约占70到80%。剩下的20到30%，掌握在我们手里。",
+          "cap": [
+            "基因 70–80%",
+            "其余 20–30%"
+          ],
+          "hl": "其余 20–30%"
+        },
+        "ch": {
+          "narr": "基因大約佔70到80%。剩下的20到30%，掌握在我們手裡。",
+          "cap": [
+            "基因 70–80%",
+            "其餘 20–30%"
+          ],
+          "hl": "其餘 20–30%"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "📐 범위 띠 펼치기",
+      "copy": {
+        "ko": {
+          "narr": "유전은 정해진 숫자가 아니라, 도달할 수 있는 '키의 범위'를 정해줘요.",
+          "cap": [
+            "유전 = 정해진 키 X",
+            "키의 '범위'"
+          ],
+          "hl": "키의 '범위'"
+        },
+        "th": {
+          "narr": "พันธุกรรมไม่ใช่ตัวเลขตายตัว แต่กำหนด ช่วงความสูง ที่เป็นไปได้",
+          "cap": [
+            "ไม่ใช่ตัวเลขตายตัว",
+            "ช่วงความสูง"
+          ],
+          "hl": "ช่วงความสูง"
+        },
+        "vi": {
+          "narr": "Gen không phải con số cố định, mà định ra 'khoảng chiều cao' có thể đạt.",
+          "cap": [
+            "Không cố định",
+            "'khoảng' chiều cao"
+          ],
+          "hl": "'khoảng' chiều cao"
+        },
+        "en": {
+          "narr": "Genes don't fix a number — they set a 'range' your child can reach.",
+          "cap": [
+            "Not a fixed number",
+            "a 'range'"
+          ],
+          "hl": "a 'range'"
+        },
+        "cn": {
+          "narr": "基因不是一个固定数字，而是划定能达到的'身高范围'。",
+          "cap": [
+            "不是固定数字",
+            "身高'范围'"
+          ],
+          "hl": "身高'范围'"
+        },
+        "ch": {
+          "narr": "基因不是一個固定數字，而是劃定能達到的'身高範圍'。",
+          "cap": [
+            "不是固定數字",
+            "身高'範圍'"
+          ],
+          "hl": "身高'範圍'"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "ig",
+      "igLabel": "IG2 170 vs 180",
+      "motion": "📏 두 키 비교 + 10cm 갭",
+      "copy": {
+        "ko": {
+          "narr": "예를 들어 170에서 180까지 클 수 있는 아이라면, 그 안에서 10센티가 갈려요.",
+          "cap": [
+            "같은 유전",
+            "170 vs 180"
+          ],
+          "hl": "170 vs 180"
+        },
+        "th": {
+          "narr": "เช่น เด็กที่โตได้ 170 ถึง 180 ส่วนสูงต่างกันได้ถึง 10 ซม.",
+          "cap": [
+            "พันธุกรรมเดียวกัน",
+            "170 vs 180"
+          ],
+          "hl": "170 vs 180"
+        },
+        "vi": {
+          "narr": "Ví dụ trẻ có thể cao 170 đến 180 — chênh lệch tới 10cm.",
+          "cap": [
+            "Cùng một gen",
+            "170 vs 180"
+          ],
+          "hl": "170 vs 180"
+        },
+        "en": {
+          "narr": "A child who can reach 170 to 180 — that's a 10cm difference in play.",
+          "cap": [
+            "Same genes",
+            "170 vs 180"
+          ],
+          "hl": "170 vs 180"
+        },
+        "cn": {
+          "narr": "比如能长到170到180的孩子，这中间就差了10厘米。",
+          "cap": [
+            "相同基因",
+            "170 vs 180"
+          ],
+          "hl": "170 vs 180"
+        },
+        "ch": {
+          "narr": "比如能長到170到180的孩子，這中間就差了10公分。",
+          "cap": [
+            "相同基因",
+            "170 vs 180"
+          ],
+          "hl": "170 vs 180"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–22.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "⬆️ 윗쪽 화살표 강조",
+      "copy": {
+        "ko": {
+          "narr": "170에 머물지, 180에 닿을지는 전적으로 후천적 관리에 달려 있어요.",
+          "cap": [
+            "170 vs 180",
+            "후천 관리가 결정"
+          ],
+          "hl": "후천 관리가 결정"
+        },
+        "th": {
+          "narr": "จะหยุดที่ 170 หรือถึง 180 ขึ้นอยู่กับการดูแลล้วนๆ",
+          "cap": [
+            "170 หรือ 180",
+            "การดูแลตัดสิน"
+          ],
+          "hl": "การดูแลตัดสิน"
+        },
+        "vi": {
+          "narr": "Dừng ở 170 hay chạm 180 — hoàn toàn do cách chăm sóc.",
+          "cap": [
+            "170 hay 180",
+            "chăm sóc quyết định"
+          ],
+          "hl": "chăm sóc quyết định"
+        },
+        "en": {
+          "narr": "Stopping at 170 or reaching 180 comes entirely down to care.",
+          "cap": [
+            "170 or 180",
+            "care decides"
+          ],
+          "hl": "care decides"
+        },
+        "cn": {
+          "narr": "停在170还是触及180，完全取决于后天管理。",
+          "cap": [
+            "170还是180",
+            "后天管理决定"
+          ],
+          "hl": "后天管理决定"
+        },
+        "ch": {
+          "narr": "停在170還是觸及180，完全取決於後天管理。",
+          "cap": [
+            "170還是180",
+            "後天管理決定"
+          ],
+          "hl": "後天管理決定"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26.5s",
+      "kind": "ig",
+      "igLabel": "IG3 후천 4기둥",
+      "motion": "🍱😴🏃🌙 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "그 20퍼센트는 영양, 깊은 잠, 운동, 그리고 스트레스 관리에서 채워져요.",
+          "cap": [
+            "영양·수면·운동",
+            "후천 4가지"
+          ],
+          "hl": "후천 4가지"
+        },
+        "th": {
+          "narr": "20% นั้นเติมได้จาก โภชนาการ การนอนลึก การออกกำลัง และความผ่อนคลาย",
+          "cap": [
+            "โภชนาการ·นอน·ออกกำลัง",
+            "4 ปัจจัย"
+          ],
+          "hl": "4 ปัจจัย"
+        },
+        "vi": {
+          "narr": "20% đó đến từ dinh dưỡng, ngủ sâu, vận động và giảm căng thẳng.",
+          "cap": [
+            "Dinh dưỡng·ngủ·vận động",
+            "4 yếu tố"
+          ],
+          "hl": "4 yếu tố"
+        },
+        "en": {
+          "narr": "That 20% comes from nutrition, deep sleep, exercise, and low stress.",
+          "cap": [
+            "Nutrition·sleep·exercise",
+            "4 pillars"
+          ],
+          "hl": "4 pillars"
+        },
+        "cn": {
+          "narr": "那20%来自营养、深度睡眠、运动，还有减压。",
+          "cap": [
+            "营养·睡眠·运动",
+            "4大支柱"
+          ],
+          "hl": "4大支柱"
+        },
+        "ch": {
+          "narr": "那20%來自營養、深度睡眠、運動，還有減壓。",
+          "cap": [
+            "營養·睡眠·運動",
+            "4大支柱"
+          ],
+          "hl": "4大支柱"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26.5–30s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "⚠️ 성조숙 체크 펄스",
+      "copy": {
+        "ko": {
+          "narr": "특히 성조숙증과 비만은 성장판을 일찍 닫아요. 미리 관리하면 키를 지킬 수 있어요.",
+          "cap": [
+            "성조숙·비만 관리",
+            "키를 지킨다"
+          ],
+          "hl": "키를 지킨다"
+        },
+        "th": {
+          "narr": "โดยเฉพาะเป็นหนุ่มสาวก่อนวัยและโรคอ้วน ทำแผ่นกระดูกปิดเร็ว ดูแลก่อนรักษาความสูงไว้ได้",
+          "cap": [
+            "ดูแลก่อนวัย·อ้วน",
+            "รักษาความสูง"
+          ],
+          "hl": "รักษาความสูง"
+        },
+        "vi": {
+          "narr": "Nhất là dậy thì sớm và béo phì làm sụn đóng sớm — quản lý sớm giữ được chiều cao.",
+          "cap": [
+            "Dậy thì sớm·béo phì",
+            "giữ chiều cao"
+          ],
+          "hl": "giữ chiều cao"
+        },
+        "en": {
+          "narr": "Early puberty and obesity close the plates sooner — manage them early to protect height.",
+          "cap": [
+            "Early puberty·obesity",
+            "protect height"
+          ],
+          "hl": "protect height"
+        },
+        "cn": {
+          "narr": "尤其性早熟和肥胖会让生长板提前闭合——提早管理就能守住身高。",
+          "cap": [
+            "性早熟·肥胖管理",
+            "守住身高"
+          ],
+          "hl": "守住身高"
+        },
+        "ch": {
+          "narr": "尤其性早熟和肥胖會讓生長板提前閉合——提早管理就能守住身高。",
+          "cap": [
+            "性早熟·肥胖管理",
+            "守住身高"
+          ],
+          "hl": "守住身高"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "ig",
+      "igLabel": "IG4 뼈나이 잠재키",
+      "motion": "🦴🔍 팝 + 잠재키 글로우",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면, 우리 아이가 앞으로 얼마나 더 클 수 있는지 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "잠재 키 확인"
+          ],
+          "hl": "잠재 키 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกได้ว่าลูกยังโตได้อีกแค่ไหน",
+          "cap": [
+            "อายุกระดูก",
+            "ดูศักยภาพสูง"
+          ],
+          "hl": "ดูศักยภาพสูง"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết con còn có thể cao thêm bao nhiêu.",
+          "cap": [
+            "Tuổi xương",
+            "tiềm năng chiều cao"
+          ],
+          "hl": "tiềm năng chiều cao"
+        },
+        "en": {
+          "narr": "Bone age reveals how much more your child can still grow.",
+          "cap": [
+            "Bone age",
+            "growth potential"
+          ],
+          "hl": "growth potential"
+        },
+        "cn": {
+          "narr": "看骨龄，就能知道孩子还能再长多少。",
+          "cap": [
+            "骨龄",
+            "潜在身高"
+          ],
+          "hl": "潜在身高"
+        },
+        "ch": {
+          "narr": "看骨齡，就能知道孩子還能再長多少。",
+          "cap": [
+            "骨齡",
+            "潛在身高"
+          ],
+          "hl": "潛在身高"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "igLabel": "",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "부모 키와 상관없이, 우리 아이 잠재 키 지금 바로 확인해 보세요.",
+          "cap": [
+            "우리 아이 잠재 키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ไม่ว่าพ่อแม่สูงเท่าไร เช็กศักยภาพความสูงของลูกวันนี้",
+          "cap": [
+            "ศักยภาพความสูง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Dù bố mẹ cao bao nhiêu, hãy kiểm tra tiềm năng chiều cao của con ngay.",
+          "cap": [
+            "Tiềm năng chiều cao",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "No matter your height, check your child's growth potential today.",
+          "cap": [
+            "Growth potential",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "无论父母多高，现在就查查孩子的潜在身高吧。",
+          "cap": [
+            "潜在身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "無論父母多高，現在就查查孩子的潛在身高吧。",
+          "cap": [
+            "潛在身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "70% 채우기 + 30% 점등",
+      "title": "유전 70~80% vs 후천 20~30%",
+      "emojis": [
+        "🧬",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A large donut/pie chart split into two arcs: a big arc in brand purple (#667eea) and a smaller arc in mint (#2dd4bf) with a soft glow on the mint arc. To the left a small DNA helix icon, to the right a tiny sparkle/spark icon over the mint slice. Friendly pediatric style, clean and modern. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "큰 보라 조각",
+          "ko": "유전",
+          "en": "Genes",
+          "th": "พันธุกรรม"
+        },
+        {
+          "pos": "작은 민트 조각(글로우)",
+          "ko": "후천 노력",
+          "en": "Our effort",
+          "th": "การดูแล"
+        },
+        {
+          "pos": "보라 위",
+          "ko": "70~80%",
+          "en": "70–80%",
+          "th": "70–80%"
+        },
+        {
+          "pos": "민트 위",
+          "ko": "20~30%",
+          "en": "20–30%",
+          "th": "20–30%"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "두 키 비교 + 10cm 갭",
+      "title": "같은 유전, 170 vs 180",
+      "emojis": [
+        "📏",
+        "🧒"
+      ],
+      "prompt": "Flat vector, square, white bg. Two friendly child silhouettes of clearly different heights standing side by side against a vertical measuring ruler; a dashed bracket marks the gap between the shorter and taller head heights, with a small upward arrow on the taller one. Brand purple + mint, soft gradient. Conveys 'same range, different outcome.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "작은 아이 머리",
+          "ko": "170",
+          "en": "170",
+          "th": "170"
+        },
+        {
+          "pos": "큰 아이 머리",
+          "ko": "180",
+          "en": "180",
+          "th": "180"
+        },
+        {
+          "pos": "갭 괄호",
+          "ko": "+10cm",
+          "en": "+10cm",
+          "th": "+10cm"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "4기둥 순차 점등",
+      "title": "후천 4가지 — 영양·수면·운동·스트레스",
+      "emojis": [
+        "🍱",
+        "😴",
+        "🏃",
+        "🌙"
+      ],
+      "prompt": "Flat vector, square, white bg. Four equal rounded pillars/cards in a row, each topped with a simple friendly icon: a balanced meal plate, a sleeping moon, a running child, and a calm heart/lotus. The pillars lift up a small rising arrow above them. Brand purple bases with mint accents, soft glow. Pediatric, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "1번 기둥",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "2번 기둥",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "3번 기둥",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลัง"
+        },
+        {
+          "pos": "4번 기둥",
+          "ko": "스트레스↓",
+          "en": "Less stress",
+          "th": "ผ่อนคลาย"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c9",
+      "motion": "뼈나이 스캔 + 잠재키 글로우",
+      "title": "뼈나이로 잠재 키 확인",
+      "emojis": [
+        "🦴",
+        "🔍"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized hand X-ray inside a magnifying glass on the left, with a soft glowing growth bar/curve rising to a bright endpoint marker on the right (representing predicted potential height). Brand purple X-ray, mint glowing endpoint with sparkle. Friendly, hopeful pediatric tone. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "돋보기/엑스레이",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "상단 끝점(글로우)",
+          "ko": "잠재 키",
+          "en": "Potential height",
+          "th": "ศักยภาพความสูง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🧬",
+      "label": "유전"
+    },
+    {
+      "e": "✨",
+      "label": "후천 20%"
+    },
+    {
+      "e": "📏",
+      "label": "키·범위"
+    },
+    {
+      "e": "🧒",
+      "label": "우리 아이"
+    },
+    {
+      "e": "🍱",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🌙",
+      "label": "깊은 잠/스트레스"
+    },
+    {
+      "e": "⚠️",
+      "label": "성조숙·비만"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🔍",
+      "label": "잠재키 확인"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

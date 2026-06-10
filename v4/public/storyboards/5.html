@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 뼈나이 vs 실제나이</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #5</span>
+  <h1>엑스레이 한 장으로 미래 키가 보인다 — 뼈나이</h1>
+  <div class="sub">실제나이 말고 뼈나이 — 손목 X-ray 한 장에 우리 아이 남은 성장이 담겨 있다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>같은 나이라도 달라요!</b></div>
+      <div class="subj">우리 아이 진짜 키 나이</div>
+      <div class="big4"><div class="n" style="font-size:98px">뼈나이</div><div class="lab">X-ray 한 장</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 진짜 키 나이</b> 뼈나이X-ray 한 장"</li>
+        <li><b>거대 숫자 "뼈나이"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #5 「뼈나이 vs 실제나이」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 진짜 나이는 주민번호가 아니라, '뼈나이'예요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>나이가 같으면 성장도 비슷하겠지 → 뼈나이가 다르면 남은 성장 기간이 완전히 다름</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>뼈나이는 생물학적 성숙도. 손목 X-ray 한 장으로 성장판 열림·닫힘과 남은 성장 기간, 미래 키까지 예측한다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("뼈나이를 보면 남은 기회를 알 수 있다"). "우리 아이 키" 보편(모든 부모). 시청자가 이미 검사했다고 단정 ❌ → 측정 유도. 기사의 실제 사실/숫자 사용(8세→뼈나이 10/6세, 왼손목 X-ray, 검은 선=열림, 2년 이상 빠르면 성조숙 의심).</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 뼈나이·성장판 상태, 지금 바로 확인 → 뼈나이/예측키 측정 유도.</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"진짜 나이는 뼈나이" + 같은 8세라도 다르다</p></div><div class="act"><span class="n">ACT 2</span><h4>뼈나이란</h4><p>c3–c4<br>"생물학적 성숙도 = 뼈나이, 손목 X-ray로 측정"</p></div><div class="act"><span class="n">ACT 3</span><h4>성장판 신호</h4><p>c5–c6<br>"검은 선=열림, 사라지면=닫힘"</p></div><div class="act"><span class="n">ACT 4</span><h4>빠르면·느리면</h4><p>c7–c8<br>"2년 빠르면 성조숙 신호 / 느리면 더 클 잠재력"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 미래 키 예측 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">뼈나이가 진짜 나이?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🦴✨</div></div>
+        <div class="ph-cap"><div class="l">진짜 나이는</div><div class="l"><span class="y2">뼈나이</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 진짜 나이는 주민번호가 아니라, '뼈나이'예요.</td><td><span class="cap2">진짜 나이는<br><span class="y">뼈나이</span></span></td><td class="mo">🦴 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">같은 8살이라도 어떤 아이는 뼈나이가 10살, 어떤 아이는 6살이에요.</td><td><span class="cap2">같은 8살이라도<br><span class="y">뼈나이는 제각각</span></span></td><td class="mo">8️⃣ vs 1️⃣0️⃣ 흔들</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 두 나이</span></td><td class="narr">실제나이는 생일로 세고, 뼈나이는 몸이 얼마나 자랐는지 성숙도를 봐요.</td><td><span class="cap2">실제나이 vs<br><span class="y">뼈나이 = 성숙도</span></span></td><td class="mo">🆚 좌우 슬라이드 대비</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">측정은 아주 간단해요. 왼쪽 손목을 X-ray 한 장 딱 찍으면 끝.</td><td><span class="cap2">왼손목<br><span class="y">X-ray 한 장</span></span></td><td class="mo">✋ 왼손 팝 + 📷 셔터</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 성장판</span></td><td class="narr">X-ray에서 뼈와 뼈 사이 검은 선, 이게 바로 열려 있는 성장판이에요.</td><td><span class="cap2">검은 선 =<br><span class="y">열린 성장판</span></span></td><td class="mo">🦴 검은 선 점등</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 열림→닫힘</span></td><td class="narr">이 선이 흐려지다 사라지면 성장판이 닫힌 거고, 키 성장도 거의 끝이에요.</td><td><span class="cap2">선이 사라지면<br><span class="y">성장판 닫힘</span></span></td><td class="mo">선이 점점 흐려지며 닫힘</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이가 실제보다 2년 이상 빠르면, 성조숙증을 의심해 봐야 해요.</td><td><span class="cap2">2년 이상 빠르면<br><span class="y">성조숙 신호</span></span></td><td class="mo">⚠️ 쉐이크 + 빨강 플래시</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 느린 뼈나이</span></td><td class="narr">반대로 뼈나이가 느리면, 성장판이 늦게 닫혀 더 클 기회가 남은 거예요.</td><td><span class="cap2">뼈나이 느리면<br><span class="y">더 클 기회</span></span></td><td class="mo">⏳ + 위로 여유 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래서 뼈나이를 보면 남은 성장 기간과 미래 키까지 예측할 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">미래 키 예측</span></span></td><td class="mo">🦴🔍 팝 + 📈</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 뼈나이와 성장판 상태, 지금 바로 확인해 보세요.</td><td><span class="cap2">뼈나이·성장판<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 좌우 슬라이드 대비</div><h3>실제나이 vs 뼈나이</h3></div>
+        <div class="body">
+          <div class="sketch">📅 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A split-screen comparison: left side a calendar/birthday-cake icon for chronological age, right side a friendly hand-bone X-ray plate icon for bone age, a soft divider line down the middle with a balance/scale feel. Two child silhouettes of the same height but one looks more mature. Brand purple #667eea on the left, mint #2dd4bf on the right, soft glow. Friendly pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>좌측</td><td>실제나이</td><td>Real age</td><td class="thai">อายุจริง</td></tr><tr><td>우측</td><td>뼈나이</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 검은 선 순차 점등</div><h3>손목 X-ray — 열린 성장판</h3></div>
+        <div class="body">
+          <div class="sketch">✋ 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A stylized left-hand and wrist X-ray viewed on a soft light panel, with finger bones; between the bone ends draw clear dark gaps (the open growth plates) gently highlighted with a mint glow. Friendly, clean, not scary, pediatric. Brand purple frame + mint accent on the gaps. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>손가락 관절 갭</td><td>검은 선 = 열림</td><td>Black line = open</td><td class="thai">เส้นดำ = เปิด</td></tr><tr><td>하단</td><td>왼손목</td><td>Left wrist</td><td class="thai">ข้อมือซ้าย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 선이 흐려지며 융합</div><h3>성장판 열림 → 닫힘</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🔒</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three side-by-side bone-end illustrations showing a progression: first with a wide dark open gap, second with a faint thinning line, third fully fused into one solid bone. A small arrow flow left to right implies time passing. Brand purple bones, mint glow fading to a closed/locked warm tone on the right. Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽</td><td>열림</td><td>Open</td><td class="thai">เปิด</td></tr><tr><td>오른쪽</td><td>닫힘</td><td>Closed</td><td class="thai">ปิด</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 두 갈래 비교 글로우</div><h3>빠른 뼈나이 vs 느린 뼈나이</h3></div>
+        <div class="body">
+          <div class="sketch">⏩ ⏳</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two diverging paths from a single child: upper path an hourglass running fast with little sand left (bone age ahead, plate closing soon), lower path an hourglass with plenty of sand and a taller growth arrow (bone age behind, more room to grow). Brand purple paths, mint hopeful glow on the lower 'more room' path, gentle warning amber on the upper. Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>위쪽 경로</td><td>빠르면 일찍 닫힘</td><td>Ahead = closes early</td><td class="thai">เร็ว = ปิดเร็ว</td></tr><tr><td>아래쪽 경로</td><td>느리면 더 클 기회</td><td>Behind = more room</td><td class="thai">ช้า = โอกาสมากกว่า</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>📅</b> 실제나이</span><span class="emo"><b>✋</b> 왼손목</span><span class="emo"><b>📷</b> X-ray 촬영</span><span class="emo"><b>🔍</b> 판독·분석</span><span class="emo"><b>🔒</b> 성장판 닫힘</span><span class="emo"><b>⏳</b> 남은 시간</span><span class="emo"><b>📈</b> 미래 키 예측</span><span class="emo"><b>⚠️</b> 성조숙 신호</span><span class="emo"><b>🆚</b> 두 나이 비교</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 진짜 나이는 주민번호가 아니라, '뼈나이'예요.<br><span class="cap2">진짜 나이는 · <span class="y">뼈나이</span></span></td></tr><tr><td class="c-id">c2</td><td>같은 8살이라도 어떤 아이는 뼈나이가 10살, 어떤 아이는 6살이에요.<br><span class="cap2">같은 8살이라도 · <span class="y">뼈나이는 제각각</span></span></td></tr><tr><td class="c-id">c3</td><td>실제나이는 생일로 세고, 뼈나이는 몸이 얼마나 자랐는지 성숙도를 봐요.<br><span class="cap2">실제나이 vs · <span class="y">뼈나이 = 성숙도</span></span></td></tr><tr><td class="c-id">c4</td><td>측정은 아주 간단해요. 왼쪽 손목을 X-ray 한 장 딱 찍으면 끝.<br><span class="cap2">왼손목 · <span class="y">X-ray 한 장</span></span></td></tr><tr><td class="c-id">c5</td><td>X-ray에서 뼈와 뼈 사이 검은 선, 이게 바로 열려 있는 성장판이에요.<br><span class="cap2">검은 선 = · <span class="y">열린 성장판</span></span></td></tr><tr><td class="c-id">c6</td><td>이 선이 흐려지다 사라지면 성장판이 닫힌 거고, 키 성장도 거의 끝이에요.<br><span class="cap2">선이 사라지면 · <span class="y">성장판 닫힘</span></span></td></tr><tr><td class="c-id">c7</td><td>뼈나이가 실제보다 2년 이상 빠르면, 성조숙증을 의심해 봐야 해요.<br><span class="cap2">2년 이상 빠르면 · <span class="y">성조숙 신호</span></span></td></tr><tr><td class="c-id">c8</td><td>반대로 뼈나이가 느리면, 성장판이 늦게 닫혀 더 클 기회가 남은 거예요.<br><span class="cap2">뼈나이 느리면 · <span class="y">더 클 기회</span></span></td></tr><tr><td class="c-id">c9</td><td>그래서 뼈나이를 보면 남은 성장 기간과 미래 키까지 예측할 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">미래 키 예측</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 뼈나이와 성장판 상태, 지금 바로 확인해 보세요.<br><span class="cap2">뼈나이·성장판 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>อายุจริงของลูกไม่ใช่อายุตามบัตร แต่คือ 'อายุกระดูก'<br><span class="cap2">อายุจริงคือ · <span class="y">อายุกระดูก</span></span></td></tr><tr><td class="c-id">c2</td><td>อายุ 8 ขวบเท่ากัน แต่บางคนอายุกระดูก 10 บางคน 6<br><span class="cap2">อายุเท่ากัน · <span class="y">อายุกระดูกต่างกัน</span></span></td></tr><tr><td class="c-id">c3</td><td>อายุจริงนับจากวันเกิด อายุกระดูกดูที่วุฒิภาวะร่างกาย<br><span class="cap2">อายุจริง vs · <span class="y">อายุกระดูก = วุฒิภาวะ</span></span></td></tr><tr><td class="c-id">c4</td><td>ตรวจง่ายมาก แค่ X-ray ข้อมือซ้ายภาพเดียว<br><span class="cap2">ข้อมือซ้าย · <span class="y">X-ray ภาพเดียว</span></span></td></tr><tr><td class="c-id">c5</td><td>เส้นสีดำระหว่างกระดูกใน X-ray คือแผ่นกระดูกที่เปิดอยู่<br><span class="cap2">เส้นสีดำ = · <span class="y">แผ่นกระดูกเปิด</span></span></td></tr><tr><td class="c-id">c6</td><td>ถ้าเส้นจางหายไป แผ่นกระดูกปิด การเติบโตเกือบจบ<br><span class="cap2">เส้นหายไป = · <span class="y">แผ่นกระดูกปิด</span></span></td></tr><tr><td class="c-id">c7</td><td>ถ้าอายุกระดูกล้ำหน้า 2 ปีขึ้นไป ต้องสงสัยภาวะก่อนวัย<br><span class="cap2">ล้ำหน้า 2 ปี+ · <span class="y">สัญญาณก่อนวัย</span></span></td></tr><tr><td class="c-id">c8</td><td>ตรงข้าม ถ้าอายุกระดูกช้า แผ่นกระดูกปิดช้า ยังมีโอกาสสูงอีก<br><span class="cap2">อายุกระดูกช้า · <span class="y">ยังมีโอกาสสูง</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกจึงทำนายเวลาที่เหลือและส่วนสูงในอนาคตได้<br><span class="cap2">อายุกระดูก · <span class="y">ทำนายส่วนสูง</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กอายุกระดูกและแผ่นกระดูกของลูกวันนี้<br><span class="cap2">อายุกระดูก·แผ่นกระดูก · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Tuổi thật của con không nằm trên giấy khai sinh — đó là 'tuổi xương'.<br><span class="cap2">Tuổi thật là · <span class="y">tuổi xương</span></span></td></tr><tr><td class="c-id">c2</td><td>Cùng 8 tuổi, có bé tuổi xương 10, có bé chỉ 6.<br><span class="cap2">Cùng 8 tuổi · <span class="y">tuổi xương khác nhau</span></span></td></tr><tr><td class="c-id">c3</td><td>Tuổi thật tính theo ngày sinh, tuổi xương đo độ trưởng thành của cơ thể.<br><span class="cap2">Tuổi thật vs · <span class="y">tuổi xương = trưởng thành</span></span></td></tr><tr><td class="c-id">c4</td><td>Đo rất đơn giản — chỉ một tấm X-quang cổ tay trái.<br><span class="cap2">Cổ tay trái · <span class="y">một tấm X-quang</span></span></td></tr><tr><td class="c-id">c5</td><td>Vạch đen giữa hai xương trên X-quang chính là sụn tăng trưởng đang mở.<br><span class="cap2">Vạch đen = · <span class="y">sụn đang mở</span></span></td></tr><tr><td class="c-id">c6</td><td>Khi vạch mờ rồi biến mất, sụn đã đóng — chiều cao gần như dừng.<br><span class="cap2">Vạch biến mất = · <span class="y">sụn đã đóng</span></span></td></tr><tr><td class="c-id">c7</td><td>Nếu tuổi xương vượt 2 năm trở lên, hãy nghĩ đến dậy thì sớm.<br><span class="cap2">Vượt 2 năm+ · <span class="y">dấu hiệu dậy thì sớm</span></span></td></tr><tr><td class="c-id">c8</td><td>Ngược lại, tuổi xương chậm thì sụn đóng muộn — vẫn còn cơ hội cao thêm.<br><span class="cap2">Tuổi xương chậm · <span class="y">còn cơ hội cao</span></span></td></tr><tr><td class="c-id">c9</td><td>Vậy nên tuổi xương dự đoán được thời gian còn lại và chiều cao tương lai.<br><span class="cap2">Tuổi xương · <span class="y">dự đoán chiều cao</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tuổi xương và sụn tăng trưởng của con ngay hôm nay.<br><span class="cap2">Tuổi xương·sụn · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your child's real age isn't on their ID — it's their 'bone age'.<br><span class="cap2">Real age is · <span class="y">bone age</span></span></td></tr><tr><td class="c-id">c2</td><td>Two 8-year-olds — one's bone age is 10, the other's is 6.<br><span class="cap2">Same age 8 · <span class="y">bone ages differ</span></span></td></tr><tr><td class="c-id">c3</td><td>Real age counts birthdays; bone age reads how mature the body is.<br><span class="cap2">Real age vs · <span class="y">bone age = maturity</span></span></td></tr><tr><td class="c-id">c4</td><td>It's simple — just one X-ray of the left hand and wrist.<br><span class="cap2">Left wrist · <span class="y">one X-ray</span></span></td></tr><tr><td class="c-id">c5</td><td>That black line between bones on the X-ray? An open growth plate.<br><span class="cap2">Black line = · <span class="y">open plate</span></span></td></tr><tr><td class="c-id">c6</td><td>When the line fades and vanishes, the plate is closed — growth nearly done.<br><span class="cap2">Line gone = · <span class="y">plate closed</span></span></td></tr><tr><td class="c-id">c7</td><td>If bone age runs 2+ years ahead, think early puberty.<br><span class="cap2">2+ years ahead · <span class="y">early-puberty sign</span></span></td></tr><tr><td class="c-id">c8</td><td>If bone age is behind, the plate closes later — more room to grow.<br><span class="cap2">Bone age behind · <span class="y">more room to grow</span></span></td></tr><tr><td class="c-id">c9</td><td>So bone age predicts the time left and your child's future height.<br><span class="cap2">Bone age · <span class="y">predicts future height</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's bone age and growth plates today.<br><span class="cap2">Bone age &amp; plates · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子真正的年龄不在身份证上，而是'骨龄'。<br><span class="cap2">真正的年龄是 · <span class="y">骨龄</span></span></td></tr><tr><td class="c-id">c2</td><td>同样8岁，有的孩子骨龄10岁，有的才6岁。<br><span class="cap2">同样8岁 · <span class="y">骨龄各不同</span></span></td></tr><tr><td class="c-id">c3</td><td>实际年龄按生日算，骨龄看身体成熟度。<br><span class="cap2">实际年龄 vs · <span class="y">骨龄 = 成熟度</span></span></td></tr><tr><td class="c-id">c4</td><td>检查很简单，左手腕拍一张X光就行。<br><span class="cap2">左手腕 · <span class="y">一张X光</span></span></td></tr><tr><td class="c-id">c5</td><td>X光上骨头之间的黑线，就是打开的生长板。<br><span class="cap2">黑线 = · <span class="y">打开的生长板</span></span></td></tr><tr><td class="c-id">c6</td><td>线变淡消失，生长板就闭合了，长高也快结束了。<br><span class="cap2">线消失 = · <span class="y">生长板闭合</span></span></td></tr><tr><td class="c-id">c7</td><td>如果骨龄超前2年以上，要警惕性早熟。<br><span class="cap2">超前2年以上 · <span class="y">性早熟信号</span></span></td></tr><tr><td class="c-id">c8</td><td>反过来，骨龄偏慢，生长板晚闭合，还有长高的机会。<br><span class="cap2">骨龄偏慢 · <span class="y">还有长高机会</span></span></td></tr><tr><td class="c-id">c9</td><td>所以骨龄能预测剩余时间和孩子未来的身高。<br><span class="cap2">骨龄 · <span class="y">预测未来身高</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的骨龄和生长板状态吧。<br><span class="cap2">骨龄·生长板 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子真正的年齡不在身分證上，而是'骨齡'。<br><span class="cap2">真正的年齡是 · <span class="y">骨齡</span></span></td></tr><tr><td class="c-id">c2</td><td>同樣8歲，有的孩子骨齡10歲，有的才6歲。<br><span class="cap2">同樣8歲 · <span class="y">骨齡各不同</span></span></td></tr><tr><td class="c-id">c3</td><td>實際年齡按生日算，骨齡看身體成熟度。<br><span class="cap2">實際年齡 vs · <span class="y">骨齡 = 成熟度</span></span></td></tr><tr><td class="c-id">c4</td><td>檢查很簡單，左手腕拍一張X光就行。<br><span class="cap2">左手腕 · <span class="y">一張X光</span></span></td></tr><tr><td class="c-id">c5</td><td>X光上骨頭之間的黑線，就是打開的生長板。<br><span class="cap2">黑線 = · <span class="y">打開的生長板</span></span></td></tr><tr><td class="c-id">c6</td><td>線變淡消失，生長板就閉合了，長高也快結束了。<br><span class="cap2">線消失 = · <span class="y">生長板閉合</span></span></td></tr><tr><td class="c-id">c7</td><td>如果骨齡超前2年以上，要警惕性早熟。<br><span class="cap2">超前2年以上 · <span class="y">性早熟訊號</span></span></td></tr><tr><td class="c-id">c8</td><td>反過來，骨齡偏慢，生長板晚閉合，還有長高的機會。<br><span class="cap2">骨齡偏慢 · <span class="y">還有長高機會</span></span></td></tr><tr><td class="c-id">c9</td><td>所以骨齡能預測剩餘時間和孩子未來的身高。<br><span class="cap2">骨齡 · <span class="y">預測未來身高</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的骨齡和生長板狀態吧。<br><span class="cap2">骨齡·生長板 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/뼈나이xray/</code> · <code>뼈나이xray-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

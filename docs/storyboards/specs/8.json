@@ -1,0 +1,783 @@
+{
+  "n": 8,
+  "slug": "성조숙증성장판",
+  "title": "또래보다 빨리 크면 좋은 거 아닌가요? — 성조숙증의 함정",
+  "sub": "일찍 크면 일찍 멈춘다 — 성조숙증이 성장판을 일찍 닫는 진짜 메커니즘과, 아직 늦지 않은 골든타임",
+  "category": "A. 성장과학",
+  "topicTitle": "성조숙증이 키를 망치는 메커니즘",
+  "headerTop": "우리 아이 키",
+  "headerMark": "일찍 크면 손해?",
+  "accentEmoji": "⏳🦴",
+  "hook": "또래보다 빨리 크면 좋은 거 아니냐고요? 사실은 반대일 수 있어요.",
+  "misconception": "우리 애가 또래보다 크니까 안심 → 성조숙증이면 일찍 크고 일찍 멈춰서 최종 키는 더 작아질 수 있음",
+  "message": "성호르몬이 성장판 공장을 처음엔 빨리 돌리지만 동시에 일찍 닫아버린다. 빨리 큰 게 아니라 키 클 시간을 당겨 쓴 것. 조기 진단·관리로 성장판 닫히는 시기를 늦출 수 있다.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"아직 성장판 안 닫혔으면 기회 있다\"). \"우리 아이 키\" 보편(키 큰 아이 부모도 해당). 시청자가 검사·진단 이미 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대",
+  "cta": "우리 아이 성장판, 얼마나 남았는지 지금 확인 → 뼈나이/예측키 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "일찍 크면 손해?",
+    "subject": "우리 아이 키",
+    "number": "성조숙증",
+    "numLabel": "의 함정"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"또래보다 빨리 크면 좋은 거 아냐? → 사실 반대\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "성장판 = 공장",
+      "scenes": "c3–c4",
+      "desc": "\"뼈 만드는 공장 성장판 → 성조숙 기준 여8·남9\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "메커니즘",
+      "scenes": "c5–c6",
+      "desc": "\"성호르몬이 처음엔 빨리, 동시에 일찍 닫음\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "역전 착시",
+      "scenes": "c7–c8",
+      "desc": "\"일찍 크고 일찍 멈춰 → 나중에 역전당함\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "골든타임·행동",
+      "scenes": "c9–c10",
+      "desc": "\"닫히기 전 늦출 수 있다 → 뼈나이 확인 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "❓ 슬램 인 + 반전 플립",
+      "copy": {
+        "ko": {
+          "narr": "또래보다 빨리 크면 좋은 거 아니냐고요? 사실은 정반대일 수 있어요.",
+          "cap": [
+            "빨리 크면 좋다?",
+            "사실은 반대"
+          ],
+          "hl": "사실은 반대"
+        },
+        "th": {
+          "narr": "สูงเร็วกว่าเพื่อนคือเรื่องดีจริงเหรอ? อาจตรงกันข้ามเลย",
+          "cap": [
+            "สูงเร็ว = ดี?",
+            "จริงๆ ตรงกันข้าม"
+          ],
+          "hl": "ตรงกันข้าม"
+        },
+        "vi": {
+          "narr": "Con cao sớm hơn bạn là tốt? Thật ra có thể ngược lại.",
+          "cap": [
+            "Cao sớm là tốt?",
+            "Thật ra ngược lại"
+          ],
+          "hl": "ngược lại"
+        },
+        "en": {
+          "narr": "Growing faster than friends is good, right? It can be the opposite.",
+          "cap": [
+            "Taller early = good?",
+            "Actually the opposite"
+          ],
+          "hl": "the opposite"
+        },
+        "cn": {
+          "narr": "比同龄人长得快是好事？其实可能恰恰相反。",
+          "cap": [
+            "长得快=好事？",
+            "其实相反"
+          ],
+          "hl": "其实相反"
+        },
+        "ch": {
+          "narr": "比同齡人長得快是好事？其實可能恰恰相反。",
+          "cap": [
+            "長得快=好事？",
+            "其實相反"
+          ],
+          "hl": "其實相反"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "⏳ 모래 떨어짐",
+      "copy": {
+        "ko": {
+          "narr": "일찍 크는 아이는, 사실 키 클 시간을 미리 당겨 쓰는 거예요.",
+          "cap": [
+            "일찍 크면",
+            "시간을 당겨 씀"
+          ],
+          "hl": "시간을 당겨 씀"
+        },
+        "th": {
+          "narr": "เด็กที่สูงเร็ว จริงๆ คือดึงเวลาโตมาใช้ก่อน",
+          "cap": [
+            "สูงเร็ว",
+            "คือใช้เวลาก่อน"
+          ],
+          "hl": "ใช้เวลาก่อน"
+        },
+        "vi": {
+          "narr": "Con cao sớm thực ra đang dùng trước thời gian để lớn.",
+          "cap": [
+            "Cao sớm",
+            "là dùng trước thời gian"
+          ],
+          "hl": "dùng trước thời gian"
+        },
+        "en": {
+          "narr": "Kids who grow early are really spending their growth time early.",
+          "cap": [
+            "Early growth",
+            "spends time early"
+          ],
+          "hl": "spends time early"
+        },
+        "cn": {
+          "narr": "长得早的孩子，其实是提前用掉了长高的时间。",
+          "cap": [
+            "长得早",
+            "提前用掉时间"
+          ],
+          "hl": "提前用掉时间"
+        },
+        "ch": {
+          "narr": "長得早的孩子，其實是提前用掉了長高的時間。",
+          "cap": [
+            "長得早",
+            "提前用掉時間"
+          ],
+          "hl": "提前用掉時間"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 성장판 공장",
+      "motion": "🏭 가동 점등",
+      "copy": {
+        "ko": {
+          "narr": "긴 뼈 끝엔 성장판이 있어요. 새 뼈를 만드는 작은 공장이죠.",
+          "cap": [
+            "뼈 끝 성장판",
+            "뼈 만드는 공장"
+          ],
+          "hl": "뼈 만드는 공장"
+        },
+        "th": {
+          "narr": "ปลายกระดูกยาวมีแผ่นการเจริญเติบโต โรงงานสร้างกระดูกใหม่",
+          "cap": [
+            "แผ่นกระดูก",
+            "โรงงานสร้างกระดูก"
+          ],
+          "hl": "โรงงานสร้างกระดูก"
+        },
+        "vi": {
+          "narr": "Đầu xương dài có sụn tăng trưởng — nhà máy tạo xương mới.",
+          "cap": [
+            "Sụn tăng trưởng",
+            "nhà máy tạo xương"
+          ],
+          "hl": "nhà máy tạo xương"
+        },
+        "en": {
+          "narr": "At bone ends sit growth plates — tiny factories making new bone.",
+          "cap": [
+            "Growth plates",
+            "bone factory"
+          ],
+          "hl": "bone factory"
+        },
+        "cn": {
+          "narr": "长骨末端有生长板，是制造新骨的小工厂。",
+          "cap": [
+            "生长板",
+            "造骨工厂"
+          ],
+          "hl": "造骨工厂"
+        },
+        "ch": {
+          "narr": "長骨末端有生長板，是製造新骨的小工廠。",
+          "cap": [
+            "生長板",
+            "造骨工廠"
+          ],
+          "hl": "造骨工廠"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 성조숙 기준",
+      "motion": "8️⃣9️⃣ 팝 + 카운트",
+      "copy": {
+        "ko": {
+          "narr": "성조숙증은 여아 8세, 남아 9세 전에 사춘기 신호가 오는 거예요.",
+          "cap": [
+            "여아 8세 · 남아 9세",
+            "그 전 사춘기"
+          ],
+          "hl": "여아 8세 · 남아 9세"
+        },
+        "th": {
+          "narr": "ภาวะก่อนวัยคือสัญญาณแรกรุ่นก่อนหญิง 8 ชาย 9 ปี",
+          "cap": [
+            "หญิง 8 · ชาย 9 ปี",
+            "ก่อนวัย"
+          ],
+          "hl": "หญิง 8 · ชาย 9 ปี"
+        },
+        "vi": {
+          "narr": "Dậy thì sớm là dấu hiệu trước 8 tuổi (gái), 9 tuổi (trai).",
+          "cap": [
+            "Gái 8 · Trai 9 tuổi",
+            "trước tuổi"
+          ],
+          "hl": "Gái 8 · Trai 9 tuổi"
+        },
+        "en": {
+          "narr": "Early puberty: signs before age 8 in girls, 9 in boys.",
+          "cap": [
+            "Girls 8 · Boys 9",
+            "too early"
+          ],
+          "hl": "Girls 8 · Boys 9"
+        },
+        "cn": {
+          "narr": "性早熟：女孩8岁、男孩9岁前出现青春期信号。",
+          "cap": [
+            "女8 · 男9 岁",
+            "提前发育"
+          ],
+          "hl": "女8 · 男9 岁"
+        },
+        "ch": {
+          "narr": "性早熟：女孩8歲、男孩9歲前出現青春期信號。",
+          "cap": [
+            "女8 · 男9 歲",
+            "提前發育"
+          ],
+          "hl": "女8 · 男9 歲"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "⚡ 빨리 + 🔒 잠김",
+      "copy": {
+        "ko": {
+          "narr": "성호르몬은 이 공장을 처음엔 빨리 돌려요. 그래서 잠깐 더 커 보이죠.",
+          "cap": [
+            "성호르몬이",
+            "공장 빨리 돌림"
+          ],
+          "hl": "공장 빨리 돌림"
+        },
+        "th": {
+          "narr": "ฮอร์โมนเพศเร่งโรงงานนี้ก่อน เลยดูสูงขึ้นชั่วคราว",
+          "cap": [
+            "ฮอร์โมนเพศ",
+            "เร่งโรงงาน"
+          ],
+          "hl": "เร่งโรงงาน"
+        },
+        "vi": {
+          "narr": "Hormone giới tính đẩy nhà máy chạy nhanh trước — nên cao vọt tạm thời.",
+          "cap": [
+            "Hormone",
+            "đẩy chạy nhanh"
+          ],
+          "hl": "đẩy chạy nhanh"
+        },
+        "en": {
+          "narr": "Sex hormones speed the factory up first — so they look taller briefly.",
+          "cap": [
+            "Sex hormones",
+            "speed it up"
+          ],
+          "hl": "speed it up"
+        },
+        "cn": {
+          "narr": "性激素先让工厂加速运转，所以暂时显得更高。",
+          "cap": [
+            "性激素",
+            "让工厂加速"
+          ],
+          "hl": "让工厂加速"
+        },
+        "ch": {
+          "narr": "性激素先讓工廠加速運轉，所以暫時顯得更高。",
+          "cap": [
+            "性激素",
+            "讓工廠加速"
+          ],
+          "hl": "讓工廠加速"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG3 성장판 조기폐쇄",
+      "motion": "🔥 굳음 → 🚪 닫힘",
+      "copy": {
+        "ko": {
+          "narr": "그런데 같은 호르몬이 성장판을 딱딱한 뼈로 굳혀, 공장 문을 일찍 닫아요.",
+          "cap": [
+            "성장판이 굳어",
+            "문을 일찍 닫음"
+          ],
+          "hl": "문을 일찍 닫음"
+        },
+        "th": {
+          "narr": "แต่ฮอร์โมนเดียวกันทำให้แผ่นกระดูกแข็ง ปิดโรงงานเร็ว",
+          "cap": [
+            "แผ่นกระดูกแข็ง",
+            "ปิดเร็ว"
+          ],
+          "hl": "ปิดเร็ว"
+        },
+        "vi": {
+          "narr": "Nhưng chính hormone đó làm sụn cứng lại, đóng nhà máy sớm.",
+          "cap": [
+            "Sụn cứng lại",
+            "đóng sớm"
+          ],
+          "hl": "đóng sớm"
+        },
+        "en": {
+          "narr": "But the same hormone hardens the plate, shutting the factory early.",
+          "cap": [
+            "Plate hardens",
+            "closes early"
+          ],
+          "hl": "closes early"
+        },
+        "cn": {
+          "narr": "但同样的激素让生长板变硬，提前关闭工厂。",
+          "cap": [
+            "生长板变硬",
+            "提前关闭"
+          ],
+          "hl": "提前关闭"
+        },
+        "ch": {
+          "narr": "但同樣的激素讓生長板變硬，提前關閉工廠。",
+          "cap": [
+            "生長板變硬",
+            "提前關閉"
+          ],
+          "hl": "提前關閉"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26s",
+      "kind": "ig",
+      "igLabel": "IG4 역전 그래프",
+      "motion": "📉 추월 → 역전",
+      "copy": {
+        "ko": {
+          "narr": "그래서 처음엔 앞서가도, 또래가 자랄 때 멈춰서 결국 역전당해요.",
+          "cap": [
+            "처음엔 앞서도",
+            "나중엔 역전"
+          ],
+          "hl": "나중엔 역전"
+        },
+        "th": {
+          "narr": "ตอนแรกนำหน้า แต่พอเพื่อนโต กลับหยุด สุดท้ายถูกแซง",
+          "cap": [
+            "แรกนำหน้า",
+            "สุดท้ายถูกแซง"
+          ],
+          "hl": "ถูกแซง"
+        },
+        "vi": {
+          "narr": "Lúc đầu dẫn trước, nhưng khi bạn lớn thì dừng — cuối cùng bị vượt.",
+          "cap": [
+            "Đầu dẫn trước",
+            "cuối bị vượt"
+          ],
+          "hl": "bị vượt"
+        },
+        "en": {
+          "narr": "Ahead at first, but stops while peers grow — and gets overtaken.",
+          "cap": [
+            "Ahead at first",
+            "then overtaken"
+          ],
+          "hl": "overtaken"
+        },
+        "cn": {
+          "narr": "起初领先，但同龄人长高时却停了，最终被反超。",
+          "cap": [
+            "起初领先",
+            "最终被反超"
+          ],
+          "hl": "被反超"
+        },
+        "ch": {
+          "narr": "起初領先，但同齡人長高時卻停了，最終被反超。",
+          "cap": [
+            "起初領先",
+            "最終被反超"
+          ],
+          "hl": "被反超"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "doctor",
+      "motion": "✨ 골든 글로우",
+      "copy": {
+        "ko": {
+          "narr": "좋은 소식은, 성장판이 닫히기 전이라면 그 속도를 늦출 수 있다는 거예요.",
+          "cap": [
+            "닫히기 전이면",
+            "늦출 수 있다"
+          ],
+          "hl": "늦출 수 있다"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ ถ้ายังไม่ปิด เราชะลอได้",
+          "cap": [
+            "ถ้ายังไม่ปิด",
+            "ชะลอได้"
+          ],
+          "hl": "ชะลอได้"
+        },
+        "vi": {
+          "narr": "Tin tốt: nếu sụn chưa đóng, ta có thể làm chậm lại.",
+          "cap": [
+            "Nếu chưa đóng",
+            "có thể làm chậm"
+          ],
+          "hl": "có thể làm chậm"
+        },
+        "en": {
+          "narr": "Good news: if the plate isn't closed yet, we can slow it down.",
+          "cap": [
+            "If not closed yet",
+            "we can slow it"
+          ],
+          "hl": "we can slow it"
+        },
+        "cn": {
+          "narr": "好消息是，只要生长板还没闭合，就能延缓它。",
+          "cap": [
+            "还没闭合",
+            "就能延缓"
+          ],
+          "hl": "就能延缓"
+        },
+        "ch": {
+          "narr": "好消息是，只要生長板還沒閉合，就能延緩它。",
+          "cap": [
+            "還沒閉合",
+            "就能延緩"
+          ],
+          "hl": "就能延緩"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면 우리 아이 성장판이 얼마나 남았는지 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "성장판 남은 양"
+          ],
+          "hl": "성장판 남은 양"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกว่าแผ่นกระดูกของลูกเหลือเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "เหลือเท่าไร"
+          ],
+          "hl": "เหลือเท่าไร"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết sụn của con còn lại bao nhiêu.",
+          "cap": [
+            "Tuổi xương",
+            "còn lại bao nhiêu"
+          ],
+          "hl": "còn lại bao nhiêu"
+        },
+        "en": {
+          "narr": "Bone age shows how much growth plate your child has left.",
+          "cap": [
+            "Bone age",
+            "how much left"
+          ],
+          "hl": "how much left"
+        },
+        "cn": {
+          "narr": "骨龄能告诉你，孩子的生长板还剩多少。",
+          "cap": [
+            "骨龄",
+            "还剩多少"
+          ],
+          "hl": "还剩多少"
+        },
+        "ch": {
+          "narr": "骨齡能告訴你，孩子的生長板還剩多少。",
+          "cap": [
+            "骨齡",
+            "還剩多少"
+          ],
+          "hl": "還剩多少"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장판, 얼마나 남았는지 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장판 남은 시간",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กว่าแผ่นกระดูกของลูกเหลือเวลาเท่าไรวันนี้",
+          "cap": [
+            "เวลาที่เหลือ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra sụn tăng trưởng của con còn bao nhiêu thời gian ngay hôm nay.",
+          "cap": [
+            "Thời gian còn lại",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check how much time your child's growth plate has left — today.",
+          "cap": [
+            "Time left",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的生长板还剩多少时间吧。",
+          "cap": [
+            "剩余时间",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的生長板還剩多少時間吧。",
+          "cap": [
+            "剩餘時間",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🏭 가동 점등",
+      "title": "성장판 = 뼈 만드는 공장",
+      "emojis": [
+        "🦴",
+        "🏭",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A long bone standing upright with a glowing cartilage growth plate near the top end, stylized as a tiny friendly factory emitting little sparkles of new bone forming upward. Brand purple bone with a mint-glowing growth-plate band, soft sparkle particles. Friendly pediatric, clean. NO text.",
+      "labels": [
+        {
+          "pos": "성장판 밴드(글로우)",
+          "ko": "성장판",
+          "en": "Growth plate",
+          "th": "แผ่นกระดูก"
+        },
+        {
+          "pos": "상단 입자",
+          "ko": "새 뼈 ↑",
+          "en": "New bone ↑",
+          "th": "กระดูกใหม่ ↑"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "8·9 팝",
+      "title": "성조숙증 기준 — 여8·남9",
+      "emojis": [
+        "👧",
+        "👦",
+        "⏰"
+      ],
+      "prompt": "Flat vector, square, white bg. Two friendly child silhouettes side by side, a girl and a boy, with a small alarm-clock motif between them indicating 'too early.' Gentle purple and mint, soft and reassuring (not alarming). Pediatric, clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "여아 위",
+          "ko": "여아 8세 전",
+          "en": "Girls < 8",
+          "th": "หญิง < 8"
+        },
+        {
+          "pos": "남아 위",
+          "ko": "남아 9세 전",
+          "en": "Boys < 9",
+          "th": "ชาย < 9"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "굳음 → 닫힘",
+      "title": "성장판 조기폐쇄",
+      "emojis": [
+        "🦴",
+        "🔥",
+        "🚪"
+      ],
+      "prompt": "Flat vector, square, white bg. A close-up of a knee/long-bone growth plate: left half shows an open soft mint gap (active), transitioning to the right half where the gap hardens into solid bone and closes, like a door shutting. Warm orange accent on the closing/hardening side, brand purple bone. Conveys 'plate closing too early.' NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(열림)",
+          "ko": "열린 성장판",
+          "en": "Open plate",
+          "th": "แผ่นเปิด"
+        },
+        {
+          "pos": "오른쪽(닫힘)",
+          "ko": "조기 폐쇄",
+          "en": "Closes early",
+          "th": "ปิดก่อนวัย"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "추월 → 역전",
+      "title": "성조숙 vs 정상 — 최종 키 역전",
+      "emojis": [
+        "📉",
+        "📈",
+        "🔄"
+      ],
+      "prompt": "Flat vector, square, white bg. Two growth-curve lines on an invisible chart: an orange line shoots up early then flattens/plateaus low; a purple line rises later, steadily, and ends higher, crossing above the orange line at the end. Clear crossover point with a soft mint highlight. Conveys 'early riser gets overtaken.' Brand purple + orange. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "주황선 끝",
+          "ko": "일찍 멈춤",
+          "en": "Stops early",
+          "th": "หยุดเร็ว"
+        },
+        {
+          "pos": "보라선 끝(위)",
+          "ko": "최종 역전",
+          "en": "Ends taller",
+          "th": "แซงในที่สุด"
+        },
+        {
+          "pos": "교차점",
+          "ko": "역전 지점",
+          "en": "Crossover",
+          "th": "จุดแซง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "⏳",
+      "label": "시간·골든타임"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판·뼈나이"
+    },
+    {
+      "e": "🏭",
+      "label": "뼈 만드는 공장"
+    },
+    {
+      "e": "👧",
+      "label": "여아"
+    },
+    {
+      "e": "👦",
+      "label": "남아"
+    },
+    {
+      "e": "⏰",
+      "label": "성조숙·이른 시기"
+    },
+    {
+      "e": "⚡",
+      "label": "빨리 가동"
+    },
+    {
+      "e": "🔥",
+      "label": "굳음(폐쇄)"
+    },
+    {
+      "e": "📉",
+      "label": "멈춤·역전"
+    },
+    {
+      "e": "🔍",
+      "label": "확인·검사"
+    },
+    {
+      "e": "✨",
+      "label": "골든타임 강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

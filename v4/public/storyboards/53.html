@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 아이 키 성장 질문 TOP 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #53</span>
+  <h1>부모들이 가장 많이 검색하는 키 질문 TOP 10 — 정답은 하나</h1>
+  <div class="sub">유전 80%? 몇 시간 자야? 영양제 효과? 10가지 질문이 결국 가리키는 단 하나의 답</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>제일 많이 검색!</b></div>
+      <div class="subj">우리 아이 키 질문</div>
+      <div class="big4"><div class="n" style="font-size:66px">TOP 10</div><div class="lab">정답은 하나</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 질문</b> TOP 10정답은 하나"</li>
+        <li><b>거대 숫자 "TOP 10"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #53 「아이 키 성장 질문 TOP 10」 (D. 기타/트렌드)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"아이 키, 부모들이 가장 많이 검색하는 질문 TOP 10 — 그런데 정답은 결국 하나예요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>유전이 80%니까 부모 키 작으면 끝이다 → 나머지 20~30%(수면·영양·운동)로 충분히 바꿀 수 있다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>유전 80% vs 환경 20%, 4cm 성장속도, 수면 시간, 성조숙증… 10가지 질문이 결국 '남은 성장 기회'로 모이고, 그 답은 뼈나이가 알려준다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("바꿀 수 있는 20%가 있다"). "우리 아이 키" 보편. CTA는 단정 ❌ → 뼈나이·예측키 측정 초대</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 남은 성장 기회, 뼈나이·예측키로 지금 확인 → 홈페이지 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"가장 많이 검색하는 키 질문 TOP 10 → 정답은 하나"</p></div><div class="act"><span class="n">ACT 2</span><h4>유전 vs 환경</h4><p>c3–c4<br>"유전 80%지만 바꿀 20%가 있다 + 4cm 신호"</p></div><div class="act"><span class="n">ACT 3</span><h4>매일의 습관</h4><p>c5–c6<br>"잠든 깊은 잠에 성장호르몬 → 나이별 수면 시간"</p></div><div class="act"><span class="n">ACT 4</span><h4>핵심 지표</h4><p>c7–c8<br>"성조숙증·성장판, 뼈나이가 남은 기회를 보여준다"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"10가지 질문 = 한 가지 답 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">제일 많이 묻는 질문?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🔍🔟</div></div>
+        <div class="ph-cap"><div class="l">가장 많이 검색</div><div class="l"><span class="y2">키 질문 TOP 10</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 3컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">아이 키, 부모들이 가장 많이 검색하는 질문 TOP 10이 있어요.</td><td><span class="cap2">가장 많이 검색<br><span class="y">키 질문 TOP 10</span></span></td><td class="mo">🔍 슬램 인 + 🔟 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 이 10가지 질문이, 결국 단 하나의 답으로 모여요.</td><td><span class="cap2">10가지 질문<br><span class="y">정답은 하나</span></span></td><td class="mo">🎯 핀 + 한 점 집중</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 유전 vs 환경</span></td><td class="narr">키는 유전이 70에서 80퍼센트. 그런데 나머지 20에서 30퍼센트는 바꿀 수 있어요.</td><td><span class="cap2">유전 80%<br><span class="y">바꿀 20%</span></span></td><td class="mo">🧬 80 / 20 카운트업 + 분할</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그 20퍼센트를 보는 첫 신호가 성장속도예요. 1년에 4센티가 안 되면 점검 신호죠.</td><td><span class="cap2"><span class="y">1년 4cm 미만</span><br>점검 신호</span></td><td class="mo">📏 펄스 · &lt;4면 ⚠️ 깜빡</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">몇 시간 자야 크냐고요? 성장호르몬은 깊은 잠에 들었을 때 가장 많이 나와요.</td><td><span class="cap2"><span class="y">깊은 잠에</span><br>성장호르몬 분비</span></td><td class="mo">😴 Zzz + 🌙 글로우</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23s</td><td><span class="scr ig">🖼 IG2 나이별 수면</span></td><td class="narr">유아는 10에서 13시간, 학령기는 9에서 11시간, 청소년은 8에서 10시간이 필요해요.</td><td><span class="cap2"><span class="y">나이별 수면</span><br>10·11·8시간</span></td><td class="mo">🛌 3행 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">23–27s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">또 많이 묻는 성조숙증. 사춘기가 빠르면 성장판이 일찍 닫혀서 키 클 시간이 줄어요.</td><td><span class="cap2">사춘기 빠르면<br><span class="y">성장판 일찍 닫힘</span></span></td><td class="mo">⏩ 사춘기 빨리감기 + ⚠️</td></tr><tr><td class="c-id">c8</td><td class="c-time">27–30.5s</td><td><span class="scr ig">🖼 IG3 뼈나이 = 남은 기회</span></td><td class="narr">그래서 결국 답은 뼈나이예요. 우리 아이한테 남은 기회가 얼마인지 보여주거든요.</td><td><span class="cap2">뼈나이가<br><span class="y">남은 기회 확인</span></span></td><td class="mo">🦴 X-ray 스캔 + ⏳ 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">30.5–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">10가지 질문, 답은 하나. 바꿀 수 있는 기회는 아직 남아 있어요.</td><td><span class="cap2">10가지 질문 → 하나<br><span class="y">기회는 남아 있다</span></span></td><td class="mo">🔟➡️1️⃣ 합쳐짐 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 남은 성장 기회, 뼈나이로 지금 확인해 보세요.</td><td><span class="cap2">남은 성장 기회<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 3종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 80 / 20 카운트업 + 분할</div><h3>유전 vs 환경 — 80 대 20</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🌱</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly split donut/pie chart: a large segment in brand purple (#667eea) and a smaller segment in mint (#2dd4bf). On the left a DNA helix icon, on the right a small sprout/lifestyle icon (sleep moon, dumbbell, apple) as a cluster. Conveys 'genes are big but lifestyle still matters.' Soft, friendly pediatric style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>보라 영역</td><td>유전 80%</td><td>Genes 80%</td><td class="thai">พันธุกรรม 80%</td></tr><tr><td>민트 영역</td><td>환경 20%</td><td>Lifestyle 20%</td><td class="thai">ไลฟ์สไตล์ 20%</td></tr><tr><td>하단</td><td>바꿀 수 있다</td><td>changeable</td><td class="thai">เปลี่ยนได้</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c6 · 모션: 3행 순차 점등</div><h3>나이별 권장 수면 시간</h3></div>
+        <div class="body">
+          <div class="sketch">😴 🌙 🛌</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three stacked rounded rows, each with a sleeping child silhouette of a different size (toddler, school-age kid, teenager) on a small bed with a moon and Zzz above. Three soft horizontal sleep bars of decreasing length, brand purple to mint gradient. Calm bedtime mood. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>1행</td><td>유아 10~13h</td><td>Toddler 10–13h</td><td class="thai">เด็กเล็ก 10–13 ชม.</td></tr><tr><td>2행</td><td>학령기 9~11h</td><td>School 9–11h</td><td class="thai">วัยเรียน 9–11 ชม.</td></tr><tr><td>3행</td><td>청소년 8~10h</td><td>Teen 8–10h</td><td class="thai">วัยรุ่น 8–10 ชม.</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c8 · 모션: X-ray 스캔 + 글로우</div><h3>뼈나이 — 남은 성장 기회</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🔍 ⏳</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A stylized hand/wrist X-ray inside a soft rounded scanner frame with a mint scan line sweeping across, and beside it an hourglass with golden-mint sand still flowing (time remaining). Brand purple frame, mint glow, friendly clinical look. Conveys 'bone age reveals the remaining growth window.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>X-ray 위</td><td>뼈나이</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr><tr><td>모래시계 옆</td><td>남은 기회</td><td>Chance left</td><td class="thai">โอกาสที่เหลือ</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🔍</b> 검색·질문</span><span class="emo"><b>🔟</b> TOP 10</span><span class="emo"><b>🧬</b> 유전</span><span class="emo"><b>🌱</b> 환경·습관</span><span class="emo"><b>📏</b> 성장속도</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🌙</b> 깊은 잠</span><span class="emo"><b>⚠️</b> 경고(성조숙)</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>⏳</b> 남은 기회</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>아이 키, 부모들이 가장 많이 검색하는 질문 TOP 10이 있어요.<br><span class="cap2">가장 많이 검색 · <span class="y">키 질문 TOP 10</span></span></td></tr><tr><td class="c-id">c2</td><td>그런데 이 10가지 질문이, 결국 단 하나의 답으로 모여요.<br><span class="cap2">10가지 질문 · <span class="y">정답은 하나</span></span></td></tr><tr><td class="c-id">c3</td><td>키는 유전이 70에서 80퍼센트. 그런데 나머지 20에서 30퍼센트는 바꿀 수 있어요.<br><span class="cap2">유전 80% · <span class="y">바꿀 20%</span></span></td></tr><tr><td class="c-id">c4</td><td>그 20퍼센트를 보는 첫 신호가 성장속도예요. 1년에 4센티가 안 되면 점검 신호죠.<br><span class="cap2">1년 4cm 미만 · 점검 신호</span></td></tr><tr><td class="c-id">c5</td><td>몇 시간 자야 크냐고요? 성장호르몬은 깊은 잠에 들었을 때 가장 많이 나와요.<br><span class="cap2">깊은 잠에 · 성장호르몬 분비</span></td></tr><tr><td class="c-id">c6</td><td>유아는 10에서 13시간, 학령기는 9에서 11시간, 청소년은 8에서 10시간이 필요해요.<br><span class="cap2">나이별 수면 · 10·11·8시간</span></td></tr><tr><td class="c-id">c7</td><td>또 많이 묻는 성조숙증. 사춘기가 빠르면 성장판이 일찍 닫혀서 키 클 시간이 줄어요.<br><span class="cap2">사춘기 빠르면 · <span class="y">성장판 일찍 닫힘</span></span></td></tr><tr><td class="c-id">c8</td><td>그래서 결국 답은 뼈나이예요. 우리 아이한테 남은 기회가 얼마인지 보여주거든요.<br><span class="cap2">뼈나이가 · <span class="y">남은 기회 확인</span></span></td></tr><tr><td class="c-id">c9</td><td>10가지 질문, 답은 하나. 바꿀 수 있는 기회는 아직 남아 있어요.<br><span class="cap2">10가지 질문 → 하나 · <span class="y">기회는 남아 있다</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 남은 성장 기회, 뼈나이로 지금 확인해 보세요.<br><span class="cap2">남은 성장 기회 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>คำถามเรื่องความสูงลูกที่พ่อแม่ค้นหามากที่สุด TOP 10<br><span class="cap2">ค้นหามากที่สุด · <span class="y">คำถาม TOP 10</span></span></td></tr><tr><td class="c-id">c2</td><td>แต่ 10 คำถามนี้ สุดท้ายรวมเป็นคำตอบเดียว<br><span class="cap2">10 คำถาม · <span class="y">คำตอบเดียว</span></span></td></tr><tr><td class="c-id">c3</td><td>พันธุกรรม 70–80% แต่อีก 20–30% เปลี่ยนได้<br><span class="cap2">พันธุกรรม 80% · <span class="y">เปลี่ยนได้ 20%</span></span></td></tr><tr><td class="c-id">c4</td><td>สัญญาณแรกคือความเร็วการโต ปีละต่ำกว่า 4 ซม. ควรเช็ก<br><span class="cap2">ปีละ &lt; 4 ซม. · ควรเช็ก</span></td></tr><tr><td class="c-id">c5</td><td>นอนกี่ชั่วโมง? ฮอร์โมนโตหลั่งมากสุดตอนหลับลึก<br><span class="cap2">หลับลึก · ฮอร์โมนโตหลั่ง</span></td></tr><tr><td class="c-id">c6</td><td>เด็กเล็ก 10–13 ชม. วัยเรียน 9–11 ชม. วัยรุ่น 8–10 ชม.<br><span class="cap2">ตามวัย · 10·11·8 ชม.</span></td></tr><tr><td class="c-id">c7</td><td>คำถามฮิตคือเป็นหนุ่มสาวก่อนวัย ถ้ามาเร็วแผ่นกระดูกปิดเร็ว<br><span class="cap2">มาเร็ว · <span class="y">แผ่นกระดูกปิดเร็ว</span></span></td></tr><tr><td class="c-id">c8</td><td>คำตอบสุดท้ายคืออายุกระดูก บอกว่าเหลือโอกาสอีกเท่าไร<br><span class="cap2">อายุกระดูก · <span class="y">เวลาที่เหลือ</span></span></td></tr><tr><td class="c-id">c9</td><td>10 คำถาม คำตอบเดียว โอกาสยังเหลืออยู่<br><span class="cap2">10 → 1 คำตอบ · <span class="y">ยังมีโอกาส</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กโอกาสการโตที่เหลือของลูกด้วยอายุกระดูกวันนี้<br><span class="cap2">โอกาสที่เหลือ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>TOP 10 câu hỏi về chiều cao của con mà cha mẹ tìm kiếm nhiều nhất.<br><span class="cap2">Tìm nhiều nhất · <span class="y">TOP 10 câu hỏi</span></span></td></tr><tr><td class="c-id">c2</td><td>Nhưng 10 câu hỏi này cuối cùng quy về một câu trả lời.<br><span class="cap2">10 câu hỏi · <span class="y">một câu trả lời</span></span></td></tr><tr><td class="c-id">c3</td><td>Di truyền 70–80%, nhưng 20–30% còn lại có thể thay đổi.<br><span class="cap2">Di truyền 80% · <span class="y">đổi được 20%</span></span></td></tr><tr><td class="c-id">c4</td><td>Dấu hiệu đầu tiên là tốc độ: dưới 4cm mỗi năm là nên kiểm tra.<br><span class="cap2">&lt; 4cm mỗi năm · nên kiểm tra</span></td></tr><tr><td class="c-id">c5</td><td>Ngủ mấy tiếng? Hormone tăng trưởng tiết nhiều nhất khi ngủ sâu.<br><span class="cap2">Khi ngủ sâu · hormone tiết ra</span></td></tr><tr><td class="c-id">c6</td><td>Trẻ nhỏ 10–13 giờ, tuổi học 9–11 giờ, thiếu niên 8–10 giờ.<br><span class="cap2">Theo độ tuổi · 10·11·8 giờ</span></td></tr><tr><td class="c-id">c7</td><td>Câu hỏi phổ biến: dậy thì sớm. Đến sớm thì sụn đóng sớm.<br><span class="cap2">Dậy thì sớm · <span class="y">sụn đóng sớm</span></span></td></tr><tr><td class="c-id">c8</td><td>Vì vậy câu trả lời là tuổi xương — cho biết còn lại bao nhiêu cơ hội.<br><span class="cap2">Tuổi xương · <span class="y">cơ hội còn lại</span></span></td></tr><tr><td class="c-id">c9</td><td>Mười câu hỏi, một câu trả lời. Cơ hội vẫn còn đó.<br><span class="cap2">10 → 1 đáp án · <span class="y">vẫn còn cơ hội</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra cơ hội tăng trưởng còn lại của con bằng tuổi xương ngay hôm nay.<br><span class="cap2">Cơ hội còn lại · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>The TOP 10 questions parents search most about their child's height.<br><span class="cap2">Most searched · <span class="y">TOP 10 questions</span></span></td></tr><tr><td class="c-id">c2</td><td>But all ten questions point to one single answer.<br><span class="cap2">10 questions · <span class="y">one answer</span></span></td></tr><tr><td class="c-id">c3</td><td>Genes are 70–80%. But the other 20–30% you can change.<br><span class="cap2">Genes 80% · <span class="y">change 20%</span></span></td></tr><tr><td class="c-id">c4</td><td>The first signal is speed: under 4cm a year means it's time to check.<br><span class="cap2">Under 4cm/year · time to check</span></td></tr><tr><td class="c-id">c5</td><td>How many hours? Growth hormone peaks during deep sleep.<br><span class="cap2">Deep sleep · hormone peaks</span></td></tr><tr><td class="c-id">c6</td><td>Toddlers 10–13h, school age 9–11h, teens 8–10h.<br><span class="cap2">By age · 10·11·8 hrs</span></td></tr><tr><td class="c-id">c7</td><td>Another big one: early puberty. Come early, the plates close early.<br><span class="cap2">Early puberty · <span class="y">plates close early</span></span></td></tr><tr><td class="c-id">c8</td><td>So the answer is bone age — it shows how much chance is left.<br><span class="cap2">Bone age · <span class="y">chance left</span></span></td></tr><tr><td class="c-id">c9</td><td>Ten questions, one answer. The chance to change is still there.<br><span class="cap2">10 → 1 answer · <span class="y">chance is still there</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's remaining growth chance with bone age today.<br><span class="cap2">Growth chance left · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>父母关于孩子身高，搜索最多的 TOP 10 问题。<br><span class="cap2">搜索最多 · 身高问题 <span class="y">TOP 10</span></span></td></tr><tr><td class="c-id">c2</td><td>但这10个问题，最终都指向同一个答案。<br><span class="cap2">10个问题 · <span class="y">一个答案</span></span></td></tr><tr><td class="c-id">c3</td><td>遗传占70到80%。但剩下的20到30%可以改变。<br><span class="cap2">遗传 80% · <span class="y">可改变 20%</span></span></td></tr><tr><td class="c-id">c4</td><td>第一个信号是速度：一年不到4厘米就该检查。<br><span class="cap2">每年不到4厘米 · 该检查</span></td></tr><tr><td class="c-id">c5</td><td>睡几小时？生长激素在深睡时分泌最多。<br><span class="cap2">深睡时 · 生长激素分泌</span></td></tr><tr><td class="c-id">c6</td><td>幼儿10到13小时，学龄9到11小时，青少年8到10小时。<br><span class="cap2">按年龄 · 10·11·8小时</span></td></tr><tr><td class="c-id">c7</td><td>还有热门问题：性早熟。来得早，生长板就提前闭合。<br><span class="cap2">性早熟 · <span class="y">生长板早闭</span></span></td></tr><tr><td class="c-id">c8</td><td>所以答案是骨龄——它显示孩子还剩多少机会。<br><span class="cap2">骨龄 · <span class="y">剩余机会</span></span></td></tr><tr><td class="c-id">c9</td><td>10个问题，一个答案。可改变的机会还在。<br><span class="cap2">10 → 1 答案 · <span class="y">机会还在</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就用骨龄查查孩子还剩多少成长机会吧。<br><span class="cap2">剩余成长机会 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>父母關於孩子身高，搜尋最多的 TOP 10 問題。<br><span class="cap2">搜尋最多 · 身高問題 <span class="y">TOP 10</span></span></td></tr><tr><td class="c-id">c2</td><td>但這10個問題，最終都指向同一個答案。<br><span class="cap2">10個問題 · <span class="y">一個答案</span></span></td></tr><tr><td class="c-id">c3</td><td>遺傳佔70到80%。但剩下的20到30%可以改變。<br><span class="cap2">遺傳 80% · <span class="y">可改變 20%</span></span></td></tr><tr><td class="c-id">c4</td><td>第一個信號是速度：一年不到4公分就該檢查。<br><span class="cap2">每年不到4公分 · 該檢查</span></td></tr><tr><td class="c-id">c5</td><td>睡幾小時？生長激素在深睡時分泌最多。<br><span class="cap2">深睡時 · 生長激素分泌</span></td></tr><tr><td class="c-id">c6</td><td>幼兒10到13小時，學齡9到11小時，青少年8到10小時。<br><span class="cap2">按年齡 · 10·11·8小時</span></td></tr><tr><td class="c-id">c7</td><td>還有熱門問題：性早熟。來得早，生長板就提前閉合。<br><span class="cap2">性早熟 · <span class="y">生長板早閉</span></span></td></tr><tr><td class="c-id">c8</td><td>所以答案是骨齡——它顯示孩子還剩多少機會。<br><span class="cap2">骨齡 · <span class="y">剩餘機會</span></span></td></tr><tr><td class="c-id">c9</td><td>10個問題，一個答案。可改變的機會還在。<br><span class="cap2">10 → 1 答案 · <span class="y">機會還在</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就用骨齡查查孩子還剩多少成長機會吧。<br><span class="cap2">剩餘成長機會 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/키질문톱텐/</code> · <code>키질문톱텐-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>3종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

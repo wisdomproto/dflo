@@ -1,0 +1,787 @@
+{
+  "n": 35,
+  "slug": "성장일지",
+  "title": "성장 일지 한 권이 키를 바꾼다 — 우리 아이 성장 기록법",
+  "sub": "키·체중·수면·식단을 기록하면 보이는 것들 — 곡선의 '방향'이 키를 만든다",
+  "category": "B. 생활습관",
+  "topicTitle": "우리 아이 성장 일지 만드는 법",
+  "headerTop": "우리 아이 키",
+  "headerMark": "기록만 해도?",
+  "accentEmoji": "📓✨",
+  "hook": "우리 아이 키, 매달 '한 줄' 기록만 해도 달라지는 거 아세요?",
+  "misconception": "키는 가끔 한 번 재보면 충분하다 → 한두 번 측정으론 우리 아이만의 성장 곡선을 못 본다",
+  "message": "매달 같은 조건 기록 → 한 점이 아닌 '곡선의 방향'이 보인다. 추이가 꺾이면 조기 발견, 그게 성장 일지의 힘",
+  "tone": "협박 ❌ → 긍정(\"기록 한 줄이면 충분, 오늘부터\"). \"우리 아이 키\" 보편. CTA는 측정 유도(뼈나이/예측키)",
+  "cta": "우리 아이 성장 곡선 지금 확인 → 뼈나이/예측키 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "기록만 해도!",
+    "subject": "우리 아이 키",
+    "number": "한 줄",
+    "numLabel": "기록의 힘"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"한 줄 기록이 키를 바꾼다 / 한 번 측정은 부족\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "무엇을 기록",
+      "scenes": "c3–c4",
+      "desc": "\"키·체중·수면·식단·운동 + 같은 조건\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "성장 도표·백분위",
+      "scenes": "c5–c6",
+      "desc": "\"백분위 = 또래 속 위치 / 숫자보다 곡선\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "곡선의 방향",
+      "scenes": "c7–c8",
+      "desc": "\"꾸준히↑ 정상 / 꺾이면 조기 발견\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 곡선 완성 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📓 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 매달 '한 줄' 기록만 해도 달라지는 거 아세요?",
+          "cap": [
+            "매달 한 줄",
+            "기록의 힘"
+          ],
+          "hl": "기록의 힘"
+        },
+        "th": {
+          "narr": "รู้ไหมว่าแค่จดส่วนสูงลูกเดือนละบรรทัด ก็เปลี่ยนได้?",
+          "cap": [
+            "จดเดือนละบรรทัด",
+            "พลังการจดบันทึก"
+          ],
+          "hl": "พลังการจดบันทึก"
+        },
+        "vi": {
+          "narr": "Bạn có biết chỉ cần ghi chiều cao con mỗi tháng một dòng là đã khác?",
+          "cap": [
+            "Mỗi tháng một dòng",
+            "sức mạnh ghi chép"
+          ],
+          "hl": "sức mạnh ghi chép"
+        },
+        "en": {
+          "narr": "Did you know one line a month is all it takes for your child's height?",
+          "cap": [
+            "One line a month",
+            "power of records"
+          ],
+          "hl": "power of records"
+        },
+        "cn": {
+          "narr": "你知道每月记一行，孩子的身高就能不一样吗？",
+          "cap": [
+            "每月一行",
+            "记录的力量"
+          ],
+          "hl": "记录的力量"
+        },
+        "ch": {
+          "narr": "你知道每月記一行，孩子的身高就能不一樣嗎？",
+          "cap": [
+            "每月一行",
+            "記錄的力量"
+          ],
+          "hl": "記錄的力量"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "📍 한 점 → ❓ 흔들",
+      "copy": {
+        "ko": {
+          "narr": "키는 한두 번 재서는 몰라요. 우리 아이만의 성장 곡선이 안 보이거든요.",
+          "cap": [
+            "한 번은 부족",
+            "곡선이 핵심"
+          ],
+          "hl": "곡선이 핵심"
+        },
+        "th": {
+          "narr": "วัดแค่ครั้งสองครั้งไม่รู้หรอก เพราะมองไม่เห็นเส้นโค้งของลูก",
+          "cap": [
+            "ครั้งเดียวไม่พอ",
+            "ต้องดูเส้นโค้ง"
+          ],
+          "hl": "ต้องดูเส้นโค้ง"
+        },
+        "vi": {
+          "narr": "Đo một hai lần không thấy gì — vì chưa thấy đường cong của con.",
+          "cap": [
+            "Một lần chưa đủ",
+            "phải xem đường cong"
+          ],
+          "hl": "phải xem đường cong"
+        },
+        "en": {
+          "narr": "One or two measurements tell you nothing — you can't see the curve yet.",
+          "cap": [
+            "One isn't enough",
+            "the curve matters"
+          ],
+          "hl": "the curve matters"
+        },
+        "cn": {
+          "narr": "量一两次看不出来，因为看不到孩子自己的成长曲线。",
+          "cap": [
+            "一次不够",
+            "曲线才关键"
+          ],
+          "hl": "曲线才关键"
+        },
+        "ch": {
+          "narr": "量一兩次看不出來，因為看不到孩子自己的成長曲線。",
+          "cap": [
+            "一次不夠",
+            "曲線才關鍵"
+          ],
+          "hl": "曲線才關鍵"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 기록 항목",
+      "motion": "📏💤🍎🏃 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "그래서 매달 키·체중에 수면, 식단, 운동까지 같이 적어요.",
+          "cap": [
+            "키·체중에",
+            "수면·식단·운동"
+          ],
+          "hl": "수면·식단·운동"
+        },
+        "th": {
+          "narr": "ดังนั้นทุกเดือนจดส่วนสูง น้ำหนัก พร้อมการนอน อาหาร การออกกำลังกาย",
+          "cap": [
+            "ส่วนสูง น้ำหนัก",
+            "นอน·อาหาร·ออกกำลัง"
+          ],
+          "hl": "นอน·อาหาร·ออกกำลัง"
+        },
+        "vi": {
+          "narr": "Nên mỗi tháng ghi chiều cao, cân nặng, cùng giấc ngủ, ăn uống, vận động.",
+          "cap": [
+            "Cao, cân nặng",
+            "ngủ·ăn·vận động"
+          ],
+          "hl": "ngủ·ăn·vận động"
+        },
+        "en": {
+          "narr": "So each month, log height and weight — plus sleep, meals, and exercise.",
+          "cap": [
+            "Height & weight",
+            "sleep·meals·move"
+          ],
+          "hl": "sleep·meals·move"
+        },
+        "cn": {
+          "narr": "所以每月记下身高、体重，还有睡眠、饮食、运动。",
+          "cap": [
+            "身高体重",
+            "睡眠·饮食·运动"
+          ],
+          "hl": "睡眠·饮食·运动"
+        },
+        "ch": {
+          "narr": "所以每月記下身高、體重，還有睡眠、飲食、運動。",
+          "cap": [
+            "身高體重",
+            "睡眠·飲食·運動"
+          ],
+          "hl": "睡眠·飲食·運動"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "🗓️ 도장 콕 + 똑같이",
+      "copy": {
+        "ko": {
+          "narr": "비결은 '같은 조건'. 매달 같은 날, 아침 공복, 가벼운 옷차림으로요.",
+          "cap": [
+            "같은 날·아침 공복",
+            "조건이 같아야"
+          ],
+          "hl": "조건이 같아야"
+        },
+        "th": {
+          "narr": "เคล็ดลับคือเงื่อนไขเดียวกัน วันเดิม ตอนเช้าท้องว่าง ใส่เสื้อผ้าเบาๆ",
+          "cap": [
+            "วันเดิม เช้าท้องว่าง",
+            "เงื่อนไขต้องเหมือนกัน"
+          ],
+          "hl": "เงื่อนไขต้องเหมือนกัน"
+        },
+        "vi": {
+          "narr": "Bí quyết là 'cùng điều kiện': cùng ngày, sáng bụng đói, mặc đồ nhẹ.",
+          "cap": [
+            "Cùng ngày, sáng đói",
+            "cùng điều kiện"
+          ],
+          "hl": "cùng điều kiện"
+        },
+        "en": {
+          "narr": "The trick? Same conditions — same day, morning, empty stomach, light clothes.",
+          "cap": [
+            "Same day & morning",
+            "same conditions"
+          ],
+          "hl": "same conditions"
+        },
+        "cn": {
+          "narr": "诀窍是'同样条件'：每月同一天、早晨空腹、穿轻便衣服。",
+          "cap": [
+            "同一天·空腹",
+            "条件要一致"
+          ],
+          "hl": "条件要一致"
+        },
+        "ch": {
+          "narr": "訣竅是'同樣條件'：每月同一天、早晨空腹、穿輕便衣服。",
+          "cap": [
+            "同一天·空腹",
+            "條件要一致"
+          ],
+          "hl": "條件要一致"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 백분위",
+      "motion": "🧒×100 정렬 + 50번째 ✨ 점등",
+      "copy": {
+        "ko": {
+          "narr": "기록을 성장 도표에 올리면, 또래 100명 중 우리 아이 위치가 보여요.",
+          "cap": [
+            "또래 100명 중",
+            "우리 아이 위치"
+          ],
+          "hl": "우리 아이 위치"
+        },
+        "th": {
+          "narr": "นำบันทึกใส่แผนภูมิ จะเห็นตำแหน่งลูกในเด็ก 100 คนวัยเดียวกัน",
+          "cap": [
+            "ในเด็ก 100 คน",
+            "ตำแหน่งของลูก"
+          ],
+          "hl": "ตำแหน่งของลูก"
+        },
+        "vi": {
+          "narr": "Đưa số liệu lên biểu đồ, bạn thấy con đứng đâu trong 100 bạn cùng tuổi.",
+          "cap": [
+            "Trong 100 bạn",
+            "vị trí của con"
+          ],
+          "hl": "vị trí của con"
+        },
+        "en": {
+          "narr": "Plot it on a growth chart and you see where your child sits among 100 peers.",
+          "cap": [
+            "Among 100 peers",
+            "your child's spot"
+          ],
+          "hl": "your child's spot"
+        },
+        "cn": {
+          "narr": "把记录画到成长图上，就能看到孩子在100个同龄人中的位置。",
+          "cap": [
+            "100个同龄人中",
+            "孩子的位置"
+          ],
+          "hl": "孩子的位置"
+        },
+        "ch": {
+          "narr": "把記錄畫到成長圖上，就能看到孩子在100個同齡人中的位置。",
+          "cap": [
+            "100個同齡人中",
+            "孩子的位置"
+          ],
+          "hl": "孩子的位置"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "🔢 vs 📈 · 곡선 강조",
+      "copy": {
+        "ko": {
+          "narr": "근데 몇 번째냐보다 더 중요한 건, 곡선이 어디로 가느냐예요.",
+          "cap": [
+            "숫자보다",
+            "곡선의 방향"
+          ],
+          "hl": "곡선의 방향"
+        },
+        "th": {
+          "narr": "แต่สำคัญกว่าอันดับ คือเส้นโค้งกำลังไปทางไหน",
+          "cap": [
+            "ไม่ใช่อันดับ",
+            "ทิศทางเส้นโค้ง"
+          ],
+          "hl": "ทิศทางเส้นโค้ง"
+        },
+        "vi": {
+          "narr": "Nhưng quan trọng hơn thứ hạng là đường cong đang đi về đâu.",
+          "cap": [
+            "Hơn cả thứ hạng",
+            "hướng đường cong"
+          ],
+          "hl": "hướng đường cong"
+        },
+        "en": {
+          "narr": "But more than the rank, what matters is where the curve is heading.",
+          "cap": [
+            "More than rank",
+            "the curve's direction"
+          ],
+          "hl": "the curve's direction"
+        },
+        "cn": {
+          "narr": "但比名次更重要的，是曲线往哪个方向走。",
+          "cap": [
+            "比名次更重要",
+            "曲线的方向"
+          ],
+          "hl": "曲线的方向"
+        },
+        "ch": {
+          "narr": "但比名次更重要的，是曲線往哪個方向走。",
+          "cap": [
+            "比名次更重要",
+            "曲線的方向"
+          ],
+          "hl": "曲線的方向"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 곡선의 방향",
+      "motion": "📈 꾸준히↑ vs ➡️ 평탄 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "곡선이 자기 길을 꾸준히 따라가면 잘 크는 거예요. 그게 안심 신호죠.",
+          "cap": [
+            "꾸준히 따라가면",
+            "잘 크는 신호"
+          ],
+          "hl": "잘 크는 신호"
+        },
+        "th": {
+          "narr": "ถ้าเส้นโค้งไปตามทางของตัวเองสม่ำเสมอ แปลว่าโตดี เป็นสัญญาณอุ่นใจ",
+          "cap": [
+            "ไปตามทางสม่ำเสมอ",
+            "สัญญาณโตดี"
+          ],
+          "hl": "สัญญาณโตดี"
+        },
+        "vi": {
+          "narr": "Nếu đường cong đi đều theo lối của nó, con đang lớn tốt — dấu hiệu yên tâm.",
+          "cap": [
+            "Đi đều theo lối",
+            "dấu hiệu lớn tốt"
+          ],
+          "hl": "dấu hiệu lớn tốt"
+        },
+        "en": {
+          "narr": "If the curve follows its own track steadily, your child is growing well.",
+          "cap": [
+            "Steady on track",
+            "growing well"
+          ],
+          "hl": "growing well"
+        },
+        "cn": {
+          "narr": "曲线稳稳沿着自己的轨道走，就是长得好，是安心信号。",
+          "cap": [
+            "稳稳沿轨道",
+            "长得好的信号"
+          ],
+          "hl": "长得好的信号"
+        },
+        "ch": {
+          "narr": "曲線穩穩沿著自己的軌道走，就是長得好，是安心信號。",
+          "cap": [
+            "穩穩沿軌道",
+            "長得好的信號"
+          ],
+          "hl": "長得好的信號"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 조기 발견",
+      "motion": "🔎 + 곡선 꺾임 포착 골드",
+      "copy": {
+        "ko": {
+          "narr": "혹시 곡선이 갑자기 꺾여도, 일지가 있으면 일찍 발견해 도울 수 있어요.",
+          "cap": [
+            "꺾여도 일찍 발견",
+            "그게 일지의 힘"
+          ],
+          "hl": "그게 일지의 힘"
+        },
+        "th": {
+          "narr": "ถ้าเส้นโค้งหักลงกะทันหัน มีสมุดบันทึกก็พบเร็ว ช่วยได้ทัน",
+          "cap": [
+            "หักก็พบเร็ว",
+            "นี่คือพลังสมุดบันทึก"
+          ],
+          "hl": "นี่คือพลังสมุดบันทึก"
+        },
+        "vi": {
+          "narr": "Nếu đường cong bỗng gãy, có nhật ký sẽ phát hiện sớm và giúp kịp.",
+          "cap": [
+            "Gãy vẫn phát hiện sớm",
+            "sức mạnh nhật ký"
+          ],
+          "hl": "sức mạnh nhật ký"
+        },
+        "en": {
+          "narr": "If the curve ever bends, a journal helps you catch it early and act in time.",
+          "cap": [
+            "Catch it early",
+            "the journal's power"
+          ],
+          "hl": "the journal's power"
+        },
+        "cn": {
+          "narr": "万一曲线突然下弯，有日志就能早发现、早帮忙。",
+          "cap": [
+            "下弯也早发现",
+            "这就是日志的力量"
+          ],
+          "hl": "这就是日志的力量"
+        },
+        "ch": {
+          "narr": "萬一曲線突然下彎，有日誌就能早發現、早幫忙。",
+          "cap": [
+            "下彎也早發現",
+            "這就是日誌的力量"
+          ],
+          "hl": "這就是日誌的力量"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "여기에 뼈나이까지 더하면, 우리 아이 성장 곡선이 완성돼요.",
+          "cap": [
+            "뼈나이를 더하면",
+            "곡선이 완성"
+          ],
+          "hl": "곡선이 완성"
+        },
+        "th": {
+          "narr": "เพิ่มอายุกระดูกเข้าไป เส้นโค้งการเติบโตของลูกก็สมบูรณ์",
+          "cap": [
+            "เพิ่มอายุกระดูก",
+            "เส้นโค้งสมบูรณ์"
+          ],
+          "hl": "เส้นโค้งสมบูรณ์"
+        },
+        "vi": {
+          "narr": "Thêm cả tuổi xương nữa, đường cong tăng trưởng của con mới trọn vẹn.",
+          "cap": [
+            "Thêm tuổi xương",
+            "đường cong trọn vẹn"
+          ],
+          "hl": "đường cong trọn vẹn"
+        },
+        "en": {
+          "narr": "Add bone age to that, and your child's growth curve is complete.",
+          "cap": [
+            "Add bone age",
+            "curve complete"
+          ],
+          "hl": "curve complete"
+        },
+        "cn": {
+          "narr": "再加上骨龄，孩子的成长曲线就完整了。",
+          "cap": [
+            "加上骨龄",
+            "曲线就完整"
+          ],
+          "hl": "曲线就完整"
+        },
+        "ch": {
+          "narr": "再加上骨齡，孩子的成長曲線就完整了。",
+          "cap": [
+            "加上骨齡",
+            "曲線就完整"
+          ],
+          "hl": "曲線就完整"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 곡선, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 곡선",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กเส้นโค้งการเติบโตของลูกวันนี้",
+          "cap": [
+            "เส้นโค้งการเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra đường cong tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Đường cong tăng trưởng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth curve today.",
+          "cap": [
+            "Growth curve",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的成长曲线吧。",
+          "cap": [
+            "成长曲线",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的成長曲線吧。",
+          "cap": [
+            "成長曲線",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "4아이콘 순차 점등",
+      "title": "성장 일지 — 기록 항목",
+      "emojis": [
+        "📓",
+        "📏",
+        "💤",
+        "🍎"
+      ],
+      "prompt": "Flat vector, square, white bg. An open friendly growth journal/notebook in the center with a soft purple cover; around it four simple rounded icons float and connect with thin lines: a height ruler, a sleeping crescent-moon-and-pillow, a healthy apple/meal plate, and a running shoe. Brand purple #667eea with mint #2dd4bf accents, gentle glow on the notebook, pediatric and warm. NO text.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "키·체중",
+          "en": "Height",
+          "th": "ส่วนสูง"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "식단",
+          "en": "Meals",
+          "th": "อาหาร"
+        },
+        {
+          "pos": "아이콘4",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลังกาย"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "100명 정렬 + 50번째 점등",
+      "title": "백분위 — 또래 속 위치",
+      "emojis": [
+        "🧒",
+        "📊"
+      ],
+      "prompt": "Flat vector, square, white bg. A neat row/grid of 100 tiny identical child silhouettes arranged by height from short to tall, left to right; one child in the middle is highlighted in brand purple with a soft glow and a small upward marker above its head while the rest are light grey. Conveys 'where my child stands among peers.' Brand purple #667eea, mint #2dd4bf accent. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "강조 아이 위",
+          "ko": "50번째",
+          "en": "50th",
+          "th": "อันดับ 50"
+        },
+        {
+          "pos": "하단",
+          "ko": "또래 100명",
+          "en": "100 peers",
+          "th": "เด็ก 100 คน"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "꾸준히↑ vs 평탄 대비",
+      "title": "곡선의 방향 — 잘 크는 신호",
+      "emojis": [
+        "📈",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A growth chart with faint grey percentile band lines; one bright bold line (brand purple to mint gradient) rises smoothly and steadily following its own band, with a small green check-circle and sparkle at its tip. A second faint dotted line bends flat as a soft contrast. Conveys 'steady curve = growing well.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상승선 끝",
+          "ko": "꾸준히 ↑",
+          "en": "Steady ↑",
+          "th": "สม่ำเสมอ ↑"
+        },
+        {
+          "pos": "평탄선",
+          "ko": "추이 관찰",
+          "en": "Watch trend",
+          "th": "เฝ้าดูแนวโน้ม"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "돋보기 포착 골드 글로우",
+      "title": "조기 발견 — 일지의 힘",
+      "emojis": [
+        "🔎",
+        "📓"
+      ],
+      "prompt": "Flat vector, square, white bg. A growth curve that bends/dips at one point, with a magnifying glass hovering over that exact bend point and a warm golden glow circle marking it; an open journal sits at the bottom corner as the source. Reassuring, not alarming — gentle and caring tone. Brand purple #667eea with warm gold accents. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "돋보기 지점",
+          "ko": "조기 발견",
+          "en": "Early catch",
+          "th": "พบแต่เนิ่นๆ"
+        },
+        {
+          "pos": "하단(일지)",
+          "ko": "성장 일지",
+          "en": "Growth journal",
+          "th": "สมุดบันทึก"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📓",
+      "label": "성장 일지"
+    },
+    {
+      "e": "📏",
+      "label": "키·측정"
+    },
+    {
+      "e": "⚖️",
+      "label": "체중"
+    },
+    {
+      "e": "💤",
+      "label": "수면"
+    },
+    {
+      "e": "🍎",
+      "label": "식단"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🗓️",
+      "label": "같은 조건·정기"
+    },
+    {
+      "e": "📊",
+      "label": "백분위"
+    },
+    {
+      "e": "📈",
+      "label": "성장 곡선"
+    },
+    {
+      "e": "🔎",
+      "label": "조기 발견"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

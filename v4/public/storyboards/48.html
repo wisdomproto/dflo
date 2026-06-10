@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 우유 칼슘 신화의 진실</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #48</span>
+  <h1>우유 많이 마시면 키 큰다? — 칼슘 신화의 진실</h1>
+  <div class="sub">칼슘은 뼈 '밀도', 키는 성장판이 만든다 — 우유보다 '균형'이 답</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>우유의 진실</b></div>
+      <div class="subj">우리 아이 키 우유로</div>
+      <div class="big4"><div class="n" style="font-size:132px">칼슘</div><div class="lab">만으론 안 큰다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 우유로</b> 칼슘만으론 안 큰다"</li>
+        <li><b>거대 숫자 "칼슘"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #48 「우유 칼슘 신화의 진실」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우유 많이 마시면 키 쑥쑥? — 부모님이라면 한 번쯤 믿어봤죠."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>우유(칼슘)를 많이 마시면 키가 큰다 → 칼슘은 뼈 '밀도'를 높일 뿐, 키(뼈 길이)를 늘리는 주연이 아니다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>칼슘은 뼈 밀도, 키는 성장판의 길이 성장 — 성장호르몬(수면·운동)·유전 70~80%·다양한 영양소가 함께 만든다. 우유는 끊는 게 아니라 '균형'이 답.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>우유를 믿어온 부모를 비난 ❌ → 부드럽게 공감 후 과학으로 안내. 협박 ❌ → \"아직 기회 있다\" 긍정 골든타임. 우유 끊으라 ❌ → '균형'. \"우리 아이 키\" 보편</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우유만으론 알 수 없어요 — 홈페이지 예측키 / 뼈나이 측정으로 우리 아이 성장 잠재력을 지금 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"우유 많이 마시면 키 큰다" 우리 다 믿었죠 → 근데 정말일까?</p></div><div class="act"><span class="n">ACT 2</span><h4>칼슘의 진실</h4><p>c3–c4<br>칼슘은 뼈 '밀도', 키는 성장판이 만든다</p></div><div class="act"><span class="n">ACT 3</span><h4>진짜 키를 키우는 것</h4><p>c5–c6<br>성장호르몬(수면·운동) + 유전 70~80% / 환경 20~30%</p></div><div class="act"><span class="n">ACT 4</span><h4>균형이 핵심</h4><p>c7–c8<br>우유 과다 = 영양 불균형 → 멸치·두부·시금치 등 다양하게</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>우유만으론 모른다 → 뼈나이·예측키로 확인 → CTA</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">우유로 클까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🥛💜</div></div>
+        <div class="ph-cap"><div class="l">우유 많이 마시면</div><div class="l"><span class="y2">키 쑥쑥?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우유 많이 마시면 키 쑥쑥 큰다? 부모님이라면 한 번쯤 믿어봤죠.</td><td><span class="cap2">우유 많이 마시면<br><span class="y">키 쑥쑥?</span></span></td><td class="mo">🥛 슬램 인 + 💧 톡</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그 마음 정말 이해해요. 그런데 우유만 많이 마시면 정말 클까요?</td><td><span class="cap2">우유만 많이<br><span class="y">정말 클까?</span></span></td><td class="mo">🤔 갸웃 + ❓ 팝</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 칼슘 vs 성장판</span></td><td class="narr">칼슘은 뼈를 '튼튼하게', 즉 밀도를 높여요. 키 자체를 늘리는 건 아니죠.</td><td><span class="cap2"><span class="y">칼슘 = 뼈 밀도</span><br>키 늘림 X</span></td><td class="mo">🦴 밀도 채움 + ↔️ 길이 강조</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 성장판이 키를 만든다</span></td><td class="narr">키는 뼈 끝 '성장판'이 길어지면서 자라요. 진짜 주인공은 여기예요.</td><td><span class="cap2"><span class="y">키는 성장판이</span><br>길어지며 자란다</span></td><td class="mo">🌱 성장판 점등 + ↗ 상승</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성장판을 깨우는 건 성장호르몬! 충분한 수면과 운동이 가장 자연스러운 방법이에요.</td><td><span class="cap2">성장호르몬 = 키<br><span class="y">수면·운동이 깨운다</span></span></td><td class="mo">😴 + 🏃 핑퐁 펄스</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 유전 70~80% / 환경 20~30%</span></td><td class="narr">키는 유전이 70~80%, 나머지 20~30%는 영양·수면·운동으로 충분히 바꿀 수 있어요.</td><td><span class="cap2">유전 70~80%<br><span class="y">나머지는 우리가!</span></span></td><td class="mo">🥧 도넛 채움 + 카운트업</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우유만 배불리 마시면 다른 반찬을 안 먹어 오히려 영양 불균형이 올 수 있어요.</td><td><span class="cap2">우유만 과하면<br><span class="y">영양 불균형</span></span></td><td class="mo">⚖️ 균형 흔들 + 🥛 과다 경고</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 다양한 칼슘 + 균형</span></td><td class="narr">멸치·시금치·두부·치즈, 거기에 단백질과 비타민D까지 골고루! 균형이 진짜 답이에요.</td><td><span class="cap2"><span class="y">골고루 균형</span><br>멸치·두부·시금치</span></td><td class="mo">🍽️ 접시 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우유만으론 알 수 없어요. 뼈나이를 보면 우리 아이 성장 잠재력이 보여요.</td><td><span class="cap2">우유로는 모른다<br><span class="y">뼈나이로 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 잠재력, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장 잠재력<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 밀도 채움 + 길이 강조</div><h3>칼슘 = 뼈 밀도 (길이 아님)</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🥛</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A single friendly cartoon long-bone shown twice side by side: the left bone fills with dense honeycomb texture (denser/stronger), the right bone has a subtle double-headed up-down sizing bracket along its length that is greyed-out / crossed with a soft X to imply 'not length'. A small milk glass icon near the dense bone. Brand purple #667eea for the bone, mint #2dd4bf for the density fill, friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 뼈</td><td>밀도 ↑</td><td>density up</td><td class="thai">ความหนาแน่น</td></tr><tr><td>오른쪽 뼈(브래킷)</td><td>길이 ✕</td><td>length X</td><td class="thai">ความยาว ✕</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 성장판 점등 + 상승</div><h3>성장판이 키를 만든다</h3></div>
+        <div class="body">
+          <div class="sketch">🌱 📏</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A stylized child leg long-bone with a glowing soft mint band near the top end (the growth plate) and a gentle upward arrow showing the bone lengthening upward, sparkle at the tip. Brand purple bone, mint #2dd4bf glowing growth-plate band, warm friendly. Conveys 'height comes from the growth plate lengthening.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>글로우 밴드</td><td>성장판</td><td>growth plate</td><td class="thai">แผ่นการเจริญเติบโต</td></tr><tr><td>화살표 끝</td><td>키 ↑</td><td>height up</td><td class="thai">ความสูง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 도넛 채움 + 카운트업</div><h3>유전 70~80% / 환경 20~30%</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🥗</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A clean donut/pie chart split into a large segment and a smaller segment, the large segment in brand purple #667eea, the smaller segment in mint #2dd4bf. Beside the smaller mint segment, three tiny friendly icons float: a plate of food, a sleeping moon, a running figure (nutrition, sleep, exercise). Friendly pediatric, soft. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>보라 큰 조각</td><td>유전 70~80%</td><td>genes 70–80%</td><td class="thai">พันธุกรรม 70–80%</td></tr><tr><td>민트 작은 조각</td><td>환경 20~30%</td><td>environment 20–30%</td><td class="thai">สิ่งแวดล้อม 20–30%</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 접시 순차 점등</div><h3>다양한 칼슘 + 균형</h3></div>
+        <div class="body">
+          <div class="sketch">🐟 🥦</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly round plate seen from above arranged with a small fish (anchovy), a leafy green bunch (spinach), a cube of tofu, a wedge of cheese, and a glass of milk as just one item among equals, plus a small egg/meat protein piece. All items balanced evenly around the plate like a wheel. Brand purple #667eea plate rim, mint #2dd4bf accents, cheerful pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>접시 상단</td><td>골고루</td><td>variety</td><td class="thai">หลากหลาย</td></tr><tr><td>접시 중앙</td><td>균형</td><td>balance</td><td class="thai">สมดุล</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🥛</b> 우유</span><span class="emo"><b>🦴</b> 뼈 밀도</span><span class="emo"><b>🌱</b> 성장판</span><span class="emo"><b>📏</b> 키·성장</span><span class="emo"><b>💪</b> 성장호르몬</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🧬</b> 유전</span><span class="emo"><b>🥗</b> 영양 균형</span><span class="emo"><b>⚖️</b> 균형</span><span class="emo"><b>💜</b> 브랜드</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우유 많이 마시면 키 쑥쑥 큰다? 부모님이라면 한 번쯤 믿어봤죠.<br><span class="cap2">우유 많이 마시면 · <span class="y">키 쑥쑥?</span></span></td></tr><tr><td class="c-id">c2</td><td>그 마음 정말 이해해요. 그런데 우유만 많이 마시면 정말 클까요?<br><span class="cap2">우유만 많이 · <span class="y">정말 클까?</span></span></td></tr><tr><td class="c-id">c3</td><td>칼슘은 뼈를 '튼튼하게', 즉 밀도를 높여요. 키 자체를 늘리는 건 아니죠.<br><span class="cap2">칼슘 = 뼈 밀도 · 키 늘림 X</span></td></tr><tr><td class="c-id">c4</td><td>키는 뼈 끝 '성장판'이 길어지면서 자라요. 진짜 주인공은 여기예요.<br><span class="cap2">키는 성장판이 · 길어지며 자란다</span></td></tr><tr><td class="c-id">c5</td><td>성장판을 깨우는 건 성장호르몬! 충분한 수면과 운동이 가장 자연스러운 방법이에요.<br><span class="cap2">성장호르몬 = 키 · <span class="y">수면·운동이 깨운다</span></span></td></tr><tr><td class="c-id">c6</td><td>키는 유전이 70~80%, 나머지 20~30%는 영양·수면·운동으로 충분히 바꿀 수 있어요.<br><span class="cap2">유전 70~80% · <span class="y">나머지는 우리가!</span></span></td></tr><tr><td class="c-id">c7</td><td>우유만 배불리 마시면 다른 반찬을 안 먹어 오히려 영양 불균형이 올 수 있어요.<br><span class="cap2">우유만 과하면 · <span class="y">영양 불균형</span></span></td></tr><tr><td class="c-id">c8</td><td>멸치·시금치·두부·치즈, 거기에 단백질과 비타민D까지 골고루! 균형이 진짜 답이에요.<br><span class="cap2">골고루 균형 · 멸치·두부·시금치</span></td></tr><tr><td class="c-id">c9</td><td>우유만으론 알 수 없어요. 뼈나이를 보면 우리 아이 성장 잠재력이 보여요.<br><span class="cap2">우유로는 모른다 · <span class="y">뼈나이로 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 잠재력, 지금 바로 확인해 보세요.<br><span class="cap2">성장 잠재력 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ดื่มนมเยอะๆ แล้วลูกจะสูง? พ่อแม่ทุกคนเคยเชื่อแบบนี้<br><span class="cap2">ดื่มนมเยอะๆ · <span class="y">ลูกจะสูง?</span></span></td></tr><tr><td class="c-id">c2</td><td>เข้าใจความรู้สึกนั้นดี แต่ดื่มนมอย่างเดียวจะสูงจริงไหม?<br><span class="cap2">นมอย่างเดียว · <span class="y">สูงจริงไหม?</span></span></td></tr><tr><td class="c-id">c3</td><td>แคลเซียมทำให้กระดูก 'แข็งแรง' เพิ่มความหนาแน่น ไม่ได้ทำให้ยาวขึ้น<br><span class="cap2">แคลเซียม = ความหนาแน่น · ไม่เพิ่มความยาว</span></td></tr><tr><td class="c-id">c4</td><td>ความสูงมาจาก 'แผ่นการเจริญเติบโต' ที่ปลายกระดูกยืดยาว นี่คือพระเอกตัวจริง<br><span class="cap2">แผ่นการเจริญเติบโต · คือตัวจริง</span></td></tr><tr><td class="c-id">c5</td><td>สิ่งที่ปลุกแผ่นการเจริญเติบโตคือฮอร์โมน! การนอนและออกกำลังกายคือวิธีธรรมชาติที่สุด<br><span class="cap2">ฮอร์โมนการเจริญเติบโต · <span class="y">นอน·ออกกำลังกาย</span></span></td></tr><tr><td class="c-id">c6</td><td>พันธุกรรม 70–80% ที่เหลือ 20–30% เปลี่ยนได้ด้วยอาหาร นอน ออกกำลังกาย<br><span class="cap2">พันธุกรรม 70–80% · <span class="y">ที่เหลือเราทำได้!</span></span></td></tr><tr><td class="c-id">c7</td><td>ดื่มนมจนอิ่มจนไม่กินอย่างอื่น อาจทำให้โภชนาการไม่สมดุล<br><span class="cap2">นมมากเกินไป · <span class="y">โภชนาการไม่สมดุล</span></span></td></tr><tr><td class="c-id">c8</td><td>ปลาเล็ก ผักโขม เต้าหู้ ชีส บวกโปรตีนและวิตามินดี ครบถ้วน! ความสมดุลคือคำตอบ<br><span class="cap2">สมดุลคือคำตอบ · ปลา·เต้าหู้·ผัก</span></td></tr><tr><td class="c-id">c9</td><td>นมอย่างเดียวบอกไม่ได้ อายุกระดูกจะบอกศักยภาพการเติบโตของลูก<br><span class="cap2">นมบอกไม่ได้ · <span class="y">ดูที่อายุกระดูก</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กศักยภาพการเติบโตของลูกวันนี้<br><span class="cap2">ศักยภาพการเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Uống nhiều sữa là cao vọt? Cha mẹ nào cũng từng tin điều đó.<br><span class="cap2">Uống nhiều sữa · <span class="y">cao vọt?</span></span></td></tr><tr><td class="c-id">c2</td><td>Rất hiểu lòng cha mẹ. Nhưng chỉ uống sữa thôi có thật sự cao?<br><span class="cap2">Chỉ uống sữa · <span class="y">có cao thật?</span></span></td></tr><tr><td class="c-id">c3</td><td>Canxi giúp xương 'chắc khỏe', tăng mật độ — không kéo dài xương.<br><span class="cap2">Canxi = mật độ xương · không tăng dài</span></td></tr><tr><td class="c-id">c4</td><td>Chiều cao đến từ 'sụn tăng trưởng' ở đầu xương dài ra — đây mới là chính.<br><span class="cap2">Sụn tăng trưởng · mới quyết định</span></td></tr><tr><td class="c-id">c5</td><td>Đánh thức sụn là hormone tăng trưởng! Ngủ đủ và vận động là cách tự nhiên nhất.<br><span class="cap2">Hormone tăng trưởng · <span class="y">ngủ·vận động</span></span></td></tr><tr><td class="c-id">c6</td><td>Di truyền 70–80%, còn 20–30% ta đổi được bằng dinh dưỡng, ngủ, vận động.<br><span class="cap2">Di truyền 70–80% · <span class="y">phần còn lại là ta!</span></span></td></tr><tr><td class="c-id">c7</td><td>Uống sữa no bụng rồi bỏ món khác có thể gây mất cân bằng dinh dưỡng.<br><span class="cap2">Sữa quá nhiều · <span class="y">mất cân bằng</span></span></td></tr><tr><td class="c-id">c8</td><td>Cá nhỏ, rau bina, đậu phụ, phô mai, thêm đạm và vitamin D — đa dạng! Cân bằng mới là đáp án.<br><span class="cap2">Cân bằng là đáp án · cá·đậu·rau</span></td></tr><tr><td class="c-id">c9</td><td>Sữa thôi không cho biết được. Tuổi xương sẽ cho thấy tiềm năng của con.<br><span class="cap2">Sữa không đủ biết · <span class="y">xem tuổi xương</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tiềm năng phát triển của con ngay hôm nay.<br><span class="cap2">Tiềm năng phát triển · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Lots of milk means a taller child? Every parent has believed it.<br><span class="cap2">Lots of milk · <span class="y">= taller?</span></span></td></tr><tr><td class="c-id">c2</td><td>That hope makes total sense. But does milk alone really do it?<br><span class="cap2">Milk alone · <span class="y">really works?</span></span></td></tr><tr><td class="c-id">c3</td><td>Calcium makes bones denser and stronger — it doesn't add length.<br><span class="cap2">Calcium = density · not length</span></td></tr><tr><td class="c-id">c4</td><td>Height comes from the 'growth plates' lengthening — that's the real driver.<br><span class="cap2">Growth plates · drive height</span></td></tr><tr><td class="c-id">c5</td><td>Growth hormone wakes the plates! Deep sleep and exercise are the most natural way.<br><span class="cap2">Growth hormone · <span class="y">sleep + exercise</span></span></td></tr><tr><td class="c-id">c6</td><td>Genes set 70–80%; the other 20–30% is ours through food, sleep, exercise.<br><span class="cap2">Genes 70–80% · <span class="y">the rest is ours!</span></span></td></tr><tr><td class="c-id">c7</td><td>Filling up on milk can crowd out other foods — and unbalance nutrition.<br><span class="cap2">Too much milk · <span class="y">unbalanced diet</span></span></td></tr><tr><td class="c-id">c8</td><td>Anchovies, spinach, tofu, cheese — plus protein and vitamin D. Balance is the real answer.<br><span class="cap2">Balance is key · fish·tofu·greens</span></td></tr><tr><td class="c-id">c9</td><td>Milk alone can't tell you. Bone age reveals your child's growth potential.<br><span class="cap2">Milk can't tell · <span class="y">check bone age</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth potential today.<br><span class="cap2">Growth potential · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>多喝牛奶就长得高？每位家长都曾相信过。<br><span class="cap2">多喝牛奶 · <span class="y">就长高？</span></span></td></tr><tr><td class="c-id">c2</td><td>这份心情完全能理解。但只靠喝牛奶真的能长高吗？<br><span class="cap2">只靠牛奶 · <span class="y">真能长高？</span></span></td></tr><tr><td class="c-id">c3</td><td>钙让骨头更'结实'，提高密度，但不会让骨头变长。<br><span class="cap2">钙 = 骨密度 · 不增长度</span></td></tr><tr><td class="c-id">c4</td><td>身高来自骨头两端'生长板'的延长——这才是真正的主角。<br><span class="cap2">生长板 · 才是关键</span></td></tr><tr><td class="c-id">c5</td><td>唤醒生长板的是生长激素！充足睡眠和运动是最自然的方法。<br><span class="cap2">生长激素 · <span class="y">睡眠 + 运动</span></span></td></tr><tr><td class="c-id">c6</td><td>遗传占70~80%，剩下20~30%靠营养、睡眠、运动就能改变。<br><span class="cap2">遗传 70~80% · <span class="y">剩下靠我们！</span></span></td></tr><tr><td class="c-id">c7</td><td>光喝牛奶喝饱了，不吃别的菜，反而会营养不均衡。<br><span class="cap2">牛奶过量 · <span class="y">营养不均衡</span></span></td></tr><tr><td class="c-id">c8</td><td>小鱼、菠菜、豆腐、奶酪，再加蛋白质和维生素D，样样齐全！均衡才是答案。<br><span class="cap2">均衡才是答案 · 鱼·豆腐·蔬菜</span></td></tr><tr><td class="c-id">c9</td><td>只看牛奶无法知道。骨龄能看出孩子的成长潜力。<br><span class="cap2">牛奶看不出 · <span class="y">查骨龄</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的成长潜力吧。<br><span class="cap2">成长潜力 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>多喝牛奶就長得高？每位家長都曾相信過。<br><span class="cap2">多喝牛奶 · <span class="y">就長高？</span></span></td></tr><tr><td class="c-id">c2</td><td>這份心情完全能理解。但只靠喝牛奶真的能長高嗎？<br><span class="cap2">只靠牛奶 · <span class="y">真能長高？</span></span></td></tr><tr><td class="c-id">c3</td><td>鈣讓骨頭更'結實'，提高密度，但不會讓骨頭變長。<br><span class="cap2">鈣 = 骨密度 · 不增長度</span></td></tr><tr><td class="c-id">c4</td><td>身高來自骨頭兩端'生長板'的延長——這才是真正的主角。<br><span class="cap2">生長板 · 才是關鍵</span></td></tr><tr><td class="c-id">c5</td><td>喚醒生長板的是生長激素！充足睡眠和運動是最自然的方法。<br><span class="cap2">生長激素 · <span class="y">睡眠 + 運動</span></span></td></tr><tr><td class="c-id">c6</td><td>遺傳佔70~80%，剩下20~30%靠營養、睡眠、運動就能改變。<br><span class="cap2">遺傳 70~80% · <span class="y">剩下靠我們！</span></span></td></tr><tr><td class="c-id">c7</td><td>光喝牛奶喝飽了，不吃別的菜，反而會營養不均衡。<br><span class="cap2">牛奶過量 · <span class="y">營養不均衡</span></span></td></tr><tr><td class="c-id">c8</td><td>小魚、菠菜、豆腐、起司，再加蛋白質和維生素D，樣樣齊全！均衡才是答案。<br><span class="cap2">均衡才是答案 · 魚·豆腐·蔬菜</span></td></tr><tr><td class="c-id">c9</td><td>只看牛奶無法知道。骨齡能看出孩子的成長潛力。<br><span class="cap2">牛奶看不出 · <span class="y">查骨齡</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的成長潛力吧。<br><span class="cap2">成長潛力 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/우유칼슘신화/</code> · <code>우유칼슘신화-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

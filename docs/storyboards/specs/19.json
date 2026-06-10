@@ -1,0 +1,786 @@
+{
+  "n": 19,
+  "slug": "스테로이드키",
+  "title": "스테로이드 약, 진짜 키를 멈출까? — 흡입·연고·경구",
+  "sub": "흡입·연고는 거의 안전, 경구는 단기 OK·장기만 주의 — 막연한 불안은 그만",
+  "category": "A. 성장과학",
+  "topicTitle": "스테로이드 성장 영향 (흡입·연고·경구 차이)",
+  "headerTop": "스테로이드 약",
+  "headerMark": "키를 멈춘다고?",
+  "accentEmoji": "💊✨",
+  "hook": "아이 스테로이드 약 처방받고, 키 안 클까 봐 걱정되셨죠?",
+  "misconception": "스테로이드 약은 무조건 키를 멈춘다고 믿지만, 실제로는 종류(흡입·연고·경구)와 사용 기간에 따라 영향이 완전히 다르다. 흡입·연고는 거의 안전하고, 문제는 장기 경구 복용뿐이다.",
+  "message": "흡입·연고 스테로이드는 전신 흡수가 적어 키에 거의 영향이 없고, 경구도 1주 이내 단기는 안전하다. 수개월 이상 장기 복용만 성장호르몬을 억제할 수 있어 전문의 관리가 필요하다. 오히려 천식·아토피를 방치하는 것이 수면·활동을 해쳐 성장에 더 나쁘다.",
+  "tone": "막연한 공포 조장 ❌ → \"무조건 위험\"이 아니라 \"제대로 쓰면 안전, 종류·기간이 핵심\"이라는 안심 메시지. 처방약을 끊으라는 말 ❌(질환 관리가 성장에 더 중요). \"우리 아이 키\"로 모든 부모 보편 타깃. CTA는 약 중단이 아니라 뼈나이·예측키로 성장 상태를 확인하라는 초대.",
+  "cta": "스테로이드를 쓰는 우리 아이의 성장이 잘 가고 있는지, 홈페이지에서 뼈나이·예측키로 지금 확인해 보세요.",
+  "duration": 35,
+  "thumb": {
+    "kicker": "막연한 걱정 그만!",
+    "subject": "우리 아이 키",
+    "number": "진짜 멈출까?",
+    "numLabel": "스테로이드 약"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·공감",
+      "scenes": "c1–c2",
+      "desc": "\"스테로이드 처방받고 키 걱정? 종류부터 다릅니다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "흡입",
+      "scenes": "c3–c4",
+      "desc": "\"천식·비염 흡입약 — 전신 흡수 적어 키에 거의 영향 X\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "연고",
+      "scenes": "c5–c6",
+      "desc": "\"아토피 연고 — 바르는 약, 흡수율 낮아 안심\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "경구",
+      "scenes": "c7–c8",
+      "desc": "\"먹는 약 — 단기 OK, 장기만 주의\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "핵심·행동",
+      "scenes": "c9–c10",
+      "desc": "\"방치가 더 위험 → 뼈나이로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "💊 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "아이 스테로이드 약 처방받고, 키 안 클까 봐 걱정되셨죠?",
+          "cap": [
+            "스테로이드 약",
+            "키 멈출까?"
+          ],
+          "hl": "키 멈출까?"
+        },
+        "th": {
+          "narr": "ลูกได้ยาสเตียรอยด์ กังวลว่าจะไม่สูงใช่ไหม?",
+          "cap": [
+            "ยาสเตียรอยด์",
+            "หยุดสูงไหม?"
+          ],
+          "hl": "หยุดสูงไหม?"
+        },
+        "vi": {
+          "narr": "Con được kê thuốc steroid, bạn lo sẽ không cao đúng không?",
+          "cap": [
+            "Thuốc steroid",
+            "ngừng cao?"
+          ],
+          "hl": "ngừng cao?"
+        },
+        "en": {
+          "narr": "Your child got a steroid prescription — worried it'll stunt their height?",
+          "cap": [
+            "Steroid meds",
+            "stop growth?"
+          ],
+          "hl": "stop growth?"
+        },
+        "cn": {
+          "narr": "孩子被开了类固醇药，担心会长不高吧？",
+          "cap": [
+            "类固醇药",
+            "会停长吗？"
+          ],
+          "hl": "会停长吗？"
+        },
+        "ch": {
+          "narr": "孩子被開了類固醇藥，擔心會長不高吧？",
+          "cap": [
+            "類固醇藥",
+            "會停長嗎？"
+          ],
+          "hl": "會停長嗎？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🔀 갈라짐",
+      "copy": {
+        "ko": {
+          "narr": "그런데 스테로이드라고 다 같은 게 아니에요. 종류마다 완전히 달라요.",
+          "cap": [
+            "다 같지 않다",
+            "종류마다 달라요"
+          ],
+          "hl": "종류마다 달라요"
+        },
+        "th": {
+          "narr": "แต่สเตียรอยด์ไม่ได้เหมือนกันหมด แต่ละชนิดต่างกันมาก",
+          "cap": [
+            "ไม่เหมือนกัน",
+            "แต่ละชนิดต่างกัน"
+          ],
+          "hl": "แต่ละชนิดต่างกัน"
+        },
+        "vi": {
+          "narr": "Nhưng steroid không phải loại nào cũng giống nhau — mỗi loại rất khác.",
+          "cap": [
+            "Không giống nhau",
+            "mỗi loại khác"
+          ],
+          "hl": "mỗi loại khác"
+        },
+        "en": {
+          "narr": "But not all steroids are the same — each type is totally different.",
+          "cap": [
+            "Not all alike",
+            "type matters"
+          ],
+          "hl": "type matters"
+        },
+        "cn": {
+          "narr": "但类固醇不都一样，每种差别很大。",
+          "cap": [
+            "并非都一样",
+            "种类不同"
+          ],
+          "hl": "种类不同"
+        },
+        "ch": {
+          "narr": "但類固醇不都一樣，每種差別很大。",
+          "cap": [
+            "並非都一樣",
+            "種類不同"
+          ],
+          "hl": "種類不同"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "ig",
+      "igLabel": "IG1 3종 비교",
+      "motion": "💨🧴💊 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "크게 세 가지예요. 흡입, 연고, 그리고 먹는 약.",
+          "cap": [
+            "흡입·연고·경구",
+            "3가지 종류"
+          ],
+          "hl": "3가지 종류"
+        },
+        "th": {
+          "narr": "หลักๆ มี 3 แบบ แบบสูดพ่น แบบทา และแบบกิน",
+          "cap": [
+            "สูด·ทา·กิน",
+            "3 แบบ"
+          ],
+          "hl": "3 แบบ"
+        },
+        "vi": {
+          "narr": "Có 3 loại chính: hít, bôi, và uống.",
+          "cap": [
+            "Hít·bôi·uống",
+            "3 loại"
+          ],
+          "hl": "3 loại"
+        },
+        "en": {
+          "narr": "There are three kinds: inhaled, topical, and oral.",
+          "cap": [
+            "Inhaled·cream·oral",
+            "3 types"
+          ],
+          "hl": "3 types"
+        },
+        "cn": {
+          "narr": "主要有三种：吸入、外用、口服。",
+          "cap": [
+            "吸入·外用·口服",
+            "3种"
+          ],
+          "hl": "3种"
+        },
+        "ch": {
+          "narr": "主要有三種：吸入、外用、口服。",
+          "cap": [
+            "吸入·外用·口服",
+            "3種"
+          ],
+          "hl": "3種"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 흡입",
+      "motion": "💨 + \"거의 0%\" 페이드",
+      "copy": {
+        "ko": {
+          "narr": "천식·비염에 쓰는 흡입약은 전신 흡수가 아주 적어요. 최종 키엔 거의 영향 없어요.",
+          "cap": [
+            "흡입 = 국소작용",
+            "키 영향 거의 0"
+          ],
+          "hl": "키 영향 거의 0"
+        },
+        "th": {
+          "narr": "ยาพ่นสำหรับหอบหืด·ภูมิแพ้ ดูดซึมเข้าร่างกายน้อยมาก แทบไม่กระทบความสูง",
+          "cap": [
+            "พ่น = เฉพาะที่",
+            "แทบไม่กระทบ"
+          ],
+          "hl": "แทบไม่กระทบ"
+        },
+        "vi": {
+          "narr": "Thuốc hít cho hen·viêm mũi hấp thu toàn thân rất ít — hầu như không ảnh hưởng chiều cao.",
+          "cap": [
+            "Hít = tại chỗ",
+            "gần như 0"
+          ],
+          "hl": "gần như 0"
+        },
+        "en": {
+          "narr": "Inhalers for asthma and rhinitis are barely absorbed — almost no effect on final height.",
+          "cap": [
+            "Inhaled = local",
+            "near-zero effect"
+          ],
+          "hl": "near-zero effect"
+        },
+        "cn": {
+          "narr": "哮喘·鼻炎用的吸入药全身吸收很少，对最终身高几乎没影响。",
+          "cap": [
+            "吸入=局部",
+            "几乎不影响"
+          ],
+          "hl": "几乎不影响"
+        },
+        "ch": {
+          "narr": "哮喘·鼻炎用的吸入藥全身吸收很少，對最終身高幾乎沒影響。",
+          "cap": [
+            "吸入=局部",
+            "幾乎不影響"
+          ],
+          "hl": "幾乎不影響"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🧴 토닥",
+      "copy": {
+        "ko": {
+          "narr": "아토피에 바르는 연고도 마찬가지예요. 피부에만 작용해서 흡수율이 아주 낮아요.",
+          "cap": [
+            "바르는 연고",
+            "흡수율 아주 낮음"
+          ],
+          "hl": "흡수율 아주 낮음"
+        },
+        "th": {
+          "narr": "ยาทาสำหรับภูมิแพ้ผิวหนังก็เหมือนกัน ออกฤทธิ์เฉพาะผิว ดูดซึมต่ำมาก",
+          "cap": [
+            "ยาทา",
+            "ดูดซึมต่ำมาก"
+          ],
+          "hl": "ดูดซึมต่ำมาก"
+        },
+        "vi": {
+          "narr": "Kem bôi cho viêm da cũng vậy — chỉ tác dụng trên da, hấp thu rất thấp.",
+          "cap": [
+            "Kem bôi",
+            "hấp thu rất thấp"
+          ],
+          "hl": "hấp thu rất thấp"
+        },
+        "en": {
+          "narr": "Creams for eczema are the same — they act on skin only, with very low absorption.",
+          "cap": [
+            "Topical cream",
+            "very low uptake"
+          ],
+          "hl": "very low uptake"
+        },
+        "cn": {
+          "narr": "治湿疹的外用药膏也一样，只作用于皮肤，吸收率很低。",
+          "cap": [
+            "外用药膏",
+            "吸收率很低"
+          ],
+          "hl": "吸收率很低"
+        },
+        "ch": {
+          "narr": "治濕疹的外用藥膏也一樣，只作用於皮膚，吸收率很低。",
+          "cap": [
+            "外用藥膏",
+            "吸收率很低"
+          ],
+          "hl": "吸收率很低"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–21.5s",
+      "kind": "ig",
+      "igLabel": "IG3 방치가 더 위험",
+      "motion": "😴 펄스 + ⚠️ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "오히려 천식·아토피를 방치해서 잠 못 자고 못 노는 게 성장엔 더 나빠요.",
+          "cap": [
+            "방치가 더 위험",
+            "질환 관리가 우선"
+          ],
+          "hl": "방치가 더 위험"
+        },
+        "th": {
+          "narr": "กลับกัน ปล่อยหอบหืด·ภูมิแพ้ไว้ จนนอนไม่หลับ แย่ต่อการสูงมากกว่า",
+          "cap": [
+            "ปล่อยไว้แย่กว่า",
+            "คุมโรคก่อน"
+          ],
+          "hl": "ปล่อยไว้แย่กว่า"
+        },
+        "vi": {
+          "narr": "Ngược lại, để mặc hen·viêm da khiến con mất ngủ mới hại chiều cao hơn.",
+          "cap": [
+            "Bỏ mặc hại hơn",
+            "kiểm soát bệnh"
+          ],
+          "hl": "Bỏ mặc hại hơn"
+        },
+        "en": {
+          "narr": "In fact, leaving asthma or eczema untreated — losing sleep — hurts growth more.",
+          "cap": [
+            "Untreated is worse",
+            "control the disease"
+          ],
+          "hl": "Untreated is worse"
+        },
+        "cn": {
+          "narr": "反而放任哮喘·湿疹让孩子睡不好，对长高更不利。",
+          "cap": [
+            "放任更危险",
+            "先控制疾病"
+          ],
+          "hl": "放任更危险"
+        },
+        "ch": {
+          "narr": "反而放任哮喘·濕疹讓孩子睡不好，對長高更不利。",
+          "cap": [
+            "放任更危險",
+            "先控制疾病"
+          ],
+          "hl": "放任更危險"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "21.5–25s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "💊 펄스 · 단기 ✅",
+      "copy": {
+        "ko": {
+          "narr": "먹는 경구약은요? 1주일 이내 단기 복용은 대부분 안전해요. 몸이 회복하거든요.",
+          "cap": [
+            "경구 단기복용",
+            "대부분 안전"
+          ],
+          "hl": "대부분 안전"
+        },
+        "th": {
+          "narr": "แล้วยากินล่ะ? กินสั้นๆ ไม่เกิน 1 สัปดาห์ ส่วนใหญ่ปลอดภัย ร่างกายฟื้นได้",
+          "cap": [
+            "กินสั้นๆ",
+            "ส่วนใหญ่ปลอดภัย"
+          ],
+          "hl": "ส่วนใหญ่ปลอดภัย"
+        },
+        "vi": {
+          "narr": "Còn thuốc uống? Dùng ngắn dưới 1 tuần phần lớn an toàn — cơ thể hồi phục được.",
+          "cap": [
+            "Uống ngắn ngày",
+            "phần lớn an toàn"
+          ],
+          "hl": "phần lớn an toàn"
+        },
+        "en": {
+          "narr": "What about oral pills? Short courses under a week are mostly safe — the body recovers.",
+          "cap": [
+            "Short oral course",
+            "mostly safe"
+          ],
+          "hl": "mostly safe"
+        },
+        "cn": {
+          "narr": "那口服药呢？1周以内短期服用大多安全，身体能恢复。",
+          "cap": [
+            "短期口服",
+            "大多安全"
+          ],
+          "hl": "大多安全"
+        },
+        "ch": {
+          "narr": "那口服藥呢？1週以內短期服用大多安全，身體能恢復。",
+          "cap": [
+            "短期口服",
+            "大多安全"
+          ],
+          "hl": "大多安全"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "25–29s",
+      "kind": "ig",
+      "igLabel": "IG4 경구 단기 vs 장기",
+      "motion": "⚖️ 기울기 + 장기쪽 ⚠️",
+      "copy": {
+        "ko": {
+          "narr": "단, 수개월 이상 장기 복용은 성장호르몬을 억제할 수 있어 전문의 관리가 필요해요.",
+          "cap": [
+            "장기 복용만",
+            "전문의 관리 필요"
+          ],
+          "hl": "전문의 관리 필요"
+        },
+        "th": {
+          "narr": "แต่ถ้ากินยาวหลายเดือน อาจกดฮอร์โมนการเจริญเติบโต ต้องให้หมอดูแล",
+          "cap": [
+            "เฉพาะระยะยาว",
+            "ต้องมีหมอดูแล"
+          ],
+          "hl": "ต้องมีหมอดูแล"
+        },
+        "vi": {
+          "narr": "Nhưng uống dài trên vài tháng có thể ức chế hormone tăng trưởng — cần bác sĩ theo dõi.",
+          "cap": [
+            "Chỉ dùng dài",
+            "cần bác sĩ"
+          ],
+          "hl": "cần bác sĩ"
+        },
+        "en": {
+          "narr": "But months-long use can suppress growth hormone — that needs a specialist's care.",
+          "cap": [
+            "Long-term only",
+            "needs specialist"
+          ],
+          "hl": "needs specialist"
+        },
+        "cn": {
+          "narr": "但连续数月以上长期服用可能抑制生长激素，需要专科医生管理。",
+          "cap": [
+            "仅限长期",
+            "需专科管理"
+          ],
+          "hl": "需专科管理"
+        },
+        "ch": {
+          "narr": "但連續數月以上長期服用可能抑制生長激素，需要專科醫師管理。",
+          "cap": [
+            "僅限長期",
+            "需專科管理"
+          ],
+          "hl": "需專科管理"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29–32s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "약 끊는 게 답이 아니에요. 뼈나이를 보면 우리 아이 성장이 괜찮은지 알 수 있어요.",
+          "cap": [
+            "약 중단 X",
+            "뼈나이로 확인"
+          ],
+          "hl": "뼈나이로 확인"
+        },
+        "th": {
+          "narr": "การหยุดยาไม่ใช่คำตอบ ดูอายุกระดูกจะรู้ว่าลูกโตปกติไหม",
+          "cap": [
+            "ไม่ใช่หยุดยา",
+            "ดูอายุกระดูก"
+          ],
+          "hl": "ดูอายุกระดูก"
+        },
+        "vi": {
+          "narr": "Ngừng thuốc không phải là cách. Xem tuổi xương sẽ biết con phát triển ổn không.",
+          "cap": [
+            "Đừng ngừng thuốc",
+            "xem tuổi xương"
+          ],
+          "hl": "xem tuổi xương"
+        },
+        "en": {
+          "narr": "Stopping the meds isn't the answer — bone age tells you if growth is on track.",
+          "cap": [
+            "Don't quit meds",
+            "check bone age"
+          ],
+          "hl": "check bone age"
+        },
+        "cn": {
+          "narr": "停药不是答案。看骨龄就知道孩子长得正不正常。",
+          "cap": [
+            "别停药",
+            "看骨龄"
+          ],
+          "hl": "看骨龄"
+        },
+        "ch": {
+          "narr": "停藥不是答案。看骨齡就知道孩子長得正不正常。",
+          "cap": [
+            "別停藥",
+            "看骨齡"
+          ],
+          "hl": "看骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32–35s",
+      "kind": "cta",
+      "igLabel": "",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 상태, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 상태",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กพัฒนาการการเติบโตของลูกวันนี้",
+          "cap": [
+            "พัฒนาการลูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tình trạng tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Tình trạng con",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth status today.",
+          "cap": [
+            "Growth status",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的成长状况吧。",
+          "cap": [
+            "成长状况",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的成長狀況吧。",
+          "cap": [
+            "成長狀況",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "3종 순차 점등",
+      "title": "스테로이드 3종 — 흡입·연고·경구",
+      "emojis": [
+        "💨",
+        "🧴",
+        "💊"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly medical icons in a row on soft rounded cards: an asthma inhaler puffing a gentle mist, a squeeze tube of ointment with a dab of cream, and an oral pill/capsule with a tiny water glass. Even spacing, brand purple #667eea cards with mint #2dd4bf accents, soft shadows, cheerful pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 카드",
+          "ko": "흡입",
+          "en": "Inhaled",
+          "th": "แบบสูดพ่น"
+        },
+        {
+          "pos": "가운데 카드",
+          "ko": "연고",
+          "en": "Topical",
+          "th": "แบบทา"
+        },
+        {
+          "pos": "오른쪽 카드",
+          "ko": "경구",
+          "en": "Oral",
+          "th": "แบบกิน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "폐 점등 + 미스트 흡수 적음",
+      "title": "흡입 — 국소작용, 전신 흡수 적음",
+      "emojis": [
+        "💨",
+        "🫁"
+      ],
+      "prompt": "Flat vector, square, white bg. A cute pair of lungs glowing softly with a small inhaler mist settling locally on them; a faint shield around the body showing the medicine stays local, only a tiny trickle reaching the bloodstream. Calm and reassuring. Brand purple + mint gradient, soft glow. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "폐 위",
+          "ko": "국소작용",
+          "en": "Acts locally",
+          "th": "ออกฤทธิ์เฉพาะที่"
+        },
+        {
+          "pos": "하단(작게)",
+          "ko": "전신 흡수 ↓",
+          "en": "Low systemic",
+          "th": "ดูดซึมน้อย"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "평온한 수면 → 흔들리는 ⚠️",
+      "title": "방치가 더 위험 — 잠·활동 저하",
+      "emojis": [
+        "😴",
+        "⚠️"
+      ],
+      "prompt": "Flat vector, square, white bg. A child tossing and turning in bed unable to sleep due to itching/coughing, with a small warning glow above; beside it a gentle downward growth arrow. Conveys 'untreated disease disturbs sleep and harms growth.' Warm, empathetic pediatric style, brand purple with a soft amber warning accent and mint. NO text.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "방치 시",
+          "en": "If untreated",
+          "th": "ถ้าปล่อยไว้"
+        },
+        {
+          "pos": "화살표",
+          "ko": "성장 ↓",
+          "en": "Growth drops",
+          "th": "การโตช้าลง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "양팔 저울 기울기 + 장기쪽 글로우",
+      "title": "경구 — 단기 안전 vs 장기 주의",
+      "emojis": [
+        "⚖️",
+        "💊"
+      ],
+      "prompt": "Flat vector, square, white bg. A balance scale: on the left pan a single calendar page with a small checkmark glow (short course, safe, mint); on the right pan a thick stack of calendar pages tilting down with a soft amber caution glow (long-term, watch). Clean, balanced composition, brand purple frame with mint and amber accents. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 접시",
+          "ko": "단기 · 안전",
+          "en": "Short · safe",
+          "th": "สั้น · ปลอดภัย"
+        },
+        {
+          "pos": "오른쪽 접시",
+          "ko": "장기 · 주의",
+          "en": "Long · caution",
+          "th": "ยาว · ระวัง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "💊",
+      "label": "스테로이드 약"
+    },
+    {
+      "e": "💨",
+      "label": "흡입"
+    },
+    {
+      "e": "🧴",
+      "label": "연고"
+    },
+    {
+      "e": "🫁",
+      "label": "폐·국소작용"
+    },
+    {
+      "e": "⚖️",
+      "label": "단기 vs 장기"
+    },
+    {
+      "e": "😴",
+      "label": "수면·방치"
+    },
+    {
+      "e": "⚠️",
+      "label": "주의(장기복용)"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🔍",
+      "label": "확인"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    },
+    {
+      "e": "🧒",
+      "label": "우리 아이"
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 모유 분유 성장 차이</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #52</span>
+  <h1>모유 먹이면 키 작게 큰다? — 진짜 키를 정하는 건</h1>
+  <div class="sub">모유 vs 분유는 초반 몸무게 차이일 뿐 — 최종 키는 유전 80%·환경 20%가 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>오해 풀어요</b></div>
+      <div class="subj">모유 먹인 우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">80%</div><div class="lab">는 유전이 결정</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>모유 먹인 우리 아이 키</b> 80%는 유전이 결정"</li>
+        <li><b>거대 숫자 "80%"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #52 「모유 분유 성장 차이」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">""모유 먹인 우리 아이, 분유 아이보다 키 작게 크는 거 아닐까요?""</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>모유 먹이면 키가 작게 큰다 → 사실은 초반 '몸무게' 차이일 뿐, 최종 키와는 무관</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>모유·분유는 6개월쯤 초기 체중 패턴만 다를 뿐. 최종 키는 유전 80%·환경 20%(영양·수면·운동)가 만든다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>불안 조장 ❌ → "모유든 분유든 잘 큰다" 안심 + 긍정. "우리 아이 키" 보편. CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>초반 차이 말고 우리 아이의 성장 곡선 확인 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"모유라서 작나? 흔한 오해"</p></div><div class="act"><span class="n">ACT 2</span><h4>초기 차이</h4><p>c3–c4<br>"6개월 뒤 분유아가 더 통통 — 몸무게 차이"</p></div><div class="act"><span class="n">ACT 3</span><h4>반전</h4><p>c5–c6<br>"초기 체중 ≠ 최종 키, 모유는 살아있는 영양원"</p></div><div class="act"><span class="n">ACT 4</span><h4>핵심</h4><p>c7–c8<br>"키는 유전 80%·환경 20%"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 우리 아이 곡선 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">모유라서 작나?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🍼✨</div></div>
+        <div class="ph-cap"><div class="l">모유라서</div><div class="l"><span class="y2">키 작게 크나?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">모유 먹인 우리 아이, 분유 아이보다 키 작게 크는 거 아닐까요?</td><td><span class="cap2">모유라서<br><span class="y">키 작게 크나?</span></span></td><td class="mo">🍼 슬램 인 + ❓ 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">정말 많이 받는 질문인데요, 결론부터 말씀드리면 그건 오해예요.</td><td><span class="cap2">흔한 질문<br><span class="y">사실은 오해</span></span></td><td class="mo">💭 흔들 + ✖️ 표시</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 모유 vs 분유</span></td><td class="narr">신생아 땐 둘 다 비슷하게 커요. 차이는 생후 3에서 6개월부터예요.</td><td><span class="cap2">신생아 땐 비슷<br>차이는 <span class="y">3~6개월부터</span></span></td><td class="mo">🍼🍼 좌우 페이드 인</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 통통한 분유아</span></td><td class="narr">분유는 단백질이 많아 이때 분유 아이가 더 빨리, 더 통통해져요.</td><td><span class="cap2">분유 = 단백질↑<br><span class="y">더 통통할 뿐</span></span></td><td class="mo">⚖️ 무게추 + 📈 카운트업</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 이 초기 몸무게가 최종 키로 이어지는 건 아니에요.</td><td><span class="cap2">초기 몸무게<br><span class="y">= 최종 키 아님</span></span></td><td class="mo">🔄 반전 + 🍼 글로우</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">모유는 단계마다 필요한 영양을 맞춰주는 살아있는 영양원이거든요.</td><td><span class="cap2">모유는<br><span class="y">살아있는 영양원</span></span></td><td class="mo">💚 하트 펄스</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG3 유전 80 환경 20</span></td><td class="narr">사실 최종 키는 유전이 약 80퍼센트, 환경이 약 20퍼센트예요.</td><td><span class="cap2">키 = <span class="y">유전 80%</span><br>환경 20%</span></td><td class="mo">🧬 80% 카운트업</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 환경 4요소</span></td><td class="narr">그 20퍼센트, 영양·수면·운동이 우리가 채울 수 있는 부분이고요.</td><td><span class="cap2">채울 수 있는 20%<br><span class="y">영양·수면·운동</span></span></td><td class="mo">🍽️😴🏃 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그러니 초반 차이 말고, 뼈나이로 우리 아이 성장 곡선을 보세요.</td><td><span class="cap2">초반 차이 말고<br><span class="y">뼈나이로 곡선 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 예측키, 지금 홈페이지에서 확인해 보세요.</td><td><span class="cap2">우리 아이 예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 두 곡선 좌우 페이드 인</div><h3>모유 vs 분유 — 초기 성장 곡선</h3></div>
+        <div class="body">
+          <div class="sketch">🍼 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Two friendly baby bottles side by side at the bottom, with two gentle growth curves rising from them — nearly overlapping at the start, then slightly diverging to the right. One curve in brand purple #667eea, the other in mint #2dd4bf, soft and rounded, friendly pediatric style. A small dotted vertical marker where the two curves begin to separate. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 병</td><td>모유</td><td>Breast milk</td><td class="thai">นมแม่</td></tr><tr><td>오른쪽 병</td><td>분유</td><td>Formula</td><td class="thai">นมผง</td></tr><tr><td>분기점 마커</td><td>3~6개월</td><td>3–6 mo</td><td class="thai">3–6 เดือน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: ⚖️ 무게추 + 체중 카운트업</div><h3>분유아 — 초기 체중 ↑</h3></div>
+        <div class="body">
+          <div class="sketch">⚖️ 🍼</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A cute chubby baby sitting next to a simple weighing scale tipping slightly down on the baby's side, a small upward weight-gain arrow beside it. Soft purple gradient with a mint accent, friendly pediatric. Conveys 'faster early weight gain', NOT height. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>저울 위</td><td>체중 빨리 ↑</td><td>weight up fast</td><td class="thai">น้ำหนักขึ้นเร็ว</td></tr><tr><td>하단</td><td>통통할 뿐</td><td>just plump</td><td class="thai">แค่อ้วนท้วน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c7 · 모션: 🧬 80% 카운트업 + 분할 채움</div><h3>키 = 유전 80% · 환경 20%</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🌱</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A clean horizontal bar split into a large segment (about four-fifths) and a small segment (about one-fifth). The large segment shows a stylized DNA double helix motif in brand purple #667eea; the small segment shows a small sprout/leaf motif in mint #2dd4bf. Friendly, simple, infographic style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>큰 구간(좌)</td><td>유전 80%</td><td>Genes 80%</td><td class="thai">พันธุกรรม 80%</td></tr><tr><td>작은 구간(우)</td><td>환경 20%</td><td>Environment 20%</td><td class="thai">สิ่งแวดล้อม 20%</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 🍽️😴🏃 아이콘 순차 점등</div><h3>환경 20% — 채울 수 있는 것</h3></div>
+        <div class="body">
+          <div class="sketch">🍽️ 😴 🏃</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Three friendly circular icons in a row connected by a gentle curved line: a balanced meal plate, a sleeping crescent moon with a pillow, and a child running. Each icon in a soft rounded badge, brand purple #667eea and mint #2dd4bf palette, warm and encouraging pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr><tr><td>아이콘2</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>아이콘3</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🍼</b> 모유·분유</span><span class="emo"><b>❓</b> 오해/질문</span><span class="emo"><b>⚖️</b> 초기 체중</span><span class="emo"><b>📈</b> 성장 곡선</span><span class="emo"><b>💚</b> 살아있는 영양원</span><span class="emo"><b>🧬</b> 유전 80%</span><span class="emo"><b>🌱</b> 환경 20%</span><span class="emo"><b>🍽️</b> 영양</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>모유 먹인 우리 아이, 분유 아이보다 키 작게 크는 거 아닐까요?<br><span class="cap2">모유라서 · <span class="y">키 작게 크나?</span></span></td></tr><tr><td class="c-id">c2</td><td>정말 많이 받는 질문인데요, 결론부터 말씀드리면 그건 오해예요.<br><span class="cap2">흔한 질문 · <span class="y">사실은 오해</span></span></td></tr><tr><td class="c-id">c3</td><td>신생아 땐 둘 다 비슷하게 커요. 차이는 생후 3에서 6개월부터예요.<br><span class="cap2">신생아 땐 비슷 · 차이는 <span class="y">3~6개월부터</span></span></td></tr><tr><td class="c-id">c4</td><td>분유는 단백질이 많아 이때 분유 아이가 더 빨리, 더 통통해져요.<br><span class="cap2">분유 = 단백질↑ · <span class="y">더 통통할 뿐</span></span></td></tr><tr><td class="c-id">c5</td><td>그런데 이 초기 몸무게가 최종 키로 이어지는 건 아니에요.<br><span class="cap2">초기 몸무게 · <span class="y">= 최종 키 아님</span></span></td></tr><tr><td class="c-id">c6</td><td>모유는 단계마다 필요한 영양을 맞춰주는 살아있는 영양원이거든요.<br><span class="cap2">모유는 · <span class="y">살아있는 영양원</span></span></td></tr><tr><td class="c-id">c7</td><td>사실 최종 키는 유전이 약 80퍼센트, 환경이 약 20퍼센트예요.<br><span class="cap2">키 = 유전 80% · 환경 20%</span></td></tr><tr><td class="c-id">c8</td><td>그 20퍼센트, 영양·수면·운동이 우리가 채울 수 있는 부분이고요.<br><span class="cap2">채울 수 있는 20% · <span class="y">영양·수면·운동</span></span></td></tr><tr><td class="c-id">c9</td><td>그러니 초반 차이 말고, 뼈나이로 우리 아이 성장 곡선을 보세요.<br><span class="cap2">초반 차이 말고 · <span class="y">뼈나이로 곡선 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 예측키, 지금 홈페이지에서 확인해 보세요.<br><span class="cap2">우리 아이 예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ลูกที่กินนมแม่ จะตัวเล็กกว่าเด็กนมผงจริงไหม?<br><span class="cap2">กินนมแม่ · <span class="y">ตัวเล็กกว่าไหม?</span></span></td></tr><tr><td class="c-id">c2</td><td>เป็นคำถามที่พบบ่อยมาก แต่บอกเลยว่านี่คือความเข้าใจผิด<br><span class="cap2">คำถามยอดฮิต · <span class="y">คือความเข้าใจผิด</span></span></td></tr><tr><td class="c-id">c3</td><td>ช่วงแรกเกิดโตพอกัน ความต่างเริ่มหลัง 3–6 เดือน<br><span class="cap2">แรกเกิดพอกัน · ต่างหลัง <span class="y">3–6 เดือน</span></span></td></tr><tr><td class="c-id">c4</td><td>นมผงโปรตีนสูง เด็กนมผงจึงดูอ้วนท้วนเร็วกว่าในช่วงนี้<br><span class="cap2">นมผง โปรตีนสูง · <span class="y">แค่ดูอ้วนกว่า</span></span></td></tr><tr><td class="c-id">c5</td><td>แต่น้ำหนักช่วงแรกนี้ ไม่ได้กลายเป็นส่วนสูงสุดท้าย<br><span class="cap2">น้ำหนักช่วงแรก · <span class="y">≠ ส่วนสูงสุดท้าย</span></span></td></tr><tr><td class="c-id">c6</td><td>นมแม่คือแหล่งสารอาหารที่มีชีวิต ปรับให้ตามวัยของลูก<br><span class="cap2">นมแม่คือ · <span class="y">สารอาหารมีชีวิต</span></span></td></tr><tr><td class="c-id">c7</td><td>จริงๆ ส่วนสูงสุดท้าย พันธุกรรม 80% สิ่งแวดล้อม 20%<br><span class="cap2">พันธุกรรม 80% · สิ่งแวดล้อม 20%</span></td></tr><tr><td class="c-id">c8</td><td>20% นั้นคือ โภชนาการ การนอน การออกกำลังกาย ที่เราเติมได้<br><span class="cap2">20% ที่เติมได้ · <span class="y">กิน·นอน·ออกกำลัง</span></span></td></tr><tr><td class="c-id">c9</td><td>อย่ากังวลความต่างช่วงแรก ดูเส้นโค้งของลูกด้วยอายุกระดูก<br><span class="cap2">ไม่ใช่ช่วงแรก · <span class="y">ดูด้วยอายุกระดูก</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กส่วนสูงที่คาดการณ์ของลูกได้เลยวันนี้<br><span class="cap2">ส่วนสูงที่คาดการณ์ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con bú mẹ liệu có thấp hơn con bú sữa công thức không?<br><span class="cap2">Bú mẹ · <span class="y">có thấp hơn?</span></span></td></tr><tr><td class="c-id">c2</td><td>Đây là câu hỏi rất hay gặp, nhưng thật ra đó là hiểu lầm.<br><span class="cap2">Câu hỏi thường gặp · <span class="y">thật ra là hiểu lầm</span></span></td></tr><tr><td class="c-id">c3</td><td>Sơ sinh thì lớn như nhau. Khác biệt bắt đầu từ 3–6 tháng.<br><span class="cap2">Sơ sinh giống nhau · khác từ <span class="y">3–6 tháng</span></span></td></tr><tr><td class="c-id">c4</td><td>Sữa công thức nhiều đạm nên bé bú sữa tăng cân nhanh, mũm mĩm hơn.<br><span class="cap2">Sữa CT nhiều đạm · <span class="y">chỉ mũm mĩm hơn</span></span></td></tr><tr><td class="c-id">c5</td><td>Nhưng cân nặng sớm này không quyết định chiều cao cuối cùng.<br><span class="cap2">Cân nặng sớm · <span class="y">≠ chiều cao cuối</span></span></td></tr><tr><td class="c-id">c6</td><td>Sữa mẹ là nguồn dinh dưỡng sống, điều chỉnh theo từng giai đoạn của bé.<br><span class="cap2">Sữa mẹ là · <span class="y">dinh dưỡng sống</span></span></td></tr><tr><td class="c-id">c7</td><td>Thật ra chiều cao cuối cùng: gen khoảng 80%, môi trường 20%.<br><span class="cap2">Gen 80% · môi trường 20%</span></td></tr><tr><td class="c-id">c8</td><td>20% đó là dinh dưỡng, giấc ngủ, vận động — phần ta lấp được.<br><span class="cap2">20% ta lấp được · <span class="y">ăn·ngủ·vận động</span></span></td></tr><tr><td class="c-id">c9</td><td>Nên đừng lo chênh lệch sớm — hãy xem đường cong qua tuổi xương.<br><span class="cap2">Bỏ qua chênh lệch sớm · <span class="y">xem qua tuổi xương</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra chiều cao dự đoán của con ngay hôm nay.<br><span class="cap2">Chiều cao dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Is my breastfed baby really growing shorter than a formula-fed one?<br><span class="cap2">Breastfed · <span class="y">really shorter?</span></span></td></tr><tr><td class="c-id">c2</td><td>It's a question I hear all the time — but honestly, it's a myth.<br><span class="cap2">Common question · <span class="y">it's a myth</span></span></td></tr><tr><td class="c-id">c3</td><td>As newborns they grow alike. The gap starts at 3 to 6 months.<br><span class="cap2">Same as newborns · gap from <span class="y">3–6 months</span></span></td></tr><tr><td class="c-id">c4</td><td>Formula has more protein, so those babies get plumper faster here.<br><span class="cap2">Formula = more protein · <span class="y">just plumper</span></span></td></tr><tr><td class="c-id">c5</td><td>But that early weight does not turn into final height.<br><span class="cap2">Early weight · <span class="y">≠ final height</span></span></td></tr><tr><td class="c-id">c6</td><td>Breast milk is a living food that adjusts to each stage of your baby.<br><span class="cap2">Breast milk = · <span class="y">living nutrition</span></span></td></tr><tr><td class="c-id">c7</td><td>Final height is actually about 80% genes, 20% environment.<br><span class="cap2">Genes 80% · environment 20%</span></td></tr><tr><td class="c-id">c8</td><td>That 20% — nutrition, sleep, exercise — is the part we can fill.<br><span class="cap2">The 20% we control · <span class="y">food·sleep·exercise</span></span></td></tr><tr><td class="c-id">c9</td><td>So forget the early gap — read your child's curve with bone age.<br><span class="cap2">Not the early gap · <span class="y">read it by bone age</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's predicted height today.<br><span class="cap2">Predicted height · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>母乳喂养的孩子，真的比奶粉宝宝长得矮吗？<br><span class="cap2">母乳喂养 · <span class="y">真的更矮吗？</span></span></td></tr><tr><td class="c-id">c2</td><td>这是我常被问到的问题，但说实话，这是个误解。<br><span class="cap2">常见问题 · <span class="y">其实是误解</span></span></td></tr><tr><td class="c-id">c3</td><td>新生儿时长得差不多，差异从3到6个月才开始。<br><span class="cap2">新生儿差不多 · 差异从<span class="y">3–6个月</span>起</span></td></tr><tr><td class="c-id">c4</td><td>奶粉蛋白质更高，这阶段奶粉宝宝长得更快、更圆润。<br><span class="cap2">奶粉蛋白质高 · <span class="y">只是更圆润</span></span></td></tr><tr><td class="c-id">c5</td><td>但这早期体重，并不会变成最终的身高。<br><span class="cap2">早期体重 · <span class="y">≠ 最终身高</span></span></td></tr><tr><td class="c-id">c6</td><td>母乳是会随宝宝阶段调整的‘活的营养源’。<br><span class="cap2">母乳是 · <span class="y">活的营养源</span></span></td></tr><tr><td class="c-id">c7</td><td>其实最终身高，遗传约占80%，环境约占20%。<br><span class="cap2">遗传 80% · 环境 20%</span></td></tr><tr><td class="c-id">c8</td><td>那20%——营养、睡眠、运动——正是我们能补足的部分。<br><span class="cap2">能补足的20% · <span class="y">营养·睡眠·运动</span></span></td></tr><tr><td class="c-id">c9</td><td>所以别纠结初期差异，用骨龄看孩子的成长曲线。<br><span class="cap2">别看初期差异 · <span class="y">用骨龄看曲线</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就在主页查查孩子的预测身高吧。<br><span class="cap2">孩子预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>母乳餵養的孩子，真的比奶粉寶寶長得矮嗎？<br><span class="cap2">母乳餵養 · <span class="y">真的更矮嗎？</span></span></td></tr><tr><td class="c-id">c2</td><td>這是我常被問到的問題，但說實話，這是個誤解。<br><span class="cap2">常見問題 · <span class="y">其實是誤解</span></span></td></tr><tr><td class="c-id">c3</td><td>新生兒時長得差不多，差異從3到6個月才開始。<br><span class="cap2">新生兒差不多 · 差異從<span class="y">3–6個月</span>起</span></td></tr><tr><td class="c-id">c4</td><td>奶粉蛋白質更高，這階段奶粉寶寶長得更快、更圓潤。<br><span class="cap2">奶粉蛋白質高 · <span class="y">只是更圓潤</span></span></td></tr><tr><td class="c-id">c5</td><td>但這早期體重，並不會變成最終的身高。<br><span class="cap2">早期體重 · <span class="y">≠ 最終身高</span></span></td></tr><tr><td class="c-id">c6</td><td>母乳是會隨寶寶階段調整的『活的營養源』。<br><span class="cap2">母乳是 · <span class="y">活的營養源</span></span></td></tr><tr><td class="c-id">c7</td><td>其實最終身高，遺傳約佔80%，環境約佔20%。<br><span class="cap2">遺傳 80% · 環境 20%</span></td></tr><tr><td class="c-id">c8</td><td>那20%——營養、睡眠、運動——正是我們能補足的部分。<br><span class="cap2">能補足的20% · <span class="y">營養·睡眠·運動</span></span></td></tr><tr><td class="c-id">c9</td><td>所以別糾結初期差異，用骨齡看孩子的成長曲線。<br><span class="cap2">別看初期差異 · <span class="y">用骨齡看曲線</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就在首頁查查孩子的預測身高吧。<br><span class="cap2">孩子預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/moyu-bunyu-ki/</code> · <code>moyu-bunyu-ki-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

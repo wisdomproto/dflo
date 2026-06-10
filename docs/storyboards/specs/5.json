@@ -1,0 +1,773 @@
+{
+  "n": 5,
+  "slug": "뼈나이xray",
+  "title": "엑스레이 한 장으로 미래 키가 보인다 — 뼈나이",
+  "sub": "실제나이 말고 뼈나이 — 손목 X-ray 한 장에 우리 아이 남은 성장이 담겨 있다",
+  "category": "A. 성장과학",
+  "topicTitle": "뼈나이 vs 실제나이",
+  "headerTop": "우리 아이 키",
+  "headerMark": "뼈나이가 진짜 나이?",
+  "accentEmoji": "🦴✨",
+  "duration": 35,
+  "hook": "우리 아이 진짜 나이는 주민번호가 아니라, '뼈나이'예요.",
+  "misconception": "나이가 같으면 성장도 비슷하겠지 → 뼈나이가 다르면 남은 성장 기간이 완전히 다름",
+  "message": "뼈나이는 생물학적 성숙도. 손목 X-ray 한 장으로 성장판 열림·닫힘과 남은 성장 기간, 미래 키까지 예측한다.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"뼈나이를 보면 남은 기회를 알 수 있다\"). \"우리 아이 키\" 보편(모든 부모). 시청자가 이미 검사했다고 단정 ❌ → 측정 유도. 기사의 실제 사실/숫자 사용(8세→뼈나이 10/6세, 왼손목 X-ray, 검은 선=열림, 2년 이상 빠르면 성조숙 의심).",
+  "cta": "우리 아이 뼈나이·성장판 상태, 지금 바로 확인 → 뼈나이/예측키 측정 유도.",
+  "thumb": {
+    "kicker": "같은 나이라도 달라요!",
+    "subject": "우리 아이 진짜 키 나이",
+    "number": "뼈나이",
+    "numLabel": "X-ray 한 장"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"진짜 나이는 뼈나이\" + 같은 8세라도 다르다"
+    },
+    {
+      "act": "ACT 2",
+      "title": "뼈나이란",
+      "scenes": "c3–c4",
+      "desc": "\"생물학적 성숙도 = 뼈나이, 손목 X-ray로 측정\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "성장판 신호",
+      "scenes": "c5–c6",
+      "desc": "\"검은 선=열림, 사라지면=닫힘\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "빠르면·느리면",
+      "scenes": "c7–c8",
+      "desc": "\"2년 빠르면 성조숙 신호 / 느리면 더 클 잠재력\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 미래 키 예측 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🦴 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 진짜 나이는 주민번호가 아니라, '뼈나이'예요.",
+          "cap": [
+            "진짜 나이는",
+            "뼈나이"
+          ],
+          "hl": "뼈나이"
+        },
+        "th": {
+          "narr": "อายุจริงของลูกไม่ใช่อายุตามบัตร แต่คือ 'อายุกระดูก'",
+          "cap": [
+            "อายุจริงคือ",
+            "อายุกระดูก"
+          ],
+          "hl": "อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Tuổi thật của con không nằm trên giấy khai sinh — đó là 'tuổi xương'.",
+          "cap": [
+            "Tuổi thật là",
+            "tuổi xương"
+          ],
+          "hl": "tuổi xương"
+        },
+        "en": {
+          "narr": "Your child's real age isn't on their ID — it's their 'bone age'.",
+          "cap": [
+            "Real age is",
+            "bone age"
+          ],
+          "hl": "bone age"
+        },
+        "cn": {
+          "narr": "孩子真正的年龄不在身份证上，而是'骨龄'。",
+          "cap": [
+            "真正的年龄是",
+            "骨龄"
+          ],
+          "hl": "骨龄"
+        },
+        "ch": {
+          "narr": "孩子真正的年齡不在身分證上，而是'骨齡'。",
+          "cap": [
+            "真正的年齡是",
+            "骨齡"
+          ],
+          "hl": "骨齡"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "8️⃣ vs 1️⃣0️⃣ 흔들",
+      "copy": {
+        "ko": {
+          "narr": "같은 8살이라도 어떤 아이는 뼈나이가 10살, 어떤 아이는 6살이에요.",
+          "cap": [
+            "같은 8살이라도",
+            "뼈나이는 제각각"
+          ],
+          "hl": "뼈나이는 제각각"
+        },
+        "th": {
+          "narr": "อายุ 8 ขวบเท่ากัน แต่บางคนอายุกระดูก 10 บางคน 6",
+          "cap": [
+            "อายุเท่ากัน",
+            "อายุกระดูกต่างกัน"
+          ],
+          "hl": "อายุกระดูกต่างกัน"
+        },
+        "vi": {
+          "narr": "Cùng 8 tuổi, có bé tuổi xương 10, có bé chỉ 6.",
+          "cap": [
+            "Cùng 8 tuổi",
+            "tuổi xương khác nhau"
+          ],
+          "hl": "tuổi xương khác nhau"
+        },
+        "en": {
+          "narr": "Two 8-year-olds — one's bone age is 10, the other's is 6.",
+          "cap": [
+            "Same age 8",
+            "bone ages differ"
+          ],
+          "hl": "bone ages differ"
+        },
+        "cn": {
+          "narr": "同样8岁，有的孩子骨龄10岁，有的才6岁。",
+          "cap": [
+            "同样8岁",
+            "骨龄各不同"
+          ],
+          "hl": "骨龄各不同"
+        },
+        "ch": {
+          "narr": "同樣8歲，有的孩子骨齡10歲，有的才6歲。",
+          "cap": [
+            "同樣8歲",
+            "骨齡各不同"
+          ],
+          "hl": "骨齡各不同"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 두 나이",
+      "motion": "🆚 좌우 슬라이드 대비",
+      "copy": {
+        "ko": {
+          "narr": "실제나이는 생일로 세고, 뼈나이는 몸이 얼마나 자랐는지 성숙도를 봐요.",
+          "cap": [
+            "실제나이 vs",
+            "뼈나이 = 성숙도"
+          ],
+          "hl": "뼈나이 = 성숙도"
+        },
+        "th": {
+          "narr": "อายุจริงนับจากวันเกิด อายุกระดูกดูที่วุฒิภาวะร่างกาย",
+          "cap": [
+            "อายุจริง vs",
+            "อายุกระดูก = วุฒิภาวะ"
+          ],
+          "hl": "อายุกระดูก = วุฒิภาวะ"
+        },
+        "vi": {
+          "narr": "Tuổi thật tính theo ngày sinh, tuổi xương đo độ trưởng thành của cơ thể.",
+          "cap": [
+            "Tuổi thật vs",
+            "tuổi xương = trưởng thành"
+          ],
+          "hl": "tuổi xương = trưởng thành"
+        },
+        "en": {
+          "narr": "Real age counts birthdays; bone age reads how mature the body is.",
+          "cap": [
+            "Real age vs",
+            "bone age = maturity"
+          ],
+          "hl": "bone age = maturity"
+        },
+        "cn": {
+          "narr": "实际年龄按生日算，骨龄看身体成熟度。",
+          "cap": [
+            "实际年龄 vs",
+            "骨龄 = 成熟度"
+          ],
+          "hl": "骨龄 = 成熟度"
+        },
+        "ch": {
+          "narr": "實際年齡按生日算，骨齡看身體成熟度。",
+          "cap": [
+            "實際年齡 vs",
+            "骨齡 = 成熟度"
+          ],
+          "hl": "骨齡 = 成熟度"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "✋ 왼손 팝 + 📷 셔터",
+      "copy": {
+        "ko": {
+          "narr": "측정은 아주 간단해요. 왼쪽 손목을 X-ray 한 장 딱 찍으면 끝.",
+          "cap": [
+            "왼손목",
+            "X-ray 한 장"
+          ],
+          "hl": "X-ray 한 장"
+        },
+        "th": {
+          "narr": "ตรวจง่ายมาก แค่ X-ray ข้อมือซ้ายภาพเดียว",
+          "cap": [
+            "ข้อมือซ้าย",
+            "X-ray ภาพเดียว"
+          ],
+          "hl": "X-ray ภาพเดียว"
+        },
+        "vi": {
+          "narr": "Đo rất đơn giản — chỉ một tấm X-quang cổ tay trái.",
+          "cap": [
+            "Cổ tay trái",
+            "một tấm X-quang"
+          ],
+          "hl": "một tấm X-quang"
+        },
+        "en": {
+          "narr": "It's simple — just one X-ray of the left hand and wrist.",
+          "cap": [
+            "Left wrist",
+            "one X-ray"
+          ],
+          "hl": "one X-ray"
+        },
+        "cn": {
+          "narr": "检查很简单，左手腕拍一张X光就行。",
+          "cap": [
+            "左手腕",
+            "一张X光"
+          ],
+          "hl": "一张X光"
+        },
+        "ch": {
+          "narr": "檢查很簡單，左手腕拍一張X光就行。",
+          "cap": [
+            "左手腕",
+            "一張X光"
+          ],
+          "hl": "一張X光"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 성장판",
+      "motion": "🦴 검은 선 점등",
+      "copy": {
+        "ko": {
+          "narr": "X-ray에서 뼈와 뼈 사이 검은 선, 이게 바로 열려 있는 성장판이에요.",
+          "cap": [
+            "검은 선 =",
+            "열린 성장판"
+          ],
+          "hl": "열린 성장판"
+        },
+        "th": {
+          "narr": "เส้นสีดำระหว่างกระดูกใน X-ray คือแผ่นกระดูกที่เปิดอยู่",
+          "cap": [
+            "เส้นสีดำ =",
+            "แผ่นกระดูกเปิด"
+          ],
+          "hl": "แผ่นกระดูกเปิด"
+        },
+        "vi": {
+          "narr": "Vạch đen giữa hai xương trên X-quang chính là sụn tăng trưởng đang mở.",
+          "cap": [
+            "Vạch đen =",
+            "sụn đang mở"
+          ],
+          "hl": "sụn đang mở"
+        },
+        "en": {
+          "narr": "That black line between bones on the X-ray? An open growth plate.",
+          "cap": [
+            "Black line =",
+            "open plate"
+          ],
+          "hl": "open plate"
+        },
+        "cn": {
+          "narr": "X光上骨头之间的黑线，就是打开的生长板。",
+          "cap": [
+            "黑线 =",
+            "打开的生长板"
+          ],
+          "hl": "打开的生长板"
+        },
+        "ch": {
+          "narr": "X光上骨頭之間的黑線，就是打開的生長板。",
+          "cap": [
+            "黑線 =",
+            "打開的生長板"
+          ],
+          "hl": "打開的生長板"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 열림→닫힘",
+      "motion": "선이 점점 흐려지며 닫힘",
+      "copy": {
+        "ko": {
+          "narr": "이 선이 흐려지다 사라지면 성장판이 닫힌 거고, 키 성장도 거의 끝이에요.",
+          "cap": [
+            "선이 사라지면",
+            "성장판 닫힘"
+          ],
+          "hl": "성장판 닫힘"
+        },
+        "th": {
+          "narr": "ถ้าเส้นจางหายไป แผ่นกระดูกปิด การเติบโตเกือบจบ",
+          "cap": [
+            "เส้นหายไป =",
+            "แผ่นกระดูกปิด"
+          ],
+          "hl": "แผ่นกระดูกปิด"
+        },
+        "vi": {
+          "narr": "Khi vạch mờ rồi biến mất, sụn đã đóng — chiều cao gần như dừng.",
+          "cap": [
+            "Vạch biến mất =",
+            "sụn đã đóng"
+          ],
+          "hl": "sụn đã đóng"
+        },
+        "en": {
+          "narr": "When the line fades and vanishes, the plate is closed — growth nearly done.",
+          "cap": [
+            "Line gone =",
+            "plate closed"
+          ],
+          "hl": "plate closed"
+        },
+        "cn": {
+          "narr": "线变淡消失，生长板就闭合了，长高也快结束了。",
+          "cap": [
+            "线消失 =",
+            "生长板闭合"
+          ],
+          "hl": "生长板闭合"
+        },
+        "ch": {
+          "narr": "線變淡消失，生長板就閉合了，長高也快結束了。",
+          "cap": [
+            "線消失 =",
+            "生長板閉合"
+          ],
+          "hl": "生長板閉合"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 빨강 플래시",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이가 실제보다 2년 이상 빠르면, 성조숙증을 의심해 봐야 해요.",
+          "cap": [
+            "2년 이상 빠르면",
+            "성조숙 신호"
+          ],
+          "hl": "성조숙 신호"
+        },
+        "th": {
+          "narr": "ถ้าอายุกระดูกล้ำหน้า 2 ปีขึ้นไป ต้องสงสัยภาวะก่อนวัย",
+          "cap": [
+            "ล้ำหน้า 2 ปี+",
+            "สัญญาณก่อนวัย"
+          ],
+          "hl": "สัญญาณก่อนวัย"
+        },
+        "vi": {
+          "narr": "Nếu tuổi xương vượt 2 năm trở lên, hãy nghĩ đến dậy thì sớm.",
+          "cap": [
+            "Vượt 2 năm+",
+            "dấu hiệu dậy thì sớm"
+          ],
+          "hl": "dấu hiệu dậy thì sớm"
+        },
+        "en": {
+          "narr": "If bone age runs 2+ years ahead, think early puberty.",
+          "cap": [
+            "2+ years ahead",
+            "early-puberty sign"
+          ],
+          "hl": "early-puberty sign"
+        },
+        "cn": {
+          "narr": "如果骨龄超前2年以上，要警惕性早熟。",
+          "cap": [
+            "超前2年以上",
+            "性早熟信号"
+          ],
+          "hl": "性早熟信号"
+        },
+        "ch": {
+          "narr": "如果骨齡超前2年以上，要警惕性早熟。",
+          "cap": [
+            "超前2年以上",
+            "性早熟訊號"
+          ],
+          "hl": "性早熟訊號"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 느린 뼈나이",
+      "motion": "⏳ + 위로 여유 글로우",
+      "copy": {
+        "ko": {
+          "narr": "반대로 뼈나이가 느리면, 성장판이 늦게 닫혀 더 클 기회가 남은 거예요.",
+          "cap": [
+            "뼈나이 느리면",
+            "더 클 기회"
+          ],
+          "hl": "더 클 기회"
+        },
+        "th": {
+          "narr": "ตรงข้าม ถ้าอายุกระดูกช้า แผ่นกระดูกปิดช้า ยังมีโอกาสสูงอีก",
+          "cap": [
+            "อายุกระดูกช้า",
+            "ยังมีโอกาสสูง"
+          ],
+          "hl": "ยังมีโอกาสสูง"
+        },
+        "vi": {
+          "narr": "Ngược lại, tuổi xương chậm thì sụn đóng muộn — vẫn còn cơ hội cao thêm.",
+          "cap": [
+            "Tuổi xương chậm",
+            "còn cơ hội cao"
+          ],
+          "hl": "còn cơ hội cao"
+        },
+        "en": {
+          "narr": "If bone age is behind, the plate closes later — more room to grow.",
+          "cap": [
+            "Bone age behind",
+            "more room to grow"
+          ],
+          "hl": "more room to grow"
+        },
+        "cn": {
+          "narr": "反过来，骨龄偏慢，生长板晚闭合，还有长高的机会。",
+          "cap": [
+            "骨龄偏慢",
+            "还有长高机会"
+          ],
+          "hl": "还有长高机会"
+        },
+        "ch": {
+          "narr": "反過來，骨齡偏慢，生長板晚閉合，還有長高的機會。",
+          "cap": [
+            "骨齡偏慢",
+            "還有長高機會"
+          ],
+          "hl": "還有長高機會"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝 + 📈",
+      "copy": {
+        "ko": {
+          "narr": "그래서 뼈나이를 보면 남은 성장 기간과 미래 키까지 예측할 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "미래 키 예측"
+          ],
+          "hl": "미래 키 예측"
+        },
+        "th": {
+          "narr": "อายุกระดูกจึงทำนายเวลาที่เหลือและส่วนสูงในอนาคตได้",
+          "cap": [
+            "อายุกระดูก",
+            "ทำนายส่วนสูง"
+          ],
+          "hl": "ทำนายส่วนสูง"
+        },
+        "vi": {
+          "narr": "Vậy nên tuổi xương dự đoán được thời gian còn lại và chiều cao tương lai.",
+          "cap": [
+            "Tuổi xương",
+            "dự đoán chiều cao"
+          ],
+          "hl": "dự đoán chiều cao"
+        },
+        "en": {
+          "narr": "So bone age predicts the time left and your child's future height.",
+          "cap": [
+            "Bone age",
+            "predicts future height"
+          ],
+          "hl": "predicts future height"
+        },
+        "cn": {
+          "narr": "所以骨龄能预测剩余时间和孩子未来的身高。",
+          "cap": [
+            "骨龄",
+            "预测未来身高"
+          ],
+          "hl": "预测未来身高"
+        },
+        "ch": {
+          "narr": "所以骨齡能預測剩餘時間和孩子未來的身高。",
+          "cap": [
+            "骨齡",
+            "預測未來身高"
+          ],
+          "hl": "預測未來身高"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 뼈나이와 성장판 상태, 지금 바로 확인해 보세요.",
+          "cap": [
+            "뼈나이·성장판",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กอายุกระดูกและแผ่นกระดูกของลูกวันนี้",
+          "cap": [
+            "อายุกระดูก·แผ่นกระดูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tuổi xương và sụn tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Tuổi xương·sụn",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's bone age and growth plates today.",
+          "cap": [
+            "Bone age & plates",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的骨龄和生长板状态吧。",
+          "cap": [
+            "骨龄·生长板",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的骨齡和生長板狀態吧。",
+          "cap": [
+            "骨齡·生長板",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "좌우 슬라이드 대비",
+      "title": "실제나이 vs 뼈나이",
+      "emojis": [
+        "📅",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white bg. A split-screen comparison: left side a calendar/birthday-cake icon for chronological age, right side a friendly hand-bone X-ray plate icon for bone age, a soft divider line down the middle with a balance/scale feel. Two child silhouettes of the same height but one looks more mature. Brand purple #667eea on the left, mint #2dd4bf on the right, soft glow. Friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "좌측",
+          "ko": "실제나이",
+          "en": "Real age",
+          "th": "อายุจริง"
+        },
+        {
+          "pos": "우측",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "검은 선 순차 점등",
+      "title": "손목 X-ray — 열린 성장판",
+      "emojis": [
+        "✋",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized left-hand and wrist X-ray viewed on a soft light panel, with finger bones; between the bone ends draw clear dark gaps (the open growth plates) gently highlighted with a mint glow. Friendly, clean, not scary, pediatric. Brand purple frame + mint accent on the gaps. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "손가락 관절 갭",
+          "ko": "검은 선 = 열림",
+          "en": "Black line = open",
+          "th": "เส้นดำ = เปิด"
+        },
+        {
+          "pos": "하단",
+          "ko": "왼손목",
+          "en": "Left wrist",
+          "th": "ข้อมือซ้าย"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "선이 흐려지며 융합",
+      "title": "성장판 열림 → 닫힘",
+      "emojis": [
+        "🦴",
+        "🔒"
+      ],
+      "prompt": "Flat vector, square, white bg. Three side-by-side bone-end illustrations showing a progression: first with a wide dark open gap, second with a faint thinning line, third fully fused into one solid bone. A small arrow flow left to right implies time passing. Brand purple bones, mint glow fading to a closed/locked warm tone on the right. Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "열림",
+          "en": "Open",
+          "th": "เปิด"
+        },
+        {
+          "pos": "오른쪽",
+          "ko": "닫힘",
+          "en": "Closed",
+          "th": "ปิด"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "두 갈래 비교 글로우",
+      "title": "빠른 뼈나이 vs 느린 뼈나이",
+      "emojis": [
+        "⏩",
+        "⏳"
+      ],
+      "prompt": "Flat vector, square, white bg. Two diverging paths from a single child: upper path an hourglass running fast with little sand left (bone age ahead, plate closing soon), lower path an hourglass with plenty of sand and a taller growth arrow (bone age behind, more room to grow). Brand purple paths, mint hopeful glow on the lower 'more room' path, gentle warning amber on the upper. Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "위쪽 경로",
+          "ko": "빠르면 일찍 닫힘",
+          "en": "Ahead = closes early",
+          "th": "เร็ว = ปิดเร็ว"
+        },
+        {
+          "pos": "아래쪽 경로",
+          "ko": "느리면 더 클 기회",
+          "en": "Behind = more room",
+          "th": "ช้า = โอกาสมากกว่า"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "📅",
+      "label": "실제나이"
+    },
+    {
+      "e": "✋",
+      "label": "왼손목"
+    },
+    {
+      "e": "📷",
+      "label": "X-ray 촬영"
+    },
+    {
+      "e": "🔍",
+      "label": "판독·분석"
+    },
+    {
+      "e": "🔒",
+      "label": "성장판 닫힘"
+    },
+    {
+      "e": "⏳",
+      "label": "남은 시간"
+    },
+    {
+      "e": "📈",
+      "label": "미래 키 예측"
+    },
+    {
+      "e": "⚠️",
+      "label": "성조숙 신호"
+    },
+    {
+      "e": "🆚",
+      "label": "두 나이 비교"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

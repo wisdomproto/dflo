@@ -1,0 +1,786 @@
+{
+  "n": 52,
+  "slug": "moyu-bunyu-ki",
+  "title": "모유 먹이면 키 작게 큰다? — 진짜 키를 정하는 건",
+  "sub": "모유 vs 분유는 초반 몸무게 차이일 뿐 — 최종 키는 유전 80%·환경 20%가 만든다",
+  "category": "C. 부모공감",
+  "topicTitle": "모유 분유 성장 차이",
+  "headerTop": "우리 아이 키",
+  "headerMark": "모유라서 작나?",
+  "accentEmoji": "🍼✨",
+  "duration": 35,
+  "hook": "\"모유 먹인 우리 아이, 분유 아이보다 키 작게 크는 거 아닐까요?\"",
+  "misconception": "모유 먹이면 키가 작게 큰다 → 사실은 초반 '몸무게' 차이일 뿐, 최종 키와는 무관",
+  "message": "모유·분유는 6개월쯤 초기 체중 패턴만 다를 뿐. 최종 키는 유전 80%·환경 20%(영양·수면·운동)가 만든다",
+  "tone": "불안 조장 ❌ → \"모유든 분유든 잘 큰다\" 안심 + 긍정. \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "초반 차이 말고 우리 아이의 성장 곡선 확인 → 뼈나이/예측키 측정 유도",
+  "thumb": {
+    "kicker": "오해 풀어요",
+    "subject": "모유 먹인 우리 아이 키",
+    "number": "80%",
+    "numLabel": "는 유전이 결정"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"모유라서 작나? 흔한 오해\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "초기 차이",
+      "scenes": "c3–c4",
+      "desc": "\"6개월 뒤 분유아가 더 통통 — 몸무게 차이\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "반전",
+      "scenes": "c5–c6",
+      "desc": "\"초기 체중 ≠ 최종 키, 모유는 살아있는 영양원\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "핵심",
+      "scenes": "c7–c8",
+      "desc": "\"키는 유전 80%·환경 20%\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 우리 아이 곡선 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🍼 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "모유 먹인 우리 아이, 분유 아이보다 키 작게 크는 거 아닐까요?",
+          "cap": [
+            "모유라서",
+            "키 작게 크나?"
+          ],
+          "hl": "키 작게 크나?"
+        },
+        "th": {
+          "narr": "ลูกที่กินนมแม่ จะตัวเล็กกว่าเด็กนมผงจริงไหม?",
+          "cap": [
+            "กินนมแม่",
+            "ตัวเล็กกว่าไหม?"
+          ],
+          "hl": "ตัวเล็กกว่าไหม?"
+        },
+        "vi": {
+          "narr": "Con bú mẹ liệu có thấp hơn con bú sữa công thức không?",
+          "cap": [
+            "Bú mẹ",
+            "có thấp hơn?"
+          ],
+          "hl": "có thấp hơn?"
+        },
+        "en": {
+          "narr": "Is my breastfed baby really growing shorter than a formula-fed one?",
+          "cap": [
+            "Breastfed",
+            "really shorter?"
+          ],
+          "hl": "really shorter?"
+        },
+        "cn": {
+          "narr": "母乳喂养的孩子，真的比奶粉宝宝长得矮吗？",
+          "cap": [
+            "母乳喂养",
+            "真的更矮吗？"
+          ],
+          "hl": "真的更矮吗？"
+        },
+        "ch": {
+          "narr": "母乳餵養的孩子，真的比奶粉寶寶長得矮嗎？",
+          "cap": [
+            "母乳餵養",
+            "真的更矮嗎？"
+          ],
+          "hl": "真的更矮嗎？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💭 흔들 + ✖️ 표시",
+      "copy": {
+        "ko": {
+          "narr": "정말 많이 받는 질문인데요, 결론부터 말씀드리면 그건 오해예요.",
+          "cap": [
+            "흔한 질문",
+            "사실은 오해"
+          ],
+          "hl": "사실은 오해"
+        },
+        "th": {
+          "narr": "เป็นคำถามที่พบบ่อยมาก แต่บอกเลยว่านี่คือความเข้าใจผิด",
+          "cap": [
+            "คำถามยอดฮิต",
+            "คือความเข้าใจผิด"
+          ],
+          "hl": "คือความเข้าใจผิด"
+        },
+        "vi": {
+          "narr": "Đây là câu hỏi rất hay gặp, nhưng thật ra đó là hiểu lầm.",
+          "cap": [
+            "Câu hỏi thường gặp",
+            "thật ra là hiểu lầm"
+          ],
+          "hl": "thật ra là hiểu lầm"
+        },
+        "en": {
+          "narr": "It's a question I hear all the time — but honestly, it's a myth.",
+          "cap": [
+            "Common question",
+            "it's a myth"
+          ],
+          "hl": "it's a myth"
+        },
+        "cn": {
+          "narr": "这是我常被问到的问题，但说实话，这是个误解。",
+          "cap": [
+            "常见问题",
+            "其实是误解"
+          ],
+          "hl": "其实是误解"
+        },
+        "ch": {
+          "narr": "這是我常被問到的問題，但說實話，這是個誤解。",
+          "cap": [
+            "常見問題",
+            "其實是誤解"
+          ],
+          "hl": "其實是誤解"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 모유 vs 분유",
+      "motion": "🍼🍼 좌우 페이드 인",
+      "copy": {
+        "ko": {
+          "narr": "신생아 땐 둘 다 비슷하게 커요. 차이는 생후 3에서 6개월부터예요.",
+          "cap": [
+            "신생아 땐 비슷",
+            "차이는 3~6개월부터"
+          ],
+          "hl": "3~6개월부터"
+        },
+        "th": {
+          "narr": "ช่วงแรกเกิดโตพอกัน ความต่างเริ่มหลัง 3–6 เดือน",
+          "cap": [
+            "แรกเกิดพอกัน",
+            "ต่างหลัง 3–6 เดือน"
+          ],
+          "hl": "3–6 เดือน"
+        },
+        "vi": {
+          "narr": "Sơ sinh thì lớn như nhau. Khác biệt bắt đầu từ 3–6 tháng.",
+          "cap": [
+            "Sơ sinh giống nhau",
+            "khác từ 3–6 tháng"
+          ],
+          "hl": "3–6 tháng"
+        },
+        "en": {
+          "narr": "As newborns they grow alike. The gap starts at 3 to 6 months.",
+          "cap": [
+            "Same as newborns",
+            "gap from 3–6 months"
+          ],
+          "hl": "3–6 months"
+        },
+        "cn": {
+          "narr": "新生儿时长得差不多，差异从3到6个月才开始。",
+          "cap": [
+            "新生儿差不多",
+            "差异从3–6个月起"
+          ],
+          "hl": "3–6个月"
+        },
+        "ch": {
+          "narr": "新生兒時長得差不多，差異從3到6個月才開始。",
+          "cap": [
+            "新生兒差不多",
+            "差異從3–6個月起"
+          ],
+          "hl": "3–6個月"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 통통한 분유아",
+      "motion": "⚖️ 무게추 + 📈 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "분유는 단백질이 많아 이때 분유 아이가 더 빨리, 더 통통해져요.",
+          "cap": [
+            "분유 = 단백질↑",
+            "더 통통할 뿐"
+          ],
+          "hl": "더 통통할 뿐"
+        },
+        "th": {
+          "narr": "นมผงโปรตีนสูง เด็กนมผงจึงดูอ้วนท้วนเร็วกว่าในช่วงนี้",
+          "cap": [
+            "นมผง โปรตีนสูง",
+            "แค่ดูอ้วนกว่า"
+          ],
+          "hl": "แค่ดูอ้วนกว่า"
+        },
+        "vi": {
+          "narr": "Sữa công thức nhiều đạm nên bé bú sữa tăng cân nhanh, mũm mĩm hơn.",
+          "cap": [
+            "Sữa CT nhiều đạm",
+            "chỉ mũm mĩm hơn"
+          ],
+          "hl": "chỉ mũm mĩm hơn"
+        },
+        "en": {
+          "narr": "Formula has more protein, so those babies get plumper faster here.",
+          "cap": [
+            "Formula = more protein",
+            "just plumper"
+          ],
+          "hl": "just plumper"
+        },
+        "cn": {
+          "narr": "奶粉蛋白质更高，这阶段奶粉宝宝长得更快、更圆润。",
+          "cap": [
+            "奶粉蛋白质高",
+            "只是更圆润"
+          ],
+          "hl": "只是更圆润"
+        },
+        "ch": {
+          "narr": "奶粉蛋白質更高，這階段奶粉寶寶長得更快、更圓潤。",
+          "cap": [
+            "奶粉蛋白質高",
+            "只是更圓潤"
+          ],
+          "hl": "只是更圓潤"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🔄 반전 + 🍼 글로우",
+      "copy": {
+        "ko": {
+          "narr": "그런데 이 초기 몸무게가 최종 키로 이어지는 건 아니에요.",
+          "cap": [
+            "초기 몸무게",
+            "= 최종 키 아님"
+          ],
+          "hl": "= 최종 키 아님"
+        },
+        "th": {
+          "narr": "แต่น้ำหนักช่วงแรกนี้ ไม่ได้กลายเป็นส่วนสูงสุดท้าย",
+          "cap": [
+            "น้ำหนักช่วงแรก",
+            "≠ ส่วนสูงสุดท้าย"
+          ],
+          "hl": "≠ ส่วนสูงสุดท้าย"
+        },
+        "vi": {
+          "narr": "Nhưng cân nặng sớm này không quyết định chiều cao cuối cùng.",
+          "cap": [
+            "Cân nặng sớm",
+            "≠ chiều cao cuối"
+          ],
+          "hl": "≠ chiều cao cuối"
+        },
+        "en": {
+          "narr": "But that early weight does not turn into final height.",
+          "cap": [
+            "Early weight",
+            "≠ final height"
+          ],
+          "hl": "≠ final height"
+        },
+        "cn": {
+          "narr": "但这早期体重，并不会变成最终的身高。",
+          "cap": [
+            "早期体重",
+            "≠ 最终身高"
+          ],
+          "hl": "≠ 最终身高"
+        },
+        "ch": {
+          "narr": "但這早期體重，並不會變成最終的身高。",
+          "cap": [
+            "早期體重",
+            "≠ 最終身高"
+          ],
+          "hl": "≠ 最終身高"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "💚 하트 펄스",
+      "copy": {
+        "ko": {
+          "narr": "모유는 단계마다 필요한 영양을 맞춰주는 살아있는 영양원이거든요.",
+          "cap": [
+            "모유는",
+            "살아있는 영양원"
+          ],
+          "hl": "살아있는 영양원"
+        },
+        "th": {
+          "narr": "นมแม่คือแหล่งสารอาหารที่มีชีวิต ปรับให้ตามวัยของลูก",
+          "cap": [
+            "นมแม่คือ",
+            "สารอาหารมีชีวิต"
+          ],
+          "hl": "สารอาหารมีชีวิต"
+        },
+        "vi": {
+          "narr": "Sữa mẹ là nguồn dinh dưỡng sống, điều chỉnh theo từng giai đoạn của bé.",
+          "cap": [
+            "Sữa mẹ là",
+            "dinh dưỡng sống"
+          ],
+          "hl": "dinh dưỡng sống"
+        },
+        "en": {
+          "narr": "Breast milk is a living food that adjusts to each stage of your baby.",
+          "cap": [
+            "Breast milk =",
+            "living nutrition"
+          ],
+          "hl": "living nutrition"
+        },
+        "cn": {
+          "narr": "母乳是会随宝宝阶段调整的‘活的营养源’。",
+          "cap": [
+            "母乳是",
+            "活的营养源"
+          ],
+          "hl": "活的营养源"
+        },
+        "ch": {
+          "narr": "母乳是會隨寶寶階段調整的『活的營養源』。",
+          "cap": [
+            "母乳是",
+            "活的營養源"
+          ],
+          "hl": "活的營養源"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 유전 80 환경 20",
+      "motion": "🧬 80% 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "사실 최종 키는 유전이 약 80퍼센트, 환경이 약 20퍼센트예요.",
+          "cap": [
+            "키 = 유전 80%",
+            "환경 20%"
+          ],
+          "hl": "유전 80%"
+        },
+        "th": {
+          "narr": "จริงๆ ส่วนสูงสุดท้าย พันธุกรรม 80% สิ่งแวดล้อม 20%",
+          "cap": [
+            "พันธุกรรม 80%",
+            "สิ่งแวดล้อม 20%"
+          ],
+          "hl": "พันธุกรรม 80%"
+        },
+        "vi": {
+          "narr": "Thật ra chiều cao cuối cùng: gen khoảng 80%, môi trường 20%.",
+          "cap": [
+            "Gen 80%",
+            "môi trường 20%"
+          ],
+          "hl": "Gen 80%"
+        },
+        "en": {
+          "narr": "Final height is actually about 80% genes, 20% environment.",
+          "cap": [
+            "Genes 80%",
+            "environment 20%"
+          ],
+          "hl": "Genes 80%"
+        },
+        "cn": {
+          "narr": "其实最终身高，遗传约占80%，环境约占20%。",
+          "cap": [
+            "遗传 80%",
+            "环境 20%"
+          ],
+          "hl": "遗传 80%"
+        },
+        "ch": {
+          "narr": "其實最終身高，遺傳約佔80%，環境約佔20%。",
+          "cap": [
+            "遺傳 80%",
+            "環境 20%"
+          ],
+          "hl": "遺傳 80%"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 환경 4요소",
+      "motion": "🍽️😴🏃 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "그 20퍼센트, 영양·수면·운동이 우리가 채울 수 있는 부분이고요.",
+          "cap": [
+            "채울 수 있는 20%",
+            "영양·수면·운동"
+          ],
+          "hl": "영양·수면·운동"
+        },
+        "th": {
+          "narr": "20% นั้นคือ โภชนาการ การนอน การออกกำลังกาย ที่เราเติมได้",
+          "cap": [
+            "20% ที่เติมได้",
+            "กิน·นอน·ออกกำลัง"
+          ],
+          "hl": "กิน·นอน·ออกกำลัง"
+        },
+        "vi": {
+          "narr": "20% đó là dinh dưỡng, giấc ngủ, vận động — phần ta lấp được.",
+          "cap": [
+            "20% ta lấp được",
+            "ăn·ngủ·vận động"
+          ],
+          "hl": "ăn·ngủ·vận động"
+        },
+        "en": {
+          "narr": "That 20% — nutrition, sleep, exercise — is the part we can fill.",
+          "cap": [
+            "The 20% we control",
+            "food·sleep·exercise"
+          ],
+          "hl": "food·sleep·exercise"
+        },
+        "cn": {
+          "narr": "那20%——营养、睡眠、运动——正是我们能补足的部分。",
+          "cap": [
+            "能补足的20%",
+            "营养·睡眠·运动"
+          ],
+          "hl": "营养·睡眠·运动"
+        },
+        "ch": {
+          "narr": "那20%——營養、睡眠、運動——正是我們能補足的部分。",
+          "cap": [
+            "能補足的20%",
+            "營養·睡眠·運動"
+          ],
+          "hl": "營養·睡眠·運動"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "그러니 초반 차이 말고, 뼈나이로 우리 아이 성장 곡선을 보세요.",
+          "cap": [
+            "초반 차이 말고",
+            "뼈나이로 곡선 확인"
+          ],
+          "hl": "뼈나이로 곡선 확인"
+        },
+        "th": {
+          "narr": "อย่ากังวลความต่างช่วงแรก ดูเส้นโค้งของลูกด้วยอายุกระดูก",
+          "cap": [
+            "ไม่ใช่ช่วงแรก",
+            "ดูด้วยอายุกระดูก"
+          ],
+          "hl": "ดูด้วยอายุกระดูก"
+        },
+        "vi": {
+          "narr": "Nên đừng lo chênh lệch sớm — hãy xem đường cong qua tuổi xương.",
+          "cap": [
+            "Bỏ qua chênh lệch sớm",
+            "xem qua tuổi xương"
+          ],
+          "hl": "xem qua tuổi xương"
+        },
+        "en": {
+          "narr": "So forget the early gap — read your child's curve with bone age.",
+          "cap": [
+            "Not the early gap",
+            "read it by bone age"
+          ],
+          "hl": "read it by bone age"
+        },
+        "cn": {
+          "narr": "所以别纠结初期差异，用骨龄看孩子的成长曲线。",
+          "cap": [
+            "别看初期差异",
+            "用骨龄看曲线"
+          ],
+          "hl": "用骨龄看曲线"
+        },
+        "ch": {
+          "narr": "所以別糾結初期差異，用骨齡看孩子的成長曲線。",
+          "cap": [
+            "別看初期差異",
+            "用骨齡看曲線"
+          ],
+          "hl": "用骨齡看曲線"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 예측키, 지금 홈페이지에서 확인해 보세요.",
+          "cap": [
+            "우리 아이 예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กส่วนสูงที่คาดการณ์ของลูกได้เลยวันนี้",
+          "cap": [
+            "ส่วนสูงที่คาดการณ์",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra chiều cao dự đoán của con ngay hôm nay.",
+          "cap": [
+            "Chiều cao dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's predicted height today.",
+          "cap": [
+            "Predicted height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就在主页查查孩子的预测身高吧。",
+          "cap": [
+            "孩子预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就在首頁查查孩子的預測身高吧。",
+          "cap": [
+            "孩子預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "두 곡선 좌우 페이드 인",
+      "title": "모유 vs 분유 — 초기 성장 곡선",
+      "emojis": [
+        "🍼",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white background. Two friendly baby bottles side by side at the bottom, with two gentle growth curves rising from them — nearly overlapping at the start, then slightly diverging to the right. One curve in brand purple #667eea, the other in mint #2dd4bf, soft and rounded, friendly pediatric style. A small dotted vertical marker where the two curves begin to separate. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 병",
+          "ko": "모유",
+          "en": "Breast milk",
+          "th": "นมแม่"
+        },
+        {
+          "pos": "오른쪽 병",
+          "ko": "분유",
+          "en": "Formula",
+          "th": "นมผง"
+        },
+        {
+          "pos": "분기점 마커",
+          "ko": "3~6개월",
+          "en": "3–6 mo",
+          "th": "3–6 เดือน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "⚖️ 무게추 + 체중 카운트업",
+      "title": "분유아 — 초기 체중 ↑",
+      "emojis": [
+        "⚖️",
+        "🍼"
+      ],
+      "prompt": "Flat vector, square, white background. A cute chubby baby sitting next to a simple weighing scale tipping slightly down on the baby's side, a small upward weight-gain arrow beside it. Soft purple gradient with a mint accent, friendly pediatric. Conveys 'faster early weight gain', NOT height. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "저울 위",
+          "ko": "체중 빨리 ↑",
+          "en": "weight up fast",
+          "th": "น้ำหนักขึ้นเร็ว"
+        },
+        {
+          "pos": "하단",
+          "ko": "통통할 뿐",
+          "en": "just plump",
+          "th": "แค่อ้วนท้วน"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "🧬 80% 카운트업 + 분할 채움",
+      "title": "키 = 유전 80% · 환경 20%",
+      "emojis": [
+        "🧬",
+        "🌱"
+      ],
+      "prompt": "Flat vector, square, white background. A clean horizontal bar split into a large segment (about four-fifths) and a small segment (about one-fifth). The large segment shows a stylized DNA double helix motif in brand purple #667eea; the small segment shows a small sprout/leaf motif in mint #2dd4bf. Friendly, simple, infographic style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "큰 구간(좌)",
+          "ko": "유전 80%",
+          "en": "Genes 80%",
+          "th": "พันธุกรรม 80%"
+        },
+        {
+          "pos": "작은 구간(우)",
+          "ko": "환경 20%",
+          "en": "Environment 20%",
+          "th": "สิ่งแวดล้อม 20%"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🍽️😴🏃 아이콘 순차 점등",
+      "title": "환경 20% — 채울 수 있는 것",
+      "emojis": [
+        "🍽️",
+        "😴",
+        "🏃"
+      ],
+      "prompt": "Flat vector, square, white background. Three friendly circular icons in a row connected by a gentle curved line: a balanced meal plate, a sleeping crescent moon with a pillow, and a child running. Each icon in a soft rounded badge, brand purple #667eea and mint #2dd4bf palette, warm and encouraging pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลังกาย"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🍼",
+      "label": "모유·분유"
+    },
+    {
+      "e": "❓",
+      "label": "오해/질문"
+    },
+    {
+      "e": "⚖️",
+      "label": "초기 체중"
+    },
+    {
+      "e": "📈",
+      "label": "성장 곡선"
+    },
+    {
+      "e": "💚",
+      "label": "살아있는 영양원"
+    },
+    {
+      "e": "🧬",
+      "label": "유전 80%"
+    },
+    {
+      "e": "🌱",
+      "label": "환경 20%"
+    },
+    {
+      "e": "🍽️",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

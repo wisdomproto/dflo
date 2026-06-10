@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 성조숙증이 키를 망치는 메커니즘</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #8</span>
+  <h1>또래보다 빨리 크면 좋은 거 아닌가요? — 성조숙증의 함정</h1>
+  <div class="sub">일찍 크면 일찍 멈춘다 — 성조숙증이 성장판을 일찍 닫는 진짜 메커니즘과, 아직 늦지 않은 골든타임</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>일찍 크면 손해?</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">성조숙증</div><div class="lab">의 함정</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 성조숙증의 함정"</li>
+        <li><b>거대 숫자 "성조숙증"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #8 「성조숙증이 키를 망치는 메커니즘」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"또래보다 빨리 크면 좋은 거 아니냐고요? 사실은 반대일 수 있어요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>우리 애가 또래보다 크니까 안심 → 성조숙증이면 일찍 크고 일찍 멈춰서 최종 키는 더 작아질 수 있음</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>성호르몬이 성장판 공장을 처음엔 빨리 돌리지만 동시에 일찍 닫아버린다. 빨리 큰 게 아니라 키 클 시간을 당겨 쓴 것. 조기 진단·관리로 성장판 닫히는 시기를 늦출 수 있다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("아직 성장판 안 닫혔으면 기회 있다"). "우리 아이 키" 보편(키 큰 아이 부모도 해당). 시청자가 검사·진단 이미 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장판, 얼마나 남았는지 지금 확인 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·반전</h4><p>c1–c2<br>"또래보다 빨리 크면 좋은 거 아냐? → 사실 반대"</p></div><div class="act"><span class="n">ACT 2</span><h4>성장판 = 공장</h4><p>c3–c4<br>"뼈 만드는 공장 성장판 → 성조숙 기준 여8·남9"</p></div><div class="act"><span class="n">ACT 3</span><h4>메커니즘</h4><p>c5–c6<br>"성호르몬이 처음엔 빨리, 동시에 일찍 닫음"</p></div><div class="act"><span class="n">ACT 4</span><h4>역전 착시</h4><p>c7–c8<br>"일찍 크고 일찍 멈춰 → 나중에 역전당함"</p></div><div class="act"><span class="n">ACT 5</span><h4>골든타임·행동</h4><p>c9–c10<br>"닫히기 전 늦출 수 있다 → 뼈나이 확인 CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">일찍 크면 손해?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">⏳🦴</div></div>
+        <div class="ph-cap"><div class="l">빨리 크면 좋다?</div><div class="l"><span class="y2">사실은 반대</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">또래보다 빨리 크면 좋은 거 아니냐고요? 사실은 정반대일 수 있어요.</td><td><span class="cap2">빨리 크면 좋다?<br><span class="y">사실은 반대</span></span></td><td class="mo">❓ 슬램 인 + 반전 플립</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">일찍 크는 아이는, 사실 키 클 시간을 미리 당겨 쓰는 거예요.</td><td><span class="cap2">일찍 크면<br><span class="y">시간을 당겨 씀</span></span></td><td class="mo">⏳ 모래 떨어짐</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 성장판 공장</span></td><td class="narr">긴 뼈 끝엔 성장판이 있어요. 새 뼈를 만드는 작은 공장이죠.</td><td><span class="cap2">뼈 끝 성장판<br><span class="y">뼈 만드는 공장</span></span></td><td class="mo">🏭 가동 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 성조숙 기준</span></td><td class="narr">성조숙증은 여아 8세, 남아 9세 전에 사춘기 신호가 오는 거예요.</td><td><span class="cap2"><span class="y">여아 8세 · 남아 9세</span><br>그 전 사춘기</span></td><td class="mo">8️⃣9️⃣ 팝 + 카운트</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성호르몬은 이 공장을 처음엔 빨리 돌려요. 그래서 잠깐 더 커 보이죠.</td><td><span class="cap2">성호르몬이<br><span class="y">공장 빨리 돌림</span></span></td><td class="mo">⚡ 빨리 + 🔒 잠김</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22.5s</td><td><span class="scr ig">🖼 IG3 성장판 조기폐쇄</span></td><td class="narr">그런데 같은 호르몬이 성장판을 딱딱한 뼈로 굳혀, 공장 문을 일찍 닫아요.</td><td><span class="cap2">성장판이 굳어<br><span class="y">문을 일찍 닫음</span></span></td><td class="mo">🔥 굳음 → 🚪 닫힘</td></tr><tr><td class="c-id">c7</td><td class="c-time">22.5–26s</td><td><span class="scr ig">🖼 IG4 역전 그래프</span></td><td class="narr">그래서 처음엔 앞서가도, 또래가 자랄 때 멈춰서 결국 역전당해요.</td><td><span class="cap2">처음엔 앞서도<br><span class="y">나중엔 역전</span></span></td><td class="mo">📉 추월 → 역전</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–29.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">좋은 소식은, 성장판이 닫히기 전이라면 그 속도를 늦출 수 있다는 거예요.</td><td><span class="cap2">닫히기 전이면<br><span class="y">늦출 수 있다</span></span></td><td class="mo">✨ 골든 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">29.5–32.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면 우리 아이 성장판이 얼마나 남았는지 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">성장판 남은 양</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">32.5–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장판, 얼마나 남았는지 지금 바로 확인해 보세요.</td><td><span class="cap2">성장판 남은 시간<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 🏭 가동 점등</div><h3>성장판 = 뼈 만드는 공장</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🏭 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A long bone standing upright with a glowing cartilage growth plate near the top end, stylized as a tiny friendly factory emitting little sparkles of new bone forming upward. Brand purple bone with a mint-glowing growth-plate band, soft sparkle particles. Friendly pediatric, clean. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>성장판 밴드(글로우)</td><td>성장판</td><td>Growth plate</td><td class="thai">แผ่นกระดูก</td></tr><tr><td>상단 입자</td><td>새 뼈 ↑</td><td>New bone ↑</td><td class="thai">กระดูกใหม่ ↑</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 8·9 팝</div><h3>성조숙증 기준 — 여8·남9</h3></div>
+        <div class="body">
+          <div class="sketch">👧 👦 ⏰</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two friendly child silhouettes side by side, a girl and a boy, with a small alarm-clock motif between them indicating 'too early.' Gentle purple and mint, soft and reassuring (not alarming). Pediatric, clean. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>여아 위</td><td>여아 8세 전</td><td>Girls &lt; 8</td><td class="thai">หญิง &lt; 8</td></tr><tr><td>남아 위</td><td>남아 9세 전</td><td>Boys &lt; 9</td><td class="thai">ชาย &lt; 9</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 굳음 → 닫힘</div><h3>성장판 조기폐쇄</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🔥 🚪</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A close-up of a knee/long-bone growth plate: left half shows an open soft mint gap (active), transitioning to the right half where the gap hardens into solid bone and closes, like a door shutting. Warm orange accent on the closing/hardening side, brand purple bone. Conveys 'plate closing too early.' NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(열림)</td><td>열린 성장판</td><td>Open plate</td><td class="thai">แผ่นเปิด</td></tr><tr><td>오른쪽(닫힘)</td><td>조기 폐쇄</td><td>Closes early</td><td class="thai">ปิดก่อนวัย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c7 · 모션: 추월 → 역전</div><h3>성조숙 vs 정상 — 최종 키 역전</h3></div>
+        <div class="body">
+          <div class="sketch">📉 📈 🔄</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two growth-curve lines on an invisible chart: an orange line shoots up early then flattens/plateaus low; a purple line rises later, steadily, and ends higher, crossing above the orange line at the end. Clear crossover point with a soft mint highlight. Conveys 'early riser gets overtaken.' Brand purple + orange. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>주황선 끝</td><td>일찍 멈춤</td><td>Stops early</td><td class="thai">หยุดเร็ว</td></tr><tr><td>보라선 끝(위)</td><td>최종 역전</td><td>Ends taller</td><td class="thai">แซงในที่สุด</td></tr><tr><td>교차점</td><td>역전 지점</td><td>Crossover</td><td class="thai">จุดแซง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>⏳</b> 시간·골든타임</span><span class="emo"><b>🦴</b> 성장판·뼈나이</span><span class="emo"><b>🏭</b> 뼈 만드는 공장</span><span class="emo"><b>👧</b> 여아</span><span class="emo"><b>👦</b> 남아</span><span class="emo"><b>⏰</b> 성조숙·이른 시기</span><span class="emo"><b>⚡</b> 빨리 가동</span><span class="emo"><b>🔥</b> 굳음(폐쇄)</span><span class="emo"><b>📉</b> 멈춤·역전</span><span class="emo"><b>🔍</b> 확인·검사</span><span class="emo"><b>✨</b> 골든타임 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>또래보다 빨리 크면 좋은 거 아니냐고요? 사실은 정반대일 수 있어요.<br><span class="cap2">빨리 크면 좋다? · <span class="y">사실은 반대</span></span></td></tr><tr><td class="c-id">c2</td><td>일찍 크는 아이는, 사실 키 클 시간을 미리 당겨 쓰는 거예요.<br><span class="cap2">일찍 크면 · <span class="y">시간을 당겨 씀</span></span></td></tr><tr><td class="c-id">c3</td><td>긴 뼈 끝엔 성장판이 있어요. 새 뼈를 만드는 작은 공장이죠.<br><span class="cap2">뼈 끝 성장판 · <span class="y">뼈 만드는 공장</span></span></td></tr><tr><td class="c-id">c4</td><td>성조숙증은 여아 8세, 남아 9세 전에 사춘기 신호가 오는 거예요.<br><span class="cap2">여아 8세 · 남아 9세 · 그 전 사춘기</span></td></tr><tr><td class="c-id">c5</td><td>성호르몬은 이 공장을 처음엔 빨리 돌려요. 그래서 잠깐 더 커 보이죠.<br><span class="cap2">성호르몬이 · <span class="y">공장 빨리 돌림</span></span></td></tr><tr><td class="c-id">c6</td><td>그런데 같은 호르몬이 성장판을 딱딱한 뼈로 굳혀, 공장 문을 일찍 닫아요.<br><span class="cap2">성장판이 굳어 · <span class="y">문을 일찍 닫음</span></span></td></tr><tr><td class="c-id">c7</td><td>그래서 처음엔 앞서가도, 또래가 자랄 때 멈춰서 결국 역전당해요.<br><span class="cap2">처음엔 앞서도 · <span class="y">나중엔 역전</span></span></td></tr><tr><td class="c-id">c8</td><td>좋은 소식은, 성장판이 닫히기 전이라면 그 속도를 늦출 수 있다는 거예요.<br><span class="cap2">닫히기 전이면 · <span class="y">늦출 수 있다</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면 우리 아이 성장판이 얼마나 남았는지 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">성장판 남은 양</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장판, 얼마나 남았는지 지금 바로 확인해 보세요.<br><span class="cap2">성장판 남은 시간 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>สูงเร็วกว่าเพื่อนคือเรื่องดีจริงเหรอ? อาจตรงกันข้ามเลย<br><span class="cap2">สูงเร็ว = ดี? · จริงๆ <span class="y">ตรงกันข้าม</span></span></td></tr><tr><td class="c-id">c2</td><td>เด็กที่สูงเร็ว จริงๆ คือดึงเวลาโตมาใช้ก่อน<br><span class="cap2">สูงเร็ว · คือ<span class="y">ใช้เวลาก่อน</span></span></td></tr><tr><td class="c-id">c3</td><td>ปลายกระดูกยาวมีแผ่นการเจริญเติบโต โรงงานสร้างกระดูกใหม่<br><span class="cap2">แผ่นกระดูก · <span class="y">โรงงานสร้างกระดูก</span></span></td></tr><tr><td class="c-id">c4</td><td>ภาวะก่อนวัยคือสัญญาณแรกรุ่นก่อนหญิง 8 ชาย 9 ปี<br><span class="cap2">หญิง 8 · ชาย 9 ปี · ก่อนวัย</span></td></tr><tr><td class="c-id">c5</td><td>ฮอร์โมนเพศเร่งโรงงานนี้ก่อน เลยดูสูงขึ้นชั่วคราว<br><span class="cap2">ฮอร์โมนเพศ · <span class="y">เร่งโรงงาน</span></span></td></tr><tr><td class="c-id">c6</td><td>แต่ฮอร์โมนเดียวกันทำให้แผ่นกระดูกแข็ง ปิดโรงงานเร็ว<br><span class="cap2">แผ่นกระดูกแข็ง · <span class="y">ปิดเร็ว</span></span></td></tr><tr><td class="c-id">c7</td><td>ตอนแรกนำหน้า แต่พอเพื่อนโต กลับหยุด สุดท้ายถูกแซง<br><span class="cap2">แรกนำหน้า · สุดท้าย<span class="y">ถูกแซง</span></span></td></tr><tr><td class="c-id">c8</td><td>ข่าวดีคือ ถ้ายังไม่ปิด เราชะลอได้<br><span class="cap2">ถ้ายังไม่ปิด · <span class="y">ชะลอได้</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกบอกว่าแผ่นกระดูกของลูกเหลือเท่าไร<br><span class="cap2">อายุกระดูก · <span class="y">เหลือเท่าไร</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กว่าแผ่นกระดูกของลูกเหลือเวลาเท่าไรวันนี้<br><span class="cap2">เวลาที่เหลือ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con cao sớm hơn bạn là tốt? Thật ra có thể ngược lại.<br><span class="cap2">Cao sớm là tốt? · Thật ra <span class="y">ngược lại</span></span></td></tr><tr><td class="c-id">c2</td><td>Con cao sớm thực ra đang dùng trước thời gian để lớn.<br><span class="cap2">Cao sớm · là <span class="y">dùng trước thời gian</span></span></td></tr><tr><td class="c-id">c3</td><td>Đầu xương dài có sụn tăng trưởng — nhà máy tạo xương mới.<br><span class="cap2">Sụn tăng trưởng · <span class="y">nhà máy tạo xương</span></span></td></tr><tr><td class="c-id">c4</td><td>Dậy thì sớm là dấu hiệu trước 8 tuổi (gái), 9 tuổi (trai).<br><span class="cap2">Gái 8 · Trai 9 tuổi · trước tuổi</span></td></tr><tr><td class="c-id">c5</td><td>Hormone giới tính đẩy nhà máy chạy nhanh trước — nên cao vọt tạm thời.<br><span class="cap2">Hormone · <span class="y">đẩy chạy nhanh</span></span></td></tr><tr><td class="c-id">c6</td><td>Nhưng chính hormone đó làm sụn cứng lại, đóng nhà máy sớm.<br><span class="cap2">Sụn cứng lại · <span class="y">đóng sớm</span></span></td></tr><tr><td class="c-id">c7</td><td>Lúc đầu dẫn trước, nhưng khi bạn lớn thì dừng — cuối cùng bị vượt.<br><span class="cap2">Đầu dẫn trước · cuối <span class="y">bị vượt</span></span></td></tr><tr><td class="c-id">c8</td><td>Tin tốt: nếu sụn chưa đóng, ta có thể làm chậm lại.<br><span class="cap2">Nếu chưa đóng · <span class="y">có thể làm chậm</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cho biết sụn của con còn lại bao nhiêu.<br><span class="cap2">Tuổi xương · <span class="y">còn lại bao nhiêu</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra sụn tăng trưởng của con còn bao nhiêu thời gian ngay hôm nay.<br><span class="cap2">Thời gian còn lại · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Growing faster than friends is good, right? It can be the opposite.<br><span class="cap2">Taller early = good? · Actually <span class="y">the opposite</span></span></td></tr><tr><td class="c-id">c2</td><td>Kids who grow early are really spending their growth time early.<br><span class="cap2">Early growth · <span class="y">spends time early</span></span></td></tr><tr><td class="c-id">c3</td><td>At bone ends sit growth plates — tiny factories making new bone.<br><span class="cap2">Growth plates · <span class="y">bone factory</span></span></td></tr><tr><td class="c-id">c4</td><td>Early puberty: signs before age 8 in girls, 9 in boys.<br><span class="cap2">Girls 8 · Boys 9 · too early</span></td></tr><tr><td class="c-id">c5</td><td>Sex hormones speed the factory up first — so they look taller briefly.<br><span class="cap2">Sex hormones · <span class="y">speed it up</span></span></td></tr><tr><td class="c-id">c6</td><td>But the same hormone hardens the plate, shutting the factory early.<br><span class="cap2">Plate hardens · <span class="y">closes early</span></span></td></tr><tr><td class="c-id">c7</td><td>Ahead at first, but stops while peers grow — and gets overtaken.<br><span class="cap2">Ahead at first · then <span class="y">overtaken</span></span></td></tr><tr><td class="c-id">c8</td><td>Good news: if the plate isn't closed yet, we can slow it down.<br><span class="cap2">If not closed yet · <span class="y">we can slow it</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows how much growth plate your child has left.<br><span class="cap2">Bone age · <span class="y">how much left</span></span></td></tr><tr><td class="c-id">c10</td><td>Check how much time your child's growth plate has left — today.<br><span class="cap2">Time left · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>比同龄人长得快是好事？其实可能恰恰相反。<br><span class="cap2">长得快=好事？ · <span class="y">其实相反</span></span></td></tr><tr><td class="c-id">c2</td><td>长得早的孩子，其实是提前用掉了长高的时间。<br><span class="cap2">长得早 · <span class="y">提前用掉时间</span></span></td></tr><tr><td class="c-id">c3</td><td>长骨末端有生长板，是制造新骨的小工厂。<br><span class="cap2">生长板 · <span class="y">造骨工厂</span></span></td></tr><tr><td class="c-id">c4</td><td>性早熟：女孩8岁、男孩9岁前出现青春期信号。<br><span class="cap2">女8 · 男9 岁 · 提前发育</span></td></tr><tr><td class="c-id">c5</td><td>性激素先让工厂加速运转，所以暂时显得更高。<br><span class="cap2">性激素 · <span class="y">让工厂加速</span></span></td></tr><tr><td class="c-id">c6</td><td>但同样的激素让生长板变硬，提前关闭工厂。<br><span class="cap2">生长板变硬 · <span class="y">提前关闭</span></span></td></tr><tr><td class="c-id">c7</td><td>起初领先，但同龄人长高时却停了，最终被反超。<br><span class="cap2">起初领先 · 最终<span class="y">被反超</span></span></td></tr><tr><td class="c-id">c8</td><td>好消息是，只要生长板还没闭合，就能延缓它。<br><span class="cap2">还没闭合 · <span class="y">就能延缓</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄能告诉你，孩子的生长板还剩多少。<br><span class="cap2">骨龄 · <span class="y">还剩多少</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的生长板还剩多少时间吧。<br><span class="cap2">剩余时间 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>比同齡人長得快是好事？其實可能恰恰相反。<br><span class="cap2">長得快=好事？ · <span class="y">其實相反</span></span></td></tr><tr><td class="c-id">c2</td><td>長得早的孩子，其實是提前用掉了長高的時間。<br><span class="cap2">長得早 · <span class="y">提前用掉時間</span></span></td></tr><tr><td class="c-id">c3</td><td>長骨末端有生長板，是製造新骨的小工廠。<br><span class="cap2">生長板 · <span class="y">造骨工廠</span></span></td></tr><tr><td class="c-id">c4</td><td>性早熟：女孩8歲、男孩9歲前出現青春期信號。<br><span class="cap2">女8 · 男9 歲 · 提前發育</span></td></tr><tr><td class="c-id">c5</td><td>性激素先讓工廠加速運轉，所以暫時顯得更高。<br><span class="cap2">性激素 · <span class="y">讓工廠加速</span></span></td></tr><tr><td class="c-id">c6</td><td>但同樣的激素讓生長板變硬，提前關閉工廠。<br><span class="cap2">生長板變硬 · <span class="y">提前關閉</span></span></td></tr><tr><td class="c-id">c7</td><td>起初領先，但同齡人長高時卻停了，最終被反超。<br><span class="cap2">起初領先 · 最終<span class="y">被反超</span></span></td></tr><tr><td class="c-id">c8</td><td>好消息是，只要生長板還沒閉合，就能延緩它。<br><span class="cap2">還沒閉合 · <span class="y">就能延緩</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡能告訴你，孩子的生長板還剩多少。<br><span class="cap2">骨齡 · <span class="y">還剩多少</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的生長板還剩多少時間吧。<br><span class="cap2">剩餘時間 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/성조숙증성장판/</code> · <code>성조숙증성장판-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

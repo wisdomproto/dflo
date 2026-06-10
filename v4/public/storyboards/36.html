@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 성장 체크리스트 — 성장 방해 요인 셀프 점검</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #36</span>
+  <h1>우리 아이 키, 막는 5가지를 체크하세요 — 성장 셀프 점검</h1>
+  <div class="sub">수면·식단·운동·자세·마음 — 매일 습관 5가지가 우리 아이 숨은 키를 깨운다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>매일 막고 있다?</b></div>
+      <div class="subj">우리 아이 키 막는</div>
+      <div class="big4"><div class="n" style="font-size:132px">5</div><div class="lab">가지 습관</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 막는</b> 5가지 습관"</li>
+        <li><b>거대 숫자 "5"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #36 「성장 체크리스트 — 성장 방해 요인 셀프 점검」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 키, 사실은 '이 5가지'가 막고 있을 수 있어요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>유전이라 어쩔 수 없다 → 매일 습관이 성장호르몬과 숨은 키를 좌우한다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>수면·식단·운동·자세·마음, 이 5가지 습관을 체크하면 우리 아이 성장 잠재력을 깨울 수 있다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("작은 습관이 키를 바꾼다"). "우리 아이 키" 보편. 단정 ❌ → 체크리스트로 점검 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 막는 요인, 뼈나이·예측키로 지금 바로 점검</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"키 막는 5가지, 습관이 좌우한다"</p></div><div class="act"><span class="n">ACT 2</span><h4>수면·식단</h4><p>c3–c5<br>"깊은 잠 성장호르몬 + 균형 영양"</p></div><div class="act"><span class="n">ACT 3</span><h4>운동·자세</h4><p>c6–c7<br>"점프가 성장판 자극 + 바른 자세"</p></div><div class="act"><span class="n">ACT 4</span><h4>마음·체크</h4><p>c8–c9<br>"스트레스 주의 → 5가지 셀프 점검"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c10<br>"뼈나이·예측키로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">막는 게 5가지?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">✅5️⃣</div></div>
+        <div class="ph-cap"><div class="l">키를 막는</div><div class="l"><span class="y2">5가지 습관</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 키, 사실은 '이 5가지'가 막고 있을 수 있어요.</td><td><span class="cap2">키를 막는<br><span class="y">5가지 습관</span></span></td><td class="mo">5️⃣ 슬램 인 + ✅ 체크</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">키는 유전만이 아니에요. 매일의 작은 습관이 성장호르몬을 좌우하죠.</td><td><span class="cap2">유전만 X<br><span class="y">습관이 좌우</span></span></td><td class="mo">🧬 흔들 → 🌱 전환</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–10.5s</td><td><span class="scr ig">🖼 IG1 5가지 체크리스트</span></td><td class="narr">수면, 식단, 운동, 자세, 그리고 마음. 이 다섯 가지예요.</td><td><span class="cap2">수면·식단·운동<br><span class="y">자세·마음</span></span></td><td class="mo">✅✅✅✅✅ 순차 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">10.5–14.5s</td><td><span class="scr ig">🖼 IG2 수면·성장호르몬</span></td><td class="narr">첫째 수면. 깊은 잠에 들고 1~2시간, 성장호르몬이 가장 쏟아져요.</td><td><span class="cap2">깊은 잠 들고<br><span class="y">1~2시간 분비</span></span></td><td class="mo">🌙 + "1~2h" 펄스 글로우</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">둘째 식단. 단백질·칼슘·비타민D는 채우고, 가공식품은 줄여야 해요.</td><td><span class="cap2">단백질·칼슘 채우고<br><span class="y">가공식품 줄이기</span></span></td><td class="mo">🍗 팝 · 🍟 ⚠️ 깜빡</td></tr><tr><td class="c-id">c6</td><td class="c-time">18–22s</td><td><span class="scr ig">🖼 IG3 운동·성장판 자극</span></td><td class="narr">셋째 운동. 줄넘기·농구 같은 점프가 성장판을 자극해요. 하루 30분!</td><td><span class="cap2">점프가 성장판 자극<br><span class="y">하루 30분</span></span></td><td class="mo">🤸 점프 바운스 + 30분 카운트업</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">넷째 자세. 바른 자세는 성장판에 고른 압력을 줘서 숨은 키를 찾아줘요.</td><td><span class="cap2">바른 자세가<br><span class="y">숨은 키 찾기</span></span></td><td class="mo">🧍 구부정 → 곧게 펴짐</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–29.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">다섯째 마음. 스트레스는 성장호르몬을 억제하고 잠도 방해하거든요.</td><td><span class="cap2">스트레스는<br><span class="y">성장호르몬 억제</span></span></td><td class="mo">💛 마음 진정 펄스</td></tr><tr><td class="c-id">c9</td><td class="c-time">29.5–32.5s</td><td><span class="scr ig">🖼 IG4 셀프 점검표</span></td><td class="narr">이 다섯 가지, 오늘 우리 아이와 함께 체크해 보세요. 작은 변화가 키를 바꿔요.</td><td><span class="cap2"><span class="y">5가지 셀프 점검</span><br>작은 변화가 키를</span></td><td class="mo">📋 5칸 ✅ 차르륵</td></tr><tr><td class="c-id">c10</td><td class="c-time">32.5–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장, 뼈나이와 예측키로 지금 바로 확인해 보세요.</td><td><span class="cap2">뼈나이·예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 5칸 순차 점등</div><h3>성장 습관 5가지 체크리스트</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 🍎 🤸 🧍 💛</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly vertical checklist card with 5 empty rounded check boxes, each box paired with a simple language-neutral pictogram in its own circle: a crescent moon (sleep), an apple/plate (diet), a jumping child silhouette (exercise), an upright standing-posture figure (posture), and a heart (mind/emotion). Soft brand purple #667eea to mint #2dd4bf accents, gentle drop shadow, cheerful pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>1번 칸</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>2번 칸</td><td>식단</td><td>Diet</td><td class="thai">อาหาร</td></tr><tr><td>3번 칸</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr><tr><td>4번 칸</td><td>자세</td><td>Posture</td><td class="thai">ท่าทาง</td></tr><tr><td>5번 칸</td><td>마음</td><td>Mind</td><td class="thai">จิตใจ</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 달 글로우 + 펄스</div><h3>수면 — 깊은 잠 성장호르몬</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 😴 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child sleeping peacefully in bed under a crescent moon and soft stars, with gentle glowing waves rising from the body suggesting hormone release during deep sleep. Calm brand purple #667eea night gradient with mint #2dd4bf sparkles. Cozy, reassuring pediatric mood. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>글로우 웨이브</td><td>성장호르몬 ↑</td><td>Growth hormone ↑</td><td class="thai">โกรทฮอร์โมน ↑</td></tr><tr><td>하단</td><td>깊은 잠 1~2h</td><td>deep sleep 1–2h</td><td class="thai">หลับลึก 1–2 ชม.</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 점프 바운스 + 카운트업</div><h3>운동 — 점프가 성장판 자극</h3></div>
+        <div class="body">
+          <div class="sketch">🤸 🏀 🦵</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A cheerful child mid-jump with a jump rope, a basketball bouncing nearby, and a subtle highlighted glowing growth plate at the knee with small upward energy arrows. Dynamic, energetic. Brand purple #667eea and mint #2dd4bf. Conveys jumping stimulates bone growth. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>무릎 글로우</td><td>성장판 자극</td><td>growth plate</td><td class="thai">แผ่นกระดูก</td></tr><tr><td>상단</td><td>하루 30분</td><td>30 min/day</td><td class="thai">30 นาที/วัน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c9 · 모션: 5체크 차르륵</div><h3>셀프 점검 완료 — 5가지 체크</h3></div>
+        <div class="body">
+          <div class="sketch">📋 ✅ 🌱</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A clipboard checklist held by a parent and child together, all 5 rows now marked with green check marks, a small growing sprout or rising arrow beside it suggesting positive growth. Warm, hopeful, brand purple #667eea to mint #2dd4bf gradient accents, friendly pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단</td><td>5가지 점검</td><td>5-point check</td><td class="thai">เช็ก 5 ข้อ</td></tr><tr><td>새싹/화살표</td><td>성장 잠재력 ↑</td><td>potential ↑</td><td class="thai">ศักยภาพ ↑</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>✅</b> 체크리스트</span><span class="emo"><b>5️⃣</b> 5가지</span><span class="emo"><b>🌙</b> 수면</span><span class="emo"><b>😴</b> 깊은 잠</span><span class="emo"><b>🍎</b> 식단</span><span class="emo"><b>🤸</b> 운동·점프</span><span class="emo"><b>🦵</b> 성장판</span><span class="emo"><b>🧍</b> 자세</span><span class="emo"><b>💛</b> 마음·정서</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>🌱</b> 성장 잠재력</span><span class="emo"><b>✨</b> 강조</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 키, 사실은 '이 5가지'가 막고 있을 수 있어요.<br><span class="cap2">키를 막는 · <span class="y">5가지 습관</span></span></td></tr><tr><td class="c-id">c2</td><td>키는 유전만이 아니에요. 매일의 작은 습관이 성장호르몬을 좌우하죠.<br><span class="cap2">유전만 X · <span class="y">습관이 좌우</span></span></td></tr><tr><td class="c-id">c3</td><td>수면, 식단, 운동, 자세, 그리고 마음. 이 다섯 가지예요.<br><span class="cap2">수면·식단·운동 · <span class="y">자세·마음</span></span></td></tr><tr><td class="c-id">c4</td><td>첫째 수면. 깊은 잠에 들고 1~2시간, 성장호르몬이 가장 쏟아져요.<br><span class="cap2">깊은 잠 들고 · <span class="y">1~2시간 분비</span></span></td></tr><tr><td class="c-id">c5</td><td>둘째 식단. 단백질·칼슘·비타민D는 채우고, 가공식품은 줄여야 해요.<br><span class="cap2">단백질·칼슘 채우고 · <span class="y">가공식품 줄이기</span></span></td></tr><tr><td class="c-id">c6</td><td>셋째 운동. 줄넘기·농구 같은 점프가 성장판을 자극해요. 하루 30분!<br><span class="cap2">점프가 성장판 자극 · <span class="y">하루 30분</span></span></td></tr><tr><td class="c-id">c7</td><td>넷째 자세. 바른 자세는 성장판에 고른 압력을 줘서 숨은 키를 찾아줘요.<br><span class="cap2">바른 자세가 · <span class="y">숨은 키 찾기</span></span></td></tr><tr><td class="c-id">c8</td><td>다섯째 마음. 스트레스는 성장호르몬을 억제하고 잠도 방해하거든요.<br><span class="cap2">스트레스는 · <span class="y">성장호르몬 억제</span></span></td></tr><tr><td class="c-id">c9</td><td>이 다섯 가지, 오늘 우리 아이와 함께 체크해 보세요. 작은 변화가 키를 바꿔요.<br><span class="cap2">5가지 셀프 점검 · 작은 변화가 키를</span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장, 뼈나이와 예측키로 지금 바로 확인해 보세요.<br><span class="cap2">뼈나이·예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ความสูงของลูก อาจถูก 5 สิ่งนี้ขัดขวางอยู่ก็ได้<br><span class="cap2">สิ่งที่ขัดขวาง · <span class="y">5 นิสัย</span></span></td></tr><tr><td class="c-id">c2</td><td>ความสูงไม่ได้มาจากพันธุกรรมอย่างเดียว นิสัยทุกวันต่างหากที่กำหนด<br><span class="cap2">ไม่ใช่แค่พันธุกรรม · <span class="y">นิสัยกำหนด</span></span></td></tr><tr><td class="c-id">c3</td><td>การนอน อาหาร การออกกำลังกาย ท่าทาง และจิตใจ ห้าอย่างนี้<br><span class="cap2">5 ด้าน · นอน·อาหาร·ใจ</span></td></tr><tr><td class="c-id">c4</td><td>ข้อแรก การนอน หลับลึก 1–2 ชม. โกรทฮอร์โมนหลั่งมากสุด<br><span class="cap2">หลับลึก · <span class="y">1–2 ชม.</span></span></td></tr><tr><td class="c-id">c5</td><td>ข้อสอง อาหาร เติมโปรตีน แคลเซียม วิตามินดี ลดของแปรรูป<br><span class="cap2">เติมโปรตีน·แคลเซียม · <span class="y">ลดของแปรรูป</span></span></td></tr><tr><td class="c-id">c6</td><td>ข้อสาม ออกกำลังกาย กระโดดเชือก บาส กระตุ้นแผ่นกระดูก วันละ 30 นาที<br><span class="cap2">กระโดดกระตุ้นกระดูก · <span class="y">วันละ 30 นาที</span></span></td></tr><tr><td class="c-id">c7</td><td>ข้อสี่ ท่าทาง นั่งหลังตรงช่วยให้แผ่นกระดูกรับแรงสม่ำเสมอ ดึงส่วนสูงที่ซ่อนอยู่<br><span class="cap2">หลังตรง · <span class="y">ดึงส่วนสูงที่ซ่อน</span></span></td></tr><tr><td class="c-id">c8</td><td>ข้อห้า จิตใจ ความเครียดกดการหลั่งโกรทฮอร์โมนและรบกวนการนอน<br><span class="cap2">ความเครียด · <span class="y">กดโกรทฮอร์โมน</span></span></td></tr><tr><td class="c-id">c9</td><td>ห้าข้อนี้ ลองเช็กกับลูกวันนี้ การเปลี่ยนเล็กๆ เปลี่ยนความสูงได้<br><span class="cap2">เช็ก 5 ข้อ · เปลี่ยนเล็กๆ เปลี่ยนสูง</span></td></tr><tr><td class="c-id">c10</td><td>เช็กการเติบโตของลูกด้วยอายุกระดูกและส่วนสูงพยากรณ์วันนี้<br><span class="cap2">อายุกระดูก·พยากรณ์ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Chiều cao của con có thể đang bị '5 điều này' cản trở.<br><span class="cap2">Điều cản trở · <span class="y">5 thói quen</span></span></td></tr><tr><td class="c-id">c2</td><td>Chiều cao không chỉ do di truyền — thói quen mỗi ngày mới quyết định.<br><span class="cap2">Không chỉ di truyền · <span class="y">thói quen quyết định</span></span></td></tr><tr><td class="c-id">c3</td><td>Giấc ngủ, ăn uống, vận động, tư thế, và tâm lý. Năm điều này.<br><span class="cap2">5 yếu tố · ngủ·ăn·tâm lý</span></td></tr><tr><td class="c-id">c4</td><td>Đầu tiên: giấc ngủ. Ngủ sâu 1–2 giờ, hormone tăng trưởng tiết mạnh nhất.<br><span class="cap2">Ngủ sâu · <span class="y">1–2 giờ</span></span></td></tr><tr><td class="c-id">c5</td><td>Thứ hai: ăn uống. Đủ đạm, canxi, vitamin D; bớt đồ chế biến sẵn.<br><span class="cap2">Đủ đạm·canxi · <span class="y">bớt đồ chế biến</span></span></td></tr><tr><td class="c-id">c6</td><td>Thứ ba: vận động. Nhảy dây, bóng rổ kích thích sụn tăng trưởng. Mỗi ngày 30 phút!<br><span class="cap2">Nhảy kích thích sụn · <span class="y">mỗi ngày 30 phút</span></span></td></tr><tr><td class="c-id">c7</td><td>Thứ tư: tư thế. Ngồi thẳng giúp sụn chịu lực đều, tìm lại chiều cao bị giấu.<br><span class="cap2">Tư thế đúng · <span class="y">tìm chiều cao ẩn</span></span></td></tr><tr><td class="c-id">c8</td><td>Thứ năm: tâm lý. Căng thẳng ức chế hormone tăng trưởng và phá giấc ngủ.<br><span class="cap2">Căng thẳng · <span class="y">ức chế hormone</span></span></td></tr><tr><td class="c-id">c9</td><td>Năm điều này, hãy cùng con kiểm tra hôm nay. Thay đổi nhỏ đổi cả chiều cao.<br><span class="cap2">Tự kiểm 5 điều · thay đổi nhỏ</span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tăng trưởng của con bằng tuổi xương và chiều cao dự đoán ngay.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your child's height might be blocked by these 5 things.<br><span class="cap2">What blocks height · <span class="y">5 habits</span></span></td></tr><tr><td class="c-id">c2</td><td>Height isn't just genes — daily habits drive growth hormone.<br><span class="cap2">Not just genes · <span class="y">habits drive it</span></span></td></tr><tr><td class="c-id">c3</td><td>Sleep, diet, exercise, posture, and mind. These five.<br><span class="cap2">5 factors · sleep·diet·mind</span></td></tr><tr><td class="c-id">c4</td><td>First, sleep. 1–2 hours into deep sleep, growth hormone peaks.<br><span class="cap2">Deep sleep · <span class="y">1–2 hours</span></span></td></tr><tr><td class="c-id">c5</td><td>Second, diet. Fill up on protein, calcium, vitamin D; cut processed food.<br><span class="cap2">Protein·calcium up · <span class="y">cut processed food</span></span></td></tr><tr><td class="c-id">c6</td><td>Third, exercise. Jumping rope and basketball stimulate growth plates. 30 minutes a day!<br><span class="cap2">Jumping stimulates plates · <span class="y">30 minutes a day</span></span></td></tr><tr><td class="c-id">c7</td><td>Fourth, posture. Good posture loads the plates evenly and unlocks hidden height.<br><span class="cap2">Good posture · <span class="y">unlock hidden height</span></span></td></tr><tr><td class="c-id">c8</td><td>Fifth, the mind. Stress suppresses growth hormone and disrupts sleep.<br><span class="cap2">Stress · <span class="y">suppresses GH</span></span></td></tr><tr><td class="c-id">c9</td><td>Check these five with your child today. Small changes shift height.<br><span class="cap2">Self-check 5 · small changes count</span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth with bone age and predicted height today.<br><span class="cap2">Bone age·prediction · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子的身高，其实可能被这5件事挡住了。<br><span class="cap2">挡住身高的 · <span class="y">5个习惯</span></span></td></tr><tr><td class="c-id">c2</td><td>身高不只靠基因——每天的小习惯左右生长激素。<br><span class="cap2">不只靠基因 · <span class="y">习惯左右</span></span></td></tr><tr><td class="c-id">c3</td><td>睡眠、饮食、运动、姿势，还有情绪。就这五项。<br><span class="cap2">五大方面 · 睡眠·饮食·情绪</span></td></tr><tr><td class="c-id">c4</td><td>第一是睡眠。进入深睡1到2小时，生长激素分泌最旺。<br><span class="cap2">进入深睡 · <span class="y">1~2小时</span></span></td></tr><tr><td class="c-id">c5</td><td>第二是饮食。补足蛋白质、钙、维D，少吃加工食品。<br><span class="cap2">补蛋白质·钙 · <span class="y">少吃加工食品</span></span></td></tr><tr><td class="c-id">c6</td><td>第三是运动。跳绳、篮球这类跳跃刺激生长板。每天30分钟！<br><span class="cap2">跳跃刺激生长板 · <span class="y">每天30分钟</span></span></td></tr><tr><td class="c-id">c7</td><td>第四是姿势。坐姿端正让生长板均匀受力，找回藏起来的身高。<br><span class="cap2">姿势端正 · <span class="y">找回隐藏身高</span></span></td></tr><tr><td class="c-id">c8</td><td>第五是情绪。压力会抑制生长激素，还干扰睡眠。<br><span class="cap2">压力 · <span class="y">抑制生长激素</span></span></td></tr><tr><td class="c-id">c9</td><td>这五项，今天就和孩子一起核对。小改变能改变身高。<br><span class="cap2">自查5项 · 小改变·大不同</span></td></tr><tr><td class="c-id">c10</td><td>现在就用骨龄和预测身高，查查孩子的成长。<br><span class="cap2">骨龄·预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子的身高，其實可能被這5件事擋住了。<br><span class="cap2">擋住身高的 · <span class="y">5個習慣</span></span></td></tr><tr><td class="c-id">c2</td><td>身高不只靠基因——每天的小習慣左右生長激素。<br><span class="cap2">不只靠基因 · <span class="y">習慣左右</span></span></td></tr><tr><td class="c-id">c3</td><td>睡眠、飲食、運動、姿勢，還有情緒。就這五項。<br><span class="cap2">五大方面 · 睡眠·飲食·情緒</span></td></tr><tr><td class="c-id">c4</td><td>第一是睡眠。進入深睡1到2小時，生長激素分泌最旺。<br><span class="cap2">進入深睡 · <span class="y">1~2小時</span></span></td></tr><tr><td class="c-id">c5</td><td>第二是飲食。補足蛋白質、鈣、維D，少吃加工食品。<br><span class="cap2">補蛋白質·鈣 · <span class="y">少吃加工食品</span></span></td></tr><tr><td class="c-id">c6</td><td>第三是運動。跳繩、籃球這類跳躍刺激生長板。每天30分鐘！<br><span class="cap2">跳躍刺激生長板 · <span class="y">每天30分鐘</span></span></td></tr><tr><td class="c-id">c7</td><td>第四是姿勢。坐姿端正讓生長板均勻受力，找回藏起來的身高。<br><span class="cap2">姿勢端正 · <span class="y">找回隱藏身高</span></span></td></tr><tr><td class="c-id">c8</td><td>第五是情緒。壓力會抑制生長激素，還干擾睡眠。<br><span class="cap2">壓力 · <span class="y">抑制生長激素</span></span></td></tr><tr><td class="c-id">c9</td><td>這五項，今天就和孩子一起核對。小改變能改變身高。<br><span class="cap2">自查5項 · 小改變·大不同</span></td></tr><tr><td class="c-id">c10</td><td>現在就用骨齡和預測身高，查查孩子的成長。<br><span class="cap2">骨齡·預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/성장체크리스트5/</code> · <code>성장체크리스트5-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

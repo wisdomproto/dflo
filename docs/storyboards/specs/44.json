@@ -1,0 +1,789 @@
+{
+  "n": 44,
+  "slug": "가슴발달8세",
+  "title": "딸 가슴이 나왔어요 — 다 성조숙증일까?",
+  "sub": "초등 가슴 발달 ≠ 무조건 성조숙증 — 8세 기준·뼈나이로 정확히 확인하면 늦지 않아요",
+  "category": "C. 부모공감",
+  "topicTitle": "초등 가슴 발달과 성조숙증 자가체크",
+  "headerTop": "우리 딸 가슴",
+  "headerMark": "다 성조숙증?",
+  "accentEmoji": "🌸✨",
+  "duration": 35,
+  "hook": "초등 4학년 딸 가슴이 봉긋… 이거 다 성조숙증일까요?",
+  "misconception": "가슴 나오면 무조건 성조숙증이다 → 사실 사춘기 첫 신호일 뿐, '8세 기준'으로 가려야 함",
+  "message": "여아 가슴 발달은 사춘기 첫 신호. 만 8세 미만이면 성조숙증 의심 → 뼈나이로 확인하면 골든타임 안에 충분히 대응 가능",
+  "tone": "협박 ❌ → \"당황 말고 확인하면 된다\" 긍정. 가슴 발달=정상 신호로 안심 + '8세 기준'·뼈나이로 정확히. \"우리 아이 키\" 보편",
+  "cta": "우리 아이 사춘기, 빠른지 지금 확인 → 뼈나이/예측키 측정 유도",
+  "thumb": {
+    "kicker": "당황 말고!",
+    "subject": "우리 딸 가슴 발달",
+    "number": "8세",
+    "numLabel": "전이면 체크"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·공감",
+      "scenes": "c1–c2",
+      "desc": "\"딸 가슴 봉긋, 다 성조숙증일까?\" 부모 철렁"
+    },
+    {
+      "act": "ACT 2",
+      "title": "안심·정상신호",
+      "scenes": "c3–c4",
+      "desc": "\"가슴은 사춘기 첫 신호, 정상 10~11세\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "기준선",
+      "scenes": "c5–c6",
+      "desc": "\"여아 8세 미만이면 성조숙증 의심\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "자가체크·이유",
+      "scenes": "c7–c8",
+      "desc": "\"집에서 체크 신호 → 빠르면 성장판 일찍\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🌸 슬램 인 + 💗 두근",
+      "copy": {
+        "ko": {
+          "narr": "초등 4학년 딸 가슴이 봉긋… 이거 다 성조숙증일까요?",
+          "cap": [
+            "딸 가슴 봉긋",
+            "다 성조숙증?"
+          ],
+          "hl": "다 성조숙증?"
+        },
+        "th": {
+          "narr": "ลูกสาว ป.4 หน้าอกเริ่มนูน… ใช่เป็นสาวก่อนวัยไหม?",
+          "cap": [
+            "หน้าอกเริ่มนูน",
+            "สาวก่อนวัย?"
+          ],
+          "hl": "สาวก่อนวัย?"
+        },
+        "vi": {
+          "narr": "Con gái lớp 4 ngực nhú lên… có phải dậy thì sớm không?",
+          "cap": [
+            "Ngực nhú lên",
+            "dậy thì sớm?"
+          ],
+          "hl": "dậy thì sớm?"
+        },
+        "en": {
+          "narr": "Your 4th-grade daughter's chest is budding… is it precocious puberty?",
+          "cap": [
+            "Chest budding",
+            "early puberty?"
+          ],
+          "hl": "early puberty?"
+        },
+        "cn": {
+          "narr": "四年级女儿胸部鼓起来了…是性早熟吗？",
+          "cap": [
+            "胸部鼓起",
+            "是性早熟吗"
+          ],
+          "hl": "是性早熟吗"
+        },
+        "ch": {
+          "narr": "四年級女兒胸部鼓起來了…是性早熟嗎？",
+          "cap": [
+            "胸部鼓起",
+            "是性早熟嗎"
+          ],
+          "hl": "是性早熟嗎"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🤍 진정 + 손짓",
+      "copy": {
+        "ko": {
+          "narr": "마음이 철렁하셨죠? 당황하지 마세요. 다 성조숙증은 아니에요.",
+          "cap": [
+            "당황하지 마세요",
+            "다 아니에요"
+          ],
+          "hl": "당황하지 마세요"
+        },
+        "th": {
+          "narr": "ใจหายใช่ไหม? ใจเย็นๆ ไม่ใช่ทุกคนที่เป็นสาวก่อนวัย",
+          "cap": [
+            "ใจเย็นๆ",
+            "ไม่ใช่ทุกคน"
+          ],
+          "hl": "ใจเย็นๆ"
+        },
+        "vi": {
+          "narr": "Tim hẫng một nhịp đúng không? Đừng hoảng — không phải lúc nào cũng là dậy thì sớm.",
+          "cap": [
+            "Đừng hoảng",
+            "không phải lúc nào cũng"
+          ],
+          "hl": "Đừng hoảng"
+        },
+        "en": {
+          "narr": "Heart skipped a beat? Don't panic — it's not always precocious puberty.",
+          "cap": [
+            "Don't panic",
+            "not always"
+          ],
+          "hl": "Don't panic"
+        },
+        "cn": {
+          "narr": "心里咯噔一下吧？别慌——不一定就是性早熟。",
+          "cap": [
+            "别慌",
+            "不一定是"
+          ],
+          "hl": "别慌"
+        },
+        "ch": {
+          "narr": "心裡咯噔一下吧？別慌——不一定就是性早熟。",
+          "cap": [
+            "別慌",
+            "不一定是"
+          ],
+          "hl": "別慌"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "ig",
+      "igLabel": "IG1 사춘기 첫 신호",
+      "motion": "🌸 봉긋 팝 + 첫 신호 점등",
+      "copy": {
+        "ko": {
+          "narr": "여자아이 가슴 발달은, 사춘기가 시작됐다는 가장 첫 신호예요.",
+          "cap": [
+            "가슴 발달",
+            "사춘기 첫 신호"
+          ],
+          "hl": "사춘기 첫 신호"
+        },
+        "th": {
+          "narr": "การพัฒนาหน้าอกในเด็กหญิง คือสัญญาณแรกของวัยแรกรุ่น",
+          "cap": [
+            "พัฒนาหน้าอก",
+            "สัญญาณแรก"
+          ],
+          "hl": "สัญญาณแรก"
+        },
+        "vi": {
+          "narr": "Ở bé gái, ngực phát triển là dấu hiệu đầu tiên của dậy thì.",
+          "cap": [
+            "Ngực phát triển",
+            "dấu hiệu đầu tiên"
+          ],
+          "hl": "dấu hiệu đầu tiên"
+        },
+        "en": {
+          "narr": "In girls, breast budding is the very first sign that puberty has begun.",
+          "cap": [
+            "Breast budding",
+            "first sign"
+          ],
+          "hl": "first sign"
+        },
+        "cn": {
+          "narr": "女孩乳房发育，是青春期开始的第一个信号。",
+          "cap": [
+            "乳房发育",
+            "第一个信号"
+          ],
+          "hl": "第一个信号"
+        },
+        "ch": {
+          "narr": "女孩乳房發育，是青春期開始的第一個信號。",
+          "cap": [
+            "乳房發育",
+            "第一個信號"
+          ],
+          "hl": "第一個信號"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14s",
+      "kind": "ig",
+      "igLabel": "IG2 정상 타임라인",
+      "motion": "📅 10~11세 점등 + 초경 12~13",
+      "copy": {
+        "ko": {
+          "narr": "보통은 만 10에서 11세에 가슴이 나오고, 12에서 13세에 초경을 해요.",
+          "cap": [
+            "보통 10~11세",
+            "초경 12~13세"
+          ],
+          "hl": "보통 10~11세"
+        },
+        "th": {
+          "narr": "ปกติหน้าอกเริ่มราว 10–11 ปี ประจำเดือนแรกราว 12–13 ปี",
+          "cap": [
+            "ปกติ 10–11 ปี",
+            "ประจำเดือน 12–13"
+          ],
+          "hl": "ปกติ 10–11 ปี"
+        },
+        "vi": {
+          "narr": "Bình thường ngực nhú lúc 10–11 tuổi, kinh nguyệt đầu lúc 12–13 tuổi.",
+          "cap": [
+            "Thường 10–11 tuổi",
+            "kinh đầu 12–13"
+          ],
+          "hl": "Thường 10–11 tuổi"
+        },
+        "en": {
+          "narr": "Normally breasts develop around 10–11, first period around 12–13.",
+          "cap": [
+            "Usually 10–11",
+            "period 12–13"
+          ],
+          "hl": "Usually 10–11"
+        },
+        "cn": {
+          "narr": "通常10到11岁乳房发育，12到13岁来初潮。",
+          "cap": [
+            "通常10~11岁",
+            "初潮12~13"
+          ],
+          "hl": "通常10~11岁"
+        },
+        "ch": {
+          "narr": "通常10到11歲乳房發育，12到13歲來初經。",
+          "cap": [
+            "通常10~11歲",
+            "初經12~13"
+          ],
+          "hl": "通常10~11歲"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14–18s",
+      "kind": "doctor",
+      "motion": "8️⃣ 슬램 + 기준선 그어짐",
+      "copy": {
+        "ko": {
+          "narr": "그럼 기준은 뭘까요? 여아는 만 8세 미만에 가슴이 나오면 성조숙증을 의심해요.",
+          "cap": [
+            "여아 8세 미만이면",
+            "성조숙증 의심"
+          ],
+          "hl": "여아 8세 미만이면"
+        },
+        "th": {
+          "narr": "แล้วเกณฑ์คืออะไร? เด็กหญิงหน้าอกขึ้นก่อน 8 ปี ต้องสงสัยสาวก่อนวัย",
+          "cap": [
+            "เด็กหญิงก่อน 8 ปี",
+            "สงสัยสาวก่อนวัย"
+          ],
+          "hl": "เด็กหญิงก่อน 8 ปี"
+        },
+        "vi": {
+          "narr": "Vậy mốc là gì? Bé gái ngực nhú trước 8 tuổi thì nghi dậy thì sớm.",
+          "cap": [
+            "Bé gái trước 8 tuổi",
+            "nghi dậy thì sớm"
+          ],
+          "hl": "Bé gái trước 8 tuổi"
+        },
+        "en": {
+          "narr": "So what's the line? In girls, breasts before age 8 means suspect early puberty.",
+          "cap": [
+            "Girls before age 8",
+            "suspect it"
+          ],
+          "hl": "Girls before age 8"
+        },
+        "cn": {
+          "narr": "那界线在哪？女孩8岁前胸部发育，就要怀疑性早熟。",
+          "cap": [
+            "女孩8岁前",
+            "怀疑性早熟"
+          ],
+          "hl": "女孩8岁前"
+        },
+        "ch": {
+          "narr": "那界線在哪？女孩8歲前胸部發育，就要懷疑性早熟。",
+          "cap": [
+            "女孩8歲前",
+            "懷疑性早熟"
+          ],
+          "hl": "女孩8歲前"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–22s",
+      "kind": "ig",
+      "igLabel": "IG3 자가체크 신호",
+      "motion": "✅ 체크 항목 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "가슴 몽우리·통증, 음모, 여드름이나 냄새, 갑자기 키가 쑥. 집에서 체크해 보세요.",
+          "cap": [
+            "몽우리·음모·여드름",
+            "집에서 체크"
+          ],
+          "hl": "집에서 체크"
+        },
+        "th": {
+          "narr": "คลำเจอก้อน เจ็บหน้าอก ขนหัวหน่าว สิว กลิ่นตัว สูงพรวด เช็กที่บ้านได้",
+          "cap": [
+            "ก้อน·ขน·สิว",
+            "เช็กที่บ้าน"
+          ],
+          "hl": "เช็กที่บ้าน"
+        },
+        "vi": {
+          "narr": "Cục cứng, đau ngực, lông mu, mụn hay mùi, cao vọt. Tự kiểm ở nhà nhé.",
+          "cap": [
+            "Cục·lông·mụn",
+            "tự kiểm ở nhà"
+          ],
+          "hl": "tự kiểm ở nhà"
+        },
+        "en": {
+          "narr": "A firm lump, pubic hair, acne or odor, a sudden growth spurt — check at home.",
+          "cap": [
+            "Lump·hair·acne",
+            "check at home"
+          ],
+          "hl": "check at home"
+        },
+        "cn": {
+          "narr": "硬块、阴毛、长痘或体味、突然窜个——在家先自查。",
+          "cap": [
+            "硬块·阴毛·痘",
+            "在家自查"
+          ],
+          "hl": "在家自查"
+        },
+        "ch": {
+          "narr": "硬塊、陰毛、長痘或體味、突然竄個——在家先自查。",
+          "cap": [
+            "硬塊·陰毛·痘",
+            "在家自查"
+          ],
+          "hl": "在家自查"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 성장판 닫힘",
+      "copy": {
+        "ko": {
+          "narr": "왜 중요하냐면, 사춘기가 너무 빠르면 성장판이 일찍 닫혀 키가 손해예요.",
+          "cap": [
+            "너무 빠르면",
+            "성장판 일찍 닫힘"
+          ],
+          "hl": "성장판 일찍 닫힘"
+        },
+        "th": {
+          "narr": "ทำไมถึงสำคัญ? ถ้าแรกรุ่นเร็วไป แผ่นกระดูกปิดเร็ว เสียส่วนสูง",
+          "cap": [
+            "เร็วไป",
+            "แผ่นกระดูกปิดเร็ว"
+          ],
+          "hl": "แผ่นกระดูกปิดเร็ว"
+        },
+        "vi": {
+          "narr": "Vì sao quan trọng? Dậy thì quá sớm thì sụn đóng sớm — mất chiều cao.",
+          "cap": [
+            "Quá sớm",
+            "sụn đóng sớm"
+          ],
+          "hl": "sụn đóng sớm"
+        },
+        "en": {
+          "narr": "Why it matters: if puberty's too early, growth plates close early — height lost.",
+          "cap": [
+            "Too early",
+            "plates close early"
+          ],
+          "hl": "plates close early"
+        },
+        "cn": {
+          "narr": "为什么重要？青春期太早，生长板提前闭合——身高吃亏。",
+          "cap": [
+            "太早",
+            "生长板早闭"
+          ],
+          "hl": "生长板早闭"
+        },
+        "ch": {
+          "narr": "為什麼重要？青春期太早，生長板提前閉合——身高吃虧。",
+          "cap": [
+            "太早",
+            "生長板早閉"
+          ],
+          "hl": "生長板早閉"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "ig",
+      "igLabel": "IG4 뼈나이 2살",
+      "motion": "🦴 +2살 카운트업 글로우",
+      "copy": {
+        "ko": {
+          "narr": "그래서 뼈나이를 봐요. 실제 나이보다 2살 이상 빠르면 성조숙증 신호예요.",
+          "cap": [
+            "뼈나이 2살 이상",
+            "빠르면 신호"
+          ],
+          "hl": "뼈나이 2살 이상"
+        },
+        "th": {
+          "narr": "จึงดูอายุกระดูก ถ้าเร็วกว่าอายุจริง 2 ปีขึ้นไป คือสัญญาณ",
+          "cap": [
+            "อายุกระดูกเร็ว 2 ปี",
+            "คือสัญญาณ"
+          ],
+          "hl": "อายุกระดูกเร็ว 2 ปี"
+        },
+        "vi": {
+          "narr": "Nên ta xem tuổi xương. Sớm hơn tuổi thật từ 2 năm là tín hiệu.",
+          "cap": [
+            "Tuổi xương sớm 2 năm",
+            "là tín hiệu"
+          ],
+          "hl": "Tuổi xương sớm 2 năm"
+        },
+        "en": {
+          "narr": "So we check bone age. Over 2 years ahead of real age is the signal.",
+          "cap": [
+            "Bone age 2+ yrs ahead",
+            "that's the sign"
+          ],
+          "hl": "Bone age 2+ yrs ahead"
+        },
+        "cn": {
+          "narr": "所以要看骨龄。比实际年龄超前2岁以上，就是信号。",
+          "cap": [
+            "骨龄超前2岁",
+            "就是信号"
+          ],
+          "hl": "骨龄超前2岁"
+        },
+        "ch": {
+          "narr": "所以要看骨齡。比實際年齡超前2歲以上，就是信號。",
+          "cap": [
+            "骨齡超前2歲",
+            "就是信號"
+          ],
+          "hl": "骨齡超前2歲"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝 + 안심 미소",
+      "copy": {
+        "ko": {
+          "narr": "걱정만 하지 마시고 뼈나이로 확인하면, 골든타임 안에 충분히 대응할 수 있어요.",
+          "cap": [
+            "뼈나이로 확인하면",
+            "골든타임 안에"
+          ],
+          "hl": "골든타임 안에"
+        },
+        "th": {
+          "narr": "อย่าแค่กังวล เช็กอายุกระดูก ยังทันในช่วงเวลาทอง",
+          "cap": [
+            "เช็กอายุกระดูก",
+            "ยังทันเวลาทอง"
+          ],
+          "hl": "ยังทันเวลาทอง"
+        },
+        "vi": {
+          "narr": "Đừng chỉ lo — xem tuổi xương thì vẫn kịp trong thời điểm vàng.",
+          "cap": [
+            "Xem tuổi xương",
+            "kịp thời điểm vàng"
+          ],
+          "hl": "kịp thời điểm vàng"
+        },
+        "en": {
+          "narr": "Don't just worry — check bone age and you're still in the golden time.",
+          "cap": [
+            "Check bone age",
+            "still in golden time"
+          ],
+          "hl": "still in golden time"
+        },
+        "cn": {
+          "narr": "别光担心——查骨龄，还在黄金期内来得及。",
+          "cap": [
+            "查骨龄",
+            "还在黄金期"
+          ],
+          "hl": "还在黄金期"
+        },
+        "ch": {
+          "narr": "別光擔心——查骨齡，還在黃金期內來得及。",
+          "cap": [
+            "查骨齡",
+            "還在黃金期"
+          ],
+          "hl": "還在黃金期"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 사춘기가 빠른지, 지금 바로 확인해 보세요.",
+          "cap": [
+            "사춘기 빠른지",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ลูกเข้าสู่วัยแรกรุ่นเร็วไหม เช็กวันนี้เลย",
+          "cap": [
+            "แรกรุ่นเร็วไหม",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Con có dậy thì sớm không — kiểm tra ngay hôm nay.",
+          "cap": [
+            "Dậy thì sớm?",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Is your child's puberty early? Check it right now.",
+          "cap": [
+            "Puberty early?",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "孩子是不是青春期偏早？现在就查一查。",
+          "cap": [
+            "青春期偏早?",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "孩子是不是青春期偏早？現在就查一查。",
+          "cap": [
+            "青春期偏早?",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🌸 봉긋 팝 + 첫 신호 점등",
+      "title": "가슴 발달 = 사춘기 첫 신호",
+      "emojis": [
+        "🌸",
+        "👧",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly young girl silhouette with a small soft blossom/bud icon glowing gently at the chest area as the very first marker on a subtle rising puberty timeline behind her. Brand purple #667eea to mint #2dd4bf soft gradient, warm reassuring glow, friendly pediatric illustration style. NO text.",
+      "labels": [
+        {
+          "pos": "가슴(글로우)",
+          "ko": "첫 신호",
+          "en": "First sign",
+          "th": "สัญญาณแรก"
+        },
+        {
+          "pos": "하단",
+          "ko": "여아 사춘기 시작",
+          "en": "puberty begins",
+          "th": "เริ่มแรกรุ่น"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "📅 10~11세 점등 + 초경 12~13",
+      "title": "정상 사춘기 타임라인",
+      "emojis": [
+        "📅",
+        "👧",
+        "🌸"
+      ],
+      "prompt": "Flat vector, square, white background. A clean horizontal age timeline with two soft milestone nodes: a small blossom (breast budding) node and a calendar/droplet (first period) node, a gentle girl silhouette growing taller along the line. Brand purple to mint gradient, calm friendly pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "노드1",
+          "ko": "가슴 10~11세",
+          "en": "breasts 10–11",
+          "th": "หน้าอก 10–11"
+        },
+        {
+          "pos": "노드2",
+          "ko": "초경 12~13세",
+          "en": "period 12–13",
+          "th": "ประจำเดือน 12–13"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "✅ 체크 항목 순차 점등",
+      "title": "성조숙증 자가체크 신호",
+      "emojis": [
+        "✅",
+        "🌸",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly checklist card with four soft icon rows: a chest blossom bud, a small hair/sprout icon, an acne/skin dot with a scent swirl, and an upward growth arrow — each row paired with an empty rounded checkbox. Brand purple #667eea and mint #2dd4bf accents, clean pediatric flat style. NO text.",
+      "labels": [
+        {
+          "pos": "1행",
+          "ko": "가슴 몽우리",
+          "en": "breast lump",
+          "th": "ก้อนที่หน้าอก"
+        },
+        {
+          "pos": "2행",
+          "ko": "음모·털",
+          "en": "pubic hair",
+          "th": "ขนหัวหน่าว"
+        },
+        {
+          "pos": "3행",
+          "ko": "여드름·냄새",
+          "en": "acne · odor",
+          "th": "สิว · กลิ่นตัว"
+        },
+        {
+          "pos": "4행",
+          "ko": "급성장",
+          "en": "growth spurt",
+          "th": "สูงพรวด"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🦴 +2살 카운트업 글로우",
+      "title": "뼈나이 2살 이상 빠름",
+      "emojis": [
+        "🦴",
+        "🔍",
+        "⏳"
+      ],
+      "prompt": "Flat vector, square, white background. A stylized hand/wrist bone X-ray icon beside a child silhouette, with a glowing gap showing the bone clock running ahead of a smaller real-age clock; a soft golden-mint glow highlights the lead. Brand purple with warm gold and mint accents, friendly clinical flat style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "가운데(글로우)",
+          "ko": "+2살 이상",
+          "en": "+2 yrs ahead",
+          "th": "เร็ว 2 ปี+"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🌸",
+      "label": "가슴 발달"
+    },
+    {
+      "e": "👧",
+      "label": "여아"
+    },
+    {
+      "e": "💗",
+      "label": "부모 마음"
+    },
+    {
+      "e": "🤍",
+      "label": "안심"
+    },
+    {
+      "e": "📅",
+      "label": "정상 시기"
+    },
+    {
+      "e": "8️⃣",
+      "label": "8세 기준"
+    },
+    {
+      "e": "✅",
+      "label": "자가체크/CTA"
+    },
+    {
+      "e": "⚠️",
+      "label": "경고(성조숙)"
+    },
+    {
+      "e": "📈",
+      "label": "급성장"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    }
+  ]
+}

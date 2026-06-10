@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — "나중에 크겠지" 언제까지 기다려도 될까</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #38</span>
+  <h1>"나중에 크겠지" — 언제까지 기다려도 될까?</h1>
+  <div class="sub">막연한 기다림 대신 신호 6가지 — 성장판 닫히기 전이 진짜 기회</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>언제까지 기다려?</b></div>
+      <div class="subj">우리 아이 키 "나중에"</div>
+      <div class="big4"><div class="n" style="font-size:98px">4cm</div><div class="lab">안 크면 신호</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 "나중에"</b> 4cm안 크면 신호"</li>
+        <li><b>거대 숫자 "4cm"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #38 「"나중에 크겠지" 언제까지 기다려도 될까」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">""나중에 크겠지" — 그 말, 언제까지 믿어도 될까요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>"어리니까 나중에 알아서 크겠지" → 모든 아이가 저절로 크진 않고, 성장판 닫히면 기회도 닫힘</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>기다림이 답일 때도 있지만, 연 4cm 미만·3백분위 미만·이른 사춘기 같은 신호가 있으면 성장판 닫히기 전에 확인해야 한다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → "아직 기회 있다" 긍정 골든타임. "나중에 크겠지"를 비난하지 않고 부드럽게 공감 후 신호로 안내. "우리 아이 키" 보편</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>막연히 기다리지 말고 지금 확인 → 홈페이지 예측키 / 뼈나이 측정으로 남은 기회 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"나중에 크겠지" 그 말, 우리 모두 해봤죠 → 근데 정말 괜찮을까?</p></div><div class="act"><span class="n">ACT 2</span><h4>진실</h4><p>c3–c4<br>늦게 크는 아이도 있지만 모두는 아니다 → 성장판 닫히면 기회도 닫힘</p></div><div class="act"><span class="n">ACT 3</span><h4>신호 6가지</h4><p>c5–c6<br>연 4cm 미만·3백분위 미만 → 이른 사춘기(여8·남9)</p></div><div class="act"><span class="n">ACT 4</span><h4>전환·핵심</h4><p>c7–c8<br>기다림 vs 확인은 다르다 → 황금기는 지금</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>뼈나이로 남은 기회 확인 → CTA</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">언제까지 기다려?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">⏳💜</div></div>
+        <div class="ph-cap"><div class="l">"나중에 크겠지"</div><div class="l"><span class="y2">언제까지?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">"나중에 크겠지" — 그 말, 우리 다 해봤잖아요. 근데 언제까지 믿어도 될까요?</td><td><span class="cap2">"나중에 크겠지"<br><span class="y">언제까지?</span></span></td><td class="mo">💭 슬램 인 + 페이드</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">낮엔 괜찮다가도, 밤이 되면 아이 키가 자꾸 눈에 밟히죠. 그 마음 잘 알아요.</td><td><span class="cap2">밤마다<br><span class="y">눈에 밟히는 키</span></span></td><td class="mo">🌙 흔들 + 한숨</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 기다림 vs 닫힘</span></td><td class="narr">늦게 크는 아이도 분명 있어요. 하지만 모든 아이가 저절로 크는 건 아니에요.</td><td><span class="cap2">늦게 크는 아이도<br><span class="y">하지만 모두는 아냐</span></span></td><td class="mo">🚪 한쪽 닫힘 + ⏳ 강조</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr ig">🖼 IG2 성장판</span></td><td class="narr">키는 성장판이 열려 있을 때만 자라요. 한 번 닫히면 기회도 같이 닫혀요.</td><td><span class="cap2">성장판 열렸을 때만<br><span class="y">닫히면 기회도 끝</span></span></td><td class="mo">🦴 글로우 → 서서히 닫힘</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래서 신호를 봐야 해요. 1년에 4센티가 안 자라거나, 또래 100명 중 앞에서 3번째 안이면 확인이 필요해요.</td><td><span class="cap2"><span class="y">연 4cm 미만</span><br>100명 중 앞 3번째</span></td><td class="mo">📏 펄스 · &lt;4면 ⚠️ 깜빡</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23.5s</td><td><span class="scr ig">🖼 IG3 이른 사춘기 신호</span></td><td class="narr">또 여아 8세 전 가슴 발달, 남아 9세 전 고환이 커지면 성장이 일찍 멈출 수 있어요.</td><td><span class="cap2">여 8세·남 9세 전<br><span class="y">이른 사춘기 신호</span></span></td><td class="mo">⚠️ 8·9세 팝 + 흔들</td></tr><tr><td class="c-id">c7</td><td class="c-time">23.5–27.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">기다리는 것과 확인하는 건 달라요. 확인은 협박이 아니라, 아직 기회가 있을 때 하는 거예요.</td><td><span class="cap2">기다림 ≠ 확인<br><span class="y">아직 기회 있을 때</span></span></td><td class="mo">💡 톤 전환 + 따뜻 글로우</td></tr><tr><td class="c-id">c8</td><td class="c-time">27.5–31s</td><td><span class="scr ig">🖼 IG4 황금기</span></td><td class="narr">성장판이 열려 있는 지금이, 아이 키를 끌어올릴 수 있는 황금기예요.</td><td><span class="cap2">열려 있는 지금<br><span class="y">성장 황금기</span></span></td><td class="mo">⏳ 골드 글로우 + 따뜻 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">31–34s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면, 우리 아이한테 남은 기회가 얼마인지 정확히 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">남은 기회 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">34–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">더 기다리기 전에, 지금 우리 아이 남은 기회를 확인해 보세요.</td><td><span class="cap2">기다리기 전에<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 한쪽 문 닫힘 + ⏳ 강조</div><h3>기다림 vs 닫히는 기회</h3></div>
+        <div class="body">
+          <div class="sketch">⏳ 🚪</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Two gentle paths diverging: on the left a child calmly waiting under a soft sunrise (still-open path), on the right a doorway slowly closing with a sand hourglass beside it. Balanced, non-threatening, hopeful mood. Brand purple #667eea to mint #2dd4bf gradient, soft glow. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽</td><td>늦게 크는 아이</td><td>Late bloomer</td><td class="thai">เด็กโตช้า</td></tr><tr><td>오른쪽</td><td>닫히는 기회</td><td>Closing window</td><td class="thai">โอกาสที่ปิดลง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 성장판 글로우 → 서서히 닫힘</div><h3>성장판 — 열림과 닫힘</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🦵</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A stylized leg bone with a clearly visible growth-plate gap at the end, glowing softly mint while open; a faint ghosted version beside it shows the same gap nearly closed. Friendly, clean medical illustration, gentle and hopeful, not scary. Brand purple #667eea with mint #2dd4bf glow accents. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(글로우)</td><td>열림</td><td>Open</td><td class="thai">เปิด</td></tr><tr><td>오른쪽(흐림)</td><td>닫힘</td><td>Closed</td><td class="thai">ปิด</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 8·9세 순차 팝</div><h3>이른 사춘기 신호 (여 8 · 남 9)</h3></div>
+        <div class="body">
+          <div class="sketch">⚠️ 🧒</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Two friendly child silhouettes side by side, a girl and a boy, each with a small gentle alert/clock badge floating above to signal 'earlier than expected.' Soft, respectful, non-explicit, pediatric-friendly. Brand purple #667eea with a warm amber accent for the alert badges. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>여아 위</td><td>여아 8세 전</td><td>Girls before 8</td><td class="thai">หญิงก่อน 8 ขวบ</td></tr><tr><td>남아 위</td><td>남아 9세 전</td><td>Boys before 9</td><td class="thai">ชายก่อน 9 ขวบ</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: ⏳ 골드 글로우 + 따뜻 점등</div><h3>황금기 — 열려 있는 지금</h3></div>
+        <div class="body">
+          <div class="sketch">⏳ ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. An hourglass with golden sand still flowing, beside a child reaching upward toward a bright sparkle, warm golden glow surrounding them conveying 'there is still time, opportunity is now.' Hopeful and uplifting. Brand purple #667eea plus warm gold accents. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단</td><td>아직 기회 있음</td><td>Still time</td><td class="thai">ยังมีเวลา</td></tr><tr><td>가운데(글로우)</td><td>성장 황금기</td><td>Golden window</td><td class="thai">ช่วงเวลาทอง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>💭</b> 나중에 크겠지</span><span class="emo"><b>🌙</b> 밤마다 걱정</span><span class="emo"><b>⏳</b> 황금기/시간</span><span class="emo"><b>🚪</b> 닫히는 기회</span><span class="emo"><b>🦴</b> 성장판/뼈나이</span><span class="emo"><b>🦵</b> 성장판</span><span class="emo"><b>📏</b> 키·성장속도</span><span class="emo"><b>⚠️</b> 이른 사춘기 신호</span><span class="emo"><b>🧒</b> 또래 아이</span><span class="emo"><b>💡</b> 확인≠협박</span><span class="emo"><b>✨</b> 희망·강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"나중에 크겠지" — 그 말, 우리 다 해봤잖아요. 근데 언제까지 믿어도 될까요?<br><span class="cap2">"나중에 크겠지" · <span class="y">언제까지?</span></span></td></tr><tr><td class="c-id">c2</td><td>낮엔 괜찮다가도, 밤이 되면 아이 키가 자꾸 눈에 밟히죠. 그 마음 잘 알아요.<br><span class="cap2">밤마다 · <span class="y">눈에 밟히는 키</span></span></td></tr><tr><td class="c-id">c3</td><td>늦게 크는 아이도 분명 있어요. 하지만 모든 아이가 저절로 크는 건 아니에요.<br><span class="cap2">늦게 크는 아이도 · <span class="y">하지만 모두는 아냐</span></span></td></tr><tr><td class="c-id">c4</td><td>키는 성장판이 열려 있을 때만 자라요. 한 번 닫히면 기회도 같이 닫혀요.<br><span class="cap2">성장판 열렸을 때만 · <span class="y">닫히면 기회도 끝</span></span></td></tr><tr><td class="c-id">c5</td><td>그래서 신호를 봐야 해요. 1년에 4센티가 안 자라거나, 또래 100명 중 앞에서 3번째 안이면 확인이 필요해요.<br><span class="cap2">연 4cm 미만 · 100명 중 앞 3번째</span></td></tr><tr><td class="c-id">c6</td><td>또 여아 8세 전 가슴 발달, 남아 9세 전 고환이 커지면 성장이 일찍 멈출 수 있어요.<br><span class="cap2">여 8세·남 9세 전 · <span class="y">이른 사춘기 신호</span></span></td></tr><tr><td class="c-id">c7</td><td>기다리는 것과 확인하는 건 달라요. 확인은 협박이 아니라, 아직 기회가 있을 때 하는 거예요.<br><span class="cap2">기다림 ≠ 확인 · <span class="y">아직 기회 있을 때</span></span></td></tr><tr><td class="c-id">c8</td><td>성장판이 열려 있는 지금이, 아이 키를 끌어올릴 수 있는 황금기예요.<br><span class="cap2">열려 있는 지금 · <span class="y">성장 황금기</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면, 우리 아이한테 남은 기회가 얼마인지 정확히 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">남은 기회 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>더 기다리기 전에, 지금 우리 아이 남은 기회를 확인해 보세요.<br><span class="cap2">기다리기 전에 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"เดี๋ยวก็โตเอง" — เราต่างเคยพูด แต่จะเชื่อได้ถึงเมื่อไหร่?<br><span class="cap2">"เดี๋ยวก็โตเอง" · <span class="y">ถึงเมื่อไหร่?</span></span></td></tr><tr><td class="c-id">c2</td><td>กลางวันก็ว่าไม่เป็นไร แต่พอกลางคืนก็ห่วงเรื่องส่วนสูงลูก เข้าใจดีค่ะ<br><span class="cap2">ทุกคืน · <span class="y">ห่วงส่วนสูงลูก</span></span></td></tr><tr><td class="c-id">c3</td><td>เด็กโตช้าก็มีจริง แต่ไม่ใช่เด็กทุกคนจะโตเองตามธรรมชาติ<br><span class="cap2">บางคนโตช้าจริง · <span class="y">แต่ไม่ใช่ทุกคน</span></span></td></tr><tr><td class="c-id">c4</td><td>ความสูงเพิ่มได้เฉพาะตอนแผ่นกระดูกเปิด พอปิดแล้ว โอกาสก็ปิดตาม<br><span class="cap2">เฉพาะตอนเปิด · <span class="y">ปิดแล้วหมดโอกาส</span></span></td></tr><tr><td class="c-id">c5</td><td>จึงต้องดูสัญญาณ ถ้าปีนึงโตไม่ถึง 4 ซม. หรืออยู่ 3% ล่างสุดของเพื่อน ควรตรวจ<br><span class="cap2">ปีละไม่ถึง 4 ซม. · 3% ล่างสุด</span></td></tr><tr><td class="c-id">c6</td><td>และถ้าหญิงมีหน้าอกก่อน 8 ขวบ ชายมีอัณฑะโตก่อน 9 ขวบ การเติบโตอาจหยุดเร็ว<br><span class="cap2">หญิง 8 ชาย 9 · <span class="y">แรกรุ่นก่อนวัย</span></span></td></tr><tr><td class="c-id">c7</td><td>การรอกับการตรวจไม่เหมือนกัน ตรวจไม่ใช่การขู่ แต่ทำตอนที่ยังมีโอกาส<br><span class="cap2">รอ ≠ ตรวจ · <span class="y">ตอนยังมีโอกาส</span></span></td></tr><tr><td class="c-id">c8</td><td>ตอนนี้ที่แผ่นกระดูกยังเปิด คือช่วงเวลาทองที่จะดึงศักยภาพความสูงของลูก<br><span class="cap2">ตอนที่ยังเปิด · <span class="y">ช่วงเวลาทอง</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกบอกได้ว่าลูกเรายังเหลือโอกาสอีกเท่าไร<br><span class="cap2">อายุกระดูก · <span class="y">เวลาที่เหลือ</span></span></td></tr><tr><td class="c-id">c10</td><td>ก่อนจะรอต่อ มาเช็กโอกาสที่เหลือของลูกวันนี้<br><span class="cap2">ก่อนจะรอต่อ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"Lớn lên sẽ cao thôi" — ai cũng từng nói. Nhưng tin được đến bao giờ?<br><span class="cap2">"Rồi sẽ cao" · <span class="y">đến bao giờ?</span></span></td></tr><tr><td class="c-id">c2</td><td>Ban ngày thấy ổn, nhưng đêm xuống lại lo chiều cao của con. Tôi hiểu mà.<br><span class="cap2">Mỗi đêm · <span class="y">lo chiều cao con</span></span></td></tr><tr><td class="c-id">c3</td><td>Đúng là có trẻ dậy thì muộn. Nhưng không phải trẻ nào cũng tự cao lên.<br><span class="cap2">Có trẻ lớn muộn · nhưng <span class="y">không phải ai cũng vậy</span></span></td></tr><tr><td class="c-id">c4</td><td>Chiều cao chỉ tăng khi sụn tăng trưởng còn mở. Đóng lại là hết cơ hội.<br><span class="cap2">Chỉ khi sụn mở · <span class="y">đóng là hết cơ hội</span></span></td></tr><tr><td class="c-id">c5</td><td>Hãy nhìn vào dấu hiệu: dưới 4cm một năm, hoặc thuộc top 3% thấp nhất — cần kiểm tra.<br><span class="cap2">Dưới 4cm/năm · top 3% thấp nhất</span></td></tr><tr><td class="c-id">c6</td><td>Bé gái phát triển ngực trước 8 tuổi, bé trai tinh hoàn to trước 9 — có thể ngừng cao sớm.<br><span class="cap2">Gái 8, trai 9 · <span class="y">dậy thì sớm</span></span></td></tr><tr><td class="c-id">c7</td><td>Chờ đợi khác với kiểm tra. Kiểm tra không phải để dọa, mà là khi vẫn còn cơ hội.<br><span class="cap2">Chờ ≠ kiểm tra · <span class="y">khi còn cơ hội</span></span></td></tr><tr><td class="c-id">c8</td><td>Ngay bây giờ, khi sụn còn mở, chính là thời điểm vàng để con cao thêm.<br><span class="cap2">Khi sụn còn mở · <span class="y">thời điểm vàng</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cho biết chính xác con còn lại bao nhiêu cơ hội.<br><span class="cap2">Tuổi xương · <span class="y">cơ hội còn lại</span></span></td></tr><tr><td class="c-id">c10</td><td>Trước khi chờ thêm, hãy kiểm tra cơ hội còn lại của con ngay hôm nay.<br><span class="cap2">Trước khi chờ thêm · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"They'll catch up later" — we've all said it. But how long can you wait?<br><span class="cap2">"Catch up later" · <span class="y">how long?</span></span></td></tr><tr><td class="c-id">c2</td><td>You're fine by day, but at night their height keeps tugging at you. I get it.<br><span class="cap2">Every night · <span class="y">that worry</span></span></td></tr><tr><td class="c-id">c3</td><td>Some kids really are late bloomers. But not every child grows on their own.<br><span class="cap2">Some bloom late · <span class="y">not every child does</span></span></td></tr><tr><td class="c-id">c4</td><td>Height grows only while the growth plates are open. Once closed, the window closes too.<br><span class="cap2">Only while open · <span class="y">closed = window gone</span></span></td></tr><tr><td class="c-id">c5</td><td>So watch the signs: under 4cm a year, or in the shortest 3% of peers — time to check.<br><span class="cap2">Under 4cm a year · shortest 3%</span></td></tr><tr><td class="c-id">c6</td><td>Breast development before age 8 in girls, testes enlarging before 9 in boys — growth may stop early.<br><span class="cap2">Girls 8, boys 9 · <span class="y">early puberty</span></span></td></tr><tr><td class="c-id">c7</td><td>Waiting and checking aren't the same. Checking isn't fear — it's acting while there's still time.<br><span class="cap2">Wait ≠ check · <span class="y">while time remains</span></span></td></tr><tr><td class="c-id">c8</td><td>Right now, while the plates are open, is the golden window to lift your child's height.<br><span class="cap2">While still open · <span class="y">golden window</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows exactly how much chance your child has left.<br><span class="cap2">Bone age · <span class="y">chance left</span></span></td></tr><tr><td class="c-id">c10</td><td>Before you wait any longer, check your child's remaining chance today.<br><span class="cap2">Before you wait · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"以后会长高的"——我们都这么说过。但能等到什么时候？<br><span class="cap2">"以后会长高" · <span class="y">等到何时？</span></span></td></tr><tr><td class="c-id">c2</td><td>白天没事，一到晚上就放不下孩子的身高。这份心情我懂。<br><span class="cap2">每到夜里 · <span class="y">放不下的身高</span></span></td></tr><tr><td class="c-id">c3</td><td>确实有晚长的孩子，但并不是每个孩子都会自己长高。<br><span class="cap2">有的孩子晚长 · <span class="y">但并非人人如此</span></span></td></tr><tr><td class="c-id">c4</td><td>只有生长板开着时身高才会长。一旦闭合，机会也随之关闭。<br><span class="cap2">开着才能长 · <span class="y">闭合即关门</span></span></td></tr><tr><td class="c-id">c5</td><td>所以要看信号：一年长不到4厘米，或在同龄最矮的3%，就该检查了。<br><span class="cap2">一年不足4厘米 · 最矮3%</span></td></tr><tr><td class="c-id">c6</td><td>女孩8岁前发育、男孩9岁前睾丸变大，生长可能提前停止。<br><span class="cap2">女8 男9 · <span class="y">性早熟信号</span></span></td></tr><tr><td class="c-id">c7</td><td>等待和确认不一样。确认不是吓唬，而是趁还有机会时去做。<br><span class="cap2">等待 ≠ 确认 · <span class="y">趁还有机会</span></span></td></tr><tr><td class="c-id">c8</td><td>现在，生长板还开着的时候，正是拉高孩子身高的黄金期。<br><span class="cap2">趁还开着 · <span class="y">成长黄金期</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄能告诉你，孩子还剩下多少机会。<br><span class="cap2">骨龄 · <span class="y">剩余机会</span></span></td></tr><tr><td class="c-id">c10</td><td>在继续等待之前，现在就查查孩子还剩多少机会吧。<br><span class="cap2">别再等了 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"以後會長高的"——我們都這麼說過。但能等到什麼時候？<br><span class="cap2">"以後會長高" · <span class="y">等到何時？</span></span></td></tr><tr><td class="c-id">c2</td><td>白天沒事，一到晚上就放不下孩子的身高。這份心情我懂。<br><span class="cap2">每到夜裡 · <span class="y">放不下的身高</span></span></td></tr><tr><td class="c-id">c3</td><td>確實有晚長的孩子，但並不是每個孩子都會自己長高。<br><span class="cap2">有的孩子晚長 · <span class="y">但並非人人如此</span></span></td></tr><tr><td class="c-id">c4</td><td>只有生長板開著時身高才會長。一旦閉合，機會也隨之關閉。<br><span class="cap2">開著才能長 · <span class="y">閉合即關門</span></span></td></tr><tr><td class="c-id">c5</td><td>所以要看信號：一年長不到4公分，或在同齡最矮的3%，就該檢查了。<br><span class="cap2">一年不足4公分 · 最矮3%</span></td></tr><tr><td class="c-id">c6</td><td>女孩8歲前發育、男孩9歲前睪丸變大，生長可能提前停止。<br><span class="cap2">女8 男9 · <span class="y">性早熟信號</span></span></td></tr><tr><td class="c-id">c7</td><td>等待和確認不一樣。確認不是嚇唬，而是趁還有機會時去做。<br><span class="cap2">等待 ≠ 確認 · <span class="y">趁還有機會</span></span></td></tr><tr><td class="c-id">c8</td><td>現在，生長板還開著的時候，正是拉高孩子身高的黃金期。<br><span class="cap2">趁還開著 · <span class="y">成長黃金期</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡能告訴你，孩子還剩下多少機會。<br><span class="cap2">骨齡 · <span class="y">剩餘機會</span></span></td></tr><tr><td class="c-id">c10</td><td>在繼續等待之前，現在就查查孩子還剩多少機會吧。<br><span class="cap2">別再等了 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/나중에크겠지/</code> · <code>나중에크겠지-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

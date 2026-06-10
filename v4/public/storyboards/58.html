@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 겨울방학 키 성장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #58</span>
+  <h1>겨울방학이 키 성장 골든타임인 이유</h1>
+  <div class="sub">방학엔 스트레스 ↓ 수면·영양·운동 관리 ↑ — 성장판 닫히기 전 마지막 기회를 살리는 법</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>방학이 기회!</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">골든타임</div><div class="lab">겨울방학에 끌어올리기</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 골든타임겨울방학에 끌어올리기"</li>
+        <li><b>거대 숫자 "골든타임"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #58 「겨울방학 키 성장」 (D. 기타/트렌드)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"겨울방학이 우리 아이 키 성장의 '골든타임'인 거, 알고 계셨어요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>방학은 그냥 쉬는 시간 → 사실은 스트레스 줄고 생활 습관 잡기 가장 좋아 성장호르몬에 유리한 골든타임</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>방학엔 규칙적 수면·균형 영양·운동을 체계적으로 관리할 여유가 생겨 성장에 유리하다. 연 4cm 미만 등 신호가 있으면 이 시기에 뼈나이로 남은 기회를 확인하자</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → "방학은 쉬는 시간"을 비난하지 않고, 아직 기회 있다는 긍정 골든타임으로 안내. "우리 아이 키" 보편. CTA는 측정 유도(예측키/뼈나이)</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>방학 지나기 전에 지금 확인 → 홈페이지 예측키 / 뼈나이 측정으로 남은 기회 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"방학이 키 성장 골든타임" → 키는 저절로 X, 타이밍이 핵심</p></div><div class="act"><span class="n">ACT 2</span><h4>왜 방학인가</h4><p>c3–c4<br>스트레스 ↓ 규칙적 생활 → 성장호르몬에 유리 / 수면·영양·운동 3박자</p></div><div class="act"><span class="n">ACT 3</span><h4>점검 신호</h4><p>c5–c6<br>연 4cm 미만 등 신호 → 5가지 체크 신호</p></div><div class="act"><span class="n">ACT 4</span><h4>전환·핵심</h4><p>c7–c8<br>빠른 사춘기면 성장판 일찍 닫혀 → 닫히기 전 지금이 골든타임</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>뼈나이로 남은 기회 확인 → CTA</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">방학이 골든타임?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">❄️💜</div></div>
+        <div class="ph-cap"><div class="l">겨울방학이</div><div class="l"><span class="y2">키 골든타임</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">겨울방학이 우리 아이 키 성장의 '골든타임'인 거, 알고 계셨어요?</td><td><span class="cap2">겨울방학이<br><span class="y">키 골든타임</span></span></td><td class="mo">❄️ 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">키는 시간 지난다고 저절로 크는 게 아니에요. 시기를 잡는 게 핵심이죠.</td><td><span class="cap2">저절로 X<br><span class="y">타이밍이 핵심</span></span></td><td class="mo">⏰ 흔들+똑딱</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 방학 골든타임</span></td><td class="narr">방학엔 학업 스트레스가 줄고 생활이 규칙적이라, 성장호르몬에 더 유리해요.</td><td><span class="cap2">스트레스 ↓ 규칙 ↑<br><span class="y">성장호르몬 유리</span></span></td><td class="mo">📚→😌 전환 + ✨ 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr ig">🖼 IG2 수면·영양·운동</span></td><td class="narr">충분한 수면, 균형 잡힌 영양, 규칙적인 운동. 이 세 가지가 성장판을 깨워요.</td><td><span class="cap2">수면·영양·운동<br><span class="y">성장판을 깨운다</span></span></td><td class="mo">🌙🥗🏃 3박자 순차 점등</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 1년에 4센티가 안 자라거나, 옷 사이즈가 몇 년째 그대로면 점검이 필요해요.</td><td><span class="cap2"><span class="y">연 4cm 미만이면</span><br>점검 필요</span></td><td class="mo">📏 펄스 · &lt;4면 ⚠️ 깜빡</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23.5s</td><td><span class="scr ig">🖼 IG3 점검 신호 5가지</span></td><td class="narr">또래보다 머리 하나 작거나, 부모 키가 작거나, 사춘기가 빠르면 꼭 확인하세요.</td><td><span class="cap2">머리 하나 작음·이른 사춘기<br><span class="y">5가지 신호</span></span></td><td class="mo">✅ 5개 순차 체크</td></tr><tr><td class="c-id">c7</td><td class="c-time">23.5–27.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">사춘기가 너무 빨리 오면 성장판이 일찍 닫혀서, 최종 키가 줄 수 있어요.</td><td><span class="cap2">사춘기 빠르면<br><span class="y">성장판 일찍 닫힘</span></span></td><td class="mo">⚠️ 쉐이크 + 빨강 플래시</td></tr><tr><td class="c-id">c8</td><td class="c-time">27.5–31s</td><td><span class="scr ig">🖼 IG4 닫히기 전 골든타임</span></td><td class="narr">그래서 성장판이 열려 있는 이번 방학이, 끌어올릴 수 있는 마지막 골든타임이에요.</td><td><span class="cap2">열려 있는 지금<br><span class="y">마지막 골든타임</span></span></td><td class="mo">⏳ 골드 글로우 + 따뜻 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">31–34s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면, 우리 아이한테 남은 기회가 얼마인지 정확히 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">남은 기회 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">34–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">이번 방학 지나기 전에, 지금 우리 아이 남은 기회를 확인해 보세요.</td><td><span class="cap2">방학 지나기 전<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 📚→😌 전환 + 글로우</div><h3>방학 = 성장 골든타임</h3></div>
+        <div class="body">
+          <div class="sketch">📚 😌 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. On the left a child slumped under a heavy stack of books and a stress cloud; an arrow flows to the right where the same child relaxes happily under a calm winter scene with gentle snowflakes, a soft glow rising around them. Conveys 'less stress on break = better growth.' Brand purple #667eea to mint #2dd4bf gradient, friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽</td><td>학기 스트레스</td><td>School stress</td><td class="thai">เครียดเรียน</td></tr><tr><td>오른쪽(글로우)</td><td>방학 골든타임</td><td>Break golden time</td><td class="thai">ปิดเทอมช่วงทอง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 🌙🥗🏃 3박자 순차 점등</div><h3>성장 3박자 — 수면·영양·운동</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 🥗 🏃</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly circular icons in a row connected by a gentle rising line: a crescent moon with a sleeping child, a balanced plate of food, and a child running/jumping; above them a stylized growth-plate spark glowing mint. Conveys 'three habits that stimulate growth.' Brand purple #667eea + mint #2dd4bf accents, pediatric flat. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>수면</td><td>Sleep</td><td class="thai">นอน</td></tr><tr><td>아이콘2</td><td>영양</td><td>Nutrition</td><td class="thai">อาหาร</td></tr><tr><td>아이콘3</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลัง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: ✅ 5개 순차 체크</div><h3>점검 신호 5가지</h3></div>
+        <div class="body">
+          <div class="sketch">📋 ⚠️ ✅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly clipboard checklist with five rows, each row showing a small simple pictogram: a short child beside a taller peer, a downward growth arrow, a folded t-shirt, two short parent silhouettes, and a small alert/clock badge for early puberty. Soft purple checkmarks appearing. Clean, non-scary, pediatric. Brand purple #667eea with a warm amber accent on the alert badge. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>1행</td><td>머리 하나 작음</td><td>A head shorter</td><td class="thai">เตี้ยกว่าหนึ่งหัว</td></tr><tr><td>2행</td><td>연 4cm 미만</td><td>Under 4cm/yr</td><td class="thai">ปีละไม่ถึง 4 ซม.</td></tr><tr><td>3행</td><td>옷 사이즈 그대로</td><td>Same clothes size</td><td class="thai">ไซซ์เสื้อเท่าเดิม</td></tr><tr><td>5행</td><td>이른 사춘기</td><td>Early puberty</td><td class="thai">แรกรุ่นก่อนวัย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: ⏳ 골드 글로우 + 따뜻 점등</div><h3>성장판 닫히기 전 골든타임</h3></div>
+        <div class="body">
+          <div class="sketch">⏳ 🦵 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A stylized knee growth-plate shown as a glowing open gap, mint light pouring through it, beside an hourglass with golden sand still flowing and a child reaching upward toward a bright sparkle. Warm golden glow conveys 'last window while the plate is still open, time remains.' Hopeful, not scary. Brand purple #667eea plus warm gold accents, pediatric flat. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단</td><td>마지막 기회</td><td>Last window</td><td class="thai">โอกาสสุดท้าย</td></tr><tr><td>가운데(글로우)</td><td>골든타임</td><td>Golden time</td><td class="thai">ช่วงเวลาทอง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>❄️</b> 겨울방학</span><span class="emo"><b>⏰</b> 타이밍</span><span class="emo"><b>📚</b> 학업 스트레스</span><span class="emo"><b>😌</b> 방학 휴식</span><span class="emo"><b>🌙</b> 수면</span><span class="emo"><b>🥗</b> 영양</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>⏳</b> 골든타임</span><span class="emo"><b>📏</b> 키·성장속도</span><span class="emo"><b>⚠️</b> 경고(이른 사춘기)</span><span class="emo"><b>🦴</b> 뼈나이/성장판</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>겨울방학이 우리 아이 키 성장의 '골든타임'인 거, 알고 계셨어요?<br><span class="cap2">겨울방학이 · <span class="y">키 골든타임</span></span></td></tr><tr><td class="c-id">c2</td><td>키는 시간 지난다고 저절로 크는 게 아니에요. 시기를 잡는 게 핵심이죠.<br><span class="cap2">저절로 X · <span class="y">타이밍이 핵심</span></span></td></tr><tr><td class="c-id">c3</td><td>방학엔 학업 스트레스가 줄고 생활이 규칙적이라, 성장호르몬에 더 유리해요.<br><span class="cap2">스트레스 ↓ 규칙 ↑ · <span class="y">성장호르몬 유리</span></span></td></tr><tr><td class="c-id">c4</td><td>충분한 수면, 균형 잡힌 영양, 규칙적인 운동. 이 세 가지가 성장판을 깨워요.<br><span class="cap2">수면·영양·운동 · <span class="y">성장판을 깨운다</span></span></td></tr><tr><td class="c-id">c5</td><td>그런데 1년에 4센티가 안 자라거나, 옷 사이즈가 몇 년째 그대로면 점검이 필요해요.<br><span class="cap2">연 4cm 미만이면 · 점검 필요</span></td></tr><tr><td class="c-id">c6</td><td>또래보다 머리 하나 작거나, 부모 키가 작거나, 사춘기가 빠르면 꼭 확인하세요.<br><span class="cap2">머리 하나 작음·이른 사춘기 · <span class="y">5가지 신호</span></span></td></tr><tr><td class="c-id">c7</td><td>사춘기가 너무 빨리 오면 성장판이 일찍 닫혀서, 최종 키가 줄 수 있어요.<br><span class="cap2">사춘기 빠르면 · <span class="y">성장판 일찍 닫힘</span></span></td></tr><tr><td class="c-id">c8</td><td>그래서 성장판이 열려 있는 이번 방학이, 끌어올릴 수 있는 마지막 골든타임이에요.<br><span class="cap2">열려 있는 지금 · <span class="y">마지막 골든타임</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면, 우리 아이한테 남은 기회가 얼마인지 정확히 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">남은 기회 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>이번 방학 지나기 전에, 지금 우리 아이 남은 기회를 확인해 보세요.<br><span class="cap2">방학 지나기 전 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่าปิดเทอมหน้าหนาวคือ 'ช่วงเวลาทอง' ของความสูงลูก?<br><span class="cap2">ปิดเทอมหน้าหนาว · <span class="y">ช่วงเวลาทอง</span></span></td></tr><tr><td class="c-id">c2</td><td>ความสูงไม่ได้มาเองตามเวลา จับจังหวะให้ถูกคือหัวใจ<br><span class="cap2">ไม่ได้มาเอง · <span class="y">จับจังหวะ</span></span></td></tr><tr><td class="c-id">c3</td><td>ช่วงปิดเทอมความเครียดเรียนน้อยลงและชีวิตเป็นระเบียบ ดีต่อฮอร์โมนเติบโต<br><span class="cap2">เครียดน้อย เป็นระเบียบ · <span class="y">ดีต่อฮอร์โมน</span></span></td></tr><tr><td class="c-id">c4</td><td>นอนพอ กินครบ ออกกำลังสม่ำเสมอ สามอย่างนี้กระตุ้นแผ่นกระดูก<br><span class="cap2">นอน·อาหาร·ออกกำลัง · <span class="y">กระตุ้นแผ่นกระดูก</span></span></td></tr><tr><td class="c-id">c5</td><td>แต่ถ้าปีนึงโตไม่ถึง 4 ซม. หรือใส่เสื้อไซซ์เดิมหลายปี ควรตรวจ<br><span class="cap2">ปีละไม่ถึง 4 ซม. · ควรตรวจ</span></td></tr><tr><td class="c-id">c6</td><td>เตี้ยกว่าเพื่อนหนึ่งหัว พ่อแม่เตี้ย หรือแรกรุ่นมาเร็ว ต้องเช็กให้แน่<br><span class="cap2">เตี้ยกว่า·แรกรุ่นเร็ว · <span class="y">5 สัญญาณ</span></span></td></tr><tr><td class="c-id">c7</td><td>ถ้าแรกรุ่นมาเร็วไป แผ่นกระดูกปิดเร็ว ทำให้ส่วนสูงสุดท้ายลดลง<br><span class="cap2">แรกรุ่นเร็ว · <span class="y">ปิดเร็ว</span></span></td></tr><tr><td class="c-id">c8</td><td>ดังนั้นปิดเทอมนี้ที่แผ่นกระดูกยังเปิด คือช่วงเวลาทองสุดท้ายที่จะดึงความสูง<br><span class="cap2">ตอนที่ยังเปิด · <span class="y">ช่วงเวลาทองสุดท้าย</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกบอกได้ว่าลูกเรายังเหลือโอกาสอีกเท่าไร<br><span class="cap2">อายุกระดูก · <span class="y">เวลาที่เหลือ</span></span></td></tr><tr><td class="c-id">c10</td><td>ก่อนปิดเทอมจะจบ มาเช็กโอกาสที่เหลือของลูกวันนี้<br><span class="cap2">ก่อนปิดเทอมจบ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết kỳ nghỉ đông là 'thời điểm vàng' để con cao lên không?<br><span class="cap2">Nghỉ đông là · <span class="y">thời điểm vàng</span></span></td></tr><tr><td class="c-id">c2</td><td>Chiều cao không tự đến theo thời gian — bắt đúng thời điểm mới là chìa khóa.<br><span class="cap2">Không tự đến · <span class="y">đúng thời điểm</span></span></td></tr><tr><td class="c-id">c3</td><td>Nghỉ học ít căng thẳng và sinh hoạt đều đặn hơn — rất tốt cho hormone tăng trưởng.<br><span class="cap2">Ít stress, đều đặn · <span class="y">tốt cho hormone</span></span></td></tr><tr><td class="c-id">c4</td><td>Ngủ đủ, ăn cân bằng, vận động đều — ba điều này đánh thức sụn tăng trưởng.<br><span class="cap2">Ngủ·ăn·vận động · <span class="y">đánh thức sụn</span></span></td></tr><tr><td class="c-id">c5</td><td>Nhưng nếu một năm cao chưa tới 4cm, hay mặc cỡ áo cũ nhiều năm — cần kiểm tra.<br><span class="cap2">Dưới 4cm/năm · cần kiểm tra</span></td></tr><tr><td class="c-id">c6</td><td>Thấp hơn bạn một cái đầu, bố mẹ thấp, hay dậy thì sớm — hãy kiểm tra ngay.<br><span class="cap2">Thấp hơn·dậy thì sớm · <span class="y">5 dấu hiệu</span></span></td></tr><tr><td class="c-id">c7</td><td>Nếu dậy thì quá sớm, sụn tăng trưởng đóng sớm — chiều cao cuối cùng bị thiệt.<br><span class="cap2">Dậy thì sớm · <span class="y">sụn đóng sớm</span></span></td></tr><tr><td class="c-id">c8</td><td>Vì vậy kỳ nghỉ này, khi sụn còn mở, là thời điểm vàng cuối cùng để con cao thêm.<br><span class="cap2">Khi sụn còn mở · <span class="y">thời điểm vàng cuối</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cho biết chính xác con còn lại bao nhiêu cơ hội.<br><span class="cap2">Tuổi xương · <span class="y">cơ hội còn lại</span></span></td></tr><tr><td class="c-id">c10</td><td>Trước khi kỳ nghỉ kết thúc, hãy kiểm tra cơ hội còn lại của con hôm nay.<br><span class="cap2">Trước khi hết nghỉ · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know winter break is your child's golden time to grow?<br><span class="cap2">Winter break = · <span class="y">golden time</span></span></td></tr><tr><td class="c-id">c2</td><td>Height doesn't just happen with time — catching the right window is everything.<br><span class="cap2">Not automatic · <span class="y">right timing</span></span></td></tr><tr><td class="c-id">c3</td><td>On break there's less school stress and a steadier routine — great for growth hormone.<br><span class="cap2">Less stress, routine · <span class="y">good for hormone</span></span></td></tr><tr><td class="c-id">c4</td><td>Enough sleep, balanced food, regular exercise — these three wake up the growth plates.<br><span class="cap2">Sleep·food·exercise · <span class="y">wake the plates</span></span></td></tr><tr><td class="c-id">c5</td><td>But if they grow under 4cm a year, or wear the same size for years — check it.<br><span class="cap2">Under 4cm a year · time to check</span></td></tr><tr><td class="c-id">c6</td><td>A head shorter than peers, short parents, or early puberty — be sure to check.<br><span class="cap2">Shorter·early puberty · <span class="y">5 signs</span></span></td></tr><tr><td class="c-id">c7</td><td>If puberty comes too early, the plates close early — final height can drop.<br><span class="cap2">Early puberty · <span class="y">plates close early</span></span></td></tr><tr><td class="c-id">c8</td><td>So this break, while the plates are open, is the last golden window to lift their height.<br><span class="cap2">While still open · <span class="y">last golden window</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows exactly how much chance your child has left.<br><span class="cap2">Bone age · <span class="y">chance left</span></span></td></tr><tr><td class="c-id">c10</td><td>Before this break ends, check your child's remaining chance today.<br><span class="cap2">Before break ends · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道寒假是孩子长高的'黄金期'吗？<br><span class="cap2">寒假就是 · <span class="y">长高黄金期</span></span></td></tr><tr><td class="c-id">c2</td><td>身高不会随时间自动长——抓住时机才是关键。<br><span class="cap2">不会自动 · <span class="y">抓住时机</span></span></td></tr><tr><td class="c-id">c3</td><td>放假学业压力小、作息规律，更有利于生长激素分泌。<br><span class="cap2">压力↓ 作息规律 · <span class="y">利于生长激素</span></span></td></tr><tr><td class="c-id">c4</td><td>充足睡眠、均衡营养、规律运动，这三样能唤醒生长板。<br><span class="cap2">睡眠·营养·运动 · <span class="y">唤醒生长板</span></span></td></tr><tr><td class="c-id">c5</td><td>但如果一年长不到4厘米，或衣服尺码几年没变，就该检查了。<br><span class="cap2">一年不足4厘米 · 该检查了</span></td></tr><tr><td class="c-id">c6</td><td>比同龄矮一个头、父母个子矮、或青春期偏早，一定要确认。<br><span class="cap2">矮一头·青春期早 · <span class="y">5个信号</span></span></td></tr><tr><td class="c-id">c7</td><td>如果青春期来得太早，生长板提前闭合，最终身高会吃亏。<br><span class="cap2">青春期早 · <span class="y">生长板早闭</span></span></td></tr><tr><td class="c-id">c8</td><td>所以趁这个假期生长板还开着，正是拉高身高的最后黄金期。<br><span class="cap2">趁还开着 · <span class="y">最后黄金期</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄能告诉你，孩子还剩下多少机会。<br><span class="cap2">骨龄 · <span class="y">剩余机会</span></span></td></tr><tr><td class="c-id">c10</td><td>趁这个假期结束前，现在就查查孩子还剩多少机会吧。<br><span class="cap2">假期结束前 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道寒假是孩子長高的'黃金期'嗎？<br><span class="cap2">寒假就是 · <span class="y">長高黃金期</span></span></td></tr><tr><td class="c-id">c2</td><td>身高不會隨時間自動長——抓住時機才是關鍵。<br><span class="cap2">不會自動 · <span class="y">抓住時機</span></span></td></tr><tr><td class="c-id">c3</td><td>放假學業壓力小、作息規律，更有利於生長激素分泌。<br><span class="cap2">壓力↓ 作息規律 · <span class="y">利於生長激素</span></span></td></tr><tr><td class="c-id">c4</td><td>充足睡眠、均衡營養、規律運動，這三樣能喚醒生長板。<br><span class="cap2">睡眠·營養·運動 · <span class="y">喚醒生長板</span></span></td></tr><tr><td class="c-id">c5</td><td>但如果一年長不到4公分，或衣服尺碼幾年沒變，就該檢查了。<br><span class="cap2">一年不足4公分 · 該檢查了</span></td></tr><tr><td class="c-id">c6</td><td>比同齡矮一個頭、父母個子矮、或青春期偏早，一定要確認。<br><span class="cap2">矮一頭·青春期早 · <span class="y">5個信號</span></span></td></tr><tr><td class="c-id">c7</td><td>如果青春期來得太早，生長板提前閉合，最終身高會吃虧。<br><span class="cap2">青春期早 · <span class="y">生長板早閉</span></span></td></tr><tr><td class="c-id">c8</td><td>所以趁這個假期生長板還開著，正是拉高身高的最後黃金期。<br><span class="cap2">趁還開著 · <span class="y">最後黃金期</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡能告訴你，孩子還剩下多少機會。<br><span class="cap2">骨齡 · <span class="y">剩餘機會</span></span></td></tr><tr><td class="c-id">c10</td><td>趁這個假期結束前，現在就查查孩子還剩多少機會吧。<br><span class="cap2">假期結束前 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/겨울방학키/</code> · <code>겨울방학키-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

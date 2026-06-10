@@ -1,0 +1,787 @@
+{
+  "n": 54,
+  "slug": "평균키위치",
+  "title": "요즘 초등생 평균키 실화? — 우리 아이 위치는?",
+  "sub": "평균은 그냥 평균일 뿐 — 또래 비교보다 '뼈나이'가 진짜 답이다",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "초등생 평균키 — 우리 아이 위치",
+  "headerTop": "우리 아이 키",
+  "headerMark": "평균일까?",
+  "accentEmoji": "📏✨",
+  "hook": "요즘 초등생 평균키, 진짜 많이 컸죠? 그런데 우리 아이 위치, 평균만 봐선 몰라요.",
+  "misconception": "평균보다 작으면 무조건 문제 / 평균만 넘으면 안심 → 사실 평균은 그냥 평균, 진짜 답은 뼈나이",
+  "message": "평균은 평균일 뿐. 또래와 단순 비교 대신 성장 속도(매년 4cm↑)와 뼈나이로 우리 아이의 '남은 성장'과 위치를 정확히 봐야 한다",
+  "tone": "협박 ❌ → 긍정 골든타임(\"아직 늦지 않았다, 지금 위치 확인\"). 평균 미달=문제로 단정 ❌. \"우리 아이 키\" 보편(평균 넘어도 부모는 궁금). CTA는 측정 유도",
+  "cta": "또래 평균에 막연히 걱정 말고, 지금 우리 아이 위치·뼈나이 확인 → 홈페이지 예측키/뼈나이 측정",
+  "duration": 35,
+  "thumb": {
+    "kicker": "평균만 봤다간?",
+    "subject": "우리 아이 키 진짜 위치는",
+    "number": "몇 등",
+    "numLabel": "?"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"요즘 평균키 진짜 컸다 → 근데 평균만 봐선 우리 아이 위치 몰라\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "평균의 함정",
+      "scenes": "c3–c4",
+      "desc": "\"평균은 평균일 뿐 → 진짜 신호는 매년 4cm 성장 속도\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "키를 만드는 요소",
+      "scenes": "c5–c6",
+      "desc": "\"유전 70~80%, 나머지는 영양·수면·운동·스트레스\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "진짜 답 = 뼈나이",
+      "scenes": "c7–c8",
+      "desc": "\"또래 비교보다 뼈나이가 남은 성장을 말해준다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"지금 우리 아이 위치 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📏 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "요즘 초등생 평균키, 진짜 많이 컸죠? 근데 평균만 봐선 우리 아이 위치, 몰라요.",
+          "cap": [
+            "요즘 평균키",
+            "많이 컸죠?"
+          ],
+          "hl": "많이 컸죠?"
+        },
+        "th": {
+          "narr": "เด็กประถมสมัยนี้สูงขึ้นจริง แต่ดูแค่ค่าเฉลี่ย ไม่รู้ว่าลูกอยู่ตรงไหน",
+          "cap": [
+            "เด็กสมัยนี้",
+            "สูงขึ้นจริง"
+          ],
+          "hl": "สูงขึ้นจริง"
+        },
+        "vi": {
+          "narr": "Trẻ tiểu học giờ cao hơn hẳn, đúng không? Nhưng chỉ nhìn trung bình thì chưa đủ.",
+          "cap": [
+            "Giờ trẻ",
+            "cao hơn hẳn"
+          ],
+          "hl": "cao hơn hẳn"
+        },
+        "en": {
+          "narr": "Kids today really are taller — but the average alone won't tell you where yours stands.",
+          "cap": [
+            "Kids today",
+            "are taller"
+          ],
+          "hl": "are taller"
+        },
+        "cn": {
+          "narr": "现在小学生平均身高真的高了不少，可光看平均，看不出自家孩子的位置。",
+          "cap": [
+            "现在孩子",
+            "真的更高"
+          ],
+          "hl": "真的更高"
+        },
+        "ch": {
+          "narr": "現在小學生平均身高真的高了不少，可光看平均，看不出自家孩子的位置。",
+          "cap": [
+            "現在孩子",
+            "真的更高"
+          ],
+          "hl": "真的更高"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🤔 흔들 + 물음표 팝",
+      "copy": {
+        "ko": {
+          "narr": "평균보다 작으면 큰일? 넘으면 안심? 둘 다 아니에요. 평균은 그냥 평균이거든요.",
+          "cap": [
+            "평균은",
+            "그냥 평균"
+          ],
+          "hl": "그냥 평균"
+        },
+        "th": {
+          "narr": "ต่ำกว่าค่าเฉลี่ยคือมีปัญหา? เกินคือสบายใจ? ไม่ใช่ทั้งคู่ ค่าเฉลี่ยก็แค่ค่าเฉลี่ย",
+          "cap": [
+            "ค่าเฉลี่ย",
+            "ก็แค่ค่าเฉลี่ย"
+          ],
+          "hl": "ก็แค่ค่าเฉลี่ย"
+        },
+        "vi": {
+          "narr": "Thấp hơn trung bình là có vấn đề? Cao hơn là yên tâm? Đều sai — trung bình chỉ là trung bình.",
+          "cap": [
+            "Trung bình",
+            "chỉ là trung bình"
+          ],
+          "hl": "chỉ là trung bình"
+        },
+        "en": {
+          "narr": "Below average means trouble? Above means safe? Neither — average is just average.",
+          "cap": [
+            "Average is",
+            "just average"
+          ],
+          "hl": "just average"
+        },
+        "cn": {
+          "narr": "低于平均就有问题？高于就安心？都不对——平均只是平均。",
+          "cap": [
+            "平均",
+            "只是平均"
+          ],
+          "hl": "只是平均"
+        },
+        "ch": {
+          "narr": "低於平均就有問題？高於就安心？都不對——平均只是平均。",
+          "cap": [
+            "平均",
+            "只是平均"
+          ],
+          "hl": "只是平均"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 평균의 함정",
+      "motion": "📊 분포 곡선 펼침 + 점 흩어짐",
+      "copy": {
+        "ko": {
+          "narr": "같은 또래라도 키는 천차만별. 평균 한 줄로는 우리 아이가 어디인지 안 보여요.",
+          "cap": [
+            "또래라도",
+            "천차만별"
+          ],
+          "hl": "천차만별"
+        },
+        "th": {
+          "narr": "วัยเดียวกันก็สูงต่างกันมาก ค่าเฉลี่ยเส้นเดียวไม่บอกว่าลูกอยู่ตรงไหน",
+          "cap": [
+            "วัยเดียวกัน",
+            "ก็ต่างกันมาก"
+          ],
+          "hl": "ก็ต่างกันมาก"
+        },
+        "vi": {
+          "narr": "Cùng tuổi nhưng chiều cao rất khác nhau — một con số trung bình không cho thấy con bạn ở đâu.",
+          "cap": [
+            "Cùng tuổi",
+            "vẫn rất khác"
+          ],
+          "hl": "vẫn rất khác"
+        },
+        "en": {
+          "narr": "Same age, wildly different heights — one average can't show where your child sits.",
+          "cap": [
+            "Same age",
+            "very different"
+          ],
+          "hl": "very different"
+        },
+        "cn": {
+          "narr": "同龄孩子身高也天差地别，一个平均数看不出自家孩子在哪。",
+          "cap": [
+            "同龄",
+            "也天差地别"
+          ],
+          "hl": "也天差地别"
+        },
+        "ch": {
+          "narr": "同齡孩子身高也天差地別，一個平均數看不出自家孩子在哪。",
+          "cap": [
+            "同齡",
+            "也天差地別"
+          ],
+          "hl": "也天差地別"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 성장 속도",
+      "motion": "📏 + \"4cm\" 0→4 카운트업 ↗",
+      "copy": {
+        "ko": {
+          "narr": "평균보다 진짜 중요한 신호는 속도예요. 1년에 4센티가 안 되면 한번 살펴봐야 해요.",
+          "cap": [
+            "매년",
+            "4cm 미만은 체크"
+          ],
+          "hl": "4cm 미만은 체크"
+        },
+        "th": {
+          "narr": "สัญญาณที่สำคัญกว่าค่าเฉลี่ยคือ 'ความเร็ว' โตน้อยกว่า 4 ซม. ต่อปี ควรเช็ก",
+          "cap": [
+            "ต่อปี",
+            "ต่ำกว่า 4 ซม."
+          ],
+          "hl": "ต่ำกว่า 4 ซม."
+        },
+        "vi": {
+          "narr": "Dấu hiệu quan trọng hơn trung bình là tốc độ — dưới 4cm mỗi năm thì nên kiểm tra.",
+          "cap": [
+            "Mỗi năm",
+            "dưới 4cm là xem"
+          ],
+          "hl": "dưới 4cm là xem"
+        },
+        "en": {
+          "narr": "The real signal isn't the average — it's speed. Under 4cm a year is worth a look.",
+          "cap": [
+            "Per year",
+            "under 4cm? check"
+          ],
+          "hl": "under 4cm? check"
+        },
+        "cn": {
+          "narr": "比平均更重要的信号是速度——每年长不到4厘米，就该看看了。",
+          "cap": [
+            "每年",
+            "不到4厘米要查"
+          ],
+          "hl": "不到4厘米要查"
+        },
+        "ch": {
+          "narr": "比平均更重要的信號是速度——每年長不到4公分，就該看看了。",
+          "cap": [
+            "每年",
+            "不到4公分要查"
+          ],
+          "hl": "不到4公分要查"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🧬 펄스 + 80% 글로우",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전이 70에서 80퍼센트. 하지만 유전이 전부는 아니에요.",
+          "cap": [
+            "유전",
+            "70~80%"
+          ],
+          "hl": "70~80%"
+        },
+        "th": {
+          "narr": "ส่วนสูงมาจากพันธุกรรม 70-80% แต่พันธุกรรมไม่ใช่ทั้งหมด",
+          "cap": [
+            "พันธุกรรม",
+            "70-80%"
+          ],
+          "hl": "70-80%"
+        },
+        "vi": {
+          "narr": "Chiều cao do di truyền 70–80%, nhưng di truyền không phải tất cả.",
+          "cap": [
+            "Di truyền",
+            "70–80%"
+          ],
+          "hl": "70–80%"
+        },
+        "en": {
+          "narr": "Height is 70 to 80% genetics — but genetics isn't everything.",
+          "cap": [
+            "Genetics",
+            "70–80%"
+          ],
+          "hl": "70–80%"
+        },
+        "cn": {
+          "narr": "身高七到八成靠遗传，但遗传不是全部。",
+          "cap": [
+            "遗传",
+            "70–80%"
+          ],
+          "hl": "70–80%"
+        },
+        "ch": {
+          "narr": "身高七到八成靠遺傳，但遺傳不是全部。",
+          "cap": [
+            "遺傳",
+            "70–80%"
+          ],
+          "hl": "70–80%"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 나머지 20%",
+      "motion": "🍗😴🏀 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "나머지 20퍼센트는 영양, 수면, 운동, 스트레스. 성장호르몬은 깊은 잠에 나와요.",
+          "cap": [
+            "나머지 20%",
+            "영양·수면·운동"
+          ],
+          "hl": "영양·수면·운동"
+        },
+        "th": {
+          "narr": "อีก 20% คือโภชนาการ การนอน การออกกำลังกาย โกรทฮอร์โมนหลั่งตอนหลับลึก",
+          "cap": [
+            "อีก 20%",
+            "อาหาร·นอน·ออกกำลัง"
+          ],
+          "hl": "อาหาร·นอน·ออกกำลัง"
+        },
+        "vi": {
+          "narr": "20% còn lại là dinh dưỡng, giấc ngủ, vận động. Hormone tăng trưởng tiết khi ngủ sâu.",
+          "cap": [
+            "20% còn lại",
+            "ăn·ngủ·vận động"
+          ],
+          "hl": "ăn·ngủ·vận động"
+        },
+        "en": {
+          "narr": "The other 20%: nutrition, sleep, exercise. Growth hormone peaks in deep sleep.",
+          "cap": [
+            "The other 20%",
+            "food·sleep·move"
+          ],
+          "hl": "food·sleep·move"
+        },
+        "cn": {
+          "narr": "剩下两成靠营养、睡眠、运动，生长激素在深睡时分泌。",
+          "cap": [
+            "剩下20%",
+            "营养·睡眠·运动"
+          ],
+          "hl": "营养·睡眠·运动"
+        },
+        "ch": {
+          "narr": "剩下兩成靠營養、睡眠、運動，生長激素在深睡時分泌。",
+          "cap": [
+            "剩下20%",
+            "營養·睡眠·運動"
+          ],
+          "hl": "營養·睡眠·運動"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "🦴 팝 + ⏳ 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "또래랑 키 비교하는 것보다 훨씬 정확한 게 있어요. 바로 뼈나이예요.",
+          "cap": [
+            "또래 비교보다",
+            "뼈나이"
+          ],
+          "hl": "뼈나이"
+        },
+        "th": {
+          "narr": "มีสิ่งที่แม่นยำกว่าเทียบกับเพื่อนมาก นั่นคืออายุกระดูก",
+          "cap": [
+            "แม่นกว่าเทียบเพื่อน",
+            "อายุกระดูก"
+          ],
+          "hl": "อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Có thứ chính xác hơn nhiều việc so với bạn bè — đó là tuổi xương.",
+          "cap": [
+            "Hơn cả so sánh",
+            "tuổi xương"
+          ],
+          "hl": "tuổi xương"
+        },
+        "en": {
+          "narr": "There's something far more accurate than comparing to peers — bone age.",
+          "cap": [
+            "More than peers",
+            "bone age"
+          ],
+          "hl": "bone age"
+        },
+        "cn": {
+          "narr": "有个比跟同龄人比身高准确得多的方法——骨龄。",
+          "cap": [
+            "比同龄更准",
+            "骨龄"
+          ],
+          "hl": "骨龄"
+        },
+        "ch": {
+          "narr": "有個比跟同齡人比身高準確得多的方法——骨齡。",
+          "cap": [
+            "比同齡更準",
+            "骨齡"
+          ],
+          "hl": "骨齡"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 뼈나이 = 남은 성장",
+      "motion": "🖐️ X-ray 스캔 라인 + 게이지 채움",
+      "copy": {
+        "ko": {
+          "narr": "왼손 엑스레이 한 장이면, 우리 아이한테 성장이 얼마나 남았는지 보여요.",
+          "cap": [
+            "손 X-ray로",
+            "남은 성장 확인"
+          ],
+          "hl": "남은 성장 확인"
+        },
+        "th": {
+          "narr": "เอกซเรย์มือซ้ายภาพเดียว บอกได้ว่าลูกยังโตได้อีกแค่ไหน",
+          "cap": [
+            "X-ray มือ",
+            "ดูการโตที่เหลือ"
+          ],
+          "hl": "ดูการโตที่เหลือ"
+        },
+        "vi": {
+          "narr": "Chỉ một tấm X-quang bàn tay trái cho thấy con còn cao được bao nhiêu.",
+          "cap": [
+            "X-quang tay",
+            "còn cao bao nhiêu"
+          ],
+          "hl": "còn cao bao nhiêu"
+        },
+        "en": {
+          "narr": "One left-hand X-ray shows exactly how much growth your child has left.",
+          "cap": [
+            "Hand X-ray",
+            "growth left"
+          ],
+          "hl": "growth left"
+        },
+        "cn": {
+          "narr": "一张左手X光片，就能看出孩子还能长多少。",
+          "cap": [
+            "手部X光",
+            "看剩余成长"
+          ],
+          "hl": "看剩余成长"
+        },
+        "ch": {
+          "narr": "一張左手X光片，就能看出孩子還能長多少。",
+          "cap": [
+            "手部X光",
+            "看剩餘成長"
+          ],
+          "hl": "看剩餘成長"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🌱 솟음 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "평균 보고 막연히 걱정하지 마시고, 지금 우리 아이 위치부터 정확히 봐요.",
+          "cap": [
+            "막연한 걱정 말고",
+            "위치부터 확인"
+          ],
+          "hl": "위치부터 확인"
+        },
+        "th": {
+          "narr": "อย่ากังวลลอยๆ กับค่าเฉลี่ย มาดูตำแหน่งของลูกให้ชัดก่อน",
+          "cap": [
+            "ไม่ต้องกังวลลอยๆ",
+            "ดูตำแหน่งก่อน"
+          ],
+          "hl": "ดูตำแหน่งก่อน"
+        },
+        "vi": {
+          "narr": "Đừng lo mơ hồ vì con số trung bình — hãy xem rõ vị trí của con trước.",
+          "cap": [
+            "Đừng lo mơ hồ",
+            "xem vị trí trước"
+          ],
+          "hl": "xem vị trí trước"
+        },
+        "en": {
+          "narr": "Don't worry vaguely about the average — see exactly where your child stands first.",
+          "cap": [
+            "Skip vague worry",
+            "see the position"
+          ],
+          "hl": "see the position"
+        },
+        "cn": {
+          "narr": "别对着平均瞎担心，先把孩子的位置看清楚。",
+          "cap": [
+            "别瞎担心",
+            "先看清位置"
+          ],
+          "hl": "先看清位置"
+        },
+        "ch": {
+          "narr": "別對著平均瞎擔心，先把孩子的位置看清楚。",
+          "cap": [
+            "別瞎擔心",
+            "先看清位置"
+          ],
+          "hl": "先看清位置"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 또래 속 위치와 뼈나이, 지금 바로 확인해 보세요.",
+          "cap": [
+            "우리 아이 위치",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กตำแหน่งและอายุกระดูกของลูกได้เลยวันนี้",
+          "cap": [
+            "ตำแหน่งของลูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra vị trí và tuổi xương của con ngay hôm nay.",
+          "cap": [
+            "Vị trí của con",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's position and bone age right now.",
+          "cap": [
+            "Your child's spot",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的位置和骨龄吧。",
+          "cap": [
+            "孩子的位置",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的位置和骨齡吧。",
+          "cap": [
+            "孩子的位置",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "분포 곡선 펼침 + 점 흩어짐",
+      "title": "평균의 함정 — 또래도 천차만별",
+      "emojis": [
+        "📊",
+        "🧒",
+        "🧒"
+      ],
+      "prompt": "Flat vector, square, white background. A gentle bell-curve distribution drawn in brand purple, with many small friendly child silhouettes of clearly different heights scattered along it — some short, some tall — and a soft mint vertical line marking the center average. Conveys 'same age, very different heights; average is just the middle.' Friendly pediatric style, brand purple #667eea and mint #2dd4bf. NO text.",
+      "labels": [
+        {
+          "pos": "중앙선",
+          "ko": "평균",
+          "en": "Average",
+          "th": "ค่าเฉลี่ย"
+        },
+        {
+          "pos": "왼쪽 끝",
+          "ko": "작은 편",
+          "en": "Shorter",
+          "th": "เตี้ยกว่า"
+        },
+        {
+          "pos": "오른쪽 끝",
+          "ko": "큰 편",
+          "en": "Taller",
+          "th": "สูงกว่า"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "4 카운트업 + ↗",
+      "title": "성장 속도 — 매년 4cm 기준선",
+      "emojis": [
+        "📏",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly child standing next to a vertical growth ruler, with a clean upward arrow rising year by year and a soft horizontal dashed threshold line partway up. Conveys 'yearly growth speed has a minimum line to watch.' Brand purple gradient with a mint arrow. Friendly pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "기준선",
+          "ko": "연 4cm",
+          "en": "4cm / yr",
+          "th": "4 ซม./ปี"
+        },
+        {
+          "pos": "화살표 끝",
+          "ko": "성장 속도",
+          "en": "Growth speed",
+          "th": "อัตราการโต"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "3아이콘 순차 점등",
+      "title": "키를 만드는 나머지 20% — 생활습관",
+      "emojis": [
+        "🍗",
+        "😴",
+        "🏀"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly child in the center surrounded by three glowing circular icons: a balanced meal plate, a sleeping crescent-moon-and-pillow, and a basketball/jump-rope motion. Soft connecting glow lines from child to each icon. Conveys 'lifestyle habits that boost growth.' Brand purple #667eea and mint #2dd4bf, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลังกาย"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "X-ray 스캔 라인 + 게이지 채움",
+      "title": "뼈나이 = 남은 성장 게이지",
+      "emojis": [
+        "🖐️",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white background. A stylized left-hand X-ray silhouette glowing in soft mint, beside a vertical 'remaining growth' gauge partially filled with a brand-purple-to-mint gradient and a gentle glow at the top. Conveys 'a hand X-ray reveals how much growth is left.' Friendly pediatric, brand purple #667eea and mint #2dd4bf. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "손 X-ray",
+          "ko": "손목 X-ray",
+          "en": "Hand X-ray",
+          "th": "X-ray มือ"
+        },
+        {
+          "pos": "게이지 상단",
+          "ko": "남은 성장",
+          "en": "Growth left",
+          "th": "การโตที่เหลือ"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📏",
+      "label": "키·평균"
+    },
+    {
+      "e": "📊",
+      "label": "평균 분포"
+    },
+    {
+      "e": "🧒",
+      "label": "또래 아이"
+    },
+    {
+      "e": "📈",
+      "label": "성장 속도"
+    },
+    {
+      "e": "🧬",
+      "label": "유전 70~80%"
+    },
+    {
+      "e": "🍗",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏀",
+      "label": "운동"
+    },
+    {
+      "e": "🖐️",
+      "label": "손 X-ray"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

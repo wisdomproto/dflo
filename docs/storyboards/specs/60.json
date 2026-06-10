@@ -1,0 +1,787 @@
+{
+  "n": 60,
+  "slug": "수면루틴30일",
+  "title": "쌍둥이 아빠 의사가 직접 한 '30일 수면 루틴' 실험",
+  "sub": "성장호르몬은 깊은 잠에 쏟아진다 — 원장이 두 아이에게 30일간 직접 해본 진짜 후기",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "쌍둥이 아빠 의사의 30일 수면 루틴 실험",
+  "headerTop": "우리 아이 키",
+  "headerMark": "잘 자면 큰다?",
+  "accentEmoji": "🌙💜",
+  "hook": "제가 쌍둥이 아빠거든요. 두 아이한테 '30일 수면 루틴'을 직접 해봤어요.",
+  "misconception": "그냥 일찍, 오래 재우면 키 큰다 → 중요한 건 '깊은 잠'에 들어가는 질과 규칙적인 리듬",
+  "message": "성장호르몬은 잠든 직후 깊은 잠(서파수면)에 가장 많이 쏟아진다. 같은 시간 취침·잠들기 1시간 전 노 스크린·어둡고 시원한 방 — 30일 루틴으로 아이의 성장 리듬이 돌아온다",
+  "tone": "협박 ❌ → 원장의 솔직한 실험기로 따뜻하게. '30일 만에 키가 확 컸다'고 단정하지 않고 정직하게(리듬 회복). '우리 아이 키' 보편. CTA는 측정 유도",
+  "cta": "우리 아이 깊은 잠, 잘 자고 있을까? 뼈나이·예측키로 성장 골든타임 확인 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "의사가 직접 해봄!",
+    "subject": "우리 아이 키 크는",
+    "number": "30일",
+    "numLabel": "수면 루틴"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "솔직 훅",
+      "scenes": "c1–c2",
+      "desc": "쌍둥이 아빠 의사가 두 아이한테 30일 수면 루틴을 직접 실험"
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 잠인가",
+      "scenes": "c3–c4",
+      "desc": "성장호르몬은 잠든 직후 깊은 잠에 폭발 → 영양·운동·수면 3기둥의 핵심"
+    },
+    {
+      "act": "ACT 3",
+      "title": "30일 루틴 4규칙",
+      "scenes": "c5–c6",
+      "desc": "같은 시간 취침 → 잠들기 1시간 전 노 스크린·어둡고 시원한 방"
+    },
+    {
+      "act": "ACT 4",
+      "title": "정직한 후기",
+      "scenes": "c7–c8",
+      "desc": "키가 확 컸다곤 못 해요(정직) → 하지만 성장 리듬이 돌아왔다"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "우리 아이 깊은 잠·남은 기회 뼈나이로 확인 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "👨‍⚕️ 슬램 인 + 👶👶 팝",
+      "copy": {
+        "ko": {
+          "narr": "사실 제가 쌍둥이 아빠거든요. 두 아이한테 '30일 수면 루틴'을 직접 해봤어요.",
+          "cap": [
+            "쌍둥이 아빠 의사",
+            "30일 수면 실험"
+          ],
+          "hl": "30일 수면 실험"
+        },
+        "th": {
+          "narr": "จริง ๆ ผมเป็นพ่อลูกแฝดครับ ผมลองทำ 'รูทีนการนอน 30 วัน' กับลูกสองคนเอง",
+          "cap": [
+            "หมอพ่อลูกแฝด",
+            "ทดลองนอน 30 วัน"
+          ],
+          "hl": "ทดลองนอน 30 วัน"
+        },
+        "vi": {
+          "narr": "Thật ra tôi là bố của cặp song sinh. Tôi đã tự thử 'lịch ngủ 30 ngày' cho hai con.",
+          "cap": [
+            "Bác sĩ bố song sinh",
+            "thử ngủ 30 ngày"
+          ],
+          "hl": "thử ngủ 30 ngày"
+        },
+        "en": {
+          "narr": "I'm actually a dad of twins. I ran a '30-day sleep routine' on my own two kids.",
+          "cap": [
+            "A twin-dad doctor",
+            "30-day sleep test"
+          ],
+          "hl": "30-day sleep test"
+        },
+        "cn": {
+          "narr": "其实我是双胞胎爸爸，我给自己两个孩子做了'30天睡眠routine'实验。",
+          "cap": [
+            "双胞胎爸爸医生",
+            "30天睡眠实验"
+          ],
+          "hl": "30天睡眠实验"
+        },
+        "ch": {
+          "narr": "其實我是雙胞胎爸爸，我給自己兩個孩子做了'30天睡眠routine'實驗。",
+          "cap": [
+            "雙胞胎爸爸醫生",
+            "30天睡眠實驗"
+          ],
+          "hl": "30天睡眠實驗"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🌙 흔들 + 💭 공감",
+      "copy": {
+        "ko": {
+          "narr": "두 아이 잠버릇이 어찌나 다른지, 부모님들 그 고민 저도 똑같이 했어요.",
+          "cap": [
+            "잘 재우기",
+            "생각보다 어렵죠"
+          ],
+          "hl": "생각보다 어렵죠"
+        },
+        "th": {
+          "narr": "ลูกสองคนนิสัยการนอนต่างกันมาก ความกังวลของพ่อแม่ ผมก็เจอเหมือนกันครับ",
+          "cap": [
+            "กล่อมให้หลับ",
+            "ยากกว่าที่คิด"
+          ],
+          "hl": "ยากกว่าที่คิด"
+        },
+        "vi": {
+          "narr": "Hai bé nết ngủ khác hẳn nhau. Nỗi lo của cha mẹ, tôi cũng trải qua y hệt.",
+          "cap": [
+            "Dỗ con ngủ",
+            "khó hơn ta tưởng"
+          ],
+          "hl": "khó hơn ta tưởng"
+        },
+        "en": {
+          "narr": "Their sleep habits were so different — I struggled with the exact worry you do.",
+          "cap": [
+            "Getting kids to sleep",
+            "harder than it looks"
+          ],
+          "hl": "harder than it looks"
+        },
+        "cn": {
+          "narr": "两个孩子睡眠习惯差太多了，父母的那份头疼，我也一样经历过。",
+          "cap": [
+            "哄睡这件事",
+            "比想象中难"
+          ],
+          "hl": "比想象中难"
+        },
+        "ch": {
+          "narr": "兩個孩子睡眠習慣差太多了，父母的那份頭疼，我也一樣經歷過。",
+          "cap": [
+            "哄睡這件事",
+            "比想像中難"
+          ],
+          "hl": "比想像中難"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 깊은 잠 성장호르몬",
+      "motion": "🌙 잠들면 📈 폭발 점등",
+      "copy": {
+        "ko": {
+          "narr": "키 크는 성장호르몬은요, 잠든 직후 '깊은 잠'에 들어갈 때 가장 많이 쏟아져요.",
+          "cap": [
+            "깊은 잠에 들 때",
+            "성장호르몬 폭발"
+          ],
+          "hl": "성장호르몬 폭발"
+        },
+        "th": {
+          "narr": "โกรทฮอร์โมนที่ทำให้สูงจะหลั่งมากที่สุดตอนเข้าสู่ 'หลับลึก' หลังหลับใหม่ ๆ",
+          "cap": [
+            "ตอนหลับลึก",
+            "โกรทฮอร์โมนพุ่ง"
+          ],
+          "hl": "โกรทฮอร์โมนพุ่ง"
+        },
+        "vi": {
+          "narr": "Hormone tăng trưởng tiết ra nhiều nhất khi bé vừa ngủ và bước vào giấc ngủ sâu.",
+          "cap": [
+            "Khi ngủ sâu",
+            "hormone tăng vọt"
+          ],
+          "hl": "hormone tăng vọt"
+        },
+        "en": {
+          "narr": "Growth hormone surges most right after falling asleep, in deep sleep.",
+          "cap": [
+            "In deep sleep",
+            "growth hormone surges"
+          ],
+          "hl": "growth hormone surges"
+        },
+        "cn": {
+          "narr": "长高的生长激素，在刚入睡进入'深睡'时分泌得最多。",
+          "cap": [
+            "进入深睡时",
+            "生长激素爆发"
+          ],
+          "hl": "生长激素爆发"
+        },
+        "ch": {
+          "narr": "長高的生長激素，在剛入睡進入'深睡'時分泌得最多。",
+          "cap": [
+            "進入深睡時",
+            "生長激素爆發"
+          ],
+          "hl": "生長激素爆發"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 성장의 3기둥",
+      "motion": "🍎🏃🌙 3기둥 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "성장은 영양·운동·수면 세 기둥인데, 그중 수면이 가장 중요한 한 축이에요.",
+          "cap": [
+            "영양·운동·수면",
+            "수면이 핵심 기둥"
+          ],
+          "hl": "수면이 핵심 기둥"
+        },
+        "th": {
+          "narr": "การเติบโตมีสามเสา โภชนาการ การออกกำลัง การนอน และการนอนคือเสาที่สำคัญที่สุด",
+          "cap": [
+            "อาหาร·ออกกำลัง·นอน",
+            "การนอนคือเสาหลัก"
+          ],
+          "hl": "การนอนคือเสาหลัก"
+        },
+        "vi": {
+          "narr": "Tăng trưởng có ba trụ: dinh dưỡng, vận động, giấc ngủ — và ngủ là trụ quan trọng nhất.",
+          "cap": [
+            "Dinh dưỡng·vận động·ngủ",
+            "ngủ là trụ cốt lõi"
+          ],
+          "hl": "ngủ là trụ cốt lõi"
+        },
+        "en": {
+          "narr": "Growth stands on three pillars — nutrition, exercise, sleep — and sleep is the key one.",
+          "cap": [
+            "Nutrition·exercise·sleep",
+            "sleep is the key pillar"
+          ],
+          "hl": "sleep is the key pillar"
+        },
+        "cn": {
+          "narr": "成长有三大支柱：营养、运动、睡眠，而睡眠是最关键的一根。",
+          "cap": [
+            "营养·运动·睡眠",
+            "睡眠是关键支柱"
+          ],
+          "hl": "睡眠是关键支柱"
+        },
+        "ch": {
+          "narr": "成長有三大支柱：營養、運動、睡眠，而睡眠是最關鍵的一根。",
+          "cap": [
+            "營養·運動·睡眠",
+            "睡眠是關鍵支柱"
+          ],
+          "hl": "睡眠是關鍵支柱"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "⏰ 똑딱 + 📵 X 팝",
+      "copy": {
+        "ko": {
+          "narr": "규칙은 단순했어요. 매일 같은 시간에 자고, 잠들기 1시간 전엔 스마트폰을 끄기.",
+          "cap": [
+            "같은 시간 취침",
+            "잘 1시간 전 노 스크린"
+          ],
+          "hl": "잘 1시간 전 노 스크린"
+        },
+        "th": {
+          "narr": "กฎง่ายมาก เข้านอนเวลาเดิมทุกวัน และงดมือถือ 1 ชั่วโมงก่อนนอน",
+          "cap": [
+            "เข้านอนเวลาเดิม",
+            "งดจอ 1 ชม. ก่อนนอน"
+          ],
+          "hl": "งดจอ 1 ชม. ก่อนนอน"
+        },
+        "vi": {
+          "narr": "Quy tắc rất đơn giản: ngủ cùng giờ mỗi ngày, tắt điện thoại 1 tiếng trước khi ngủ.",
+          "cap": [
+            "Ngủ cùng giờ",
+            "tắt màn hình 1 tiếng trước"
+          ],
+          "hl": "tắt màn hình 1 tiếng trước"
+        },
+        "en": {
+          "narr": "The rules were simple: same bedtime daily, and no screens for the hour before sleep.",
+          "cap": [
+            "Same bedtime",
+            "no screens 1 hr before"
+          ],
+          "hl": "no screens 1 hr before"
+        },
+        "cn": {
+          "narr": "规则很简单：每天同一时间睡，睡前1小时不碰手机。",
+          "cap": [
+            "每天同点睡",
+            "睡前1小时不看屏"
+          ],
+          "hl": "睡前1小时不看屏"
+        },
+        "ch": {
+          "narr": "規則很簡單：每天同一時間睡，睡前1小時不碰手機。",
+          "cap": [
+            "每天同點睡",
+            "睡前1小時不看屏"
+          ],
+          "hl": "睡前1小時不看屏"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 숙면 환경",
+      "motion": "🛁→📖 따뜻 점등 + 🌙 어두워짐",
+      "copy": {
+        "ko": {
+          "narr": "자기 전엔 따뜻한 물로 씻기고 책 한 권, 방은 어둡고 조용하고 살짝 시원하게요.",
+          "cap": [
+            "따뜻한 목욕·책 한 권",
+            "어둡고 시원한 방"
+          ],
+          "hl": "어둡고 시원한 방"
+        },
+        "th": {
+          "narr": "ก่อนนอนอาบน้ำอุ่นและอ่านหนังสือสักเล่ม ห้องมืด เงียบ และเย็นนิด ๆ",
+          "cap": [
+            "อาบน้ำอุ่น·อ่านนิทาน",
+            "ห้องมืดและเย็น"
+          ],
+          "hl": "ห้องมืดและเย็น"
+        },
+        "vi": {
+          "narr": "Trước khi ngủ: tắm nước ấm và đọc một cuốn sách; phòng tối, yên tĩnh và hơi mát.",
+          "cap": [
+            "Tắm ấm·đọc sách",
+            "phòng tối và mát"
+          ],
+          "hl": "phòng tối và mát"
+        },
+        "en": {
+          "narr": "Before bed: a warm bath and a book; the room dark, quiet, and a touch cool.",
+          "cap": [
+            "Warm bath·a book",
+            "dark, cool room"
+          ],
+          "hl": "dark, cool room"
+        },
+        "cn": {
+          "narr": "睡前用温水洗个澡、读一本书，房间保持昏暗、安静、稍微凉爽。",
+          "cap": [
+            "温水浴·读本书",
+            "昏暗凉爽的房间"
+          ],
+          "hl": "昏暗凉爽的房间"
+        },
+        "ch": {
+          "narr": "睡前用溫水洗個澡、讀一本書，房間保持昏暗、安靜、稍微涼爽。",
+          "cap": [
+            "溫水浴·讀本書",
+            "昏暗涼爽的房間"
+          ],
+          "hl": "昏暗涼爽的房間"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27.5s",
+      "kind": "doctor",
+      "motion": "🤚 솔직 톤 + 💡 글로우",
+      "copy": {
+        "ko": {
+          "narr": "솔직히 30일 만에 키가 확 컸다곤 못 해요. 그렇게 말하면 거짓말이죠.",
+          "cap": [
+            "30일 만에 키 쑥?",
+            "그건 아니에요"
+          ],
+          "hl": "그건 아니에요"
+        },
+        "th": {
+          "narr": "พูดตรง ๆ 30 วันสูงพรวดเลยคงไม่ได้ ถ้าบอกแบบนั้นก็โกหกครับ",
+          "cap": [
+            "30 วันสูงพรวด?",
+            "บอกตรง ๆ ว่าไม่"
+          ],
+          "hl": "บอกตรง ๆ ว่าไม่"
+        },
+        "vi": {
+          "narr": "Thành thật mà nói, 30 ngày không thể cao vọt. Nói vậy là không trung thực.",
+          "cap": [
+            "30 ngày cao vọt?",
+            "thật lòng là không"
+          ],
+          "hl": "thật lòng là không"
+        },
+        "en": {
+          "narr": "Honestly, 30 days won't shoot height up — saying so would be a lie.",
+          "cap": [
+            "Height in 30 days?",
+            "honestly, no"
+          ],
+          "hl": "honestly, no"
+        },
+        "cn": {
+          "narr": "说实话，30天身高猛长是不可能的，那样说就是骗人。",
+          "cap": [
+            "30天就猛长？",
+            "说实话，不会"
+          ],
+          "hl": "说实话，不会"
+        },
+        "ch": {
+          "narr": "說實話，30天身高猛長是不可能的，那樣說就是騙人。",
+          "cap": [
+            "30天就猛長？",
+            "說實話，不會"
+          ],
+          "hl": "說實話，不會"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27.5–31s",
+      "kind": "ig",
+      "igLabel": "IG4 성장 리듬 회복",
+      "motion": "📉→📈 리듬 정렬 + ✨ 따뜻 점등",
+      "copy": {
+        "ko": {
+          "narr": "대신 잠투정이 줄고 아침이 개운해졌어요. 성장 리듬이 제자리로 돌아온 거죠.",
+          "cap": [
+            "개운한 아침",
+            "성장 리듬 회복"
+          ],
+          "hl": "성장 리듬 회복"
+        },
+        "th": {
+          "narr": "แต่ลูกงอแงน้อยลง ตื่นเช้าสดชื่น จังหวะการเติบโตกลับมาเป็นปกติ",
+          "cap": [
+            "ตื่นมาสดชื่น",
+            "จังหวะการโตกลับมา"
+          ],
+          "hl": "จังหวะการโตกลับมา"
+        },
+        "vi": {
+          "narr": "Bù lại, con bớt quấy, sáng dậy sảng khoái — nhịp tăng trưởng đã trở lại.",
+          "cap": [
+            "Sáng dậy sảng khoái",
+            "nhịp tăng trưởng trở lại"
+          ],
+          "hl": "nhịp tăng trưởng trở lại"
+        },
+        "en": {
+          "narr": "Instead: less fussing, fresher mornings — their growth rhythm came back.",
+          "cap": [
+            "Fresher mornings",
+            "growth rhythm restored"
+          ],
+          "hl": "growth rhythm restored"
+        },
+        "cn": {
+          "narr": "但孩子闹觉少了、早上更精神，成长节律回到了正轨。",
+          "cap": [
+            "早晨更精神",
+            "成长节律回归"
+          ],
+          "hl": "成长节律回归"
+        },
+        "ch": {
+          "narr": "但孩子鬧覺少了、早上更精神，成長節律回到了正軌。",
+          "cap": [
+            "早晨更精神",
+            "成長節律回歸"
+          ],
+          "hl": "成長節律回歸"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "31–34s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이가 깊은 잠을 잘 자는지, 뼈나이로 남은 기회까지 같이 확인할 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "남은 기회 확인"
+          ],
+          "hl": "남은 기회 확인"
+        },
+        "th": {
+          "narr": "ลูกหลับลึกพอไหม และเหลือโอกาสอีกเท่าไร เช็กได้ด้วยอายุกระดูก",
+          "cap": [
+            "อายุกระดูก",
+            "เวลาที่เหลือ"
+          ],
+          "hl": "เวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Con ngủ sâu chưa, và còn lại bao nhiêu cơ hội — tuổi xương cho biết tất cả.",
+          "cap": [
+            "Tuổi xương",
+            "cơ hội còn lại"
+          ],
+          "hl": "cơ hội còn lại"
+        },
+        "en": {
+          "narr": "Is your child sleeping deeply, and how much chance is left? Bone age can tell.",
+          "cap": [
+            "Bone age",
+            "chance left"
+          ],
+          "hl": "chance left"
+        },
+        "cn": {
+          "narr": "孩子睡得够不够深、还剩多少机会，骨龄都能帮你一起看清。",
+          "cap": [
+            "看骨龄",
+            "剩余机会"
+          ],
+          "hl": "剩余机会"
+        },
+        "ch": {
+          "narr": "孩子睡得夠不夠深、還剩多少機會，骨齡都能幫你一起看清。",
+          "cap": [
+            "看骨齡",
+            "剩餘機會"
+          ],
+          "hl": "剩餘機會"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "34–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "오늘 밤부터 시작해요. 우리 아이 성장 골든타임, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 골든타임",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เริ่มตั้งแต่คืนนี้ มาเช็กช่วงเวลาทองการเติบโตของลูกวันนี้",
+          "cap": [
+            "ช่วงเวลาทอง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Bắt đầu từ tối nay. Kiểm tra thời điểm vàng tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Thời điểm vàng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Start tonight. Check your child's growth golden time right now.",
+          "cap": [
+            "Golden time",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "今晚就开始吧。现在就查查孩子的成长黄金期。",
+          "cap": [
+            "成长黄金期",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "今晚就開始吧。現在就查查孩子的成長黃金期。",
+          "cap": [
+            "成長黃金期",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "잠들면 성장호르몬 폭발 점등",
+      "title": "깊은 잠 — 성장호르몬 폭발",
+      "emojis": [
+        "🌙",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white background. A child sleeping peacefully in bed under a soft crescent moon, with a gentle upward curve of glowing droplets/sparkles rising from the body to signal a hormone surge during deep sleep. Calm night-time mood, soft pillow and blanket. Brand purple #667eea to mint #2dd4bf gradient glow. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단(글로우)",
+          "ko": "성장호르몬 폭발",
+          "en": "GH surge",
+          "th": "โกรทฮอร์โมนพุ่ง"
+        },
+        {
+          "pos": "하단",
+          "ko": "잠든 직후 깊은 잠",
+          "en": "deep sleep",
+          "th": "หลับลึก"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "3기둥 순차 점등",
+      "title": "성장의 3기둥 — 영양·운동·수면",
+      "emojis": [
+        "🍎",
+        "🏃",
+        "🌙"
+      ],
+      "prompt": "Flat vector, square, white background. Three friendly pillars/columns side by side supporting a small happy child standing on top; the three pillars each carry a simple icon — an apple, a running figure, and a crescent moon — with the moon pillar glowing brightest. Balanced, sturdy, hopeful composition. Brand purple #667eea with mint #2dd4bf accent on the brightest pillar. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "기둥1",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "기둥2",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลัง"
+        },
+        {
+          "pos": "기둥3(글로우)",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "목욕→책 따뜻 점등 + 방 어두워짐",
+      "title": "숙면 환경 — 목욕·책·어두운 방",
+      "emojis": [
+        "🛁",
+        "📖",
+        "🌙"
+      ],
+      "prompt": "Flat vector, square, white background. A cozy bedtime scene: a child in pajamas after a warm bath holding a picture book, beside a softly lit bedside lamp in a dim, calm room with a crescent moon in the window. Warm, soothing, sleepy atmosphere. Brand purple #667eea with mint #2dd4bf gentle accents. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "따뜻한 목욕",
+          "en": "Warm bath",
+          "th": "อาบน้ำอุ่น"
+        },
+        {
+          "pos": "가운데",
+          "ko": "책 한 권",
+          "en": "A book",
+          "th": "อ่านหนังสือ"
+        },
+        {
+          "pos": "배경",
+          "ko": "어둡고 시원한 방",
+          "en": "Dark, cool room",
+          "th": "ห้องมืดและเย็น"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "흐트러진 리듬 → 정렬 + 따뜻 점등",
+      "title": "성장 리듬 회복 — 개운한 아침",
+      "emojis": [
+        "📈",
+        "☀️"
+      ],
+      "prompt": "Flat vector, square, white background. Left side shows a wavy, jagged irregular line; it smoothly transforms toward the right into an even, steady rising rhythm line, ending at a child stretching awake and refreshed under a bright morning sun. Conveys 'a healthy growth rhythm restored.' Hopeful, uplifting. Brand purple #667eea to mint #2dd4bf gradient with a warm sunrise accent. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "흐트러진 리듬",
+          "en": "Irregular",
+          "th": "จังหวะรวน"
+        },
+        {
+          "pos": "오른쪽(글로우)",
+          "ko": "성장 리듬 회복",
+          "en": "Rhythm restored",
+          "th": "จังหวะกลับมา"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "👨‍⚕️",
+      "label": "쌍둥이 아빠 의사"
+    },
+    {
+      "e": "👶",
+      "label": "쌍둥이/아이"
+    },
+    {
+      "e": "🌙",
+      "label": "수면/밤"
+    },
+    {
+      "e": "😴",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "📈",
+      "label": "성장호르몬 폭발"
+    },
+    {
+      "e": "🍎",
+      "label": "영양 기둥"
+    },
+    {
+      "e": "🏃",
+      "label": "운동 기둥"
+    },
+    {
+      "e": "⏰",
+      "label": "같은 시간 취침"
+    },
+    {
+      "e": "📵",
+      "label": "노 스크린"
+    },
+    {
+      "e": "🛁",
+      "label": "숙면 환경"
+    },
+    {
+      "e": "☀️",
+      "label": "개운한 아침"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

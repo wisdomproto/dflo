@@ -1,0 +1,794 @@
+{
+  "n": 51,
+  "slug": "키재는법",
+  "title": "아이 키, 잴 때마다 달라요? — 정확하게 재는 법",
+  "sub": "하루에도 1~2cm 오르내림은 자연스러운 현상 — 아침·일관성·반복 측정이 진짜 키를 보여준다",
+  "category": "C. 부모공감",
+  "topicTitle": "키 정확하게 재는 법",
+  "duration": 35,
+  "headerTop": "우리 아이 키",
+  "headerMark": "잴 때마다 달라요?",
+  "accentEmoji": "📏✨",
+  "hook": "아이 키, 잴 때마다 숫자가 달라서 불안하셨죠? 그거, 지극히 정상이에요.",
+  "misconception": "매일 달라지는 숫자 = 성장에 문제 / 키 재면 성장판이 닳는다 → 둘 다 사실 아님",
+  "message": "키는 하루에도 1~2cm 오르내린다(척추 디스크). 아침·같은 시간·2~3회 반복으로 '추이'를 봐야 진짜 키가 보인다",
+  "tone": "불안 자극 ❌ → \"정상이에요, 이렇게 재면 돼요\" 안심+방법. \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "집에선 추이만 보여요 — 뼈나이·예측키로 진짜 성장 잠재력 확인하기",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"잴 때마다 달라요? 정상이에요\" — 불안 내려놓기"
+    },
+    {
+      "act": "ACT 2",
+      "title": "원리",
+      "scenes": "c3–c4",
+      "desc": "\"척추 디스크 — 저녁엔 1~2cm 작아져요\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "언제",
+      "scenes": "c5–c6",
+      "desc": "\"아침이 가장 정확 · 매일 X, 월 1회\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "어떻게",
+      "scenes": "c7–c8",
+      "desc": "\"벽·맨발·차렷자세 · 2~3회 반복\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "추이→행동",
+      "scenes": "c9–c10",
+      "desc": "\"집에선 추이만 · 진짜 키는 측정으로\""
+    }
+  ],
+  "thumb": {
+    "kicker": "잴 때마다 달라요?",
+    "subject": "우리 아이 키",
+    "number": "1~2cm",
+    "numLabel": "하루에 오르내림"
+  },
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📏 슬램 인 + ❓ 흔들",
+      "copy": {
+        "ko": {
+          "narr": "아이 키, 잴 때마다 숫자가 달라서 불안하셨죠? 그거, 지극히 정상이에요.",
+          "cap": [
+            "잴 때마다 달라요?",
+            "지극히 정상"
+          ],
+          "hl": "지극히 정상"
+        },
+        "th": {
+          "narr": "วัดส่วนสูงลูกทีไรก็ไม่เท่ากัน กังวลใช่ไหม? นั่นปกติมากเลยค่ะ",
+          "cap": [
+            "วัดทีไรก็ไม่เท่า",
+            "ปกติมาก"
+          ],
+          "hl": "ปกติมาก"
+        },
+        "vi": {
+          "narr": "Đo chiều cao con cứ mỗi lần một số, lo lắng đúng không? Hoàn toàn bình thường đấy.",
+          "cap": [
+            "Mỗi lần một số?",
+            "Hoàn toàn bình thường"
+          ],
+          "hl": "Hoàn toàn bình thường"
+        },
+        "en": {
+          "narr": "Your child's height changes every time you measure? That's perfectly normal.",
+          "cap": [
+            "Different each time?",
+            "Totally normal"
+          ],
+          "hl": "Totally normal"
+        },
+        "cn": {
+          "narr": "孩子身高每次量都不一样，担心吗？这其实完全正常。",
+          "cap": [
+            "每次量都不同？",
+            "完全正常"
+          ],
+          "hl": "完全正常"
+        },
+        "ch": {
+          "narr": "孩子身高每次量都不一樣，擔心嗎？這其實完全正常。",
+          "cap": [
+            "每次量都不同？",
+            "完全正常"
+          ],
+          "hl": "完全正常"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "📉 살짝 출렁",
+      "copy": {
+        "ko": {
+          "narr": "어제 120, 오늘 119.8. 키는 하루에도 몇 밀리씩 오르내려요.",
+          "cap": [
+            "하루에도",
+            "몇 mm씩 변해요"
+          ],
+          "hl": "몇 mm씩 변해요"
+        },
+        "th": {
+          "narr": "เมื่อวาน 120 วันนี้ 119.8 ส่วนสูงขึ้นลงได้หลายมิลฯ ในวันเดียว",
+          "cap": [
+            "ในวันเดียว",
+            "ขึ้นลงหลายมิลฯ"
+          ],
+          "hl": "ขึ้นลงหลายมิลฯ"
+        },
+        "vi": {
+          "narr": "Hôm qua 120, hôm nay 119.8. Chiều cao lên xuống vài mm mỗi ngày.",
+          "cap": [
+            "Mỗi ngày",
+            "lên xuống vài mm"
+          ],
+          "hl": "lên xuống vài mm"
+        },
+        "en": {
+          "narr": "Yesterday 120, today 119.8. Height shifts a few mm within a single day.",
+          "cap": [
+            "In one day",
+            "shifts a few mm"
+          ],
+          "hl": "shifts a few mm"
+        },
+        "cn": {
+          "narr": "昨天120，今天119.8。身高一天内会上下浮动几毫米。",
+          "cap": [
+            "一天之内",
+            "浮动几毫米"
+          ],
+          "hl": "浮动几毫米"
+        },
+        "ch": {
+          "narr": "昨天120，今天119.8。身高一天內會上下浮動幾毫米。",
+          "cap": [
+            "一天之內",
+            "浮動幾毫米"
+          ],
+          "hl": "浮動幾毫米"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 척추 디스크",
+      "motion": "🌙☀️ 낮밤 토글",
+      "copy": {
+        "ko": {
+          "narr": "이유는 척추예요. 낮 동안 디스크가 눌려 수분이 빠지면서 키가 줄거든요.",
+          "cap": [
+            "척추 디스크가",
+            "낮엔 눌려요"
+          ],
+          "hl": "낮엔 눌려요"
+        },
+        "th": {
+          "narr": "เพราะกระดูกสันหลังค่ะ กลางวันหมอนรองถูกกดน้ำลด ส่วนสูงจึงลดลง",
+          "cap": [
+            "หมอนรองกระดูก",
+            "กลางวันถูกกด"
+          ],
+          "hl": "กลางวันถูกกด"
+        },
+        "vi": {
+          "narr": "Lý do là cột sống. Ban ngày đĩa đệm bị nén, mất nước nên chiều cao giảm.",
+          "cap": [
+            "Đĩa đệm cột sống",
+            "ban ngày bị nén"
+          ],
+          "hl": "ban ngày bị nén"
+        },
+        "en": {
+          "narr": "It's the spine. By day, the discs compress and lose water, so you shrink a bit.",
+          "cap": [
+            "Spinal discs",
+            "compress by day"
+          ],
+          "hl": "compress by day"
+        },
+        "cn": {
+          "narr": "原因是脊柱。白天椎间盘被压、水分流失，身高就缩了一点。",
+          "cap": [
+            "椎间盘",
+            "白天被压缩"
+          ],
+          "hl": "白天被压缩"
+        },
+        "ch": {
+          "narr": "原因是脊柱。白天椎間盤被壓、水分流失，身高就縮了一點。",
+          "cap": [
+            "椎間盤",
+            "白天被壓縮"
+          ],
+          "hl": "白天被壓縮"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 아침 vs 저녁",
+      "motion": "📏 \"1~2cm\" 카운트 + 아침 글로우",
+      "copy": {
+        "ko": {
+          "narr": "그래서 저녁엔 아침보다 1~2센티 작아요. 밤에 자면서 다시 회복되고요.",
+          "cap": [
+            "저녁엔",
+            "1~2cm 작아요"
+          ],
+          "hl": "1~2cm 작아요"
+        },
+        "th": {
+          "narr": "ตอนเย็นจึงเตี้ยกว่าตอนเช้า 1–2 ซม. แล้วฟื้นตอนนอนกลางคืน",
+          "cap": [
+            "ตอนเย็น",
+            "เตี้ยลง 1–2 ซม."
+          ],
+          "hl": "เตี้ยลง 1–2 ซม."
+        },
+        "vi": {
+          "narr": "Nên buổi tối thấp hơn buổi sáng 1–2cm, rồi hồi lại khi ngủ đêm.",
+          "cap": [
+            "Buổi tối",
+            "thấp hơn 1–2cm"
+          ],
+          "hl": "thấp hơn 1–2cm"
+        },
+        "en": {
+          "narr": "So evenings run 1–2cm shorter than mornings, then sleep restores it.",
+          "cap": [
+            "By evening",
+            "1–2cm shorter"
+          ],
+          "hl": "1–2cm shorter"
+        },
+        "cn": {
+          "narr": "所以傍晚比早上矮1到2厘米，夜里睡觉又会恢复。",
+          "cap": [
+            "傍晚",
+            "矮1~2厘米"
+          ],
+          "hl": "矮1~2厘米"
+        },
+        "ch": {
+          "narr": "所以傍晚比早上矮1到2公分，夜裡睡覺又會恢復。",
+          "cap": [
+            "傍晚",
+            "矮1~2公分"
+          ],
+          "hl": "矮1~2公分"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "☀️ 팝 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "그러니 가장 정확한 시간은 아침! 일어난 직후에 재는 게 제일 좋아요.",
+          "cap": [
+            "가장 정확한 건",
+            "아침 직후"
+          ],
+          "hl": "아침 직후"
+        },
+        "th": {
+          "narr": "เวลาที่แม่นที่สุดคือตอนเช้า วัดทันทีหลังตื่นนอนดีที่สุด",
+          "cap": [
+            "แม่นที่สุดคือ",
+            "ตอนเช้าหลังตื่น"
+          ],
+          "hl": "ตอนเช้าหลังตื่น"
+        },
+        "vi": {
+          "narr": "Vậy chính xác nhất là buổi sáng — đo ngay sau khi thức dậy.",
+          "cap": [
+            "Chính xác nhất",
+            "sáng vừa dậy"
+          ],
+          "hl": "sáng vừa dậy"
+        },
+        "en": {
+          "narr": "So the most accurate time is morning — right after waking up.",
+          "cap": [
+            "Most accurate",
+            "right after waking"
+          ],
+          "hl": "right after waking"
+        },
+        "cn": {
+          "narr": "所以最准的时间是早上，刚起床后量最好。",
+          "cap": [
+            "最准的是",
+            "刚起床后"
+          ],
+          "hl": "刚起床后"
+        },
+        "ch": {
+          "narr": "所以最準的時間是早上，剛起床後量最好。",
+          "cap": [
+            "最準的是",
+            "剛起床後"
+          ],
+          "hl": "剛起床後"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23s",
+      "kind": "ig",
+      "igLabel": "IG3 같은 시간·월 1회",
+      "motion": "🗓️ 한 칸 점등 · ❌매일",
+      "copy": {
+        "ko": {
+          "narr": "매일 잴 필욘 없어요. 같은 시간대로, 월 1회만 재서 추이를 보세요.",
+          "cap": [
+            "매일 X · 같은 시간",
+            "월 1회"
+          ],
+          "hl": "월 1회"
+        },
+        "th": {
+          "narr": "ไม่ต้องวัดทุกวัน วัดเวลาเดิม เดือนละครั้งเพื่อดูแนวโน้ม",
+          "cap": [
+            "เวลาเดิม",
+            "เดือนละครั้ง"
+          ],
+          "hl": "เดือนละครั้ง"
+        },
+        "vi": {
+          "narr": "Không cần đo mỗi ngày. Cùng giờ, mỗi tháng một lần để xem xu hướng.",
+          "cap": [
+            "Cùng giờ",
+            "mỗi tháng 1 lần"
+          ],
+          "hl": "mỗi tháng 1 lần"
+        },
+        "en": {
+          "narr": "No need to measure daily. Same time, once a month, and watch the trend.",
+          "cap": [
+            "Same time",
+            "once a month"
+          ],
+          "hl": "once a month"
+        },
+        "cn": {
+          "narr": "不必每天量。固定时间、每月一次，看趋势就够了。",
+          "cap": [
+            "固定时间",
+            "每月一次"
+          ],
+          "hl": "每月一次"
+        },
+        "ch": {
+          "narr": "不必每天量。固定時間、每月一次，看趨勢就夠了。",
+          "cap": [
+            "固定時間",
+            "每月一次"
+          ],
+          "hl": "每月一次"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23–27s",
+      "kind": "ig",
+      "igLabel": "IG4 벽·차렷자세",
+      "motion": "🧍 벽 정렬 4점 점등",
+      "copy": {
+        "ko": {
+          "narr": "잴 땐 맨발로 벽에! 뒤꿈치·엉덩이·어깨·머리를 벽에 붙이고 차렷 자세요.",
+          "cap": [
+            "맨발·벽에 붙여",
+            "차렷 자세"
+          ],
+          "hl": "차렷 자세"
+        },
+        "th": {
+          "narr": "วัดให้เท้าเปล่าชิดผนัง ส้นเท้า-ก้น-ไหล่-หัว แนบผนัง ยืนตรง",
+          "cap": [
+            "เท้าเปล่าชิดผนัง",
+            "ยืนตรง"
+          ],
+          "hl": "ยืนตรง"
+        },
+        "vi": {
+          "narr": "Đo thì chân trần áp tường: gót, mông, vai, đầu chạm tường, đứng thẳng.",
+          "cap": [
+            "Chân trần áp tường",
+            "đứng thẳng"
+          ],
+          "hl": "đứng thẳng"
+        },
+        "en": {
+          "narr": "Measure barefoot at a wall: heels, hips, shoulders, head touching, stand tall.",
+          "cap": [
+            "Barefoot at wall",
+            "stand tall"
+          ],
+          "hl": "stand tall"
+        },
+        "cn": {
+          "narr": "量时光脚靠墙：脚跟、臀、肩、头贴墙，立正站好。",
+          "cap": [
+            "光脚靠墙",
+            "立正站好"
+          ],
+          "hl": "立正站好"
+        },
+        "ch": {
+          "narr": "量時光腳靠牆：腳跟、臀、肩、頭貼牆，立正站好。",
+          "cap": [
+            "光腳靠牆",
+            "立正站好"
+          ],
+          "hl": "立正站好"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27–30.5s",
+      "kind": "doctor",
+      "motion": "🔁 2~3회 펄스",
+      "copy": {
+        "ko": {
+          "narr": "한 번 말고 2~3번 재서 가장 많이 나온 값으로! 키 재도 성장판 안 닳아요.",
+          "cap": [
+            "2~3번 재기",
+            "성장판 안 닳아요"
+          ],
+          "hl": "성장판 안 닳아요"
+        },
+        "th": {
+          "narr": "วัด 2–3 ครั้ง เอาค่าที่ออกบ่อยสุด การวัดไม่ทำลายแผ่นกระดูกนะ",
+          "cap": [
+            "วัด 2–3 ครั้ง",
+            "ไม่ทำลายแผ่นกระดูก"
+          ],
+          "hl": "ไม่ทำลายแผ่นกระดูก"
+        },
+        "vi": {
+          "narr": "Đo 2–3 lần lấy giá trị hay gặp nhất. Đo không hề hại sụn tăng trưởng.",
+          "cap": [
+            "Đo 2–3 lần",
+            "không hại sụn"
+          ],
+          "hl": "không hại sụn"
+        },
+        "en": {
+          "narr": "Measure 2–3 times, take the most common value. Measuring won't harm growth plates.",
+          "cap": [
+            "Measure 2–3 times",
+            "won't harm plates"
+          ],
+          "hl": "won't harm plates"
+        },
+        "cn": {
+          "narr": "量2到3次，取出现最多的值。量身高不会磨损生长板。",
+          "cap": [
+            "量2~3次",
+            "不损生长板"
+          ],
+          "hl": "不损生长板"
+        },
+        "ch": {
+          "narr": "量2到3次，取出現最多的值。量身高不會磨損生長板。",
+          "cap": [
+            "量2~3次",
+            "不損生長板"
+          ],
+          "hl": "不損生長板"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30.5–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "집에서 보는 건 추이까지예요. 진짜 성장 잠재력은 뼈나이가 알려줘요.",
+          "cap": [
+            "집에선 추이까지",
+            "잠재력은 뼈나이로"
+          ],
+          "hl": "잠재력은 뼈나이로"
+        },
+        "th": {
+          "narr": "ที่บ้านดูได้แค่แนวโน้ม ศักยภาพจริงดูจากอายุกระดูก",
+          "cap": [
+            "ที่บ้านดูแนวโน้ม",
+            "ศักยภาพ=อายุกระดูก"
+          ],
+          "hl": "ศักยภาพ=อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Ở nhà chỉ thấy xu hướng. Tiềm năng thật do tuổi xương cho biết.",
+          "cap": [
+            "Nhà: chỉ xu hướng",
+            "tiềm năng: tuổi xương"
+          ],
+          "hl": "tiềm năng: tuổi xương"
+        },
+        "en": {
+          "narr": "At home you see the trend. True potential — that's what bone age reveals.",
+          "cap": [
+            "Home shows trend",
+            "potential = bone age"
+          ],
+          "hl": "potential = bone age"
+        },
+        "cn": {
+          "narr": "在家只能看趋势。真正的潜力，要靠骨龄来揭示。",
+          "cap": [
+            "在家看趋势",
+            "潜力看骨龄"
+          ],
+          "hl": "潜力看骨龄"
+        },
+        "ch": {
+          "narr": "在家只能看趨勢。真正的潛力，要靠骨齡來揭示。",
+          "cap": [
+            "在家看趨勢",
+            "潛力看骨齡"
+          ],
+          "hl": "潛力看骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 예측키, 지금 홈페이지에서 확인해 보세요.",
+          "cap": [
+            "예측키·뼈나이",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กส่วนสูงพยากรณ์ของลูกที่เว็บไซต์เลยวันนี้",
+          "cap": [
+            "ส่วนสูงพยากรณ์",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra chiều cao dự đoán của con trên website ngay hôm nay.",
+          "cap": [
+            "Chiều cao dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's predicted height on our website today.",
+          "cap": [
+            "Predicted height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就在官网查查孩子的预测身高吧。",
+          "cap": [
+            "预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就在官網查查孩子的預測身高吧。",
+          "cap": [
+            "預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "낮밤 토글 + 디스크 눌림",
+      "title": "척추 디스크 — 낮 동안 눌림",
+      "emojis": [
+        "🌙",
+        "☀️",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white bg. A simplified side view of a spine made of stacked vertebrae with soft cushion discs between them; a downward gravity arrow gently compressing the discs so the stack looks slightly shorter, tiny water droplets escaping from the discs. Friendly pediatric style, brand purple #667eea spine with mint #2dd4bf discs. Conveys 'discs compress during the day.' NO text.",
+      "labels": [
+        {
+          "pos": "상단(중력 화살표)",
+          "ko": "낮 · 중력",
+          "en": "Daytime · gravity",
+          "th": "กลางวัน · แรงโน้มถ่วง"
+        },
+        {
+          "pos": "디스크 사이",
+          "ko": "수분 빠짐",
+          "en": "water leaves",
+          "th": "น้ำลดลง"
+        },
+        {
+          "pos": "하단",
+          "ko": "키 줄어듦",
+          "en": "shrinks a bit",
+          "th": "เตี้ยลงเล็กน้อย"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "1~2cm 카운트 + 아침 글로우",
+      "title": "아침 vs 저녁 — 1~2cm 차이",
+      "emojis": [
+        "☀️",
+        "🌆",
+        "📏"
+      ],
+      "prompt": "Flat vector, square, white bg. Two identical child silhouettes standing side by side against a height ruler; the left one (morning, with a small sun and soft glow) stands slightly taller, the right one (evening, with a small moon/sunset) slightly shorter, a small bracket between their head heights showing the gap. Brand purple + mint, warm glow on the morning side. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 인물",
+          "ko": "아침 (가장 큼)",
+          "en": "Morning (tallest)",
+          "th": "เช้า (สูงสุด)"
+        },
+        {
+          "pos": "오른쪽 인물",
+          "ko": "저녁",
+          "en": "Evening",
+          "th": "เย็น"
+        },
+        {
+          "pos": "머리 사이 브래킷",
+          "ko": "1~2cm",
+          "en": "1–2cm",
+          "th": "1–2 ซม."
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "달력 한 칸 점등",
+      "title": "같은 시간 · 월 1회 추이",
+      "emojis": [
+        "🗓️",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly monthly calendar grid with a single highlighted day marked by a small height-ruler/clock icon, and a gentle upward trend line of dots rising across the months beside it. Conveys 'measure once a month, same time, track the trend.' Brand purple #667eea with mint #2dd4bf accents. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "달력 표시일",
+          "ko": "같은 시간",
+          "en": "Same time",
+          "th": "เวลาเดิม"
+        },
+        {
+          "pos": "추세선",
+          "ko": "월 1회 추이",
+          "en": "monthly trend",
+          "th": "แนวโน้มรายเดือน"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "벽 정렬 4점 순차 점등",
+      "title": "정확한 자세 — 벽 4점 밀착",
+      "emojis": [
+        "🧍",
+        "🧱",
+        "📏"
+      ],
+      "prompt": "Flat vector, square, white bg. A child standing straight with back against a vertical wall, barefoot, a flat book/board resting level on the head touching the wall; four small glowing contact dots highlighted at heel, hip, shoulder, and back of head against the wall, chin slightly tucked, eyes forward. Friendly pediatric, brand purple #667eea wall with mint #2dd4bf contact dots. Conveys 'correct measuring posture.' NO text.",
+      "labels": [
+        {
+          "pos": "머리 위 책",
+          "ko": "평평한 책",
+          "en": "Flat book",
+          "th": "หนังสือแบนราบ"
+        },
+        {
+          "pos": "접촉 4점",
+          "ko": "뒤꿈치·엉덩이·어깨·머리",
+          "en": "4 contact points",
+          "th": "4 จุดสัมผัส"
+        },
+        {
+          "pos": "발",
+          "ko": "맨발",
+          "en": "Barefoot",
+          "th": "เท้าเปล่า"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📏",
+      "label": "키 측정"
+    },
+    {
+      "e": "❓",
+      "label": "잴 때마다 달라?"
+    },
+    {
+      "e": "🦴",
+      "label": "척추·뼈나이"
+    },
+    {
+      "e": "🌙",
+      "label": "밤·회복"
+    },
+    {
+      "e": "☀️",
+      "label": "아침(가장 큼)"
+    },
+    {
+      "e": "🌆",
+      "label": "저녁(작아짐)"
+    },
+    {
+      "e": "🗓️",
+      "label": "월 1회"
+    },
+    {
+      "e": "🧍",
+      "label": "차렷 자세"
+    },
+    {
+      "e": "🧱",
+      "label": "벽 밀착"
+    },
+    {
+      "e": "🔁",
+      "label": "2~3회 반복"
+    },
+    {
+      "e": "📈",
+      "label": "추이"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

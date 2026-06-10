@@ -1,0 +1,795 @@
+{
+  "n": 29,
+  "slug": "채소숨기기7",
+  "title": "채소 안 먹는 우리 아이 — 몰래 먹이는 기술 7가지",
+  "sub": "잘게 다져 섞기·스무디·재미난 모양·칭찬까지 — 전쟁 같던 식탁이 바뀐다",
+  "category": "B. 생활습관",
+  "topicTitle": "편식 아이 채소 먹이기 7가지 기술",
+  "headerTop": "채소 안 먹는 아이",
+  "headerMark": "몰래 먹이는 법?",
+  "accentEmoji": "🥦✨",
+  "duration": 35,
+  "hook": "채소 안 먹는 우리 아이, 억지로 먹이지 마세요. '몰래 먹이는 기술'이 있거든요.",
+  "misconception": "채소는 억지로라도 먹여야 한다 → 강요는 거부감만 키움, 긍정 경험이 더 효과적",
+  "message": "잘게 다져 숨기기·스무디·재미난 모양·함께 요리·칭찬. 채소가 친해지면 성장 영양이 채워진다",
+  "tone": "협박 ❌(채소 안 먹으면 키 안 큰다 X) → 긍정(\"채소랑 친해지면 키도 쑥\"). 강요 대신 즐거운 경험. \"우리 아이\" 보편",
+  "cta": "우리 아이 성장 상태, 지금 무료로 확인 → 예측키·뼈나이 측정 + 생활습관 코칭",
+  "thumb": {
+    "kicker": "억지로 NO!",
+    "subject": "채소 안 먹는 우리 아이",
+    "number": "7",
+    "numLabel": "가지 몰래 기술"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"억지로 X, 몰래 먹이는 기술 7가지\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 채소?",
+      "scenes": "c3–c4",
+      "desc": "\"비타민·미네랄·식이섬유 = 성장 영양\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "숨기기 기술",
+      "scenes": "c5–c6",
+      "desc": "\"잘게 다져 숨기기 → 스무디·재미난 모양\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "함께·칭찬",
+      "scenes": "c7–c8",
+      "desc": "\"같이 요리 → 강요 말고 칭찬\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"성장 상태 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🥦 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "채소 안 먹는 우리 아이, 억지로 먹이지 마세요. '몰래 먹이는 기술'이 있거든요.",
+          "cap": [
+            "억지로 NO",
+            "몰래 먹이는 기술"
+          ],
+          "hl": "몰래 먹이는 기술"
+        },
+        "th": {
+          "narr": "ลูกไม่กินผัก? ไม่ต้องบังคับ มี 'เทคนิคแอบใส่' อยู่",
+          "cap": [
+            "ไม่ต้องบังคับ",
+            "เทคนิคแอบใส่"
+          ],
+          "hl": "เทคนิคแอบใส่"
+        },
+        "vi": {
+          "narr": "Con không chịu ăn rau? Đừng ép — có 'mẹo giấu rau' đấy.",
+          "cap": [
+            "Đừng ép con",
+            "mẹo giấu rau"
+          ],
+          "hl": "mẹo giấu rau"
+        },
+        "en": {
+          "narr": "Won't your child eat veggies? Don't force it — there's a trick to sneak them in.",
+          "cap": [
+            "Don't force it",
+            "sneak them in"
+          ],
+          "hl": "sneak them in"
+        },
+        "cn": {
+          "narr": "孩子不爱吃菜？别硬逼，有'偷偷藏菜'的技巧。",
+          "cap": [
+            "别硬逼",
+            "偷偷藏菜"
+          ],
+          "hl": "偷偷藏菜"
+        },
+        "ch": {
+          "narr": "孩子不愛吃菜？別硬逼，有'偷偷藏菜'的技巧。",
+          "cap": [
+            "別硬逼",
+            "偷偷藏菜"
+          ],
+          "hl": "偷偷藏菜"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "⚔️ 식탁 전쟁 흔들",
+      "copy": {
+        "ko": {
+          "narr": "매일 식탁이 전쟁이죠? 강요하면 거부감만 커져요. 방법을 바꿔야 해요.",
+          "cap": [
+            "강요는 역효과",
+            "방법을 바꾸자"
+          ],
+          "hl": "방법을 바꾸자"
+        },
+        "th": {
+          "narr": "มื้ออาหารเหมือนสงครามทุกวัน? ยิ่งบังคับยิ่งต่อต้าน ต้องเปลี่ยนวิธี",
+          "cap": [
+            "ยิ่งบังคับยิ่งต่อต้าน",
+            "เปลี่ยนวิธี"
+          ],
+          "hl": "เปลี่ยนวิธี"
+        },
+        "vi": {
+          "narr": "Bữa ăn nào cũng như đánh trận? Càng ép càng phản tác dụng — hãy đổi cách.",
+          "cap": [
+            "Càng ép càng phản tác dụng",
+            "đổi cách"
+          ],
+          "hl": "đổi cách"
+        },
+        "en": {
+          "narr": "Every meal a battle? Forcing only backfires. Change the approach.",
+          "cap": [
+            "Forcing backfires",
+            "change the approach"
+          ],
+          "hl": "change the approach"
+        },
+        "cn": {
+          "narr": "每顿饭都像打仗？越逼越抗拒，得换个方法。",
+          "cap": [
+            "越逼越抗拒",
+            "换个方法"
+          ],
+          "hl": "换个方法"
+        },
+        "ch": {
+          "narr": "每頓飯都像打仗？越逼越抗拒，得換個方法。",
+          "cap": [
+            "越逼越抗拒",
+            "換個方法"
+          ],
+          "hl": "換個方法"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 채소 영양",
+      "motion": "🥦🥕🥬 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "채소엔 비타민, 미네랄, 식이섬유가 가득해요. 다 성장에 꼭 필요한 영양이죠.",
+          "cap": [
+            "비타민·미네랄·식이섬유",
+            "성장 필수 영양"
+          ],
+          "hl": "성장 필수 영양"
+        },
+        "th": {
+          "narr": "ผักเต็มไปด้วยวิตามิน แร่ธาตุ ใยอาหาร ล้วนจำเป็นต่อการเติบโต",
+          "cap": [
+            "วิตามิน·แร่ธาตุ·ใยอาหาร",
+            "สารอาหารเพื่อการเติบโต"
+          ],
+          "hl": "สารอาหารเพื่อการเติบโต"
+        },
+        "vi": {
+          "narr": "Rau đầy vitamin, khoáng chất, chất xơ — đều cần cho sự phát triển.",
+          "cap": [
+            "Vitamin·khoáng·chất xơ",
+            "dưỡng chất tăng trưởng"
+          ],
+          "hl": "dưỡng chất tăng trưởng"
+        },
+        "en": {
+          "narr": "Veggies are packed with vitamins, minerals, fiber — all key for growth.",
+          "cap": [
+            "Vitamins·minerals·fiber",
+            "growth nutrients"
+          ],
+          "hl": "growth nutrients"
+        },
+        "cn": {
+          "narr": "蔬菜富含维生素、矿物质、膳食纤维，都是成长必需的营养。",
+          "cap": [
+            "维生素·矿物质·纤维",
+            "成长必需营养"
+          ],
+          "hl": "成长必需营养"
+        },
+        "ch": {
+          "narr": "蔬菜富含維生素、礦物質、膳食纖維，都是成長必需的營養。",
+          "cap": [
+            "維生素·礦物質·纖維",
+            "成長必需營養"
+          ],
+          "hl": "成長必需營養"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 뼈·면역",
+      "motion": "🦴 튼튼 + 🛡️ 펄스",
+      "copy": {
+        "ko": {
+          "narr": "뼈와 치아를 튼튼하게, 면역력은 쑥, 장 건강까지. 채소가 다 해줘요.",
+          "cap": [
+            "뼈·면역·장 건강",
+            "채소가 키운다"
+          ],
+          "hl": "채소가 키운다"
+        },
+        "th": {
+          "narr": "กระดูกฟันแข็งแรง ภูมิคุ้มกันดี ลำไส้ดี ผักช่วยได้หมด",
+          "cap": [
+            "กระดูก·ภูมิ·ลำไส้",
+            "ผักช่วยให้โต"
+          ],
+          "hl": "ผักช่วยให้โต"
+        },
+        "vi": {
+          "narr": "Xương răng chắc, miễn dịch tốt, đường ruột khỏe — rau làm tất cả.",
+          "cap": [
+            "Xương·miễn dịch·ruột",
+            "rau giúp con lớn"
+          ],
+          "hl": "rau giúp con lớn"
+        },
+        "en": {
+          "narr": "Strong bones and teeth, better immunity, healthy gut — veggies do it all.",
+          "cap": [
+            "Bones·immunity·gut",
+            "veggies fuel growth"
+          ],
+          "hl": "veggies fuel growth"
+        },
+        "cn": {
+          "narr": "骨骼牙齿强壮、免疫力提升、肠道健康，蔬菜全包了。",
+          "cap": [
+            "骨骼·免疫·肠道",
+            "蔬菜助成长"
+          ],
+          "hl": "蔬菜助成长"
+        },
+        "ch": {
+          "narr": "骨骼牙齒強壯、免疫力提升、腸道健康，蔬菜全包了。",
+          "cap": [
+            "骨骼·免疫·腸道",
+            "蔬菜助成長"
+          ],
+          "hl": "蔬菜助成長"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🔪 다지기 + 🍔 숨김",
+      "copy": {
+        "ko": {
+          "narr": "첫째, 잘게 다져 숨기기! 햄버거 패티나 카레에 채소를 갈아 넣으면 눈치 못 채요.",
+          "cap": [
+            "잘게 다져",
+            "좋아하는 음식에 숨기기"
+          ],
+          "hl": "좋아하는 음식에 숨기기"
+        },
+        "th": {
+          "narr": "หนึ่ง หั่นละเอียดแล้วซ่อน! ใส่ผักบดในแฮมเบอร์เกอร์หรือแกงกะหรี่ ลูกไม่รู้ตัว",
+          "cap": [
+            "หั่นละเอียด",
+            "ซ่อนในอาหารโปรด"
+          ],
+          "hl": "ซ่อนในอาหารโปรด"
+        },
+        "vi": {
+          "narr": "Một, băm nhỏ và giấu! Trộn rau xay vào burger hay cà ri, con chẳng nhận ra.",
+          "cap": [
+            "Băm nhỏ",
+            "giấu vào món con thích"
+          ],
+          "hl": "giấu vào món con thích"
+        },
+        "en": {
+          "narr": "One: chop fine and hide! Blend veggies into patties or curry — they'll never know.",
+          "cap": [
+            "Chop fine",
+            "hide in favorite foods"
+          ],
+          "hl": "hide in favorite foods"
+        },
+        "cn": {
+          "narr": "第一，剁碎藏起来！把菜打碎拌进汉堡肉或咖喱，孩子察觉不到。",
+          "cap": [
+            "剁碎",
+            "藏进爱吃的食物"
+          ],
+          "hl": "藏进爱吃的食物"
+        },
+        "ch": {
+          "narr": "第一，剁碎藏起來！把菜打碎拌進漢堡肉或咖哩，孩子察覺不到。",
+          "cap": [
+            "剁碎",
+            "藏進愛吃的食物"
+          ],
+          "hl": "藏進愛吃的食物"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 스무디·모양",
+      "motion": "🥤 블렌드 + ⭐ 팝",
+      "copy": {
+        "ko": {
+          "narr": "스무디에 잎채소 한 줌, 별·하트 모양으로 쏙쏙. 재미있으면 손이 가요.",
+          "cap": [
+            "스무디·재미난 모양",
+            "재미있으면 먹는다"
+          ],
+          "hl": "재미있으면 먹는다"
+        },
+        "th": {
+          "narr": "ใส่ผักใบในสมูทตี้ ตัดเป็นรูปดาวหัวใจ สนุกแล้วอยากกิน",
+          "cap": [
+            "สมูทตี้·รูปน่ารัก",
+            "สนุกแล้วอยากกิน"
+          ],
+          "hl": "สนุกแล้วอยากกิน"
+        },
+        "vi": {
+          "narr": "Một nắm rau xanh vào sinh tố, cắt hình sao tim — vui là con ăn ngay.",
+          "cap": [
+            "Sinh tố·hình ngộ nghĩnh",
+            "vui thì con ăn"
+          ],
+          "hl": "vui thì con ăn"
+        },
+        "en": {
+          "narr": "A handful of greens in a smoothie, cut into stars and hearts — fun makes them eat.",
+          "cap": [
+            "Smoothies·fun shapes",
+            "fun makes them eat"
+          ],
+          "hl": "fun makes them eat"
+        },
+        "cn": {
+          "narr": "一把叶菜打成奶昔，切成星星爱心，有趣孩子就愿意吃。",
+          "cap": [
+            "奶昔·趣味造型",
+            "有趣就愿意吃"
+          ],
+          "hl": "有趣就愿意吃"
+        },
+        "ch": {
+          "narr": "一把葉菜打成奶昔，切成星星愛心，有趣孩子就願意吃。",
+          "cap": [
+            "奶昔·趣味造型",
+            "有趣就願意吃"
+          ],
+          "hl": "有趣就願意吃"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "👩‍🍳 함께 + 🍕 토핑",
+      "copy": {
+        "ko": {
+          "narr": "아이랑 같이 요리해 보세요. 직접 만든 음식엔 애착이 생겨서 한 입 먹어봐요.",
+          "cap": [
+            "함께 요리하면",
+            "직접 만들면 먹어본다"
+          ],
+          "hl": "직접 만들면 먹어본다"
+        },
+        "th": {
+          "narr": "ลองทำอาหารด้วยกัน ของที่ทำเองลูกผูกพันและอยากลองชิม",
+          "cap": [
+            "ทำด้วยกัน",
+            "ทำเองแล้วอยากชิม"
+          ],
+          "hl": "ทำเองแล้วอยากชิม"
+        },
+        "vi": {
+          "narr": "Hãy nấu ăn cùng con. Món tự tay làm khiến con gắn bó và chịu nếm thử.",
+          "cap": [
+            "Nấu cùng con",
+            "tự làm thì con nếm"
+          ],
+          "hl": "tự làm thì con nếm"
+        },
+        "en": {
+          "narr": "Cook together. Kids bond with food they made — and they'll take a bite.",
+          "cap": [
+            "Cook together",
+            "they made it, they try it"
+          ],
+          "hl": "they made it, they try it"
+        },
+        "cn": {
+          "narr": "和孩子一起做饭吧。亲手做的食物会有感情，就愿意尝一口。",
+          "cap": [
+            "一起做饭",
+            "亲手做就愿尝"
+          ],
+          "hl": "亲手做就愿尝"
+        },
+        "ch": {
+          "narr": "和孩子一起做飯吧。親手做的食物會有感情，就願意嘗一口。",
+          "cap": [
+            "一起做飯",
+            "親手做就願嘗"
+          ],
+          "hl": "親手做就願嘗"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 칭찬·보상",
+      "motion": "⭐ 스티커 + 👏 글로우",
+      "copy": {
+        "ko": {
+          "narr": "무엇보다, 한 입에도 듬뿍 칭찬! 강요 대신 긍정 경험이 훨씬 오래가요.",
+          "cap": [
+            "강요 말고",
+            "칭찬으로 동기 부여"
+          ],
+          "hl": "칭찬으로 동기 부여"
+        },
+        "th": {
+          "narr": "ที่สำคัญ ชมเชยแม้กินคำเดียว! ประสบการณ์ดีอยู่ได้นานกว่าการบังคับ",
+          "cap": [
+            "ไม่บังคับ",
+            "ชมเชยสร้างแรงจูงใจ"
+          ],
+          "hl": "ชมเชยสร้างแรงจูงใจ"
+        },
+        "vi": {
+          "narr": "Quan trọng nhất, khen thật nhiều dù chỉ một miếng! Trải nghiệm tích cực bền hơn ép buộc.",
+          "cap": [
+            "Đừng ép",
+            "khen để tạo động lực"
+          ],
+          "hl": "khen để tạo động lực"
+        },
+        "en": {
+          "narr": "Most of all, praise every bite! Positive experiences last far longer than force.",
+          "cap": [
+            "Don't force",
+            "praise to motivate"
+          ],
+          "hl": "praise to motivate"
+        },
+        "cn": {
+          "narr": "最重要的是，吃一口也要大大夸奖！正向体验比强迫更持久。",
+          "cap": [
+            "别强迫",
+            "用夸奖激励"
+          ],
+          "hl": "用夸奖激励"
+        },
+        "ch": {
+          "narr": "最重要的是，吃一口也要大大誇獎！正向體驗比強迫更持久。",
+          "cap": [
+            "別強迫",
+            "用誇獎激勵"
+          ],
+          "hl": "用誇獎激勵"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🌱📊 팝",
+      "copy": {
+        "ko": {
+          "narr": "식습관과 함께 우리 아이 성장 상태도 점검해 보면 더 좋아요.",
+          "cap": [
+            "식습관 + 성장",
+            "상태 점검"
+          ],
+          "hl": "상태 점검"
+        },
+        "th": {
+          "narr": "นอกจากนิสัยการกิน เช็กสถานะการเติบโตของลูกด้วยยิ่งดี",
+          "cap": [
+            "การกิน + การเติบโต",
+            "เช็กสถานะ"
+          ],
+          "hl": "เช็กสถานะ"
+        },
+        "vi": {
+          "narr": "Cùng với thói quen ăn, hãy kiểm tra cả tình trạng tăng trưởng của con.",
+          "cap": [
+            "Ăn uống + tăng trưởng",
+            "kiểm tra tình trạng"
+          ],
+          "hl": "kiểm tra tình trạng"
+        },
+        "en": {
+          "narr": "Alongside eating habits, it helps to check your child's growth status too.",
+          "cap": [
+            "Habits + growth",
+            "check the status"
+          ],
+          "hl": "check the status"
+        },
+        "cn": {
+          "narr": "除了饮食习惯，也检查一下孩子的成长状态更好。",
+          "cap": [
+            "饮食 + 成长",
+            "检查状态"
+          ],
+          "hl": "检查状态"
+        },
+        "ch": {
+          "narr": "除了飲食習慣，也檢查一下孩子的成長狀態更好。",
+          "cap": [
+            "飲食 + 成長",
+            "檢查狀態"
+          ],
+          "hl": "檢查狀態"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 예측키와 뼈나이, 지금 무료로 확인해 보세요.",
+          "cap": [
+            "예측키·뼈나이",
+            "지금 무료 확인"
+          ],
+          "hl": "지금 무료 확인"
+        },
+        "th": {
+          "narr": "เช็กส่วนสูงที่คาดและอายุกระดูกของลูกฟรีวันนี้",
+          "cap": [
+            "ส่วนสูงที่คาด·อายุกระดูก",
+            "เช็กฟรีวันนี้"
+          ],
+          "hl": "เช็กฟรีวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra chiều cao dự đoán và tuổi xương của con miễn phí ngay.",
+          "cap": [
+            "Chiều cao dự đoán·tuổi xương",
+            "kiểm tra miễn phí"
+          ],
+          "hl": "kiểm tra miễn phí"
+        },
+        "en": {
+          "narr": "Check your child's predicted height and bone age — free, today.",
+          "cap": [
+            "Predicted height·bone age",
+            "check free today"
+          ],
+          "hl": "check free today"
+        },
+        "cn": {
+          "narr": "现在就免费查查孩子的预测身高和骨龄吧。",
+          "cap": [
+            "预测身高·骨龄",
+            "现在免费查"
+          ],
+          "hl": "现在免费查"
+        },
+        "ch": {
+          "narr": "現在就免費查查孩子的預測身高和骨齡吧。",
+          "cap": [
+            "預測身高·骨齡",
+            "現在免費查"
+          ],
+          "hl": "現在免費查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "3종 채소 순차 점등",
+      "title": "채소 = 성장 영양 (비타민·미네랄·식이섬유)",
+      "emojis": [
+        "🥦",
+        "🥕",
+        "🥬"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly cartoon vegetables (broccoli, carrot, leafy greens) arranged in a gentle arc, each glowing softly with a small sparkle, connected by a light dotted line suggesting they pour nutrients into a central glowing heart/seedling. Brand purple #667eea and mint #2dd4bf accents, friendly pediatric style, soft rounded shapes. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 채소",
+          "ko": "비타민",
+          "en": "Vitamins",
+          "th": "วิตามิน"
+        },
+        {
+          "pos": "가운데 채소",
+          "ko": "미네랄",
+          "en": "Minerals",
+          "th": "แร่ธาตุ"
+        },
+        {
+          "pos": "오른쪽 채소",
+          "ko": "식이섬유",
+          "en": "Fiber",
+          "th": "ใยอาหาร"
+        },
+        {
+          "pos": "중앙 새싹",
+          "ko": "성장 영양",
+          "en": "Growth fuel",
+          "th": "เพื่อการเติบโต"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🦴 튼튼 + 🛡️ 펄스",
+      "title": "뼈·면역·장 건강",
+      "emojis": [
+        "🦴",
+        "🛡️",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A happy healthy child silhouette in the center with three soft glowing icon badges orbiting around: a strong bone, a protective shield (immunity), and a smiling gut/intestine loop. Gentle radiating glow conveying health and vitality. Brand purple #667eea with mint #2dd4bf highlights, friendly pediatric, rounded shapes. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 배지",
+          "ko": "튼튼한 뼈",
+          "en": "Strong bones",
+          "th": "กระดูกแข็งแรง"
+        },
+        {
+          "pos": "위쪽 배지",
+          "ko": "면역력 ↑",
+          "en": "Immunity",
+          "th": "ภูมิคุ้มกัน"
+        },
+        {
+          "pos": "오른쪽 배지",
+          "ko": "장 건강",
+          "en": "Gut health",
+          "th": "สุขภาพลำไส้"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "🥤 블렌드 + ⭐ 팝",
+      "title": "스무디·재미난 모양 숨기기",
+      "emojis": [
+        "🥤",
+        "⭐",
+        "💜"
+      ],
+      "prompt": "Flat vector, square, white bg. Left: a colorful smoothie cup with leafy greens and fruit swirling in, a straw and sparkle. Right: a plate with vegetable pieces cut into a star, heart, and flower shape, looking playful and cute. A small smiling child reaching toward the plate. Brand purple #667eea and mint #2dd4bf, friendly pediatric, rounded shapes, cheerful. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 컵",
+          "ko": "채소 스무디",
+          "en": "Veggie smoothie",
+          "th": "สมูทตี้ผัก"
+        },
+        {
+          "pos": "오른쪽 접시",
+          "ko": "재미난 모양",
+          "en": "Fun shapes",
+          "th": "รูปทรงน่ารัก"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "⭐ 스티커 + 👏 글로우",
+      "title": "칭찬·보상으로 긍정 경험",
+      "emojis": [
+        "⭐",
+        "👏",
+        "💛"
+      ],
+      "prompt": "Flat vector, square, white bg. A smiling child taking a happy bite, with a parent's hand giving a thumbs-up and floating reward stars and a gold sticker above. Warm encouraging mood with a soft golden-mint glow around the child. Brand purple #667eea with mint #2dd4bf and a touch of warm gold, friendly pediatric, rounded shapes. NO text.",
+      "labels": [
+        {
+          "pos": "위쪽 별들",
+          "ko": "칭찬·보상",
+          "en": "Praise & reward",
+          "th": "คำชม·รางวัล"
+        },
+        {
+          "pos": "아이 옆",
+          "ko": "한 입 성공!",
+          "en": "One bite, win!",
+          "th": "กินได้แล้ว!"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🥦",
+      "label": "채소"
+    },
+    {
+      "e": "🥕",
+      "label": "당근"
+    },
+    {
+      "e": "🥬",
+      "label": "잎채소"
+    },
+    {
+      "e": "🔪",
+      "label": "잘게 다지기"
+    },
+    {
+      "e": "🥤",
+      "label": "스무디"
+    },
+    {
+      "e": "⭐",
+      "label": "재미난 모양"
+    },
+    {
+      "e": "👩‍🍳",
+      "label": "함께 요리"
+    },
+    {
+      "e": "👏",
+      "label": "칭찬"
+    },
+    {
+      "e": "🦴",
+      "label": "튼튼한 뼈"
+    },
+    {
+      "e": "🛡️",
+      "label": "면역력"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

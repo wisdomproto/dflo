@@ -1,0 +1,777 @@
+{
+  "n": 14,
+  "slug": "갑상선성장",
+  "title": "성장호르몬만 봤다면? — 키를 멈추는 숨은 사령관, 갑상선",
+  "sub": "목 앞 나비 모양 갑상선이 대사·뼈 성장을 지휘한다 — 부족하면 키가 멈추지만, 채워주면 다시 자란다",
+  "category": "A. 성장과학",
+  "topicTitle": "갑상선호르몬과 성장의 관계",
+  "headerTop": "우리 아이 키",
+  "headerMark": "갑자기 멈췄다면?",
+  "accentEmoji": "🦋⏳",
+  "hook": "우리 아이 키가 갑자기 멈췄다면, 의외의 범인은 '갑상선'일 수 있어요.",
+  "misconception": "키 안 크면 무조건 성장호르몬 문제 → 사실 목 앞 갑상선호르몬이 부족해 대사·뼈 성장이 통째로 느려진 걸 수 있음",
+  "message": "갑상선호르몬은 대사·뼈 성장을 지휘하는 사령관. 부족하면(갑상선기능저하증) 뼈 성장이 느려지고 뼈나이가 또래보다 어리게 나온다. 핵심은 성조숙증과 반대 — 일찍 닫는 게 아니라 늦게 자란다. 검사로 찾아 호르몬을 채워주면 성장 속도가 다시 회복된다.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"찾아서 채워주면 다시 자란다\"). \"우리 아이 키\" 보편. 시청자가 이미 검사했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 + 갑상선 점검 초대",
+  "cta": "우리 아이 키가 멈춘 진짜 이유, 지금 확인 → 뼈나이/예측키 측정 + 갑상선 점검 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "숨은 범인?",
+    "subject": "우리 아이 키 멈춤",
+    "number": "갑상선",
+    "numLabel": "호르몬"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"키 멈춤 = 성장호르몬? → 숨은 범인은 갑상선\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "사령관 갑상선",
+      "scenes": "c3–c4",
+      "desc": "\"목 앞 나비 모양 → 대사·뼈 성장 지휘하는 사령관\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "부족하면",
+      "scenes": "c5–c6",
+      "desc": "\"갑상선 부족 → 뼈 성장 느려짐, 성장호르몬까지 약화\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "반대 신호·증상",
+      "scenes": "c7–c8",
+      "desc": "\"성조숙증과 반대 = 뼈나이 어림 + 피로·추위·체중\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "회복·행동",
+      "scenes": "c9–c10",
+      "desc": "\"채워주면 다시 자란다 → 뼈나이·갑상선 확인 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🦋 슬램 인 + ❓ 반전",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키가 갑자기 멈췄다면, 의외의 범인은 '갑상선'일 수 있어요.",
+          "cap": [
+            "키가 멈췄다면?",
+            "범인은 갑상선"
+          ],
+          "hl": "범인은 갑상선"
+        },
+        "th": {
+          "narr": "ถ้าลูกหยุดสูงกะทันหัน ตัวการที่คาดไม่ถึงอาจคือ 'ไทรอยด์'",
+          "cap": [
+            "ลูกหยุดสูง?",
+            "ตัวการคือไทรอยด์"
+          ],
+          "hl": "ไทรอยด์"
+        },
+        "vi": {
+          "narr": "Nếu con bỗng ngừng cao, thủ phạm bất ngờ có thể là 'tuyến giáp'.",
+          "cap": [
+            "Con ngừng cao?",
+            "Thủ phạm: tuyến giáp"
+          ],
+          "hl": "tuyến giáp"
+        },
+        "en": {
+          "narr": "If your child's height suddenly stalls, the surprise culprit may be the thyroid.",
+          "cap": [
+            "Height stalled?",
+            "Culprit: thyroid"
+          ],
+          "hl": "thyroid"
+        },
+        "cn": {
+          "narr": "如果孩子突然不长个了，意外的元凶可能是'甲状腺'。",
+          "cap": [
+            "突然不长？",
+            "元凶是甲状腺"
+          ],
+          "hl": "甲状腺"
+        },
+        "ch": {
+          "narr": "如果孩子突然不長個了，意外的元兇可能是'甲狀腺'。",
+          "cap": [
+            "突然不長？",
+            "元兇是甲狀腺"
+          ],
+          "hl": "甲狀腺"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💉 흔들 + 갸웃",
+      "copy": {
+        "ko": {
+          "narr": "키 안 크면 보통 성장호르몬만 떠올리죠. 그런데 숨은 사령관이 따로 있어요.",
+          "cap": [
+            "성장호르몬만?",
+            "숨은 사령관"
+          ],
+          "hl": "숨은 사령관"
+        },
+        "th": {
+          "narr": "ไม่สูงมักนึกถึงแค่โกรทฮอร์โมน แต่มีผู้บัญชาการที่ซ่อนอยู่",
+          "cap": [
+            "แค่โกรทฮอร์โมน?",
+            "ผู้บัญชาการที่ซ่อน"
+          ],
+          "hl": "ผู้บัญชาการที่ซ่อน"
+        },
+        "vi": {
+          "narr": "Không cao thì thường chỉ nghĩ tới hormone tăng trưởng — nhưng có vị chỉ huy ẩn.",
+          "cap": [
+            "Chỉ hormone tăng trưởng?",
+            "Vị chỉ huy ẩn"
+          ],
+          "hl": "chỉ huy ẩn"
+        },
+        "en": {
+          "narr": "We usually blame only growth hormone — but there's a hidden commander.",
+          "cap": [
+            "Only growth hormone?",
+            "A hidden commander"
+          ],
+          "hl": "hidden commander"
+        },
+        "cn": {
+          "narr": "长不高通常只想到生长激素，但还有个隐藏的指挥官。",
+          "cap": [
+            "只怪生长激素？",
+            "隐藏的指挥官"
+          ],
+          "hl": "隐藏的指挥官"
+        },
+        "ch": {
+          "narr": "長不高通常只想到生長激素，但還有個隱藏的指揮官。",
+          "cap": [
+            "只怪生長激素？",
+            "隱藏的指揮官"
+          ],
+          "hl": "隱藏的指揮官"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 나비 모양 갑상선",
+      "motion": "🦋 점등 + 펄스",
+      "copy": {
+        "ko": {
+          "narr": "갑상선은 목 앞에 있는 작은 나비 모양 기관이에요.",
+          "cap": [
+            "목 앞에",
+            "나비 모양 갑상선"
+          ],
+          "hl": "나비 모양 갑상선"
+        },
+        "th": {
+          "narr": "ไทรอยด์คืออวัยวะรูปผีเสื้อเล็กๆ อยู่หน้าคอ",
+          "cap": [
+            "อยู่หน้าคอ",
+            "รูปผีเสื้อ"
+          ],
+          "hl": "รูปผีเสื้อ"
+        },
+        "vi": {
+          "narr": "Tuyến giáp là cơ quan nhỏ hình cánh bướm ở trước cổ.",
+          "cap": [
+            "Ở trước cổ",
+            "hình cánh bướm"
+          ],
+          "hl": "hình cánh bướm"
+        },
+        "en": {
+          "narr": "The thyroid is a small butterfly-shaped gland in the front of the neck.",
+          "cap": [
+            "Front of the neck",
+            "butterfly-shaped"
+          ],
+          "hl": "butterfly-shaped"
+        },
+        "cn": {
+          "narr": "甲状腺是颈部前方一个蝴蝶形的小器官。",
+          "cap": [
+            "颈部前方",
+            "蝴蝶形腺体"
+          ],
+          "hl": "蝴蝶形腺体"
+        },
+        "ch": {
+          "narr": "甲狀腺是頸部前方一個蝴蝶形的小器官。",
+          "cap": [
+            "頸部前方",
+            "蝴蝶形腺體"
+          ],
+          "hl": "蝴蝶形腺體"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 대사 사령관",
+      "motion": "🎖️ 지휘 + 톱니 회전",
+      "copy": {
+        "ko": {
+          "narr": "이 호르몬이 온몸의 대사와 뼈 성장을 지휘하는 사령관이에요.",
+          "cap": [
+            "온몸 대사 지휘",
+            "뼈 성장 사령관"
+          ],
+          "hl": "뼈 성장 사령관"
+        },
+        "th": {
+          "narr": "ฮอร์โมนนี้คือผู้บัญชาการที่คุมเมตาบอลิซึมและการโตของกระดูก",
+          "cap": [
+            "คุมเมตาบอลิซึม",
+            "ผู้บัญชาการกระดูก"
+          ],
+          "hl": "ผู้บัญชาการกระดูก"
+        },
+        "vi": {
+          "narr": "Hormone này là vị chỉ huy điều khiển chuyển hóa và sự lớn lên của xương.",
+          "cap": [
+            "Điều khiển chuyển hóa",
+            "chỉ huy xương lớn"
+          ],
+          "hl": "chỉ huy xương lớn"
+        },
+        "en": {
+          "narr": "This hormone is the commander directing whole-body metabolism and bone growth.",
+          "cap": [
+            "Runs metabolism",
+            "bone-growth commander"
+          ],
+          "hl": "bone-growth commander"
+        },
+        "cn": {
+          "narr": "这个激素是指挥全身代谢和骨骼生长的总司令。",
+          "cap": [
+            "指挥全身代谢",
+            "骨骼生长司令"
+          ],
+          "hl": "骨骼生长司令"
+        },
+        "ch": {
+          "narr": "這個激素是指揮全身代謝和骨骼生長的總司令。",
+          "cap": [
+            "指揮全身代謝",
+            "骨骼生長司令"
+          ],
+          "hl": "骨骼生長司令"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "📉 느려짐 펄스",
+      "copy": {
+        "ko": {
+          "narr": "이게 부족하면 대사가 떨어지고, 뼈와 연골 성장이 통째로 느려져요.",
+          "cap": [
+            "부족하면",
+            "뼈 성장 느려짐"
+          ],
+          "hl": "뼈 성장 느려짐"
+        },
+        "th": {
+          "narr": "ถ้าขาด เมตาบอลิซึมตก กระดูกและกระดูกอ่อนโตช้าลงทั้งหมด",
+          "cap": [
+            "ถ้าขาด",
+            "กระดูกโตช้า"
+          ],
+          "hl": "กระดูกโตช้า"
+        },
+        "vi": {
+          "narr": "Thiếu nó, chuyển hóa giảm, xương và sụn lớn chậm lại toàn bộ.",
+          "cap": [
+            "Khi thiếu",
+            "xương lớn chậm"
+          ],
+          "hl": "xương lớn chậm"
+        },
+        "en": {
+          "narr": "Too little, and metabolism drops — bone and cartilage growth slow right down.",
+          "cap": [
+            "When it's low",
+            "bone growth slows"
+          ],
+          "hl": "bone growth slows"
+        },
+        "cn": {
+          "narr": "它不足时，代谢下降，骨骼和软骨的生长整体变慢。",
+          "cap": [
+            "不足时",
+            "骨骼生长变慢"
+          ],
+          "hl": "骨骼生长变慢"
+        },
+        "ch": {
+          "narr": "它不足時，代謝下降，骨骼和軟骨的生長整體變慢。",
+          "cap": [
+            "不足時",
+            "骨骼生長變慢"
+          ],
+          "hl": "骨骼生長變慢"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 이중 브레이크",
+      "motion": "🔗 두 톱니 멈칫",
+      "copy": {
+        "ko": {
+          "narr": "게다가 성장호르몬의 작용까지 약해져서, 이중으로 성장을 막아요.",
+          "cap": [
+            "성장호르몬도 약화",
+            "이중 브레이크"
+          ],
+          "hl": "이중 브레이크"
+        },
+        "th": {
+          "narr": "ซ้ำยังทำให้โกรทฮอร์โมนทำงานอ่อนลง เบรกการโตซ้ำสอง",
+          "cap": [
+            "โกรทฮอร์โมนอ่อนลง",
+            "เบรกซ้ำสอง"
+          ],
+          "hl": "เบรกซ้ำสอง"
+        },
+        "vi": {
+          "narr": "Hơn nữa, tác dụng của hormone tăng trưởng cũng yếu đi — phanh kép.",
+          "cap": [
+            "Hormone TT yếu đi",
+            "phanh kép"
+          ],
+          "hl": "phanh kép"
+        },
+        "en": {
+          "narr": "It also weakens growth hormone's action — a double brake on growth.",
+          "cap": [
+            "GH weakens too",
+            "double brake"
+          ],
+          "hl": "double brake"
+        },
+        "cn": {
+          "narr": "它还让生长激素的作用变弱，等于给成长踩了双重刹车。",
+          "cap": [
+            "生长激素也变弱",
+            "双重刹车"
+          ],
+          "hl": "双重刹车"
+        },
+        "ch": {
+          "narr": "它還讓生長激素的作用變弱，等於給成長踩了雙重剎車。",
+          "cap": [
+            "生長激素也變弱",
+            "雙重剎車"
+          ],
+          "hl": "雙重剎車"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG4 뼈나이 어림",
+      "motion": "🦴 시계 거꾸로",
+      "copy": {
+        "ko": {
+          "narr": "핵심은 성조숙증과 반대예요. 일찍 닫는 게 아니라, 뼈나이가 또래보다 어리게 나와요.",
+          "cap": [
+            "성조숙증과 반대",
+            "뼈나이 어림"
+          ],
+          "hl": "뼈나이 어림"
+        },
+        "th": {
+          "narr": "จุดสำคัญตรงข้ามภาวะก่อนวัย ไม่ได้ปิดเร็ว แต่อายุกระดูกอ่อนกว่าวัย",
+          "cap": [
+            "ตรงข้ามก่อนวัย",
+            "อายุกระดูกอ่อน"
+          ],
+          "hl": "อายุกระดูกอ่อน"
+        },
+        "vi": {
+          "narr": "Điểm mấu chốt: ngược với dậy thì sớm — không đóng sớm mà tuổi xương trẻ hơn tuổi.",
+          "cap": [
+            "Ngược dậy thì sớm",
+            "tuổi xương trẻ hơn"
+          ],
+          "hl": "tuổi xương trẻ hơn"
+        },
+        "en": {
+          "narr": "Key point: the opposite of early puberty — plates don't close early, bone age reads younger.",
+          "cap": [
+            "Opposite of early puberty",
+            "bone age younger"
+          ],
+          "hl": "bone age younger"
+        },
+        "cn": {
+          "narr": "关键是和性早熟相反：不是提前闭合，而是骨龄比同龄人偏小。",
+          "cap": [
+            "与性早熟相反",
+            "骨龄偏小"
+          ],
+          "hl": "骨龄偏小"
+        },
+        "ch": {
+          "narr": "關鍵是和性早熟相反：不是提前閉合，而是骨齡比同齡人偏小。",
+          "cap": [
+            "與性早熟相反",
+            "骨齡偏小"
+          ],
+          "hl": "骨齡偏小"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "doctor",
+      "motion": "🧣 추위 떨림",
+      "copy": {
+        "ko": {
+          "narr": "키 멈춤에 피로, 추위 잘 탐, 살이 물렁하게 찐다면 함께 의심해 보세요.",
+          "cap": [
+            "피로·추위·체중",
+            "함께 의심"
+          ],
+          "hl": "함께 의심"
+        },
+        "th": {
+          "narr": "ถ้าหยุดสูงพร้อมอ่อนเพลีย ขี้หนาว น้ำหนักขึ้นนุ่มๆ ให้สงสัยไว้",
+          "cap": [
+            "เพลีย·ขี้หนาว·อ้วน",
+            "สงสัยไว้"
+          ],
+          "hl": "สงสัยไว้"
+        },
+        "vi": {
+          "narr": "Ngừng cao kèm mệt mỏi, sợ lạnh, tăng cân mềm nhão — hãy nghi ngờ.",
+          "cap": [
+            "Mệt·lạnh·tăng cân",
+            "hãy nghi ngờ"
+          ],
+          "hl": "hãy nghi ngờ"
+        },
+        "en": {
+          "narr": "Stalled height plus fatigue, feeling cold, soft weight gain? Worth suspecting.",
+          "cap": [
+            "Tired·cold·weight",
+            "worth a check"
+          ],
+          "hl": "worth a check"
+        },
+        "cn": {
+          "narr": "不长个还伴随疲劳、怕冷、虚胖，就值得一起怀疑。",
+          "cap": [
+            "疲劳·怕冷·虚胖",
+            "一起怀疑"
+          ],
+          "hl": "一起怀疑"
+        },
+        "ch": {
+          "narr": "不長個還伴隨疲勞、怕冷、虛胖，就值得一起懷疑。",
+          "cap": [
+            "疲勞·怕冷·虛胖",
+            "一起懷疑"
+          ],
+          "hl": "一起懷疑"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🌱 다시 자람 글로우",
+      "copy": {
+        "ko": {
+          "narr": "좋은 소식은, 찾아서 호르몬을 채워주면 성장 속도가 다시 회복된다는 거예요.",
+          "cap": [
+            "채워주면",
+            "다시 자란다"
+          ],
+          "hl": "다시 자란다"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ ถ้าเจอแล้วเติมฮอร์โมน ความเร็วการโตกลับมาได้",
+          "cap": [
+            "เติมฮอร์โมน",
+            "กลับมาโตได้"
+          ],
+          "hl": "กลับมาโตได้"
+        },
+        "vi": {
+          "narr": "Tin tốt: tìm ra và bù hormone thì tốc độ tăng trưởng hồi phục.",
+          "cap": [
+            "Bù hormone",
+            "cao lại được"
+          ],
+          "hl": "cao lại được"
+        },
+        "en": {
+          "narr": "Good news: find it, replace the hormone, and growth speed can recover.",
+          "cap": [
+            "Replace it",
+            "growth recovers"
+          ],
+          "hl": "growth recovers"
+        },
+        "cn": {
+          "narr": "好消息是，找出来补上激素，长高速度就能恢复。",
+          "cap": [
+            "补上激素",
+            "重新长高"
+          ],
+          "hl": "重新长高"
+        },
+        "ch": {
+          "narr": "好消息是，找出來補上激素，長高速度就能恢復。",
+          "cap": [
+            "補上激素",
+            "重新長高"
+          ],
+          "hl": "重新長高"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키가 멈춘 진짜 이유, 지금 바로 확인해 보세요.",
+          "cap": [
+            "키 멈춘 진짜 이유",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กสาเหตุจริงที่ลูกหยุดสูงวันนี้",
+          "cap": [
+            "สาเหตุจริง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra lý do thật sự khiến con ngừng cao ngay hôm nay.",
+          "cap": [
+            "Lý do thật sự",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Find the real reason your child's height stalled — today.",
+          "cap": [
+            "The real reason",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子不长个的真正原因吧。",
+          "cap": [
+            "真正原因",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子不長個的真正原因吧。",
+          "cap": [
+            "真正原因",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🦋 점등 + 펄스",
+      "title": "갑상선 — 목 앞 나비 모양 기관",
+      "emojis": [
+        "🦋",
+        "🧍",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly child shown from the chest up, facing forward, with a softly glowing butterfly-shaped thyroid gland highlighted at the front of the neck (two symmetric lobes like butterfly wings). Brand purple body with a mint-glowing butterfly gland, gentle sparkle particles around the neck. Friendly pediatric, clean, reassuring. NO text.",
+      "labels": [
+        {
+          "pos": "목 앞(글로우)",
+          "ko": "갑상선",
+          "en": "Thyroid",
+          "th": "ไทรอยด์"
+        },
+        {
+          "pos": "날개 강조",
+          "ko": "나비 모양",
+          "en": "Butterfly shape",
+          "th": "รูปผีเสื้อ"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🎖️ 지휘 + 톱니 회전",
+      "title": "대사·뼈 성장 지휘 사령관",
+      "emojis": [
+        "🎖️",
+        "⚙️",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white bg. A central glowing butterfly-shaped thyroid gland acting as a conductor/commander, with soft mint signal lines radiating out to a small spinning metabolism gear and an upright long bone growing upward. Brand purple + mint, friendly pediatric, conveys 'one gland directing metabolism and bone growth.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "톱니",
+          "ko": "대사",
+          "en": "Metabolism",
+          "th": "เมตาบอลิซึม"
+        },
+        {
+          "pos": "뼈",
+          "ko": "뼈 성장 ↑",
+          "en": "Bone growth ↑",
+          "th": "กระดูกโต ↑"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "🔗 두 톱니 멈칫",
+      "title": "갑상선↓ → 성장호르몬까지 약화 (이중 브레이크)",
+      "emojis": [
+        "🦋",
+        "🔗",
+        "🛑"
+      ],
+      "prompt": "Flat vector, square, white bg. Two interlocked gears: a larger butterfly-shaped thyroid gear that has dimmed/slowed, dragging down a second connected growth-hormone gear so both stall together, with a small soft brake/stop motif. Faded mint on the dimmed thyroid gear, brand purple on the second gear. Conveys 'low thyroid drags growth hormone too — a double brake.' Friendly, not alarming. NO text.",
+      "labels": [
+        {
+          "pos": "나비 톱니",
+          "ko": "갑상선 ↓",
+          "en": "Thyroid ↓",
+          "th": "ไทรอยด์ ↓"
+        },
+        {
+          "pos": "연결 톱니",
+          "ko": "성장호르몬 약화",
+          "en": "GH weakened",
+          "th": "โกรทฮอร์โมนอ่อน"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "🦴 시계 거꾸로",
+      "title": "성조숙증과 반대 — 뼈나이가 어리게",
+      "emojis": [
+        "🦴",
+        "🕐",
+        "🔄"
+      ],
+      "prompt": "Flat vector, square, white bg. Two side-by-side hand X-ray silhouettes for bone-age comparison: a 'peer' hand with more mature, closer-together bones, and the child's hand with younger, more open, widely-gapped bones — a small backward-turning clock arrow over the younger hand. Brand purple bones with soft mint growth-plate gaps, clean and friendly. Conveys 'bone age reads younger than peers (opposite of early puberty).' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼손(또래)",
+          "ko": "또래 뼈나이",
+          "en": "Peer bone age",
+          "th": "อายุกระดูกเพื่อน"
+        },
+        {
+          "pos": "오른손(어림)",
+          "ko": "뼈나이 어림",
+          "en": "Younger bone age",
+          "th": "อายุกระดูกอ่อน"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🦋",
+      "label": "갑상선(나비 모양)"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임·시간"
+    },
+    {
+      "e": "🎖️",
+      "label": "사령관·지휘"
+    },
+    {
+      "e": "⚙️",
+      "label": "대사"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈·뼈나이"
+    },
+    {
+      "e": "📉",
+      "label": "성장 느려짐"
+    },
+    {
+      "e": "🔗",
+      "label": "이중 브레이크"
+    },
+    {
+      "e": "🧣",
+      "label": "추위 잘 탐"
+    },
+    {
+      "e": "🕐",
+      "label": "뼈나이 어림"
+    },
+    {
+      "e": "🌱",
+      "label": "회복·다시 자람"
+    },
+    {
+      "e": "🔍",
+      "label": "확인·검사"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

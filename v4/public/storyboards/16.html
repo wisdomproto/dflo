@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 환경호르몬과 성조숙증</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #16</span>
+  <h1>우리 아이 성장판 노리는 '가짜 호르몬' — 환경호르몬의 정체</h1>
+  <div class="sub">플라스틱·생활용품 속 환경호르몬이 가짜 성호르몬으로 사춘기를 앞당긴다 — 막을 수 있다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>성장판 비상!</b></div>
+      <div class="subj">우리 아이 키 훔치는</div>
+      <div class="big4"><div class="n" style="font-size:132px">가짜</div><div class="lab">성호르몬</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 훔치는</b> 가짜성호르몬"</li>
+        <li><b>거대 숫자 "가짜"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #16 「환경호르몬과 성조숙증」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 성장판을 노리는 '가짜 호르몬', 집 안에 숨어 있어요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>성조숙증은 그냥 일찍 크는 것 → 사실은 성장판이 빨리 닫혀 최종 키가 작아짐</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>환경호르몬이 가짜 에스트로겐처럼 작용해 사춘기를 앞당김 → 성장판 조기 폐쇄 → 작은 키. 생활 습관으로 줄이고 뼈나이로 확인할 수 있다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 "막을 수 있다 · 지금 확인하면 된다". "우리 아이 키" 보편. 셀럽·효과 직결 ❌</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 속도·사춘기 신호 지금 확인 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"집 안에 숨은 가짜 호르몬이 성장판을 노린다"</p></div><div class="act"><span class="n">ACT 2</span><h4>정체·기전</h4><p>c3–c5<br>"환경호르몬=가짜 에스트로겐 → 사춘기 앞당김"</p></div><div class="act"><span class="n">ACT 3</span><h4>진짜 손해</h4><p>c6–c7<br>"성장판 일찍 닫혀 최종 키 손해"</p></div><div class="act"><span class="n">ACT 4</span><h4>숨은 곳·예방</h4><p>c8–c9<br>"플라스틱·생활용품 → 생활 습관으로 막는다"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c10<br>"뼈나이로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 성장판</div><div class="mark">가짜 호르몬?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🧪⚠️</div></div>
+        <div class="ph-cap"><div class="l">성장판 노리는</div><div class="l"><span class="y2">가짜 호르몬</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 성장판을 노리는 '가짜 호르몬', 집 안에 숨어 있는 거 아세요?</td><td><span class="cap2">성장판 노리는<br><span class="y">가짜 호르몬</span></span></td><td class="mo">🧪 슬램 인 + ⚠️ 플래시</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">바로 환경호르몬이에요. 정식 이름은 '내분비계 교란 물질'이죠.</td><td><span class="cap2"><span class="y">환경호르몬</span><br>내분비계 교란</span></td><td class="mo">🏠 줌인 + 👀 시선</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 가짜 열쇠</span></td><td class="narr">이 물질은 진짜 성호르몬과 구조가 닮아서, 우리 몸 수용체에 가짜 열쇠처럼 끼어들어요.</td><td><span class="cap2">성호르몬과 닮은꼴<br><span class="y">가짜 열쇠</span></span></td><td class="mo">🔑 끼워짐 + 깜빡</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그러면 몸이 '벌써 성호르몬이 나온다'고 착각해서, 사춘기를 너무 일찍 시작해요.</td><td><span class="cap2">몸이 착각<br><span class="y">사춘기 앞당김</span></span></td><td class="mo">⏩ 사춘기 빨리감기</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr ig">🖼 IG2 성조숙증 신호</span></td><td class="narr">또래보다 2차 성징이 일찍 나타나면, 성조숙증을 의심해 볼 수 있어요.</td><td><span class="cap2">또래보다 일찍<br><span class="y">2차 성징</span></span></td><td class="mo">🔔 순차 점등</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성조숙증은 단순히 일찍 크는 게 아니라, 성장판이 일찍 닫혀 최종 키가 작아져요.</td><td><span class="cap2">성장판 일찍 닫힘<br><span class="y">최종 키 손해</span></span></td><td class="mo">⚠️ 쉐이크 + 🦵 닫힘</td></tr><tr><td class="c-id">c7</td><td class="c-time">23–27s</td><td><span class="scr ig">🖼 IG3 숨은 곳</span></td><td class="narr">그럼 어디 숨어 있을까요? 플라스틱 용기, 생활용품, 농약, 가공식품이에요.</td><td><span class="cap2"><span class="y">플라스틱·생활용품</span><br>농약·가공식품</span></td><td class="mo">🔌 4곳 순차 등장</td></tr><tr><td class="c-id">c8</td><td class="c-time">27–30.5s</td><td><span class="scr ig">🖼 IG4 막는 습관</span></td><td class="narr">다행히 막을 수 있어요. 유리·스테인리스 쓰고, 채소 잘 씻고, 자주 환기하세요.</td><td><span class="cap2"><span class="y">유리·스테인리스</span><br>씻고 환기</span></td><td class="mo">✅ 체크 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30.5–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그리고 뼈나이를 보면, 사춘기가 빠른지 성장판이 얼마나 남았는지 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">사춘기·성장판 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 속도와 사춘기 신호, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장·사춘기 신호<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 가짜 열쇠 끼워짐</div><h3>가짜 열쇠 — 수용체 교란</h3></div>
+        <div class="body">
+          <div class="sketch">🔑 🧬 ⚠️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A cell-surface hormone receptor shaped like a keyhole; a real key (mint, smooth) beside a deceptive look-alike key (purple, slightly jagged) sliding into the same keyhole. Soft warning glow around the fake key. Friendly pediatric science style, brand purple #667eea and mint #2dd4bf. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 열쇠</td><td>진짜 성호르몬</td><td>Real hormone</td><td class="thai">ฮอร์โมนจริง</td></tr><tr><td>오른쪽 열쇠(글로우)</td><td>가짜 열쇠</td><td>Fake key</td><td class="thai">กุญแจปลอม</td></tr><tr><td>자물쇠</td><td>수용체</td><td>Receptor</td><td class="thai">ตัวรับ</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 신호 순차 점등</div><h3>성조숙증 — 이른 2차 성징</h3></div>
+        <div class="body">
+          <div class="sketch">🔔 🧒 📅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two friendly child silhouettes on a timeline; one reaches a puberty milestone marker much earlier (shifted far left) than the typical marker, with a small alert bell glowing above the early one. Brand purple and mint, gentle and non-scary. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 마커</td><td>또래보다 이른</td><td>Earlier than peers</td><td class="thai">เร็วกว่าเพื่อน</td></tr><tr><td>종 아이콘</td><td>성조숙증 신호</td><td>Early puberty</td><td class="thai">สัญญาณก่อนวัย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c7 · 모션: 4곳 순차 등장</div><h3>환경호르몬이 숨은 곳</h3></div>
+        <div class="body">
+          <div class="sketch">🍼 🧴 🥦 🍔</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A 2x2 friendly icon grid of everyday sources: a plastic bottle/food container, a shampoo/soap bottle, a fruit-and-vegetable bunch, and a packaged processed-food box. Each icon in a soft rounded tile. Brand purple #667eea and mint #2dd4bf, clean pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>좌상 타일</td><td>플라스틱</td><td>Plastics</td><td class="thai">พลาสติก</td></tr><tr><td>우상 타일</td><td>생활용품</td><td>Household</td><td class="thai">ของใช้</td></tr><tr><td>좌하 타일</td><td>농약</td><td>Pesticides</td><td class="thai">ยาฆ่าแมลง</td></tr><tr><td>우하 타일</td><td>가공식품</td><td>Processed food</td><td class="thai">อาหารแปรรูป</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 체크 순차 점등</div><h3>성장판 지키는 습관</h3></div>
+        <div class="body">
+          <div class="sketch">🥛 🚰 🪟</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly habit icons in a row inside soft rounded badges: a glass/stainless container (instead of plastic), running water washing vegetables, and an open window with a fresh-air breeze swirl. A small mint check mark glows on each. Brand purple #667eea and mint #2dd4bf, warm and reassuring. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 배지</td><td>유리·스테인리스</td><td>Glass·steel</td><td class="thai">แก้ว·สเตนเลส</td></tr><tr><td>가운데 배지</td><td>깨끗이 씻기</td><td>Wash well</td><td class="thai">ล้างให้สะอาด</td></tr><tr><td>오른쪽 배지</td><td>자주 환기</td><td>Ventilate</td><td class="thai">ระบายอากาศ</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🧪</b> 환경호르몬</span><span class="emo"><b>🔑</b> 가짜 열쇠/수용체</span><span class="emo"><b>🧬</b> 호르몬 구조</span><span class="emo"><b>⏩</b> 사춘기 앞당김</span><span class="emo"><b>🔔</b> 성조숙 신호</span><span class="emo"><b>🦵</b> 성장판</span><span class="emo"><b>⚠️</b> 경고</span><span class="emo"><b>🍼</b> 플라스틱</span><span class="emo"><b>🧴</b> 생활용품</span><span class="emo"><b>🪟</b> 환기</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 성장판을 노리는 '가짜 호르몬', 집 안에 숨어 있는 거 아세요?<br><span class="cap2">성장판 노리는 · <span class="y">가짜 호르몬</span></span></td></tr><tr><td class="c-id">c2</td><td>바로 환경호르몬이에요. 정식 이름은 '내분비계 교란 물질'이죠.<br><span class="cap2">환경호르몬 · 내분비계 교란</span></td></tr><tr><td class="c-id">c3</td><td>이 물질은 진짜 성호르몬과 구조가 닮아서, 우리 몸 수용체에 가짜 열쇠처럼 끼어들어요.<br><span class="cap2">성호르몬과 닮은꼴 · <span class="y">가짜 열쇠</span></span></td></tr><tr><td class="c-id">c4</td><td>그러면 몸이 '벌써 성호르몬이 나온다'고 착각해서, 사춘기를 너무 일찍 시작해요.<br><span class="cap2">몸이 착각 · <span class="y">사춘기 앞당김</span></span></td></tr><tr><td class="c-id">c5</td><td>또래보다 2차 성징이 일찍 나타나면, 성조숙증을 의심해 볼 수 있어요.<br><span class="cap2">또래보다 일찍 · <span class="y">2차 성징</span></span></td></tr><tr><td class="c-id">c6</td><td>성조숙증은 단순히 일찍 크는 게 아니라, 성장판이 일찍 닫혀 최종 키가 작아져요.<br><span class="cap2">성장판 일찍 닫힘 · <span class="y">최종 키 손해</span></span></td></tr><tr><td class="c-id">c7</td><td>그럼 어디 숨어 있을까요? 플라스틱 용기, 생활용품, 농약, 가공식품이에요.<br><span class="cap2">플라스틱·생활용품 · 농약·가공식품</span></td></tr><tr><td class="c-id">c8</td><td>다행히 막을 수 있어요. 유리·스테인리스 쓰고, 채소 잘 씻고, 자주 환기하세요.<br><span class="cap2">유리·스테인리스 · 씻고 환기</span></td></tr><tr><td class="c-id">c9</td><td>그리고 뼈나이를 보면, 사춘기가 빠른지 성장판이 얼마나 남았는지 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">사춘기·성장판 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 속도와 사춘기 신호, 지금 바로 확인해 보세요.<br><span class="cap2">성장·사춘기 신호 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่ามี 'ฮอร์โมนปลอม' ซ่อนอยู่ในบ้าน คอยจ้องแผ่นกระดูกของลูก?<br><span class="cap2">จ้องแผ่นกระดูก · <span class="y">ฮอร์โมนปลอม</span></span></td></tr><tr><td class="c-id">c2</td><td>นั่นคือฮอร์โมนสิ่งแวดล้อม ชื่อจริงคือ 'สารก่อกวนต่อมไร้ท่อ'<br><span class="cap2">ฮอร์โมนสิ่งแวดล้อม · ก่อกวนต่อมไร้ท่อ</span></td></tr><tr><td class="c-id">c3</td><td>มันมีโครงสร้างคล้ายฮอร์โมนเพศจริง จึงสวมเข้าตัวรับเหมือนกุญแจปลอม<br><span class="cap2">คล้ายฮอร์โมนเพศ · <span class="y">กุญแจปลอม</span></span></td></tr><tr><td class="c-id">c4</td><td>ร่างกายเลยเข้าใจผิดว่าฮอร์โมนเพศหลั่งแล้ว ทำให้แรกรุ่นมาเร็วเกินไป<br><span class="cap2">ร่างกายเข้าใจผิด · <span class="y">แรกรุ่นมาเร็ว</span></span></td></tr><tr><td class="c-id">c5</td><td>ถ้าพัฒนาการทางเพศมาเร็วกว่าเพื่อนวัยเดียวกัน อาจสงสัยภาวะเป็นหนุ่มสาวก่อนวัย<br><span class="cap2">เร็วกว่าเพื่อน · <span class="y">พัฒนาการทางเพศ</span></span></td></tr><tr><td class="c-id">c6</td><td>ภาวะนี้ไม่ใช่แค่สูงเร็ว แต่แผ่นกระดูกปิดเร็ว ทำให้ส่วนสูงสุดท้ายลดลง<br><span class="cap2">แผ่นกระดูกปิดเร็ว · <span class="y">ส่วนสูงลดลง</span></span></td></tr><tr><td class="c-id">c7</td><td>แล้วมันซ่อนที่ไหน? ภาชนะพลาสติก ของใช้ ยาฆ่าแมลง และอาหารแปรรูป<br><span class="cap2">พลาสติก·ของใช้ · ยาฆ่าแมลง·อาหารแปรรูป</span></td></tr><tr><td class="c-id">c8</td><td>โชคดีที่ป้องกันได้ ใช้แก้ว·สเตนเลส ล้างผักให้สะอาด และระบายอากาศบ่อยๆ<br><span class="cap2">แก้ว·สเตนเลส · ล้าง·ระบายอากาศ</span></td></tr><tr><td class="c-id">c9</td><td>และอายุกระดูกจะบอกว่าแรกรุ่นเร็วไหม เหลือแผ่นกระดูกอีกเท่าไร<br><span class="cap2">อายุกระดูก · <span class="y">เช็กแรกรุ่น</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กอัตราการเติบโตและสัญญาณแรกรุ่นของลูกวันนี้<br><span class="cap2">การเติบโต·แรกรุ่น · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết 'hormone giả' đang ẩn trong nhà, nhắm vào sụn tăng trưởng của con?<br><span class="cap2">Nhắm sụn tăng trưởng · <span class="y">hormone giả</span></span></td></tr><tr><td class="c-id">c2</td><td>Đó là hormone môi trường — tên thật là 'chất gây rối loạn nội tiết'.<br><span class="cap2">Hormone môi trường · rối loạn nội tiết</span></td></tr><tr><td class="c-id">c3</td><td>Nó giống hormone giới tính thật, nên cắm vào thụ thể như một chiếc chìa khóa giả.<br><span class="cap2">Giống hormone thật · <span class="y">chìa khóa giả</span></span></td></tr><tr><td class="c-id">c4</td><td>Cơ thể tưởng hormone giới tính đã tiết ra, nên dậy thì đến quá sớm.<br><span class="cap2">Cơ thể bị đánh lừa · <span class="y">dậy thì sớm</span></span></td></tr><tr><td class="c-id">c5</td><td>Nếu dậy thì đến sớm hơn bạn bè, hãy nghĩ đến dậy thì sớm.<br><span class="cap2">Sớm hơn bạn bè · <span class="y">dấu hiệu dậy thì</span></span></td></tr><tr><td class="c-id">c6</td><td>Đây không chỉ là cao sớm — sụn đóng sớm khiến chiều cao cuối cùng thấp hơn.<br><span class="cap2">Sụn đóng sớm · <span class="y">mất chiều cao</span></span></td></tr><tr><td class="c-id">c7</td><td>Vậy nó ẩn ở đâu? Hộp nhựa, đồ gia dụng, thuốc trừ sâu và thực phẩm chế biến.<br><span class="cap2">Nhựa·đồ gia dụng · thuốc sâu·đồ chế biến</span></td></tr><tr><td class="c-id">c8</td><td>May thay, có thể phòng được: dùng thủy tinh·thép, rửa rau kỹ, thông gió thường xuyên.<br><span class="cap2">Thủy tinh·thép · rửa·thông gió</span></td></tr><tr><td class="c-id">c9</td><td>Và tuổi xương cho biết dậy thì có sớm không, sụn còn lại bao nhiêu.<br><span class="cap2">Tuổi xương · <span class="y">kiểm tra dậy thì</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tốc độ tăng trưởng và dấu hiệu dậy thì của con ngay hôm nay.<br><span class="cap2">Tăng trưởng·dậy thì · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know a 'fake hormone' hides in your home, targeting your child's growth plates?<br><span class="cap2">Targets growth plates · <span class="y">fake hormone</span></span></td></tr><tr><td class="c-id">c2</td><td>It's the environmental hormone — officially, an 'endocrine disruptor'.<br><span class="cap2">Environmental hormone · <span class="y">endocrine disruptor</span></span></td></tr><tr><td class="c-id">c3</td><td>It mimics real sex hormones, slipping into the body's receptors like a fake key.<br><span class="cap2">Mimics real hormone · <span class="y">fake key</span></span></td></tr><tr><td class="c-id">c4</td><td>The body thinks sex hormones are flowing — so puberty starts far too early.<br><span class="cap2">Body is fooled · <span class="y">puberty too early</span></span></td></tr><tr><td class="c-id">c5</td><td>If puberty signs show earlier than peers, it could be precocious puberty.<br><span class="cap2">Earlier than peers · <span class="y">puberty signs</span></span></td></tr><tr><td class="c-id">c6</td><td>It's not just early growth — the plates close early, so final height ends up shorter.<br><span class="cap2">Plates close early · <span class="y">shorter height</span></span></td></tr><tr><td class="c-id">c7</td><td>So where does it hide? Plastic containers, household items, pesticides, processed food.<br><span class="cap2">Plastics·household · pesticides·processed</span></td></tr><tr><td class="c-id">c8</td><td>The good news: you can prevent it — use glass·steel, wash produce, ventilate often.<br><span class="cap2">Glass·steel · wash·ventilate</span></td></tr><tr><td class="c-id">c9</td><td>And bone age reveals if puberty is early and how much growth plate is left.<br><span class="cap2">Bone age · <span class="y">check puberty</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth rate and puberty signs today.<br><span class="cap2">Growth·puberty signs · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道有种'假激素'藏在家里，正盯着孩子的生长板吗？<br><span class="cap2">盯上生长板 · <span class="y">假激素</span></span></td></tr><tr><td class="c-id">c2</td><td>那就是环境激素，正式名叫'内分泌干扰物'。<br><span class="cap2">环境激素 · <span class="y">内分泌干扰物</span></span></td></tr><tr><td class="c-id">c3</td><td>它的结构像真性激素，像假钥匙一样插进身体的受体。<br><span class="cap2">酷似真激素 · <span class="y">假钥匙</span></span></td></tr><tr><td class="c-id">c4</td><td>身体误以为性激素已经分泌，于是青春期提前太多。<br><span class="cap2">身体被骗 · <span class="y">青春期提前</span></span></td></tr><tr><td class="c-id">c5</td><td>如果第二性征比同龄人早出现，就要警惕性早熟。<br><span class="cap2">比同龄早 · <span class="y">第二性征</span></span></td></tr><tr><td class="c-id">c6</td><td>这不只是长得早——生长板提前闭合，最终身高反而更矮。<br><span class="cap2">生长板早闭 · <span class="y">最终更矮</span></span></td></tr><tr><td class="c-id">c7</td><td>那它藏在哪？塑料容器、生活用品、农药和加工食品。<br><span class="cap2">塑料·生活用品 · 农药·加工食品</span></td></tr><tr><td class="c-id">c8</td><td>好消息是可以预防：改用玻璃·不锈钢，洗净蔬果，常开窗通风。<br><span class="cap2">玻璃·不锈钢 · 洗净·通风</span></td></tr><tr><td class="c-id">c9</td><td>而骨龄能看出青春期是否偏早、生长板还剩多少。<br><span class="cap2">看骨龄 · <span class="y">查青春期</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的成长速度和青春期信号吧。<br><span class="cap2">成长·青春期信号 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道有種'假激素'藏在家裡，正盯著孩子的生長板嗎？<br><span class="cap2">盯上生長板 · <span class="y">假激素</span></span></td></tr><tr><td class="c-id">c2</td><td>那就是環境激素，正式名叫'內分泌干擾物'。<br><span class="cap2">環境激素 · <span class="y">內分泌干擾物</span></span></td></tr><tr><td class="c-id">c3</td><td>它的結構像真性激素，像假鑰匙一樣插進身體的受體。<br><span class="cap2">酷似真激素 · <span class="y">假鑰匙</span></span></td></tr><tr><td class="c-id">c4</td><td>身體誤以為性激素已經分泌，於是青春期提前太多。<br><span class="cap2">身體被騙 · <span class="y">青春期提前</span></span></td></tr><tr><td class="c-id">c5</td><td>如果第二性徵比同齡人早出現，就要警惕性早熟。<br><span class="cap2">比同齡早 · <span class="y">第二性徵</span></span></td></tr><tr><td class="c-id">c6</td><td>這不只是長得早——生長板提前閉合，最終身高反而更矮。<br><span class="cap2">生長板早閉 · <span class="y">最終更矮</span></span></td></tr><tr><td class="c-id">c7</td><td>那它藏在哪？塑膠容器、生活用品、農藥和加工食品。<br><span class="cap2">塑膠·生活用品 · 農藥·加工食品</span></td></tr><tr><td class="c-id">c8</td><td>好消息是可以預防：改用玻璃·不鏽鋼，洗淨蔬果，常開窗通風。<br><span class="cap2">玻璃·不鏽鋼 · 洗淨·通風</span></td></tr><tr><td class="c-id">c9</td><td>而骨齡能看出青春期是否偏早、生長板還剩多少。<br><span class="cap2">看骨齡 · <span class="y">查青春期</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的成長速度和青春期信號吧。<br><span class="cap2">成長·青春期信號 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/환경호르몬성조숙/</code> · <code>환경호르몬성조숙-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

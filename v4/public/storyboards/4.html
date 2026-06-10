@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 성장호르몬 분비 시간 — 10시 신화 해부</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #4</span>
+  <h1>성장호르몬 10시 신화의 진실 — 키는 '깊은 잠'이 만든다</h1>
+  <div class="sub">밤 10시가 아니라 '깊은 잠'이 핵심 — 시계 시간보다 수면의 질이 키를 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>10시 신화의 진실</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">깊은 잠</div><div class="lab">이 만든다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 깊은 잠이 만든다"</li>
+        <li><b>거대 숫자 "깊은 잠"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #4 「성장호르몬 분비 시간 — 10시 신화 해부」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">""밤 10시에 재워야 키 큰다" — 이거, 사실 아닐 수도 있어요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>10시~새벽 2시에 성장호르몬이 가장 많이 나온다 → 시계 시간이 아니라 '깊은 잠'에 분비됨</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>성장호르몬은 잠든 후 '깊은 잠(서파 수면)'에 집중 분비된다. 몇 시에 자느냐보다 얼마나 깊게 자느냐 — 특히 잠든 첫 3~4시간이 핵심</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("10시 못 지켜도 늦지 않았다, 깊은 잠이 답"). "우리 아이 키" 보편. 시계 강박 줄이고 수면의 질로 안심시키기</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 속도·뼈나이 지금 확인 → 예측키/뼈나이 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"10시에 자야 큰다? 사실이 아닐 수도"</p></div><div class="act"><span class="n">ACT 2</span><h4>진짜 원리</h4><p>c3–c4<br>"시계 시간 X → 깊은 잠에 분비"</p></div><div class="act"><span class="n">ACT 3</span><h4>골든존</h4><p>c5–c6<br>"잠든 첫 3~4시간 = 분비 집중"</p></div><div class="act"><span class="n">ACT 4</span><h4>질 vs 시간</h4><p>c7–c8<br>"몇 시보다 얼마나 깊게 + 깊은 잠 루틴"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"성장 속도·뼈나이 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">10시에 자야 큰다?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🌙✨</div></div>
+        <div class="ph-cap"><div class="l">밤 10시에 자야</div><div class="l"><span class="y2">키 큰다?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 3컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">"밤 10시에 재워야 키 큰다" — 이거, 사실 아닐 수도 있어요.</td><td><span class="cap2">밤 10시에 자야<br><span class="y">키 큰다?</span></span></td><td class="mo">🌙 슬램 인 + ❓ 깜빡</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">성장호르몬은 '시계 시간'에 맞춰 나오는 게 아니거든요.</td><td><span class="cap2"><span class="y">시계 시간이</span><br>아니에요</span></td><td class="mo">🕙 흔들 + 똑딱</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 시계 vs 깊은잠</span></td><td class="narr">진짜 열쇠는 '깊은 잠'이에요. 깊이 잠들면 호르몬이 쏟아져요.</td><td><span class="cap2">진짜 열쇠는<br><span class="y">깊은 잠</span></span></td><td class="mo">🕙 → 💤 크로스페이드</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">잠든 지 약 1시간 뒤부터 깊은 잠, '서파 수면'이 시작돼요.</td><td><span class="cap2">잠든 후 1시간<br><span class="y">서파 수면 시작</span></span></td><td class="mo">💤 펄스 · ⏱️ "1시간" 팝</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 첫 3~4시간</span></td><td class="narr">특히 잠든 첫 3에서 4시간, 이때 호르몬이 가장 집중적으로 나와요.</td><td><span class="cap2">잠든 첫<br><span class="y">3~4시간 집중</span></span></td><td class="mo">🌙 첫 3~4시간 골드 점등</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래서 10시든 11시든, 깊이만 자면 호르몬은 똑같이 나와요.</td><td><span class="cap2">10시든 11시든<br><span class="y">깊이 자면 OK</span></span></td><td class="mo">🆚 10시 vs 11시 교차</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG3 깊은잠 루틴</span></td><td class="narr">방은 어둡고 조용하게, 자기 1시간 전엔 스마트폰을 멀리해 주세요.</td><td><span class="cap2">어둡게·조용히<br><span class="y">자기 1시간 전 폰 OFF</span></span></td><td class="mo">🌑📵🛁📖 순차 점등</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">낮에 충분히 뛰어놀고, 매일 같은 시간에 자면 깊은 잠이 깊어져요.</td><td><span class="cap2">낮엔 활동<br><span class="y">규칙적 수면</span></span></td><td class="mo">🛌 펄스 + ✨ 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이가 잘 자고 잘 크고 있는지는, 성장 속도와 뼈나이로 확인할 수 있어요.</td><td><span class="cap2"><span class="y">성장 속도·뼈나이로</span><br>확인하세요</span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 속도와 뼈나이, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장 속도·뼈나이<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 3종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 🕙 → 💤 크로스페이드</div><h3>시계 시간 X → 깊은 잠 O</h3></div>
+        <div class="body">
+          <div class="sketch">🕙 💤 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Left side: a wall clock pointing to 10 o'clock, faded and crossed out with a soft gray X. Right side (brighter): a peaceful sleeping child curled under a blanket with a glowing crescent moon and gentle sparkles radiating from the head, suggesting hormone release during deep sleep. An arrow flows from the faded clock to the glowing sleeping child. Brand purple to mint gradient, soft glow, friendly pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(흐림)</td><td>시계 시간</td><td>Clock time</td><td class="thai">เวลานาฬิกา</td></tr><tr><td>오른쪽(글로우)</td><td>깊은 잠</td><td>Deep sleep</td><td class="thai">การหลับลึก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 첫 3~4시간 골드 점등</div><h3>잠든 첫 3~4시간 = 분비 집중</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 📈 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A horizontal night-sleep timeline from left (falling asleep, small moon) to right (morning, small sun). Above the timeline, a wavy hormone-pulse curve with the FIRST two large peaks near the left glowing bright gold, and later peaks smaller and dimmer — showing growth hormone concentrated in the first part of the night. A small sleeping child silhouette under the timeline. Brand purple and mint with warm gold accents on the early peaks. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 큰 피크(골드)</td><td>분비 집중</td><td>Peak release</td><td class="thai">หลั่งเข้มข้น</td></tr><tr><td>하단 타임라인</td><td>잠든 첫 3~4시간</td><td>First 3–4 hrs</td><td class="thai">3–4 ชั่วโมงแรก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c7 · 모션: 🌑📵🛁📖 순차 점등</div><h3>깊은 잠 만드는 4가지 루틴</h3></div>
+        <div class="body">
+          <div class="sketch">🌑 📵 🛁</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly 2x2 grid of four simple rounded icons, each in its own soft card: (1) a dark crescent moon with stars for a dark quiet room, (2) a smartphone with a small 'no/off' slash for screens off before bed, (3) a warm bathtub with steam for a warm bath routine, (4) a running child for daytime activity. Clean iconographic style, brand purple and mint, soft shadows, friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>좌상</td><td>어둡게·조용히</td><td>Dark &amp; quiet</td><td class="thai">มืดและเงียบ</td></tr><tr><td>우상</td><td>자기 1시간 전 폰 OFF</td><td>Phones off</td><td class="thai">งดมือถือ</td></tr><tr><td>좌하</td><td>따뜻한 샤워</td><td>Warm bath</td><td class="thai">อาบน้ำอุ่น</td></tr><tr><td>우하</td><td>낮엔 활동</td><td>Active by day</td><td class="thai">ออกแรงกลางวัน</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🌙</b> 밤·수면</span><span class="emo"><b>🕙</b> 10시 신화</span><span class="emo"><b>💤</b> 깊은 잠</span><span class="emo"><b>📈</b> 호르몬 분비</span><span class="emo"><b>🛌</b> 숙면</span><span class="emo"><b>🌑</b> 어두운 방</span><span class="emo"><b>📵</b> 스마트폰 OFF</span><span class="emo"><b>🛁</b> 따뜻한 샤워</span><span class="emo"><b>🏃</b> 낮 활동</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"밤 10시에 재워야 키 큰다" — 이거, 사실 아닐 수도 있어요.<br><span class="cap2">밤 10시에 자야 · <span class="y">키 큰다?</span></span></td></tr><tr><td class="c-id">c2</td><td>성장호르몬은 '시계 시간'에 맞춰 나오는 게 아니거든요.<br><span class="cap2">시계 시간이 · 아니에요</span></td></tr><tr><td class="c-id">c3</td><td>진짜 열쇠는 '깊은 잠'이에요. 깊이 잠들면 호르몬이 쏟아져요.<br><span class="cap2">진짜 열쇠는 · <span class="y">깊은 잠</span></span></td></tr><tr><td class="c-id">c4</td><td>잠든 지 약 1시간 뒤부터 깊은 잠, '서파 수면'이 시작돼요.<br><span class="cap2">잠든 후 1시간 · <span class="y">서파 수면 시작</span></span></td></tr><tr><td class="c-id">c5</td><td>특히 잠든 첫 3에서 4시간, 이때 호르몬이 가장 집중적으로 나와요.<br><span class="cap2">잠든 첫 · <span class="y">3~4시간 집중</span></span></td></tr><tr><td class="c-id">c6</td><td>그래서 10시든 11시든, 깊이만 자면 호르몬은 똑같이 나와요.<br><span class="cap2">10시든 11시든 · <span class="y">깊이 자면 OK</span></span></td></tr><tr><td class="c-id">c7</td><td>방은 어둡고 조용하게, 자기 1시간 전엔 스마트폰을 멀리해 주세요.<br><span class="cap2">어둡게·조용히 · <span class="y">자기 1시간 전 폰 OFF</span></span></td></tr><tr><td class="c-id">c8</td><td>낮에 충분히 뛰어놀고, 매일 같은 시간에 자면 깊은 잠이 깊어져요.<br><span class="cap2">낮엔 활동 · <span class="y">규칙적 수면</span></span></td></tr><tr><td class="c-id">c9</td><td>우리 아이가 잘 자고 잘 크고 있는지는, 성장 속도와 뼈나이로 확인할 수 있어요.<br><span class="cap2">성장 속도·뼈나이로 · 확인하세요</span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 속도와 뼈나이, 지금 바로 확인해 보세요.<br><span class="cap2">성장 속도·뼈나이 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"ต้องนอน 4 ทุ่มถึงจะสูง" — อาจไม่จริงนะ<br><span class="cap2">นอน 4 ทุ่ม · <span class="y">ถึงจะสูง?</span></span></td></tr><tr><td class="c-id">c2</td><td>ฮอร์โมนการเจริญเติบโตไม่ได้หลั่งตามเวลานาฬิกา<br><span class="cap2">ไม่ได้หลั่ง · <span class="y">ตามเวลานาฬิกา</span></span></td></tr><tr><td class="c-id">c3</td><td>กุญแจที่แท้จริงคือ 'การหลับลึก' หลับลึกฮอร์โมนก็หลั่ง<br><span class="cap2">กุญแจคือ · <span class="y">การหลับลึก</span></span></td></tr><tr><td class="c-id">c4</td><td>ราว 1 ชั่วโมงหลังหลับ การหลับคลื่นช้าจะเริ่มขึ้น<br><span class="cap2">หลับ 1 ชั่วโมง · <span class="y">หลับคลื่นช้า</span></span></td></tr><tr><td class="c-id">c5</td><td>โดยเฉพาะ 3–4 ชั่วโมงแรกหลังหลับ ฮอร์โมนหลั่งเข้มข้นที่สุด<br><span class="cap2">3–4 ชั่วโมงแรก · หลั่งเข้มข้น</span></td></tr><tr><td class="c-id">c6</td><td>ดังนั้น 4 ทุ่มหรือ 5 ทุ่ม ถ้าหลับลึกฮอร์โมนก็หลั่งเท่ากัน<br><span class="cap2">กี่โมงก็ได้ · <span class="y">ขอแค่หลับลึก</span></span></td></tr><tr><td class="c-id">c7</td><td>ห้องมืดเงียบ และงดมือถืออย่างน้อย 1 ชั่วโมงก่อนนอน<br><span class="cap2">มืดและเงียบ · <span class="y">งดมือถือ 1 ชม.</span></span></td></tr><tr><td class="c-id">c8</td><td>กลางวันวิ่งเล่นให้พอ และนอนเวลาเดิมทุกวัน หลับลึกขึ้น<br><span class="cap2">กลางวันออกแรง · <span class="y">นอนเวลาเดิม</span></span></td></tr><tr><td class="c-id">c9</td><td>ลูกนอนดีและโตดีไหม เช็กได้จากอัตราการโตและอายุกระดูก<br><span class="cap2">อัตราการโต·อายุกระดูก · เช็กได้</span></td></tr><tr><td class="c-id">c10</td><td>เช็กอัตราการโตและอายุกระดูกของลูกวันนี้<br><span class="cap2">อัตราการโต·อายุกระดูก · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"Phải ngủ lúc 10 giờ mới cao" — điều này có thể không đúng.<br><span class="cap2">Ngủ lúc 10 giờ · <span class="y">mới cao?</span></span></td></tr><tr><td class="c-id">c2</td><td>Hormone tăng trưởng không tiết theo 'giờ đồng hồ'.<br><span class="cap2">Không theo · <span class="y">giờ đồng hồ</span></span></td></tr><tr><td class="c-id">c3</td><td>Chìa khóa thật sự là 'giấc ngủ sâu' — ngủ sâu thì hormone tuôn trào.<br><span class="cap2">Chìa khóa là · <span class="y">ngủ sâu</span></span></td></tr><tr><td class="c-id">c4</td><td>Khoảng 1 giờ sau khi ngủ, giấc ngủ sóng chậm bắt đầu.<br><span class="cap2">Sau 1 giờ ngủ · <span class="y">ngủ sóng chậm</span></span></td></tr><tr><td class="c-id">c5</td><td>Nhất là 3–4 giờ đầu sau khi ngủ, hormone tiết ra mạnh nhất.<br><span class="cap2">3–4 giờ đầu · tiết mạnh nhất</span></td></tr><tr><td class="c-id">c6</td><td>Nên 10 hay 11 giờ, miễn ngủ sâu thì hormone vẫn tiết như nhau.<br><span class="cap2">10 hay 11 giờ · <span class="y">miễn ngủ sâu</span></span></td></tr><tr><td class="c-id">c7</td><td>Phòng tối và yên tĩnh, tắt điện thoại ít nhất 1 giờ trước khi ngủ.<br><span class="cap2">Tối và yên tĩnh · <span class="y">tắt điện thoại 1 giờ</span></span></td></tr><tr><td class="c-id">c8</td><td>Ban ngày vận động đủ, mỗi ngày ngủ cùng giờ — giấc ngủ sẽ sâu hơn.<br><span class="cap2">Ban ngày vận động · <span class="y">ngủ đúng giờ</span></span></td></tr><tr><td class="c-id">c9</td><td>Con ngủ tốt và lớn tốt chưa? Xem tốc độ tăng trưởng và tuổi xương.<br><span class="cap2">Tốc độ lớn·tuổi xương · kiểm tra được</span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tốc độ tăng trưởng và tuổi xương của con ngay hôm nay.<br><span class="cap2">Tốc độ lớn·tuổi xương · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"Kids must sleep by 10 PM to grow tall" — that might not be true.<br><span class="cap2">Sleep by 10 PM · <span class="y">to grow tall?</span></span></td></tr><tr><td class="c-id">c2</td><td>Growth hormone doesn't release by the clock.<br><span class="cap2">Not by · <span class="y">the clock</span></span></td></tr><tr><td class="c-id">c3</td><td>The real key is deep sleep — sleep deep and the hormone pours out.<br><span class="cap2">The real key: · <span class="y">deep sleep</span></span></td></tr><tr><td class="c-id">c4</td><td>About 1 hour after sleep, deep slow-wave sleep begins.<br><span class="cap2">1 hr after sleep · <span class="y">slow-wave sleep</span></span></td></tr><tr><td class="c-id">c5</td><td>Especially the first 3–4 hours of sleep — that's the peak release.<br><span class="cap2">First 3–4 hours · peak release</span></td></tr><tr><td class="c-id">c6</td><td>So 10 or 11 PM — if the sleep is deep, the hormone flows the same.<br><span class="cap2">10 or 11 PM · <span class="y">if sleep is deep</span></span></td></tr><tr><td class="c-id">c7</td><td>Keep the room dark and quiet, and put phones away an hour before bed.<br><span class="cap2">Dark &amp; quiet · <span class="y">phones off 1 hr before</span></span></td></tr><tr><td class="c-id">c8</td><td>Active days and a steady bedtime make sleep go deeper.<br><span class="cap2">Active by day · <span class="y">steady bedtime</span></span></td></tr><tr><td class="c-id">c9</td><td>Whether your child sleeps and grows well — growth rate and bone age show it.<br><span class="cap2">Growth rate &amp; bone age · show it</span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth rate and bone age today.<br><span class="cap2">Growth rate &amp; bone age · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"必须10点睡觉才能长高"——这可能不是真的。<br><span class="cap2">10点睡觉 · <span class="y">才能长高？</span></span></td></tr><tr><td class="c-id">c2</td><td>生长激素不是按'钟点'分泌的。<br><span class="cap2">不是按 · <span class="y">钟点分泌</span></span></td></tr><tr><td class="c-id">c3</td><td>真正的关键是'深度睡眠'——睡得深，激素就大量分泌。<br><span class="cap2">真正关键： · <span class="y">深度睡眠</span></span></td></tr><tr><td class="c-id">c4</td><td>入睡约1小时后，深度的'慢波睡眠'开始。<br><span class="cap2">入睡1小时后 · <span class="y">慢波睡眠</span></span></td></tr><tr><td class="c-id">c5</td><td>尤其是入睡后的头3到4小时，激素分泌最集中。<br><span class="cap2">头3–4小时 · 分泌最集中</span></td></tr><tr><td class="c-id">c6</td><td>所以10点还是11点，只要睡得深，激素照样分泌。<br><span class="cap2">10点11点都行 · <span class="y">只要睡得深</span></span></td></tr><tr><td class="c-id">c7</td><td>房间要暗要安静，睡前1小时远离手机。<br><span class="cap2">又暗又安静 · <span class="y">睡前1小时关手机</span></span></td></tr><tr><td class="c-id">c8</td><td>白天多活动，每天同一时间睡，深睡会更深。<br><span class="cap2">白天多活动 · <span class="y">作息规律</span></span></td></tr><tr><td class="c-id">c9</td><td>孩子睡得好不好、长得好不好，看生长速度和骨龄就知道。<br><span class="cap2">生长速度·骨龄 · 一看便知</span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的生长速度和骨龄吧。<br><span class="cap2">生长速度·骨龄 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"必須10點睡覺才能長高"——這可能不是真的。<br><span class="cap2">10點睡覺 · <span class="y">才能長高？</span></span></td></tr><tr><td class="c-id">c2</td><td>生長激素不是按'鐘點'分泌的。<br><span class="cap2">不是按 · <span class="y">鐘點分泌</span></span></td></tr><tr><td class="c-id">c3</td><td>真正的關鍵是'深度睡眠'——睡得深，激素就大量分泌。<br><span class="cap2">真正關鍵： · <span class="y">深度睡眠</span></span></td></tr><tr><td class="c-id">c4</td><td>入睡約1小時後，深度的'慢波睡眠'開始。<br><span class="cap2">入睡1小時後 · <span class="y">慢波睡眠</span></span></td></tr><tr><td class="c-id">c5</td><td>尤其是入睡後的頭3到4小時，激素分泌最集中。<br><span class="cap2">頭3–4小時 · 分泌最集中</span></td></tr><tr><td class="c-id">c6</td><td>所以10點還是11點，只要睡得深，激素照樣分泌。<br><span class="cap2">10點11點都行 · <span class="y">只要睡得深</span></span></td></tr><tr><td class="c-id">c7</td><td>房間要暗要安靜，睡前1小時遠離手機。<br><span class="cap2">又暗又安靜 · <span class="y">睡前1小時關手機</span></span></td></tr><tr><td class="c-id">c8</td><td>白天多活動，每天同一時間睡，深睡會更深。<br><span class="cap2">白天多活動 · <span class="y">作息規律</span></span></td></tr><tr><td class="c-id">c9</td><td>孩子睡得好不好、長得好不好，看生長速度和骨齡就知道。<br><span class="cap2">生長速度·骨齡 · 一看便知</span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的生長速度和骨齡吧。<br><span class="cap2">生長速度·骨齡 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/성장호르몬10시/</code> · <code>성장호르몬10시-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>3종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

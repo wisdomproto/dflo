@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 성장통 진짜 원인과 대처법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #13</span>
+  <h1>성장통 = 키 크는 신호? 진짜 원인은 따로 있어요</h1>
+  <div class="sub">밤마다 다리 아픈 우리 아이 — 뼈가 아픈 게 아니라 '이것' 때문, 따뜻하게 풀어주세요</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>오해 ❌</b></div>
+      <div class="subj">우리 아이 다리 통증</div>
+      <div class="big4"><div class="n" style="font-size:66px">신호 아님</div><div class="lab">진짜 원인은 따로!</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 다리 통증</b> 신호 아님진짜 원인은 따로!"</li>
+        <li><b>거대 숫자 "신호 아님"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #13 「성장통 진짜 원인과 대처법」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"밤마다 다리 아픈 우리 아이, '키 크려고 그러는 거'라고만 생각하셨죠?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>다리 아픈 건 키 크는 신호니까 안심 → 진짜 원인 모르고 방치</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>성장통은 뼈가 늘어 아픈 '신호'가 아니라 빠른 성장기에 나타나는 '현상'. 따뜻하게 풀어주되, 이 시기를 키 점검 신호로 삼자</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 따뜻한 안심("대부분 괜찮아요, 풀어주면 돼요"). 신호 미신은 바로잡되 '우리 아이 키' 보편 + 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>밤마다 아픈 다리, 이 시기가 키 점검 타이밍 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"밤마다 다리 아픈 우리 아이, 키 크는 신호일까?"</p></div><div class="act"><span class="n">ACT 2</span><h4>오해 바로잡기</h4><p>c3–c4<br>"뼈엔 통증 신경 거의 없다 → 신호 아닌 현상"</p></div><div class="act"><span class="n">ACT 3</span><h4>진짜 원인</h4><p>c5–c6<br>"근육 피로 + 뼈·근육 성장 속도 차이"</p></div><div class="act"><span class="n">ACT 4</span><h4>구분·대처</h4><p>c7–c8<br>"성장통 신호 vs 병원 신호 / 따뜻하게 풀어주기"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"이 시기를 키 점검 타이밍으로 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 다리 통증</div><div class="mark">키 크는 신호일까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🦵✨</div></div>
+        <div class="ph-cap"><div class="l">밤마다 다리 통증</div><div class="l"><span class="y2">키 크는 신호?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">밤마다 다리 아프다고 깨는 우리 아이, '키 크려고 그러는 거'라고만 생각하셨죠?</td><td><span class="cap2">밤마다 다리 통증<br><span class="y">키 크는 신호?</span></span></td><td class="mo">🌙 흔들 + 💢 펄스</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데요, 성장통은 사실 키 크는 '신호'가 아니에요. 진짜 원인은 따로 있어요.</td><td><span class="cap2">성장통은<br><span class="y">키 신호가 아니다</span></span></td><td class="mo">🦴 팝 + ❓ 깜빡</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 뼈엔 통증신경</span></td><td class="narr">뼈에는 통증을 느끼는 신경이 거의 없거든요. 뼈가 늘어나서 아픈 게 아니에요.</td><td><span class="cap2">뼈엔 통증신경<br><span class="y">거의 없어요</span></span></td><td class="mo">🦴 확대 + ❌ 신경 페이드</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래서 성장통은 '신호'라기보다, 빠르게 크는 과정에서 나타나는 '현상'에 가까워요.</td><td><span class="cap2">신호가 아니라<br><span class="y">성장기의 현상</span></span></td><td class="mo">🔄 신호→현상 스왑</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 진짜 원인</span></td><td class="narr">진짜 원인은 네 가지예요. 낮 동안 쌓인 근육 피로가 가장 유력하고요.</td><td><span class="cap2">진짜 원인<br><span class="y">근육 피로가 1순위</span></span></td><td class="mo">1️⃣2️⃣3️⃣4️⃣ 순차 점등</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 속도 차이</span></td><td class="narr">뼈가 쑥 자랄 때 근육과 힘줄이 못 따라가서 당겨지는 것도 큰 이유고요.</td><td><span class="cap2">뼈 vs 근육<br><span class="y">성장 속도 차이</span></span></td><td class="mo">📏 뼈↑ 근육 따라붙기</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG4 구분 신호</span></td><td class="narr">보통 양쪽 다리, 밤에 욱신, 열·붓기 없죠. 한쪽만 아프거나 부으면 병원으로요.</td><td><span class="cap2">양쪽·밤·열 없음 ✅<br><span class="y">한쪽·부으면 병원 ⚠️</span></span></td><td class="mo">✅ 초록 / ⚠️ 빨강 분기</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">대부분은 따뜻하게 찜질·마사지하고 푹 재우면 괜찮아져요. 공감만 해줘도 덜 아파해요.</td><td><span class="cap2">따뜻한 마사지·수면<br><span class="y">대부분 괜찮아요</span></span></td><td class="mo">🤲 따뜻 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그리고 이 시기는 우리 아이가 한창 크는 때예요. 키 잘 크고 있는지 점검하기 딱 좋죠.</td><td><span class="cap2">한창 크는 시기<br><span class="y">키 점검 타이밍</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–36s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 키, 잘 크고 있는지 지금 바로 확인해 보세요.</td><td><span class="cap2">우리 아이 키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 뼈 확대 + 신경 페이드아웃</div><h3>뼈엔 통증 신경이 거의 없다</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 ❌</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly cartoon leg bone (femur/shin) centered, gently glowing, with faint dotted nerve lines around it shown sparse and fading away to convey 'almost none.' A soft magnifier hovering over the bone. Brand purple #667eea bone outline with mint #2dd4bf accents, friendly pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>뼈 위</td><td>뼈</td><td>Bone</td><td class="thai">กระดูก</td></tr><tr><td>신경 라인(흐릿)</td><td>통증 신경 거의 없음</td><td>Almost no pain nerves</td><td class="thai">แทบไม่มีเส้นประสาท</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 4점 순차 점등</div><h3>성장통 진짜 원인 4가지</h3></div>
+        <div class="body">
+          <div class="sketch">💪 🦴 🫀 🧠</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Four soft rounded cards arranged 2x2, each with a simple friendly icon: tired leg muscle, a bone-and-tendon pair, a small blood-vessel-and-nerve sprout, and a calm child head/heart for emotion. Brand purple→mint gradient, gentle glow on the first (top-left) card to mark it as the main cause. Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>카드1(강조)</td><td>근육 피로</td><td>Muscle fatigue</td><td class="thai">กล้ามเนื้อล้า</td></tr><tr><td>카드2</td><td>뼈·힘줄 불균형</td><td>Bone–tendon gap</td><td class="thai">กระดูก-เอ็นไม่สมดุล</td></tr><tr><td>카드3</td><td>신경·혈관 성장</td><td>Nerve &amp; vessel</td><td class="thai">เส้นประสาท-หลอดเลือด</td></tr><tr><td>카드4</td><td>심리·통증 역치</td><td>Emotion &amp; threshold</td><td class="thai">จิตใจ-เกณฑ์ปวด</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 뼈↑ 슈웅 + 근육 따라붙기</div><h3>뼈는 빠르고, 근육은 천천히</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 📏 💪</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child's leg shown as a tall bone growing upward fast (big upward arrow) while the surrounding muscle/tendon stretches and lags slightly behind, gently taut, with small motion sparkles. Bone in brand purple, muscle in warm mint, soft tension lines. Conveys 'bone outpaces muscle.' Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>위쪽 화살표</td><td>뼈 빠르게 ↑</td><td>Bone fast</td><td class="thai">กระดูกโตเร็ว</td></tr><tr><td>근육(당겨짐)</td><td>근육 따라붙기</td><td>Muscle lags</td><td class="thai">กล้ามเนื้อตามไม่ทัน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c7 · 모션: 초록 ✅ / 빨강 ⚠️ 분기</div><h3>성장통 vs 병원 신호</h3></div>
+        <div class="body">
+          <div class="sketch">✅ ⚠️ 🌙</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A clean split panel: left side a calm child with both legs glowing softly under a small moon (peaceful, benign), right side a single leg with a warning glow showing redness/swelling spot and a small alert badge. Left in mint #2dd4bf calm tones, right in warm amber/red alert tones, brand purple frame down the middle. Friendly pediatric, reassuring not scary. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(안심)</td><td>양쪽·밤·열 없음</td><td>Both legs · night · no swelling</td><td class="thai">สองข้าง·กลางคืน·ไม่บวม</td></tr><tr><td>오른쪽(주의)</td><td>한쪽·붓기·낮에도</td><td>One leg · swelling · daytime</td><td class="thai">ข้างเดียว·บวม·กลางวัน</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🌙</b> 밤 통증</span><span class="emo"><b>💢</b> 다리 통증</span><span class="emo"><b>🦴</b> 뼈</span><span class="emo"><b>❓</b> 오해</span><span class="emo"><b>💪</b> 근육 피로</span><span class="emo"><b>📏</b> 성장 속도</span><span class="emo"><b>✅</b> 성장통(안심)</span><span class="emo"><b>⚠️</b> 병원 신호</span><span class="emo"><b>🤲</b> 따뜻한 케어</span><span class="emo"><b>🔍</b> 뼈나이 점검</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>🩺</b> 전문의 상담</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>밤마다 다리 아프다고 깨는 우리 아이, '키 크려고 그러는 거'라고만 생각하셨죠?<br><span class="cap2">밤마다 다리 통증 · <span class="y">키 크는 신호?</span></span></td></tr><tr><td class="c-id">c2</td><td>그런데요, 성장통은 사실 키 크는 '신호'가 아니에요. 진짜 원인은 따로 있어요.<br><span class="cap2">성장통은 · <span class="y">키 신호가 아니다</span></span></td></tr><tr><td class="c-id">c3</td><td>뼈에는 통증을 느끼는 신경이 거의 없거든요. 뼈가 늘어나서 아픈 게 아니에요.<br><span class="cap2">뼈엔 통증신경 · <span class="y">거의 없어요</span></span></td></tr><tr><td class="c-id">c4</td><td>그래서 성장통은 '신호'라기보다, 빠르게 크는 과정에서 나타나는 '현상'에 가까워요.<br><span class="cap2">신호가 아니라 · <span class="y">성장기의 현상</span></span></td></tr><tr><td class="c-id">c5</td><td>진짜 원인은 네 가지예요. 낮 동안 쌓인 근육 피로가 가장 유력하고요.<br><span class="cap2">진짜 원인 · <span class="y">근육 피로가 1순위</span></span></td></tr><tr><td class="c-id">c6</td><td>뼈가 쑥 자랄 때 근육과 힘줄이 못 따라가서 당겨지는 것도 큰 이유고요.<br><span class="cap2">뼈 vs 근육 · <span class="y">성장 속도 차이</span></span></td></tr><tr><td class="c-id">c7</td><td>보통 양쪽 다리, 밤에 욱신, 열·붓기 없죠. 한쪽만 아프거나 부으면 병원으로요.<br><span class="cap2">양쪽·밤·열 없음 ✅ · <span class="y">한쪽·부으면 병원 ⚠️</span></span></td></tr><tr><td class="c-id">c8</td><td>대부분은 따뜻하게 찜질·마사지하고 푹 재우면 괜찮아져요. 공감만 해줘도 덜 아파해요.<br><span class="cap2">따뜻한 마사지·수면 · <span class="y">대부분 괜찮아요</span></span></td></tr><tr><td class="c-id">c9</td><td>그리고 이 시기는 우리 아이가 한창 크는 때예요. 키 잘 크고 있는지 점검하기 딱 좋죠.<br><span class="cap2">한창 크는 시기 · <span class="y">키 점검 타이밍</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 키, 잘 크고 있는지 지금 바로 확인해 보세요.<br><span class="cap2">우리 아이 키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ลูกตื่นมาร้องปวดขาทุกคืน คิดว่าเป็นเพราะกำลังจะสูงใช่ไหม?<br><span class="cap2">ปวดขาทุกคืน · <span class="y">สัญญาณโตจริงไหม?</span></span></td></tr><tr><td class="c-id">c2</td><td>แต่จริงๆ แล้วอาการปวดโตไม่ใช่ 'สัญญาณ' ว่าจะสูง สาเหตุจริงอยู่ที่อื่น<br><span class="cap2">ปวดโต · <span class="y">ไม่ใช่สัญญาณ</span></span></td></tr><tr><td class="c-id">c3</td><td>กระดูกแทบไม่มีเส้นประสาทรับความเจ็บปวด ไม่ได้ปวดเพราะกระดูกยืด<br><span class="cap2">กระดูก · <span class="y">แทบไม่มีเส้นประสาท</span></span></td></tr><tr><td class="c-id">c4</td><td>ดังนั้นปวดโตไม่ใช่ 'สัญญาณ' แต่เป็น 'ปรากฏการณ์' ระหว่างที่โตเร็ว<br><span class="cap2">ไม่ใช่สัญญาณ · <span class="y">แต่เป็นปรากฏการณ์</span></span></td></tr><tr><td class="c-id">c5</td><td>สาเหตุจริงมี 4 อย่าง ความล้าของกล้ามเนื้อจากกลางวันคือตัวหลัก<br><span class="cap2">สาเหตุจริง 4 อย่าง · <span class="y">กล้ามเนื้อล้าเป็นหลัก</span></span></td></tr><tr><td class="c-id">c6</td><td>เมื่อกระดูกโตเร็วแต่กล้ามเนื้อเอ็นตามไม่ทัน เกิดแรงตึง ก็เป็นสาเหตุใหญ่<br><span class="cap2">กระดูกกับกล้ามเนื้อ · <span class="y">โตไม่เท่ากัน</span></span></td></tr><tr><td class="c-id">c7</td><td>ปกติปวดสองข้าง ตอนกลางคืน ไม่บวมไม่ร้อน ถ้าข้างเดียวหรือบวม ไปหาหมอ<br><span class="cap2">สองข้าง กลางคืน ไม่บวม ✅ · <span class="y">ข้างเดียว/บวม พบหมอ ⚠️</span></span></td></tr><tr><td class="c-id">c8</td><td>ส่วนใหญ่ประคบอุ่น นวด นอนหลับเพียงพอ ก็ดีขึ้น แค่เข้าใจลูกก็ปวดน้อยลง<br><span class="cap2">ประคบอุ่น·นอนพอ · <span class="y">ส่วนใหญ่หายได้</span></span></td></tr><tr><td class="c-id">c9</td><td>และช่วงนี้คือตอนที่ลูกกำลังโตเต็มที่ เป็นจังหวะดีที่จะเช็กการเติบโต<br><span class="cap2">ช่วงกำลังโต · <span class="y">จังหวะเช็กความสูง</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กว่าลูกของคุณกำลังโตดีไหม วันนี้เลย<br><span class="cap2">ความสูงของลูก · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con đau chân mỗi đêm — bạn vẫn nghĩ đó là dấu hiệu sắp cao phải không?<br><span class="cap2">Đêm nào cũng đau chân · <span class="y">dấu hiệu cao lên?</span></span></td></tr><tr><td class="c-id">c2</td><td>Nhưng thật ra đau tăng trưởng không phải 'dấu hiệu' cao lên. Nguyên nhân thật nằm ở chỗ khác.<br><span class="cap2">Đau tăng trưởng · <span class="y">không phải dấu hiệu</span></span></td></tr><tr><td class="c-id">c3</td><td>Xương gần như không có dây thần kinh cảm nhận đau. Không phải xương dài ra mà đau.<br><span class="cap2">Xương · <span class="y">gần như không có thần kinh</span></span></td></tr><tr><td class="c-id">c4</td><td>Nên đau tăng trưởng không phải 'dấu hiệu' mà là 'hiện tượng' khi cơ thể lớn nhanh.<br><span class="cap2">Không phải dấu hiệu · <span class="y">mà là hiện tượng</span></span></td></tr><tr><td class="c-id">c5</td><td>Có bốn nguyên nhân thật. Cơ bắp mỏi sau cả ngày chơi là số một.<br><span class="cap2">4 nguyên nhân thật · <span class="y">cơ mỏi là số một</span></span></td></tr><tr><td class="c-id">c6</td><td>Khi xương dài nhanh mà cơ và gân theo không kịp, bị kéo căng — cũng là lý do lớn.<br><span class="cap2">Xương và cơ · <span class="y">lớn không cùng tốc độ</span></span></td></tr><tr><td class="c-id">c7</td><td>Thường đau hai chân, ban đêm, không sưng nóng. Một chân hoặc sưng thì đi khám.<br><span class="cap2">Hai chân, ban đêm, không sưng ✅ · <span class="y">Một chân/sưng đi khám ⚠️</span></span></td></tr><tr><td class="c-id">c8</td><td>Phần lớn chườm ấm, massage và ngủ đủ là ổn. Chỉ cần đồng cảm con cũng bớt đau.<br><span class="cap2">Chườm ấm · ngủ đủ · <span class="y">phần lớn sẽ ổn</span></span></td></tr><tr><td class="c-id">c9</td><td>Và đây là lúc con đang lớn nhanh — thời điểm tốt để kiểm tra chiều cao.<br><span class="cap2">Lúc đang lớn nhanh · <span class="y">thời điểm kiểm tra</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra xem con bạn có đang cao tốt không, ngay hôm nay.<br><span class="cap2">Chiều cao của con · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your child wakes up with leg pain every night — you thought it just meant growing, right?<br><span class="cap2">Nightly leg pain · <span class="y">a sign of growing?</span></span></td></tr><tr><td class="c-id">c2</td><td>But growing pains aren't actually a 'signal' of height. The real cause is something else.<br><span class="cap2">Growing pains · <span class="y">not a height signal</span></span></td></tr><tr><td class="c-id">c3</td><td>Bones have almost no pain nerves. It's not the bone stretching that hurts.<br><span class="cap2">Bones have · <span class="y">almost no pain nerves</span></span></td></tr><tr><td class="c-id">c4</td><td>So growing pains are less a 'signal' and more a 'phenomenon' of fast growth.<br><span class="cap2">Not a signal · <span class="y">a growth phenomenon</span></span></td></tr><tr><td class="c-id">c5</td><td>There are four real causes. Muscle fatigue from the day is the top one.<br><span class="cap2">4 real causes · <span class="y">muscle fatigue is #1</span></span></td></tr><tr><td class="c-id">c6</td><td>When bone shoots up but muscles and tendons lag and tug, that's a big reason too.<br><span class="cap2">Bone vs muscle · <span class="y">growth speed gap</span></span></td></tr><tr><td class="c-id">c7</td><td>Usually both legs, at night, no heat or swelling. One leg or swollen? See a doctor.<br><span class="cap2">Both legs, night, no swelling ✅ · <span class="y">One leg / swelling = doctor ⚠️</span></span></td></tr><tr><td class="c-id">c8</td><td>Most ease up with warm compresses, massage, and good sleep. Even empathy helps.<br><span class="cap2">Warm care · sleep · <span class="y">most get better</span></span></td></tr><tr><td class="c-id">c9</td><td>And this is when your child is growing fast — a perfect time to check their height.<br><span class="cap2">A fast-growth phase · <span class="y">time to check height</span></span></td></tr><tr><td class="c-id">c10</td><td>Check whether your child is growing well — right now.<br><span class="cap2">Your child's height · <span class="y">check now</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子每晚喊腿疼，你以为是要长高了，对吧？<br><span class="cap2">每晚腿疼 · <span class="y">是长高信号吗？</span></span></td></tr><tr><td class="c-id">c2</td><td>其实，生长痛并不是长高的'信号'。真正的原因另有其因。<br><span class="cap2">生长痛 · <span class="y">不是长高信号</span></span></td></tr><tr><td class="c-id">c3</td><td>骨头几乎没有痛觉神经。疼不是因为骨头在拉长。<br><span class="cap2">骨头 · <span class="y">几乎没有痛觉神经</span></span></td></tr><tr><td class="c-id">c4</td><td>所以生长痛与其说是'信号'，不如说是快速成长中的'现象'。<br><span class="cap2">不是信号 · <span class="y">而是成长现象</span></span></td></tr><tr><td class="c-id">c5</td><td>真正的原因有四个。白天累积的肌肉疲劳最主要。<br><span class="cap2">4个真正原因 · <span class="y">肌肉疲劳居首</span></span></td></tr><tr><td class="c-id">c6</td><td>骨头猛长、肌肉肌腱跟不上被拉扯，也是重要原因。<br><span class="cap2">骨头与肌肉 · <span class="y">生长速度差</span></span></td></tr><tr><td class="c-id">c7</td><td>通常双腿、夜间、不红不肿。只痛一条腿或肿胀就该看医生。<br><span class="cap2">双腿·夜间·不肿 ✅ · <span class="y">单腿/肿胀看医生 ⚠️</span></span></td></tr><tr><td class="c-id">c8</td><td>大多数热敷、按摩、睡好就缓解了。光是共情也能让孩子没那么疼。<br><span class="cap2">热敷·按摩·睡好 · <span class="y">大多会好转</span></span></td></tr><tr><td class="c-id">c9</td><td>而且这正是孩子猛长的时期，是检查身高的好时机。<br><span class="cap2">正在猛长 · <span class="y">查身高好时机</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子是不是长得好吧。<br><span class="cap2">孩子的身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子每晚喊腿疼，你以為是要長高了，對吧？<br><span class="cap2">每晚腿疼 · <span class="y">是長高信號嗎？</span></span></td></tr><tr><td class="c-id">c2</td><td>其實，生長痛並不是長高的'信號'。真正的原因另有其因。<br><span class="cap2">生長痛 · <span class="y">不是長高信號</span></span></td></tr><tr><td class="c-id">c3</td><td>骨頭幾乎沒有痛覺神經。疼不是因為骨頭在拉長。<br><span class="cap2">骨頭 · <span class="y">幾乎沒有痛覺神經</span></span></td></tr><tr><td class="c-id">c4</td><td>所以生長痛與其說是'信號'，不如說是快速成長中的'現象'。<br><span class="cap2">不是信號 · <span class="y">而是成長現象</span></span></td></tr><tr><td class="c-id">c5</td><td>真正的原因有四個。白天累積的肌肉疲勞最主要。<br><span class="cap2">4個真正原因 · <span class="y">肌肉疲勞居首</span></span></td></tr><tr><td class="c-id">c6</td><td>骨頭猛長、肌肉肌腱跟不上被拉扯，也是重要原因。<br><span class="cap2">骨頭與肌肉 · <span class="y">生長速度差</span></span></td></tr><tr><td class="c-id">c7</td><td>通常雙腿、夜間、不紅不腫。只痛一條腿或腫脹就該看醫生。<br><span class="cap2">雙腿·夜間·不腫 ✅ · <span class="y">單腿/腫脹看醫生 ⚠️</span></span></td></tr><tr><td class="c-id">c8</td><td>大多數熱敷、按摩、睡好就緩解了。光是共情也能讓孩子沒那麼疼。<br><span class="cap2">熱敷·按摩·睡好 · <span class="y">大多會好轉</span></span></td></tr><tr><td class="c-id">c9</td><td>而且這正是孩子猛長的時期，是檢查身高的好時機。<br><span class="cap2">正在猛長 · <span class="y">查身高好時機</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子是不是長得好吧。<br><span class="cap2">孩子的身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/성장통신호/</code> · <code>성장통신호-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

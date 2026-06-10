@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 조부모 키와 격세유전</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #7</span>
+  <h1>부모 키가 다가 아니다 — 조부모 키와 격세유전</h1>
+  <div class="sub">유전 80%, 잠자던 조부모 유전자가 우리 아이에게 — 부모만 보면 놓친다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>부모만 보면 착각!</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">조부모</div><div class="lab">키가 답이다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 조부모키가 답이다"</li>
+        <li><b>거대 숫자 "조부모"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #7 「조부모 키와 격세유전」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 키, 부모 키만 보면 안 되는 거 아세요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>부모가 크면 아이도 크고, 부모가 작으면 아이도 작다 → 잠자던 조부모 유전자가 한 세대 건너뛰어 발현될 수 있음(격세유전)</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>키 유전은 80%지만 부모만의 몫이 아니다. 조부모 키까지 본 가족력 + 뼈나이로 봐야 우리 아이 진짜 잠재력이 보인다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정("부모가 작아도 조부모가 크면 우리 아이도 클 수 있다"). "우리 아이 키" 보편. 단정 ❌ → 가족력+측정으로 확인 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>조부모 키까지 넣어 우리 아이 예측키·뼈나이 지금 확인 → 홈페이지 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"부모 키만 보면 착각 — 유전은 80%, 근데 부모만이 아니다"</p></div><div class="act"><span class="n">ACT 2</span><h4>격세유전이란</h4><p>c3–c4<br>"잠자던 조부모 유전자가 한 세대 건너뛰어 우리 아이에게"</p></div><div class="act"><span class="n">ACT 3</span><h4>양방향</h4><p>c5–c6<br>"부모 커도 작을 수, 부모 작아도 클 수 있다"</p></div><div class="act"><span class="n">ACT 4</span><h4>가족성 저신장·골든타임</h4><p>c7–c8<br>"가족력 미리 알면 성장판 닫히기 전 도울 수 있다"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"가족력+뼈나이로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">부모만 보면 될까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🧬👵</div></div>
+        <div class="ph-cap"><div class="l">부모 키만으론</div><div class="l"><span class="y2">답이 안 나와요</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 키, 부모 키만 보면 안 되는 거 아세요?</td><td><span class="cap2"><span class="y">부모 키만으론</span><br>답이 안 나와요</span></td><td class="mo">👵 슬램 인 + 🧬 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">키는 유전이 약 80%예요. 근데 그 유전, 부모만의 몫이 아니거든요.</td><td><span class="cap2"><span class="y">유전 약 80%</span><br>부모만이 아니다</span></td><td class="mo">🧬 80% 카운트업</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–10.5s</td><td><span class="scr ig">🖼 IG1 격세유전</span></td><td class="narr">바로 '격세유전'이에요. 부모에겐 안 나타난 형질이 한 세대를 건너뛰어 나타나는 거죠.</td><td><span class="cap2">한 세대 건너뛰는<br><span class="y">격세유전</span></span></td><td class="mo">👴→(건너뛰기)→🧒 순차 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">10.5–14s</td><td><span class="scr ig">🖼 IG2 잠자는 유전자</span></td><td class="narr">우성·열성이 있어서, 조부모의 키 유전자가 부모를 건너 아이에게서 깨어날 수 있어요.</td><td><span class="cap2"><span class="y">조부모 키 유전자</span><br>아이에게서 깨어남</span></td><td class="mo">💤 유전자 → ✨ 발현 팝</td></tr><tr><td class="c-id">c5</td><td class="c-time">14–18s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래서 부모가 커도 조부모가 작으면 아이가 작을 수 있어요.</td><td><span class="cap2"><span class="y">부모 커도</span><br>작을 수 있다</span></td><td class="mo">⬆️⬇️ 양방향 토글</td></tr><tr><td class="c-id">c6</td><td class="c-time">18–22s</td><td><span class="scr ig">🖼 IG3 숨은 잠재력</span></td><td class="narr">반대로 부모가 작아도, 조부모가 크셨다면 아이는 훌쩍 클 잠재력이 있어요.</td><td><span class="cap2">부모 작아도<br><span class="y">훌쩍 클 잠재력</span></span></td><td class="mo">🌱 위로 슈웅 + ✨</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">조부모 중 작은 분이 계시면 '가족성 저신장'을 미리 살필 수 있어요.</td><td><span class="cap2">가족력 보면<br><span class="y">가족성 저신장</span> 미리 파악</span></td><td class="mo">👨‍👩‍👧‍👦 가계도 펼침</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–29.5s</td><td><span class="scr ig">🖼 IG4 골든타임</span></td><td class="narr">미리 알면 성장판 닫히기 전에 도울 수 있으니까요.</td><td><span class="cap2"><span class="y">성장판 닫히기 전</span><br>도울 수 있다</span></td><td class="mo">⏳ + 🦴 골드 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">29.5–32.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">조부모 키까지 넣은 가족력에 뼈나이를 더하면, 진짜 잠재력이 보여요.</td><td><span class="cap2">가족력 + 뼈나이<br><span class="y">진짜 잠재력</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">32.5–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">조부모 키까지 넣어서, 우리 아이 예측키 지금 확인해 보세요.</td><td><span class="cap2">우리 아이 예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 세대 노드 순차 점등 + 건너뛰기 호</div><h3>격세유전 — 한 세대 건너뛰기</h3></div>
+        <div class="body">
+          <div class="sketch">👴 👨 🧒</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A simple three-generation family tree top to bottom: grandparent node (tall figure) at top, parent node (shorter figure) in the middle, child node at the bottom. A glowing brand-purple-to-mint dashed arc curves from the grandparent node, bypassing the parent node, down to the child node, with a soft sparkle where it lands on the child. Friendly rounded pediatric silhouettes. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단 노드</td><td>조부모</td><td>Grandparent</td><td class="thai">ปู่ย่าตายาย</td></tr><tr><td>가운데 노드</td><td>부모</td><td>Parent</td><td class="thai">พ่อแม่</td></tr><tr><td>하단 노드</td><td>우리 아이</td><td>Child</td><td class="thai">ลูก</td></tr><tr><td>건너뛰는 호</td><td>한 세대 건너뜀</td><td>Skips a generation</td><td class="thai">ข้ามรุ่น</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 잠자던 유전자 점등 + 발현 팝</div><h3>잠자는 유전자 — 우성·열성</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 💤 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly DNA double helix in brand purple and mint. Along the helix, some gene segments glow brightly (dominant, awake) while one dimmed segment is asleep with a small soft 'zzz' glow; that dimmed segment is now lighting up with a sparkle burst, showing a hidden trait switching on. Soft, hopeful, pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>밝은 분절</td><td>우성</td><td>Dominant</td><td class="thai">ลักษณะเด่น</td></tr><tr><td>흐린 분절</td><td>열성(잠재)</td><td>Recessive</td><td class="thai">ลักษณะด้อย</td></tr><tr><td>점등 분절</td><td>다시 발현</td><td>Switches on</td><td class="thai">แสดงออกอีกครั้ง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 새싹 슈웅 + 스파클</div><h3>숨은 잠재력 — 부모를 뛰어넘다</h3></div>
+        <div class="body">
+          <div class="sketch">🌱 📈 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Two short adult silhouettes at the bottom (parents) and between them a child silhouette growing tall on an upward arrow/sprout shooting up past their head height, with mint sparkles at the top. Brand purple and mint gradient, optimistic 'exceeds expectations' feel. Friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>하단 두 실루엣</td><td>부모</td><td>Parents</td><td class="thai">พ่อแม่</td></tr><tr><td>위로 솟는 화살표</td><td>숨은 잠재력</td><td>Hidden potential</td><td class="thai">ศักยภาพที่ซ่อนอยู่</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: ⏳ 골드 글로우 + 성장판 살짝 닫힘</div><h3>골든타임 — 성장판 닫히기 전</h3></div>
+        <div class="body">
+          <div class="sketch">⏳ 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A stylized knee growth plate shown as an open glowing gap that is gently narrowing/closing, beside an hourglass with warm golden sand running down. Soft golden glow conveys a last window of opportunity. Brand purple base with gold accents, friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>성장판 틈</td><td>성장판</td><td>Growth plate</td><td class="thai">แผ่นกระดูก</td></tr><tr><td>모래시계(글로우)</td><td>골든타임</td><td>Golden time</td><td class="thai">ช่วงเวลาทอง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🧬</b> 키 유전 80%</span><span class="emo"><b>👴</b> 조부모</span><span class="emo"><b>👵</b> 조부모</span><span class="emo"><b>👨</b> 부모</span><span class="emo"><b>🧒</b> 우리 아이</span><span class="emo"><b>💤</b> 잠자는 유전자</span><span class="emo"><b>✨</b> 발현·강조</span><span class="emo"><b>🌱</b> 숨은 잠재력</span><span class="emo"><b>📈</b> 성장</span><span class="emo"><b>⏳</b> 골든타임</span><span class="emo"><b>🦴</b> 뼈나이·성장판</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 키, 부모 키만 보면 안 되는 거 아세요?<br><span class="cap2">부모 키만으론 · 답이 안 나와요</span></td></tr><tr><td class="c-id">c2</td><td>키는 유전이 약 80%예요. 근데 그 유전, 부모만의 몫이 아니거든요.<br><span class="cap2">유전 약 80% · 부모만이 아니다</span></td></tr><tr><td class="c-id">c3</td><td>바로 '격세유전'이에요. 부모에겐 안 나타난 형질이 한 세대를 건너뛰어 나타나는 거죠.<br><span class="cap2">한 세대 건너뛰는 · <span class="y">격세유전</span></span></td></tr><tr><td class="c-id">c4</td><td>우성·열성이 있어서, 조부모의 키 유전자가 부모를 건너 아이에게서 깨어날 수 있어요.<br><span class="cap2">조부모 키 유전자 · 아이에게서 깨어남</span></td></tr><tr><td class="c-id">c5</td><td>그래서 부모가 커도 조부모가 작으면 아이가 작을 수 있어요.<br><span class="cap2">부모 커도 · 작을 수 있다</span></td></tr><tr><td class="c-id">c6</td><td>반대로 부모가 작아도, 조부모가 크셨다면 아이는 훌쩍 클 잠재력이 있어요.<br><span class="cap2">부모 작아도 · <span class="y">훌쩍 클 잠재력</span></span></td></tr><tr><td class="c-id">c7</td><td>조부모 중 작은 분이 계시면 '가족성 저신장'을 미리 살필 수 있어요.<br><span class="cap2">가족력 보면 · <span class="y">가족성 저신장</span> 미리 파악</span></td></tr><tr><td class="c-id">c8</td><td>미리 알면 성장판 닫히기 전에 도울 수 있으니까요.<br><span class="cap2">성장판 닫히기 전 · 도울 수 있다</span></td></tr><tr><td class="c-id">c9</td><td>조부모 키까지 넣은 가족력에 뼈나이를 더하면, 진짜 잠재력이 보여요.<br><span class="cap2">가족력 + 뼈나이 · <span class="y">진짜 잠재력</span></span></td></tr><tr><td class="c-id">c10</td><td>조부모 키까지 넣어서, 우리 아이 예측키 지금 확인해 보세요.<br><span class="cap2">우리 아이 예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่าความสูงของลูก ดูแค่พ่อแม่ไม่พอ?<br><span class="cap2">ดูแค่พ่อแม่ · ยังไม่พอ</span></td></tr><tr><td class="c-id">c2</td><td>ความสูงเป็นพันธุกรรมราว 80% แต่ไม่ได้มาจากพ่อแม่เท่านั้น<br><span class="cap2">พันธุกรรม 80% · ไม่ใช่แค่พ่อแม่</span></td></tr><tr><td class="c-id">c3</td><td>นั่นคือ 'การถ่ายทอดข้ามรุ่น' ลักษณะที่ข้ามพ่อแม่ไปโผล่ที่หลาน<br><span class="cap2">ข้ามรุ่น · สู่หลาน</span></td></tr><tr><td class="c-id">c4</td><td>มียีนเด่นยีนด้อย ยีนความสูงของปู่ย่าอาจตื่นขึ้นในตัวหลาน<br><span class="cap2">ยีนของปู่ย่า · ตื่นในหลาน</span></td></tr><tr><td class="c-id">c5</td><td>พ่อแม่สูง แต่ถ้าปู่ย่าตัวเล็ก ลูกก็อาจเตี้ยได้<br><span class="cap2">พ่อแม่สูง · แต่ลูกอาจเตี้ย</span></td></tr><tr><td class="c-id">c6</td><td>กลับกัน พ่อแม่ตัวเล็ก แต่ถ้าปู่ย่าสูง ลูกก็มีศักยภาพสูงได้<br><span class="cap2">พ่อแม่เล็ก · แต่มี<span class="y">ศักยภาพสูง</span></span></td></tr><tr><td class="c-id">c7</td><td>ถ้าปู่ย่าตัวเล็ก เราเฝ้าระวัง 'ภาวะเตี้ยจากพันธุกรรม' ได้แต่เนิ่นๆ<br><span class="cap2">ดูประวัติครอบครัว · <span class="y">เตี้ยจากพันธุกรรม</span></span></td></tr><tr><td class="c-id">c8</td><td>รู้ก่อน เราช่วยได้ก่อนแผ่นกระดูกปิด<br><span class="cap2">ก่อนแผ่นกระดูกปิด · ช่วยได้</span></td></tr><tr><td class="c-id">c9</td><td>ใส่ความสูงปู่ย่าในประวัติครอบครัว บวกอายุกระดูก เห็นศักยภาพจริง<br><span class="cap2">ประวัติ + อายุกระดูก · <span class="y">ศักยภาพจริง</span></span></td></tr><tr><td class="c-id">c10</td><td>ใส่ความสูงปู่ย่าด้วย เช็กความสูงที่คาดการณ์ของลูกวันนี้<br><span class="cap2">ความสูงที่คาดการณ์ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết chiều cao của con không thể chỉ nhìn vào bố mẹ?<br><span class="cap2">Chỉ nhìn bố mẹ · là chưa đủ</span></td></tr><tr><td class="c-id">c2</td><td>Chiều cao do di truyền khoảng 80% — nhưng không chỉ từ bố mẹ.<br><span class="cap2">Di truyền ~80% · không chỉ bố mẹ</span></td></tr><tr><td class="c-id">c3</td><td>Đó là 'di truyền cách đời' — đặc điểm bỏ qua bố mẹ, hiện ở đời cháu.<br><span class="cap2">Di truyền · <span class="y">cách đời</span></span></td></tr><tr><td class="c-id">c4</td><td>Có gen trội gen lặn — gen chiều cao của ông bà có thể thức dậy ở cháu.<br><span class="cap2">Gen của ông bà · thức dậy ở cháu</span></td></tr><tr><td class="c-id">c5</td><td>Nên bố mẹ cao mà ông bà thấp, con vẫn có thể thấp.<br><span class="cap2">Bố mẹ cao · con vẫn có thể thấp</span></td></tr><tr><td class="c-id">c6</td><td>Ngược lại, bố mẹ thấp mà ông bà cao, con vẫn có tiềm năng cao vượt trội.<br><span class="cap2">Bố mẹ thấp · vẫn có <span class="y">tiềm năng cao</span></span></td></tr><tr><td class="c-id">c7</td><td>Nếu ông bà thấp, ta có thể tầm soát sớm 'thấp lùn gia đình'.<br><span class="cap2">Xem tiền sử · <span class="y">thấp lùn gia đình</span></span></td></tr><tr><td class="c-id">c8</td><td>Biết sớm thì giúp được — trước khi sụn tăng trưởng đóng lại.<br><span class="cap2">Trước khi sụn đóng · còn giúp được</span></td></tr><tr><td class="c-id">c9</td><td>Thêm chiều cao ông bà vào tiền sử, cộng tuổi xương — thấy rõ tiềm năng thật.<br><span class="cap2">Tiền sử + tuổi xương · <span class="y">tiềm năng thật</span></span></td></tr><tr><td class="c-id">c10</td><td>Thêm cả chiều cao ông bà — kiểm tra chiều cao dự đoán của con ngay.<br><span class="cap2">Chiều cao dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know your child's height isn't just about the parents?<br><span class="cap2">Parents alone · aren't the answer</span></td></tr><tr><td class="c-id">c2</td><td>Height is about 80% genetic — but that's not just from the parents.<br><span class="cap2">~80% genetic · not just parents</span></td></tr><tr><td class="c-id">c3</td><td>It's called atavism — a trait that skips the parents and reappears in the child.<br><span class="cap2">Skips a generation · <span class="y">atavism</span></span></td></tr><tr><td class="c-id">c4</td><td>With dominant and recessive genes, grandparents' height genes can wake up in the child.<br><span class="cap2">Grandparents' genes · wake up in the child</span></td></tr><tr><td class="c-id">c5</td><td>So even tall parents can have a shorter child if the grandparents were short.<br><span class="cap2">Tall parents · child can be short</span></td></tr><tr><td class="c-id">c6</td><td>And short parents whose own parents were tall can still have a child with big potential.<br><span class="cap2">Short parents · still <span class="y">big potential</span></span></td></tr><tr><td class="c-id">c7</td><td>If grandparents were short, we can watch early for 'familial short stature.'<br><span class="cap2">Family history · <span class="y">familial short stature</span></span></td></tr><tr><td class="c-id">c8</td><td>Knowing early means we can help — before the growth plates close.<br><span class="cap2">Before plates close · we can help</span></td></tr><tr><td class="c-id">c9</td><td>Add grandparents' height to the family history plus bone age — you see the real potential.<br><span class="cap2">Family + bone age · <span class="y">real potential</span></span></td></tr><tr><td class="c-id">c10</td><td>Add the grandparents' height and check your child's predicted height now.<br><span class="cap2">Predicted height · <span class="y">check now</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道孩子的身高，只看父母是不够的吗？<br><span class="cap2">只看父母 · 还不够</span></td></tr><tr><td class="c-id">c2</td><td>身高约80%由遗传决定——但不只来自父母。<br><span class="cap2">遗传约80% · 不只是父母</span></td></tr><tr><td class="c-id">c3</td><td>这叫'隔代遗传'——跳过父母，在孙辈重新出现。<br><span class="cap2">跳过一代 · <span class="y">隔代遗传</span></span></td></tr><tr><td class="c-id">c4</td><td>有显性隐性之分，祖父母的身高基因可能在孩子身上苏醒。<br><span class="cap2">祖父母的基因 · 在孩子身上苏醒</span></td></tr><tr><td class="c-id">c5</td><td>所以父母高，若祖父母矮，孩子也可能矮。<br><span class="cap2">父母高 · 孩子也可能矮</span></td></tr><tr><td class="c-id">c6</td><td>反过来，父母矮但祖父母高，孩子也有长高的潜力。<br><span class="cap2">父母矮 · 也有<span class="y">长高潜力</span></span></td></tr><tr><td class="c-id">c7</td><td>若祖父母矮，可及早留意'家族性矮小'。<br><span class="cap2">看家族史 · <span class="y">家族性矮小</span></span></td></tr><tr><td class="c-id">c8</td><td>早知道，就能在生长板闭合前帮上忙。<br><span class="cap2">生长板闭合前 · 就能帮上忙</span></td></tr><tr><td class="c-id">c9</td><td>把祖父母身高加进家族史，再看骨龄，真正的潜力就清楚了。<br><span class="cap2">家族史 + 骨龄 · <span class="y">真正的潜力</span></span></td></tr><tr><td class="c-id">c10</td><td>把祖父母身高也算上，现在就查孩子的预测身高吧。<br><span class="cap2">孩子预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道孩子的身高，只看父母是不夠的嗎？<br><span class="cap2">只看父母 · 還不夠</span></td></tr><tr><td class="c-id">c2</td><td>身高約80%由遺傳決定——但不只來自父母。<br><span class="cap2">遺傳約80% · 不只是父母</span></td></tr><tr><td class="c-id">c3</td><td>這叫'隔代遺傳'——跳過父母，在孫輩重新出現。<br><span class="cap2">跳過一代 · <span class="y">隔代遺傳</span></span></td></tr><tr><td class="c-id">c4</td><td>有顯性隱性之分，祖父母的身高基因可能在孩子身上甦醒。<br><span class="cap2">祖父母的基因 · 在孩子身上甦醒</span></td></tr><tr><td class="c-id">c5</td><td>所以父母高，若祖父母矮，孩子也可能矮。<br><span class="cap2">父母高 · 孩子也可能矮</span></td></tr><tr><td class="c-id">c6</td><td>反過來，父母矮但祖父母高，孩子也有長高的潛力。<br><span class="cap2">父母矮 · 也有<span class="y">長高潛力</span></span></td></tr><tr><td class="c-id">c7</td><td>若祖父母矮，可及早留意'家族性矮小'。<br><span class="cap2">看家族史 · <span class="y">家族性矮小</span></span></td></tr><tr><td class="c-id">c8</td><td>早知道，就能在生長板閉合前幫上忙。<br><span class="cap2">生長板閉合前 · 就能幫上忙</span></td></tr><tr><td class="c-id">c9</td><td>把祖父母身高加進家族史，再看骨齡，真正的潛力就清楚了。<br><span class="cap2">家族史 + 骨齡 · <span class="y">真正的潛力</span></span></td></tr><tr><td class="c-id">c10</td><td>把祖父母身高也算上，現在就查孩子的預測身高吧。<br><span class="cap2">孩子預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/격세유전조부모키/</code> · <code>격세유전조부모키-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

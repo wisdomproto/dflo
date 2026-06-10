@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 키 성장 식단 피라미드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #22</span>
+  <h1>우리 아이 키 크는 식단 피라미드 — 먹을 것 vs 피할 것</h1>
+  <div class="sub">단백질·칼슘·아연이 받치고, 설탕·패스트푸드는 꼭대기 — 밥상이 키를 바꾼다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>밥상이 키를 바꾼다</b></div>
+      <div class="subj">우리 아이 키 크는</div>
+      <div class="big4"><div class="n" style="font-size:132px">식단</div><div class="lab">피라미드</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 크는</b> 식단피라미드"</li>
+        <li><b>거대 숫자 "식단"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #22 「키 성장 식단 피라미드」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 키, 사실 '밥상' 위에서 만들어지는 거 아세요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>잘 먹기만 하면 크겠지 → 뭘 먹고 뭘 피하느냐가 키를 가른다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>피라미드 아래(단백질·칼슘+비타민D·아연·철분)는 든든히, 꼭대기(설탕·패스트푸드·과염분·카페인)는 멀리. 매일의 밥상이 최종 키를 바꾼다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("오늘 밥상부터 바꾸면 된다"). "우리 아이 키" 보편. CTA는 측정 유도(뼈나이/예측키)</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 상태, 지금 뼈나이·예측키로 확인 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"키는 밥상 위에서 만들어진다 — 피라미드"</p></div><div class="act"><span class="n">ACT 2</span><h4>든든한 밑단</h4><p>c3–c4<br>"단백질·칼슘+비타민D가 뼈를 키운다"</p></div><div class="act"><span class="n">ACT 3</span><h4>숨은 조력자</h4><p>c5–c6<br>"아연·철분이 성장호르몬·활력을 받친다"</p></div><div class="act"><span class="n">ACT 4</span><h4>꼭대기 경고</h4><p>c7–c8<br>"설탕·패스트푸드는 멀리 → 물 6~8잔"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"성장 상태 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">밥상이 키를?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🍽️🔺</div></div>
+        <div class="ph-cap"><div class="l">키는</div><div class="l"><span class="y2">밥상 위에서</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 키, 사실 '밥상' 위에서 만들어지는 거 아세요?</td><td><span class="cap2">키는<br><span class="y">밥상 위에서</span></span></td><td class="mo">🔺 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr ig">🖼 IG1 피라미드</span></td><td class="narr">키 성장 식단엔 피라미드가 있어요. 아래는 든든히, 꼭대기는 멀리.</td><td><span class="cap2"><span class="y">식단 피라미드</span><br>아래는 든든히</span></td><td class="mo">🔺 아래→위 순차 점등</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–10.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">맨 아래 1층은 단백질. 살코기·생선·콩·달걀이 성장호르몬을 깨워요.</td><td><span class="cap2">1층은<br><span class="y">단백질</span></span></td><td class="mo">💪 펄스 강조</td></tr><tr><td class="c-id">c4</td><td class="c-time">10.5–14.5s</td><td><span class="scr ig">🖼 IG2 칼슘+비타민D</span></td><td class="narr">그 위엔 칼슘과 비타민 D. 비타민 D가 칼슘을 뼈로 데려가 줘요.</td><td><span class="cap2">칼슘 +<br><span class="y">비타민 D</span></span></td><td class="mo">🦴 점등 + 🌞 글로우</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">여기 숨은 주인공, 아연. 굴·소고기·견과류가 성장호르몬을 밀어줘요.</td><td><span class="cap2">숨은 주인공<br><span class="y">아연</span></span></td><td class="mo">🔩 팝 강조</td></tr><tr><td class="c-id">c6</td><td class="c-time">18–22s</td><td><span class="scr ig">🖼 IG3 철분+활력</span></td><td class="narr">철분은 산소를 온몸에 날라요. 부족하면 빈혈로 성장이 처져요.</td><td><span class="cap2">철분 =<br><span class="y">성장 활력</span></span></td><td class="mo">🩸 채워짐 + ⚡ 펄스</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">꼭대기는 설탕·패스트푸드. 인슐린을 올려서 성장호르몬을 막아요.</td><td><span class="cap2">꼭대기는<br><span class="y">설탕·패스트푸드</span></span></td><td class="mo">⚠️ 쉐이크 + 빨강 플래시</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–29.5s</td><td><span class="scr ig">🖼 IG4 물 6~8잔</span></td><td class="narr">대신 물은 든든하게. 우리 몸의 70%, 하루 6에서 8잔이 좋아요.</td><td><span class="cap2">물 하루<br><span class="y">6~8잔</span></span></td><td class="mo">💧 8잔 순차 채움</td></tr><tr><td class="c-id">c9</td><td class="c-time">29.5–32.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">밥상을 바꿔도 효과가 더딘 것 같다면, 뼈나이로 성장 상태를 봐요.</td><td><span class="cap2">뼈나이로<br><span class="y">성장 상태 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">32.5–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 상태, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장 상태<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c2 · 모션: 아래→위 순차 점등</div><h3>키 성장 식단 피라미드</h3></div>
+        <div class="body">
+          <div class="sketch">🔺 🥦 🍰</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A food pyramid divided into 4 horizontal tiers; wide glowing base holds friendly healthy foods (meat, fish, beans, milk, leafy greens), middle tiers fruits and grains, narrow dim top tier holds soda cup, candy and a burger faded out. Brand purple→mint gradient, bright base, faded apex. Friendly pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>밑단(밝게)</td><td>먹어야 할 것</td><td>Eat more</td><td class="thai">ควรกิน</td></tr><tr><td>꼭대기(흐리게)</td><td>피해야 할 것</td><td>Avoid</td><td class="thai">ควรเลี่ยง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 뼈 점등 + 햇살 글로우</div><h3>칼슘 + 비타민 D — 뼈의 주춧돌</h3></div>
+        <div class="body">
+          <div class="sketch">🥛 🦴 🌞</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A glass of milk and a sunny window on the left, a bright friendly bone in the center with sparkles, a gentle arrow showing calcium droplets moving into the bone. Brand purple with warm sun-yellow glow accents. Conveys 'vitamin D carries calcium into bone.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>좌측</td><td>칼슘</td><td>Calcium</td><td class="thai">แคลเซียม</td></tr><tr><td>햇살 옆</td><td>비타민 D</td><td>Vitamin D</td><td class="thai">วิตามินดี</td></tr><tr><td>뼈</td><td>튼튼한 뼈</td><td>Strong bone</td><td class="thai">กระดูกแข็งแรง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 혈액 채움 + 번개 펄스</div><h3>철분 — 산소를 나르는 성장 활력</h3></div>
+        <div class="body">
+          <div class="sketch">🩸 ⚡ 🫁</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly red blood drop carrying little oxygen bubbles traveling along a vein toward a glowing energetic child silhouette, mint energy spark around the child. Brand purple + mint, soft red accent for the blood drop. Conveys 'iron delivers oxygen, fuels growth.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>혈액 방울</td><td>철분</td><td>Iron</td><td class="thai">ธาตุเหล็ก</td></tr><tr><td>아이</td><td>활력 UP</td><td>Energy up</td><td class="thai">พลังเพิ่ม</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 8잔 순차 채움</div><h3>물 6~8잔 — 몸의 70%</h3></div>
+        <div class="body">
+          <div class="sketch">💧 🥤 🧒</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A row of water glasses filling up from empty to full left to right, beside a cute child whose body is shown as a translucent container about 70 percent filled with soft blue water. Brand purple outline, mint-blue water. Friendly pediatric. Conveys hydration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>물잔 줄</td><td>6~8잔</td><td>6–8 cups</td><td class="thai">6–8 แก้ว</td></tr><tr><td>아이 몸</td><td>몸의 70%</td><td>70% water</td><td class="thai">70% ของร่างกาย</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🍽️</b> 식단</span><span class="emo"><b>🔺</b> 피라미드</span><span class="emo"><b>💪</b> 단백질</span><span class="emo"><b>🥛</b> 칼슘</span><span class="emo"><b>🌞</b> 비타민 D</span><span class="emo"><b>🔩</b> 아연</span><span class="emo"><b>🩸</b> 철분</span><span class="emo"><b>💧</b> 수분</span><span class="emo"><b>⚠️</b> 경고(설탕·패스트푸드)</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 키, 사실 '밥상' 위에서 만들어지는 거 아세요?<br><span class="cap2">키는 · <span class="y">밥상 위에서</span></span></td></tr><tr><td class="c-id">c2</td><td>키 성장 식단엔 피라미드가 있어요. 아래는 든든히, 꼭대기는 멀리.<br><span class="cap2">식단 피라미드 · 아래는 든든히</span></td></tr><tr><td class="c-id">c3</td><td>맨 아래 1층은 단백질. 살코기·생선·콩·달걀이 성장호르몬을 깨워요.<br><span class="cap2">1층은 · <span class="y">단백질</span></span></td></tr><tr><td class="c-id">c4</td><td>그 위엔 칼슘과 비타민 D. 비타민 D가 칼슘을 뼈로 데려가 줘요.<br><span class="cap2">칼슘 + · <span class="y">비타민 D</span></span></td></tr><tr><td class="c-id">c5</td><td>여기 숨은 주인공, 아연. 굴·소고기·견과류가 성장호르몬을 밀어줘요.<br><span class="cap2">숨은 주인공 · <span class="y">아연</span></span></td></tr><tr><td class="c-id">c6</td><td>철분은 산소를 온몸에 날라요. 부족하면 빈혈로 성장이 처져요.<br><span class="cap2">철분 = · <span class="y">성장 활력</span></span></td></tr><tr><td class="c-id">c7</td><td>꼭대기는 설탕·패스트푸드. 인슐린을 올려서 성장호르몬을 막아요.<br><span class="cap2">꼭대기는 · <span class="y">설탕·패스트푸드</span></span></td></tr><tr><td class="c-id">c8</td><td>대신 물은 든든하게. 우리 몸의 70%, 하루 6에서 8잔이 좋아요.<br><span class="cap2">물 하루 · <span class="y">6~8잔</span></span></td></tr><tr><td class="c-id">c9</td><td>밥상을 바꿔도 효과가 더딘 것 같다면, 뼈나이로 성장 상태를 봐요.<br><span class="cap2">뼈나이로 · <span class="y">성장 상태 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 상태, 지금 바로 확인해 보세요.<br><span class="cap2">성장 상태 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่าความสูงของลูกสร้างขึ้นบน 'โต๊ะอาหาร'<br><span class="cap2">ความสูง · สร้างบน<span class="y">โต๊ะอาหาร</span></span></td></tr><tr><td class="c-id">c2</td><td>อาหารเพิ่มความสูงมีพีระมิด ฐานกินให้พอ ยอดให้เลี่ยง<br><span class="cap2">พีระมิดอาหาร · ฐานกินให้พอ</span></td></tr><tr><td class="c-id">c3</td><td>ชั้นล่างสุดคือโปรตีน เนื้อ ปลา ถั่ว ไข่ ปลุกฮอร์โมนการเจริญเติบโต<br><span class="cap2">ชั้นล่างสุด · <span class="y">โปรตีน</span></span></td></tr><tr><td class="c-id">c4</td><td>ชั้นถัดมาคือแคลเซียมกับวิตามินดี วิตามินดีพาแคลเซียมเข้าสู่กระดูก<br><span class="cap2">แคลเซียม + · <span class="y">วิตามินดี</span></span></td></tr><tr><td class="c-id">c5</td><td>พระเอกที่ซ่อนอยู่คือสังกะสี หอยนางรม เนื้อวัว ถั่ว ดันฮอร์โมนการเจริญเติบโต<br><span class="cap2">พระเอกที่ซ่อน · <span class="y">สังกะสี</span></span></td></tr><tr><td class="c-id">c6</td><td>ธาตุเหล็กส่งออกซิเจนทั่วร่าง ขาดแล้วโลหิตจาง โตช้า<br><span class="cap2">ธาตุเหล็ก = · <span class="y">พลังการเติบโต</span></span></td></tr><tr><td class="c-id">c7</td><td>ยอดพีระมิดคือน้ำตาลกับฟาสต์ฟู้ด ดันอินซูลิน ขวางฮอร์โมนการเจริญเติบโต<br><span class="cap2">ยอดคือ · <span class="y">น้ำตาล·ฟาสต์ฟู้ด</span></span></td></tr><tr><td class="c-id">c8</td><td>แทนที่ด้วยน้ำให้พอ ร่างกาย 70% เป็นน้ำ วันละ 6 ถึง 8 แก้ว<br><span class="cap2">น้ำวันละ · <span class="y">6–8 แก้ว</span></span></td></tr><tr><td class="c-id">c9</td><td>ถ้าเปลี่ยนอาหารแล้วยังช้า ดูอายุกระดูกเช็กสภาพการเติบโต<br><span class="cap2">อายุกระดูก · <span class="y">เช็กการเติบโต</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กสภาพการเติบโตของลูกวันนี้<br><span class="cap2">สภาพการเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết chiều cao của con thật ra được tạo nên từ bữa ăn không?<br><span class="cap2">Chiều cao · từ <span class="y">bữa ăn</span></span></td></tr><tr><td class="c-id">c2</td><td>Thực đơn tăng chiều cao có một kim tự tháp: đáy ăn nhiều, đỉnh tránh xa.<br><span class="cap2">Kim tự tháp · đáy ăn nhiều</span></td></tr><tr><td class="c-id">c3</td><td>Tầng đáy là chất đạm: thịt, cá, đậu, trứng đánh thức hormone tăng trưởng.<br><span class="cap2">Tầng đáy · <span class="y">chất đạm</span></span></td></tr><tr><td class="c-id">c4</td><td>Tầng trên là canxi và vitamin D — vitamin D đưa canxi vào xương.<br><span class="cap2">Canxi + · <span class="y">vitamin D</span></span></td></tr><tr><td class="c-id">c5</td><td>Người hùng thầm lặng là kẽm — hàu, thịt bò, hạt thúc đẩy hormone tăng trưởng.<br><span class="cap2">Người hùng thầm lặng · <span class="y">kẽm</span></span></td></tr><tr><td class="c-id">c6</td><td>Sắt mang oxy đi khắp cơ thể; thiếu sắt gây thiếu máu, chậm lớn.<br><span class="cap2">Sắt = · <span class="y">sức tăng trưởng</span></span></td></tr><tr><td class="c-id">c7</td><td>Đỉnh tháp là đường và đồ ăn nhanh — đẩy insulin, chặn hormone tăng trưởng.<br><span class="cap2">Đỉnh tháp · <span class="y">đường·đồ ăn nhanh</span></span></td></tr><tr><td class="c-id">c8</td><td>Thay vào đó, uống đủ nước: cơ thể 70% là nước, 6 đến 8 ly mỗi ngày.<br><span class="cap2">Nước mỗi ngày · <span class="y">6–8 ly</span></span></td></tr><tr><td class="c-id">c9</td><td>Nếu đổi bữa ăn mà vẫn chậm, hãy xem tuổi xương để biết tình trạng tăng trưởng.<br><span class="cap2">Tuổi xương · <span class="y">kiểm tra tăng trưởng</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tình trạng tăng trưởng của con ngay hôm nay.<br><span class="cap2">Tình trạng tăng trưởng · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know your child's height is actually built on the dinner table?<br><span class="cap2">Height is · <span class="y">built on meals</span></span></td></tr><tr><td class="c-id">c2</td><td>A growth diet has a pyramid: load up the base, skip the top.<br><span class="cap2">Food pyramid · load the base</span></td></tr><tr><td class="c-id">c3</td><td>The bottom floor is protein — meat, fish, beans, eggs wake up growth hormone.<br><span class="cap2">Base floor · <span class="y">protein</span></span></td></tr><tr><td class="c-id">c4</td><td>Above it: calcium and vitamin D — vitamin D carries calcium into the bone.<br><span class="cap2">Calcium + · <span class="y">vitamin D</span></span></td></tr><tr><td class="c-id">c5</td><td>The hidden hero is zinc — oysters, beef, nuts push growth hormone.<br><span class="cap2">Hidden hero · <span class="y">zinc</span></span></td></tr><tr><td class="c-id">c6</td><td>Iron carries oxygen everywhere; too little means anemia and slow growth.<br><span class="cap2">Iron = · <span class="y">growth fuel</span></span></td></tr><tr><td class="c-id">c7</td><td>The top is sugar and fast food — they spike insulin and block growth hormone.<br><span class="cap2">The top · <span class="y">sugar·fast food</span></span></td></tr><tr><td class="c-id">c8</td><td>Instead, fill up on water: the body is 70% water — 6 to 8 cups a day.<br><span class="cap2">Water a day · <span class="y">6–8 cups</span></span></td></tr><tr><td class="c-id">c9</td><td>If meals change but growth lags, bone age shows your child's true status.<br><span class="cap2">Bone age · <span class="y">shows status</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth status today.<br><span class="cap2">Growth status · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道吗，孩子的身高其实是在餐桌上长出来的。<br><span class="cap2">身高 · 长在<span class="y">餐桌上</span></span></td></tr><tr><td class="c-id">c2</td><td>长高饮食有座金字塔：底部吃够，顶部远离。<br><span class="cap2">饮食金字塔 · 底部吃够</span></td></tr><tr><td class="c-id">c3</td><td>最底层是蛋白质，瘦肉、鱼、豆、蛋唤醒生长激素。<br><span class="cap2">最底层 · <span class="y">蛋白质</span></span></td></tr><tr><td class="c-id">c4</td><td>上一层是钙和维生素D，维生素D把钙送进骨头。<br><span class="cap2">钙 + · <span class="y">维生素D</span></span></td></tr><tr><td class="c-id">c5</td><td>隐藏主角是锌，生蚝、牛肉、坚果推动生长激素。<br><span class="cap2">隐藏主角 · <span class="y">锌</span></span></td></tr><tr><td class="c-id">c6</td><td>铁把氧气送往全身，缺铁就贫血、长得慢。<br><span class="cap2">铁 = · <span class="y">成长动力</span></span></td></tr><tr><td class="c-id">c7</td><td>顶部是糖和快餐，升高胰岛素、阻碍生长激素。<br><span class="cap2">顶部 · <span class="y">糖·快餐</span></span></td></tr><tr><td class="c-id">c8</td><td>用水来填满：身体70%是水，每天6到8杯。<br><span class="cap2">每天喝水 · <span class="y">6–8杯</span></span></td></tr><tr><td class="c-id">c9</td><td>如果换了饮食还是慢，用骨龄看看孩子的成长状态。<br><span class="cap2">骨龄 · <span class="y">看成长状态</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的成长状态吧。<br><span class="cap2">成长状态 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道嗎，孩子的身高其實是在餐桌上長出來的。<br><span class="cap2">身高 · 長在<span class="y">餐桌上</span></span></td></tr><tr><td class="c-id">c2</td><td>長高飲食有座金字塔：底部吃夠，頂部遠離。<br><span class="cap2">飲食金字塔 · 底部吃夠</span></td></tr><tr><td class="c-id">c3</td><td>最底層是蛋白質，瘦肉、魚、豆、蛋喚醒生長激素。<br><span class="cap2">最底層 · <span class="y">蛋白質</span></span></td></tr><tr><td class="c-id">c4</td><td>上一層是鈣和維生素D，維生素D把鈣送進骨頭。<br><span class="cap2">鈣 + · <span class="y">維生素D</span></span></td></tr><tr><td class="c-id">c5</td><td>隱藏主角是鋅，生蠔、牛肉、堅果推動生長激素。<br><span class="cap2">隱藏主角 · <span class="y">鋅</span></span></td></tr><tr><td class="c-id">c6</td><td>鐵把氧氣送往全身，缺鐵就貧血、長得慢。<br><span class="cap2">鐵 = · <span class="y">成長動力</span></span></td></tr><tr><td class="c-id">c7</td><td>頂部是糖和速食，升高胰島素、阻礙生長激素。<br><span class="cap2">頂部 · <span class="y">糖·速食</span></span></td></tr><tr><td class="c-id">c8</td><td>用水來填滿：身體70%是水，每天6到8杯。<br><span class="cap2">每天喝水 · <span class="y">6–8杯</span></span></td></tr><tr><td class="c-id">c9</td><td>如果換了飲食還是慢，用骨齡看看孩子的成長狀態。<br><span class="cap2">骨齡 · <span class="y">看成長狀態</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的成長狀態吧。<br><span class="cap2">成長狀態 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/식단피라미드/</code> · <code>식단피라미드-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

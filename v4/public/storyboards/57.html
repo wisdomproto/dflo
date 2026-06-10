@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 예상키 측정 앱 후기 — 앱 vs 전문 진단</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #57</span>
+  <h1>예상키 측정 앱, 어디까지 믿어도 될까?</h1>
+  <div class="sub">앱은 부모 키로 계산한 평균 추정치 — 진짜 예측키는 뼈나이가 가른다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>앱, 믿어도 돼?</b></div>
+      <div class="subj">우리 아이 예상키</div>
+      <div class="big4"><div class="n" style="font-size:98px">70%</div><div class="lab">만 보는 앱</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 예상키</b> 70%만 보는 앱"</li>
+        <li><b>거대 숫자 "70%"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #57 「예상키 측정 앱 후기 — 앱 vs 전문 진단」 (D. 기타/트렌드)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"예상키 측정 앱, 한 번쯤 돌려보셨죠? 근데 그 숫자, 얼마나 정확할까요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>앱이 알려준 예상키가 우리 아이 진짜 키다 → 앱은 부모 키로 만든 평균 추정치라 뼈나이·환경을 못 본다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>앱은 부모 중간키(MPH) 공식 기반 통계 추정치. 유전은 70~80%일 뿐, 나머지 20~30%와 뼈나이·성조숙증은 앱이 못 본다. 진짜 예측키는 뼈나이 X-ray로 확인한다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>앱을 깎아내리지 않고 \"재미있는 도구\"로 인정 후 한계를 부드럽게 설명. 협박 ❌ → \"아직 키울 수 있는 20~30%가 있다\" 긍정. \"우리 아이 키\" 보편. CTA는 진짜 측정(뼈나이/예측키) 초대</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>앱 숫자에 일희일비 말고, 뼈나이로 진짜 예측키 확인 → 홈페이지 예측키 / 뼈나이 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"예상키 앱 다들 돌려보셨죠?" → 근데 그 숫자 얼마나 정확할까?</p></div><div class="act"><span class="n">ACT 2</span><h4>앱의 원리</h4><p>c3–c4<br>부모 중간키(MPH) 공식 기반 평균 추정 → 유전 70~80%만 본다</p></div><div class="act"><span class="n">ACT 3</span><h4>앱이 놓치는 것</h4><p>c5–c6<br>나머지 20~30%(영양·수면·운동) → 그리고 결정적으로 뼈나이를 못 본다</p></div><div class="act"><span class="n">ACT 4</span><h4>진짜 예측</h4><p>c7–c8<br>빠른 뼈나이=성장판 일찍 닫힘 → 손 X-ray로 남은 성장을 본다</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>앱은 재미, 진짜 예측키는 뼈나이로 → CTA</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">앱, 믿어도 돼?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📱💜</div></div>
+        <div class="ph-cap"><div class="l">예상키 앱 그 숫자</div><div class="l"><span class="y2">얼마나 정확해?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">예상키 측정 앱, 한 번쯤 돌려보셨죠? 근데 그 숫자, 얼마나 정확할까요?</td><td><span class="cap2">예상키 앱 그 숫자<br><span class="y">얼마나 정확해?</span></span></td><td class="mo">📱 슬램 인 + 물음표 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">재미로 보긴 좋아요. 그런데 그 결과에 너무 울고 웃지는 마세요.</td><td><span class="cap2">재미로는 OK<br><span class="y">결과에 일희일비 X</span></span></td><td class="mo">🤔 살짝 갸웃 + 끄덕</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 MPH 공식</span></td><td class="narr">앱 대부분은 아빠 엄마 키를 더한 '중간키' 공식으로 계산해요.</td><td><span class="cap2">아빠+엄마 키로<br><span class="y">중간키 계산</span></span></td><td class="mo">➗ 부모키 합산 + 결과 팝</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr ig">🖼 IG2 유전 70~80%</span></td><td class="narr">즉 유전 70에서 80퍼센트만 본 평균 추정치예요. 우리 아이 한 명만의 값은 아니죠.</td><td><span class="cap2"><span class="y">유전 70~80%만</span><br>평균 추정치</span></td><td class="mo">🧬 70~80% 카운트업</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">나머지 20에서 30퍼센트, 영양·수면·운동은 우리가 키울 수 있는 부분이에요.</td><td><span class="cap2">나머지 20~30%<br><span class="y">키울 수 있어요</span></span></td><td class="mo">📏 펄스 + 20~30% 강조</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23.5s</td><td><span class="scr ig">🖼 IG3 앱이 못 보는 뼈나이</span></td><td class="narr">그리고 결정적으로, 앱은 '뼈나이'를 전혀 못 봐요. 키 예측의 진짜 열쇠인데요.</td><td><span class="cap2"><span class="y">앱은 뼈나이 못 봄</span><br>예측의 진짜 열쇠</span></td><td class="mo">🦴 X-ray 글로우 + ❌→손</td></tr><tr><td class="c-id">c7</td><td class="c-time">23.5–27.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이가 실제 나이보다 빠르면 성장판이 일찍 닫혀서, 앱 숫자보다 작아질 수 있어요.</td><td><span class="cap2">뼈나이 빠르면<br><span class="y">성장판 일찍 닫힘</span></span></td><td class="mo">⏳ 살짝 강조 + 끄덕</td></tr><tr><td class="c-id">c8</td><td class="c-time">27.5–31s</td><td><span class="scr ig">🖼 IG4 손 X-ray 진짜 예측</span></td><td class="narr">그래서 왼손 X-ray로 뼈나이를 보면, 남은 성장이 얼마인지 진짜로 알 수 있어요.</td><td><span class="cap2">왼손 X-ray로<br><span class="y">남은 성장 확인</span></span></td><td class="mo">✋ X-ray 점등 + ✨ 골드</td></tr><tr><td class="c-id">c9</td><td class="c-time">31–34s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">앱은 재미로, 진짜 예측키는 뼈나이로. 그래야 우리 아이 키를 제대로 도와줄 수 있어요.</td><td><span class="cap2">앱은 재미<br><span class="y">진짜는 뼈나이로</span></span></td><td class="mo">🩺💜 따뜻 글로우</td></tr><tr><td class="c-id">c10</td><td class="c-time">34–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">앱 숫자가 궁금했다면, 지금 진짜 예측키를 확인해 보세요.</td><td><span class="cap2">진짜 예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 부모키 합산 → 결과 팝</div><h3>앱의 원리 — 부모 중간키 공식</h3></div>
+        <div class="body">
+          <div class="sketch">📱 ➗</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly smartphone in the center showing a simple calculator/formula concept: a dad silhouette and a mom silhouette on the left feeding into a plus/average symbol, an arrow pointing to a single child silhouette result on the phone screen. Clean, playful, approachable. Brand purple #667eea to mint #2dd4bf gradient, soft glow. Friendly pediatric flat illustration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 위</td><td>아빠 키</td><td>Dad</td><td class="thai">ส่วนสูงพ่อ</td></tr><tr><td>왼쪽 아래</td><td>엄마 키</td><td>Mom</td><td class="thai">ส่วนสูงแม่</td></tr><tr><td>폰 화면</td><td>중간키 결과</td><td>Mid-parent result</td><td class="thai">ผลส่วนสูงกลาง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 70~80% 카운트업 + 도넛 채우기</div><h3>유전 70~80% vs 환경 20~30%</h3></div>
+        <div class="body">
+          <div class="sketch">🧬 🌱</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A clean donut/pie split into a large dominant arc and a smaller arc; the large arc shows a DNA helix motif (genetics), the smaller arc shows a sprout/leaf motif (environment) glowing brighter and more hopeful. Balanced, optimistic. Brand purple #667eea for the large arc, mint #2dd4bf glow for the small sprout arc. Friendly flat illustration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>큰 호</td><td>유전 70~80%</td><td>Genes 70–80%</td><td class="thai">พันธุกรรม 70–80%</td></tr><tr><td>작은 호(글로우)</td><td>환경 20~30%</td><td>Environment 20–30%</td><td class="thai">สิ่งแวดล้อม 20–30%</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: X-ray 글로우 + 폰에 ❌</div><h3>앱이 못 보는 뼈나이</h3></div>
+        <div class="body">
+          <div class="sketch">📱 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. On the left a smartphone with a gentle crossed-out / dimmed icon over a hand bone, on the right a glowing left-hand X-ray showing the bones brightly highlighted. The contrast says 'app can't see this, the X-ray can.' Clean, non-scary, hopeful. Brand purple #667eea with mint #2dd4bf glow on the X-ray. Friendly medical flat illustration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(폰)</td><td>앱은 못 봄</td><td>App can't see</td><td class="thai">แอปมองไม่เห็น</td></tr><tr><td>오른쪽(글로우)</td><td>뼈나이</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: X-ray 점등 + 골드 글로우</div><h3>손 X-ray — 남은 성장 확인</h3></div>
+        <div class="body">
+          <div class="sketch">✋ ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly left-hand X-ray with a soft glowing growth-plate gap highlighted at a finger bone, and beside it a gentle upward arrow suggesting 'remaining growth.' Warm golden glow conveying possibility and hope. Brand purple #667eea plus warm gold and mint #2dd4bf accents. Friendly pediatric flat illustration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>손 X-ray</td><td>왼손 X-ray</td><td>Left-hand X-ray</td><td class="thai">X-ray มือซ้าย</td></tr><tr><td>화살표(글로우)</td><td>남은 성장</td><td>Growth left</td><td class="thai">การเติบโตที่เหลือ</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📱</b> 예상키 앱</span><span class="emo"><b>🤔</b> 의문/궁금</span><span class="emo"><b>➗</b> 중간키 공식</span><span class="emo"><b>🧬</b> 유전 70~80%</span><span class="emo"><b>🌱</b> 환경 20~30%</span><span class="emo"><b>📏</b> 키·성장속도</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✋</b> 손 X-ray</span><span class="emo"><b>⏳</b> 성장판/골든타임</span><span class="emo"><b>🩺</b> 전문 진단</span><span class="emo"><b>✨</b> 희망·강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>예상키 측정 앱, 한 번쯤 돌려보셨죠? 근데 그 숫자, 얼마나 정확할까요?<br><span class="cap2">예상키 앱 그 숫자 · <span class="y">얼마나 정확해?</span></span></td></tr><tr><td class="c-id">c2</td><td>재미로 보긴 좋아요. 그런데 그 결과에 너무 울고 웃지는 마세요.<br><span class="cap2">재미로는 OK · <span class="y">결과에 일희일비 X</span></span></td></tr><tr><td class="c-id">c3</td><td>앱 대부분은 아빠 엄마 키를 더한 '중간키' 공식으로 계산해요.<br><span class="cap2">아빠+엄마 키로 · <span class="y">중간키 계산</span></span></td></tr><tr><td class="c-id">c4</td><td>즉 유전 70에서 80퍼센트만 본 평균 추정치예요. 우리 아이 한 명만의 값은 아니죠.<br><span class="cap2">유전 70~80%만 · 평균 추정치</span></td></tr><tr><td class="c-id">c5</td><td>나머지 20에서 30퍼센트, 영양·수면·운동은 우리가 키울 수 있는 부분이에요.<br><span class="cap2">나머지 20~30% · <span class="y">키울 수 있어요</span></span></td></tr><tr><td class="c-id">c6</td><td>그리고 결정적으로, 앱은 '뼈나이'를 전혀 못 봐요. 키 예측의 진짜 열쇠인데요.<br><span class="cap2">앱은 뼈나이 못 봄 · 예측의 진짜 열쇠</span></td></tr><tr><td class="c-id">c7</td><td>뼈나이가 실제 나이보다 빠르면 성장판이 일찍 닫혀서, 앱 숫자보다 작아질 수 있어요.<br><span class="cap2">뼈나이 빠르면 · <span class="y">성장판 일찍 닫힘</span></span></td></tr><tr><td class="c-id">c8</td><td>그래서 왼손 X-ray로 뼈나이를 보면, 남은 성장이 얼마인지 진짜로 알 수 있어요.<br><span class="cap2">왼손 X-ray로 · <span class="y">남은 성장 확인</span></span></td></tr><tr><td class="c-id">c9</td><td>앱은 재미로, 진짜 예측키는 뼈나이로. 그래야 우리 아이 키를 제대로 도와줄 수 있어요.<br><span class="cap2">앱은 재미 · <span class="y">진짜는 뼈나이로</span></span></td></tr><tr><td class="c-id">c10</td><td>앱 숫자가 궁금했다면, 지금 진짜 예측키를 확인해 보세요.<br><span class="cap2">진짜 예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>แอปทำนายส่วนสูง เคยลองกันใช่ไหม? แต่ตัวเลขนั้นแม่นแค่ไหน?<br><span class="cap2">แอปทำนายส่วนสูง · <span class="y">แม่นแค่ไหน?</span></span></td></tr><tr><td class="c-id">c2</td><td>ดูสนุกๆ ก็โอเค แต่อย่าเพิ่งดีใจหรือเสียใจกับผลมากนัก<br><span class="cap2">สนุกๆ ก็โอเค · <span class="y">อย่าจริงจังกับผล</span></span></td></tr><tr><td class="c-id">c3</td><td>แอปส่วนใหญ่คำนวณจากสูตร 'ส่วนสูงกลาง' ของพ่อกับแม่<br><span class="cap2">จากส่วนสูงพ่อแม่ · <span class="y">สูตรส่วนสูงกลาง</span></span></td></tr><tr><td class="c-id">c4</td><td>คือดูแค่พันธุกรรม 70–80% เป็นค่าเฉลี่ย ไม่ใช่ของลูกเราคนเดียว<br><span class="cap2">พันธุกรรม 70–80% · แค่ค่าเฉลี่ย</span></td></tr><tr><td class="c-id">c5</td><td>อีก 20–30% คือ อาหาร การนอน การออกกำลังกาย ส่วนที่เราเพิ่มได้<br><span class="cap2">อีก 20–30% · <span class="y">เราเพิ่มได้</span></span></td></tr><tr><td class="c-id">c6</td><td>และที่สำคัญสุด แอปดู 'อายุกระดูก' ไม่ได้เลย ทั้งที่เป็นกุญแจสำคัญ<br><span class="cap2">แอปดูอายุกระดูกไม่ได้ · กุญแจสำคัญ</span></td></tr><tr><td class="c-id">c7</td><td>ถ้าอายุกระดูกเร็วกว่าอายุจริง แผ่นกระดูกปิดเร็ว อาจเตี้ยกว่าที่แอปบอก<br><span class="cap2">อายุกระดูกเร็ว · <span class="y">แผ่นกระดูกปิดเร็ว</span></span></td></tr><tr><td class="c-id">c8</td><td>ดังนั้น X-ray มือซ้ายดูอายุกระดูก จะรู้จริงว่าเหลือการเติบโตอีกเท่าไร<br><span class="cap2">X-ray มือซ้าย · <span class="y">รู้การเติบโตที่เหลือ</span></span></td></tr><tr><td class="c-id">c9</td><td>แอปไว้สนุก ส่วนการทำนายจริงใช้อายุกระดูก ถึงจะช่วยลูกได้ถูกทาง<br><span class="cap2">แอปไว้สนุก · <span class="y">ของจริงคืออายุกระดูก</span></span></td></tr><tr><td class="c-id">c10</td><td>ถ้าสงสัยตัวเลขจากแอป มาเช็กส่วนสูงทำนายจริงวันนี้<br><span class="cap2">ส่วนสูงทำนายจริง · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>App dự đoán chiều cao, ai cũng từng thử nhỉ? Nhưng con số đó chính xác đến đâu?<br><span class="cap2">App dự đoán chiều cao · <span class="y">chính xác đến đâu?</span></span></td></tr><tr><td class="c-id">c2</td><td>Xem cho vui thì được. Nhưng đừng quá vui hay buồn vì kết quả đó.<br><span class="cap2">Xem cho vui thì OK · <span class="y">đừng vui buồn theo</span></span></td></tr><tr><td class="c-id">c3</td><td>Hầu hết app tính bằng công thức 'chiều cao trung bình' của bố và mẹ.<br><span class="cap2">Từ chiều cao bố mẹ · <span class="y">công thức trung bình</span></span></td></tr><tr><td class="c-id">c4</td><td>Tức chỉ nhìn 70–80% là di truyền — một con số trung bình, không riêng cho con bạn.<br><span class="cap2">Chỉ 70–80% di truyền · là số trung bình</span></td></tr><tr><td class="c-id">c5</td><td>20–30% còn lại — dinh dưỡng, giấc ngủ, vận động — là phần ta có thể tăng thêm.<br><span class="cap2">20–30% còn lại · <span class="y">ta tăng được</span></span></td></tr><tr><td class="c-id">c6</td><td>Và quan trọng nhất: app hoàn toàn không thấy 'tuổi xương' — chìa khóa thật sự.<br><span class="cap2">App không thấy tuổi xương · chìa khóa thật sự</span></td></tr><tr><td class="c-id">c7</td><td>Nếu tuổi xương vượt tuổi thật, sụn đóng sớm — con có thể thấp hơn số app báo.<br><span class="cap2">Tuổi xương vượt · <span class="y">sụn đóng sớm</span></span></td></tr><tr><td class="c-id">c8</td><td>Vì vậy chụp X-quang bàn tay trái xem tuổi xương sẽ biết thật còn lại bao nhiêu để cao.<br><span class="cap2">X-quang tay trái · <span class="y">biết phần còn lại</span></span></td></tr><tr><td class="c-id">c9</td><td>App để cho vui, dự đoán thật thì dựa vào tuổi xương — mới giúp con đúng cách.<br><span class="cap2">App cho vui · <span class="y">thật thì tuổi xương</span></span></td></tr><tr><td class="c-id">c10</td><td>Nếu tò mò con số trên app, hãy kiểm tra chiều cao dự đoán thật ngay hôm nay.<br><span class="cap2">Chiều cao dự đoán thật · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>You've all tried a height-prediction app, right? But how accurate is that number?<br><span class="cap2">That height-app number · <span class="y">how accurate?</span></span></td></tr><tr><td class="c-id">c2</td><td>It's fine for fun. Just don't let that result make or break your day.<br><span class="cap2">Fun? Sure · <span class="y">don't over-react</span></span></td></tr><tr><td class="c-id">c3</td><td>Most apps just use a 'mid-parent' formula from mom's and dad's height.<br><span class="cap2">From parents' height · <span class="y">mid-parent formula</span></span></td></tr><tr><td class="c-id">c4</td><td>So it only sees the 70–80% that's genetic — an average, not your child alone.<br><span class="cap2">Only 70–80% genes · just an average</span></td></tr><tr><td class="c-id">c5</td><td>The other 20–30% — nutrition, sleep, exercise — is what we can grow.<br><span class="cap2">The other 20–30% · <span class="y">we can grow it</span></span></td></tr><tr><td class="c-id">c6</td><td>And crucially, an app can't see 'bone age' at all — the real key to prediction.<br><span class="cap2">Apps can't see bone age · the real key</span></td></tr><tr><td class="c-id">c7</td><td>If bone age runs ahead, the plates close early — your child may end up below the app's number.<br><span class="cap2">Bone age ahead · <span class="y">plates close early</span></span></td></tr><tr><td class="c-id">c8</td><td>So a left-hand X-ray of bone age shows, for real, how much growth is left.<br><span class="cap2">Left-hand X-ray · <span class="y">growth left, for real</span></span></td></tr><tr><td class="c-id">c9</td><td>Apps for fun, real prediction from bone age — that's how you truly help your child.<br><span class="cap2">Apps for fun · <span class="y">bone age for real</span></span></td></tr><tr><td class="c-id">c10</td><td>Curious about that app number? Check your child's real predicted height today.<br><span class="cap2">Real predicted height · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>预测身高的App，大家都玩过吧？但那个数字到底准不准？<br><span class="cap2">预测身高App的数字 · 到底<span class="y">准不准？</span></span></td></tr><tr><td class="c-id">c2</td><td>图个乐可以，但别为那个结果患得患失。<br><span class="cap2">图个乐可以 · <span class="y">别患得患失</span></span></td></tr><tr><td class="c-id">c3</td><td>大多数App只是用爸妈身高算出的'中间身高'公式。<br><span class="cap2">用爸妈身高 · 算<span class="y">中间身高</span></span></td></tr><tr><td class="c-id">c4</td><td>也就是只看了遗传的70到80%，是平均值，不是你家孩子专属的。<br><span class="cap2">只看遗传70~80% · 只是平均值</span></td></tr><tr><td class="c-id">c5</td><td>剩下的20到30%——营养、睡眠、运动——是我们能争取的部分。<br><span class="cap2">剩下20~30% · <span class="y">我们能争取</span></span></td></tr><tr><td class="c-id">c6</td><td>而最关键的是，App根本看不到'骨龄'——预测身高真正的钥匙。<br><span class="cap2">App看不到骨龄 · 真正的钥匙</span></td></tr><tr><td class="c-id">c7</td><td>骨龄如果超前，生长板提前闭合，可能比App的数字还矮。<br><span class="cap2">骨龄超前 · <span class="y">生长板早闭</span></span></td></tr><tr><td class="c-id">c8</td><td>所以拍左手X光看骨龄，才能真正知道还剩多少成长空间。<br><span class="cap2">左手X光 · <span class="y">看剩余成长</span></span></td></tr><tr><td class="c-id">c9</td><td>App用来玩，真正预测靠骨龄，这样才能真正帮到孩子。<br><span class="cap2">App用来玩 · <span class="y">真预测靠骨龄</span></span></td></tr><tr><td class="c-id">c10</td><td>如果好奇App的数字，现在就来查查孩子真正的预测身高吧。<br><span class="cap2">真正预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>預測身高的App，大家都玩過吧？但那個數字到底準不準？<br><span class="cap2">預測身高App的數字 · 到底<span class="y">準不準？</span></span></td></tr><tr><td class="c-id">c2</td><td>圖個樂可以，但別為那個結果患得患失。<br><span class="cap2">圖個樂可以 · <span class="y">別患得患失</span></span></td></tr><tr><td class="c-id">c3</td><td>大多數App只是用爸媽身高算出的'中間身高'公式。<br><span class="cap2">用爸媽身高 · 算<span class="y">中間身高</span></span></td></tr><tr><td class="c-id">c4</td><td>也就是只看了遺傳的70到80%，是平均值，不是你家孩子專屬的。<br><span class="cap2">只看遺傳70~80% · 只是平均值</span></td></tr><tr><td class="c-id">c5</td><td>剩下的20到30%——營養、睡眠、運動——是我們能爭取的部分。<br><span class="cap2">剩下20~30% · <span class="y">我們能爭取</span></span></td></tr><tr><td class="c-id">c6</td><td>而最關鍵的是，App根本看不到'骨齡'——預測身高真正的鑰匙。<br><span class="cap2">App看不到骨齡 · 真正的鑰匙</span></td></tr><tr><td class="c-id">c7</td><td>骨齡如果超前，生長板提前閉合，可能比App的數字還矮。<br><span class="cap2">骨齡超前 · <span class="y">生長板早閉</span></span></td></tr><tr><td class="c-id">c8</td><td>所以拍左手X光看骨齡，才能真正知道還剩多少成長空間。<br><span class="cap2">左手X光 · <span class="y">看剩餘成長</span></span></td></tr><tr><td class="c-id">c9</td><td>App用來玩，真正預測靠骨齡，這樣才能真正幫到孩子。<br><span class="cap2">App用來玩 · <span class="y">真預測靠骨齡</span></span></td></tr><tr><td class="c-id">c10</td><td>如果好奇App的數字，現在就來查查孩子真正的預測身高吧。<br><span class="cap2">真正預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/예상키앱후기/</code> · <code>예상키앱후기-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 우리 아이 성장 일지 만드는 법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #35</span>
+  <h1>성장 일지 한 권이 키를 바꾼다 — 우리 아이 성장 기록법</h1>
+  <div class="sub">키·체중·수면·식단을 기록하면 보이는 것들 — 곡선의 '방향'이 키를 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>기록만 해도!</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">한 줄</div><div class="lab">기록의 힘</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 한 줄기록의 힘"</li>
+        <li><b>거대 숫자 "한 줄"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #35 「우리 아이 성장 일지 만드는 법」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 키, 매달 '한 줄' 기록만 해도 달라지는 거 아세요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>키는 가끔 한 번 재보면 충분하다 → 한두 번 측정으론 우리 아이만의 성장 곡선을 못 본다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>매달 같은 조건 기록 → 한 점이 아닌 '곡선의 방향'이 보인다. 추이가 꺾이면 조기 발견, 그게 성장 일지의 힘</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정("기록 한 줄이면 충분, 오늘부터"). "우리 아이 키" 보편. CTA는 측정 유도(뼈나이/예측키)</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장 곡선 지금 확인 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"한 줄 기록이 키를 바꾼다 / 한 번 측정은 부족"</p></div><div class="act"><span class="n">ACT 2</span><h4>무엇을 기록</h4><p>c3–c4<br>"키·체중·수면·식단·운동 + 같은 조건"</p></div><div class="act"><span class="n">ACT 3</span><h4>성장 도표·백분위</h4><p>c5–c6<br>"백분위 = 또래 속 위치 / 숫자보다 곡선"</p></div><div class="act"><span class="n">ACT 4</span><h4>곡선의 방향</h4><p>c7–c8<br>"꾸준히↑ 정상 / 꺾이면 조기 발견"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 곡선 완성 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">기록만 해도?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📓✨</div></div>
+        <div class="ph-cap"><div class="l">매달 한 줄</div><div class="l"><span class="y2">기록의 힘</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 키, 매달 '한 줄' 기록만 해도 달라지는 거 아세요?</td><td><span class="cap2">매달 한 줄<br><span class="y">기록의 힘</span></span></td><td class="mo">📓 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">키는 한두 번 재서는 몰라요. 우리 아이만의 성장 곡선이 안 보이거든요.</td><td><span class="cap2">한 번은 부족<br><span class="y">곡선이 핵심</span></span></td><td class="mo">📍 한 점 → ❓ 흔들</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 기록 항목</span></td><td class="narr">그래서 매달 키·체중에 수면, 식단, 운동까지 같이 적어요.</td><td><span class="cap2">키·체중에<br><span class="y">수면·식단·운동</span></span></td><td class="mo">📏💤🍎🏃 순차 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">비결은 '같은 조건'. 매달 같은 날, 아침 공복, 가벼운 옷차림으로요.</td><td><span class="cap2">같은 날·아침 공복<br><span class="y">조건이 같아야</span></span></td><td class="mo">🗓️ 도장 콕 + 똑같이</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 백분위</span></td><td class="narr">기록을 성장 도표에 올리면, 또래 100명 중 우리 아이 위치가 보여요.</td><td><span class="cap2">또래 100명 중<br><span class="y">우리 아이 위치</span></span></td><td class="mo">🧒×100 정렬 + 50번째 ✨ 점등</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">근데 몇 번째냐보다 더 중요한 건, 곡선이 어디로 가느냐예요.</td><td><span class="cap2">숫자보다<br><span class="y">곡선의 방향</span></span></td><td class="mo">🔢 vs 📈 · 곡선 강조</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG3 곡선의 방향</span></td><td class="narr">곡선이 자기 길을 꾸준히 따라가면 잘 크는 거예요. 그게 안심 신호죠.</td><td><span class="cap2">꾸준히 따라가면<br><span class="y">잘 크는 신호</span></span></td><td class="mo">📈 꾸준히↑ vs ➡️ 평탄 깜빡</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 조기 발견</span></td><td class="narr">혹시 곡선이 갑자기 꺾여도, 일지가 있으면 일찍 발견해 도울 수 있어요.</td><td><span class="cap2">꺾여도 일찍 발견<br><span class="y">그게 일지의 힘</span></span></td><td class="mo">🔎 + 곡선 꺾임 포착 골드</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">여기에 뼈나이까지 더하면, 우리 아이 성장 곡선이 완성돼요.</td><td><span class="cap2">뼈나이를 더하면<br><span class="y">곡선이 완성</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 곡선, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장 곡선<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 4아이콘 순차 점등</div><h3>성장 일지 — 기록 항목</h3></div>
+        <div class="body">
+          <div class="sketch">📓 📏 💤 🍎</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. An open friendly growth journal/notebook in the center with a soft purple cover; around it four simple rounded icons float and connect with thin lines: a height ruler, a sleeping crescent-moon-and-pillow, a healthy apple/meal plate, and a running shoe. Brand purple #667eea with mint #2dd4bf accents, gentle glow on the notebook, pediatric and warm. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>키·체중</td><td>Height</td><td class="thai">ส่วนสูง</td></tr><tr><td>아이콘2</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>아이콘3</td><td>식단</td><td>Meals</td><td class="thai">อาหาร</td></tr><tr><td>아이콘4</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 100명 정렬 + 50번째 점등</div><h3>백분위 — 또래 속 위치</h3></div>
+        <div class="body">
+          <div class="sketch">🧒 📊</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A neat row/grid of 100 tiny identical child silhouettes arranged by height from short to tall, left to right; one child in the middle is highlighted in brand purple with a soft glow and a small upward marker above its head while the rest are light grey. Conveys 'where my child stands among peers.' Brand purple #667eea, mint #2dd4bf accent. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>강조 아이 위</td><td>50번째</td><td>50th</td><td class="thai">อันดับ 50</td></tr><tr><td>하단</td><td>또래 100명</td><td>100 peers</td><td class="thai">เด็ก 100 คน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c7 · 모션: 꾸준히↑ vs 평탄 대비</div><h3>곡선의 방향 — 잘 크는 신호</h3></div>
+        <div class="body">
+          <div class="sketch">📈 ✅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A growth chart with faint grey percentile band lines; one bright bold line (brand purple to mint gradient) rises smoothly and steadily following its own band, with a small green check-circle and sparkle at its tip. A second faint dotted line bends flat as a soft contrast. Conveys 'steady curve = growing well.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상승선 끝</td><td>꾸준히 ↑</td><td>Steady ↑</td><td class="thai">สม่ำเสมอ ↑</td></tr><tr><td>평탄선</td><td>추이 관찰</td><td>Watch trend</td><td class="thai">เฝ้าดูแนวโน้ม</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 돋보기 포착 골드 글로우</div><h3>조기 발견 — 일지의 힘</h3></div>
+        <div class="body">
+          <div class="sketch">🔎 📓</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A growth curve that bends/dips at one point, with a magnifying glass hovering over that exact bend point and a warm golden glow circle marking it; an open journal sits at the bottom corner as the source. Reassuring, not alarming — gentle and caring tone. Brand purple #667eea with warm gold accents. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>돋보기 지점</td><td>조기 발견</td><td>Early catch</td><td class="thai">พบแต่เนิ่นๆ</td></tr><tr><td>하단(일지)</td><td>성장 일지</td><td>Growth journal</td><td class="thai">สมุดบันทึก</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📓</b> 성장 일지</span><span class="emo"><b>📏</b> 키·측정</span><span class="emo"><b>⚖️</b> 체중</span><span class="emo"><b>💤</b> 수면</span><span class="emo"><b>🍎</b> 식단</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🗓️</b> 같은 조건·정기</span><span class="emo"><b>📊</b> 백분위</span><span class="emo"><b>📈</b> 성장 곡선</span><span class="emo"><b>🔎</b> 조기 발견</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 키, 매달 '한 줄' 기록만 해도 달라지는 거 아세요?<br><span class="cap2">매달 한 줄 · <span class="y">기록의 힘</span></span></td></tr><tr><td class="c-id">c2</td><td>키는 한두 번 재서는 몰라요. 우리 아이만의 성장 곡선이 안 보이거든요.<br><span class="cap2">한 번은 부족 · <span class="y">곡선이 핵심</span></span></td></tr><tr><td class="c-id">c3</td><td>그래서 매달 키·체중에 수면, 식단, 운동까지 같이 적어요.<br><span class="cap2">키·체중에 · <span class="y">수면·식단·운동</span></span></td></tr><tr><td class="c-id">c4</td><td>비결은 '같은 조건'. 매달 같은 날, 아침 공복, 가벼운 옷차림으로요.<br><span class="cap2">같은 날·아침 공복 · <span class="y">조건이 같아야</span></span></td></tr><tr><td class="c-id">c5</td><td>기록을 성장 도표에 올리면, 또래 100명 중 우리 아이 위치가 보여요.<br><span class="cap2">또래 100명 중 · <span class="y">우리 아이 위치</span></span></td></tr><tr><td class="c-id">c6</td><td>근데 몇 번째냐보다 더 중요한 건, 곡선이 어디로 가느냐예요.<br><span class="cap2">숫자보다 · <span class="y">곡선의 방향</span></span></td></tr><tr><td class="c-id">c7</td><td>곡선이 자기 길을 꾸준히 따라가면 잘 크는 거예요. 그게 안심 신호죠.<br><span class="cap2">꾸준히 따라가면 · <span class="y">잘 크는 신호</span></span></td></tr><tr><td class="c-id">c8</td><td>혹시 곡선이 갑자기 꺾여도, 일지가 있으면 일찍 발견해 도울 수 있어요.<br><span class="cap2">꺾여도 일찍 발견 · <span class="y">그게 일지의 힘</span></span></td></tr><tr><td class="c-id">c9</td><td>여기에 뼈나이까지 더하면, 우리 아이 성장 곡선이 완성돼요.<br><span class="cap2">뼈나이를 더하면 · <span class="y">곡선이 완성</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 곡선, 지금 바로 확인해 보세요.<br><span class="cap2">성장 곡선 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่าแค่จดส่วนสูงลูกเดือนละบรรทัด ก็เปลี่ยนได้?<br><span class="cap2">จดเดือนละบรรทัด · <span class="y">พลังการจดบันทึก</span></span></td></tr><tr><td class="c-id">c2</td><td>วัดแค่ครั้งสองครั้งไม่รู้หรอก เพราะมองไม่เห็นเส้นโค้งของลูก<br><span class="cap2">ครั้งเดียวไม่พอ · <span class="y">ต้องดูเส้นโค้ง</span></span></td></tr><tr><td class="c-id">c3</td><td>ดังนั้นทุกเดือนจดส่วนสูง น้ำหนัก พร้อมการนอน อาหาร การออกกำลังกาย<br><span class="cap2">ส่วนสูง น้ำหนัก · <span class="y">นอน·อาหาร·ออกกำลัง</span></span></td></tr><tr><td class="c-id">c4</td><td>เคล็ดลับคือเงื่อนไขเดียวกัน วันเดิม ตอนเช้าท้องว่าง ใส่เสื้อผ้าเบาๆ<br><span class="cap2">วันเดิม เช้าท้องว่าง · <span class="y">เงื่อนไขต้องเหมือนกัน</span></span></td></tr><tr><td class="c-id">c5</td><td>นำบันทึกใส่แผนภูมิ จะเห็นตำแหน่งลูกในเด็ก 100 คนวัยเดียวกัน<br><span class="cap2">ในเด็ก 100 คน · <span class="y">ตำแหน่งของลูก</span></span></td></tr><tr><td class="c-id">c6</td><td>แต่สำคัญกว่าอันดับ คือเส้นโค้งกำลังไปทางไหน<br><span class="cap2">ไม่ใช่อันดับ · <span class="y">ทิศทางเส้นโค้ง</span></span></td></tr><tr><td class="c-id">c7</td><td>ถ้าเส้นโค้งไปตามทางของตัวเองสม่ำเสมอ แปลว่าโตดี เป็นสัญญาณอุ่นใจ<br><span class="cap2">ไปตามทางสม่ำเสมอ · <span class="y">สัญญาณโตดี</span></span></td></tr><tr><td class="c-id">c8</td><td>ถ้าเส้นโค้งหักลงกะทันหัน มีสมุดบันทึกก็พบเร็ว ช่วยได้ทัน<br><span class="cap2">หักก็พบเร็ว · <span class="y">นี่คือพลังสมุดบันทึก</span></span></td></tr><tr><td class="c-id">c9</td><td>เพิ่มอายุกระดูกเข้าไป เส้นโค้งการเติบโตของลูกก็สมบูรณ์<br><span class="cap2">เพิ่มอายุกระดูก · <span class="y">เส้นโค้งสมบูรณ์</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กเส้นโค้งการเติบโตของลูกวันนี้<br><span class="cap2">เส้นโค้งการเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết chỉ cần ghi chiều cao con mỗi tháng một dòng là đã khác?<br><span class="cap2">Mỗi tháng một dòng · <span class="y">sức mạnh ghi chép</span></span></td></tr><tr><td class="c-id">c2</td><td>Đo một hai lần không thấy gì — vì chưa thấy đường cong của con.<br><span class="cap2">Một lần chưa đủ · <span class="y">phải xem đường cong</span></span></td></tr><tr><td class="c-id">c3</td><td>Nên mỗi tháng ghi chiều cao, cân nặng, cùng giấc ngủ, ăn uống, vận động.<br><span class="cap2">Cao, cân nặng · <span class="y">ngủ·ăn·vận động</span></span></td></tr><tr><td class="c-id">c4</td><td>Bí quyết là 'cùng điều kiện': cùng ngày, sáng bụng đói, mặc đồ nhẹ.<br><span class="cap2">Cùng ngày, sáng đói · <span class="y">cùng điều kiện</span></span></td></tr><tr><td class="c-id">c5</td><td>Đưa số liệu lên biểu đồ, bạn thấy con đứng đâu trong 100 bạn cùng tuổi.<br><span class="cap2">Trong 100 bạn · <span class="y">vị trí của con</span></span></td></tr><tr><td class="c-id">c6</td><td>Nhưng quan trọng hơn thứ hạng là đường cong đang đi về đâu.<br><span class="cap2">Hơn cả thứ hạng · <span class="y">hướng đường cong</span></span></td></tr><tr><td class="c-id">c7</td><td>Nếu đường cong đi đều theo lối của nó, con đang lớn tốt — dấu hiệu yên tâm.<br><span class="cap2">Đi đều theo lối · <span class="y">dấu hiệu lớn tốt</span></span></td></tr><tr><td class="c-id">c8</td><td>Nếu đường cong bỗng gãy, có nhật ký sẽ phát hiện sớm và giúp kịp.<br><span class="cap2">Gãy vẫn phát hiện sớm · <span class="y">sức mạnh nhật ký</span></span></td></tr><tr><td class="c-id">c9</td><td>Thêm cả tuổi xương nữa, đường cong tăng trưởng của con mới trọn vẹn.<br><span class="cap2">Thêm tuổi xương · <span class="y">đường cong trọn vẹn</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra đường cong tăng trưởng của con ngay hôm nay.<br><span class="cap2">Đường cong tăng trưởng · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know one line a month is all it takes for your child's height?<br><span class="cap2">One line a month · <span class="y">power of records</span></span></td></tr><tr><td class="c-id">c2</td><td>One or two measurements tell you nothing — you can't see the curve yet.<br><span class="cap2">One isn't enough · <span class="y">the curve matters</span></span></td></tr><tr><td class="c-id">c3</td><td>So each month, log height and weight — plus sleep, meals, and exercise.<br><span class="cap2">Height &amp; weight · <span class="y">sleep·meals·move</span></span></td></tr><tr><td class="c-id">c4</td><td>The trick? Same conditions — same day, morning, empty stomach, light clothes.<br><span class="cap2">Same day &amp; morning · <span class="y">same conditions</span></span></td></tr><tr><td class="c-id">c5</td><td>Plot it on a growth chart and you see where your child sits among 100 peers.<br><span class="cap2">Among 100 peers · <span class="y">your child's spot</span></span></td></tr><tr><td class="c-id">c6</td><td>But more than the rank, what matters is where the curve is heading.<br><span class="cap2">More than rank · <span class="y">the curve's direction</span></span></td></tr><tr><td class="c-id">c7</td><td>If the curve follows its own track steadily, your child is growing well.<br><span class="cap2">Steady on track · <span class="y">growing well</span></span></td></tr><tr><td class="c-id">c8</td><td>If the curve ever bends, a journal helps you catch it early and act in time.<br><span class="cap2">Catch it early · <span class="y">the journal's power</span></span></td></tr><tr><td class="c-id">c9</td><td>Add bone age to that, and your child's growth curve is complete.<br><span class="cap2">Add bone age · <span class="y">curve complete</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth curve today.<br><span class="cap2">Growth curve · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道每月记一行，孩子的身高就能不一样吗？<br><span class="cap2">每月一行 · <span class="y">记录的力量</span></span></td></tr><tr><td class="c-id">c2</td><td>量一两次看不出来，因为看不到孩子自己的成长曲线。<br><span class="cap2">一次不够 · <span class="y">曲线才关键</span></span></td></tr><tr><td class="c-id">c3</td><td>所以每月记下身高、体重，还有睡眠、饮食、运动。<br><span class="cap2">身高体重 · <span class="y">睡眠·饮食·运动</span></span></td></tr><tr><td class="c-id">c4</td><td>诀窍是'同样条件'：每月同一天、早晨空腹、穿轻便衣服。<br><span class="cap2">同一天·空腹 · <span class="y">条件要一致</span></span></td></tr><tr><td class="c-id">c5</td><td>把记录画到成长图上，就能看到孩子在100个同龄人中的位置。<br><span class="cap2">100个同龄人中 · <span class="y">孩子的位置</span></span></td></tr><tr><td class="c-id">c6</td><td>但比名次更重要的，是曲线往哪个方向走。<br><span class="cap2">比名次更重要 · <span class="y">曲线的方向</span></span></td></tr><tr><td class="c-id">c7</td><td>曲线稳稳沿着自己的轨道走，就是长得好，是安心信号。<br><span class="cap2">稳稳沿轨道 · <span class="y">长得好的信号</span></span></td></tr><tr><td class="c-id">c8</td><td>万一曲线突然下弯，有日志就能早发现、早帮忙。<br><span class="cap2">下弯也早发现 · <span class="y">这就是日志的力量</span></span></td></tr><tr><td class="c-id">c9</td><td>再加上骨龄，孩子的成长曲线就完整了。<br><span class="cap2">加上骨龄 · <span class="y">曲线就完整</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的成长曲线吧。<br><span class="cap2">成长曲线 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道每月記一行，孩子的身高就能不一樣嗎？<br><span class="cap2">每月一行 · <span class="y">記錄的力量</span></span></td></tr><tr><td class="c-id">c2</td><td>量一兩次看不出來，因為看不到孩子自己的成長曲線。<br><span class="cap2">一次不夠 · <span class="y">曲線才關鍵</span></span></td></tr><tr><td class="c-id">c3</td><td>所以每月記下身高、體重，還有睡眠、飲食、運動。<br><span class="cap2">身高體重 · <span class="y">睡眠·飲食·運動</span></span></td></tr><tr><td class="c-id">c4</td><td>訣竅是'同樣條件'：每月同一天、早晨空腹、穿輕便衣服。<br><span class="cap2">同一天·空腹 · <span class="y">條件要一致</span></span></td></tr><tr><td class="c-id">c5</td><td>把記錄畫到成長圖上，就能看到孩子在100個同齡人中的位置。<br><span class="cap2">100個同齡人中 · <span class="y">孩子的位置</span></span></td></tr><tr><td class="c-id">c6</td><td>但比名次更重要的，是曲線往哪個方向走。<br><span class="cap2">比名次更重要 · <span class="y">曲線的方向</span></span></td></tr><tr><td class="c-id">c7</td><td>曲線穩穩沿著自己的軌道走，就是長得好，是安心信號。<br><span class="cap2">穩穩沿軌道 · <span class="y">長得好的信號</span></span></td></tr><tr><td class="c-id">c8</td><td>萬一曲線突然下彎，有日誌就能早發現、早幫忙。<br><span class="cap2">下彎也早發現 · <span class="y">這就是日誌的力量</span></span></td></tr><tr><td class="c-id">c9</td><td>再加上骨齡，孩子的成長曲線就完整了。<br><span class="cap2">加上骨齡 · <span class="y">曲線就完整</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的成長曲線吧。<br><span class="cap2">成長曲線 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/성장일지/</code> · <code>성장일지-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

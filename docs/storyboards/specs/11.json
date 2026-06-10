@@ -1,0 +1,787 @@
+{
+  "n": 11,
+  "slug": "고환크기신호",
+  "title": "남자아이 사춘기 — 키·목소리보다 먼저 오는 신호",
+  "sub": "키가 크거나 목소리가 변하기 전, 사춘기는 '고환 크기'로 가장 먼저 신호를 보낸다",
+  "category": "A. 성장과학",
+  "topicTitle": "남자아이 사춘기 신호",
+  "headerTop": "우리 아들 사춘기",
+  "headerMark": "첫 신호는?",
+  "accentEmoji": "🔍✨",
+  "duration": 35,
+  "hook": "남자아이 사춘기, 키나 목소리보다 먼저 오는 '진짜 첫 신호'가 따로 있어요.",
+  "misconception": "키가 크거나 목소리가 변하면 사춘기 시작 → 사실 그건 한참 뒤의 2차 신호, 첫 신호는 고환 크기 변화",
+  "message": "남아 사춘기 첫 신호는 고환 크기(2.5cm·4ml). 이걸 일찍 알면 빠른 사춘기도 미리 잡아 최종 키를 지킨다",
+  "tone": "협박 ❌ → \"일찍 알면 기회가 있다\" 긍정. \"우리 아이 키\" 보편. 단정 ❌ → 측정·진단 유도",
+  "cta": "우리 아이 사춘기·성장 타이밍, 뼈나이/예측키로 지금 확인 유도",
+  "thumb": {
+    "kicker": "부모 90%가 놓침",
+    "subject": "우리 아들 사춘기 첫 신호",
+    "number": "고환",
+    "numLabel": "크기였다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"키·목소리 아니다 → 첫 신호는 따로 있다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "이유(메커니즘)",
+      "scenes": "c3–c4",
+      "desc": "\"뇌→고환 축, 고환이 가장 먼저 커진다\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "기준·순서",
+      "scenes": "c5–c6",
+      "desc": "\"2.5cm·4ml가 시작, 이후 음모·급성장 순\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "빠르면·골든타임",
+      "scenes": "c7–c8",
+      "desc": "\"9세 전이면 성조숙 의심 → 일찍 알면 기회\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 타이밍 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🔍 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "남자아이 사춘기, 키나 목소리보다 먼저 오는 진짜 첫 신호가 따로 있어요.",
+          "cap": [
+            "키·목소리 아니다",
+            "진짜 첫 신호"
+          ],
+          "hl": "진짜 첫 신호"
+        },
+        "th": {
+          "narr": "วัยแรกรุ่นเด็กชาย สัญญาณแรกจริงๆ มาก่อนความสูงและเสียงแตก",
+          "cap": [
+            "ไม่ใช่ส่วนสูง",
+            "สัญญาณแรกจริง"
+          ],
+          "hl": "สัญญาณแรกจริง"
+        },
+        "vi": {
+          "narr": "Dậy thì bé trai có dấu hiệu đầu tiên thật sự, đến trước cả chiều cao hay vỡ giọng.",
+          "cap": [
+            "Không phải chiều cao",
+            "dấu hiệu đầu tiên"
+          ],
+          "hl": "dấu hiệu đầu tiên"
+        },
+        "en": {
+          "narr": "A boy's puberty has a real first sign — before height or voice change.",
+          "cap": [
+            "Not height or voice",
+            "real first sign"
+          ],
+          "hl": "real first sign"
+        },
+        "cn": {
+          "narr": "男孩青春期，真正的第一个信号比长高和变声更早出现。",
+          "cap": [
+            "不是长高变声",
+            "真正第一信号"
+          ],
+          "hl": "真正第一信号"
+        },
+        "ch": {
+          "narr": "男孩青春期，真正的第一個信號比長高和變聲更早出現。",
+          "cap": [
+            "不是長高變聲",
+            "真正第一信號"
+          ],
+          "hl": "真正第一信號"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🥚 팝 + 🔬 줌",
+      "copy": {
+        "ko": {
+          "narr": "바로 고환 크기 변화예요. 키나 목소리는 한참 뒤에 오는 2차 신호죠.",
+          "cap": [
+            "첫 신호는",
+            "고환 크기"
+          ],
+          "hl": "고환 크기"
+        },
+        "th": {
+          "narr": "นั่นคือขนาดอัณฑะที่เปลี่ยนไป ส่วนสูงและเสียงมาทีหลัง",
+          "cap": [
+            "สัญญาณแรกคือ",
+            "ขนาดอัณฑะ"
+          ],
+          "hl": "ขนาดอัณฑะ"
+        },
+        "vi": {
+          "narr": "Đó là thay đổi kích thước tinh hoàn. Chiều cao và giọng đến sau.",
+          "cap": [
+            "Dấu hiệu đầu là",
+            "kích thước tinh hoàn"
+          ],
+          "hl": "kích thước tinh hoàn"
+        },
+        "en": {
+          "narr": "It's testicle size. Height and voice come much later.",
+          "cap": [
+            "First sign is",
+            "testicle size"
+          ],
+          "hl": "testicle size"
+        },
+        "cn": {
+          "narr": "那就是睾丸大小的变化，长高变声都在后面。",
+          "cap": [
+            "第一信号是",
+            "睾丸大小"
+          ],
+          "hl": "睾丸大小"
+        },
+        "ch": {
+          "narr": "那就是睾丸大小的變化，長高變聲都在後面。",
+          "cap": [
+            "第一信號是",
+            "睾丸大小"
+          ],
+          "hl": "睾丸大小"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "ig",
+      "igLabel": "IG1 호르몬 축",
+      "motion": "🧠→🥚 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "사춘기는 뇌에서 시작돼요. 뇌가 신호를 보내면 고환이 남성호르몬을 만들기 시작하죠.",
+          "cap": [
+            "뇌 → 고환",
+            "호르몬 축 가동"
+          ],
+          "hl": "호르몬 축 가동"
+        },
+        "th": {
+          "narr": "วัยแรกรุ่นเริ่มที่สมอง สมองส่งสัญญาณ อัณฑะจึงสร้างฮอร์โมนเพศชาย",
+          "cap": [
+            "สมอง → อัณฑะ",
+            "แกนฮอร์โมนทำงาน"
+          ],
+          "hl": "แกนฮอร์โมนทำงาน"
+        },
+        "vi": {
+          "narr": "Dậy thì khởi đầu từ não. Não phát tín hiệu, tinh hoàn tạo hormone nam.",
+          "cap": [
+            "Não → tinh hoàn",
+            "trục hormone bật"
+          ],
+          "hl": "trục hormone bật"
+        },
+        "en": {
+          "narr": "Puberty starts in the brain. The brain signals, and the testes make testosterone.",
+          "cap": [
+            "Brain → testes",
+            "hormone axis on"
+          ],
+          "hl": "hormone axis on"
+        },
+        "cn": {
+          "narr": "青春期始于大脑。大脑发信号，睾丸开始制造雄激素。",
+          "cap": [
+            "大脑 → 睾丸",
+            "激素轴启动"
+          ],
+          "hl": "激素轴启动"
+        },
+        "ch": {
+          "narr": "青春期始於大腦。大腦發信號，睾丸開始製造雄激素。",
+          "cap": [
+            "大腦 → 睾丸",
+            "激素軸啟動"
+          ],
+          "hl": "激素軸啟動"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14s",
+      "kind": "doctor",
+      "motion": "📈 카운트업 펄스",
+      "copy": {
+        "ko": {
+          "narr": "그래서 호르몬을 만드는 고환이 가장 먼저, 가장 정확하게 커지는 거예요.",
+          "cap": [
+            "가장 먼저",
+            "고환이 커진다"
+          ],
+          "hl": "고환이 커진다"
+        },
+        "th": {
+          "narr": "อัณฑะที่สร้างฮอร์โมนจึงใหญ่ขึ้นเป็นอย่างแรกและแม่นยำที่สุด",
+          "cap": [
+            "มาเป็นอย่างแรก",
+            "อัณฑะใหญ่ขึ้น"
+          ],
+          "hl": "อัณฑะใหญ่ขึ้น"
+        },
+        "vi": {
+          "narr": "Nên tinh hoàn tạo hormone là nơi to ra đầu tiên và chính xác nhất.",
+          "cap": [
+            "Đầu tiên nhất",
+            "tinh hoàn to ra"
+          ],
+          "hl": "tinh hoàn to ra"
+        },
+        "en": {
+          "narr": "So the hormone-making testes are the first, most accurate part to grow.",
+          "cap": [
+            "The earliest",
+            "testes grow"
+          ],
+          "hl": "testes grow"
+        },
+        "cn": {
+          "narr": "所以制造激素的睾丸最先、最准确地变大。",
+          "cap": [
+            "最先出现",
+            "睾丸变大"
+          ],
+          "hl": "睾丸变大"
+        },
+        "ch": {
+          "narr": "所以製造激素的睾丸最先、最準確地變大。",
+          "cap": [
+            "最先出現",
+            "睾丸變大"
+          ],
+          "hl": "睾丸變大"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14–18s",
+      "kind": "ig",
+      "igLabel": "IG2 측정 기준",
+      "motion": "📏 \"2.5cm·4ml\" 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "기준은 명확해요. 고환 길이 2.5센티, 또는 부피 4밀리리터면 사춘기 시작이에요.",
+          "cap": [
+            "고환 2.5cm",
+            "또는 4ml = 시작"
+          ],
+          "hl": "또는 4ml = 시작"
+        },
+        "th": {
+          "narr": "เกณฑ์ชัดเจน อัณฑะยาว 2.5 ซม. หรือปริมาตร 4 มล. คือเริ่มแล้ว",
+          "cap": [
+            "อัณฑะ 2.5 ซม.",
+            "หรือ 4 มล. = เริ่ม"
+          ],
+          "hl": "หรือ 4 มล. = เริ่ม"
+        },
+        "vi": {
+          "narr": "Mốc rất rõ: tinh hoàn dài 2,5cm, hoặc thể tích 4ml là bắt đầu dậy thì.",
+          "cap": [
+            "Tinh hoàn 2,5cm",
+            "hoặc 4ml = bắt đầu"
+          ],
+          "hl": "hoặc 4ml = bắt đầu"
+        },
+        "en": {
+          "narr": "The mark is clear: 2.5cm long, or 4ml in volume, means puberty has begun.",
+          "cap": [
+            "Testes 2.5cm",
+            "or 4ml = start"
+          ],
+          "hl": "or 4ml = start"
+        },
+        "cn": {
+          "narr": "标准很明确：睾丸长2.5厘米，或体积4毫升，就是青春期开始。",
+          "cap": [
+            "睾丸2.5厘米",
+            "或4毫升=开始"
+          ],
+          "hl": "或4毫升=开始"
+        },
+        "ch": {
+          "narr": "標準很明確：睾丸長2.5公分，或體積4毫升，就是青春期開始。",
+          "cap": [
+            "睾丸2.5公分",
+            "或4毫升=開始"
+          ],
+          "hl": "或4毫升=開始"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–22s",
+      "kind": "ig",
+      "igLabel": "IG3 변화 순서",
+      "motion": "① ② ③ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "이후엔 음모, 그리고 1년쯤 뒤 키가 폭발해요. 1년에 8에서 12센티까지요.",
+          "cap": [
+            "음모 → 급성장",
+            "1년 8~12cm"
+          ],
+          "hl": "1년 8~12cm"
+        },
+        "th": {
+          "narr": "จากนั้นมีขนหัวหน่าว แล้วราว 1 ปีต่อมาส่วนสูงพุ่ง ปีละ 8–12 ซม.",
+          "cap": [
+            "ขนหน่าว → พุ่ง",
+            "8–12 ซม./ปี"
+          ],
+          "hl": "8–12 ซม./ปี"
+        },
+        "vi": {
+          "narr": "Sau đó là lông mu, rồi khoảng 1 năm sau chiều cao bùng nổ — 8 đến 12cm mỗi năm.",
+          "cap": [
+            "Lông mu → tăng vọt",
+            "8–12cm/năm"
+          ],
+          "hl": "8–12cm/năm"
+        },
+        "en": {
+          "narr": "Next comes pubic hair, then about a year later height explodes — 8 to 12cm a year.",
+          "cap": [
+            "Hair → growth spurt",
+            "8–12cm/yr"
+          ],
+          "hl": "8–12cm/yr"
+        },
+        "cn": {
+          "narr": "接着是阴毛，约一年后身高猛长——一年8到12厘米。",
+          "cap": [
+            "阴毛 → 猛长",
+            "8–12厘米/年"
+          ],
+          "hl": "8–12厘米/年"
+        },
+        "ch": {
+          "narr": "接著是陰毛，約一年後身高猛長——一年8到12公分。",
+          "cap": [
+            "陰毛 → 猛長",
+            "8–12公分/年"
+          ],
+          "hl": "8–12公分/年"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 빨강 플래시",
+      "copy": {
+        "ko": {
+          "narr": "그런데 만 9세 전에 고환이 커지면, 빠른 사춘기·성조숙증을 의심해야 해요.",
+          "cap": [
+            "9세 전이면",
+            "성조숙 의심"
+          ],
+          "hl": "성조숙 의심"
+        },
+        "th": {
+          "narr": "แต่ถ้าอัณฑะใหญ่ก่อน 9 ขวบ ต้องสงสัยภาวะเป็นหนุ่มก่อนวัย",
+          "cap": [
+            "ก่อน 9 ขวบ",
+            "สงสัยเป็นหนุ่มก่อนวัย"
+          ],
+          "hl": "สงสัยเป็นหนุ่มก่อนวัย"
+        },
+        "vi": {
+          "narr": "Nhưng nếu tinh hoàn to trước 9 tuổi, hãy nghi dậy thì sớm.",
+          "cap": [
+            "Trước 9 tuổi",
+            "nghi dậy thì sớm"
+          ],
+          "hl": "nghi dậy thì sớm"
+        },
+        "en": {
+          "narr": "But if the testes grow before age 9, suspect early or precocious puberty.",
+          "cap": [
+            "Before age 9",
+            "suspect early puberty"
+          ],
+          "hl": "suspect early puberty"
+        },
+        "cn": {
+          "narr": "但如果9岁前睾丸就变大，要怀疑性早熟。",
+          "cap": [
+            "9岁之前",
+            "怀疑性早熟"
+          ],
+          "hl": "怀疑性早熟"
+        },
+        "ch": {
+          "narr": "但如果9歲前睾丸就變大，要懷疑性早熟。",
+          "cap": [
+            "9歲之前",
+            "懷疑性早熟"
+          ],
+          "hl": "懷疑性早熟"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "ig",
+      "igLabel": "IG4 일찍 알면 기회",
+      "motion": "⏳ 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "빠른 사춘기는 성장판을 일찍 닫지만, 일찍 알면 충분히 기회가 있어요.",
+          "cap": [
+            "일찍 알면",
+            "기회가 있다"
+          ],
+          "hl": "기회가 있다"
+        },
+        "th": {
+          "narr": "แรกรุ่นเร็วทำให้แผ่นกระดูกปิดเร็ว แต่ถ้ารู้เร็วก็ยังมีโอกาส",
+          "cap": [
+            "รู้เร็ว",
+            "ยังมีโอกาส"
+          ],
+          "hl": "ยังมีโอกาส"
+        },
+        "vi": {
+          "narr": "Dậy thì sớm khép sụn sớm, nhưng biết sớm thì vẫn còn cơ hội.",
+          "cap": [
+            "Biết sớm",
+            "vẫn còn cơ hội"
+          ],
+          "hl": "vẫn còn cơ hội"
+        },
+        "en": {
+          "narr": "Early puberty closes the plates sooner, but catching it early keeps the chance open.",
+          "cap": [
+            "Catch it early",
+            "chance stays open"
+          ],
+          "hl": "chance stays open"
+        },
+        "cn": {
+          "narr": "性早熟会让生长板提前闭合，但越早发现，机会就越大。",
+          "cap": [
+            "越早发现",
+            "越有机会"
+          ],
+          "hl": "越有机会"
+        },
+        "ch": {
+          "narr": "性早熟會讓生長板提前閉合，但越早發現，機會就越大。",
+          "cap": [
+            "越早發現",
+            "越有機會"
+          ],
+          "hl": "越有機會"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면 우리 아이 사춘기가 어디쯤인지, 키 기회가 얼마나 남았는지 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "남은 기회 확인"
+          ],
+          "hl": "남은 기회 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกว่าลูกอยู่ช่วงไหน เหลือโอกาสสูงอีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "เช็กเวลาที่เหลือ"
+          ],
+          "hl": "เช็กเวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết con đang ở đâu và còn lại bao nhiêu cơ hội cao.",
+          "cap": [
+            "Tuổi xương",
+            "biết cơ hội còn lại"
+          ],
+          "hl": "biết cơ hội còn lại"
+        },
+        "en": {
+          "narr": "Bone age shows where your child is and how much height chance is left.",
+          "cap": [
+            "Bone age",
+            "see time left"
+          ],
+          "hl": "see time left"
+        },
+        "cn": {
+          "narr": "骨龄能看出孩子到了哪一步，还剩多少长高机会。",
+          "cap": [
+            "看骨龄",
+            "剩余机会一目了然"
+          ],
+          "hl": "剩余机会一目了然"
+        },
+        "ch": {
+          "narr": "骨齡能看出孩子到了哪一步，還剩多少長高機會。",
+          "cap": [
+            "看骨齡",
+            "剩餘機會一目了然"
+          ],
+          "hl": "剩餘機會一目了然"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 사춘기·성장 타이밍, 지금 바로 확인해 보세요.",
+          "cap": [
+            "사춘기·성장 타이밍",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กจังหวะวัยแรกรุ่นและการเติบโตของลูกวันนี้",
+          "cap": [
+            "จังหวะการเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra thời điểm dậy thì và tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Thời điểm tăng trưởng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's puberty and growth timing today.",
+          "cap": [
+            "Growth timing",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的青春期和成长时机吧。",
+          "cap": [
+            "成长时机",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的青春期和成長時機吧。",
+          "cap": [
+            "成長時機",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🧠→🥚 순차 점등",
+      "title": "호르몬 축 — 뇌에서 고환으로",
+      "emojis": [
+        "🧠",
+        "➡️",
+        "🥚"
+      ],
+      "prompt": "Flat vector, square, white bg. A simple downward signal cascade: a friendly brain icon at top connected by a glowing arrow path down to a small gland, then down to a pair of soft rounded oval shapes (testes, tasteful and abstract) that begin to glow as the signal arrives. Brand purple #667eea to mint #2dd4bf gradient along the connecting path, soft glow on the bottom node lighting up. Friendly pediatric, clean. NO text.",
+      "labels": [
+        {
+          "pos": "상단 노드",
+          "ko": "뇌(시상하부)",
+          "en": "Brain",
+          "th": "สมอง"
+        },
+        {
+          "pos": "중간 노드",
+          "ko": "뇌하수체",
+          "en": "Pituitary",
+          "th": "ต่อมใต้สมอง"
+        },
+        {
+          "pos": "하단 노드(글로우)",
+          "ko": "고환 신호 ON",
+          "en": "Testes ON",
+          "th": "อัณฑะ ON"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "📏 카운트업",
+      "title": "고환 측정 기준 — 2.5cm · 4ml",
+      "emojis": [
+        "📏",
+        "🥚"
+      ],
+      "prompt": "Flat vector, square, white bg. A measuring scene: a soft rounded oval shape (testis, abstract and tasteful) next to a vertical ruler/caliper measuring its length, and beside it a small graduated beaker showing a filled volume level. Clean medical-friendly look, brand purple #667eea with mint #2dd4bf accents on the ruler and liquid. Conveys a measurable threshold. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "눈금자 옆",
+          "ko": "길이 2.5cm",
+          "en": "2.5cm long",
+          "th": "ยาว 2.5 ซม."
+        },
+        {
+          "pos": "비커 옆",
+          "ko": "부피 4ml",
+          "en": "4ml volume",
+          "th": "ปริมาตร 4 มล."
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "① ② ③ 순차 점등 + 🚀",
+      "title": "변화 순서 — 고환 → 음모 → 급성장",
+      "emojis": [
+        "🥚",
+        "🌱",
+        "🚀"
+      ],
+      "prompt": "Flat vector, square, white bg. Three sequential milestone steps rising left to right like stepping stones: step 1 a small glowing oval, step 2 a sprouting seedling/curl symbol, step 3 a boy silhouette beside a tall upward growth arrow shooting up with sparkles. Brand purple #667eea to mint #2dd4bf gradient, brightest on the rising arrow. Conveys an ordered sequence ending in a growth spurt. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "스텝1",
+          "ko": "고환 ↑",
+          "en": "Testes ↑",
+          "th": "อัณฑะ ↑"
+        },
+        {
+          "pos": "스텝2",
+          "ko": "음모",
+          "en": "Pubic hair",
+          "th": "ขนหัวหน่าว"
+        },
+        {
+          "pos": "스텝3(화살표)",
+          "ko": "키 급성장",
+          "en": "Growth spurt",
+          "th": "พุ่งสูง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "⏳ 골드 글로우",
+      "title": "골든타임 — 성장판 닫히기 전",
+      "emojis": [
+        "⏳",
+        "🦵"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized knee growth-plate shown as an open glowing gap that is gently narrowing, paired with an hourglass whose sand is still flowing, surrounded by a warm hopeful golden glow. Brand purple #667eea with soft gold accents. Conveys 'there is still time before it closes.' Optimistic, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "성장판 갭",
+          "ko": "아직 열림",
+          "en": "Still open",
+          "th": "ยังเปิดอยู่"
+        },
+        {
+          "pos": "가운데(글로우)",
+          "ko": "골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🔍",
+      "label": "첫 신호 발견"
+    },
+    {
+      "e": "🥚",
+      "label": "고환 크기"
+    },
+    {
+      "e": "🧠",
+      "label": "뇌(호르몬 축)"
+    },
+    {
+      "e": "📏",
+      "label": "측정 기준"
+    },
+    {
+      "e": "🌱",
+      "label": "음모"
+    },
+    {
+      "e": "🚀",
+      "label": "키 급성장"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "🦵",
+      "label": "성장판"
+    },
+    {
+      "e": "⚠️",
+      "label": "성조숙 경고"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 칼슘 비타민D 함께 — 흡수의 과학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #28</span>
+  <h1>칼슘만 먹이면 새는 이유 — 비타민D가 열쇠</h1>
+  <div class="sub">칼슘은 흡수가 절반 — 비타민D가 있어야 뼈에 쌓인다. 햇볕 15분의 과학과, 우리 아이에게 맞는 똑똑한 영양 전략</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>칼슘만으론 부족?</b></div>
+      <div class="subj">우리 아이 키, 칼슘</div>
+      <div class="big4"><div class="n" style="font-size:98px">50%</div><div class="lab">는 그냥 샌다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키, 칼슘</b> 50%는 그냥 샌다"</li>
+        <li><b>거대 숫자 "50%"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #28 「칼슘 비타민D 함께 — 흡수의 과학」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"칼슘 열심히 먹이는데 왜 안 클까요? 칼슘은 혼자선 절반도 일을 못 해요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>칼슘만 많이 먹이면 뼈가 튼튼해지고 키가 큰다 → 비타민D가 없으면 칼슘은 흡수되지 못하고 그냥 몸 밖으로 빠져나간다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>칼슘은 뼈의 재료지만, 비타민D가 장에서 흡수를 열어주고 뼈에 쌓아줘야 제 역할을 한다. 햇볕 15~20분 + 칼슘·비타민D 식단 + 필요시 전문 상담이 키 성장의 똑똑한 전략.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("지금 채우면 된다"). "우리 아이 키" 보편(영양제 챙기는 부모도, 안 챙기는 부모도 해당). 시청자가 검사·영양제 이미 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 + 맞춤 상담 초대</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이에게 칼슘·비타민D가 부족한지, 성장 골든타임이 얼마나 남았는지 지금 확인 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·반전</h4><p>c1–c2<br>"칼슘 열심히 먹이는데 왜 안 커? → 혼자선 절반도 일 못 함"</p></div><div class="act"><span class="n">ACT 2</span><h4>칼슘의 역할</h4><p>c3–c4<br>"칼슘 = 뼈의 재료 · 골밀도 토대 → 근데 흡수가 문제"</p></div><div class="act"><span class="n">ACT 3</span><h4>비타민D = 열쇠</h4><p>c5–c6<br>"비타민D가 장에서 흡수 열고 뼈에 쌓아줌"</p></div><div class="act"><span class="n">ACT 4</span><h4>햇볕·해법</h4><p>c7–c8<br>"하루 15~20분 햇볕 → 칼슘+비타민D 식단"</p></div><div class="act"><span class="n">ACT 5</span><h4>통합관리·행동</h4><p>c9–c10<br>"영양만으론 부족, 수면·운동·맞춤 → 측정 CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">칼슘만으론 부족?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🥛☀️</div></div>
+        <div class="ph-cap"><div class="l">칼슘만 열심히?</div><div class="l"><span class="y2">혼자선 절반</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">칼슘 열심히 먹이는데 왜 안 크냐고요? 칼슘은 혼자선 절반도 일을 못 해요.</td><td><span class="cap2">칼슘만 열심히?<br><span class="y">혼자선 절반</span></span></td><td class="mo">🥛 슬램 인 + ❓ 플립</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">비타민D가 없으면, 먹은 칼슘이 그냥 몸 밖으로 빠져나가거든요.</td><td><span class="cap2">비타민D 없으면<br><span class="y">칼슘이 샌다</span></span></td><td class="mo">💧 빠져나감</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 뼈의 재료</span></td><td class="narr">칼슘은 뼈와 치아의 주재료예요. 골밀도를 높여 키 클 토대를 만들죠.</td><td><span class="cap2">칼슘은<br><span class="y">뼈의 재료</span></span></td><td class="mo">🧱 차곡 쌓임</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 닫힌 문</span></td><td class="narr">문제는 흡수예요. 아무리 많이 먹어도 장에서 못 들어가면 소용없죠.</td><td><span class="cap2">많이 먹어도<br><span class="y">흡수가 문제</span></span></td><td class="mo">🚪 쾅 닫힘 + 💧</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">여기서 비타민D가 열쇠예요. 장에서 칼슘 흡수를 열고, 뼈에 쌓이게 도와줘요.</td><td><span class="cap2">비타민D가<br><span class="y">칼슘의 열쇠</span></span></td><td class="mo">🔑 찰칵 열림</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 흡수 파트너</span></td><td class="narr">그래서 칼슘과 비타민D는 짝꿍이에요. 둘이 함께여야 뼈가 진짜 단단해져요.</td><td><span class="cap2">칼슘＋비타민D<br><span class="y">함께라야 흡수</span></span></td><td class="mo">🤝 연결 + ↑ 흐름</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">비타민D는 햇볕이 최고예요. 하루 15분에서 20분만 쬐어도 충분히 만들어져요.</td><td><span class="cap2"><span class="y">햇볕 15~20분</span><br>비타민D 충전</span></td><td class="mo">☀️ 햇살 펄스</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 함께 먹는 식단</span></td><td class="narr">식단으론 우유·멸치에, 비타민D 많은 연어·버섯·달걀노른자를 함께 챙겨주세요.</td><td><span class="cap2">우유·멸치 ＋<br><span class="y">연어·버섯·노른자</span></span></td><td class="mo">🍽️ 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">영양만으론 부족해요. 충분한 수면, 운동, 그리고 우리 아이 맞춤 관리가 함께 가야죠.</td><td><span class="cap2">영양 ＋ 수면·운동<br><span class="y">맞춤 관리</span></span></td><td class="mo">🌙🏃 통합 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이에게 뭐가 부족한지, 성장 골든타임이 얼마나 남았는지 지금 확인해 보세요.</td><td><span class="cap2">뭐가 부족한지<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 🧱 차곡 쌓임</div><h3>칼슘 = 뼈의 재료</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🧱 🥛</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly upright long bone being built up from small rounded calcium blocks/bricks stacking neatly from the bottom, like laying a strong foundation; a small milk-drop motif as a building block. Brand purple bone with mint calcium blocks, soft clean pediatric style, gentle glow at the base. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>블록(쌓임)</td><td>칼슘 블록</td><td>Calcium blocks</td><td class="thai">บล็อกแคลเซียม</td></tr><tr><td>하단(토대)</td><td>튼튼한 토대</td><td>Strong base</td><td class="thai">รากฐานแข็งแรง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 🚪 쾅 닫힘 + 💧</div><h3>흡수 안 되면 그냥 샌다</h3></div>
+        <div class="body">
+          <div class="sketch">🚪 💧 🚫</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A stylized intestine/gut wall shown as a closed door or shut gate, with little mint calcium droplets bouncing off the closed door and flowing away/down (not getting in). Conveys 'calcium can't be absorbed, washes out.' Brand purple gut, mint droplets, gentle and clean (not scary), soft motion lines downward. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>닫힌 문</td><td>흡수 차단</td><td>Blocked</td><td class="thai">ถูกปิดกั้น</td></tr><tr><td>흘러나가는 방울</td><td>칼슘 배출 ↓</td><td>Calcium out ↓</td><td class="thai">แคลเซียมหลุด ↓</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 🤝 연결 + ↑ 흐름</div><h3>칼슘＋비타민D 짝꿍</h3></div>
+        <div class="body">
+          <div class="sketch">🥛 ☀️ 🤝</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Two friendly rounded character orbs side by side holding hands: one is a milk/calcium drop, the other is a little sun (vitamin D). Together they open a now-glowing gut gateway and an upward mint flow of particles streams into a strong bone above them. Conveys 'partners that unlock absorption into bone.' Brand purple + mint with a warm golden sun accent, soft glow, pediatric clean. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 오브</td><td>칼슘</td><td>Calcium</td><td class="thai">แคลเซียม</td></tr><tr><td>오른쪽 오브</td><td>비타민D</td><td>Vitamin D</td><td class="thai">วิตามินดี</td></tr><tr><td>위쪽 흐름</td><td>뼈로 흡수 ↑</td><td>Into bone ↑</td><td class="thai">เข้ากระดูก ↑</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 🍽️ 순차 점등</div><h3>함께 먹는 식단 한 접시</h3></div>
+        <div class="body">
+          <div class="sketch">🥛 🐟 🍄</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly round meal plate viewed top-down with cute simple food icons arranged around it: a glass of milk, small dried fish, a salmon fillet, a mushroom, and an egg yolk. Tiny sparkles indicating 'good combo.' Brand purple plate rim with mint and warm accents, soft clean pediatric illustration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(칼슘)</td><td>칼슘 식품</td><td>Calcium foods</td><td class="thai">อาหารแคลเซียม</td></tr><tr><td>오른쪽(비타민D)</td><td>비타민D 식품</td><td>Vitamin D foods</td><td class="thai">อาหารวิตามินดี</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🥛</b> 칼슘·우유</span><span class="emo"><b>☀️</b> 햇볕·비타민D</span><span class="emo"><b>🦴</b> 뼈·골밀도</span><span class="emo"><b>🔑</b> 흡수의 열쇠</span><span class="emo"><b>💧</b> 새는 칼슘</span><span class="emo"><b>🚪</b> 흡수 차단</span><span class="emo"><b>🤝</b> 칼슘＋비타민D 짝꿍</span><span class="emo"><b>🐟</b> 연어·등푸른생선</span><span class="emo"><b>🍄</b> 버섯·식품원</span><span class="emo"><b>🌙</b> 수면·통합관리</span><span class="emo"><b>🏃</b> 운동·생활습관</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>칼슘 열심히 먹이는데 왜 안 크냐고요? 칼슘은 혼자선 절반도 일을 못 해요.<br><span class="cap2">칼슘만 열심히? · <span class="y">혼자선 절반</span></span></td></tr><tr><td class="c-id">c2</td><td>비타민D가 없으면, 먹은 칼슘이 그냥 몸 밖으로 빠져나가거든요.<br><span class="cap2">비타민D 없으면 · <span class="y">칼슘이 샌다</span></span></td></tr><tr><td class="c-id">c3</td><td>칼슘은 뼈와 치아의 주재료예요. 골밀도를 높여 키 클 토대를 만들죠.<br><span class="cap2">칼슘은 · <span class="y">뼈의 재료</span></span></td></tr><tr><td class="c-id">c4</td><td>문제는 흡수예요. 아무리 많이 먹어도 장에서 못 들어가면 소용없죠.<br><span class="cap2">많이 먹어도 · <span class="y">흡수가 문제</span></span></td></tr><tr><td class="c-id">c5</td><td>여기서 비타민D가 열쇠예요. 장에서 칼슘 흡수를 열고, 뼈에 쌓이게 도와줘요.<br><span class="cap2">비타민D가 · <span class="y">칼슘의 열쇠</span></span></td></tr><tr><td class="c-id">c6</td><td>그래서 칼슘과 비타민D는 짝꿍이에요. 둘이 함께여야 뼈가 진짜 단단해져요.<br><span class="cap2">칼슘＋비타민D · <span class="y">함께라야 흡수</span></span></td></tr><tr><td class="c-id">c7</td><td>비타민D는 햇볕이 최고예요. 하루 15분에서 20분만 쬐어도 충분히 만들어져요.<br><span class="cap2">햇볕 15~20분 · 비타민D 충전</span></td></tr><tr><td class="c-id">c8</td><td>식단으론 우유·멸치에, 비타민D 많은 연어·버섯·달걀노른자를 함께 챙겨주세요.<br><span class="cap2">우유·멸치 ＋ · <span class="y">연어·버섯·노른자</span></span></td></tr><tr><td class="c-id">c9</td><td>영양만으론 부족해요. 충분한 수면, 운동, 그리고 우리 아이 맞춤 관리가 함께 가야죠.<br><span class="cap2">영양 ＋ 수면·운동 · <span class="y">맞춤 관리</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이에게 뭐가 부족한지, 성장 골든타임이 얼마나 남았는지 지금 확인해 보세요.<br><span class="cap2">뭐가 부족한지 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ให้ลูกกินแคลเซียมตลอด แต่ทำไมไม่สูง? แคลเซียมลำพังทำงานไม่ถึงครึ่ง<br><span class="cap2">กินแคลเซียมอย่างเดียว? · <span class="y">ลำพังไม่พอ</span></span></td></tr><tr><td class="c-id">c2</td><td>ถ้าไม่มีวิตามินดี แคลเซียมที่กินเข้าไปก็แค่ถูกขับออก<br><span class="cap2">ไม่มีวิตามินดี · <span class="y">แคลเซียมรั่ว</span></span></td></tr><tr><td class="c-id">c3</td><td>แคลเซียมเป็นวัตถุดิบหลักของกระดูกและฟัน สร้างรากฐานให้สูง<br><span class="cap2">แคลเซียมคือ · <span class="y">วัตถุดิบกระดูก</span></span></td></tr><tr><td class="c-id">c4</td><td>ปัญหาคือการดูดซึม กินมากแค่ไหนถ้าลำไส้ไม่รับก็ไร้ผล<br><span class="cap2">กินมากเท่าไร · <span class="y">อยู่ที่ดูดซึม</span></span></td></tr><tr><td class="c-id">c5</td><td>ตรงนี้วิตามินดีคือกุญแจ เปิดการดูดซึมในลำไส้ และพาแคลเซียมเข้ากระดูก<br><span class="cap2">วิตามินดีคือ · <span class="y">กุญแจแคลเซียม</span></span></td></tr><tr><td class="c-id">c6</td><td>แคลเซียมกับวิตามินดีจึงเป็นคู่หู ต้องอยู่ด้วยกันกระดูกถึงแข็งจริง<br><span class="cap2">แคลเซียม＋วิตามินดี · <span class="y">คู่หูดูดซึม</span></span></td></tr><tr><td class="c-id">c7</td><td>วิตามินดีได้ดีที่สุดจากแสงแดด แค่วันละ 15–20 นาทีก็พอ<br><span class="cap2">แดด 15–20 นาที · เติมวิตามินดี</span></td></tr><tr><td class="c-id">c8</td><td>มื้ออาหารใส่นม ปลาเล็ก คู่กับแซลมอน เห็ด ไข่แดงที่มีวิตามินดีสูง<br><span class="cap2">นม·ปลาเล็ก ＋ · <span class="y">แซลมอน·เห็ด·ไข่แดง</span></span></td></tr><tr><td class="c-id">c9</td><td>แค่สารอาหารไม่พอ ต้องมีนอนพอ ออกกำลังกาย และดูแลเฉพาะลูกด้วย<br><span class="cap2">โภชนาการ ＋ นอน·ออกกำลัง · <span class="y">ดูแลเฉพาะคน</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กวันนี้ว่าลูกขาดอะไร และเหลือช่วงเวลาทองอีกเท่าไร<br><span class="cap2">ลูกขาดอะไร · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Cho con uống canxi đều mà sao không cao? Canxi một mình làm chưa được nửa việc.<br><span class="cap2">Chỉ uống canxi? · <span class="y">Một mình chưa đủ</span></span></td></tr><tr><td class="c-id">c2</td><td>Thiếu vitamin D, canxi ăn vào chỉ bị thải ra ngoài.<br><span class="cap2">Thiếu vitamin D · <span class="y">canxi thất thoát</span></span></td></tr><tr><td class="c-id">c3</td><td>Canxi là vật liệu chính của xương và răng, tạo nền để cao lên.<br><span class="cap2">Canxi là · <span class="y">vật liệu xương</span></span></td></tr><tr><td class="c-id">c4</td><td>Vấn đề là hấp thu. Ăn nhiều mà ruột không nhận thì vô ích.<br><span class="cap2">Ăn nhiều mấy · vẫn <span class="y">kẹt hấp thu</span></span></td></tr><tr><td class="c-id">c5</td><td>Đây là lúc vitamin D vào cuộc: mở hấp thu ở ruột, đưa canxi vào xương.<br><span class="cap2">Vitamin D là · <span class="y">chìa khóa canxi</span></span></td></tr><tr><td class="c-id">c6</td><td>Nên canxi và vitamin D là cặp đôi — có nhau xương mới chắc thật sự.<br><span class="cap2">Canxi＋vitamin D · <span class="y">cặp đôi hấp thu</span></span></td></tr><tr><td class="c-id">c7</td><td>Vitamin D tốt nhất từ nắng — chỉ 15 đến 20 phút mỗi ngày là đủ.<br><span class="cap2">Nắng 15–20 phút · nạp vitamin D</span></td></tr><tr><td class="c-id">c8</td><td>Bữa ăn thêm sữa, cá nhỏ cùng cá hồi, nấm, lòng đỏ trứng giàu vitamin D.<br><span class="cap2">Sữa·cá nhỏ ＋ · <span class="y">cá hồi·nấm·lòng đỏ</span></span></td></tr><tr><td class="c-id">c9</td><td>Dinh dưỡng thôi chưa đủ — cần ngủ đủ, vận động, và chăm sóc riêng cho con.<br><span class="cap2">Dinh dưỡng ＋ ngủ·vận động · <span class="y">chăm sóc riêng</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra ngay hôm nay con đang thiếu gì và còn bao nhiêu thời điểm vàng.<br><span class="cap2">Con thiếu gì · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Loading up on calcium but still not growing? Calcium alone does half the job.<br><span class="cap2">Calcium alone? · <span class="y">Only half</span></span></td></tr><tr><td class="c-id">c2</td><td>Without vitamin D, the calcium you eat just washes back out.<br><span class="cap2">No vitamin D · <span class="y">calcium leaks out</span></span></td></tr><tr><td class="c-id">c3</td><td>Calcium is the main material for bone and teeth — the base to grow on.<br><span class="cap2">Calcium is · <span class="y">bone material</span></span></td></tr><tr><td class="c-id">c4</td><td>The catch is absorption. Eat all you want — if the gut can't take it in, it's wasted.<br><span class="cap2">No matter how much · <span class="y">absorption is key</span></span></td></tr><tr><td class="c-id">c5</td><td>Here's the key: vitamin D. It opens absorption in the gut and locks calcium into bone.<br><span class="cap2">Vitamin D is · <span class="y">the calcium key</span></span></td></tr><tr><td class="c-id">c6</td><td>So calcium and vitamin D are partners — together they make bone truly strong.<br><span class="cap2">Calcium＋vitamin D · <span class="y">a team for absorption</span></span></td></tr><tr><td class="c-id">c7</td><td>Sunlight makes vitamin D best — just 15 to 20 minutes a day is enough.<br><span class="cap2">Sun 15–20 min · tops up vitamin D</span></td></tr><tr><td class="c-id">c8</td><td>On the plate: milk and small fish plus vitamin-D-rich salmon, mushrooms, egg yolk.<br><span class="cap2">Milk·fish ＋ · <span class="y">salmon·mushroom·yolk</span></span></td></tr><tr><td class="c-id">c9</td><td>Nutrition alone isn't enough — add good sleep, exercise, and care tailored to your child.<br><span class="cap2">Nutrition ＋ sleep·move · <span class="y">tailored care</span></span></td></tr><tr><td class="c-id">c10</td><td>Check today what your child is missing and how much golden time is left.<br><span class="cap2">What's missing · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>一直给孩子补钙怎么还不长高？钙单打独斗连一半都做不到。<br><span class="cap2">只补钙？ · <span class="y">单独不够</span></span></td></tr><tr><td class="c-id">c2</td><td>没有维生素D，吃进去的钙就只是被排出去。<br><span class="cap2">没有维D · <span class="y">钙就流走</span></span></td></tr><tr><td class="c-id">c3</td><td>钙是骨骼和牙齿的主要材料，打下长高的根基。<br><span class="cap2">钙是 · <span class="y">造骨材料</span></span></td></tr><tr><td class="c-id">c4</td><td>问题在吸收。吃再多，肠道进不去也是白费。<br><span class="cap2">吃再多 · <span class="y">关键在吸收</span></span></td></tr><tr><td class="c-id">c5</td><td>这里维生素D就是钥匙：打开肠道吸收，把钙送进骨头。<br><span class="cap2">维生素D是 · <span class="y">钙的钥匙</span></span></td></tr><tr><td class="c-id">c6</td><td>所以钙和维生素D是搭档，在一起骨头才真正结实。<br><span class="cap2">钙＋维生素D · <span class="y">搭档才吸收</span></span></td></tr><tr><td class="c-id">c7</td><td>维生素D靠晒太阳最好，每天15到20分钟就够了。<br><span class="cap2">晒太阳15~20分 · 补足维生素D</span></td></tr><tr><td class="c-id">c8</td><td>饮食上牛奶、小鱼，再配富含维D的三文鱼、蘑菇、蛋黄。<br><span class="cap2">牛奶·小鱼 ＋ · <span class="y">三文鱼·蘑菇·蛋黄</span></span></td></tr><tr><td class="c-id">c9</td><td>光靠营养还不够，要加上充足睡眠、运动和适合孩子的个性化管理。<br><span class="cap2">营养 ＋ 睡眠·运动 · <span class="y">个性化管理</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子缺什么，还剩多少成长黄金期。<br><span class="cap2">缺什么 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>一直給孩子補鈣怎麼還不長高？鈣單打獨鬥連一半都做不到。<br><span class="cap2">只補鈣？ · <span class="y">單獨不夠</span></span></td></tr><tr><td class="c-id">c2</td><td>沒有維生素D，吃進去的鈣就只是被排出去。<br><span class="cap2">沒有維D · <span class="y">鈣就流走</span></span></td></tr><tr><td class="c-id">c3</td><td>鈣是骨骼和牙齒的主要材料，打下長高的根基。<br><span class="cap2">鈣是 · <span class="y">造骨材料</span></span></td></tr><tr><td class="c-id">c4</td><td>問題在吸收。吃再多，腸道進不去也是白費。<br><span class="cap2">吃再多 · <span class="y">關鍵在吸收</span></span></td></tr><tr><td class="c-id">c5</td><td>這裡維生素D就是鑰匙：打開腸道吸收，把鈣送進骨頭。<br><span class="cap2">維生素D是 · <span class="y">鈣的鑰匙</span></span></td></tr><tr><td class="c-id">c6</td><td>所以鈣和維生素D是搭檔，在一起骨頭才真正結實。<br><span class="cap2">鈣＋維生素D · <span class="y">搭檔才吸收</span></span></td></tr><tr><td class="c-id">c7</td><td>維生素D靠曬太陽最好，每天15到20分鐘就夠了。<br><span class="cap2">曬太陽15~20分 · 補足維生素D</span></td></tr><tr><td class="c-id">c8</td><td>飲食上牛奶、小魚，再配富含維D的鮭魚、蘑菇、蛋黃。<br><span class="cap2">牛奶·小魚 ＋ · <span class="y">鮭魚·蘑菇·蛋黃</span></span></td></tr><tr><td class="c-id">c9</td><td>光靠營養還不夠，要加上充足睡眠、運動和適合孩子的個人化管理。<br><span class="cap2">營養 ＋ 睡眠·運動 · <span class="y">個人化管理</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子缺什麼，還剩多少成長黃金期。<br><span class="cap2">缺什麼 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/칼슘비타민D/</code> · <code>칼슘비타민D-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

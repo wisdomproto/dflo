@@ -1,0 +1,802 @@
+{
+  "n": 50,
+  "slug": "학원스트레스키",
+  "title": "학원 3개 다니는데 — 스트레스가 키를 막을까?",
+  "sub": "코르티솔이 성장호르몬을 누른다 — 하지만 관리하면 되돌릴 수 있는 환경 요인",
+  "category": "C. 부모공감",
+  "topicTitle": "학원 스트레스와 키 성장",
+  "duration": 35,
+  "headerTop": "우리 아이 키",
+  "headerMark": "스트레스 때문에?",
+  "accentEmoji": "📚😣",
+  "hook": "학원 3개 다니는 우리 아이, 혹시 스트레스가 키를 막고 있는 걸까요?",
+  "misconception": "스트레스는 마음 문제일 뿐 키랑 상관없겠지 → 코르티솔이 실제로 성장호르몬을 억제함",
+  "message": "만성 학원 스트레스 → 코르티솔↑ → 성장호르몬·수면·식욕·활동 모두 저하. 하지만 수면·운동·휴식으로 관리하면 되돌릴 수 있는 환경 요인",
+  "tone": "협박 ❌ → 긍정 골든타임(\"관리하면 되돌릴 수 있다\"). \"우리 아이 키\" 보편. 측정 유도 CTA",
+  "cta": "스트레스가 키를 누르고 있는지 — 뼈나이·예측키로 지금 확인",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"학원 스트레스가 키를 막을까?\" 부모 걱정 공감"
+    },
+    {
+      "act": "ACT 2",
+      "title": "원리",
+      "scenes": "c3–c4",
+      "desc": "\"스트레스→코르티솔→성장호르몬 억제→수면 방해\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "4가지 영향",
+      "scenes": "c5–c6",
+      "desc": "\"호르몬·식욕·활동·정서\" 4갈래 신호"
+    },
+    {
+      "act": "ACT 4",
+      "title": "관리법",
+      "scenes": "c7–c8",
+      "desc": "\"수면·운동·휴식으로 되돌릴 수 있다\" 긍정 전환"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 확인 → CTA\""
+    }
+  ],
+  "thumb": {
+    "kicker": "학원 3개?!",
+    "subject": "우리 아이 키",
+    "number": "STOP",
+    "numLabel": "스트레스가 막는다"
+  },
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📚 슬램 인 + 😣 흔들",
+      "copy": {
+        "ko": {
+          "narr": "학원 3개 다니는 우리 아이, 혹시 스트레스가 키를 막고 있는 걸까요?",
+          "cap": [
+            "학원 스트레스가",
+            "키를 막을까?"
+          ],
+          "hl": "키를 막을까?"
+        },
+        "th": {
+          "narr": "ลูกเรียนพิเศษ 3 ที่ ความเครียดจะขวางความสูงไหม?",
+          "cap": [
+            "ความเครียด",
+            "ขวางความสูง?"
+          ],
+          "hl": "ขวางความสูง?"
+        },
+        "vi": {
+          "narr": "Con học thêm 3 lớp — liệu stress có cản chiều cao không?",
+          "cap": [
+            "Stress học hành",
+            "cản chiều cao?"
+          ],
+          "hl": "cản chiều cao?"
+        },
+        "en": {
+          "narr": "Your child's in three academies — could stress be blocking their height?",
+          "cap": [
+            "Could stress",
+            "block height?"
+          ],
+          "hl": "block height?"
+        },
+        "cn": {
+          "narr": "孩子上3个补习班，压力会不会挡住长高？",
+          "cap": [
+            "压力会不会",
+            "挡住长高？"
+          ],
+          "hl": "挡住长高？"
+        },
+        "ch": {
+          "narr": "孩子上3個補習班，壓力會不會擋住長高？",
+          "cap": [
+            "壓力會不會",
+            "擋住長高？"
+          ],
+          "hl": "擋住長高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💜 끄덕 공감",
+      "copy": {
+        "ko": {
+          "narr": "좋은 교육 주고 싶은 마음, 충분히 공감해요. 그런데 답은 '네, 영향 줄 수 있어요'예요.",
+          "cap": [
+            "마음은 공감해요",
+            "답은 '네'"
+          ],
+          "hl": "답은 '네'"
+        },
+        "th": {
+          "narr": "เข้าใจหัวอกพ่อแม่ค่ะ แต่คำตอบคือ ใช่ มีผลได้จริง",
+          "cap": [
+            "เข้าใจค่ะ",
+            "คำตอบคือใช่"
+          ],
+          "hl": "คำตอบคือใช่"
+        },
+        "vi": {
+          "narr": "Tôi hiểu lòng cha mẹ. Nhưng câu trả lời là: có, nó ảnh hưởng thật.",
+          "cap": [
+            "Tôi hiểu",
+            "câu trả lời: có"
+          ],
+          "hl": "câu trả lời: có"
+        },
+        "en": {
+          "narr": "I understand wanting the best for them. But the answer is: yes, it can matter.",
+          "cap": [
+            "I understand",
+            "answer is yes"
+          ],
+          "hl": "answer is yes"
+        },
+        "cn": {
+          "narr": "想给孩子最好的教育，我很理解。但答案是：会，真的有影响。",
+          "cap": [
+            "我很理解",
+            "答案是会"
+          ],
+          "hl": "答案是会"
+        },
+        "ch": {
+          "narr": "想給孩子最好的教育，我很理解。但答案是：會，真的有影響。",
+          "cap": [
+            "我很理解",
+            "答案是會"
+          ],
+          "hl": "答案是會"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 스트레스→호르몬 연쇄",
+      "motion": "➡️ 순차 점등 + 🚫 차단",
+      "copy": {
+        "ko": {
+          "narr": "스트레스를 받으면 코르티솔이 나오는데, 이게 성장호르몬 분비를 막아요.",
+          "cap": [
+            "코르티솔이",
+            "성장호르몬 차단"
+          ],
+          "hl": "성장호르몬 차단"
+        },
+        "th": {
+          "narr": "เมื่อเครียด ร่างกายหลั่งคอร์ติซอล ซึ่งไปขัดขวางโกรทฮอร์โมน",
+          "cap": [
+            "คอร์ติซอล",
+            "บล็อกโกรทฮอร์โมน"
+          ],
+          "hl": "บล็อกโกรทฮอร์โมน"
+        },
+        "vi": {
+          "narr": "Khi căng thẳng, cơ thể tiết cortisol — chất này chặn hormone tăng trưởng.",
+          "cap": [
+            "Cortisol",
+            "chặn hormone"
+          ],
+          "hl": "chặn hormone"
+        },
+        "en": {
+          "narr": "Stress releases cortisol — and cortisol blocks growth hormone.",
+          "cap": [
+            "Cortisol",
+            "blocks GH"
+          ],
+          "hl": "blocks GH"
+        },
+        "cn": {
+          "narr": "压力会让身体分泌皮质醇，而皮质醇会阻断生长激素。",
+          "cap": [
+            "皮质醇",
+            "阻断生长激素"
+          ],
+          "hl": "阻断生长激素"
+        },
+        "ch": {
+          "narr": "壓力會讓身體分泌皮質醇，而皮質醇會阻斷生長激素。",
+          "cap": [
+            "皮質醇",
+            "阻斷生長激素"
+          ],
+          "hl": "阻斷生長激素"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 깊은 잠 + 성장호르몬",
+      "motion": "🌙 깊은 잠 펄스 + 📉 다운",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬은 깊은 잠에 가장 많이 나와요. 스트레스로 잠을 설치면 분비량이 확 줄죠.",
+          "cap": [
+            "깊은 잠에",
+            "가장 많이"
+          ],
+          "hl": "가장 많이"
+        },
+        "th": {
+          "narr": "โกรทฮอร์โมนหลั่งมากที่สุดตอนหลับลึก เครียดจนนอนไม่ดี ก็ลดลงทันที",
+          "cap": [
+            "หลับลึก",
+            "หลั่งมากสุด"
+          ],
+          "hl": "หลับลึก"
+        },
+        "vi": {
+          "narr": "Hormone tăng trưởng tiết nhiều nhất khi ngủ sâu. Stress làm mất ngủ thì nó giảm ngay.",
+          "cap": [
+            "Ngủ sâu",
+            "tiết nhiều nhất"
+          ],
+          "hl": "Ngủ sâu"
+        },
+        "en": {
+          "narr": "Growth hormone peaks in deep sleep. Lose that sleep to stress, and it drops.",
+          "cap": [
+            "Deep sleep",
+            "GH peaks"
+          ],
+          "hl": "Deep sleep"
+        },
+        "cn": {
+          "narr": "生长激素在深睡时分泌最多。压力让睡眠变差，分泌量就骤降。",
+          "cap": [
+            "深睡时",
+            "分泌最多"
+          ],
+          "hl": "深睡时"
+        },
+        "ch": {
+          "narr": "生長激素在深睡時分泌最多。壓力讓睡眠變差，分泌量就驟降。",
+          "cap": [
+            "深睡時",
+            "分泌最多"
+          ],
+          "hl": "深睡時"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "✋ 4갈래 펼침",
+      "copy": {
+        "ko": {
+          "narr": "스트레스는 한 군데가 아니라 네 갈래로 키를 눌러요. 마음 문제로만 볼 게 아니에요.",
+          "cap": [
+            "키를 누르는",
+            "4갈래 영향"
+          ],
+          "hl": "4갈래 영향"
+        },
+        "th": {
+          "narr": "ความเครียดกดความสูงถึง 4 ทาง ไม่ใช่แค่เรื่องจิตใจ",
+          "cap": [
+            "กดความสูง",
+            "4 ทาง"
+          ],
+          "hl": "4 ทาง"
+        },
+        "vi": {
+          "narr": "Stress ép chiều cao theo bốn hướng — không chỉ là chuyện tâm lý.",
+          "cap": [
+            "Ép chiều cao",
+            "4 hướng"
+          ],
+          "hl": "4 hướng"
+        },
+        "en": {
+          "narr": "Stress presses on height four different ways — it's not just in the mind.",
+          "cap": [
+            "Presses height",
+            "4 ways"
+          ],
+          "hl": "4 ways"
+        },
+        "cn": {
+          "narr": "压力从四个方面压制身高，不只是心理问题。",
+          "cap": [
+            "压制身高",
+            "4个方面"
+          ],
+          "hl": "4个方面"
+        },
+        "ch": {
+          "narr": "壓力從四個方面壓制身高，不只是心理問題。",
+          "cap": [
+            "壓制身高",
+            "4個方面"
+          ],
+          "hl": "4個方面"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 4가지 영향",
+      "motion": "①②③④ 순차 등장",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬 억제, 식욕 흔들림, 활동량 감소, 정서 위축. 이 네 가지가 겹쳐요.",
+          "cap": [
+            "호르몬·식욕",
+            "활동·정서"
+          ],
+          "hl": "활동·정서"
+        },
+        "th": {
+          "narr": "กดฮอร์โมน เบื่ออาหาร ขยับน้อยลง จิตใจห่อเหี่ยว สี่อย่างนี้ซ้อนกัน",
+          "cap": [
+            "ฮอร์โมน·อาหาร",
+            "กิจกรรม·จิตใจ"
+          ],
+          "hl": "กิจกรรม·จิตใจ"
+        },
+        "vi": {
+          "narr": "Ức chế hormone, rối loạn ăn uống, ít vận động, sa sút tinh thần — bốn thứ chồng lên nhau.",
+          "cap": [
+            "Hormone·ăn uống",
+            "vận động·tinh thần"
+          ],
+          "hl": "vận động·tinh thần"
+        },
+        "en": {
+          "narr": "Suppressed hormone, shaky appetite, less activity, low mood — all four stack up.",
+          "cap": [
+            "Hormone·appetite",
+            "activity·mood"
+          ],
+          "hl": "activity·mood"
+        },
+        "cn": {
+          "narr": "抑制激素、食欲紊乱、活动减少、情绪低落，这四样叠加在一起。",
+          "cap": [
+            "激素·食欲",
+            "活动·情绪"
+          ],
+          "hl": "活动·情绪"
+        },
+        "ch": {
+          "narr": "抑制激素、食慾紊亂、活動減少、情緒低落，這四樣疊加在一起。",
+          "cap": [
+            "激素·食慾",
+            "活動·情緒"
+          ],
+          "hl": "活動·情緒"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "🌱 긍정 전환 팝",
+      "copy": {
+        "ko": {
+          "narr": "그런데 좋은 소식! 스트레스는 되돌릴 수 있는 환경 요인이에요. 유전처럼 정해진 게 아니죠.",
+          "cap": [
+            "되돌릴 수 있는",
+            "환경 요인"
+          ],
+          "hl": "되돌릴 수 있는"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ ความเครียดเป็นปัจจัยที่ปรับได้ ไม่ตายตัวเหมือนพันธุกรรม",
+          "cap": [
+            "ปรับแก้ได้",
+            "ปัจจัยสิ่งแวดล้อม"
+          ],
+          "hl": "ปรับแก้ได้"
+        },
+        "vi": {
+          "narr": "Tin tốt là: stress là yếu tố môi trường có thể đảo ngược — không cố định như gen.",
+          "cap": [
+            "Có thể đảo ngược",
+            "yếu tố môi trường"
+          ],
+          "hl": "Có thể đảo ngược"
+        },
+        "en": {
+          "narr": "Good news: stress is a factor you can reverse — it's not fixed like genes.",
+          "cap": [
+            "You can reverse",
+            "this factor"
+          ],
+          "hl": "You can reverse"
+        },
+        "cn": {
+          "narr": "好消息是：压力是可以扭转的环境因素，不像基因那样固定。",
+          "cap": [
+            "可以扭转的",
+            "环境因素"
+          ],
+          "hl": "可以扭转的"
+        },
+        "ch": {
+          "narr": "好消息是：壓力是可以扭轉的環境因素，不像基因那樣固定。",
+          "cap": [
+            "可以扭轉的",
+            "環境因素"
+          ],
+          "hl": "可以扭轉的"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 관리 3습관",
+      "motion": "😴🏃🌳 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "충분한 수면, 줄넘기 같은 운동, 그리고 쉬는 시간. 이 세 가지가 키를 다시 키워요.",
+          "cap": [
+            "수면·운동·휴식",
+            "다시 키운다"
+          ],
+          "hl": "수면·운동·휴식"
+        },
+        "th": {
+          "narr": "นอนพอ ออกกำลังเช่นกระโดดเชือก และเวลาพัก สามอย่างนี้ช่วยให้สูงต่อ",
+          "cap": [
+            "นอน·ออกกำลัง·พัก",
+            "สูงต่อได้"
+          ],
+          "hl": "นอน·ออกกำลัง·พัก"
+        },
+        "vi": {
+          "narr": "Ngủ đủ, vận động như nhảy dây, và thời gian nghỉ — ba điều này giúp con cao lại.",
+          "cap": [
+            "Ngủ·vận động·nghỉ",
+            "cao trở lại"
+          ],
+          "hl": "Ngủ·vận động·nghỉ"
+        },
+        "en": {
+          "narr": "Enough sleep, exercise like jump rope, and real rest — these three grow height back.",
+          "cap": [
+            "Sleep·move·rest",
+            "grow back"
+          ],
+          "hl": "Sleep·move·rest"
+        },
+        "cn": {
+          "narr": "充足睡眠、跳绳等运动、还有休息时间，这三样让孩子继续长高。",
+          "cap": [
+            "睡眠·运动·休息",
+            "重新长高"
+          ],
+          "hl": "睡眠·运动·休息"
+        },
+        "ch": {
+          "narr": "充足睡眠、跳繩等運動、還有休息時間，這三樣讓孩子繼續長高。",
+          "cap": [
+            "睡眠·運動·休息",
+            "重新長高"
+          ],
+          "hl": "睡眠·運動·休息"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "스트레스가 정말 키를 누르고 있는지, 뼈나이를 보면 정확히 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "정확히 확인"
+          ],
+          "hl": "정확히 확인"
+        },
+        "th": {
+          "narr": "ความเครียดกดความสูงอยู่จริงไหม ดูอายุกระดูกก็รู้ชัด",
+          "cap": [
+            "อายุกระดูก",
+            "รู้ชัดเจน"
+          ],
+          "hl": "รู้ชัดเจน"
+        },
+        "vi": {
+          "narr": "Stress có đang ép chiều cao thật không — nhìn tuổi xương là biết rõ.",
+          "cap": [
+            "Tuổi xương",
+            "biết chính xác"
+          ],
+          "hl": "biết chính xác"
+        },
+        "en": {
+          "narr": "Is stress really holding height back? Bone age tells you for sure.",
+          "cap": [
+            "Bone age",
+            "knows for sure"
+          ],
+          "hl": "knows for sure"
+        },
+        "cn": {
+          "narr": "压力是否真的在压制身高，看骨龄就能准确知道。",
+          "cap": [
+            "看骨龄",
+            "准确知道"
+          ],
+          "hl": "准确知道"
+        },
+        "ch": {
+          "narr": "壓力是否真的在壓制身高，看骨齡就能準確知道。",
+          "cap": [
+            "看骨齡",
+            "準確知道"
+          ],
+          "hl": "準確知道"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 지금 뼈나이·예측키로 확인해 보세요.",
+          "cap": [
+            "뼈나이·예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กอายุกระดูกและความสูงที่คาดของลูกวันนี้",
+          "cap": [
+            "อายุกระดูก·ความสูง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tuổi xương và chiều cao dự đoán của con ngay hôm nay.",
+          "cap": [
+            "Tuổi xương·chiều cao",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's bone age and predicted height today.",
+          "cap": [
+            "Bone age·height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的骨龄和预测身高吧。",
+          "cap": [
+            "骨龄·预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的骨齡和預測身高吧。",
+          "cap": [
+            "骨齡·預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "➡️ 순차 점등 + 🚫 차단",
+      "title": "스트레스 → 코르티솔 → 성장호르몬 차단",
+      "emojis": [
+        "😣",
+        "🧪",
+        "🚫"
+      ],
+      "prompt": "Flat vector, square, white background. A left-to-right cause-and-effect chain of three rounded nodes connected by arrows: a stressed child's head, a hormone molecule droplet (cortisol), and a growth-hormone gland symbol with a soft red blocking circle over it. Brand purple #667eea to mint #2dd4bf gradient arrows, friendly pediatric style, clean and simple. NO text.",
+      "labels": [
+        {
+          "pos": "노드1",
+          "ko": "스트레스",
+          "en": "Stress",
+          "th": "ความเครียด"
+        },
+        {
+          "pos": "노드2",
+          "ko": "코르티솔↑",
+          "en": "Cortisol↑",
+          "th": "คอร์ติซอล↑"
+        },
+        {
+          "pos": "노드3(차단)",
+          "ko": "성장호르몬 차단",
+          "en": "GH blocked",
+          "th": "บล็อกโกรทฮอร์โมน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🌙 깊은 잠 펄스 + 📉 다운",
+      "title": "깊은 잠에 솟는 성장호르몬",
+      "emojis": [
+        "😴",
+        "🌙",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white background. A child sleeping peacefully in bed under a crescent moon and stars, with a gentle upward wave/curve rising from the child symbolizing growth hormone surging during deep sleep. Soft brand purple #667eea night tones with mint #2dd4bf accent on the curve, calm and cozy pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단(달)",
+          "ko": "깊은 잠",
+          "en": "Deep sleep",
+          "th": "หลับลึก"
+        },
+        {
+          "pos": "곡선 끝",
+          "ko": "성장호르몬 ↑",
+          "en": "GH surge",
+          "th": "โกรทฮอร์โมน ↑"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "①②③④ 순차 등장",
+      "title": "스트레스가 키를 누르는 4갈래",
+      "emojis": [
+        "🧪",
+        "🍽️",
+        "🏃",
+        "💧"
+      ],
+      "prompt": "Flat vector, square, white background. A central child silhouette with four soft icon bubbles arranged around it in a balanced 2x2 fan: a hormone droplet, a plate-and-fork, a running figure with a slowdown sign, and a wilting/downcast face. Brand purple #667eea and mint #2dd4bf, friendly pediatric infographic, evenly spaced, clean. NO text.",
+      "labels": [
+        {
+          "pos": "버블1",
+          "ko": "성장호르몬 억제",
+          "en": "GH suppressed",
+          "th": "กดฮอร์โมน"
+        },
+        {
+          "pos": "버블2",
+          "ko": "식욕 흔들림",
+          "en": "Appetite off",
+          "th": "เบื่ออาหาร"
+        },
+        {
+          "pos": "버블3",
+          "ko": "활동량 감소",
+          "en": "Less activity",
+          "th": "ขยับน้อยลง"
+        },
+        {
+          "pos": "버블4",
+          "ko": "정서 위축",
+          "en": "Low mood",
+          "th": "จิตใจห่อเหี่ยว"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "😴🏃🌳 순차 점등",
+      "title": "되돌리는 3가지 습관",
+      "emojis": [
+        "😴",
+        "🏃",
+        "🌳"
+      ],
+      "prompt": "Flat vector, square, white background. Three friendly rounded cards in a row, each with one icon: a sleeping moon-and-pillow, a child skipping a jump rope, and a tree/leaf rest symbol with a relaxed child. A subtle upward green growth arrow rises behind the trio. Brand purple #667eea to mint #2dd4bf gradient, cheerful hopeful pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "카드1",
+          "ko": "충분한 수면",
+          "en": "Sleep",
+          "th": "นอนพอ"
+        },
+        {
+          "pos": "카드2",
+          "ko": "운동(줄넘기)",
+          "en": "Exercise",
+          "th": "ออกกำลัง"
+        },
+        {
+          "pos": "카드3",
+          "ko": "휴식·놀이",
+          "en": "Rest",
+          "th": "พักผ่อน"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📚",
+      "label": "학원"
+    },
+    {
+      "e": "😣",
+      "label": "스트레스"
+    },
+    {
+      "e": "🧪",
+      "label": "코르티솔"
+    },
+    {
+      "e": "🚫",
+      "label": "성장호르몬 차단"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🌙",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "🍽️",
+      "label": "식욕"
+    },
+    {
+      "e": "🏃",
+      "label": "운동·활동"
+    },
+    {
+      "e": "🌳",
+      "label": "휴식·놀이"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🌱",
+      "label": "되돌릴 수 있다"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

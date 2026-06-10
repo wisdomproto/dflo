@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 키 정확하게 재는 법</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #51</span>
+  <h1>아이 키, 잴 때마다 달라요? — 정확하게 재는 법</h1>
+  <div class="sub">하루에도 1~2cm 오르내림은 자연스러운 현상 — 아침·일관성·반복 측정이 진짜 키를 보여준다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>잴 때마다 달라요?</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:66px">1~2cm</div><div class="lab">하루에 오르내림</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 1~2cm하루에 오르내림"</li>
+        <li><b>거대 숫자 "1~2cm"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #51 「키 정확하게 재는 법」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"아이 키, 잴 때마다 숫자가 달라서 불안하셨죠? 그거, 지극히 정상이에요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>매일 달라지는 숫자 = 성장에 문제 / 키 재면 성장판이 닳는다 → 둘 다 사실 아님</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>키는 하루에도 1~2cm 오르내린다(척추 디스크). 아침·같은 시간·2~3회 반복으로 '추이'를 봐야 진짜 키가 보인다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>불안 자극 ❌ → "정상이에요, 이렇게 재면 돼요" 안심+방법. "우리 아이 키" 보편. CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>집에선 추이만 보여요 — 뼈나이·예측키로 진짜 성장 잠재력 확인하기</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"잴 때마다 달라요? 정상이에요" — 불안 내려놓기</p></div><div class="act"><span class="n">ACT 2</span><h4>원리</h4><p>c3–c4<br>"척추 디스크 — 저녁엔 1~2cm 작아져요"</p></div><div class="act"><span class="n">ACT 3</span><h4>언제</h4><p>c5–c6<br>"아침이 가장 정확 · 매일 X, 월 1회"</p></div><div class="act"><span class="n">ACT 4</span><h4>어떻게</h4><p>c7–c8<br>"벽·맨발·차렷자세 · 2~3회 반복"</p></div><div class="act"><span class="n">ACT 5</span><h4>추이→행동</h4><p>c9–c10<br>"집에선 추이만 · 진짜 키는 측정으로"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">잴 때마다 달라요?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📏✨</div></div>
+        <div class="ph-cap"><div class="l">잴 때마다 달라요?</div><div class="l"><span class="y2">지극히 정상</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">아이 키, 잴 때마다 숫자가 달라서 불안하셨죠? 그거, 지극히 정상이에요.</td><td><span class="cap2">잴 때마다 달라요?<br><span class="y">지극히 정상</span></span></td><td class="mo">📏 슬램 인 + ❓ 흔들</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">어제 120, 오늘 119.8. 키는 하루에도 몇 밀리씩 오르내려요.</td><td><span class="cap2">하루에도<br><span class="y">몇 mm씩 변해요</span></span></td><td class="mo">📉 살짝 출렁</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 척추 디스크</span></td><td class="narr">이유는 척추예요. 낮 동안 디스크가 눌려 수분이 빠지면서 키가 줄거든요.</td><td><span class="cap2">척추 디스크가<br><span class="y">낮엔 눌려요</span></span></td><td class="mo">🌙☀️ 낮밤 토글</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr ig">🖼 IG2 아침 vs 저녁</span></td><td class="narr">그래서 저녁엔 아침보다 1~2센티 작아요. 밤에 자면서 다시 회복되고요.</td><td><span class="cap2">저녁엔<br><span class="y">1~2cm 작아요</span></span></td><td class="mo">📏 "1~2cm" 카운트 + 아침 글로우</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그러니 가장 정확한 시간은 아침! 일어난 직후에 재는 게 제일 좋아요.</td><td><span class="cap2">가장 정확한 건<br><span class="y">아침 직후</span></span></td><td class="mo">☀️ 팝 + ✨</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23s</td><td><span class="scr ig">🖼 IG3 같은 시간·월 1회</span></td><td class="narr">매일 잴 필욘 없어요. 같은 시간대로, 월 1회만 재서 추이를 보세요.</td><td><span class="cap2">매일 X · 같은 시간<br><span class="y">월 1회</span></span></td><td class="mo">🗓️ 한 칸 점등 · ❌매일</td></tr><tr><td class="c-id">c7</td><td class="c-time">23–27s</td><td><span class="scr ig">🖼 IG4 벽·차렷자세</span></td><td class="narr">잴 땐 맨발로 벽에! 뒤꿈치·엉덩이·어깨·머리를 벽에 붙이고 차렷 자세요.</td><td><span class="cap2">맨발·벽에 붙여<br><span class="y">차렷 자세</span></span></td><td class="mo">🧍 벽 정렬 4점 점등</td></tr><tr><td class="c-id">c8</td><td class="c-time">27–30.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">한 번 말고 2~3번 재서 가장 많이 나온 값으로! 키 재도 성장판 안 닳아요.</td><td><span class="cap2">2~3번 재기<br><span class="y">성장판 안 닳아요</span></span></td><td class="mo">🔁 2~3회 펄스</td></tr><tr><td class="c-id">c9</td><td class="c-time">30.5–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">집에서 보는 건 추이까지예요. 진짜 성장 잠재력은 뼈나이가 알려줘요.</td><td><span class="cap2">집에선 추이까지<br><span class="y">잠재력은 뼈나이로</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 예측키, 지금 홈페이지에서 확인해 보세요.</td><td><span class="cap2">예측키·뼈나이<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 낮밤 토글 + 디스크 눌림</div><h3>척추 디스크 — 낮 동안 눌림</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 ☀️ 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A simplified side view of a spine made of stacked vertebrae with soft cushion discs between them; a downward gravity arrow gently compressing the discs so the stack looks slightly shorter, tiny water droplets escaping from the discs. Friendly pediatric style, brand purple #667eea spine with mint #2dd4bf discs. Conveys 'discs compress during the day.' NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단(중력 화살표)</td><td>낮 · 중력</td><td>Daytime · gravity</td><td class="thai">กลางวัน · แรงโน้มถ่วง</td></tr><tr><td>디스크 사이</td><td>수분 빠짐</td><td>water leaves</td><td class="thai">น้ำลดลง</td></tr><tr><td>하단</td><td>키 줄어듦</td><td>shrinks a bit</td><td class="thai">เตี้ยลงเล็กน้อย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 1~2cm 카운트 + 아침 글로우</div><h3>아침 vs 저녁 — 1~2cm 차이</h3></div>
+        <div class="body">
+          <div class="sketch">☀️ 🌆 📏</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two identical child silhouettes standing side by side against a height ruler; the left one (morning, with a small sun and soft glow) stands slightly taller, the right one (evening, with a small moon/sunset) slightly shorter, a small bracket between their head heights showing the gap. Brand purple + mint, warm glow on the morning side. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 인물</td><td>아침 (가장 큼)</td><td>Morning (tallest)</td><td class="thai">เช้า (สูงสุด)</td></tr><tr><td>오른쪽 인물</td><td>저녁</td><td>Evening</td><td class="thai">เย็น</td></tr><tr><td>머리 사이 브래킷</td><td>1~2cm</td><td>1–2cm</td><td class="thai">1–2 ซม.</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 달력 한 칸 점등</div><h3>같은 시간 · 월 1회 추이</h3></div>
+        <div class="body">
+          <div class="sketch">🗓️ 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly monthly calendar grid with a single highlighted day marked by a small height-ruler/clock icon, and a gentle upward trend line of dots rising across the months beside it. Conveys 'measure once a month, same time, track the trend.' Brand purple #667eea with mint #2dd4bf accents. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>달력 표시일</td><td>같은 시간</td><td>Same time</td><td class="thai">เวลาเดิม</td></tr><tr><td>추세선</td><td>월 1회 추이</td><td>monthly trend</td><td class="thai">แนวโน้มรายเดือน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c7 · 모션: 벽 정렬 4점 순차 점등</div><h3>정확한 자세 — 벽 4점 밀착</h3></div>
+        <div class="body">
+          <div class="sketch">🧍 🧱 📏</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child standing straight with back against a vertical wall, barefoot, a flat book/board resting level on the head touching the wall; four small glowing contact dots highlighted at heel, hip, shoulder, and back of head against the wall, chin slightly tucked, eyes forward. Friendly pediatric, brand purple #667eea wall with mint #2dd4bf contact dots. Conveys 'correct measuring posture.' NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>머리 위 책</td><td>평평한 책</td><td>Flat book</td><td class="thai">หนังสือแบนราบ</td></tr><tr><td>접촉 4점</td><td>뒤꿈치·엉덩이·어깨·머리</td><td>4 contact points</td><td class="thai">4 จุดสัมผัส</td></tr><tr><td>발</td><td>맨발</td><td>Barefoot</td><td class="thai">เท้าเปล่า</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📏</b> 키 측정</span><span class="emo"><b>❓</b> 잴 때마다 달라?</span><span class="emo"><b>🦴</b> 척추·뼈나이</span><span class="emo"><b>🌙</b> 밤·회복</span><span class="emo"><b>☀️</b> 아침(가장 큼)</span><span class="emo"><b>🌆</b> 저녁(작아짐)</span><span class="emo"><b>🗓️</b> 월 1회</span><span class="emo"><b>🧍</b> 차렷 자세</span><span class="emo"><b>🧱</b> 벽 밀착</span><span class="emo"><b>🔁</b> 2~3회 반복</span><span class="emo"><b>📈</b> 추이</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>아이 키, 잴 때마다 숫자가 달라서 불안하셨죠? 그거, 지극히 정상이에요.<br><span class="cap2">잴 때마다 달라요? · <span class="y">지극히 정상</span></span></td></tr><tr><td class="c-id">c2</td><td>어제 120, 오늘 119.8. 키는 하루에도 몇 밀리씩 오르내려요.<br><span class="cap2">하루에도 · <span class="y">몇 mm씩 변해요</span></span></td></tr><tr><td class="c-id">c3</td><td>이유는 척추예요. 낮 동안 디스크가 눌려 수분이 빠지면서 키가 줄거든요.<br><span class="cap2">척추 디스크가 · <span class="y">낮엔 눌려요</span></span></td></tr><tr><td class="c-id">c4</td><td>그래서 저녁엔 아침보다 1~2센티 작아요. 밤에 자면서 다시 회복되고요.<br><span class="cap2">저녁엔 · <span class="y">1~2cm 작아요</span></span></td></tr><tr><td class="c-id">c5</td><td>그러니 가장 정확한 시간은 아침! 일어난 직후에 재는 게 제일 좋아요.<br><span class="cap2">가장 정확한 건 · <span class="y">아침 직후</span></span></td></tr><tr><td class="c-id">c6</td><td>매일 잴 필욘 없어요. 같은 시간대로, 월 1회만 재서 추이를 보세요.<br><span class="cap2">매일 X · 같은 시간 · <span class="y">월 1회</span></span></td></tr><tr><td class="c-id">c7</td><td>잴 땐 맨발로 벽에! 뒤꿈치·엉덩이·어깨·머리를 벽에 붙이고 차렷 자세요.<br><span class="cap2">맨발·벽에 붙여 · <span class="y">차렷 자세</span></span></td></tr><tr><td class="c-id">c8</td><td>한 번 말고 2~3번 재서 가장 많이 나온 값으로! 키 재도 성장판 안 닳아요.<br><span class="cap2">2~3번 재기 · <span class="y">성장판 안 닳아요</span></span></td></tr><tr><td class="c-id">c9</td><td>집에서 보는 건 추이까지예요. 진짜 성장 잠재력은 뼈나이가 알려줘요.<br><span class="cap2">집에선 추이까지 · <span class="y">잠재력은 뼈나이로</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 예측키, 지금 홈페이지에서 확인해 보세요.<br><span class="cap2">예측키·뼈나이 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>วัดส่วนสูงลูกทีไรก็ไม่เท่ากัน กังวลใช่ไหม? นั่นปกติมากเลยค่ะ<br><span class="cap2">วัดทีไรก็ไม่เท่า · <span class="y">ปกติมาก</span></span></td></tr><tr><td class="c-id">c2</td><td>เมื่อวาน 120 วันนี้ 119.8 ส่วนสูงขึ้นลงได้หลายมิลฯ ในวันเดียว<br><span class="cap2">ในวันเดียว · <span class="y">ขึ้นลงหลายมิลฯ</span></span></td></tr><tr><td class="c-id">c3</td><td>เพราะกระดูกสันหลังค่ะ กลางวันหมอนรองถูกกดน้ำลด ส่วนสูงจึงลดลง<br><span class="cap2">หมอนรองกระดูก · <span class="y">กลางวันถูกกด</span></span></td></tr><tr><td class="c-id">c4</td><td>ตอนเย็นจึงเตี้ยกว่าตอนเช้า 1–2 ซม. แล้วฟื้นตอนนอนกลางคืน<br><span class="cap2">ตอนเย็น · <span class="y">เตี้ยลง 1–2 ซม.</span></span></td></tr><tr><td class="c-id">c5</td><td>เวลาที่แม่นที่สุดคือตอนเช้า วัดทันทีหลังตื่นนอนดีที่สุด<br><span class="cap2">แม่นที่สุดคือ · <span class="y">ตอนเช้าหลังตื่น</span></span></td></tr><tr><td class="c-id">c6</td><td>ไม่ต้องวัดทุกวัน วัดเวลาเดิม เดือนละครั้งเพื่อดูแนวโน้ม<br><span class="cap2">เวลาเดิม · <span class="y">เดือนละครั้ง</span></span></td></tr><tr><td class="c-id">c7</td><td>วัดให้เท้าเปล่าชิดผนัง ส้นเท้า-ก้น-ไหล่-หัว แนบผนัง ยืนตรง<br><span class="cap2">เท้าเปล่าชิดผนัง · <span class="y">ยืนตรง</span></span></td></tr><tr><td class="c-id">c8</td><td>วัด 2–3 ครั้ง เอาค่าที่ออกบ่อยสุด การวัดไม่ทำลายแผ่นกระดูกนะ<br><span class="cap2">วัด 2–3 ครั้ง · <span class="y">ไม่ทำลายแผ่นกระดูก</span></span></td></tr><tr><td class="c-id">c9</td><td>ที่บ้านดูได้แค่แนวโน้ม ศักยภาพจริงดูจากอายุกระดูก<br><span class="cap2">ที่บ้านดูแนวโน้ม · <span class="y">ศักยภาพ=อายุกระดูก</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กส่วนสูงพยากรณ์ของลูกที่เว็บไซต์เลยวันนี้<br><span class="cap2">ส่วนสูงพยากรณ์ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Đo chiều cao con cứ mỗi lần một số, lo lắng đúng không? Hoàn toàn bình thường đấy.<br><span class="cap2">Mỗi lần một số? · <span class="y">Hoàn toàn bình thường</span></span></td></tr><tr><td class="c-id">c2</td><td>Hôm qua 120, hôm nay 119.8. Chiều cao lên xuống vài mm mỗi ngày.<br><span class="cap2">Mỗi ngày · <span class="y">lên xuống vài mm</span></span></td></tr><tr><td class="c-id">c3</td><td>Lý do là cột sống. Ban ngày đĩa đệm bị nén, mất nước nên chiều cao giảm.<br><span class="cap2">Đĩa đệm cột sống · <span class="y">ban ngày bị nén</span></span></td></tr><tr><td class="c-id">c4</td><td>Nên buổi tối thấp hơn buổi sáng 1–2cm, rồi hồi lại khi ngủ đêm.<br><span class="cap2">Buổi tối · <span class="y">thấp hơn 1–2cm</span></span></td></tr><tr><td class="c-id">c5</td><td>Vậy chính xác nhất là buổi sáng — đo ngay sau khi thức dậy.<br><span class="cap2">Chính xác nhất · <span class="y">sáng vừa dậy</span></span></td></tr><tr><td class="c-id">c6</td><td>Không cần đo mỗi ngày. Cùng giờ, mỗi tháng một lần để xem xu hướng.<br><span class="cap2">Cùng giờ · <span class="y">mỗi tháng 1 lần</span></span></td></tr><tr><td class="c-id">c7</td><td>Đo thì chân trần áp tường: gót, mông, vai, đầu chạm tường, đứng thẳng.<br><span class="cap2">Chân trần áp tường · <span class="y">đứng thẳng</span></span></td></tr><tr><td class="c-id">c8</td><td>Đo 2–3 lần lấy giá trị hay gặp nhất. Đo không hề hại sụn tăng trưởng.<br><span class="cap2">Đo 2–3 lần · <span class="y">không hại sụn</span></span></td></tr><tr><td class="c-id">c9</td><td>Ở nhà chỉ thấy xu hướng. Tiềm năng thật do tuổi xương cho biết.<br><span class="cap2">Nhà: chỉ xu hướng · <span class="y">tiềm năng: tuổi xương</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra chiều cao dự đoán của con trên website ngay hôm nay.<br><span class="cap2">Chiều cao dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your child's height changes every time you measure? That's perfectly normal.<br><span class="cap2">Different each time? · <span class="y">Totally normal</span></span></td></tr><tr><td class="c-id">c2</td><td>Yesterday 120, today 119.8. Height shifts a few mm within a single day.<br><span class="cap2">In one day · <span class="y">shifts a few mm</span></span></td></tr><tr><td class="c-id">c3</td><td>It's the spine. By day, the discs compress and lose water, so you shrink a bit.<br><span class="cap2">Spinal discs · <span class="y">compress by day</span></span></td></tr><tr><td class="c-id">c4</td><td>So evenings run 1–2cm shorter than mornings, then sleep restores it.<br><span class="cap2">By evening · <span class="y">1–2cm shorter</span></span></td></tr><tr><td class="c-id">c5</td><td>So the most accurate time is morning — right after waking up.<br><span class="cap2">Most accurate · <span class="y">right after waking</span></span></td></tr><tr><td class="c-id">c6</td><td>No need to measure daily. Same time, once a month, and watch the trend.<br><span class="cap2">Same time · <span class="y">once a month</span></span></td></tr><tr><td class="c-id">c7</td><td>Measure barefoot at a wall: heels, hips, shoulders, head touching, stand tall.<br><span class="cap2">Barefoot at wall · <span class="y">stand tall</span></span></td></tr><tr><td class="c-id">c8</td><td>Measure 2–3 times, take the most common value. Measuring won't harm growth plates.<br><span class="cap2">Measure 2–3 times · <span class="y">won't harm plates</span></span></td></tr><tr><td class="c-id">c9</td><td>At home you see the trend. True potential — that's what bone age reveals.<br><span class="cap2">Home shows trend · <span class="y">potential = bone age</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's predicted height on our website today.<br><span class="cap2">Predicted height · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子身高每次量都不一样，担心吗？这其实完全正常。<br><span class="cap2">每次量都不同？ · <span class="y">完全正常</span></span></td></tr><tr><td class="c-id">c2</td><td>昨天120，今天119.8。身高一天内会上下浮动几毫米。<br><span class="cap2">一天之内 · <span class="y">浮动几毫米</span></span></td></tr><tr><td class="c-id">c3</td><td>原因是脊柱。白天椎间盘被压、水分流失，身高就缩了一点。<br><span class="cap2">椎间盘 · <span class="y">白天被压缩</span></span></td></tr><tr><td class="c-id">c4</td><td>所以傍晚比早上矮1到2厘米，夜里睡觉又会恢复。<br><span class="cap2">傍晚 · <span class="y">矮1~2厘米</span></span></td></tr><tr><td class="c-id">c5</td><td>所以最准的时间是早上，刚起床后量最好。<br><span class="cap2">最准的是 · <span class="y">刚起床后</span></span></td></tr><tr><td class="c-id">c6</td><td>不必每天量。固定时间、每月一次，看趋势就够了。<br><span class="cap2">固定时间 · <span class="y">每月一次</span></span></td></tr><tr><td class="c-id">c7</td><td>量时光脚靠墙：脚跟、臀、肩、头贴墙，立正站好。<br><span class="cap2">光脚靠墙 · <span class="y">立正站好</span></span></td></tr><tr><td class="c-id">c8</td><td>量2到3次，取出现最多的值。量身高不会磨损生长板。<br><span class="cap2">量2~3次 · <span class="y">不损生长板</span></span></td></tr><tr><td class="c-id">c9</td><td>在家只能看趋势。真正的潜力，要靠骨龄来揭示。<br><span class="cap2">在家看趋势 · <span class="y">潜力看骨龄</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就在官网查查孩子的预测身高吧。<br><span class="cap2">预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子身高每次量都不一樣，擔心嗎？這其實完全正常。<br><span class="cap2">每次量都不同？ · <span class="y">完全正常</span></span></td></tr><tr><td class="c-id">c2</td><td>昨天120，今天119.8。身高一天內會上下浮動幾毫米。<br><span class="cap2">一天之內 · <span class="y">浮動幾毫米</span></span></td></tr><tr><td class="c-id">c3</td><td>原因是脊柱。白天椎間盤被壓、水分流失，身高就縮了一點。<br><span class="cap2">椎間盤 · <span class="y">白天被壓縮</span></span></td></tr><tr><td class="c-id">c4</td><td>所以傍晚比早上矮1到2公分，夜裡睡覺又會恢復。<br><span class="cap2">傍晚 · <span class="y">矮1~2公分</span></span></td></tr><tr><td class="c-id">c5</td><td>所以最準的時間是早上，剛起床後量最好。<br><span class="cap2">最準的是 · <span class="y">剛起床後</span></span></td></tr><tr><td class="c-id">c6</td><td>不必每天量。固定時間、每月一次，看趨勢就夠了。<br><span class="cap2">固定時間 · <span class="y">每月一次</span></span></td></tr><tr><td class="c-id">c7</td><td>量時光腳靠牆：腳跟、臀、肩、頭貼牆，立正站好。<br><span class="cap2">光腳靠牆 · <span class="y">立正站好</span></span></td></tr><tr><td class="c-id">c8</td><td>量2到3次，取出現最多的值。量身高不會磨損生長板。<br><span class="cap2">量2~3次 · <span class="y">不損生長板</span></span></td></tr><tr><td class="c-id">c9</td><td>在家只能看趨勢。真正的潛力，要靠骨齡來揭示。<br><span class="cap2">在家看趨勢 · <span class="y">潛力看骨齡</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就在官網查查孩子的預測身高吧。<br><span class="cap2">預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/키재는법/</code> · <code>키재는법-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

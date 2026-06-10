@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 나이별 최적 성장 운동</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #26</span>
+  <h1>우리 아이 키 크는 운동, 나이마다 다르다</h1>
+  <div class="sub">유아·초저·초고·청소년 — 점프가 성장판을 깨운다, 나이 맞춤 운동이 키를 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>나이마다 다르다!</b></div>
+      <div class="subj">우리 아이 키 크는</div>
+      <div class="big4"><div class="n" style="font-size:132px">운동</div><div class="lab">나이별 가이드</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 크는</b> 운동나이별 가이드"</li>
+        <li><b>거대 숫자 "운동"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #26 「나이별 최적 성장 운동」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"우리 아이 키 크는 운동, 나이마다 다르다는 거 아세요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>운동은 다 똑같이 키에 좋겠지 → 나이에 안 맞는 운동은 효과가 떨어짐</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>점프·달리기가 성장판을 자극하고 성장호르몬을 깨운다. 유아 놀이 → 초저 줄넘기 → 초고 점프·전신 → 청소년 자세교정, 나이 맞춤이 핵심</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정("지금 시작해도 기회 있다"). "우리 아이 키" 보편. CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이에게 맞는 운동 타이밍, 뼈나이·예측키로 지금 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"키 크는 운동, 나이마다 다르다 + 왜 운동?"</p></div><div class="act"><span class="n">ACT 2</span><h4>메커니즘·타임라인</h4><p>c3–c4<br>"점프가 성장판 자극 → 4단계 운동"</p></div><div class="act"><span class="n">ACT 3</span><h4>유아·초저</h4><p>c5–c6<br>"유아 놀이 → 초저 줄넘기 주3회"</p></div><div class="act"><span class="n">ACT 4</span><h4>초고·청소년</h4><p>c7–c8<br>"초고 점프·전신 → 청소년 자세교정"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 타이밍 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">운동, 나이마다 다르다?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🏃✨</div></div>
+        <div class="ph-cap"><div class="l">키 크는 운동</div><div class="l"><span class="y2">나이마다 달라요</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 아이 키 크는 운동, 나이마다 다르다는 거 아세요?</td><td><span class="cap2">키 크는 운동<br><span class="y">나이마다 달라요</span></span></td><td class="mo">🏃 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">운동은 성장판을 자극하고 성장호르몬 분비를 깨우는 핵심 열쇠예요.</td><td><span class="cap2">운동 = 성장판 자극<br><span class="y">성장호르몬 ↑</span></span></td><td class="mo">💪 펄스 + 🦴 강조</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 점프 메커니즘</span></td><td class="narr">특히 점프나 달리기처럼 중력을 거스르는 운동이 뼈를 자극해요.</td><td><span class="cap2">점프·달리기<br><span class="y">중력 저항 자극</span></span></td><td class="mo">🦘 점프 + 성장판 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 4단계 운동</span></td><td class="narr">그래서 운동도 유아기, 초저, 초고, 청소년기 네 단계로 나눠요.</td><td><span class="cap2">나이별 4단계<br><span class="y">맞춤 운동</span></span></td><td class="mo">① ② ③ ④ 순차 점등</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">유아기 0에서 6세는 술래잡기, 미끄럼틀처럼 즐거운 놀이가 최고예요.</td><td><span class="cap2">유아 0~6세<br><span class="y">즐거운 놀이</span></span></td><td class="mo">🛝 통통 + 😄</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 줄넘기 주3회</span></td><td class="narr">초등 저학년은 줄넘기와 달리기로 주 3회, 30분 이상 기초 체력을!</td><td><span class="cap2">초저 줄넘기<br><span class="y">주 3회·30분+</span></span></td><td class="mo">🪢 회전 + 3× 카운트업</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG4 점프·전신</span></td><td class="narr">초등 고학년은 성장판이 가장 활발할 때! 농구, 배구 같은 점프 운동이 효과적이에요.</td><td><span class="cap2">초고 점프 운동<br><span class="y">농구·배구</span></span></td><td class="mo">🏀 슈웅 + 🌟 펄스</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">청소년기는 꾸준함과 자세 교정! 그리고 8시간 숙면이 성장호르몬을 채워줘요.</td><td><span class="cap2">청소년 자세 교정<br><span class="y">8시간 숙면</span></span></td><td class="mo">🧘 펴짐 + 😴 8h</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면 우리 아이에게 지금 딱 맞는 운동 타이밍을 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">운동 타이밍 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 맞춤 운동 타이밍, 지금 바로 확인해 보세요.</td><td><span class="cap2">맞춤 운동 타이밍<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 🦘 점프 + 성장판 점등</div><h3>점프가 성장판을 자극</h3></div>
+        <div class="body">
+          <div class="sketch">🦘 🦴 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child mid-jump landing, with subtle impact ripples traveling down the legs to a glowing knee growth-plate that lights up; small downward gravity arrows around the body. Brand purple #667eea body with mint #2dd4bf glow at the growth plate, friendly pediatric style. Conveys 'jumping and gravity load stimulate the bone plate.' NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>발/지면</td><td>착지 자극</td><td>impact load</td><td class="thai">แรงกระแทก</td></tr><tr><td>무릎(글로우)</td><td>성장판 활성</td><td>growth plate</td><td class="thai">แผ่นกระดูก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: ① ② ③ ④ 순차 점등</div><h3>나이별 4단계 운동 타임라인</h3></div>
+        <div class="body">
+          <div class="sketch">👶 🧒 🧑 🏃</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A horizontal stepped timeline rising left to right with 4 milestone nodes; under each node a friendly silhouette in motion: a toddler playing, a child skipping rope, a pre-teen shooting a basketball, and a teen stretching. Brand purple to mint gradient connecting line, soft glow on each node. Friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>노드1</td><td>유아 놀이</td><td>Play</td><td class="thai">วัยเล่น</td></tr><tr><td>노드2</td><td>줄넘기</td><td>Jump rope</td><td class="thai">กระโดดเชือก</td></tr><tr><td>노드3</td><td>점프·구기</td><td>Ball sports</td><td class="thai">กีฬาลูกบอล</td></tr><tr><td>노드4</td><td>자세교정</td><td>Posture</td><td class="thai">จัดท่าทาง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 🪢 회전 + 3× 카운트업</div><h3>초저 — 줄넘기 주3회</h3></div>
+        <div class="body">
+          <div class="sketch">🪢 🏃 📅</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A cheerful early-elementary child skipping with a jump rope mid-air, motion arcs around the rope, a small repeating calendar/loop motif beside them suggesting a weekly routine. Brand purple child with mint rope and accents, energetic friendly style. Conveys 'regular jump-rope routine builds base fitness.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>줄넘기</td><td>줄넘기</td><td>Jump rope</td><td class="thai">กระโดดเชือก</td></tr><tr><td>캘린더</td><td>주 3회 · 30분+</td><td>3×/wk · 30min</td><td class="thai">3 ครั้ง · 30 นาที</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c7 · 모션: 🏀 슈웅 + 🌟 펄스</div><h3>초고 — 점프·전신 운동</h3></div>
+        <div class="body">
+          <div class="sketch">🏀 🏐 🚀</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. An upper-elementary child leaping to shoot a basketball, with a volleyball and an upward whoosh trail; a tall faint growth bar in the background to suggest stretching upward. Brand purple figure with mint sparkles and ball accents, dynamic friendly pediatric style. Conveys 'jumping full-body sports when plates are most active.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>점프 정점</td><td>점프 운동</td><td>Jump sports</td><td class="thai">กีฬากระโดด</td></tr><tr><td>배경 바</td><td>성장판 활발</td><td>plates active</td><td class="thai">แผ่นกระดูกเปิด</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🦘</b> 점프</span><span class="emo"><b>🦴</b> 성장판·뼈나이</span><span class="emo"><b>💪</b> 성장호르몬</span><span class="emo"><b>👶</b> 유아기</span><span class="emo"><b>🧒</b> 초등</span><span class="emo"><b>🧑</b> 청소년</span><span class="emo"><b>🪢</b> 줄넘기</span><span class="emo"><b>🏀</b> 구기·점프</span><span class="emo"><b>😴</b> 숙면</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>우리 아이 키 크는 운동, 나이마다 다르다는 거 아세요?<br><span class="cap2">키 크는 운동 · <span class="y">나이마다 달라요</span></span></td></tr><tr><td class="c-id">c2</td><td>운동은 성장판을 자극하고 성장호르몬 분비를 깨우는 핵심 열쇠예요.<br><span class="cap2">운동 = 성장판 자극 · <span class="y">성장호르몬 ↑</span></span></td></tr><tr><td class="c-id">c3</td><td>특히 점프나 달리기처럼 중력을 거스르는 운동이 뼈를 자극해요.<br><span class="cap2">점프·달리기 · <span class="y">중력 저항 자극</span></span></td></tr><tr><td class="c-id">c4</td><td>그래서 운동도 유아기, 초저, 초고, 청소년기 네 단계로 나눠요.<br><span class="cap2">나이별 4단계 · <span class="y">맞춤 운동</span></span></td></tr><tr><td class="c-id">c5</td><td>유아기 0에서 6세는 술래잡기, 미끄럼틀처럼 즐거운 놀이가 최고예요.<br><span class="cap2">유아 0~6세 · <span class="y">즐거운 놀이</span></span></td></tr><tr><td class="c-id">c6</td><td>초등 저학년은 줄넘기와 달리기로 주 3회, 30분 이상 기초 체력을!<br><span class="cap2">초저 줄넘기 · <span class="y">주 3회·30분+</span></span></td></tr><tr><td class="c-id">c7</td><td>초등 고학년은 성장판이 가장 활발할 때! 농구, 배구 같은 점프 운동이 효과적이에요.<br><span class="cap2">초고 점프 운동 · <span class="y">농구·배구</span></span></td></tr><tr><td class="c-id">c8</td><td>청소년기는 꾸준함과 자세 교정! 그리고 8시간 숙면이 성장호르몬을 채워줘요.<br><span class="cap2">청소년 자세 교정 · <span class="y">8시간 숙면</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면 우리 아이에게 지금 딱 맞는 운동 타이밍을 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">운동 타이밍 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 맞춤 운동 타이밍, 지금 바로 확인해 보세요.<br><span class="cap2">맞춤 운동 타이밍 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>รู้ไหมว่ากีฬาเพิ่มความสูงของลูก เปลี่ยนตามวัย?<br><span class="cap2">กีฬาเพิ่มความสูง · <span class="y">ต่างกันตามวัย</span></span></td></tr><tr><td class="c-id">c2</td><td>การออกกำลังกระตุ้นแผ่นกระดูก และปลุกฮอร์โมนการเจริญเติบโต<br><span class="cap2">กระตุ้นแผ่นกระดูก · <span class="y">ฮอร์โมน ↑</span></span></td></tr><tr><td class="c-id">c3</td><td>โดยเฉพาะการกระโดดและวิ่ง ที่ต้านแรงโน้มถ่วง กระตุ้นกระดูก<br><span class="cap2">กระโดด·วิ่ง · <span class="y">ต้านแรงโน้มถ่วง</span></span></td></tr><tr><td class="c-id">c4</td><td>ดังนั้นแบ่งการออกกำลังเป็น 4 ช่วงวัย ให้เหมาะกับลูก<br><span class="cap2">4 ช่วงวัย · <span class="y">ออกกำลังเหมาะวัย</span></span></td></tr><tr><td class="c-id">c5</td><td>วัยทารก 0–6 ปี เน้นเล่นสนุก วิ่งไล่ เล่นสไลเดอร์<br><span class="cap2">0–6 ปี · <span class="y">เล่นสนุก</span></span></td></tr><tr><td class="c-id">c6</td><td>ประถมต้น กระโดดเชือกและวิ่ง สัปดาห์ละ 3 ครั้ง อย่างน้อย 30 นาที<br><span class="cap2">กระโดดเชือก · <span class="y">3 ครั้ง·30 นาที</span></span></td></tr><tr><td class="c-id">c7</td><td>ประถมปลาย แผ่นกระดูกเปิดมากที่สุด! บาส วอลเลย์ ที่มีกระโดดดีมาก<br><span class="cap2">กระโดด·ทั้งตัว · <span class="y">บาส·วอลเลย์</span></span></td></tr><tr><td class="c-id">c8</td><td>วัยรุ่นเน้นสม่ำเสมอและจัดท่าทาง บวกนอนลึก 8 ชม.<br><span class="cap2">จัดท่าทาง · <span class="y">นอน 8 ชม.</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกบอกได้ว่า ตอนนี้ลูกควรออกกำลังแบบไหน<br><span class="cap2">อายุกระดูก · <span class="y">จังหวะที่ใช่</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กจังหวะออกกำลังที่เหมาะกับลูกวันนี้<br><span class="cap2">จังหวะที่เหมาะ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Bạn có biết bài tập tăng chiều cao thay đổi theo từng độ tuổi không?<br><span class="cap2">Bài tập tăng chiều cao · <span class="y">khác theo tuổi</span></span></td></tr><tr><td class="c-id">c2</td><td>Vận động kích thích sụn tăng trưởng và đánh thức hormone tăng trưởng.<br><span class="cap2">Kích thích sụn · <span class="y">hormone ↑</span></span></td></tr><tr><td class="c-id">c3</td><td>Đặc biệt là nhảy và chạy — các bài chống trọng lực kích thích xương.<br><span class="cap2">Nhảy·chạy · <span class="y">chống trọng lực</span></span></td></tr><tr><td class="c-id">c4</td><td>Vì vậy chia bài tập theo 4 giai đoạn tuổi cho phù hợp với con.<br><span class="cap2">4 giai đoạn · <span class="y">tập đúng tuổi</span></span></td></tr><tr><td class="c-id">c5</td><td>Trẻ 0–6 tuổi: chơi vui là tốt nhất — rượt bắt, cầu trượt.<br><span class="cap2">0–6 tuổi · <span class="y">chơi vui</span></span></td></tr><tr><td class="c-id">c6</td><td>Tiểu học nhỏ: nhảy dây và chạy, 3 buổi mỗi tuần, 30 phút trở lên.<br><span class="cap2">Nhảy dây · <span class="y">3 buổi·30 phút</span></span></td></tr><tr><td class="c-id">c7</td><td>Tiểu học lớn: sụn mở mạnh nhất! Bóng rổ, bóng chuyền có nhảy rất tốt.<br><span class="cap2">Bài nhảy toàn thân · <span class="y">bóng rổ·chuyền</span></span></td></tr><tr><td class="c-id">c8</td><td>Tuổi teen: đều đặn và chỉnh tư thế, cộng ngủ sâu 8 tiếng.<br><span class="cap2">Chỉnh tư thế · <span class="y">ngủ 8 tiếng</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cho biết thời điểm tập luyện phù hợp nhất với con ngay bây giờ.<br><span class="cap2">Tuổi xương · <span class="y">đúng thời điểm tập</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra thời điểm tập phù hợp cho con ngay hôm nay.<br><span class="cap2">Thời điểm phù hợp · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Did you know the best height exercise changes with your child's age?<br><span class="cap2">Height exercise · <span class="y">changes by age</span></span></td></tr><tr><td class="c-id">c2</td><td>Exercise stimulates the growth plates and wakes up growth hormone.<br><span class="cap2">Stimulates plates · <span class="y">growth hormone ↑</span></span></td></tr><tr><td class="c-id">c3</td><td>Especially jumping and running — gravity-resisting moves stimulate bone.<br><span class="cap2">Jump·run · <span class="y">anti-gravity load</span></span></td></tr><tr><td class="c-id">c4</td><td>So we split exercise into four age stages, each one tailored.<br><span class="cap2">4 age stages · <span class="y">tailored exercise</span></span></td></tr><tr><td class="c-id">c5</td><td>Ages 0–6: joyful free play is best — tag, slides, swings.<br><span class="cap2">Ages 0–6 · <span class="y">free play</span></span></td></tr><tr><td class="c-id">c6</td><td>Early grades: jump rope and running, 3 times a week, 30 minutes plus.<br><span class="cap2">Jump rope · <span class="y">3×/wk · 30 min</span></span></td></tr><tr><td class="c-id">c7</td><td>Upper grades: plates are wide open! Jumping sports like basketball shine.<br><span class="cap2">Jump · full body · <span class="y">basketball·volley</span></span></td></tr><tr><td class="c-id">c8</td><td>Teens: consistency and posture — plus 8 hours of deep sleep.<br><span class="cap2">Posture care · <span class="y">8 hrs sleep</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows the exercise timing that fits your child right now.<br><span class="cap2">Bone age · <span class="y">right timing</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's perfect exercise timing today.<br><span class="cap2">Exercise timing · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道长高运动，会随孩子年龄而不同吗？<br><span class="cap2">长高运动 · <span class="y">因年龄而异</span></span></td></tr><tr><td class="c-id">c2</td><td>运动能刺激生长板，唤醒生长激素的分泌。<br><span class="cap2">刺激生长板 · <span class="y">生长激素 ↑</span></span></td></tr><tr><td class="c-id">c3</td><td>尤其是跳跃和跑步，这类抗重力运动能刺激骨骼。<br><span class="cap2">跳跃·跑步 · <span class="y">抗重力刺激</span></span></td></tr><tr><td class="c-id">c4</td><td>所以把运动分成幼儿、低年级、高年级、青少年四个阶段。<br><span class="cap2">四个阶段 · <span class="y">年龄定制运动</span></span></td></tr><tr><td class="c-id">c5</td><td>0到6岁，最好是开心地玩——捉迷藏、滑滑梯。<br><span class="cap2">0–6岁 · <span class="y">开心玩耍</span></span></td></tr><tr><td class="c-id">c6</td><td>小学低年级：跳绳和跑步，每周3次，30分钟以上。<br><span class="cap2">跳绳·跑步 · <span class="y">每周3次·30分</span></span></td></tr><tr><td class="c-id">c7</td><td>小学高年级，生长板最活跃！篮球、排球这类跳跃运动最有效。<br><span class="cap2">跳跃·全身 · <span class="y">篮球·排球</span></span></td></tr><tr><td class="c-id">c8</td><td>青少年要坚持加上姿势矫正，再配合8小时深睡。<br><span class="cap2">姿势矫正 · <span class="y">8小时睡眠</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄能告诉你，孩子现在最适合哪种运动。<br><span class="cap2">骨龄 · <span class="y">运动好时机</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查最适合孩子的运动时机吧。<br><span class="cap2">运动时机 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>你知道長高運動，會隨孩子年齡而不同嗎？<br><span class="cap2">長高運動 · <span class="y">因年齡而異</span></span></td></tr><tr><td class="c-id">c2</td><td>運動能刺激生長板，喚醒生長激素的分泌。<br><span class="cap2">刺激生長板 · <span class="y">生長激素 ↑</span></span></td></tr><tr><td class="c-id">c3</td><td>尤其是跳躍和跑步，這類抗重力運動能刺激骨骼。<br><span class="cap2">跳躍·跑步 · <span class="y">抗重力刺激</span></span></td></tr><tr><td class="c-id">c4</td><td>所以把運動分成幼兒、低年級、高年級、青少年四個階段。<br><span class="cap2">四個階段 · <span class="y">年齡定制運動</span></span></td></tr><tr><td class="c-id">c5</td><td>0到6歲，最好是開心地玩——捉迷藏、溜滑梯。<br><span class="cap2">0–6歲 · <span class="y">開心玩耍</span></span></td></tr><tr><td class="c-id">c6</td><td>小學低年級：跳繩和跑步，每週3次，30分鐘以上。<br><span class="cap2">跳繩·跑步 · <span class="y">每週3次·30分</span></span></td></tr><tr><td class="c-id">c7</td><td>小學高年級，生長板最活躍！籃球、排球這類跳躍運動最有效。<br><span class="cap2">跳躍·全身 · <span class="y">籃球·排球</span></span></td></tr><tr><td class="c-id">c8</td><td>青少年要堅持加上姿勢矯正，再配合8小時深睡。<br><span class="cap2">姿勢矯正 · <span class="y">8小時睡眠</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡能告訴你，孩子現在最適合哪種運動。<br><span class="cap2">骨齡 · <span class="y">運動好時機</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查最適合孩子的運動時機吧。<br><span class="cap2">運動時機 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/나이별운동/</code> · <code>나이별운동-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

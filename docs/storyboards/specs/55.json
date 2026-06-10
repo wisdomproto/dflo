@@ -1,0 +1,785 @@
+{
+  "n": 55,
+  "slug": "신체검사키작음",
+  "title": "신체검사 키 작음 — 당황 말고 확인할 3가지",
+  "sub": "백분위 숫자보다 성장 속도·뼈나이 — 걱정의 시작이 아니라 성장의 기회",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "신체검사 키 작음, 성장 부진 신호일까",
+  "headerTop": "우리 아이 키",
+  "headerMark": "신체검사 충격?",
+  "accentEmoji": "📋💜",
+  "hook": "신체검사 결과지에 키가 작게 나왔다고요? 당황 말고, 딱 3가지만 확인해요.",
+  "misconception": "백분위 숫자만 보고 \\\"우리 아이는 성장 부진\\\"이라 단정 → 키는 숫자 하나가 아니라 속도·뼈나이까지 봐야 안다",
+  "message": "신체검사 키 작음은 진단이 아니라 신호. ①백분위는 숫자일 뿐 ②키는 유전·영양·수면·운동 복합 ③진짜 핵심은 성장 속도와 뼈나이 — 성장판 닫히기 전 지금이 확인할 골든타임",
+  "tone": "협박 ❌ → 당황한 부모 공감 후 \\\"아직 기회 있다\\\" 긍정 골든타임. 백분위 숫자로 겁주지 않고 \\\"숫자 하나로 단정 말자\\\". \\\"우리 아이 키\\\" 보편. CTA는 진단 단정 아닌 뼈나이/예측키 측정 권유",
+  "cta": "신체검사 숫자에 놀라기 전에, 뼈나이·예측키로 우리 아이 진짜 성장 상태부터 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "당황 말아요!",
+    "subject": "우리 아이 신체검사 키 작음",
+    "number": "3가지",
+    "numLabel": "만 확인"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "신체검사지 키 작음에 철렁한 마음 공감 → 당황 말고 3가지만 확인하자"
+    },
+    {
+      "act": "ACT 2",
+      "title": "백분위의 진실",
+      "scenes": "c3–c4",
+      "desc": "3백분위 미만 = 진단 아닌 숫자 → 키는 유전·영양·수면·운동 복합"
+    },
+    {
+      "act": "ACT 3",
+      "title": "진짜 핵심",
+      "scenes": "c5–c6",
+      "desc": "현재 키보다 성장 속도 → 뼈나이가 진단의 핵심 열쇠"
+    },
+    {
+      "act": "ACT 4",
+      "title": "왜 지금",
+      "scenes": "c7–c8",
+      "desc": "뼈나이 빠르면 성장판 일찍 닫힘 → 한번 닫히면 안 열림, 지금이 골든타임"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "뼈나이·예측키로 진짜 상태 확인 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📋 슬램 인 + 페이드",
+      "copy": {
+        "ko": {
+          "narr": "신체검사 결과지에 키가 작게 나왔다고 철렁하셨죠? 그 마음, 잘 알아요.",
+          "cap": [
+            "신체검사지",
+            "키 작음에 철렁"
+          ],
+          "hl": "키 작음에 철렁"
+        },
+        "th": {
+          "narr": "เห็นผลตรวจสุขภาพว่าลูกตัวเล็กแล้วใจหายใช่ไหม เข้าใจดีค่ะ",
+          "cap": [
+            "ผลตรวจสุขภาพ",
+            "ตัวเล็กแล้วใจหาย"
+          ],
+          "hl": "ตัวเล็กแล้วใจหาย"
+        },
+        "vi": {
+          "narr": "Thấy phiếu khám sức khỏe ghi con thấp mà giật mình? Tôi hiểu mà.",
+          "cap": [
+            "Phiếu khám",
+            "con thấp, giật mình"
+          ],
+          "hl": "con thấp, giật mình"
+        },
+        "en": {
+          "narr": "Did the school physical say your child is short, and your heart sank? I get it.",
+          "cap": [
+            "School physical",
+            "short — heart sank"
+          ],
+          "hl": "heart sank"
+        },
+        "cn": {
+          "narr": "体检表上写着孩子矮，心里一沉了吧？这份心情我懂。",
+          "cap": [
+            "体检表",
+            "孩子矮，心一沉"
+          ],
+          "hl": "心一沉"
+        },
+        "ch": {
+          "narr": "體檢表上寫著孩子矮，心裡一沉了吧？這份心情我懂。",
+          "cap": [
+            "體檢表",
+            "孩子矮，心一沉"
+          ],
+          "hl": "心一沉"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "✋ 진정 + ③ 팝",
+      "copy": {
+        "ko": {
+          "narr": "그런데 당황하지 마세요. 결과지를 받은 지금, 딱 3가지만 확인하면 돼요.",
+          "cap": [
+            "당황 말고",
+            "딱 3가지만"
+          ],
+          "hl": "딱 3가지만"
+        },
+        "th": {
+          "narr": "แต่อย่าเพิ่งตกใจ ตอนนี้แค่ตรวจ 3 สิ่งก็พอ",
+          "cap": [
+            "อย่าเพิ่งตกใจ",
+            "แค่ 3 สิ่ง"
+          ],
+          "hl": "แค่ 3 สิ่ง"
+        },
+        "vi": {
+          "narr": "Nhưng đừng hoảng. Ngay lúc này, chỉ cần kiểm tra đúng 3 điều.",
+          "cap": [
+            "Đừng hoảng",
+            "chỉ 3 điều"
+          ],
+          "hl": "chỉ 3 điều"
+        },
+        "en": {
+          "narr": "But don't panic. Right now, you only need to check three things.",
+          "cap": [
+            "Don't panic",
+            "just 3 things"
+          ],
+          "hl": "just 3 things"
+        },
+        "cn": {
+          "narr": "但先别慌。拿到结果的现在，只要确认3件事就够了。",
+          "cap": [
+            "先别慌",
+            "只看3件事"
+          ],
+          "hl": "只看3件事"
+        },
+        "ch": {
+          "narr": "但先別慌。拿到結果的現在，只要確認3件事就夠了。",
+          "cap": [
+            "先別慌",
+            "只看3件事"
+          ],
+          "hl": "只看3件事"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 백분위는 숫자",
+      "motion": "📉 종형 곡선 + 점 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "첫째, 3백분위 미만이라는 숫자, 그 자체가 진단은 아니에요. 출발점일 뿐이죠.",
+          "cap": [
+            "3백분위 미만은",
+            "진단 아닌 숫자"
+          ],
+          "hl": "진단 아닌 숫자"
+        },
+        "th": {
+          "narr": "หนึ่ง ต่ำกว่าเปอร์เซ็นไทล์ที่ 3 เป็นแค่ตัวเลข ไม่ใช่คำวินิจฉัย",
+          "cap": [
+            "ต่ำกว่า 3%",
+            "แค่ตัวเลข"
+          ],
+          "hl": "แค่ตัวเลข"
+        },
+        "vi": {
+          "narr": "Một: dưới bách phân vị 3 chỉ là con số, chưa phải chẩn đoán.",
+          "cap": [
+            "Dưới BPV 3",
+            "chỉ là con số"
+          ],
+          "hl": "chỉ là con số"
+        },
+        "en": {
+          "narr": "One: below the 3rd percentile is a number, not a diagnosis.",
+          "cap": [
+            "Below 3rd %",
+            "a number, not a verdict"
+          ],
+          "hl": "a number, not a verdict"
+        },
+        "cn": {
+          "narr": "第一，低于第3百分位只是一个数字，并不是诊断。",
+          "cap": [
+            "低于3百分位",
+            "只是数字"
+          ],
+          "hl": "只是数字"
+        },
+        "ch": {
+          "narr": "第一，低於第3百分位只是一個數字，並不是診斷。",
+          "cap": [
+            "低於3百分位",
+            "只是數字"
+          ],
+          "hl": "只是數字"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 키는 복합",
+      "motion": "🧬💤🥗🏃 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전 하나로 정해지지 않아요. 영양, 수면, 운동, 스트레스까지 함께 만들어요.",
+          "cap": [
+            "유전만 아니라",
+            "영양·수면·운동"
+          ],
+          "hl": "영양·수면·운동"
+        },
+        "th": {
+          "narr": "ความสูงไม่ได้มาจากพันธุกรรมอย่างเดียว แต่รวมโภชนาการ การนอน การออกกำลังด้วย",
+          "cap": [
+            "ไม่ใช่แค่พันธุกรรม",
+            "อาหาร·นอน·ออกกำลัง"
+          ],
+          "hl": "อาหาร·นอน·ออกกำลัง"
+        },
+        "vi": {
+          "narr": "Chiều cao không chỉ do gen — còn là dinh dưỡng, giấc ngủ, vận động.",
+          "cap": [
+            "Không chỉ gen",
+            "ăn·ngủ·vận động"
+          ],
+          "hl": "ăn·ngủ·vận động"
+        },
+        "en": {
+          "narr": "Height isn't set by genes alone — nutrition, sleep, and exercise shape it too.",
+          "cap": [
+            "Not genes alone",
+            "food·sleep·exercise"
+          ],
+          "hl": "food·sleep·exercise"
+        },
+        "cn": {
+          "narr": "身高不只由基因决定——营养、睡眠、运动也一起塑造。",
+          "cap": [
+            "不只是基因",
+            "营养·睡眠·运动"
+          ],
+          "hl": "营养·睡眠·运动"
+        },
+        "ch": {
+          "narr": "身高不只由基因決定——營養、睡眠、運動也一起塑造。",
+          "cap": [
+            "不只是基因",
+            "營養·睡眠·運動"
+          ],
+          "hl": "營養·睡眠·運動"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "📏 펄스 + ↗ 강조",
+      "copy": {
+        "ko": {
+          "narr": "둘째, 지금 키보다 더 중요한 건 성장 속도예요. 1년에 얼마나 자랐는지를 봐야 해요.",
+          "cap": [
+            "지금 키보다",
+            "성장 속도"
+          ],
+          "hl": "성장 속도"
+        },
+        "th": {
+          "narr": "สอง สำคัญกว่าความสูงตอนนี้คืออัตราการโต ดูว่าปีนึงโตเท่าไร",
+          "cap": [
+            "สำคัญกว่าความสูง",
+            "อัตราการโต"
+          ],
+          "hl": "อัตราการโต"
+        },
+        "vi": {
+          "narr": "Hai: quan trọng hơn chiều cao hiện tại là tốc độ tăng — mỗi năm cao thêm bao nhiêu.",
+          "cap": [
+            "Hơn cả chiều cao",
+            "tốc độ tăng"
+          ],
+          "hl": "tốc độ tăng"
+        },
+        "en": {
+          "narr": "Two: more than current height, it's growth speed that matters — how much per year.",
+          "cap": [
+            "Beyond height",
+            "growth speed"
+          ],
+          "hl": "growth speed"
+        },
+        "cn": {
+          "narr": "第二，比现在的身高更重要的是生长速度——一年长多少。",
+          "cap": [
+            "比身高更重要",
+            "生长速度"
+          ],
+          "hl": "生长速度"
+        },
+        "ch": {
+          "narr": "第二，比現在的身高更重要的是生長速度——一年長多少。",
+          "cap": [
+            "比身高更重要",
+            "生長速度"
+          ],
+          "hl": "生長速度"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 뼈나이 핵심",
+      "motion": "🖐️🦴 X-ray 팝 + 나이 비교",
+      "copy": {
+        "ko": {
+          "narr": "셋째, 핵심 열쇠는 뼈나이예요. 실제 나이와 얼마나 차이 나는지가 성장을 말해줘요.",
+          "cap": [
+            "진짜 핵심",
+            "뼈나이"
+          ],
+          "hl": "뼈나이"
+        },
+        "th": {
+          "narr": "สาม กุญแจสำคัญคืออายุกระดูก ต่างจากอายุจริงแค่ไหนบอกการเติบโต",
+          "cap": [
+            "กุญแจสำคัญ",
+            "อายุกระดูก"
+          ],
+          "hl": "อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Ba: chìa khóa là tuổi xương — chênh với tuổi thật bao nhiêu nói lên sự phát triển.",
+          "cap": [
+            "Chìa khóa",
+            "tuổi xương"
+          ],
+          "hl": "tuổi xương"
+        },
+        "en": {
+          "narr": "Three: the key is bone age — how far it differs from real age tells the real story.",
+          "cap": [
+            "The key",
+            "bone age"
+          ],
+          "hl": "bone age"
+        },
+        "cn": {
+          "narr": "第三，关键钥匙是骨龄——和实际年龄差多少，才说明真正的生长。",
+          "cap": [
+            "关键钥匙",
+            "骨龄"
+          ],
+          "hl": "骨龄"
+        },
+        "ch": {
+          "narr": "第三，關鍵鑰匙是骨齡——和實際年齡差多少，才說明真正的生長。",
+          "cap": [
+            "關鍵鑰匙",
+            "骨齡"
+          ],
+          "hl": "骨齡"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27.5s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 빨강 플래시",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이가 실제 나이보다 빠르면, 성장판이 일찍 닫혀서 최종 키가 작아질 수 있어요.",
+          "cap": [
+            "뼈나이 빠르면",
+            "성장판 일찍 닫힘"
+          ],
+          "hl": "성장판 일찍 닫힘"
+        },
+        "th": {
+          "narr": "ถ้าอายุกระดูกเร็วกว่าอายุจริง แผ่นกระดูกปิดเร็ว ส่วนสูงสุดท้ายอาจลดลง",
+          "cap": [
+            "กระดูกเร็วไป",
+            "ปิดเร็ว"
+          ],
+          "hl": "ปิดเร็ว"
+        },
+        "vi": {
+          "narr": "Nếu tuổi xương vượt tuổi thật, sụn đóng sớm, chiều cao cuối có thể thấp đi.",
+          "cap": [
+            "Tuổi xương vượt",
+            "sụn đóng sớm"
+          ],
+          "hl": "sụn đóng sớm"
+        },
+        "en": {
+          "narr": "If bone age runs ahead of real age, the plates close early — final height can drop.",
+          "cap": [
+            "Bone age ahead",
+            "plates close early"
+          ],
+          "hl": "plates close early"
+        },
+        "cn": {
+          "narr": "如果骨龄超过实际年龄，生长板提前闭合，最终身高可能变矮。",
+          "cap": [
+            "骨龄超前",
+            "生长板早闭"
+          ],
+          "hl": "生长板早闭"
+        },
+        "ch": {
+          "narr": "如果骨齡超過實際年齡，生長板提前閉合，最終身高可能變矮。",
+          "cap": [
+            "骨齡超前",
+            "生長板早閉"
+          ],
+          "hl": "生長板早閉"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27.5–31s",
+      "kind": "ig",
+      "igLabel": "IG4 골든타임",
+      "motion": "⏳ 골드 글로우 + 따뜻 점등",
+      "copy": {
+        "ko": {
+          "narr": "성장판은 한 번 닫히면 다시 열리지 않아요. 그래서 결과지를 본 지금이 골든타임이에요.",
+          "cap": [
+            "한 번 닫히면 끝",
+            "지금이 골든타임"
+          ],
+          "hl": "지금이 골든타임"
+        },
+        "th": {
+          "narr": "แผ่นกระดูกปิดแล้วเปิดใหม่ไม่ได้ ตอนนี้ที่เห็นผลแล้วคือช่วงเวลาทอง",
+          "cap": [
+            "ปิดแล้วเปิดไม่ได้",
+            "ตอนนี้คือช่วงเวลาทอง"
+          ],
+          "hl": "ตอนนี้คือช่วงเวลาทอง"
+        },
+        "vi": {
+          "narr": "Sụn đóng rồi không mở lại. Vì vậy ngay khi thấy phiếu chính là thời điểm vàng.",
+          "cap": [
+            "Đóng là hết",
+            "giờ là thời điểm vàng"
+          ],
+          "hl": "giờ là thời điểm vàng"
+        },
+        "en": {
+          "narr": "Once the plates close, they never reopen. So right now is the golden time.",
+          "cap": [
+            "Closed for good",
+            "now is golden time"
+          ],
+          "hl": "now is golden time"
+        },
+        "cn": {
+          "narr": "生长板一旦闭合就不会再开。所以看到结果的现在，正是黄金期。",
+          "cap": [
+            "闭合就回不去",
+            "现在是黄金期"
+          ],
+          "hl": "现在是黄金期"
+        },
+        "ch": {
+          "narr": "生長板一旦閉合就不會再開。所以看到結果的現在，正是黃金期。",
+          "cap": [
+            "閉合就回不去",
+            "現在是黃金期"
+          ],
+          "hl": "現在是黃金期"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "31–34s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이와 예측키를 보면, 신체검사 숫자 너머 우리 아이의 진짜 상태가 보여요.",
+          "cap": [
+            "뼈나이·예측키로",
+            "진짜 상태 확인"
+          ],
+          "hl": "진짜 상태 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกและส่วนสูงที่คาดการณ์ บอกสถานะจริงของลูกเหนือกว่าตัวเลข",
+          "cap": [
+            "อายุกระดูก·คาดการณ์",
+            "สถานะจริง"
+          ],
+          "hl": "สถานะจริง"
+        },
+        "vi": {
+          "narr": "Tuổi xương và chiều cao dự đoán cho thấy tình trạng thật, vượt khỏi con số.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "tình trạng thật"
+          ],
+          "hl": "tình trạng thật"
+        },
+        "en": {
+          "narr": "Bone age and predicted height reveal your child's real state, beyond the number.",
+          "cap": [
+            "Bone age·prediction",
+            "the real picture"
+          ],
+          "hl": "the real picture"
+        },
+        "cn": {
+          "narr": "骨龄和预测身高，能看到体检数字之外孩子的真实状态。",
+          "cap": [
+            "骨龄·预测身高",
+            "真实状态"
+          ],
+          "hl": "真实状态"
+        },
+        "ch": {
+          "narr": "骨齡和預測身高，能看到體檢數字之外孩子的真實狀態。",
+          "cap": [
+            "骨齡·預測身高",
+            "真實狀態"
+          ],
+          "hl": "真實狀態"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "34–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "숫자에 놀라기 전에, 지금 우리 아이 뼈나이·예측키부터 확인해 보세요.",
+          "cap": [
+            "놀라기 전에",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ก่อนจะตกใจกับตัวเลข มาเช็กอายุกระดูกของลูกวันนี้",
+          "cap": [
+            "ก่อนจะตกใจ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Trước khi hoảng vì con số, hãy kiểm tra tuổi xương của con ngay hôm nay.",
+          "cap": [
+            "Trước khi hoảng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Before the number scares you, check your child's bone age today.",
+          "cap": [
+            "Before you panic",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "在被数字吓到之前，现在就查查孩子的骨龄和预测身高吧。",
+          "cap": [
+            "别被数字吓到",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "在被數字嚇到之前，現在就查查孩子的骨齡和預測身高吧。",
+          "cap": [
+            "別被數字嚇到",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "종형 곡선 + 점 깜빡",
+      "title": "백분위는 숫자일 뿐",
+      "emojis": [
+        "📉",
+        "📋"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly growth percentile bell curve sweeping left to right, with a single small marker dot sitting low on the far-left tail (the short end), gently highlighted. Beside it a soft report-card sheet shape. Calm, reassuring, non-alarming mood — the dot is just one point on a wide curve. Brand purple #667eea to mint #2dd4bf gradient, soft glow. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선 왼쪽 점",
+          "ko": "3백분위 미만",
+          "en": "Below 3rd %",
+          "th": "ต่ำกว่า 3%"
+        },
+        {
+          "pos": "상단",
+          "ko": "숫자일 뿐",
+          "en": "Just a number",
+          "th": "แค่ตัวเลข"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "4요인 순차 점등",
+      "title": "키는 복합 — 유전+생활",
+      "emojis": [
+        "🧬",
+        "🥗"
+      ],
+      "prompt": "Flat vector, square, white background. A cheerful child in the center with four friendly icon bubbles orbiting around: a DNA helix, a healthy meal plate, a crescent moon for sleep, and a running shoe for exercise, all connecting toward the child with gentle dotted lines. Conveys 'many factors shape height together.' Brand purple #667eea with mint #2dd4bf accents, soft glow. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 위 버블",
+          "ko": "유전",
+          "en": "Genes",
+          "th": "พันธุกรรม"
+        },
+        {
+          "pos": "오른쪽 위 버블",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "왼쪽 아래 버블",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "오른쪽 아래 버블",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลัง"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "X-ray 팝 + 나이 비교",
+      "title": "뼈나이 vs 실제 나이",
+      "emojis": [
+        "🖐️",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white background. A stylized friendly hand X-ray on the left showing finger bones with visible growth-plate gaps, glowing softly mint, next to a small clock/calendar badge on the right; a gentle two-way comparison arrow between them suggests 'bone age vs real age.' Clean, scientific yet warm and non-scary. Brand purple #667eea with mint #2dd4bf glow accents. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽(X-ray)",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "오른쪽(달력)",
+          "ko": "실제 나이",
+          "en": "Real age",
+          "th": "อายุจริง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "⏳ 골드 글로우 + 따뜻 점등",
+      "title": "골든타임 — 닫히기 전 지금",
+      "emojis": [
+        "⏳",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. An hourglass with golden sand still flowing, beside a stylized knee growth-plate gap glowing warmly and still open, and a child reaching upward toward a bright sparkle. Warm golden glow conveys 'there is still time, opportunity is now.' Hopeful and uplifting, not threatening. Brand purple #667eea plus warm gold accents. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "아직 기회 있음",
+          "en": "Still time",
+          "th": "ยังมีเวลา"
+        },
+        {
+          "pos": "가운데(글로우)",
+          "ko": "성장 골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📋",
+      "label": "신체검사 결과지"
+    },
+    {
+      "e": "😟",
+      "label": "당황한 부모"
+    },
+    {
+      "e": "📉",
+      "label": "백분위"
+    },
+    {
+      "e": "🧬",
+      "label": "유전"
+    },
+    {
+      "e": "🥗",
+      "label": "영양"
+    },
+    {
+      "e": "💤",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "📏",
+      "label": "성장 속도"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "✨",
+      "label": "희망·강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

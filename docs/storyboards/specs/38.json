@@ -1,0 +1,773 @@
+{
+  "n": 38,
+  "slug": "나중에크겠지",
+  "title": "\"나중에 크겠지\" — 언제까지 기다려도 될까?",
+  "sub": "막연한 기다림 대신 신호 6가지 — 성장판 닫히기 전이 진짜 기회",
+  "category": "C. 부모공감",
+  "topicTitle": "\"나중에 크겠지\" 언제까지 기다려도 될까",
+  "headerTop": "우리 아이 키",
+  "headerMark": "언제까지 기다려?",
+  "accentEmoji": "⏳💜",
+  "hook": "\"나중에 크겠지\" — 그 말, 언제까지 믿어도 될까요?",
+  "misconception": "\"어리니까 나중에 알아서 크겠지\" → 모든 아이가 저절로 크진 않고, 성장판 닫히면 기회도 닫힘",
+  "message": "기다림이 답일 때도 있지만, 연 4cm 미만·3백분위 미만·이른 사춘기 같은 신호가 있으면 성장판 닫히기 전에 확인해야 한다",
+  "tone": "협박 ❌ → \"아직 기회 있다\" 긍정 골든타임. \"나중에 크겠지\"를 비난하지 않고 부드럽게 공감 후 신호로 안내. \"우리 아이 키\" 보편",
+  "cta": "막연히 기다리지 말고 지금 확인 → 홈페이지 예측키 / 뼈나이 측정으로 남은 기회 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "언제까지 기다려?",
+    "subject": "우리 아이 키 \"나중에\"",
+    "number": "4cm",
+    "numLabel": "안 크면 신호"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"나중에 크겠지\" 그 말, 우리 모두 해봤죠 → 근데 정말 괜찮을까?"
+    },
+    {
+      "act": "ACT 2",
+      "title": "진실",
+      "scenes": "c3–c4",
+      "desc": "늦게 크는 아이도 있지만 모두는 아니다 → 성장판 닫히면 기회도 닫힘"
+    },
+    {
+      "act": "ACT 3",
+      "title": "신호 6가지",
+      "scenes": "c5–c6",
+      "desc": "연 4cm 미만·3백분위 미만 → 이른 사춘기(여8·남9)"
+    },
+    {
+      "act": "ACT 4",
+      "title": "전환·핵심",
+      "scenes": "c7–c8",
+      "desc": "기다림 vs 확인은 다르다 → 황금기는 지금"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "뼈나이로 남은 기회 확인 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "💭 슬램 인 + 페이드",
+      "copy": {
+        "ko": {
+          "narr": "\"나중에 크겠지\" — 그 말, 우리 다 해봤잖아요. 근데 언제까지 믿어도 될까요?",
+          "cap": [
+            "\"나중에 크겠지\"",
+            "언제까지?"
+          ],
+          "hl": "언제까지?"
+        },
+        "th": {
+          "narr": "\"เดี๋ยวก็โตเอง\" — เราต่างเคยพูด แต่จะเชื่อได้ถึงเมื่อไหร่?",
+          "cap": [
+            "\"เดี๋ยวก็โตเอง\"",
+            "ถึงเมื่อไหร่?"
+          ],
+          "hl": "ถึงเมื่อไหร่?"
+        },
+        "vi": {
+          "narr": "\"Lớn lên sẽ cao thôi\" — ai cũng từng nói. Nhưng tin được đến bao giờ?",
+          "cap": [
+            "\"Rồi sẽ cao\"",
+            "đến bao giờ?"
+          ],
+          "hl": "đến bao giờ?"
+        },
+        "en": {
+          "narr": "\"They'll catch up later\" — we've all said it. But how long can you wait?",
+          "cap": [
+            "\"Catch up later\"",
+            "how long?"
+          ],
+          "hl": "how long?"
+        },
+        "cn": {
+          "narr": "\"以后会长高的\"——我们都这么说过。但能等到什么时候？",
+          "cap": [
+            "\"以后会长高\"",
+            "等到何时？"
+          ],
+          "hl": "等到何时？"
+        },
+        "ch": {
+          "narr": "\"以後會長高的\"——我們都這麼說過。但能等到什麼時候？",
+          "cap": [
+            "\"以後會長高\"",
+            "等到何時？"
+          ],
+          "hl": "等到何時？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🌙 흔들 + 한숨",
+      "copy": {
+        "ko": {
+          "narr": "낮엔 괜찮다가도, 밤이 되면 아이 키가 자꾸 눈에 밟히죠. 그 마음 잘 알아요.",
+          "cap": [
+            "밤마다",
+            "눈에 밟히는 키"
+          ],
+          "hl": "눈에 밟히는 키"
+        },
+        "th": {
+          "narr": "กลางวันก็ว่าไม่เป็นไร แต่พอกลางคืนก็ห่วงเรื่องส่วนสูงลูก เข้าใจดีค่ะ",
+          "cap": [
+            "ทุกคืน",
+            "ห่วงส่วนสูงลูก"
+          ],
+          "hl": "ห่วงส่วนสูงลูก"
+        },
+        "vi": {
+          "narr": "Ban ngày thấy ổn, nhưng đêm xuống lại lo chiều cao của con. Tôi hiểu mà.",
+          "cap": [
+            "Mỗi đêm",
+            "lo chiều cao con"
+          ],
+          "hl": "lo chiều cao con"
+        },
+        "en": {
+          "narr": "You're fine by day, but at night their height keeps tugging at you. I get it.",
+          "cap": [
+            "Every night",
+            "that worry"
+          ],
+          "hl": "that worry"
+        },
+        "cn": {
+          "narr": "白天没事，一到晚上就放不下孩子的身高。这份心情我懂。",
+          "cap": [
+            "每到夜里",
+            "放不下的身高"
+          ],
+          "hl": "放不下的身高"
+        },
+        "ch": {
+          "narr": "白天沒事，一到晚上就放不下孩子的身高。這份心情我懂。",
+          "cap": [
+            "每到夜裡",
+            "放不下的身高"
+          ],
+          "hl": "放不下的身高"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 기다림 vs 닫힘",
+      "motion": "🚪 한쪽 닫힘 + ⏳ 강조",
+      "copy": {
+        "ko": {
+          "narr": "늦게 크는 아이도 분명 있어요. 하지만 모든 아이가 저절로 크는 건 아니에요.",
+          "cap": [
+            "늦게 크는 아이도",
+            "하지만 모두는 아냐"
+          ],
+          "hl": "하지만 모두는 아냐"
+        },
+        "th": {
+          "narr": "เด็กโตช้าก็มีจริง แต่ไม่ใช่เด็กทุกคนจะโตเองตามธรรมชาติ",
+          "cap": [
+            "บางคนโตช้าจริง",
+            "แต่ไม่ใช่ทุกคน"
+          ],
+          "hl": "แต่ไม่ใช่ทุกคน"
+        },
+        "vi": {
+          "narr": "Đúng là có trẻ dậy thì muộn. Nhưng không phải trẻ nào cũng tự cao lên.",
+          "cap": [
+            "Có trẻ lớn muộn",
+            "nhưng không phải ai cũng vậy"
+          ],
+          "hl": "không phải ai cũng vậy"
+        },
+        "en": {
+          "narr": "Some kids really are late bloomers. But not every child grows on their own.",
+          "cap": [
+            "Some bloom late",
+            "not every child does"
+          ],
+          "hl": "not every child does"
+        },
+        "cn": {
+          "narr": "确实有晚长的孩子，但并不是每个孩子都会自己长高。",
+          "cap": [
+            "有的孩子晚长",
+            "但并非人人如此"
+          ],
+          "hl": "但并非人人如此"
+        },
+        "ch": {
+          "narr": "確實有晚長的孩子，但並不是每個孩子都會自己長高。",
+          "cap": [
+            "有的孩子晚長",
+            "但並非人人如此"
+          ],
+          "hl": "但並非人人如此"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 성장판",
+      "motion": "🦴 글로우 → 서서히 닫힘",
+      "copy": {
+        "ko": {
+          "narr": "키는 성장판이 열려 있을 때만 자라요. 한 번 닫히면 기회도 같이 닫혀요.",
+          "cap": [
+            "성장판 열렸을 때만",
+            "닫히면 기회도 끝"
+          ],
+          "hl": "닫히면 기회도 끝"
+        },
+        "th": {
+          "narr": "ความสูงเพิ่มได้เฉพาะตอนแผ่นกระดูกเปิด พอปิดแล้ว โอกาสก็ปิดตาม",
+          "cap": [
+            "เฉพาะตอนเปิด",
+            "ปิดแล้วหมดโอกาส"
+          ],
+          "hl": "ปิดแล้วหมดโอกาส"
+        },
+        "vi": {
+          "narr": "Chiều cao chỉ tăng khi sụn tăng trưởng còn mở. Đóng lại là hết cơ hội.",
+          "cap": [
+            "Chỉ khi sụn mở",
+            "đóng là hết cơ hội"
+          ],
+          "hl": "đóng là hết cơ hội"
+        },
+        "en": {
+          "narr": "Height grows only while the growth plates are open. Once closed, the window closes too.",
+          "cap": [
+            "Only while open",
+            "closed = window gone"
+          ],
+          "hl": "closed = window gone"
+        },
+        "cn": {
+          "narr": "只有生长板开着时身高才会长。一旦闭合，机会也随之关闭。",
+          "cap": [
+            "开着才能长",
+            "闭合即关门"
+          ],
+          "hl": "闭合即关门"
+        },
+        "ch": {
+          "narr": "只有生長板開著時身高才會長。一旦閉合，機會也隨之關閉。",
+          "cap": [
+            "開著才能長",
+            "閉合即關門"
+          ],
+          "hl": "閉合即關門"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "📏 펄스 · <4면 ⚠️ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "그래서 신호를 봐야 해요. 1년에 4센티가 안 자라거나, 또래 100명 중 앞에서 3번째 안이면 확인이 필요해요.",
+          "cap": [
+            "연 4cm 미만",
+            "100명 중 앞 3번째"
+          ],
+          "hl": "연 4cm 미만"
+        },
+        "th": {
+          "narr": "จึงต้องดูสัญญาณ ถ้าปีนึงโตไม่ถึง 4 ซม. หรืออยู่ 3% ล่างสุดของเพื่อน ควรตรวจ",
+          "cap": [
+            "ปีละไม่ถึง 4 ซม.",
+            "3% ล่างสุด"
+          ],
+          "hl": "ปีละไม่ถึง 4 ซม."
+        },
+        "vi": {
+          "narr": "Hãy nhìn vào dấu hiệu: dưới 4cm một năm, hoặc thuộc top 3% thấp nhất — cần kiểm tra.",
+          "cap": [
+            "Dưới 4cm/năm",
+            "top 3% thấp nhất"
+          ],
+          "hl": "Dưới 4cm/năm"
+        },
+        "en": {
+          "narr": "So watch the signs: under 4cm a year, or in the shortest 3% of peers — time to check.",
+          "cap": [
+            "Under 4cm a year",
+            "shortest 3%"
+          ],
+          "hl": "Under 4cm a year"
+        },
+        "cn": {
+          "narr": "所以要看信号：一年长不到4厘米，或在同龄最矮的3%，就该检查了。",
+          "cap": [
+            "一年不足4厘米",
+            "最矮3%"
+          ],
+          "hl": "一年不足4厘米"
+        },
+        "ch": {
+          "narr": "所以要看信號：一年長不到4公分，或在同齡最矮的3%，就該檢查了。",
+          "cap": [
+            "一年不足4公分",
+            "最矮3%"
+          ],
+          "hl": "一年不足4公分"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 이른 사춘기 신호",
+      "motion": "⚠️ 8·9세 팝 + 흔들",
+      "copy": {
+        "ko": {
+          "narr": "또 여아 8세 전 가슴 발달, 남아 9세 전 고환이 커지면 성장이 일찍 멈출 수 있어요.",
+          "cap": [
+            "여 8세·남 9세 전",
+            "이른 사춘기 신호"
+          ],
+          "hl": "이른 사춘기 신호"
+        },
+        "th": {
+          "narr": "และถ้าหญิงมีหน้าอกก่อน 8 ขวบ ชายมีอัณฑะโตก่อน 9 ขวบ การเติบโตอาจหยุดเร็ว",
+          "cap": [
+            "หญิง 8 ชาย 9",
+            "แรกรุ่นก่อนวัย"
+          ],
+          "hl": "แรกรุ่นก่อนวัย"
+        },
+        "vi": {
+          "narr": "Bé gái phát triển ngực trước 8 tuổi, bé trai tinh hoàn to trước 9 — có thể ngừng cao sớm.",
+          "cap": [
+            "Gái 8, trai 9",
+            "dậy thì sớm"
+          ],
+          "hl": "dậy thì sớm"
+        },
+        "en": {
+          "narr": "Breast development before age 8 in girls, testes enlarging before 9 in boys — growth may stop early.",
+          "cap": [
+            "Girls 8, boys 9",
+            "early puberty"
+          ],
+          "hl": "early puberty"
+        },
+        "cn": {
+          "narr": "女孩8岁前发育、男孩9岁前睾丸变大，生长可能提前停止。",
+          "cap": [
+            "女8 男9",
+            "性早熟信号"
+          ],
+          "hl": "性早熟信号"
+        },
+        "ch": {
+          "narr": "女孩8歲前發育、男孩9歲前睪丸變大，生長可能提前停止。",
+          "cap": [
+            "女8 男9",
+            "性早熟信號"
+          ],
+          "hl": "性早熟信號"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27.5s",
+      "kind": "doctor",
+      "motion": "💡 톤 전환 + 따뜻 글로우",
+      "copy": {
+        "ko": {
+          "narr": "기다리는 것과 확인하는 건 달라요. 확인은 협박이 아니라, 아직 기회가 있을 때 하는 거예요.",
+          "cap": [
+            "기다림 ≠ 확인",
+            "아직 기회 있을 때"
+          ],
+          "hl": "아직 기회 있을 때"
+        },
+        "th": {
+          "narr": "การรอกับการตรวจไม่เหมือนกัน ตรวจไม่ใช่การขู่ แต่ทำตอนที่ยังมีโอกาส",
+          "cap": [
+            "รอ ≠ ตรวจ",
+            "ตอนยังมีโอกาส"
+          ],
+          "hl": "ตอนยังมีโอกาส"
+        },
+        "vi": {
+          "narr": "Chờ đợi khác với kiểm tra. Kiểm tra không phải để dọa, mà là khi vẫn còn cơ hội.",
+          "cap": [
+            "Chờ ≠ kiểm tra",
+            "khi còn cơ hội"
+          ],
+          "hl": "khi còn cơ hội"
+        },
+        "en": {
+          "narr": "Waiting and checking aren't the same. Checking isn't fear — it's acting while there's still time.",
+          "cap": [
+            "Wait ≠ check",
+            "while time remains"
+          ],
+          "hl": "while time remains"
+        },
+        "cn": {
+          "narr": "等待和确认不一样。确认不是吓唬，而是趁还有机会时去做。",
+          "cap": [
+            "等待 ≠ 确认",
+            "趁还有机会"
+          ],
+          "hl": "趁还有机会"
+        },
+        "ch": {
+          "narr": "等待和確認不一樣。確認不是嚇唬，而是趁還有機會時去做。",
+          "cap": [
+            "等待 ≠ 確認",
+            "趁還有機會"
+          ],
+          "hl": "趁還有機會"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27.5–31s",
+      "kind": "ig",
+      "igLabel": "IG4 황금기",
+      "motion": "⏳ 골드 글로우 + 따뜻 점등",
+      "copy": {
+        "ko": {
+          "narr": "성장판이 열려 있는 지금이, 아이 키를 끌어올릴 수 있는 황금기예요.",
+          "cap": [
+            "열려 있는 지금",
+            "성장 황금기"
+          ],
+          "hl": "성장 황금기"
+        },
+        "th": {
+          "narr": "ตอนนี้ที่แผ่นกระดูกยังเปิด คือช่วงเวลาทองที่จะดึงศักยภาพความสูงของลูก",
+          "cap": [
+            "ตอนที่ยังเปิด",
+            "ช่วงเวลาทอง"
+          ],
+          "hl": "ช่วงเวลาทอง"
+        },
+        "vi": {
+          "narr": "Ngay bây giờ, khi sụn còn mở, chính là thời điểm vàng để con cao thêm.",
+          "cap": [
+            "Khi sụn còn mở",
+            "thời điểm vàng"
+          ],
+          "hl": "thời điểm vàng"
+        },
+        "en": {
+          "narr": "Right now, while the plates are open, is the golden window to lift your child's height.",
+          "cap": [
+            "While still open",
+            "golden window"
+          ],
+          "hl": "golden window"
+        },
+        "cn": {
+          "narr": "现在，生长板还开着的时候，正是拉高孩子身高的黄金期。",
+          "cap": [
+            "趁还开着",
+            "成长黄金期"
+          ],
+          "hl": "成长黄金期"
+        },
+        "ch": {
+          "narr": "現在，生長板還開著的時候，正是拉高孩子身高的黃金期。",
+          "cap": [
+            "趁還開著",
+            "成長黃金期"
+          ],
+          "hl": "成長黃金期"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "31–34s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면, 우리 아이한테 남은 기회가 얼마인지 정확히 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "남은 기회 확인"
+          ],
+          "hl": "남은 기회 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกได้ว่าลูกเรายังเหลือโอกาสอีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "เวลาที่เหลือ"
+          ],
+          "hl": "เวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết chính xác con còn lại bao nhiêu cơ hội.",
+          "cap": [
+            "Tuổi xương",
+            "cơ hội còn lại"
+          ],
+          "hl": "cơ hội còn lại"
+        },
+        "en": {
+          "narr": "Bone age shows exactly how much chance your child has left.",
+          "cap": [
+            "Bone age",
+            "chance left"
+          ],
+          "hl": "chance left"
+        },
+        "cn": {
+          "narr": "骨龄能告诉你，孩子还剩下多少机会。",
+          "cap": [
+            "骨龄",
+            "剩余机会"
+          ],
+          "hl": "剩余机会"
+        },
+        "ch": {
+          "narr": "骨齡能告訴你，孩子還剩下多少機會。",
+          "cap": [
+            "骨齡",
+            "剩餘機會"
+          ],
+          "hl": "剩餘機會"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "34–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "더 기다리기 전에, 지금 우리 아이 남은 기회를 확인해 보세요.",
+          "cap": [
+            "기다리기 전에",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ก่อนจะรอต่อ มาเช็กโอกาสที่เหลือของลูกวันนี้",
+          "cap": [
+            "ก่อนจะรอต่อ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Trước khi chờ thêm, hãy kiểm tra cơ hội còn lại của con ngay hôm nay.",
+          "cap": [
+            "Trước khi chờ thêm",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Before you wait any longer, check your child's remaining chance today.",
+          "cap": [
+            "Before you wait",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "在继续等待之前，现在就查查孩子还剩多少机会吧。",
+          "cap": [
+            "别再等了",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "在繼續等待之前，現在就查查孩子還剩多少機會吧。",
+          "cap": [
+            "別再等了",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "한쪽 문 닫힘 + ⏳ 강조",
+      "title": "기다림 vs 닫히는 기회",
+      "emojis": [
+        "⏳",
+        "🚪"
+      ],
+      "prompt": "Flat vector, square, white background. Two gentle paths diverging: on the left a child calmly waiting under a soft sunrise (still-open path), on the right a doorway slowly closing with a sand hourglass beside it. Balanced, non-threatening, hopeful mood. Brand purple #667eea to mint #2dd4bf gradient, soft glow. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "늦게 크는 아이",
+          "en": "Late bloomer",
+          "th": "เด็กโตช้า"
+        },
+        {
+          "pos": "오른쪽",
+          "ko": "닫히는 기회",
+          "en": "Closing window",
+          "th": "โอกาสที่ปิดลง"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "성장판 글로우 → 서서히 닫힘",
+      "title": "성장판 — 열림과 닫힘",
+      "emojis": [
+        "🦴",
+        "🦵"
+      ],
+      "prompt": "Flat vector, square, white background. A stylized leg bone with a clearly visible growth-plate gap at the end, glowing softly mint while open; a faint ghosted version beside it shows the same gap nearly closed. Friendly, clean medical illustration, gentle and hopeful, not scary. Brand purple #667eea with mint #2dd4bf glow accents. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(글로우)",
+          "ko": "열림",
+          "en": "Open",
+          "th": "เปิด"
+        },
+        {
+          "pos": "오른쪽(흐림)",
+          "ko": "닫힘",
+          "en": "Closed",
+          "th": "ปิด"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "8·9세 순차 팝",
+      "title": "이른 사춘기 신호 (여 8 · 남 9)",
+      "emojis": [
+        "⚠️",
+        "🧒"
+      ],
+      "prompt": "Flat vector, square, white background. Two friendly child silhouettes side by side, a girl and a boy, each with a small gentle alert/clock badge floating above to signal 'earlier than expected.' Soft, respectful, non-explicit, pediatric-friendly. Brand purple #667eea with a warm amber accent for the alert badges. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "여아 위",
+          "ko": "여아 8세 전",
+          "en": "Girls before 8",
+          "th": "หญิงก่อน 8 ขวบ"
+        },
+        {
+          "pos": "남아 위",
+          "ko": "남아 9세 전",
+          "en": "Boys before 9",
+          "th": "ชายก่อน 9 ขวบ"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "⏳ 골드 글로우 + 따뜻 점등",
+      "title": "황금기 — 열려 있는 지금",
+      "emojis": [
+        "⏳",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. An hourglass with golden sand still flowing, beside a child reaching upward toward a bright sparkle, warm golden glow surrounding them conveying 'there is still time, opportunity is now.' Hopeful and uplifting. Brand purple #667eea plus warm gold accents. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "아직 기회 있음",
+          "en": "Still time",
+          "th": "ยังมีเวลา"
+        },
+        {
+          "pos": "가운데(글로우)",
+          "ko": "성장 황금기",
+          "en": "Golden window",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "💭",
+      "label": "나중에 크겠지"
+    },
+    {
+      "e": "🌙",
+      "label": "밤마다 걱정"
+    },
+    {
+      "e": "⏳",
+      "label": "황금기/시간"
+    },
+    {
+      "e": "🚪",
+      "label": "닫히는 기회"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판/뼈나이"
+    },
+    {
+      "e": "🦵",
+      "label": "성장판"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장속도"
+    },
+    {
+      "e": "⚠️",
+      "label": "이른 사춘기 신호"
+    },
+    {
+      "e": "🧒",
+      "label": "또래 아이"
+    },
+    {
+      "e": "💡",
+      "label": "확인≠협박"
+    },
+    {
+      "e": "✨",
+      "label": "희망·강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

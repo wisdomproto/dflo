@@ -1,0 +1,773 @@
+{
+  "n": 42,
+  "slug": "자존감말하기",
+  "title": "키 때문에 주눅 든 아이, 이렇게 말해주세요",
+  "sub": "\"왜 키가 안 크니\" 대신 — 자존감을 지키는 한마디가 성장을 돕는다",
+  "category": "C. 부모공감",
+  "topicTitle": "키 작은 아이 자존감",
+  "headerTop": "우리 아이 키",
+  "headerMark": "뭐라고 말해줄까?",
+  "accentEmoji": "💛🌱",
+  "hook": "키 때문에 풀 죽은 우리 아이, 뭐라고 말해줘야 할까요?",
+  "misconception": "\"크면 다 괜찮아져\" 하며 다그치면 → 키보다 자존감이 먼저 무너진다",
+  "message": "\"왜 키가 안 크니\" 대신 ①감정 공감 ②노력 칭찬 ③키 외 장점 칭찬. 키는 수많은 장점 중 하나일 뿐, 마음을 지키며 성장도 함께 챙긴다",
+  "tone": "협박·다그침 ❌ → 따뜻한 지지 + 긍정 골든타임(\"마음도 키도 아직 늦지 않았다\"). \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이 성장 상태, 지금 예측키·뼈나이로 확인 → 마음도 키도 함께 챙기기",
+  "duration": 35,
+  "thumb": {
+    "kicker": "이 한마디가 중요!",
+    "subject": "키 때문에 주눅 든 아이",
+    "number": "3마디",
+    "numLabel": "로 자존감 지키기"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"키 때문에 풀 죽은 아이 — 뭐라 말할까\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "하지 말 말",
+      "scenes": "c3–c4",
+      "desc": "\"왜 키가 안 크니' 한마디가 마음 위축\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "이렇게 말하기",
+      "scenes": "c5–c6",
+      "desc": "\"감정 공감 → 노력 칭찬\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "키는 하나일 뿐",
+      "scenes": "c7–c8",
+      "desc": "\"키 외 장점 칭찬 → 자존감 + 성장 함께\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 상태 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "💛 슬램 인 + 잔잔 페이드",
+      "copy": {
+        "ko": {
+          "narr": "키 때문에 풀 죽은 우리 아이, 뭐라고 말해줘야 할까요?",
+          "cap": [
+            "키 때문에 주눅 든 아이",
+            "뭐라 말해줄까?"
+          ],
+          "hl": "뭐라 말해줄까?"
+        },
+        "th": {
+          "narr": "ลูกเสียความมั่นใจเพราะส่วนสูง เราควรพูดกับลูกอย่างไรดี?",
+          "cap": [
+            "ลูกไม่มั่นใจเพราะส่วนสูง",
+            "พูดยังไงดี?"
+          ],
+          "hl": "พูดยังไงดี?"
+        },
+        "vi": {
+          "narr": "Con buồn vì thấp bé — cha mẹ nên nói thế nào đây?",
+          "cap": [
+            "Con tự ti vì chiều cao",
+            "Nên nói thế nào?"
+          ],
+          "hl": "Nên nói thế nào?"
+        },
+        "en": {
+          "narr": "Your child feels down about being short — what do you say?",
+          "cap": [
+            "Your child, hurt by height",
+            "What do you say?"
+          ],
+          "hl": "What do you say?"
+        },
+        "cn": {
+          "narr": "孩子因为个子矮而自卑，我们该怎么跟他说？",
+          "cap": [
+            "孩子因身高而自卑",
+            "该怎么说？"
+          ],
+          "hl": "该怎么说？"
+        },
+        "ch": {
+          "narr": "孩子因為個子矮而自卑，我們該怎麼跟他說？",
+          "cap": [
+            "孩子因身高而自卑",
+            "該怎麼說？"
+          ],
+          "hl": "該怎麼說？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💬 흔들 + 한숨 비트",
+      "copy": {
+        "ko": {
+          "narr": "많은 부모님이 그래요. \"우리 아이만 작은 것 같아요\"라고요.",
+          "cap": [
+            "우리 아이만 작은 것 같아",
+            "혼자 끙끙 X"
+          ],
+          "hl": "우리 아이만 작은 것 같아"
+        },
+        "th": {
+          "narr": "พ่อแม่หลายคนพูดเหมือนกันว่า ลูกเราตัวเล็กอยู่คนเดียว",
+          "cap": [
+            "ลูกเราตัวเล็กคนเดียว?",
+            "ไม่ต้องกังวลคนเดียว"
+          ],
+          "hl": "ลูกเราตัวเล็กคนเดียว?"
+        },
+        "vi": {
+          "narr": "Nhiều cha mẹ tâm sự: \"Hình như chỉ con mình là thấp.\"",
+          "cap": [
+            "Chỉ con mình thấp?",
+            "Đừng lo một mình"
+          ],
+          "hl": "Chỉ con mình thấp?"
+        },
+        "en": {
+          "narr": "So many parents tell me, \"It feels like only my child is small.\"",
+          "cap": [
+            "\"Only my child is small?\"",
+            "You're not alone"
+          ],
+          "hl": "\"Only my child is small?\""
+        },
+        "cn": {
+          "narr": "很多父母都说：\"好像只有我家孩子矮。\"",
+          "cap": [
+            "只有我家孩子矮？",
+            "别一个人扛"
+          ],
+          "hl": "只有我家孩子矮？"
+        },
+        "ch": {
+          "narr": "很多父母都說：\"好像只有我家孩子矮。\"",
+          "cap": [
+            "只有我家孩子矮？",
+            "別一個人扛"
+          ],
+          "hl": "只有我家孩子矮？"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 마음에 박히는 말",
+      "motion": "💔 쿵 + 회색 톤다운",
+      "copy": {
+        "ko": {
+          "narr": "그런데 \"왜 이렇게 키가 안 크니?\" 이런 말, 아이 마음을 더 위축시켜요.",
+          "cap": [
+            "\"왜 키가 안 크니\"",
+            "마음이 더 위축"
+          ],
+          "hl": "마음이 더 위축"
+        },
+        "th": {
+          "narr": "แต่คำว่า \"ทำไมไม่สูงขึ้นเลย\" ยิ่งทำให้ใจลูกหดหู่",
+          "cap": [
+            "\"ทำไมไม่สูงเลย\"",
+            "ยิ่งทำใจหด"
+          ],
+          "hl": "ยิ่งทำใจหด"
+        },
+        "vi": {
+          "narr": "Nhưng câu \"Sao con không cao lên?\" càng làm con thu mình lại.",
+          "cap": [
+            "\"Sao con không cao?\"",
+            "Con càng thu mình"
+          ],
+          "hl": "Con càng thu mình"
+        },
+        "en": {
+          "narr": "But \"Why aren't you growing?\" only makes them shrink inside.",
+          "cap": [
+            "\"Why aren't you tall?\"",
+            "Shrinks them inside"
+          ],
+          "hl": "Shrinks them inside"
+        },
+        "cn": {
+          "narr": "可是\"你怎么还不长高\"这种话，只会让孩子更退缩。",
+          "cap": [
+            "\"怎么还不长高\"",
+            "孩子更退缩"
+          ],
+          "hl": "孩子更退缩"
+        },
+        "ch": {
+          "narr": "可是\"你怎麼還不長高\"這種話，只會讓孩子更退縮。",
+          "cap": [
+            "\"怎麼還不長高\"",
+            "孩子更退縮"
+          ],
+          "hl": "孩子更退縮"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "📵 X 슬래시 + 셰이크",
+      "copy": {
+        "ko": {
+          "narr": "\"키 크려면 밥 다 먹어!\" 다그침도 마찬가지예요. 부모 불안은 아이에게 그대로 전해지거든요.",
+          "cap": [
+            "다그치는 말 X",
+            "불안은 그대로 전해져"
+          ],
+          "hl": "불안은 그대로 전해져"
+        },
+        "th": {
+          "narr": "\"อยากสูงก็กินให้หมด!\" การกดดันก็เช่นกัน ความกังวลของพ่อแม่ส่งถึงลูกหมด",
+          "cap": [
+            "คำกดดัน X",
+            "ความกังวลส่งถึงลูก"
+          ],
+          "hl": "ความกังวลส่งถึงลูก"
+        },
+        "vi": {
+          "narr": "\"Muốn cao thì ăn hết đi!\" — ép buộc cũng vậy. Lo lắng của cha mẹ truyền hết sang con.",
+          "cap": [
+            "Lời ép buộc X",
+            "Lo lắng truyền sang con"
+          ],
+          "hl": "Lo lắng truyền sang con"
+        },
+        "en": {
+          "narr": "\"Eat it all if you want to grow!\" Pressure backfires — your worry passes straight to them.",
+          "cap": [
+            "No pressuring",
+            "Your worry passes on"
+          ],
+          "hl": "Your worry passes on"
+        },
+        "cn": {
+          "narr": "\"想长高就把饭吃光！\"逼迫也一样——父母的焦虑会原样传给孩子。",
+          "cap": [
+            "逼迫的话 X",
+            "焦虑会传给孩子"
+          ],
+          "hl": "焦虑会传给孩子"
+        },
+        "ch": {
+          "narr": "\"想長高就把飯吃光！\"逼迫也一樣——父母的焦慮會原樣傳給孩子。",
+          "cap": [
+            "逼迫的話 X",
+            "焦慮會傳給孩子"
+          ],
+          "hl": "焦慮會傳給孩子"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 감정 공감",
+      "motion": "💛 하트 팝 + 따뜻 글로우",
+      "copy": {
+        "ko": {
+          "narr": "먼저 마음을 읽어주세요. \"키 때문에 속상했구나\"라고요.",
+          "cap": [
+            "1단계 — 감정 공감",
+            "\"속상했구나\""
+          ],
+          "hl": "감정 공감"
+        },
+        "th": {
+          "narr": "เริ่มจากรับฟังความรู้สึกก่อน \"หนูคงเสียใจเรื่องส่วนสูงนะ\"",
+          "cap": [
+            "ขั้น 1 — เข้าใจความรู้สึก",
+            "\"หนูคงเสียใจนะ\""
+          ],
+          "hl": "เข้าใจความรู้สึก"
+        },
+        "vi": {
+          "narr": "Trước hết, hãy đọc cảm xúc của con: \"Con buồn vì chuyện chiều cao đúng không.\"",
+          "cap": [
+            "Bước 1 — Thấu cảm",
+            "\"Con buồn lắm nhỉ\""
+          ],
+          "hl": "Thấu cảm"
+        },
+        "en": {
+          "narr": "First, name the feeling: \"That hurt, didn't it.\"",
+          "cap": [
+            "Step 1 — Empathize",
+            "\"That hurt, huh\""
+          ],
+          "hl": "Empathize"
+        },
+        "cn": {
+          "narr": "先读懂他的心：\"因为身高难过了吧。\"",
+          "cap": [
+            "第1步 — 共情",
+            "\"难过了吧\""
+          ],
+          "hl": "共情"
+        },
+        "ch": {
+          "narr": "先讀懂他的心：\"因為身高難過了吧。\"",
+          "cap": [
+            "第1步 — 共情",
+            "\"難過了吧\""
+          ],
+          "hl": "共情"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 노력 칭찬",
+      "motion": "👏 박수 팝 + ⭐ 점등",
+      "copy": {
+        "ko": {
+          "narr": "그리고 노력을 칭찬해요. \"일찍 자서 멋지다, 채소 잘 먹네!\" 이렇게요.",
+          "cap": [
+            "2단계 — 노력 칭찬",
+            "\"일찍 자서 멋지다\""
+          ],
+          "hl": "노력 칭찬"
+        },
+        "th": {
+          "narr": "แล้วชื่นชมความพยายาม \"เข้านอนเร็วเก่งมาก กินผักเก่งด้วย!\"",
+          "cap": [
+            "ขั้น 2 — ชมความพยายาม",
+            "\"เข้านอนเร็วเก่งมาก\""
+          ],
+          "hl": "ชมความพยายาม"
+        },
+        "vi": {
+          "narr": "Rồi khen nỗ lực: \"Con ngủ sớm giỏi quá, ăn rau ngoan ghê!\"",
+          "cap": [
+            "Bước 2 — Khen nỗ lực",
+            "\"Ngủ sớm giỏi quá\""
+          ],
+          "hl": "Khen nỗ lực"
+        },
+        "en": {
+          "narr": "Then praise the effort: \"Going to bed early — amazing! You ate your veggies!\"",
+          "cap": [
+            "Step 2 — Praise effort",
+            "\"Early to bed, great!\""
+          ],
+          "hl": "Praise effort"
+        },
+        "cn": {
+          "narr": "再夸他的努力：\"早睡真棒，蔬菜也吃得好！\"",
+          "cap": [
+            "第2步 — 夸努力",
+            "\"早睡真棒\""
+          ],
+          "hl": "夸努力"
+        },
+        "ch": {
+          "narr": "再誇他的努力：\"早睡真棒，蔬菜也吃得好！\"",
+          "cap": [
+            "第2步 — 誇努力",
+            "\"早睡真棒\""
+          ],
+          "hl": "誇努力"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG4 키 외 장점",
+      "motion": "🌈 여러 별 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "키는 우리 아이의 수많은 장점 중 하나일 뿐이에요. 그림, 다정함, 호기심도 꼭 칭찬해 주세요.",
+          "cap": [
+            "키는 장점 중 하나",
+            "다른 강점도 칭찬"
+          ],
+          "hl": "키는 장점 중 하나"
+        },
+        "th": {
+          "narr": "ส่วนสูงเป็นแค่หนึ่งในข้อดีมากมายของลูก ชมเรื่องวาดรูป ความใจดี ความอยากรู้ด้วยนะ",
+          "cap": [
+            "ส่วนสูงเป็นแค่ข้อดีหนึ่ง",
+            "ชมจุดแข็งอื่นด้วย"
+          ],
+          "hl": "ส่วนสูงเป็นแค่ข้อดีหนึ่ง"
+        },
+        "vi": {
+          "narr": "Chiều cao chỉ là một trong vô vàn điểm tốt của con. Hãy khen cả nét vẽ, sự tử tế, tính tò mò.",
+          "cap": [
+            "Chiều cao chỉ là một điểm",
+            "Khen cả thế mạnh khác"
+          ],
+          "hl": "Chiều cao chỉ là một điểm"
+        },
+        "en": {
+          "narr": "Height is just one of your child's many strengths. Praise the drawing, the kindness, the curiosity too.",
+          "cap": [
+            "Height is just one thing",
+            "Praise other strengths"
+          ],
+          "hl": "Height is just one thing"
+        },
+        "cn": {
+          "narr": "身高只是孩子众多优点中的一个。画画、善良、好奇心，也都要夸。",
+          "cap": [
+            "身高只是优点之一",
+            "也夸其他长处"
+          ],
+          "hl": "身高只是优点之一"
+        },
+        "ch": {
+          "narr": "身高只是孩子眾多優點中的一個。畫畫、善良、好奇心，也都要誇。",
+          "cap": [
+            "身高只是優點之一",
+            "也誇其他長處"
+          ],
+          "hl": "身高只是優點之一"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "doctor",
+      "motion": "🌱 새싹 업 + 따뜻 글로우",
+      "copy": {
+        "ko": {
+          "narr": "마음을 지켜주면서, 키 성장도 함께 챙기면 돼요. 수면·영양·운동, 이 세 가지가 핵심이고요.",
+          "cap": [
+            "마음도 키도 함께",
+            "수면·영양·운동"
+          ],
+          "hl": "마음도 키도 함께"
+        },
+        "th": {
+          "narr": "ปกป้องจิตใจไปพร้อมกับดูแลการเติบโต นอน-อาหาร-ออกกำลังกาย คือสามหัวใจ",
+          "cap": [
+            "ดูแลทั้งใจและส่วนสูง",
+            "นอน·อาหาร·ออกกำลัง"
+          ],
+          "hl": "ดูแลทั้งใจและส่วนสูง"
+        },
+        "vi": {
+          "narr": "Giữ vững tinh thần con, đồng thời chăm chiều cao. Ngủ – dinh dưỡng – vận động là ba cốt lõi.",
+          "cap": [
+            "Cả tinh thần lẫn chiều cao",
+            "Ngủ·ăn·vận động"
+          ],
+          "hl": "Cả tinh thần lẫn chiều cao"
+        },
+        "en": {
+          "narr": "Protect the heart and nurture growth together. Sleep, nutrition, exercise — the three keys.",
+          "cap": [
+            "Heart and height together",
+            "Sleep·food·exercise"
+          ],
+          "hl": "Heart and height together"
+        },
+        "cn": {
+          "narr": "守护内心，同时照顾长高。睡眠、营养、运动，是三大关键。",
+          "cap": [
+            "内心和身高一起",
+            "睡眠·营养·运动"
+          ],
+          "hl": "内心和身高一起"
+        },
+        "ch": {
+          "narr": "守護內心，同時照顧長高。睡眠、營養、運動，是三大關鍵。",
+          "cap": [
+            "內心和身高一起",
+            "睡眠·營養·運動"
+          ],
+          "hl": "內心和身高一起"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면 우리 아이가 얼마나 더 클 수 있는지 알 수 있어요. 막연한 걱정 대신 정확한 답으로요.",
+          "cap": [
+            "뼈나이로",
+            "걱정 대신 정확한 답"
+          ],
+          "hl": "걱정 대신 정확한 답"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกได้ว่าลูกจะสูงได้อีกแค่ไหน เปลี่ยนความกังวลเป็นคำตอบที่ชัดเจน",
+          "cap": [
+            "อายุกระดูก",
+            "คำตอบแทนความกังวล"
+          ],
+          "hl": "คำตอบแทนความกังวล"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết con còn cao thêm được bao nhiêu — câu trả lời rõ ràng thay cho lo lắng.",
+          "cap": [
+            "Tuổi xương",
+            "Câu trả lời, hết lo mơ hồ"
+          ],
+          "hl": "Câu trả lời, hết lo mơ hồ"
+        },
+        "en": {
+          "narr": "Bone age tells you how much more your child can grow — a clear answer instead of worry.",
+          "cap": [
+            "Bone age",
+            "An answer, not worry"
+          ],
+          "hl": "An answer, not worry"
+        },
+        "cn": {
+          "narr": "骨龄能告诉你孩子还能长多高——用清晰的答案代替模糊的担忧。",
+          "cap": [
+            "看骨龄",
+            "用答案代替担忧"
+          ],
+          "hl": "用答案代替担忧"
+        },
+        "ch": {
+          "narr": "骨齡能告訴你孩子還能長多高——用清晰的答案代替模糊的擔憂。",
+          "cap": [
+            "看骨齡",
+            "用答案代替擔憂"
+          ],
+          "hl": "用答案代替擔憂"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 예측키와 뼈나이, 지금 바로 확인해 보세요.",
+          "cap": [
+            "예측키·뼈나이",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กส่วนสูงที่คาดการณ์และอายุกระดูกของลูกวันนี้",
+          "cap": [
+            "ส่วนสูงคาดการณ์·อายุกระดูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra chiều cao dự đoán và tuổi xương của con ngay hôm nay.",
+          "cap": [
+            "Chiều cao dự đoán·tuổi xương",
+            "Kiểm tra ngay"
+          ],
+          "hl": "Kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's predicted height and bone age today.",
+          "cap": [
+            "Predicted height·bone age",
+            "Check today"
+          ],
+          "hl": "Check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的预测身高和骨龄吧。",
+          "cap": [
+            "预测身高·骨龄",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的預測身高和骨齡吧。",
+          "cap": [
+            "預測身高·骨齡",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "💔 쿵 + 회색 톤다운",
+      "title": "마음에 박히는 말 — 위축되는 아이",
+      "emojis": [
+        "💔",
+        "🗨️"
+      ],
+      "prompt": "Flat vector, square, white bg. A parent figure leaning over a small child; a speech bubble above the parent points down toward the child, while the child gently hunches and shrinks, a small cracked-heart motif near the child. Muted gray-purple parent vs. dimmed child. Conveys 'harsh words make the child shrink.' Brand purple #667eea accents. NO text.",
+      "labels": [
+        {
+          "pos": "말풍선",
+          "ko": "다그치는 말",
+          "en": "Harsh words",
+          "th": "คำกดดัน"
+        },
+        {
+          "pos": "아이 옆",
+          "ko": "마음 위축",
+          "en": "Shrinks inside",
+          "th": "ใจหดหู่"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "💛 하트 팝 + 따뜻 글로우",
+      "title": "1단계 — 감정 공감",
+      "emojis": [
+        "💛",
+        "🤗"
+      ],
+      "prompt": "Flat vector, square, white bg. A parent kneeling at eye level with a child, gentle hand on shoulder, both smiling softly, a warm heart glowing between them. Cozy, reassuring. Brand purple #667eea to mint #2dd4bf soft gradient, warm glow. Conveys 'reading the child's feelings.' NO text.",
+      "labels": [
+        {
+          "pos": "하트",
+          "ko": "감정 공감",
+          "en": "Empathy",
+          "th": "เข้าใจความรู้สึก"
+        },
+        {
+          "pos": "하단",
+          "ko": "눈높이 대화",
+          "en": "Eye-level talk",
+          "th": "คุยระดับสายตา"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "👏 박수 팝 + ⭐ 점등",
+      "title": "2단계 — 노력 칭찬",
+      "emojis": [
+        "👏",
+        "⭐"
+      ],
+      "prompt": "Flat vector, square, white bg. A cheerful child with a thumbs-up beside small icons of healthy habits — a moon/pillow for early sleep, a leafy vegetable, a running figure — each with a small sparkle/star. Parent clapping. Brand purple + mint. Conveys 'praising good growth habits.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "별",
+          "ko": "노력 칭찬",
+          "en": "Praise effort",
+          "th": "ชมความพยายาม"
+        },
+        {
+          "pos": "아이콘 줄",
+          "ko": "일찍 자고·잘 먹고",
+          "en": "Sleep·eat well",
+          "th": "นอนเร็ว·กินดี"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "🌈 여러 별 순차 점등",
+      "title": "키 외의 장점 — 빛나는 여러 강점",
+      "emojis": [
+        "🌈",
+        "🎨"
+      ],
+      "prompt": "Flat vector, square, white bg. A confident child in the center surrounded by a halo of small strength icons — a paintbrush/palette, a helping hand for kindness, a magnifying glass for curiosity, a soccer ball — each gently lit. The height/ruler icon is just one small node among many equal ones. Brand purple #667eea + mint #2dd4bf. Conveys 'height is just one of many strengths.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "가운데",
+          "ko": "우리 아이",
+          "en": "Your child",
+          "th": "ลูกของคุณ"
+        },
+        {
+          "pos": "강점 노드",
+          "ko": "수많은 장점",
+          "en": "Many strengths",
+          "th": "จุดแข็งมากมาย"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "💛",
+      "label": "따뜻한 지지"
+    },
+    {
+      "e": "🗨️",
+      "label": "대화·한마디"
+    },
+    {
+      "e": "💔",
+      "label": "위축되는 마음"
+    },
+    {
+      "e": "📵",
+      "label": "다그침 금지"
+    },
+    {
+      "e": "🤗",
+      "label": "감정 공감"
+    },
+    {
+      "e": "👏",
+      "label": "노력 칭찬"
+    },
+    {
+      "e": "⭐",
+      "label": "칭찬·격려"
+    },
+    {
+      "e": "🌈",
+      "label": "키 외 장점"
+    },
+    {
+      "e": "🌱",
+      "label": "마음·키 성장"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🔍",
+      "label": "정확한 확인"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

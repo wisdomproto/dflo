@@ -1,0 +1,795 @@
+{
+  "n": 1,
+  "slug": "유전80환경20",
+  "title": "키 유전 80% vs 환경 20% — 진짜 의미",
+  "sub": "유전은 '잠재력의 높이', 환경 20%가 그 잠재력을 현실로 만든다",
+  "category": "A. 성장과학",
+  "topicTitle": "키 유전 80% vs 환경 20%",
+  "headerTop": "우리 아이 키",
+  "headerMark": "유전이 다 정한다?",
+  "accentEmoji": "🧬✨",
+  "hook": "\"키는 유전 80%\"… 그럼 노력해도 소용없다? 진짜 의미는 정반대예요.",
+  "misconception": "유전 80%니까 부모 키대로 거의 정해진다 → 사실 80%는 '잠재력의 상한선'일 뿐, 거기 도달할지는 환경이 가른다",
+  "message": "유전 80%는 '도달 가능한 산봉우리 높이'(잠재력), 환경 20%는 그 정상까지 올라가는 힘. 영양·수면·운동 관리로 부모 키를 뛰어넘어 잠재력을 100% 채울 수 있다",
+  "tone": "유전이 중요하지 않다는 협박/낙담 ❌ → 긍정: \"환경 20%로 잠재력을 끝까지 끌어올린다\". \"우리 아이 키\" 보편. 측정 유도(이미 했다고 단정 X)",
+  "cta": "우리 아이의 숨은 키 잠재력, 뼈나이·예측키로 지금 확인해 보세요",
+  "duration": 35,
+  "thumb": {
+    "kicker": "오해 풀자!",
+    "subject": "우리 아이 키 유전",
+    "number": "80%",
+    "numLabel": "진짜 의미는?"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·오해",
+      "scenes": "c1–c2",
+      "desc": "\"유전 80%면 노력 무의미? → 정반대\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "유전 80%의 진짜 뜻",
+      "scenes": "c3–c4",
+      "desc": "\"80%는 잠재력의 산봉우리 높이\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "환경 20%의 힘",
+      "scenes": "c5–c6",
+      "desc": "\"20%가 잠재력을 100%로 끌어올린다\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "관리 핵심",
+      "scenes": "c7–c8",
+      "desc": "\"영양·수면·운동으로 정상까지\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"잠재력 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🧬 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "\"키는 유전 80%\"… 그럼 우리가 노력해도 소용없을까요? 정반대예요.",
+          "cap": [
+            "유전 80%면",
+            "노력 무의미?"
+          ],
+          "hl": "노력 무의미?"
+        },
+        "th": {
+          "narr": "\"ส่วนสูง 80% มาจากพันธุกรรม\"… แล้วเราพยายามไปก็ไม่มีผล? ตรงกันข้ามเลย",
+          "cap": [
+            "พันธุกรรม 80%",
+            "พยายามไร้ผล?"
+          ],
+          "hl": "พยายามไร้ผล?"
+        },
+        "vi": {
+          "narr": "\"Chiều cao 80% do di truyền\"… vậy cố gắng cũng vô ích? Ngược lại hoàn toàn.",
+          "cap": [
+            "Di truyền 80%",
+            "cố gắng vô ích?"
+          ],
+          "hl": "cố gắng vô ích?"
+        },
+        "en": {
+          "narr": "\"Height is 80% genetics\"… so effort is pointless? It's the opposite.",
+          "cap": [
+            "80% genetics",
+            "so effort is pointless?"
+          ],
+          "hl": "effort is pointless?"
+        },
+        "cn": {
+          "narr": "\"身高80%靠遗传\"…那努力也没用？恰恰相反。",
+          "cap": [
+            "遗传80%",
+            "努力没用？"
+          ],
+          "hl": "努力没用？"
+        },
+        "ch": {
+          "narr": "\"身高80%靠遺傳\"…那努力也沒用？恰恰相反。",
+          "cap": [
+            "遺傳80%",
+            "努力沒用？"
+          ],
+          "hl": "努力沒用？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "📊 팝 + 물음표 흔들",
+      "copy": {
+        "ko": {
+          "narr": "이 80%는 부모 키대로 정해진다는 뜻이 아니에요. '집단 안 키 차이'를 설명하는 통계죠.",
+          "cap": [
+            "부모 키대로 X",
+            "통계 개념"
+          ],
+          "hl": "통계 개념"
+        },
+        "th": {
+          "narr": "80% นี้ไม่ได้แปลว่าถูกกำหนดตามส่วนสูงพ่อแม่ แต่เป็นสถิติอธิบายความต่างในกลุ่ม",
+          "cap": [
+            "ไม่ใช่ตามพ่อแม่",
+            "เป็นสถิติ"
+          ],
+          "hl": "เป็นสถิติ"
+        },
+        "vi": {
+          "narr": "80% này không có nghĩa con cao theo bố mẹ. Đó là thống kê về sự khác biệt trong nhóm.",
+          "cap": [
+            "Không theo bố mẹ",
+            "là thống kê"
+          ],
+          "hl": "là thống kê"
+        },
+        "en": {
+          "narr": "That 80% doesn't mean your child is locked to your height. It's a population statistic.",
+          "cap": [
+            "Not your height",
+            "it's a statistic"
+          ],
+          "hl": "it's a statistic"
+        },
+        "cn": {
+          "narr": "这个80%不是说孩子照父母身高定，而是解释群体内差异的统计。",
+          "cap": [
+            "非照父母定",
+            "是统计"
+          ],
+          "hl": "是统计"
+        },
+        "ch": {
+          "narr": "這個80%不是說孩子照父母身高定，而是解釋群體內差異的統計。",
+          "cap": [
+            "非照父母定",
+            "是統計"
+          ],
+          "hl": "是統計"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 산봉우리",
+      "motion": "⛰️ 봉우리 솟음 + 빛",
+      "copy": {
+        "ko": {
+          "narr": "유전 80%는 아이가 '도달할 수 있는 산봉우리 높이', 즉 잠재력의 상한선이에요.",
+          "cap": [
+            "유전 = 잠재력",
+            "산봉우리 높이"
+          ],
+          "hl": "산봉우리 높이"
+        },
+        "th": {
+          "narr": "พันธุกรรม 80% คือ 'ความสูงของยอดเขา' ที่ลูกไปถึงได้ คือขีดจำกัดของศักยภาพ",
+          "cap": [
+            "พันธุกรรม = ศักยภาพ",
+            "ความสูงยอดเขา"
+          ],
+          "hl": "ความสูงยอดเขา"
+        },
+        "vi": {
+          "narr": "Di truyền 80% là 'độ cao đỉnh núi' con có thể đạt — giới hạn của tiềm năng.",
+          "cap": [
+            "Di truyền = tiềm năng",
+            "đỉnh núi"
+          ],
+          "hl": "đỉnh núi"
+        },
+        "en": {
+          "narr": "That 80% is the height of the peak your child can reach — the ceiling of potential.",
+          "cap": [
+            "Genes = potential",
+            "the mountain peak"
+          ],
+          "hl": "the mountain peak"
+        },
+        "cn": {
+          "narr": "遗传80%是孩子'能到达的山峰高度'，也就是潜力上限。",
+          "cap": [
+            "遗传 = 潜力",
+            "山峰高度"
+          ],
+          "hl": "山峰高度"
+        },
+        "ch": {
+          "narr": "遺傳80%是孩子'能到達的山峰高度'，也就是潛力上限。",
+          "cap": [
+            "遺傳 = 潛力",
+            "山峰高度"
+          ],
+          "hl": "山峰高度"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "🧬 부드러운 펄스",
+      "copy": {
+        "ko": {
+          "narr": "그러니까 유전은 키를 '확정'하는 게 아니라, 도달 가능한 잠재력을 정해주는 거예요.",
+          "cap": [
+            "확정 X",
+            "잠재력만 결정"
+          ],
+          "hl": "잠재력만 결정"
+        },
+        "th": {
+          "narr": "พันธุกรรมจึงไม่ได้ 'ฟิกซ์' ส่วนสูง แต่กำหนดศักยภาพที่ไปถึงได้",
+          "cap": [
+            "ไม่ฟิกซ์",
+            "กำหนดศักยภาพ"
+          ],
+          "hl": "กำหนดศักยภาพ"
+        },
+        "vi": {
+          "narr": "Nên gen không 'chốt' chiều cao, mà chỉ định ra tiềm năng có thể đạt.",
+          "cap": [
+            "Không chốt cứng",
+            "chỉ định tiềm năng"
+          ],
+          "hl": "chỉ định tiềm năng"
+        },
+        "en": {
+          "narr": "So genes don't 'fix' the final height — they set the potential you can reach.",
+          "cap": [
+            "Not fixed",
+            "sets potential"
+          ],
+          "hl": "sets potential"
+        },
+        "cn": {
+          "narr": "所以遗传不是'锁定'最终身高，而是设定能达到的潜力。",
+          "cap": [
+            "不锁定",
+            "设定潜力"
+          ],
+          "hl": "设定潜力"
+        },
+        "ch": {
+          "narr": "所以遺傳不是'鎖定'最終身高，而是設定能達到的潛力。",
+          "cap": [
+            "不鎖定",
+            "設定潛力"
+          ],
+          "hl": "設定潛力"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 등반",
+      "motion": "🧗 등반 상승 + 20% 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "그럼 나머지 환경 20%는? 그 산봉우리 정상까지 올라가게 하는 힘이에요.",
+          "cap": [
+            "환경 20%",
+            "정상까지 올라갈 힘"
+          ],
+          "hl": "정상까지 올라갈 힘"
+        },
+        "th": {
+          "narr": "แล้วสิ่งแวดล้อม 20% ล่ะ? คือพลังที่พาปีนขึ้นไปถึงยอดเขานั้น",
+          "cap": [
+            "สิ่งแวดล้อม 20%",
+            "พลังพาขึ้นยอด"
+          ],
+          "hl": "พลังพาขึ้นยอด"
+        },
+        "vi": {
+          "narr": "Vậy 20% môi trường? Đó là sức mạnh đưa con leo lên tới đỉnh.",
+          "cap": [
+            "Môi trường 20%",
+            "sức leo lên đỉnh"
+          ],
+          "hl": "sức leo lên đỉnh"
+        },
+        "en": {
+          "narr": "So the other 20% — environment? It's the power that climbs you to that summit.",
+          "cap": [
+            "Environment 20%",
+            "power to the summit"
+          ],
+          "hl": "power to the summit"
+        },
+        "cn": {
+          "narr": "那剩下的环境20%呢？就是带你爬上山顶的力量。",
+          "cap": [
+            "环境20%",
+            "登顶的力量"
+          ],
+          "hl": "登顶的力量"
+        },
+        "ch": {
+          "narr": "那剩下的環境20%呢？就是帶你爬上山頂的力量。",
+          "cap": [
+            "環境20%",
+            "登頂的力量"
+          ],
+          "hl": "登頂的力量"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "📏 키 비교 + ↑ 화살표",
+      "copy": {
+        "ko": {
+          "narr": "실제로 부모 키가 크지 않아도, 환경 관리로 예상보다 훨씬 크는 아이들 많아요.",
+          "cap": [
+            "부모 키 작아도",
+            "예상보다 쑥"
+          ],
+          "hl": "예상보다 쑥"
+        },
+        "th": {
+          "narr": "จริง ๆ แม้พ่อแม่ไม่สูง หลายคนดูแลสิ่งแวดล้อมดีก็สูงเกินคาด",
+          "cap": [
+            "พ่อแม่ไม่สูงก็ได้",
+            "สูงเกินคาด"
+          ],
+          "hl": "สูงเกินคาด"
+        },
+        "vi": {
+          "narr": "Thực tế dù bố mẹ không cao, nhiều bé chăm môi trường tốt vẫn cao hơn dự đoán.",
+          "cap": [
+            "Bố mẹ không cao",
+            "vẫn cao hơn dự đoán"
+          ],
+          "hl": "cao hơn dự đoán"
+        },
+        "en": {
+          "narr": "In real cases, even short parents see kids grow far beyond expectations with good care.",
+          "cap": [
+            "Even short parents",
+            "grow beyond expected"
+          ],
+          "hl": "beyond expected"
+        },
+        "cn": {
+          "narr": "实际上即使父母不高，环境管理好的孩子也能长得超出预期。",
+          "cap": [
+            "父母不高也行",
+            "长得超预期"
+          ],
+          "hl": "超预期"
+        },
+        "ch": {
+          "narr": "實際上即使父母不高，環境管理好的孩子也能長得超出預期。",
+          "cap": [
+            "父母不高也行",
+            "長得超預期"
+          ],
+          "hl": "超預期"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 환경 4요소",
+      "motion": "🍽️😴🏃 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "환경 관리 핵심 넷! 균형 영양, 8~10시간 수면, 꾸준한 운동, 스트레스 관리예요.",
+          "cap": [
+            "영양·수면·운동",
+            "스트레스 관리"
+          ],
+          "hl": "영양·수면·운동"
+        },
+        "th": {
+          "narr": "4 หัวใจของสิ่งแวดล้อม! โภชนาการ นอน 8–10 ชม. ออกกำลังกาย จัดการความเครียด",
+          "cap": [
+            "โภชนาการ·นอน·ออกกำลัง",
+            "จัดการความเครียด"
+          ],
+          "hl": "โภชนาการ·นอน·ออกกำลัง"
+        },
+        "vi": {
+          "narr": "4 yếu tố cốt lõi! Dinh dưỡng, ngủ 8–10 tiếng, vận động, quản lý căng thẳng.",
+          "cap": [
+            "Dinh dưỡng·ngủ·vận động",
+            "quản lý stress"
+          ],
+          "hl": "Dinh dưỡng·ngủ·vận động"
+        },
+        "en": {
+          "narr": "Four keys! Balanced nutrition, 8–10 hours of sleep, regular exercise, low stress.",
+          "cap": [
+            "Nutrition·sleep·exercise",
+            "manage stress"
+          ],
+          "hl": "Nutrition·sleep·exercise"
+        },
+        "cn": {
+          "narr": "环境管理四大核心！均衡营养、8–10小时睡眠、坚持运动、管理压力。",
+          "cap": [
+            "营养·睡眠·运动",
+            "管理压力"
+          ],
+          "hl": "营养·睡眠·运动"
+        },
+        "ch": {
+          "narr": "環境管理四大核心！均衡營養、8–10小時睡眠、堅持運動、管理壓力。",
+          "cap": [
+            "營養·睡眠·運動",
+            "管理壓力"
+          ],
+          "hl": "營養·睡眠·運動"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 깊은 잠 호르몬",
+      "motion": "😴 + 💤 글로우 상승",
+      "copy": {
+        "ko": {
+          "narr": "특히 성장호르몬은 깊은 잠에 들 때 가장 많이 나와요. 잠이 곧 키예요.",
+          "cap": [
+            "깊은 잠에",
+            "성장호르몬 폭발"
+          ],
+          "hl": "성장호르몬 폭발"
+        },
+        "th": {
+          "narr": "โดยเฉพาะฮอร์โมนการเจริญเติบโตหลั่งมากที่สุดตอนหลับลึก นอนคือความสูง",
+          "cap": [
+            "ตอนหลับลึก",
+            "ฮอร์โมนพุ่ง"
+          ],
+          "hl": "ฮอร์โมนพุ่ง"
+        },
+        "vi": {
+          "narr": "Đặc biệt hormone tăng trưởng tiết ra nhiều nhất khi ngủ sâu. Ngủ chính là chiều cao.",
+          "cap": [
+            "Khi ngủ sâu",
+            "hormone bùng nổ"
+          ],
+          "hl": "hormone bùng nổ"
+        },
+        "en": {
+          "narr": "Growth hormone peaks during deep sleep. Sleep literally builds height.",
+          "cap": [
+            "In deep sleep",
+            "hormone peaks"
+          ],
+          "hl": "hormone peaks"
+        },
+        "cn": {
+          "narr": "尤其生长激素在深睡时分泌最多。睡眠就是身高。",
+          "cap": [
+            "深睡时",
+            "激素爆发"
+          ],
+          "hl": "激素爆发"
+        },
+        "ch": {
+          "narr": "尤其生長激素在深睡時分泌最多。睡眠就是身高。",
+          "cap": [
+            "深睡時",
+            "激素爆發"
+          ],
+          "hl": "激素爆發"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 잠재력이 어디까지인지, 뼈나이와 예측키로 정확히 알 수 있어요.",
+          "cap": [
+            "뼈나이·예측키로",
+            "잠재력 확인"
+          ],
+          "hl": "잠재력 확인"
+        },
+        "th": {
+          "narr": "ศักยภาพของลูกไปได้ถึงไหน ดูได้จากอายุกระดูกและส่วนสูงที่คาดการณ์",
+          "cap": [
+            "อายุกระดูก·คาดการณ์",
+            "ดูศักยภาพ"
+          ],
+          "hl": "ดูศักยภาพ"
+        },
+        "vi": {
+          "narr": "Tiềm năng của con đến đâu, biết chính xác qua tuổi xương và chiều cao dự đoán.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "rõ tiềm năng"
+          ],
+          "hl": "rõ tiềm năng"
+        },
+        "en": {
+          "narr": "How far your child's potential reaches — bone age and predicted height show it.",
+          "cap": [
+            "Bone age·prediction",
+            "see potential"
+          ],
+          "hl": "see potential"
+        },
+        "cn": {
+          "narr": "孩子潜力到哪儿，骨龄和预测身高能精确告诉你。",
+          "cap": [
+            "骨龄·预测身高",
+            "看清潜力"
+          ],
+          "hl": "看清潜力"
+        },
+        "ch": {
+          "narr": "孩子潛力到哪兒，骨齡和預測身高能精確告訴你。",
+          "cap": [
+            "骨齡·預測身高",
+            "看清潛力"
+          ],
+          "hl": "看清潛力"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 숨은 키 잠재력, 지금 바로 확인해 보세요.",
+          "cap": [
+            "숨은 키 잠재력",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ศักยภาพส่วนสูงที่ซ่อนอยู่ของลูก เช็กเลยวันนี้",
+          "cap": [
+            "ศักยภาพที่ซ่อนอยู่",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Tiềm năng chiều cao ẩn giấu của con — kiểm tra ngay hôm nay.",
+          "cap": [
+            "Tiềm năng ẩn giấu",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Your child's hidden height potential — check it right now.",
+          "cap": [
+            "Hidden potential",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "孩子隐藏的身高潜力，现在就来查查吧。",
+          "cap": [
+            "隐藏的潜力",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "孩子隱藏的身高潛力，現在就來查查吧。",
+          "cap": [
+            "隱藏的潛力",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "⛰️ 봉우리 솟음 + 빛",
+      "title": "유전 = 잠재력의 산봉우리",
+      "emojis": [
+        "⛰️",
+        "🧬",
+        "✨"
+      ],
+      "prompt": "Flat vector illustration, square, white background. A tall friendly mountain peak rising on the right with a soft glowing summit; a small child figure standing at the base looking up at the peak. A faint dotted line traces from the child up toward the summit, suggesting reachable potential. Brand purple #667eea to mint #2dd4bf gradient on the mountain, gentle sparkle at the peak. Friendly pediatric style, rounded shapes. NO text.",
+      "labels": [
+        {
+          "pos": "봉우리 정상",
+          "ko": "잠재력 상한",
+          "en": "Potential ceiling",
+          "th": "เพดานศักยภาพ"
+        },
+        {
+          "pos": "산 전체",
+          "ko": "유전 80%",
+          "en": "Genes 80%",
+          "th": "พันธุกรรม 80%"
+        },
+        {
+          "pos": "하단 아이",
+          "ko": "우리 아이",
+          "en": "Your child",
+          "th": "ลูกของคุณ"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "🧗 등반 상승 + 20% 카운트업",
+      "title": "환경 = 정상까지 오르는 힘",
+      "emojis": [
+        "🧗",
+        "💪",
+        "📈"
+      ],
+      "prompt": "Flat vector illustration, square, white background. The same friendly mountain, now with a cheerful child figure actively climbing a winding path up toward the glowing summit, small motivational arrows along the trail pointing upward. Sense of momentum and effort paying off. Brand purple #667eea and mint #2dd4bf, warm and encouraging. Friendly pediatric style, rounded shapes. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "등반 경로",
+          "ko": "환경 20%",
+          "en": "Environment 20%",
+          "th": "สิ่งแวดล้อม 20%"
+        },
+        {
+          "pos": "정상 방향 화살표",
+          "ko": "잠재력 100%로",
+          "en": "to full potential",
+          "th": "สู่ศักยภาพ 100%"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "🍽️😴🏃 순차 점등",
+      "title": "환경 관리 4요소",
+      "emojis": [
+        "🍽️",
+        "😴",
+        "🏃"
+      ],
+      "prompt": "Flat vector illustration, square, white background. Four friendly circular icons arranged in a 2x2 grid: a balanced healthy meal plate, a sleeping crescent moon with a pillow, a child jumping rope, and a calm relaxed face. Each circle has a soft brand-colored ring. Clean, organized, friendly pediatric style. Brand purple #667eea and mint #2dd4bf accents. Rounded shapes. NO text.",
+      "labels": [
+        {
+          "pos": "좌상 아이콘",
+          "ko": "균형 영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "우상 아이콘",
+          "ko": "수면 8~10h",
+          "en": "Sleep 8–10h",
+          "th": "นอน 8–10 ชม."
+        },
+        {
+          "pos": "좌하 아이콘",
+          "ko": "꾸준한 운동",
+          "en": "Exercise",
+          "th": "ออกกำลังกาย"
+        },
+        {
+          "pos": "우하 아이콘",
+          "ko": "스트레스 관리",
+          "en": "Less stress",
+          "th": "ลดความเครียด"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "💤 글로우 상승",
+      "title": "깊은 잠 = 성장호르몬",
+      "emojis": [
+        "😴",
+        "💤",
+        "🌙"
+      ],
+      "prompt": "Flat vector illustration, square, white background. A peacefully sleeping child in bed under a crescent moon at night, with soft glowing wave-like particles rising gently from the child upward, suggesting growth hormone release during deep sleep. Calm nighttime mood. Brand purple #667eea deep-night tones with mint #2dd4bf glowing particles. Friendly pediatric style, rounded shapes. NO text.",
+      "labels": [
+        {
+          "pos": "상승 입자",
+          "ko": "성장호르몬",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมนเติบโต"
+        },
+        {
+          "pos": "하단 아이",
+          "ko": "깊은 잠",
+          "en": "Deep sleep",
+          "th": "หลับลึก"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🧬",
+      "label": "유전"
+    },
+    {
+      "e": "⛰️",
+      "label": "잠재력 산봉우리"
+    },
+    {
+      "e": "🧗",
+      "label": "환경=등반"
+    },
+    {
+      "e": "📊",
+      "label": "통계 개념"
+    },
+    {
+      "e": "🍽️",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "💤",
+      "label": "성장호르몬"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장"
+    },
+    {
+      "e": "📈",
+      "label": "잠재력 상승"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

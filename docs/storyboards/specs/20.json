@@ -1,0 +1,802 @@
+{
+  "n": 20,
+  "slug": "따라잡기성장",
+  "title": "작게 태어난 우리 아이 — '따라잡기 성장'의 비밀",
+  "sub": "저체중 출생아 80~90%는 따라잡는다 — 생후 2~3년 골든타임이 키를 만든다",
+  "category": "A. 성장과학",
+  "topicTitle": "저체중 출생아 따라잡기 성장",
+  "headerTop": "작게 태어난 우리 아이",
+  "headerMark": "따라잡을 수 있을까?",
+  "accentEmoji": "🍼✨",
+  "duration": 35,
+  "hook": "작게 태어난 우리 아이, 또래만큼 클 수 있을까요? 답은 '네'입니다.",
+  "misconception": "작게 태어났으니 평생 작겠지 → 80~90%는 '따라잡기 성장'으로 또래를 따라잡는다",
+  "message": "저체중 출생아 80~90%는 생후 2~3년 안에 따라잡는다. 6개월~2세 영양·관리가 핵심, 못 따라잡는 10~20%는 조기 관리로 충분히 도울 수 있다.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"작게 태어나도 잠재력은 작지 않다\"). \"우리 아이 키\" 보편. CTA = 뼈나이/예측키 측정 유도",
+  "cta": "우리 아이 따라잡기 성장 잘 되고 있는지, 뼈나이·예측키로 지금 확인",
+  "thumb": {
+    "kicker": "작아도 괜찮아!",
+    "subject": "작게 태어난 우리 아이",
+    "number": "80~90%",
+    "numLabel": "따라잡는다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·공감",
+      "scenes": "c1–c2",
+      "desc": "\"작게 태어났어도 또래만큼 클 수 있다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "따라잡기 성장이란",
+      "scenes": "c3–c4",
+      "desc": "\"80~90%가 따라잡는다 — 타고난 잠재력\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "골든타임",
+      "scenes": "c5–c6",
+      "desc": "\"생후 6개월~2세, 영양이 핵심\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "남은 10~20%·희망",
+      "scenes": "c7–c8",
+      "desc": "\"못 따라잡아도 조기 관리로 도울 수 있다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🍼 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "작게 태어난 우리 아이, 또래만큼 클 수 있을까 걱정되시죠?",
+          "cap": [
+            "작게 태어난",
+            "우리 아이"
+          ],
+          "hl": "작게 태어난"
+        },
+        "th": {
+          "narr": "ลูกที่คลอดออกมาตัวเล็ก จะโตทันเพื่อนได้ไหม กังวลใช่ไหมคะ",
+          "cap": [
+            "คลอดตัวเล็ก",
+            "จะโตทันไหม"
+          ],
+          "hl": "คลอดตัวเล็ก"
+        },
+        "vi": {
+          "narr": "Con sinh ra nhỏ bé, liệu có cao bằng bạn bè không? Mẹ lo lắm phải không?",
+          "cap": [
+            "Con sinh ra",
+            "nhỏ bé"
+          ],
+          "hl": "nhỏ bé"
+        },
+        "en": {
+          "narr": "Your baby was born small — will they catch up to their peers? You worry, right?",
+          "cap": [
+            "Born",
+            "small"
+          ],
+          "hl": "small"
+        },
+        "cn": {
+          "narr": "出生时个头小的宝宝，能长到和同龄人一样高吗？您一定很担心吧。",
+          "cap": [
+            "出生个头小",
+            "能追上吗"
+          ],
+          "hl": "出生个头小"
+        },
+        "ch": {
+          "narr": "出生時個頭小的寶寶，能長到和同齡人一樣高嗎？您一定很擔心吧。",
+          "cap": [
+            "出生個頭小",
+            "能追上嗎"
+          ],
+          "hl": "出生個頭小"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "✨ 따뜻한 글로우",
+      "copy": {
+        "ko": {
+          "narr": "걱정 마세요. 작게 태어났다고 키까지 작게 크는 건 아니에요.",
+          "cap": [
+            "작게 태어나도",
+            "키는 다르다"
+          ],
+          "hl": "키는 다르다"
+        },
+        "th": {
+          "narr": "ไม่ต้องกังวลค่ะ คลอดตัวเล็กไม่ได้แปลว่าจะเตี้ยเสมอไป",
+          "cap": [
+            "ตัวเล็กแรกเกิด",
+            "ไม่ได้เตี้ยเสมอ"
+          ],
+          "hl": "ไม่ได้เตี้ยเสมอ"
+        },
+        "vi": {
+          "narr": "Đừng lo. Sinh ra nhỏ không có nghĩa là sẽ thấp.",
+          "cap": [
+            "Sinh ra nhỏ",
+            "không hẳn sẽ thấp"
+          ],
+          "hl": "không hẳn sẽ thấp"
+        },
+        "en": {
+          "narr": "Don't worry — born small doesn't mean staying short.",
+          "cap": [
+            "Born small",
+            "isn't always short"
+          ],
+          "hl": "isn't always short"
+        },
+        "cn": {
+          "narr": "别担心，出生个头小，并不代表身高就一定矮。",
+          "cap": [
+            "出生小",
+            "不等于个矮"
+          ],
+          "hl": "不等于个矮"
+        },
+        "ch": {
+          "narr": "別擔心，出生個頭小，並不代表身高就一定矮。",
+          "cap": [
+            "出生小",
+            "不等於個矮"
+          ],
+          "hl": "不等於個矮"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 따라잡기 성장",
+      "motion": "📈 라인 따라잡기 + 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "'따라잡기 성장'이라고, 작게 태어난 아기의 80에서 90%가 또래를 따라잡아요.",
+          "cap": [
+            "따라잡기 성장",
+            "80~90%"
+          ],
+          "hl": "80~90%"
+        },
+        "th": {
+          "narr": "'การเติบโตแบบตามทัน' ทารกตัวเล็ก 80–90% ตามทันเพื่อนได้",
+          "cap": [
+            "เติบโตตามทัน",
+            "80–90%"
+          ],
+          "hl": "80–90%"
+        },
+        "vi": {
+          "narr": "Gọi là 'tăng trưởng bù' — 80 đến 90% trẻ sinh nhỏ đuổi kịp bạn bè.",
+          "cap": [
+            "Tăng trưởng bù",
+            "80–90%"
+          ],
+          "hl": "80–90%"
+        },
+        "en": {
+          "narr": "It's called catch-up growth — 80 to 90% of small babies catch up.",
+          "cap": [
+            "Catch-up growth",
+            "80–90%"
+          ],
+          "hl": "80–90%"
+        },
+        "cn": {
+          "narr": "这叫'追赶生长'——出生个头小的宝宝，80到90%都能追上同龄人。",
+          "cap": [
+            "追赶生长",
+            "80~90%"
+          ],
+          "hl": "80~90%"
+        },
+        "ch": {
+          "narr": "這叫'追趕生長'——出生個頭小的寶寶，80到90%都能追上同齡人。",
+          "cap": [
+            "追趕生長",
+            "80~90%"
+          ],
+          "hl": "80~90%"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "💪 잠재력 펄스",
+      "copy": {
+        "ko": {
+          "narr": "우리 몸은 타고난 성장 잠재력으로, 불리한 출발을 스스로 극복하려 해요.",
+          "cap": [
+            "타고난",
+            "성장 잠재력"
+          ],
+          "hl": "성장 잠재력"
+        },
+        "th": {
+          "narr": "ร่างกายมีศักยภาพการเติบโตติดตัว พยายามเอาชนะจุดเริ่มต้นที่เสียเปรียบเอง",
+          "cap": [
+            "มีติดตัว",
+            "ศักยภาพเติบโต"
+          ],
+          "hl": "ศักยภาพเติบโต"
+        },
+        "vi": {
+          "narr": "Cơ thể có tiềm năng tăng trưởng bẩm sinh, tự vượt qua khởi đầu bất lợi.",
+          "cap": [
+            "Bẩm sinh",
+            "tiềm năng tăng trưởng"
+          ],
+          "hl": "tiềm năng tăng trưởng"
+        },
+        "en": {
+          "narr": "The body's built-in growth potential works to overcome a rough start.",
+          "cap": [
+            "Built-in",
+            "growth potential"
+          ],
+          "hl": "growth potential"
+        },
+        "cn": {
+          "narr": "身体天生就有成长潜力，会努力克服不利的起点。",
+          "cap": [
+            "天生的",
+            "成长潜力"
+          ],
+          "hl": "成长潜力"
+        },
+        "ch": {
+          "narr": "身體天生就有成長潛力，會努力克服不利的起點。",
+          "cap": [
+            "天生的",
+            "成長潛力"
+          ],
+          "hl": "成長潛力"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 골든타임 6개월~2세",
+      "motion": "⏳ 구간 하이라이트 점등",
+      "copy": {
+        "ko": {
+          "narr": "이 따라잡기는 생후 6개월에서 2세 사이에 가장 활발하게 일어나요.",
+          "cap": [
+            "6개월~2세",
+            "가장 활발"
+          ],
+          "hl": "6개월~2세"
+        },
+        "th": {
+          "narr": "การตามทันนี้เกิดมากที่สุดในช่วง 6 เดือนถึง 2 ขวบ",
+          "cap": [
+            "6 เดือน–2 ขวบ",
+            "ช่วงพีค"
+          ],
+          "hl": "6 เดือน–2 ขวบ"
+        },
+        "vi": {
+          "narr": "Tăng trưởng bù mạnh nhất từ 6 tháng đến 2 tuổi.",
+          "cap": [
+            "6 tháng–2 tuổi",
+            "mạnh nhất"
+          ],
+          "hl": "6 tháng–2 tuổi"
+        },
+        "en": {
+          "narr": "This catch-up peaks between 6 months and 2 years.",
+          "cap": [
+            "6 mo–2 yrs",
+            "peak window"
+          ],
+          "hl": "6 mo–2 yrs"
+        },
+        "cn": {
+          "narr": "这种追赶，在出生后6个月到2岁之间最为活跃。",
+          "cap": [
+            "6个月~2岁",
+            "最活跃"
+          ],
+          "hl": "6个月~2岁"
+        },
+        "ch": {
+          "narr": "這種追趕，在出生後6個月到2歲之間最為活躍。",
+          "cap": [
+            "6個月~2歲",
+            "最活躍"
+          ],
+          "hl": "6個月~2歲"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 핵심 4요인",
+      "motion": "🍗😴 4아이콘 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "이 시기 충분한 영양, 깊은 수면, 적절한 운동, 안정된 환경이 키를 만들어요.",
+          "cap": [
+            "영양·수면",
+            "운동·환경"
+          ],
+          "hl": "영양·수면"
+        },
+        "th": {
+          "narr": "ช่วงนี้ สารอาหารพอ นอนลึก ออกกำลังพอดี สภาพแวดล้อมมั่นคง สร้างส่วนสูง",
+          "cap": [
+            "อาหาร·นอน",
+            "ออกกำลัง·สิ่งแวดล้อม"
+          ],
+          "hl": "อาหาร·นอน"
+        },
+        "vi": {
+          "narr": "Lúc này: dinh dưỡng đủ, ngủ sâu, vận động hợp lý, môi trường ổn định.",
+          "cap": [
+            "Dinh dưỡng·ngủ",
+            "vận động·môi trường"
+          ],
+          "hl": "Dinh dưỡng·ngủ"
+        },
+        "en": {
+          "narr": "Now, full nutrition, deep sleep, the right activity and a calm home build height.",
+          "cap": [
+            "Nutrition·sleep",
+            "activity·calm"
+          ],
+          "hl": "Nutrition·sleep"
+        },
+        "cn": {
+          "narr": "这阶段，充足营养、深度睡眠、适当运动、安稳环境造就身高。",
+          "cap": [
+            "营养·睡眠",
+            "运动·环境"
+          ],
+          "hl": "营养·睡眠"
+        },
+        "ch": {
+          "narr": "這階段，充足營養、深度睡眠、適當運動、安穩環境造就身高。",
+          "cap": [
+            "營養·睡眠",
+            "運動·環境"
+          ],
+          "hl": "營養·睡眠"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "🤝 따뜻한 톤 · 부드러운 강조",
+      "copy": {
+        "ko": {
+          "narr": "그래도 10에서 20%는 충분히 못 따라잡는데, 이땐 일찍 도와주는 게 답이에요.",
+          "cap": [
+            "10~20%는",
+            "일찍 도와주기"
+          ],
+          "hl": "일찍 도와주기"
+        },
+        "th": {
+          "narr": "แต่ 10–20% ตามไม่ทันพอ กรณีนี้ช่วยตั้งแต่เนิ่นๆ คือคำตอบ",
+          "cap": [
+            "10–20%",
+            "ช่วยแต่เนิ่นๆ"
+          ],
+          "hl": "ช่วยแต่เนิ่นๆ"
+        },
+        "vi": {
+          "narr": "Nhưng 10 đến 20% chưa đuổi kịp đủ — khi đó, hỗ trợ sớm là lời giải.",
+          "cap": [
+            "10–20%",
+            "hỗ trợ sớm"
+          ],
+          "hl": "hỗ trợ sớm"
+        },
+        "en": {
+          "narr": "Still, 10 to 20% don't fully catch up — and early support is the answer.",
+          "cap": [
+            "10–20%",
+            "early support"
+          ],
+          "hl": "early support"
+        },
+        "cn": {
+          "narr": "不过有10到20%没能完全追上，这时尽早帮助就是答案。",
+          "cap": [
+            "10~20%",
+            "尽早帮助"
+          ],
+          "hl": "尽早帮助"
+        },
+        "ch": {
+          "narr": "不過有10到20%沒能完全追上，這時盡早幫助就是答案。",
+          "cap": [
+            "10~20%",
+            "盡早幫助"
+          ],
+          "hl": "盡早幫助"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 성장 전략",
+      "motion": "🩺 3카드 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "정확한 뼈나이 분석, 필요하면 성장호르몬, 생활습관 코칭으로 잠재력을 끌어내요.",
+          "cap": [
+            "뼈나이 분석",
+            "맞춤 성장 전략"
+          ],
+          "hl": "맞춤 성장 전략"
+        },
+        "th": {
+          "narr": "วิเคราะห์อายุกระดูก ฮอร์โมนเมื่อจำเป็น โค้ชพฤติกรรม ดึงศักยภาพออกมา",
+          "cap": [
+            "วิเคราะห์อายุกระดูก",
+            "แผนเฉพาะบุคคล"
+          ],
+          "hl": "แผนเฉพาะบุคคล"
+        },
+        "vi": {
+          "narr": "Phân tích tuổi xương, hormone khi cần, tư vấn lối sống — khơi dậy tiềm năng.",
+          "cap": [
+            "Phân tích tuổi xương",
+            "chiến lược riêng"
+          ],
+          "hl": "chiến lược riêng"
+        },
+        "en": {
+          "narr": "Precise bone age, growth hormone if needed, lifestyle coaching unlock potential.",
+          "cap": [
+            "Bone age analysis",
+            "tailored plan"
+          ],
+          "hl": "tailored plan"
+        },
+        "cn": {
+          "narr": "精准骨龄分析、必要时生长激素、生活习惯指导，释放潜力。",
+          "cap": [
+            "骨龄分析",
+            "个性化方案"
+          ],
+          "hl": "个性化方案"
+        },
+        "ch": {
+          "narr": "精準骨齡分析、必要時生長激素、生活習慣指導，釋放潛力。",
+          "cap": [
+            "骨齡分析",
+            "個人化方案"
+          ],
+          "hl": "個人化方案"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면, 우리 아이가 잘 따라잡고 있는지 한눈에 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "따라잡기 확인"
+          ],
+          "hl": "따라잡기 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกได้ว่าลูกตามทันดีแค่ไหน เห็นชัดในครั้งเดียว",
+          "cap": [
+            "อายุกระดูก",
+            "เช็กการตามทัน"
+          ],
+          "hl": "เช็กการตามทัน"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho thấy ngay con đang đuổi kịp tốt đến đâu.",
+          "cap": [
+            "Tuổi xương",
+            "kiểm tra đà bù"
+          ],
+          "hl": "kiểm tra đà bù"
+        },
+        "en": {
+          "narr": "Bone age shows at a glance how well your child is catching up.",
+          "cap": [
+            "Bone age",
+            "check catch-up"
+          ],
+          "hl": "check catch-up"
+        },
+        "cn": {
+          "narr": "看骨龄就能一眼知道，孩子追赶得好不好。",
+          "cap": [
+            "骨龄",
+            "查看追赶"
+          ],
+          "hl": "查看追赶"
+        },
+        "ch": {
+          "narr": "看骨齡就能一眼知道，孩子追趕得好不好。",
+          "cap": [
+            "骨齡",
+            "查看追趕"
+          ],
+          "hl": "查看追趕"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 따라잡기 성장, 지금 뼈나이·예측키로 확인해 보세요.",
+          "cap": [
+            "따라잡기 성장",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กการเติบโตตามทันของลูกด้วยอายุกระดูกวันนี้",
+          "cap": [
+            "เติบโตตามทัน",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra đà tăng trưởng bù của con bằng tuổi xương ngay hôm nay.",
+          "cap": [
+            "Tăng trưởng bù",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's catch-up growth with bone age today.",
+          "cap": [
+            "Catch-up growth",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就用骨龄查查孩子的追赶生长吧。",
+          "cap": [
+            "追赶生长",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就用骨齡查查孩子的追趕生長吧。",
+          "cap": [
+            "追趕生長",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "라인 따라잡기 + 카운트업",
+      "title": "따라잡기 성장 — 또래 라인에 합류",
+      "emojis": [
+        "🍼",
+        "📈",
+        "🧒"
+      ],
+      "prompt": "Flat vector, square, white bg. Two growth curves rising left to right: a lower starting curve (a small baby) bending upward to merge into a higher average band/line where a peer child stands. The catching-up curve glows brighter as it joins. Brand purple to mint gradient, soft sparkle at the merge point, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "출발(아래)",
+          "ko": "작게 출발",
+          "en": "Small start",
+          "th": "เริ่มตัวเล็ก"
+        },
+        {
+          "pos": "합류점(글로우)",
+          "ko": "80~90% 따라잡음",
+          "en": "80–90% catch up",
+          "th": "ตามทัน 80–90%"
+        },
+        {
+          "pos": "상단 라인",
+          "ko": "또래 평균",
+          "en": "Peer average",
+          "th": "ค่าเฉลี่ยเพื่อน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "구간 하이라이트 점등",
+      "title": "골든타임 — 생후 6개월~2세",
+      "emojis": [
+        "⏳",
+        "🍼",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A gentle horizontal age timeline for the first years of life with a highlighted glowing segment in the early part, where the growth curve is steepest. A cute baby sits under the bright segment with an upward arrow. Warm golden glow on the highlighted window. Brand purple plus mint, soft and friendly. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "하이라이트 구간",
+          "ko": "6개월~2세",
+          "en": "6 mo–2 yrs",
+          "th": "6 เดือน–2 ขวบ"
+        },
+        {
+          "pos": "상단",
+          "ko": "가장 활발",
+          "en": "Peak window",
+          "th": "ช่วงพีค"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "4아이콘 순차 점등",
+      "title": "따라잡기를 돕는 4요인",
+      "emojis": [
+        "🍗",
+        "😴",
+        "🏃",
+        "🏡"
+      ],
+      "prompt": "Flat vector, square, white bg. Four friendly round icons arranged in a 2 by 2 grid around a central growing-up child silhouette: a balanced meal plate, a crescent moon with sleep z, a running figure, and a cozy house/heart. Each icon lights up in brand mint and purple. Clean, warm pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "좌상",
+          "ko": "충분한 영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "pos": "우상",
+          "ko": "깊은 수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "pos": "좌하",
+          "ko": "적절한 운동",
+          "en": "Activity",
+          "th": "ออกกำลังกาย"
+        },
+        {
+          "pos": "우하",
+          "ko": "안정된 환경",
+          "en": "Calm home",
+          "th": "สภาพแวดล้อม"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "3카드 골드 글로우",
+      "title": "맞춤 성장 전략 3단계",
+      "emojis": [
+        "🦴",
+        "💉",
+        "🥗"
+      ],
+      "prompt": "Flat vector, square, white bg. Three soft rounded cards in a row, each with a simple pictogram: a hand X-ray bone (bone age), a gentle medical pen/vial for growth hormone, and a salad plate with a clock for lifestyle coaching. Cards glow warm gold to signal a personalized plan. Brand purple plus mint plus gold accents, reassuring pediatric tone. NO text.",
+      "labels": [
+        {
+          "pos": "카드1",
+          "ko": "뼈나이 분석",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "카드2",
+          "ko": "성장호르몬",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมน"
+        },
+        {
+          "pos": "카드3",
+          "ko": "생활습관 코칭",
+          "en": "Lifestyle",
+          "th": "พฤติกรรม"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🍼",
+      "label": "저체중 출생아"
+    },
+    {
+      "e": "✨",
+      "label": "희망·강조"
+    },
+    {
+      "e": "📈",
+      "label": "따라잡기 성장"
+    },
+    {
+      "e": "💪",
+      "label": "성장 잠재력"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "🍗",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🏡",
+      "label": "안정된 환경"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🤝",
+      "label": "조기 도움"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

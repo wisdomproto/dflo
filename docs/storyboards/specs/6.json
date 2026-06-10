@@ -1,0 +1,789 @@
+{
+  "n": 6,
+  "slug": "예상키공식오차",
+  "title": "부모 키 더해서 나누면 끝? — 예상키 공식의 함정",
+  "sub": "아빠+엄마 평균 공식은 '시작점'일 뿐 — 유전 70~80%, 나머지 20~30%와 뼈나이가 진짜 키를 만든다",
+  "category": "A. 성장과학",
+  "topicTitle": "예상키 계산법의 오차",
+  "headerTop": "우리 아이 키",
+  "headerMark": "공식이 맞을까?",
+  "accentEmoji": "🧮❓",
+  "hook": "아빠 키 엄마 키 더해서 나누면 우리 아이 키가 나온다고요? 사실은 절반만 맞아요.",
+  "misconception": "부모 키 평균 공식이면 우리 아이 키를 알 수 있다 → 공식은 '평균 경향'일 뿐, 뼈나이·성장속도·사춘기를 못 본다",
+  "message": "부모 키 공식(남아 (아빠+엄마+13)/2, 여아 -13)은 유전 70~80%만 반영한 시작점. 나머지 20~30%(영양·수면·운동)와 뼈나이·성장속도·사춘기 단계가 진짜 최종키를 가른다. 정확한 예측은 뼈나이로.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"공식보다 더 클 잠재력이 있다\"). \"우리 아이 키\" 보편 메시지. CTA는 시청자의 과거 행동을 단정하지 않고 뼈나이/예측키 측정으로 초대.",
+  "cta": "공식 말고 진짜 예측키 — 우리 아이 뼈나이로 지금 바로 확인해 보세요.",
+  "duration": 35,
+  "thumb": {
+    "kicker": "공식이 틀린다?",
+    "subject": "우리 아이 예상키",
+    "number": "½",
+    "numLabel": "만 맞는 공식"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"부모 키 더해서 나누면 끝? 절반만 맞다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "공식의 한계",
+      "scenes": "c3–c4",
+      "desc": "\"공식은 평균일 뿐 → 크게도 작게도 자란다\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "유전 vs 환경",
+      "scenes": "c5–c6",
+      "desc": "\"유전 70~80% · 나머지 20~30%가 가른다\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "공식이 못 보는 것",
+      "scenes": "c7–c8",
+      "desc": "\"뼈나이·성장속도·사춘기는 진단으로만\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "골든타임·행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 진짜 예측 → 측정 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🧮 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "아빠 키 엄마 키 더해서 나누면 우리 아이 키가 나온다고요? 사실은 절반만 맞아요.",
+          "cap": [
+            "부모 키 공식",
+            "절반만 맞다"
+          ],
+          "hl": "절반만 맞다"
+        },
+        "th": {
+          "narr": "เอาส่วนสูงพ่อแม่มาบวกหารสองได้ความสูงลูกจริงเหรอ? จริงๆ ถูกแค่ครึ่งเดียว",
+          "cap": [
+            "สูตรพ่อแม่",
+            "ถูกแค่ครึ่ง"
+          ],
+          "hl": "ถูกแค่ครึ่ง"
+        },
+        "vi": {
+          "narr": "Cộng chiều cao bố mẹ chia đôi là ra chiều cao con? Thật ra chỉ đúng một nửa.",
+          "cap": [
+            "Công thức bố mẹ",
+            "chỉ đúng nửa"
+          ],
+          "hl": "chỉ đúng nửa"
+        },
+        "en": {
+          "narr": "Add mom and dad's height, divide — and that's your child's height? It's only half true.",
+          "cap": [
+            "Parent formula",
+            "only half true"
+          ],
+          "hl": "only half true"
+        },
+        "cn": {
+          "narr": "爸妈身高加起来除以二就是孩子身高？其实只对了一半。",
+          "cap": [
+            "父母公式",
+            "只对一半"
+          ],
+          "hl": "只对一半"
+        },
+        "ch": {
+          "narr": "爸媽身高加起來除以二就是孩子身高？其實只對了一半。",
+          "cap": [
+            "父母公式",
+            "只對一半"
+          ],
+          "hl": "只對一半"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🧬 펄스 · 시작점",
+      "copy": {
+        "ko": {
+          "narr": "이 공식은 유전이라는 '뼈대'일 뿐, 우리 아이 키의 전체 그림이 아니거든요.",
+          "cap": [
+            "공식은 뼈대",
+            "전체 그림 X"
+          ],
+          "hl": "공식은 뼈대"
+        },
+        "th": {
+          "narr": "สูตรนี้เป็นแค่โครงจากพันธุกรรม ไม่ใช่ภาพรวมความสูงทั้งหมดของลูก",
+          "cap": [
+            "แค่โครงพันธุกรรม",
+            "ไม่ใช่ทั้งหมด"
+          ],
+          "hl": "แค่โครงพันธุกรรม"
+        },
+        "vi": {
+          "narr": "Công thức này chỉ là cái khung di truyền, không phải bức tranh đầy đủ về chiều cao của con.",
+          "cap": [
+            "Chỉ là khung gen",
+            "không phải tất cả"
+          ],
+          "hl": "Chỉ là khung gen"
+        },
+        "en": {
+          "narr": "This formula is just the genetic skeleton — not the whole picture of your child's height.",
+          "cap": [
+            "Just the frame",
+            "not whole picture"
+          ],
+          "hl": "Just the frame"
+        },
+        "cn": {
+          "narr": "这个公式只是遗传的'骨架'，不是孩子身高的完整画面。",
+          "cap": [
+            "只是遗传骨架",
+            "非完整画面"
+          ],
+          "hl": "只是遗传骨架"
+        },
+        "ch": {
+          "narr": "這個公式只是遺傳的'骨架'，不是孩子身高的完整畫面。",
+          "cap": [
+            "只是遺傳骨架",
+            "非完整畫面"
+          ],
+          "hl": "只是遺傳骨架"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 부모 키 공식",
+      "motion": "➕ ➗ 순차 등장",
+      "copy": {
+        "ko": {
+          "narr": "공식은 이래요. 남아는 아빠 엄마 키 더하기 13 나누기 2, 여아는 빼기 13이죠.",
+          "cap": [
+            "남아 +13÷2",
+            "여아 −13÷2"
+          ],
+          "hl": "남아 +13÷2"
+        },
+        "th": {
+          "narr": "สูตรเป็นแบบนี้ ชายคือพ่อบวกแม่บวก13หาร2 หญิงคือลบ13",
+          "cap": [
+            "ชาย +13÷2",
+            "หญิง −13÷2"
+          ],
+          "hl": "ชาย +13÷2"
+        },
+        "vi": {
+          "narr": "Công thức là: bé trai = bố cộng mẹ cộng 13 chia 2, bé gái thì trừ 13.",
+          "cap": [
+            "Trai +13÷2",
+            "Gái −13÷2"
+          ],
+          "hl": "Trai +13÷2"
+        },
+        "en": {
+          "narr": "The formula: boys are dad plus mom plus 13, over 2; girls are minus 13.",
+          "cap": [
+            "Boys +13÷2",
+            "Girls −13÷2"
+          ],
+          "hl": "Boys +13÷2"
+        },
+        "cn": {
+          "narr": "公式是这样：男孩是爸加妈加13除以2，女孩是减13。",
+          "cap": [
+            "男孩 +13÷2",
+            "女孩 −13÷2"
+          ],
+          "hl": "男孩 +13÷2"
+        },
+        "ch": {
+          "narr": "公式是這樣：男孩是爸加媽加13除以2，女孩是減13。",
+          "cap": [
+            "男孩 +13÷2",
+            "女孩 −13÷2"
+          ],
+          "hl": "男孩 +13÷2"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "↕️ 위아래 흔들 · 평균선",
+      "copy": {
+        "ko": {
+          "narr": "문제는 '평균'만 본다는 거예요. 부모가 작아도 크게, 커도 작게 자라는 아이가 많거든요.",
+          "cap": [
+            "공식은 평균만",
+            "예외가 많다"
+          ],
+          "hl": "예외가 많다"
+        },
+        "th": {
+          "narr": "ปัญหาคือมันดูแค่ค่าเฉลี่ย พ่อแม่เตี้ยลูกสูงก็มี พ่อแม่สูงลูกเตี้ยก็มี",
+          "cap": [
+            "ดูแค่ค่าเฉลี่ย",
+            "มีข้อยกเว้นเยอะ"
+          ],
+          "hl": "มีข้อยกเว้นเยอะ"
+        },
+        "vi": {
+          "narr": "Vấn đề là nó chỉ nhìn 'trung bình'. Bố mẹ thấp con vẫn cao, bố mẹ cao con vẫn thấp.",
+          "cap": [
+            "Chỉ nhìn trung bình",
+            "nhiều ngoại lệ"
+          ],
+          "hl": "nhiều ngoại lệ"
+        },
+        "en": {
+          "narr": "The catch: it only shows the average. Short parents have tall kids, tall parents have short kids.",
+          "cap": [
+            "Just the average",
+            "many exceptions"
+          ],
+          "hl": "many exceptions"
+        },
+        "cn": {
+          "narr": "问题是它只看'平均'。父母矮孩子高、父母高孩子矮的例子很多。",
+          "cap": [
+            "只看平均",
+            "例外很多"
+          ],
+          "hl": "例外很多"
+        },
+        "ch": {
+          "narr": "問題是它只看'平均'。父母矮孩子高、父母高孩子矮的例子很多。",
+          "cap": [
+            "只看平均",
+            "例外很多"
+          ],
+          "hl": "例外很多"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 유전 vs 환경",
+      "motion": "🥧 70 → 30 채우기",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전이 70에서 80퍼센트예요. 하지만 나머지 20에서 30퍼센트가 진짜 변수죠.",
+          "cap": [
+            "유전 70~80%",
+            "나머지 20~30%"
+          ],
+          "hl": "유전 70~80%"
+        },
+        "th": {
+          "narr": "ความสูงเป็นพันธุกรรม 70 ถึง 80% แต่อีก 20 ถึง 30% คือตัวแปรจริง",
+          "cap": [
+            "พันธุกรรม 70~80%",
+            "อีก 20~30%"
+          ],
+          "hl": "พันธุกรรม 70~80%"
+        },
+        "vi": {
+          "narr": "Chiều cao do gen quyết định 70 đến 80%, nhưng 20 đến 30% còn lại mới là biến số thật.",
+          "cap": [
+            "Gen 70~80%",
+            "còn 20~30%"
+          ],
+          "hl": "Gen 70~80%"
+        },
+        "en": {
+          "narr": "Height is 70 to 80 percent genes — but the other 20 to 30 percent is the real variable.",
+          "cap": [
+            "Genes 70~80%",
+            "rest 20~30%"
+          ],
+          "hl": "Genes 70~80%"
+        },
+        "cn": {
+          "narr": "身高有70到80%靠遗传，但剩下的20到30%才是真正的变量。",
+          "cap": [
+            "遗传 70~80%",
+            "其余 20~30%"
+          ],
+          "hl": "遗传 70~80%"
+        },
+        "ch": {
+          "narr": "身高有70到80%靠遺傳，但剩下的20到30%才是真正的變數。",
+          "cap": [
+            "遺傳 70~80%",
+            "其餘 20~30%"
+          ],
+          "hl": "遺傳 70~80%"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "🍽️😴🏃 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "영양, 수면, 운동. 이 셋이 타고난 잠재력을 다 채우게도, 못 채우게도 해요.",
+          "cap": [
+            "영양·수면·운동",
+            "잠재력 좌우"
+          ],
+          "hl": "잠재력 좌우"
+        },
+        "th": {
+          "narr": "อาหาร การนอน การออกกำลังกาย สามอย่างนี้ทำให้ลูกถึงศักยภาพหรือไม่ก็ได้",
+          "cap": [
+            "อาหาร·นอน·ออกกำลัง",
+            "กำหนดศักยภาพ"
+          ],
+          "hl": "กำหนดศักยภาพ"
+        },
+        "vi": {
+          "narr": "Dinh dưỡng, giấc ngủ, vận động — ba thứ này quyết định con có đạt hết tiềm năng hay không.",
+          "cap": [
+            "Ăn·ngủ·vận động",
+            "quyết định tiềm năng"
+          ],
+          "hl": "quyết định tiềm năng"
+        },
+        "en": {
+          "narr": "Nutrition, sleep, exercise — these three decide whether your child reaches full potential.",
+          "cap": [
+            "Food·sleep·exercise",
+            "decide potential"
+          ],
+          "hl": "decide potential"
+        },
+        "cn": {
+          "narr": "营养、睡眠、运动，这三样决定孩子能否发挥全部潜力。",
+          "cap": [
+            "营养·睡眠·运动",
+            "决定潜力"
+          ],
+          "hl": "决定潜力"
+        },
+        "ch": {
+          "narr": "營養、睡眠、運動，這三樣決定孩子能否發揮全部潛力。",
+          "cap": [
+            "營養·睡眠·運動",
+            "決定潛力"
+          ],
+          "hl": "決定潛力"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 공식이 못 보는 3가지",
+      "motion": "🦴📏🌱 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "게다가 공식은 뼈나이, 성장 속도, 사춘기 단계를 전혀 못 봐요. 가장 중요한 건데도요.",
+          "cap": [
+            "뼈나이·속도·사춘기",
+            "공식은 못 본다"
+          ],
+          "hl": "공식은 못 본다"
+        },
+        "th": {
+          "narr": "ยิ่งกว่านั้น สูตรมองไม่เห็นอายุกระดูก อัตราการโต และวัยแรกรุ่นเลย ทั้งที่สำคัญที่สุด",
+          "cap": [
+            "กระดูก·อัตราโต·แรกรุ่น",
+            "สูตรมองไม่เห็น"
+          ],
+          "hl": "สูตรมองไม่เห็น"
+        },
+        "vi": {
+          "narr": "Hơn nữa, công thức không thấy tuổi xương, tốc độ tăng trưởng và giai đoạn dậy thì — những thứ quan trọng nhất.",
+          "cap": [
+            "Xương·tốc độ·dậy thì",
+            "công thức bỏ qua"
+          ],
+          "hl": "công thức bỏ qua"
+        },
+        "en": {
+          "narr": "And the formula can't see bone age, growth speed, or puberty stage — the things that matter most.",
+          "cap": [
+            "Bone·speed·puberty",
+            "formula misses"
+          ],
+          "hl": "formula misses"
+        },
+        "cn": {
+          "narr": "而且公式根本看不到骨龄、生长速度和青春期阶段，偏偏这些最重要。",
+          "cap": [
+            "骨龄·速度·青春期",
+            "公式看不到"
+          ],
+          "hl": "公式看不到"
+        },
+        "ch": {
+          "narr": "而且公式根本看不到骨齡、生長速度和青春期階段，偏偏這些最重要。",
+          "cap": [
+            "骨齡·速度·青春期",
+            "公式看不到"
+          ],
+          "hl": "公式看不到"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "doctor",
+      "motion": "👨‍⚕️ 팝 · 종합 진단",
+      "copy": {
+        "ko": {
+          "narr": "이런 건 전문의가 종합적으로 봐야 알 수 있어요. 공식과는 정확도가 차원이 달라요.",
+          "cap": [
+            "전문의 종합진단",
+            "정확도가 다르다"
+          ],
+          "hl": "정확도가 다르다"
+        },
+        "th": {
+          "narr": "สิ่งเหล่านี้ต้องให้แพทย์เฉพาะทางดูรวมๆ ความแม่นยำต่างจากสูตรคนละระดับ",
+          "cap": [
+            "แพทย์ดูรวม",
+            "แม่นยำกว่ามาก"
+          ],
+          "hl": "แม่นยำกว่ามาก"
+        },
+        "vi": {
+          "narr": "Những điều này cần bác sĩ chuyên khoa đánh giá tổng thể — độ chính xác khác hẳn công thức.",
+          "cap": [
+            "Bác sĩ đánh giá",
+            "chính xác hơn hẳn"
+          ],
+          "hl": "chính xác hơn hẳn"
+        },
+        "en": {
+          "narr": "A specialist reads all of these together — far more accurate than any formula.",
+          "cap": [
+            "Specialist exam",
+            "far more accurate"
+          ],
+          "hl": "far more accurate"
+        },
+        "cn": {
+          "narr": "这些需要专科医生综合判断，准确度和公式完全是两个级别。",
+          "cap": [
+            "专科综合判断",
+            "准确度更高"
+          ],
+          "hl": "准确度更高"
+        },
+        "ch": {
+          "narr": "這些需要專科醫師綜合判斷，準確度和公式完全是兩個級別。",
+          "cap": [
+            "專科綜合判斷",
+            "準確度更高"
+          ],
+          "hl": "準確度更高"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "ig",
+      "igLabel": "IG4 뼈나이 예측",
+      "motion": "🤚🔍 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "손목 뼈나이를 보면 남은 성장 기간까지 알 수 있어요. 진짜 예측키는 여기서 나와요.",
+          "cap": [
+            "손목 뼈나이로",
+            "진짜 예측키"
+          ],
+          "hl": "진짜 예측키"
+        },
+        "th": {
+          "narr": "อายุกระดูกข้อมือบอกได้ถึงเวลาที่เหลือ ความสูงที่แท้จริงทำนายจากตรงนี้",
+          "cap": [
+            "อายุกระดูกข้อมือ",
+            "ทำนายตัวจริง"
+          ],
+          "hl": "ทำนายตัวจริง"
+        },
+        "vi": {
+          "narr": "Tuổi xương cổ tay còn cho biết thời gian tăng trưởng còn lại — chiều cao thật được dự đoán từ đây.",
+          "cap": [
+            "Tuổi xương cổ tay",
+            "dự đoán thật"
+          ],
+          "hl": "dự đoán thật"
+        },
+        "en": {
+          "narr": "A wrist bone age even shows the growth time left — the real height prediction comes from here.",
+          "cap": [
+            "Wrist bone age",
+            "real prediction"
+          ],
+          "hl": "real prediction"
+        },
+        "cn": {
+          "narr": "看手腕骨龄还能知道剩余生长时间，真正的预测身高就来自这里。",
+          "cap": [
+            "手腕骨龄",
+            "真正的预测"
+          ],
+          "hl": "真正的预测"
+        },
+        "ch": {
+          "narr": "看手腕骨齡還能知道剩餘生長時間，真正的預測身高就來自這裡。",
+          "cap": [
+            "手腕骨齡",
+            "真正的預測"
+          ],
+          "hl": "真正的預測"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "공식 말고 진짜 예측키! 우리 아이 뼈나이, 지금 바로 확인하세요.",
+          "cap": [
+            "진짜 예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ไม่ใช่แค่สูตร แต่เป็นการทำนายจริง! เช็กอายุกระดูกของลูกวันนี้",
+          "cap": [
+            "ทำนายตัวจริง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Không phải công thức — mà là dự đoán thật! Kiểm tra tuổi xương của con ngay.",
+          "cap": [
+            "Dự đoán thật",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Not a formula — a real prediction! Check your child's bone age today.",
+          "cap": [
+            "Real prediction",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "不是公式，而是真正的预测！现在就查查孩子的骨龄吧。",
+          "cap": [
+            "真正的预测",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "不是公式，而是真正的預測！現在就查查孩子的骨齡吧。",
+          "cap": [
+            "真正的預測",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "➕ ➗ 순차 등장",
+      "title": "부모 키 공식 도식",
+      "emojis": [
+        "👨",
+        "👩",
+        "🧮"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly dad figure and mom figure on the left, plus and division symbols flowing into a calculator/equation block in the center, and a single child figure on the right standing on a measuring ruler as the result. Two faint result arrows split upward and downward to hint the answer is only an average, not exact. Brand purple #667eea figures, mint #2dd4bf calculator and ruler, friendly pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽(부모)",
+          "ko": "아빠 + 엄마",
+          "en": "Dad + Mom",
+          "th": "พ่อ + แม่"
+        },
+        {
+          "pos": "가운데(계산)",
+          "ko": "÷ 2 (±13)",
+          "en": "÷ 2 (±13)",
+          "th": "÷ 2 (±13)"
+        },
+        {
+          "pos": "오른쪽(결과)",
+          "ko": "= 평균치",
+          "en": "= average",
+          "th": "= ค่าเฉลี่ย"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "70 → 30 채우기",
+      "title": "유전 vs 비유전 비율",
+      "emojis": [
+        "🧬",
+        "🥗",
+        "🥧"
+      ],
+      "prompt": "Flat vector, square, white bg. A large friendly donut/pie chart split into a big dominant slice and a smaller slice. The big slice carries a DNA helix motif, the smaller slice carries small lifestyle icons (a plate of food, a moon for sleep, a running shoe). Soft glow rising on the smaller slice to signal 'this is the part you can change.' Brand purple #667eea big slice, mint #2dd4bf small slice, friendly pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "큰 조각",
+          "ko": "유전 70~80%",
+          "en": "Genes 70-80%",
+          "th": "พันธุกรรม 70-80%"
+        },
+        {
+          "pos": "작은 조각",
+          "ko": "환경 20~30%",
+          "en": "Lifestyle 20-30%",
+          "th": "สิ่งแวดล้อม 20-30%"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "🦴📏🌱 순차 점등",
+      "title": "공식이 못 보는 3가지 지표",
+      "emojis": [
+        "🦴",
+        "📏",
+        "🌱"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly icon cards in a row, each glowing in sequence: a wrist X-ray panel for bone age, an upward growth-curve chart for growth speed, and a small sprout/teen sprouting up for the puberty stage. Above them a faded crossed-out calculator to hint the formula can't see these. Brand purple #667eea cards, mint #2dd4bf glow accents, friendly clinical pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "카드1",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "카드2",
+          "ko": "성장 속도",
+          "en": "Growth speed",
+          "th": "อัตราการโต"
+        },
+        {
+          "pos": "카드3",
+          "ko": "사춘기 단계",
+          "en": "Puberty stage",
+          "th": "ระยะแรกรุ่น"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c9",
+      "motion": "🤚🔍 골드 글로우",
+      "title": "손목 뼈나이로 진짜 예측",
+      "emojis": [
+        "🤚",
+        "🔍",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized wrist/hand X-ray panel with a magnifier lens over the wrist bones and a small upward prediction curve rising out of it toward a target marker, warm golden glow on the wrist suggesting the true final height is read here. Brand purple #667eea frame, mint #2dd4bf and gold accents, friendly clinical style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "손목 X-ray",
+          "ko": "손목 X-ray",
+          "en": "Wrist X-ray",
+          "th": "เอกซเรย์ข้อมือ"
+        },
+        {
+          "pos": "예측 곡선",
+          "ko": "진짜 예측키",
+          "en": "Real prediction",
+          "th": "ทำนายตัวจริง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🧮",
+      "label": "예상키 공식"
+    },
+    {
+      "e": "❓",
+      "label": "의문/오차"
+    },
+    {
+      "e": "🧬",
+      "label": "유전"
+    },
+    {
+      "e": "🥗",
+      "label": "영양"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "📏",
+      "label": "성장 속도"
+    },
+    {
+      "e": "🌱",
+      "label": "사춘기 단계"
+    },
+    {
+      "e": "👨‍⚕️",
+      "label": "전문의 진단"
+    },
+    {
+      "e": "🔍",
+      "label": "뼈나이 측정"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

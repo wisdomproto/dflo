@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 저체중 출생아 따라잡기 성장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #20</span>
+  <h1>작게 태어난 우리 아이 — '따라잡기 성장'의 비밀</h1>
+  <div class="sub">저체중 출생아 80~90%는 따라잡는다 — 생후 2~3년 골든타임이 키를 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>작아도 괜찮아!</b></div>
+      <div class="subj">작게 태어난 우리 아이</div>
+      <div class="big4"><div class="n" style="font-size:66px">80~90%</div><div class="lab">따라잡는다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>작게 태어난 우리 아이</b> 80~90%따라잡는다"</li>
+        <li><b>거대 숫자 "80~90%"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #20 「저체중 출생아 따라잡기 성장」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"작게 태어난 우리 아이, 또래만큼 클 수 있을까요? 답은 '네'입니다."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>작게 태어났으니 평생 작겠지 → 80~90%는 '따라잡기 성장'으로 또래를 따라잡는다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>저체중 출생아 80~90%는 생후 2~3년 안에 따라잡는다. 6개월~2세 영양·관리가 핵심, 못 따라잡는 10~20%는 조기 관리로 충분히 도울 수 있다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("작게 태어나도 잠재력은 작지 않다"). "우리 아이 키" 보편. CTA = 뼈나이/예측키 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 따라잡기 성장 잘 되고 있는지, 뼈나이·예측키로 지금 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·공감</h4><p>c1–c2<br>"작게 태어났어도 또래만큼 클 수 있다"</p></div><div class="act"><span class="n">ACT 2</span><h4>따라잡기 성장이란</h4><p>c3–c4<br>"80~90%가 따라잡는다 — 타고난 잠재력"</p></div><div class="act"><span class="n">ACT 3</span><h4>골든타임</h4><p>c5–c6<br>"생후 6개월~2세, 영양이 핵심"</p></div><div class="act"><span class="n">ACT 4</span><h4>남은 10~20%·희망</h4><p>c7–c8<br>"못 따라잡아도 조기 관리로 도울 수 있다"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">작게 태어난 우리 아이</div><div class="mark">따라잡을 수 있을까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🍼✨</div></div>
+        <div class="ph-cap"><div class="l">작게 태어난</div><div class="l"><span class="y2">우리 아이</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">작게 태어난 우리 아이, 또래만큼 클 수 있을까 걱정되시죠?</td><td><span class="cap2"><span class="y">작게 태어난</span><br>우리 아이</span></td><td class="mo">🍼 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">걱정 마세요. 작게 태어났다고 키까지 작게 크는 건 아니에요.</td><td><span class="cap2">작게 태어나도<br><span class="y">키는 다르다</span></span></td><td class="mo">✨ 따뜻한 글로우</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 따라잡기 성장</span></td><td class="narr">'따라잡기 성장'이라고, 작게 태어난 아기의 80에서 90%가 또래를 따라잡아요.</td><td><span class="cap2">따라잡기 성장<br><span class="y">80~90%</span></span></td><td class="mo">📈 라인 따라잡기 + 카운트업</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">우리 몸은 타고난 성장 잠재력으로, 불리한 출발을 스스로 극복하려 해요.</td><td><span class="cap2">타고난<br><span class="y">성장 잠재력</span></span></td><td class="mo">💪 잠재력 펄스</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 골든타임 6개월~2세</span></td><td class="narr">이 따라잡기는 생후 6개월에서 2세 사이에 가장 활발하게 일어나요.</td><td><span class="cap2"><span class="y">6개월~2세</span><br>가장 활발</span></td><td class="mo">⏳ 구간 하이라이트 점등</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 핵심 4요인</span></td><td class="narr">이 시기 충분한 영양, 깊은 수면, 적절한 운동, 안정된 환경이 키를 만들어요.</td><td><span class="cap2"><span class="y">영양·수면</span><br>운동·환경</span></td><td class="mo">🍗😴 4아이콘 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그래도 10에서 20%는 충분히 못 따라잡는데, 이땐 일찍 도와주는 게 답이에요.</td><td><span class="cap2">10~20%는<br><span class="y">일찍 도와주기</span></span></td><td class="mo">🤝 따뜻한 톤 · 부드러운 강조</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 성장 전략</span></td><td class="narr">정확한 뼈나이 분석, 필요하면 성장호르몬, 생활습관 코칭으로 잠재력을 끌어내요.</td><td><span class="cap2">뼈나이 분석<br><span class="y">맞춤 성장 전략</span></span></td><td class="mo">🩺 3카드 골드 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면, 우리 아이가 잘 따라잡고 있는지 한눈에 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">따라잡기 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 따라잡기 성장, 지금 뼈나이·예측키로 확인해 보세요.</td><td><span class="cap2">따라잡기 성장<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 라인 따라잡기 + 카운트업</div><h3>따라잡기 성장 — 또래 라인에 합류</h3></div>
+        <div class="body">
+          <div class="sketch">🍼 📈 🧒</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two growth curves rising left to right: a lower starting curve (a small baby) bending upward to merge into a higher average band/line where a peer child stands. The catching-up curve glows brighter as it joins. Brand purple to mint gradient, soft sparkle at the merge point, friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>출발(아래)</td><td>작게 출발</td><td>Small start</td><td class="thai">เริ่มตัวเล็ก</td></tr><tr><td>합류점(글로우)</td><td>80~90% 따라잡음</td><td>80–90% catch up</td><td class="thai">ตามทัน 80–90%</td></tr><tr><td>상단 라인</td><td>또래 평균</td><td>Peer average</td><td class="thai">ค่าเฉลี่ยเพื่อน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 구간 하이라이트 점등</div><h3>골든타임 — 생후 6개월~2세</h3></div>
+        <div class="body">
+          <div class="sketch">⏳ 🍼 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A gentle horizontal age timeline for the first years of life with a highlighted glowing segment in the early part, where the growth curve is steepest. A cute baby sits under the bright segment with an upward arrow. Warm golden glow on the highlighted window. Brand purple plus mint, soft and friendly. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>하이라이트 구간</td><td>6개월~2세</td><td>6 mo–2 yrs</td><td class="thai">6 เดือน–2 ขวบ</td></tr><tr><td>상단</td><td>가장 활발</td><td>Peak window</td><td class="thai">ช่วงพีค</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 4아이콘 순차 점등</div><h3>따라잡기를 돕는 4요인</h3></div>
+        <div class="body">
+          <div class="sketch">🍗 😴 🏃 🏡</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Four friendly round icons arranged in a 2 by 2 grid around a central growing-up child silhouette: a balanced meal plate, a crescent moon with sleep z, a running figure, and a cozy house/heart. Each icon lights up in brand mint and purple. Clean, warm pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>좌상</td><td>충분한 영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr><tr><td>우상</td><td>깊은 수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>좌하</td><td>적절한 운동</td><td>Activity</td><td class="thai">ออกกำลังกาย</td></tr><tr><td>우하</td><td>안정된 환경</td><td>Calm home</td><td class="thai">สภาพแวดล้อม</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 3카드 골드 글로우</div><h3>맞춤 성장 전략 3단계</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 💉 🥗</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three soft rounded cards in a row, each with a simple pictogram: a hand X-ray bone (bone age), a gentle medical pen/vial for growth hormone, and a salad plate with a clock for lifestyle coaching. Cards glow warm gold to signal a personalized plan. Brand purple plus mint plus gold accents, reassuring pediatric tone. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>카드1</td><td>뼈나이 분석</td><td>Bone age</td><td class="thai">อายุกระดูก</td></tr><tr><td>카드2</td><td>성장호르몬</td><td>Growth hormone</td><td class="thai">ฮอร์โมน</td></tr><tr><td>카드3</td><td>생활습관 코칭</td><td>Lifestyle</td><td class="thai">พฤติกรรม</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🍼</b> 저체중 출생아</span><span class="emo"><b>✨</b> 희망·강조</span><span class="emo"><b>📈</b> 따라잡기 성장</span><span class="emo"><b>💪</b> 성장 잠재력</span><span class="emo"><b>⏳</b> 골든타임</span><span class="emo"><b>🍗</b> 영양</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>🏡</b> 안정된 환경</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>🤝</b> 조기 도움</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>작게 태어난 우리 아이, 또래만큼 클 수 있을까 걱정되시죠?<br><span class="cap2">작게 태어난 · 우리 아이</span></td></tr><tr><td class="c-id">c2</td><td>걱정 마세요. 작게 태어났다고 키까지 작게 크는 건 아니에요.<br><span class="cap2">작게 태어나도 · <span class="y">키는 다르다</span></span></td></tr><tr><td class="c-id">c3</td><td>'따라잡기 성장'이라고, 작게 태어난 아기의 80에서 90%가 또래를 따라잡아요.<br><span class="cap2">따라잡기 성장 · <span class="y">80~90%</span></span></td></tr><tr><td class="c-id">c4</td><td>우리 몸은 타고난 성장 잠재력으로, 불리한 출발을 스스로 극복하려 해요.<br><span class="cap2">타고난 · <span class="y">성장 잠재력</span></span></td></tr><tr><td class="c-id">c5</td><td>이 따라잡기는 생후 6개월에서 2세 사이에 가장 활발하게 일어나요.<br><span class="cap2">6개월~2세 · 가장 활발</span></td></tr><tr><td class="c-id">c6</td><td>이 시기 충분한 영양, 깊은 수면, 적절한 운동, 안정된 환경이 키를 만들어요.<br><span class="cap2">영양·수면 · 운동·환경</span></td></tr><tr><td class="c-id">c7</td><td>그래도 10에서 20%는 충분히 못 따라잡는데, 이땐 일찍 도와주는 게 답이에요.<br><span class="cap2">10~20%는 · <span class="y">일찍 도와주기</span></span></td></tr><tr><td class="c-id">c8</td><td>정확한 뼈나이 분석, 필요하면 성장호르몬, 생활습관 코칭으로 잠재력을 끌어내요.<br><span class="cap2">뼈나이 분석 · <span class="y">맞춤 성장 전략</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면, 우리 아이가 잘 따라잡고 있는지 한눈에 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">따라잡기 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 따라잡기 성장, 지금 뼈나이·예측키로 확인해 보세요.<br><span class="cap2">따라잡기 성장 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ลูกที่คลอดออกมาตัวเล็ก จะโตทันเพื่อนได้ไหม กังวลใช่ไหมคะ<br><span class="cap2">คลอดตัวเล็ก · จะโตทันไหม</span></td></tr><tr><td class="c-id">c2</td><td>ไม่ต้องกังวลค่ะ คลอดตัวเล็กไม่ได้แปลว่าจะเตี้ยเสมอไป<br><span class="cap2">ตัวเล็กแรกเกิด · <span class="y">ไม่ได้เตี้ยเสมอ</span></span></td></tr><tr><td class="c-id">c3</td><td>'การเติบโตแบบตามทัน' ทารกตัวเล็ก 80–90% ตามทันเพื่อนได้<br><span class="cap2">เติบโตตามทัน · <span class="y">80–90%</span></span></td></tr><tr><td class="c-id">c4</td><td>ร่างกายมีศักยภาพการเติบโตติดตัว พยายามเอาชนะจุดเริ่มต้นที่เสียเปรียบเอง<br><span class="cap2">มีติดตัว · <span class="y">ศักยภาพเติบโต</span></span></td></tr><tr><td class="c-id">c5</td><td>การตามทันนี้เกิดมากที่สุดในช่วง 6 เดือนถึง 2 ขวบ<br><span class="cap2">6 เดือน–2 ขวบ · ช่วงพีค</span></td></tr><tr><td class="c-id">c6</td><td>ช่วงนี้ สารอาหารพอ นอนลึก ออกกำลังพอดี สภาพแวดล้อมมั่นคง สร้างส่วนสูง<br><span class="cap2">อาหาร·นอน · ออกกำลัง·สิ่งแวดล้อม</span></td></tr><tr><td class="c-id">c7</td><td>แต่ 10–20% ตามไม่ทันพอ กรณีนี้ช่วยตั้งแต่เนิ่นๆ คือคำตอบ<br><span class="cap2">10–20% · <span class="y">ช่วยแต่เนิ่นๆ</span></span></td></tr><tr><td class="c-id">c8</td><td>วิเคราะห์อายุกระดูก ฮอร์โมนเมื่อจำเป็น โค้ชพฤติกรรม ดึงศักยภาพออกมา<br><span class="cap2">วิเคราะห์อายุกระดูก · <span class="y">แผนเฉพาะบุคคล</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกบอกได้ว่าลูกตามทันดีแค่ไหน เห็นชัดในครั้งเดียว<br><span class="cap2">อายุกระดูก · <span class="y">เช็กการตามทัน</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กการเติบโตตามทันของลูกด้วยอายุกระดูกวันนี้<br><span class="cap2">เติบโตตามทัน · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con sinh ra nhỏ bé, liệu có cao bằng bạn bè không? Mẹ lo lắm phải không?<br><span class="cap2">Con sinh ra · <span class="y">nhỏ bé</span></span></td></tr><tr><td class="c-id">c2</td><td>Đừng lo. Sinh ra nhỏ không có nghĩa là sẽ thấp.<br><span class="cap2">Sinh ra nhỏ · <span class="y">không hẳn sẽ thấp</span></span></td></tr><tr><td class="c-id">c3</td><td>Gọi là 'tăng trưởng bù' — 80 đến 90% trẻ sinh nhỏ đuổi kịp bạn bè.<br><span class="cap2">Tăng trưởng bù · <span class="y">80–90%</span></span></td></tr><tr><td class="c-id">c4</td><td>Cơ thể có tiềm năng tăng trưởng bẩm sinh, tự vượt qua khởi đầu bất lợi.<br><span class="cap2">Bẩm sinh · <span class="y">tiềm năng tăng trưởng</span></span></td></tr><tr><td class="c-id">c5</td><td>Tăng trưởng bù mạnh nhất từ 6 tháng đến 2 tuổi.<br><span class="cap2">6 tháng–2 tuổi · mạnh nhất</span></td></tr><tr><td class="c-id">c6</td><td>Lúc này: dinh dưỡng đủ, ngủ sâu, vận động hợp lý, môi trường ổn định.<br><span class="cap2">Dinh dưỡng·ngủ · vận động·môi trường</span></td></tr><tr><td class="c-id">c7</td><td>Nhưng 10 đến 20% chưa đuổi kịp đủ — khi đó, hỗ trợ sớm là lời giải.<br><span class="cap2">10–20% · <span class="y">hỗ trợ sớm</span></span></td></tr><tr><td class="c-id">c8</td><td>Phân tích tuổi xương, hormone khi cần, tư vấn lối sống — khơi dậy tiềm năng.<br><span class="cap2">Phân tích tuổi xương · <span class="y">chiến lược riêng</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương cho thấy ngay con đang đuổi kịp tốt đến đâu.<br><span class="cap2">Tuổi xương · <span class="y">kiểm tra đà bù</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra đà tăng trưởng bù của con bằng tuổi xương ngay hôm nay.<br><span class="cap2">Tăng trưởng bù · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your baby was born small — will they catch up to their peers? You worry, right?<br><span class="cap2">Born · <span class="y">small</span></span></td></tr><tr><td class="c-id">c2</td><td>Don't worry — born small doesn't mean staying short.<br><span class="cap2">Born small · <span class="y">isn't always short</span></span></td></tr><tr><td class="c-id">c3</td><td>It's called catch-up growth — 80 to 90% of small babies catch up.<br><span class="cap2">Catch-up growth · <span class="y">80–90%</span></span></td></tr><tr><td class="c-id">c4</td><td>The body's built-in growth potential works to overcome a rough start.<br><span class="cap2">Built-in · <span class="y">growth potential</span></span></td></tr><tr><td class="c-id">c5</td><td>This catch-up peaks between 6 months and 2 years.<br><span class="cap2">6 mo–2 yrs · peak window</span></td></tr><tr><td class="c-id">c6</td><td>Now, full nutrition, deep sleep, the right activity and a calm home build height.<br><span class="cap2">Nutrition·sleep · activity·calm</span></td></tr><tr><td class="c-id">c7</td><td>Still, 10 to 20% don't fully catch up — and early support is the answer.<br><span class="cap2">10–20% · <span class="y">early support</span></span></td></tr><tr><td class="c-id">c8</td><td>Precise bone age, growth hormone if needed, lifestyle coaching unlock potential.<br><span class="cap2">Bone age analysis · <span class="y">tailored plan</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows at a glance how well your child is catching up.<br><span class="cap2">Bone age · <span class="y">check catch-up</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's catch-up growth with bone age today.<br><span class="cap2">Catch-up growth · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>出生时个头小的宝宝，能长到和同龄人一样高吗？您一定很担心吧。<br><span class="cap2">出生个头小 · 能追上吗</span></td></tr><tr><td class="c-id">c2</td><td>别担心，出生个头小，并不代表身高就一定矮。<br><span class="cap2">出生小 · <span class="y">不等于个矮</span></span></td></tr><tr><td class="c-id">c3</td><td>这叫'追赶生长'——出生个头小的宝宝，80到90%都能追上同龄人。<br><span class="cap2">追赶生长 · <span class="y">80~90%</span></span></td></tr><tr><td class="c-id">c4</td><td>身体天生就有成长潜力，会努力克服不利的起点。<br><span class="cap2">天生的 · <span class="y">成长潜力</span></span></td></tr><tr><td class="c-id">c5</td><td>这种追赶，在出生后6个月到2岁之间最为活跃。<br><span class="cap2">6个月~2岁 · 最活跃</span></td></tr><tr><td class="c-id">c6</td><td>这阶段，充足营养、深度睡眠、适当运动、安稳环境造就身高。<br><span class="cap2">营养·睡眠 · 运动·环境</span></td></tr><tr><td class="c-id">c7</td><td>不过有10到20%没能完全追上，这时尽早帮助就是答案。<br><span class="cap2">10~20% · <span class="y">尽早帮助</span></span></td></tr><tr><td class="c-id">c8</td><td>精准骨龄分析、必要时生长激素、生活习惯指导，释放潜力。<br><span class="cap2">骨龄分析 · <span class="y">个性化方案</span></span></td></tr><tr><td class="c-id">c9</td><td>看骨龄就能一眼知道，孩子追赶得好不好。<br><span class="cap2">骨龄 · <span class="y">查看追赶</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就用骨龄查查孩子的追赶生长吧。<br><span class="cap2">追赶生长 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>出生時個頭小的寶寶，能長到和同齡人一樣高嗎？您一定很擔心吧。<br><span class="cap2">出生個頭小 · 能追上嗎</span></td></tr><tr><td class="c-id">c2</td><td>別擔心，出生個頭小，並不代表身高就一定矮。<br><span class="cap2">出生小 · <span class="y">不等於個矮</span></span></td></tr><tr><td class="c-id">c3</td><td>這叫'追趕生長'——出生個頭小的寶寶，80到90%都能追上同齡人。<br><span class="cap2">追趕生長 · <span class="y">80~90%</span></span></td></tr><tr><td class="c-id">c4</td><td>身體天生就有成長潛力，會努力克服不利的起點。<br><span class="cap2">天生的 · <span class="y">成長潛力</span></span></td></tr><tr><td class="c-id">c5</td><td>這種追趕，在出生後6個月到2歲之間最為活躍。<br><span class="cap2">6個月~2歲 · 最活躍</span></td></tr><tr><td class="c-id">c6</td><td>這階段，充足營養、深度睡眠、適當運動、安穩環境造就身高。<br><span class="cap2">營養·睡眠 · 運動·環境</span></td></tr><tr><td class="c-id">c7</td><td>不過有10到20%沒能完全追上，這時盡早幫助就是答案。<br><span class="cap2">10~20% · <span class="y">盡早幫助</span></span></td></tr><tr><td class="c-id">c8</td><td>精準骨齡分析、必要時生長激素、生活習慣指導，釋放潛力。<br><span class="cap2">骨齡分析 · <span class="y">個人化方案</span></span></td></tr><tr><td class="c-id">c9</td><td>看骨齡就能一眼知道，孩子追趕得好不好。<br><span class="cap2">骨齡 · <span class="y">查看追趕</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就用骨齡查查孩子的追趕生長吧。<br><span class="cap2">追趕生長 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/따라잡기성장/</code> · <code>따라잡기성장-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

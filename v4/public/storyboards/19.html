@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 스테로이드 성장 영향 (흡입·연고·경구 차이)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #19</span>
+  <h1>스테로이드 약, 진짜 키를 멈출까? — 흡입·연고·경구</h1>
+  <div class="sub">흡입·연고는 거의 안전, 경구는 단기 OK·장기만 주의 — 막연한 불안은 그만</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>막연한 걱정 그만!</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:50px">진짜 멈출까?</div><div class="lab">스테로이드 약</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> 진짜 멈출까?스테로이드 약"</li>
+        <li><b>거대 숫자 "진짜 멈출까?"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #19 「스테로이드 성장 영향 (흡입·연고·경구 차이)」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"아이 스테로이드 약 처방받고, 키 안 클까 봐 걱정되셨죠?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>스테로이드 약은 무조건 키를 멈춘다고 믿지만, 실제로는 종류(흡입·연고·경구)와 사용 기간에 따라 영향이 완전히 다르다. 흡입·연고는 거의 안전하고, 문제는 장기 경구 복용뿐이다.</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>흡입·연고 스테로이드는 전신 흡수가 적어 키에 거의 영향이 없고, 경구도 1주 이내 단기는 안전하다. 수개월 이상 장기 복용만 성장호르몬을 억제할 수 있어 전문의 관리가 필요하다. 오히려 천식·아토피를 방치하는 것이 수면·활동을 해쳐 성장에 더 나쁘다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>막연한 공포 조장 ❌ → "무조건 위험"이 아니라 "제대로 쓰면 안전, 종류·기간이 핵심"이라는 안심 메시지. 처방약을 끊으라는 말 ❌(질환 관리가 성장에 더 중요). "우리 아이 키"로 모든 부모 보편 타깃. CTA는 약 중단이 아니라 뼈나이·예측키로 성장 상태를 확인하라는 초대.</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>스테로이드를 쓰는 우리 아이의 성장이 잘 가고 있는지, 홈페이지에서 뼈나이·예측키로 지금 확인해 보세요.</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·공감</h4><p>c1–c2<br>"스테로이드 처방받고 키 걱정? 종류부터 다릅니다"</p></div><div class="act"><span class="n">ACT 2</span><h4>흡입</h4><p>c3–c4<br>"천식·비염 흡입약 — 전신 흡수 적어 키에 거의 영향 X"</p></div><div class="act"><span class="n">ACT 3</span><h4>연고</h4><p>c5–c6<br>"아토피 연고 — 바르는 약, 흡수율 낮아 안심"</p></div><div class="act"><span class="n">ACT 4</span><h4>경구</h4><p>c7–c8<br>"먹는 약 — 단기 OK, 장기만 주의"</p></div><div class="act"><span class="n">ACT 5</span><h4>핵심·행동</h4><p>c9–c10<br>"방치가 더 위험 → 뼈나이로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">스테로이드 약</div><div class="mark">키를 멈춘다고?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">💊✨</div></div>
+        <div class="ph-cap"><div class="l">스테로이드 약</div><div class="l"><span class="y2">키 멈출까?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">아이 스테로이드 약 처방받고, 키 안 클까 봐 걱정되셨죠?</td><td><span class="cap2">스테로이드 약<br><span class="y">키 멈출까?</span></span></td><td class="mo">💊 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 스테로이드라고 다 같은 게 아니에요. 종류마다 완전히 달라요.</td><td><span class="cap2">다 같지 않다<br><span class="y">종류마다 달라요</span></span></td><td class="mo">🔀 갈라짐</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–10.5s</td><td><span class="scr ig">🖼 IG1 3종 비교</span></td><td class="narr">크게 세 가지예요. 흡입, 연고, 그리고 먹는 약.</td><td><span class="cap2">흡입·연고·경구<br><span class="y">3가지 종류</span></span></td><td class="mo">💨🧴💊 순차 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">10.5–14.5s</td><td><span class="scr ig">🖼 IG2 흡입</span></td><td class="narr">천식·비염에 쓰는 흡입약은 전신 흡수가 아주 적어요. 최종 키엔 거의 영향 없어요.</td><td><span class="cap2">흡입 = 국소작용<br><span class="y">키 영향 거의 0</span></span></td><td class="mo">💨 + "거의 0%" 페이드</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">아토피에 바르는 연고도 마찬가지예요. 피부에만 작용해서 흡수율이 아주 낮아요.</td><td><span class="cap2">바르는 연고<br><span class="y">흡수율 아주 낮음</span></span></td><td class="mo">🧴 토닥</td></tr><tr><td class="c-id">c6</td><td class="c-time">18–21.5s</td><td><span class="scr ig">🖼 IG3 방치가 더 위험</span></td><td class="narr">오히려 천식·아토피를 방치해서 잠 못 자고 못 노는 게 성장엔 더 나빠요.</td><td><span class="cap2"><span class="y">방치가 더 위험</span><br>질환 관리가 우선</span></td><td class="mo">😴 펄스 + ⚠️ 깜빡</td></tr><tr><td class="c-id">c7</td><td class="c-time">21.5–25s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">먹는 경구약은요? 1주일 이내 단기 복용은 대부분 안전해요. 몸이 회복하거든요.</td><td><span class="cap2">경구 단기복용<br><span class="y">대부분 안전</span></span></td><td class="mo">💊 펄스 · 단기 ✅</td></tr><tr><td class="c-id">c8</td><td class="c-time">25–29s</td><td><span class="scr ig">🖼 IG4 경구 단기 vs 장기</span></td><td class="narr">단, 수개월 이상 장기 복용은 성장호르몬을 억제할 수 있어 전문의 관리가 필요해요.</td><td><span class="cap2">장기 복용만<br><span class="y">전문의 관리 필요</span></span></td><td class="mo">⚖️ 기울기 + 장기쪽 ⚠️</td></tr><tr><td class="c-id">c9</td><td class="c-time">29–32s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">약 끊는 게 답이 아니에요. 뼈나이를 보면 우리 아이 성장이 괜찮은지 알 수 있어요.</td><td><span class="cap2">약 중단 X<br><span class="y">뼈나이로 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">32–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장 상태, 지금 바로 확인해 보세요.</td><td><span class="cap2">성장 상태<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 3종 순차 점등</div><h3>스테로이드 3종 — 흡입·연고·경구</h3></div>
+        <div class="body">
+          <div class="sketch">💨 🧴 💊</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Three friendly medical icons in a row on soft rounded cards: an asthma inhaler puffing a gentle mist, a squeeze tube of ointment with a dab of cream, and an oral pill/capsule with a tiny water glass. Even spacing, brand purple #667eea cards with mint #2dd4bf accents, soft shadows, cheerful pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 카드</td><td>흡입</td><td>Inhaled</td><td class="thai">แบบสูดพ่น</td></tr><tr><td>가운데 카드</td><td>연고</td><td>Topical</td><td class="thai">แบบทา</td></tr><tr><td>오른쪽 카드</td><td>경구</td><td>Oral</td><td class="thai">แบบกิน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 폐 점등 + 미스트 흡수 적음</div><h3>흡입 — 국소작용, 전신 흡수 적음</h3></div>
+        <div class="body">
+          <div class="sketch">💨 🫁</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A cute pair of lungs glowing softly with a small inhaler mist settling locally on them; a faint shield around the body showing the medicine stays local, only a tiny trickle reaching the bloodstream. Calm and reassuring. Brand purple + mint gradient, soft glow. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>폐 위</td><td>국소작용</td><td>Acts locally</td><td class="thai">ออกฤทธิ์เฉพาะที่</td></tr><tr><td>하단(작게)</td><td>전신 흡수 ↓</td><td>Low systemic</td><td class="thai">ดูดซึมน้อย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 평온한 수면 → 흔들리는 ⚠️</div><h3>방치가 더 위험 — 잠·활동 저하</h3></div>
+        <div class="body">
+          <div class="sketch">😴 ⚠️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child tossing and turning in bed unable to sleep due to itching/coughing, with a small warning glow above; beside it a gentle downward growth arrow. Conveys 'untreated disease disturbs sleep and harms growth.' Warm, empathetic pediatric style, brand purple with a soft amber warning accent and mint. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단</td><td>방치 시</td><td>If untreated</td><td class="thai">ถ้าปล่อยไว้</td></tr><tr><td>화살표</td><td>성장 ↓</td><td>Growth drops</td><td class="thai">การโตช้าลง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 양팔 저울 기울기 + 장기쪽 글로우</div><h3>경구 — 단기 안전 vs 장기 주의</h3></div>
+        <div class="body">
+          <div class="sketch">⚖️ 💊</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A balance scale: on the left pan a single calendar page with a small checkmark glow (short course, safe, mint); on the right pan a thick stack of calendar pages tilting down with a soft amber caution glow (long-term, watch). Clean, balanced composition, brand purple frame with mint and amber accents. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 접시</td><td>단기 · 안전</td><td>Short · safe</td><td class="thai">สั้น · ปลอดภัย</td></tr><tr><td>오른쪽 접시</td><td>장기 · 주의</td><td>Long · caution</td><td class="thai">ยาว · ระวัง</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>💊</b> 스테로이드 약</span><span class="emo"><b>💨</b> 흡입</span><span class="emo"><b>🧴</b> 연고</span><span class="emo"><b>🫁</b> 폐·국소작용</span><span class="emo"><b>⚖️</b> 단기 vs 장기</span><span class="emo"><b>😴</b> 수면·방치</span><span class="emo"><b>⚠️</b> 주의(장기복용)</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>🔍</b> 확인</span><span class="emo"><b>✨</b> 강조</span><span class="emo"><b>✅</b> CTA</span><span class="emo"><b>🧒</b> 우리 아이</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>아이 스테로이드 약 처방받고, 키 안 클까 봐 걱정되셨죠?<br><span class="cap2">스테로이드 약 · <span class="y">키 멈출까?</span></span></td></tr><tr><td class="c-id">c2</td><td>그런데 스테로이드라고 다 같은 게 아니에요. 종류마다 완전히 달라요.<br><span class="cap2">다 같지 않다 · <span class="y">종류마다 달라요</span></span></td></tr><tr><td class="c-id">c3</td><td>크게 세 가지예요. 흡입, 연고, 그리고 먹는 약.<br><span class="cap2">흡입·연고·경구 · <span class="y">3가지 종류</span></span></td></tr><tr><td class="c-id">c4</td><td>천식·비염에 쓰는 흡입약은 전신 흡수가 아주 적어요. 최종 키엔 거의 영향 없어요.<br><span class="cap2">흡입 = 국소작용 · <span class="y">키 영향 거의 0</span></span></td></tr><tr><td class="c-id">c5</td><td>아토피에 바르는 연고도 마찬가지예요. 피부에만 작용해서 흡수율이 아주 낮아요.<br><span class="cap2">바르는 연고 · <span class="y">흡수율 아주 낮음</span></span></td></tr><tr><td class="c-id">c6</td><td>오히려 천식·아토피를 방치해서 잠 못 자고 못 노는 게 성장엔 더 나빠요.<br><span class="cap2">방치가 더 위험 · 질환 관리가 우선</span></td></tr><tr><td class="c-id">c7</td><td>먹는 경구약은요? 1주일 이내 단기 복용은 대부분 안전해요. 몸이 회복하거든요.<br><span class="cap2">경구 단기복용 · <span class="y">대부분 안전</span></span></td></tr><tr><td class="c-id">c8</td><td>단, 수개월 이상 장기 복용은 성장호르몬을 억제할 수 있어 전문의 관리가 필요해요.<br><span class="cap2">장기 복용만 · <span class="y">전문의 관리 필요</span></span></td></tr><tr><td class="c-id">c9</td><td>약 끊는 게 답이 아니에요. 뼈나이를 보면 우리 아이 성장이 괜찮은지 알 수 있어요.<br><span class="cap2">약 중단 X · <span class="y">뼈나이로 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장 상태, 지금 바로 확인해 보세요.<br><span class="cap2">성장 상태 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ลูกได้ยาสเตียรอยด์ กังวลว่าจะไม่สูงใช่ไหม?<br><span class="cap2">ยาสเตียรอยด์ · <span class="y">หยุดสูงไหม?</span></span></td></tr><tr><td class="c-id">c2</td><td>แต่สเตียรอยด์ไม่ได้เหมือนกันหมด แต่ละชนิดต่างกันมาก<br><span class="cap2">ไม่เหมือนกัน · <span class="y">แต่ละชนิดต่างกัน</span></span></td></tr><tr><td class="c-id">c3</td><td>หลักๆ มี 3 แบบ แบบสูดพ่น แบบทา และแบบกิน<br><span class="cap2">สูด·ทา·กิน · <span class="y">3 แบบ</span></span></td></tr><tr><td class="c-id">c4</td><td>ยาพ่นสำหรับหอบหืด·ภูมิแพ้ ดูดซึมเข้าร่างกายน้อยมาก แทบไม่กระทบความสูง<br><span class="cap2">พ่น = เฉพาะที่ · <span class="y">แทบไม่กระทบ</span></span></td></tr><tr><td class="c-id">c5</td><td>ยาทาสำหรับภูมิแพ้ผิวหนังก็เหมือนกัน ออกฤทธิ์เฉพาะผิว ดูดซึมต่ำมาก<br><span class="cap2">ยาทา · <span class="y">ดูดซึมต่ำมาก</span></span></td></tr><tr><td class="c-id">c6</td><td>กลับกัน ปล่อยหอบหืด·ภูมิแพ้ไว้ จนนอนไม่หลับ แย่ต่อการสูงมากกว่า<br><span class="cap2">ปล่อยไว้แย่กว่า · คุมโรคก่อน</span></td></tr><tr><td class="c-id">c7</td><td>แล้วยากินล่ะ? กินสั้นๆ ไม่เกิน 1 สัปดาห์ ส่วนใหญ่ปลอดภัย ร่างกายฟื้นได้<br><span class="cap2">กินสั้นๆ · <span class="y">ส่วนใหญ่ปลอดภัย</span></span></td></tr><tr><td class="c-id">c8</td><td>แต่ถ้ากินยาวหลายเดือน อาจกดฮอร์โมนการเจริญเติบโต ต้องให้หมอดูแล<br><span class="cap2">เฉพาะระยะยาว · <span class="y">ต้องมีหมอดูแล</span></span></td></tr><tr><td class="c-id">c9</td><td>การหยุดยาไม่ใช่คำตอบ ดูอายุกระดูกจะรู้ว่าลูกโตปกติไหม<br><span class="cap2">ไม่ใช่หยุดยา · <span class="y">ดูอายุกระดูก</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กพัฒนาการการเติบโตของลูกวันนี้<br><span class="cap2">พัฒนาการลูก · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con được kê thuốc steroid, bạn lo sẽ không cao đúng không?<br><span class="cap2">Thuốc steroid · <span class="y">ngừng cao?</span></span></td></tr><tr><td class="c-id">c2</td><td>Nhưng steroid không phải loại nào cũng giống nhau — mỗi loại rất khác.<br><span class="cap2">Không giống nhau · <span class="y">mỗi loại khác</span></span></td></tr><tr><td class="c-id">c3</td><td>Có 3 loại chính: hít, bôi, và uống.<br><span class="cap2">Hít·bôi·uống · <span class="y">3 loại</span></span></td></tr><tr><td class="c-id">c4</td><td>Thuốc hít cho hen·viêm mũi hấp thu toàn thân rất ít — hầu như không ảnh hưởng chiều cao.<br><span class="cap2">Hít = tại chỗ · <span class="y">gần như 0</span></span></td></tr><tr><td class="c-id">c5</td><td>Kem bôi cho viêm da cũng vậy — chỉ tác dụng trên da, hấp thu rất thấp.<br><span class="cap2">Kem bôi · <span class="y">hấp thu rất thấp</span></span></td></tr><tr><td class="c-id">c6</td><td>Ngược lại, để mặc hen·viêm da khiến con mất ngủ mới hại chiều cao hơn.<br><span class="cap2">Bỏ mặc hại hơn · kiểm soát bệnh</span></td></tr><tr><td class="c-id">c7</td><td>Còn thuốc uống? Dùng ngắn dưới 1 tuần phần lớn an toàn — cơ thể hồi phục được.<br><span class="cap2">Uống ngắn ngày · <span class="y">phần lớn an toàn</span></span></td></tr><tr><td class="c-id">c8</td><td>Nhưng uống dài trên vài tháng có thể ức chế hormone tăng trưởng — cần bác sĩ theo dõi.<br><span class="cap2">Chỉ dùng dài · <span class="y">cần bác sĩ</span></span></td></tr><tr><td class="c-id">c9</td><td>Ngừng thuốc không phải là cách. Xem tuổi xương sẽ biết con phát triển ổn không.<br><span class="cap2">Đừng ngừng thuốc · <span class="y">xem tuổi xương</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tình trạng tăng trưởng của con ngay hôm nay.<br><span class="cap2">Tình trạng con · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your child got a steroid prescription — worried it'll stunt their height?<br><span class="cap2">Steroid meds · <span class="y">stop growth?</span></span></td></tr><tr><td class="c-id">c2</td><td>But not all steroids are the same — each type is totally different.<br><span class="cap2">Not all alike · <span class="y">type matters</span></span></td></tr><tr><td class="c-id">c3</td><td>There are three kinds: inhaled, topical, and oral.<br><span class="cap2">Inhaled·cream·oral · <span class="y">3 types</span></span></td></tr><tr><td class="c-id">c4</td><td>Inhalers for asthma and rhinitis are barely absorbed — almost no effect on final height.<br><span class="cap2">Inhaled = local · <span class="y">near-zero effect</span></span></td></tr><tr><td class="c-id">c5</td><td>Creams for eczema are the same — they act on skin only, with very low absorption.<br><span class="cap2">Topical cream · <span class="y">very low uptake</span></span></td></tr><tr><td class="c-id">c6</td><td>In fact, leaving asthma or eczema untreated — losing sleep — hurts growth more.<br><span class="cap2">Untreated is worse · control the disease</span></td></tr><tr><td class="c-id">c7</td><td>What about oral pills? Short courses under a week are mostly safe — the body recovers.<br><span class="cap2">Short oral course · <span class="y">mostly safe</span></span></td></tr><tr><td class="c-id">c8</td><td>But months-long use can suppress growth hormone — that needs a specialist's care.<br><span class="cap2">Long-term only · <span class="y">needs specialist</span></span></td></tr><tr><td class="c-id">c9</td><td>Stopping the meds isn't the answer — bone age tells you if growth is on track.<br><span class="cap2">Don't quit meds · <span class="y">check bone age</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth status today.<br><span class="cap2">Growth status · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子被开了类固醇药，担心会长不高吧？<br><span class="cap2">类固醇药 · <span class="y">会停长吗？</span></span></td></tr><tr><td class="c-id">c2</td><td>但类固醇不都一样，每种差别很大。<br><span class="cap2">并非都一样 · <span class="y">种类不同</span></span></td></tr><tr><td class="c-id">c3</td><td>主要有三种：吸入、外用、口服。<br><span class="cap2">吸入·外用·口服 · <span class="y">3种</span></span></td></tr><tr><td class="c-id">c4</td><td>哮喘·鼻炎用的吸入药全身吸收很少，对最终身高几乎没影响。<br><span class="cap2">吸入=局部 · <span class="y">几乎不影响</span></span></td></tr><tr><td class="c-id">c5</td><td>治湿疹的外用药膏也一样，只作用于皮肤，吸收率很低。<br><span class="cap2">外用药膏 · <span class="y">吸收率很低</span></span></td></tr><tr><td class="c-id">c6</td><td>反而放任哮喘·湿疹让孩子睡不好，对长高更不利。<br><span class="cap2">放任更危险 · 先控制疾病</span></td></tr><tr><td class="c-id">c7</td><td>那口服药呢？1周以内短期服用大多安全，身体能恢复。<br><span class="cap2">短期口服 · <span class="y">大多安全</span></span></td></tr><tr><td class="c-id">c8</td><td>但连续数月以上长期服用可能抑制生长激素，需要专科医生管理。<br><span class="cap2">仅限长期 · <span class="y">需专科管理</span></span></td></tr><tr><td class="c-id">c9</td><td>停药不是答案。看骨龄就知道孩子长得正不正常。<br><span class="cap2">别停药 · <span class="y">看骨龄</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的成长状况吧。<br><span class="cap2">成长状况 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子被開了類固醇藥，擔心會長不高吧？<br><span class="cap2">類固醇藥 · <span class="y">會停長嗎？</span></span></td></tr><tr><td class="c-id">c2</td><td>但類固醇不都一樣，每種差別很大。<br><span class="cap2">並非都一樣 · <span class="y">種類不同</span></span></td></tr><tr><td class="c-id">c3</td><td>主要有三種：吸入、外用、口服。<br><span class="cap2">吸入·外用·口服 · <span class="y">3種</span></span></td></tr><tr><td class="c-id">c4</td><td>哮喘·鼻炎用的吸入藥全身吸收很少，對最終身高幾乎沒影響。<br><span class="cap2">吸入=局部 · <span class="y">幾乎不影響</span></span></td></tr><tr><td class="c-id">c5</td><td>治濕疹的外用藥膏也一樣，只作用於皮膚，吸收率很低。<br><span class="cap2">外用藥膏 · <span class="y">吸收率很低</span></span></td></tr><tr><td class="c-id">c6</td><td>反而放任哮喘·濕疹讓孩子睡不好，對長高更不利。<br><span class="cap2">放任更危險 · 先控制疾病</span></td></tr><tr><td class="c-id">c7</td><td>那口服藥呢？1週以內短期服用大多安全，身體能恢復。<br><span class="cap2">短期口服 · <span class="y">大多安全</span></span></td></tr><tr><td class="c-id">c8</td><td>但連續數月以上長期服用可能抑制生長激素，需要專科醫師管理。<br><span class="cap2">僅限長期 · <span class="y">需專科管理</span></span></td></tr><tr><td class="c-id">c9</td><td>停藥不是答案。看骨齡就知道孩子長得正不正常。<br><span class="cap2">別停藥 · <span class="y">看骨齡</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的成長狀況吧。<br><span class="cap2">成長狀況 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/스테로이드키/</code> · <code>스테로이드키-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

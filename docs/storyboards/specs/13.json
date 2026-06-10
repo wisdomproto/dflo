@@ -1,0 +1,788 @@
+{
+  "n": 13,
+  "slug": "성장통신호",
+  "title": "성장통 = 키 크는 신호? 진짜 원인은 따로 있어요",
+  "sub": "밤마다 다리 아픈 우리 아이 — 뼈가 아픈 게 아니라 '이것' 때문, 따뜻하게 풀어주세요",
+  "category": "A. 성장과학",
+  "topicTitle": "성장통 진짜 원인과 대처법",
+  "headerTop": "우리 아이 다리 통증",
+  "headerMark": "키 크는 신호일까?",
+  "accentEmoji": "🦵✨",
+  "thumb": {
+    "kicker": "오해 ❌",
+    "subject": "우리 아이 다리 통증",
+    "number": "신호 아님",
+    "numLabel": "진짜 원인은 따로!"
+  },
+  "hook": "밤마다 다리 아픈 우리 아이, '키 크려고 그러는 거'라고만 생각하셨죠?",
+  "misconception": "다리 아픈 건 키 크는 신호니까 안심 → 진짜 원인 모르고 방치",
+  "message": "성장통은 뼈가 늘어 아픈 '신호'가 아니라 빠른 성장기에 나타나는 '현상'. 따뜻하게 풀어주되, 이 시기를 키 점검 신호로 삼자",
+  "tone": "협박 ❌ → 따뜻한 안심(\"대부분 괜찮아요, 풀어주면 돼요\"). 신호 미신은 바로잡되 '우리 아이 키' 보편 + 측정 유도",
+  "cta": "밤마다 아픈 다리, 이 시기가 키 점검 타이밍 → 뼈나이/예측키 측정 유도",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"밤마다 다리 아픈 우리 아이, 키 크는 신호일까?\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "오해 바로잡기",
+      "scenes": "c3–c4",
+      "desc": "\"뼈엔 통증 신경 거의 없다 → 신호 아닌 현상\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "진짜 원인",
+      "scenes": "c5–c6",
+      "desc": "\"근육 피로 + 뼈·근육 성장 속도 차이\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "구분·대처",
+      "scenes": "c7–c8",
+      "desc": "\"성장통 신호 vs 병원 신호 / 따뜻하게 풀어주기\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"이 시기를 키 점검 타이밍으로 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🌙 흔들 + 💢 펄스",
+      "copy": {
+        "ko": {
+          "narr": "밤마다 다리 아프다고 깨는 우리 아이, '키 크려고 그러는 거'라고만 생각하셨죠?",
+          "cap": [
+            "밤마다 다리 통증",
+            "키 크는 신호?"
+          ],
+          "hl": "키 크는 신호?"
+        },
+        "th": {
+          "narr": "ลูกตื่นมาร้องปวดขาทุกคืน คิดว่าเป็นเพราะกำลังจะสูงใช่ไหม?",
+          "cap": [
+            "ปวดขาทุกคืน",
+            "สัญญาณโตจริงไหม?"
+          ],
+          "hl": "สัญญาณโตจริงไหม?"
+        },
+        "vi": {
+          "narr": "Con đau chân mỗi đêm — bạn vẫn nghĩ đó là dấu hiệu sắp cao phải không?",
+          "cap": [
+            "Đêm nào cũng đau chân",
+            "dấu hiệu cao lên?"
+          ],
+          "hl": "dấu hiệu cao lên?"
+        },
+        "en": {
+          "narr": "Your child wakes up with leg pain every night — you thought it just meant growing, right?",
+          "cap": [
+            "Nightly leg pain",
+            "a sign of growing?"
+          ],
+          "hl": "a sign of growing?"
+        },
+        "cn": {
+          "narr": "孩子每晚喊腿疼，你以为是要长高了，对吧？",
+          "cap": [
+            "每晚腿疼",
+            "是长高信号吗？"
+          ],
+          "hl": "是长高信号吗？"
+        },
+        "ch": {
+          "narr": "孩子每晚喊腿疼，你以為是要長高了，對吧？",
+          "cap": [
+            "每晚腿疼",
+            "是長高信號嗎？"
+          ],
+          "hl": "是長高信號嗎？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🦴 팝 + ❓ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "그런데요, 성장통은 사실 키 크는 '신호'가 아니에요. 진짜 원인은 따로 있어요.",
+          "cap": [
+            "성장통은",
+            "키 신호가 아니다"
+          ],
+          "hl": "키 신호가 아니다"
+        },
+        "th": {
+          "narr": "แต่จริงๆ แล้วอาการปวดโตไม่ใช่ 'สัญญาณ' ว่าจะสูง สาเหตุจริงอยู่ที่อื่น",
+          "cap": [
+            "ปวดโต",
+            "ไม่ใช่สัญญาณ"
+          ],
+          "hl": "ไม่ใช่สัญญาณ"
+        },
+        "vi": {
+          "narr": "Nhưng thật ra đau tăng trưởng không phải 'dấu hiệu' cao lên. Nguyên nhân thật nằm ở chỗ khác.",
+          "cap": [
+            "Đau tăng trưởng",
+            "không phải dấu hiệu"
+          ],
+          "hl": "không phải dấu hiệu"
+        },
+        "en": {
+          "narr": "But growing pains aren't actually a 'signal' of height. The real cause is something else.",
+          "cap": [
+            "Growing pains",
+            "not a height signal"
+          ],
+          "hl": "not a height signal"
+        },
+        "cn": {
+          "narr": "其实，生长痛并不是长高的'信号'。真正的原因另有其因。",
+          "cap": [
+            "生长痛",
+            "不是长高信号"
+          ],
+          "hl": "不是长高信号"
+        },
+        "ch": {
+          "narr": "其實，生長痛並不是長高的'信號'。真正的原因另有其因。",
+          "cap": [
+            "生長痛",
+            "不是長高信號"
+          ],
+          "hl": "不是長高信號"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 뼈엔 통증신경",
+      "motion": "🦴 확대 + ❌ 신경 페이드",
+      "copy": {
+        "ko": {
+          "narr": "뼈에는 통증을 느끼는 신경이 거의 없거든요. 뼈가 늘어나서 아픈 게 아니에요.",
+          "cap": [
+            "뼈엔 통증신경",
+            "거의 없어요"
+          ],
+          "hl": "거의 없어요"
+        },
+        "th": {
+          "narr": "กระดูกแทบไม่มีเส้นประสาทรับความเจ็บปวด ไม่ได้ปวดเพราะกระดูกยืด",
+          "cap": [
+            "กระดูก",
+            "แทบไม่มีเส้นประสาท"
+          ],
+          "hl": "แทบไม่มีเส้นประสาท"
+        },
+        "vi": {
+          "narr": "Xương gần như không có dây thần kinh cảm nhận đau. Không phải xương dài ra mà đau.",
+          "cap": [
+            "Xương",
+            "gần như không có thần kinh"
+          ],
+          "hl": "gần như không có thần kinh"
+        },
+        "en": {
+          "narr": "Bones have almost no pain nerves. It's not the bone stretching that hurts.",
+          "cap": [
+            "Bones have",
+            "almost no pain nerves"
+          ],
+          "hl": "almost no pain nerves"
+        },
+        "cn": {
+          "narr": "骨头几乎没有痛觉神经。疼不是因为骨头在拉长。",
+          "cap": [
+            "骨头",
+            "几乎没有痛觉神经"
+          ],
+          "hl": "几乎没有痛觉神经"
+        },
+        "ch": {
+          "narr": "骨頭幾乎沒有痛覺神經。疼不是因為骨頭在拉長。",
+          "cap": [
+            "骨頭",
+            "幾乎沒有痛覺神經"
+          ],
+          "hl": "幾乎沒有痛覺神經"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "🔄 신호→현상 스왑",
+      "copy": {
+        "ko": {
+          "narr": "그래서 성장통은 '신호'라기보다, 빠르게 크는 과정에서 나타나는 '현상'에 가까워요.",
+          "cap": [
+            "신호가 아니라",
+            "성장기의 현상"
+          ],
+          "hl": "성장기의 현상"
+        },
+        "th": {
+          "narr": "ดังนั้นปวดโตไม่ใช่ 'สัญญาณ' แต่เป็น 'ปรากฏการณ์' ระหว่างที่โตเร็ว",
+          "cap": [
+            "ไม่ใช่สัญญาณ",
+            "แต่เป็นปรากฏการณ์"
+          ],
+          "hl": "แต่เป็นปรากฏการณ์"
+        },
+        "vi": {
+          "narr": "Nên đau tăng trưởng không phải 'dấu hiệu' mà là 'hiện tượng' khi cơ thể lớn nhanh.",
+          "cap": [
+            "Không phải dấu hiệu",
+            "mà là hiện tượng"
+          ],
+          "hl": "mà là hiện tượng"
+        },
+        "en": {
+          "narr": "So growing pains are less a 'signal' and more a 'phenomenon' of fast growth.",
+          "cap": [
+            "Not a signal",
+            "a growth phenomenon"
+          ],
+          "hl": "a growth phenomenon"
+        },
+        "cn": {
+          "narr": "所以生长痛与其说是'信号'，不如说是快速成长中的'现象'。",
+          "cap": [
+            "不是信号",
+            "而是成长现象"
+          ],
+          "hl": "而是成长现象"
+        },
+        "ch": {
+          "narr": "所以生長痛與其說是'信號'，不如說是快速成長中的'現象'。",
+          "cap": [
+            "不是信號",
+            "而是成長現象"
+          ],
+          "hl": "而是成長現象"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 진짜 원인",
+      "motion": "1️⃣2️⃣3️⃣4️⃣ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "진짜 원인은 네 가지예요. 낮 동안 쌓인 근육 피로가 가장 유력하고요.",
+          "cap": [
+            "진짜 원인",
+            "근육 피로가 1순위"
+          ],
+          "hl": "근육 피로가 1순위"
+        },
+        "th": {
+          "narr": "สาเหตุจริงมี 4 อย่าง ความล้าของกล้ามเนื้อจากกลางวันคือตัวหลัก",
+          "cap": [
+            "สาเหตุจริง 4 อย่าง",
+            "กล้ามเนื้อล้าเป็นหลัก"
+          ],
+          "hl": "กล้ามเนื้อล้าเป็นหลัก"
+        },
+        "vi": {
+          "narr": "Có bốn nguyên nhân thật. Cơ bắp mỏi sau cả ngày chơi là số một.",
+          "cap": [
+            "4 nguyên nhân thật",
+            "cơ mỏi là số một"
+          ],
+          "hl": "cơ mỏi là số một"
+        },
+        "en": {
+          "narr": "There are four real causes. Muscle fatigue from the day is the top one.",
+          "cap": [
+            "4 real causes",
+            "muscle fatigue is #1"
+          ],
+          "hl": "muscle fatigue is #1"
+        },
+        "cn": {
+          "narr": "真正的原因有四个。白天累积的肌肉疲劳最主要。",
+          "cap": [
+            "4个真正原因",
+            "肌肉疲劳居首"
+          ],
+          "hl": "肌肉疲劳居首"
+        },
+        "ch": {
+          "narr": "真正的原因有四個。白天累積的肌肉疲勞最主要。",
+          "cap": [
+            "4個真正原因",
+            "肌肉疲勞居首"
+          ],
+          "hl": "肌肉疲勞居首"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 속도 차이",
+      "motion": "📏 뼈↑ 근육 따라붙기",
+      "copy": {
+        "ko": {
+          "narr": "뼈가 쑥 자랄 때 근육과 힘줄이 못 따라가서 당겨지는 것도 큰 이유고요.",
+          "cap": [
+            "뼈 vs 근육",
+            "성장 속도 차이"
+          ],
+          "hl": "성장 속도 차이"
+        },
+        "th": {
+          "narr": "เมื่อกระดูกโตเร็วแต่กล้ามเนื้อเอ็นตามไม่ทัน เกิดแรงตึง ก็เป็นสาเหตุใหญ่",
+          "cap": [
+            "กระดูกกับกล้ามเนื้อ",
+            "โตไม่เท่ากัน"
+          ],
+          "hl": "โตไม่เท่ากัน"
+        },
+        "vi": {
+          "narr": "Khi xương dài nhanh mà cơ và gân theo không kịp, bị kéo căng — cũng là lý do lớn.",
+          "cap": [
+            "Xương và cơ",
+            "lớn không cùng tốc độ"
+          ],
+          "hl": "lớn không cùng tốc độ"
+        },
+        "en": {
+          "narr": "When bone shoots up but muscles and tendons lag and tug, that's a big reason too.",
+          "cap": [
+            "Bone vs muscle",
+            "growth speed gap"
+          ],
+          "hl": "growth speed gap"
+        },
+        "cn": {
+          "narr": "骨头猛长、肌肉肌腱跟不上被拉扯，也是重要原因。",
+          "cap": [
+            "骨头与肌肉",
+            "生长速度差"
+          ],
+          "hl": "生长速度差"
+        },
+        "ch": {
+          "narr": "骨頭猛長、肌肉肌腱跟不上被拉扯，也是重要原因。",
+          "cap": [
+            "骨頭與肌肉",
+            "生長速度差"
+          ],
+          "hl": "生長速度差"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG4 구분 신호",
+      "motion": "✅ 초록 / ⚠️ 빨강 분기",
+      "copy": {
+        "ko": {
+          "narr": "보통 양쪽 다리, 밤에 욱신, 열·붓기 없죠. 한쪽만 아프거나 부으면 병원으로요.",
+          "cap": [
+            "양쪽·밤·열 없음 ✅",
+            "한쪽·부으면 병원 ⚠️"
+          ],
+          "hl": "한쪽·부으면 병원 ⚠️"
+        },
+        "th": {
+          "narr": "ปกติปวดสองข้าง ตอนกลางคืน ไม่บวมไม่ร้อน ถ้าข้างเดียวหรือบวม ไปหาหมอ",
+          "cap": [
+            "สองข้าง กลางคืน ไม่บวม ✅",
+            "ข้างเดียว/บวม พบหมอ ⚠️"
+          ],
+          "hl": "ข้างเดียว/บวม พบหมอ ⚠️"
+        },
+        "vi": {
+          "narr": "Thường đau hai chân, ban đêm, không sưng nóng. Một chân hoặc sưng thì đi khám.",
+          "cap": [
+            "Hai chân, ban đêm, không sưng ✅",
+            "Một chân/sưng đi khám ⚠️"
+          ],
+          "hl": "Một chân/sưng đi khám ⚠️"
+        },
+        "en": {
+          "narr": "Usually both legs, at night, no heat or swelling. One leg or swollen? See a doctor.",
+          "cap": [
+            "Both legs, night, no swelling ✅",
+            "One leg / swelling = doctor ⚠️"
+          ],
+          "hl": "One leg / swelling = doctor ⚠️"
+        },
+        "cn": {
+          "narr": "通常双腿、夜间、不红不肿。只痛一条腿或肿胀就该看医生。",
+          "cap": [
+            "双腿·夜间·不肿 ✅",
+            "单腿/肿胀看医生 ⚠️"
+          ],
+          "hl": "单腿/肿胀看医生 ⚠️"
+        },
+        "ch": {
+          "narr": "通常雙腿、夜間、不紅不腫。只痛一條腿或腫脹就該看醫生。",
+          "cap": [
+            "雙腿·夜間·不腫 ✅",
+            "單腿/腫脹看醫生 ⚠️"
+          ],
+          "hl": "單腿/腫脹看醫生 ⚠️"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "doctor",
+      "motion": "🤲 따뜻 글로우",
+      "copy": {
+        "ko": {
+          "narr": "대부분은 따뜻하게 찜질·마사지하고 푹 재우면 괜찮아져요. 공감만 해줘도 덜 아파해요.",
+          "cap": [
+            "따뜻한 마사지·수면",
+            "대부분 괜찮아요"
+          ],
+          "hl": "대부분 괜찮아요"
+        },
+        "th": {
+          "narr": "ส่วนใหญ่ประคบอุ่น นวด นอนหลับเพียงพอ ก็ดีขึ้น แค่เข้าใจลูกก็ปวดน้อยลง",
+          "cap": [
+            "ประคบอุ่น·นอนพอ",
+            "ส่วนใหญ่หายได้"
+          ],
+          "hl": "ส่วนใหญ่หายได้"
+        },
+        "vi": {
+          "narr": "Phần lớn chườm ấm, massage và ngủ đủ là ổn. Chỉ cần đồng cảm con cũng bớt đau.",
+          "cap": [
+            "Chườm ấm · ngủ đủ",
+            "phần lớn sẽ ổn"
+          ],
+          "hl": "phần lớn sẽ ổn"
+        },
+        "en": {
+          "narr": "Most ease up with warm compresses, massage, and good sleep. Even empathy helps.",
+          "cap": [
+            "Warm care · sleep",
+            "most get better"
+          ],
+          "hl": "most get better"
+        },
+        "cn": {
+          "narr": "大多数热敷、按摩、睡好就缓解了。光是共情也能让孩子没那么疼。",
+          "cap": [
+            "热敷·按摩·睡好",
+            "大多会好转"
+          ],
+          "hl": "大多会好转"
+        },
+        "ch": {
+          "narr": "大多數熱敷、按摩、睡好就緩解了。光是共情也能讓孩子沒那麼疼。",
+          "cap": [
+            "熱敷·按摩·睡好",
+            "大多會好轉"
+          ],
+          "hl": "大多會好轉"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "그리고 이 시기는 우리 아이가 한창 크는 때예요. 키 잘 크고 있는지 점검하기 딱 좋죠.",
+          "cap": [
+            "한창 크는 시기",
+            "키 점검 타이밍"
+          ],
+          "hl": "키 점검 타이밍"
+        },
+        "th": {
+          "narr": "และช่วงนี้คือตอนที่ลูกกำลังโตเต็มที่ เป็นจังหวะดีที่จะเช็กการเติบโต",
+          "cap": [
+            "ช่วงกำลังโต",
+            "จังหวะเช็กความสูง"
+          ],
+          "hl": "จังหวะเช็กความสูง"
+        },
+        "vi": {
+          "narr": "Và đây là lúc con đang lớn nhanh — thời điểm tốt để kiểm tra chiều cao.",
+          "cap": [
+            "Lúc đang lớn nhanh",
+            "thời điểm kiểm tra"
+          ],
+          "hl": "thời điểm kiểm tra"
+        },
+        "en": {
+          "narr": "And this is when your child is growing fast — a perfect time to check their height.",
+          "cap": [
+            "A fast-growth phase",
+            "time to check height"
+          ],
+          "hl": "time to check height"
+        },
+        "cn": {
+          "narr": "而且这正是孩子猛长的时期，是检查身高的好时机。",
+          "cap": [
+            "正在猛长",
+            "查身高好时机"
+          ],
+          "hl": "查身高好时机"
+        },
+        "ch": {
+          "narr": "而且這正是孩子猛長的時期，是檢查身高的好時機。",
+          "cap": [
+            "正在猛長",
+            "查身高好時機"
+          ],
+          "hl": "查身高好時機"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–36s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 잘 크고 있는지 지금 바로 확인해 보세요.",
+          "cap": [
+            "우리 아이 키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กว่าลูกของคุณกำลังโตดีไหม วันนี้เลย",
+          "cap": [
+            "ความสูงของลูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra xem con bạn có đang cao tốt không, ngay hôm nay.",
+          "cap": [
+            "Chiều cao của con",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check whether your child is growing well — right now.",
+          "cap": [
+            "Your child's height",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "现在就查查孩子是不是长得好吧。",
+          "cap": [
+            "孩子的身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子是不是長得好吧。",
+          "cap": [
+            "孩子的身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "뼈 확대 + 신경 페이드아웃",
+      "title": "뼈엔 통증 신경이 거의 없다",
+      "emojis": [
+        "🦴",
+        "❌"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly cartoon leg bone (femur/shin) centered, gently glowing, with faint dotted nerve lines around it shown sparse and fading away to convey 'almost none.' A soft magnifier hovering over the bone. Brand purple #667eea bone outline with mint #2dd4bf accents, friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "뼈 위",
+          "ko": "뼈",
+          "en": "Bone",
+          "th": "กระดูก"
+        },
+        {
+          "pos": "신경 라인(흐릿)",
+          "ko": "통증 신경 거의 없음",
+          "en": "Almost no pain nerves",
+          "th": "แทบไม่มีเส้นประสาท"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "4점 순차 점등",
+      "title": "성장통 진짜 원인 4가지",
+      "emojis": [
+        "💪",
+        "🦴",
+        "🫀",
+        "🧠"
+      ],
+      "prompt": "Flat vector, square, white bg. Four soft rounded cards arranged 2x2, each with a simple friendly icon: tired leg muscle, a bone-and-tendon pair, a small blood-vessel-and-nerve sprout, and a calm child head/heart for emotion. Brand purple→mint gradient, gentle glow on the first (top-left) card to mark it as the main cause. Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "카드1(강조)",
+          "ko": "근육 피로",
+          "en": "Muscle fatigue",
+          "th": "กล้ามเนื้อล้า"
+        },
+        {
+          "pos": "카드2",
+          "ko": "뼈·힘줄 불균형",
+          "en": "Bone–tendon gap",
+          "th": "กระดูก-เอ็นไม่สมดุล"
+        },
+        {
+          "pos": "카드3",
+          "ko": "신경·혈관 성장",
+          "en": "Nerve & vessel",
+          "th": "เส้นประสาท-หลอดเลือด"
+        },
+        {
+          "pos": "카드4",
+          "ko": "심리·통증 역치",
+          "en": "Emotion & threshold",
+          "th": "จิตใจ-เกณฑ์ปวด"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "뼈↑ 슈웅 + 근육 따라붙기",
+      "title": "뼈는 빠르고, 근육은 천천히",
+      "emojis": [
+        "🦴",
+        "📏",
+        "💪"
+      ],
+      "prompt": "Flat vector, square, white bg. A child's leg shown as a tall bone growing upward fast (big upward arrow) while the surrounding muscle/tendon stretches and lags slightly behind, gently taut, with small motion sparkles. Bone in brand purple, muscle in warm mint, soft tension lines. Conveys 'bone outpaces muscle.' Friendly pediatric. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "위쪽 화살표",
+          "ko": "뼈 빠르게 ↑",
+          "en": "Bone fast",
+          "th": "กระดูกโตเร็ว"
+        },
+        {
+          "pos": "근육(당겨짐)",
+          "ko": "근육 따라붙기",
+          "en": "Muscle lags",
+          "th": "กล้ามเนื้อตามไม่ทัน"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "초록 ✅ / 빨강 ⚠️ 분기",
+      "title": "성장통 vs 병원 신호",
+      "emojis": [
+        "✅",
+        "⚠️",
+        "🌙"
+      ],
+      "prompt": "Flat vector, square, white bg. A clean split panel: left side a calm child with both legs glowing softly under a small moon (peaceful, benign), right side a single leg with a warning glow showing redness/swelling spot and a small alert badge. Left in mint #2dd4bf calm tones, right in warm amber/red alert tones, brand purple frame down the middle. Friendly pediatric, reassuring not scary. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(안심)",
+          "ko": "양쪽·밤·열 없음",
+          "en": "Both legs · night · no swelling",
+          "th": "สองข้าง·กลางคืน·ไม่บวม"
+        },
+        {
+          "pos": "오른쪽(주의)",
+          "ko": "한쪽·붓기·낮에도",
+          "en": "One leg · swelling · daytime",
+          "th": "ข้างเดียว·บวม·กลางวัน"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🌙",
+      "label": "밤 통증"
+    },
+    {
+      "e": "💢",
+      "label": "다리 통증"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈"
+    },
+    {
+      "e": "❓",
+      "label": "오해"
+    },
+    {
+      "e": "💪",
+      "label": "근육 피로"
+    },
+    {
+      "e": "📏",
+      "label": "성장 속도"
+    },
+    {
+      "e": "✅",
+      "label": "성장통(안심)"
+    },
+    {
+      "e": "⚠️",
+      "label": "병원 신호"
+    },
+    {
+      "e": "🤲",
+      "label": "따뜻한 케어"
+    },
+    {
+      "e": "🔍",
+      "label": "뼈나이 점검"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "🩺",
+      "label": "전문의 상담"
+    }
+  ]
+}

@@ -1,0 +1,796 @@
+{
+  "n": 12,
+  "slug": "코르티솔키",
+  "title": "스트레스가 키를 막는다 — 코르티솔의 정체",
+  "sub": "코르티솔이 성장호르몬·성장판·수면·식욕을 동시에 누른다 — 마음이 편해야 키가 큰다",
+  "category": "A. 성장과학",
+  "topicTitle": "스트레스와 코르티솔 — 성장호르몬 역관계",
+  "headerTop": "우리 아이 키",
+  "headerMark": "스트레스 탓?",
+  "accentEmoji": "😣📉",
+  "duration": 35,
+  "hook": "잘 먹고 잘 자는데도 키가 더디다면, 혹시 '스트레스' 때문일 수 있어요.",
+  "misconception": "스트레스는 그냥 기분 문제 → 사실은 호르몬이 성장을 직접 누른다",
+  "message": "스트레스 호르몬 코르티솔은 성장호르몬·성장판·수면·식욕 4가지를 동시에 눌러 키를 막는다. 마음이 편해야 키가 큰다",
+  "tone": "협박 ❌ → 긍정 골든타임(\"마음이 편하면 다시 큰다\"). \"우리 아이 키\" 보편. 단정 ❌ → 측정 유도",
+  "cta": "우리 아이 성장 상태, 뼈나이·예측키로 지금 확인 → 측정 유도",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"잘 먹고 잘 자는데도 더디다면? 스트레스일 수 있다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "코르티솔 등장",
+      "scenes": "c3–c4",
+      "desc": "\"스트레스 호르몬 코르티솔이 성장호르몬과 반대로 움직인다\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "4가지 방해",
+      "scenes": "c5–c7",
+      "desc": "\"성장호르몬↓·성장판 둔화·깊은 잠↓·식욕↓\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "신호·해법",
+      "scenes": "c8–c9",
+      "desc": "\"스트레스 신호 알아채고 → 잠·운동·따뜻한 환경으로 푼다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c10",
+      "desc": "\"뼈나이·예측키로 지금 확인 → CTA\""
+    }
+  ],
+  "thumb": {
+    "kicker": "잘 먹고 잘 자는데도?",
+    "subject": "우리 아이 키 막는",
+    "number": "코르티솔",
+    "numLabel": "스트레스 호르몬"
+  },
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "😣 슬램 인 + 📉 드롭",
+      "copy": {
+        "ko": {
+          "narr": "잘 먹고 잘 자는데도 우리 아이 키가 더디다면, 혹시 '스트레스' 때문일 수 있어요.",
+          "cap": [
+            "잘 먹고 잘 자는데도?",
+            "혹시 스트레스"
+          ],
+          "hl": "혹시 스트레스"
+        },
+        "th": {
+          "narr": "กินดีนอนดี แต่ลูกยังไม่สูง อาจเป็นเพราะ 'ความเครียด'",
+          "cap": [
+            "กินดีนอนดีแต่ไม่สูง?",
+            "อาจเป็นความเครียด"
+          ],
+          "hl": "ความเครียด"
+        },
+        "vi": {
+          "narr": "Ăn ngủ tốt mà con vẫn chậm cao? Có thể là do 'căng thẳng'.",
+          "cap": [
+            "Ăn ngủ tốt vẫn chậm?",
+            "Có thể do căng thẳng"
+          ],
+          "hl": "căng thẳng"
+        },
+        "en": {
+          "narr": "Eating and sleeping well but still growing slowly? It might be stress.",
+          "cap": [
+            "Eats & sleeps well, still slow?",
+            "Maybe it's stress"
+          ],
+          "hl": "stress"
+        },
+        "cn": {
+          "narr": "吃得好睡得好，孩子却长得慢？可能是'压力'在作怪。",
+          "cap": [
+            "吃睡都好却长得慢？",
+            "可能是压力"
+          ],
+          "hl": "压力"
+        },
+        "ch": {
+          "narr": "吃得好睡得好，孩子卻長得慢？可能是'壓力'在作怪。",
+          "cap": [
+            "吃睡都好卻長得慢？",
+            "可能是壓力"
+          ],
+          "hl": "壓力"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🧠 펄스 + 똑딱",
+      "copy": {
+        "ko": {
+          "narr": "스트레스는 단순히 기분 문제가 아니에요. 몸속에서 호르몬을 움직이거든요.",
+          "cap": [
+            "기분 문제가 아니다",
+            "몸속 호르몬"
+          ],
+          "hl": "몸속 호르몬"
+        },
+        "th": {
+          "narr": "ความเครียดไม่ใช่แค่เรื่องอารมณ์ มันสั่งฮอร์โมนในร่างกาย",
+          "cap": [
+            "ไม่ใช่แค่อารมณ์",
+            "ฮอร์โมนในร่างกาย"
+          ],
+          "hl": "ฮอร์โมนในร่างกาย"
+        },
+        "vi": {
+          "narr": "Căng thẳng không chỉ là cảm xúc — nó điều khiển hormone trong cơ thể.",
+          "cap": [
+            "Không chỉ là cảm xúc",
+            "hormone trong cơ thể"
+          ],
+          "hl": "hormone"
+        },
+        "en": {
+          "narr": "Stress isn't just a mood — it moves real hormones inside the body.",
+          "cap": [
+            "Not just a mood",
+            "real hormones"
+          ],
+          "hl": "real hormones"
+        },
+        "cn": {
+          "narr": "压力不只是情绪——它会牵动体内的激素。",
+          "cap": [
+            "不只是情绪",
+            "体内激素"
+          ],
+          "hl": "体内激素"
+        },
+        "ch": {
+          "narr": "壓力不只是情緒——它會牽動體內的荷爾蒙。",
+          "cap": [
+            "不只是情緒",
+            "體內荷爾蒙"
+          ],
+          "hl": "體內荷爾蒙"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "ig",
+      "igLabel": "IG1 코르티솔 시소",
+      "motion": "⚖️ 시소 기울기",
+      "copy": {
+        "ko": {
+          "narr": "스트레스 호르몬 '코르티솔'은 성장호르몬과 정반대로 움직여요. 하나가 오르면 하나가 내려가죠.",
+          "cap": [
+            "코르티솔 ↑",
+            "성장호르몬 ↓"
+          ],
+          "hl": "성장호르몬 ↓"
+        },
+        "th": {
+          "narr": "'คอร์ติซอล' ฮอร์โมนเครียด สวนทางกับโกรทฮอร์โมน ตัวขึ้นอีกตัวลง",
+          "cap": [
+            "คอร์ติซอล ↑",
+            "โกรทฮอร์โมน ↓"
+          ],
+          "hl": "โกรทฮอร์โมน ↓"
+        },
+        "vi": {
+          "narr": "'Cortisol' — hormone căng thẳng — đi ngược với hormone tăng trưởng. Cái này lên, cái kia xuống.",
+          "cap": [
+            "Cortisol ↑",
+            "Hormone tăng trưởng ↓"
+          ],
+          "hl": "Hormone tăng trưởng ↓"
+        },
+        "en": {
+          "narr": "Cortisol, the stress hormone, moves opposite to growth hormone. One up, the other down.",
+          "cap": [
+            "Cortisol ↑",
+            "Growth hormone ↓"
+          ],
+          "hl": "Growth hormone ↓"
+        },
+        "cn": {
+          "narr": "压力激素'皮质醇'和生长激素正好相反——一个升，另一个就降。",
+          "cap": [
+            "皮质醇 ↑",
+            "生长激素 ↓"
+          ],
+          "hl": "生长激素 ↓"
+        },
+        "ch": {
+          "narr": "壓力激素'皮質醇'和生長激素正好相反——一個升，另一個就降。",
+          "cap": [
+            "皮質醇 ↑",
+            "生長激素 ↓"
+          ],
+          "hl": "生長激素 ↓"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14s",
+      "kind": "doctor",
+      "motion": "🚨 비상등 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "몸이 스트레스를 '비상사태'로 받아들이면, 키 크는 에너지를 생존 쪽으로 다 돌려버려요.",
+          "cap": [
+            "몸은 비상사태로 인식",
+            "성장 에너지 차단"
+          ],
+          "hl": "성장 에너지 차단"
+        },
+        "th": {
+          "narr": "เมื่อร่างกายมองความเครียดเป็น 'ภาวะฉุกเฉิน' พลังที่ใช้โตจะถูกดึงไปเอาตัวรอด",
+          "cap": [
+            "ร่างกายมองเป็นภาวะฉุกเฉิน",
+            "ตัดพลังการเติบโต"
+          ],
+          "hl": "ตัดพลังการเติบโต"
+        },
+        "vi": {
+          "narr": "Khi cơ thể coi căng thẳng là 'tình huống khẩn cấp', năng lượng để cao bị dồn sang sinh tồn.",
+          "cap": [
+            "Cơ thể coi là khẩn cấp",
+            "Cắt năng lượng tăng trưởng"
+          ],
+          "hl": "Cắt năng lượng tăng trưởng"
+        },
+        "en": {
+          "narr": "When the body reads stress as an emergency, it redirects growth energy to survival.",
+          "cap": [
+            "Body sees an emergency",
+            "Growth energy cut"
+          ],
+          "hl": "Growth energy cut"
+        },
+        "cn": {
+          "narr": "身体把压力当成'紧急状况'，就会把长高的能量都拨去维持生存。",
+          "cap": [
+            "身体当成紧急状况",
+            "切断成长能量"
+          ],
+          "hl": "切断成长能量"
+        },
+        "ch": {
+          "narr": "身體把壓力當成'緊急狀況'，就會把長高的能量都撥去維持生存。",
+          "cap": [
+            "身體當成緊急狀況",
+            "切斷成長能量"
+          ],
+          "hl": "切斷成長能量"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14–18s",
+      "kind": "ig",
+      "igLabel": "IG2 4가지 방해",
+      "motion": "1️⃣2️⃣3️⃣4️⃣ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "코르티솔은 네 가지로 키를 막아요. 성장호르몬을 줄이고, 성장판을 둔하게 하고, 깊은 잠을 깨고, 식욕까지 떨어뜨려요.",
+          "cap": [
+            "코르티솔이 막는 4가지",
+            "호르몬·성장판·잠·식욕"
+          ],
+          "hl": "호르몬·성장판·잠·식욕"
+        },
+        "th": {
+          "narr": "คอร์ติซอลขัดขวางความสูง 4 ทาง ลดโกรทฮอร์โมน ทำให้แผ่นกระดูกช้า รบกวนการหลับลึก และลดความอยากอาหาร",
+          "cap": [
+            "ขัดขวาง 4 ทาง",
+            "ฮอร์โมน·กระดูก·นอน·อาหาร"
+          ],
+          "hl": "ฮอร์โมน·กระดูก·นอน·อาหาร"
+        },
+        "vi": {
+          "narr": "Cortisol cản chiều cao theo 4 cách: giảm hormone tăng trưởng, làm chậm sụn, phá giấc ngủ sâu và giảm thèm ăn.",
+          "cap": [
+            "4 cách cản trở",
+            "Hormone·Sụn·Ngủ·Ăn"
+          ],
+          "hl": "Hormone·Sụn·Ngủ·Ăn"
+        },
+        "en": {
+          "narr": "Cortisol blocks height four ways: less growth hormone, slower growth plates, broken deep sleep, and lower appetite.",
+          "cap": [
+            "Blocks height 4 ways",
+            "Hormone·Plate·Sleep·Appetite"
+          ],
+          "hl": "Hormone·Plate·Sleep·Appetite"
+        },
+        "cn": {
+          "narr": "皮质醇从四方面挡住长高：减少生长激素、拖慢生长板、破坏深睡、降低食欲。",
+          "cap": [
+            "四方面阻碍",
+            "激素·生长板·睡眠·食欲"
+          ],
+          "hl": "激素·生长板·睡眠·食欲"
+        },
+        "ch": {
+          "narr": "皮質醇從四方面擋住長高：減少生長激素、拖慢生長板、破壞深睡、降低食慾。",
+          "cap": [
+            "四方面阻礙",
+            "激素·生長板·睡眠·食慾"
+          ],
+          "hl": "激素·生長板·睡眠·食慾"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–22s",
+      "kind": "ig",
+      "igLabel": "IG3 깊은 잠 = 성장호르몬",
+      "motion": "🌙 별 점등 + 곡선 상승",
+      "copy": {
+        "ko": {
+          "narr": "특히 잠이 중요해요. 성장호르몬은 깊은 잠에서 가장 많이 나오는데, 코르티솔이 높으면 그 깊은 잠이 깨져요.",
+          "cap": [
+            "깊은 잠 = 성장호르몬",
+            "코르티솔이 깨운다"
+          ],
+          "hl": "깊은 잠 = 성장호르몬"
+        },
+        "th": {
+          "narr": "การนอนสำคัญมาก โกรทฮอร์โมนหลั่งมากตอนหลับลึก แต่คอร์ติซอลสูงจะทำให้หลับลึกพัง",
+          "cap": [
+            "หลับลึก = โกรทฮอร์โมน",
+            "คอร์ติซอลรบกวน"
+          ],
+          "hl": "หลับลึก = โกรทฮอร์โมน"
+        },
+        "vi": {
+          "narr": "Giấc ngủ rất quan trọng: hormone tăng trưởng tiết nhiều nhất khi ngủ sâu, nhưng cortisol cao sẽ phá giấc ngủ đó.",
+          "cap": [
+            "Ngủ sâu = hormone tăng trưởng",
+            "Cortisol phá vỡ"
+          ],
+          "hl": "Ngủ sâu = hormone tăng trưởng"
+        },
+        "en": {
+          "narr": "Sleep matters most: growth hormone peaks in deep sleep, but high cortisol breaks that deep sleep.",
+          "cap": [
+            "Deep sleep = growth hormone",
+            "Cortisol breaks it"
+          ],
+          "hl": "Deep sleep = growth hormone"
+        },
+        "cn": {
+          "narr": "睡眠尤其关键：生长激素在深睡时分泌最多，皮质醇一高，深睡就被打断。",
+          "cap": [
+            "深睡 = 生长激素",
+            "皮质醇打断"
+          ],
+          "hl": "深睡 = 生长激素"
+        },
+        "ch": {
+          "narr": "睡眠尤其關鍵：生長激素在深睡時分泌最多，皮質醇一高，深睡就被打斷。",
+          "cap": [
+            "深睡 = 生長激素",
+            "皮質醇打斷"
+          ],
+          "hl": "深睡 = 生長激素"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "👀 체크 팝",
+      "copy": {
+        "ko": {
+          "narr": "아이들은 스트레스를 말로 잘 못 해요. 자주 짜증 내고, 잠을 설치고, 배·머리가 아프다 하면 신호일 수 있어요.",
+          "cap": [
+            "짜증·수면 불안",
+            "복통·두통 신호"
+          ],
+          "hl": "복통·두통 신호"
+        },
+        "th": {
+          "narr": "เด็กบอกความเครียดไม่เก่ง ถ้าหงุดหงิดบ่อย นอนไม่หลับ ปวดท้องปวดหัว อาจเป็นสัญญาณ",
+          "cap": [
+            "หงุดหงิด·นอนไม่หลับ",
+            "ปวดท้องปวดหัว"
+          ],
+          "hl": "ปวดท้องปวดหัว"
+        },
+        "vi": {
+          "narr": "Trẻ khó nói ra căng thẳng. Hay cáu, ngủ chập chờn, đau bụng đau đầu có thể là dấu hiệu.",
+          "cap": [
+            "Cáu gắt·khó ngủ",
+            "Đau bụng·đau đầu"
+          ],
+          "hl": "Đau bụng·đau đầu"
+        },
+        "en": {
+          "narr": "Kids can't always say they're stressed. Irritability, restless sleep, tummy or headaches can be signs.",
+          "cap": [
+            "Irritable·restless sleep",
+            "Tummy & headaches"
+          ],
+          "hl": "Tummy & headaches"
+        },
+        "cn": {
+          "narr": "孩子不太会说出压力。爱发脾气、睡不安稳、喊肚子头疼，都可能是信号。",
+          "cap": [
+            "易怒·睡不安稳",
+            "肚子·头疼信号"
+          ],
+          "hl": "肚子·头疼信号"
+        },
+        "ch": {
+          "narr": "孩子不太會說出壓力。愛發脾氣、睡不安穩、喊肚子頭疼，都可能是訊號。",
+          "cap": [
+            "易怒·睡不安穩",
+            "肚子·頭疼訊號"
+          ],
+          "hl": "肚子·頭疼訊號"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 스트레스 풀기",
+      "motion": "💤🏃💛 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "좋은 소식은, 줄일 수 있다는 거예요. 8~10시간 잠, 하루 30분 운동, 그리고 따뜻한 가족 환경이 코르티솔을 낮춰요.",
+          "cap": [
+            "잠 8~10h · 운동 30분",
+            "따뜻한 환경"
+          ],
+          "hl": "잠 8~10h · 운동 30분"
+        },
+        "th": {
+          "narr": "ข่าวดีคือลดได้ นอน 8–10 ชม. ออกกำลังวันละ 30 นาที และครอบครัวที่อบอุ่นช่วยลดคอร์ติซอล",
+          "cap": [
+            "นอน 8–10 ชม. · ออกกำลัง 30 นาที",
+            "ครอบครัวอบอุ่น"
+          ],
+          "hl": "นอน 8–10 ชม. · ออกกำลัง 30 นาที"
+        },
+        "vi": {
+          "narr": "Tin tốt là có thể giảm được: ngủ 8–10 tiếng, tập 30 phút mỗi ngày và gia đình ấm áp giúp hạ cortisol.",
+          "cap": [
+            "Ngủ 8–10h · Tập 30 phút",
+            "Gia đình ấm áp"
+          ],
+          "hl": "Ngủ 8–10h · Tập 30 phút"
+        },
+        "en": {
+          "narr": "Good news: it's fixable. 8–10 hours of sleep, 30 minutes of daily exercise, and a warm home lower cortisol.",
+          "cap": [
+            "Sleep 8–10h · Move 30 min",
+            "Warm home"
+          ],
+          "hl": "Sleep 8–10h · Move 30 min"
+        },
+        "cn": {
+          "narr": "好消息是，它能降下来：睡8到10小时、每天运动30分钟、温暖的家庭都能降低皮质醇。",
+          "cap": [
+            "睡8–10h · 运动30分钟",
+            "温暖家庭"
+          ],
+          "hl": "睡8–10h · 运动30分钟"
+        },
+        "ch": {
+          "narr": "好消息是，它能降下來：睡8到10小時、每天運動30分鐘、溫暖的家庭都能降低皮質醇。",
+          "cap": [
+            "睡8–10h · 運動30分鐘",
+            "溫暖家庭"
+          ],
+          "hl": "睡8–10h · 運動30分鐘"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "마음이 편해지면 성장은 다시 따라와요. 지금 어디쯤인지는 뼈나이로 확인할 수 있고요.",
+          "cap": [
+            "마음 편하면 다시 큰다",
+            "뼈나이로 확인"
+          ],
+          "hl": "뼈나이로 확인"
+        },
+        "th": {
+          "narr": "พอใจสบาย การเติบโตก็กลับมา ตอนนี้อยู่ตรงไหนเช็กได้ด้วยอายุกระดูก",
+          "cap": [
+            "ใจสบายก็โตต่อ",
+            "เช็กด้วยอายุกระดูก"
+          ],
+          "hl": "เช็กด้วยอายุกระดูก"
+        },
+        "vi": {
+          "narr": "Tâm lý thoải mái thì tăng trưởng trở lại. Con đang ở đâu, tuổi xương sẽ cho biết.",
+          "cap": [
+            "Thoải mái sẽ cao lại",
+            "Kiểm tra tuổi xương"
+          ],
+          "hl": "Kiểm tra tuổi xương"
+        },
+        "en": {
+          "narr": "When the mind eases, growth follows. Bone age shows exactly where your child stands.",
+          "cap": [
+            "Calm mind, growth returns",
+            "Bone age shows where"
+          ],
+          "hl": "Bone age shows where"
+        },
+        "cn": {
+          "narr": "心情放松，长高就会跟上。现在到了哪一步，骨龄能告诉你。",
+          "cap": [
+            "放松了就会再长",
+            "骨龄看清楚"
+          ],
+          "hl": "骨龄看清楚"
+        },
+        "ch": {
+          "narr": "心情放鬆，長高就會跟上。現在到了哪一步，骨齡能告訴你。",
+          "cap": [
+            "放鬆了就會再長",
+            "骨齡看清楚"
+          ],
+          "hl": "骨齡看清楚"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 상태, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 상태",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กสถานะการเติบโตของลูกวันนี้",
+          "cap": [
+            "สถานะการเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tình trạng tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Tình trạng tăng trưởng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth status today.",
+          "cap": [
+            "Growth status",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的成长状态吧。",
+          "cap": [
+            "成长状态",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的成長狀態吧。",
+          "cap": [
+            "成長狀態",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "시소 기울기",
+      "title": "코르티솔 ↔ 성장호르몬 역관계",
+      "emojis": [
+        "⚖️",
+        "😣",
+        "🌱"
+      ],
+      "prompt": "Flat vector, square, white background. A balanced seesaw / scale: on the heavy-down side a frowning stress cloud icon, on the lighter-up side a small growing sprout / upward arrow. The seesaw clearly tilts so stress is down-heavy and growth is pushed up-light, showing an inverse relationship. Brand purple #667eea beam with a mint #2dd4bf sprout. Friendly pediatric, soft shadows. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(내려간 쪽)",
+          "ko": "코르티솔 ↑",
+          "en": "Cortisol ↑",
+          "th": "คอร์ติซอล ↑"
+        },
+        {
+          "pos": "오른쪽(올라간 쪽)",
+          "ko": "성장호르몬 ↓",
+          "en": "Growth hormone ↓",
+          "th": "โกรทฮอร์โมน ↓"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "4칸 순차 점등",
+      "title": "코르티솔이 막는 4가지",
+      "emojis": [
+        "💉",
+        "🦵",
+        "🌙",
+        "🍽️"
+      ],
+      "prompt": "Flat vector, square, white background. A clean 2x2 grid of four friendly circular icons: (1) a hormone droplet decreasing, (2) a knee bone growth-plate slowing, (3) a crescent moon with a broken sleep wave, (4) a plate with fork showing low appetite. Each icon in a soft rounded card. Brand purple #667eea + mint #2dd4bf accents, gentle pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "좌상(1)",
+          "ko": "성장호르몬 ↓",
+          "en": "Growth hormone ↓",
+          "th": "โกรทฮอร์โมน ↓"
+        },
+        {
+          "pos": "우상(2)",
+          "ko": "성장판 둔화",
+          "en": "Growth plate slows",
+          "th": "แผ่นกระดูกช้า"
+        },
+        {
+          "pos": "좌하(3)",
+          "ko": "깊은 잠 깨짐",
+          "en": "Deep sleep broken",
+          "th": "หลับลึกพัง"
+        },
+        {
+          "pos": "우하(4)",
+          "ko": "식욕 저하",
+          "en": "Low appetite",
+          "th": "เบื่ออาหาร"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "별 점등 + 곡선 상승",
+      "title": "깊은 잠 = 성장호르몬 골든타임",
+      "emojis": [
+        "🌙",
+        "😴",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white background. A peacefully sleeping child under a blanket at night, a crescent moon and stars above, and a soft glowing upward curve/sparkle rising from the child symbolizing growth hormone release during deep sleep. Warm cozy mood. Brand purple #667eea night tone with mint #2dd4bf glowing curve. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선 위",
+          "ko": "성장호르몬 분비",
+          "en": "GH release",
+          "th": "หลั่งโกรทฮอร์โมน"
+        },
+        {
+          "pos": "하단",
+          "ko": "깊은 잠(서파수면)",
+          "en": "Deep sleep",
+          "th": "หลับลึก"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "3아이콘 순차 점등",
+      "title": "코르티솔 낮추는 3가지 습관",
+      "emojis": [
+        "💤",
+        "🏃",
+        "💛"
+      ],
+      "prompt": "Flat vector, square, white background. Three friendly rounded icons in a row: a moon-and-pillow for sleep, a running child for exercise, and a heart-shaped home / hugging family for warmth. A gentle downward arrow beside them implying lower stress hormone. Brand purple #667eea + mint #2dd4bf, cheerful hopeful pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "잠 8~10h",
+          "en": "Sleep 8–10h",
+          "th": "นอน 8–10 ชม."
+        },
+        {
+          "pos": "가운데",
+          "ko": "운동 30분",
+          "en": "Move 30 min",
+          "th": "ออกกำลัง 30 นาที"
+        },
+        {
+          "pos": "오른쪽",
+          "ko": "따뜻한 환경",
+          "en": "Warm home",
+          "th": "ครอบครัวอบอุ่น"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "😣",
+      "label": "스트레스"
+    },
+    {
+      "e": "🧠",
+      "label": "호르몬/뇌하수체"
+    },
+    {
+      "e": "⚖️",
+      "label": "역관계 시소"
+    },
+    {
+      "e": "📉",
+      "label": "성장호르몬↓"
+    },
+    {
+      "e": "🦵",
+      "label": "성장판"
+    },
+    {
+      "e": "🌙",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🍽️",
+      "label": "식욕"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "💛",
+      "label": "따뜻한 환경"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

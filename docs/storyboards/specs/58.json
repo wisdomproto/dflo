@@ -1,0 +1,795 @@
+{
+  "n": 58,
+  "slug": "겨울방학키",
+  "title": "겨울방학이 키 성장 골든타임인 이유",
+  "sub": "방학엔 스트레스 ↓ 수면·영양·운동 관리 ↑ — 성장판 닫히기 전 마지막 기회를 살리는 법",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "겨울방학 키 성장",
+  "headerTop": "우리 아이 키",
+  "headerMark": "방학이 골든타임?",
+  "accentEmoji": "❄️💜",
+  "hook": "겨울방학이 우리 아이 키 성장의 '골든타임'인 거, 알고 계셨어요?",
+  "misconception": "방학은 그냥 쉬는 시간 → 사실은 스트레스 줄고 생활 습관 잡기 가장 좋아 성장호르몬에 유리한 골든타임",
+  "message": "방학엔 규칙적 수면·균형 영양·운동을 체계적으로 관리할 여유가 생겨 성장에 유리하다. 연 4cm 미만 등 신호가 있으면 이 시기에 뼈나이로 남은 기회를 확인하자",
+  "tone": "협박 ❌ → \"방학은 쉬는 시간\"을 비난하지 않고, 아직 기회 있다는 긍정 골든타임으로 안내. \"우리 아이 키\" 보편. CTA는 측정 유도(예측키/뼈나이)",
+  "cta": "방학 지나기 전에 지금 확인 → 홈페이지 예측키 / 뼈나이 측정으로 남은 기회 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "방학이 기회!",
+    "subject": "우리 아이 키",
+    "number": "골든타임",
+    "numLabel": "겨울방학에 끌어올리기"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"방학이 키 성장 골든타임\" → 키는 저절로 X, 타이밍이 핵심"
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 방학인가",
+      "scenes": "c3–c4",
+      "desc": "스트레스 ↓ 규칙적 생활 → 성장호르몬에 유리 / 수면·영양·운동 3박자"
+    },
+    {
+      "act": "ACT 3",
+      "title": "점검 신호",
+      "scenes": "c5–c6",
+      "desc": "연 4cm 미만 등 신호 → 5가지 체크 신호"
+    },
+    {
+      "act": "ACT 4",
+      "title": "전환·핵심",
+      "scenes": "c7–c8",
+      "desc": "빠른 사춘기면 성장판 일찍 닫혀 → 닫히기 전 지금이 골든타임"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "뼈나이로 남은 기회 확인 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "❄️ 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "겨울방학이 우리 아이 키 성장의 '골든타임'인 거, 알고 계셨어요?",
+          "cap": [
+            "겨울방학이",
+            "키 골든타임"
+          ],
+          "hl": "키 골든타임"
+        },
+        "th": {
+          "narr": "รู้ไหมว่าปิดเทอมหน้าหนาวคือ 'ช่วงเวลาทอง' ของความสูงลูก?",
+          "cap": [
+            "ปิดเทอมหน้าหนาว",
+            "ช่วงเวลาทอง"
+          ],
+          "hl": "ช่วงเวลาทอง"
+        },
+        "vi": {
+          "narr": "Bạn có biết kỳ nghỉ đông là 'thời điểm vàng' để con cao lên không?",
+          "cap": [
+            "Nghỉ đông là",
+            "thời điểm vàng"
+          ],
+          "hl": "thời điểm vàng"
+        },
+        "en": {
+          "narr": "Did you know winter break is your child's golden time to grow?",
+          "cap": [
+            "Winter break =",
+            "golden time"
+          ],
+          "hl": "golden time"
+        },
+        "cn": {
+          "narr": "你知道寒假是孩子长高的'黄金期'吗？",
+          "cap": [
+            "寒假就是",
+            "长高黄金期"
+          ],
+          "hl": "长高黄金期"
+        },
+        "ch": {
+          "narr": "你知道寒假是孩子長高的'黃金期'嗎？",
+          "cap": [
+            "寒假就是",
+            "長高黃金期"
+          ],
+          "hl": "長高黃金期"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "⏰ 흔들+똑딱",
+      "copy": {
+        "ko": {
+          "narr": "키는 시간 지난다고 저절로 크는 게 아니에요. 시기를 잡는 게 핵심이죠.",
+          "cap": [
+            "저절로 X",
+            "타이밍이 핵심"
+          ],
+          "hl": "타이밍이 핵심"
+        },
+        "th": {
+          "narr": "ความสูงไม่ได้มาเองตามเวลา จับจังหวะให้ถูกคือหัวใจ",
+          "cap": [
+            "ไม่ได้มาเอง",
+            "จับจังหวะ"
+          ],
+          "hl": "จับจังหวะ"
+        },
+        "vi": {
+          "narr": "Chiều cao không tự đến theo thời gian — bắt đúng thời điểm mới là chìa khóa.",
+          "cap": [
+            "Không tự đến",
+            "đúng thời điểm"
+          ],
+          "hl": "đúng thời điểm"
+        },
+        "en": {
+          "narr": "Height doesn't just happen with time — catching the right window is everything.",
+          "cap": [
+            "Not automatic",
+            "right timing"
+          ],
+          "hl": "right timing"
+        },
+        "cn": {
+          "narr": "身高不会随时间自动长——抓住时机才是关键。",
+          "cap": [
+            "不会自动",
+            "抓住时机"
+          ],
+          "hl": "抓住时机"
+        },
+        "ch": {
+          "narr": "身高不會隨時間自動長——抓住時機才是關鍵。",
+          "cap": [
+            "不會自動",
+            "抓住時機"
+          ],
+          "hl": "抓住時機"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 방학 골든타임",
+      "motion": "📚→😌 전환 + ✨ 점등",
+      "copy": {
+        "ko": {
+          "narr": "방학엔 학업 스트레스가 줄고 생활이 규칙적이라, 성장호르몬에 더 유리해요.",
+          "cap": [
+            "스트레스 ↓ 규칙 ↑",
+            "성장호르몬 유리"
+          ],
+          "hl": "성장호르몬 유리"
+        },
+        "th": {
+          "narr": "ช่วงปิดเทอมความเครียดเรียนน้อยลงและชีวิตเป็นระเบียบ ดีต่อฮอร์โมนเติบโต",
+          "cap": [
+            "เครียดน้อย เป็นระเบียบ",
+            "ดีต่อฮอร์โมน"
+          ],
+          "hl": "ดีต่อฮอร์โมน"
+        },
+        "vi": {
+          "narr": "Nghỉ học ít căng thẳng và sinh hoạt đều đặn hơn — rất tốt cho hormone tăng trưởng.",
+          "cap": [
+            "Ít stress, đều đặn",
+            "tốt cho hormone"
+          ],
+          "hl": "tốt cho hormone"
+        },
+        "en": {
+          "narr": "On break there's less school stress and a steadier routine — great for growth hormone.",
+          "cap": [
+            "Less stress, routine",
+            "good for hormone"
+          ],
+          "hl": "good for hormone"
+        },
+        "cn": {
+          "narr": "放假学业压力小、作息规律，更有利于生长激素分泌。",
+          "cap": [
+            "压力↓ 作息规律",
+            "利于生长激素"
+          ],
+          "hl": "利于生长激素"
+        },
+        "ch": {
+          "narr": "放假學業壓力小、作息規律，更有利於生長激素分泌。",
+          "cap": [
+            "壓力↓ 作息規律",
+            "利於生長激素"
+          ],
+          "hl": "利於生長激素"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 수면·영양·운동",
+      "motion": "🌙🥗🏃 3박자 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "충분한 수면, 균형 잡힌 영양, 규칙적인 운동. 이 세 가지가 성장판을 깨워요.",
+          "cap": [
+            "수면·영양·운동",
+            "성장판을 깨운다"
+          ],
+          "hl": "성장판을 깨운다"
+        },
+        "th": {
+          "narr": "นอนพอ กินครบ ออกกำลังสม่ำเสมอ สามอย่างนี้กระตุ้นแผ่นกระดูก",
+          "cap": [
+            "นอน·อาหาร·ออกกำลัง",
+            "กระตุ้นแผ่นกระดูก"
+          ],
+          "hl": "กระตุ้นแผ่นกระดูก"
+        },
+        "vi": {
+          "narr": "Ngủ đủ, ăn cân bằng, vận động đều — ba điều này đánh thức sụn tăng trưởng.",
+          "cap": [
+            "Ngủ·ăn·vận động",
+            "đánh thức sụn"
+          ],
+          "hl": "đánh thức sụn"
+        },
+        "en": {
+          "narr": "Enough sleep, balanced food, regular exercise — these three wake up the growth plates.",
+          "cap": [
+            "Sleep·food·exercise",
+            "wake the plates"
+          ],
+          "hl": "wake the plates"
+        },
+        "cn": {
+          "narr": "充足睡眠、均衡营养、规律运动，这三样能唤醒生长板。",
+          "cap": [
+            "睡眠·营养·运动",
+            "唤醒生长板"
+          ],
+          "hl": "唤醒生长板"
+        },
+        "ch": {
+          "narr": "充足睡眠、均衡營養、規律運動，這三樣能喚醒生長板。",
+          "cap": [
+            "睡眠·營養·運動",
+            "喚醒生長板"
+          ],
+          "hl": "喚醒生長板"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "📏 펄스 · <4면 ⚠️ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "그런데 1년에 4센티가 안 자라거나, 옷 사이즈가 몇 년째 그대로면 점검이 필요해요.",
+          "cap": [
+            "연 4cm 미만이면",
+            "점검 필요"
+          ],
+          "hl": "연 4cm 미만이면"
+        },
+        "th": {
+          "narr": "แต่ถ้าปีนึงโตไม่ถึง 4 ซม. หรือใส่เสื้อไซซ์เดิมหลายปี ควรตรวจ",
+          "cap": [
+            "ปีละไม่ถึง 4 ซม.",
+            "ควรตรวจ"
+          ],
+          "hl": "ปีละไม่ถึง 4 ซม."
+        },
+        "vi": {
+          "narr": "Nhưng nếu một năm cao chưa tới 4cm, hay mặc cỡ áo cũ nhiều năm — cần kiểm tra.",
+          "cap": [
+            "Dưới 4cm/năm",
+            "cần kiểm tra"
+          ],
+          "hl": "Dưới 4cm/năm"
+        },
+        "en": {
+          "narr": "But if they grow under 4cm a year, or wear the same size for years — check it.",
+          "cap": [
+            "Under 4cm a year",
+            "time to check"
+          ],
+          "hl": "Under 4cm a year"
+        },
+        "cn": {
+          "narr": "但如果一年长不到4厘米，或衣服尺码几年没变，就该检查了。",
+          "cap": [
+            "一年不足4厘米",
+            "该检查了"
+          ],
+          "hl": "一年不足4厘米"
+        },
+        "ch": {
+          "narr": "但如果一年長不到4公分，或衣服尺碼幾年沒變，就該檢查了。",
+          "cap": [
+            "一年不足4公分",
+            "該檢查了"
+          ],
+          "hl": "一年不足4公分"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 점검 신호 5가지",
+      "motion": "✅ 5개 순차 체크",
+      "copy": {
+        "ko": {
+          "narr": "또래보다 머리 하나 작거나, 부모 키가 작거나, 사춘기가 빠르면 꼭 확인하세요.",
+          "cap": [
+            "머리 하나 작음·이른 사춘기",
+            "5가지 신호"
+          ],
+          "hl": "5가지 신호"
+        },
+        "th": {
+          "narr": "เตี้ยกว่าเพื่อนหนึ่งหัว พ่อแม่เตี้ย หรือแรกรุ่นมาเร็ว ต้องเช็กให้แน่",
+          "cap": [
+            "เตี้ยกว่า·แรกรุ่นเร็ว",
+            "5 สัญญาณ"
+          ],
+          "hl": "5 สัญญาณ"
+        },
+        "vi": {
+          "narr": "Thấp hơn bạn một cái đầu, bố mẹ thấp, hay dậy thì sớm — hãy kiểm tra ngay.",
+          "cap": [
+            "Thấp hơn·dậy thì sớm",
+            "5 dấu hiệu"
+          ],
+          "hl": "5 dấu hiệu"
+        },
+        "en": {
+          "narr": "A head shorter than peers, short parents, or early puberty — be sure to check.",
+          "cap": [
+            "Shorter·early puberty",
+            "5 signs"
+          ],
+          "hl": "5 signs"
+        },
+        "cn": {
+          "narr": "比同龄矮一个头、父母个子矮、或青春期偏早，一定要确认。",
+          "cap": [
+            "矮一头·青春期早",
+            "5个信号"
+          ],
+          "hl": "5个信号"
+        },
+        "ch": {
+          "narr": "比同齡矮一個頭、父母個子矮、或青春期偏早，一定要確認。",
+          "cap": [
+            "矮一頭·青春期早",
+            "5個信號"
+          ],
+          "hl": "5個信號"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27.5s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 빨강 플래시",
+      "copy": {
+        "ko": {
+          "narr": "사춘기가 너무 빨리 오면 성장판이 일찍 닫혀서, 최종 키가 줄 수 있어요.",
+          "cap": [
+            "사춘기 빠르면",
+            "성장판 일찍 닫힘"
+          ],
+          "hl": "성장판 일찍 닫힘"
+        },
+        "th": {
+          "narr": "ถ้าแรกรุ่นมาเร็วไป แผ่นกระดูกปิดเร็ว ทำให้ส่วนสูงสุดท้ายลดลง",
+          "cap": [
+            "แรกรุ่นเร็ว",
+            "ปิดเร็ว"
+          ],
+          "hl": "ปิดเร็ว"
+        },
+        "vi": {
+          "narr": "Nếu dậy thì quá sớm, sụn tăng trưởng đóng sớm — chiều cao cuối cùng bị thiệt.",
+          "cap": [
+            "Dậy thì sớm",
+            "sụn đóng sớm"
+          ],
+          "hl": "sụn đóng sớm"
+        },
+        "en": {
+          "narr": "If puberty comes too early, the plates close early — final height can drop.",
+          "cap": [
+            "Early puberty",
+            "plates close early"
+          ],
+          "hl": "plates close early"
+        },
+        "cn": {
+          "narr": "如果青春期来得太早，生长板提前闭合，最终身高会吃亏。",
+          "cap": [
+            "青春期早",
+            "生长板早闭"
+          ],
+          "hl": "生长板早闭"
+        },
+        "ch": {
+          "narr": "如果青春期來得太早，生長板提前閉合，最終身高會吃虧。",
+          "cap": [
+            "青春期早",
+            "生長板早閉"
+          ],
+          "hl": "生長板早閉"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27.5–31s",
+      "kind": "ig",
+      "igLabel": "IG4 닫히기 전 골든타임",
+      "motion": "⏳ 골드 글로우 + 따뜻 점등",
+      "copy": {
+        "ko": {
+          "narr": "그래서 성장판이 열려 있는 이번 방학이, 끌어올릴 수 있는 마지막 골든타임이에요.",
+          "cap": [
+            "열려 있는 지금",
+            "마지막 골든타임"
+          ],
+          "hl": "마지막 골든타임"
+        },
+        "th": {
+          "narr": "ดังนั้นปิดเทอมนี้ที่แผ่นกระดูกยังเปิด คือช่วงเวลาทองสุดท้ายที่จะดึงความสูง",
+          "cap": [
+            "ตอนที่ยังเปิด",
+            "ช่วงเวลาทองสุดท้าย"
+          ],
+          "hl": "ช่วงเวลาทองสุดท้าย"
+        },
+        "vi": {
+          "narr": "Vì vậy kỳ nghỉ này, khi sụn còn mở, là thời điểm vàng cuối cùng để con cao thêm.",
+          "cap": [
+            "Khi sụn còn mở",
+            "thời điểm vàng cuối"
+          ],
+          "hl": "thời điểm vàng cuối"
+        },
+        "en": {
+          "narr": "So this break, while the plates are open, is the last golden window to lift their height.",
+          "cap": [
+            "While still open",
+            "last golden window"
+          ],
+          "hl": "last golden window"
+        },
+        "cn": {
+          "narr": "所以趁这个假期生长板还开着，正是拉高身高的最后黄金期。",
+          "cap": [
+            "趁还开着",
+            "最后黄金期"
+          ],
+          "hl": "最后黄金期"
+        },
+        "ch": {
+          "narr": "所以趁這個假期生長板還開著，正是拉高身高的最後黃金期。",
+          "cap": [
+            "趁還開著",
+            "最後黃金期"
+          ],
+          "hl": "最後黃金期"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "31–34s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면, 우리 아이한테 남은 기회가 얼마인지 정확히 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "남은 기회 확인"
+          ],
+          "hl": "남은 기회 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกได้ว่าลูกเรายังเหลือโอกาสอีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "เวลาที่เหลือ"
+          ],
+          "hl": "เวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết chính xác con còn lại bao nhiêu cơ hội.",
+          "cap": [
+            "Tuổi xương",
+            "cơ hội còn lại"
+          ],
+          "hl": "cơ hội còn lại"
+        },
+        "en": {
+          "narr": "Bone age shows exactly how much chance your child has left.",
+          "cap": [
+            "Bone age",
+            "chance left"
+          ],
+          "hl": "chance left"
+        },
+        "cn": {
+          "narr": "骨龄能告诉你，孩子还剩下多少机会。",
+          "cap": [
+            "骨龄",
+            "剩余机会"
+          ],
+          "hl": "剩余机会"
+        },
+        "ch": {
+          "narr": "骨齡能告訴你，孩子還剩下多少機會。",
+          "cap": [
+            "骨齡",
+            "剩餘機會"
+          ],
+          "hl": "剩餘機會"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "34–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "이번 방학 지나기 전에, 지금 우리 아이 남은 기회를 확인해 보세요.",
+          "cap": [
+            "방학 지나기 전",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ก่อนปิดเทอมจะจบ มาเช็กโอกาสที่เหลือของลูกวันนี้",
+          "cap": [
+            "ก่อนปิดเทอมจบ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Trước khi kỳ nghỉ kết thúc, hãy kiểm tra cơ hội còn lại của con hôm nay.",
+          "cap": [
+            "Trước khi hết nghỉ",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Before this break ends, check your child's remaining chance today.",
+          "cap": [
+            "Before break ends",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "趁这个假期结束前，现在就查查孩子还剩多少机会吧。",
+          "cap": [
+            "假期结束前",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "趁這個假期結束前，現在就查查孩子還剩多少機會吧。",
+          "cap": [
+            "假期結束前",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "📚→😌 전환 + 글로우",
+      "title": "방학 = 성장 골든타임",
+      "emojis": [
+        "📚",
+        "😌",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. On the left a child slumped under a heavy stack of books and a stress cloud; an arrow flows to the right where the same child relaxes happily under a calm winter scene with gentle snowflakes, a soft glow rising around them. Conveys 'less stress on break = better growth.' Brand purple #667eea to mint #2dd4bf gradient, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "학기 스트레스",
+          "en": "School stress",
+          "th": "เครียดเรียน"
+        },
+        {
+          "pos": "오른쪽(글로우)",
+          "ko": "방학 골든타임",
+          "en": "Break golden time",
+          "th": "ปิดเทอมช่วงทอง"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🌙🥗🏃 3박자 순차 점등",
+      "title": "성장 3박자 — 수면·영양·운동",
+      "emojis": [
+        "🌙",
+        "🥗",
+        "🏃"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly circular icons in a row connected by a gentle rising line: a crescent moon with a sleeping child, a balanced plate of food, and a child running/jumping; above them a stylized growth-plate spark glowing mint. Conveys 'three habits that stimulate growth.' Brand purple #667eea + mint #2dd4bf accents, pediatric flat. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "นอน"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "อาหาร"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลัง"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "✅ 5개 순차 체크",
+      "title": "점검 신호 5가지",
+      "emojis": [
+        "📋",
+        "⚠️",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly clipboard checklist with five rows, each row showing a small simple pictogram: a short child beside a taller peer, a downward growth arrow, a folded t-shirt, two short parent silhouettes, and a small alert/clock badge for early puberty. Soft purple checkmarks appearing. Clean, non-scary, pediatric. Brand purple #667eea with a warm amber accent on the alert badge. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "1행",
+          "ko": "머리 하나 작음",
+          "en": "A head shorter",
+          "th": "เตี้ยกว่าหนึ่งหัว"
+        },
+        {
+          "pos": "2행",
+          "ko": "연 4cm 미만",
+          "en": "Under 4cm/yr",
+          "th": "ปีละไม่ถึง 4 ซม."
+        },
+        {
+          "pos": "3행",
+          "ko": "옷 사이즈 그대로",
+          "en": "Same clothes size",
+          "th": "ไซซ์เสื้อเท่าเดิม"
+        },
+        {
+          "pos": "5행",
+          "ko": "이른 사춘기",
+          "en": "Early puberty",
+          "th": "แรกรุ่นก่อนวัย"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "⏳ 골드 글로우 + 따뜻 점등",
+      "title": "성장판 닫히기 전 골든타임",
+      "emojis": [
+        "⏳",
+        "🦵",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized knee growth-plate shown as a glowing open gap, mint light pouring through it, beside an hourglass with golden sand still flowing and a child reaching upward toward a bright sparkle. Warm golden glow conveys 'last window while the plate is still open, time remains.' Hopeful, not scary. Brand purple #667eea plus warm gold accents, pediatric flat. NO text.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "마지막 기회",
+          "en": "Last window",
+          "th": "โอกาสสุดท้าย"
+        },
+        {
+          "pos": "가운데(글로우)",
+          "ko": "골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "❄️",
+      "label": "겨울방학"
+    },
+    {
+      "e": "⏰",
+      "label": "타이밍"
+    },
+    {
+      "e": "📚",
+      "label": "학업 스트레스"
+    },
+    {
+      "e": "😌",
+      "label": "방학 휴식"
+    },
+    {
+      "e": "🌙",
+      "label": "수면"
+    },
+    {
+      "e": "🥗",
+      "label": "영양"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장속도"
+    },
+    {
+      "e": "⚠️",
+      "label": "경고(이른 사춘기)"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이/성장판"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

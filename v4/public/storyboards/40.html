@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 잘 먹어도 키 안 크는 이유 — 영양 흡수 점검</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #40</span>
+  <h1>잘 먹는데 왜 안 크지? — 흡수가 진짜 열쇠</h1>
+  <div class="sub">잘 먹는 것 ≠ 잘 흡수하는 것 — 장 건강·필수영양소·수면이 키를 가른다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>잘 먹는데 왜?</b></div>
+      <div class="subj">우리 아이 키 안 크는 건</div>
+      <div class="big4"><div class="n" style="font-size:132px">흡수</div><div class="lab">가 문제!</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 안 크는 건</b> 흡수가 문제!"</li>
+        <li><b>거대 숫자 "흡수"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #40 「잘 먹어도 키 안 크는 이유 — 영양 흡수 점검」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"잘 먹는데 왜 안 크지? 사실 '먹는 것'보다 '흡수'가 더 중요해요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>"잘 먹으면 키는 알아서 큰다" → 먹는 양보다 장에서 제대로 흡수되느냐가 진짜 관건</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>잘 먹어도 장 건강 문제·알레르기·필수영양소(비타민D·아연) 부족·수면 부족이 흡수를 막으면 키가 안 큰다. 막연한 걱정 대신 원인을 찾으면 된다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → "원인만 찾으면 도울 수 있다" 긍정 골든타임. 잘 먹이는 부모를 탓하지 않고 부드럽게 공감 후 흡수로 안내. "우리 아이 키" 보편. 단정 ❌(원인은 다양, 측정·검사는 홈페이지/클리닉 유도)</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>막연히 걱정하지 말고 지금 확인 → 홈페이지 예측키 / 뼈나이·영양 상태 측정으로 숨은 원인 찾기</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"잘 먹는데 왜 안 크지?" 그 답답함 공감 → 먹는 것 ≠ 흡수하는 것</p></div><div class="act"><span class="n">ACT 2</span><h4>핵심 원리</h4><p>c3–c4<br>먹어도 장에서 흡수 안 되면 소용없다 → 장 건강이 첫 관문</p></div><div class="act"><span class="n">ACT 3</span><h4>숨은 방해 요인</h4><p>c5–c6<br>알레르기·불내증·만성질환 → 필수영양소(비타민D·아연) 결핍</p></div><div class="act"><span class="n">ACT 4</span><h4>의외의 변수·전환</h4><p>c7–c8<br>스트레스·수면 부족이 성장호르몬을 끈다 → 그래서 원인을 찾아야</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>뼈나이·검사로 숨은 원인 확인 → CTA</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">잘 먹는데 왜?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🍽️💜</div></div>
+        <div class="ph-cap"><div class="l">잘 먹는데</div><div class="l"><span class="y2">왜 안 크지?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">"우리 아이는 진짜 잘 먹는데, 왜 키가 안 클까요?" 정말 많이 듣는 질문이에요.</td><td><span class="cap2">잘 먹는데<br><span class="y">왜 안 크지?</span></span></td><td class="mo">🍽️ 슬램 인 + ❓ 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">사실 '잘 먹는 것'과 '잘 흡수하는 것'은 완전히 달라요.</td><td><span class="cap2">잘 먹는 것 ≠<br><span class="y">잘 흡수하는 것</span></span></td><td class="mo">💡 전환 글로우</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 먹기 vs 흡수</span></td><td class="narr">아무리 좋은 걸 많이 먹어도, 장에서 흡수가 안 되면 몸엔 그냥 지나가요.</td><td><span class="cap2">많이 먹어도<br><span class="y">흡수 안 되면 끝</span></span></td><td class="mo">🍽️→🩸 흐름 점등</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–15s</td><td><span class="scr ig">🖼 IG2 장 건강</span></td><td class="narr">그래서 첫 관문이 장 건강이에요. 배탈·설사·변비가 잦으면 흡수력이 떨어진 신호일 수 있어요.</td><td><span class="cap2">배탈·설사 잦으면<br><span class="y">장이 흡수를 못 해</span></span></td><td class="mo">🦠 펄스 · 장 점막 글로우</td></tr><tr><td class="c-id">c5</td><td class="c-time">15–19s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">특정 음식 알레르기나 불내증도 그래요. 우유에 약한 아이가 우유를 먹으면 오히려 장에 염증이 생겨요.</td><td><span class="cap2">우유·밀 불내증<br><span class="y">장에 염증 →흡수↓</span></span></td><td class="mo">🥛 펄스 · ⚠️ 깜빡</td></tr><tr><td class="c-id">c6</td><td class="c-time">19–23.5s</td><td><span class="scr ig">🖼 IG3 필수영양소</span></td><td class="narr">그리고 칼슘·비타민D·아연·철분이 부족해도 안 커요. 비타민D는 뼈, 아연은 성장호르몬에 꼭 필요하거든요.</td><td><span class="cap2">비타민D=뼈<br><span class="y">아연=성장호르몬</span></span></td><td class="mo">💊 4종 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">23.5–27.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">의외의 변수도 있어요. 스트레스와 수면 부족은 성장호르몬을 줄여서, 잘 먹어도 키를 막아요.</td><td><span class="cap2">스트레스·수면 부족<br><span class="y">성장호르몬 ↓</span></span></td><td class="mo">😴 흔들 + 🌙 글로우</td></tr><tr><td class="c-id">c8</td><td class="c-time">27.5–31s</td><td><span class="scr ig">🖼 IG4 숨은 원인</span></td><td class="narr">그러니까 잘 먹는데 안 큰다면, 막연히 걱정하기보다 숨은 원인을 찾으면 돼요.</td><td><span class="cap2">걱정만 X<br><span class="y">숨은 원인 찾기</span></span></td><td class="mo">🔍 따뜻 글로우 + 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">31–34s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이와 영양 검사를 보면, 우리 아이가 안 크는 진짜 이유를 정확히 알 수 있어요.</td><td><span class="cap2">뼈나이·영양 검사<br><span class="y">진짜 원인 확인</span></span></td><td class="mo">🦴🔬 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">34–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">걱정만 하지 말고, 지금 우리 아이 성장 상태를 확인해 보세요.</td><td><span class="cap2">걱정만 X<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 🍽️→🩸 흐름 점등</div><h3>먹기 vs 흡수 — 통과해 버리는 영양</h3></div>
+        <div class="body">
+          <div class="sketch">🍽️ 🩸 ➡️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly cross-section flow: a plate of colorful food on the left, an arrow leading into a stylized child's torso with a simple intestine shape in the middle, and on the right two outcomes shown side by side — one path where glowing nutrient dots are absorbed into a soft mint bloodstream, another faint path where the same dots simply pass straight through and exit. Gentle, hopeful, non-clinical. Brand purple #667eea to mint #2dd4bf gradient, soft glow on the absorbed dots. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(접시)</td><td>잘 먹어도</td><td>Eats well</td><td class="thai">กินดี</td></tr><tr><td>가운데(장)</td><td>흡수 관문</td><td>Absorption</td><td class="thai">การดูดซึม</td></tr><tr><td>오른쪽(통과)</td><td>그냥 통과</td><td>Passes through</td><td class="thai">ผ่านไปเปล่า</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 🦠 장 점막 글로우 + 펄스</div><h3>장 건강 — 흡수의 첫 관문</h3></div>
+        <div class="body">
+          <div class="sketch">🦠 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly close-up of a healthy intestinal lining shown as soft rounded villi finger-shapes glowing gently mint, with tiny nutrient dots being happily absorbed; to one side a faintly ghosted irritated patch (slightly red, gentle) where the lining is rougher and dots bounce off. Calm, reassuring, not scary or graphic. Brand purple #667eea with mint #2dd4bf glow accents and a soft warm red hint. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽(글로우)</td><td>건강한 장</td><td>Healthy gut</td><td class="thai">ลำไส้แข็งแรง</td></tr><tr><td>오른쪽(흐림)</td><td>흡수 저하</td><td>Poor absorption</td><td class="thai">ดูดซึมแย่</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 💊 4종 순차 점등</div><h3>성장 필수영양소 4종</h3></div>
+        <div class="body">
+          <div class="sketch">☀️ 🦴 🧬</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Four friendly glowing nutrient tokens arranged in a gentle arc around a small happy child reaching upward: a sun symbol for vitamin D, a tiny bone for calcium, a small metallic spark token for zinc, and a red droplet for iron. Each token softly lit, conveying 'essential building blocks for growth.' Hopeful and clean. Brand purple #667eea plus mint #2dd4bf accents, warm gold on the sun token. Friendly pediatric flat illustration. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>토큰1(해)</td><td>비타민D · 뼈</td><td>Vitamin D · bone</td><td class="thai">วิตามินดี · กระดูก</td></tr><tr><td>토큰2(스파크)</td><td>아연 · 성장호르몬</td><td>Zinc · growth hormone</td><td class="thai">สังกะสี · ฮอร์โมน</td></tr><tr><td>토큰3(뼈)</td><td>칼슘</td><td>Calcium</td><td class="thai">แคลเซียม</td></tr><tr><td>토큰4(물방울)</td><td>철분</td><td>Iron</td><td class="thai">ธาตุเหล็ก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 🔍 따뜻 글로우 + 점등</div><h3>숨은 원인 찾기 — 걱정에서 확인으로</h3></div>
+        <div class="body">
+          <div class="sketch">🔍 💜</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A warm, reassuring scene: a parent and child together looking through a friendly magnifying glass that reveals a small glowing checklist of hidden growth factors floating softly (a gut, a moon for sleep, a nutrient droplet) — turning vague worry into clear understanding. Uplifting and gentle, a soft golden glow of hope around them. Brand purple #667eea plus warm gold and mint #2dd4bf accents. Friendly pediatric flat illustration. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단</td><td>걱정 대신</td><td>Instead of worry</td><td class="thai">แทนความกังวล</td></tr><tr><td>가운데(돋보기)</td><td>숨은 원인 확인</td><td>Find the cause</td><td class="thai">หาสาเหตุ</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🍽️</b> 잘 먹는 아이</span><span class="emo"><b>❓</b> 왜 안 크지</span><span class="emo"><b>🩸</b> 흡수·혈류</span><span class="emo"><b>🦠</b> 장 건강</span><span class="emo"><b>🥛</b> 우유·불내증</span><span class="emo"><b>☀️</b> 비타민D</span><span class="emo"><b>🧬</b> 아연·성장호르몬</span><span class="emo"><b>🦴</b> 칼슘·뼈나이</span><span class="emo"><b>😴</b> 수면 부족</span><span class="emo"><b>🔍</b> 숨은 원인</span><span class="emo"><b>💜</b> 공감·희망</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"우리 아이는 진짜 잘 먹는데, 왜 키가 안 클까요?" 정말 많이 듣는 질문이에요.<br><span class="cap2">잘 먹는데 · <span class="y">왜 안 크지?</span></span></td></tr><tr><td class="c-id">c2</td><td>사실 '잘 먹는 것'과 '잘 흡수하는 것'은 완전히 달라요.<br><span class="cap2">잘 먹는 것 ≠ · <span class="y">잘 흡수하는 것</span></span></td></tr><tr><td class="c-id">c3</td><td>아무리 좋은 걸 많이 먹어도, 장에서 흡수가 안 되면 몸엔 그냥 지나가요.<br><span class="cap2">많이 먹어도 · <span class="y">흡수 안 되면 끝</span></span></td></tr><tr><td class="c-id">c4</td><td>그래서 첫 관문이 장 건강이에요. 배탈·설사·변비가 잦으면 흡수력이 떨어진 신호일 수 있어요.<br><span class="cap2">배탈·설사 잦으면 · <span class="y">장이 흡수를 못 해</span></span></td></tr><tr><td class="c-id">c5</td><td>특정 음식 알레르기나 불내증도 그래요. 우유에 약한 아이가 우유를 먹으면 오히려 장에 염증이 생겨요.<br><span class="cap2">우유·밀 불내증 · <span class="y">장에 염증 →흡수↓</span></span></td></tr><tr><td class="c-id">c6</td><td>그리고 칼슘·비타민D·아연·철분이 부족해도 안 커요. 비타민D는 뼈, 아연은 성장호르몬에 꼭 필요하거든요.<br><span class="cap2">비타민D=뼈 · <span class="y">아연=성장호르몬</span></span></td></tr><tr><td class="c-id">c7</td><td>의외의 변수도 있어요. 스트레스와 수면 부족은 성장호르몬을 줄여서, 잘 먹어도 키를 막아요.<br><span class="cap2">스트레스·수면 부족 · <span class="y">성장호르몬 ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>그러니까 잘 먹는데 안 큰다면, 막연히 걱정하기보다 숨은 원인을 찾으면 돼요.<br><span class="cap2">걱정만 X · <span class="y">숨은 원인 찾기</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이와 영양 검사를 보면, 우리 아이가 안 크는 진짜 이유를 정확히 알 수 있어요.<br><span class="cap2">뼈나이·영양 검사 · <span class="y">진짜 원인 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>걱정만 하지 말고, 지금 우리 아이 성장 상태를 확인해 보세요.<br><span class="cap2">걱정만 X · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"ลูกกินเก่งมาก แต่ทำไมไม่สูง?" เป็นคำถามที่ได้ยินบ่อยมาก<br><span class="cap2">กินเก่ง แต่ · <span class="y">ทำไมไม่สูง?</span></span></td></tr><tr><td class="c-id">c2</td><td>จริงๆ แล้ว "การกินดี" กับ "การดูดซึมดี" ต่างกันโดยสิ้นเชิง<br><span class="cap2">กินดี ≠ · <span class="y">ดูดซึมดี</span></span></td></tr><tr><td class="c-id">c3</td><td>ต่อให้กินของดีเยอะแค่ไหน ถ้าลำไส้ไม่ดูดซึม ก็ผ่านไปเปล่าๆ<br><span class="cap2">กินเยอะแค่ไหน · <span class="y">ไม่ดูดซึมก็เปล่า</span></span></td></tr><tr><td class="c-id">c4</td><td>ด่านแรกคือสุขภาพลำไส้ ถ้าปวดท้อง ท้องเสีย ท้องผูกบ่อย อาจดูดซึมได้ไม่ดี<br><span class="cap2">ท้องเสียบ่อย · <span class="y">ลำไส้ดูดซึมแย่</span></span></td></tr><tr><td class="c-id">c5</td><td>การแพ้หรือไม่ทนอาหารบางชนิดก็เช่นกัน เด็กที่แพ้นมพอกินนมกลับทำให้ลำไส้อักเสบ<br><span class="cap2">แพ้นม·แป้งสาลี · <span class="y">ลำไส้อักเสบ →ดูดซึม↓</span></span></td></tr><tr><td class="c-id">c6</td><td>และถ้าขาดแคลเซียม วิตามินดี สังกะสี ธาตุเหล็กก็ไม่สูง วิตามินดีสร้างกระดูก สังกะสีช่วยฮอร์โมน<br><span class="cap2">วิตามินดี=กระดูก · <span class="y">สังกะสี=ฮอร์โมน</span></span></td></tr><tr><td class="c-id">c7</td><td>มีตัวแปรที่คาดไม่ถึงด้วย ความเครียดและนอนน้อยลดฮอร์โมน ต่อให้กินดีก็ไม่สูง<br><span class="cap2">เครียด·นอนน้อย · <span class="y">ฮอร์โมน ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>ดังนั้นถ้ากินดีแต่ไม่สูง อย่ากังวลลอยๆ แต่หาสาเหตุที่ซ่อนอยู่<br><span class="cap2">ไม่ใช่แค่กังวล · <span class="y">หาสาเหตุที่ซ่อน</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกและตรวจโภชนาการ บอกเหตุผลที่แท้จริงที่ลูกไม่สูงได้ชัดเจน<br><span class="cap2">อายุกระดูก·โภชนาการ · <span class="y">รู้สาเหตุที่แท้จริง</span></span></td></tr><tr><td class="c-id">c10</td><td>อย่าแค่กังวล มาเช็กพัฒนาการความสูงของลูกวันนี้เลย<br><span class="cap2">อย่าแค่กังวล · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"Con ăn rất giỏi mà sao không cao?" — câu hỏi tôi nghe rất nhiều.<br><span class="cap2">Ăn giỏi mà · <span class="y">sao không cao?</span></span></td></tr><tr><td class="c-id">c2</td><td>Thật ra "ăn tốt" và "hấp thu tốt" hoàn toàn khác nhau.<br><span class="cap2">Ăn tốt ≠ · <span class="y">hấp thu tốt</span></span></td></tr><tr><td class="c-id">c3</td><td>Ăn nhiều đồ tốt đến mấy, ruột không hấp thu thì cũng trôi qua vô ích.<br><span class="cap2">Ăn nhiều mấy · <span class="y">không hấp thu là phí</span></span></td></tr><tr><td class="c-id">c4</td><td>Cửa ải đầu tiên là sức khỏe đường ruột. Hay đau bụng, tiêu chảy, táo bón là dấu hiệu hấp thu kém.<br><span class="cap2">Hay đau bụng · <span class="y">ruột hấp thu kém</span></span></td></tr><tr><td class="c-id">c5</td><td>Dị ứng hay không dung nạp thực phẩm cũng vậy. Bé kém dung nạp sữa mà uống sữa lại gây viêm ruột.<br><span class="cap2">Dị ứng sữa·lúa mì · <span class="y">viêm ruột →hấp thu↓</span></span></td></tr><tr><td class="c-id">c6</td><td>Thiếu canxi, vitamin D, kẽm, sắt cũng không cao. Vitamin D cho xương, kẽm cho hormone tăng trưởng.<br><span class="cap2">Vitamin D=xương · <span class="y">kẽm=hormone</span></span></td></tr><tr><td class="c-id">c7</td><td>Có cả yếu tố bất ngờ: stress và thiếu ngủ làm giảm hormone tăng trưởng, dù ăn tốt vẫn không cao.<br><span class="cap2">Stress·thiếu ngủ · <span class="y">hormone ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>Nên nếu ăn tốt mà không cao, đừng chỉ lo lắng mơ hồ, hãy tìm nguyên nhân ẩn.<br><span class="cap2">Đừng chỉ lo · <span class="y">tìm nguyên nhân ẩn</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương và xét nghiệm dinh dưỡng cho biết chính xác lý do thật sự con không cao.<br><span class="cap2">Tuổi xương·dinh dưỡng · <span class="y">rõ nguyên nhân thật</span></span></td></tr><tr><td class="c-id">c10</td><td>Đừng chỉ lo lắng, hãy kiểm tra tình trạng phát triển của con ngay hôm nay.<br><span class="cap2">Đừng chỉ lo · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"My child eats so well — why isn't he growing?" I hear this all the time.<br><span class="cap2">Eats well, but · <span class="y">why so short?</span></span></td></tr><tr><td class="c-id">c2</td><td>Truth is, eating well and absorbing well are two very different things.<br><span class="cap2">Eating ≠ · <span class="y">absorbing</span></span></td></tr><tr><td class="c-id">c3</td><td>No matter how much good food goes in, if the gut can't absorb it, it just passes through.<br><span class="cap2">Eat all you want · <span class="y">no absorb = wasted</span></span></td></tr><tr><td class="c-id">c4</td><td>So the first gate is gut health. Frequent tummy aches, diarrhea or constipation can signal poor absorption.<br><span class="cap2">Frequent tummy issues · <span class="y">gut absorbs poorly</span></span></td></tr><tr><td class="c-id">c5</td><td>Food allergy or intolerance does the same. A milk-sensitive child who drinks milk gets gut inflammation instead.<br><span class="cap2">Milk·wheat issues · <span class="y">gut inflamed →less absorb</span></span></td></tr><tr><td class="c-id">c6</td><td>And low calcium, vitamin D, zinc or iron stalls growth. Vitamin D builds bone; zinc drives growth hormone.<br><span class="cap2">Vitamin D=bone · <span class="y">zinc=growth hormone</span></span></td></tr><tr><td class="c-id">c7</td><td>There's a surprise factor too: stress and poor sleep cut growth hormone, blocking height even when they eat well.<br><span class="cap2">Stress·poor sleep · <span class="y">growth hormone ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>So if they eat well but stay short, don't just worry — find the hidden cause.<br><span class="cap2">Not just worry · <span class="y">find hidden cause</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age plus a nutrition check reveals exactly why your child isn't growing.<br><span class="cap2">Bone age·nutrition test · <span class="y">the real reason</span></span></td></tr><tr><td class="c-id">c10</td><td>Don't just worry — check your child's growth today.<br><span class="cap2">Stop worrying · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"孩子明明吃得很好，为什么就是不长个？"这是我常听到的问题。<br><span class="cap2">吃得好，却 · <span class="y">为啥不长高？</span></span></td></tr><tr><td class="c-id">c2</td><td>其实，"吃得好"和"吸收好"完全是两回事。<br><span class="cap2">吃得好 ≠ · <span class="y">吸收得好</span></span></td></tr><tr><td class="c-id">c3</td><td>再好的东西吃再多，肠道不吸收，也只是白白经过。<br><span class="cap2">吃再多 · <span class="y">不吸收=白吃</span></span></td></tr><tr><td class="c-id">c4</td><td>所以第一关是肠道健康。常肚子痛、腹泻、便秘，可能就是吸收变差的信号。<br><span class="cap2">常肚子不适 · <span class="y">肠道吸收差</span></span></td></tr><tr><td class="c-id">c5</td><td>食物过敏或不耐受也一样。对牛奶敏感的孩子喝奶，反而让肠道发炎。<br><span class="cap2">牛奶·小麦不耐 · <span class="y">肠道发炎 →吸收↓</span></span></td></tr><tr><td class="c-id">c6</td><td>缺钙、维生素D、锌、铁也长不高。维D造骨，锌关乎生长激素。<br><span class="cap2">维D=骨骼 · <span class="y">锌=生长激素</span></span></td></tr><tr><td class="c-id">c7</td><td>还有意外因素：压力和睡眠不足会减少生长激素，吃得再好也长不高。<br><span class="cap2">压力·睡眠不足 · <span class="y">生长激素 ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>所以吃得好却不长，与其空担心，不如找出隐藏原因。<br><span class="cap2">别只担心 · <span class="y">找隐藏原因</span></span></td></tr><tr><td class="c-id">c9</td><td>骨龄加上营养检查，能精准找出孩子不长高的真正原因。<br><span class="cap2">骨龄·营养检查 · <span class="y">查出真正原因</span></span></td></tr><tr><td class="c-id">c10</td><td>别只是担心，现在就查查孩子的成长状况吧。<br><span class="cap2">别只担心 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>"孩子明明吃得很好，為什麼就是不長個？"這是我常聽到的問題。<br><span class="cap2">吃得好，卻 · <span class="y">為啥不長高？</span></span></td></tr><tr><td class="c-id">c2</td><td>其實，"吃得好"和"吸收好"完全是兩回事。<br><span class="cap2">吃得好 ≠ · <span class="y">吸收得好</span></span></td></tr><tr><td class="c-id">c3</td><td>再好的東西吃再多，腸道不吸收，也只是白白經過。<br><span class="cap2">吃再多 · <span class="y">不吸收=白吃</span></span></td></tr><tr><td class="c-id">c4</td><td>所以第一關是腸道健康。常肚子痛、腹瀉、便秘，可能就是吸收變差的信號。<br><span class="cap2">常肚子不適 · <span class="y">腸道吸收差</span></span></td></tr><tr><td class="c-id">c5</td><td>食物過敏或不耐受也一樣。對牛奶敏感的孩子喝奶，反而讓腸道發炎。<br><span class="cap2">牛奶·小麥不耐 · <span class="y">腸道發炎 →吸收↓</span></span></td></tr><tr><td class="c-id">c6</td><td>缺鈣、維生素D、鋅、鐵也長不高。維D造骨，鋅關乎生長激素。<br><span class="cap2">維D=骨骼 · <span class="y">鋅=生長激素</span></span></td></tr><tr><td class="c-id">c7</td><td>還有意外因素：壓力和睡眠不足會減少生長激素，吃得再好也長不高。<br><span class="cap2">壓力·睡眠不足 · <span class="y">生長激素 ↓</span></span></td></tr><tr><td class="c-id">c8</td><td>所以吃得好卻不長，與其空擔心，不如找出隱藏原因。<br><span class="cap2">別只擔心 · <span class="y">找隱藏原因</span></span></td></tr><tr><td class="c-id">c9</td><td>骨齡加上營養檢查，能精準找出孩子不長高的真正原因。<br><span class="cap2">骨齡·營養檢查 · <span class="y">查出真正原因</span></span></td></tr><tr><td class="c-id">c10</td><td>別只是擔心，現在就查查孩子的成長狀況吧。<br><span class="cap2">別只擔心 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/잘먹는데안커/</code> · <code>잘먹는데안커-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 초등생 평균키 — 우리 아이 위치</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #54</span>
+  <h1>요즘 초등생 평균키 실화? — 우리 아이 위치는?</h1>
+  <div class="sub">평균은 그냥 평균일 뿐 — 또래 비교보다 '뼈나이'가 진짜 답이다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>평균만 봤다간?</b></div>
+      <div class="subj">우리 아이 키 진짜 위치는</div>
+      <div class="big4"><div class="n" style="font-size:98px">몇 등</div><div class="lab">?</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 진짜 위치는</b> 몇 등?"</li>
+        <li><b>거대 숫자 "몇 등"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #54 「초등생 평균키 — 우리 아이 위치」 (D. 기타/트렌드)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"요즘 초등생 평균키, 진짜 많이 컸죠? 그런데 우리 아이 위치, 평균만 봐선 몰라요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>평균보다 작으면 무조건 문제 / 평균만 넘으면 안심 → 사실 평균은 그냥 평균, 진짜 답은 뼈나이</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>평균은 평균일 뿐. 또래와 단순 비교 대신 성장 속도(매년 4cm↑)와 뼈나이로 우리 아이의 '남은 성장'과 위치를 정확히 봐야 한다</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("아직 늦지 않았다, 지금 위치 확인"). 평균 미달=문제로 단정 ❌. "우리 아이 키" 보편(평균 넘어도 부모는 궁금). CTA는 측정 유도</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>또래 평균에 막연히 걱정 말고, 지금 우리 아이 위치·뼈나이 확인 → 홈페이지 예측키/뼈나이 측정</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅</h4><p>c1–c2<br>"요즘 평균키 진짜 컸다 → 근데 평균만 봐선 우리 아이 위치 몰라"</p></div><div class="act"><span class="n">ACT 2</span><h4>평균의 함정</h4><p>c3–c4<br>"평균은 평균일 뿐 → 진짜 신호는 매년 4cm 성장 속도"</p></div><div class="act"><span class="n">ACT 3</span><h4>키를 만드는 요소</h4><p>c5–c6<br>"유전 70~80%, 나머지는 영양·수면·운동·스트레스"</p></div><div class="act"><span class="n">ACT 4</span><h4>진짜 답 = 뼈나이</h4><p>c7–c8<br>"또래 비교보다 뼈나이가 남은 성장을 말해준다"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"지금 우리 아이 위치 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">평균일까?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📏✨</div></div>
+        <div class="ph-cap"><div class="l">요즘 평균키</div><div class="l"><span class="y2">많이 컸죠?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">요즘 초등생 평균키, 진짜 많이 컸죠? 근데 평균만 봐선 우리 아이 위치, 몰라요.</td><td><span class="cap2">요즘 평균키<br><span class="y">많이 컸죠?</span></span></td><td class="mo">📏 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">평균보다 작으면 큰일? 넘으면 안심? 둘 다 아니에요. 평균은 그냥 평균이거든요.</td><td><span class="cap2">평균은<br><span class="y">그냥 평균</span></span></td><td class="mo">🤔 흔들 + 물음표 팝</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 평균의 함정</span></td><td class="narr">같은 또래라도 키는 천차만별. 평균 한 줄로는 우리 아이가 어디인지 안 보여요.</td><td><span class="cap2">또래라도<br><span class="y">천차만별</span></span></td><td class="mo">📊 분포 곡선 펼침 + 점 흩어짐</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 성장 속도</span></td><td class="narr">평균보다 진짜 중요한 신호는 속도예요. 1년에 4센티가 안 되면 한번 살펴봐야 해요.</td><td><span class="cap2">매년<br><span class="y">4cm 미만은 체크</span></span></td><td class="mo">📏 + "4cm" 0→4 카운트업 ↗</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">키는 유전이 70에서 80퍼센트. 하지만 유전이 전부는 아니에요.</td><td><span class="cap2">유전<br><span class="y">70~80%</span></span></td><td class="mo">🧬 펄스 + 80% 글로우</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 나머지 20%</span></td><td class="narr">나머지 20퍼센트는 영양, 수면, 운동, 스트레스. 성장호르몬은 깊은 잠에 나와요.</td><td><span class="cap2">나머지 20%<br><span class="y">영양·수면·운동</span></span></td><td class="mo">🍗😴🏀 순차 점등</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">또래랑 키 비교하는 것보다 훨씬 정확한 게 있어요. 바로 뼈나이예요.</td><td><span class="cap2">또래 비교보다<br><span class="y">뼈나이</span></span></td><td class="mo">🦴 팝 + ⏳ 골드 글로우</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 뼈나이 = 남은 성장</span></td><td class="narr">왼손 엑스레이 한 장이면, 우리 아이한테 성장이 얼마나 남았는지 보여요.</td><td><span class="cap2">손 X-ray로<br><span class="y">남은 성장 확인</span></span></td><td class="mo">🖐️ X-ray 스캔 라인 + 게이지 채움</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">평균 보고 막연히 걱정하지 마시고, 지금 우리 아이 위치부터 정확히 봐요.</td><td><span class="cap2">막연한 걱정 말고<br><span class="y">위치부터 확인</span></span></td><td class="mo">🌱 솟음 + ✨ 스파클</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 키, 또래 속 위치와 뼈나이, 지금 바로 확인해 보세요.</td><td><span class="cap2">우리 아이 위치<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 분포 곡선 펼침 + 점 흩어짐</div><h3>평균의 함정 — 또래도 천차만별</h3></div>
+        <div class="body">
+          <div class="sketch">📊 🧒 🧒</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A gentle bell-curve distribution drawn in brand purple, with many small friendly child silhouettes of clearly different heights scattered along it — some short, some tall — and a soft mint vertical line marking the center average. Conveys 'same age, very different heights; average is just the middle.' Friendly pediatric style, brand purple #667eea and mint #2dd4bf. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>중앙선</td><td>평균</td><td>Average</td><td class="thai">ค่าเฉลี่ย</td></tr><tr><td>왼쪽 끝</td><td>작은 편</td><td>Shorter</td><td class="thai">เตี้ยกว่า</td></tr><tr><td>오른쪽 끝</td><td>큰 편</td><td>Taller</td><td class="thai">สูงกว่า</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 4 카운트업 + ↗</div><h3>성장 속도 — 매년 4cm 기준선</h3></div>
+        <div class="body">
+          <div class="sketch">📏 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly child standing next to a vertical growth ruler, with a clean upward arrow rising year by year and a soft horizontal dashed threshold line partway up. Conveys 'yearly growth speed has a minimum line to watch.' Brand purple gradient with a mint arrow. Friendly pediatric style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>기준선</td><td>연 4cm</td><td>4cm / yr</td><td class="thai">4 ซม./ปี</td></tr><tr><td>화살표 끝</td><td>성장 속도</td><td>Growth speed</td><td class="thai">อัตราการโต</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 3아이콘 순차 점등</div><h3>키를 만드는 나머지 20% — 생활습관</h3></div>
+        <div class="body">
+          <div class="sketch">🍗 😴 🏀</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A friendly child in the center surrounded by three glowing circular icons: a balanced meal plate, a sleeping crescent-moon-and-pillow, and a basketball/jump-rope motion. Soft connecting glow lines from child to each icon. Conveys 'lifestyle habits that boost growth.' Brand purple #667eea and mint #2dd4bf, friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr><tr><td>아이콘2</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr><tr><td>아이콘3</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: X-ray 스캔 라인 + 게이지 채움</div><h3>뼈나이 = 남은 성장 게이지</h3></div>
+        <div class="body">
+          <div class="sketch">🖐️ 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A stylized left-hand X-ray silhouette glowing in soft mint, beside a vertical 'remaining growth' gauge partially filled with a brand-purple-to-mint gradient and a gentle glow at the top. Conveys 'a hand X-ray reveals how much growth is left.' Friendly pediatric, brand purple #667eea and mint #2dd4bf. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>손 X-ray</td><td>손목 X-ray</td><td>Hand X-ray</td><td class="thai">X-ray มือ</td></tr><tr><td>게이지 상단</td><td>남은 성장</td><td>Growth left</td><td class="thai">การโตที่เหลือ</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📏</b> 키·평균</span><span class="emo"><b>📊</b> 평균 분포</span><span class="emo"><b>🧒</b> 또래 아이</span><span class="emo"><b>📈</b> 성장 속도</span><span class="emo"><b>🧬</b> 유전 70~80%</span><span class="emo"><b>🍗</b> 영양</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🏀</b> 운동</span><span class="emo"><b>🖐️</b> 손 X-ray</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>⏳</b> 골든타임</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>요즘 초등생 평균키, 진짜 많이 컸죠? 근데 평균만 봐선 우리 아이 위치, 몰라요.<br><span class="cap2">요즘 평균키 · <span class="y">많이 컸죠?</span></span></td></tr><tr><td class="c-id">c2</td><td>평균보다 작으면 큰일? 넘으면 안심? 둘 다 아니에요. 평균은 그냥 평균이거든요.<br><span class="cap2">평균은 · <span class="y">그냥 평균</span></span></td></tr><tr><td class="c-id">c3</td><td>같은 또래라도 키는 천차만별. 평균 한 줄로는 우리 아이가 어디인지 안 보여요.<br><span class="cap2">또래라도 · <span class="y">천차만별</span></span></td></tr><tr><td class="c-id">c4</td><td>평균보다 진짜 중요한 신호는 속도예요. 1년에 4센티가 안 되면 한번 살펴봐야 해요.<br><span class="cap2">매년 · <span class="y">4cm 미만은 체크</span></span></td></tr><tr><td class="c-id">c5</td><td>키는 유전이 70에서 80퍼센트. 하지만 유전이 전부는 아니에요.<br><span class="cap2">유전 · <span class="y">70~80%</span></span></td></tr><tr><td class="c-id">c6</td><td>나머지 20퍼센트는 영양, 수면, 운동, 스트레스. 성장호르몬은 깊은 잠에 나와요.<br><span class="cap2">나머지 20% · <span class="y">영양·수면·운동</span></span></td></tr><tr><td class="c-id">c7</td><td>또래랑 키 비교하는 것보다 훨씬 정확한 게 있어요. 바로 뼈나이예요.<br><span class="cap2">또래 비교보다 · <span class="y">뼈나이</span></span></td></tr><tr><td class="c-id">c8</td><td>왼손 엑스레이 한 장이면, 우리 아이한테 성장이 얼마나 남았는지 보여요.<br><span class="cap2">손 X-ray로 · <span class="y">남은 성장 확인</span></span></td></tr><tr><td class="c-id">c9</td><td>평균 보고 막연히 걱정하지 마시고, 지금 우리 아이 위치부터 정확히 봐요.<br><span class="cap2">막연한 걱정 말고 · <span class="y">위치부터 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 키, 또래 속 위치와 뼈나이, 지금 바로 확인해 보세요.<br><span class="cap2">우리 아이 위치 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>เด็กประถมสมัยนี้สูงขึ้นจริง แต่ดูแค่ค่าเฉลี่ย ไม่รู้ว่าลูกอยู่ตรงไหน<br><span class="cap2">เด็กสมัยนี้ · <span class="y">สูงขึ้นจริง</span></span></td></tr><tr><td class="c-id">c2</td><td>ต่ำกว่าค่าเฉลี่ยคือมีปัญหา? เกินคือสบายใจ? ไม่ใช่ทั้งคู่ ค่าเฉลี่ยก็แค่ค่าเฉลี่ย<br><span class="cap2">ค่าเฉลี่ย · <span class="y">ก็แค่ค่าเฉลี่ย</span></span></td></tr><tr><td class="c-id">c3</td><td>วัยเดียวกันก็สูงต่างกันมาก ค่าเฉลี่ยเส้นเดียวไม่บอกว่าลูกอยู่ตรงไหน<br><span class="cap2">วัยเดียวกัน · <span class="y">ก็ต่างกันมาก</span></span></td></tr><tr><td class="c-id">c4</td><td>สัญญาณที่สำคัญกว่าค่าเฉลี่ยคือ 'ความเร็ว' โตน้อยกว่า 4 ซม. ต่อปี ควรเช็ก<br><span class="cap2">ต่อปี · <span class="y">ต่ำกว่า 4 ซม.</span></span></td></tr><tr><td class="c-id">c5</td><td>ส่วนสูงมาจากพันธุกรรม 70-80% แต่พันธุกรรมไม่ใช่ทั้งหมด<br><span class="cap2">พันธุกรรม · <span class="y">70-80%</span></span></td></tr><tr><td class="c-id">c6</td><td>อีก 20% คือโภชนาการ การนอน การออกกำลังกาย โกรทฮอร์โมนหลั่งตอนหลับลึก<br><span class="cap2">อีก 20% · <span class="y">อาหาร·นอน·ออกกำลัง</span></span></td></tr><tr><td class="c-id">c7</td><td>มีสิ่งที่แม่นยำกว่าเทียบกับเพื่อนมาก นั่นคืออายุกระดูก<br><span class="cap2">แม่นกว่าเทียบเพื่อน · <span class="y">อายุกระดูก</span></span></td></tr><tr><td class="c-id">c8</td><td>เอกซเรย์มือซ้ายภาพเดียว บอกได้ว่าลูกยังโตได้อีกแค่ไหน<br><span class="cap2">X-ray มือ · <span class="y">ดูการโตที่เหลือ</span></span></td></tr><tr><td class="c-id">c9</td><td>อย่ากังวลลอยๆ กับค่าเฉลี่ย มาดูตำแหน่งของลูกให้ชัดก่อน<br><span class="cap2">ไม่ต้องกังวลลอยๆ · <span class="y">ดูตำแหน่งก่อน</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กตำแหน่งและอายุกระดูกของลูกได้เลยวันนี้<br><span class="cap2">ตำแหน่งของลูก · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Trẻ tiểu học giờ cao hơn hẳn, đúng không? Nhưng chỉ nhìn trung bình thì chưa đủ.<br><span class="cap2">Giờ trẻ · <span class="y">cao hơn hẳn</span></span></td></tr><tr><td class="c-id">c2</td><td>Thấp hơn trung bình là có vấn đề? Cao hơn là yên tâm? Đều sai — trung bình chỉ là trung bình.<br><span class="cap2">Trung bình · <span class="y">chỉ là trung bình</span></span></td></tr><tr><td class="c-id">c3</td><td>Cùng tuổi nhưng chiều cao rất khác nhau — một con số trung bình không cho thấy con bạn ở đâu.<br><span class="cap2">Cùng tuổi · <span class="y">vẫn rất khác</span></span></td></tr><tr><td class="c-id">c4</td><td>Dấu hiệu quan trọng hơn trung bình là tốc độ — dưới 4cm mỗi năm thì nên kiểm tra.<br><span class="cap2">Mỗi năm · <span class="y">dưới 4cm là xem</span></span></td></tr><tr><td class="c-id">c5</td><td>Chiều cao do di truyền 70–80%, nhưng di truyền không phải tất cả.<br><span class="cap2">Di truyền · <span class="y">70–80%</span></span></td></tr><tr><td class="c-id">c6</td><td>20% còn lại là dinh dưỡng, giấc ngủ, vận động. Hormone tăng trưởng tiết khi ngủ sâu.<br><span class="cap2">20% còn lại · <span class="y">ăn·ngủ·vận động</span></span></td></tr><tr><td class="c-id">c7</td><td>Có thứ chính xác hơn nhiều việc so với bạn bè — đó là tuổi xương.<br><span class="cap2">Hơn cả so sánh · <span class="y">tuổi xương</span></span></td></tr><tr><td class="c-id">c8</td><td>Chỉ một tấm X-quang bàn tay trái cho thấy con còn cao được bao nhiêu.<br><span class="cap2">X-quang tay · <span class="y">còn cao bao nhiêu</span></span></td></tr><tr><td class="c-id">c9</td><td>Đừng lo mơ hồ vì con số trung bình — hãy xem rõ vị trí của con trước.<br><span class="cap2">Đừng lo mơ hồ · <span class="y">xem vị trí trước</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra vị trí và tuổi xương của con ngay hôm nay.<br><span class="cap2">Vị trí của con · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Kids today really are taller — but the average alone won't tell you where yours stands.<br><span class="cap2">Kids today · <span class="y">are taller</span></span></td></tr><tr><td class="c-id">c2</td><td>Below average means trouble? Above means safe? Neither — average is just average.<br><span class="cap2">Average is · <span class="y">just average</span></span></td></tr><tr><td class="c-id">c3</td><td>Same age, wildly different heights — one average can't show where your child sits.<br><span class="cap2">Same age · <span class="y">very different</span></span></td></tr><tr><td class="c-id">c4</td><td>The real signal isn't the average — it's speed. Under 4cm a year is worth a look.<br><span class="cap2">Per year · <span class="y">under 4cm? check</span></span></td></tr><tr><td class="c-id">c5</td><td>Height is 70 to 80% genetics — but genetics isn't everything.<br><span class="cap2">Genetics · <span class="y">70–80%</span></span></td></tr><tr><td class="c-id">c6</td><td>The other 20%: nutrition, sleep, exercise. Growth hormone peaks in deep sleep.<br><span class="cap2">The other 20% · <span class="y">food·sleep·move</span></span></td></tr><tr><td class="c-id">c7</td><td>There's something far more accurate than comparing to peers — bone age.<br><span class="cap2">More than peers · <span class="y">bone age</span></span></td></tr><tr><td class="c-id">c8</td><td>One left-hand X-ray shows exactly how much growth your child has left.<br><span class="cap2">Hand X-ray · <span class="y">growth left</span></span></td></tr><tr><td class="c-id">c9</td><td>Don't worry vaguely about the average — see exactly where your child stands first.<br><span class="cap2">Skip vague worry · <span class="y">see the position</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's position and bone age right now.<br><span class="cap2">Your child's spot · <span class="y">check now</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>现在小学生平均身高真的高了不少，可光看平均，看不出自家孩子的位置。<br><span class="cap2">现在孩子 · <span class="y">真的更高</span></span></td></tr><tr><td class="c-id">c2</td><td>低于平均就有问题？高于就安心？都不对——平均只是平均。<br><span class="cap2">平均 · <span class="y">只是平均</span></span></td></tr><tr><td class="c-id">c3</td><td>同龄孩子身高也天差地别，一个平均数看不出自家孩子在哪。<br><span class="cap2">同龄 · <span class="y">也天差地别</span></span></td></tr><tr><td class="c-id">c4</td><td>比平均更重要的信号是速度——每年长不到4厘米，就该看看了。<br><span class="cap2">每年 · <span class="y">不到4厘米要查</span></span></td></tr><tr><td class="c-id">c5</td><td>身高七到八成靠遗传，但遗传不是全部。<br><span class="cap2">遗传 · <span class="y">70–80%</span></span></td></tr><tr><td class="c-id">c6</td><td>剩下两成靠营养、睡眠、运动，生长激素在深睡时分泌。<br><span class="cap2">剩下20% · <span class="y">营养·睡眠·运动</span></span></td></tr><tr><td class="c-id">c7</td><td>有个比跟同龄人比身高准确得多的方法——骨龄。<br><span class="cap2">比同龄更准 · <span class="y">骨龄</span></span></td></tr><tr><td class="c-id">c8</td><td>一张左手X光片，就能看出孩子还能长多少。<br><span class="cap2">手部X光 · <span class="y">看剩余成长</span></span></td></tr><tr><td class="c-id">c9</td><td>别对着平均瞎担心，先把孩子的位置看清楚。<br><span class="cap2">别瞎担心 · <span class="y">先看清位置</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的位置和骨龄吧。<br><span class="cap2">孩子的位置 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>現在小學生平均身高真的高了不少，可光看平均，看不出自家孩子的位置。<br><span class="cap2">現在孩子 · <span class="y">真的更高</span></span></td></tr><tr><td class="c-id">c2</td><td>低於平均就有問題？高於就安心？都不對——平均只是平均。<br><span class="cap2">平均 · <span class="y">只是平均</span></span></td></tr><tr><td class="c-id">c3</td><td>同齡孩子身高也天差地別，一個平均數看不出自家孩子在哪。<br><span class="cap2">同齡 · <span class="y">也天差地別</span></span></td></tr><tr><td class="c-id">c4</td><td>比平均更重要的信號是速度——每年長不到4公分，就該看看了。<br><span class="cap2">每年 · <span class="y">不到4公分要查</span></span></td></tr><tr><td class="c-id">c5</td><td>身高七到八成靠遺傳，但遺傳不是全部。<br><span class="cap2">遺傳 · <span class="y">70–80%</span></span></td></tr><tr><td class="c-id">c6</td><td>剩下兩成靠營養、睡眠、運動，生長激素在深睡時分泌。<br><span class="cap2">剩下20% · <span class="y">營養·睡眠·運動</span></span></td></tr><tr><td class="c-id">c7</td><td>有個比跟同齡人比身高準確得多的方法——骨齡。<br><span class="cap2">比同齡更準 · <span class="y">骨齡</span></span></td></tr><tr><td class="c-id">c8</td><td>一張左手X光片，就能看出孩子還能長多少。<br><span class="cap2">手部X光 · <span class="y">看剩餘成長</span></span></td></tr><tr><td class="c-id">c9</td><td>別對著平均瞎擔心，先把孩子的位置看清楚。<br><span class="cap2">別瞎擔心 · <span class="y">先看清位置</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的位置和骨齡吧。<br><span class="cap2">孩子的位置 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/평균키위치/</code> · <code>평균키위치-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

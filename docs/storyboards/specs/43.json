@@ -1,0 +1,775 @@
+{
+  "n": 43,
+  "slug": "중2키성장",
+  "title": "중2인데 키 끝났다고요? 아직 골든타임입니다",
+  "sub": "나이가 아니라 성장판 — 사춘기 급성장 7~12cm, 이후에도 2~3년 더 큰다",
+  "category": "C. 부모공감",
+  "topicTitle": "중학생 키 성장 · 사춘기 이후 성장",
+  "headerTop": "우리 아이 키",
+  "headerMark": "중2면 끝?",
+  "accentEmoji": "📏✨",
+  "duration": 35,
+  "hook": "\"중2면 다 컸지\" — 정말 그럴까요? 키는 나이가 아니라 '성장판'이 정합니다.",
+  "misconception": "중2면 성장 끝 → 나이로 단정 못 함. 성장판이 열려 있으면 아직 큰다",
+  "message": "중2도 키 성장은 끝나지 않았다 — 나이가 아니라 성장판이 키를 정한다. 사춘기 급성장 7~12cm, 이후에도 2~3년 더 클 수 있으며 뼈나이로 남은 기회를 확인할 수 있다.",
+  "tone": "협박/단정 ❌ → 긍정 골든타임. \"우리 아이 키\" 보편 메시지, CTA는 측정 유도",
+  "cta": "우리 아이 성장판이 아직 열려 있는지 뼈나이/예측키로 지금 확인",
+  "thumb": {
+    "kicker": "중2면 끝? NO",
+    "subject": "우리 아이 키",
+    "number": "+7~12cm",
+    "numLabel": "아직 큰다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·공감",
+      "scenes": "c1–c2",
+      "desc": "\"중2면 끝? 나이가 아니라 성장판이 답\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "성장판 진실",
+      "scenes": "c3–c4",
+      "desc": "\"성장판 열려 있으면 아직 큰다\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "사춘기 급성장",
+      "scenes": "c5–c6",
+      "desc": "\"남학생 늦게 시작 → 7~12cm 급성장\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "이후에도·골든타임",
+      "scenes": "c7–c8",
+      "desc": "\"이후 2~3년 더 → 지금이 골든타임\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "확인·행동",
+      "scenes": "c9–c10",
+      "desc": "\"뼈나이로 남은 기회 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🛑 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "\"중2면 키 다 컸지\" — 혹시 이렇게 포기하고 계셨나요?",
+          "cap": [
+            "중2면 끝?",
+            "정말 그럴까요"
+          ],
+          "hl": "중2면 끝?"
+        },
+        "th": {
+          "narr": "\"ม.2 ก็สูงสุดแล้ว\" คุณกำลังคิดแบบนี้อยู่หรือเปล่า?",
+          "cap": [
+            "ม.2 จบแล้ว?",
+            "จริงเหรอ"
+          ],
+          "hl": "ม.2 จบแล้ว?"
+        },
+        "vi": {
+          "narr": "\"Lớp 8 là hết cao rồi\" — bạn có đang nghĩ vậy không?",
+          "cap": [
+            "Lớp 8 hết cao?",
+            "Thật sao"
+          ],
+          "hl": "Lớp 8 hết cao?"
+        },
+        "en": {
+          "narr": "\"By 8th grade they're done growing\" — have you given up too?",
+          "cap": [
+            "Done by 8th?",
+            "Really?"
+          ],
+          "hl": "Done by 8th?"
+        },
+        "cn": {
+          "narr": "\"初二个子就定型了\"——你是不是也这么放弃了？",
+          "cap": [
+            "初二就定了?",
+            "真的吗"
+          ],
+          "hl": "初二就定了?"
+        },
+        "ch": {
+          "narr": "\"國二個子就定型了\"——你是不是也這麼放棄了？",
+          "cap": [
+            "國二就定了?",
+            "真的嗎"
+          ],
+          "hl": "國二就定了?"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🔑 회전 강조",
+      "copy": {
+        "ko": {
+          "narr": "키는 나이로 정해지지 않아요. 진짜 열쇠는 '성장판'입니다.",
+          "cap": [
+            "나이가 아니라",
+            "성장판이 열쇠"
+          ],
+          "hl": "성장판이 열쇠"
+        },
+        "th": {
+          "narr": "ความสูงไม่ได้ตัดสินด้วยอายุ กุญแจคือ 'แผ่นกระดูก'",
+          "cap": [
+            "ไม่ใช่อายุ",
+            "แผ่นกระดูกคือกุญแจ"
+          ],
+          "hl": "แผ่นกระดูกคือกุญแจ"
+        },
+        "vi": {
+          "narr": "Chiều cao không do tuổi quyết định — chìa khóa là 'sụn tăng trưởng'.",
+          "cap": [
+            "Không phải tuổi",
+            "sụn là chìa khóa"
+          ],
+          "hl": "sụn là chìa khóa"
+        },
+        "en": {
+          "narr": "Height isn't decided by age — the real key is the growth plate.",
+          "cap": [
+            "Not age",
+            "growth plate"
+          ],
+          "hl": "growth plate"
+        },
+        "cn": {
+          "narr": "身高不由年龄决定，真正的关键是'生长板'。",
+          "cap": [
+            "不看年龄",
+            "生长板是关键"
+          ],
+          "hl": "生长板是关键"
+        },
+        "ch": {
+          "narr": "身高不由年齡決定，真正的關鍵是'生長板'。",
+          "cap": [
+            "不看年齡",
+            "生長板是關鍵"
+          ],
+          "hl": "生長板是關鍵"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 성장판",
+      "motion": "🦴 글로우 + 천천히",
+      "copy": {
+        "ko": {
+          "narr": "성장판이 완전히 닫히기 전까지는, 키는 계속 클 수 있어요.",
+          "cap": [
+            "성장판 열려 있으면",
+            "아직 큰다"
+          ],
+          "hl": "아직 큰다"
+        },
+        "th": {
+          "narr": "ตราบใดที่แผ่นกระดูกยังไม่ปิด ก็ยังสูงต่อได้",
+          "cap": [
+            "ยังไม่ปิด",
+            "ยังสูงได้"
+          ],
+          "hl": "ยังสูงได้"
+        },
+        "vi": {
+          "narr": "Khi sụn tăng trưởng chưa đóng hẳn, con vẫn còn cao được.",
+          "cap": [
+            "Chưa đóng",
+            "vẫn cao được"
+          ],
+          "hl": "vẫn cao được"
+        },
+        "en": {
+          "narr": "As long as the plates aren't fully closed, height can still grow.",
+          "cap": [
+            "Still open",
+            "still growing"
+          ],
+          "hl": "still growing"
+        },
+        "cn": {
+          "narr": "只要生长板还没完全闭合，身高就还能长。",
+          "cap": [
+            "还没闭合",
+            "还能长"
+          ],
+          "hl": "还能长"
+        },
+        "ch": {
+          "narr": "只要生長板還沒完全閉合，身高就還能長。",
+          "cap": [
+            "還沒閉合",
+            "還能長"
+          ],
+          "hl": "還能長"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "👦👧 좌우 슬라이드",
+      "copy": {
+        "ko": {
+          "narr": "사춘기 시작 시기는 아이마다 천차만별. 나이만으로는 끝났다 못 해요.",
+          "cap": [
+            "아이마다 다르다",
+            "나이로 단정 X"
+          ],
+          "hl": "나이로 단정 X"
+        },
+        "th": {
+          "narr": "วัยแรกรุ่นแต่ละคนไม่เท่ากัน อายุอย่างเดียวตัดสินไม่ได้",
+          "cap": [
+            "แต่ละคนต่างกัน",
+            "อายุไม่ใช่คำตอบ"
+          ],
+          "hl": "อายุไม่ใช่คำตอบ"
+        },
+        "vi": {
+          "narr": "Tuổi dậy thì mỗi bé một khác — không thể chỉ nhìn tuổi.",
+          "cap": [
+            "Mỗi bé một khác",
+            "không chỉ nhìn tuổi"
+          ],
+          "hl": "không chỉ nhìn tuổi"
+        },
+        "en": {
+          "narr": "Puberty starts at different ages for every child — age alone can't decide.",
+          "cap": [
+            "Every child differs",
+            "age isn't enough"
+          ],
+          "hl": "age isn't enough"
+        },
+        "cn": {
+          "narr": "每个孩子青春期早晚不同，光看年龄说不准。",
+          "cap": [
+            "每个孩子不同",
+            "光看年龄不行"
+          ],
+          "hl": "光看年龄不行"
+        },
+        "ch": {
+          "narr": "每個孩子青春期早晚不同，光看年齡說不準。",
+          "cap": [
+            "每個孩子不同",
+            "光看年齡不行"
+          ],
+          "hl": "光看年齡不行"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "🚹 강조 펄스",
+      "copy": {
+        "ko": {
+          "narr": "특히 남학생은 사춘기가 늦게 와요. 중2가 급성장기 한가운데일 수 있죠.",
+          "cap": [
+            "남학생은 늦게",
+            "중2가 급성장기"
+          ],
+          "hl": "중2가 급성장기"
+        },
+        "th": {
+          "narr": "เด็กผู้ชายแรกรุ่นช้ากว่า ม.2 อาจกำลังพุ่งสูงพอดี",
+          "cap": [
+            "ผู้ชายมาช้า",
+            "ม.2 กำลังพุ่ง"
+          ],
+          "hl": "ม.2 กำลังพุ่ง"
+        },
+        "vi": {
+          "narr": "Bé trai dậy thì muộn hơn — lớp 8 có thể đang giữa đợt tăng vọt.",
+          "cap": [
+            "Bé trai muộn hơn",
+            "lớp 8 đang vọt"
+          ],
+          "hl": "lớp 8 đang vọt"
+        },
+        "en": {
+          "narr": "Boys hit puberty later — 8th grade can be right in the growth spurt.",
+          "cap": [
+            "Boys later",
+            "spurt at 8th"
+          ],
+          "hl": "spurt at 8th"
+        },
+        "cn": {
+          "narr": "男生青春期更晚，初二可能正处在猛长期。",
+          "cap": [
+            "男生更晚",
+            "初二正猛长"
+          ],
+          "hl": "初二正猛长"
+        },
+        "ch": {
+          "narr": "男生青春期更晚，國二可能正處在猛長期。",
+          "cap": [
+            "男生更晚",
+            "國二正猛長"
+          ],
+          "hl": "國二正猛長"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG2 사춘기 급성장",
+      "motion": "🚀 위로 슈웅 + 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "사춘기 급성장기엔 1년에 7에서 12센티까지 크기도 해요.",
+          "cap": [
+            "사춘기 급성장",
+            "1년 7~12cm"
+          ],
+          "hl": "7~12cm"
+        },
+        "th": {
+          "narr": "ช่วงพุ่งสูงวัยแรกรุ่น ปีหนึ่งโตได้ถึง 7–12 ซม.",
+          "cap": [
+            "พุ่งวัยแรกรุ่น",
+            "7–12 ซม./ปี"
+          ],
+          "hl": "7–12 ซม."
+        },
+        "vi": {
+          "narr": "Đợt tăng vọt dậy thì, một năm có thể cao 7 đến 12cm.",
+          "cap": [
+            "Tăng vọt dậy thì",
+            "7–12cm/năm"
+          ],
+          "hl": "7–12cm"
+        },
+        "en": {
+          "narr": "In the puberty spurt, kids can grow 7 to 12cm in a single year.",
+          "cap": [
+            "Puberty spurt",
+            "7–12cm/yr"
+          ],
+          "hl": "7–12cm"
+        },
+        "cn": {
+          "narr": "青春期猛长期，一年能长7到12厘米。",
+          "cap": [
+            "青春期猛长",
+            "7–12厘米/年"
+          ],
+          "hl": "7–12厘米"
+        },
+        "ch": {
+          "narr": "青春期猛長期，一年能長7到12公分。",
+          "cap": [
+            "青春期猛長",
+            "7–12公分/年"
+          ],
+          "hl": "7–12公分"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26.5s",
+      "kind": "ig",
+      "igLabel": "IG3 이후 2~3년",
+      "motion": "➕ 카운트업 + 부드럽게",
+      "copy": {
+        "ko": {
+          "narr": "급성장기가 지나도, 성장판이 닫힐 때까지 2에서 3년은 더 자라요.",
+          "cap": [
+            "급성장 이후에도",
+            "2~3년 더"
+          ],
+          "hl": "2~3년 더"
+        },
+        "th": {
+          "narr": "แม้พ้นช่วงพุ่งแล้ว ก็ยังโตต่อได้อีก 2–3 ปี",
+          "cap": [
+            "หลังพุ่งแล้ว",
+            "อีก 2–3 ปี"
+          ],
+          "hl": "อีก 2–3 ปี"
+        },
+        "vi": {
+          "narr": "Qua đợt tăng vọt, con vẫn cao thêm 2 đến 3 năm nữa.",
+          "cap": [
+            "Sau tăng vọt",
+            "thêm 2–3 năm"
+          ],
+          "hl": "thêm 2–3 năm"
+        },
+        "en": {
+          "narr": "Even after the spurt, kids keep growing for 2 to 3 more years.",
+          "cap": [
+            "After the spurt",
+            "2–3 more years"
+          ],
+          "hl": "2–3 more years"
+        },
+        "cn": {
+          "narr": "猛长期过后，到生长板闭合前还能再长2到3年。",
+          "cap": [
+            "猛长之后",
+            "再长2~3年"
+          ],
+          "hl": "再长2~3年"
+        },
+        "ch": {
+          "narr": "猛長期過後，到生長板閉合前還能再長2到3年。",
+          "cap": [
+            "猛長之後",
+            "再長2~3年"
+          ],
+          "hl": "再長2~3年"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26.5–30s",
+      "kind": "doctor",
+      "motion": "⏳ 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "그래서 성장판 닫히기 전인 지금이, 놓치면 안 되는 골든타임이에요.",
+          "cap": [
+            "성장판 닫히기 전",
+            "지금이 골든타임"
+          ],
+          "hl": "지금이 골든타임"
+        },
+        "th": {
+          "narr": "ดังนั้นตอนนี้ ก่อนแผ่นกระดูกปิด คือช่วงเวลาทองที่ห้ามพลาด",
+          "cap": [
+            "ก่อนปิด",
+            "ช่วงเวลาทอง"
+          ],
+          "hl": "ช่วงเวลาทอง"
+        },
+        "vi": {
+          "narr": "Vậy nên ngay bây giờ, trước khi sụn đóng, là thời điểm vàng.",
+          "cap": [
+            "Trước khi đóng",
+            "thời điểm vàng"
+          ],
+          "hl": "thời điểm vàng"
+        },
+        "en": {
+          "narr": "So right now — before the plates close — is the golden time you can't miss.",
+          "cap": [
+            "Before they close",
+            "golden time now"
+          ],
+          "hl": "golden time now"
+        },
+        "cn": {
+          "narr": "所以生长板闭合前的现在，正是不能错过的黄金期。",
+          "cap": [
+            "闭合之前",
+            "现在是黄金期"
+          ],
+          "hl": "现在是黄金期"
+        },
+        "ch": {
+          "narr": "所以生長板閉合前的現在，正是不能錯過的黃金期。",
+          "cap": [
+            "閉合之前",
+            "現在是黃金期"
+          ],
+          "hl": "現在是黃金期"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "ig",
+      "igLabel": "IG4 뼈나이",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이를 보면, 우리 아이 성장판이 얼마나 남았는지 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "남은 기회 확인"
+          ],
+          "hl": "남은 기회 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกบอกได้ว่าแผ่นกระดูกของลูกเหลืออีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "ดูเวลาที่เหลือ"
+          ],
+          "hl": "ดูเวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Tuổi xương cho biết sụn của con còn lại bao nhiêu.",
+          "cap": [
+            "Tuổi xương",
+            "xem cơ hội còn lại"
+          ],
+          "hl": "xem cơ hội còn lại"
+        },
+        "en": {
+          "narr": "Bone age shows how much growth your child has left.",
+          "cap": [
+            "Bone age",
+            "see what's left"
+          ],
+          "hl": "see what's left"
+        },
+        "cn": {
+          "narr": "看骨龄就能知道，孩子的生长板还剩多少。",
+          "cap": [
+            "看骨龄",
+            "查剩余空间"
+          ],
+          "hl": "查剩余空间"
+        },
+        "ch": {
+          "narr": "看骨齡就能知道，孩子的生長板還剩多少。",
+          "cap": [
+            "看骨齡",
+            "查剩餘空間"
+          ],
+          "hl": "查剩餘空間"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장판, 아직 열려 있을까요? 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장판 남은 키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "แผ่นกระดูกลูกยังเปิดอยู่ไหม? เช็กเลยวันนี้",
+          "cap": [
+            "ความสูงที่เหลือ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Sụn của con còn mở không? Kiểm tra ngay hôm nay.",
+          "cap": [
+            "Chiều cao còn lại",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Are your child's plates still open? Check it right now.",
+          "cap": [
+            "Height still left",
+            "check now"
+          ],
+          "hl": "check now"
+        },
+        "cn": {
+          "narr": "孩子的生长板还开着吗？现在就来查一查。",
+          "cap": [
+            "剩余身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "孩子的生長板還開著嗎？現在就來查一查。",
+          "cap": [
+            "剩餘身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "성장판 글로우 점등",
+      "title": "성장판 — 열려 있으면 아직 큰다",
+      "emojis": [
+        "🦴",
+        "🌱"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized long bone with an open growth plate at the end shown as a soft glowing cartilage gap, a tiny green sprout/upward arrow rising from the gap to suggest ongoing growth. Friendly pediatric style, brand purple #667eea bone with mint #2dd4bf glowing plate. NO text.",
+      "labels": [
+        {
+          "pos": "성장판(글로우)",
+          "ko": "성장판 열림",
+          "en": "Plate open",
+          "th": "แผ่นกระดูกเปิด"
+        },
+        {
+          "pos": "상단 화살표",
+          "ko": "아직 큰다",
+          "en": "Still grows",
+          "th": "ยังสูงได้"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c6",
+      "motion": "🚀 슈웅 + 카운트업",
+      "title": "사춘기 — 제2 급성장 7~12cm",
+      "emojis": [
+        "🧑",
+        "📏",
+        "🚀"
+      ],
+      "prompt": "Flat vector, square, white bg. A teenage boy standing beside a tall vertical growth ruler/bar with a big rocket-like upward arrow shooting up, mint sparkles around the tip. Brand purple #667eea + mint #2dd4bf. Conveys a powerful second growth spurt. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "화살표",
+          "ko": "7~12cm",
+          "en": "7–12cm",
+          "th": "7–12 ซม."
+        },
+        {
+          "pos": "상단",
+          "ko": "1년에!",
+          "en": "per year",
+          "th": "ต่อปี"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "➕ 2~3년 카운트업",
+      "title": "급성장 이후에도 2~3년 더",
+      "emojis": [
+        "📈",
+        "🗓️"
+      ],
+      "prompt": "Flat vector, square, white bg. A gentle rising staircase-style growth line continuing upward past a peak, with a few small calendar/year markers along the slope showing growth continues for a while longer. Soft brand purple #667eea to mint #2dd4bf gradient line, friendly. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "연장 구간",
+          "ko": "+2~3년",
+          "en": "+2–3 years",
+          "th": "+2–3 ปี"
+        },
+        {
+          "pos": "하단",
+          "ko": "성장판 닫힐 때까지",
+          "en": "until plate closes",
+          "th": "จนแผ่นกระดูกปิด"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c9",
+      "motion": "🦴🔍 팝",
+      "title": "뼈나이 — X-ray로 남은 기회 확인",
+      "emojis": [
+        "🦴",
+        "🔍",
+        "📷"
+      ],
+      "prompt": "Flat vector, square, white bg. A hand X-ray film with a magnifying glass over the wrist bones highlighting the open growth plates, friendly clinical look. Brand purple #667eea frame with mint #2dd4bf highlight glow on the plates. Conveys checking remaining growth potential. NO text.",
+      "labels": [
+        {
+          "pos": "돋보기 안",
+          "ko": "성장판 확인",
+          "en": "Check plates",
+          "th": "ดูแผ่นกระดูก"
+        },
+        {
+          "pos": "하단",
+          "ko": "남은 키 예측",
+          "en": "Predict height left",
+          "th": "ทำนายส่วนสูง"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📏",
+      "label": "키·성장"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판·뼈나이"
+    },
+    {
+      "e": "🔑",
+      "label": "핵심 열쇠"
+    },
+    {
+      "e": "👦",
+      "label": "남학생"
+    },
+    {
+      "e": "🧑",
+      "label": "사춘기"
+    },
+    {
+      "e": "🚀",
+      "label": "급성장"
+    },
+    {
+      "e": "📈",
+      "label": "추가 성장"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "🔍",
+      "label": "검사·확인"
+    },
+    {
+      "e": "📷",
+      "label": "X-ray"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

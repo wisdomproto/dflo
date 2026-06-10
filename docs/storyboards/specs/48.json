@@ -1,0 +1,773 @@
+{
+  "n": 48,
+  "slug": "우유칼슘신화",
+  "title": "우유 많이 마시면 키 큰다? — 칼슘 신화의 진실",
+  "sub": "칼슘은 뼈 '밀도', 키는 성장판이 만든다 — 우유보다 '균형'이 답",
+  "category": "C. 부모공감",
+  "topicTitle": "우유 칼슘 신화의 진실",
+  "headerTop": "우리 아이 키",
+  "headerMark": "우유로 클까?",
+  "accentEmoji": "🥛💜",
+  "thumb": {
+    "kicker": "우유의 진실",
+    "subject": "우리 아이 키 우유로",
+    "number": "칼슘",
+    "numLabel": "만으론 안 큰다"
+  },
+  "hook": "우유 많이 마시면 키 쑥쑥? — 부모님이라면 한 번쯤 믿어봤죠.",
+  "misconception": "우유(칼슘)를 많이 마시면 키가 큰다 → 칼슘은 뼈 '밀도'를 높일 뿐, 키(뼈 길이)를 늘리는 주연이 아니다",
+  "message": "칼슘은 뼈 밀도, 키는 성장판의 길이 성장 — 성장호르몬(수면·운동)·유전 70~80%·다양한 영양소가 함께 만든다. 우유는 끊는 게 아니라 '균형'이 답.",
+  "tone": "우유를 믿어온 부모를 비난 ❌ → 부드럽게 공감 후 과학으로 안내. 협박 ❌ → \\\"아직 기회 있다\\\" 긍정 골든타임. 우유 끊으라 ❌ → '균형'. \\\"우리 아이 키\\\" 보편",
+  "cta": "우유만으론 알 수 없어요 — 홈페이지 예측키 / 뼈나이 측정으로 우리 아이 성장 잠재력을 지금 확인",
+  "duration": 35,
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"우유 많이 마시면 키 큰다\" 우리 다 믿었죠 → 근데 정말일까?"
+    },
+    {
+      "act": "ACT 2",
+      "title": "칼슘의 진실",
+      "scenes": "c3–c4",
+      "desc": "칼슘은 뼈 '밀도', 키는 성장판이 만든다"
+    },
+    {
+      "act": "ACT 3",
+      "title": "진짜 키를 키우는 것",
+      "scenes": "c5–c6",
+      "desc": "성장호르몬(수면·운동) + 유전 70~80% / 환경 20~30%"
+    },
+    {
+      "act": "ACT 4",
+      "title": "균형이 핵심",
+      "scenes": "c7–c8",
+      "desc": "우유 과다 = 영양 불균형 → 멸치·두부·시금치 등 다양하게"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "우유만으론 모른다 → 뼈나이·예측키로 확인 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🥛 슬램 인 + 💧 톡",
+      "copy": {
+        "ko": {
+          "narr": "우유 많이 마시면 키 쑥쑥 큰다? 부모님이라면 한 번쯤 믿어봤죠.",
+          "cap": [
+            "우유 많이 마시면",
+            "키 쑥쑥?"
+          ],
+          "hl": "키 쑥쑥?"
+        },
+        "th": {
+          "narr": "ดื่มนมเยอะๆ แล้วลูกจะสูง? พ่อแม่ทุกคนเคยเชื่อแบบนี้",
+          "cap": [
+            "ดื่มนมเยอะๆ",
+            "ลูกจะสูง?"
+          ],
+          "hl": "ลูกจะสูง?"
+        },
+        "vi": {
+          "narr": "Uống nhiều sữa là cao vọt? Cha mẹ nào cũng từng tin điều đó.",
+          "cap": [
+            "Uống nhiều sữa",
+            "cao vọt?"
+          ],
+          "hl": "cao vọt?"
+        },
+        "en": {
+          "narr": "Lots of milk means a taller child? Every parent has believed it.",
+          "cap": [
+            "Lots of milk",
+            "= taller?"
+          ],
+          "hl": "= taller?"
+        },
+        "cn": {
+          "narr": "多喝牛奶就长得高？每位家长都曾相信过。",
+          "cap": [
+            "多喝牛奶",
+            "就长高？"
+          ],
+          "hl": "就长高？"
+        },
+        "ch": {
+          "narr": "多喝牛奶就長得高？每位家長都曾相信過。",
+          "cap": [
+            "多喝牛奶",
+            "就長高？"
+          ],
+          "hl": "就長高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🤔 갸웃 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "그 마음 정말 이해해요. 그런데 우유만 많이 마시면 정말 클까요?",
+          "cap": [
+            "우유만 많이",
+            "정말 클까?"
+          ],
+          "hl": "정말 클까?"
+        },
+        "th": {
+          "narr": "เข้าใจความรู้สึกนั้นดี แต่ดื่มนมอย่างเดียวจะสูงจริงไหม?",
+          "cap": [
+            "นมอย่างเดียว",
+            "สูงจริงไหม?"
+          ],
+          "hl": "สูงจริงไหม?"
+        },
+        "vi": {
+          "narr": "Rất hiểu lòng cha mẹ. Nhưng chỉ uống sữa thôi có thật sự cao?",
+          "cap": [
+            "Chỉ uống sữa",
+            "có cao thật?"
+          ],
+          "hl": "có cao thật?"
+        },
+        "en": {
+          "narr": "That hope makes total sense. But does milk alone really do it?",
+          "cap": [
+            "Milk alone",
+            "really works?"
+          ],
+          "hl": "really works?"
+        },
+        "cn": {
+          "narr": "这份心情完全能理解。但只靠喝牛奶真的能长高吗？",
+          "cap": [
+            "只靠牛奶",
+            "真能长高？"
+          ],
+          "hl": "真能长高？"
+        },
+        "ch": {
+          "narr": "這份心情完全能理解。但只靠喝牛奶真的能長高嗎？",
+          "cap": [
+            "只靠牛奶",
+            "真能長高？"
+          ],
+          "hl": "真能長高？"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 칼슘 vs 성장판",
+      "motion": "🦴 밀도 채움 + ↔️ 길이 강조",
+      "copy": {
+        "ko": {
+          "narr": "칼슘은 뼈를 '튼튼하게', 즉 밀도를 높여요. 키 자체를 늘리는 건 아니죠.",
+          "cap": [
+            "칼슘 = 뼈 밀도",
+            "키 늘림 X"
+          ],
+          "hl": "칼슘 = 뼈 밀도"
+        },
+        "th": {
+          "narr": "แคลเซียมทำให้กระดูก 'แข็งแรง' เพิ่มความหนาแน่น ไม่ได้ทำให้ยาวขึ้น",
+          "cap": [
+            "แคลเซียม = ความหนาแน่น",
+            "ไม่เพิ่มความยาว"
+          ],
+          "hl": "แคลเซียม = ความหนาแน่น"
+        },
+        "vi": {
+          "narr": "Canxi giúp xương 'chắc khỏe', tăng mật độ — không kéo dài xương.",
+          "cap": [
+            "Canxi = mật độ xương",
+            "không tăng dài"
+          ],
+          "hl": "Canxi = mật độ xương"
+        },
+        "en": {
+          "narr": "Calcium makes bones denser and stronger — it doesn't add length.",
+          "cap": [
+            "Calcium = density",
+            "not length"
+          ],
+          "hl": "Calcium = density"
+        },
+        "cn": {
+          "narr": "钙让骨头更'结实'，提高密度，但不会让骨头变长。",
+          "cap": [
+            "钙 = 骨密度",
+            "不增长度"
+          ],
+          "hl": "钙 = 骨密度"
+        },
+        "ch": {
+          "narr": "鈣讓骨頭更'結實'，提高密度，但不會讓骨頭變長。",
+          "cap": [
+            "鈣 = 骨密度",
+            "不增長度"
+          ],
+          "hl": "鈣 = 骨密度"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 성장판이 키를 만든다",
+      "motion": "🌱 성장판 점등 + ↗ 상승",
+      "copy": {
+        "ko": {
+          "narr": "키는 뼈 끝 '성장판'이 길어지면서 자라요. 진짜 주인공은 여기예요.",
+          "cap": [
+            "키는 성장판이",
+            "길어지며 자란다"
+          ],
+          "hl": "키는 성장판이"
+        },
+        "th": {
+          "narr": "ความสูงมาจาก 'แผ่นการเจริญเติบโต' ที่ปลายกระดูกยืดยาว นี่คือพระเอกตัวจริง",
+          "cap": [
+            "แผ่นการเจริญเติบโต",
+            "คือตัวจริง"
+          ],
+          "hl": "แผ่นการเจริญเติบโต"
+        },
+        "vi": {
+          "narr": "Chiều cao đến từ 'sụn tăng trưởng' ở đầu xương dài ra — đây mới là chính.",
+          "cap": [
+            "Sụn tăng trưởng",
+            "mới quyết định"
+          ],
+          "hl": "Sụn tăng trưởng"
+        },
+        "en": {
+          "narr": "Height comes from the 'growth plates' lengthening — that's the real driver.",
+          "cap": [
+            "Growth plates",
+            "drive height"
+          ],
+          "hl": "Growth plates"
+        },
+        "cn": {
+          "narr": "身高来自骨头两端'生长板'的延长——这才是真正的主角。",
+          "cap": [
+            "生长板",
+            "才是关键"
+          ],
+          "hl": "生长板"
+        },
+        "ch": {
+          "narr": "身高來自骨頭兩端'生長板'的延長——這才是真正的主角。",
+          "cap": [
+            "生長板",
+            "才是關鍵"
+          ],
+          "hl": "生長板"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "😴 + 🏃 핑퐁 펄스",
+      "copy": {
+        "ko": {
+          "narr": "성장판을 깨우는 건 성장호르몬! 충분한 수면과 운동이 가장 자연스러운 방법이에요.",
+          "cap": [
+            "성장호르몬 = 키",
+            "수면·운동이 깨운다"
+          ],
+          "hl": "수면·운동이 깨운다"
+        },
+        "th": {
+          "narr": "สิ่งที่ปลุกแผ่นการเจริญเติบโตคือฮอร์โมน! การนอนและออกกำลังกายคือวิธีธรรมชาติที่สุด",
+          "cap": [
+            "ฮอร์โมนการเจริญเติบโต",
+            "นอน·ออกกำลังกาย"
+          ],
+          "hl": "นอน·ออกกำลังกาย"
+        },
+        "vi": {
+          "narr": "Đánh thức sụn là hormone tăng trưởng! Ngủ đủ và vận động là cách tự nhiên nhất.",
+          "cap": [
+            "Hormone tăng trưởng",
+            "ngủ·vận động"
+          ],
+          "hl": "ngủ·vận động"
+        },
+        "en": {
+          "narr": "Growth hormone wakes the plates! Deep sleep and exercise are the most natural way.",
+          "cap": [
+            "Growth hormone",
+            "sleep + exercise"
+          ],
+          "hl": "sleep + exercise"
+        },
+        "cn": {
+          "narr": "唤醒生长板的是生长激素！充足睡眠和运动是最自然的方法。",
+          "cap": [
+            "生长激素",
+            "睡眠 + 运动"
+          ],
+          "hl": "睡眠 + 运动"
+        },
+        "ch": {
+          "narr": "喚醒生長板的是生長激素！充足睡眠和運動是最自然的方法。",
+          "cap": [
+            "生長激素",
+            "睡眠 + 運動"
+          ],
+          "hl": "睡眠 + 運動"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 유전 70~80% / 환경 20~30%",
+      "motion": "🥧 도넛 채움 + 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전이 70~80%, 나머지 20~30%는 영양·수면·운동으로 충분히 바꿀 수 있어요.",
+          "cap": [
+            "유전 70~80%",
+            "나머지는 우리가!"
+          ],
+          "hl": "나머지는 우리가!"
+        },
+        "th": {
+          "narr": "พันธุกรรม 70–80% ที่เหลือ 20–30% เปลี่ยนได้ด้วยอาหาร นอน ออกกำลังกาย",
+          "cap": [
+            "พันธุกรรม 70–80%",
+            "ที่เหลือเราทำได้!"
+          ],
+          "hl": "ที่เหลือเราทำได้!"
+        },
+        "vi": {
+          "narr": "Di truyền 70–80%, còn 20–30% ta đổi được bằng dinh dưỡng, ngủ, vận động.",
+          "cap": [
+            "Di truyền 70–80%",
+            "phần còn lại là ta!"
+          ],
+          "hl": "phần còn lại là ta!"
+        },
+        "en": {
+          "narr": "Genes set 70–80%; the other 20–30% is ours through food, sleep, exercise.",
+          "cap": [
+            "Genes 70–80%",
+            "the rest is ours!"
+          ],
+          "hl": "the rest is ours!"
+        },
+        "cn": {
+          "narr": "遗传占70~80%，剩下20~30%靠营养、睡眠、运动就能改变。",
+          "cap": [
+            "遗传 70~80%",
+            "剩下靠我们！"
+          ],
+          "hl": "剩下靠我们！"
+        },
+        "ch": {
+          "narr": "遺傳佔70~80%，剩下20~30%靠營養、睡眠、運動就能改變。",
+          "cap": [
+            "遺傳 70~80%",
+            "剩下靠我們！"
+          ],
+          "hl": "剩下靠我們！"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "⚖️ 균형 흔들 + 🥛 과다 경고",
+      "copy": {
+        "ko": {
+          "narr": "우유만 배불리 마시면 다른 반찬을 안 먹어 오히려 영양 불균형이 올 수 있어요.",
+          "cap": [
+            "우유만 과하면",
+            "영양 불균형"
+          ],
+          "hl": "영양 불균형"
+        },
+        "th": {
+          "narr": "ดื่มนมจนอิ่มจนไม่กินอย่างอื่น อาจทำให้โภชนาการไม่สมดุล",
+          "cap": [
+            "นมมากเกินไป",
+            "โภชนาการไม่สมดุล"
+          ],
+          "hl": "โภชนาการไม่สมดุล"
+        },
+        "vi": {
+          "narr": "Uống sữa no bụng rồi bỏ món khác có thể gây mất cân bằng dinh dưỡng.",
+          "cap": [
+            "Sữa quá nhiều",
+            "mất cân bằng"
+          ],
+          "hl": "mất cân bằng"
+        },
+        "en": {
+          "narr": "Filling up on milk can crowd out other foods — and unbalance nutrition.",
+          "cap": [
+            "Too much milk",
+            "unbalanced diet"
+          ],
+          "hl": "unbalanced diet"
+        },
+        "cn": {
+          "narr": "光喝牛奶喝饱了，不吃别的菜，反而会营养不均衡。",
+          "cap": [
+            "牛奶过量",
+            "营养不均衡"
+          ],
+          "hl": "营养不均衡"
+        },
+        "ch": {
+          "narr": "光喝牛奶喝飽了，不吃別的菜，反而會營養不均衡。",
+          "cap": [
+            "牛奶過量",
+            "營養不均衡"
+          ],
+          "hl": "營養不均衡"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 다양한 칼슘 + 균형",
+      "motion": "🍽️ 접시 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "멸치·시금치·두부·치즈, 거기에 단백질과 비타민D까지 골고루! 균형이 진짜 답이에요.",
+          "cap": [
+            "골고루 균형",
+            "멸치·두부·시금치"
+          ],
+          "hl": "골고루 균형"
+        },
+        "th": {
+          "narr": "ปลาเล็ก ผักโขม เต้าหู้ ชีส บวกโปรตีนและวิตามินดี ครบถ้วน! ความสมดุลคือคำตอบ",
+          "cap": [
+            "สมดุลคือคำตอบ",
+            "ปลา·เต้าหู้·ผัก"
+          ],
+          "hl": "สมดุลคือคำตอบ"
+        },
+        "vi": {
+          "narr": "Cá nhỏ, rau bina, đậu phụ, phô mai, thêm đạm và vitamin D — đa dạng! Cân bằng mới là đáp án.",
+          "cap": [
+            "Cân bằng là đáp án",
+            "cá·đậu·rau"
+          ],
+          "hl": "Cân bằng là đáp án"
+        },
+        "en": {
+          "narr": "Anchovies, spinach, tofu, cheese — plus protein and vitamin D. Balance is the real answer.",
+          "cap": [
+            "Balance is key",
+            "fish·tofu·greens"
+          ],
+          "hl": "Balance is key"
+        },
+        "cn": {
+          "narr": "小鱼、菠菜、豆腐、奶酪，再加蛋白质和维生素D，样样齐全！均衡才是答案。",
+          "cap": [
+            "均衡才是答案",
+            "鱼·豆腐·蔬菜"
+          ],
+          "hl": "均衡才是答案"
+        },
+        "ch": {
+          "narr": "小魚、菠菜、豆腐、起司，再加蛋白質和維生素D，樣樣齊全！均衡才是答案。",
+          "cap": [
+            "均衡才是答案",
+            "魚·豆腐·蔬菜"
+          ],
+          "hl": "均衡才是答案"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "우유만으론 알 수 없어요. 뼈나이를 보면 우리 아이 성장 잠재력이 보여요.",
+          "cap": [
+            "우유로는 모른다",
+            "뼈나이로 확인"
+          ],
+          "hl": "뼈나이로 확인"
+        },
+        "th": {
+          "narr": "นมอย่างเดียวบอกไม่ได้ อายุกระดูกจะบอกศักยภาพการเติบโตของลูก",
+          "cap": [
+            "นมบอกไม่ได้",
+            "ดูที่อายุกระดูก"
+          ],
+          "hl": "ดูที่อายุกระดูก"
+        },
+        "vi": {
+          "narr": "Sữa thôi không cho biết được. Tuổi xương sẽ cho thấy tiềm năng của con.",
+          "cap": [
+            "Sữa không đủ biết",
+            "xem tuổi xương"
+          ],
+          "hl": "xem tuổi xương"
+        },
+        "en": {
+          "narr": "Milk alone can't tell you. Bone age reveals your child's growth potential.",
+          "cap": [
+            "Milk can't tell",
+            "check bone age"
+          ],
+          "hl": "check bone age"
+        },
+        "cn": {
+          "narr": "只看牛奶无法知道。骨龄能看出孩子的成长潜力。",
+          "cap": [
+            "牛奶看不出",
+            "查骨龄"
+          ],
+          "hl": "查骨龄"
+        },
+        "ch": {
+          "narr": "只看牛奶無法知道。骨齡能看出孩子的成長潛力。",
+          "cap": [
+            "牛奶看不出",
+            "查骨齡"
+          ],
+          "hl": "查骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 잠재력, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장 잠재력",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กศักยภาพการเติบโตของลูกวันนี้",
+          "cap": [
+            "ศักยภาพการเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tiềm năng phát triển của con ngay hôm nay.",
+          "cap": [
+            "Tiềm năng phát triển",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth potential today.",
+          "cap": [
+            "Growth potential",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的成长潜力吧。",
+          "cap": [
+            "成长潜力",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的成長潛力吧。",
+          "cap": [
+            "成長潛力",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "밀도 채움 + 길이 강조",
+      "title": "칼슘 = 뼈 밀도 (길이 아님)",
+      "emojis": [
+        "🦴",
+        "🥛"
+      ],
+      "prompt": "Flat vector, square, white bg. A single friendly cartoon long-bone shown twice side by side: the left bone fills with dense honeycomb texture (denser/stronger), the right bone has a subtle double-headed up-down sizing bracket along its length that is greyed-out / crossed with a soft X to imply 'not length'. A small milk glass icon near the dense bone. Brand purple #667eea for the bone, mint #2dd4bf for the density fill, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 뼈",
+          "ko": "밀도 ↑",
+          "en": "density up",
+          "th": "ความหนาแน่น"
+        },
+        {
+          "pos": "오른쪽 뼈(브래킷)",
+          "ko": "길이 ✕",
+          "en": "length X",
+          "th": "ความยาว ✕"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "성장판 점등 + 상승",
+      "title": "성장판이 키를 만든다",
+      "emojis": [
+        "🌱",
+        "📏"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized child leg long-bone with a glowing soft mint band near the top end (the growth plate) and a gentle upward arrow showing the bone lengthening upward, sparkle at the tip. Brand purple bone, mint #2dd4bf glowing growth-plate band, warm friendly. Conveys 'height comes from the growth plate lengthening.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "글로우 밴드",
+          "ko": "성장판",
+          "en": "growth plate",
+          "th": "แผ่นการเจริญเติบโต"
+        },
+        {
+          "pos": "화살표 끝",
+          "ko": "키 ↑",
+          "en": "height up",
+          "th": "ความสูง"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "도넛 채움 + 카운트업",
+      "title": "유전 70~80% / 환경 20~30%",
+      "emojis": [
+        "🧬",
+        "🥗"
+      ],
+      "prompt": "Flat vector, square, white bg. A clean donut/pie chart split into a large segment and a smaller segment, the large segment in brand purple #667eea, the smaller segment in mint #2dd4bf. Beside the smaller mint segment, three tiny friendly icons float: a plate of food, a sleeping moon, a running figure (nutrition, sleep, exercise). Friendly pediatric, soft. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "보라 큰 조각",
+          "ko": "유전 70~80%",
+          "en": "genes 70–80%",
+          "th": "พันธุกรรม 70–80%"
+        },
+        {
+          "pos": "민트 작은 조각",
+          "ko": "환경 20~30%",
+          "en": "environment 20–30%",
+          "th": "สิ่งแวดล้อม 20–30%"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "접시 순차 점등",
+      "title": "다양한 칼슘 + 균형",
+      "emojis": [
+        "🐟",
+        "🥦"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly round plate seen from above arranged with a small fish (anchovy), a leafy green bunch (spinach), a cube of tofu, a wedge of cheese, and a glass of milk as just one item among equals, plus a small egg/meat protein piece. All items balanced evenly around the plate like a wheel. Brand purple #667eea plate rim, mint #2dd4bf accents, cheerful pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "접시 상단",
+          "ko": "골고루",
+          "en": "variety",
+          "th": "หลากหลาย"
+        },
+        {
+          "pos": "접시 중앙",
+          "ko": "균형",
+          "en": "balance",
+          "th": "สมดุล"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🥛",
+      "label": "우유"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈 밀도"
+    },
+    {
+      "e": "🌱",
+      "label": "성장판"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장"
+    },
+    {
+      "e": "💪",
+      "label": "성장호르몬"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🧬",
+      "label": "유전"
+    },
+    {
+      "e": "🥗",
+      "label": "영양 균형"
+    },
+    {
+      "e": "⚖️",
+      "label": "균형"
+    },
+    {
+      "e": "💜",
+      "label": "브랜드"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

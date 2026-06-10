@@ -1,0 +1,783 @@
+{
+  "n": 3,
+  "slug": "성장판나이",
+  "title": "성장판은 언제 닫힐까? — 남녀·부위별 마감 시계",
+  "sub": "여아 14~16세·남아 16~18세, 손→무릎→척추 순서로 닫힌다 — 닫히기 전이 골든타임",
+  "category": "A. 성장과학",
+  "topicTitle": "성장판 닫히는 나이",
+  "headerTop": "우리 아이 키",
+  "headerMark": "언제 멈출까?",
+  "accentEmoji": "🦴⏳",
+  "hook": "우리 아이 키, 도대체 언제까지 클까요? 답은 '성장판'에 있어요.",
+  "misconception": "성장판은 어느 날 한 번에 닫힌다 → 부위별로 손→무릎→척추 순서로 차례차례 닫힌다",
+  "message": "여아 14~16세·남아 16~18세에 성장판이 닫히고, 손·발 → 무릎 → 척추 순서로 차례차례 닫힌다. 손목 뼈나이로 남은 시간을 확인하는 닫히기 전이 골든타임.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"닫히기 전엔 충분한 시간이 있다\"). \"우리 아이 키\" 보편 메시지. CTA는 시청자의 과거 행동을 단정하지 않고 뼈나이/예측키 측정으로 초대.",
+  "cta": "우리 아이 성장판이 얼마나 남았는지, 손목 뼈나이로 지금 바로 확인해 보세요.",
+  "duration": 35,
+  "thumb": {
+    "kicker": "언제 멈출까?",
+    "subject": "우리 아이 성장판",
+    "number": "14~18세",
+    "numLabel": "에 닫힌다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"키는 언제 멈출까? 답은 성장판\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "성장판이란",
+      "scenes": "c3–c4",
+      "desc": "\"뼈 만드는 공장 → 사춘기 호르몬에 닫힘\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "남녀 차이",
+      "scenes": "c5–c6",
+      "desc": "\"여아 14~16 · 남아 16~18세\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "부위별 순서",
+      "scenes": "c7–c8",
+      "desc": "\"손→무릎→척추, 차례로 닫힘\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "골든타임·행동",
+      "scenes": "c9–c10",
+      "desc": "\"닫히기 전 골든타임 → 뼈나이 확인 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🦴 슬램 인 + ⏳ 똑딱",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키, 도대체 언제까지 클까요? 답은 '성장판'에 있어요.",
+          "cap": [
+            "우리 아이 키",
+            "언제까지 클까?"
+          ],
+          "hl": "언제까지 클까?"
+        },
+        "th": {
+          "narr": "ลูกของเราจะสูงได้ถึงเมื่อไหร่? คำตอบอยู่ที่ 'แผ่นการเจริญเติบโต'",
+          "cap": [
+            "ลูกจะสูง",
+            "ถึงเมื่อไหร่?"
+          ],
+          "hl": "ถึงเมื่อไหร่?"
+        },
+        "vi": {
+          "narr": "Con mình sẽ cao đến khi nào? Câu trả lời nằm ở 'sụn tăng trưởng'.",
+          "cap": [
+            "Con cao",
+            "đến khi nào?"
+          ],
+          "hl": "đến khi nào?"
+        },
+        "en": {
+          "narr": "Until when will your child keep growing? The answer is in the growth plates.",
+          "cap": [
+            "Your child grows",
+            "until when?"
+          ],
+          "hl": "until when?"
+        },
+        "cn": {
+          "narr": "孩子的身高到底能长到什么时候？答案就在'生长板'。",
+          "cap": [
+            "孩子身高",
+            "长到何时?"
+          ],
+          "hl": "长到何时?"
+        },
+        "ch": {
+          "narr": "孩子的身高到底能長到什麼時候？答案就在'生長板'。",
+          "cap": [
+            "孩子身高",
+            "長到何時?"
+          ],
+          "hl": "長到何時?"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🏭 펄스 · 가동중",
+      "copy": {
+        "ko": {
+          "narr": "성장판은 뼈 끝의 연골이에요. 새 뼈를 찍어내는 작은 공장이죠.",
+          "cap": [
+            "성장판 =",
+            "뼈 만드는 공장"
+          ],
+          "hl": "뼈 만드는 공장"
+        },
+        "th": {
+          "narr": "แผ่นการเจริญเติบโตคือกระดูกอ่อนที่ปลายกระดูก เหมือนโรงงานสร้างกระดูก",
+          "cap": [
+            "แผ่นกระดูก =",
+            "โรงงานสร้างกระดูก"
+          ],
+          "hl": "โรงงานสร้างกระดูก"
+        },
+        "vi": {
+          "narr": "Sụn tăng trưởng nằm ở đầu xương — như một nhà máy tạo xương mới.",
+          "cap": [
+            "Sụn tăng trưởng =",
+            "nhà máy tạo xương"
+          ],
+          "hl": "nhà máy tạo xương"
+        },
+        "en": {
+          "narr": "Growth plates are cartilage at the bone ends — tiny factories making new bone.",
+          "cap": [
+            "Growth plate =",
+            "a bone factory"
+          ],
+          "hl": "a bone factory"
+        },
+        "cn": {
+          "narr": "生长板是骨头末端的软骨，是制造新骨的小工厂。",
+          "cap": [
+            "生长板 =",
+            "造骨工厂"
+          ],
+          "hl": "造骨工厂"
+        },
+        "ch": {
+          "narr": "生長板是骨頭末端的軟骨，是製造新骨的小工廠。",
+          "cap": [
+            "生長板 =",
+            "造骨工廠"
+          ],
+          "hl": "造骨工廠"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 성장판 공장",
+      "motion": "🏭→🦴 굳는 전환",
+      "copy": {
+        "ko": {
+          "narr": "그런데 사춘기 호르몬이 나오면, 이 공장이 점점 뼈로 굳어 닫혀요.",
+          "cap": [
+            "사춘기 호르몬에",
+            "공장이 닫힌다"
+          ],
+          "hl": "공장이 닫힌다"
+        },
+        "th": {
+          "narr": "แต่เมื่อฮอร์โมนวัยแรกรุ่นมา โรงงานนี้ค่อยๆ แข็งเป็นกระดูกและปิดลง",
+          "cap": [
+            "ฮอร์โมนแรกรุ่น",
+            "ทำให้ปิด"
+          ],
+          "hl": "ทำให้ปิด"
+        },
+        "vi": {
+          "narr": "Nhưng khi hormone dậy thì xuất hiện, nhà máy này dần hóa xương và đóng lại.",
+          "cap": [
+            "Hormone dậy thì",
+            "khiến nó đóng"
+          ],
+          "hl": "khiến nó đóng"
+        },
+        "en": {
+          "narr": "But once puberty hormones kick in, this factory slowly hardens into bone and closes.",
+          "cap": [
+            "Puberty hormones",
+            "make it close"
+          ],
+          "hl": "make it close"
+        },
+        "cn": {
+          "narr": "但青春期激素一来，这座工厂就慢慢硬化成骨、关闭。",
+          "cap": [
+            "青春期激素",
+            "让它关闭"
+          ],
+          "hl": "让它关闭"
+        },
+        "ch": {
+          "narr": "但青春期激素一來，這座工廠就慢慢硬化成骨、關閉。",
+          "cap": [
+            "青春期激素",
+            "讓它關閉"
+          ],
+          "hl": "讓它關閉"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "⚖️ 시소 흔들",
+      "copy": {
+        "ko": {
+          "narr": "성호르몬은 처음엔 키를 키우지만, 일정 농도를 넘으면 성장판을 닫아요.",
+          "cap": [
+            "성호르몬",
+            "키웠다가 닫는다"
+          ],
+          "hl": "키웠다가 닫는다"
+        },
+        "th": {
+          "narr": "ฮอร์โมนเพศแรกช่วยเพิ่มความสูง แต่เกินระดับหนึ่งกลับปิดแผ่นกระดูก",
+          "cap": [
+            "ฮอร์โมนเพศ",
+            "เพิ่มแล้วปิด"
+          ],
+          "hl": "เพิ่มแล้วปิด"
+        },
+        "vi": {
+          "narr": "Hormone sinh dục đầu tiên giúp cao, nhưng vượt ngưỡng lại đóng sụn.",
+          "cap": [
+            "Hormone sinh dục",
+            "tăng rồi đóng"
+          ],
+          "hl": "tăng rồi đóng"
+        },
+        "en": {
+          "narr": "Sex hormones first boost height — but past a point, they close the plate.",
+          "cap": [
+            "Sex hormones",
+            "boost then close"
+          ],
+          "hl": "boost then close"
+        },
+        "cn": {
+          "narr": "性激素起初让孩子长高，但超过一定浓度反而关闭生长板。",
+          "cap": [
+            "性激素",
+            "先长高后关闭"
+          ],
+          "hl": "先长高后关闭"
+        },
+        "ch": {
+          "narr": "性激素起初讓孩子長高，但超過一定濃度反而關閉生長板。",
+          "cap": [
+            "性激素",
+            "先長高後關閉"
+          ],
+          "hl": "先長高後關閉"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 남녀 비교",
+      "motion": "👧👦 카운트업 비교",
+      "copy": {
+        "ko": {
+          "narr": "여아는 사춘기가 1~2년 빨라서, 성장판이 보통 14에서 16세에 닫혀요.",
+          "cap": [
+            "여아 성장판",
+            "14~16세 닫힘"
+          ],
+          "hl": "14~16세"
+        },
+        "th": {
+          "narr": "เด็กหญิงเข้าวัยแรกรุ่นเร็วกว่า 1-2 ปี แผ่นกระดูกมักปิดที่ 14-16 ปี",
+          "cap": [
+            "เด็กหญิง",
+            "ปิด 14-16 ปี"
+          ],
+          "hl": "14-16 ปี"
+        },
+        "vi": {
+          "narr": "Bé gái dậy thì sớm 1-2 năm, sụn thường đóng ở 14 đến 16 tuổi.",
+          "cap": [
+            "Bé gái",
+            "đóng 14-16 tuổi"
+          ],
+          "hl": "14-16 tuổi"
+        },
+        "en": {
+          "narr": "Girls hit puberty 1-2 years earlier, so plates usually close at 14 to 16.",
+          "cap": [
+            "Girls",
+            "close at 14-16"
+          ],
+          "hl": "14-16"
+        },
+        "cn": {
+          "narr": "女孩青春期早1到2年，生长板通常在14到16岁闭合。",
+          "cap": [
+            "女孩",
+            "14-16岁闭合"
+          ],
+          "hl": "14-16岁"
+        },
+        "ch": {
+          "narr": "女孩青春期早1到2年，生長板通常在14到16歲閉合。",
+          "cap": [
+            "女孩",
+            "14-16歲閉合"
+          ],
+          "hl": "14-16歲"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "👦 +2년 슬라이드",
+      "copy": {
+        "ko": {
+          "narr": "남아는 약 2년 늦어요. 16에서 18세까지 더 오래 자랄 수 있죠.",
+          "cap": [
+            "남아는",
+            "16~18세 닫힘"
+          ],
+          "hl": "16~18세"
+        },
+        "th": {
+          "narr": "เด็กชายช้ากว่าราว 2 ปี สูงต่อได้ถึง 16-18 ปี",
+          "cap": [
+            "เด็กชาย",
+            "ปิด 16-18 ปี"
+          ],
+          "hl": "16-18 ปี"
+        },
+        "vi": {
+          "narr": "Bé trai muộn hơn khoảng 2 năm, có thể cao đến 16 đến 18 tuổi.",
+          "cap": [
+            "Bé trai",
+            "đóng 16-18 tuổi"
+          ],
+          "hl": "16-18 tuổi"
+        },
+        "en": {
+          "narr": "Boys close about 2 years later — they can keep growing to 16 to 18.",
+          "cap": [
+            "Boys",
+            "close at 16-18"
+          ],
+          "hl": "16-18"
+        },
+        "cn": {
+          "narr": "男孩大约晚2年，能长到16到18岁。",
+          "cap": [
+            "男孩",
+            "16-18岁闭合"
+          ],
+          "hl": "16-18岁"
+        },
+        "ch": {
+          "narr": "男孩大約晚2年，能長到16到18歲。",
+          "cap": [
+            "男孩",
+            "16-18歲閉合"
+          ],
+          "hl": "16-18歲"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 부위별 순서",
+      "motion": "✋→🦵→🦴 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "성장판은 한 번에 안 닫혀요. 손과 발이 먼저, 그다음 무릎 순서예요.",
+          "cap": [
+            "손·발 먼저",
+            "다음은 무릎"
+          ],
+          "hl": "다음은 무릎"
+        },
+        "th": {
+          "narr": "แผ่นกระดูกไม่ได้ปิดพร้อมกัน มือเท้าปิดก่อน แล้วค่อยหัวเข่า",
+          "cap": [
+            "มือเท้าก่อน",
+            "แล้วหัวเข่า"
+          ],
+          "hl": "แล้วหัวเข่า"
+        },
+        "vi": {
+          "narr": "Sụn không đóng cùng lúc. Tay chân đóng trước, rồi đến đầu gối.",
+          "cap": [
+            "Tay chân trước",
+            "rồi đầu gối"
+          ],
+          "hl": "rồi đầu gối"
+        },
+        "en": {
+          "narr": "Plates don't close all at once — hands and feet first, then the knees.",
+          "cap": [
+            "Hands & feet first",
+            "then knees"
+          ],
+          "hl": "then knees"
+        },
+        "cn": {
+          "narr": "生长板不是一起闭合：手脚先关，然后是膝盖。",
+          "cap": [
+            "手脚先关",
+            "再到膝盖"
+          ],
+          "hl": "再到膝盖"
+        },
+        "ch": {
+          "narr": "生長板不是一起閉合：手腳先關，然後是膝蓋。",
+          "cap": [
+            "手腳先關",
+            "再到膝蓋"
+          ],
+          "hl": "再到膝蓋"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "doctor",
+      "motion": "🦴 +1~2cm 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "척추가 가장 마지막이라, 무릎이 닫혀도 1~2센티는 더 클 수 있어요.",
+          "cap": [
+            "척추 마지막",
+            "+1~2cm 여지"
+          ],
+          "hl": "+1~2cm"
+        },
+        "th": {
+          "narr": "กระดูกสันหลังปิดท้ายสุด แม้หัวเข่าปิดแล้วก็ยังสูงได้อีก 1-2 ซม.",
+          "cap": [
+            "สันหลังท้ายสุด",
+            "+1-2 ซม."
+          ],
+          "hl": "+1-2 ซม."
+        },
+        "vi": {
+          "narr": "Cột sống đóng cuối cùng, nên dù gối đã đóng vẫn cao thêm 1-2cm.",
+          "cap": [
+            "Cột sống cuối",
+            "+1-2cm"
+          ],
+          "hl": "+1-2cm"
+        },
+        "en": {
+          "narr": "The spine closes last, so even after the knees, you can gain 1 to 2cm.",
+          "cap": [
+            "Spine last",
+            "+1-2cm"
+          ],
+          "hl": "+1-2cm"
+        },
+        "cn": {
+          "narr": "脊椎最后闭合，所以膝盖关了还能再长1到2厘米。",
+          "cap": [
+            "脊椎最后",
+            "+1-2厘米"
+          ],
+          "hl": "+1-2厘米"
+        },
+        "ch": {
+          "narr": "脊椎最後閉合，所以膝蓋關了還能再長1到2公分。",
+          "cap": [
+            "脊椎最後",
+            "+1-2公分"
+          ],
+          "hl": "+1-2公分"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "ig",
+      "igLabel": "IG4 손목 뼈나이",
+      "motion": "🤚🔍 골드 글로우",
+      "copy": {
+        "ko": {
+          "narr": "손목 뼈나이를 보면, 성장판이 얼마나 남았는지 미리 알 수 있어요.",
+          "cap": [
+            "손목 뼈나이로",
+            "남은 시간 확인"
+          ],
+          "hl": "남은 시간 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกข้อมือบอกได้ว่าแผ่นกระดูกเหลือเวลาอีกเท่าไร",
+          "cap": [
+            "อายุกระดูกข้อมือ",
+            "บอกเวลาที่เหลือ"
+          ],
+          "hl": "บอกเวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Tuổi xương cổ tay cho biết sụn tăng trưởng còn lại bao nhiêu thời gian.",
+          "cap": [
+            "Tuổi xương cổ tay",
+            "biết thời gian còn lại"
+          ],
+          "hl": "biết thời gian còn lại"
+        },
+        "en": {
+          "narr": "A wrist bone-age X-ray shows exactly how much growth-plate time is left.",
+          "cap": [
+            "Wrist bone age",
+            "shows time left"
+          ],
+          "hl": "shows time left"
+        },
+        "cn": {
+          "narr": "看手腕骨龄，就能提前知道生长板还剩多少时间。",
+          "cap": [
+            "手腕骨龄",
+            "看剩余时间"
+          ],
+          "hl": "看剩余时间"
+        },
+        "ch": {
+          "narr": "看手腕骨齡，就能提前知道生長板還剩多少時間。",
+          "cap": [
+            "手腕骨齡",
+            "看剩餘時間"
+          ],
+          "hl": "看剩餘時間"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "닫히기 전이 골든타임! 우리 아이 뼈나이, 지금 바로 확인하세요.",
+          "cap": [
+            "성장판 골든타임",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ก่อนปิดคือช่วงเวลาทอง! เช็กอายุกระดูกของลูกวันนี้",
+          "cap": [
+            "ช่วงเวลาทอง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Trước khi đóng là thời điểm vàng! Kiểm tra tuổi xương của con ngay.",
+          "cap": [
+            "Thời điểm vàng",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Before it closes is the golden time! Check your child's bone age today.",
+          "cap": [
+            "Golden time",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "闭合前就是黄金期！现在就查查孩子的骨龄吧。",
+          "cap": [
+            "黄金期",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "閉合前就是黃金期！現在就查查孩子的骨齡吧。",
+          "cap": [
+            "黃金期",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🏭→🦴 굳는 전환",
+      "title": "성장판 = 뼈 만드는 공장",
+      "emojis": [
+        "🦴",
+        "🏭",
+        "⏳"
+      ],
+      "prompt": "Flat vector, square, white bg. A cross-section of a long bone end with an open cartilage growth-plate gap glowing soft mint, depicted as a tiny friendly factory producing new bone layers; beside it the same plate partly hardened/closing into solid bone. Brand purple #667eea bone, mint #2dd4bf glowing gap, friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(열린 틈)",
+          "ko": "열린 성장판",
+          "en": "Open plate",
+          "th": "แผ่นที่เปิด"
+        },
+        {
+          "pos": "오른쪽(굳음)",
+          "ko": "닫히는 중",
+          "en": "Closing",
+          "th": "กำลังปิด"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "👧👦 카운트업 비교",
+      "title": "남녀 폐쇄 나이 비교",
+      "emojis": [
+        "👧",
+        "👦",
+        "📅"
+      ],
+      "prompt": "Flat vector, square, white bg. Two side-by-side friendly child figures, a girl on the left and a taller boy on the right, each standing beside a vertical timeline bar; the girl's bar fills to an earlier point, the boy's bar fills higher/longer, showing he keeps growing longer. Brand purple + mint bars, soft pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 바",
+          "ko": "여아 14~16세",
+          "en": "Girls 14-16",
+          "th": "หญิง 14-16"
+        },
+        {
+          "pos": "오른쪽 바",
+          "ko": "남아 16~18세",
+          "en": "Boys 16-18",
+          "th": "ชาย 16-18"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "✋→🦵→🦴 순차 점등",
+      "title": "부위별 폐쇄 순서",
+      "emojis": [
+        "✋",
+        "🦵",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly child body silhouette with three highlighted growth-plate zones connected by a downward-to-upward order arrow: hand/foot zone glowing first (brightest), knee zone second, spine zone last (dim). Sequential glow from extremities toward the spine. Brand purple body, mint glow markers. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "손·발",
+          "ko": "1. 손·발",
+          "en": "1. Hands/feet",
+          "th": "1. มือเท้า"
+        },
+        {
+          "pos": "무릎",
+          "ko": "2. 무릎",
+          "en": "2. Knee",
+          "th": "2. หัวเข่า"
+        },
+        {
+          "pos": "척추",
+          "ko": "3. 척추",
+          "en": "3. Spine",
+          "th": "3. สันหลัง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c9",
+      "motion": "🤚🔍 골드 글로우",
+      "title": "손목 뼈나이로 예측",
+      "emojis": [
+        "🤚",
+        "🔍",
+        "⏳"
+      ],
+      "prompt": "Flat vector, square, white bg. A stylized wrist/hand X-ray panel with a magnifier lens over it and a small hourglass beside, warm golden glow on the wrist bones suggesting 'time remaining can be read here.' Brand purple frame, mint and gold accents, friendly clinical style. NO text.",
+      "labels": [
+        {
+          "pos": "손목 X-ray",
+          "ko": "손목 X-ray",
+          "en": "Wrist X-ray",
+          "th": "เอกซเรย์ข้อมือ"
+        },
+        {
+          "pos": "모래시계",
+          "ko": "남은 시간",
+          "en": "Time left",
+          "th": "เวลาที่เหลือ"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🦴",
+      "label": "성장판·뼈"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임/시간"
+    },
+    {
+      "e": "🏭",
+      "label": "뼈 공장"
+    },
+    {
+      "e": "⚖️",
+      "label": "호르몬 양면성"
+    },
+    {
+      "e": "👧",
+      "label": "여아"
+    },
+    {
+      "e": "👦",
+      "label": "남아"
+    },
+    {
+      "e": "✋",
+      "label": "손·발(먼저)"
+    },
+    {
+      "e": "🦵",
+      "label": "무릎"
+    },
+    {
+      "e": "🤚",
+      "label": "손목 X-ray"
+    },
+    {
+      "e": "🔍",
+      "label": "뼈나이 측정"
+    },
+    {
+      "e": "📅",
+      "label": "나이·시기"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

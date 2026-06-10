@@ -1,0 +1,801 @@
+{
+  "n": 34,
+  "slug": "중금속식탁",
+  "title": "우리 아이 키, '숨은 적' 중금속 — 식탁으로 막는다",
+  "sub": "납·수은·카드뮴이 칼슘·아연 흡수를 방해 — 해조류·녹색채소·작은 생선으로 매일 해독",
+  "category": "B. 생활습관",
+  "topicTitle": "중금속 예방하는 식탁 습관",
+  "headerTop": "우리 아이 키",
+  "headerMark": "숨은 적이 있다?",
+  "accentEmoji": "🥦✨",
+  "hook": "우리 아이 키 성장, 영양·수면 말고 '숨은 적'이 하나 더 있어요.",
+  "misconception": "잘 먹이면 끝 → 오염된 식재료 속 중금속이 칼슘·아연 흡수를 막는 건 모름",
+  "message": "중금속(납·수은·카드뮴)은 칼슘·아연·철분 흡수를 막고 성장호르몬을 교란 — 해조류·녹색채소·비타민C·작은 생선으로 매일 배출을 돕자",
+  "tone": "협박 ❌ → 긍정 골든타임(\"매일 식탁으로 충분히 도울 수 있다\"). \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이 성장, 지금 뼈나이·예측키로 확인 → 식습관까지 통합 관리",
+  "duration": 35,
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"영양·수면 말고 숨은 적, 중금속\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "왜 위험",
+      "scenes": "c3–c4",
+      "desc": "\"칼슘·아연 흡수 방해 + 성장호르몬 교란\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "해독 식탁 1",
+      "scenes": "c5–c6",
+      "desc": "\"해조류 알긴산·녹색채소가 배출\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "해독 식탁 2·3",
+      "scenes": "c7–c8",
+      "desc": "\"비타민C·아연 + 작은 생선 선택\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "통합·행동",
+      "scenes": "c9–c10",
+      "desc": "\"식습관+성장 통합 관리 → CTA\""
+    }
+  ],
+  "thumb": {
+    "kicker": "잘 먹여도 키 안 커요?",
+    "subject": "우리 아이 키 막는",
+    "number": "숨은 적",
+    "numLabel": "중금속"
+  },
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🥦 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키 성장, 영양·수면 말고 '숨은 적'이 하나 더 있어요.",
+          "cap": [
+            "키 성장의",
+            "숨은 적"
+          ],
+          "hl": "숨은 적"
+        },
+        "th": {
+          "narr": "การเติบโตของลูก มี ‘ศัตรูที่ซ่อนอยู่’ ที่หลายคนมองข้าม",
+          "cap": [
+            "ความสูงลูก",
+            "ศัตรูที่ซ่อนอยู่"
+          ],
+          "hl": "ศัตรูที่ซ่อนอยู่"
+        },
+        "vi": {
+          "narr": "Chiều cao của con có một 'kẻ thù giấu mặt' ngoài dinh dưỡng và giấc ngủ.",
+          "cap": [
+            "Chiều cao con",
+            "kẻ thù giấu mặt"
+          ],
+          "hl": "kẻ thù giấu mặt"
+        },
+        "en": {
+          "narr": "Beyond food and sleep, your child's growth has one hidden enemy.",
+          "cap": [
+            "Your child's growth",
+            "a hidden enemy"
+          ],
+          "hl": "hidden enemy"
+        },
+        "cn": {
+          "narr": "孩子长高，除了营养和睡眠，还有一个'隐形敌人'。",
+          "cap": [
+            "孩子长高的",
+            "隐形敌人"
+          ],
+          "hl": "隐形敌人"
+        },
+        "ch": {
+          "narr": "孩子長高，除了營養和睡眠，還有一個'隱形敵人'。",
+          "cap": [
+            "孩子長高的",
+            "隱形敵人"
+          ],
+          "hl": "隱形敵人"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🌫️ 흔들 + 입자 부유",
+      "copy": {
+        "ko": {
+          "narr": "바로 식재료에 섞여 들어오는 중금속, 납·수은·카드뮴이에요.",
+          "cap": [
+            "그 적은 바로",
+            "중금속"
+          ],
+          "hl": "중금속"
+        },
+        "th": {
+          "narr": "นั่นคือโลหะหนัก ตะกั่ว ปรอท แคดเมียม ที่ปนมากับอาหาร",
+          "cap": [
+            "นั่นคือ",
+            "โลหะหนัก"
+          ],
+          "hl": "โลหะหนัก"
+        },
+        "vi": {
+          "narr": "Đó là kim loại nặng — chì, thủy ngân, cadmium — lẫn trong thực phẩm.",
+          "cap": [
+            "Đó là",
+            "kim loại nặng"
+          ],
+          "hl": "kim loại nặng"
+        },
+        "en": {
+          "narr": "It's heavy metals — lead, mercury, cadmium — riding in on food.",
+          "cap": [
+            "It's",
+            "heavy metals"
+          ],
+          "hl": "heavy metals"
+        },
+        "cn": {
+          "narr": "那就是混在食物里的重金属——铅、汞、镉。",
+          "cap": [
+            "那就是",
+            "重金属"
+          ],
+          "hl": "重金属"
+        },
+        "ch": {
+          "narr": "那就是混在食物裡的重金屬——鉛、汞、鎘。",
+          "cap": [
+            "那就是",
+            "重金屬"
+          ],
+          "hl": "重金屬"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–10.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🧒 펄스 · 약함 강조",
+      "copy": {
+        "ko": {
+          "narr": "성장기 아이는 장기가 미성숙해서 어른보다 중금속에 더 취약해요.",
+          "cap": [
+            "아이는 어른보다",
+            "더 취약"
+          ],
+          "hl": "더 취약"
+        },
+        "th": {
+          "narr": "เด็กวัยโตอวัยวะยังไม่สมบูรณ์ จึงเสี่ยงกว่าผู้ใหญ่",
+          "cap": [
+            "เด็กเสี่ยง",
+            "กว่าผู้ใหญ่"
+          ],
+          "hl": "กว่าผู้ใหญ่"
+        },
+        "vi": {
+          "narr": "Trẻ đang lớn có nội tạng chưa hoàn thiện, dễ tổn thương hơn người lớn.",
+          "cap": [
+            "Trẻ dễ tổn thương",
+            "hơn người lớn"
+          ],
+          "hl": "hơn người lớn"
+        },
+        "en": {
+          "narr": "Growing kids have immature organs — far more vulnerable than adults.",
+          "cap": [
+            "Kids are",
+            "more vulnerable"
+          ],
+          "hl": "more vulnerable"
+        },
+        "cn": {
+          "narr": "成长期孩子器官未成熟，比大人更容易受害。",
+          "cap": [
+            "孩子比大人",
+            "更脆弱"
+          ],
+          "hl": "更脆弱"
+        },
+        "ch": {
+          "narr": "成長期孩子器官未成熟，比大人更容易受害。",
+          "cap": [
+            "孩子比大人",
+            "更脆弱"
+          ],
+          "hl": "更脆弱"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "10.5–14.5s",
+      "kind": "ig",
+      "igLabel": "IG1 흡수 방해",
+      "motion": "🚫 차단 + 미네랄 튕김",
+      "copy": {
+        "ko": {
+          "narr": "중금속은 칼슘·아연·철분 흡수를 막고, 성장호르몬까지 교란해요.",
+          "cap": [
+            "칼슘·아연 흡수 방해",
+            "성장호르몬 교란"
+          ],
+          "hl": "성장호르몬 교란"
+        },
+        "th": {
+          "narr": "มันขัดขวางการดูดซึมแคลเซียม สังกะสี และรบกวนฮอร์โมนโต",
+          "cap": [
+            "ขวางแคลเซียม สังกะสี",
+            "รบกวนฮอร์โมนโต"
+          ],
+          "hl": "รบกวนฮอร์โมนโต"
+        },
+        "vi": {
+          "narr": "Chúng chặn hấp thu canxi, kẽm, sắt và rối loạn hormone tăng trưởng.",
+          "cap": [
+            "Chặn canxi, kẽm",
+            "rối loạn hormone"
+          ],
+          "hl": "rối loạn hormone"
+        },
+        "en": {
+          "narr": "They block calcium, zinc and iron — and disrupt growth hormone.",
+          "cap": [
+            "Block calcium & zinc",
+            "disrupt growth hormone"
+          ],
+          "hl": "growth hormone"
+        },
+        "cn": {
+          "narr": "它们阻碍钙、锌、铁吸收，还扰乱生长激素。",
+          "cap": [
+            "阻碍钙锌吸收",
+            "扰乱生长激素"
+          ],
+          "hl": "生长激素"
+        },
+        "ch": {
+          "narr": "它們阻礙鈣、鋅、鐵吸收，還擾亂生長激素。",
+          "cap": [
+            "阻礙鈣鋅吸收",
+            "擾亂生長激素"
+          ],
+          "hl": "生長激素"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🙆 안심 + 💪 끄덕",
+      "copy": {
+        "ko": {
+          "narr": "그런데 좋은 소식! 매일 식탁으로 충분히 막아줄 수 있어요.",
+          "cap": [
+            "좋은 소식!",
+            "식탁으로 해독"
+          ],
+          "hl": "식탁으로 해독"
+        },
+        "th": {
+          "narr": "ข่าวดีคือ มื้ออาหารทุกวันช่วยป้องกันได้เพียงพอ",
+          "cap": [
+            "ข่าวดี!",
+            "ป้องกันด้วยมื้ออาหาร"
+          ],
+          "hl": "ป้องกันด้วยมื้ออาหาร"
+        },
+        "vi": {
+          "narr": "Tin vui là: bữa ăn mỗi ngày có thể bảo vệ con đủ tốt.",
+          "cap": [
+            "Tin vui!",
+            "phòng bằng bữa ăn"
+          ],
+          "hl": "phòng bằng bữa ăn"
+        },
+        "en": {
+          "narr": "Good news: everyday meals can protect them just fine.",
+          "cap": [
+            "Good news!",
+            "defend with food"
+          ],
+          "hl": "defend with food"
+        },
+        "cn": {
+          "narr": "好消息是：每天的餐桌就能帮孩子挡住。",
+          "cap": [
+            "好消息！",
+            "用餐桌排毒"
+          ],
+          "hl": "用餐桌排毒"
+        },
+        "ch": {
+          "narr": "好消息是：每天的餐桌就能幫孩子擋住。",
+          "cap": [
+            "好消息！",
+            "用餐桌排毒"
+          ],
+          "hl": "用餐桌排毒"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18–22s",
+      "kind": "ig",
+      "igLabel": "IG2 해조류·녹색채소",
+      "motion": "🌿 알긴산 끌어내기 ↘",
+      "copy": {
+        "ko": {
+          "narr": "첫째, 미역·다시마의 알긴산이 중금속을 붙잡아 몸 밖으로 빼내요.",
+          "cap": [
+            "미역·다시마 알긴산",
+            "중금속 배출"
+          ],
+          "hl": "중금속 배출"
+        },
+        "th": {
+          "narr": "หนึ่ง อัลจิเนตในสาหร่ายจับโลหะหนักแล้วขับออก",
+          "cap": [
+            "อัลจิเนตในสาหร่าย",
+            "ขับโลหะหนัก"
+          ],
+          "hl": "ขับโลหะหนัก"
+        },
+        "vi": {
+          "narr": "Thứ nhất, alginate trong rong biển bắt kim loại và đẩy ra ngoài.",
+          "cap": [
+            "Alginate rong biển",
+            "thải kim loại"
+          ],
+          "hl": "thải kim loại"
+        },
+        "en": {
+          "narr": "First, alginate in seaweed grabs metals and flushes them out.",
+          "cap": [
+            "Seaweed alginate",
+            "flushes metals out"
+          ],
+          "hl": "flushes metals out"
+        },
+        "cn": {
+          "narr": "第一，海带紫菜的褐藻酸能抓住重金属排出体外。",
+          "cap": [
+            "海藻褐藻酸",
+            "排出重金属"
+          ],
+          "hl": "排出重金属"
+        },
+        "ch": {
+          "narr": "第一，海帶紫菜的褐藻酸能抓住重金屬排出體外。",
+          "cap": [
+            "海藻褐藻酸",
+            "排出重金屬"
+          ],
+          "hl": "排出重金屬"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–25.5s",
+      "kind": "ig",
+      "igLabel": "IG3 비타민·미네랄",
+      "motion": "🍓 순차 점등 + 방어막",
+      "copy": {
+        "ko": {
+          "narr": "둘째, 비타민C와 셀레늄·아연이 독성을 중화하고 방어력을 높여줘요.",
+          "cap": [
+            "비타민C·셀레늄·아연",
+            "독성 중화"
+          ],
+          "hl": "독성 중화"
+        },
+        "th": {
+          "narr": "สอง วิตามินซี ซีลีเนียม สังกะสี ลดพิษและเสริมเกราะ",
+          "cap": [
+            "วิตามินซี·ซีลีเนียม",
+            "ลดความเป็นพิษ"
+          ],
+          "hl": "ลดความเป็นพิษ"
+        },
+        "vi": {
+          "narr": "Thứ hai, vitamin C, selen và kẽm trung hòa độc tố, tăng đề kháng.",
+          "cap": [
+            "Vitamin C·selen·kẽm",
+            "trung hòa độc tố"
+          ],
+          "hl": "trung hòa độc tố"
+        },
+        "en": {
+          "narr": "Second, vitamin C, selenium and zinc neutralize toxins and shield them.",
+          "cap": [
+            "Vit C·selenium·zinc",
+            "neutralize toxins"
+          ],
+          "hl": "neutralize toxins"
+        },
+        "cn": {
+          "narr": "第二，维生素C、硒和锌能中和毒性、加强防御。",
+          "cap": [
+            "维C·硒·锌",
+            "中和毒性"
+          ],
+          "hl": "中和毒性"
+        },
+        "ch": {
+          "narr": "第二，維生素C、硒和鋅能中和毒性、加強防禦。",
+          "cap": [
+            "維C·硒·鋅",
+            "中和毒性"
+          ],
+          "hl": "中和毒性"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "25.5–29s",
+      "kind": "ig",
+      "igLabel": "IG4 작은 생선",
+      "motion": "🐟 작은 생선 ✓ · 큰 생선 ⚠️",
+      "copy": {
+        "ko": {
+          "narr": "셋째, 참치 같은 큰 생선보단 멸치·고등어 같은 작은 생선을 골라주세요.",
+          "cap": [
+            "큰 생선 수은 ↑",
+            "작은 생선 선택"
+          ],
+          "hl": "작은 생선 선택"
+        },
+        "th": {
+          "narr": "สาม เลี่ยงปลาใหญ่ปรอทสูง เลือกปลาเล็กอย่างปลาแอนโชวี่",
+          "cap": [
+            "ปลาใหญ่ปรอทสูง",
+            "เลือกปลาเล็ก"
+          ],
+          "hl": "เลือกปลาเล็ก"
+        },
+        "vi": {
+          "narr": "Thứ ba, tránh cá lớn nhiều thủy ngân — chọn cá nhỏ như cá cơm.",
+          "cap": [
+            "Cá lớn nhiều thủy ngân",
+            "chọn cá nhỏ"
+          ],
+          "hl": "chọn cá nhỏ"
+        },
+        "en": {
+          "narr": "Third, skip big fish like tuna — pick small fish like anchovy.",
+          "cap": [
+            "Big fish = mercury",
+            "pick small fish"
+          ],
+          "hl": "pick small fish"
+        },
+        "cn": {
+          "narr": "第三，少吃金枪鱼等大鱼，多选凤尾鱼、鲭鱼等小鱼。",
+          "cap": [
+            "大鱼汞高",
+            "选小鱼"
+          ],
+          "hl": "选小鱼"
+        },
+        "ch": {
+          "narr": "第三，少吃鮪魚等大魚，多選鯷魚、鯖魚等小魚。",
+          "cap": [
+            "大魚汞高",
+            "選小魚"
+          ],
+          "hl": "選小魚"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29–32s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🧩 통합 + 팝",
+      "copy": {
+        "ko": {
+          "narr": "식습관에 수면·운동·뼈나이 관리까지 더하면 잠재력을 끝까지 끌어올려요.",
+          "cap": [
+            "식습관 + 성장 관리",
+            "통합 케어"
+          ],
+          "hl": "통합 케어"
+        },
+        "th": {
+          "narr": "เพิ่มการนอน ออกกำลัง และดูแลอายุกระดูก ดึงศักยภาพเต็มที่",
+          "cap": [
+            "อาหาร + ดูแลการเติบโต",
+            "แบบองค์รวม"
+          ],
+          "hl": "แบบองค์รวม"
+        },
+        "vi": {
+          "narr": "Thêm giấc ngủ, vận động và theo dõi tuổi xương để phát huy tối đa.",
+          "cap": [
+            "Ăn uống + quản lý",
+            "chăm sóc toàn diện"
+          ],
+          "hl": "chăm sóc toàn diện"
+        },
+        "en": {
+          "narr": "Add sleep, exercise and bone-age care to reach full potential.",
+          "cap": [
+            "Diet + growth care",
+            "integrated care"
+          ],
+          "hl": "integrated care"
+        },
+        "cn": {
+          "narr": "再加上睡眠、运动和骨龄管理，把潜力发挥到极致。",
+          "cap": [
+            "饮食 + 成长管理",
+            "整合照护"
+          ],
+          "hl": "整合照护"
+        },
+        "ch": {
+          "narr": "再加上睡眠、運動和骨齡管理，把潛力發揮到極致。",
+          "cap": [
+            "飲食 + 成長管理",
+            "整合照護"
+          ],
+          "hl": "整合照護"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32–35s",
+      "kind": "cta",
+      "igLabel": "",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장, 지금 뼈나이·예측키로 확인해 보세요.",
+          "cap": [
+            "뼈나이·예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้",
+          "cap": [
+            "อายุกระดูก·ทำนายส่วนสูง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.",
+          "cap": [
+            "Tuổi xương·dự đoán",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth with bone age today.",
+          "cap": [
+            "Bone age·height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就用骨龄、预测身高查查孩子的成长吧。",
+          "cap": [
+            "骨龄·预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就用骨齡、預測身高查查孩子的成長吧。",
+          "cap": [
+            "骨齡·預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c4",
+      "motion": "🚫 차단 + 미네랄 튕김",
+      "title": "중금속이 미네랄 흡수를 차단",
+      "emojis": [
+        "🚫",
+        "🦴",
+        "⚡"
+      ],
+      "prompt": "Flat vector, square, white bg. A child's stomach/gut cross-section in the center; small friendly mineral capsules (calcium, zinc, iron) trying to enter but bouncing off a dark gray heavy-metal barrier; a small growth-hormone gland icon with a glitch/scramble symbol nearby. Brand purple body with mint mineral capsules, muted gray for the blocking metals. Conveys 'metals block mineral absorption and disrupt hormones.' NO text.",
+      "labels": [
+        {
+          "pos": "튕기는 캡슐",
+          "ko": "칼슘·아연·철분",
+          "en": "Ca·Zn·Fe",
+          "th": "แคลเซียม·สังกะสี"
+        },
+        {
+          "pos": "회색 장벽",
+          "ko": "중금속 차단",
+          "en": "Metals block",
+          "th": "โลหะหนักขวาง"
+        },
+        {
+          "pos": "호르몬 아이콘",
+          "ko": "성장호르몬 교란",
+          "en": "GH disrupted",
+          "th": "ฮอร์โมนรวน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c6",
+      "motion": "🌿 알긴산 끌어내기 ↘",
+      "title": "해조류·녹색채소 — 중금속 배출",
+      "emojis": [
+        "🌿",
+        "🥦",
+        "♻️"
+      ],
+      "prompt": "Flat vector, square, white bg. A cheerful bowl of seaweed and dark-green vegetables (broccoli, spinach) at center; soft sticky alginate strands reaching out and capturing small dark metal particles, then a downward arrow sweeping them out of a child silhouette's body. Brand mint-green vegetables, purple accents, gray metal dots being removed. Conveys 'binds and flushes out metals.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "해조류 그릇",
+          "ko": "미역·다시마",
+          "en": "Seaweed",
+          "th": "สาหร่าย"
+        },
+        {
+          "pos": "녹색 채소",
+          "ko": "녹색채소",
+          "en": "Greens",
+          "th": "ผักใบเขียว"
+        },
+        {
+          "pos": "아래 화살표",
+          "ko": "배출 ↓",
+          "en": "Flush out ↓",
+          "th": "ขับออก ↓"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "🍓 순차 점등 + 방어막",
+      "title": "비타민·미네랄 방어력",
+      "emojis": [
+        "🍓",
+        "🛡️",
+        "🥜"
+      ],
+      "prompt": "Flat vector, square, white bg. A protective glowing shield around a happy child silhouette; around the shield orbit friendly food icons — strawberry/orange (vitamin C), brazil nuts/mushroom (selenium), and a cut of meat/beans (zinc) — each emitting a soft sparkle. Brand purple shield with mint sparkles, warm fruit colors. Conveys 'nutrients build defense and neutralize toxins.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "과일",
+          "ko": "비타민C",
+          "en": "Vitamin C",
+          "th": "วิตามินซี"
+        },
+        {
+          "pos": "견과·버섯",
+          "ko": "셀레늄",
+          "en": "Selenium",
+          "th": "ซีลีเนียม"
+        },
+        {
+          "pos": "고기·콩",
+          "ko": "아연",
+          "en": "Zinc",
+          "th": "สังกะสี"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🐟 작은 생선 ✓ · 큰 생선 ⚠️",
+      "title": "작은 생선이 안전 — 수은 회피",
+      "emojis": [
+        "🐟",
+        "✅",
+        "⚠️"
+      ],
+      "prompt": "Flat vector, square, white bg. Left side: a big fish (tuna) with a gentle caution glow and a few gray mercury dots inside, slightly dimmed. Right side: two small bright fish (anchovy, mackerel) with a friendly check-mark glow, looking healthy and clean. A soft divider between them. Brand purple + mint, the safe small fish brighter. Conveys 'choose small fish over big fish.' NO text.",
+      "labels": [
+        {
+          "pos": "좌측 큰 생선",
+          "ko": "큰 생선 수은↑",
+          "en": "Big fish = mercury",
+          "th": "ปลาใหญ่ปรอทสูง"
+        },
+        {
+          "pos": "우측 작은 생선",
+          "ko": "작은 생선 ✓",
+          "en": "Small fish ✓",
+          "th": "ปลาเล็ก ✓"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🥦",
+      "label": "해독 채소"
+    },
+    {
+      "e": "🌿",
+      "label": "해조류·알긴산"
+    },
+    {
+      "e": "🐟",
+      "label": "작은 생선"
+    },
+    {
+      "e": "🍓",
+      "label": "비타민C"
+    },
+    {
+      "e": "🥜",
+      "label": "셀레늄"
+    },
+    {
+      "e": "🛡️",
+      "label": "방어력"
+    },
+    {
+      "e": "🚫",
+      "label": "흡수 차단"
+    },
+    {
+      "e": "⚠️",
+      "label": "중금속·수은"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "🧩",
+      "label": "통합 케어"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

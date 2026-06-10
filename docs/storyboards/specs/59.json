@@ -1,0 +1,789 @@
+{
+  "n": 59,
+  "slug": "방학키성장",
+  "title": "여름방학이 키를 키운다 — 방학 키 성장 챌린지",
+  "sub": "방학에 더 잘 큰다 — 수면·운동·영양 세 가지로 우리 아이 숨은 키를 찾는 골든타임",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "여름방학 키 성장 챌린지",
+  "headerTop": "우리 아이 키",
+  "headerMark": "방학이 기회?",
+  "accentEmoji": "☀️📏",
+  "hook": "여름방학, 그냥 쉬는 시간 아니에요. 우리 아이 키 크는 골든타임이에요.",
+  "misconception": "방학은 그냥 노는 기간 → 아이는 학기 중보다 방학에 더 잘 자란다(스트레스↓·활동↑·수면↑)",
+  "message": "방학엔 스트레스가 줄고 활동·수면이 늘어 성장에 최적. 충분한 수면(8~10시간)·꾸준한 운동(하루 30분·주 3~5회)·균형 영양 세 가지를 챙기면 숨은 키를 키울 수 있다.",
+  "tone": "협박 ❌ → 긍정 골든타임(\"방학이 기회\"). \"우리 아이 키\" 보편(모든 부모). 시청자가 이미 관리·검사했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대",
+  "cta": "이번 방학, 우리 아이 성장 잠재력 지금 확인 → 뼈나이/예측키 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "방학이 기회!",
+    "subject": "우리 아이 키",
+    "number": "방학",
+    "numLabel": "에 더 큰다"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·반전",
+      "scenes": "c1–c2",
+      "desc": "\"방학은 노는 시간? 사실 더 잘 크는 시기\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "이유 3가지",
+      "scenes": "c3–c4",
+      "desc": "\"스트레스↓·활동↑·수면↑ → 수면이 핵심\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "수면·운동",
+      "scenes": "c5–c6",
+      "desc": "\"깊은 잠에 성장호르몬 → 햇볕·운동 비타민D\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "영양·핵심",
+      "scenes": "c7–c8",
+      "desc": "\"단백질·칼슘, 편식·다이어트 금물\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "골든타임·행동",
+      "scenes": "c9–c10",
+      "desc": "\"아직 기회 있다 → 뼈나이 확인 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "☀️ 슬램 인 + 스파클",
+      "copy": {
+        "ko": {
+          "narr": "여름방학, 그냥 쉬는 시간 아니에요. 우리 아이 키 크는 골든타임이에요.",
+          "cap": [
+            "방학은 쉬는 시간?",
+            "사실은 골든타임"
+          ],
+          "hl": "골든타임"
+        },
+        "th": {
+          "narr": "ปิดเทอมหน้าร้อนไม่ใช่แค่เวลาพัก แต่คือช่วงเวลาทองให้ลูกสูง",
+          "cap": [
+            "ปิดเทอม = พักเฉยๆ?",
+            "คือช่วงเวลาทอง"
+          ],
+          "hl": "ช่วงเวลาทอง"
+        },
+        "vi": {
+          "narr": "Nghỉ hè không chỉ là lúc nghỉ ngơi — đó là thời điểm vàng để con cao lên.",
+          "cap": [
+            "Nghỉ hè chỉ để nghỉ?",
+            "Là thời điểm vàng"
+          ],
+          "hl": "thời điểm vàng"
+        },
+        "en": {
+          "narr": "Summer break isn't just rest time — it's a golden time for your child to grow.",
+          "cap": [
+            "Break = just rest?",
+            "It's a golden time"
+          ],
+          "hl": "golden time"
+        },
+        "cn": {
+          "narr": "暑假不只是休息时间，而是孩子长高的黄金期。",
+          "cap": [
+            "暑假只是休息？",
+            "其实是黄金期"
+          ],
+          "hl": "黄金期"
+        },
+        "ch": {
+          "narr": "暑假不只是休息時間，而是孩子長高的黃金期。",
+          "cap": [
+            "暑假只是休息？",
+            "其實是黃金期"
+          ],
+          "hl": "黃金期"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "📈 반전 업스윙",
+      "copy": {
+        "ko": {
+          "narr": "놀랍게도 아이들은 학기 중보다 방학에 더 잘 자라요.",
+          "cap": [
+            "학기 중보다",
+            "방학에 더 큰다"
+          ],
+          "hl": "방학에 더 큰다"
+        },
+        "th": {
+          "narr": "น่าทึ่งที่เด็กโตได้ดีกว่าช่วงปิดเทอม มากกว่าตอนเรียน",
+          "cap": [
+            "มากกว่าตอนเรียน",
+            "ปิดเทอมโตดีกว่า"
+          ],
+          "hl": "ปิดเทอมโตดีกว่า"
+        },
+        "vi": {
+          "narr": "Bất ngờ là trẻ lớn nhanh hơn trong kỳ nghỉ so với khi đi học.",
+          "cap": [
+            "So với khi đi học",
+            "nghỉ hè lớn nhanh hơn"
+          ],
+          "hl": "nghỉ hè lớn nhanh hơn"
+        },
+        "en": {
+          "narr": "Surprisingly, kids grow better during the break than during the school term.",
+          "cap": [
+            "More than school term",
+            "grow more on break"
+          ],
+          "hl": "grow more on break"
+        },
+        "cn": {
+          "narr": "令人惊讶的是，孩子在假期比上学期间长得更好。",
+          "cap": [
+            "比上学期间",
+            "假期长得更多"
+          ],
+          "hl": "假期长得更多"
+        },
+        "ch": {
+          "narr": "令人驚訝的是，孩子在假期比上學期間長得更好。",
+          "cap": [
+            "比上學期間",
+            "假期長得更多"
+          ],
+          "hl": "假期長得更多"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 방학 3박자",
+      "motion": "① ② ③ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "이유는 셋이에요. 스트레스는 줄고, 활동은 늘고, 잠은 깊어지죠.",
+          "cap": [
+            "스트레스↓ 활동↑",
+            "수면↑"
+          ],
+          "hl": "수면↑"
+        },
+        "th": {
+          "narr": "มี 3 เหตุผล ความเครียดลด กิจกรรมเพิ่ม การนอนดีขึ้น",
+          "cap": [
+            "เครียดลด กิจกรรมเพิ่ม",
+            "นอนดีขึ้น"
+          ],
+          "hl": "นอนดีขึ้น"
+        },
+        "vi": {
+          "narr": "Có ba lý do: bớt căng thẳng, vận động nhiều hơn, ngủ sâu hơn.",
+          "cap": [
+            "Bớt stress, vận động hơn",
+            "ngủ sâu hơn"
+          ],
+          "hl": "ngủ sâu hơn"
+        },
+        "en": {
+          "narr": "Three reasons: less stress, more activity, and deeper sleep.",
+          "cap": [
+            "Less stress, more activity",
+            "deeper sleep"
+          ],
+          "hl": "deeper sleep"
+        },
+        "cn": {
+          "narr": "有三个原因：压力变小、活动变多、睡眠更深。",
+          "cap": [
+            "压力小、活动多",
+            "睡眠更深"
+          ],
+          "hl": "睡眠更深"
+        },
+        "ch": {
+          "narr": "有三個原因：壓力變小、活動變多、睡眠更深。",
+          "cap": [
+            "壓力小、活動多",
+            "睡眠更深"
+          ],
+          "hl": "睡眠更深"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "😴 펄스 + 8~10 카운트",
+      "copy": {
+        "ko": {
+          "narr": "첫째는 잠이에요. 성장호르몬은 깊이 잘 때 쏟아져요. 하루 8에서 10시간!",
+          "cap": [
+            "깊은 잠에 성장호르몬",
+            "하루 8~10시간"
+          ],
+          "hl": "하루 8~10시간"
+        },
+        "th": {
+          "narr": "อย่างแรกคือการนอน ฮอร์โมนหลั่งตอนหลับลึก วันละ 8 ถึง 10 ชม.",
+          "cap": [
+            "หลับลึก = ฮอร์โมน",
+            "วันละ 8–10 ชม."
+          ],
+          "hl": "วันละ 8–10 ชม."
+        },
+        "vi": {
+          "narr": "Đầu tiên là giấc ngủ. Hormone tăng trưởng tiết ra khi ngủ sâu — 8 đến 10 tiếng mỗi ngày!",
+          "cap": [
+            "Ngủ sâu = hormone",
+            "8–10 tiếng/ngày"
+          ],
+          "hl": "8–10 tiếng/ngày"
+        },
+        "en": {
+          "narr": "First is sleep. Growth hormone pours out in deep sleep — 8 to 10 hours a day!",
+          "cap": [
+            "Deep sleep = hormone",
+            "8–10 hours a day"
+          ],
+          "hl": "8–10 hours a day"
+        },
+        "cn": {
+          "narr": "第一是睡眠。生长激素在深睡时大量分泌——每天8到10小时！",
+          "cap": [
+            "深睡 = 生长激素",
+            "每天8~10小时"
+          ],
+          "hl": "每天8~10小时"
+        },
+        "ch": {
+          "narr": "第一是睡眠。生長激素在深睡時大量分泌——每天8到10小時！",
+          "cap": [
+            "深睡 = 生長激素",
+            "每天8~10小時"
+          ],
+          "hl": "每天8~10小時"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 수면·성장호르몬",
+      "motion": "🌙 떠오름 + 곡선 솟음",
+      "copy": {
+        "ko": {
+          "narr": "잠든 뒤 1, 2시간, 깊은 잠에서 성장호르몬이 가장 많이 나와요.",
+          "cap": [
+            "잠든 뒤 1~2시간",
+            "성장호르몬 최고조"
+          ],
+          "hl": "성장호르몬 최고조"
+        },
+        "th": {
+          "narr": "หลังหลับ 1–2 ชั่วโมง ช่วงหลับลึก ฮอร์โมนหลั่งสูงสุด",
+          "cap": [
+            "หลับลึก 1–2 ชม.",
+            "ฮอร์โมนพุ่งสูงสุด"
+          ],
+          "hl": "ฮอร์โมนพุ่งสูงสุด"
+        },
+        "vi": {
+          "narr": "Sau khi ngủ 1–2 tiếng, lúc ngủ sâu nhất, hormone tiết ra nhiều nhất.",
+          "cap": [
+            "Ngủ sâu sau 1–2 tiếng",
+            "hormone đỉnh điểm"
+          ],
+          "hl": "hormone đỉnh điểm"
+        },
+        "en": {
+          "narr": "One to two hours after falling asleep, in deep sleep, growth hormone peaks.",
+          "cap": [
+            "1–2 hrs into sleep",
+            "hormone peaks"
+          ],
+          "hl": "hormone peaks"
+        },
+        "cn": {
+          "narr": "入睡后1到2小时，进入深睡时，生长激素分泌最多。",
+          "cap": [
+            "入睡后1~2小时",
+            "生长激素高峰"
+          ],
+          "hl": "生长激素高峰"
+        },
+        "ch": {
+          "narr": "入睡後1到2小時，進入深睡時，生長激素分泌最多。",
+          "cap": [
+            "入睡後1~2小時",
+            "生長激素高峰"
+          ],
+          "hl": "生長激素高峰"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG3 햇볕·운동",
+      "motion": "☀️ 비춤 + 점프 통통",
+      "copy": {
+        "ko": {
+          "narr": "둘째는 활동이에요. 햇볕 아래 뛰면 비타민 D가 생겨 뼈가 튼튼해져요. 하루 30분, 주 3에서 5회!",
+          "cap": [
+            "햇볕·운동 → 비타민 D",
+            "하루 30분 · 주 3~5회"
+          ],
+          "hl": "하루 30분 · 주 3~5회"
+        },
+        "th": {
+          "narr": "อย่างที่สองคือกิจกรรม วิ่งเล่นกลางแดดได้วิตามินดี กระดูกแข็งแรง วันละ 30 นาที 3–5 ครั้งต่อสัปดาห์",
+          "cap": [
+            "แดด·ออกกำลัง → วิตามินดี",
+            "30 นาที · 3–5 ครั้ง/สัปดาห์"
+          ],
+          "hl": "30 นาที · 3–5 ครั้ง/สัปดาห์"
+        },
+        "vi": {
+          "narr": "Thứ hai là vận động. Chạy nhảy dưới nắng tạo vitamin D, xương chắc khỏe — 30 phút mỗi ngày, 3 đến 5 lần một tuần!",
+          "cap": [
+            "Nắng·vận động → vitamin D",
+            "30 phút · 3–5 lần/tuần"
+          ],
+          "hl": "30 phút · 3–5 lần/tuần"
+        },
+        "en": {
+          "narr": "Second is activity. Playing in the sun makes vitamin D for strong bones — 30 minutes a day, 3 to 5 times a week!",
+          "cap": [
+            "Sun·exercise → vitamin D",
+            "30 min · 3–5×/week"
+          ],
+          "hl": "30 min · 3–5×/week"
+        },
+        "cn": {
+          "narr": "第二是活动。在阳光下奔跑能生成维生素D，骨骼更强壮——每天30分钟，每周3到5次！",
+          "cap": [
+            "阳光·运动 → 维生素D",
+            "每天30分钟 · 每周3~5次"
+          ],
+          "hl": "每天30分钟 · 每周3~5次"
+        },
+        "ch": {
+          "narr": "第二是活動。在陽光下奔跑能生成維生素D，骨骼更強壯——每天30分鐘，每週3到5次！",
+          "cap": [
+            "陽光·運動 → 維生素D",
+            "每天30分鐘 · 每週3~5次"
+          ],
+          "hl": "每天30分鐘 · 每週3~5次"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26s",
+      "kind": "doctor",
+      "motion": "🍗 팝 + ⚠️ 편식 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "셋째는 영양이에요. 단백질과 칼슘은 충분히, 편식과 무리한 다이어트는 금물이에요.",
+          "cap": [
+            "단백질·칼슘 충분히",
+            "편식·다이어트 금물"
+          ],
+          "hl": "편식·다이어트 금물"
+        },
+        "th": {
+          "narr": "อย่างที่สามคืออาหาร โปรตีนและแคลเซียมให้พอ อย่ากินเลือกหรือลดน้ำหนักหักโหม",
+          "cap": [
+            "โปรตีน·แคลเซียมให้พอ",
+            "ห้ามกินเลือก·ลดหักโหม"
+          ],
+          "hl": "ห้ามกินเลือก·ลดหักโหม"
+        },
+        "vi": {
+          "narr": "Thứ ba là dinh dưỡng. Đủ đạm và canxi, tránh kén ăn và ăn kiêng quá mức.",
+          "cap": [
+            "Đủ đạm·canxi",
+            "tránh kén ăn·ăn kiêng"
+          ],
+          "hl": "tránh kén ăn·ăn kiêng"
+        },
+        "en": {
+          "narr": "Third is nutrition. Plenty of protein and calcium — no picky eating or crash diets.",
+          "cap": [
+            "Plenty protein·calcium",
+            "no picky·crash diets"
+          ],
+          "hl": "no picky·crash diets"
+        },
+        "cn": {
+          "narr": "第三是营养。蛋白质和钙要充足，别挑食、别过度节食。",
+          "cap": [
+            "蛋白质·钙要充足",
+            "别挑食·别节食"
+          ],
+          "hl": "别挑食·别节食"
+        },
+        "ch": {
+          "narr": "第三是營養。蛋白質和鈣要充足，別挑食、別過度節食。",
+          "cap": [
+            "蛋白質·鈣要充足",
+            "別挑食·別節食"
+          ],
+          "hl": "別挑食·別節食"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "ig",
+      "igLabel": "IG4 성장 식판",
+      "motion": "🍽️ 칸 채워짐",
+      "copy": {
+        "ko": {
+          "narr": "살코기, 생선, 콩, 유제품에 채소와 과일까지. 이게 키 크는 밥상이에요.",
+          "cap": [
+            "단백질·칼슘·채소",
+            "키 크는 밥상"
+          ],
+          "hl": "키 크는 밥상"
+        },
+        "th": {
+          "narr": "เนื้อไม่ติดมัน ปลา ถั่ว นม ผักและผลไม้ นี่คือจานเพิ่มความสูง",
+          "cap": [
+            "โปรตีน·แคลเซียม·ผัก",
+            "จานเพิ่มความสูง"
+          ],
+          "hl": "จานเพิ่มความสูง"
+        },
+        "vi": {
+          "narr": "Thịt nạc, cá, đậu, sữa, thêm rau và trái cây. Đây là bữa ăn giúp cao lên.",
+          "cap": [
+            "Đạm·canxi·rau",
+            "bữa ăn giúp cao"
+          ],
+          "hl": "bữa ăn giúp cao"
+        },
+        "en": {
+          "narr": "Lean meat, fish, beans, dairy, plus veggies and fruit. That's a grow-tall plate.",
+          "cap": [
+            "Protein·calcium·veggies",
+            "grow-tall plate"
+          ],
+          "hl": "grow-tall plate"
+        },
+        "cn": {
+          "narr": "瘦肉、鱼、豆类、乳制品，再加蔬菜水果。这就是长高餐盘。",
+          "cap": [
+            "蛋白·钙·蔬菜",
+            "长高餐盘"
+          ],
+          "hl": "长高餐盘"
+        },
+        "ch": {
+          "narr": "瘦肉、魚、豆類、乳製品，再加蔬菜水果。這就是長高餐盤。",
+          "cap": [
+            "蛋白·鈣·蔬菜",
+            "長高餐盤"
+          ],
+          "hl": "長高餐盤"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "이번 방학이 기회예요. 뼈나이를 보면 남은 키 크는 시간을 알 수 있어요.",
+          "cap": [
+            "이번 방학이 기회",
+            "뼈나이로 남은 시간"
+          ],
+          "hl": "뼈나이로 남은 시간"
+        },
+        "th": {
+          "narr": "ปิดเทอมนี้คือโอกาส อายุกระดูกบอกเวลาโตที่เหลือได้",
+          "cap": [
+            "ปิดเทอมนี้คือโอกาส",
+            "อายุกระดูก = เวลาที่เหลือ"
+          ],
+          "hl": "อายุกระดูก = เวลาที่เหลือ"
+        },
+        "vi": {
+          "narr": "Kỳ nghỉ này là cơ hội. Tuổi xương cho biết còn bao nhiêu thời gian để cao.",
+          "cap": [
+            "Kỳ nghỉ này là cơ hội",
+            "tuổi xương = thời gian còn lại"
+          ],
+          "hl": "tuổi xương = thời gian còn lại"
+        },
+        "en": {
+          "narr": "This break is the chance. Bone age shows how much growing time is left.",
+          "cap": [
+            "This break is the chance",
+            "bone age = time left"
+          ],
+          "hl": "bone age = time left"
+        },
+        "cn": {
+          "narr": "这个假期就是机会。骨龄能告诉你还剩多少长高的时间。",
+          "cap": [
+            "这个假期是机会",
+            "骨龄 = 剩余时间"
+          ],
+          "hl": "骨龄 = 剩余时间"
+        },
+        "ch": {
+          "narr": "這個假期就是機會。骨齡能告訴你還剩多少長高的時間。",
+          "cap": [
+            "這個假期是機會",
+            "骨齡 = 剩餘時間"
+          ],
+          "hl": "骨齡 = 剩餘時間"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "이번 방학, 우리 아이 성장 잠재력 지금 바로 확인해 보세요.",
+          "cap": [
+            "우리 아이 성장 잠재력",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ปิดเทอมนี้ เช็กศักยภาพการเติบโตของลูกเลยวันนี้",
+          "cap": [
+            "ศักยภาพการเติบโต",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kỳ nghỉ này, kiểm tra tiềm năng phát triển của con ngay hôm nay.",
+          "cap": [
+            "Tiềm năng phát triển",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "This break, check your child's growth potential today.",
+          "cap": [
+            "Growth potential",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "这个假期，现在就查查孩子的成长潜力吧。",
+          "cap": [
+            "孩子成长潜力",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "這個假期，現在就查查孩子的成長潛力吧。",
+          "cap": [
+            "孩子成長潛力",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "3점 순차 점등",
+      "title": "방학 키 성장 3박자",
+      "emojis": [
+        "😌",
+        "🏃",
+        "😴"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly circular icons in a row connected by a soft rising path: a calm relaxed child face (less stress), a child running/jumping outdoors (more activity), and a child sleeping peacefully under a crescent moon (deeper sleep). Brand purple to mint gradient connecting line, gentle glow on each node, cheerful pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "노드1",
+          "ko": "스트레스↓",
+          "en": "Less stress",
+          "th": "เครียดลด"
+        },
+        {
+          "pos": "노드2",
+          "ko": "활동↑",
+          "en": "More activity",
+          "th": "กิจกรรมเพิ่ม"
+        },
+        {
+          "pos": "노드3",
+          "ko": "수면↑",
+          "en": "Deeper sleep",
+          "th": "นอนดีขึ้น"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "곡선 솟음 + 글로우",
+      "title": "수면 — 깊은 잠에 성장호르몬",
+      "emojis": [
+        "🌙",
+        "💤",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A peacefully sleeping child curled under a blanket with a soft crescent moon and gentle Z's above, and a smooth glowing curve rising to a bright peak over the sleeping figure to suggest a hormone surge during deep sleep. Brand purple night tones with a mint-glowing peak, calm and cozy pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선 정점(글로우)",
+          "ko": "성장호르몬 ↑",
+          "en": "Growth hormone ↑",
+          "th": "ฮอร์โมน ↑"
+        },
+        {
+          "pos": "하단",
+          "ko": "깊은 잠",
+          "en": "Deep sleep",
+          "th": "หลับลึก"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "햇살 비춤 + 점프",
+      "title": "햇볕·운동 — 비타민 D와 뼈",
+      "emojis": [
+        "☀️",
+        "🤸",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white bg. A happy child jumping or skipping rope outdoors under a bright friendly sun with warm rays beaming down, little sparkles on the rays hinting at vitamin D, and a small strong glowing bone motif beside the child. Brand purple child and ground with warm sunny yellow sun and mint sparkle accents, energetic pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "햇살",
+          "ko": "비타민 D",
+          "en": "Vitamin D",
+          "th": "วิตามินดี"
+        },
+        {
+          "pos": "하단",
+          "ko": "하루 30분",
+          "en": "30 min/day",
+          "th": "30 นาที/วัน"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "식판 칸 채워짐",
+      "title": "키 크는 성장 식판",
+      "emojis": [
+        "🍗",
+        "🥛",
+        "🥦"
+      ],
+      "prompt": "Flat vector, square, white bg, top-down view of a friendly divided meal plate filled with sections: lean meat and fish (protein), a glass of milk and beans (calcium), and fresh green vegetables and fruit. Each section gently glowing as if just filled. Brand purple plate rim with mint and warm food accents, wholesome pediatric style. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "단백질 칸",
+          "ko": "단백질",
+          "en": "Protein",
+          "th": "โปรตีน"
+        },
+        {
+          "pos": "칼슘 칸",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        },
+        {
+          "pos": "채소 칸",
+          "ko": "채소·과일",
+          "en": "Veggies·fruit",
+          "th": "ผัก·ผลไม้"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "☀️",
+      "label": "여름방학·햇볕"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장"
+    },
+    {
+      "e": "😴",
+      "label": "수면"
+    },
+    {
+      "e": "🌙",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "💤",
+      "label": "성장호르몬"
+    },
+    {
+      "e": "🏃",
+      "label": "운동·활동"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈·비타민D"
+    },
+    {
+      "e": "🍗",
+      "label": "단백질"
+    },
+    {
+      "e": "🥛",
+      "label": "칼슘"
+    },
+    {
+      "e": "🥦",
+      "label": "채소·영양"
+    },
+    {
+      "e": "⏳",
+      "label": "골든타임"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

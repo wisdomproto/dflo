@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 비만 아이가 일찍 크고 일찍 멈추는 이유</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #9</span>
+  <h1>살집 있으면 키도 큰다? 일찍 크고 일찍 멈추는 함정</h1>
+  <div class="sub">비만 아이는 성장 에너지를 미리 당겨 쓴다 — 뼈나이가 빨라지고 성장판이 일찍 닫히는 역설</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>일찍 크면 손해?</b></div>
+      <div class="subj">우리 아이 키 일찍 크고</div>
+      <div class="big4"><div class="n" style="font-size:50px">일찍 STOP</div><div class="lab">비만의 함정</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 일찍 크고</b> 일찍 STOP비만의 함정"</li>
+        <li><b>거대 숫자 "일찍 STOP"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #9 「비만 아이가 일찍 크고 일찍 멈추는 이유」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"살집 있는 우리 아이가 또래보다 크면, 사실은 '키를 미리 당겨 쓰는' 신호일 수 있어요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>덩치 커서 키도 크는 거겠지 → 사실은 일찍 크고 일찍 멈춰 최종 키는 더 작아질 수 있음</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>비만은 인슐린·IGF-1로 일찍 키우지만, 지방의 아로마타제가 에스트로겐을 늘려 뼈나이를 앞당기고 성장판을 일찍 닫는다. 관리하면 충분히 지킬 수 있다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → "지금 관리하면 지킬 수 있다" 긍정. 비만 아이 비난 ❌. "우리 아이 키" 보편. CTA는 뼈나이/예측키 측정 유도.</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 뼈나이가 실제 나이보다 빠른지, 지금 예측키로 확인 → 뼈나이 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·역설</h4><p>c1–c2<br>"살쪄서 큰 거다? 사실은 함정"</p></div><div class="act"><span class="n">ACT 2</span><h4>왜 일찍 커 보이나</h4><p>c3–c4<br>"인슐린·IGF-1이 성장판 자극"</p></div><div class="act"><span class="n">ACT 3</span><h4>진짜 함정</h4><p>c5–c6<br>"지방→아로마타제→에스트로겐→뼈나이 가속"</p></div><div class="act"><span class="n">ACT 4</span><h4>성장판 조기 폐쇄</h4><p>c7–c8<br>"미리 당겨 써서 일찍 멈춤"</p></div><div class="act"><span class="n">ACT 5</span><h4>희망·행동</h4><p>c9–c10<br>"관리하면 지킨다 → 뼈나이 확인"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">살쪄서 큰 거 맞아?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">⚖️📉</div></div>
+        <div class="ph-cap"><div class="l">살쪄서 키 크다?</div><div class="l"><span class="y2">사실은 함정</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">살집 있는 우리 아이가 또래보다 크면, 그냥 '덩치 커서'라고 생각하시죠?</td><td><span class="cap2">살쪄서 키 크다?<br><span class="y">사실은 함정</span></span></td><td class="mo">⚖️ 슬램 인 + ❓ 깜빡</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 비만 아이는 '일찍 크고 일찍 멈추는' 역설이 있어요. 최종 키는 더 작아질 수 있죠.</td><td><span class="cap2">일찍 크고<br><span class="y">일찍 멈춘다</span></span></td><td class="mo">📉 떨어지는 그래프</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 역설 곡선</span></td><td class="narr">어릴 땐 또래보다 위로 쑥. 그런데 어느 순간 멈추고, 친구들이 따라잡아 넘어서요.</td><td><span class="cap2">처음엔 앞서다<br><span class="y">결국 추월당함</span></span></td><td class="mo">📈📉 두 곡선 교차</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 일찍 크는 원리</span></td><td class="narr">비만은 인슐린 저항으로 인슐린이 늘고, IGF-1도 높아져 성장판을 '일시적으로' 자극해요.</td><td><span class="cap2">인슐린·IGF-1↑<br><span class="y">일시적 성장 촉진</span></span></td><td class="mo">💉 인슐린·IGF-1 점등</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">진짜 함정은 여기예요. 지방이 많으면 '아로마타제'라는 효소가 활발해집니다.</td><td><span class="cap2">지방 많으면<br><span class="y">아로마타제 활성</span></span></td><td class="mo">🔥 지방→효소 변환</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22.5s</td><td><span class="scr ig">🖼 IG3 에스트로겐·뼈나이</span></td><td class="narr">이 효소가 남성호르몬을 에스트로겐으로 바꿔, 에스트로겐이 뼈나이를 확 앞당겨요.</td><td><span class="cap2">에스트로겐↑<br><span class="y">뼈나이 가속</span></span></td><td class="mo">🦴 뼈나이 빨리 감기</td></tr><tr><td class="c-id">c7</td><td class="c-time">22.5–26.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이가 빨라지면 성장판이 일찍 닫혀요. 성장 에너지를 미리 당겨 쓴 셈이죠.</td><td><span class="cap2">성장판 일찍 닫힘<br><span class="y">키를 미리 당겨 씀</span></span></td><td class="mo">⚠️ 쉐이크 + 🔒 잠김</td></tr><tr><td class="c-id">c8</td><td class="c-time">26.5–30s</td><td><span class="scr ig">🖼 IG4 관리하면 지킴</span></td><td class="narr">좋은 소식은, 식단·운동·수면으로 관리하면 뼈나이 가속을 충분히 늦출 수 있어요.</td><td><span class="cap2">식단·운동·수면<br><span class="y">지킬 수 있다</span></span></td><td class="mo">🌱 균형 회복 글로우</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이를 보면 우리 아이가 일찍 멈출 위험인지 지금 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">지금 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 뼈나이, 지금 바로 예측키로 확인해 보세요.</td><td><span class="cap2">뼈나이·예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 두 곡선 교차 그리기</div><h3>비만의 역설 — 일찍 앞서다 추월당함</h3></div>
+        <div class="body">
+          <div class="sketch">📈 📉 🔄</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Two growth curves on a simple chart: one purple curve rises fast early then plateaus and ends lower; one mint curve starts lower, keeps climbing steadily and ends higher, crossing over the purple one. A small chubby child silhouette under the early-rising purple curve, a leaner taller child silhouette under the mint curve's high end. Soft crossover highlight where they intersect. Brand purple #667eea and mint #2dd4bf. Friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>보라곡선 초반</td><td>일찍 앞섬</td><td>Early lead</td><td class="thai">นำช่วงแรก</td></tr><tr><td>교차점</td><td>추월</td><td>Overtaken</td><td class="thai">ถูกแซง</td></tr><tr><td>민트곡선 끝</td><td>최종 더 큼</td><td>Taller in the end</td><td class="thai">สุดท้ายสูงกว่า</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 인슐린·IGF-1 순차 점등</div><h3>일찍 커 보이는 원리 — 호르몬 부스트</h3></div>
+        <div class="body">
+          <div class="sketch">💉 ⚡ 🦴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A central stylized growth plate (a soft glowing gap in a long bone) being nudged upward by two friendly rounded hormone tokens (small droplet/molecule shapes) arriving from the sides with energy sparks. An upward short arrow above the bone. Conveys 'hormones temporarily push growth.' Brand purple #667eea with mint #2dd4bf accents. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 토큰</td><td>인슐린</td><td>Insulin</td><td class="thai">อินซูลิน</td></tr><tr><td>오른쪽 토큰</td><td>IGF-1</td><td>IGF-1</td><td class="thai">IGF-1</td></tr><tr><td>위 화살표</td><td>일시적 ↑</td><td>Temporary ↑</td><td class="thai">ชั่วคราว ↑</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 지방→에스트로겐→뼈나이 빨리 감기</div><h3>지방→아로마타제→에스트로겐→뼈나이 가속</h3></div>
+        <div class="body">
+          <div class="sketch">🔥 🔄 ⏩</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A left-to-right conversion flow: a soft orange fat-cell cluster on the left, an arrow into a rounded enzyme gear, an arrow into an estrogen molecule token, an arrow into a small clock/calendar with its hand spinning fast-forward. Subtle motion streaks on the spinning clock. Conveys 'fat converts to estrogen, speeding the bone-age clock.' Brand purple #667eea, mint #2dd4bf, with a warm orange accent only for the fat cluster. Friendly. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽</td><td>지방</td><td>Fat</td><td class="thai">ไขมัน</td></tr><tr><td>가운데</td><td>에스트로겐</td><td>Estrogen</td><td class="thai">เอสโตรเจน</td></tr><tr><td>오른쪽 시계</td><td>뼈나이 빨라짐</td><td>Bone age speeds up</td><td class="thai">อายุกระดูกเร่ง</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 균형 회복 글로우</div><h3>관리하면 지킨다 — 식단·운동·수면</h3></div>
+        <div class="body">
+          <div class="sketch">🥗 🏃 😴</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly child in the center standing tall and healthy, surrounded by three soft circular icons evenly placed: a balanced plate of vegetables, a running figure, and a crescent moon for sleep. A gentle protective glow ring around the child. Conveys 'manageable, protective, hopeful growth.' Brand purple #667eea and mint #2dd4bf, warm and reassuring. Friendly pediatric. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>왼쪽 아이콘</td><td>식단</td><td>Diet</td><td class="thai">อาหาร</td></tr><tr><td>가운데 위</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr><tr><td>오른쪽 아이콘</td><td>수면</td><td>Sleep</td><td class="thai">การนอน</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>⚖️</b> 비만·균형</span><span class="emo"><b>📈</b> 일찍 앞섬</span><span class="emo"><b>📉</b> 일찍 멈춤</span><span class="emo"><b>💉</b> 인슐린·IGF-1</span><span class="emo"><b>🔥</b> 지방·아로마타제</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>⏩</b> 뼈나이 가속</span><span class="emo"><b>🔒</b> 성장판 닫힘</span><span class="emo"><b>🥗</b> 식단</span><span class="emo"><b>🏃</b> 운동</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>살집 있는 우리 아이가 또래보다 크면, 그냥 '덩치 커서'라고 생각하시죠?<br><span class="cap2">살쪄서 키 크다? · <span class="y">사실은 함정</span></span></td></tr><tr><td class="c-id">c2</td><td>그런데 비만 아이는 '일찍 크고 일찍 멈추는' 역설이 있어요. 최종 키는 더 작아질 수 있죠.<br><span class="cap2">일찍 크고 · <span class="y">일찍 멈춘다</span></span></td></tr><tr><td class="c-id">c3</td><td>어릴 땐 또래보다 위로 쑥. 그런데 어느 순간 멈추고, 친구들이 따라잡아 넘어서요.<br><span class="cap2">처음엔 앞서다 · <span class="y">결국 추월당함</span></span></td></tr><tr><td class="c-id">c4</td><td>비만은 인슐린 저항으로 인슐린이 늘고, IGF-1도 높아져 성장판을 '일시적으로' 자극해요.<br><span class="cap2">인슐린·IGF-1↑ · <span class="y">일시적 성장 촉진</span></span></td></tr><tr><td class="c-id">c5</td><td>진짜 함정은 여기예요. 지방이 많으면 '아로마타제'라는 효소가 활발해집니다.<br><span class="cap2">지방 많으면 · <span class="y">아로마타제 활성</span></span></td></tr><tr><td class="c-id">c6</td><td>이 효소가 남성호르몬을 에스트로겐으로 바꿔, 에스트로겐이 뼈나이를 확 앞당겨요.<br><span class="cap2">에스트로겐↑ · <span class="y">뼈나이 가속</span></span></td></tr><tr><td class="c-id">c7</td><td>뼈나이가 빨라지면 성장판이 일찍 닫혀요. 성장 에너지를 미리 당겨 쓴 셈이죠.<br><span class="cap2">성장판 일찍 닫힘 · <span class="y">키를 미리 당겨 씀</span></span></td></tr><tr><td class="c-id">c8</td><td>좋은 소식은, 식단·운동·수면으로 관리하면 뼈나이 가속을 충분히 늦출 수 있어요.<br><span class="cap2">식단·운동·수면 · <span class="y">지킬 수 있다</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이를 보면 우리 아이가 일찍 멈출 위험인지 지금 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">지금 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 뼈나이, 지금 바로 예측키로 확인해 보세요.<br><span class="cap2">뼈나이·예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ลูกท้วมแล้วสูงกว่าเพื่อน เรามักคิดว่า 'ตัวใหญ่เลยสูง' ใช่ไหม?<br><span class="cap2">อ้วนแล้วสูง? · จริงๆ คือ<span class="y">กับดัก</span></span></td></tr><tr><td class="c-id">c2</td><td>แต่เด็กอ้วนมีปรากฏการณ์ย้อนแย้ง 'โตเร็ว หยุดเร็ว' สุดท้ายอาจเตี้ยลง<br><span class="cap2">โตเร็ว · <span class="y">หยุดเร็ว</span></span></td></tr><tr><td class="c-id">c3</td><td>ตอนเล็กนำเพื่อน แต่พอถึงจุดหนึ่งหยุด แล้วเพื่อนแซงขึ้นไป<br><span class="cap2">แรกๆ นำ · สุดท้าย<span class="y">โดนแซง</span></span></td></tr><tr><td class="c-id">c4</td><td>ความอ้วนทำให้อินซูลินและ IGF-1 สูงขึ้น กระตุ้นแผ่นกระดูก 'ชั่วคราว'<br><span class="cap2">อินซูลิน·IGF-1 ↑ · กระตุ้น<span class="y">ชั่วคราว</span></span></td></tr><tr><td class="c-id">c5</td><td>กับดักจริงอยู่ตรงนี้ ไขมันเยอะทำให้เอนไซม์ 'อะโรมาเตส' ทำงานมากขึ้น<br><span class="cap2">ไขมันเยอะ · <span class="y">อะโรมาเตส</span>ทำงาน</span></td></tr><tr><td class="c-id">c6</td><td>เอนไซม์นี้เปลี่ยนฮอร์โมนชายเป็นเอสโตรเจน เร่งอายุกระดูกให้เร็วขึ้น<br><span class="cap2">เอสโตรเจน ↑ · <span class="y">อายุกระดูกเร่ง</span></span></td></tr><tr><td class="c-id">c7</td><td>อายุกระดูกเร็ว แผ่นกระดูกปิดเร็ว เท่ากับดึงพลังการโตมาใช้ล่วงหน้า<br><span class="cap2">แผ่นกระดูกปิดเร็ว · <span class="y">ดึงมาใช้ล่วงหน้า</span></span></td></tr><tr><td class="c-id">c8</td><td>ข่าวดีคือ จัดการอาหาร ออกกำลังกาย การนอน ชะลออายุกระดูกได้เพียงพอ<br><span class="cap2">อาหาร·ออกกำลัง·นอน · <span class="y">ปกป้องได้</span></span></td></tr><tr><td class="c-id">c9</td><td>ตรวจอายุกระดูก รู้เลยว่าลูกเสี่ยงหยุดโตเร็วไหม<br><span class="cap2">ดูอายุกระดูก · <span class="y">รู้ตอนนี้</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กอายุกระดูกและส่วนสูงที่คาดการณ์ของลูกวันนี้<br><span class="cap2">อายุกระดูก·คาดส่วนสูง · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con mũm mĩm mà cao hơn bạn, ta hay nghĩ 'to con nên cao' đúng không?<br><span class="cap2">Mập nên cao? · Thật ra là <span class="y">cái bẫy</span></span></td></tr><tr><td class="c-id">c2</td><td>Nhưng trẻ béo phì có nghịch lý: lớn sớm, dừng sớm. Chiều cao cuối có thể thấp hơn.<br><span class="cap2">Lớn sớm · <span class="y">dừng sớm</span></span></td></tr><tr><td class="c-id">c3</td><td>Lúc nhỏ vượt bạn, rồi đột nhiên dừng, bạn bè đuổi kịp và vượt qua.<br><span class="cap2">Đầu dẫn trước · cuối <span class="y">bị vượt</span></span></td></tr><tr><td class="c-id">c4</td><td>Béo phì làm insulin và IGF-1 tăng, kích thích sụn tăng trưởng — nhưng chỉ tạm thời.<br><span class="cap2">Insulin·IGF-1 ↑ · kích thích <span class="y">tạm thời</span></span></td></tr><tr><td class="c-id">c5</td><td>Cái bẫy thật ở đây: nhiều mỡ khiến enzyme 'aromatase' hoạt động mạnh.<br><span class="cap2">Nhiều mỡ · <span class="y">aromatase</span> hoạt động</span></td></tr><tr><td class="c-id">c6</td><td>Enzyme này biến hormone nam thành estrogen, đẩy tuổi xương vọt lên.<br><span class="cap2">Estrogen ↑ · <span class="y">tuổi xương vọt</span></span></td></tr><tr><td class="c-id">c7</td><td>Tuổi xương nhanh thì sụn đóng sớm — như tiêu trước phần chiều cao tương lai.<br><span class="cap2">Sụn đóng sớm · <span class="y">tiêu trước chiều cao</span></span></td></tr><tr><td class="c-id">c8</td><td>Tin tốt: ăn uống, vận động, ngủ đủ có thể làm chậm tuổi xương rất hiệu quả.<br><span class="cap2">Ăn·vận động·ngủ · <span class="y">giữ được</span></span></td></tr><tr><td class="c-id">c9</td><td>Xem tuổi xương là biết ngay con có nguy cơ dừng sớm hay không.<br><span class="cap2">Xem tuổi xương · <span class="y">biết ngay</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tuổi xương và chiều cao dự đoán của con ngay hôm nay.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Chubby kid taller than friends? We assume 'big build, that's why.'<br><span class="cap2">Chubby = tall? · It's <span class="y">a trap</span></span></td></tr><tr><td class="c-id">c2</td><td>But obese kids face a paradox: grow early, stop early. Final height may be shorter.<br><span class="cap2">Grow early · <span class="y">stop early</span></span></td></tr><tr><td class="c-id">c3</td><td>Ahead early, then it stalls — and friends catch up and pass them.<br><span class="cap2">Ahead early · <span class="y">passed later</span></span></td></tr><tr><td class="c-id">c4</td><td>Obesity raises insulin and IGF-1, which spur the growth plate — but only briefly.<br><span class="cap2">Insulin·IGF-1 ↑ · <span class="y">temporary boost</span></span></td></tr><tr><td class="c-id">c5</td><td>Here's the real trap: more fat means the enzyme 'aromatase' gets busy.<br><span class="cap2">More fat · <span class="y">aromatase</span> active</span></td></tr><tr><td class="c-id">c6</td><td>It turns male hormones into estrogen, which races bone age ahead.<br><span class="cap2">Estrogen ↑ · <span class="y">bone age races</span></span></td></tr><tr><td class="c-id">c7</td><td>Faster bone age closes the plates early — like spending future height in advance.<br><span class="cap2">Plates close early · <span class="y">height spent early</span></span></td></tr><tr><td class="c-id">c8</td><td>Good news: diet, exercise and sleep can slow that bone-age rush — you can protect it.<br><span class="cap2">Diet·exercise·sleep · <span class="y">you can protect</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age shows right now if your child risks stopping early.<br><span class="cap2">Bone age · <span class="y">know now</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's bone age and predicted height today.<br><span class="cap2">Bone age·prediction · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>胖一点的孩子比同龄高，我们常以为'块头大才高'，对吧？<br><span class="cap2">胖所以高？ · 其实是<span class="y">陷阱</span></span></td></tr><tr><td class="c-id">c2</td><td>但肥胖孩子有个悖论：长得早，停得早。最终身高可能更矮。<br><span class="cap2">长得早 · <span class="y">停得早</span></span></td></tr><tr><td class="c-id">c3</td><td>小时候领先，可某天就停了，同龄人反超过去。<br><span class="cap2">早期领先 · 最终<span class="y">被反超</span></span></td></tr><tr><td class="c-id">c4</td><td>肥胖让胰岛素和IGF-1升高，刺激生长板——但只是暂时的。<br><span class="cap2">胰岛素·IGF-1 ↑ · <span class="y">暂时性促长</span></span></td></tr><tr><td class="c-id">c5</td><td>真正的陷阱在这里：脂肪多，'芳香化酶'就变得活跃。<br><span class="cap2">脂肪多 · <span class="y">芳香化酶</span>活跃</span></td></tr><tr><td class="c-id">c6</td><td>它把雄激素变成雌激素，雌激素让骨龄急速超前。<br><span class="cap2">雌激素 ↑ · <span class="y">骨龄加速</span></span></td></tr><tr><td class="c-id">c7</td><td>骨龄变快，生长板提前闭合——等于把未来的身高提前花掉。<br><span class="cap2">生长板早闭 · <span class="y">提前花掉身高</span></span></td></tr><tr><td class="c-id">c8</td><td>好消息是：饮食、运动、睡眠管理好，完全能延缓骨龄加速。<br><span class="cap2">饮食·运动·睡眠 · <span class="y">守得住</span></span></td></tr><tr><td class="c-id">c9</td><td>看骨龄，现在就能知道孩子是否有提前停长的风险。<br><span class="cap2">看骨龄 · <span class="y">现在就知道</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的骨龄和预测身高吧。<br><span class="cap2">骨龄·预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>胖一點的孩子比同齡高，我們常以為'塊頭大才高'，對吧？<br><span class="cap2">胖所以高？ · 其實是<span class="y">陷阱</span></span></td></tr><tr><td class="c-id">c2</td><td>但肥胖孩子有個悖論：長得早，停得早。最終身高可能更矮。<br><span class="cap2">長得早 · <span class="y">停得早</span></span></td></tr><tr><td class="c-id">c3</td><td>小時候領先，可某天就停了，同齡人反超過去。<br><span class="cap2">早期領先 · 最終<span class="y">被反超</span></span></td></tr><tr><td class="c-id">c4</td><td>肥胖讓胰島素和IGF-1升高，刺激生長板——但只是暫時的。<br><span class="cap2">胰島素·IGF-1 ↑ · <span class="y">暫時性促長</span></span></td></tr><tr><td class="c-id">c5</td><td>真正的陷阱在這裡：脂肪多，'芳香化酶'就變得活躍。<br><span class="cap2">脂肪多 · <span class="y">芳香化酶</span>活躍</span></td></tr><tr><td class="c-id">c6</td><td>它把雄激素變成雌激素，雌激素讓骨齡急速超前。<br><span class="cap2">雌激素 ↑ · <span class="y">骨齡加速</span></span></td></tr><tr><td class="c-id">c7</td><td>骨齡變快，生長板提前閉合——等於把未來的身高提前花掉。<br><span class="cap2">生長板早閉 · <span class="y">提前花掉身高</span></span></td></tr><tr><td class="c-id">c8</td><td>好消息是：飲食、運動、睡眠管理好，完全能延緩骨齡加速。<br><span class="cap2">飲食·運動·睡眠 · <span class="y">守得住</span></span></td></tr><tr><td class="c-id">c9</td><td>看骨齡，現在就能知道孩子是否有提前停長的風險。<br><span class="cap2">看骨齡 · <span class="y">現在就知道</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的骨齡和預測身高吧。<br><span class="cap2">骨齡·預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/비만일찍멈춤/</code> · <code>비만일찍멈춤-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

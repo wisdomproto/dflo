@@ -1,0 +1,800 @@
+{
+  "n": 49,
+  "slug": "키영양제효과",
+  "title": "키 크는 영양제, 먹이면 진짜 클까? — 소아과 전문의 팩트체크",
+  "sub": "광고 속 '키 크는 영양제'의 진실 — 마법은 없지만, 우리 아이에게 진짜 필요한 건 따로 있다",
+  "category": "C. 부모공감",
+  "topicTitle": "키 크는 영양제 효과",
+  "headerTop": "우리 아이 키",
+  "headerMark": "영양제로 클까?",
+  "accentEmoji": "💊✨",
+  "thumb": {
+    "kicker": "광고에 속지 마세요",
+    "subject": "우리 아이 키",
+    "number": "영양제",
+    "numLabel": "진짜 클까?"
+  },
+  "hook": "'키 크는 영양제' 먹이면 우리 아이, 진짜 더 클까요?",
+  "misconception": "비싼 키 크는 영양제만 먹이면 쑥쑥 큰다 → 의학적으로 검증된 '키 크는 영양제'는 사실상 없다",
+  "message": "영양제는 부족분을 채울 뿐 성장 곡선을 뛰어넘진 못한다. 균형식·수면·운동 같은 '기본'과 정기 성장 검진이 키를 만든다",
+  "tone": "광고 비방·협박 ❌ → \"마법은 없지만 기회는 있다\" 긍정 프레임. \"우리 아이 키\" 보편. CTA는 우리 아이에게 뭐가 부족한지 측정·검진 유도",
+  "cta": "우리 아이에게 정말 필요한 것 — 뼈나이·성장 검진으로 지금 확인",
+  "duration": 35,
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"영양제 먹이면 진짜 클까? 결론은 마법은 없다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "진실",
+      "scenes": "c3–c4",
+      "desc": "\"검증된 키 영양제는 없다 → 유전 80 vs 환경 20\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "진짜 영양소",
+      "scenes": "c5–c6",
+      "desc": "\"단백질·칼슘·비타민D·아연·철분 5가지, 단 식탁에서\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "기본이 답",
+      "scenes": "c7–c8",
+      "desc": "\"필요한 아이도 있다 → 진짜는 균형식·수면·운동\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"우리 아이엔 뭐가 부족? 검진으로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "💊 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "'키 크는 영양제' 먹이면 우리 아이, 진짜 더 클까요?",
+          "cap": [
+            "키 크는 영양제",
+            "진짜 클까?"
+          ],
+          "hl": "진짜 클까?"
+        },
+        "th": {
+          "narr": "ให้ลูกกินอาหารเสริมเพิ่มความสูง แล้วสูงขึ้นจริงไหม?",
+          "cap": [
+            "อาหารเสริมเพิ่มสูง",
+            "ได้ผลจริงไหม?"
+          ],
+          "hl": "ได้ผลจริงไหม?"
+        },
+        "vi": {
+          "narr": "Cho con uống thực phẩm tăng chiều cao, liệu có cao hơn thật không?",
+          "cap": [
+            "TPCN tăng chiều cao",
+            "có thật không?"
+          ],
+          "hl": "có thật không?"
+        },
+        "en": {
+          "narr": "Do height-boosting supplements really make your child taller?",
+          "cap": [
+            "Height supplements",
+            "really work?"
+          ],
+          "hl": "really work?"
+        },
+        "cn": {
+          "narr": "给孩子吃增高营养品，真的能长更高吗？",
+          "cap": [
+            "增高营养品",
+            "真的有用吗?"
+          ],
+          "hl": "真的有用吗?"
+        },
+        "ch": {
+          "narr": "給孩子吃增高營養品，真的能長更高嗎？",
+          "cap": [
+            "增高營養品",
+            "真的有用嗎?"
+          ],
+          "hl": "真的有用嗎?"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🙅 가로젓기",
+      "copy": {
+        "ko": {
+          "narr": "결론부터요. 대부분의 키 영양제, 드라마틱한 효과는 기대하기 어려워요.",
+          "cap": [
+            "대부분 영양제",
+            "드라마틱 효과 X"
+          ],
+          "hl": "드라마틱 효과 X"
+        },
+        "th": {
+          "narr": "บอกก่อนเลย ส่วนใหญ่อย่าหวังผลแบบมหัศจรรย์",
+          "cap": [
+            "ส่วนใหญ่",
+            "ไม่มหัศจรรย์"
+          ],
+          "hl": "ไม่มหัศจรรย์"
+        },
+        "vi": {
+          "narr": "Nói thẳng nhé. Phần lớn không cho hiệu quả thần kỳ đâu.",
+          "cap": [
+            "Phần lớn",
+            "không thần kỳ"
+          ],
+          "hl": "không thần kỳ"
+        },
+        "en": {
+          "narr": "Straight up: most of them won't give a dramatic effect.",
+          "cap": [
+            "Most of them",
+            "no magic effect"
+          ],
+          "hl": "no magic effect"
+        },
+        "cn": {
+          "narr": "先说结论：大多数别指望戏剧性的效果。",
+          "cap": [
+            "大多数",
+            "没有奇效"
+          ],
+          "hl": "没有奇效"
+        },
+        "ch": {
+          "narr": "先說結論：大多數別指望戲劇性的效果。",
+          "cap": [
+            "大多數",
+            "沒有奇效"
+          ],
+          "hl": "沒有奇效"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 검증된 영양제 없음",
+      "motion": "🔬 + ✗ 스탬프 쾅",
+      "copy": {
+        "ko": {
+          "narr": "사실 의학적으로 검증된 '키 크는 영양제'는 없다고 보는 게 맞아요.",
+          "cap": [
+            "검증된 키 영양제",
+            "사실상 없음"
+          ],
+          "hl": "사실상 없음"
+        },
+        "th": {
+          "narr": "จริงๆ อาหารเสริมเพิ่มสูงที่พิสูจน์ทางการแพทย์แทบไม่มี",
+          "cap": [
+            "พิสูจน์ทางแพทย์",
+            "แทบไม่มี"
+          ],
+          "hl": "แทบไม่มี"
+        },
+        "vi": {
+          "narr": "Thật ra gần như không có loại nào được y học chứng minh.",
+          "cap": [
+            "Y học chứng minh",
+            "gần như không có"
+          ],
+          "hl": "gần như không có"
+        },
+        "en": {
+          "narr": "Truth is, almost none are medically proven to boost height.",
+          "cap": [
+            "Medically proven",
+            "almost none"
+          ],
+          "hl": "almost none"
+        },
+        "cn": {
+          "narr": "事实是，医学上几乎没有被证实的增高营养品。",
+          "cap": [
+            "医学证实的",
+            "几乎没有"
+          ],
+          "hl": "几乎没有"
+        },
+        "ch": {
+          "narr": "事實是，醫學上幾乎沒有被證實的增高營養品。",
+          "cap": [
+            "醫學證實的",
+            "幾乎沒有"
+          ],
+          "hl": "幾乎沒有"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 유전80 환경20",
+      "motion": "🧬 80 vs 🌱 20 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "키는 유전이 70~80%, 환경이 20~30%. 영양제는 부족분을 채울 뿐이에요.",
+          "cap": [
+            "유전 80 · 환경 20",
+            "부족분만 채움"
+          ],
+          "hl": "부족분만 채움"
+        },
+        "th": {
+          "narr": "ความสูง 70–80% มาจากพันธุกรรม อาหารเสริมแค่เติมส่วนที่ขาด",
+          "cap": [
+            "พันธุกรรม 80",
+            "เติมส่วนที่ขาด"
+          ],
+          "hl": "เติมส่วนที่ขาด"
+        },
+        "vi": {
+          "narr": "Chiều cao 70–80% là di truyền. Thực phẩm chỉ bù phần thiếu thôi.",
+          "cap": [
+            "Di truyền 80",
+            "chỉ bù phần thiếu"
+          ],
+          "hl": "chỉ bù phần thiếu"
+        },
+        "en": {
+          "narr": "Height is 70–80% genes. Supplements only fill what's missing.",
+          "cap": [
+            "Genes 80",
+            "just fill gaps"
+          ],
+          "hl": "just fill gaps"
+        },
+        "cn": {
+          "narr": "身高70~80%靠遗传，营养品只是补足缺口而已。",
+          "cap": [
+            "遗传80 环境20",
+            "只补缺口"
+          ],
+          "hl": "只补缺口"
+        },
+        "ch": {
+          "narr": "身高70~80%靠遺傳，營養品只是補足缺口而已。",
+          "cap": [
+            "遺傳80 環境20",
+            "只補缺口"
+          ],
+          "hl": "只補缺口"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "✋ 5 손가락 펼침",
+      "copy": {
+        "ko": {
+          "narr": "그래도 성장에 꼭 필요한 영양소는 있어요. 핵심은 이 다섯 가지.",
+          "cap": [
+            "성장 필수 영양소",
+            "핵심 5가지"
+          ],
+          "hl": "핵심 5가지"
+        },
+        "th": {
+          "narr": "แต่สารอาหารที่จำเป็นต่อการเติบโตมีจริง หลักๆ 5 อย่างนี้",
+          "cap": [
+            "สารอาหารจำเป็น",
+            "5 อย่างหลัก"
+          ],
+          "hl": "5 อย่างหลัก"
+        },
+        "vi": {
+          "narr": "Nhưng có những dưỡng chất thực sự cần cho tăng trưởng — 5 cái chính.",
+          "cap": [
+            "Dưỡng chất cần",
+            "5 nhóm chính"
+          ],
+          "hl": "5 nhóm chính"
+        },
+        "en": {
+          "narr": "Still, some nutrients truly matter for growth — these five.",
+          "cap": [
+            "Key nutrients",
+            "the big 5"
+          ],
+          "hl": "the big 5"
+        },
+        "cn": {
+          "narr": "不过对成长真正重要的营养素是有的，关键是这五种。",
+          "cap": [
+            "关键营养素",
+            "这5种"
+          ],
+          "hl": "这5种"
+        },
+        "ch": {
+          "narr": "不過對成長真正重要的營養素是有的，關鍵是這五種。",
+          "cap": [
+            "關鍵營養素",
+            "這5種"
+          ],
+          "hl": "這5種"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22.5s",
+      "kind": "ig",
+      "igLabel": "IG3 핵심 영양소 5",
+      "motion": "🍗🥛☀️ 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "단백질, 칼슘, 비타민D, 아연, 철분. 단, 알약보다 식탁에서요.",
+          "cap": [
+            "단백질·칼슘·D·아연·철",
+            "알약보다 식탁"
+          ],
+          "hl": "알약보다 식탁"
+        },
+        "th": {
+          "narr": "โปรตีน แคลเซียม วิตามินดี สังกะสี ธาตุเหล็ก แต่จากจานอาหารดีกว่ายา",
+          "cap": [
+            "5 สารอาหาร",
+            "จากอาหาร"
+          ],
+          "hl": "จากอาหาร"
+        },
+        "vi": {
+          "narr": "Đạm, canxi, vitamin D, kẽm, sắt — nhưng từ bữa ăn hơn là viên thuốc.",
+          "cap": [
+            "5 dưỡng chất",
+            "từ bữa ăn"
+          ],
+          "hl": "từ bữa ăn"
+        },
+        "en": {
+          "narr": "Protein, calcium, vitamin D, zinc, iron — but from the plate, not a pill.",
+          "cap": [
+            "The 5 nutrients",
+            "food, not pills"
+          ],
+          "hl": "food, not pills"
+        },
+        "cn": {
+          "narr": "蛋白质、钙、维生素D、锌、铁——但靠餐桌胜过药丸。",
+          "cap": [
+            "5种营养素",
+            "吃饭胜过药"
+          ],
+          "hl": "吃饭胜过药"
+        },
+        "ch": {
+          "narr": "蛋白質、鈣、維生素D、鋅、鐵——但靠餐桌勝過藥丸。",
+          "cap": [
+            "5種營養素",
+            "吃飯勝過藥"
+          ],
+          "hl": "吃飯勝過藥"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22.5–26s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🍽️ 끄덕 + 체크",
+      "copy": {
+        "ko": {
+          "narr": "심한 편식이나 결핍이 있는 아이는 보충이 필요할 수 있어요. 단, 전문의 상담 후에요.",
+          "cap": [
+            "편식·결핍 있으면",
+            "전문의 상담 후"
+          ],
+          "hl": "전문의 상담 후"
+        },
+        "th": {
+          "narr": "เด็กที่เลือกกินมากหรือขาดสารอาหารอาจต้องเสริม แต่ต้องปรึกษาแพทย์ก่อน",
+          "cap": [
+            "ถ้าขาดสารอาหาร",
+            "ปรึกษาแพทย์ก่อน"
+          ],
+          "hl": "ปรึกษาแพทย์ก่อน"
+        },
+        "vi": {
+          "narr": "Trẻ kén ăn nặng hay thiếu chất có thể cần bổ sung — nhưng phải hỏi bác sĩ trước.",
+          "cap": [
+            "Nếu thiếu chất",
+            "hỏi bác sĩ trước"
+          ],
+          "hl": "hỏi bác sĩ trước"
+        },
+        "en": {
+          "narr": "A very picky or deficient child may need a boost — but only after a doctor checks.",
+          "cap": [
+            "If deficient",
+            "ask a doctor first"
+          ],
+          "hl": "ask a doctor first"
+        },
+        "cn": {
+          "narr": "严重挑食或缺乏的孩子可能需要补充，但要先咨询医生。",
+          "cap": [
+            "若有缺乏",
+            "先咨询医生"
+          ],
+          "hl": "先咨询医生"
+        },
+        "ch": {
+          "narr": "嚴重挑食或缺乏的孩子可能需要補充，但要先諮詢醫生。",
+          "cap": [
+            "若有缺乏",
+            "先諮詢醫生"
+          ],
+          "hl": "先諮詢醫生"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 진짜 기본 4가지",
+      "motion": "🍽️😴🏃 순차 점등 + ✨",
+      "copy": {
+        "ko": {
+          "narr": "사실 영양제보다 중요한 건 균형식, 깊은 잠, 그리고 운동이에요.",
+          "cap": [
+            "영양제보다",
+            "식·잠·운동"
+          ],
+          "hl": "식·잠·운동"
+        },
+        "th": {
+          "narr": "จริงๆ สำคัญกว่าอาหารเสริมคือ กินครบ นอนลึก ออกกำลังกาย",
+          "cap": [
+            "สำคัญกว่าเสริม",
+            "กิน·นอน·ออกกำลัง"
+          ],
+          "hl": "กิน·นอน·ออกกำลัง"
+        },
+        "vi": {
+          "narr": "Thật ra quan trọng hơn cả là ăn cân đối, ngủ sâu và vận động.",
+          "cap": [
+            "Hơn cả TPCN",
+            "ăn·ngủ·vận động"
+          ],
+          "hl": "ăn·ngủ·vận động"
+        },
+        "en": {
+          "narr": "What beats any supplement: balanced meals, deep sleep, and exercise.",
+          "cap": [
+            "Beats supplements",
+            "eat·sleep·move"
+          ],
+          "hl": "eat·sleep·move"
+        },
+        "cn": {
+          "narr": "其实比营养品更重要的是均衡饮食、深睡和运动。",
+          "cap": [
+            "比营养品更重要",
+            "吃·睡·动"
+          ],
+          "hl": "吃·睡·动"
+        },
+        "ch": {
+          "narr": "其實比營養品更重要的是均衡飲食、深睡和運動。",
+          "cap": [
+            "比營養品更重要",
+            "吃·睡·動"
+          ],
+          "hl": "吃·睡·動"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "igLabel": "",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이한테 정말 뭐가 부족한지는, 성장 검진으로 정확히 알 수 있어요.",
+          "cap": [
+            "우리 아이엔 뭐가?",
+            "검진으로 확인"
+          ],
+          "hl": "검진으로 확인"
+        },
+        "th": {
+          "narr": "ลูกเราขาดอะไรกันแน่ ตรวจการเจริญเติบโตจะรู้ชัด",
+          "cap": [
+            "ลูกขาดอะไร?",
+            "ตรวจให้รู้ชัด"
+          ],
+          "hl": "ตรวจให้รู้ชัด"
+        },
+        "vi": {
+          "narr": "Con mình thực sự thiếu gì — khám tăng trưởng sẽ biết chính xác.",
+          "cap": [
+            "Con thiếu gì?",
+            "khám để biết"
+          ],
+          "hl": "khám để biết"
+        },
+        "en": {
+          "narr": "What your child truly lacks — a growth check-up shows it clearly.",
+          "cap": [
+            "What's missing?",
+            "a check-up shows"
+          ],
+          "hl": "a check-up shows"
+        },
+        "cn": {
+          "narr": "孩子到底缺什么，成长检查能精准看出来。",
+          "cap": [
+            "孩子缺什么?",
+            "检查见分晓"
+          ],
+          "hl": "检查见分晓"
+        },
+        "ch": {
+          "narr": "孩子到底缺什麼，成長檢查能精準看出來。",
+          "cap": [
+            "孩子缺什麼?",
+            "檢查見分曉"
+          ],
+          "hl": "檢查見分曉"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "igLabel": "",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "광고 대신 우리 아이 데이터로. 뼈나이·예측키 지금 확인해 보세요.",
+          "cap": [
+            "우리 아이 성장",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ดูข้อมูลลูกแทนโฆษณา เช็กอายุกระดูกวันนี้",
+          "cap": [
+            "การเติบโตของลูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Hãy tin dữ liệu của con, không phải quảng cáo. Kiểm tra ngay hôm nay.",
+          "cap": [
+            "Tăng trưởng của con",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Trust your child's data, not the ads. Check bone age today.",
+          "cap": [
+            "Your child's growth",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "相信孩子的数据，而非广告。现在就查骨龄和预测身高。",
+          "cap": [
+            "孩子的成长",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "相信孩子的數據，而非廣告。現在就查骨齡與預測身高。",
+          "cap": [
+            "孩子的成長",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "✗ 스탬프 쾅",
+      "title": "검증된 키 영양제는 없다",
+      "emojis": [
+        "💊",
+        "🔬",
+        "❌"
+      ],
+      "prompt": "Flat vector, square, white bg. A supplement bottle and a few scattered pills on the left under a magnifying glass / microscope lens, with a soft red circle-slash mark hovering over them (NOT drawn as text). Friendly pediatric style, brand purple #667eea accents with a muted red caution ring, mint #2dd4bf highlights. Conveys 'no scientific proof.' NO text.",
+      "labels": [
+        {
+          "pos": "병 위",
+          "ko": "키 영양제",
+          "en": "Height pills",
+          "th": "อาหารเสริมสูง"
+        },
+        {
+          "pos": "확대경 안",
+          "ko": "검증 ✗",
+          "en": "Not proven",
+          "th": "ไม่พิสูจน์"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "80 / 20 카운트업",
+      "title": "유전 80 vs 환경 20",
+      "emojis": [
+        "🧬",
+        "🌱"
+      ],
+      "prompt": "Flat vector, square, white bg. A clean donut/pie split into a large segment (about 80%) and a small segment (about 20%); beside the big segment a friendly DNA double-helix icon, beside the small segment a small sprout/leaf with a sun. Brand purple #667eea for the large slice, mint #2dd4bf for the small slice. Conveys nature vs nurture proportion. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "큰 조각",
+          "ko": "유전 70~80%",
+          "en": "Genes 70–80%",
+          "th": "พันธุกรรม 70–80%"
+        },
+        {
+          "pos": "작은 조각",
+          "ko": "환경 20~30%",
+          "en": "Environment 20–30%",
+          "th": "สิ่งแวดล้อม 20–30%"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "5칸 순차 점등",
+      "title": "성장 핵심 영양소 5",
+      "emojis": [
+        "🍗",
+        "🥛",
+        "☀️"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly plate at center surrounded by five evenly spaced food icons in a ring: a chicken drumstick (protein), a glass of milk (calcium), a sun with a small fish (vitamin D), an oyster/nut (zinc), and spinach leaves (iron). Soft purple #667eea plate, mint #2dd4bf accents, warm friendly pediatric look. Conveys 'get nutrients from real food.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "단백질",
+          "en": "Protein",
+          "th": "โปรตีน"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "비타민D",
+          "en": "Vitamin D",
+          "th": "วิตามินดี"
+        },
+        {
+          "pos": "아이콘4·5",
+          "ko": "아연·철분",
+          "en": "Zinc · Iron",
+          "th": "สังกะสี·เหล็ก"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "3아이콘 순차 + ✨",
+      "title": "진짜 기본 — 식·잠·운동",
+      "emojis": [
+        "🍽️",
+        "😴",
+        "🏃"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly circular icons in a row on a gentle rising baseline: a balanced meal plate, a sleeping child with a crescent moon and 'z' swirls, and a child jumping rope / running. A soft upward growth arrow rises behind the three icons. Brand purple #667eea and mint #2dd4bf, warm pediatric style. Conveys 'the real growth basics.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "균형 식단",
+          "en": "Balanced diet",
+          "th": "กินครบหมู่"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "깊은 잠",
+          "en": "Deep sleep",
+          "th": "นอนลึก"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "운동 30분",
+          "en": "30 min exercise",
+          "th": "ออกกำลัง 30 นาที"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "💊",
+      "label": "영양제"
+    },
+    {
+      "e": "❓",
+      "label": "정말 효과?"
+    },
+    {
+      "e": "🔬",
+      "label": "검증·과학"
+    },
+    {
+      "e": "❌",
+      "label": "효과 없음"
+    },
+    {
+      "e": "🧬",
+      "label": "유전 80%"
+    },
+    {
+      "e": "🌱",
+      "label": "환경 20%"
+    },
+    {
+      "e": "🍗",
+      "label": "단백질"
+    },
+    {
+      "e": "🥛",
+      "label": "칼슘"
+    },
+    {
+      "e": "☀️",
+      "label": "비타민D"
+    },
+    {
+      "e": "😴",
+      "label": "깊은 잠"
+    },
+    {
+      "e": "🏃",
+      "label": "운동"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이·검진"
+    }
+  ]
+}

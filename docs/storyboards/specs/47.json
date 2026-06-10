@@ -1,0 +1,795 @@
+{
+  "n": 47,
+  "slug": "성장주사부작용",
+  "title": "성장주사 부작용, 진짜 얼마나 무서울까? — 오해와 진실",
+  "sub": "암·당뇨 걱정? 승인된 용량은 안전 — 대부분 경미하고 관리 가능, 핵심은 모니터링",
+  "category": "C. 부모공감",
+  "topicTitle": "성장호르몬 부작용 오해와 진실",
+  "headerTop": "성장주사 부작용",
+  "headerMark": "진짜 위험할까?",
+  "accentEmoji": "💉🛡️",
+  "hook": "성장주사, 암 걸린다던데… 진짜 그렇게 무서운 걸까요?",
+  "misconception": "성장주사 = 암·당뇨 유발하는 위험한 호르몬제 → 인터넷 괴담일 뿐, 승인 용량은 안전",
+  "message": "승인된 성장호르몬을 적정 용량으로 쓰면 암 위험 증가 근거 없음. 부작용 대부분 경미·관리 가능, 핵심은 전문의의 주기적 모니터링",
+  "tone": "협박/공포 증폭 ❌ → 막연한 두려움을 정확한 정보로 안심. \"우리 아이 키\" 보편. CTA는 단정 X, 측정 초대(뼈나이/예측키)",
+  "cta": "막연한 두려움 대신 정확한 진단 → 뼈나이·예측키로 우리 아이 상태부터 확인",
+  "duration": 35,
+  "thumb": {
+    "kicker": "괴담 끝!",
+    "subject": "성장주사 부작용",
+    "number": "진짜?",
+    "numLabel": "암·당뇨 오해와 진실"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅·공포",
+      "scenes": "c1–c2",
+      "desc": "\"성장주사 암 걸린다던데?\" 부모의 진짜 걱정"
+    },
+    {
+      "act": "ACT 2",
+      "title": "진실 1",
+      "scenes": "c3–c4",
+      "desc": "\"승인 용량은 암 근거 없다 + 부족분 보충 개념\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "부작용 실체",
+      "scenes": "c5–c6",
+      "desc": "\"대부분 경미·관리 가능 / 당뇨 걱정도 일시적\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "안전장치",
+      "scenes": "c7–c8",
+      "desc": "\"핵심은 주기적 모니터링 + 맞춤 진단\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"두려움 대신 진단 → 뼈나이/예측키 CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "💉 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "성장주사 맞으면 암 걸린다던데… 진짜 그렇게 무서운 걸까요?",
+          "cap": [
+            "성장주사",
+            "진짜 위험할까?"
+          ],
+          "hl": "진짜 위험할까?"
+        },
+        "th": {
+          "narr": "ได้ยินว่าฉีดฮอร์โมนแล้วเสี่ยงมะเร็ง… น่ากลัวจริงไหม?",
+          "cap": [
+            "ฉีดฮอร์โมน",
+            "อันตรายจริงไหม?"
+          ],
+          "hl": "อันตรายจริงไหม?"
+        },
+        "vi": {
+          "narr": "Nghe nói tiêm tăng trưởng gây ung thư… có thật đáng sợ vậy không?",
+          "cap": [
+            "Tiêm tăng trưởng",
+            "có nguy hiểm?"
+          ],
+          "hl": "có nguy hiểm?"
+        },
+        "en": {
+          "narr": "They say growth shots cause cancer… are they really that scary?",
+          "cap": [
+            "Growth shots",
+            "really dangerous?"
+          ],
+          "hl": "really dangerous?"
+        },
+        "cn": {
+          "narr": "听说打生长激素会得癌症……真有那么可怕吗？",
+          "cap": [
+            "生长激素",
+            "真的危险吗？"
+          ],
+          "hl": "真的危险吗？"
+        },
+        "ch": {
+          "narr": "聽說打生長激素會得癌症……真有那麼可怕嗎？",
+          "cap": [
+            "生長激素",
+            "真的危險嗎？"
+          ],
+          "hl": "真的危險嗎？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "😟 끄덕 공감",
+      "copy": {
+        "ko": {
+          "narr": "밤마다 인터넷 검색하며 잠 못 이루는 부모님 마음, 충분히 이해해요.",
+          "cap": [
+            "부모 걱정",
+            "충분히 이해해요"
+          ],
+          "hl": "충분히 이해해요"
+        },
+        "th": {
+          "narr": "ที่พ่อแม่นอนไม่หลับเพราะหาข้อมูล เราเข้าใจดี",
+          "cap": [
+            "ความกังวล",
+            "เราเข้าใจดี"
+          ],
+          "hl": "เราเข้าใจดี"
+        },
+        "vi": {
+          "narr": "Cha mẹ mất ngủ vì lo lắng — chúng tôi hoàn toàn thấu hiểu.",
+          "cap": [
+            "Nỗi lo cha mẹ",
+            "chúng tôi hiểu"
+          ],
+          "hl": "chúng tôi hiểu"
+        },
+        "en": {
+          "narr": "Lying awake googling worst cases — we completely understand.",
+          "cap": [
+            "A parent's worry",
+            "we understand"
+          ],
+          "hl": "we understand"
+        },
+        "cn": {
+          "narr": "深夜上网查、睡不着的家长心情，我们完全理解。",
+          "cap": [
+            "家长的担忧",
+            "我们完全理解"
+          ],
+          "hl": "我们完全理解"
+        },
+        "ch": {
+          "narr": "深夜上網查、睡不著的家長心情，我們完全理解。",
+          "cap": [
+            "家長的擔憂",
+            "我們完全理解"
+          ],
+          "hl": "我們完全理解"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 암 오해",
+      "motion": "🛡️ 방패 등장 + ✕→✓",
+      "copy": {
+        "ko": {
+          "narr": "결론부터요. 승인된 호르몬을 적정 용량으로 쓰면, 암 위험 증가 근거는 없어요.",
+          "cap": [
+            "승인·적정 용량",
+            "암 근거 없음"
+          ],
+          "hl": "암 근거 없음"
+        },
+        "th": {
+          "narr": "สรุปเลย ฮอร์โมนที่รับรองในขนาดเหมาะสม ไม่มีหลักฐานเพิ่มมะเร็ง",
+          "cap": [
+            "ขนาดที่เหมาะสม",
+            "ไม่มีหลักฐานมะเร็ง"
+          ],
+          "hl": "ไม่มีหลักฐานมะเร็ง"
+        },
+        "vi": {
+          "narr": "Kết luận luôn: hormone được duyệt, đúng liều — không có bằng chứng tăng ung thư.",
+          "cap": [
+            "Đúng liều duyệt",
+            "không bằng chứng ung thư"
+          ],
+          "hl": "không bằng chứng ung thư"
+        },
+        "en": {
+          "narr": "Bottom line: approved hormone at the right dose shows no proven cancer risk.",
+          "cap": [
+            "Approved, right dose",
+            "no proven cancer risk"
+          ],
+          "hl": "no proven cancer risk"
+        },
+        "cn": {
+          "narr": "先说结论：经批准的激素、用对剂量，没有增加癌症的证据。",
+          "cap": [
+            "批准·适当剂量",
+            "无致癌证据"
+          ],
+          "hl": "无致癌证据"
+        },
+        "ch": {
+          "narr": "先說結論：經核准的激素、用對劑量，沒有增加癌症的證據。",
+          "cap": [
+            "核准·適當劑量",
+            "無致癌證據"
+          ],
+          "hl": "無致癌證據"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "doctor",
+      "motion": "💧 채워지는 게이지",
+      "copy": {
+        "ko": {
+          "narr": "성장호르몬은 원래 우리 몸이 만드는 호르몬, 그 부족한 양을 보충해 주는 거예요.",
+          "cap": [
+            "원래 몸의 호르몬",
+            "부족분 보충"
+          ],
+          "hl": "부족분 보충"
+        },
+        "th": {
+          "narr": "ฮอร์โมนนี้ร่างกายสร้างเองอยู่แล้ว แค่เสริมส่วนที่ขาด",
+          "cap": [
+            "ฮอร์โมนของร่างกาย",
+            "เสริมส่วนที่ขาด"
+          ],
+          "hl": "เสริมส่วนที่ขาด"
+        },
+        "vi": {
+          "narr": "Hormone này cơ thể vốn tự tạo — ta chỉ bù phần còn thiếu.",
+          "cap": [
+            "Hormone tự nhiên",
+            "bù phần thiếu"
+          ],
+          "hl": "bù phần thiếu"
+        },
+        "en": {
+          "narr": "It's a hormone your body already makes — we just top up what's missing.",
+          "cap": [
+            "Your own hormone",
+            "top up the gap"
+          ],
+          "hl": "top up the gap"
+        },
+        "cn": {
+          "narr": "生长激素本就是身体自己分泌的，只是补足缺的那部分。",
+          "cap": [
+            "身体本有的激素",
+            "补足缺口"
+          ],
+          "hl": "补足缺口"
+        },
+        "ch": {
+          "narr": "生長激素本就是身體自己分泌的，只是補足缺的那部分。",
+          "cap": [
+            "身體本有的激素",
+            "補足缺口"
+          ],
+          "hl": "補足缺口"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "ig",
+      "igLabel": "IG2 부작용 관리",
+      "motion": "✅ 체크 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "흔한 부작용은 주사 부위 통증이나 일시적 두통 정도. 대부분 경미하고 관리돼요.",
+          "cap": [
+            "대부분 경미",
+            "관리 가능"
+          ],
+          "hl": "관리 가능"
+        },
+        "th": {
+          "narr": "ผลข้างเคียงที่พบบ่อยแค่เจ็บที่ฉีดหรือปวดหัวชั่วคราว ส่วนใหญ่ไม่รุนแรง",
+          "cap": [
+            "ส่วนใหญ่ไม่รุนแรง",
+            "จัดการได้"
+          ],
+          "hl": "จัดการได้"
+        },
+        "vi": {
+          "narr": "Tác dụng phụ hay gặp chỉ là đau chỗ tiêm hay nhức đầu thoáng qua — đa số nhẹ.",
+          "cap": [
+            "Đa số nhẹ",
+            "kiểm soát được"
+          ],
+          "hl": "kiểm soát được"
+        },
+        "en": {
+          "narr": "Common effects are sore injection spots or brief headaches — mostly mild, manageable.",
+          "cap": [
+            "Mostly mild",
+            "manageable"
+          ],
+          "hl": "manageable"
+        },
+        "cn": {
+          "narr": "常见副作用就是打针处酸痛或短暂头痛，大多轻微、可控。",
+          "cap": [
+            "大多轻微",
+            "可管理"
+          ],
+          "hl": "可管理"
+        },
+        "ch": {
+          "narr": "常見副作用就是打針處痠痛或短暫頭痛，大多輕微、可控。",
+          "cap": [
+            "大多輕微",
+            "可管理"
+          ],
+          "hl": "可管理"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "doctor",
+      "motion": "🩸 펄스 · 일시적 강조",
+      "copy": {
+        "ko": {
+          "narr": "당뇨 걱정도 많은데, 혈당 영향은 대부분 일시적·경미해 정기 검사로 관리해요.",
+          "cap": [
+            "당뇨 걱정",
+            "혈당 검사로 관리"
+          ],
+          "hl": "혈당 검사로 관리"
+        },
+        "th": {
+          "narr": "กังวลเบาหวานไหม? ผลต่อน้ำตาลส่วนใหญ่ชั่วคราว คุมได้ด้วยตรวจเลือด",
+          "cap": [
+            "กังวลเบาหวาน",
+            "คุมด้วยตรวจเลือด"
+          ],
+          "hl": "คุมด้วยตรวจเลือด"
+        },
+        "vi": {
+          "narr": "Lo tiểu đường? Ảnh hưởng đường huyết đa phần tạm thời, kiểm soát bằng xét nghiệm.",
+          "cap": [
+            "Lo tiểu đường",
+            "xét nghiệm kiểm soát"
+          ],
+          "hl": "xét nghiệm kiểm soát"
+        },
+        "en": {
+          "narr": "Worried about diabetes? Blood-sugar effects are mostly temporary, tracked by tests.",
+          "cap": [
+            "Diabetes worry",
+            "tracked by tests"
+          ],
+          "hl": "tracked by tests"
+        },
+        "cn": {
+          "narr": "担心糖尿病？对血糖的影响大多是暂时的，靠定期检查就能管控。",
+          "cap": [
+            "担心糖尿病",
+            "定期检查管控"
+          ],
+          "hl": "定期检查管控"
+        },
+        "ch": {
+          "narr": "擔心糖尿病？對血糖的影響大多是暫時的，靠定期檢查就能管控。",
+          "cap": [
+            "擔心糖尿病",
+            "定期檢查管控"
+          ],
+          "hl": "定期檢查管控"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "ig",
+      "igLabel": "IG3 모니터링",
+      "motion": "🔁 주기 펄스 점등",
+      "copy": {
+        "ko": {
+          "narr": "그래서 진짜 핵심은 약이 아니라, 전문의의 주기적인 혈액·성장 모니터링이에요.",
+          "cap": [
+            "진짜 핵심",
+            "주기적 모니터링"
+          ],
+          "hl": "주기적 모니터링"
+        },
+        "th": {
+          "narr": "หัวใจจริงๆ ไม่ใช่ตัวยา แต่คือการติดตามเลือดและการเติบโตสม่ำเสมอ",
+          "cap": [
+            "หัวใจจริงๆ",
+            "ติดตามสม่ำเสมอ"
+          ],
+          "hl": "ติดตามสม่ำเสมอ"
+        },
+        "vi": {
+          "narr": "Mấu chốt không phải thuốc, mà là theo dõi máu và tăng trưởng định kỳ.",
+          "cap": [
+            "Mấu chốt thật sự",
+            "theo dõi định kỳ"
+          ],
+          "hl": "theo dõi định kỳ"
+        },
+        "en": {
+          "narr": "The real key isn't the drug — it's regular blood and growth monitoring.",
+          "cap": [
+            "The real key",
+            "regular monitoring"
+          ],
+          "hl": "regular monitoring"
+        },
+        "cn": {
+          "narr": "真正的关键不是药，而是医生定期的血液和生长监测。",
+          "cap": [
+            "真正的关键",
+            "定期监测"
+          ],
+          "hl": "定期监测"
+        },
+        "ch": {
+          "narr": "真正的關鍵不是藥，而是醫師定期的血液和生長監測。",
+          "cap": [
+            "真正的關鍵",
+            "定期監測"
+          ],
+          "hl": "定期監測"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–29.5s",
+      "kind": "ig",
+      "igLabel": "IG4 맞춤 진단",
+      "motion": "🎯 조준 + 글로우",
+      "copy": {
+        "ko": {
+          "narr": "키 작다고 다 맞히지 않아요. 뼈나이·혈액검사로 정밀 진단 후 맞춤 처방하죠.",
+          "cap": [
+            "키 작다고 다 X",
+            "정밀 맞춤 진단"
+          ],
+          "hl": "정밀 맞춤 진단"
+        },
+        "th": {
+          "narr": "เตี้ยไม่ได้ฉีดทุกคน วินิจฉัยแม่นยำด้วยอายุกระดูก-เลือดก่อนจ่ายเฉพาะบุคคล",
+          "cap": [
+            "ไม่ใช่ทุกคน",
+            "วินิจฉัยเฉพาะบุคคล"
+          ],
+          "hl": "วินิจฉัยเฉพาะบุคคล"
+        },
+        "vi": {
+          "narr": "Thấp không phải ai cũng tiêm — chẩn đoán chính xác bằng tuổi xương, máu rồi mới kê riêng.",
+          "cap": [
+            "Không phải ai cũng tiêm",
+            "chẩn đoán riêng"
+          ],
+          "hl": "chẩn đoán riêng"
+        },
+        "en": {
+          "narr": "Not every short child gets shots — we diagnose precisely with bone age and blood first.",
+          "cap": [
+            "Not for everyone",
+            "precise diagnosis"
+          ],
+          "hl": "precise diagnosis"
+        },
+        "cn": {
+          "narr": "并非个子矮就打针，先用骨龄和血检精准诊断再量身开方。",
+          "cap": [
+            "并非人人都打",
+            "精准定制诊断"
+          ],
+          "hl": "精准定制诊断"
+        },
+        "ch": {
+          "narr": "並非個子矮就打針，先用骨齡和血檢精準診斷再量身開方。",
+          "cap": [
+            "並非人人都打",
+            "精準定製診斷"
+          ],
+          "hl": "精準定製診斷"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "29.5–32.5s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "막연한 두려움 대신, 뼈나이부터 보면 우리 아이 상태가 정확히 보여요.",
+          "cap": [
+            "두려움 대신",
+            "뼈나이로 확인"
+          ],
+          "hl": "뼈나이로 확인"
+        },
+        "th": {
+          "narr": "แทนความกลัวลอยๆ เริ่มจากดูอายุกระดูก เห็นสภาพลูกชัดเจน",
+          "cap": [
+            "แทนความกลัว",
+            "ดูอายุกระดูก"
+          ],
+          "hl": "ดูอายุกระดูก"
+        },
+        "vi": {
+          "narr": "Thay vì sợ mơ hồ, hãy xem tuổi xương — thấy rõ tình trạng của con.",
+          "cap": [
+            "Thay vì sợ hãi",
+            "xem tuổi xương"
+          ],
+          "hl": "xem tuổi xương"
+        },
+        "en": {
+          "narr": "Instead of vague fear, start with bone age — see your child's real state.",
+          "cap": [
+            "Not vague fear",
+            "start with bone age"
+          ],
+          "hl": "start with bone age"
+        },
+        "cn": {
+          "narr": "与其茫然害怕，先看骨龄，孩子的状况一清二楚。",
+          "cap": [
+            "别茫然害怕",
+            "先看骨龄"
+          ],
+          "hl": "先看骨龄"
+        },
+        "ch": {
+          "narr": "與其茫然害怕，先看骨齡，孩子的狀況一清二楚。",
+          "cap": [
+            "別茫然害怕",
+            "先看骨齡"
+          ],
+          "hl": "先看骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "32.5–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "걱정만 하지 말고, 예측키와 뼈나이부터 지금 확인해 보세요.",
+          "cap": [
+            "예측키·뼈나이",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "อย่าแค่กังวล เช็กส่วนสูงพยากรณ์และอายุกระดูกวันนี้",
+          "cap": [
+            "ส่วนสูง·อายุกระดูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Đừng chỉ lo — kiểm tra chiều cao dự đoán và tuổi xương ngay hôm nay.",
+          "cap": [
+            "Chiều cao·tuổi xương",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Don't just worry — check predicted height and bone age today.",
+          "cap": [
+            "Height & bone age",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "别只是担心——现在就查查预测身高和骨龄。",
+          "cap": [
+            "预测身高·骨龄",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "別只是擔心——現在就查查預測身高和骨齡。",
+          "cap": [
+            "預測身高·骨齡",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "방패 등장 + ✕→✓",
+      "title": "암 오해 — 승인 용량은 안전",
+      "emojis": [
+        "🛡️",
+        "💉",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A friendly rounded shield in the center protecting a small syringe/vial inside; around it soft floating worry-cloud shapes fading away as gentle mint check-mark sparkles appear. Reassuring, calm, pediatric. Brand purple #667eea shield with mint #2dd4bf accents and a soft glow. NO text.",
+      "labels": [
+        {
+          "pos": "방패 안",
+          "ko": "승인 용량",
+          "en": "Approved dose",
+          "th": "ขนาดที่รับรอง"
+        },
+        {
+          "pos": "상단",
+          "ko": "암 위험 근거 없음",
+          "en": "No proven cancer risk",
+          "th": "ไม่มีหลักฐานมะเร็ง"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "체크 순차 점등",
+      "title": "부작용 — 대부분 경미·관리 가능",
+      "emojis": [
+        "✅",
+        "🩹",
+        "🙂"
+      ],
+      "prompt": "Flat vector, square, white bg. A tidy vertical checklist of three soft rounded cards each with a small friendly icon (a band-aid on an arm, a gentle head/headache fading, a calm smiling face), each card marked with a glowing mint check circle. Conveys mild, well-managed side effects. Brand purple + mint, friendly pediatric. NO text.",
+      "labels": [
+        {
+          "pos": "카드1",
+          "ko": "주사 부위",
+          "en": "Injection spot",
+          "th": "บริเวณที่ฉีด"
+        },
+        {
+          "pos": "카드2",
+          "ko": "일시적 두통",
+          "en": "Brief headache",
+          "th": "ปวดหัวชั่วคราว"
+        },
+        {
+          "pos": "카드3(체크)",
+          "ko": "관리 가능",
+          "en": "Manageable",
+          "th": "จัดการได้"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "주기 펄스 점등",
+      "title": "핵심 = 주기적 모니터링",
+      "emojis": [
+        "🔁",
+        "🩸",
+        "📈"
+      ],
+      "prompt": "Flat vector, square, white bg. A circular monitoring loop made of arrows cycling around three small nodes: a blood-test drop, a rising growth chart, and a friendly doctor/stethoscope icon. A soft pulsing glow travels around the loop. Conveys safe, ongoing supervision. Brand purple #667eea loop with mint #2dd4bf node highlights. NO text.",
+      "labels": [
+        {
+          "pos": "노드 혈액",
+          "ko": "혈액검사",
+          "en": "Blood test",
+          "th": "ตรวจเลือด"
+        },
+        {
+          "pos": "노드 성장",
+          "ko": "성장 추적",
+          "en": "Growth check",
+          "th": "ติดตามการโต"
+        },
+        {
+          "pos": "가운데",
+          "ko": "주기적 모니터링",
+          "en": "Regular monitoring",
+          "th": "ติดตามสม่ำเสมอ"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "조준 + 글로우",
+      "title": "맞춤 진단 — 뼈나이·혈액",
+      "emojis": [
+        "🎯",
+        "🦴",
+        "🩸"
+      ],
+      "prompt": "Flat vector, square, white bg. A target/bullseye in the center with a gentle hand X-ray (bone-age) card and a small blood vial orbiting it, a soft aiming glow on the center. Conveys precise, personalized diagnosis before any prescription. Brand purple + mint, friendly pediatric, warm glow. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 카드",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "오른쪽",
+          "ko": "혈액검사",
+          "en": "Blood test",
+          "th": "ตรวจเลือด"
+        },
+        {
+          "pos": "가운데(글로우)",
+          "ko": "맞춤 진단",
+          "en": "Personalized",
+          "th": "เฉพาะบุคคล"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "💉",
+      "label": "성장주사"
+    },
+    {
+      "e": "🛡️",
+      "label": "안전"
+    },
+    {
+      "e": "❓",
+      "label": "걱정·의문"
+    },
+    {
+      "e": "😟",
+      "label": "부모 공감"
+    },
+    {
+      "e": "✅",
+      "label": "관리 가능"
+    },
+    {
+      "e": "🩸",
+      "label": "혈액검사"
+    },
+    {
+      "e": "🩹",
+      "label": "주사 부위"
+    },
+    {
+      "e": "🔁",
+      "label": "주기 모니터링"
+    },
+    {
+      "e": "🎯",
+      "label": "맞춤 진단"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "📈",
+      "label": "성장 추적"
+    },
+    {
+      "e": "🙂",
+      "label": "안심"
+    }
+  ]
+}

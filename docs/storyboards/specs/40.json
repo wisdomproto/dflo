@@ -1,0 +1,793 @@
+{
+  "n": 40,
+  "slug": "잘먹는데안커",
+  "title": "잘 먹는데 왜 안 크지? — 흡수가 진짜 열쇠",
+  "sub": "잘 먹는 것 ≠ 잘 흡수하는 것 — 장 건강·필수영양소·수면이 키를 가른다",
+  "category": "C. 부모공감",
+  "topicTitle": "잘 먹어도 키 안 크는 이유 — 영양 흡수 점검",
+  "headerTop": "우리 아이 키",
+  "headerMark": "잘 먹는데 왜?",
+  "accentEmoji": "🍽️💜",
+  "hook": "잘 먹는데 왜 안 크지? 사실 '먹는 것'보다 '흡수'가 더 중요해요.",
+  "misconception": "\"잘 먹으면 키는 알아서 큰다\" → 먹는 양보다 장에서 제대로 흡수되느냐가 진짜 관건",
+  "message": "잘 먹어도 장 건강 문제·알레르기·필수영양소(비타민D·아연) 부족·수면 부족이 흡수를 막으면 키가 안 큰다. 막연한 걱정 대신 원인을 찾으면 된다",
+  "tone": "협박 ❌ → \"원인만 찾으면 도울 수 있다\" 긍정 골든타임. 잘 먹이는 부모를 탓하지 않고 부드럽게 공감 후 흡수로 안내. \"우리 아이 키\" 보편. 단정 ❌(원인은 다양, 측정·검사는 홈페이지/클리닉 유도)",
+  "cta": "막연히 걱정하지 말고 지금 확인 → 홈페이지 예측키 / 뼈나이·영양 상태 측정으로 숨은 원인 찾기",
+  "duration": 35,
+  "thumb": {
+    "kicker": "잘 먹는데 왜?",
+    "subject": "우리 아이 키 안 크는 건",
+    "number": "흡수",
+    "numLabel": "가 문제!"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"잘 먹는데 왜 안 크지?\" 그 답답함 공감 → 먹는 것 ≠ 흡수하는 것"
+    },
+    {
+      "act": "ACT 2",
+      "title": "핵심 원리",
+      "scenes": "c3–c4",
+      "desc": "먹어도 장에서 흡수 안 되면 소용없다 → 장 건강이 첫 관문"
+    },
+    {
+      "act": "ACT 3",
+      "title": "숨은 방해 요인",
+      "scenes": "c5–c6",
+      "desc": "알레르기·불내증·만성질환 → 필수영양소(비타민D·아연) 결핍"
+    },
+    {
+      "act": "ACT 4",
+      "title": "의외의 변수·전환",
+      "scenes": "c7–c8",
+      "desc": "스트레스·수면 부족이 성장호르몬을 끈다 → 그래서 원인을 찾아야"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "뼈나이·검사로 숨은 원인 확인 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🍽️ 슬램 인 + ❓ 팝",
+      "copy": {
+        "ko": {
+          "narr": "\"우리 아이는 진짜 잘 먹는데, 왜 키가 안 클까요?\" 정말 많이 듣는 질문이에요.",
+          "cap": [
+            "잘 먹는데",
+            "왜 안 크지?"
+          ],
+          "hl": "왜 안 크지?"
+        },
+        "th": {
+          "narr": "\"ลูกกินเก่งมาก แต่ทำไมไม่สูง?\" เป็นคำถามที่ได้ยินบ่อยมาก",
+          "cap": [
+            "กินเก่ง แต่",
+            "ทำไมไม่สูง?"
+          ],
+          "hl": "ทำไมไม่สูง?"
+        },
+        "vi": {
+          "narr": "\"Con ăn rất giỏi mà sao không cao?\" — câu hỏi tôi nghe rất nhiều.",
+          "cap": [
+            "Ăn giỏi mà",
+            "sao không cao?"
+          ],
+          "hl": "sao không cao?"
+        },
+        "en": {
+          "narr": "\"My child eats so well — why isn't he growing?\" I hear this all the time.",
+          "cap": [
+            "Eats well, but",
+            "why so short?"
+          ],
+          "hl": "why so short?"
+        },
+        "cn": {
+          "narr": "\"孩子明明吃得很好，为什么就是不长个？\"这是我常听到的问题。",
+          "cap": [
+            "吃得好，却",
+            "为啥不长高？"
+          ],
+          "hl": "为啥不长高？"
+        },
+        "ch": {
+          "narr": "\"孩子明明吃得很好，為什麼就是不長個？\"這是我常聽到的問題。",
+          "cap": [
+            "吃得好，卻",
+            "為啥不長高？"
+          ],
+          "hl": "為啥不長高？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "💡 전환 글로우",
+      "copy": {
+        "ko": {
+          "narr": "사실 '잘 먹는 것'과 '잘 흡수하는 것'은 완전히 달라요.",
+          "cap": [
+            "잘 먹는 것 ≠",
+            "잘 흡수하는 것"
+          ],
+          "hl": "잘 흡수하는 것"
+        },
+        "th": {
+          "narr": "จริงๆ แล้ว \"การกินดี\" กับ \"การดูดซึมดี\" ต่างกันโดยสิ้นเชิง",
+          "cap": [
+            "กินดี ≠",
+            "ดูดซึมดี"
+          ],
+          "hl": "ดูดซึมดี"
+        },
+        "vi": {
+          "narr": "Thật ra \"ăn tốt\" và \"hấp thu tốt\" hoàn toàn khác nhau.",
+          "cap": [
+            "Ăn tốt ≠",
+            "hấp thu tốt"
+          ],
+          "hl": "hấp thu tốt"
+        },
+        "en": {
+          "narr": "Truth is, eating well and absorbing well are two very different things.",
+          "cap": [
+            "Eating ≠",
+            "absorbing"
+          ],
+          "hl": "absorbing"
+        },
+        "cn": {
+          "narr": "其实，\"吃得好\"和\"吸收好\"完全是两回事。",
+          "cap": [
+            "吃得好 ≠",
+            "吸收得好"
+          ],
+          "hl": "吸收得好"
+        },
+        "ch": {
+          "narr": "其實，\"吃得好\"和\"吸收好\"完全是兩回事。",
+          "cap": [
+            "吃得好 ≠",
+            "吸收得好"
+          ],
+          "hl": "吸收得好"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 먹기 vs 흡수",
+      "motion": "🍽️→🩸 흐름 점등",
+      "copy": {
+        "ko": {
+          "narr": "아무리 좋은 걸 많이 먹어도, 장에서 흡수가 안 되면 몸엔 그냥 지나가요.",
+          "cap": [
+            "많이 먹어도",
+            "흡수 안 되면 끝"
+          ],
+          "hl": "흡수 안 되면 끝"
+        },
+        "th": {
+          "narr": "ต่อให้กินของดีเยอะแค่ไหน ถ้าลำไส้ไม่ดูดซึม ก็ผ่านไปเปล่าๆ",
+          "cap": [
+            "กินเยอะแค่ไหน",
+            "ไม่ดูดซึมก็เปล่า"
+          ],
+          "hl": "ไม่ดูดซึมก็เปล่า"
+        },
+        "vi": {
+          "narr": "Ăn nhiều đồ tốt đến mấy, ruột không hấp thu thì cũng trôi qua vô ích.",
+          "cap": [
+            "Ăn nhiều mấy",
+            "không hấp thu là phí"
+          ],
+          "hl": "không hấp thu là phí"
+        },
+        "en": {
+          "narr": "No matter how much good food goes in, if the gut can't absorb it, it just passes through.",
+          "cap": [
+            "Eat all you want",
+            "no absorb = wasted"
+          ],
+          "hl": "no absorb = wasted"
+        },
+        "cn": {
+          "narr": "再好的东西吃再多，肠道不吸收，也只是白白经过。",
+          "cap": [
+            "吃再多",
+            "不吸收=白吃"
+          ],
+          "hl": "不吸收=白吃"
+        },
+        "ch": {
+          "narr": "再好的東西吃再多，腸道不吸收，也只是白白經過。",
+          "cap": [
+            "吃再多",
+            "不吸收=白吃"
+          ],
+          "hl": "不吸收=白吃"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 장 건강",
+      "motion": "🦠 펄스 · 장 점막 글로우",
+      "copy": {
+        "ko": {
+          "narr": "그래서 첫 관문이 장 건강이에요. 배탈·설사·변비가 잦으면 흡수력이 떨어진 신호일 수 있어요.",
+          "cap": [
+            "배탈·설사 잦으면",
+            "장이 흡수를 못 해"
+          ],
+          "hl": "장이 흡수를 못 해"
+        },
+        "th": {
+          "narr": "ด่านแรกคือสุขภาพลำไส้ ถ้าปวดท้อง ท้องเสีย ท้องผูกบ่อย อาจดูดซึมได้ไม่ดี",
+          "cap": [
+            "ท้องเสียบ่อย",
+            "ลำไส้ดูดซึมแย่"
+          ],
+          "hl": "ลำไส้ดูดซึมแย่"
+        },
+        "vi": {
+          "narr": "Cửa ải đầu tiên là sức khỏe đường ruột. Hay đau bụng, tiêu chảy, táo bón là dấu hiệu hấp thu kém.",
+          "cap": [
+            "Hay đau bụng",
+            "ruột hấp thu kém"
+          ],
+          "hl": "ruột hấp thu kém"
+        },
+        "en": {
+          "narr": "So the first gate is gut health. Frequent tummy aches, diarrhea or constipation can signal poor absorption.",
+          "cap": [
+            "Frequent tummy issues",
+            "gut absorbs poorly"
+          ],
+          "hl": "gut absorbs poorly"
+        },
+        "cn": {
+          "narr": "所以第一关是肠道健康。常肚子痛、腹泻、便秘，可能就是吸收变差的信号。",
+          "cap": [
+            "常肚子不适",
+            "肠道吸收差"
+          ],
+          "hl": "肠道吸收差"
+        },
+        "ch": {
+          "narr": "所以第一關是腸道健康。常肚子痛、腹瀉、便秘，可能就是吸收變差的信號。",
+          "cap": [
+            "常肚子不適",
+            "腸道吸收差"
+          ],
+          "hl": "腸道吸收差"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "🥛 펄스 · ⚠️ 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "특정 음식 알레르기나 불내증도 그래요. 우유에 약한 아이가 우유를 먹으면 오히려 장에 염증이 생겨요.",
+          "cap": [
+            "우유·밀 불내증",
+            "장에 염증 →흡수↓"
+          ],
+          "hl": "장에 염증 →흡수↓"
+        },
+        "th": {
+          "narr": "การแพ้หรือไม่ทนอาหารบางชนิดก็เช่นกัน เด็กที่แพ้นมพอกินนมกลับทำให้ลำไส้อักเสบ",
+          "cap": [
+            "แพ้นม·แป้งสาลี",
+            "ลำไส้อักเสบ →ดูดซึม↓"
+          ],
+          "hl": "ลำไส้อักเสบ →ดูดซึม↓"
+        },
+        "vi": {
+          "narr": "Dị ứng hay không dung nạp thực phẩm cũng vậy. Bé kém dung nạp sữa mà uống sữa lại gây viêm ruột.",
+          "cap": [
+            "Dị ứng sữa·lúa mì",
+            "viêm ruột →hấp thu↓"
+          ],
+          "hl": "viêm ruột →hấp thu↓"
+        },
+        "en": {
+          "narr": "Food allergy or intolerance does the same. A milk-sensitive child who drinks milk gets gut inflammation instead.",
+          "cap": [
+            "Milk·wheat issues",
+            "gut inflamed →less absorb"
+          ],
+          "hl": "gut inflamed →less absorb"
+        },
+        "cn": {
+          "narr": "食物过敏或不耐受也一样。对牛奶敏感的孩子喝奶，反而让肠道发炎。",
+          "cap": [
+            "牛奶·小麦不耐",
+            "肠道发炎 →吸收↓"
+          ],
+          "hl": "肠道发炎 →吸收↓"
+        },
+        "ch": {
+          "narr": "食物過敏或不耐受也一樣。對牛奶敏感的孩子喝奶，反而讓腸道發炎。",
+          "cap": [
+            "牛奶·小麥不耐",
+            "腸道發炎 →吸收↓"
+          ],
+          "hl": "腸道發炎 →吸收↓"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 필수영양소",
+      "motion": "💊 4종 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "그리고 칼슘·비타민D·아연·철분이 부족해도 안 커요. 비타민D는 뼈, 아연은 성장호르몬에 꼭 필요하거든요.",
+          "cap": [
+            "비타민D=뼈",
+            "아연=성장호르몬"
+          ],
+          "hl": "아연=성장호르몬"
+        },
+        "th": {
+          "narr": "และถ้าขาดแคลเซียม วิตามินดี สังกะสี ธาตุเหล็กก็ไม่สูง วิตามินดีสร้างกระดูก สังกะสีช่วยฮอร์โมน",
+          "cap": [
+            "วิตามินดี=กระดูก",
+            "สังกะสี=ฮอร์โมน"
+          ],
+          "hl": "สังกะสี=ฮอร์โมน"
+        },
+        "vi": {
+          "narr": "Thiếu canxi, vitamin D, kẽm, sắt cũng không cao. Vitamin D cho xương, kẽm cho hormone tăng trưởng.",
+          "cap": [
+            "Vitamin D=xương",
+            "kẽm=hormone"
+          ],
+          "hl": "kẽm=hormone"
+        },
+        "en": {
+          "narr": "And low calcium, vitamin D, zinc or iron stalls growth. Vitamin D builds bone; zinc drives growth hormone.",
+          "cap": [
+            "Vitamin D=bone",
+            "zinc=growth hormone"
+          ],
+          "hl": "zinc=growth hormone"
+        },
+        "cn": {
+          "narr": "缺钙、维生素D、锌、铁也长不高。维D造骨，锌关乎生长激素。",
+          "cap": [
+            "维D=骨骼",
+            "锌=生长激素"
+          ],
+          "hl": "锌=生长激素"
+        },
+        "ch": {
+          "narr": "缺鈣、維生素D、鋅、鐵也長不高。維D造骨，鋅關乎生長激素。",
+          "cap": [
+            "維D=骨骼",
+            "鋅=生長激素"
+          ],
+          "hl": "鋅=生長激素"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27.5s",
+      "kind": "doctor",
+      "motion": "😴 흔들 + 🌙 글로우",
+      "copy": {
+        "ko": {
+          "narr": "의외의 변수도 있어요. 스트레스와 수면 부족은 성장호르몬을 줄여서, 잘 먹어도 키를 막아요.",
+          "cap": [
+            "스트레스·수면 부족",
+            "성장호르몬 ↓"
+          ],
+          "hl": "성장호르몬 ↓"
+        },
+        "th": {
+          "narr": "มีตัวแปรที่คาดไม่ถึงด้วย ความเครียดและนอนน้อยลดฮอร์โมน ต่อให้กินดีก็ไม่สูง",
+          "cap": [
+            "เครียด·นอนน้อย",
+            "ฮอร์โมน ↓"
+          ],
+          "hl": "ฮอร์โมน ↓"
+        },
+        "vi": {
+          "narr": "Có cả yếu tố bất ngờ: stress và thiếu ngủ làm giảm hormone tăng trưởng, dù ăn tốt vẫn không cao.",
+          "cap": [
+            "Stress·thiếu ngủ",
+            "hormone ↓"
+          ],
+          "hl": "hormone ↓"
+        },
+        "en": {
+          "narr": "There's a surprise factor too: stress and poor sleep cut growth hormone, blocking height even when they eat well.",
+          "cap": [
+            "Stress·poor sleep",
+            "growth hormone ↓"
+          ],
+          "hl": "growth hormone ↓"
+        },
+        "cn": {
+          "narr": "还有意外因素：压力和睡眠不足会减少生长激素，吃得再好也长不高。",
+          "cap": [
+            "压力·睡眠不足",
+            "生长激素 ↓"
+          ],
+          "hl": "生长激素 ↓"
+        },
+        "ch": {
+          "narr": "還有意外因素：壓力和睡眠不足會減少生長激素，吃得再好也長不高。",
+          "cap": [
+            "壓力·睡眠不足",
+            "生長激素 ↓"
+          ],
+          "hl": "生長激素 ↓"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27.5–31s",
+      "kind": "ig",
+      "igLabel": "IG4 숨은 원인",
+      "motion": "🔍 따뜻 글로우 + 점등",
+      "copy": {
+        "ko": {
+          "narr": "그러니까 잘 먹는데 안 큰다면, 막연히 걱정하기보다 숨은 원인을 찾으면 돼요.",
+          "cap": [
+            "걱정만 X",
+            "숨은 원인 찾기"
+          ],
+          "hl": "숨은 원인 찾기"
+        },
+        "th": {
+          "narr": "ดังนั้นถ้ากินดีแต่ไม่สูง อย่ากังวลลอยๆ แต่หาสาเหตุที่ซ่อนอยู่",
+          "cap": [
+            "ไม่ใช่แค่กังวล",
+            "หาสาเหตุที่ซ่อน"
+          ],
+          "hl": "หาสาเหตุที่ซ่อน"
+        },
+        "vi": {
+          "narr": "Nên nếu ăn tốt mà không cao, đừng chỉ lo lắng mơ hồ, hãy tìm nguyên nhân ẩn.",
+          "cap": [
+            "Đừng chỉ lo",
+            "tìm nguyên nhân ẩn"
+          ],
+          "hl": "tìm nguyên nhân ẩn"
+        },
+        "en": {
+          "narr": "So if they eat well but stay short, don't just worry — find the hidden cause.",
+          "cap": [
+            "Not just worry",
+            "find hidden cause"
+          ],
+          "hl": "find hidden cause"
+        },
+        "cn": {
+          "narr": "所以吃得好却不长，与其空担心，不如找出隐藏原因。",
+          "cap": [
+            "别只担心",
+            "找隐藏原因"
+          ],
+          "hl": "找隐藏原因"
+        },
+        "ch": {
+          "narr": "所以吃得好卻不長，與其空擔心，不如找出隱藏原因。",
+          "cap": [
+            "別只擔心",
+            "找隱藏原因"
+          ],
+          "hl": "找隱藏原因"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "31–34s",
+      "kind": "doctor",
+      "motion": "🦴🔬 팝",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이와 영양 검사를 보면, 우리 아이가 안 크는 진짜 이유를 정확히 알 수 있어요.",
+          "cap": [
+            "뼈나이·영양 검사",
+            "진짜 원인 확인"
+          ],
+          "hl": "진짜 원인 확인"
+        },
+        "th": {
+          "narr": "อายุกระดูกและตรวจโภชนาการ บอกเหตุผลที่แท้จริงที่ลูกไม่สูงได้ชัดเจน",
+          "cap": [
+            "อายุกระดูก·โภชนาการ",
+            "รู้สาเหตุที่แท้จริง"
+          ],
+          "hl": "รู้สาเหตุที่แท้จริง"
+        },
+        "vi": {
+          "narr": "Tuổi xương và xét nghiệm dinh dưỡng cho biết chính xác lý do thật sự con không cao.",
+          "cap": [
+            "Tuổi xương·dinh dưỡng",
+            "rõ nguyên nhân thật"
+          ],
+          "hl": "rõ nguyên nhân thật"
+        },
+        "en": {
+          "narr": "Bone age plus a nutrition check reveals exactly why your child isn't growing.",
+          "cap": [
+            "Bone age·nutrition test",
+            "the real reason"
+          ],
+          "hl": "the real reason"
+        },
+        "cn": {
+          "narr": "骨龄加上营养检查，能精准找出孩子不长高的真正原因。",
+          "cap": [
+            "骨龄·营养检查",
+            "查出真正原因"
+          ],
+          "hl": "查出真正原因"
+        },
+        "ch": {
+          "narr": "骨齡加上營養檢查，能精準找出孩子不長高的真正原因。",
+          "cap": [
+            "骨齡·營養檢查",
+            "查出真正原因"
+          ],
+          "hl": "查出真正原因"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "34–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "걱정만 하지 말고, 지금 우리 아이 성장 상태를 확인해 보세요.",
+          "cap": [
+            "걱정만 X",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "อย่าแค่กังวล มาเช็กพัฒนาการความสูงของลูกวันนี้เลย",
+          "cap": [
+            "อย่าแค่กังวล",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Đừng chỉ lo lắng, hãy kiểm tra tình trạng phát triển của con ngay hôm nay.",
+          "cap": [
+            "Đừng chỉ lo",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Don't just worry — check your child's growth today.",
+          "cap": [
+            "Stop worrying",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "别只是担心，现在就查查孩子的成长状况吧。",
+          "cap": [
+            "别只担心",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "別只是擔心，現在就查查孩子的成長狀況吧。",
+          "cap": [
+            "別只擔心",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🍽️→🩸 흐름 점등",
+      "title": "먹기 vs 흡수 — 통과해 버리는 영양",
+      "emojis": [
+        "🍽️",
+        "🩸",
+        "➡️"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly cross-section flow: a plate of colorful food on the left, an arrow leading into a stylized child's torso with a simple intestine shape in the middle, and on the right two outcomes shown side by side — one path where glowing nutrient dots are absorbed into a soft mint bloodstream, another faint path where the same dots simply pass straight through and exit. Gentle, hopeful, non-clinical. Brand purple #667eea to mint #2dd4bf gradient, soft glow on the absorbed dots. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(접시)",
+          "ko": "잘 먹어도",
+          "en": "Eats well",
+          "th": "กินดี"
+        },
+        {
+          "pos": "가운데(장)",
+          "ko": "흡수 관문",
+          "en": "Absorption",
+          "th": "การดูดซึม"
+        },
+        {
+          "pos": "오른쪽(통과)",
+          "ko": "그냥 통과",
+          "en": "Passes through",
+          "th": "ผ่านไปเปล่า"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "🦠 장 점막 글로우 + 펄스",
+      "title": "장 건강 — 흡수의 첫 관문",
+      "emojis": [
+        "🦠",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly close-up of a healthy intestinal lining shown as soft rounded villi finger-shapes glowing gently mint, with tiny nutrient dots being happily absorbed; to one side a faintly ghosted irritated patch (slightly red, gentle) where the lining is rougher and dots bounce off. Calm, reassuring, not scary or graphic. Brand purple #667eea with mint #2dd4bf glow accents and a soft warm red hint. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(글로우)",
+          "ko": "건강한 장",
+          "en": "Healthy gut",
+          "th": "ลำไส้แข็งแรง"
+        },
+        {
+          "pos": "오른쪽(흐림)",
+          "ko": "흡수 저하",
+          "en": "Poor absorption",
+          "th": "ดูดซึมแย่"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "💊 4종 순차 점등",
+      "title": "성장 필수영양소 4종",
+      "emojis": [
+        "☀️",
+        "🦴",
+        "🧬"
+      ],
+      "prompt": "Flat vector, square, white background. Four friendly glowing nutrient tokens arranged in a gentle arc around a small happy child reaching upward: a sun symbol for vitamin D, a tiny bone for calcium, a small metallic spark token for zinc, and a red droplet for iron. Each token softly lit, conveying 'essential building blocks for growth.' Hopeful and clean. Brand purple #667eea plus mint #2dd4bf accents, warm gold on the sun token. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "토큰1(해)",
+          "ko": "비타민D · 뼈",
+          "en": "Vitamin D · bone",
+          "th": "วิตามินดี · กระดูก"
+        },
+        {
+          "pos": "토큰2(스파크)",
+          "ko": "아연 · 성장호르몬",
+          "en": "Zinc · growth hormone",
+          "th": "สังกะสี · ฮอร์โมน"
+        },
+        {
+          "pos": "토큰3(뼈)",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        },
+        {
+          "pos": "토큰4(물방울)",
+          "ko": "철분",
+          "en": "Iron",
+          "th": "ธาตุเหล็ก"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🔍 따뜻 글로우 + 점등",
+      "title": "숨은 원인 찾기 — 걱정에서 확인으로",
+      "emojis": [
+        "🔍",
+        "💜"
+      ],
+      "prompt": "Flat vector, square, white background. A warm, reassuring scene: a parent and child together looking through a friendly magnifying glass that reveals a small glowing checklist of hidden growth factors floating softly (a gut, a moon for sleep, a nutrient droplet) — turning vague worry into clear understanding. Uplifting and gentle, a soft golden glow of hope around them. Brand purple #667eea plus warm gold and mint #2dd4bf accents. Friendly pediatric flat illustration. NO text.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "걱정 대신",
+          "en": "Instead of worry",
+          "th": "แทนความกังวล"
+        },
+        {
+          "pos": "가운데(돋보기)",
+          "ko": "숨은 원인 확인",
+          "en": "Find the cause",
+          "th": "หาสาเหตุ"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🍽️",
+      "label": "잘 먹는 아이"
+    },
+    {
+      "e": "❓",
+      "label": "왜 안 크지"
+    },
+    {
+      "e": "🩸",
+      "label": "흡수·혈류"
+    },
+    {
+      "e": "🦠",
+      "label": "장 건강"
+    },
+    {
+      "e": "🥛",
+      "label": "우유·불내증"
+    },
+    {
+      "e": "☀️",
+      "label": "비타민D"
+    },
+    {
+      "e": "🧬",
+      "label": "아연·성장호르몬"
+    },
+    {
+      "e": "🦴",
+      "label": "칼슘·뼈나이"
+    },
+    {
+      "e": "😴",
+      "label": "수면 부족"
+    },
+    {
+      "e": "🔍",
+      "label": "숨은 원인"
+    },
+    {
+      "e": "💜",
+      "label": "공감·희망"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

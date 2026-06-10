@@ -1,0 +1,802 @@
+{
+  "n": 16,
+  "slug": "환경호르몬성조숙",
+  "title": "우리 아이 성장판 노리는 '가짜 호르몬' — 환경호르몬의 정체",
+  "sub": "플라스틱·생활용품 속 환경호르몬이 가짜 성호르몬으로 사춘기를 앞당긴다 — 막을 수 있다",
+  "category": "A. 성장과학",
+  "topicTitle": "환경호르몬과 성조숙증",
+  "duration": 35,
+  "headerTop": "우리 아이 성장판",
+  "headerMark": "가짜 호르몬?",
+  "accentEmoji": "🧪⚠️",
+  "thumb": {
+    "kicker": "성장판 비상!",
+    "subject": "우리 아이 키 훔치는",
+    "number": "가짜",
+    "numLabel": "성호르몬"
+  },
+  "hook": "우리 아이 성장판을 노리는 '가짜 호르몬', 집 안에 숨어 있어요.",
+  "misconception": "성조숙증은 그냥 일찍 크는 것 → 사실은 성장판이 빨리 닫혀 최종 키가 작아짐",
+  "message": "환경호르몬이 가짜 에스트로겐처럼 작용해 사춘기를 앞당김 → 성장판 조기 폐쇄 → 작은 키. 생활 습관으로 줄이고 뼈나이로 확인할 수 있다",
+  "tone": "협박 ❌ → 긍정 \"막을 수 있다 · 지금 확인하면 된다\". \"우리 아이 키\" 보편. 셀럽·효과 직결 ❌",
+  "cta": "우리 아이 성장 속도·사춘기 신호 지금 확인 → 뼈나이/예측키 측정 유도",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"집 안에 숨은 가짜 호르몬이 성장판을 노린다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "정체·기전",
+      "scenes": "c3–c5",
+      "desc": "\"환경호르몬=가짜 에스트로겐 → 사춘기 앞당김\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "진짜 손해",
+      "scenes": "c6–c7",
+      "desc": "\"성장판 일찍 닫혀 최종 키 손해\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "숨은 곳·예방",
+      "scenes": "c8–c9",
+      "desc": "\"플라스틱·생활용품 → 생활 습관으로 막는다\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c10",
+      "desc": "\"뼈나이로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🧪 슬램 인 + ⚠️ 플래시",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장판을 노리는 '가짜 호르몬', 집 안에 숨어 있는 거 아세요?",
+          "cap": [
+            "성장판 노리는",
+            "가짜 호르몬"
+          ],
+          "hl": "가짜 호르몬"
+        },
+        "th": {
+          "narr": "รู้ไหมว่ามี 'ฮอร์โมนปลอม' ซ่อนอยู่ในบ้าน คอยจ้องแผ่นกระดูกของลูก?",
+          "cap": [
+            "จ้องแผ่นกระดูก",
+            "ฮอร์โมนปลอม"
+          ],
+          "hl": "ฮอร์โมนปลอม"
+        },
+        "vi": {
+          "narr": "Bạn có biết 'hormone giả' đang ẩn trong nhà, nhắm vào sụn tăng trưởng của con?",
+          "cap": [
+            "Nhắm sụn tăng trưởng",
+            "hormone giả"
+          ],
+          "hl": "hormone giả"
+        },
+        "en": {
+          "narr": "Did you know a 'fake hormone' hides in your home, targeting your child's growth plates?",
+          "cap": [
+            "Targets growth plates",
+            "fake hormone"
+          ],
+          "hl": "fake hormone"
+        },
+        "cn": {
+          "narr": "你知道有种'假激素'藏在家里，正盯着孩子的生长板吗？",
+          "cap": [
+            "盯上生长板",
+            "假激素"
+          ],
+          "hl": "假激素"
+        },
+        "ch": {
+          "narr": "你知道有種'假激素'藏在家裡，正盯著孩子的生長板嗎？",
+          "cap": [
+            "盯上生長板",
+            "假激素"
+          ],
+          "hl": "假激素"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🏠 줌인 + 👀 시선",
+      "copy": {
+        "ko": {
+          "narr": "바로 환경호르몬이에요. 정식 이름은 '내분비계 교란 물질'이죠.",
+          "cap": [
+            "환경호르몬",
+            "내분비계 교란"
+          ],
+          "hl": "환경호르몬"
+        },
+        "th": {
+          "narr": "นั่นคือฮอร์โมนสิ่งแวดล้อม ชื่อจริงคือ 'สารก่อกวนต่อมไร้ท่อ'",
+          "cap": [
+            "ฮอร์โมนสิ่งแวดล้อม",
+            "ก่อกวนต่อมไร้ท่อ"
+          ],
+          "hl": "ฮอร์โมนสิ่งแวดล้อม"
+        },
+        "vi": {
+          "narr": "Đó là hormone môi trường — tên thật là 'chất gây rối loạn nội tiết'.",
+          "cap": [
+            "Hormone môi trường",
+            "rối loạn nội tiết"
+          ],
+          "hl": "Hormone môi trường"
+        },
+        "en": {
+          "narr": "It's the environmental hormone — officially, an 'endocrine disruptor'.",
+          "cap": [
+            "Environmental hormone",
+            "endocrine disruptor"
+          ],
+          "hl": "endocrine disruptor"
+        },
+        "cn": {
+          "narr": "那就是环境激素，正式名叫'内分泌干扰物'。",
+          "cap": [
+            "环境激素",
+            "内分泌干扰物"
+          ],
+          "hl": "内分泌干扰物"
+        },
+        "ch": {
+          "narr": "那就是環境激素，正式名叫'內分泌干擾物'。",
+          "cap": [
+            "環境激素",
+            "內分泌干擾物"
+          ],
+          "hl": "內分泌干擾物"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 가짜 열쇠",
+      "motion": "🔑 끼워짐 + 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "이 물질은 진짜 성호르몬과 구조가 닮아서, 우리 몸 수용체에 가짜 열쇠처럼 끼어들어요.",
+          "cap": [
+            "성호르몬과 닮은꼴",
+            "가짜 열쇠"
+          ],
+          "hl": "가짜 열쇠"
+        },
+        "th": {
+          "narr": "มันมีโครงสร้างคล้ายฮอร์โมนเพศจริง จึงสวมเข้าตัวรับเหมือนกุญแจปลอม",
+          "cap": [
+            "คล้ายฮอร์โมนเพศ",
+            "กุญแจปลอม"
+          ],
+          "hl": "กุญแจปลอม"
+        },
+        "vi": {
+          "narr": "Nó giống hormone giới tính thật, nên cắm vào thụ thể như một chiếc chìa khóa giả.",
+          "cap": [
+            "Giống hormone thật",
+            "chìa khóa giả"
+          ],
+          "hl": "chìa khóa giả"
+        },
+        "en": {
+          "narr": "It mimics real sex hormones, slipping into the body's receptors like a fake key.",
+          "cap": [
+            "Mimics real hormone",
+            "fake key"
+          ],
+          "hl": "fake key"
+        },
+        "cn": {
+          "narr": "它的结构像真性激素，像假钥匙一样插进身体的受体。",
+          "cap": [
+            "酷似真激素",
+            "假钥匙"
+          ],
+          "hl": "假钥匙"
+        },
+        "ch": {
+          "narr": "它的結構像真性激素，像假鑰匙一樣插進身體的受體。",
+          "cap": [
+            "酷似真激素",
+            "假鑰匙"
+          ],
+          "hl": "假鑰匙"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "doctor",
+      "motion": "⏩ 사춘기 빨리감기",
+      "copy": {
+        "ko": {
+          "narr": "그러면 몸이 '벌써 성호르몬이 나온다'고 착각해서, 사춘기를 너무 일찍 시작해요.",
+          "cap": [
+            "몸이 착각",
+            "사춘기 앞당김"
+          ],
+          "hl": "사춘기 앞당김"
+        },
+        "th": {
+          "narr": "ร่างกายเลยเข้าใจผิดว่าฮอร์โมนเพศหลั่งแล้ว ทำให้แรกรุ่นมาเร็วเกินไป",
+          "cap": [
+            "ร่างกายเข้าใจผิด",
+            "แรกรุ่นมาเร็ว"
+          ],
+          "hl": "แรกรุ่นมาเร็ว"
+        },
+        "vi": {
+          "narr": "Cơ thể tưởng hormone giới tính đã tiết ra, nên dậy thì đến quá sớm.",
+          "cap": [
+            "Cơ thể bị đánh lừa",
+            "dậy thì sớm"
+          ],
+          "hl": "dậy thì sớm"
+        },
+        "en": {
+          "narr": "The body thinks sex hormones are flowing — so puberty starts far too early.",
+          "cap": [
+            "Body is fooled",
+            "puberty too early"
+          ],
+          "hl": "puberty too early"
+        },
+        "cn": {
+          "narr": "身体误以为性激素已经分泌，于是青春期提前太多。",
+          "cap": [
+            "身体被骗",
+            "青春期提前"
+          ],
+          "hl": "青春期提前"
+        },
+        "ch": {
+          "narr": "身體誤以為性激素已經分泌，於是青春期提前太多。",
+          "cap": [
+            "身體被騙",
+            "青春期提前"
+          ],
+          "hl": "青春期提前"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "ig",
+      "igLabel": "IG2 성조숙증 신호",
+      "motion": "🔔 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "또래보다 2차 성징이 일찍 나타나면, 성조숙증을 의심해 볼 수 있어요.",
+          "cap": [
+            "또래보다 일찍",
+            "2차 성징"
+          ],
+          "hl": "2차 성징"
+        },
+        "th": {
+          "narr": "ถ้าพัฒนาการทางเพศมาเร็วกว่าเพื่อนวัยเดียวกัน อาจสงสัยภาวะเป็นหนุ่มสาวก่อนวัย",
+          "cap": [
+            "เร็วกว่าเพื่อน",
+            "พัฒนาการทางเพศ"
+          ],
+          "hl": "พัฒนาการทางเพศ"
+        },
+        "vi": {
+          "narr": "Nếu dậy thì đến sớm hơn bạn bè, hãy nghĩ đến dậy thì sớm.",
+          "cap": [
+            "Sớm hơn bạn bè",
+            "dấu hiệu dậy thì"
+          ],
+          "hl": "dấu hiệu dậy thì"
+        },
+        "en": {
+          "narr": "If puberty signs show earlier than peers, it could be precocious puberty.",
+          "cap": [
+            "Earlier than peers",
+            "puberty signs"
+          ],
+          "hl": "puberty signs"
+        },
+        "cn": {
+          "narr": "如果第二性征比同龄人早出现，就要警惕性早熟。",
+          "cap": [
+            "比同龄早",
+            "第二性征"
+          ],
+          "hl": "第二性征"
+        },
+        "ch": {
+          "narr": "如果第二性徵比同齡人早出現，就要警惕性早熟。",
+          "cap": [
+            "比同齡早",
+            "第二性徵"
+          ],
+          "hl": "第二性徵"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 🦵 닫힘",
+      "copy": {
+        "ko": {
+          "narr": "성조숙증은 단순히 일찍 크는 게 아니라, 성장판이 일찍 닫혀 최종 키가 작아져요.",
+          "cap": [
+            "성장판 일찍 닫힘",
+            "최종 키 손해"
+          ],
+          "hl": "최종 키 손해"
+        },
+        "th": {
+          "narr": "ภาวะนี้ไม่ใช่แค่สูงเร็ว แต่แผ่นกระดูกปิดเร็ว ทำให้ส่วนสูงสุดท้ายลดลง",
+          "cap": [
+            "แผ่นกระดูกปิดเร็ว",
+            "ส่วนสูงลดลง"
+          ],
+          "hl": "ส่วนสูงลดลง"
+        },
+        "vi": {
+          "narr": "Đây không chỉ là cao sớm — sụn đóng sớm khiến chiều cao cuối cùng thấp hơn.",
+          "cap": [
+            "Sụn đóng sớm",
+            "mất chiều cao"
+          ],
+          "hl": "mất chiều cao"
+        },
+        "en": {
+          "narr": "It's not just early growth — the plates close early, so final height ends up shorter.",
+          "cap": [
+            "Plates close early",
+            "shorter height"
+          ],
+          "hl": "shorter height"
+        },
+        "cn": {
+          "narr": "这不只是长得早——生长板提前闭合，最终身高反而更矮。",
+          "cap": [
+            "生长板早闭",
+            "最终更矮"
+          ],
+          "hl": "最终更矮"
+        },
+        "ch": {
+          "narr": "這不只是長得早——生長板提前閉合，最終身高反而更矮。",
+          "cap": [
+            "生長板早閉",
+            "最終更矮"
+          ],
+          "hl": "最終更矮"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23–27s",
+      "kind": "ig",
+      "igLabel": "IG3 숨은 곳",
+      "motion": "🔌 4곳 순차 등장",
+      "copy": {
+        "ko": {
+          "narr": "그럼 어디 숨어 있을까요? 플라스틱 용기, 생활용품, 농약, 가공식품이에요.",
+          "cap": [
+            "플라스틱·생활용품",
+            "농약·가공식품"
+          ],
+          "hl": "플라스틱·생활용품"
+        },
+        "th": {
+          "narr": "แล้วมันซ่อนที่ไหน? ภาชนะพลาสติก ของใช้ ยาฆ่าแมลง และอาหารแปรรูป",
+          "cap": [
+            "พลาสติก·ของใช้",
+            "ยาฆ่าแมลง·อาหารแปรรูป"
+          ],
+          "hl": "พลาสติก·ของใช้"
+        },
+        "vi": {
+          "narr": "Vậy nó ẩn ở đâu? Hộp nhựa, đồ gia dụng, thuốc trừ sâu và thực phẩm chế biến.",
+          "cap": [
+            "Nhựa·đồ gia dụng",
+            "thuốc sâu·đồ chế biến"
+          ],
+          "hl": "Nhựa·đồ gia dụng"
+        },
+        "en": {
+          "narr": "So where does it hide? Plastic containers, household items, pesticides, processed food.",
+          "cap": [
+            "Plastics·household",
+            "pesticides·processed"
+          ],
+          "hl": "Plastics·household"
+        },
+        "cn": {
+          "narr": "那它藏在哪？塑料容器、生活用品、农药和加工食品。",
+          "cap": [
+            "塑料·生活用品",
+            "农药·加工食品"
+          ],
+          "hl": "塑料·生活用品"
+        },
+        "ch": {
+          "narr": "那它藏在哪？塑膠容器、生活用品、農藥和加工食品。",
+          "cap": [
+            "塑膠·生活用品",
+            "農藥·加工食品"
+          ],
+          "hl": "塑膠·生活用品"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27–30.5s",
+      "kind": "ig",
+      "igLabel": "IG4 막는 습관",
+      "motion": "✅ 체크 점등",
+      "copy": {
+        "ko": {
+          "narr": "다행히 막을 수 있어요. 유리·스테인리스 쓰고, 채소 잘 씻고, 자주 환기하세요.",
+          "cap": [
+            "유리·스테인리스",
+            "씻고 환기"
+          ],
+          "hl": "유리·스테인리스"
+        },
+        "th": {
+          "narr": "โชคดีที่ป้องกันได้ ใช้แก้ว·สเตนเลส ล้างผักให้สะอาด และระบายอากาศบ่อยๆ",
+          "cap": [
+            "แก้ว·สเตนเลส",
+            "ล้าง·ระบายอากาศ"
+          ],
+          "hl": "แก้ว·สเตนเลส"
+        },
+        "vi": {
+          "narr": "May thay, có thể phòng được: dùng thủy tinh·thép, rửa rau kỹ, thông gió thường xuyên.",
+          "cap": [
+            "Thủy tinh·thép",
+            "rửa·thông gió"
+          ],
+          "hl": "Thủy tinh·thép"
+        },
+        "en": {
+          "narr": "The good news: you can prevent it — use glass·steel, wash produce, ventilate often.",
+          "cap": [
+            "Glass·steel",
+            "wash·ventilate"
+          ],
+          "hl": "Glass·steel"
+        },
+        "cn": {
+          "narr": "好消息是可以预防：改用玻璃·不锈钢，洗净蔬果，常开窗通风。",
+          "cap": [
+            "玻璃·不锈钢",
+            "洗净·通风"
+          ],
+          "hl": "玻璃·不锈钢"
+        },
+        "ch": {
+          "narr": "好消息是可以預防：改用玻璃·不鏽鋼，洗淨蔬果，常開窗通風。",
+          "cap": [
+            "玻璃·不鏽鋼",
+            "洗淨·通風"
+          ],
+          "hl": "玻璃·不鏽鋼"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30.5–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "그리고 뼈나이를 보면, 사춘기가 빠른지 성장판이 얼마나 남았는지 알 수 있어요.",
+          "cap": [
+            "뼈나이로",
+            "사춘기·성장판 확인"
+          ],
+          "hl": "사춘기·성장판 확인"
+        },
+        "th": {
+          "narr": "และอายุกระดูกจะบอกว่าแรกรุ่นเร็วไหม เหลือแผ่นกระดูกอีกเท่าไร",
+          "cap": [
+            "อายุกระดูก",
+            "เช็กแรกรุ่น"
+          ],
+          "hl": "เช็กแรกรุ่น"
+        },
+        "vi": {
+          "narr": "Và tuổi xương cho biết dậy thì có sớm không, sụn còn lại bao nhiêu.",
+          "cap": [
+            "Tuổi xương",
+            "kiểm tra dậy thì"
+          ],
+          "hl": "kiểm tra dậy thì"
+        },
+        "en": {
+          "narr": "And bone age reveals if puberty is early and how much growth plate is left.",
+          "cap": [
+            "Bone age",
+            "check puberty"
+          ],
+          "hl": "check puberty"
+        },
+        "cn": {
+          "narr": "而骨龄能看出青春期是否偏早、生长板还剩多少。",
+          "cap": [
+            "看骨龄",
+            "查青春期"
+          ],
+          "hl": "查青春期"
+        },
+        "ch": {
+          "narr": "而骨齡能看出青春期是否偏早、生長板還剩多少。",
+          "cap": [
+            "看骨齡",
+            "查青春期"
+          ],
+          "hl": "查青春期"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 속도와 사춘기 신호, 지금 바로 확인해 보세요.",
+          "cap": [
+            "성장·사춘기 신호",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กอัตราการเติบโตและสัญญาณแรกรุ่นของลูกวันนี้",
+          "cap": [
+            "การเติบโต·แรกรุ่น",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tốc độ tăng trưởng và dấu hiệu dậy thì của con ngay hôm nay.",
+          "cap": [
+            "Tăng trưởng·dậy thì",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth rate and puberty signs today.",
+          "cap": [
+            "Growth·puberty signs",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的成长速度和青春期信号吧。",
+          "cap": [
+            "成长·青春期信号",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的成長速度和青春期信號吧。",
+          "cap": [
+            "成長·青春期信號",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "가짜 열쇠 끼워짐",
+      "title": "가짜 열쇠 — 수용체 교란",
+      "emojis": [
+        "🔑",
+        "🧬",
+        "⚠️"
+      ],
+      "prompt": "Flat vector, square, white bg. A cell-surface hormone receptor shaped like a keyhole; a real key (mint, smooth) beside a deceptive look-alike key (purple, slightly jagged) sliding into the same keyhole. Soft warning glow around the fake key. Friendly pediatric science style, brand purple #667eea and mint #2dd4bf. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 열쇠",
+          "ko": "진짜 성호르몬",
+          "en": "Real hormone",
+          "th": "ฮอร์โมนจริง"
+        },
+        {
+          "pos": "오른쪽 열쇠(글로우)",
+          "ko": "가짜 열쇠",
+          "en": "Fake key",
+          "th": "กุญแจปลอม"
+        },
+        {
+          "pos": "자물쇠",
+          "ko": "수용체",
+          "en": "Receptor",
+          "th": "ตัวรับ"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "신호 순차 점등",
+      "title": "성조숙증 — 이른 2차 성징",
+      "emojis": [
+        "🔔",
+        "🧒",
+        "📅"
+      ],
+      "prompt": "Flat vector, square, white bg. Two friendly child silhouettes on a timeline; one reaches a puberty milestone marker much earlier (shifted far left) than the typical marker, with a small alert bell glowing above the early one. Brand purple and mint, gentle and non-scary. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 마커",
+          "ko": "또래보다 이른",
+          "en": "Earlier than peers",
+          "th": "เร็วกว่าเพื่อน"
+        },
+        {
+          "pos": "종 아이콘",
+          "ko": "성조숙증 신호",
+          "en": "Early puberty",
+          "th": "สัญญาณก่อนวัย"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c7",
+      "motion": "4곳 순차 등장",
+      "title": "환경호르몬이 숨은 곳",
+      "emojis": [
+        "🍼",
+        "🧴",
+        "🥦",
+        "🍔"
+      ],
+      "prompt": "Flat vector, square, white bg. A 2x2 friendly icon grid of everyday sources: a plastic bottle/food container, a shampoo/soap bottle, a fruit-and-vegetable bunch, and a packaged processed-food box. Each icon in a soft rounded tile. Brand purple #667eea and mint #2dd4bf, clean pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "좌상 타일",
+          "ko": "플라스틱",
+          "en": "Plastics",
+          "th": "พลาสติก"
+        },
+        {
+          "pos": "우상 타일",
+          "ko": "생활용품",
+          "en": "Household",
+          "th": "ของใช้"
+        },
+        {
+          "pos": "좌하 타일",
+          "ko": "농약",
+          "en": "Pesticides",
+          "th": "ยาฆ่าแมลง"
+        },
+        {
+          "pos": "우하 타일",
+          "ko": "가공식품",
+          "en": "Processed food",
+          "th": "อาหารแปรรูป"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "체크 순차 점등",
+      "title": "성장판 지키는 습관",
+      "emojis": [
+        "🥛",
+        "🚰",
+        "🪟"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly habit icons in a row inside soft rounded badges: a glass/stainless container (instead of plastic), running water washing vegetables, and an open window with a fresh-air breeze swirl. A small mint check mark glows on each. Brand purple #667eea and mint #2dd4bf, warm and reassuring. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 배지",
+          "ko": "유리·스테인리스",
+          "en": "Glass·steel",
+          "th": "แก้ว·สเตนเลส"
+        },
+        {
+          "pos": "가운데 배지",
+          "ko": "깨끗이 씻기",
+          "en": "Wash well",
+          "th": "ล้างให้สะอาด"
+        },
+        {
+          "pos": "오른쪽 배지",
+          "ko": "자주 환기",
+          "en": "Ventilate",
+          "th": "ระบายอากาศ"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🧪",
+      "label": "환경호르몬"
+    },
+    {
+      "e": "🔑",
+      "label": "가짜 열쇠/수용체"
+    },
+    {
+      "e": "🧬",
+      "label": "호르몬 구조"
+    },
+    {
+      "e": "⏩",
+      "label": "사춘기 앞당김"
+    },
+    {
+      "e": "🔔",
+      "label": "성조숙 신호"
+    },
+    {
+      "e": "🦵",
+      "label": "성장판"
+    },
+    {
+      "e": "⚠️",
+      "label": "경고"
+    },
+    {
+      "e": "🍼",
+      "label": "플라스틱"
+    },
+    {
+      "e": "🧴",
+      "label": "생활용품"
+    },
+    {
+      "e": "🪟",
+      "label": "환기"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

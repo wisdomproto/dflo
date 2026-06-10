@@ -1,0 +1,793 @@
+{
+  "n": 39,
+  "slug": "백분위수읽는법",
+  "title": "\"반에서 제일 작아요\" — 키 백분위수 진짜 읽는 법",
+  "sub": "25백분위는 나쁜 게 아니다 — 숫자보다 '자기 선'을 따라가는 곡선이 핵심",
+  "category": "C. 부모공감",
+  "topicTitle": "성장 백분위수 읽는 법",
+  "headerTop": "우리 아이 키",
+  "headerMark": "25면 작은 거예요?",
+  "accentEmoji": "📊✨",
+  "duration": 35,
+  "hook": "\"우리 아이 반에서 제일 작아요\" — 근데 백분위 25는 나쁜 숫자가 아니에요.",
+  "misconception": "백분위 숫자가 낮으면 키가 문제 → 사실은 '자기 선'을 따라 꾸준히 크면 건강한 성장",
+  "message": "백분위는 한 번의 점수가 아니라 곡선. 낮아도 선을 따라가면 OK, 갑자기 2단계 떨어지면 그때가 진짜 신호",
+  "tone": "불안 자극 ❌ → 낮은 숫자도 곡선 따라가면 건강. \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이 백분위·성장 곡선 지금 확인 → 예측키/뼈나이 측정 유도",
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"반에서 제일 작아요\" 걱정 → 백분위가 뭔지"
+    },
+    {
+      "act": "ACT 2",
+      "title": "숫자 해석",
+      "scenes": "c3–c4",
+      "desc": "\"25=26번째, 3~97이 정상, 50은 중간\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "안심 반전",
+      "scenes": "c5–c6",
+      "desc": "\"한 점 X, 곡선이 핵심 → 낮아도 선 따라가면 OK\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "진짜 신호",
+      "scenes": "c7–c8",
+      "desc": "\"갑자기 2단계 하락이 진짜 신호 → 곁들여 볼 것들\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"곡선·뼈나이로 확인 → CTA\""
+    }
+  ],
+  "thumb": {
+    "kicker": "숫자에 속지 마세요",
+    "subject": "우리 아이 백분위",
+    "number": "25",
+    "numLabel": "작은 거 아니에요"
+  },
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📊 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "\"우리 아이 반에서 제일 작아요\" — 진료실에서 제일 많이 듣는 말이에요.",
+          "cap": [
+            "반에서",
+            "제일 작아요"
+          ],
+          "hl": "제일 작아요"
+        },
+        "th": {
+          "narr": "\"ลูกตัวเล็กที่สุดในห้อง\" คือคำที่ได้ยินบ่อยที่สุดในคลินิก",
+          "cap": [
+            "เล็กที่สุด",
+            "ในห้อง"
+          ],
+          "hl": "เล็กที่สุด"
+        },
+        "vi": {
+          "narr": "\"Con thấp nhất lớp\" — câu mẹ nói nhiều nhất ở phòng khám.",
+          "cap": [
+            "Thấp nhất",
+            "trong lớp"
+          ],
+          "hl": "Thấp nhất"
+        },
+        "en": {
+          "narr": "\"My child is the shortest in class\" — the line we hear most.",
+          "cap": [
+            "Shortest",
+            "in class"
+          ],
+          "hl": "Shortest"
+        },
+        "cn": {
+          "narr": "\"我家孩子全班最矮\"——诊室里最常听到的一句话。",
+          "cap": [
+            "全班",
+            "最矮"
+          ],
+          "hl": "最矮"
+        },
+        "ch": {
+          "narr": "\"我家孩子全班最矮\"——診間裡最常聽到的一句話。",
+          "cap": [
+            "全班",
+            "最矮"
+          ],
+          "hl": "最矮"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🔢 팝 + 줄세우기",
+      "copy": {
+        "ko": {
+          "narr": "그때 보는 게 백분위수예요. 같은 나이 100명을 키 순으로 세운 등수죠.",
+          "cap": [
+            "100명 중",
+            "우리 아이 등수"
+          ],
+          "hl": "우리 아이 등수"
+        },
+        "th": {
+          "narr": "สิ่งที่ดูคือเปอร์เซ็นไทล์ คือลำดับเมื่อเรียงเด็ก 100 คนตามส่วนสูง",
+          "cap": [
+            "จาก 100 คน",
+            "ลำดับของลูก"
+          ],
+          "hl": "ลำดับของลูก"
+        },
+        "vi": {
+          "narr": "Lúc đó ta xem bách phân vị — thứ hạng khi xếp 100 trẻ theo chiều cao.",
+          "cap": [
+            "Trong 100 trẻ",
+            "thứ hạng của con"
+          ],
+          "hl": "thứ hạng của con"
+        },
+        "en": {
+          "narr": "That's where percentile comes in — your child's rank among 100 kids.",
+          "cap": [
+            "Out of 100",
+            "your child's rank"
+          ],
+          "hl": "your child's rank"
+        },
+        "cn": {
+          "narr": "这时看的就是百分位——把100个同龄娃按身高排，你家排第几。",
+          "cap": [
+            "100个里",
+            "你家排第几"
+          ],
+          "hl": "你家排第几"
+        },
+        "ch": {
+          "narr": "這時看的就是百分位——把100個同齡娃按身高排，你家排第幾。",
+          "cap": [
+            "100個裡",
+            "你家排第幾"
+          ],
+          "hl": "你家排第幾"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 100명 줄세우기",
+      "motion": "👦 25번째 점등",
+      "copy": {
+        "ko": {
+          "narr": "백분위 25면, 우리 아이보다 작은 친구가 25명. 100명 중 26번째예요.",
+          "cap": [
+            "백분위 25 =",
+            "26번째"
+          ],
+          "hl": "26번째"
+        },
+        "th": {
+          "narr": "เปอร์เซ็นไทล์ 25 คือมีเด็กเตี้ยกว่าลูก 25 คน ลูกอยู่อันดับที่ 26",
+          "cap": [
+            "เปอร์เซ็นไทล์ 25",
+            "อันดับ 26"
+          ],
+          "hl": "อันดับ 26"
+        },
+        "vi": {
+          "narr": "Bách phân vị 25 nghĩa là 25 bạn thấp hơn — con đứng thứ 26.",
+          "cap": [
+            "Bách phân vị 25",
+            "thứ 26"
+          ],
+          "hl": "thứ 26"
+        },
+        "en": {
+          "narr": "At the 25th percentile, 25 kids are shorter — your child is 26th.",
+          "cap": [
+            "25th percentile",
+            "= 26th"
+          ],
+          "hl": "= 26th"
+        },
+        "cn": {
+          "narr": "百分位25，就是有25个娃比他矮——你家排第26。",
+          "cap": [
+            "百分位 25",
+            "第26名"
+          ],
+          "hl": "第26名"
+        },
+        "ch": {
+          "narr": "百分位25，就是有25個娃比他矮——你家排第26。",
+          "cap": [
+            "百分位 25",
+            "第26名"
+          ],
+          "hl": "第26名"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–14.5s",
+      "kind": "ig",
+      "igLabel": "IG2 3~97 정상범위",
+      "motion": "📏 3·50·97 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "3에서 97까지가 정상 범위. 50이 딱 중간이에요.",
+          "cap": [
+            "정상 3~97",
+            "중간은 50"
+          ],
+          "hl": "정상 3~97"
+        },
+        "th": {
+          "narr": "ช่วงปกติคือ 3 ถึง 97 ค่า 50 คือตรงกลางพอดี",
+          "cap": [
+            "ปกติ 3–97",
+            "กลางคือ 50"
+          ],
+          "hl": "ปกติ 3–97"
+        },
+        "vi": {
+          "narr": "Bình thường là từ 3 đến 97. Mốc 50 là chính giữa.",
+          "cap": [
+            "Bình thường 3–97",
+            "giữa là 50"
+          ],
+          "hl": "Bình thường 3–97"
+        },
+        "en": {
+          "narr": "3 to 97 is the normal range. 50 is right in the middle.",
+          "cap": [
+            "Normal 3–97",
+            "50 = middle"
+          ],
+          "hl": "Normal 3–97"
+        },
+        "cn": {
+          "narr": "3到97都是正常范围，50正好是中间。",
+          "cap": [
+            "正常 3–97",
+            "50居中"
+          ],
+          "hl": "正常 3–97"
+        },
+        "ch": {
+          "narr": "3到97都是正常範圍，50正好是中間。",
+          "cap": [
+            "正常 3–97",
+            "50居中"
+          ],
+          "hl": "正常 3–97"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "14.5–18.5s",
+      "kind": "doctor",
+      "motion": "✨ 안심 글로우",
+      "copy": {
+        "ko": {
+          "narr": "중요한 건 한 번의 숫자가 아니에요. 점을 이은 '곡선'을 봐야 해요.",
+          "cap": [
+            "숫자 한 점 X",
+            "곡선을 보세요"
+          ],
+          "hl": "곡선을 보세요"
+        },
+        "th": {
+          "narr": "สำคัญไม่ใช่ตัวเลขครั้งเดียว แต่ดูที่ 'เส้นกราฟ' ที่ลากต่อกัน",
+          "cap": [
+            "ไม่ใช่จุดเดียว",
+            "ดูเส้นกราฟ"
+          ],
+          "hl": "ดูเส้นกราฟ"
+        },
+        "vi": {
+          "narr": "Quan trọng không phải một con số, mà là 'đường cong' nối các điểm.",
+          "cap": [
+            "Không phải một điểm",
+            "xem đường cong"
+          ],
+          "hl": "xem đường cong"
+        },
+        "en": {
+          "narr": "What matters isn't one number — it's the curve connecting the dots.",
+          "cap": [
+            "Not one dot",
+            "watch the curve"
+          ],
+          "hl": "watch the curve"
+        },
+        "cn": {
+          "narr": "关键不是单次的数字，而是把点连起来的那条'曲线'。",
+          "cap": [
+            "不是单点",
+            "看曲线"
+          ],
+          "hl": "看曲线"
+        },
+        "ch": {
+          "narr": "關鍵不是單次的數字，而是把點連起來的那條'曲線'。",
+          "cap": [
+            "不是單點",
+            "看曲線"
+          ],
+          "hl": "看曲線"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "18.5–22s",
+      "kind": "ig",
+      "igLabel": "IG3 자기 선 따라가기",
+      "motion": "📈 선 따라 ↗ 안심",
+      "copy": {
+        "ko": {
+          "narr": "그래서 25백분위라도, 자기 선을 따라 쭉 크면 건강한 성장이에요.",
+          "cap": [
+            "낮아도 OK",
+            "자기 선 따라"
+          ],
+          "hl": "자기 선 따라"
+        },
+        "th": {
+          "narr": "ดังนั้นแม้อยู่ที่ 25 ถ้าโตตามเส้นของตัวเองก็แข็งแรงดี",
+          "cap": [
+            "ต่ำก็ไม่เป็นไร",
+            "ตามเส้นตัวเอง"
+          ],
+          "hl": "ตามเส้นตัวเอง"
+        },
+        "vi": {
+          "narr": "Nên dù ở mức 25, cứ bám theo đường của mình là phát triển khỏe.",
+          "cap": [
+            "Thấp vẫn ổn",
+            "bám đường của mình"
+          ],
+          "hl": "bám đường của mình"
+        },
+        "en": {
+          "narr": "So even at the 25th, if it follows its own line, that's healthy growth.",
+          "cap": [
+            "Low is OK",
+            "stays on its line"
+          ],
+          "hl": "stays on its line"
+        },
+        "cn": {
+          "narr": "所以哪怕在25，只要沿着自己那条线一路长，就是健康成长。",
+          "cap": [
+            "低也没关系",
+            "沿自己的线"
+          ],
+          "hl": "沿自己的线"
+        },
+        "ch": {
+          "narr": "所以哪怕在25，只要沿著自己那條線一路長，就是健康成長。",
+          "cap": [
+            "低也沒關係",
+            "沿自己的線"
+          ],
+          "hl": "沿自己的線"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "22–26s",
+      "kind": "doctor",
+      "motion": "⚠️ 쉐이크 + 빨강 플래시",
+      "copy": {
+        "ko": {
+          "narr": "진짜 신호는 잘 크던 아이가 갑자기 2단계, 50에서 25 아래로 뚝 떨어질 때예요.",
+          "cap": [
+            "진짜 신호 =",
+            "갑자기 2단계 ↓"
+          ],
+          "hl": "갑자기 2단계 ↓"
+        },
+        "th": {
+          "narr": "สัญญาณจริงคือเด็กที่โตดีอยู่ๆ ตกลง 2 ระดับ จาก 50 ลงต่ำกว่า 25",
+          "cap": [
+            "สัญญาณจริง",
+            "ตก 2 ระดับ"
+          ],
+          "hl": "ตก 2 ระดับ"
+        },
+        "vi": {
+          "narr": "Dấu hiệu thật là trẻ đang tốt bỗng tụt 2 bậc — từ 50 xuống dưới 25.",
+          "cap": [
+            "Dấu hiệu thật",
+            "tụt 2 bậc"
+          ],
+          "hl": "tụt 2 bậc"
+        },
+        "en": {
+          "narr": "The real signal: a steady child suddenly drops 2 lines — 50 to below 25.",
+          "cap": [
+            "Real signal",
+            "drops 2 lines"
+          ],
+          "hl": "drops 2 lines"
+        },
+        "cn": {
+          "narr": "真正的信号是一直长得好的娃突然掉2档——从50跌到25以下。",
+          "cap": [
+            "真正的信号",
+            "骤降2档"
+          ],
+          "hl": "骤降2档"
+        },
+        "ch": {
+          "narr": "真正的信號是一直長得好的娃突然掉2檔——從50跌到25以下。",
+          "cap": [
+            "真正的信號",
+            "驟降2檔"
+          ],
+          "hl": "驟降2檔"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "26–30s",
+      "kind": "ig",
+      "igLabel": "IG4 함께 볼 3가지",
+      "motion": "🧩 3조각 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "그래서 성장 속도, 뼈나이, 부모 키까지 같이 봐야 정확해요.",
+          "cap": [
+            "속도·뼈나이·부모키",
+            "같이 보기"
+          ],
+          "hl": "같이 보기"
+        },
+        "th": {
+          "narr": "จึงต้องดูอัตราการโต อายุกระดูก และส่วนสูงพ่อแม่ร่วมกัน",
+          "cap": [
+            "อัตรา·กระดูก·พ่อแม่",
+            "ดูร่วมกัน"
+          ],
+          "hl": "ดูร่วมกัน"
+        },
+        "vi": {
+          "narr": "Nên phải xem cả tốc độ tăng, tuổi xương và chiều cao bố mẹ.",
+          "cap": [
+            "Tốc độ·tuổi xương·bố mẹ",
+            "xem cùng nhau"
+          ],
+          "hl": "xem cùng nhau"
+        },
+        "en": {
+          "narr": "So we read growth speed, bone age, and parents' height together.",
+          "cap": [
+            "Speed·bone age·parents",
+            "read together"
+          ],
+          "hl": "read together"
+        },
+        "cn": {
+          "narr": "所以要把生长速度、骨龄、父母身高一起看才准。",
+          "cap": [
+            "速度·骨龄·父母",
+            "一起看"
+          ],
+          "hl": "一起看"
+        },
+        "ch": {
+          "narr": "所以要把生長速度、骨齡、父母身高一起看才準。",
+          "cap": [
+            "速度·骨齡·父母",
+            "一起看"
+          ],
+          "hl": "一起看"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30–33s",
+      "kind": "doctor",
+      "motion": "📈🦴 팝",
+      "copy": {
+        "ko": {
+          "narr": "성장 곡선이랑 뼈나이를 보면, 우리 아이가 어디쯤인지 정확히 알 수 있어요.",
+          "cap": [
+            "곡선+뼈나이로",
+            "정확히 확인"
+          ],
+          "hl": "정확히 확인"
+        },
+        "th": {
+          "narr": "ดูเส้นกราฟกับอายุกระดูก จะรู้ชัดว่าลูกอยู่ตรงไหน",
+          "cap": [
+            "กราฟ+อายุกระดูก",
+            "รู้ชัด"
+          ],
+          "hl": "รู้ชัด"
+        },
+        "vi": {
+          "narr": "Nhìn đường cong và tuổi xương, sẽ biết chính xác con đang ở đâu.",
+          "cap": [
+            "Đường cong + tuổi xương",
+            "biết chính xác"
+          ],
+          "hl": "biết chính xác"
+        },
+        "en": {
+          "narr": "The growth curve plus bone age show exactly where your child stands.",
+          "cap": [
+            "Curve + bone age",
+            "know for sure"
+          ],
+          "hl": "know for sure"
+        },
+        "cn": {
+          "narr": "看成长曲线加骨龄，就能准确知道孩子现在在哪个位置。",
+          "cap": [
+            "曲线+骨龄",
+            "准确知道"
+          ],
+          "hl": "准确知道"
+        },
+        "ch": {
+          "narr": "看成長曲線加骨齡，就能準確知道孩子現在在哪個位置。",
+          "cap": [
+            "曲線+骨齡",
+            "準確知道"
+          ],
+          "hl": "準確知道"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 백분위와 성장 곡선, 지금 바로 확인해 보세요.",
+          "cap": [
+            "백분위·성장 곡선",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กเปอร์เซ็นไทล์และกราฟการเติบโตของลูกวันนี้",
+          "cap": [
+            "เปอร์เซ็นไทล์·กราฟ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra bách phân vị và đường cong tăng trưởng của con ngay hôm nay.",
+          "cap": [
+            "Bách phân vị·đường cong",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's percentile and growth curve today.",
+          "cap": [
+            "Percentile · curve",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就查查孩子的百分位和成长曲线吧。",
+          "cap": [
+            "百分位·成长曲线",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就查查孩子的百分位和成長曲線吧。",
+          "cap": [
+            "百分位·成長曲線",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "25번째 아이 점등",
+      "title": "100명 줄세우기 — 26번째",
+      "emojis": [
+        "👦",
+        "📊",
+        "👧"
+      ],
+      "prompt": "Flat vector, square, white bg. A long row of small friendly child silhouettes lined up by increasing height from left to right, like a height-ordered queue. One child near the lower-left quarter is highlighted in brand purple with a soft glow, the rest in light gray-mint. Conveys ranking a child among a crowd of 100. Brand purple #667eea and mint #2dd4bf. Friendly pediatric, clean. NO text.",
+      "labels": [
+        {
+          "pos": "강조 아이",
+          "ko": "우리 아이",
+          "en": "your child",
+          "th": "ลูกของเรา"
+        },
+        {
+          "pos": "하단 전체",
+          "ko": "100명",
+          "en": "100 kids",
+          "th": "100 คน"
+        },
+        {
+          "pos": "강조 아이 위",
+          "ko": "26번째",
+          "en": "26th",
+          "th": "อันดับ 26"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "3·50·97 순차 점등",
+      "title": "정상 범위 3~97, 중간 50",
+      "emojis": [
+        "📏",
+        "✅"
+      ],
+      "prompt": "Flat vector, square, white bg. A vertical growth-chart band with three soft horizontal guide lines (low, middle, high), a gentle smooth percentile curve sweeping upward across the band, three small dot markers on the low / middle / high lines. The middle line slightly emphasized. Brand purple-to-mint gradient curve, soft pastel band. Friendly, medical but warm. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "하단 선",
+          "ko": "3",
+          "en": "3rd",
+          "th": "3"
+        },
+        {
+          "pos": "가운데 선(강조)",
+          "ko": "50 · 중간",
+          "en": "50 · mid",
+          "th": "50 · กลาง"
+        },
+        {
+          "pos": "상단 선",
+          "ko": "97",
+          "en": "97th",
+          "th": "97"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "선 따라 ↗ 안심",
+      "title": "낮아도 자기 선 따라가면 OK",
+      "emojis": [
+        "📈",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A child silhouette walking upward along a single steady curved percentile line that runs in the lower portion of a growth chart, parallel to faint upper guide lines, with a reassuring soft glow and small sparkles along the path. Conveys 'staying on your own track is healthy.' Brand purple line, mint sparkles, calm and positive. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선 위",
+          "ko": "꾸준히 ↗",
+          "en": "steady ↗",
+          "th": "สม่ำเสมอ ↗"
+        },
+        {
+          "pos": "하단",
+          "ko": "자기 백분위 선",
+          "en": "own line",
+          "th": "เส้นของตัวเอง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "3조각 순차 점등",
+      "title": "함께 볼 3가지",
+      "emojis": [
+        "📏",
+        "🦴",
+        "👪"
+      ],
+      "prompt": "Flat vector, square, white bg. Three friendly circular icon badges in a row: a measuring ruler/growth arrow, a hand X-ray bone (bone age), and a parent-and-child pair. Connected by a thin soft line into one assessment. Brand purple and mint, rounded, warm pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 배지",
+          "ko": "성장 속도",
+          "en": "Growth speed",
+          "th": "อัตราการโต"
+        },
+        {
+          "pos": "가운데 배지",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "pos": "오른쪽 배지",
+          "ko": "부모 키",
+          "en": "Parents' height",
+          "th": "ส่วนสูงพ่อแม่"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📊",
+      "label": "백분위수"
+    },
+    {
+      "e": "🔢",
+      "label": "등수/숫자"
+    },
+    {
+      "e": "👦",
+      "label": "우리 아이"
+    },
+    {
+      "e": "📏",
+      "label": "정상 범위·성장속도"
+    },
+    {
+      "e": "📈",
+      "label": "성장 곡선"
+    },
+    {
+      "e": "✨",
+      "label": "안심 강조"
+    },
+    {
+      "e": "⚠️",
+      "label": "경고(2단계 하락)"
+    },
+    {
+      "e": "🧩",
+      "label": "종합 평가"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "👪",
+      "label": "부모 키"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    },
+    {
+      "e": "💜",
+      "label": "브랜드"
+    }
+  ]
+}

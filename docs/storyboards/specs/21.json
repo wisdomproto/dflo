@@ -1,0 +1,807 @@
+{
+  "n": 21,
+  "slug": "아침밥키성장",
+  "title": "아침밥 한 끼가 우리 아이 키를 바꾼다",
+  "sub": "밤새 굶은 몸 → 아침 한 끼가 성장호르몬 스위치를 켠다",
+  "category": "B. 생활습관",
+  "topicTitle": "키 크는 아침 식사 루틴",
+  "headerTop": "우리 아이 키",
+  "headerMark": "아침밥이 키를?",
+  "accentEmoji": "🍳✨",
+  "thumb": {
+    "kicker": "의외의 한 끼!",
+    "subject": "우리 아이 키 크는",
+    "number": "아침밥",
+    "numLabel": "한 끼의 힘"
+  },
+  "hook": "아침밥 한 끼가 우리 아이 키를 바꾼다는 거, 아세요?",
+  "misconception": "아침은 바쁘니까 걸러도 된다 → 사실 성장호르몬 스위치를 끄는 셈",
+  "message": "아침 한 끼가 혈당을 안정시켜 성장호르몬 분비 환경을 만든다. 단백질+통곡물 균형 식단 + 6가지 루틴이 키를 돕는다",
+  "tone": "협박 ❌ → 긍정 골든타임(\\\"오늘 아침부터 바꾸면 된다\\\"). \\\"우리 아이 키\\\" 보편. 단정 ❌(식단은 제안, 측정은 홈페이지 유도)",
+  "cta": "우리 아이 성장 상태, 지금 홈페이지에서 확인 → 뼈나이/예측키 측정 유도",
+  "duration": 35,
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"아침 한 끼가 키를 바꾼다 / 거르면 성장 스위치 OFF\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "원리",
+      "scenes": "c3–c4",
+      "desc": "\"밤새 굶은 몸 → 아침이 혈당 안정 → 성장호르몬 ON\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "무엇을",
+      "scenes": "c5–c6",
+      "desc": "\"단백질이 핵심 / 통곡물 OK·단 시리얼·흰빵은 피하기\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "이상적 한 끼·루틴",
+      "scenes": "c7–c8",
+      "desc": "\"달걀2+통곡물+과일+우유 / 6가지 아침 루틴\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "\"식단+수면·운동, 그리고 측정 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🍳 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "아침밥 한 끼가 우리 아이 키를 바꾼다는 거, 아세요?",
+          "cap": [
+            "아침 한 끼가",
+            "키를 바꾼다"
+          ],
+          "hl": "키를 바꾼다"
+        },
+        "th": {
+          "narr": "รู้ไหมว่ามื้อเช้ามื้อเดียวเปลี่ยนความสูงของลูกได้?",
+          "cap": [
+            "มื้อเช้ามื้อเดียว",
+            "เปลี่ยนความสูง"
+          ],
+          "hl": "เปลี่ยนความสูง"
+        },
+        "vi": {
+          "narr": "Bạn có biết một bữa sáng có thể thay đổi chiều cao của con?",
+          "cap": [
+            "Một bữa sáng",
+            "đổi chiều cao"
+          ],
+          "hl": "đổi chiều cao"
+        },
+        "en": {
+          "narr": "Did you know one breakfast can change your child's height?",
+          "cap": [
+            "One breakfast",
+            "changes height"
+          ],
+          "hl": "changes height"
+        },
+        "cn": {
+          "narr": "你知道一顿早餐就能改变孩子的身高吗？",
+          "cap": [
+            "一顿早餐",
+            "改变身高"
+          ],
+          "hl": "改变身高"
+        },
+        "ch": {
+          "narr": "你知道一頓早餐就能改變孩子的身高嗎？",
+          "cap": [
+            "一頓早餐",
+            "改變身高"
+          ],
+          "hl": "改變身高"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🔌 OFF 깜빡",
+      "copy": {
+        "ko": {
+          "narr": "바쁘다고 아침을 거르면, 성장호르몬 스위치를 끄는 셈이에요.",
+          "cap": [
+            "아침 거르면",
+            "성장 스위치 OFF"
+          ],
+          "hl": "성장 스위치 OFF"
+        },
+        "th": {
+          "narr": "ถ้างดมื้อเช้าเพราะรีบ ก็เหมือนปิดสวิตช์ฮอร์โมนการเจริญเติบโต",
+          "cap": [
+            "งดมื้อเช้า",
+            "ปิดสวิตช์"
+          ],
+          "hl": "ปิดสวิตช์"
+        },
+        "vi": {
+          "narr": "Bỏ bữa sáng vì bận chẳng khác nào tắt công tắc hormone tăng trưởng.",
+          "cap": [
+            "Bỏ bữa sáng",
+            "tắt công tắc"
+          ],
+          "hl": "tắt công tắc"
+        },
+        "en": {
+          "narr": "Skipping breakfast is like switching off the growth-hormone button.",
+          "cap": [
+            "Skip breakfast",
+            "switch OFF"
+          ],
+          "hl": "switch OFF"
+        },
+        "cn": {
+          "narr": "因为忙就不吃早餐，等于关掉了生长激素开关。",
+          "cap": [
+            "不吃早餐",
+            "开关关掉"
+          ],
+          "hl": "开关关掉"
+        },
+        "ch": {
+          "narr": "因為忙就不吃早餐，等於關掉了生長激素開關。",
+          "cap": [
+            "不吃早餐",
+            "開關關掉"
+          ],
+          "hl": "開關關掉"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 밤샘 공복",
+      "motion": "🌙→☀️ 채워짐 + ⚡ 점등",
+      "copy": {
+        "ko": {
+          "narr": "밤새 굶은 우리 아이 몸, 아침 한 끼로 에너지를 채워줘야 해요.",
+          "cap": [
+            "밤새 공복",
+            "아침이 채운다"
+          ],
+          "hl": "아침이 채운다"
+        },
+        "th": {
+          "narr": "ร่างกายลูกอดมาทั้งคืน ต้องเติมพลังด้วยมื้อเช้า",
+          "cap": [
+            "อดทั้งคืน",
+            "มื้อเช้าเติมพลัง"
+          ],
+          "hl": "มื้อเช้าเติมพลัง"
+        },
+        "vi": {
+          "narr": "Cả đêm nhịn đói, cơ thể con cần bữa sáng nạp lại năng lượng.",
+          "cap": [
+            "Nhịn cả đêm",
+            "bữa sáng nạp lại"
+          ],
+          "hl": "bữa sáng nạp lại"
+        },
+        "en": {
+          "narr": "After fasting all night, your child's body needs breakfast to refuel.",
+          "cap": [
+            "Fasted all night",
+            "breakfast refuels"
+          ],
+          "hl": "breakfast refuels"
+        },
+        "cn": {
+          "narr": "整夜空腹的身体，需要一顿早餐来补充能量。",
+          "cap": [
+            "整夜空腹",
+            "早餐补能量"
+          ],
+          "hl": "早餐补能量"
+        },
+        "ch": {
+          "narr": "整夜空腹的身體，需要一頓早餐來補充能量。",
+          "cap": [
+            "整夜空腹",
+            "早餐補能量"
+          ],
+          "hl": "早餐補能量"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 혈당 안정",
+      "motion": "📈 안정 곡선 + 🧠 글로우",
+      "copy": {
+        "ko": {
+          "narr": "아침은 혈당을 안정시켜요. 그래야 성장호르몬이 잘 나오고 뇌도 깨어나죠.",
+          "cap": [
+            "혈당 안정 →",
+            "성장호르몬 ON"
+          ],
+          "hl": "성장호르몬 ON"
+        },
+        "th": {
+          "narr": "มื้อเช้าทำให้น้ำตาลในเลือดนิ่ง ฮอร์โมนการเจริญเติบโตจึงหลั่งดี",
+          "cap": [
+            "น้ำตาลนิ่ง →",
+            "ฮอร์โมนหลั่งดี"
+          ],
+          "hl": "ฮอร์โมนหลั่งดี"
+        },
+        "vi": {
+          "narr": "Bữa sáng giữ đường huyết ổn định, hormone tăng trưởng mới tiết tốt.",
+          "cap": [
+            "Đường huyết ổn →",
+            "hormone tiết tốt"
+          ],
+          "hl": "hormone tiết tốt"
+        },
+        "en": {
+          "narr": "Breakfast steadies blood sugar, so growth hormone flows well.",
+          "cap": [
+            "Steady sugar →",
+            "GH flows"
+          ],
+          "hl": "GH flows"
+        },
+        "cn": {
+          "narr": "早餐让血糖平稳，生长激素才能顺畅分泌。",
+          "cap": [
+            "血糖平稳 →",
+            "生长激素分泌"
+          ],
+          "hl": "生长激素分泌"
+        },
+        "ch": {
+          "narr": "早餐讓血糖平穩，生長激素才能順暢分泌。",
+          "cap": [
+            "血糖平穩 →",
+            "生長激素分泌"
+          ],
+          "hl": "生長激素分泌"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "🥚 펄스 강조",
+      "copy": {
+        "ko": {
+          "narr": "핵심은 단백질이에요. 달걀, 두부, 우유가 뼈와 근육을 만들죠.",
+          "cap": [
+            "핵심은",
+            "단백질"
+          ],
+          "hl": "단백질"
+        },
+        "th": {
+          "narr": "หัวใจคือโปรตีน ไข่ เต้าหู้ นม สร้างกระดูกและกล้ามเนื้อ",
+          "cap": [
+            "หัวใจคือ",
+            "โปรตีน"
+          ],
+          "hl": "โปรตีน"
+        },
+        "vi": {
+          "narr": "Quan trọng nhất là đạm: trứng, đậu phụ, sữa xây xương và cơ.",
+          "cap": [
+            "Quan trọng là",
+            "chất đạm"
+          ],
+          "hl": "chất đạm"
+        },
+        "en": {
+          "narr": "Protein is key: eggs, tofu, milk build bone and muscle.",
+          "cap": [
+            "The key is",
+            "protein"
+          ],
+          "hl": "protein"
+        },
+        "cn": {
+          "narr": "关键是蛋白质：鸡蛋、豆腐、牛奶能造骨骼和肌肉。",
+          "cap": [
+            "关键是",
+            "蛋白质"
+          ],
+          "hl": "蛋白质"
+        },
+        "ch": {
+          "narr": "關鍵是蛋白質：雞蛋、豆腐、牛奶能造骨骼和肌肉。",
+          "cap": [
+            "關鍵是",
+            "蛋白質"
+          ],
+          "hl": "蛋白質"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23s",
+      "kind": "ig",
+      "igLabel": "IG3 좋은 탄수 vs 피할 것",
+      "motion": "✅ 점등 · ❌ 쉐이크",
+      "copy": {
+        "ko": {
+          "narr": "통곡물은 좋아요. 하지만 단 시리얼이나 흰 빵은 혈당을 튀게 해 피하세요.",
+          "cap": [
+            "통곡물 OK",
+            "단 시리얼·흰빵 ✕"
+          ],
+          "hl": "단 시리얼·흰빵 ✕"
+        },
+        "th": {
+          "narr": "ธัญพืชไม่ขัดสีดี แต่ซีเรียลหวานกับขนมปังขาวทำน้ำตาลพุ่ง เลี่ยงไว้",
+          "cap": [
+            "ธัญพืชดี",
+            "ซีเรียลหวาน·ขนมปังขาว ✕"
+          ],
+          "hl": "ซีเรียลหวาน·ขนมปังขาว ✕"
+        },
+        "vi": {
+          "narr": "Ngũ cốc nguyên cám thì tốt, nhưng ngũ cốc ngọt và bánh mì trắng làm đường tăng vọt — nên tránh.",
+          "cap": [
+            "Ngũ cốc nguyên cám OK",
+            "đồ ngọt·bánh mì trắng ✕"
+          ],
+          "hl": "đồ ngọt·bánh mì trắng ✕"
+        },
+        "en": {
+          "narr": "Whole grains are great, but sugary cereal and white bread spike sugar — skip them.",
+          "cap": [
+            "Whole grains OK",
+            "sugary cereal·white bread ✕"
+          ],
+          "hl": "sugary cereal·white bread ✕"
+        },
+        "cn": {
+          "narr": "全谷物很好，但甜麦片和白面包让血糖飙升——要避开。",
+          "cap": [
+            "全谷物 OK",
+            "甜麦片·白面包 ✕"
+          ],
+          "hl": "甜麦片·白面包 ✕"
+        },
+        "ch": {
+          "narr": "全穀物很好，但甜麥片和白麵包讓血糖飆升——要避開。",
+          "cap": [
+            "全穀物 OK",
+            "甜麥片·白麵包 ✕"
+          ],
+          "hl": "甜麥片·白麵包 ✕"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23–27s",
+      "kind": "ig",
+      "igLabel": "IG4 이상적 한 끼",
+      "motion": "🍽️ 4요소 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "이상적인 한 끼는 삶은 달걀 둘, 통곡물 빵, 과일 한 컵, 우유 한 잔이에요.",
+          "cap": [
+            "달걀2+통곡물",
+            "과일+우유"
+          ],
+          "hl": "달걀2+통곡물"
+        },
+        "th": {
+          "narr": "มื้อในฝัน ไข่ต้ม 2 ฟอง ขนมปังโฮลเกรน ผลไม้ 1 ถ้วย นม 1 แก้ว",
+          "cap": [
+            "ไข่ 2+โฮลเกรน",
+            "ผลไม้+นม"
+          ],
+          "hl": "ไข่ 2+โฮลเกรน"
+        },
+        "vi": {
+          "narr": "Bữa lý tưởng: 2 trứng luộc, bánh mì nguyên cám, 1 cốc trái cây, 1 ly sữa.",
+          "cap": [
+            "2 trứng+nguyên cám",
+            "trái cây+sữa"
+          ],
+          "hl": "2 trứng+nguyên cám"
+        },
+        "en": {
+          "narr": "An ideal plate: 2 boiled eggs, whole-grain bread, a cup of fruit, a glass of milk.",
+          "cap": [
+            "2 eggs+whole grain",
+            "fruit+milk"
+          ],
+          "hl": "2 eggs+whole grain"
+        },
+        "cn": {
+          "narr": "理想的一餐：两个水煮蛋、全谷面包、一杯水果、一杯牛奶。",
+          "cap": [
+            "2蛋+全谷",
+            "水果+牛奶"
+          ],
+          "hl": "2蛋+全谷"
+        },
+        "ch": {
+          "narr": "理想的一餐：兩顆水煮蛋、全穀麵包、一杯水果、一杯牛奶。",
+          "cap": [
+            "2蛋+全穀",
+            "水果+牛奶"
+          ],
+          "hl": "2蛋+全穀"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27–30.5s",
+      "kind": "doctor",
+      "motion": "🌅 햇볕 글로우",
+      "copy": {
+        "ko": {
+          "narr": "루틴도 중요해요. 물 한 잔으로 시작하고, 천천히 씹고, 아침 햇볕을 쬐어 주세요.",
+          "cap": [
+            "물 한 잔·꼭꼭 씹기",
+            "아침 햇볕"
+          ],
+          "hl": "아침 햇볕"
+        },
+        "th": {
+          "narr": "กิจวัตรก็สำคัญ เริ่มด้วยน้ำ 1 แก้ว เคี้ยวช้าๆ และรับแดดยามเช้า",
+          "cap": [
+            "น้ำ 1 แก้ว·เคี้ยวช้า",
+            "แดดยามเช้า"
+          ],
+          "hl": "แดดยามเช้า"
+        },
+        "vi": {
+          "narr": "Thói quen cũng quan trọng: bắt đầu bằng cốc nước, nhai chậm, và tắm nắng sáng.",
+          "cap": [
+            "1 cốc nước·nhai chậm",
+            "nắng sáng"
+          ],
+          "hl": "nắng sáng"
+        },
+        "en": {
+          "narr": "Routine matters too: start with water, chew slowly, and get morning sun.",
+          "cap": [
+            "Water·chew slowly",
+            "morning sun"
+          ],
+          "hl": "morning sun"
+        },
+        "cn": {
+          "narr": "习惯也重要：先喝一杯水、细嚼慢咽、晒晒晨光。",
+          "cap": [
+            "一杯水·细嚼",
+            "早晨阳光"
+          ],
+          "hl": "早晨阳光"
+        },
+        "ch": {
+          "narr": "習慣也重要：先喝一杯水、細嚼慢嚥、曬曬晨光。",
+          "cap": [
+            "一杯水·細嚼",
+            "早晨陽光"
+          ],
+          "hl": "早晨陽光"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30.5–33s",
+      "kind": "doctor",
+      "motion": "🦴🔍 팝",
+      "copy": {
+        "ko": {
+          "narr": "여기에 충분한 잠과 운동까지 더하면, 우리 아이 성장을 제대로 도울 수 있어요.",
+          "cap": [
+            "아침밥+잠+운동",
+            "성장의 기본"
+          ],
+          "hl": "성장의 기본"
+        },
+        "th": {
+          "narr": "เพิ่มการนอนพอและออกกำลังกาย ก็ช่วยให้ลูกโตได้เต็มที่",
+          "cap": [
+            "มื้อเช้า+นอน+ออกกำลัง",
+            "พื้นฐานการโต"
+          ],
+          "hl": "พื้นฐานการโต"
+        },
+        "vi": {
+          "narr": "Thêm ngủ đủ và vận động nữa là hỗ trợ con phát triển trọn vẹn.",
+          "cap": [
+            "Bữa sáng+ngủ+vận động",
+            "nền tảng tăng trưởng"
+          ],
+          "hl": "nền tảng tăng trưởng"
+        },
+        "en": {
+          "narr": "Add enough sleep and exercise, and you truly support your child's growth.",
+          "cap": [
+            "Breakfast+sleep+exercise",
+            "growth basics"
+          ],
+          "hl": "growth basics"
+        },
+        "cn": {
+          "narr": "再加上充足睡眠和运动，就能真正助力孩子成长。",
+          "cap": [
+            "早餐+睡眠+运动",
+            "成长的基础"
+          ],
+          "hl": "成长的基础"
+        },
+        "ch": {
+          "narr": "再加上充足睡眠和運動，就能真正助力孩子成長。",
+          "cap": [
+            "早餐+睡眠+運動",
+            "成長的基礎"
+          ],
+          "hl": "成長的基礎"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 성장 상태, 지금 바로 홈페이지에서 확인해 보세요.",
+          "cap": [
+            "우리 아이 성장",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "เช็กพัฒนาการความสูงของลูกบนเว็บไซต์วันนี้เลย",
+          "cap": [
+            "พัฒนาการของลูก",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Kiểm tra tình trạng phát triển của con trên website ngay hôm nay.",
+          "cap": [
+            "Phát triển của con",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Check your child's growth on our site today.",
+          "cap": [
+            "Your child's growth",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "现在就在官网查查孩子的成长状况吧。",
+          "cap": [
+            "孩子的成长",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "現在就在官網查查孩子的成長狀況吧。",
+          "cap": [
+            "孩子的成長",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "🌙→☀️ 채워짐 + ⚡ 점등",
+      "title": "밤샘 공복 → 아침이 채운다",
+      "emojis": [
+        "🌙",
+        "☀️",
+        "⚡"
+      ],
+      "prompt": "Flat vector, square, white bg. Left side a sleeping child under a crescent moon with a dim, near-empty energy battery; an arrow leads right to a bright morning sun where the same child sits at a breakfast table and the battery icon is now fully charged and glowing. Soft brand purple to mint gradient, friendly pediatric style. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽(달)",
+          "ko": "밤새 공복",
+          "en": "Fasted all night",
+          "th": "อดทั้งคืน"
+        },
+        {
+          "pos": "오른쪽(해)",
+          "ko": "아침 한 끼",
+          "en": "One breakfast",
+          "th": "มื้อเช้า"
+        },
+        {
+          "pos": "배터리",
+          "ko": "에너지 충전",
+          "en": "Refueled",
+          "th": "เติมพลัง"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "📈 안정 곡선 + 🧠 글로우",
+      "title": "혈당 안정 → 성장호르몬 ON",
+      "emojis": [
+        "📈",
+        "🧠",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white bg. A smooth, gently rising and steady blood-sugar line (calm, no sharp spikes) flowing into a glowing child silhouette; near the head a softly glowing brain and near the body a small radiant hormone-droplet/spark indicating growth hormone release. Brand purple line with mint glow. Conveys 'steady blood sugar enables growth hormone.' NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "곡선",
+          "ko": "안정된 혈당",
+          "en": "Steady sugar",
+          "th": "น้ำตาลนิ่ง"
+        },
+        {
+          "pos": "머리",
+          "ko": "집중력 ↑",
+          "en": "Focus up",
+          "th": "สมาธิดี"
+        },
+        {
+          "pos": "몸(스파크)",
+          "ko": "성장호르몬",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมนการเจริญเติบโต"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "✅ 점등 · ❌ 쉐이크",
+      "title": "좋은 탄수 vs 피할 것",
+      "emojis": [
+        "🌾",
+        "🥣",
+        "🍞"
+      ],
+      "prompt": "Flat vector, square, white bg, split into two panels by a soft vertical divider. Left panel (good, mint glow, check-circle): a bowl of whole-grain bread, brown rice and a sweet potato. Right panel (avoid, muted with a gentle red prohibition ring): a bowl of sugary frosted cereal and a slice of fluffy white bread. Friendly pediatric flat style, brand purple accents. NO text.",
+      "labels": [
+        {
+          "pos": "왼쪽 상단",
+          "ko": "통곡물 OK",
+          "en": "Whole grains",
+          "th": "ธัญพืชไม่ขัดสี"
+        },
+        {
+          "pos": "오른쪽 상단",
+          "ko": "피하기",
+          "en": "Avoid",
+          "th": "ควรเลี่ยง"
+        },
+        {
+          "pos": "오른쪽 하단",
+          "ko": "혈당 급상승",
+          "en": "Sugar spike",
+          "th": "น้ำตาลพุ่ง"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c7",
+      "motion": "🍽️ 4요소 순차 점등",
+      "title": "이상적인 아침 한 끼",
+      "emojis": [
+        "🥚",
+        "🍞",
+        "🍎"
+      ],
+      "prompt": "Flat vector, square, white bg. A balanced breakfast plate-and-tray flat-lay with four clear components arranged around a plate: two boiled eggs, a slice of whole-grain bread, a small cup of mixed fruit, and a glass of milk. Clean, appetizing, friendly pediatric style, soft brand purple and mint accents. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "달걀",
+          "ko": "단백질",
+          "en": "Protein",
+          "th": "โปรตีน"
+        },
+        {
+          "pos": "빵",
+          "ko": "통곡물",
+          "en": "Whole grain",
+          "th": "โฮลเกรน"
+        },
+        {
+          "pos": "과일",
+          "ko": "비타민",
+          "en": "Vitamins",
+          "th": "วิตามิน"
+        },
+        {
+          "pos": "우유",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🍳",
+      "label": "아침밥"
+    },
+    {
+      "e": "🔌",
+      "label": "성장 스위치"
+    },
+    {
+      "e": "🌙",
+      "label": "밤샘 공복"
+    },
+    {
+      "e": "📈",
+      "label": "혈당 안정"
+    },
+    {
+      "e": "🧠",
+      "label": "뇌·집중력"
+    },
+    {
+      "e": "🥚",
+      "label": "단백질"
+    },
+    {
+      "e": "🌾",
+      "label": "통곡물"
+    },
+    {
+      "e": "🍞",
+      "label": "피할 흰빵·시리얼"
+    },
+    {
+      "e": "🥛",
+      "label": "우유·칼슘"
+    },
+    {
+      "e": "🌅",
+      "label": "아침 햇볕"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

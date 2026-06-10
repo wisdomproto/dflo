@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 깊은 잠 성장호르몬 · 수면 루틴 5단계</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #23</span>
+  <h1>밤 10시? 진짜 키 크는 건 '깊은 잠' — 수면 루틴 5단계</h1>
+  <div class="sub">성장호르몬은 잠든 직후 깊은 잠에서 쏟아진다 — 시간보다 '깊이', 5단계로 만든다</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>10시 아니에요!</b></div>
+      <div class="subj">우리 아이 키는</div>
+      <div class="big4"><div class="n" style="font-size:98px">깊은 잠</div><div class="lab">이 만든다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키는</b> 깊은 잠이 만든다"</li>
+        <li><b>거대 숫자 "깊은 잠"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #23 「깊은 잠 성장호르몬 · 수면 루틴 5단계」 (B. 생활습관)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"밤 10시에 재우면 키 큰다? 진짜 핵심은 '몇 시'가 아니라 '깊은 잠'이에요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>밤 10시 전에 눕히기만 하면 키가 큰다고 믿는다. 하지만 일찍 누워도 얕게 자거나 자주 깨면 성장호르몬은 충분히 분비되지 않는다 — 시간보다 '깊은 잠의 질'이 핵심.</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>성장호르몬은 잠든 직후 1~2시간의 가장 깊은 잠에서 가장 많이 분비된다. 관건은 '몇 시에 자느냐'가 아니라 '얼마나 깊이 자느냐' — 규칙적 시간·잘 1시간 전 화면 끄기·20~22도 어두운 방·이완 활동·낮 햇볕 5단계로 숙면을 만들어주는 것이 키 성장의 핵심.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("오늘 밤부터 깊은 잠을 만들 수 있어요"). 시간 강박을 부추기지 않고 실천 가능한 환경·습관으로 안내. "우리 아이 키" 보편 톤. 시청자가 이미 뭔가 했다고 단정하지 않음. CTA는 측정 유도.</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 수면과 성장 상태, 지금 바로 확인 → 홈페이지에서 예측키·뼈나이 측정 유도.</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·반전</h4><p>c1–c2<br>"10시가 아니라 깊은 잠이 핵심"</p></div><div class="act"><span class="n">ACT 2</span><h4>메커니즘</h4><p>c3–c4<br>"잠든 직후 1~2시간, 깊은 잠에서 성장호르몬 폭발"</p></div><div class="act"><span class="n">ACT 3</span><h4>방해 요인</h4><p>c5–c6<br>"화면·불규칙·밝은 방이 깊은 잠을 깬다"</p></div><div class="act"><span class="n">ACT 4</span><h4>5단계 루틴</h4><p>c7–c8<br>"규칙적 시간·화면 OFF·20~22도 어두운 방"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"수면+뼈나이로 성장 점검 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">10시면 끝?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">😴✨</div></div>
+        <div class="ph-cap"><div class="l">10시면 키 큰다?</div><div class="l"><span class="y2">핵심은 시간 X</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">밤 10시 전에 재우면 키 큰다? 사실 핵심은 '몇 시'가 아니에요.</td><td><span class="cap2">10시면 키 큰다?<br><span class="y">핵심은 시간 X</span></span></td><td class="mo">🌙 슬램 인 + ✨ 스파클</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">진짜 키를 만드는 건 '얼마나 깊이 자느냐'예요. 깊은 잠이 핵심이죠.</td><td><span class="cap2">얼마나 깊이<br><span class="y">깊은 잠이 핵심</span></span></td><td class="mo">😴 펄스 강조</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 수면 그래프</span></td><td class="narr">잠들고 1~2시간, 가장 깊은 잠에 들 때 성장호르몬이 쏟아져 나와요.</td><td><span class="cap2">잠든 뒤 1~2시간<br><span class="y">성장호르몬 폭발</span></span></td><td class="mo">📈 곡선 그려짐 + 💫 분출</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">이때 뇌파가 느려지고 몸이 회복되면서, 키가 자라는 시간이 열려요.</td><td><span class="cap2">몸이 회복되며<br><span class="y">키 자라는 시간</span></span></td><td class="mo">💤 슬로우 웨이브</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr ig">🖼 IG2 방해 요인</span></td><td class="narr">그런데 자기 전 스마트폰 불빛이 멜라토닌을 막고 깊은 잠을 깨워버려요.</td><td><span class="cap2">잘 때 화면 불빛<br><span class="y">깊은 잠 방해</span></span></td><td class="mo">📱 블루라이트 깜빡 + ⚡</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">불규칙한 시간, 밝고 더운 방, 늦은 카페인도 숙면을 막는 흔한 범인이에요.</td><td><span class="cap2">불규칙·밝은 방<br><span class="y">숙면 방해 요인</span></span></td><td class="mo">⚠️ 살짝 쉐이크</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr ig">🖼 IG3 수면 루틴 5단계</span></td><td class="narr">방법은 간단해요. 규칙적인 시간, 잘 1시간 전 화면 끄기, 어둡고 시원한 방.</td><td><span class="cap2">규칙 시간·화면 OFF<br><span class="y">어둡고 시원한 방</span></span></td><td class="mo">1️⃣~5️⃣ 순차 점등</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 어두운 방 환경</span></td><td class="narr">방은 20에서 22도, 자기 전 따뜻한 목욕과 책으로 몸을 이완하면 깊은 잠이 와요.</td><td><span class="cap2">20~22도 · 이완<br><span class="y">오늘 밤 깊은 잠</span></span></td><td class="mo">🌡️ 카운트업 20~22°C + 🌙 디밍</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">수면과 함께 뼈나이를 보면, 우리 아이 성장 상태를 정확히 알 수 있어요.</td><td><span class="cap2">수면 + 뼈나이로<br><span class="y">성장 상태 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 수면과 성장, 지금 바로 확인해 보세요.</td><td><span class="cap2">수면 · 성장<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 곡선 그려짐 + 💫 분출</div><h3>수면 그래프 — 깊은 잠 호르몬 분출</h3></div>
+        <div class="body">
+          <div class="sketch">😴 💫 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A gentle nighttime sleep-stage curve dipping down into a deep valley (deepest sleep) early on the left; from that deepest dip, soft glowing droplets/sparkles rise upward representing a hormone surge. A small crescent moon and stars in the upper corner. Brand purple #667eea to mint #2dd4bf gradient on the curve, soft glow at the deepest point. Friendly, calm, pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>가장 깊은 골(글로우)</td><td>가장 깊은 잠</td><td>Deepest sleep</td><td class="thai">หลับลึกที่สุด</td></tr><tr><td>분출 화살표 위</td><td>성장호르몬 ↑</td><td>Growth hormone ↑</td><td class="thai">ฮอร์โมนเติบโต ↑</td></tr><tr><td>곡선 시작(좌)</td><td>잠든 직후 1~2시간</td><td>first 1–2 hrs</td><td class="thai">1–2 ชม.แรก</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c5 · 모션: 블루라이트 깜빡 + ⚡</div><h3>방해 요인 — 화면 불빛</h3></div>
+        <div class="body">
+          <div class="sketch">📱 ⚡ 🚫</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A child in bed at night holding a glowing smartphone, harsh blue light rays hitting a wide-awake face, a crossed-out melatonin/moon symbol faded above. A subtle warning spark. Brand purple base with a cold blue glow from the phone for contrast. Friendly pediatric illustration conveying 'screen light disrupts deep sleep.' NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>폰 불빛</td><td>블루라이트</td><td>Blue light</td><td class="thai">แสงสีฟ้า</td></tr><tr><td>달 위 X 표시</td><td>멜라토닌 ✕</td><td>Melatonin ✕</td><td class="thai">เมลาโทนิน ✕</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c7 · 모션: 5점 순차 점등</div><h3>수면 루틴 5단계</h3></div>
+        <div class="body">
+          <div class="sketch">⏰ 📵 🌙 🛁 ☀️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Five soft rounded circular icons arranged in a gentle arc: (1) a clock for fixed bedtime, (2) a phone with a slash for screen-off, (3) a crescent moon for a dark room, (4) a bathtub/warm bath for relaxation, (5) a daytime sun for outdoor activity. Each icon in a soft pastel bubble. Brand purple #667eea and mint #2dd4bf accents, friendly pediatric, evenly spaced. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이콘1</td><td>규칙적 시간</td><td>Fixed time</td><td class="thai">เวลาคงที่</td></tr><tr><td>아이콘2</td><td>화면 OFF</td><td>Screens off</td><td class="thai">ปิดจอ</td></tr><tr><td>아이콘3</td><td>어두운 방</td><td>Dark room</td><td class="thai">ห้องมืด</td></tr><tr><td>아이콘5</td><td>낮에 햇볕</td><td>Daytime sun</td><td class="thai">แสงแดดกลางวัน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 🌡️ 카운트업 + 🌙 디밍</div><h3>어두운 방 환경 — 20~22도</h3></div>
+        <div class="body">
+          <div class="sketch">🌙 🌡️ 🛏️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A cozy dim child's bedroom at night: a small bed, blackout curtains drawn, a crescent moon visible, a simple thermometer/dial on the wall, soft warm low light. Calm and sleepy mood. Brand purple #667eea with mint #2dd4bf accents, friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>온도계</td><td>20~22°C</td><td>20–22°C</td><td class="thai">20–22°C</td></tr><tr><td>커튼/창</td><td>암막 · 어둡게</td><td>Blackout dark</td><td class="thai">ม่านทึบ มืด</td></tr><tr><td>하단</td><td>습도 50~60%</td><td>humidity 50–60%</td><td class="thai">ความชื้น 50–60%</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>😴</b> 깊은 잠</span><span class="emo"><b>🌙</b> 밤·수면</span><span class="emo"><b>💫</b> 성장호르몬 분출</span><span class="emo"><b>📈</b> 수면 그래프</span><span class="emo"><b>⏰</b> 규칙적 시간</span><span class="emo"><b>📱</b> 화면·블루라이트</span><span class="emo"><b>📵</b> 화면 끄기</span><span class="emo"><b>🌡️</b> 20~22도</span><span class="emo"><b>🛁</b> 이완·목욕</span><span class="emo"><b>☀️</b> 낮 활동·햇볕</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>밤 10시 전에 재우면 키 큰다? 사실 핵심은 '몇 시'가 아니에요.<br><span class="cap2">10시면 키 큰다? · <span class="y">핵심은 시간 X</span></span></td></tr><tr><td class="c-id">c2</td><td>진짜 키를 만드는 건 '얼마나 깊이 자느냐'예요. 깊은 잠이 핵심이죠.<br><span class="cap2">얼마나 깊이 · <span class="y">깊은 잠이 핵심</span></span></td></tr><tr><td class="c-id">c3</td><td>잠들고 1~2시간, 가장 깊은 잠에 들 때 성장호르몬이 쏟아져 나와요.<br><span class="cap2">잠든 뒤 1~2시간 · <span class="y">성장호르몬 폭발</span></span></td></tr><tr><td class="c-id">c4</td><td>이때 뇌파가 느려지고 몸이 회복되면서, 키가 자라는 시간이 열려요.<br><span class="cap2">몸이 회복되며 · <span class="y">키 자라는 시간</span></span></td></tr><tr><td class="c-id">c5</td><td>그런데 자기 전 스마트폰 불빛이 멜라토닌을 막고 깊은 잠을 깨워버려요.<br><span class="cap2">잘 때 화면 불빛 · <span class="y">깊은 잠 방해</span></span></td></tr><tr><td class="c-id">c6</td><td>불규칙한 시간, 밝고 더운 방, 늦은 카페인도 숙면을 막는 흔한 범인이에요.<br><span class="cap2">불규칙·밝은 방 · <span class="y">숙면 방해 요인</span></span></td></tr><tr><td class="c-id">c7</td><td>방법은 간단해요. 규칙적인 시간, 잘 1시간 전 화면 끄기, 어둡고 시원한 방.<br><span class="cap2">규칙 시간·화면 OFF · <span class="y">어둡고 시원한 방</span></span></td></tr><tr><td class="c-id">c8</td><td>방은 20에서 22도, 자기 전 따뜻한 목욕과 책으로 몸을 이완하면 깊은 잠이 와요.<br><span class="cap2">20~22도 · 이완 · <span class="y">오늘 밤 깊은 잠</span></span></td></tr><tr><td class="c-id">c9</td><td>수면과 함께 뼈나이를 보면, 우리 아이 성장 상태를 정확히 알 수 있어요.<br><span class="cap2">수면 + 뼈나이로 · <span class="y">성장 상태 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 수면과 성장, 지금 바로 확인해 보세요.<br><span class="cap2">수면 · 성장 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>นอนก่อน 4 ทุ่มแล้วจะสูง? จริงๆ หัวใจไม่ใช่ 'กี่โมง'<br><span class="cap2">นอน 4 ทุ่ม = สูง? · <span class="y">ไม่ใช่เรื่องเวลา</span></span></td></tr><tr><td class="c-id">c2</td><td>สิ่งที่สร้างความสูงคือ 'หลับลึกแค่ไหน' หลับลึกคือหัวใจ<br><span class="cap2">หลับลึกแค่ไหน · <span class="y">หลับลึกคือหัวใจ</span></span></td></tr><tr><td class="c-id">c3</td><td>1–2 ชม.แรกหลังหลับ ช่วงหลับลึกสุด ฮอร์โมนเติบโตหลั่งพุ่ง<br><span class="cap2">1–2 ชม.แรก · <span class="y">ฮอร์โมนพุ่ง</span></span></td></tr><tr><td class="c-id">c4</td><td>ตอนนี้คลื่นสมองช้าลง ร่างกายฟื้นฟู เวลาที่ความสูงเติบโตเปิดขึ้น<br><span class="cap2">ร่างกายฟื้นฟู · <span class="y">เวลาที่สูงขึ้น</span></span></td></tr><tr><td class="c-id">c5</td><td>แต่แสงมือถือก่อนนอนยับยั้งเมลาโทนิน ทำให้หลับไม่ลึก<br><span class="cap2">แสงจอก่อนนอน · <span class="y">รบกวนหลับลึก</span></span></td></tr><tr><td class="c-id">c6</td><td>เวลานอนไม่สม่ำเสมอ ห้องสว่างร้อน คาเฟอีนดึก ก็ขัดขวางหลับลึก<br><span class="cap2">เวลาไม่สม่ำเสมอ · <span class="y">ตัวการขัดขวาง</span></span></td></tr><tr><td class="c-id">c7</td><td>วิธีง่ายมาก เวลานอนสม่ำเสมอ ปิดจอ 1 ชม.ก่อนนอน ห้องมืดเย็นสบาย<br><span class="cap2">เวลาคงที่·ปิดจอ · <span class="y">ห้องมืดเย็น</span></span></td></tr><tr><td class="c-id">c8</td><td>ห้อง 20–22 องศา อาบน้ำอุ่นอ่านหนังสือผ่อนคลาย หลับลึกได้คืนนี้<br><span class="cap2">20–22°C · ผ่อนคลาย · <span class="y">คืนนี้หลับลึก</span></span></td></tr><tr><td class="c-id">c9</td><td>ดูการนอนคู่กับอายุกระดูก จะรู้สถานะการเติบโตของลูกชัดเจน<br><span class="cap2">การนอน + อายุกระดูก · <span class="y">เช็กการเติบโต</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กการนอนและการเติบโตของลูกวันนี้<br><span class="cap2">การนอน · การเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Ngủ trước 10 giờ là cao? Thật ra mấu chốt không phải 'mấy giờ'.<br><span class="cap2">Ngủ sớm là cao? · <span class="y">Không phải giờ giấc</span></span></td></tr><tr><td class="c-id">c2</td><td>Cái tạo ra chiều cao là 'ngủ sâu đến đâu'. Giấc ngủ sâu mới là chìa khóa.<br><span class="cap2">Ngủ sâu đến đâu · <span class="y">ngủ sâu là chìa khóa</span></span></td></tr><tr><td class="c-id">c3</td><td>1–2 giờ đầu sau khi ngủ, lúc ngủ sâu nhất, hormone tăng trưởng bùng nổ.<br><span class="cap2">1–2 giờ đầu · <span class="y">hormone bùng nổ</span></span></td></tr><tr><td class="c-id">c4</td><td>Lúc này sóng não chậm lại, cơ thể phục hồi — thời gian để cao lên.<br><span class="cap2">Cơ thể phục hồi · <span class="y">thời gian cao lên</span></span></td></tr><tr><td class="c-id">c5</td><td>Nhưng ánh sáng điện thoại trước khi ngủ chặn melatonin, phá giấc ngủ sâu.<br><span class="cap2">Ánh sáng màn hình · <span class="y">phá giấc ngủ sâu</span></span></td></tr><tr><td class="c-id">c6</td><td>Giờ giấc thất thường, phòng sáng nóng, caffeine muộn cũng cản giấc ngủ sâu.<br><span class="cap2">Giờ giấc thất thường · <span class="y">thủ phạm phá giấc</span></span></td></tr><tr><td class="c-id">c7</td><td>Cách rất đơn giản: giờ cố định, tắt màn hình trước ngủ 1 giờ, phòng tối mát.<br><span class="cap2">Giờ cố định·tắt màn hình · <span class="y">phòng tối mát</span></span></td></tr><tr><td class="c-id">c8</td><td>Phòng 20–22 độ, tắm ấm và đọc sách thư giãn — đêm nay sẽ ngủ sâu.<br><span class="cap2">20–22°C · thư giãn · <span class="y">đêm nay ngủ sâu</span></span></td></tr><tr><td class="c-id">c9</td><td>Cùng với giấc ngủ, xem tuổi xương sẽ biết rõ tình trạng phát triển của con.<br><span class="cap2">Giấc ngủ + tuổi xương · <span class="y">biết rõ tăng trưởng</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra giấc ngủ và tăng trưởng của con ngay hôm nay.<br><span class="cap2">Giấc ngủ · tăng trưởng · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Sleep by 10pm to grow tall? The key isn't actually the clock.<br><span class="cap2">Bed by 10 = tall? · <span class="y">Not about the clock</span></span></td></tr><tr><td class="c-id">c2</td><td>What builds height is how deeply they sleep. Deep sleep is the key.<br><span class="cap2">How deep · <span class="y">deep sleep is key</span></span></td></tr><tr><td class="c-id">c3</td><td>In the first 1–2 hours, at the deepest sleep, growth hormone pours out.<br><span class="cap2">First 1–2 hours · <span class="y">growth hormone surge</span></span></td></tr><tr><td class="c-id">c4</td><td>Brain waves slow, the body repairs — and the window to grow opens.<br><span class="cap2">Body repairs · <span class="y">window to grow</span></span></td></tr><tr><td class="c-id">c5</td><td>But screen light before bed blocks melatonin and breaks deep sleep.<br><span class="cap2">Screen light at night · <span class="y">breaks deep sleep</span></span></td></tr><tr><td class="c-id">c6</td><td>Irregular hours, a bright hot room, late caffeine — common sleep wreckers too.<br><span class="cap2">Irregular, bright room · <span class="y">sleep wreckers</span></span></td></tr><tr><td class="c-id">c7</td><td>It's simple: fixed bedtime, screens off an hour before, a dark cool room.<br><span class="cap2">Fixed time, screens off · <span class="y">dark cool room</span></span></td></tr><tr><td class="c-id">c8</td><td>Keep it 20–22°C, wind down with a warm bath and a book — deep sleep tonight.<br><span class="cap2">20–22°C · wind down · <span class="y">deep sleep tonight</span></span></td></tr><tr><td class="c-id">c9</td><td>Along with sleep, bone age shows your child's growth status precisely.<br><span class="cap2">Sleep + bone age · <span class="y">check growth status</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's sleep and growth today.<br><span class="cap2">Sleep · growth · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>10点前睡就能长高？其实关键不是'几点'。<br><span class="cap2">10点睡就长高？ · <span class="y">关键不是时间</span></span></td></tr><tr><td class="c-id">c2</td><td>真正长高靠的是'睡得多深'。深睡才是关键。<br><span class="cap2">睡得多深 · <span class="y">深睡才是关键</span></span></td></tr><tr><td class="c-id">c3</td><td>入睡后1~2小时、睡得最深时，生长激素大量分泌。<br><span class="cap2">入睡后1~2小时 · <span class="y">生长激素喷发</span></span></td></tr><tr><td class="c-id">c4</td><td>这时脑波变慢、身体修复，长高的时间就打开了。<br><span class="cap2">身体修复 · <span class="y">长高的时间</span></span></td></tr><tr><td class="c-id">c5</td><td>但睡前的手机蓝光会抑制褪黑素，打断深睡。<br><span class="cap2">睡前屏幕光 · <span class="y">打断深睡</span></span></td></tr><tr><td class="c-id">c6</td><td>作息不规律、又亮又热的房间、晚上咖啡因，也是常见元凶。<br><span class="cap2">不规律·亮房间 · <span class="y">常见元凶</span></span></td></tr><tr><td class="c-id">c7</td><td>方法很简单：固定时间、睡前1小时关屏、又暗又凉的房间。<br><span class="cap2">固定时间·关屏 · <span class="y">又暗又凉的房</span></span></td></tr><tr><td class="c-id">c8</td><td>房间20到22度，睡前温水澡加阅读放松，今晚就能深睡。<br><span class="cap2">20~22度 · 放松 · <span class="y">今晚就深睡</span></span></td></tr><tr><td class="c-id">c9</td><td>结合睡眠看骨龄，就能准确了解孩子的成长状态。<br><span class="cap2">睡眠 + 骨龄 · <span class="y">了解成长状态</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的睡眠和成长状态吧。<br><span class="cap2">睡眠 · 成长 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>10點前睡就能長高？其實關鍵不是'幾點'。<br><span class="cap2">10點睡就長高？ · <span class="y">關鍵不是時間</span></span></td></tr><tr><td class="c-id">c2</td><td>真正長高靠的是'睡得多深'。深睡才是關鍵。<br><span class="cap2">睡得多深 · <span class="y">深睡才是關鍵</span></span></td></tr><tr><td class="c-id">c3</td><td>入睡後1~2小時、睡得最深時，生長激素大量分泌。<br><span class="cap2">入睡後1~2小時 · <span class="y">生長激素噴發</span></span></td></tr><tr><td class="c-id">c4</td><td>這時腦波變慢、身體修復，長高的時間就打開了。<br><span class="cap2">身體修復 · <span class="y">長高的時間</span></span></td></tr><tr><td class="c-id">c5</td><td>但睡前的手機藍光會抑制褪黑素，打斷深睡。<br><span class="cap2">睡前螢幕光 · <span class="y">打斷深睡</span></span></td></tr><tr><td class="c-id">c6</td><td>作息不規律、又亮又熱的房間、晚上咖啡因，也是常見元凶。<br><span class="cap2">不規律·亮房間 · <span class="y">常見元凶</span></span></td></tr><tr><td class="c-id">c7</td><td>方法很簡單：固定時間、睡前1小時關螢幕、又暗又涼的房間。<br><span class="cap2">固定時間·關螢幕 · <span class="y">又暗又涼的房</span></span></td></tr><tr><td class="c-id">c8</td><td>房間20到22度，睡前溫水澡加閱讀放鬆，今晚就能深睡。<br><span class="cap2">20~22度 · 放鬆 · <span class="y">今晚就深睡</span></span></td></tr><tr><td class="c-id">c9</td><td>結合睡眠看骨齡，就能準確了解孩子的成長狀態。<br><span class="cap2">睡眠 + 骨齡 · <span class="y">了解成長狀態</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的睡眠和成長狀態吧。<br><span class="cap2">睡眠 · 成長 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/깊은잠5단계/</code> · <code>깊은잠5단계-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

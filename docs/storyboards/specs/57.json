@@ -1,0 +1,779 @@
+{
+  "n": 57,
+  "slug": "예상키앱후기",
+  "title": "예상키 측정 앱, 어디까지 믿어도 될까?",
+  "sub": "앱은 부모 키로 계산한 평균 추정치 — 진짜 예측키는 뼈나이가 가른다",
+  "category": "D. 기타/트렌드",
+  "topicTitle": "예상키 측정 앱 후기 — 앱 vs 전문 진단",
+  "headerTop": "우리 아이 키",
+  "headerMark": "앱, 믿어도 돼?",
+  "accentEmoji": "📱💜",
+  "hook": "예상키 측정 앱, 한 번쯤 돌려보셨죠? 근데 그 숫자, 얼마나 정확할까요?",
+  "misconception": "앱이 알려준 예상키가 우리 아이 진짜 키다 → 앱은 부모 키로 만든 평균 추정치라 뼈나이·환경을 못 본다",
+  "message": "앱은 부모 중간키(MPH) 공식 기반 통계 추정치. 유전은 70~80%일 뿐, 나머지 20~30%와 뼈나이·성조숙증은 앱이 못 본다. 진짜 예측키는 뼈나이 X-ray로 확인한다",
+  "tone": "앱을 깎아내리지 않고 \\\"재미있는 도구\\\"로 인정 후 한계를 부드럽게 설명. 협박 ❌ → \\\"아직 키울 수 있는 20~30%가 있다\\\" 긍정. \\\"우리 아이 키\\\" 보편. CTA는 진짜 측정(뼈나이/예측키) 초대",
+  "cta": "앱 숫자에 일희일비 말고, 뼈나이로 진짜 예측키 확인 → 홈페이지 예측키 / 뼈나이 측정 유도",
+  "duration": 35,
+  "thumb": {
+    "kicker": "앱, 믿어도 돼?",
+    "subject": "우리 아이 예상키",
+    "number": "70%",
+    "numLabel": "만 보는 앱"
+  },
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "공감 훅",
+      "scenes": "c1–c2",
+      "desc": "\"예상키 앱 다들 돌려보셨죠?\" → 근데 그 숫자 얼마나 정확할까?"
+    },
+    {
+      "act": "ACT 2",
+      "title": "앱의 원리",
+      "scenes": "c3–c4",
+      "desc": "부모 중간키(MPH) 공식 기반 평균 추정 → 유전 70~80%만 본다"
+    },
+    {
+      "act": "ACT 3",
+      "title": "앱이 놓치는 것",
+      "scenes": "c5–c6",
+      "desc": "나머지 20~30%(영양·수면·운동) → 그리고 결정적으로 뼈나이를 못 본다"
+    },
+    {
+      "act": "ACT 4",
+      "title": "진짜 예측",
+      "scenes": "c7–c8",
+      "desc": "빠른 뼈나이=성장판 일찍 닫힘 → 손 X-ray로 남은 성장을 본다"
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c9–c10",
+      "desc": "앱은 재미, 진짜 예측키는 뼈나이로 → CTA"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "📱 슬램 인 + 물음표 팝",
+      "copy": {
+        "ko": {
+          "narr": "예상키 측정 앱, 한 번쯤 돌려보셨죠? 근데 그 숫자, 얼마나 정확할까요?",
+          "cap": [
+            "예상키 앱 그 숫자",
+            "얼마나 정확해?"
+          ],
+          "hl": "얼마나 정확해?"
+        },
+        "th": {
+          "narr": "แอปทำนายส่วนสูง เคยลองกันใช่ไหม? แต่ตัวเลขนั้นแม่นแค่ไหน?",
+          "cap": [
+            "แอปทำนายส่วนสูง",
+            "แม่นแค่ไหน?"
+          ],
+          "hl": "แม่นแค่ไหน?"
+        },
+        "vi": {
+          "narr": "App dự đoán chiều cao, ai cũng từng thử nhỉ? Nhưng con số đó chính xác đến đâu?",
+          "cap": [
+            "App dự đoán chiều cao",
+            "chính xác đến đâu?"
+          ],
+          "hl": "chính xác đến đâu?"
+        },
+        "en": {
+          "narr": "You've all tried a height-prediction app, right? But how accurate is that number?",
+          "cap": [
+            "That height-app number",
+            "how accurate?"
+          ],
+          "hl": "how accurate?"
+        },
+        "cn": {
+          "narr": "预测身高的App，大家都玩过吧？但那个数字到底准不准？",
+          "cap": [
+            "预测身高App的数字",
+            "到底准不准？"
+          ],
+          "hl": "准不准？"
+        },
+        "ch": {
+          "narr": "預測身高的App，大家都玩過吧？但那個數字到底準不準？",
+          "cap": [
+            "預測身高App的數字",
+            "到底準不準？"
+          ],
+          "hl": "準不準？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "🤔 살짝 갸웃 + 끄덕",
+      "copy": {
+        "ko": {
+          "narr": "재미로 보긴 좋아요. 그런데 그 결과에 너무 울고 웃지는 마세요.",
+          "cap": [
+            "재미로는 OK",
+            "결과에 일희일비 X"
+          ],
+          "hl": "결과에 일희일비 X"
+        },
+        "th": {
+          "narr": "ดูสนุกๆ ก็โอเค แต่อย่าเพิ่งดีใจหรือเสียใจกับผลมากนัก",
+          "cap": [
+            "สนุกๆ ก็โอเค",
+            "อย่าจริงจังกับผล"
+          ],
+          "hl": "อย่าจริงจังกับผล"
+        },
+        "vi": {
+          "narr": "Xem cho vui thì được. Nhưng đừng quá vui hay buồn vì kết quả đó.",
+          "cap": [
+            "Xem cho vui thì OK",
+            "đừng vui buồn theo"
+          ],
+          "hl": "đừng vui buồn theo"
+        },
+        "en": {
+          "narr": "It's fine for fun. Just don't let that result make or break your day.",
+          "cap": [
+            "Fun? Sure",
+            "don't over-react"
+          ],
+          "hl": "don't over-react"
+        },
+        "cn": {
+          "narr": "图个乐可以，但别为那个结果患得患失。",
+          "cap": [
+            "图个乐可以",
+            "别患得患失"
+          ],
+          "hl": "别患得患失"
+        },
+        "ch": {
+          "narr": "圖個樂可以，但別為那個結果患得患失。",
+          "cap": [
+            "圖個樂可以",
+            "別患得患失"
+          ],
+          "hl": "別患得患失"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 MPH 공식",
+      "motion": "➗ 부모키 합산 + 결과 팝",
+      "copy": {
+        "ko": {
+          "narr": "앱 대부분은 아빠 엄마 키를 더한 '중간키' 공식으로 계산해요.",
+          "cap": [
+            "아빠+엄마 키로",
+            "중간키 계산"
+          ],
+          "hl": "중간키 계산"
+        },
+        "th": {
+          "narr": "แอปส่วนใหญ่คำนวณจากสูตร 'ส่วนสูงกลาง' ของพ่อกับแม่",
+          "cap": [
+            "จากส่วนสูงพ่อแม่",
+            "สูตรส่วนสูงกลาง"
+          ],
+          "hl": "สูตรส่วนสูงกลาง"
+        },
+        "vi": {
+          "narr": "Hầu hết app tính bằng công thức 'chiều cao trung bình' của bố và mẹ.",
+          "cap": [
+            "Từ chiều cao bố mẹ",
+            "công thức trung bình"
+          ],
+          "hl": "công thức trung bình"
+        },
+        "en": {
+          "narr": "Most apps just use a 'mid-parent' formula from mom's and dad's height.",
+          "cap": [
+            "From parents' height",
+            "mid-parent formula"
+          ],
+          "hl": "mid-parent formula"
+        },
+        "cn": {
+          "narr": "大多数App只是用爸妈身高算出的'中间身高'公式。",
+          "cap": [
+            "用爸妈身高",
+            "算中间身高"
+          ],
+          "hl": "中间身高"
+        },
+        "ch": {
+          "narr": "大多數App只是用爸媽身高算出的'中間身高'公式。",
+          "cap": [
+            "用爸媽身高",
+            "算中間身高"
+          ],
+          "hl": "中間身高"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "ig",
+      "igLabel": "IG2 유전 70~80%",
+      "motion": "🧬 70~80% 카운트업",
+      "copy": {
+        "ko": {
+          "narr": "즉 유전 70에서 80퍼센트만 본 평균 추정치예요. 우리 아이 한 명만의 값은 아니죠.",
+          "cap": [
+            "유전 70~80%만",
+            "평균 추정치"
+          ],
+          "hl": "유전 70~80%만"
+        },
+        "th": {
+          "narr": "คือดูแค่พันธุกรรม 70–80% เป็นค่าเฉลี่ย ไม่ใช่ของลูกเราคนเดียว",
+          "cap": [
+            "พันธุกรรม 70–80%",
+            "แค่ค่าเฉลี่ย"
+          ],
+          "hl": "พันธุกรรม 70–80%"
+        },
+        "vi": {
+          "narr": "Tức chỉ nhìn 70–80% là di truyền — một con số trung bình, không riêng cho con bạn.",
+          "cap": [
+            "Chỉ 70–80% di truyền",
+            "là số trung bình"
+          ],
+          "hl": "70–80% di truyền"
+        },
+        "en": {
+          "narr": "So it only sees the 70–80% that's genetic — an average, not your child alone.",
+          "cap": [
+            "Only 70–80% genes",
+            "just an average"
+          ],
+          "hl": "Only 70–80% genes"
+        },
+        "cn": {
+          "narr": "也就是只看了遗传的70到80%，是平均值，不是你家孩子专属的。",
+          "cap": [
+            "只看遗传70~80%",
+            "只是平均值"
+          ],
+          "hl": "只看遗传70~80%"
+        },
+        "ch": {
+          "narr": "也就是只看了遺傳的70到80%，是平均值，不是你家孩子專屬的。",
+          "cap": [
+            "只看遺傳70~80%",
+            "只是平均值"
+          ],
+          "hl": "只看遺傳70~80%"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "doctor",
+      "motion": "📏 펄스 + 20~30% 강조",
+      "copy": {
+        "ko": {
+          "narr": "나머지 20에서 30퍼센트, 영양·수면·운동은 우리가 키울 수 있는 부분이에요.",
+          "cap": [
+            "나머지 20~30%",
+            "키울 수 있어요"
+          ],
+          "hl": "키울 수 있어요"
+        },
+        "th": {
+          "narr": "อีก 20–30% คือ อาหาร การนอน การออกกำลังกาย ส่วนที่เราเพิ่มได้",
+          "cap": [
+            "อีก 20–30%",
+            "เราเพิ่มได้"
+          ],
+          "hl": "เราเพิ่มได้"
+        },
+        "vi": {
+          "narr": "20–30% còn lại — dinh dưỡng, giấc ngủ, vận động — là phần ta có thể tăng thêm.",
+          "cap": [
+            "20–30% còn lại",
+            "ta tăng được"
+          ],
+          "hl": "ta tăng được"
+        },
+        "en": {
+          "narr": "The other 20–30% — nutrition, sleep, exercise — is what we can grow.",
+          "cap": [
+            "The other 20–30%",
+            "we can grow it"
+          ],
+          "hl": "we can grow it"
+        },
+        "cn": {
+          "narr": "剩下的20到30%——营养、睡眠、运动——是我们能争取的部分。",
+          "cap": [
+            "剩下20~30%",
+            "我们能争取"
+          ],
+          "hl": "我们能争取"
+        },
+        "ch": {
+          "narr": "剩下的20到30%——營養、睡眠、運動——是我們能爭取的部分。",
+          "cap": [
+            "剩下20~30%",
+            "我們能爭取"
+          ],
+          "hl": "我們能爭取"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 앱이 못 보는 뼈나이",
+      "motion": "🦴 X-ray 글로우 + ❌→손",
+      "copy": {
+        "ko": {
+          "narr": "그리고 결정적으로, 앱은 '뼈나이'를 전혀 못 봐요. 키 예측의 진짜 열쇠인데요.",
+          "cap": [
+            "앱은 뼈나이 못 봄",
+            "예측의 진짜 열쇠"
+          ],
+          "hl": "앱은 뼈나이 못 봄"
+        },
+        "th": {
+          "narr": "และที่สำคัญสุด แอปดู 'อายุกระดูก' ไม่ได้เลย ทั้งที่เป็นกุญแจสำคัญ",
+          "cap": [
+            "แอปดูอายุกระดูกไม่ได้",
+            "กุญแจสำคัญ"
+          ],
+          "hl": "แอปดูอายุกระดูกไม่ได้"
+        },
+        "vi": {
+          "narr": "Và quan trọng nhất: app hoàn toàn không thấy 'tuổi xương' — chìa khóa thật sự.",
+          "cap": [
+            "App không thấy tuổi xương",
+            "chìa khóa thật sự"
+          ],
+          "hl": "App không thấy tuổi xương"
+        },
+        "en": {
+          "narr": "And crucially, an app can't see 'bone age' at all — the real key to prediction.",
+          "cap": [
+            "Apps can't see bone age",
+            "the real key"
+          ],
+          "hl": "Apps can't see bone age"
+        },
+        "cn": {
+          "narr": "而最关键的是，App根本看不到'骨龄'——预测身高真正的钥匙。",
+          "cap": [
+            "App看不到骨龄",
+            "真正的钥匙"
+          ],
+          "hl": "App看不到骨龄"
+        },
+        "ch": {
+          "narr": "而最關鍵的是，App根本看不到'骨齡'——預測身高真正的鑰匙。",
+          "cap": [
+            "App看不到骨齡",
+            "真正的鑰匙"
+          ],
+          "hl": "App看不到骨齡"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27.5s",
+      "kind": "doctor",
+      "motion": "⏳ 살짝 강조 + 끄덕",
+      "copy": {
+        "ko": {
+          "narr": "뼈나이가 실제 나이보다 빠르면 성장판이 일찍 닫혀서, 앱 숫자보다 작아질 수 있어요.",
+          "cap": [
+            "뼈나이 빠르면",
+            "성장판 일찍 닫힘"
+          ],
+          "hl": "성장판 일찍 닫힘"
+        },
+        "th": {
+          "narr": "ถ้าอายุกระดูกเร็วกว่าอายุจริง แผ่นกระดูกปิดเร็ว อาจเตี้ยกว่าที่แอปบอก",
+          "cap": [
+            "อายุกระดูกเร็ว",
+            "แผ่นกระดูกปิดเร็ว"
+          ],
+          "hl": "แผ่นกระดูกปิดเร็ว"
+        },
+        "vi": {
+          "narr": "Nếu tuổi xương vượt tuổi thật, sụn đóng sớm — con có thể thấp hơn số app báo.",
+          "cap": [
+            "Tuổi xương vượt",
+            "sụn đóng sớm"
+          ],
+          "hl": "sụn đóng sớm"
+        },
+        "en": {
+          "narr": "If bone age runs ahead, the plates close early — your child may end up below the app's number.",
+          "cap": [
+            "Bone age ahead",
+            "plates close early"
+          ],
+          "hl": "plates close early"
+        },
+        "cn": {
+          "narr": "骨龄如果超前，生长板提前闭合，可能比App的数字还矮。",
+          "cap": [
+            "骨龄超前",
+            "生长板早闭"
+          ],
+          "hl": "生长板早闭"
+        },
+        "ch": {
+          "narr": "骨齡如果超前，生長板提前閉合，可能比App的數字還矮。",
+          "cap": [
+            "骨齡超前",
+            "生長板早閉"
+          ],
+          "hl": "生長板早閉"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27.5–31s",
+      "kind": "ig",
+      "igLabel": "IG4 손 X-ray 진짜 예측",
+      "motion": "✋ X-ray 점등 + ✨ 골드",
+      "copy": {
+        "ko": {
+          "narr": "그래서 왼손 X-ray로 뼈나이를 보면, 남은 성장이 얼마인지 진짜로 알 수 있어요.",
+          "cap": [
+            "왼손 X-ray로",
+            "남은 성장 확인"
+          ],
+          "hl": "남은 성장 확인"
+        },
+        "th": {
+          "narr": "ดังนั้น X-ray มือซ้ายดูอายุกระดูก จะรู้จริงว่าเหลือการเติบโตอีกเท่าไร",
+          "cap": [
+            "X-ray มือซ้าย",
+            "รู้การเติบโตที่เหลือ"
+          ],
+          "hl": "รู้การเติบโตที่เหลือ"
+        },
+        "vi": {
+          "narr": "Vì vậy chụp X-quang bàn tay trái xem tuổi xương sẽ biết thật còn lại bao nhiêu để cao.",
+          "cap": [
+            "X-quang tay trái",
+            "biết phần còn lại"
+          ],
+          "hl": "biết phần còn lại"
+        },
+        "en": {
+          "narr": "So a left-hand X-ray of bone age shows, for real, how much growth is left.",
+          "cap": [
+            "Left-hand X-ray",
+            "growth left, for real"
+          ],
+          "hl": "growth left, for real"
+        },
+        "cn": {
+          "narr": "所以拍左手X光看骨龄，才能真正知道还剩多少成长空间。",
+          "cap": [
+            "左手X光",
+            "看剩余成长"
+          ],
+          "hl": "看剩余成长"
+        },
+        "ch": {
+          "narr": "所以拍左手X光看骨齡，才能真正知道還剩多少成長空間。",
+          "cap": [
+            "左手X光",
+            "看剩餘成長"
+          ],
+          "hl": "看剩餘成長"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "31–34s",
+      "kind": "doctor",
+      "motion": "🩺💜 따뜻 글로우",
+      "copy": {
+        "ko": {
+          "narr": "앱은 재미로, 진짜 예측키는 뼈나이로. 그래야 우리 아이 키를 제대로 도와줄 수 있어요.",
+          "cap": [
+            "앱은 재미",
+            "진짜는 뼈나이로"
+          ],
+          "hl": "진짜는 뼈나이로"
+        },
+        "th": {
+          "narr": "แอปไว้สนุก ส่วนการทำนายจริงใช้อายุกระดูก ถึงจะช่วยลูกได้ถูกทาง",
+          "cap": [
+            "แอปไว้สนุก",
+            "ของจริงคืออายุกระดูก"
+          ],
+          "hl": "ของจริงคืออายุกระดูก"
+        },
+        "vi": {
+          "narr": "App để cho vui, dự đoán thật thì dựa vào tuổi xương — mới giúp con đúng cách.",
+          "cap": [
+            "App cho vui",
+            "thật thì tuổi xương"
+          ],
+          "hl": "thật thì tuổi xương"
+        },
+        "en": {
+          "narr": "Apps for fun, real prediction from bone age — that's how you truly help your child.",
+          "cap": [
+            "Apps for fun",
+            "bone age for real"
+          ],
+          "hl": "bone age for real"
+        },
+        "cn": {
+          "narr": "App用来玩，真正预测靠骨龄，这样才能真正帮到孩子。",
+          "cap": [
+            "App用来玩",
+            "真预测靠骨龄"
+          ],
+          "hl": "真预测靠骨龄"
+        },
+        "ch": {
+          "narr": "App用來玩，真正預測靠骨齡，這樣才能真正幫到孩子。",
+          "cap": [
+            "App用來玩",
+            "真預測靠骨齡"
+          ],
+          "hl": "真預測靠骨齡"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "34–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "앱 숫자가 궁금했다면, 지금 진짜 예측키를 확인해 보세요.",
+          "cap": [
+            "진짜 예측키",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ถ้าสงสัยตัวเลขจากแอป มาเช็กส่วนสูงทำนายจริงวันนี้",
+          "cap": [
+            "ส่วนสูงทำนายจริง",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Nếu tò mò con số trên app, hãy kiểm tra chiều cao dự đoán thật ngay hôm nay.",
+          "cap": [
+            "Chiều cao dự đoán thật",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "Curious about that app number? Check your child's real predicted height today.",
+          "cap": [
+            "Real predicted height",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "如果好奇App的数字，现在就来查查孩子真正的预测身高吧。",
+          "cap": [
+            "真正预测身高",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "如果好奇App的數字，現在就來查查孩子真正的預測身高吧。",
+          "cap": [
+            "真正預測身高",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "부모키 합산 → 결과 팝",
+      "title": "앱의 원리 — 부모 중간키 공식",
+      "emojis": [
+        "📱",
+        "➗"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly smartphone in the center showing a simple calculator/formula concept: a dad silhouette and a mom silhouette on the left feeding into a plus/average symbol, an arrow pointing to a single child silhouette result on the phone screen. Clean, playful, approachable. Brand purple #667eea to mint #2dd4bf gradient, soft glow. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽 위",
+          "ko": "아빠 키",
+          "en": "Dad",
+          "th": "ส่วนสูงพ่อ"
+        },
+        {
+          "pos": "왼쪽 아래",
+          "ko": "엄마 키",
+          "en": "Mom",
+          "th": "ส่วนสูงแม่"
+        },
+        {
+          "pos": "폰 화면",
+          "ko": "중간키 결과",
+          "en": "Mid-parent result",
+          "th": "ผลส่วนสูงกลาง"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c4",
+      "motion": "70~80% 카운트업 + 도넛 채우기",
+      "title": "유전 70~80% vs 환경 20~30%",
+      "emojis": [
+        "🧬",
+        "🌱"
+      ],
+      "prompt": "Flat vector, square, white background. A clean donut/pie split into a large dominant arc and a smaller arc; the large arc shows a DNA helix motif (genetics), the smaller arc shows a sprout/leaf motif (environment) glowing brighter and more hopeful. Balanced, optimistic. Brand purple #667eea for the large arc, mint #2dd4bf glow for the small sprout arc. Friendly flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "큰 호",
+          "ko": "유전 70~80%",
+          "en": "Genes 70–80%",
+          "th": "พันธุกรรม 70–80%"
+        },
+        {
+          "pos": "작은 호(글로우)",
+          "ko": "환경 20~30%",
+          "en": "Environment 20–30%",
+          "th": "สิ่งแวดล้อม 20–30%"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "X-ray 글로우 + 폰에 ❌",
+      "title": "앱이 못 보는 뼈나이",
+      "emojis": [
+        "📱",
+        "🦴"
+      ],
+      "prompt": "Flat vector, square, white background. On the left a smartphone with a gentle crossed-out / dimmed icon over a hand bone, on the right a glowing left-hand X-ray showing the bones brightly highlighted. The contrast says 'app can't see this, the X-ray can.' Clean, non-scary, hopeful. Brand purple #667eea with mint #2dd4bf glow on the X-ray. Friendly medical flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽(폰)",
+          "ko": "앱은 못 봄",
+          "en": "App can't see",
+          "th": "แอปมองไม่เห็น"
+        },
+        {
+          "pos": "오른쪽(글로우)",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "X-ray 점등 + 골드 글로우",
+      "title": "손 X-ray — 남은 성장 확인",
+      "emojis": [
+        "✋",
+        "✨"
+      ],
+      "prompt": "Flat vector, square, white background. A friendly left-hand X-ray with a soft glowing growth-plate gap highlighted at a finger bone, and beside it a gentle upward arrow suggesting 'remaining growth.' Warm golden glow conveying possibility and hope. Brand purple #667eea plus warm gold and mint #2dd4bf accents. Friendly pediatric flat illustration. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "손 X-ray",
+          "ko": "왼손 X-ray",
+          "en": "Left-hand X-ray",
+          "th": "X-ray มือซ้าย"
+        },
+        {
+          "pos": "화살표(글로우)",
+          "ko": "남은 성장",
+          "en": "Growth left",
+          "th": "การเติบโตที่เหลือ"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "📱",
+      "label": "예상키 앱"
+    },
+    {
+      "e": "🤔",
+      "label": "의문/궁금"
+    },
+    {
+      "e": "➗",
+      "label": "중간키 공식"
+    },
+    {
+      "e": "🧬",
+      "label": "유전 70~80%"
+    },
+    {
+      "e": "🌱",
+      "label": "환경 20~30%"
+    },
+    {
+      "e": "📏",
+      "label": "키·성장속도"
+    },
+    {
+      "e": "🦴",
+      "label": "뼈나이"
+    },
+    {
+      "e": "✋",
+      "label": "손 X-ray"
+    },
+    {
+      "e": "⏳",
+      "label": "성장판/골든타임"
+    },
+    {
+      "e": "🩺",
+      "label": "전문 진단"
+    },
+    {
+      "e": "✨",
+      "label": "희망·강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

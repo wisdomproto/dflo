@@ -1,0 +1,808 @@
+{
+  "n": 27,
+  "slug": "키크는운동비교",
+  "title": "줄넘기만이 답이 아니다 — 키 크는 운동 5가지 비교",
+  "sub": "줄넘기·수영·스트레칭·구기·자전거 — 우리 아이 성장판 자극, 운동마다 방식이 다르다",
+  "category": "B. 생활습관",
+  "topicTitle": "운동별 성장판 자극 비교",
+  "headerTop": "우리 아이 키",
+  "headerMark": "줄넘기만?",
+  "accentEmoji": "🏃✨",
+  "thumb": {
+    "kicker": "줄넘기만 시켰다면?",
+    "subject": "우리 아이 키 크는 운동",
+    "number": "5",
+    "numLabel": "가지 비교"
+  },
+  "hook": "우리 아이 키 크는 운동, 줄넘기만 시키고 계셨나요?",
+  "misconception": "키 크는 운동 = 줄넘기 하나뿐 → 한 가지만 시키면 특정 부위만 자극, 지루해서 못 꾸준히 함",
+  "message": "줄넘기·수영·스트레칭·구기·자전거 — 운동마다 자극 방식이 다르다. 다양하게 + 꾸준히 + 아이가 즐겁게가 핵심",
+  "tone": "협박 ❌ → 긍정(\"어떤 운동이든 좋다, 골라서 즐겁게\"). 줄넘기 깎아내리지 않기(줄넘기도 훌륭함). \"우리 아이 키\" 보편. CTA는 측정 유도",
+  "cta": "우리 아이한테 맞는 운동 강도, 뼈나이·예측키 측정으로 먼저 확인",
+  "duration": 35,
+  "arc": [
+    {
+      "act": "ACT 1",
+      "title": "훅",
+      "scenes": "c1–c2",
+      "desc": "\"줄넘기만이 답이 아니다 — 운동마다 방식이 다르다\""
+    },
+    {
+      "act": "ACT 2",
+      "title": "줄넘기·수영",
+      "scenes": "c3–c5",
+      "desc": "\"줄넘기 점프 자극 / 수영 관절 부담 적음\""
+    },
+    {
+      "act": "ACT 3",
+      "title": "스트레칭·구기·자전거",
+      "scenes": "c6–c7",
+      "desc": "\"자세 교정 / 점프 복합 / 하체+비타민D\""
+    },
+    {
+      "act": "ACT 4",
+      "title": "핵심 원칙",
+      "scenes": "c8–c9",
+      "desc": "\"다양하게+꾸준히+즐겁게, 수면·식단 받쳐야\""
+    },
+    {
+      "act": "ACT 5",
+      "title": "행동",
+      "scenes": "c10",
+      "desc": "\"맞는 강도, 측정으로 확인 → CTA\""
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c1",
+      "time": "0–3.5s",
+      "kind": "doctor",
+      "motion": "🏃 슬램 인 + ✨ 스파클",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이 키 크는 운동, 혹시 줄넘기만 시키고 계세요?",
+          "cap": [
+            "키 크는 운동",
+            "줄넘기만?"
+          ],
+          "hl": "줄넘기만?"
+        },
+        "th": {
+          "narr": "ออกกำลังกายเพิ่มความสูงให้ลูก ให้แค่กระโดดเชือกอยู่หรือเปล่า?",
+          "cap": [
+            "ออกกำลังเพิ่มสูง",
+            "แค่กระโดดเชือก?"
+          ],
+          "hl": "แค่กระโดดเชือก?"
+        },
+        "vi": {
+          "narr": "Vận động tăng chiều cao cho con, bạn chỉ cho nhảy dây thôi sao?",
+          "cap": [
+            "Vận động tăng cao",
+            "chỉ nhảy dây?"
+          ],
+          "hl": "chỉ nhảy dây?"
+        },
+        "en": {
+          "narr": "For your child's height, are you only doing jump rope?",
+          "cap": [
+            "Height exercise",
+            "just jump rope?"
+          ],
+          "hl": "just jump rope?"
+        },
+        "cn": {
+          "narr": "帮孩子长高的运动，你是不是只让他跳绳？",
+          "cap": [
+            "长高运动",
+            "只跳绳？"
+          ],
+          "hl": "只跳绳？"
+        },
+        "ch": {
+          "narr": "幫孩子長高的運動，你是不是只讓他跳繩？",
+          "cap": [
+            "長高運動",
+            "只跳繩？"
+          ],
+          "hl": "只跳繩？"
+        }
+      }
+    },
+    {
+      "id": "c2",
+      "time": "3.5–7s",
+      "kind": "doctor",
+      "motion": "👐 손바닥 펼침",
+      "copy": {
+        "ko": {
+          "narr": "줄넘기도 훌륭하지만, 유일한 답은 아니에요. 운동마다 자극 방식이 달라요.",
+          "cap": [
+            "줄넘기만이",
+            "답은 아니다"
+          ],
+          "hl": "답은 아니다"
+        },
+        "th": {
+          "narr": "กระโดดเชือกดี แต่ไม่ใช่คำตอบเดียว แต่ละแบบกระตุ้นต่างกัน",
+          "cap": [
+            "ไม่ใช่",
+            "คำตอบเดียว"
+          ],
+          "hl": "คำตอบเดียว"
+        },
+        "vi": {
+          "narr": "Nhảy dây rất tốt, nhưng không phải đáp án duy nhất. Mỗi môn kích thích một kiểu.",
+          "cap": [
+            "Không phải",
+            "đáp án duy nhất"
+          ],
+          "hl": "đáp án duy nhất"
+        },
+        "en": {
+          "narr": "Jump rope is great, but not the only answer. Each sport stimulates differently.",
+          "cap": [
+            "Not the",
+            "only answer"
+          ],
+          "hl": "only answer"
+        },
+        "cn": {
+          "narr": "跳绳很好，但不是唯一答案。每种运动刺激方式都不同。",
+          "cap": [
+            "不是",
+            "唯一答案"
+          ],
+          "hl": "唯一答案"
+        },
+        "ch": {
+          "narr": "跳繩很好，但不是唯一答案。每種運動刺激方式都不同。",
+          "cap": [
+            "不是",
+            "唯一答案"
+          ],
+          "hl": "唯一答案"
+        }
+      }
+    },
+    {
+      "id": "c3",
+      "time": "7–11s",
+      "kind": "ig",
+      "igLabel": "IG1 운동 5종",
+      "motion": "5종 순차 점등",
+      "copy": {
+        "ko": {
+          "narr": "줄넘기, 수영, 스트레칭, 구기 종목, 자전거. 크게 다섯 가지예요.",
+          "cap": [
+            "키 크는 운동",
+            "5가지"
+          ],
+          "hl": "5가지"
+        },
+        "th": {
+          "narr": "กระโดดเชือก ว่ายน้ำ ยืดเหยียด กีฬาลูกบอล ปั่นจักรยาน หลักๆ 5 แบบ",
+          "cap": [
+            "ออกกำลังเพิ่มสูง",
+            "5 แบบ"
+          ],
+          "hl": "5 แบบ"
+        },
+        "vi": {
+          "narr": "Nhảy dây, bơi, giãn cơ, bóng rổ bóng chuyền, đạp xe. Năm nhóm chính.",
+          "cap": [
+            "Vận động tăng cao",
+            "5 nhóm"
+          ],
+          "hl": "5 nhóm"
+        },
+        "en": {
+          "narr": "Jump rope, swimming, stretching, ball sports, cycling. Five main ones.",
+          "cap": [
+            "Height exercises",
+            "5 types"
+          ],
+          "hl": "5 types"
+        },
+        "cn": {
+          "narr": "跳绳、游泳、拉伸、球类、骑车。主要有这五种。",
+          "cap": [
+            "长高运动",
+            "5种"
+          ],
+          "hl": "5种"
+        },
+        "ch": {
+          "narr": "跳繩、游泳、拉伸、球類、騎車。主要有這五種。",
+          "cap": [
+            "長高運動",
+            "5種"
+          ],
+          "hl": "5種"
+        }
+      }
+    },
+    {
+      "id": "c4",
+      "time": "11–15s",
+      "kind": "doctor",
+      "motion": "⏱️ 카운트업 20→30",
+      "copy": {
+        "ko": {
+          "narr": "줄넘기는 점프 충격이 성장판을 잘 자극해요. 하루 20에서 30분이 적당하죠.",
+          "cap": [
+            "줄넘기 점프",
+            "하루 20~30분"
+          ],
+          "hl": "하루 20~30분"
+        },
+        "th": {
+          "narr": "กระโดดเชือก แรงกระแทกกระตุ้นแผ่นกระดูกดี วันละ 20–30 นาทีกำลังพอดี",
+          "cap": [
+            "กระโดดเชือก",
+            "วันละ 20–30 นาที"
+          ],
+          "hl": "วันละ 20–30 นาที"
+        },
+        "vi": {
+          "narr": "Nhảy dây: lực nhảy kích thích sụn rất tốt. Mỗi ngày 20–30 phút là vừa.",
+          "cap": [
+            "Nhảy dây",
+            "20–30 phút/ngày"
+          ],
+          "hl": "20–30 phút/ngày"
+        },
+        "en": {
+          "narr": "Jump rope: the impact stimulates the growth plate well. 20–30 minutes a day is plenty.",
+          "cap": [
+            "Jump rope",
+            "20–30 min/day"
+          ],
+          "hl": "20–30 min/day"
+        },
+        "cn": {
+          "narr": "跳绳的弹跳冲击能很好地刺激生长板。每天20到30分钟刚好。",
+          "cap": [
+            "跳绳",
+            "每天20–30分钟"
+          ],
+          "hl": "每天20–30分钟"
+        },
+        "ch": {
+          "narr": "跳繩的彈跳衝擊能很好地刺激生長板。每天20到30分鐘剛好。",
+          "cap": [
+            "跳繩",
+            "每天20–30分鐘"
+          ],
+          "hl": "每天20–30分鐘"
+        }
+      }
+    },
+    {
+      "id": "c5",
+      "time": "15–19s",
+      "kind": "ig",
+      "igLabel": "IG2 수영",
+      "motion": "🌊 물결 일렁",
+      "copy": {
+        "ko": {
+          "narr": "반대로 수영은 물속이라 관절 부담이 적고, 전신을 쭉 펴줘요. 무릎이 아픈 아이에게 좋죠.",
+          "cap": [
+            "수영",
+            "관절 부담 적음"
+          ],
+          "hl": "관절 부담 적음"
+        },
+        "th": {
+          "narr": "ว่ายน้ำอยู่ในน้ำ ภาระต่อข้อต่อน้อย ยืดทั้งตัว เหมาะกับเด็กที่เข่าเจ็บ",
+          "cap": [
+            "ว่ายน้ำ",
+            "ข้อต่อรับภาระน้อย"
+          ],
+          "hl": "ข้อต่อรับภาระน้อย"
+        },
+        "vi": {
+          "narr": "Ngược lại, bơi ở dưới nước nên ít áp lực lên khớp, kéo giãn toàn thân. Tốt cho bé đau gối.",
+          "cap": [
+            "Bơi lội",
+            "ít áp lực khớp"
+          ],
+          "hl": "ít áp lực khớp"
+        },
+        "en": {
+          "narr": "Swimming is in water, so it's easy on the joints and stretches the whole body. Great if knees hurt.",
+          "cap": [
+            "Swimming",
+            "easy on joints"
+          ],
+          "hl": "easy on joints"
+        },
+        "cn": {
+          "narr": "相反，游泳在水里，对关节负担小，还能拉伸全身。膝盖疼的孩子很适合。",
+          "cap": [
+            "游泳",
+            "关节负担小"
+          ],
+          "hl": "关节负担小"
+        },
+        "ch": {
+          "narr": "相反，游泳在水裡，對關節負擔小，還能拉伸全身。膝蓋疼的孩子很適合。",
+          "cap": [
+            "游泳",
+            "關節負擔小"
+          ],
+          "hl": "關節負擔小"
+        }
+      }
+    },
+    {
+      "id": "c6",
+      "time": "19–23.5s",
+      "kind": "ig",
+      "igLabel": "IG3 스트레칭·구기·자전거",
+      "motion": "3종 팝업",
+      "copy": {
+        "ko": {
+          "narr": "스트레칭과 요가는 척추를 펴 자세를 잡고, 농구·배구는 점프와 달리기를 한 번에, 자전거는 하체를 키워요.",
+          "cap": [
+            "자세 교정·점프",
+            "하체까지"
+          ],
+          "hl": "자세 교정·점프"
+        },
+        "th": {
+          "narr": "ยืดเหยียดโยคะจัดท่าทางหลังตรง บาสวอลเลย์รวมกระโดดวิ่ง จักรยานเสริมขา",
+          "cap": [
+            "จัดท่าทาง·กระโดด",
+            "เสริมขา"
+          ],
+          "hl": "จัดท่าทาง·กระโดด"
+        },
+        "vi": {
+          "narr": "Giãn cơ và yoga giúp thẳng cột sống, bóng rổ bóng chuyền gộp nhảy và chạy, đạp xe khỏe chân.",
+          "cap": [
+            "Chỉnh tư thế·bật nhảy",
+            "khỏe chân"
+          ],
+          "hl": "Chỉnh tư thế·bật nhảy"
+        },
+        "en": {
+          "narr": "Stretching and yoga straighten the spine, basketball and volleyball mix jumping and running, cycling builds the legs.",
+          "cap": [
+            "Posture·jump",
+            "strong legs"
+          ],
+          "hl": "Posture·jump"
+        },
+        "cn": {
+          "narr": "拉伸和瑜伽帮挺直脊椎，篮球排球把弹跳和跑步合一，骑车强化腿部。",
+          "cap": [
+            "矫正姿势·弹跳",
+            "强化腿部"
+          ],
+          "hl": "矫正姿势·弹跳"
+        },
+        "ch": {
+          "narr": "拉伸和瑜伽幫挺直脊椎，籃球排球把彈跳和跑步合一，騎車強化腿部。",
+          "cap": [
+            "矯正姿勢·彈跳",
+            "強化腿部"
+          ],
+          "hl": "矯正姿勢·彈跳"
+        }
+      }
+    },
+    {
+      "id": "c7",
+      "time": "23.5–27s",
+      "kind": "doctor",
+      "motion": "☀️ 햇살 반짝",
+      "copy": {
+        "ko": {
+          "narr": "자전거는 야외에서 햇볕까지 쬐니, 비타민 D가 만들어져 뼈 건강에도 좋아요.",
+          "cap": [
+            "야외 햇볕",
+            "비타민 D"
+          ],
+          "hl": "비타민 D"
+        },
+        "th": {
+          "narr": "ปั่นจักรยานกลางแจ้งได้รับแสงแดด สร้างวิตามินดี ดีต่อกระดูก",
+          "cap": [
+            "แสงแดด",
+            "วิตามินดี"
+          ],
+          "hl": "วิตามินดี"
+        },
+        "vi": {
+          "narr": "Đạp xe ngoài trời còn được tắm nắng, tạo vitamin D, tốt cho xương.",
+          "cap": [
+            "Nắng ngoài trời",
+            "vitamin D"
+          ],
+          "hl": "vitamin D"
+        },
+        "en": {
+          "narr": "Cycling outdoors adds sunlight too, making vitamin D — good for the bones.",
+          "cap": [
+            "Sunlight",
+            "vitamin D"
+          ],
+          "hl": "vitamin D"
+        },
+        "cn": {
+          "narr": "户外骑车还能晒太阳，生成维生素D，对骨骼也好。",
+          "cap": [
+            "晒太阳",
+            "维生素D"
+          ],
+          "hl": "维生素D"
+        },
+        "ch": {
+          "narr": "戶外騎車還能曬太陽，生成維生素D，對骨骼也好。",
+          "cap": [
+            "曬太陽",
+            "維生素D"
+          ],
+          "hl": "維生素D"
+        }
+      }
+    },
+    {
+      "id": "c8",
+      "time": "27–30.5s",
+      "kind": "ig",
+      "igLabel": "IG4 핵심 원칙",
+      "motion": "🔄 순환 회전",
+      "copy": {
+        "ko": {
+          "narr": "핵심은 한 가지가 아니라, 즐겁게 다양하게 꾸준히! 매일 적당히가 몰아서보다 나아요.",
+          "cap": [
+            "다양하게",
+            "꾸준히 즐겁게"
+          ],
+          "hl": "꾸준히 즐겁게"
+        },
+        "th": {
+          "narr": "หัวใจคือ ไม่ใช่อย่างเดียว แต่หลากหลาย สนุก สม่ำเสมอ! ทำทุกวันพอดีดีกว่าหักโหม",
+          "cap": [
+            "หลากหลาย",
+            "สม่ำเสมอ สนุก"
+          ],
+          "hl": "สม่ำเสมอ สนุก"
+        },
+        "vi": {
+          "narr": "Cốt lõi là không một môn, mà đa dạng, vui, đều đặn! Mỗi ngày vừa phải hơn dồn một lúc.",
+          "cap": [
+            "Đa dạng",
+            "đều đặn, vui"
+          ],
+          "hl": "đều đặn, vui"
+        },
+        "en": {
+          "narr": "The key isn't one sport — it's variety, fun, and consistency! A little daily beats a lot at once.",
+          "cap": [
+            "Variety",
+            "consistent, fun"
+          ],
+          "hl": "consistent, fun"
+        },
+        "cn": {
+          "narr": "关键不是只做一种，而是多样、开心、坚持！每天适量胜过一次猛练。",
+          "cap": [
+            "多样",
+            "坚持又开心"
+          ],
+          "hl": "坚持又开心"
+        },
+        "ch": {
+          "narr": "關鍵不是只做一種，而是多樣、開心、堅持！每天適量勝過一次猛練。",
+          "cap": [
+            "多樣",
+            "堅持又開心"
+          ],
+          "hl": "堅持又開心"
+        }
+      }
+    },
+    {
+      "id": "c9",
+      "time": "30.5–33s",
+      "kind": "doctor",
+      "motion": "🌙 수면+식단 페이드",
+      "copy": {
+        "ko": {
+          "narr": "단, 아무리 좋은 운동도 충분한 수면과 균형 잡힌 식단이 받쳐줘야 효과를 봐요.",
+          "cap": [
+            "운동 + 수면",
+            "+ 식단"
+          ],
+          "hl": "+ 식단"
+        },
+        "th": {
+          "narr": "แต่ออกกำลังดีแค่ไหน ต้องมีการนอนพอและอาหารสมดุลหนุนถึงเห็นผล",
+          "cap": [
+            "ออกกำลัง + นอน",
+            "+ อาหาร"
+          ],
+          "hl": "+ อาหาร"
+        },
+        "vi": {
+          "narr": "Nhưng môn nào tốt mấy cũng cần ngủ đủ và ăn cân bằng mới có hiệu quả.",
+          "cap": [
+            "Vận động + ngủ",
+            "+ ăn uống"
+          ],
+          "hl": "+ ăn uống"
+        },
+        "en": {
+          "narr": "But even the best exercise needs enough sleep and balanced meals to work.",
+          "cap": [
+            "Exercise + sleep",
+            "+ diet"
+          ],
+          "hl": "+ diet"
+        },
+        "cn": {
+          "narr": "不过再好的运动，也要充足睡眠和均衡饮食撑着才有效果。",
+          "cap": [
+            "运动 + 睡眠",
+            "+ 饮食"
+          ],
+          "hl": "+ 饮食"
+        },
+        "ch": {
+          "narr": "不過再好的運動，也要充足睡眠和均衡飲食撐著才有效果。",
+          "cap": [
+            "運動 + 睡眠",
+            "+ 飲食"
+          ],
+          "hl": "+ 飲食"
+        }
+      }
+    },
+    {
+      "id": "c10",
+      "time": "33–35s",
+      "kind": "cta",
+      "motion": "✅ (CTA 표준)",
+      "copy": {
+        "ko": {
+          "narr": "우리 아이한테 맞는 운동 강도, 뼈나이로 먼저 확인해 보세요.",
+          "cap": [
+            "맞는 운동 강도",
+            "지금 확인"
+          ],
+          "hl": "지금 확인"
+        },
+        "th": {
+          "narr": "ความเข้มข้นที่เหมาะกับลูก เช็กด้วยอายุกระดูกก่อนเลย",
+          "cap": [
+            "ความเข้มที่เหมาะ",
+            "เช็กวันนี้"
+          ],
+          "hl": "เช็กวันนี้"
+        },
+        "vi": {
+          "narr": "Cường độ phù hợp với con, kiểm tra bằng tuổi xương trước nhé.",
+          "cap": [
+            "Cường độ phù hợp",
+            "kiểm tra ngay"
+          ],
+          "hl": "kiểm tra ngay"
+        },
+        "en": {
+          "narr": "The right intensity for your child — check with bone age first.",
+          "cap": [
+            "Right intensity",
+            "check today"
+          ],
+          "hl": "check today"
+        },
+        "cn": {
+          "narr": "适合孩子的运动强度，先用骨龄查一查吧。",
+          "cap": [
+            "合适的强度",
+            "现在就查"
+          ],
+          "hl": "现在就查"
+        },
+        "ch": {
+          "narr": "適合孩子的運動強度，先用骨齡查一查吧。",
+          "cap": [
+            "合適的強度",
+            "現在就查"
+          ],
+          "hl": "現在就查"
+        }
+      }
+    }
+  ],
+  "infographics": [
+    {
+      "ig": 1,
+      "scene": "c3",
+      "motion": "5종 순차 점등",
+      "title": "키 크는 운동 5종",
+      "emojis": [
+        "🤾",
+        "🏊",
+        "🧘",
+        "🏀",
+        "🚲"
+      ],
+      "prompt": "Flat vector, square, white background. Five friendly pediatric activity icons arranged in a gentle arc: a child skipping a jump rope, a child swimming, a child stretching/doing yoga, a child jumping for a basketball, and a child riding a bicycle. Each icon sits in a soft rounded badge. Brand purple #667eea to mint #2dd4bf gradient accents, cheerful and clean. NO text.",
+      "labels": [
+        {
+          "pos": "아이콘1",
+          "ko": "줄넘기",
+          "en": "Jump rope",
+          "th": "กระโดดเชือก"
+        },
+        {
+          "pos": "아이콘2",
+          "ko": "수영",
+          "en": "Swimming",
+          "th": "ว่ายน้ำ"
+        },
+        {
+          "pos": "아이콘3",
+          "ko": "스트레칭",
+          "en": "Stretching",
+          "th": "ยืดเหยียด"
+        },
+        {
+          "pos": "아이콘4",
+          "ko": "구기 종목",
+          "en": "Ball sports",
+          "th": "กีฬาลูกบอล"
+        },
+        {
+          "pos": "아이콘5",
+          "ko": "자전거",
+          "en": "Cycling",
+          "th": "ปั่นจักรยาน"
+        }
+      ]
+    },
+    {
+      "ig": 2,
+      "scene": "c5",
+      "motion": "🌊 물결 일렁 + 무릎 글로우",
+      "title": "수영 — 관절 부담 적게",
+      "emojis": [
+        "🏊",
+        "🌊"
+      ],
+      "prompt": "Flat vector, square, white background. A cheerful child swimming through gentle water, body stretched long and streamlined, soft mint water ripples around them, a subtle soft glow on the knees to suggest 'gentle on joints.' Brand purple and mint palette, calm and friendly. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "무릎(글로우)",
+          "ko": "관절 보호",
+          "en": "Joint-friendly",
+          "th": "ถนอมข้อต่อ"
+        },
+        {
+          "pos": "상단",
+          "ko": "전신 스트레칭",
+          "en": "Full-body stretch",
+          "th": "ยืดทั้งตัว"
+        }
+      ]
+    },
+    {
+      "ig": 3,
+      "scene": "c6",
+      "motion": "3종 팝업 + 척추 정렬",
+      "title": "스트레칭·구기·자전거",
+      "emojis": [
+        "🧘",
+        "🏀",
+        "🚲"
+      ],
+      "prompt": "Flat vector, square, white background. A triptych of three friendly pediatric scenes side by side: left, a child stretching with a straight upright spine; center, a child mid-jump reaching up for a basketball; right, a child riding a bicycle outdoors. Soft dividers between panels. Brand purple #667eea and mint #2dd4bf accents, energetic and clean. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "왼쪽",
+          "ko": "자세 교정",
+          "en": "Posture",
+          "th": "จัดท่าทาง"
+        },
+        {
+          "pos": "가운데",
+          "ko": "점프 복합",
+          "en": "Jump combo",
+          "th": "กระโดดผสม"
+        },
+        {
+          "pos": "오른쪽",
+          "ko": "하체 강화",
+          "en": "Leg strength",
+          "th": "เสริมขา"
+        }
+      ]
+    },
+    {
+      "ig": 4,
+      "scene": "c8",
+      "motion": "🔄 순환 회전 + 점등",
+      "title": "핵심 원칙 — 다양·꾸준·즐겁게",
+      "emojis": [
+        "🔄",
+        "😊",
+        "📅"
+      ],
+      "prompt": "Flat vector, square, white background. A circular rotation diagram: several small activity icons (jump rope, swim, stretch, ball, bike) arranged around a smiling happy child in the center, connected by a gentle circular arrow loop suggesting rotating variety and consistency. Brand purple to mint gradient on the loop, warm and friendly. NO text, NO numbers.",
+      "labels": [
+        {
+          "pos": "상단",
+          "ko": "다양하게",
+          "en": "Variety",
+          "th": "หลากหลาย"
+        },
+        {
+          "pos": "오른쪽",
+          "ko": "꾸준히",
+          "en": "Consistency",
+          "th": "สม่ำเสมอ"
+        },
+        {
+          "pos": "가운데",
+          "ko": "즐겁게",
+          "en": "Have fun",
+          "th": "สนุก"
+        }
+      ]
+    }
+  ],
+  "emojis": [
+    {
+      "e": "🤾",
+      "label": "줄넘기"
+    },
+    {
+      "e": "🏊",
+      "label": "수영"
+    },
+    {
+      "e": "🧘",
+      "label": "스트레칭·요가"
+    },
+    {
+      "e": "🏀",
+      "label": "구기 종목"
+    },
+    {
+      "e": "🚲",
+      "label": "자전거"
+    },
+    {
+      "e": "🦴",
+      "label": "성장판·뼈나이"
+    },
+    {
+      "e": "☀️",
+      "label": "비타민 D"
+    },
+    {
+      "e": "🌙",
+      "label": "수면"
+    },
+    {
+      "e": "🍽️",
+      "label": "식단"
+    },
+    {
+      "e": "🔄",
+      "label": "다양·꾸준"
+    },
+    {
+      "e": "✨",
+      "label": "강조"
+    },
+    {
+      "e": "✅",
+      "label": "CTA"
+    }
+  ]
+}

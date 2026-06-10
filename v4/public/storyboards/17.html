@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 중금속(납·수은·카드뮴)이 키 성장에 미치는 영향</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #17</span>
+  <h1>밥 잘 먹는데 왜 안 클까? — 키 막는 숨은 적, 중금속</h1>
+  <div class="sub">납·수은·카드뮴이 성장호르몬과 성장판을 방해 — 식단·환경으로 막고, 막힌 성장은 다시 되찾자</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>잘 먹는데 왜?</b></div>
+      <div class="subj">우리 아이 키 막는</div>
+      <div class="big4"><div class="n" style="font-size:98px">숨은 적</div><div class="lab">중금속</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키 막는</b> 숨은 적중금속"</li>
+        <li><b>거대 숫자 "숨은 적"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #17 「중금속(납·수은·카드뮴)이 키 성장에 미치는 영향」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"잘 먹고 잘 자는데도 키가 더디다면, 일상 속 '숨은 적'을 의심해 보세요."</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>키는 유전·영양만으로 정해진다 → 사실 일상 속 중금속이 성장호르몬과 성장판을 방해할 수 있다</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>납은 칼슘인 척 뼈에 쌓여 성장판을, 수은은 갑상선·성장호르몬을, 카드뮴은 IGF-1을 방해한다. 아이는 흡수율이 높아 더 취약하지만, 식단·환경 관리로 막고 좋은 미네랄로 배출을 도울 수 있다.</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박·공포 ❌ → 긍정·실천("막을 수 있고, 좋은 미네랄로 내보낼 수 있다"). "우리 아이 키" 보편(잘 먹는 아이 부모도 해당). 시청자가 검사 이미 했다고 단정 ❌ → CTA는 뼈나이/예측키 측정 초대</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>우리 아이 성장, 잘 가고 있는지 지금 확인 → 뼈나이/예측키 측정 유도</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>훅·반전</h4><p>c1–c2<br>"잘 먹는데 더디다? 키엔 숨은 적이 있다 — 중금속"</p></div><div class="act"><span class="n">ACT 2</span><h4>왜 취약한가</h4><p>c3–c4<br>"납은 칼슘인 척 뼈에 쌓여 성장판 방해 + 아이는 흡수율 높아 취약"</p></div><div class="act"><span class="n">ACT 3</span><h4>수은·카드뮴</h4><p>c5–c6<br>"수은=갑상선·성장호르몬 방해 / 카드뮴=IGF-1·골밀도 방해"</p></div><div class="act"><span class="n">ACT 4</span><h4>막는 법</h4><p>c7–c8<br>"좋은 미네랄이 흡수 막고 배출 도움 + 환기·KC 장난감으로 환경 차단"</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"성장 잘 가는지 뼈나이로 확인 → CTA 측정"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">숨은 적이 있다?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">🥢🦴</div></div>
+        <div class="ph-cap"><div class="l">잘 먹는데 더디다면</div><div class="l"><span class="y2">숨은 적 의심</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">잘 먹고 잘 자는데도 키가 더디다면, 일상 속 '숨은 적'을 의심해 보세요.</td><td><span class="cap2">잘 먹는데 더디다면<br><span class="y">숨은 적 의심</span></span></td><td class="mo">🕵️ 슬램 인 + ❓ 팝</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그 정체는 일상에서 쉽게 노출되는 중금속, 납·수은·카드뮴이에요.</td><td><span class="cap2">그 정체는<br><span class="y">중금속 3가지</span></span></td><td class="mo">☣️ 흔들 + 등장</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 납·칼슘 위장</span></td><td class="narr">납은 칼슘인 척 뼈에 쌓여서, 뼈를 키우는 성장판 세포를 망가뜨려요.</td><td><span class="cap2">납은 칼슘인 척<br><span class="y">성장판 방해</span></span></td><td class="mo">🦴 점등 + 가짜 표시</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 아이가 더 취약</span></td><td class="narr">게다가 아이는 몸무게 대비 흡수율이 높고 해독 능력은 미숙해서 더 취약해요.</td><td><span class="cap2"><span class="y">아이는 흡수율 ↑</span><br>해독은 미숙</span></td><td class="mo">👶 펄스 + 흡수율 ↑</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">수은은 큰 생선을 통해 들어와, 갑상선과 성장호르몬을 방해해요.</td><td><span class="cap2">수은은 큰 생선으로<br><span class="y">호르몬 방해</span></span></td><td class="mo">🐟 펄스 + 🦋 방해</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22.5s</td><td><span class="scr ig">🖼 IG3 카드뮴·IGF-1</span></td><td class="narr">카드뮴은 신장에서 칼슘을 빼내 골밀도를 낮추고, 성장인자 IGF-1까지 막아요.</td><td><span class="cap2">카드뮴은 골밀도 ↓<br><span class="y">IGF-1 차단</span></span></td><td class="mo">⛏️ 등장 + IGF-1 차단</td></tr><tr><td class="c-id">c7</td><td class="c-time">22.5–26s</td><td><span class="scr ig">🖼 IG4 좋은 미네랄 방패</span></td><td class="narr">좋은 소식! 칼슘·철·아연·셀레늄이 흡수를 막고 배출까지 도와요.</td><td><span class="cap2">칼슘·철·아연·셀레늄<br><span class="y">흡수 막고 배출</span></span></td><td class="mo">🛡️ 4점 점등 + ↘ 배출</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">여기에 자주 환기·청소하고, KC 인증 장난감만 골라도 노출을 확 줄여요.</td><td><span class="cap2">환기·청소 +<br><span class="y">KC 장난감</span></span></td><td class="mo">🪟 환기 + ✅ KC</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">뼈나이랑 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있어요.</td><td><span class="cap2">뼈나이·예측키로<br><span class="y">성장 확인</span></span></td><td class="mo">🦴🔍 팝 + ✨</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보세요.</td><td><span class="cap2">뼈나이·예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: 칼슘 위장 → 성장판 점등</div><h3>납 = 칼슘인 척 뼈에 쌓임</h3></div>
+        <div class="body">
+          <div class="sketch">🦴 🎭 ⚠️</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A long bone standing upright with a glowing mint growth-plate band near the top; small dark metallic particles wearing tiny 'calcium' disguise masks sneaking into the bone and dimming/cracking the growth-plate band. Brand purple #667eea bone, mint #2dd4bf growth plate, a few muted gray intruder dots with a soft warning glow. Friendly pediatric, clean. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>침입 입자</td><td>납(칼슘 위장)</td><td>Lead in disguise</td><td class="thai">ตะกั่วปลอมตัว</td></tr><tr><td>성장판 밴드</td><td>성장판 손상</td><td>Plate harmed</td><td class="thai">แผ่นกระดูกเสียหาย</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 흡수율 ↑ 펄스</div><h3>아이가 더 취약 — 높은 흡수율</h3></div>
+        <div class="body">
+          <div class="sketch">👶 🧑 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A small child silhouette beside a taller adult silhouette; over the child, a larger upward absorption arrow and bigger inflow droplets, over the adult a much smaller one, showing kids take in more relative to size. A tiny weak shield over the child (immature detox). Brand purple #667eea with mint #2dd4bf accents, friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>아이 위(큰 화살표)</td><td>흡수율 높음</td><td>Absorbs more</td><td class="thai">ดูดซึมมากกว่า</td></tr><tr><td>아이 방패(작음)</td><td>해독 미숙</td><td>Weak detox</td><td class="thai">ล้างพิษอ่อน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: 골밀도 ↓ + IGF-1 차단</div><h3>카드뮴 — 골밀도·IGF-1 방해</h3></div>
+        <div class="body">
+          <div class="sketch">⛏️ 🦴 🚫</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. Left: a kidney icon leaking calcium droplets outward (loss). Center: a bone cross-section whose dense lattice is thinning into gaps (lower density). Right: a small growth-factor key labeled by shape blocked by a tiny barrier. Brand purple #667eea bone with mint #2dd4bf, muted gray cadmium accent, soft warning tone (not scary). Friendly pediatric, clean. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>신장(누수)</td><td>칼슘 빠짐</td><td>Calcium lost</td><td class="thai">แคลเซียมรั่ว</td></tr><tr><td>뼈 단면</td><td>골밀도 ↓</td><td>Bone density ↓</td><td class="thai">มวลกระดูก ↓</td></tr><tr><td>차단 막대</td><td>IGF-1 차단</td><td>IGF-1 blocked</td><td class="thai">ขวาง IGF-1</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c7 · 모션: 4 미네랄 순차 점등 + 배출 ↘</div><h3>좋은 미네랄 방패 — 흡수 차단·배출</h3></div>
+        <div class="body">
+          <div class="sketch">🛡️ 🥛 ✨</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white bg. A friendly glowing mint shield in front of a child's body deflecting incoming dark metallic dots; four bright mineral orbs orbit the shield, and a downward sweep arrow flushes the deflected dots out the bottom. Brand purple #667eea body, mint #2dd4bf shield with soft sparkles, muted gray metal dots being pushed away. Reassuring, friendly pediatric. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>오브 4개</td><td>칼슘·철·아연·셀레늄</td><td>Ca·Fe·Zn·Se</td><td class="thai">แคลเซียม·เหล็ก·สังกะสี·ซีลีเนียม</td></tr><tr><td>하단 화살표</td><td>배출 ↓</td><td>Flushed out ↓</td><td class="thai">ขับออก ↓</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>🕵️</b> 숨은 적</span><span class="emo"><b>☣️</b> 중금속</span><span class="emo"><b>🦴</b> 성장판·뼈나이</span><span class="emo"><b>🎭</b> 납(칼슘 위장)</span><span class="emo"><b>👶</b> 아이 취약</span><span class="emo"><b>🐟</b> 수은(큰 생선)</span><span class="emo"><b>⛏️</b> 카드뮴</span><span class="emo"><b>🛡️</b> 좋은 미네랄 방패</span><span class="emo"><b>🪟</b> 환기·청소</span><span class="emo"><b>🔍</b> 확인·검사</span><span class="emo"><b>✨</b> 안심·강조</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>잘 먹고 잘 자는데도 키가 더디다면, 일상 속 '숨은 적'을 의심해 보세요.<br><span class="cap2">잘 먹는데 더디다면 · <span class="y">숨은 적 의심</span></span></td></tr><tr><td class="c-id">c2</td><td>그 정체는 일상에서 쉽게 노출되는 중금속, 납·수은·카드뮴이에요.<br><span class="cap2">그 정체는 · <span class="y">중금속 3가지</span></span></td></tr><tr><td class="c-id">c3</td><td>납은 칼슘인 척 뼈에 쌓여서, 뼈를 키우는 성장판 세포를 망가뜨려요.<br><span class="cap2">납은 칼슘인 척 · <span class="y">성장판 방해</span></span></td></tr><tr><td class="c-id">c4</td><td>게다가 아이는 몸무게 대비 흡수율이 높고 해독 능력은 미숙해서 더 취약해요.<br><span class="cap2">아이는 흡수율 ↑ · 해독은 미숙</span></td></tr><tr><td class="c-id">c5</td><td>수은은 큰 생선을 통해 들어와, 갑상선과 성장호르몬을 방해해요.<br><span class="cap2">수은은 큰 생선으로 · <span class="y">호르몬 방해</span></span></td></tr><tr><td class="c-id">c6</td><td>카드뮴은 신장에서 칼슘을 빼내 골밀도를 낮추고, 성장인자 IGF-1까지 막아요.<br><span class="cap2">카드뮴은 골밀도 ↓ · <span class="y">IGF-1 차단</span></span></td></tr><tr><td class="c-id">c7</td><td>좋은 소식! 칼슘·철·아연·셀레늄이 흡수를 막고 배출까지 도와요.<br><span class="cap2">칼슘·철·아연·셀레늄 · <span class="y">흡수 막고 배출</span></span></td></tr><tr><td class="c-id">c8</td><td>여기에 자주 환기·청소하고, KC 인증 장난감만 골라도 노출을 확 줄여요.<br><span class="cap2">환기·청소 + · <span class="y">KC 장난감</span></span></td></tr><tr><td class="c-id">c9</td><td>뼈나이랑 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있어요.<br><span class="cap2">뼈나이·예측키로 · <span class="y">성장 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보세요.<br><span class="cap2">뼈나이·예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>กินดีนอนดีแต่ตัวไม่ค่อยสูง? อาจมี 'ศัตรูที่ซ่อนอยู่' ในชีวิตประจำวัน<br><span class="cap2">กินดีแต่ไม่สูง? · <span class="y">ศัตรูที่ซ่อนอยู่</span></span></td></tr><tr><td class="c-id">c2</td><td>ตัวการคือโลหะหนักที่สัมผัสง่ายในชีวิตประจำวัน ตะกั่ว ปรอท แคดเมียม<br><span class="cap2">ตัวการคือ · <span class="y">โลหะหนัก 3 ชนิด</span></span></td></tr><tr><td class="c-id">c3</td><td>ตะกั่วปลอมเป็นแคลเซียมสะสมในกระดูก ทำลายเซลล์แผ่นกระดูก<br><span class="cap2">ตะกั่วปลอมเป็นแคลเซียม · <span class="y">ทำลายแผ่นกระดูก</span></span></td></tr><tr><td class="c-id">c4</td><td>ยิ่งกว่านั้น เด็กดูดซึมสูงกว่าตามน้ำหนัก แต่ล้างพิษยังไม่เก่ง จึงเสี่ยงกว่า<br><span class="cap2">เด็กดูดซึมสูง · ล้างพิษยังไม่เก่ง</span></td></tr><tr><td class="c-id">c5</td><td>ปรอทเข้าทางปลาตัวใหญ่ รบกวนไทรอยด์และฮอร์โมนการเจริญเติบโต<br><span class="cap2">ปรอทจากปลาใหญ่ · <span class="y">รบกวนฮอร์โมน</span></span></td></tr><tr><td class="c-id">c6</td><td>แคดเมียมดึงแคลเซียมออกทางไต ลดความหนาแน่นกระดูก และขวาง IGF-1<br><span class="cap2">แคดเมียมลดมวลกระดูก · <span class="y">ขวาง IGF-1</span></span></td></tr><tr><td class="c-id">c7</td><td>ข่าวดี! แคลเซียม เหล็ก สังกะสี ซีลีเนียม ช่วยกันดูดซึมและช่วยขับออก<br><span class="cap2">แคลเซียม·เหล็ก·สังกะสี · <span class="y">กันดูดซึม ช่วยขับ</span></span></td></tr><tr><td class="c-id">c8</td><td>เพิ่มการระบายอากาศ ทำความสะอาด เลือกของเล่นมีมาตรฐาน ก็ลดการสัมผัสได้มาก<br><span class="cap2">ระบายอากาศ·ทำความสะอาด · <span class="y">ของเล่นมาตรฐาน</span></span></td></tr><tr><td class="c-id">c9</td><td>อายุกระดูกและส่วนสูงที่คาดการณ์ บอกได้ทันทีว่าลูกโตดีไหม<br><span class="cap2">อายุกระดูก·คาดการณ์ · <span class="y">เช็กการโต</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้<br><span class="cap2">อายุกระดูก·คาดการณ์ · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Ăn ngủ tốt mà con vẫn chậm cao? Hãy nghi ngờ 'kẻ thù giấu mặt' quanh ta.<br><span class="cap2">Ăn tốt mà vẫn chậm? · <span class="y">kẻ thù giấu mặt</span></span></td></tr><tr><td class="c-id">c2</td><td>Đó là kim loại nặng dễ nhiễm hằng ngày: chì, thủy ngân, cadmium.<br><span class="cap2">Thủ phạm là · <span class="y">3 kim loại nặng</span></span></td></tr><tr><td class="c-id">c3</td><td>Chì giả làm canxi, tích trong xương và phá hỏng tế bào sụn tăng trưởng.<br><span class="cap2">Chì giả làm canxi · <span class="y">hại sụn tăng trưởng</span></span></td></tr><tr><td class="c-id">c4</td><td>Hơn nữa, trẻ hấp thu nhiều hơn theo cân nặng nhưng thải độc còn non, nên dễ tổn thương.<br><span class="cap2">Trẻ hấp thu cao · thải độc còn non</span></td></tr><tr><td class="c-id">c5</td><td>Thủy ngân vào qua cá lớn, quấy rối tuyến giáp và hormone tăng trưởng.<br><span class="cap2">Thủy ngân từ cá lớn · <span class="y">rối loạn hormone</span></span></td></tr><tr><td class="c-id">c6</td><td>Cadmium rút canxi qua thận, giảm mật độ xương và chặn cả yếu tố tăng trưởng IGF-1.<br><span class="cap2">Cadmium giảm mật độ xương · <span class="y">chặn IGF-1</span></span></td></tr><tr><td class="c-id">c7</td><td>Tin vui! Canxi, sắt, kẽm, selen chặn hấp thu và còn giúp đào thải.<br><span class="cap2">Canxi·sắt·kẽm·selen · <span class="y">chặn &amp; đào thải</span></span></td></tr><tr><td class="c-id">c8</td><td>Thêm vào: năng thông gió, lau dọn và chọn đồ chơi đạt chuẩn là giảm hẳn phơi nhiễm.<br><span class="cap2">Thông gió·lau dọn · <span class="y">đồ chơi đạt chuẩn</span></span></td></tr><tr><td class="c-id">c9</td><td>Tuổi xương và chiều cao dự đoán cho biết ngay con có lớn tốt không.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra tăng trưởng</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.<br><span class="cap2">Tuổi xương·dự đoán · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Eating and sleeping well but still growing slow? Suspect a hidden enemy in daily life.<br><span class="cap2">Eats well, grows slow? · <span class="y">a hidden enemy</span></span></td></tr><tr><td class="c-id">c2</td><td>It's heavy metals we're exposed to daily — lead, mercury, and cadmium.<br><span class="cap2">The culprit: · <span class="y">3 heavy metals</span></span></td></tr><tr><td class="c-id">c3</td><td>Lead poses as calcium, piles into bone, and wrecks growth-plate cells.<br><span class="cap2">Lead poses as calcium · <span class="y">harms growth plate</span></span></td></tr><tr><td class="c-id">c4</td><td>And kids absorb more per body weight while their detox is immature — far more vulnerable.<br><span class="cap2">Kids absorb more · detox immature</span></td></tr><tr><td class="c-id">c5</td><td>Mercury comes in through big fish and disrupts the thyroid and growth hormone.<br><span class="cap2">Mercury via big fish · <span class="y">disrupts hormones</span></span></td></tr><tr><td class="c-id">c6</td><td>Cadmium pulls calcium out via the kidneys, lowering bone density and blocking growth factor IGF-1.<br><span class="cap2">Cadmium lowers density · <span class="y">blocks IGF-1</span></span></td></tr><tr><td class="c-id">c7</td><td>Good news! Calcium, iron, zinc, and selenium block absorption and help flush it out.<br><span class="cap2">Calcium·iron·zinc·selenium · <span class="y">block &amp; flush out</span></span></td></tr><tr><td class="c-id">c8</td><td>Add frequent airing and cleaning, and pick certified-safe toys — exposure drops fast.<br><span class="cap2">Air out &amp; clean + · <span class="y">certified toys</span></span></td></tr><tr><td class="c-id">c9</td><td>Bone age and predicted height tell you right away if your child's growing well.<br><span class="cap2">Bone age·prediction · <span class="y">check growth</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's growth with bone age and predicted height today.<br><span class="cap2">Bone age·height · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>吃得好睡得好却长得慢？怀疑一下生活里的'隐形敌人'。<br><span class="cap2">吃得好却长得慢？ · <span class="y">隐形敌人</span></span></td></tr><tr><td class="c-id">c2</td><td>它就是日常容易接触的重金属——铅、汞、镉。<br><span class="cap2">真凶是 · <span class="y">三种重金属</span></span></td></tr><tr><td class="c-id">c3</td><td>铅伪装成钙堆进骨头，破坏造骨的生长板细胞。<br><span class="cap2">铅伪装成钙 · <span class="y">破坏生长板</span></span></td></tr><tr><td class="c-id">c4</td><td>而且孩子按体重吸收率更高，排毒能力却不成熟，所以更脆弱。<br><span class="cap2">孩子吸收率高 · 排毒不成熟</span></td></tr><tr><td class="c-id">c5</td><td>汞通过大型鱼进入体内，干扰甲状腺和生长激素。<br><span class="cap2">汞来自大型鱼 · <span class="y">干扰激素</span></span></td></tr><tr><td class="c-id">c6</td><td>镉经肾脏把钙排走，降低骨密度，还阻断生长因子IGF-1。<br><span class="cap2">镉降低骨密度 · <span class="y">阻断IGF-1</span></span></td></tr><tr><td class="c-id">c7</td><td>好消息！钙、铁、锌、硒能阻挡吸收，还帮助排出。<br><span class="cap2">钙·铁·锌·硒 · <span class="y">阻吸收助排出</span></span></td></tr><tr><td class="c-id">c8</td><td>再加上常通风清洁、只选合格认证玩具，接触就大大减少。<br><span class="cap2">通风清洁 + · <span class="y">认证玩具</span></span></td></tr><tr><td class="c-id">c9</td><td>看骨龄和预测身高，马上知道孩子长得好不好。<br><span class="cap2">骨龄·预测身高 · <span class="y">查看成长</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就用骨龄和预测身高查查孩子的成长吧。<br><span class="cap2">骨龄·预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>吃得好睡得好卻長得慢？懷疑一下生活裡的'隱形敵人'。<br><span class="cap2">吃得好卻長得慢？ · <span class="y">隱形敵人</span></span></td></tr><tr><td class="c-id">c2</td><td>它就是日常容易接觸的重金屬——鉛、汞、鎘。<br><span class="cap2">真凶是 · <span class="y">三種重金屬</span></span></td></tr><tr><td class="c-id">c3</td><td>鉛偽裝成鈣堆進骨頭，破壞造骨的生長板細胞。<br><span class="cap2">鉛偽裝成鈣 · <span class="y">破壞生長板</span></span></td></tr><tr><td class="c-id">c4</td><td>而且孩子按體重吸收率更高，排毒能力卻不成熟，所以更脆弱。<br><span class="cap2">孩子吸收率高 · 排毒不成熟</span></td></tr><tr><td class="c-id">c5</td><td>汞透過大型魚進入體內，干擾甲狀腺和生長激素。<br><span class="cap2">汞來自大型魚 · <span class="y">干擾激素</span></span></td></tr><tr><td class="c-id">c6</td><td>鎘經腎臟把鈣排走，降低骨密度，還阻斷生長因子IGF-1。<br><span class="cap2">鎘降低骨密度 · <span class="y">阻斷IGF-1</span></span></td></tr><tr><td class="c-id">c7</td><td>好消息！鈣、鐵、鋅、硒能阻擋吸收，還幫助排出。<br><span class="cap2">鈣·鐵·鋅·硒 · <span class="y">阻吸收助排出</span></span></td></tr><tr><td class="c-id">c8</td><td>再加上常通風清潔、只選合格認證玩具，接觸就大大減少。<br><span class="cap2">通風清潔 + · <span class="y">認證玩具</span></span></td></tr><tr><td class="c-id">c9</td><td>看骨齡和預測身高，馬上知道孩子長得好不好。<br><span class="cap2">骨齡·預測身高 · <span class="y">查看成長</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就用骨齡和預測身高查查孩子的成長吧。<br><span class="cap2">骨齡·預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/중금속키성장/</code> · <code>중금속키성장-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 학원 스트레스와 키 성장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  h2.newtag .no{background:var(--pink)}
+  .newpill{font-size:11px;font-weight:800;color:#fff;background:var(--pink);padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  .thumbwrap{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .thumb{width:300px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .glowcurve{position:absolute;left:-5%;right:-5%;top:34%;height:46%;background:
+    radial-gradient(120px 80px at 80% 40%,rgba(45,212,191,.5),transparent 70%),
+    radial-gradient(140px 90px at 20% 75%,rgba(102,126,234,.5),transparent 70%)}
+  .thumb .dots{position:absolute;left:8%;right:8%;top:52%;display:flex;justify-content:space-between}
+  .thumb .dots i{width:14px;height:14px;border-radius:50%;background:var(--mint);box-shadow:0 0 14px var(--mint);display:block;opacity:.7}
+  .thumb .dots i:last-child{opacity:1;width:18px;height:18px}
+  .thumb .kicker{position:absolute;top:6%;left:0;right:0;text-align:center;color:#fff;font-size:14px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .subj{position:absolute;top:15.5%;left:0;right:0;text-align:center;color:#fff;font-size:20px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.55)}
+  .thumb .big4{position:absolute;top:25%;left:0;right:0;text-align:center;line-height:.86}
+  .thumb .big4 .n{font-size:132px;font-weight:900;color:var(--gold);text-shadow:0 6px 0 rgba(184,134,0,.25),0 0 30px rgba(255,200,61,.55)}
+  .thumb .big4 .lab{font-size:31px;font-weight:900;color:#fff}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 4px}
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:13.5px;font-weight:800}
+  .act p{margin:0;font-size:12px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  .fmt{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+  .phone{width:260px;aspect-ratio:9/16;background:var(--dark);border-radius:24px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:11px;opacity:.85}
+  .ph-head .mark{font-size:15px;font-weight:900;background:var(--pink);padding:3px 10px;border-radius:8px}
+  .ph-video{aspect-ratio:1/1;margin:0 12px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#3a2c1e,#1a1410);display:grid;place-items:center;font-size:48px;position:relative}
+  .ph-video .acc{position:absolute;top:10px;right:12px;font-size:22px}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px}
+  .ph-cap .l{font-size:14px;font-weight:800}
+  .ph-cap .l .y2{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:10px;font-weight:800;letter-spacing:1px}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  .mo{font-size:12px;color:#7a5cc7;font-weight:600}
+  .mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:3px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  .mg code{background:#eef0f7;padding:1px 5px;border-radius:5px;font-size:11.5px}
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:13px 17px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:15.5px;font-weight:900}
+  .igc .body{padding:15px 17px}
+  .sketch{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;display:flex;align-items:center;justify-content:center;gap:14px;font-size:42px;margin-bottom:12px}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:11px 0 5px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:6px 9px}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  .emos{display:flex;flex-wrap:wrap;gap:9px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;display:flex;align-items:center;gap:6px}
+  .emo b{font-size:17px}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tabbtn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;font-family:inherit}
+  .tabbtn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+  .tabpanel{display:none}
+  .tabpanel.on{display:block}
+  .cjk{font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC','Noto Sans KR',sans-serif}
+  .cjk-tc{font-family:'Noto Sans TC','Microsoft JhengHei','PingFang TC','Noto Sans KR',sans-serif}
+  table.cp{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  table.cp td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cp tr:last-child td{border-bottom:none}
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt,.thumbwrap,.mgrid{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap" style="padding:0">
+  <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #50</span>
+  <h1>학원 3개 다니는데 — 스트레스가 키를 막을까?</h1>
+  <div class="sub">코르티솔이 성장호르몬을 누른다 — 하지만 관리하면 되돌릴 수 있는 환경 요인</div>
+  <div class="chips"><span class="chip">📐 포맷 <b>PresenterShort v2</b></span><span class="chip">⏱ ~35초 / 10씬</span><span class="chip">🌏 <b>6개 언어 탭</b></span><span class="chip">✨ <b>모션·이모지</b></span><span class="chip">📱 <b>썸네일</b></span></div>
+</div></div>
+<div class="wrap">
+  <section><h2 class="newtag"><span class="no">📱</span> 표지 / 썸네일 <span class="newpill">눈에 확 띄게</span></h2>
+    <p class="lead">피드에서 손가락을 멈추게 하는 1순위. <b>거대 숫자 + 주어 + 고대비</b>. 주어 필수 · 하단 로고 크게 · 얼굴 없음.</p>
+    <div class="thumbwrap">
+    <div class="thumb">
+      <div class="glowcurve"></div>
+      <div class="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="kicker"><b>학원 3개?!</b></div>
+      <div class="subj">우리 아이 키</div>
+      <div class="big4"><div class="n" style="font-size:98px">STOP</div><div class="lab">스트레스가 막는다</div></div>
+      <div class="logo">187 GROWUP</div>
+    </div>
+      <div><ul>
+        <li><b>주어 필수</b> 🔑 — "<b>우리 아이 키</b> STOP스트레스가 막는다"</li>
+        <li><b>거대 숫자 "STOP"</b>(전기 노랑) — 0.5초 시선 자석</li>
+        <li><b>하단 187 로고 크게</b> · <b>4점 성장곡선</b> · 딥퍼플→네이비 고대비</li>
+      </ul>
+      <div class="lbl">배경 AI 프롬프트 (텍스트·인물 없이)</div>
+      <div class="ig-prompt">Vertical 9:16 poster background, deep purple-to-navy gradient (#3b2a78→#1a1340), a glowing upward growth curve with luminous mint nodes, soft light bursts, premium and energetic. Clean negative space center + bottom for big text and a logo. NO text, NO people.</div>
+      </div>
+    </div>
+  </section>
+  <section><h2><span class="no">1</span> 핵심 컨셉</h2><p class="lead">출처: 마케팅 콘텐츠 #50 「학원 스트레스와 키 성장」 (C. 부모공감)</p>
+    <div class="concept">
+      <div class="cc hookbox"><div class="t">🪝 HOOK</div><div class="big">"학원 3개 다니는 우리 아이, 혹시 스트레스가 키를 막고 있는 걸까요?"</div></div>
+      <div class="cc"><div class="t">❌ 흔한 오해</div><div>스트레스는 마음 문제일 뿐 키랑 상관없겠지 → 코르티솔이 실제로 성장호르몬을 억제함</div></div>
+      <div class="cc"><div class="t">✅ 진짜 메시지</div><div>만성 학원 스트레스 → 코르티솔↑ → 성장호르몬·수면·식욕·활동 모두 저하. 하지만 수면·운동·휴식으로 관리하면 되돌릴 수 있는 환경 요인</div></div>
+      <div class="cc"><div class="t">🎯 톤 (브랜드 룰)</div><div>협박 ❌ → 긍정 골든타임("관리하면 되돌릴 수 있다"). "우리 아이 키" 보편. 측정 유도 CTA</div></div>
+      <div class="cc"><div class="t">📣 CTA</div><div>스트레스가 키를 누르고 있는지 — 뼈나이·예측키로 지금 확인</div></div>
+    </div></section>
+  <section><h2><span class="no">2</span> 내러티브 아크</h2><div class="arc"><div class="act"><span class="n">ACT 1</span><h4>공감 훅</h4><p>c1–c2<br>"학원 스트레스가 키를 막을까?" 부모 걱정 공감</p></div><div class="act"><span class="n">ACT 2</span><h4>원리</h4><p>c3–c4<br>"스트레스→코르티솔→성장호르몬 억제→수면 방해"</p></div><div class="act"><span class="n">ACT 3</span><h4>4가지 영향</h4><p>c5–c6<br>"호르몬·식욕·활동·정서" 4갈래 신호</p></div><div class="act"><span class="n">ACT 4</span><h4>관리법</h4><p>c7–c8<br>"수면·운동·휴식으로 되돌릴 수 있다" 긍정 전환</p></div><div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"뼈나이로 확인 → CTA"</p></div></div></section>
+  <section><h2><span class="no">3</span> 포맷 미리보기 — PresenterShort v2</h2>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">우리 아이 키</div><div class="mark">스트레스 때문에?</div></div>
+        <div class="ph-video">🧑‍⚕️<div class="acc">📚😣</div></div>
+        <div class="ph-cap"><div class="l">학원 스트레스가</div><div class="l"><span class="y2">키를 막을까?</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul style="margin:0;padding-left:18px;font-size:14px">
+          <li><b>헤더</b> 핑크 마크 · <b>원장</b> 크림 정면 라운드 카드 · <b>자막</b> 흰+노랑 hl · <b>로고</b> 하단</li>
+          <li><span class="scr ig">인포그래픽</span> 4컷 = 언어중립 이미지 + <code>insertLabels</code></li>
+          <li><span class="newpill">NEW</span> <b>모션 액센트</b>: 각 씬 등장 시 이모지/텍스트가 <b>살짝</b> 팝</li>
+          <li><b>CTA</b>는 표준(로고 가운데 + 언어별 URL) — 변경 없음</li>
+        </ul>
+      </div>
+    </div></section>
+  <section><h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2><table><thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th><th>✨ 모션</th></tr></thead><tbody><tr><td class="c-id">c1</td><td class="c-time">0–3.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">학원 3개 다니는 우리 아이, 혹시 스트레스가 키를 막고 있는 걸까요?</td><td><span class="cap2">학원 스트레스가<br><span class="y">키를 막을까?</span></span></td><td class="mo">📚 슬램 인 + 😣 흔들</td></tr><tr><td class="c-id">c2</td><td class="c-time">3.5–7s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">좋은 교육 주고 싶은 마음, 충분히 공감해요. 그런데 답은 '네, 영향 줄 수 있어요'예요.</td><td><span class="cap2">마음은 공감해요<br><span class="y">답은 '네'</span></span></td><td class="mo">💜 끄덕 공감</td></tr><tr><td class="c-id">c3</td><td class="c-time">7–11s</td><td><span class="scr ig">🖼 IG1 스트레스→호르몬 연쇄</span></td><td class="narr">스트레스를 받으면 코르티솔이 나오는데, 이게 성장호르몬 분비를 막아요.</td><td><span class="cap2">코르티솔이<br><span class="y">성장호르몬 차단</span></span></td><td class="mo">➡️ 순차 점등 + 🚫 차단</td></tr><tr><td class="c-id">c4</td><td class="c-time">11–14.5s</td><td><span class="scr ig">🖼 IG2 깊은 잠 + 성장호르몬</span></td><td class="narr">성장호르몬은 깊은 잠에 가장 많이 나와요. 스트레스로 잠을 설치면 분비량이 확 줄죠.</td><td><span class="cap2">깊은 잠에<br><span class="y">가장 많이</span></span></td><td class="mo">🌙 깊은 잠 펄스 + 📉 다운</td></tr><tr><td class="c-id">c5</td><td class="c-time">14.5–18.5s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">스트레스는 한 군데가 아니라 네 갈래로 키를 눌러요. 마음 문제로만 볼 게 아니에요.</td><td><span class="cap2">키를 누르는<br><span class="y">4갈래 영향</span></span></td><td class="mo">✋ 4갈래 펼침</td></tr><tr><td class="c-id">c6</td><td class="c-time">18.5–22s</td><td><span class="scr ig">🖼 IG3 4가지 영향</span></td><td class="narr">성장호르몬 억제, 식욕 흔들림, 활동량 감소, 정서 위축. 이 네 가지가 겹쳐요.</td><td><span class="cap2">호르몬·식욕<br><span class="y">활동·정서</span></span></td><td class="mo">①②③④ 순차 등장</td></tr><tr><td class="c-id">c7</td><td class="c-time">22–26s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">그런데 좋은 소식! 스트레스는 되돌릴 수 있는 환경 요인이에요. 유전처럼 정해진 게 아니죠.</td><td><span class="cap2"><span class="y">되돌릴 수 있는</span><br>환경 요인</span></td><td class="mo">🌱 긍정 전환 팝</td></tr><tr><td class="c-id">c8</td><td class="c-time">26–30s</td><td><span class="scr ig">🖼 IG4 관리 3습관</span></td><td class="narr">충분한 수면, 줄넘기 같은 운동, 그리고 쉬는 시간. 이 세 가지가 키를 다시 키워요.</td><td><span class="cap2"><span class="y">수면·운동·휴식</span><br>다시 키운다</span></td><td class="mo">😴🏃🌳 순차 점등</td></tr><tr><td class="c-id">c9</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td><td class="narr">스트레스가 정말 키를 누르고 있는지, 뼈나이를 보면 정확히 알 수 있어요.</td><td><span class="cap2">뼈나이로<br><span class="y">정확히 확인</span></span></td><td class="mo">🦴🔍 팝</td></tr><tr><td class="c-id">c10</td><td class="c-time">33–35s</td><td><span class="scr doc">🎤 CTA</span></td><td class="narr">우리 아이 키, 지금 뼈나이·예측키로 확인해 보세요.</td><td><span class="cap2">뼈나이·예측키<br><span class="y">지금 확인</span></span></td><td class="mo">✅ (CTA 표준)</td></tr></tbody></table></section>
+  <section><h2 class="newtag"><span class="no">✨</span> 모션 · 이모지 가이드 <span class="newpill">NEW</span></h2>
+    <p class="lead">원칙: <b>"살짝씩"</b> — 한 씬에 액센트 1개, 0.4초 등장 후 잔잔히. 자막/원장 방해 X. <b>이모지는 유니코드 기본 문자라 별도 제작 X</b>(폰트만 로드).</p>
+    <div class="mgrid">
+      <div class="mg"><div class="h"><b>🎤</b> 원장 컷 액센트</div><p>우상단/키워드 옆에 <b>이모지 1개 + 짧은 텍스트</b> 팝. 원장 얼굴·입은 안 가림.</p></div>
+      <div class="mg"><div class="h"><b>🖼</b> 인서트 등장 모션</div><p>요소가 <b>순차로</b> 들어옴 — 점등·<b>카운트업</b>·곡선 그리기, 핵심에 ✨/글로우 (<code>delay</code> 스태거).</p></div>
+      <div class="mg"><div class="h"><b>🔢</b> 숫자 카운트업</div><p>핵심 수치는 <code>interpolate</code>로 0→목표 0.5초. 시선 집중.</p></div>
+      <div class="mg"><div class="h"><b>⚡</b> 모션 타입(6종)</div><p><code>slam</code> · <code>bounce</code> · <code>shake</code>(경고) · <code>countup</code> · <code>glow</code> · <code>sparkle</code>. 씬별 1개.</p></div>
+    </div></section>
+  <section><h2><span class="no">5</span> 인포그래픽 4종 — 이미지(텍스트 0) + insertLabels</h2>
+    <p class="lead">AI 이미지는 <b>텍스트 없이 언어중립</b>, 숫자·라벨은 Remotion 오버레이(전 언어 1세트 재사용).</p>
+    <div class="igrid">
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 · 모션: ➡️ 순차 점등 + 🚫 차단</div><h3>스트레스 → 코르티솔 → 성장호르몬 차단</h3></div>
+        <div class="body">
+          <div class="sketch">😣 🧪 🚫</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A left-to-right cause-and-effect chain of three rounded nodes connected by arrows: a stressed child's head, a hormone molecule droplet (cortisol), and a growth-hormone gland symbol with a soft red blocking circle over it. Brand purple #667eea to mint #2dd4bf gradient arrows, friendly pediatric style, clean and simple. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>노드1</td><td>스트레스</td><td>Stress</td><td class="thai">ความเครียด</td></tr><tr><td>노드2</td><td>코르티솔↑</td><td>Cortisol↑</td><td class="thai">คอร์ติซอล↑</td></tr><tr><td>노드3(차단)</td><td>성장호르몬 차단</td><td>GH blocked</td><td class="thai">บล็อกโกรทฮอร์โมน</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 · 모션: 🌙 깊은 잠 펄스 + 📉 다운</div><h3>깊은 잠에 솟는 성장호르몬</h3></div>
+        <div class="body">
+          <div class="sketch">😴 🌙 📈</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A child sleeping peacefully in bed under a crescent moon and stars, with a gentle upward wave/curve rising from the child symbolizing growth hormone surging during deep sleep. Soft brand purple #667eea night tones with mint #2dd4bf accent on the curve, calm and cozy pediatric style. NO text, NO numbers.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>상단(달)</td><td>깊은 잠</td><td>Deep sleep</td><td class="thai">หลับลึก</td></tr><tr><td>곡선 끝</td><td>성장호르몬 ↑</td><td>GH surge</td><td class="thai">โกรทฮอร์โมน ↑</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 · 모션: ①②③④ 순차 등장</div><h3>스트레스가 키를 누르는 4갈래</h3></div>
+        <div class="body">
+          <div class="sketch">🧪 🍽️ 🏃 💧</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. A central child silhouette with four soft icon bubbles arranged around it in a balanced 2x2 fan: a hormone droplet, a plate-and-fork, a running figure with a slowdown sign, and a wilting/downcast face. Brand purple #667eea and mint #2dd4bf, friendly pediatric infographic, evenly spaced, clean. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>버블1</td><td>성장호르몬 억제</td><td>GH suppressed</td><td class="thai">กดฮอร์โมน</td></tr><tr><td>버블2</td><td>식욕 흔들림</td><td>Appetite off</td><td class="thai">เบื่ออาหาร</td></tr><tr><td>버블3</td><td>활동량 감소</td><td>Less activity</td><td class="thai">ขยับน้อยลง</td></tr><tr><td>버블4</td><td>정서 위축</td><td>Low mood</td><td class="thai">จิตใจห่อเหี่ยว</td></tr></tbody></table>
+        </div>
+      </div>
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c8 · 모션: 😴🏃🌳 순차 점등</div><h3>되돌리는 3가지 습관</h3></div>
+        <div class="body">
+          <div class="sketch">😴 🏃 🌳</div>
+          <div class="lbl">AI 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector, square, white background. Three friendly rounded cards in a row, each with one icon: a sleeping moon-and-pillow, a child skipping a jump rope, and a tree/leaf rest symbol with a relaxed child. A subtle upward green growth arrow rises behind the trio. Brand purple #667eea to mint #2dd4bf gradient, cheerful hopeful pediatric style. NO text.</div>
+          <div class="lbl">오버레이 라벨</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead><tbody><tr><td>카드1</td><td>충분한 수면</td><td>Sleep</td><td class="thai">นอนพอ</td></tr><tr><td>카드2</td><td>운동(줄넘기)</td><td>Exercise</td><td class="thai">ออกกำลัง</td></tr><tr><td>카드3</td><td>휴식·놀이</td><td>Rest</td><td class="thai">พักผ่อน</td></tr></tbody></table>
+        </div>
+      </div></div></section>
+  <section><h2><span class="no">6</span> 이모지 팔레트</h2><div class="emos"><span class="emo"><b>📚</b> 학원</span><span class="emo"><b>😣</b> 스트레스</span><span class="emo"><b>🧪</b> 코르티솔</span><span class="emo"><b>🚫</b> 성장호르몬 차단</span><span class="emo"><b>😴</b> 수면</span><span class="emo"><b>🌙</b> 깊은 잠</span><span class="emo"><b>🍽️</b> 식욕</span><span class="emo"><b>🏃</b> 운동·활동</span><span class="emo"><b>🌳</b> 휴식·놀이</span><span class="emo"><b>🦴</b> 뼈나이</span><span class="emo"><b>🌱</b> 되돌릴 수 있다</span><span class="emo"><b>✅</b> CTA</span></div></section>
+  <section><h2><span class="no">7</span> 다국어 카피 <span class="newpill">6개 언어 · 탭</span></h2>
+    <p class="lead">🇰🇷 한글 · 🇹🇭 태국어 · 🇻🇳 베트남어 · 🇺🇸 영어 · 🇨🇳 中文(간체) · 🇹🇼 中文(번체). 탭 클릭 전환. (나레이션 / <span class="y">자막 하이라이트</span>)</p>
+    <div class="tabs"><button class="tabbtn on" onclick="lt(this,'ln-ko')">🇰🇷 한글</button><button class="tabbtn" onclick="lt(this,'ln-th')">🇹🇭 태국어</button><button class="tabbtn" onclick="lt(this,'ln-vi')">🇻🇳 베트남어</button><button class="tabbtn" onclick="lt(this,'ln-en')">🇺🇸 영어</button><button class="tabbtn" onclick="lt(this,'ln-cn')">🇨🇳 中文 간체</button><button class="tabbtn" onclick="lt(this,'ln-ch')">🇹🇼 中文 번체</button></div>
+<div id="ln-ko" class="tabpanel on "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>학원 3개 다니는 우리 아이, 혹시 스트레스가 키를 막고 있는 걸까요?<br><span class="cap2">학원 스트레스가 · <span class="y">키를 막을까?</span></span></td></tr><tr><td class="c-id">c2</td><td>좋은 교육 주고 싶은 마음, 충분히 공감해요. 그런데 답은 '네, 영향 줄 수 있어요'예요.<br><span class="cap2">마음은 공감해요 · <span class="y">답은 '네'</span></span></td></tr><tr><td class="c-id">c3</td><td>스트레스를 받으면 코르티솔이 나오는데, 이게 성장호르몬 분비를 막아요.<br><span class="cap2">코르티솔이 · <span class="y">성장호르몬 차단</span></span></td></tr><tr><td class="c-id">c4</td><td>성장호르몬은 깊은 잠에 가장 많이 나와요. 스트레스로 잠을 설치면 분비량이 확 줄죠.<br><span class="cap2">깊은 잠에 · <span class="y">가장 많이</span></span></td></tr><tr><td class="c-id">c5</td><td>스트레스는 한 군데가 아니라 네 갈래로 키를 눌러요. 마음 문제로만 볼 게 아니에요.<br><span class="cap2">키를 누르는 · <span class="y">4갈래 영향</span></span></td></tr><tr><td class="c-id">c6</td><td>성장호르몬 억제, 식욕 흔들림, 활동량 감소, 정서 위축. 이 네 가지가 겹쳐요.<br><span class="cap2">호르몬·식욕 · <span class="y">활동·정서</span></span></td></tr><tr><td class="c-id">c7</td><td>그런데 좋은 소식! 스트레스는 되돌릴 수 있는 환경 요인이에요. 유전처럼 정해진 게 아니죠.<br><span class="cap2">되돌릴 수 있는 · 환경 요인</span></td></tr><tr><td class="c-id">c8</td><td>충분한 수면, 줄넘기 같은 운동, 그리고 쉬는 시간. 이 세 가지가 키를 다시 키워요.<br><span class="cap2">수면·운동·휴식 · 다시 키운다</span></td></tr><tr><td class="c-id">c9</td><td>스트레스가 정말 키를 누르고 있는지, 뼈나이를 보면 정확히 알 수 있어요.<br><span class="cap2">뼈나이로 · <span class="y">정확히 확인</span></span></td></tr><tr><td class="c-id">c10</td><td>우리 아이 키, 지금 뼈나이·예측키로 확인해 보세요.<br><span class="cap2">뼈나이·예측키 · <span class="y">지금 확인</span></span></td></tr></tbody></table></div>
+<div id="ln-th" class="tabpanel thai"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>ลูกเรียนพิเศษ 3 ที่ ความเครียดจะขวางความสูงไหม?<br><span class="cap2">ความเครียด · <span class="y">ขวางความสูง?</span></span></td></tr><tr><td class="c-id">c2</td><td>เข้าใจหัวอกพ่อแม่ค่ะ แต่คำตอบคือ ใช่ มีผลได้จริง<br><span class="cap2">เข้าใจค่ะ · <span class="y">คำตอบคือใช่</span></span></td></tr><tr><td class="c-id">c3</td><td>เมื่อเครียด ร่างกายหลั่งคอร์ติซอล ซึ่งไปขัดขวางโกรทฮอร์โมน<br><span class="cap2">คอร์ติซอล · <span class="y">บล็อกโกรทฮอร์โมน</span></span></td></tr><tr><td class="c-id">c4</td><td>โกรทฮอร์โมนหลั่งมากที่สุดตอนหลับลึก เครียดจนนอนไม่ดี ก็ลดลงทันที<br><span class="cap2">หลับลึก · หลั่งมากสุด</span></td></tr><tr><td class="c-id">c5</td><td>ความเครียดกดความสูงถึง 4 ทาง ไม่ใช่แค่เรื่องจิตใจ<br><span class="cap2">กดความสูง · <span class="y">4 ทาง</span></span></td></tr><tr><td class="c-id">c6</td><td>กดฮอร์โมน เบื่ออาหาร ขยับน้อยลง จิตใจห่อเหี่ยว สี่อย่างนี้ซ้อนกัน<br><span class="cap2">ฮอร์โมน·อาหาร · <span class="y">กิจกรรม·จิตใจ</span></span></td></tr><tr><td class="c-id">c7</td><td>ข่าวดีคือ ความเครียดเป็นปัจจัยที่ปรับได้ ไม่ตายตัวเหมือนพันธุกรรม<br><span class="cap2">ปรับแก้ได้ · ปัจจัยสิ่งแวดล้อม</span></td></tr><tr><td class="c-id">c8</td><td>นอนพอ ออกกำลังเช่นกระโดดเชือก และเวลาพัก สามอย่างนี้ช่วยให้สูงต่อ<br><span class="cap2">นอน·ออกกำลัง·พัก · สูงต่อได้</span></td></tr><tr><td class="c-id">c9</td><td>ความเครียดกดความสูงอยู่จริงไหม ดูอายุกระดูกก็รู้ชัด<br><span class="cap2">อายุกระดูก · <span class="y">รู้ชัดเจน</span></span></td></tr><tr><td class="c-id">c10</td><td>เช็กอายุกระดูกและความสูงที่คาดของลูกวันนี้<br><span class="cap2">อายุกระดูก·ความสูง · <span class="y">เช็กวันนี้</span></span></td></tr></tbody></table></div>
+<div id="ln-vi" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Con học thêm 3 lớp — liệu stress có cản chiều cao không?<br><span class="cap2">Stress học hành · <span class="y">cản chiều cao?</span></span></td></tr><tr><td class="c-id">c2</td><td>Tôi hiểu lòng cha mẹ. Nhưng câu trả lời là: có, nó ảnh hưởng thật.<br><span class="cap2">Tôi hiểu · <span class="y">câu trả lời: có</span></span></td></tr><tr><td class="c-id">c3</td><td>Khi căng thẳng, cơ thể tiết cortisol — chất này chặn hormone tăng trưởng.<br><span class="cap2">Cortisol · <span class="y">chặn hormone</span></span></td></tr><tr><td class="c-id">c4</td><td>Hormone tăng trưởng tiết nhiều nhất khi ngủ sâu. Stress làm mất ngủ thì nó giảm ngay.<br><span class="cap2">Ngủ sâu · tiết nhiều nhất</span></td></tr><tr><td class="c-id">c5</td><td>Stress ép chiều cao theo bốn hướng — không chỉ là chuyện tâm lý.<br><span class="cap2">Ép chiều cao · <span class="y">4 hướng</span></span></td></tr><tr><td class="c-id">c6</td><td>Ức chế hormone, rối loạn ăn uống, ít vận động, sa sút tinh thần — bốn thứ chồng lên nhau.<br><span class="cap2">Hormone·ăn uống · <span class="y">vận động·tinh thần</span></span></td></tr><tr><td class="c-id">c7</td><td>Tin tốt là: stress là yếu tố môi trường có thể đảo ngược — không cố định như gen.<br><span class="cap2">Có thể đảo ngược · yếu tố môi trường</span></td></tr><tr><td class="c-id">c8</td><td>Ngủ đủ, vận động như nhảy dây, và thời gian nghỉ — ba điều này giúp con cao lại.<br><span class="cap2">Ngủ·vận động·nghỉ · cao trở lại</span></td></tr><tr><td class="c-id">c9</td><td>Stress có đang ép chiều cao thật không — nhìn tuổi xương là biết rõ.<br><span class="cap2">Tuổi xương · <span class="y">biết chính xác</span></span></td></tr><tr><td class="c-id">c10</td><td>Kiểm tra tuổi xương và chiều cao dự đoán của con ngay hôm nay.<br><span class="cap2">Tuổi xương·chiều cao · <span class="y">kiểm tra ngay</span></span></td></tr></tbody></table></div>
+<div id="ln-en" class="tabpanel "><table class="cp"><tbody><tr><td class="c-id">c1</td><td>Your child's in three academies — could stress be blocking their height?<br><span class="cap2">Could stress · <span class="y">block height?</span></span></td></tr><tr><td class="c-id">c2</td><td>I understand wanting the best for them. But the answer is: yes, it can matter.<br><span class="cap2">I understand · <span class="y">answer is yes</span></span></td></tr><tr><td class="c-id">c3</td><td>Stress releases cortisol — and cortisol blocks growth hormone.<br><span class="cap2">Cortisol · <span class="y">blocks GH</span></span></td></tr><tr><td class="c-id">c4</td><td>Growth hormone peaks in deep sleep. Lose that sleep to stress, and it drops.<br><span class="cap2">Deep sleep · GH peaks</span></td></tr><tr><td class="c-id">c5</td><td>Stress presses on height four different ways — it's not just in the mind.<br><span class="cap2">Presses height · <span class="y">4 ways</span></span></td></tr><tr><td class="c-id">c6</td><td>Suppressed hormone, shaky appetite, less activity, low mood — all four stack up.<br><span class="cap2">Hormone·appetite · <span class="y">activity·mood</span></span></td></tr><tr><td class="c-id">c7</td><td>Good news: stress is a factor you can reverse — it's not fixed like genes.<br><span class="cap2">You can reverse · this factor</span></td></tr><tr><td class="c-id">c8</td><td>Enough sleep, exercise like jump rope, and real rest — these three grow height back.<br><span class="cap2">Sleep·move·rest · grow back</span></td></tr><tr><td class="c-id">c9</td><td>Is stress really holding height back? Bone age tells you for sure.<br><span class="cap2">Bone age · <span class="y">knows for sure</span></span></td></tr><tr><td class="c-id">c10</td><td>Check your child's bone age and predicted height today.<br><span class="cap2">Bone age·height · <span class="y">check today</span></span></td></tr></tbody></table></div>
+<div id="ln-cn" class="tabpanel cjk"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子上3个补习班，压力会不会挡住长高？<br><span class="cap2">压力会不会 · <span class="y">挡住长高？</span></span></td></tr><tr><td class="c-id">c2</td><td>想给孩子最好的教育，我很理解。但答案是：会，真的有影响。<br><span class="cap2">我很理解 · <span class="y">答案是会</span></span></td></tr><tr><td class="c-id">c3</td><td>压力会让身体分泌皮质醇，而皮质醇会阻断生长激素。<br><span class="cap2">皮质醇 · <span class="y">阻断生长激素</span></span></td></tr><tr><td class="c-id">c4</td><td>生长激素在深睡时分泌最多。压力让睡眠变差，分泌量就骤降。<br><span class="cap2">深睡时 · 分泌最多</span></td></tr><tr><td class="c-id">c5</td><td>压力从四个方面压制身高，不只是心理问题。<br><span class="cap2">压制身高 · <span class="y">4个方面</span></span></td></tr><tr><td class="c-id">c6</td><td>抑制激素、食欲紊乱、活动减少、情绪低落，这四样叠加在一起。<br><span class="cap2">激素·食欲 · <span class="y">活动·情绪</span></span></td></tr><tr><td class="c-id">c7</td><td>好消息是：压力是可以扭转的环境因素，不像基因那样固定。<br><span class="cap2">可以扭转的 · 环境因素</span></td></tr><tr><td class="c-id">c8</td><td>充足睡眠、跳绳等运动、还有休息时间，这三样让孩子继续长高。<br><span class="cap2">睡眠·运动·休息 · 重新长高</span></td></tr><tr><td class="c-id">c9</td><td>压力是否真的在压制身高，看骨龄就能准确知道。<br><span class="cap2">看骨龄 · <span class="y">准确知道</span></span></td></tr><tr><td class="c-id">c10</td><td>现在就查查孩子的骨龄和预测身高吧。<br><span class="cap2">骨龄·预测身高 · <span class="y">现在就查</span></span></td></tr></tbody></table></div>
+<div id="ln-ch" class="tabpanel cjk-tc"><table class="cp"><tbody><tr><td class="c-id">c1</td><td>孩子上3個補習班，壓力會不會擋住長高？<br><span class="cap2">壓力會不會 · <span class="y">擋住長高？</span></span></td></tr><tr><td class="c-id">c2</td><td>想給孩子最好的教育，我很理解。但答案是：會，真的有影響。<br><span class="cap2">我很理解 · <span class="y">答案是會</span></span></td></tr><tr><td class="c-id">c3</td><td>壓力會讓身體分泌皮質醇，而皮質醇會阻斷生長激素。<br><span class="cap2">皮質醇 · <span class="y">阻斷生長激素</span></span></td></tr><tr><td class="c-id">c4</td><td>生長激素在深睡時分泌最多。壓力讓睡眠變差，分泌量就驟降。<br><span class="cap2">深睡時 · 分泌最多</span></td></tr><tr><td class="c-id">c5</td><td>壓力從四個方面壓制身高，不只是心理問題。<br><span class="cap2">壓制身高 · <span class="y">4個方面</span></span></td></tr><tr><td class="c-id">c6</td><td>抑制激素、食慾紊亂、活動減少、情緒低落，這四樣疊加在一起。<br><span class="cap2">激素·食慾 · <span class="y">活動·情緒</span></span></td></tr><tr><td class="c-id">c7</td><td>好消息是：壓力是可以扭轉的環境因素，不像基因那樣固定。<br><span class="cap2">可以扭轉的 · 環境因素</span></td></tr><tr><td class="c-id">c8</td><td>充足睡眠、跳繩等運動、還有休息時間，這三樣讓孩子繼續長高。<br><span class="cap2">睡眠·運動·休息 · 重新長高</span></td></tr><tr><td class="c-id">c9</td><td>壓力是否真的在壓制身高，看骨齡就能準確知道。<br><span class="cap2">看骨齡 · <span class="y">準確知道</span></span></td></tr><tr><td class="c-id">c10</td><td>現在就查查孩子的骨齡和預測身高吧。<br><span class="cap2">骨齡·預測身高 · <span class="y">現在就查</span></span></td></tr></tbody></table></div>
+  </section>
+  <section><h2><span class="no">8</span> 제작 노트</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/학원스트레스키/</code> · <code>학원스트레스키-{ko,th,vi,en,cn,ch}</code></p></div>
+      <div class="pi"><div class="t">🎬 베이스·립싱크</div><p>MainClip 정면 클린 베이스 + 언어별 재립싱크(크림, RVM 없음). 中文은 만다린 1음성 + 자막만 간체/번체</p></div>
+      <div class="pi"><div class="t">📣 CTA</div><p><b>표준 그대로</b>(로고 가운데 + 언어별 URL). 변경 없음</p></div>
+      <div class="pi"><div class="t">✨ 모션</div><p>script.json <code>accent</code> + insertLabels <code>motion/delay</code> → PresenterShort spring (공용)</p></div>
+      <div class="pi"><div class="t">📱 썸네일</div><p>Remotion <code>Thumbnail</code> — <b>주어 필수</b> · 하단 187 로고 크게 · 얼굴 없음</p></div>
+      <div class="pi"><div class="t">🖼 인서트</div><p>4종 언어중립 이미지 → 받으면 라벨 위치 미세조정</p></div>
+    </div></section>
+</div>
+<script>
+function lt(btn,id){
+  document.querySelectorAll('.tabpanel').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tabbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+</script>
+</body>
+</html>
