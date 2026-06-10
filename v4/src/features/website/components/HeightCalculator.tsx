@@ -43,6 +43,15 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
     const pred = predictAdultHeightLMS(h, age.decimal, gender, standard);
     setResult({ predicted: pred, percentile: pct, age: age.decimal, currentHeight: h, gender, standard });
     setShowResult(true);
+    // 측정 완료 알림 — iframe(embedded)이면 부모로 postMessage(부모 _shell.js 가 GA4 발사),
+    // SPA 모달이면 직접 발사. 측정값(키/나이)은 보내지 않는다(익명 카운트).
+    try {
+      if (embedded && window.parent !== window) {
+        window.parent.postMessage({ type: 'height_calc_complete', locale: lang }, '*');
+      } else {
+        import('@/shared/lib/analytics').then((m) => m.trackHeightCalcComplete('calc_modal'));
+      }
+    } catch { /* tracking must never break UX */ }
   };
 
   const inputCls = 'w-full rounded-xl border border-gray-200 px-3 py-2.5 md:py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
