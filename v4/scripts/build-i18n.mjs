@@ -95,7 +95,11 @@ async function main() {
     const IMAGES_ROOT = join(ROOT, 'public/programs/images');
     const localizeProgramImg = (html) => {
       let out = localizeProgramImages(html, lang, IMAGES_ROOT);
-      if (lang !== 'ko') out = out.replaceAll('/images/logo.jpg', '/images/logo_en.png');
+      if (lang !== 'ko') {
+        out = out.replaceAll('/images/logo.jpg', '/images/logo_en.png');
+        out = out.replaceAll('/images/saebom-logo.png', '/images/saebom-logo-en.png');
+        out = out.replaceAll('/images/logo-187-inline.png', '/images/logo-187-inline-en.png');
+      }
       return out;
     };
 

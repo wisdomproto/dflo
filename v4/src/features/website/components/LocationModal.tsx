@@ -16,7 +16,7 @@ export function LocationModal({ isOpen, onClose }: Props) {
         {/* Address */}
         <div className="space-y-1">
           <p className="text-base font-bold text-gray-900">연세새봄의원</p>
-          <p className="text-sm text-gray-600">서울시 강남구 도산대로 328, 휘선빌딩 (스타벅스 건물) 4층</p>
+          <p className="text-sm text-gray-600">서울시 강남구 도산대로 328, 휘선빌딩 (스타벅스 건물) 2층</p>
         </div>
 
         {/* Transport info */}

@@ -118,7 +118,7 @@ export function AboutModal({ isOpen, onClose }: Props) {
         <div className="bg-[#E8F5F0] rounded-xl p-4 text-center">
           <p className="text-xs text-[#0F6E56] font-medium">상담 및 예약 문의</p>
           <a href="tel:02-3395-0999" className="text-xl font-black text-[#0F6E56] block mt-1">02-3395-0999</a>
-          <p className="text-xs text-gray-500 mt-1">서울시 강남구 도산대로 328, 휘선빌딩 4층</p>
+          <p className="text-xs text-gray-500 mt-1">서울시 강남구 도산대로 328, 휘선빌딩 2층</p>
         </div>
       </div>
     </InfoModal>

@@ -370,6 +370,10 @@ cta_global:
 
 clinic:
   page_title: "Phòng khám | 187 Growth Clinic"
+  brand:
+    logo_alt: "Yonsei Saebom Medical Clinic"
+    tag: "Phòng khám hormone"
+    body: "<strong>Yonsei Saebom Medical Clinic</strong> là phòng khám chuyên điều trị bằng hormone. <strong class='b187'>187growup</strong> là thương hiệu tăng trưởng nhi khoa của Yonsei Saebom, tập trung chuyên môn điều trị hormone vào việc tăng chiều cao cho trẻ."
   doctor:
     h1_sr: "Giới thiệu Giám đốc Chae Yong-hyun"
     portrait_alt: "Giám đốc Chae Yong-hyun"
@@ -390,7 +394,7 @@ clinic:
     stat_success_num: "97%+"
     stat_success_label: "Tỷ lệ thành công"
     p1: "Sự tăng trưởng chiều cao của trẻ không chỉ phụ thuộc vào hormone tăng trưởng. Tuyến giáp, hormone giới tính, dinh dưỡng, giấc ngủ và căng thẳng đều có vai trò, vì vậy <strong>góc nhìn hormone tích hợp</strong> là cần thiết."
-    p2: "187 Growth Clinic chăm sóc cá nhân hóa cho từng trẻ — từ đánh giá tuổi xương chính xác, xét nghiệm hormone toàn diện đến tư vấn lối sống. Gia đình ở nước ngoài có thể nhận tư vấn qua video mà không cần đến Hàn Quốc."
+    p2: "<strong class='b187'>187 Growth Clinic</strong>chăm sóc cá nhân hóa cho từng trẻ — từ đánh giá tuổi xương chính xác, xét nghiệm hormone toàn diện đến tư vấn lối sống. Gia đình ở nước ngoài có thể nhận tư vấn qua video mà không cần đến Hàn Quốc."
   video:
     h3: "Video giới thiệu phòng khám"
     iframe_title: "Giới thiệu Phòng khám Yonsei Saebom"
@@ -409,7 +413,7 @@ clinic:
   contact:
     label: "Tư vấn & Đặt lịch"
     phone: "+82-2-3395-0999"
-    addr: "Tầng 4, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
+    addr: "Tầng 2, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
   # 원격 진료 안내는 th 전용 — 빈 배열이면 섹션 자체가 렌더되지 않음
   remote_consult: []
 

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { buildHead, buildHreflang, buildSeo } from '../lib/seo.mjs';
+import { buildHead, buildHreflang, buildSeo, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP } from '../lib/seo.mjs';
 
 test('buildSeo returns ko-specific title/description', () => {
   const seo = buildSeo('ko');
@@ -8,20 +8,25 @@ test('buildSeo returns ko-specific title/description', () => {
   assert.ok(seo.description.length > 50);
 });
 
-test('buildHreflang emits only the 4 active langs + x-default', () => {
+test('buildHreflang emits one alternate per ACTIVE_LANG + x-default, never an unbuilt lang', () => {
   const tags = buildHreflang();
-  assert.ok(tags.includes('hreflang="ko"'));
-  assert.ok(tags.includes('hreflang="th"'));
-  assert.ok(tags.includes('hreflang="vi"'));
-  assert.ok(tags.includes('hreflang="en"'));
+
+  // Every active (shipped) lang must have an alternate.
+  for (const lang of ACTIVE_LANGS) {
+    assert.ok(tags.includes(`hreflang="${HREFLANG_MAP[lang]}"`), `missing active hreflang: ${lang}`);
+  }
   assert.ok(tags.includes('hreflang="x-default"'));
-  // ja/zh-tw/id are planned stubs, not yet built — emitting them would create 404
-  // hreflang targets that invalidate the cluster. They must NOT appear.
-  assert.ok(!tags.includes('hreflang="ja"'));
-  assert.ok(!tags.includes('hreflang="zh-TW"'));
-  assert.ok(!tags.includes('hreflang="id"'));
-  const alternates = tags.match(/rel="alternate"/g) || [];
-  assert.equal(alternates.length, 5); // 4 active langs + x-default
+
+  // Planned-but-unbuilt langs (ja/zh-tw/id) must NOT appear: emitting them creates 404
+  // hreflang targets that invalidate the whole cluster in Search Console. See ACTIVE_LANGS
+  // in scripts/lib/seo.mjs — a lang only joins hreflang once its pages actually ship.
+  for (const lang of ALL_LANGS.filter((l) => !ACTIVE_LANGS.includes(l))) {
+    assert.ok(!tags.includes(`hreflang="${HREFLANG_MAP[lang]}"`), `unbuilt hreflang leaked: ${lang}`);
+  }
+
+  // Exactly ACTIVE_LANGS + x-default alternate links, and nothing more.
+  const count = (tags.match(/rel="alternate"/g) || []).length;
+  assert.equal(count, ACTIVE_LANGS.length + 1);
 });
 
 test('buildHead includes canonical for the given lang', () => {

@@ -370,6 +370,10 @@ cta_global:
 
 clinic:
   page_title: "Clinic | 187 Growth Clinic"
+  brand:
+    logo_alt: "Yonsei Saebom Medical Clinic"
+    tag: "Hormone Clinic"
+    body: "<strong>Yonsei Saebom Medical Clinic</strong> is a hormone-treatment clinic. <strong class='b187'>187growup</strong> is its pediatric growth brand, focusing Yonsei Saebom's hormone-treatment expertise on children's height growth."
   doctor:
     h1_sr: "About Director Chae Yong-hyun"
     portrait_alt: "Director Chae Yong-hyun"
@@ -390,7 +394,7 @@ clinic:
     stat_success_num: "97%+"
     stat_success_label: "Success rate"
     p1: "Pediatric height growth isn't decided by growth hormone alone. Because thyroid, sex hormones, nutrition, sleep, and stress all play a role, an <strong>integrated hormonal perspective</strong> is essential."
-    p2: "187 Growth Clinic delivers personalized care for every child — from precision bone-age assessment to comprehensive hormone testing and lifestyle coaching. Families overseas can also receive video consultations without traveling to Korea."
+    p2: "<strong class='b187'>187 Growth Clinic</strong>delivers personalized care for every child — from precision bone-age assessment to comprehensive hormone testing and lifestyle coaching. Families overseas can also receive video consultations without traveling to Korea."
   video:
     h3: "About our clinic"
     iframe_title: "Yonsei Saebom Clinic introduction"
@@ -409,7 +413,7 @@ clinic:
   contact:
     label: "Consultation & Booking"
     phone: "+82-2-3395-0999"
-    addr: "4F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
+    addr: "2F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
   # 원격 진료 안내는 th 전용 — 빈 배열이면 섹션 자체가 렌더되지 않음
   remote_consult: []
 

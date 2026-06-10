@@ -84,6 +84,48 @@
     background: #6B3FA0;
   }
 
+  /* ===== Parent-brand band: 연세새봄의원(hormone specialty) operates 187 ===== */
+  .brand-band {
+    text-align: center;
+    padding: 38px 24px 30px;
+    background: linear-gradient(180deg, #faf7f2 0%, #ffffff 100%);
+    border-bottom: 1px solid #efe7da;
+  }
+  .brand-band .brand-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto 16px;
+  }
+  .brand-band .brand-lockup img { width: auto; display: block; flex: none; }
+  .brand-band .brand-lockup .lk-saebom { height: 46px; }
+  .brand-band .brand-lockup .lk-187 { height: 30px; }
+  .brand-band .brand-lockup .lk-divider {
+    flex: none; width: 1px; height: 34px; background: #ddd2bf;
+  }
+  .brand-band .brand-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #9a7a4f;
+    background: #f3ebdd;
+    padding: 6px 15px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .brand-band .brand-body {
+    font-size: 13.5px;
+    color: #5a5a5a;
+    line-height: 1.78;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .brand-band .brand-body strong { color: #2a2a2a; font-weight: 800; }
+  /* 187 성장클리닉/187growup 브랜드명 — 보라 강조 (밴드 본문 + 병원 소개 단락 공용) */
+  .b187 { color: #6B3FA0; }
+
   .clinic-intro {
     padding: 32px 24px;
     border-bottom: 1px solid #e8eaf0;
@@ -312,6 +354,13 @@
     .doctor-card .name .title { font-size: 15px; }
     .doctor-card .quote { font-size: 16px; }
     .doctor-card .profile li { font-size: 14.5px; }
+    .brand-band { padding: 52px 32px 40px; }
+    .brand-band .brand-lockup { gap: 22px; }
+    .brand-band .brand-lockup .lk-saebom { height: 58px; }
+    .brand-band .brand-lockup .lk-187 { height: 38px; }
+    .brand-band .brand-lockup .lk-divider { height: 42px; }
+    .brand-band .brand-tag { font-size: 12.5px; }
+    .brand-band .brand-body { font-size: 15.5px; }
     .clinic-intro { padding: 40px 32px; }
     .clinic-intro h2 { font-size: 26px; }
     .clinic-intro p { font-size: 16.5px; }
@@ -338,6 +387,16 @@
 <div class="t-page">
 <div class="container">
 
+  <!-- Parent brand: 연세새봄의원(hormone specialty) operates 187 성장클리닉/187growup -->
+  <section class="brand-band">
+    <div class="brand-lockup">
+      <img class="lk-saebom" src="/images/saebom-logo.png" alt="{{clinic.brand.logo_alt}}">
+      <span class="lk-divider" aria-hidden="true"></span>
+      <img class="lk-187" src="/images/logo-187-inline.png" alt="{{hero.logo_alt}}">
+    </div>
+    <p class="brand-body">{{clinic.brand.body}}</p>
+  </section>
+
   <!-- Doctor section -->
   <section class="doctor-card">
     <h1 class="sr-only">{{clinic.doctor.h1_sr}}</h1>
@@ -353,7 +412,6 @@
 
   <!-- Clinic introduction -->
   <section class="clinic-intro">
-    <h2>{{clinic.intro.h2}}</h2>
     <div class="intro-stats">
       <div class="stat">
         <div class="stat-num">{{clinic.intro.stat_cases_num}}</div>
