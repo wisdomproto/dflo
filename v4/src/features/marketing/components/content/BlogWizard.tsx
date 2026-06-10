@@ -288,7 +288,7 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
         )}
       </div>
       {showPreview && cur && (
-        <BlogPreviewModal article={cur} language={language} onClose={() => setShowPreview(false)} />
+        <BlogPreviewModal article={cur} language={language} references={article.blogReferences} onClose={() => setShowPreview(false)} />
       )}
     </div>
   );
