@@ -43,10 +43,22 @@ export function escapeAttr(s) {
   return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 }
 
+// gtag.js 스니펫 — 빌드 env 의 측정ID(없으면 빈 문자열, graceful).
+// 정적 사이트는 React 와 같은 VITE_GA_MEASUREMENT_ID 를 재사용해 단일 GA4 속성에 모인다.
+export function gaSnippet() {
+  const id = process.env.GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID;
+  if (!id) return '';
+  return [
+    `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>`,
+    `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${id}');</script>`,
+  ].join('\n  ');
+}
+
 export function buildBlogPostHead({ post, lang }) {
   const path = `/blog/${post.slug}/`;
   const description = post.meta_description || '';
-  return [
+  const ga = gaSnippet();
+  const head = [
     `<title>${post.title}</title>`,
     `<meta name="description" content="${escapeAttr(description)}">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
@@ -60,16 +72,19 @@ export function buildBlogPostHead({ post, lang }) {
     `<meta name="twitter:title" content="${escapeAttr(post.title)}">`,
     `<meta name="twitter:description" content="${escapeAttr(description)}">`,
     renderJsonLd(blogPostingJsonLd({ post, lang })),
-  ].join('\n  ');
+  ];
+  return (ga ? [ga, ...head] : head).join('\n  ');
 }
 
 export function buildBlogIndexHead(lang) {
   const path = '/blog/';
-  return [
+  const ga = gaSnippet();
+  const head = [
     `<title>Blog | ${buildSeo(lang).title}</title>`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     buildHreflang(path),
-  ].join('\n  ');
+  ];
+  return (ga ? [ga, ...head] : head).join('\n  ');
 }
 
 export function buildHead(lang, opts = {}) {
@@ -104,5 +119,6 @@ export function buildHead(lang, opts = {}) {
       renderJsonLd(faqPageJsonLd(lang)),
     );
   }
-  return head.join('\n  ');
+  const ga = gaSnippet();
+  return (ga ? [ga, ...head] : head).join('\n  ');
 }

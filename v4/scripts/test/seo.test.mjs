@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { buildHead, buildHreflang, buildSeo, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP } from '../lib/seo.mjs';
+import { buildHead, buildHreflang, buildSeo, gaSnippet, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP } from '../lib/seo.mjs';
 
 test('buildSeo returns ko-specific title/description', () => {
   const seo = buildSeo('ko');
@@ -33,4 +33,36 @@ test('buildHead includes canonical for the given lang', () => {
   const head = buildHead('ko');
   assert.ok(head.includes('rel="canonical" href="https://www.dr187growup.com/ko/"'));
   assert.ok(head.includes('property="og:locale" content="ko_KR"'));
+});
+
+test('gaSnippet: 측정ID 없으면 빈 문자열', () => {
+  const prev = process.env.GA_MEASUREMENT_ID;
+  const prevV = process.env.VITE_GA_MEASUREMENT_ID;
+  delete process.env.GA_MEASUREMENT_ID;
+  delete process.env.VITE_GA_MEASUREMENT_ID;
+  assert.equal(gaSnippet(), '');
+  if (prev !== undefined) process.env.GA_MEASUREMENT_ID = prev;
+  if (prevV !== undefined) process.env.VITE_GA_MEASUREMENT_ID = prevV;
+});
+
+test('gaSnippet: 측정ID 있으면 gtag 스니펫', () => {
+  process.env.GA_MEASUREMENT_ID = 'G-TEST123';
+  const s = gaSnippet();
+  assert.match(s, /googletagmanager\.com\/gtag\/js\?id=G-TEST123/);
+  assert.match(s, /gtag\('config', ?'G-TEST123'\)/);
+  delete process.env.GA_MEASUREMENT_ID;
+});
+
+test('buildHead: 측정ID 있으면 head 에 gtag 포함', () => {
+  process.env.GA_MEASUREMENT_ID = 'G-TEST123';
+  const head = buildHead('ko', { path: '/' });
+  assert.match(head, /gtag\/js\?id=G-TEST123/);
+  delete process.env.GA_MEASUREMENT_ID;
+});
+
+test('buildHead: 측정ID 없으면 gtag 미포함(회귀 안전)', () => {
+  delete process.env.GA_MEASUREMENT_ID;
+  delete process.env.VITE_GA_MEASUREMENT_ID;
+  const head = buildHead('ko', { path: '/' });
+  assert.doesNotMatch(head, /googletagmanager/);
 });
