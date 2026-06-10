@@ -15,8 +15,8 @@
 // → 모든 이벤트에 `locale` 파라미터 부착. GA4 에서 커스텀 디멘션으로 등록하면
 // 나라별 비교 리포트 가능.
 //
-// **핵심 전환 이벤트**: `kakao_consult_click` — 카카오톡 상담 버튼 클릭. GA4
-// 어드민에서 "주요 이벤트(Key event)" 로 마크해야 전환으로 집계됨.
+// **핵심 전환 이벤트**: `consult_click` — 메신저 상담 버튼 클릭(channel=kakao/line).
+// GA4 어드민에서 "주요 이벤트(Key event)" 로 마크해야 전환으로 집계됨.
 
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
 
