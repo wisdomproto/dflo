@@ -27,3 +27,22 @@ test('multiple AbstractText sections concatenated', () => {
   assert.match(a.abstract, /BG text/);
   assert.match(a.abstract, /RES text/);
 });
+
+test('parsePubmedXml extracts doi and publicationTypes', () => {
+  const x = xml
+    .replace('</Article>',
+      '<PublicationTypeList><PublicationType UI="D016428">Journal Article</PublicationType>' +
+      '<PublicationType UI="D016449">Randomized Controlled Trial</PublicationType></PublicationTypeList></Article>')
+    .replace('</PubmedArticle>',
+      '<PubmedData><ArticleIdList><ArticleId IdType="pubmed">12345678</ArticleId>' +
+      '<ArticleId IdType="doi">10.1210/jc.2021-001</ArticleId></ArticleIdList></PubmedData></PubmedArticle>');
+  const a = parsePubmedXml(x)[0];
+  assert.equal(a.doi, '10.1210/jc.2021-001');
+  assert.deepEqual(a.publicationTypes, ['Journal Article', 'Randomized Controlled Trial']);
+});
+
+test('parsePubmedXml defaults doi/publicationTypes when absent', () => {
+  const a = parsePubmedXml(xml)[0];
+  assert.equal(a.doi, '');
+  assert.deepEqual(a.publicationTypes, []);
+});
