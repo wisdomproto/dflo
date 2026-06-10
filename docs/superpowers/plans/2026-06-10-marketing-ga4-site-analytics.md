@@ -2,6 +2,8 @@
 
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
+> **상태(2026-06-10):** ✅ 8 태스크 구현 완료 + 2차 강화(풀 대시보드: 요약카드 증감·일자별 추세·유입채널·디바이스 / SEO `/marketing/seo-audit` 분리), origin/main push. ⏳ Railway 재배포만 남음. 상세 memory `marketing_ga4_site_analytics.md`.
+
 **Goal:** 정적 사이트(ko/th)에 GA4 추적을 심어 페이지뷰·예상키 측정·메신저 클릭이 실제로 쌓이게 하고, 마케팅 "사이트 분석"에 국가별 탭 대시보드를 붙인다.
 
 **Architecture:** 3 레이어 — (1) `build-i18n`이 정적 `<head>`에 gtag 주입 + 예상키 측정 완료 이벤트(iframe→부모 postMessage) + 메신저 이벤트명 통일(`consult_click`), (2) ai-server `/api/analytics/site-breakdown`이 경로 prefix로 국가×페이지×이벤트 집계, (3) `SiteAnalysisPage`에 국가 탭 패널. 단일 GA4 속성, 경로 분리.
