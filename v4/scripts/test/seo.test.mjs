@@ -66,3 +66,20 @@ test('buildHead: 측정ID 없으면 gtag 미포함(회귀 안전)', () => {
   const head = buildHead('ko', { path: '/' });
   assert.doesNotMatch(head, /googletagmanager/);
 });
+
+test('gaSnippet: VITE_GA_MEASUREMENT_ID 폴백', () => {
+  const prev = process.env.GA_MEASUREMENT_ID;
+  delete process.env.GA_MEASUREMENT_ID;
+  process.env.VITE_GA_MEASUREMENT_ID = 'G-VITE';
+  assert.match(gaSnippet(), /gtag\/js\?id=G-VITE/);
+  delete process.env.VITE_GA_MEASUREMENT_ID;
+  if (prev !== undefined) process.env.GA_MEASUREMENT_ID = prev;
+});
+
+test('gaSnippet: 잘못된 형식 ID 는 무시(주입 방어)', () => {
+  const prev = process.env.GA_MEASUREMENT_ID;
+  process.env.GA_MEASUREMENT_ID = '</script><bad>';
+  assert.equal(gaSnippet(), '');
+  delete process.env.GA_MEASUREMENT_ID;
+  if (prev !== undefined) process.env.GA_MEASUREMENT_ID = prev;
+});

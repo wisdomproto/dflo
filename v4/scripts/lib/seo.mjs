@@ -47,7 +47,8 @@ export function escapeAttr(s) {
 // 정적 사이트는 React 와 같은 VITE_GA_MEASUREMENT_ID 를 재사용해 단일 GA4 속성에 모인다.
 export function gaSnippet() {
   const id = process.env.GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID;
-  if (!id) return '';
+  // 측정ID 형식(G-XXXX)만 허용 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
+  if (!id || !/^G-[A-Z0-9]+$/.test(id)) return '';
   return [
     `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>`,
     `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${id}');</script>`,
