@@ -1,8 +1,16 @@
 // src/features/marketing/components/PublishQueueList.tsx
-import type { PublishChannel, PublishQueueItem } from '../services/marketingPublishService';
+import type { PublishChannel, PublishQueueItem, ContentKind } from '../services/marketingPublishService';
 import { localeFlag } from '../services/marketingChannelService';
 
 import { STATUS_LABELS, STATUS_COLORS, channelMeta } from '../utils/publishConstants';
+
+// 콘텐츠 종류 배지 — 발행 큐에서 블로그/카드뉴스/릴스 구분.
+const KIND_META: Record<ContentKind, { label: string; cls: string }> = {
+  blog: { label: '📝 블로그', cls: 'bg-sky-100 text-sky-700' },
+  cardnews: { label: '🖼 카드뉴스', cls: 'bg-violet-100 text-violet-700' },
+  reels: { label: '🎬 릴스', cls: 'bg-rose-100 text-rose-700' },
+  post: { label: '📄 기본글', cls: 'bg-gray-100 text-gray-600' },
+};
 
 // 채널×언어별 추천 발행 시간 힌트(요일/시각). 마케팅 best-practice 휴리스틱.
 const BEST_POST_TIMES: Record<string, Partial<Record<PublishChannel, string>>> = {
@@ -77,6 +85,9 @@ export function PublishQueueList({ items, onSetSchedule, onMarkPublished, onPush
               <span className="rounded bg-[#4A2D6B]/10 px-1.5 py-0.5 text-xs font-semibold text-[#4A2D6B]">
                 {localeFlag(it.language)} {it.language}
               </span>
+              <span className={`rounded px-1.5 py-0.5 text-xs font-semibold ${KIND_META[it.contentKind ?? 'post'].cls}`}>
+                {KIND_META[it.contentKind ?? 'post'].label}
+              </span>
               <span className={`rounded px-2 py-0.5 text-xs font-semibold ${meta.badge}`}>{meta.label}</span>
               {it.channelName && (
                 <span className="rounded bg-gray-100 px-1.5 py-0.5 text-xs text-gray-600">{it.channelName}</span>
@@ -144,23 +155,25 @@ export function PublishQueueList({ items, onSetSchedule, onMarkPublished, onPush
               </div>
             )}
 
-            {/* 액션 행 */}
+            {/* 액션 행 — 발행된 항목은 재발행/발행표시 숨김(중복 게시 방지), 삭제만 */}
             <div className="mt-2 flex flex-wrap items-center gap-2">
-              <button
-                type="button"
-                onClick={() => onPush(it.id, it.channel)}
-                className="rounded-lg border border-[#4A2D6B] px-2.5 py-1 text-xs text-[#4A2D6B] hover:bg-[#4A2D6B] hover:text-white"
-              >
-                즉시 발행
-              </button>
               {it.status !== 'published' && (
-                <button
-                  type="button"
-                  onClick={() => onMarkPublished(it.id)}
-                  className="rounded-lg bg-[#4A2D6B] px-2.5 py-1 text-xs font-semibold text-white"
-                >
-                  발행됨 표시
-                </button>
+                <>
+                  <button
+                    type="button"
+                    onClick={() => onPush(it.id, it.channel)}
+                    className="rounded-lg border border-[#4A2D6B] px-2.5 py-1 text-xs text-[#4A2D6B] hover:bg-[#4A2D6B] hover:text-white"
+                  >
+                    즉시 발행
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onMarkPublished(it.id)}
+                    className="rounded-lg bg-[#4A2D6B] px-2.5 py-1 text-xs font-semibold text-white"
+                  >
+                    발행됨 표시
+                  </button>
+                </>
               )}
               <button
                 type="button"
