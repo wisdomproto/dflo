@@ -17,6 +17,10 @@
     display: inline-flex; padding: 14px 28px; background: {{messenger.color_bg}}; color: {{messenger.color_fg}};
     text-decoration: none; font-weight: 700; border-radius: 2px;
   }
+  .post-references { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--hairline); }
+  .post-references-title { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
+  .post-references-list { font-size: 13px; line-height: 1.7; color: var(--muted); padding-left: 20px; }
+  .post-references-list a { color: var(--ink); text-decoration: underline; }
   @media (min-width: 640px) { .post-title { font-size: 36px; } }
 </style>
 </head>
@@ -29,6 +33,7 @@
   <article class="post-body">
     {{post.body_html}}
   </article>
+  {{post.references_html}}
   <div class="post-cta">
     <a href="{{messenger.url}}" target="_blank" rel="noopener"
        data-source="blog_post" data-channel="{{messenger.channel}}">

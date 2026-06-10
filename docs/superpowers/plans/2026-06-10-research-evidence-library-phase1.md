@@ -851,7 +851,7 @@ git commit -m "docs(ai-server): document research evidence library phase 1 pipel
 - [x] `evidence_papers` 에 15개 테마 SCI 논문 적재 — **250편**(`is_sci=true`·`quality_score` 채워짐), 총 281행, 기존 35 임베딩 보존.
 - [x] dry-run 으로 랭킹 합리성 확인(Lancet/Nature/Endocrine Reviews 등 cite 300~1064·RCR 30~48 랜드마크 상위).
 - [x] ai-server/CLAUDE.md 문서화.
-- [ ] (키 의존) 임베딩은 무키(`--no-embed`)로 적재해 null — Gemini 키 복구 후 백필이 **Phase 2 진입 조건**.
+- [x] **(Phase 2 ① 완료, 2026-06-10)** 임베딩 백필 완료 — 새 Gemini 키로 `gemini-embedding-001` 768d, `scripts/backfill-embeddings.mjs`(`embedding IS NULL` 행만, resume 가능) 로 **281/281 NULL=0**. `validate-evidence-search.mjs` 교차언어(한국어↔영어) 검증 통과. 상세 memory `research_evidence_library.md`·`blog_evidence_references.md`.
 
 ## 구현 노트 (실제 적용된 변경, 2026-06-10)
 통합 중 dry-run 으로 발견·수정한 계획 대비 차이(코드는 working tree 가 정본):

@@ -21,12 +21,13 @@ middleware/
   auth.ts         # API key validation
 ```
 
-## Research Evidence Library (Phase 1)
+## Research Evidence Library (Phase 1·2)
 국제 SCI 논문 초록을 품질 랭킹해 `evidence_papers` 단일 라이브러리(clinical RAG 처방추천 + 마케팅 공용)에 적재. 목적=공개 인용(E-E-A-T·의료광고 근거) + AI RAG(Phase 2).
 - 파이프라인: `scripts/ingest-evidence.mjs` — 15 주제축 PubMed 발굴(`sort=relevance`) → **OpenAlex**(`services/openalex.ts`: 피인용·저널 if_proxy≈IF·ISSN) + **NIH iCite**(`services/icite.ts`: RCR 분야·연도 보정) enrich → `services/journalQuality.ts`(저널 화이트리스트 `data/journalWhitelist.ts` **SCI 게이트** + 합성 `quality_score`) 랭킹 → top-N upsert. **전부 무키**(PubMed/OpenAlex/iCite).
 - `pubmed.ts` 확장: `doi`·`publicationTypes` 파싱 + `searchPmids(q, n, sort)` + HTML 엔티티 디코딩.
 - 사용: `node scripts/ingest-evidence.mjs [--dry-run] [--no-embed] [--only <topic>] [--limit N]`. `--no-embed`=무키(임베딩 생략, gemini import 안 함). 임베딩만 Gemini(없으면 null, Phase 2 백필). 테스트는 `dist/` import → 실행 전 `npm run build` 필수.
-- migration **048**(evidence_papers 품질 컬럼 12개). 적재 완료: **250 SCI 논문**(15테마, txirmof). 마케팅 연결(`article_evidence_links`·RAG)은 Phase 2. 상세 memory `research_evidence_library.md`.
+- migration **048**(evidence_papers 품질 컬럼 12개). 적재: **250 SCI 논문**(15테마, txirmof). **Phase 2 임베딩 백필 완료**: `scripts/backfill-embeddings.mjs`(`embedding IS NULL` 행만 → resume 가능, 텍스트=`title\nabstract`, gemini-embedding-001 768d) 로 **281/281** 채움 + `validate-evidence-search.mjs`(한국어 쿼리↔영어 초록 교차언어 검증).
+- **마케팅 연결 = 블로그 참고문헌** (migration 049): `services/evidenceMatch.ts`(순수 `cosineSim`/`selectReferences`, 단위테스트) + `scripts/attach-references.mjs`(en/ko 블로그 대표텍스트 임베딩 → 281편 코사인 → sim≥0.66 top5 → `marketing_articles.blog_references` JSONB 스냅샷; `--dry-run`/`--force`/`--threshold`/`--top`/`--only`/`--allow-partial`). 적재 61/62 토픽. 상세 memory `research_evidence_library.md`·`blog_evidence_references.md`.
 
 ## Endpoints
 | Method | Path | Description | Status |

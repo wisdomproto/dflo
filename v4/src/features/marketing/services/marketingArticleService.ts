@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap, ReelsMap } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap, ReelsMap, BlogReference } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -25,6 +25,7 @@ function rowToArticle(r: Row): MarketingArticle {
     translations: (r.translations as Record<string, ArticleTranslation>) ?? {},
     blog: (r.blog as BlogSeoMap) ?? {},
     reels: (r.reels as ReelsMap) ?? {},
+    blogReferences: (r.blog_references as BlogReference[]) ?? [],
   };
 }
 
@@ -45,6 +46,7 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     ...(a.translations !== undefined ? { translations: a.translations } : {}),
     ...(a.blog !== undefined ? { blog: a.blog } : {}),
     ...(a.reels !== undefined ? { reels: a.reels } : {}),
+    ...(a.blogReferences !== undefined ? { blog_references: a.blogReferences } : {}),
   };
 }
 
@@ -264,4 +266,30 @@ export async function generateBlogSeoBody(p: {
     })),
     faq: faq.map((f: Record<string, unknown>) => ({ q: String(f.q ?? ''), a: String(f.a ?? '') })),
   };
+}
+
+/** Partial update of just blog_references (migration 049) — article-level, language-independent. */
+export async function saveBlogReferences(id: string, refs: BlogReference[]): Promise<void> {
+  const { error } = await supabase
+    .from('marketing_articles')
+    .update({ blog_references: refs, updated_at: new Date().toISOString() })
+    .eq('id', id);
+  if (error) throw new Error(error.message);
+}
+
+/** evidence_papers 제목 검색(수동 추가용). anon SELECT 허용(정책 evidence_all). */
+export async function searchEvidencePapers(term: string): Promise<BlogReference[]> {
+  const t = term.trim();
+  if (!t) return [];
+  const { data, error } = await supabase
+    .from('evidence_papers')
+    .select('pmid,title,journal,year,doi,url')
+    .ilike('title', `%${t}%`)
+    .limit(10);
+  if (error) { logger.warn('[marketing] searchEvidencePapers failed:', error.message); return []; }
+  return (data ?? []).map((r) => ({
+    pmid: (r.pmid as string) ?? '', title: (r.title as string) ?? '', journal: (r.journal as string) ?? '',
+    year: (r.year as number | null) ?? null, doi: (r.doi as string | null) ?? null,
+    url: (r.url as string) ?? '', similarity: 1,
+  }));
 }

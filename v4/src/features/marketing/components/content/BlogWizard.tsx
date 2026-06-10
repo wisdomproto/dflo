@@ -9,6 +9,7 @@ import { uploadImageFile } from '../../services/aiImageService';
 import { scoreArticle, type SeoDetail, type SeoResult } from '../../utils/googleSeoScorer';
 import { BlogSeoEditor } from './BlogSeoEditor';
 import { BlogSeoScorePanel } from './BlogSeoScorePanel';
+import { BlogReferencesPanel } from './BlogReferencesPanel';
 
 const ACCENT = '#4A2D6B';
 type Step = 1 | 2 | 3;
@@ -274,6 +275,7 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
                 <BlogSeoEditor data={cur} mode="full" onPatch={patch} onPatchSection={patchSection} onSetSectionImage={setSectionImageAll} onAddSection={addSection} onRemoveSection={removeSection} onMoveSection={moveSection} onCopyPrompt={onCopyPrompt} copiedKey={copied} />
               </>
             ) : <p className="text-sm text-gray-400">구조를 먼저 만드세요.</p>}
+            <BlogReferencesPanel key={article.id} articleId={article.id} initial={article.blogReferences} />
           </div>
         )}
       </div>

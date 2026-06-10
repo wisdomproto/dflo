@@ -82,6 +82,7 @@ export interface MarketingArticle {
   translations: Record<string, ArticleTranslation>; // keyed by lang, e.g. { th: {...} }
   blog: BlogSeoMap; // SEO blog (migration 045): per-language structured article
   reels: ReelsMap; // reels (migration 046): per-language video + caption + hashtags
+  blogReferences: BlogReference[]; // 블로그 근거 논문 (migration 049), 아티클 단위·언어 독립
 }
 
 // ── SEO blog (migration 045) ────────────────────────────────────────────────
@@ -108,6 +109,18 @@ export interface BlogSeoArticle {
   faq: BlogSeoFaq[];
 }
 export type BlogSeoMap = Partial<Record<BlogSeoLangCode, BlogSeoArticle>>;
+
+// ── 블로그 근거 논문 (migration 049) ─────────────────────────────────────────
+// 아티클 단위(언어 독립) 인용 스냅샷. 매처가 자동 채우고 스튜디오에서 수동 편집.
+export interface BlogReference {
+  pmid: string;
+  title: string;
+  journal: string;
+  year: number | null;
+  doi: string | null;
+  url: string;        // PubMed link
+  similarity: number; // 0~1 (매칭 점수, 배지·정렬용; 수동 추가는 1)
+}
 
 // ── Reels (migration 046) ───────────────────────────────────────────────────
 // Per-language short-form video (mp4 on R2). Keyed by lang (ko/th/vi/en/ch —
