@@ -13,6 +13,15 @@ import { localizeProgramImages } from './lib/program-img.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
+
+// vite 와 달리 순수 node 스크립트라 .env 자동 로드 안 됨 — 측정ID(VITE_GA_MEASUREMENT_ID)·
+// CONTENTFLOW 등 빌드 env 를 .env 파일에서 로드(파일 없으면 graceful). Railway 는 레포에 커밋된
+// .env.production 을 사용하므로 별도 env 설정 없이도 정적 페이지에 gtag 가 주입된다.
+if (typeof process.loadEnvFile === 'function') {
+  for (const f of ['.env.production', '.env.local']) {
+    try { process.loadEnvFile(join(ROOT, f)); } catch { /* optional — 파일 없으면 무시 */ }
+  }
+}
 // ACTIVE_LANGS is the single source of truth (seo.mjs) so hreflang, sitemap, and the
 // build loop never drift — adding a lang there lights it up everywhere at once.
 const CACHE_DIR = join(ROOT, 'i18n/blog-cache');
