@@ -3,6 +3,7 @@
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 import type { MarketingArticle } from '../types';
+import { fetchQueue } from './marketingPublishService';
 
 export const STATUS_LANGS = ['ko', 'th', 'vi', 'en', 'cn', 'ch'] as const;
 export type StatusLang = (typeof STATUS_LANGS)[number];
@@ -90,3 +91,40 @@ export async function fetchContentStatus(articles: MarketingArticle[]): Promise<
     return { articleId: a.id, sortOrder: a.sortOrder, title: a.title, blog, cardnews, reels };
   }).sort((x, y) => x.sortOrder - y.sortOrder);
 }
+
+// ── 배포(발행 큐) 상태 ───────────────────────────────────────────────────────
+export type PublishReadiness = 'published' | 'scheduled' | 'queued' | 'failed' | 'none';
+const PUB_RANK: Record<PublishReadiness, number> = { published: 5, failed: 4, scheduled: 3, queued: 2, none: 1 };
+
+// marketing_publish_queue 집계. **채널별** key=`${articleId}|${contentKind}|${lang}|${channel}` → 그 채널 최상위 상태.
+// channel ∈ instagram/facebook/threads/website. contentKind ∈ blog/cardnews/post/reels (매트릭스는 blog/cardnews/reels).
+export async function fetchPublishStatus(): Promise<Map<string, PublishReadiness>> {
+  const m = new Map<string, PublishReadiness>();
+  try {
+    const queue = await fetchQueue();
+    for (const it of queue) {
+      if (!it.articleId || !it.contentKind) continue;
+      const cur: PublishReadiness =
+        it.status === 'published' ? 'published'
+          : it.status === 'failed' ? 'failed'
+            : it.status === 'scheduled' ? 'scheduled'
+              : 'queued'; // draft | publishing
+      const key = `${it.articleId}|${it.contentKind}|${it.language}|${it.channel}`;
+      const prev = m.get(key);
+      if (!prev || PUB_RANK[cur] > PUB_RANK[prev]) m.set(key, cur);
+    }
+  } catch (e) {
+    logger.warn('[marketing] fetchPublishStatus failed:', e instanceof Error ? e.message : String(e));
+  }
+  return m;
+}
+
+// 채널 메타 (배포 매트릭스 셀의 채널별 점 색상)
+export const CHANNELS_BY_KIND: Record<'blog' | 'cardnews' | 'reels', string[]> = {
+  blog: ['website'],
+  cardnews: ['instagram', 'facebook', 'threads'],
+  reels: ['instagram', 'facebook', 'threads'],
+};
+export const CHAN_COLOR: Record<string, string> = { instagram: '#e1306c', facebook: '#1877f2', threads: '#111827', website: '#059669' };
+export const CHAN_LABEL: Record<string, string> = { instagram: 'IG', facebook: 'FB', threads: 'Threads', website: '자체사이트' };
+export const PUB_RANK_EXPORT = PUB_RANK;
