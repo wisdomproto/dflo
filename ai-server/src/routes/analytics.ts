@@ -2,7 +2,7 @@
 // /api/analytics/overview?days=N → 지난 N일 요약 (page_view, kakao_consult_click 등)
 
 import { Router } from 'express';
-import { fetchOverview, fetchChannels } from '../services/ga4.js';
+import { fetchOverview, fetchChannels, fetchSiteBreakdown } from '../services/ga4.js';
 
 export const analyticsRouter = Router();
 
@@ -34,6 +34,20 @@ analyticsRouter.get('/channels', async (req, res) => {
   } catch (e) {
     const msg = (e as Error).message;
     console.error('[analytics] /channels failed:', msg);
+    res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// /api/analytics/site-breakdown?days=N → 국가(ko/th)×페이지(메인/병원/사례/예상키)×이벤트
+analyticsRouter.get('/site-breakdown', async (req, res) => {
+  const daysRaw = Number(req.query.days ?? 30);
+  const days = Number.isFinite(daysRaw) ? Math.min(365, Math.max(1, Math.round(daysRaw))) : 30;
+  try {
+    const data = await fetchSiteBreakdown(days);
+    res.json({ success: true, days, data });
+  } catch (e) {
+    const msg = (e as Error).message;
+    console.error('[analytics] /site-breakdown failed:', msg);
     res.status(500).json({ success: false, error: msg });
   }
 });

@@ -4,6 +4,7 @@
 
 import { google, type analyticsdata_v1beta } from 'googleapis';
 import { OAuth2Client } from 'google-auth-library';
+import { aggregateSiteBreakdown, type SiteBreakdown } from './ga4SiteBreakdown.js';
 
 const PROPERTY_ID = process.env.GA4_PROPERTY_ID;
 const CLIENT_ID = process.env.GA4_OAUTH_CLIENT_ID;
@@ -295,4 +296,41 @@ export async function fetchChannels(days: number): Promise<ChannelBreakdown> {
     ),
     countries: mapChannelRows(countryResp, (d) => d[0] ?? ''),
   };
+}
+
+// ── 사이트 분석 (국가×페이지×이벤트) ─────────────────────────────────
+// pagePath / eventName 표준 측정기준 → 커스텀 디멘션 등록 불필요.
+export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
+  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: 'today' }];
+
+  const pvResp = await runReport({
+    dateRanges,
+    dimensions: [{ name: 'pagePath' }],
+    metrics: [{ name: 'screenPageViews' }],
+    limit: '1000',
+  });
+  const pvRows = (pvResp.rows ?? []).map((r) => ({
+    pagePath: r.dimensionValues?.[0]?.value ?? '',
+    views: Number(r.metricValues?.[0]?.value ?? 0),
+  }));
+
+  const evResp = await runReport({
+    dateRanges,
+    dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
+    metrics: [{ name: 'eventCount' }],
+    dimensionFilter: {
+      filter: {
+        fieldName: 'eventName',
+        inListFilter: { values: ['height_calc_complete', 'consult_click'] },
+      },
+    },
+    limit: '1000',
+  });
+  const evRows = (evResp.rows ?? []).map((r) => ({
+    pagePath: r.dimensionValues?.[0]?.value ?? '',
+    eventName: r.dimensionValues?.[1]?.value ?? '',
+    count: Number(r.metricValues?.[0]?.value ?? 0),
+  }));
+
+  return aggregateSiteBreakdown(pvRows, evRows);
 }
