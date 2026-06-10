@@ -13,6 +13,8 @@ interface Props {
   mode: 'structure' | 'full';
   onPatch: (p: Partial<BlogSeoArticle>) => void;
   onPatchSection: (i: number, p: Partial<BlogSeoSection>) => void;
+  /** 섹션 이미지는 전 언어 공통(텍스트 없는 일러스트) — 같은 인덱스 전 언어에 동기화. */
+  onSetSectionImage: (i: number, url: string | null) => void;
   onAddSection: () => void;
   onRemoveSection: (i: number) => void;
   onMoveSection?: (from: number, to: number) => void;
@@ -20,7 +22,7 @@ interface Props {
   copiedKey?: string | null;
 }
 
-export function BlogSeoEditor({ data, mode, onPatch, onPatchSection, onAddSection, onRemoveSection, onMoveSection, onCopyPrompt, copiedKey }: Props) {
+export function BlogSeoEditor({ data, mode, onPatch, onPatchSection, onSetSectionImage, onAddSection, onRemoveSection, onMoveSection, onCopyPrompt, copiedKey }: Props) {
   const full = mode === 'full';
   const [dragIdx, setDragIdx] = useState<number | null>(null);
   const [overIdx, setOverIdx] = useState<number | null>(null);
@@ -92,8 +94,9 @@ export function BlogSeoEditor({ data, mode, onPatch, onPatchSection, onAddSectio
             <div className="flex flex-col gap-3 sm:flex-row">
               <div className="sm:w-56 shrink-0">
                 <ImageDropzone url={s.imageUrl} alt={s.heading}
-                  onUploaded={(u) => onPatchSection(i, { imageUrl: u })}
-                  onClear={() => onPatchSection(i, { imageUrl: null })} aspectRatio="16/9" />
+                  onUploaded={(u) => onSetSectionImage(i, u)}
+                  onClear={() => onSetSectionImage(i, null)} aspectRatio="16/9" />
+                <p className="mt-1 text-[10px] text-gray-400">🌐 이미지는 전 언어 공통 (텍스트 없는 일러스트)</p>
                 <div className="mt-1 flex items-start gap-1">
                   <p className="flex-1 text-[11px] leading-snug text-gray-400">🎨 {s.imagePrompt}</p>
                   {onCopyPrompt && (

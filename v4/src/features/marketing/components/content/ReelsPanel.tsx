@@ -1,5 +1,5 @@
 // src/features/marketing/components/content/ReelsPanel.tsx
-// 릴스 패널: 언어별 영상(mp4→R2) 업로드 + 미리보기. 캡션·해시태그는 카드뉴스 단일 소스(읽기 전용).
+// 릴스 패널 — 2 서브탭: [스토리보드](HTML 뷰어, 생성은 추후·전 언어 공용) / [영상 제작](언어별 mp4→R2 + 카드뉴스 공용 캡션).
 import { useEffect, useRef, useState } from 'react';
 import type { MarketingArticle, ReelsMap, ReelsLangData, Cardnews, CardLang } from '../../types';
 import { saveReels } from '../../services/marketingArticleService';
@@ -8,12 +8,19 @@ import { fetchCardnews } from '../../services/cardnewsService';
 
 interface Props { article: MarketingArticle; language: string; }
 
+const ACCENT = '#4A2D6B';
 const LANG_LABELS: Record<string, string> = {
   ko: '🇰🇷 한국어', th: '🇹🇭 TH', vi: '🇻🇳 VI', en: '🇺🇸 EN', ch: '🇹🇼 中文(번체)', cn: '🇨🇳 中文(간체)',
 };
 const EMPTY: ReelsLangData = { videoUrl: null };
+type Sub = 'storyboard' | 'video';
+const SUBS: { key: Sub; label: string }[] = [
+  { key: 'storyboard', label: '📋 스토리보드' },
+  { key: 'video', label: '🎬 영상 제작' },
+];
 
 export function ReelsPanel({ article, language }: Props) {
+  const [sub, setSub] = useState<Sub>('storyboard');
   const [reels, setReels] = useState<ReelsMap>(article.reels ?? {});
   const [cardnews, setCardnews] = useState<Cardnews | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -35,6 +42,9 @@ export function ReelsPanel({ article, language }: Props) {
   const caption = cardnews?.captions[language as CardLang] ?? '';
   const hashtags = cardnews?.hashtagsI18n[language as CardLang] ?? '';
   const hasCaption = !!(caption.trim() || hashtags.trim());
+
+  // 스토리보드 HTML(전 언어 공용). 생성 기능은 추후 구현 — 지금은 항상 빈 뷰어(플레이스홀더).
+  const storyboardHtml: string | null = null;
 
   const queueSave = (next: ReelsMap) => {
     if (timer.current) clearTimeout(timer.current);
@@ -69,60 +79,84 @@ export function ReelsPanel({ article, language }: Props) {
 
   return (
     <div className="flex h-full flex-col">
-      <div className="flex shrink-0 items-center gap-2 border-b border-gray-200 p-3">
-        <span className="text-xs font-semibold text-gray-500">{label} 릴스</span>
-        <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700">발행 준비 중 · 저장 전용</span>
+      {/* 서브탭 */}
+      <div className="flex shrink-0 items-center gap-1 border-b border-gray-200 p-3">
+        {SUBS.map((s) => (
+          <button key={s.key} type="button" onClick={() => setSub(s.key)}
+            className={`rounded-full px-3 py-1 text-xs font-semibold ${s.key === sub ? 'text-white' : 'text-gray-600 ring-1 ring-gray-300'}`}
+            style={s.key === sub ? { backgroundColor: ACCENT } : undefined}>
+            {s.label}
+          </button>
+        ))}
+        <span className="ml-auto rounded-full bg-amber-50 px-2 py-0.5 text-[11px] text-amber-700">발행 준비 중 · 저장 전용</span>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4">
-        {error && <div className="mb-2 text-[11px] text-red-600">{error}</div>}
-
-        {/* 영상 */}
-        <div className="mb-4 rounded-lg border border-gray-200 p-3">
-          <div className="mb-2 text-xs font-semibold text-gray-500">🎬 영상 ({label})</div>
-          {cur.videoUrl ? (
-            <div className="space-y-2">
-              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-              <video src={cur.videoUrl} controls className="mx-auto max-h-[440px] rounded-lg bg-black" style={{ aspectRatio: '9 / 16' }} />
-              <div className="flex flex-wrap items-center gap-2">
-                <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
-                  {uploading ? '업로드 중…' : '영상 교체'}
-                  <input type="file" accept="video/*" hidden disabled={uploading}
-                    onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
-                </label>
-                <button type="button" onClick={() => patch({ videoUrl: null })}
-                  className="rounded border border-gray-300 px-3 py-1 text-xs text-gray-500 hover:text-red-600">삭제</button>
-                <a href={cur.videoUrl} target="_blank" rel="noreferrer" className="text-xs text-[#4A2D6B] underline">새 탭에서 열기 ↗</a>
-              </div>
-            </div>
+      {/* 스토리보드 — HTML 뷰어 (전 언어 공용, 생성은 추후) */}
+      {sub === 'storyboard' ? (
+        <div className="flex-1 overflow-hidden p-4">
+          {storyboardHtml ? (
+            <iframe srcDoc={storyboardHtml} title="릴스 스토리보드"
+              className="h-full w-full rounded-lg border border-gray-200 bg-white" />
           ) : (
-            <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
-              {uploading ? '업로드 중…' : '📹 영상 파일 올리기 (mp4 · 최대 100MB)'}
-              <input type="file" accept="video/*" hidden disabled={uploading}
-                onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
-            </label>
+            <div className="flex h-full flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-center text-gray-400">
+              <div className="text-3xl">📋</div>
+              <p className="mt-2 text-sm font-semibold text-gray-500">스토리보드 생성 준비 중</p>
+              <p className="mt-1 max-w-xs text-xs">생성 기능은 추후 구현됩니다. 생성되면 여기에 <b>HTML</b>로 표시돼요. (전 언어 공용)</p>
+            </div>
           )}
         </div>
+      ) : (
+        /* 영상 제작 — 언어별 영상 + 카드뉴스 공용 캡션 */
+        <div className="flex-1 overflow-y-auto p-4">
+          {error && <div className="mb-2 text-[11px] text-red-600">{error}</div>}
 
-        {/* 캡션 / 해시태그 — 카드뉴스 단일 소스(읽기 전용) */}
-        <div className="rounded-lg border border-gray-200 bg-gray-50/60 p-3">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500">📝 캡션 · 해시태그 ({label}) · 카드뉴스 공용</span>
-            {hasCaption && (
-              <button type="button" onClick={copy} className="rounded bg-gray-700 px-2 py-0.5 text-[11px] text-white">{copied ? '✅' : '복사'}</button>
+          {/* 영상 */}
+          <div className="mb-4 rounded-lg border border-gray-200 p-3">
+            <div className="mb-2 text-xs font-semibold text-gray-500">🎬 영상 ({label})</div>
+            {cur.videoUrl ? (
+              <div className="space-y-2">
+                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                <video src={cur.videoUrl} controls className="mx-auto max-h-[440px] rounded-lg bg-black" style={{ aspectRatio: '9 / 16' }} />
+                <div className="flex flex-wrap items-center gap-2">
+                  <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
+                    {uploading ? '업로드 중…' : '영상 교체'}
+                    <input type="file" accept="video/*" hidden disabled={uploading}
+                      onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
+                  </label>
+                  <button type="button" onClick={() => patch({ videoUrl: null })}
+                    className="rounded border border-gray-300 px-3 py-1 text-xs text-gray-500 hover:text-red-600">삭제</button>
+                  <a href={cur.videoUrl} target="_blank" rel="noreferrer" className="text-xs text-[#4A2D6B] underline">새 탭에서 열기 ↗</a>
+                </div>
+              </div>
+            ) : (
+              <label className="flex h-40 cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 text-sm text-gray-400 hover:border-[#4A2D6B] hover:text-[#4A2D6B]">
+                {uploading ? '업로드 중…' : '📹 영상 파일 올리기 (mp4 · 최대 100MB)'}
+                <input type="file" accept="video/*" hidden disabled={uploading}
+                  onChange={(e) => { void onVideo(e.target.files?.[0]); e.target.value = ''; }} />
+              </label>
             )}
           </div>
-          {hasCaption ? (
-            <>
-              <p className="mb-2 whitespace-pre-wrap rounded border border-gray-200 bg-white px-2 py-1.5 text-sm text-gray-700">{caption || '—'}</p>
-              <p className="whitespace-pre-wrap rounded border border-gray-200 bg-white px-2 py-1.5 text-xs text-gray-500">{hashtags || '—'}</p>
-              <p className="mt-2 text-[11px] text-gray-400">✏️ 편집은 <b>카드뉴스 탭</b>에서 (릴스·카드뉴스 공용)</p>
-            </>
-          ) : (
-            <p className="text-[11px] text-gray-400">카드뉴스 탭에서 캡션·해시태그를 먼저 생성하면 여기에 표시됩니다.</p>
-          )}
+
+          {/* 캡션 / 해시태그 — 카드뉴스 단일 소스(읽기 전용) */}
+          <div className="rounded-lg border border-gray-200 bg-gray-50/60 p-3">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-xs font-semibold text-gray-500">📝 캡션 · 해시태그 ({label}) · 카드뉴스 공용</span>
+              {hasCaption && (
+                <button type="button" onClick={copy} className="rounded bg-gray-700 px-2 py-0.5 text-[11px] text-white">{copied ? '✅' : '복사'}</button>
+              )}
+            </div>
+            {hasCaption ? (
+              <>
+                <p className="mb-2 whitespace-pre-wrap rounded border border-gray-200 bg-white px-2 py-1.5 text-sm text-gray-700">{caption || '—'}</p>
+                <p className="whitespace-pre-wrap rounded border border-gray-200 bg-white px-2 py-1.5 text-xs text-gray-500">{hashtags || '—'}</p>
+                <p className="mt-2 text-[11px] text-gray-400">✏️ 편집은 <b>카드뉴스 탭</b>에서 (릴스·카드뉴스 공용)</p>
+              </>
+            ) : (
+              <p className="text-[11px] text-gray-400">카드뉴스 탭에서 캡션·해시태그를 먼저 생성하면 여기에 표시됩니다.</p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 // 단일 소스 marketing_articles.blog[lang] (migration 045). 언어는 최상단 셀렉터(props).
 import { useEffect, useRef, useState } from 'react';
 import type { MarketingArticle, BlogSeoArticle, BlogSeoMap, BlogSeoSection } from '../../types';
+import { BLOG_SEO_LANGS } from '../../types';
 import { saveBlogSeo, generateBlogSeoOutline, generateBlogSeoBody, rewriteSelection } from '../../services/marketingArticleService';
 import { uploadImageFile } from '../../services/aiImageService';
 import { scoreArticle, type SeoDetail, type SeoResult } from '../../utils/googleSeoScorer';
@@ -37,6 +38,17 @@ function allImagePrompts(a: BlogSeoArticle): string {
 
 function emptyArticle(): BlogSeoArticle {
   return { seoTitle: '', slug: '', metaDescription: '', h1: '', primaryKeyword: '', secondaryKeywords: [], sections: [], faq: [] };
+}
+// 섹션 이미지는 텍스트가 없어 전 언어 공통 — 같은 인덱스의 모든 언어 섹션에 동일 URL 적용(섹션 없는 언어는 스킵).
+function applySectionImageAll(blog: BlogSeoMap, i: number, url: string | null): BlogSeoMap {
+  const next: BlogSeoMap = { ...blog };
+  for (const l of BLOG_SEO_LANGS) {
+    const art = next[l];
+    if (art && i < art.sections.length) {
+      next[l] = { ...art, sections: art.sections.map((s, idx) => (idx === i ? { ...s, imageUrl: url } : s)) };
+    }
+  }
+  return next;
 }
 function emptySection(heading = ''): BlogSeoSection {
   return { heading, html: '', imagePrompt: '', imageUrl: null };
@@ -76,6 +88,8 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
     if (!cur) return;
     patch({ sections: cur.sections.map((s, idx) => (idx === i ? { ...s, ...p } : s)) });
   };
+  // 섹션 이미지 = 전 언어 공통(텍스트 없는 일러스트). 업로드/삭제 시 같은 인덱스 전 언어에 동기화.
+  const setSectionImageAll = (i: number, url: string | null) => queueSave(applySectionImageAll(blog, i, url));
   const addSection = () => patch({ sections: [...(cur?.sections ?? []), emptySection()] });
   const removeSection = (i: number) => cur && patch({ sections: cur.sections.filter((_, idx) => idx !== i) });
   const moveSection = (from: number, to: number) => {
@@ -153,10 +167,10 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
     if (!files || !files.length || !cur) return;
     const arr = [...files].sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
     const count = Math.min(arr.length, cur.sections.length);
-    setErr(null); let sections = cur.sections;
+    setErr(null); let next: BlogSeoMap = blog;
     for (let i = 0; i < count; i++) {
       setBulk(`${i + 1}/${count}`);
-      try { const url = await uploadImageFile(arr[i]); sections = sections.map((s, idx) => (idx === i ? { ...s, imageUrl: url } : s)); patch({ sections }); }
+      try { const url = await uploadImageFile(arr[i]); next = applySectionImageAll(next, i, url); queueSave(next); }
       catch (e) { setErr(`#${i + 1} 업로드 실패: ${e instanceof Error ? e.message : ''}`); }
     }
     setBulk(null);
@@ -233,7 +247,7 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
           <div className="space-y-4">
             <button type="button" onClick={runOutline} disabled={busy === 'outline'} className={btn} style={{ backgroundColor: ACCENT }}>
               {busy === 'outline' ? '생성 중…' : '✨ AI 아웃라인 재생성'}</button>
-            {cur ? <BlogSeoEditor data={cur} mode="structure" onPatch={patch} onPatchSection={patchSection} onAddSection={addSection} onRemoveSection={removeSection} onMoveSection={moveSection} />
+            {cur ? <BlogSeoEditor data={cur} mode="structure" onPatch={patch} onPatchSection={patchSection} onSetSectionImage={setSectionImageAll} onAddSection={addSection} onRemoveSection={removeSection} onMoveSection={moveSection} />
               : <p className="text-sm text-gray-400">키워드 단계에서 아웃라인을 먼저 생성하세요.</p>}
           </div>
         )}
@@ -257,7 +271,7 @@ export function BlogWizard({ article, language }: { article: MarketingArticle; l
                   <summary className="cursor-pointer font-semibold text-indigo-300">🎨 이미지 공통 스타일 — 모든 섹션 동일 (복사 시 자동 포함)</summary>
                   <pre className="mt-2 whitespace-pre-wrap font-sans">{BLOG_IMG_STYLE}</pre>
                 </details>
-                <BlogSeoEditor data={cur} mode="full" onPatch={patch} onPatchSection={patchSection} onAddSection={addSection} onRemoveSection={removeSection} onMoveSection={moveSection} onCopyPrompt={onCopyPrompt} copiedKey={copied} />
+                <BlogSeoEditor data={cur} mode="full" onPatch={patch} onPatchSection={patchSection} onSetSectionImage={setSectionImageAll} onAddSection={addSection} onRemoveSection={removeSection} onMoveSection={moveSection} onCopyPrompt={onCopyPrompt} copiedKey={copied} />
               </>
             ) : <p className="text-sm text-gray-400">구조를 먼저 만드세요.</p>}
           </div>
