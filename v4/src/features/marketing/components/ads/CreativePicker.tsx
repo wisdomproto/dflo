@@ -56,13 +56,15 @@ export function CreativePicker({
   const caption = cn?.captions?.[lang] ?? '';
   const cardImgs = (cn?.slides ?? []).map((s) => s.canvas.images?.[lang] ?? s.canvas.imageUrl ?? '').filter(Boolean);
   const reel = sel?.reels?.[market];
+  // coverUrl 은 릴스-커버 기능(types.ts) 머지 전일 수 있어 옵셔널 접근으로 빌드 안전 확보.
+  const reelCover = (reel as { videoUrl?: string | null; coverUrl?: string | null } | undefined)?.coverUrl ?? '';
   const filtered = articles.filter((a) => !q || a.title.toLowerCase().includes(q.toLowerCase()));
 
   const pickCard = (url: string) =>
     sel && onPick({ kind: 'cardnews', articleId: sel.id, lang: market, thumbnailUrl: url, mediaUrl: url, name: sel.title, caption });
   const pickReel = () =>
     sel && reel?.videoUrl &&
-    onPick({ kind: 'reels', articleId: sel.id, lang: market, thumbnailUrl: reel.coverUrl ?? '', mediaUrl: reel.videoUrl, name: sel.title, caption });
+    onPick({ kind: 'reels', articleId: sel.id, lang: market, thumbnailUrl: reelCover, mediaUrl: reel.videoUrl, name: sel.title, caption });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={onClose}>
@@ -114,8 +116,8 @@ export function CreativePicker({
                     onClick={pickReel}
                     className="group relative aspect-[9/16] w-28 overflow-hidden rounded-lg border-2 border-transparent hover:border-[#4A2D6B]"
                   >
-                    {reel.coverUrl ? (
-                      <img src={reel.coverUrl} alt="" className="h-full w-full object-cover" />
+                    {reelCover ? (
+                      <img src={reelCover} alt="" className="h-full w-full object-cover" />
                     ) : (
                       <div className="grid h-full place-items-center bg-gray-100 text-2xl">🎬</div>
                     )}
