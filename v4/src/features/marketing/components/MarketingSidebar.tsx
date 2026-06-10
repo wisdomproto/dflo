@@ -36,6 +36,7 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     label: '분석',
     items: [
       { to: '/marketing/site-analysis', icon: '📊', label: '사이트 분석' },
+      { to: '/marketing/seo-audit', icon: '🔍', label: 'SEO 감사' },
       { to: '/marketing/channel-analytics', icon: '📱', label: '채널 분석' },
       { to: '/marketing/competitors', icon: '🎯', label: '경쟁사' },
     ],

@@ -1,27 +1,21 @@
 // src/features/marketing/components/SiteAnalysisPage.tsx
-// 사이트 분석: 좌(GA4 트래픽 요약, 기존 프록시 재사용) + 우(규칙 기반 SEO 감사, 키 없이 동작) 2분할.
-import { useEffect, useState } from 'react';
-import { fetchAuditHistory, type SavedAudit } from '../services/marketingAuditService';
+// 사이트 분석: GA4 트래픽 전용. 국가 탭(전체/한국/태국) + 기간 선택.
+// (SEO / 온페이지 감사는 /marketing/seo-audit 로 분리됨)
+import { useState } from 'react';
 import { CountrySiteBreakdownPanel } from './CountrySiteBreakdownPanel';
-import { SeoAuditPanel } from './SeoAuditPanel';
 
-const DAY_OPTIONS = [7, 30, 90] as const;
+const DAY_OPTIONS = [7, 14, 30, 90] as const;
 
 export function SiteAnalysisPage() {
   const [days, setDays] = useState<number>(30);
-  const [history, setHistory] = useState<SavedAudit[]>([]);
-
-  const reloadHistory = () => {
-    fetchAuditHistory().then(setHistory);
-  };
-  useEffect(reloadHistory, []);
 
   return (
     <div className="flex h-full flex-col">
       <div className="flex flex-wrap items-center gap-3 border-b border-gray-200 px-6 py-3">
         <h2 className="text-base font-bold text-gray-800">사이트 분석</h2>
+        <span className="text-xs text-gray-400">우리 사이트 GA4 트래픽</span>
         <div className="ml-auto flex items-center gap-1">
-          <span className="mr-1 text-xs text-gray-400">트래픽 기간</span>
+          <span className="mr-1 text-xs text-gray-400">기간</span>
           {DAY_OPTIONS.map((d) => (
             <button
               type="button"
@@ -37,15 +31,8 @@ export function SiteAnalysisPage() {
         </div>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 overflow-y-auto p-6 lg:grid-cols-2">
-        <section>
-          <h3 className="mb-3 text-sm font-semibold text-gray-600">📊 국가별 사이트 분석 (GA4)</h3>
-          <CountrySiteBreakdownPanel days={days} />
-        </section>
-        <section>
-          <h3 className="mb-3 text-sm font-semibold text-gray-600">🔍 SEO / 온페이지 감사</h3>
-          <SeoAuditPanel history={history} onSaved={reloadHistory} />
-        </section>
+      <div className="min-h-0 flex-1 overflow-y-auto p-6">
+        <CountrySiteBreakdownPanel days={days} />
       </div>
     </div>
   );

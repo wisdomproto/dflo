@@ -88,6 +88,9 @@ const ChannelRegistryTab = lazy(() =>
 const SiteAnalysisPage = lazy(() =>
   import('@/features/marketing/components/SiteAnalysisPage').then((m) => ({ default: m.SiteAnalysisPage })),
 );
+const SeoAuditPage = lazy(() =>
+  import('@/features/marketing/components/SeoAuditPage').then((m) => ({ default: m.SeoAuditPage })),
+);
 const ChannelAnalyticsPage = lazy(() =>
   import('@/features/marketing/components/ChannelAnalyticsPage').then((m) => ({ default: m.ChannelAnalyticsPage })),
 );
@@ -332,6 +335,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <SiteAnalysisPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'seo-audit',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <SeoAuditPage />
           </Suspense>
         ),
       },

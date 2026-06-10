@@ -301,36 +301,55 @@ export async function fetchChannels(days: number): Promise<ChannelBreakdown> {
 // ── 사이트 분석 (국가×페이지×이벤트) ─────────────────────────────────
 // pagePath / eventName 표준 측정기준 → 커스텀 디멘션 등록 불필요.
 export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
-  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: 'today' }];
+  const cur = { startDate: `${days}daysAgo`, endDate: 'today' };
+  // 직전 동일 기간 (예: 30일이면 그 앞 30일) — 요약 증감 비교용.
+  const prev = { startDate: `${days * 2}daysAgo`, endDate: `${days + 1}daysAgo` };
 
-  const pvResp = await runReport({
-    dateRanges,
-    dimensions: [{ name: 'pagePath' }],
-    metrics: [{ name: 'screenPageViews' }],
-    limit: '1000',
+  // 요약은 landingPage(세션 진입) 기준 — 한 세션 1랜딩이라 국가 귀속에 중복 없음.
+  const landingDims = [{ name: 'landingPage' }];
+  const landingMetrics = [
+    { name: 'totalUsers' }, { name: 'newUsers' }, { name: 'sessions' },
+    { name: 'screenPageViews' }, { name: 'userEngagementDuration' },
+  ];
+  const mapLanding = (resp: analyticsdata_v1beta.Schema$RunReportResponse) =>
+    (resp.rows ?? []).map((r) => ({
+      landingPage: r.dimensionValues?.[0]?.value ?? '',
+      users: Number(r.metricValues?.[0]?.value ?? 0),
+      newUsers: Number(r.metricValues?.[1]?.value ?? 0),
+      sessions: Number(r.metricValues?.[2]?.value ?? 0),
+      pageViews: Number(r.metricValues?.[3]?.value ?? 0),
+      engagementSec: Number(r.metricValues?.[4]?.value ?? 0),
+    }));
+
+  const [landResp, landPrevResp, pvResp, evResp, chResp, dvResp, dailyResp] = await Promise.all([
+    runReport({ dateRanges: [cur], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
+    runReport({ dateRanges: [prev], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'pagePath' }], metrics: [{ name: 'screenPageViews' }], limit: '1000' }),
+    runReport({
+      dateRanges: [cur],
+      dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
+      metrics: [{ name: 'eventCount' }],
+      dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: ['height_calc_complete', 'consult_click'] } } },
+      limit: '1000',
+    }),
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'sessionDefaultChannelGroup' }], metrics: [{ name: 'sessions' }], limit: '1000' }),
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'deviceCategory' }], metrics: [{ name: 'sessions' }], limit: '1000' }),
+    runReport({
+      dateRanges: [cur],
+      dimensions: [{ name: 'date' }, { name: 'landingPage' }],
+      metrics: [{ name: 'totalUsers' }, { name: 'sessions' }, { name: 'screenPageViews' }],
+      orderBys: [{ dimension: { dimensionName: 'date' } }],
+      limit: '10000',
+    }),
+  ]);
+
+  return aggregateSiteBreakdown({
+    landing: mapLanding(landResp),
+    landingPrev: mapLanding(landPrevResp),
+    pv: (pvResp.rows ?? []).map((r) => ({ pagePath: r.dimensionValues?.[0]?.value ?? '', views: Number(r.metricValues?.[0]?.value ?? 0) })),
+    events: (evResp.rows ?? []).map((r) => ({ pagePath: r.dimensionValues?.[0]?.value ?? '', eventName: r.dimensionValues?.[1]?.value ?? '', count: Number(r.metricValues?.[0]?.value ?? 0) })),
+    channels: (chResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', channel: r.dimensionValues?.[1]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
+    devices: (dvResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', device: r.dimensionValues?.[1]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
+    daily: (dailyResp.rows ?? []).map((r) => ({ date: r.dimensionValues?.[0]?.value ?? '', landingPage: r.dimensionValues?.[1]?.value ?? '', users: Number(r.metricValues?.[0]?.value ?? 0), sessions: Number(r.metricValues?.[1]?.value ?? 0), views: Number(r.metricValues?.[2]?.value ?? 0) })),
   });
-  const pvRows = (pvResp.rows ?? []).map((r) => ({
-    pagePath: r.dimensionValues?.[0]?.value ?? '',
-    views: Number(r.metricValues?.[0]?.value ?? 0),
-  }));
-
-  const evResp = await runReport({
-    dateRanges,
-    dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
-    metrics: [{ name: 'eventCount' }],
-    dimensionFilter: {
-      filter: {
-        fieldName: 'eventName',
-        inListFilter: { values: ['height_calc_complete', 'consult_click'] },
-      },
-    },
-    limit: '1000',
-  });
-  const evRows = (evResp.rows ?? []).map((r) => ({
-    pagePath: r.dimensionValues?.[0]?.value ?? '',
-    eventName: r.dimensionValues?.[1]?.value ?? '',
-    count: Number(r.metricValues?.[0]?.value ?? 0),
-  }));
-
-  return aggregateSiteBreakdown(pvRows, evRows);
 }

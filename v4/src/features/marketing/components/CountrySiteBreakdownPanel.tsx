@@ -1,9 +1,17 @@
 // src/features/marketing/components/CountrySiteBreakdownPanel.tsx
-// 국가 탭[한국/태국] → 페이지 4카드 + 이벤트 카드 + 전환율. days 는 부모에서 주입.
+// 국가 탭[전체/한국/태국] → 요약 스코어카드(증감) + 일자별 추세 + 페이지별 + 이벤트 + 유입채널 + 디바이스.
 import { useEffect, useState } from 'react';
-import { fetchSiteBreakdown, type SiteBreakdown, type CountryStats } from '../services/marketingAnalyticsService';
+import {
+  fetchSiteBreakdown,
+  type SiteBreakdown,
+  type CountryStats,
+  type CountryKey,
+  type NamedCount,
+} from '../services/marketingAnalyticsService';
+import { SiteTrendChart } from './SiteTrendChart';
 
-const COUNTRY_TABS: { code: 'ko' | 'th'; label: string; flag: string }[] = [
+const COUNTRY_TABS: { code: CountryKey; label: string; flag: string }[] = [
+  { code: 'all', label: '전체', flag: '🌏' },
   { code: 'ko', label: '한국', flag: '🇰🇷' },
   { code: 'th', label: '태국', flag: '🇹🇭' },
 ];
@@ -14,6 +22,54 @@ const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
   { key: 'cases', label: '치료 사례' },
   { key: 'calculator', label: '예상키 측정' },
 ];
+
+const CHANNEL_LABELS: Record<string, string> = {
+  'Organic Search': '자연 검색',
+  Direct: '직접',
+  'Organic Social': '소셜',
+  Referral: '추천',
+  'Paid Search': '유료 검색',
+  'Paid Social': '유료 소셜',
+  Email: '이메일',
+  Display: '디스플레이',
+  Unassigned: '미분류',
+};
+const DEVICE_LABELS: Record<string, string> = { mobile: '모바일', desktop: '데스크톱', tablet: '태블릿' };
+
+function fmtDuration(sec: number): string {
+  const s = Math.round(sec);
+  if (s < 60) return `${s}초`;
+  const m = Math.floor(s / 60);
+  const r = s % 60;
+  return r ? `${m}분 ${r}초` : `${m}분`;
+}
+
+function Delta({ cur, prev }: { cur: number; prev: number }) {
+  if (prev <= 0) {
+    return cur > 0
+      ? <span className="text-[11px] font-semibold text-emerald-600">신규</span>
+      : <span className="text-[11px] text-gray-300">—</span>;
+  }
+  const d = ((cur - prev) / prev) * 100;
+  const up = d >= 0;
+  return (
+    <span className={`text-[11px] font-semibold ${up ? 'text-emerald-600' : 'text-rose-500'}`}>
+      {up ? '▲' : '▼'} {Math.abs(d).toFixed(0)}%
+    </span>
+  );
+}
+
+function ScoreCard({ label, value, cur, prev, accent }: { label: string; value: string; cur: number; prev: number; accent?: boolean }) {
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
+      <div className="text-xs text-gray-400">{label}</div>
+      <div className="mt-1 flex items-end justify-between gap-1">
+        <span className={`text-xl font-bold tabular-nums ${accent ? 'text-[#4A2D6B]' : 'text-gray-800'}`}>{value}</span>
+        <Delta cur={cur} prev={prev} />
+      </div>
+    </div>
+  );
+}
 
 function PageCard({ label, views, total }: { label: string; views: number; total: number }) {
   const pct = total > 0 ? Math.round((views / total) * 100) : 0;
@@ -29,8 +85,28 @@ function PageCard({ label, views, total }: { label: string; views: number; total
   );
 }
 
+function BreakdownBars({ items, labels }: { items: NamedCount[]; labels?: Record<string, string> }) {
+  if (!items.length) return <p className="rounded-lg bg-gray-50 px-3 py-2 text-[11px] text-gray-400">데이터 없음</p>;
+  const max = Math.max(...items.map((i) => i.sessions), 1);
+  return (
+    <ul className="space-y-1.5">
+      {items.slice(0, 6).map((it) => (
+        <li key={it.label} className="text-xs">
+          <div className="flex justify-between">
+            <span className="text-gray-600">{labels?.[it.label] ?? it.label}</span>
+            <span className="tabular-nums text-gray-500">{it.sessions.toLocaleString()} · {it.pct}%</span>
+          </div>
+          <div className="mt-0.5 h-1.5 overflow-hidden rounded bg-gray-100">
+            <div className="h-full rounded bg-[#7C5BA6]" style={{ width: `${(it.sessions / max) * 100}%` }} />
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function CountrySiteBreakdownPanel({ days }: { days: number }) {
-  const [country, setCountry] = useState<'ko' | 'th'>('ko');
+  const [country, setCountry] = useState<CountryKey>('all');
   const [data, setData] = useState<SiteBreakdown | null>(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -81,20 +157,41 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
 
       {!loading && !err && data && (() => {
         const s = data.byCountry[country];
-        const messengerLabel = s.messengerChannel === 'line' ? 'LINE' : '카카오톡';
+        const su = s.summary;
+        const pu = s.prevSummary;
+        const messengerLabel = s.messengerChannel === 'line' ? 'LINE' : s.messengerChannel === 'kakao' ? '카카오톡' : '메신저';
         return (
-          <div className="space-y-5">
-            {/* 페이지뷰 4카드 */}
+          <div className="space-y-6">
+            {/* 요약 스코어카드 */}
+            <div>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                <ScoreCard label="사용자" value={su.users.toLocaleString()} cur={su.users} prev={pu.users} accent />
+                <ScoreCard label="신규 사용자" value={su.newUsers.toLocaleString()} cur={su.newUsers} prev={pu.newUsers} />
+                <ScoreCard label="재방문자" value={su.returningUsers.toLocaleString()} cur={su.returningUsers} prev={pu.returningUsers} />
+                <ScoreCard label="세션" value={su.sessions.toLocaleString()} cur={su.sessions} prev={pu.sessions} />
+                <ScoreCard label="페이지뷰" value={su.pageViews.toLocaleString()} cur={su.pageViews} prev={pu.pageViews} />
+                <ScoreCard label="평균 참여시간" value={fmtDuration(su.avgEngagementSec)} cur={su.avgEngagementSec} prev={pu.avgEngagementSec} />
+              </div>
+              <p className="mt-1.5 text-[11px] text-gray-400">▲▼ 는 직전 동일 기간 대비 증감</p>
+            </div>
+
+            {/* 일자별 추세 */}
+            <div>
+              <h4 className="mb-2 text-xs font-semibold text-gray-500">일자별 추세 (사용자 / 세션 / 페이지뷰)</h4>
+              <SiteTrendChart daily={s.daily} />
+            </div>
+
+            {/* 페이지별 */}
             <div>
               <h4 className="mb-2 text-xs font-semibold text-gray-500">페이지별 조회수</h4>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
                 {PAGE_CARDS.map((p) => (
                   <PageCard key={p.key} label={p.label} views={s.pageViews[p.key]} total={s.pageViews.total} />
                 ))}
               </div>
             </div>
 
-            {/* 이벤트 카드 */}
+            {/* 이벤트 */}
             <div>
               <h4 className="mb-2 text-xs font-semibold text-gray-500">핵심 이벤트</h4>
               <div className="grid grid-cols-3 gap-2">
@@ -112,6 +209,18 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
                 </div>
               </div>
               <p className="mt-1 text-[11px] text-gray-400">전환율 = {messengerLabel} 클릭 / 총 페이지뷰</p>
+            </div>
+
+            {/* 유입 채널 + 디바이스 */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div>
+                <h4 className="mb-2 text-xs font-semibold text-gray-500">유입 채널</h4>
+                <BreakdownBars items={s.channels} labels={CHANNEL_LABELS} />
+              </div>
+              <div>
+                <h4 className="mb-2 text-xs font-semibold text-gray-500">디바이스</h4>
+                <BreakdownBars items={s.devices} labels={DEVICE_LABELS} />
+              </div>
             </div>
           </div>
         );
