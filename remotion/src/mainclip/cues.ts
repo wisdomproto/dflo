@@ -12,7 +12,7 @@ export type Cue =
   | { kind: "label"; from: number; to: number; text: string; xPct: number; yPct: number; fontSize?: number; align?: "left" | "center" | "right"; color?: string; outline?: string; width?: number }
   | { kind: "qcard"; from: number; to: number; lines: { t: string; strong?: boolean }[]; color?: string }
   | { kind: "qbar"; from: number; to: number; text: string }
-  | { kind: "callout"; from: number; to: number; top: string; bottom: string; xPct: number; yPct: number; align?: "left" | "center" | "right"; bottomSize?: number; color?: string; banner?: boolean; bannerW?: number; bannerH?: number; bannerBg?: string };
+  | { kind: "callout"; from: number; to: number; top: string; bottom: string; xPct: number; yPct: number; align?: "left" | "center" | "right"; bottomSize?: number; topSize?: number; color?: string; banner?: boolean; bannerW?: number; bannerH?: number; bannerBg?: string; bannerTextColor?: string };
 
 // Watermark shows from this second to the end (footage starts ~8s).
 export const WATERMARK_FROM = 8;
@@ -173,6 +173,10 @@ export const CUES: Cue[] = [
       { t: "และกายภาพบำบัดไปด้วยกัน?", strong: true },
     ],
   },
+  // 우측 층별 안내판 baked 한국어(3F 성장·체형 운동/부종·염증 케어, 2F 호르몬 특화 안내데스크) → 태국어 커버.
+  // 거의 정지 b-roll → 벽톤 불투명 갈색 패널 + 금색 텍스트(원본 금색 톤 맞춤).
+  { kind: "callout", from: 69.4, to: 72.1, top: "ศูนย์ออกกำลังกายการเติบโต·รูปร่าง", bottom: "ศูนย์ดูแลอาการบวม·อักเสบ", xPct: 72.0, yPct: 27.0, topSize: 27, bottomSize: 27, banner: true, bannerW: 890, bannerH: 245, bannerBg: "#3a322a", bannerTextColor: "#d8b66a" },
+  { kind: "callout", from: 69.4, to: 72.1, top: "ศูนย์เฉพาะทางฮอร์โมน", bottom: "เคาน์เตอร์ประชาสัมพันธ์", xPct: 68.0, yPct: 74.0, topSize: 27, bottomSize: 27, banner: true, bannerW: 750, bannerH: 260, bannerBg: "#3a322a", bannerTextColor: "#d8b66a" },
   { kind: "qbar", from: 72.0, to: 101.0, text: "ทำไมต้องดูแลการออกกำลังกายและกายภาพบำบัดไปพร้อมกัน?" },
   {
     kind: "subtitle", from: 72.0, to: 76.0, tone: "white",
@@ -264,8 +268,8 @@ export const CUES: Cue[] = [
   // Kids-in-field section (~115–126): bottom-left title (overlay) + boy/girl age
   // callouts (these COVER baked Korean labels → opaque banner mode).
   { kind: "callout", from: 115.5, to: 125.8, top: "โดยทั่วไป", bottom: "ช่วงรักษาที่เหมาะ?", xPct: 21, yPct: 78, align: "left", bottomSize: 56 },
-  { kind: "callout", from: 116.7, to: 125.5, top: "เด็กผู้หญิง", bottom: "อายุ 8–13 ปี", xPct: 84.5, yPct: 48, bottomSize: 46, banner: true, bannerW: 470, bannerH: 185 },
-  { kind: "callout", from: 120.8, to: 125.5, top: "เด็กผู้ชาย", bottom: "อายุ 9–15 ปี", xPct: 14.5, yPct: 45, bottomSize: 46, banner: true, bannerW: 650, bannerH: 190 },
+  { kind: "callout", from: 116.7, to: 125.5, top: "เด็กผู้หญิง", bottom: "อายุ 8–13 ปี", xPct: 86.5, yPct: 48, bottomSize: 46, banner: true, bannerW: 590, bannerH: 220 },
+  { kind: "callout", from: 120.8, to: 125.5, top: "เด็กผู้ชาย", bottom: "อายุ 9–15 ปี", xPct: 17.5, yPct: 44, bottomSize: 46, banner: true, bannerW: 600, bannerH: 220 },
 
   // ===== CUT 6 : 2:20–2:44 (Q4 — 치료 시기 놓쳤다면) =====
   // Q card over a dark hallway b-roll → white text.
@@ -340,4 +344,12 @@ export const CUES: Cue[] = [
   // Knee X-ray comparison (열린/닫힌 성장판) — baked Korean labels → cover (beige banner).
   { kind: "callout", from: 185.0, to: 190.0, top: "แผ่นการเจริญเติบโต", bottom: "ยังเปิดอยู่", xPct: 33, yPct: 71.5, bottomSize: 30, banner: true, bannerW: 430, bannerH: 165, bannerBg: "#d9cca6" },
   { kind: "callout", from: 185.0, to: 190.0, top: "แผ่นการเจริญเติบโต", bottom: "ปิดแล้ว", xPct: 67, yPct: 71.5, bottomSize: 30, banner: true, bannerW: 430, bannerH: 165, bannerBg: "#d9cca6" },
+
+  // ===== CLOSING : 3:11–3:58 (원장 마무리 발언) — 더빙 나레이션 자막(n34~n39) =====
+  { kind: "subtitle", from: 191.2, to: 198.0, tone: "white", lines: [[{ t: "การเจริญเติบโตของลูกน้อย " }, { t: "มีช่วงเวลาที่สำคัญที่สุด", em: true }]] },
+  { kind: "subtitle", from: 198.2, to: 208.0, tone: "white", lines: [[{ t: "หากกังวลเรื่องส่วนสูงของลูก " }, { t: "อย่าปล่อยให้ช้าเกินไป", em: true }]] },
+  { kind: "subtitle", from: 209.2, to: 216.0, tone: "white", lines: [[{ t: "การตรวจและดูแลตั้งแต่เนิ่น ๆ" }], [{ t: "ช่วยให้ลูกเติบโตได้เต็มศักยภาพ" }]] },
+  { kind: "subtitle", from: 217.2, to: 224.0, tone: "white", lines: [[{ t: "ที่คลินิก " }, { t: "Yonsei Saebom", em: true }, { t: " ดูแลการเติบโตของลูกคุณ" }]] },
+  { kind: "subtitle", from: 225.2, to: 232.0, tone: "white", lines: [[{ t: "ด้วยการวางแผนการรักษาเฉพาะบุคคล" }], [{ t: "จากผลตรวจอย่างละเอียด" }]] },
+  { kind: "subtitle", from: 232.2, to: 238.5, tone: "white", lines: [[{ t: "ปรึกษาเราได้เลยวันนี้ " }, { t: "เพื่ออนาคตการเติบโตของลูกคุณ", em: true }]] },
 ];

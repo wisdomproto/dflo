@@ -1,0 +1,72 @@
+[
+  {
+    "id": "c1",
+    "durFrames": 63,
+    "origStartF": 0,
+    "rate": 1.497,
+    "natSec": 2.09
+  },
+  {
+    "id": "c2",
+    "durFrames": 93,
+    "origStartF": 94,
+    "rate": 2.131,
+    "natSec": 3.11
+  },
+  {
+    "id": "c3",
+    "durFrames": 146,
+    "origStartF": 293,
+    "rate": 0.804,
+    "natSec": 4.88
+  },
+  {
+    "id": "c4",
+    "durFrames": 102,
+    "origStartF": 410,
+    "rate": 2.25,
+    "natSec": 3.39
+  },
+  {
+    "id": "c5",
+    "durFrames": 85,
+    "origStartF": 639,
+    "rate": 1.825,
+    "natSec": 2.83
+  },
+  {
+    "id": "c6",
+    "durFrames": 61,
+    "origStartF": 794,
+    "rate": 2.451,
+    "natSec": 2.04
+  },
+  {
+    "id": "c7",
+    "durFrames": 128,
+    "origStartF": 945,
+    "rate": 1.718,
+    "natSec": 4.27
+  },
+  {
+    "id": "c8",
+    "durFrames": 96,
+    "origStartF": 1165,
+    "rate": 2.693,
+    "natSec": 3.2
+  },
+  {
+    "id": "c9",
+    "durFrames": 103,
+    "origStartF": 1424,
+    "rate": 1.955,
+    "natSec": 3.44
+  },
+  {
+    "id": "c10",
+    "durFrames": 96,
+    "origStartF": 1625,
+    "rate": 1.379,
+    "natSec": 3.2
+  }
+]

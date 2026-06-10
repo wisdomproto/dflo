@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 키 유전 80% vs 환경 20%</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  /* hero */
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:46px 36px;border-radius:0 0 28px 28px;margin-bottom:34px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:34px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  /* section */
+  section{margin:34px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  /* concept */
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px;letter-spacing:.3px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800;color:var(--ink)}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  /* arc */
+  .arc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;position:relative}
+  .act .n{font-size:12px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 9px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 4px;font-size:14px;font-weight:800}
+  .act p{margin:0;font-size:12.5px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  /* format mock */
+  .fmt{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:start}
+  .phone{width:280px;aspect-ratio:9/16;background:var(--dark);border-radius:26px;overflow:hidden;border:6px solid #1c1d22;box-shadow:0 20px 50px -18px rgba(0,0,0,.55);margin:0 auto;position:relative;display:flex;flex-direction:column}
+  .ph-head{height:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;padding-top:6px}
+  .ph-head .t1{font-size:12px;opacity:.85}
+  .ph-head .mark{font-size:17px;font-weight:900;background:var(--pink);padding:3px 11px;border-radius:9px}
+  .ph-video{aspect-ratio:1/1;margin:0 14px;border-radius:12px;background:radial-gradient(circle at 50% 38%,#2a2c33,#0c0d0f);display:grid;place-items:center;font-size:54px;position:relative;overflow:hidden}
+  .ph-video small{position:absolute;bottom:8px;font-size:9px;color:#8a8f9c}
+  .ph-cap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;gap:2px;padding:10px}
+  .ph-cap .l{font-size:15px;font-weight:800}
+  .ph-cap .l .y{color:#111;background:var(--yellow);padding:0 4px;border-radius:3px}
+  .ph-logo{height:9%;display:grid;place-items:center;color:#cfd3dc;font-size:11px;font-weight:800;letter-spacing:1px}
+  .fmt ul{margin:0;padding-left:18px}
+  .fmt li{margin:7px 0;font-size:14px}
+  .tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;vertical-align:middle}
+  .tag.doc{background:#eef1fe;color:var(--purple)}
+  .tag.ig{background:#e7faf6;color:#0d9488}
+  /* storyboard table */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:11px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a;letter-spacing:.3px}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:12px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.ig{background:#e7faf6;color:#0d9488}
+  .narr{font-weight:600}
+  .cap2{font-size:12px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:5px 8px;display:inline-block}
+  .cap2 .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  /* infographic cards */
+  .igrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .igc{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .igc .hd{padding:14px 18px;background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-bottom:1px solid var(--line)}
+  .igc .hd .role{font-size:11.5px;font-weight:800;color:#0d9488}
+  .igc .hd h3{margin:3px 0 0;font-size:16px;font-weight:900}
+  .igc .body{padding:16px 18px}
+  /* sketch */
+  .sketch{aspect-ratio:1/1;border-radius:14px;background:linear-gradient(160deg,#fff,#f3f0fc);border:1px solid #e3dcf7;position:relative;overflow:hidden;margin-bottom:14px}
+  .ov{position:absolute;font-weight:800;text-align:center}
+  .donut{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:62%;aspect-ratio:1/1;border-radius:50%;background:conic-gradient(var(--purple) 0 80%,var(--mint) 80% 100%)}
+  .donut::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54%;aspect-ratio:1/1;border-radius:50%;background:#fff}
+  .ig-prompt{background:#0c0d0f;color:#e6e8ee;border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.55;font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:10px 0 6px}
+  .ig-prompt .c{color:#7dd3c0}
+  .lbl{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:12px 0 6px}
+  table.ov-t{font-size:12px}
+  table.ov-t th,table.ov-t td{padding:7px 9px}
+  table.ov-t th{background:#f0f2fb}
+  .thai{font-family:'Noto Sans Thai','Noto Sans KR',sans-serif}
+  /* emoji palette */
+  .emos{display:flex;flex-wrap:wrap;gap:10px}
+  .emo{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 13px;font-size:14px;display:flex;align-items:center;gap:7px}
+  .emo b{font-size:18px}
+  /* multilang */
+  .ml th:first-child{width:46px}
+  .ml .lang{font-size:11px;font-weight:800;color:var(--purple)}
+  /* pipeline */
+  .pipe{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px;display:flex;gap:7px;align-items:center}
+  .pi p{margin:0;font-size:13px;color:#3a3f50}
+  code{background:#eef0f7;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  @media(max-width:760px){.concept,.igrid,.pipe,.fmt{grid-template-columns:1fr}.arc{grid-template-columns:1fr 1fr}.act::after{display:none}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap" style="padding:0">
+    <span class="kept">🎬 YouTube Shorts 기획서 · 마케팅 콘텐츠 #1</span>
+    <h1>키는 유전 80%? — 그 80%의 진짜 의미</h1>
+    <div class="sub">"유전이 정한 한계"가 아니라, <b>지금의 관리가 키를 만든다</b> — 오해를 깨는 myth-bust 쇼츠</div>
+    <div class="chips">
+      <span class="chip">📐 포맷 <b>PresenterShort (9:16)</b></span>
+      <span class="chip">⏱ 길이 <b>~33초 / 10씬</b></span>
+      <span class="chip">🌏 언어 <b>KO·EN·TH</b></span>
+      <span class="chip">🎙 원장 <b>클론음성 + 립싱크</b></span>
+      <span class="chip">🎨 배경 <b>다크 #0c0d0f</b></span>
+      <span class="chip">🖼 인포그래픽 <b>4종 (텍스트는 Remotion 오버레이)</b></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. 컨셉 -->
+  <section>
+    <h2><span class="no">1</span> 핵심 컨셉</h2>
+    <p class="lead">출처: 마케팅 콘텐츠 #1 「키 유전 80% vs 환경 20% — 진짜 비중의 의미」 (A. 성장과학)</p>
+    <div class="concept">
+      <div class="cc hookbox">
+        <div class="t">🪝 HOOK (3초 안에 잡기)</div>
+        <div class="big">"키는 유전 80%, 환경 20% — <span class="hl">그래서 우리 애 키는 정해졌다?</span>"</div>
+      </div>
+      <div class="cc">
+        <div class="t">❌ 흔한 오해</div>
+        <div>80%니까 부모 키로 거의 결정 = 노력해도 소용없다는 체념</div>
+      </div>
+      <div class="cc">
+        <div class="t">✅ 진짜 메시지</div>
+        <div><b>80% = 유전율</b>(집단 내 차이 설명) → 유전은 '오를 봉우리 높이(잠재력)'만 정함. <b>20%가 정상까지 오를 힘</b> → 최종키 <b>5~10cm</b>를 가른다</div>
+      </div>
+      <div class="cc">
+        <div class="t">🎯 톤 (브랜드 룰)</div>
+        <div>협박 ❌ → 긍정·골든타임. "우리 아이 키" 보편 타겟. 시청자 행동 단정 ❌ (CTA만 측정 유도)</div>
+      </div>
+      <div class="cc">
+        <div class="t">📣 CTA</div>
+        <div>"우리 아이 성장 잠재력, 지금 확인" → 홈페이지 예측키 측정 동선</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 내러티브 아크 -->
+  <section>
+    <h2><span class="no">2</span> 내러티브 아크</h2>
+    <p class="lead">10씬을 5막으로 — 훅 → 반전 → 재정의 → 핵심 지렛대 → 행동</p>
+    <div class="arc">
+      <div class="act"><span class="n">ACT 1</span><h4>훅 · 반전</h4><p>c1–c2<br>"80/20? 정해진 거 아닙니다"</p></div>
+      <div class="act"><span class="n">ACT 2</span><h4>재정의</h4><p>c3–c4<br>"80% = 잠재력(봉우리 높이)"</p></div>
+      <div class="act"><span class="n">ACT 3</span><h4>핵심</h4><p>c5–c6<br>"20% = 오를 힘 → 5~10cm"</p></div>
+      <div class="act"><span class="n">ACT 4</span><h4>실천·증명</h4><p>c7–c8<br>"4가지 + 부모 작아도 OK"</p></div>
+      <div class="act"><span class="n">ACT 5</span><h4>행동</h4><p>c9–c10<br>"지금의 관리 → 확인"</p></div>
+    </div>
+  </section>
+
+  <!-- 3. 포맷 -->
+  <section>
+    <h2><span class="no">3</span> 포맷 미리보기 — PresenterShort (표준)</h2>
+    <p class="lead">헤더(상단) · 정사각 원장 영상(가운데, 다크 배경) · 자막(영상 아래) · 로고(하단). 인포그래픽 컷은 정사각 패널을 채움.</p>
+    <div class="fmt">
+      <div class="phone">
+        <div class="ph-head"><div class="t1">혹시 우리 아이</div><div class="mark">키는 유전 80%?</div></div>
+        <div class="ph-video">👨‍⚕️<small>원장 정면 · RVM 다크 매팅</small></div>
+        <div class="ph-cap"><div class="l">이미 정해졌다?</div><div class="l"><span class="y">아닙니다</span></div></div>
+        <div class="ph-logo">187 GROWUP</div>
+      </div>
+      <div>
+        <ul>
+          <li><b>헤더</b> — 핑크 마크 <code>#E0568A</code> "키는 유전 80%?" (채널 일관성)</li>
+          <li><b>영상 패널</b> — 정사각(1080×1080). 원장 정면 토킹헤드를 <b>RVM 매팅 → 다크(#0c0d0f) 합성</b>. "집중 빡" 룰</li>
+          <li><b>자막</b> — 영상 아래, 흰 글자 + 노랑 하이라이트(키워드). 원본 baked 한글 없음(클린 베이스)</li>
+          <li><b>로고</b> — 하단 187 GROWUP</li>
+          <li><span class="scr ig">인포그래픽 컷</span> 4곳(c3·c4·c6·c7)은 정사각 패널을 일러스트로 채우고 <b>그 위에 텍스트를 Remotion이 얹음</b></li>
+          <li><span class="scr doc">원장 컷</span> 6곳(c1·c2·c5·c8·c9·c10)은 원장 정면 + 자막</li>
+        </ul>
+        <p class="note">※ 다크 배경은 직전 테스트(가짜성조숙증-ko-dark) 채택 시 그대로 적용. 미채택 시 크림 배경으로 폴백.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 스토리보드 -->
+  <section>
+    <h2><span class="no">4</span> 씬별 스토리보드 (KO 마스터)</h2>
+    <p class="lead">나레이션은 원장 클론음성. 자막은 2줄 + 노랑 하이라이트. EN/TH 카피는 §7 참고.</p>
+    <table>
+      <thead><tr><th>#</th><th>⏱</th><th>화면</th><th>나레이션 (KO)</th><th>자막</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="c-id">c1</td><td class="c-time">0–3s</td><td><span class="scr doc">🎤 원장</span></td>
+          <td class="narr">키는 유전 80%, 환경 20%. 다들 한 번쯤 들어보셨죠?</td>
+          <td><span class="cap2">유전 <span class="y">80%</span><br>환경 20%</span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c2</td><td class="c-time">3–6s</td><td><span class="scr doc">🎤 원장</span></td>
+          <td class="narr">그래서 우리 애 키는 이미 정해졌다? 절대 아닙니다.</td>
+          <td><span class="cap2">이미 정해졌다?<br><span class="y">아닙니다</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c3</td><td class="c-time">6–9s</td><td><span class="scr ig">🖼 IG1 도넛</span></td>
+          <td class="narr">이 80%는, 부모 키로 결정된다는 뜻이 아니에요.</td>
+          <td><span class="cap2">80%는<br><span class="y">결정이 아니다</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c4</td><td class="c-time">9–13s</td><td><span class="scr ig">🖼 IG2 봉우리</span></td>
+          <td class="narr">유전은 아이가 오를 수 있는 산의 '높이'만 정할 뿐이죠.</td>
+          <td><span class="cap2">유전 =<br><span class="y">잠재력의 높이</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c5</td><td class="c-time">13–16s</td><td><span class="scr doc">🎤 원장</span></td>
+          <td class="narr">그 정상까지 실제로 오르게 하는 힘, 그게 환경 20%입니다.</td>
+          <td><span class="cap2">정상에 오를 힘<br>= <span class="y">20%</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c6</td><td class="c-time">16–20s</td><td><span class="scr ig">🖼 IG3 5~10cm</span></td>
+          <td class="narr">똑같은 유전자라도, 관리에 따라 최종 키가 5에서 10cm 갈립니다.</td>
+          <td><span class="cap2">관리에 따라<br><span class="y">5~10cm 차이</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c7</td><td class="c-time">20–23s</td><td><span class="scr ig">🖼 IG4 4가지</span></td>
+          <td class="narr">영양, 깊은 잠, 운동, 그리고 성장기 관리.</td>
+          <td><span class="cap2">영양·수면·운동<br><span class="y">관리가 핵심</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c8</td><td class="c-time">23–27s</td><td><span class="scr doc">🎤 원장</span></td>
+          <td class="narr">부모님이 크지 않아도, 잠재력을 끝까지 채운 아이들 정말 많아요.</td>
+          <td><span class="cap2">부모가 작아도<br><span class="y">더 클 수 있다</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c9</td><td class="c-time">27–30s</td><td><span class="scr doc">🎤 원장</span></td>
+          <td class="narr">유전이 한계가 아니라, 지금의 관리가 키를 만듭니다.</td>
+          <td><span class="cap2">지금의 관리가<br><span class="y">키를 만든다</span></span></td>
+        </tr>
+        <tr>
+          <td class="c-id">c10</td><td class="c-time">30–33s</td><td><span class="scr doc">🎤 원장</span></td>
+          <td class="narr">우리 아이 성장 잠재력, 지금 바로 확인해 보세요.</td>
+          <td><span class="cap2">성장 잠재력<br><span class="y">지금 확인</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5. 인포그래픽 -->
+  <section>
+    <h2><span class="no">5</span> 인포그래픽 4종 — AI 이미지 + 텍스트 오버레이</h2>
+    <p class="lead"><b>AI 이미지는 텍스트 0 (순수 일러스트, 언어중립)</b> → 숫자·라벨 텍스트는 전부 <b>Remotion이 언어별로 오버레이</b>. 한 장으로 ko/en/th 재사용. 스케치의 글자 = 내가 얹을 위치 예시.</p>
+    <div class="igrid">
+
+      <!-- IG1 -->
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG1 · c3 (6–9s)</div><h3>80/20 도넛 — "80%는 결정이 아니다"</h3></div>
+        <div class="body">
+          <div class="sketch">
+            <div class="donut"></div>
+            <div class="ov" style="left:50%;top:46%;transform:translate(-50%,-50%);color:var(--ink);font-size:13px">🧬<br>유전</div>
+            <div class="ov" style="right:10%;top:14%;color:var(--purple);font-size:26px">80%</div>
+            <div class="ov" style="right:6%;bottom:20%;color:#0d9488;font-size:20px">20% ⬆️</div>
+            <div class="ov" style="left:50%;bottom:6%;transform:translateX(-50%);color:#0d9488;font-size:11px">🌱 환경 = 관리</div>
+          </div>
+          <div class="lbl">AI 이미지 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector infographic, square 1:1, clean white background. A bold donut ring chart: a large arc (~80%) in purple gradient (<span class="c">#667eea→#764ba2</span>), a smaller arc (~20%) in fresh mint-teal (<span class="c">#2dd4bf</span>) that glows softly with a small upward arrow rising from it. A small white DNA-helix icon floats over the purple arc; a small white sprout/leaf icon over the mint arc. Donut center empty (reserved for overlay). Friendly pediatric style, thick rounded shapes, soft shadows. <span class="c">NO text, NO numbers.</span></div>
+          <div class="lbl">Remotion 텍스트 오버레이</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead>
+          <tbody>
+            <tr><td>퍼플 아크</td><td><b>80%</b></td><td>80%</td><td>80%</td></tr>
+            <tr><td>퍼플 라벨</td><td>유전·잠재력</td><td>Genes</td><td class="thai">พันธุกรรม</td></tr>
+            <tr><td>민트 아크</td><td><b>20%</b></td><td>20%</td><td>20%</td></tr>
+            <tr><td>민트 라벨</td><td>환경·관리</td><td>Care</td><td class="thai">การดูแล</td></tr>
+            <tr><td>강조(작게)</td><td>여기서 키가 갈린다</td><td>this is the lever</td><td class="thai">จุดเปลี่ยน</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- IG2 -->
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG2 · c4 (9–13s)</div><h3>봉우리 — "유전 = 잠재력의 높이"</h3></div>
+        <div class="body">
+          <div class="sketch">
+            <div class="ov" style="left:0;right:0;bottom:0;height:55%;background:linear-gradient(160deg,var(--purple),var(--purple2));clip-path:polygon(0 100%,50% 0,100% 100%)"></div>
+            <div class="ov" style="left:46%;top:14%;font-size:22px">🚩</div>
+            <div class="ov" style="right:8%;top:18%;color:var(--purple);font-size:12px">잠재력<br>한계</div>
+            <div class="ov" style="left:14%;bottom:6%;font-size:24px">🧒</div>
+            <div class="ov" style="left:8%;bottom:28%;color:#fff;font-size:11px">지금 여기</div>
+            <div class="ov" style="left:30%;top:40%;color:#fff;font-size:13px;opacity:.9">⋰ 20%로 오른다</div>
+          </div>
+          <div class="lbl">AI 이미지 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector illustration, square 1:1, clean white background, light lavender sky. A cute friendly gender-neutral child stands at the base of a tall rounded mountain, looking up. A dashed path winds from the child to the summit, where a small flag sits. Mountain in soft purple gradient (<span class="c">#667eea→#764ba2</span>); the summit/flag glows subtly. Conveys "how high the peak is = genetic potential." Thick rounded shapes, soft shadows, warm pediatric style. <span class="c">NO text.</span></div>
+          <div class="lbl">Remotion 텍스트 오버레이</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead>
+          <tbody>
+            <tr><td>정상 옆</td><td>잠재력 한계</td><td>Potential</td><td class="thai">ศักยภาพ</td></tr>
+            <tr><td>아이 옆</td><td>지금 여기</td><td>You are here</td><td class="thai">ตอนนี้</td></tr>
+            <tr><td>점선 경로</td><td>20%로 오른다</td><td>climb with the 20%</td><td class="thai">ปีนด้วย 20%</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- IG3 -->
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG3 · c6 (16–20s)</div><h3>같은 유전자 — "5~10cm 차이"</h3></div>
+        <div class="body">
+          <div class="sketch">
+            <div class="ov" style="left:50%;top:8%;transform:translateX(-50%);font-size:22px">🧬</div>
+            <div class="ov" style="left:50%;top:24%;transform:translateX(-50%);color:var(--purple);font-size:11px">같은 유전자</div>
+            <div class="ov" style="left:22%;bottom:8%;font-size:34px">🧒</div>
+            <div class="ov" style="right:18%;bottom:8%;font-size:46px">🧒</div>
+            <div class="ov" style="right:4%;top:34%;color:#0d9488;font-size:16px;font-weight:900">5~10cm</div>
+            <div class="ov" style="left:18%;bottom:2%;color:#9aa0ad;font-size:11px">관리 ✕</div>
+            <div class="ov" style="right:16%;bottom:2%;color:#0d9488;font-size:11px">관리 ✓</div>
+          </div>
+          <div class="lbl">AI 이미지 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector infographic, square 1:1, clean white background. Two same-age cartoon children side by side — one slightly shorter (left), one slightly taller (right). A single shared DNA helix (purple) floats above both, with two thin arrows pointing down to each child (identical genes). A clean measurement bracket sits between the tops of their heads. The taller child has a soft mint glow / small upward sparkle. Brand purple + mint, thick rounded shapes, soft shadows, friendly pediatric style. <span class="c">NO text, NO numbers.</span></div>
+          <div class="lbl">Remotion 텍스트 오버레이</div>
+          <table class="ov-t"><thead><tr><th>위치</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead>
+          <tbody>
+            <tr><td>DNA 위</td><td>같은 유전자</td><td>Same genes</td><td class="thai">ยีนเดียวกัน</td></tr>
+            <tr><td>머리 사이 브래킷</td><td><b>5~10cm</b></td><td>5–10 cm</td><td>5–10 cm</td></tr>
+            <tr><td>왼쪽 아래</td><td>관리 ✕</td><td>no care</td><td class="thai">ไม่ดูแล</td></tr>
+            <tr><td>오른쪽 아래</td><td>관리 ✓</td><td>cared</td><td class="thai">ดูแลดี</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- IG4 -->
+      <div class="igc">
+        <div class="hd"><div class="role">🖼 IG4 · c7 (20–23s)</div><h3>4가지 지렛대 — "20%를 채우는 법"</h3></div>
+        <div class="body">
+          <div class="sketch" style="display:grid;grid-template-columns:1fr 1fr;gap:8%;padding:12%">
+            <div style="background:var(--purple);border-radius:18px;display:grid;place-items:center;position:relative"><span style="font-size:34px">🥗</span><span style="position:absolute;bottom:6px;color:#fff;font-size:11px;font-weight:800">영양</span></div>
+            <div style="background:var(--mint);border-radius:18px;display:grid;place-items:center;position:relative"><span style="font-size:34px">🌙</span><span style="position:absolute;bottom:6px;color:#063;font-size:11px;font-weight:800">깊은 잠</span></div>
+            <div style="background:var(--pink);border-radius:18px;display:grid;place-items:center;position:relative"><span style="font-size:34px">🏃</span><span style="position:absolute;bottom:6px;color:#fff;font-size:11px;font-weight:800">운동</span></div>
+            <div style="background:var(--purple2);border-radius:18px;display:grid;place-items:center;position:relative"><span style="font-size:34px">🩺</span><span style="position:absolute;bottom:6px;color:#fff;font-size:11px;font-weight:800">성장기 관리</span></div>
+          </div>
+          <div class="lbl">AI 이미지 프롬프트 (텍스트 없이)</div>
+          <div class="ig-prompt">Flat vector infographic, square 1:1, clean white background. A 2×2 grid of four rounded tiles, each a single bold white icon on a brand-colored tile: (1) healthy meal plate / vegetables — purple <span class="c">#667eea</span>, (2) crescent moon with Zzz — mint <span class="c">#2dd4bf</span>, (3) child jumping rope or basketball — coral <span class="c">#E0568A</span>, (4) stethoscope with a small growth chart — violet <span class="c">#764ba2</span>. Generous bottom padding inside each tile (reserved for label). Modern pediatric style, thick rounded shapes, soft shadows. <span class="c">NO text.</span></div>
+          <div class="lbl">Remotion 텍스트 오버레이 (타일별 라벨)</div>
+          <table class="ov-t"><thead><tr><th>타일</th><th>KO</th><th>EN</th><th class="thai">TH</th></tr></thead>
+          <tbody>
+            <tr><td>🥗 좌상</td><td>영양</td><td>Nutrition</td><td class="thai">โภชนาการ</td></tr>
+            <tr><td>🌙 우상</td><td>깊은 잠</td><td>Deep sleep</td><td class="thai">นอนลึก</td></tr>
+            <tr><td>🏃 좌하</td><td>운동</td><td>Exercise</td><td class="thai">ออกกำลังกาย</td></tr>
+            <tr><td>🩺 우하</td><td>성장기 관리</td><td>Growth care</td><td class="thai">ดูแลการเติบโต</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+    </div>
+    <p class="note">📐 권장 사양: 1:1, 1024×1024 또는 1536×1536, 흰/투명 배경. 텍스트 자리(도넛 중앙·아이 옆·타일 하단·머리 사이)는 비워서 받기 → Remotion이 분수좌표(0~1)로 라벨 배치.</p>
+  </section>
+
+  <!-- 6. 이모지 -->
+  <section>
+    <h2><span class="no">6</span> 이모지 팔레트</h2>
+    <p class="lead">자막 강조·인포그래픽 일러스트 참고용. (실제 자막엔 과하지 않게 1~2개만)</p>
+    <div class="emos">
+      <span class="emo"><b>🧬</b> 유전</span>
+      <span class="emo"><b>🏔️</b> 잠재력·봉우리</span>
+      <span class="emo"><b>🚩</b> 정상·목표</span>
+      <span class="emo"><b>🌱</b> 환경·성장</span>
+      <span class="emo"><b>📏</b> 키·측정</span>
+      <span class="emo"><b>⬆️</b> 더 큰다</span>
+      <span class="emo"><b>🥗</b> 영양</span>
+      <span class="emo"><b>🌙</b> 깊은 잠</span>
+      <span class="emo"><b>🏃</b> 운동</span>
+      <span class="emo"><b>🩺</b> 성장기 관리</span>
+      <span class="emo"><b>✅</b> CTA·확인</span>
+    </div>
+  </section>
+
+  <!-- 7. 다국어 -->
+  <section>
+    <h2><span class="no">7</span> 다국어 카피 (EN · TH)</h2>
+    <p class="lead">나레이션 + 자막(2줄). KO는 §4 스토리보드 참고. TTS는 언어별로 따로 생성.</p>
+    <table class="ml">
+      <thead><tr><th>#</th><th>EN — 나레이션 / 자막</th><th class="thai">TH — 나레이션 / 자막</th></tr></thead>
+      <tbody>
+        <tr><td class="c-id">c1</td>
+          <td>Height is 80% genes, 20% environment. You've heard it, right?<br><span class="cap2">80% genes · <span class="y">20% environment</span></span></td>
+          <td class="thai">ส่วนสูง 80% พันธุกรรม 20% สิ่งแวดล้อม เคยได้ยินใช่ไหม?<br><span class="cap2 thai">พันธุกรรม 80% · <span class="y">สิ่งแวดล้อม 20%</span></span></td></tr>
+        <tr><td class="c-id">c2</td>
+          <td>So your child's height is already fixed? Not at all.<br><span class="cap2">Already fixed? · <span class="y">Not at all</span></span></td>
+          <td class="thai">แปลว่าส่วนสูงลูกถูกกำหนดแล้ว? ไม่ใช่เลย<br><span class="cap2 thai">ถูกกำหนดแล้ว? · <span class="y">ไม่ใช่เลย</span></span></td></tr>
+        <tr><td class="c-id">c3</td>
+          <td>That 80% doesn't mean your parents' height decides it.<br><span class="cap2">80% ≠ <span class="y">parents decide</span></span></td>
+          <td class="thai">80% ไม่ได้แปลว่าส่วนสูงพ่อแม่เป็นตัวกำหนด<br><span class="cap2 thai">80% ≠ <span class="y">พ่อแม่กำหนด</span></span></td></tr>
+        <tr><td class="c-id">c4</td>
+          <td>Genes only set how high the mountain is.<br><span class="cap2">Genes = <span class="y">the peak's height</span></span></td>
+          <td class="thai">พันธุกรรมแค่กำหนด 'ความสูงของยอดเขา'<br><span class="cap2 thai">พันธุกรรม = <span class="y">ความสูงยอดเขา</span></span></td></tr>
+        <tr><td class="c-id">c5</td>
+          <td>What gets your child to the top — that's the 20%.<br><span class="cap2">Reaching the top = <span class="y">the 20%</span></span></td>
+          <td class="thai">สิ่งที่พาขึ้นถึงยอด คือ 20% สิ่งแวดล้อม<br><span class="cap2 thai">พาขึ้นถึงยอด = <span class="y">20%</span></span></td></tr>
+        <tr><td class="c-id">c6</td>
+          <td>Same genes, but care can swing final height 5–10 cm.<br><span class="cap2">Care swings <span class="y">5–10 cm</span></span></td>
+          <td class="thai">ยีนเดียวกัน แต่การดูแลทำให้ส่วนสูงต่างกัน 5–10 ซม.<br><span class="cap2 thai">การดูแลต่าง <span class="y">5–10 ซม.</span></span></td></tr>
+        <tr><td class="c-id">c7</td>
+          <td>Nutrition, deep sleep, exercise, and growth-stage care.<br><span class="cap2">Nutrition·sleep·exercise · <span class="y">care</span></span></td>
+          <td class="thai">โภชนาการ การนอนลึก การออกกำลังกาย และการดูแลช่วงเจริญเติบโต<br><span class="cap2 thai">โภชนาการ·นอน·ออกกำลัง · <span class="y">ดูแล</span></span></td></tr>
+        <tr><td class="c-id">c8</td>
+          <td>Even short parents raise kids who reach full potential.<br><span class="cap2">Short parents, <span class="y">tall kids</span></span></td>
+          <td class="thai">พ่อแม่ไม่สูง ลูกก็เต็มศักยภาพได้<br><span class="cap2 thai">พ่อแม่ไม่สูง <span class="y">ลูกก็สูงได้</span></span></td></tr>
+        <tr><td class="c-id">c9</td>
+          <td>Genes aren't the limit — today's care builds height.<br><span class="cap2">Care today <span class="y">builds height</span></span></td>
+          <td class="thai">พันธุกรรมไม่ใช่ขีดจำกัด การดูแลวันนี้สร้างส่วนสูง<br><span class="cap2 thai">การดูแลวันนี้ <span class="y">สร้างส่วนสูง</span></span></td></tr>
+        <tr><td class="c-id">c10</td>
+          <td>Check your child's growth potential today.<br><span class="cap2">Growth potential · <span class="y">check today</span></span></td>
+          <td class="thai">เช็กศักยภาพการเติบโตของลูกวันนี้<br><span class="cap2 thai">ศักยภาพการเติบโต · <span class="y">เช็กวันนี้</span></span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 8. 제작 파이프라인 -->
+  <section>
+    <h2><span class="no">8</span> 제작 파이프라인</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">📁 폴더·ID</div><p><code>remotion/src/shorts/키유전80/</code> · 컴포지션 ID <code>heightgenes-ko / -th / -en</code> (Remotion ID 로마자)</p></div>
+      <div class="pi"><div class="t">🎙 TTS</div><p>ElevenLabs 클론음성 → <code>node scripts/gen-tts-short.mjs 키유전80 ko</code> (th=turbo, ko/en=multilingual). 청크별 wav + timing</p></div>
+      <div class="pi"><div class="t">🎬 베이스</div><p>MainClip 클린 원장 정면 토킹(<code>public/mainclip/clean.mp4</code>) → <b>오디오 길이(~33s)보다 길게</b> 스티칭한 베이스를 언어별 재립싱크</p></div>
+      <div class="pi"><div class="t">👄 립싱크</div><p>LatentSync(no-face 패치). 인포그래픽 컷(얼굴 없음)은 자동 통과 = 원장 컷만 립싱크</p></div>
+      <div class="pi"><div class="t">🌑 다크 매팅</div><p>RVM resnet50 → fgr+pha → ffmpeg <code>alphamerge</code>+<code>overlay</code>로 <code>#0c0d0f</code> 합성 (가짜성조숙증-ko-dark와 동일 셋업)</p></div>
+      <div class="pi"><div class="t">🎵 BGM</div><p><code>audio/bg1.mp3</code> 깔고 페이드. PresenterShort 기본</p></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="lbl" style="margin-top:0">⚙️ 코드 추가 — PresenterShort 인서트 라벨 오버레이</div>
+      <p style="font-size:13.5px;margin:0 0 8px">인포그래픽 위 텍스트를 언어별로 얹기 위해 <code>InsertPanel</code>에 <code>insertLabels</code> 지원 추가. script.json 청크 예시:</p>
+      <div class="ig-prompt" style="color:#e6e8ee">"id": "c3", "insert": "images/키유전80/ig1.png",
+"insertLabels": [
+  { "x":0.72, "y":0.18, "size":74, "weight":900, "color":"#fff",
+    "ko":"80%", "en":"80%", "th":"80%" },
+  { "x":0.50, "y":0.92, "size":30, "weight":800, "color":"#0d9488",
+    "ko":"환경·관리", "en":"Care", "th":"การดูแล" }
+]</div>
+      <p class="note">x·y = 정사각 패널 기준 분수좌표(0~1). 캡션 시스템과 별개로 패널 내부 절대배치. 등장 시 살짝 spring pop.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="card" style="background:linear-gradient(135deg,#f3f0fc,#eafaf7);border-color:#e3dcf7">
+      <h2 style="margin-bottom:8px"><span class="no" style="background:var(--mint)">▶</span> 다음 단계</h2>
+      <p style="margin:0;font-size:14.5px">이 기획 OK 주시면 → <b>① 인포그래픽 4종 프롬프트로 이미지 생성</b>(사용자) → <b>② TH 먼저 제작·확인</b>(스토리보드 워크플로우) → OK 시 KO·EN. 인서트 라벨 오버레이 코드는 ② 진행 시 함께 구현합니다.</p>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

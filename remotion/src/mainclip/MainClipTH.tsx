@@ -1,7 +1,7 @@
 // Thai localization of "성장클리닉 진료과정" (clinic process) — full 16:9 video.
 // Background = clean (text-free) source clip; overlays recreate the Korean
 // on-screen graphics in Thai. Built / confirmed cut-by-cut via CUES.
-import { AbsoluteFill, OffthreadVideo, Sequence, staticFile } from "remotion";
+import { AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile } from "remotion";
 import { ensureFonts } from "../lib/fonts";
 import {
   Subtitle,
@@ -14,19 +14,23 @@ import {
   Callout,
   QCard,
   QTopBar,
+  ClosingCTA,
 } from "./overlays";
 import { CUES, WATERMARK_FROM, type Cue } from "./cues";
+import { warpTime, NEW_TOTAL } from "./warp";
 
 ensureFonts();
 
 export const FPS = 30;
-export const MAINCLIP_DURATION = 7360; // 245.33s @ 30fps
+// 나레이션 기준 워프 후 새 길이 + 엔딩 CTA 카드 꼬리(5s)
+export const MAINCLIP_DURATION = Math.round((NEW_TOTAL + 5) * FPS);
 
 const sec = (s: number) => Math.round(s * FPS);
 
 function renderCue(c: Cue, i: number) {
-  const from = sec(c.from);
-  const dur = Math.max(1, sec(c.to) - from);
+  // 큐 시간(원본 타임라인) → 워프된 새 타임라인
+  const from = sec(warpTime(c.from));
+  const dur = Math.max(1, sec(warpTime(c.to)) - from);
   let inner: React.ReactNode = null;
   switch (c.kind) {
     case "subtitle":
@@ -83,11 +87,13 @@ function renderCue(c: Cue, i: number) {
           yPct={c.yPct}
           align={c.align}
           bottomSize={c.bottomSize}
+          topSize={c.topSize}
           color={c.color}
           banner={c.banner}
           bannerW={c.bannerW}
           bannerH={c.bannerH}
           bannerBg={c.bannerBg}
+          bannerTextColor={c.bannerTextColor}
         />
       );
       break;
@@ -102,13 +108,20 @@ function renderCue(c: Cue, i: number) {
 export const MainClipTH: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
-      <OffthreadVideo src={staticFile("mainclip/clean.mp4")} />
+      {/* 나레이션 기준 워프 영상(원장 구간 속도↑) + 태국어 더빙+BGM. 큐는 warpTime으로 재타이밍. */}
+      <OffthreadVideo src={staticFile("mainclip/warped-clean-lipsync.mp4")} muted />
+      <Audio src={staticFile("audio/mainclip/th-mix-warped.wav")} />
 
-      <Sequence from={sec(WATERMARK_FROM)}>
+      <Sequence from={sec(warpTime(WATERMARK_FROM))}>
         <Watermark />
       </Sequence>
 
       {CUES.map(renderCue)}
+
+      {/* 엔딩 CTA 카드: 원본 235.5s → 워프 위치. 한국어 검색바/웹목업 대체. */}
+      <Sequence from={sec(warpTime(235.5))}>
+        <ClosingCTA />
+      </Sequence>
     </AbsoluteFill>
   );
 };

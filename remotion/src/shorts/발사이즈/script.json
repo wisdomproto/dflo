@@ -1,0 +1,95 @@
+{
+  "slug": "발사이즈",
+  "src": "videos/발사이즈-src.mp4",
+  "fps": 30,
+  "title": "발 사이즈로 키 예측?",
+  "_note": "🔀혼합: 원장 토킹헤드 + 인서트(발·평균표·공식 칠판·신발·걷기 b-roll·38% 산점도). 통영상 LatentSync(no-face 패치=원장만 립싱크). FaithfulShort linear. ★마스킹 정책(사용자 지시 2026-06-09 '한글 다 안가려도 됨'): cover 밴드 전부 제거 → 원본 영상 풀 노출 + 헤더 스크림(태국어 제목)만 유지 + 청크별 작은 태국어 자막 박스(capY 540, 글자만 한 컨테이너). 원본 baked 한글(헤더 제외)은 같이 보임(이중언어 감수). 공식 mm→cm 정정(2×발cm+125).",
+  "headerStyle": { "markBg": "#0EA5B7", "markFg": "#ffffff" },
+  "header": {
+    "en": { "top": "Can foot size", "mark": "predict height?" },
+    "th": { "top": "ขนาดเท้า", "mark": "ทำนายส่วนสูงได้ไหม?" },
+    "ko": { "top": "발 사이즈로", "mark": "키 예측 가능?" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 3.13, "capY": 540,
+      "ko": "발 사이즈로 어른 키를 예측할 수 있을까요?",
+      "en": "Can a child's foot size predict their adult height?",
+      "cap_en": ["Foot size →", "adult height?"], "hl_en": "Foot size",
+      "th": "ขนาดเท้าทำนายส่วนสูงตอนโตได้ไหม?",
+      "cap_th": ["ขนาดเท้า →", "ส่วนสูงตอนโต?"], "hl_th": "ขนาดเท้า"
+    },
+    {
+      "id": "c2", "start": 3.13, "end": 9.76, "capY": 540,
+      "ko": "이 표는 열 살부터 열두 살 아이들의 평균 발 사이즈예요.",
+      "en": "This table shows the average foot size for kids aged 10 to 12.",
+      "cap_en": ["Avg foot size", "ages 10–12"], "hl_en": "10–12",
+      "th": "ตารางนี้แสดงขนาดเท้าเฉลี่ยของเด็กอายุ 10 ถึง 12 ปี",
+      "cap_th": ["ขนาดเท้าเฉลี่ย", "อายุ 10–12 ปี"], "hl_th": "10–12"
+    },
+    {
+      "id": "c3", "start": 9.76, "end": 13.68, "capY": 540,
+      "ko": "그런데 발이 크면 정말 키도 클까요?",
+      "en": "But do bigger feet really mean a taller kid?",
+      "cap_en": ["Bigger feet =", "taller?"], "hl_en": "taller",
+      "th": "แต่เท้าใหญ่ แปลว่าตัวสูงจริงไหม?",
+      "cap_th": ["เท้าใหญ่ =", "สูงกว่า?"], "hl_th": "สูงกว่า"
+    },
+    {
+      "id": "c4", "start": 13.68, "end": 21.31, "capY": 540,
+      "ko": "놀라운 공식이 있어요. 발 길이 센티미터에 2를 곱하고 125를 더하면 돼요.",
+      "en": "There's a surprising formula: foot length in cm, times 2, plus 125.",
+      "cap_en": ["foot(cm) × 2", "+ 125 = height"], "hl_en": "× 2",
+      "th": "มีสูตรน่าทึ่ง ความยาวเท้าเป็นเซนติเมตร คูณ 2 บวก 125",
+      "cap_th": ["เท้า(ซม.) × 2", "+ 125 = ส่วนสูง"], "hl_th": "× 2"
+    },
+    {
+      "id": "c5", "start": 21.31, "end": 26.48, "capY": 540,
+      "ko": "제 발은 27센티, 넣어보면 우와, 거의 맞아요!",
+      "en": "My foot is 27cm. Plug it in… wow, almost exactly right!",
+      "cap_en": ["27cm → 179cm", "almost exact!"], "hl_en": "almost exact",
+      "th": "เท้าผม 27 ซม. ลองแทนค่าดู ว้าว เกือบตรงเป๊ะ!",
+      "cap_th": ["27 ซม. → 179", "เกือบเป๊ะ!"], "hl_th": "เกือบเป๊ะ"
+    },
+    {
+      "id": "c6", "start": 26.48, "end": 31.49, "capY": 540,
+      "ko": "하지만 여기엔 두 가지 함정이 있어요.",
+      "en": "But this formula hides two big pitfalls.",
+      "cap_en": ["Two hidden", "pitfalls"], "hl_en": "Two",
+      "th": "แต่สูตรนี้มีกับดักซ่อนอยู่สองข้อ",
+      "cap_th": ["กับดักซ่อน", "สองข้อ"], "hl_th": "สองข้อ"
+    },
+    {
+      "id": "c7", "start": 31.49, "end": 38.83, "capY": 540,
+      "ko": "첫째, 발이 똑같이 260밀리여도 키는 160센티부터 180센티까지 달라요.",
+      "en": "First: at the same 260mm foot, height can range from 160 to 180cm.",
+      "cap_en": ["Same foot:", "160–180cm"], "hl_en": "160–180cm",
+      "th": "หนึ่ง เท้า 260 มม. เท่ากัน แต่สูงได้ตั้งแต่ 160 ถึง 180 ซม.",
+      "cap_th": ["เท้าเท่ากัน:", "160–180 ซม."], "hl_th": "160–180"
+    },
+    {
+      "id": "c8", "start": 38.83, "end": 47.46, "capY": 540,
+      "ko": "둘째, 다 자란 발 사이즈도 미리 알 수 없어요. 예상 키처럼요.",
+      "en": "Second: like adult height, the final foot size can't be known in advance either.",
+      "cap_en": ["Final foot size:", "also unknown"], "hl_en": "unknown",
+      "th": "สอง ขนาดเท้าตอนโตก็รู้ล่วงหน้าไม่ได้ เหมือนส่วนสูง",
+      "cap_th": ["เท้าตอนโต:", "ก็ไม่รู้ล่วงหน้า"], "hl_th": "ไม่รู้ล่วงหน้า"
+    },
+    {
+      "id": "c9", "start": 47.46, "end": 54.18, "capY": 540,
+      "ko": "연구에 따르면 발 사이즈로 키를 맞히는 건 약 38%뿐이에요.",
+      "en": "Research shows foot size predicts adult height only about 38% of the time.",
+      "cap_en": ["Only ~38%", "accurate"], "hl_en": "~38%",
+      "th": "งานวิจัยพบว่า ขนาดเท้าทำนายส่วนสูงได้แค่ราว 38%",
+      "cap_th": ["แม่นยำ", "แค่ ~38%"], "hl_th": "~38%"
+    },
+    {
+      "id": "c10", "start": 54.18, "end": 58.6, "capY": 540,
+      "ko": "역시 가장 정확한 건 성장판 검사랍니다.",
+      "en": "For a real answer, a growth plate exam is still the most reliable.",
+      "cap_en": ["Most reliable:", "growth plate exam"], "hl_en": "growth plate",
+      "th": "คำตอบที่แม่นยำที่สุด ยังคงเป็นการตรวจ growth plate",
+      "cap_th": ["แม่นยำสุด:", "ตรวจ growth plate"], "hl_th": "growth plate"
+    }
+  ]
+}

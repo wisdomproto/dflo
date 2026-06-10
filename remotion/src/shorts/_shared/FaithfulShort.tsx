@@ -2,7 +2,7 @@
 // videoMode: "perchunk"(원본 footage 청크별, 프리뷰·립싱크입력) | "linear"(립싱크 완성본 선형재생)
 // overlays/audio 토글로 프리뷰 / 립싱크입력(footage only) / 최종 을 한 컴포넌트로.
 import {
-  AbsoluteFill, Audio, OffthreadVideo, Sequence,
+  AbsoluteFill, Audio, Img, OffthreadVideo, Sequence,
   staticFile, spring, useCurrentFrame, useVideoConfig, interpolate,
 } from "remotion";
 import { ensureFonts, NOTO_SANS_KR } from "../../lib/fonts";
@@ -75,6 +75,27 @@ const Caption: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
   );
 };
 
+// 인포그래픽 인서트(청크별 이미지). 원장 베이스 위에 풀스크린 카드로 덮음(개념/체크리스트 강조 구간).
+// 이미지는 텍스트 없는 일러스트(라벨은 caption 오버레이가 담당). insert_<lang> 우선, 없으면 insert 공용.
+const InsertCard: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const src: string = c["insert_" + lang] || c.insert;
+  const op =
+    interpolate(frame, [0, 6], [0, 1], clamp) *
+    interpolate(frame, [c.durFrames - 6, c.durFrames], [1, 0], clamp);
+  const pop = spring({ frame, fps, config: { damping: 14, mass: 0.7 } });
+  return (
+    <AbsoluteFill style={{ opacity: op }}>
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, #fdeef4 0%, #ffffff 52%, #f3effa 100%)" }} />
+      <Img
+        src={staticFile(src)}
+        style={{ position: "absolute", left: 0, right: 0, top: 70, height: 1000, width: "100%", objectFit: "contain", transform: `scale(${interpolate(pop, [0, 1], [0.92, 1])})` }}
+      />
+    </AbsoluteFill>
+  );
+};
+
 export const FaithfulShort: React.FC<{
   script: Script;
   timing: Timing[];
@@ -125,6 +146,15 @@ export const FaithfulShort: React.FC<{
               <span style={{ display: "inline", background: markBg, color: markFg, fontWeight: 900, fontSize: 78, padding: "8px 22px", borderRadius: 10, WebkitBoxDecorationBreak: "clone", boxDecorationBreak: "clone" }}>{head.mark}</span>
             </div>
           </div>
+
+          {/* 인포그래픽 인서트 (원장+헤더 위 풀스크린 카드, 자막은 그 위에) — insert 청크만 */}
+          {chunks.map((c, i) =>
+            (c.insert || c["insert_" + lang]) ? (
+              <Sequence key={"ins" + c.id} from={FROM[i]} durationInFrames={c.durFrames}>
+                <InsertCard c={c} lang={lang} />
+              </Sequence>
+            ) : null,
+          )}
 
           {(script.bottomScrim ?? 0) > 0 && (
             <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: script.bottomScrim, background: "linear-gradient(0deg, rgba(8,9,11,1) 0%, rgba(8,9,11,1) 86%, rgba(8,9,11,0) 100%)" }} />

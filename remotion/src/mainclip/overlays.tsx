@@ -2,6 +2,7 @@
 // The clean source video (no text) is the background; these recreate the Korean
 // on-screen graphics in Thai, matching size / color / effect as closely as possible.
 import {
+  AbsoluteFill,
   Img,
   staticFile,
   useCurrentFrame,
@@ -133,9 +134,9 @@ export const CenterTitle: React.FC<{
                   fontSize: fontSize * 0.82,
                   fontWeight: 900,
                   color: "#ffffff",
-                  WebkitTextStroke: `5px ${stroke}`,
+                  WebkitTextStroke: `7px ${stroke}`,
                   paintOrder: "stroke fill",
-                  textShadow: "0 4px 18px rgba(0,0,0,0.45)",
+                  textShadow: "0 4px 18px rgba(0,0,0,0.55), 0 0 2px rgba(0,0,0,0.5)",
                 }
               : {
                   fontSize,
@@ -314,7 +315,8 @@ export const Callout: React.FC<{
   bannerW?: number; // explicit cover width (px) — sized to hide baked text
   bannerH?: number; // explicit cover height (px)
   bannerBg?: string; // banner background color (match the baked banner tone)
-}> = ({ top, bottom, xPct, yPct, align = "center", bottomSize = 48, topSize, color = "#ffffff", banner = false, bannerW, bannerH, bannerBg }) => {
+  bannerTextColor?: string; // text color on banner (default dark navy; e.g. gold for floor signage)
+}> = ({ top, bottom, xPct, yPct, align = "center", bottomSize = 48, topSize, color = "#ffffff", banner = false, bannerW, bannerH, bannerBg, bannerTextColor }) => {
   const pop = usePop(0);
   // A cover banner must hide the baked text INSTANTLY (no fade/scale) or the
   // Korean underneath peeks through during the animation.
@@ -322,7 +324,7 @@ export const Callout: React.FC<{
   const opacity = banner ? 1 : pop.opacity;
   const ts = topSize ?? Math.round(bottomSize * 0.62);
   const ax = banner ? "center" : align === "left" ? "flex-start" : align === "right" ? "flex-end" : "center";
-  const bannerColor = banner ? "#27304d" : color; // dark text on light panel
+  const bannerColor = banner ? (bannerTextColor ?? "#27304d") : color; // dark text on light panel (override for dark signage)
   return (
     <div
       style={{
@@ -341,7 +343,7 @@ export const Callout: React.FC<{
         textAlign: banner ? "center" : align,
         ...(banner
           ? {
-              background: bannerBg ?? "rgba(248,246,240,0.98)",
+              background: bannerBg ?? "rgb(248,246,240)",
               borderRadius: 18,
               width: bannerW,
               height: bannerH,
@@ -416,6 +418,12 @@ export const QCard: React.FC<{
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
+  // 배경 대비 보강: 흰 텍스트(어두운 b-roll)엔 검은 그림자, 다크네이비(밝은/회색 b-roll)엔 흰 글로우.
+  const lc = color.toLowerCase();
+  const isLight = lc === "#ffffff" || lc === "#fff" || lc === "white";
+  const textShadow = isLight
+    ? "0 2px 12px rgba(0,0,0,0.6), 0 0 3px rgba(0,0,0,0.55)"
+    : "0 0 16px rgba(255,255,255,0.75), 0 1px 3px rgba(255,255,255,0.65)";
   return (
     <div
       style={{
@@ -426,6 +434,7 @@ export const QCard: React.FC<{
         opacity,
         fontFamily: NOTO_SANS_THAI,
         color,
+        textShadow,
         textAlign: "left",
       }}
     >
@@ -475,5 +484,59 @@ export const QTopBar: React.FC<{ text: string }> = ({ text }) => {
       <span style={{ fontWeight: 900, marginRight: 8 }}>Q.</span>
       {text}
     </div>
+  );
+};
+
+// =============================================================================
+// 8) Closing CTA card (엔딩 교체) — 한국어 검색바/웹목업을 덮는 풀스크린 태국어 CTA.
+//    로고 + 태국어 헤드라인 + LINE OA + 웹사이트. AbsoluteFill 불투명.
+// =============================================================================
+export const ClosingCTA: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const fadeIn = interpolate(frame, [0, 15], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const logoS = spring({ frame, fps, config: { damping: 14, mass: 0.6 } });
+  const ctaS = spring({ frame: frame - 14, fps, config: { damping: 15, mass: 0.7 } });
+  return (
+    <AbsoluteFill
+      style={{
+        background: "radial-gradient(circle at 50% 40%, #ffffff 0%, #f2f6f1 62%, #e6efe5 100%)",
+        opacity: fadeIn,
+        fontFamily: NOTO_SANS_THAI,
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
+      <Img
+        src={staticFile("images/logo_187growup.png")}
+        style={{ width: 360, height: "auto", transform: `scale(${0.78 + 0.22 * logoS})`, marginBottom: 46 }}
+      />
+      <div style={{ fontSize: 78, fontWeight: 900, color: "#1f2a1c", lineHeight: 1.18, letterSpacing: 0.3 }}>
+        ปรึกษาการเติบโตของลูก
+        <br />
+        <span style={{ color: "#22b14c" }}>ฟรีวันนี้</span>
+      </div>
+      <div style={{ fontSize: 33, fontWeight: 600, color: "#5a6553", marginTop: 24 }}>
+        ดูแลการเจริญเติบโตอย่างเป็นระบบ ที่คลินิก Yonsei Saebom
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: 26,
+          alignItems: "center",
+          marginTop: 64,
+          transform: `translateY(${(1 - ctaS) * 28}px)`,
+          opacity: interpolate(ctaS, [0, 1], [0, 1]),
+        }}
+      >
+        <div style={{ background: "#06C755", color: "#fff", fontSize: 40, fontWeight: 800, padding: "18px 42px", borderRadius: 999, boxShadow: "0 8px 22px rgba(6,199,85,0.35)" }}>
+          LINE&nbsp;&nbsp;@894qhqtu
+        </div>
+      </div>
+      <div style={{ fontSize: 40, fontWeight: 800, color: "#1f2a1c", marginTop: 34, letterSpacing: 0.5 }}>
+        dr187growup.com
+      </div>
+    </AbsoluteFill>
   );
 };

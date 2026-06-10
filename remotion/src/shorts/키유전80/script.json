@@ -1,0 +1,130 @@
+{
+  "slug": "키유전80",
+  "fps": 30,
+  "title": "키는 유전 80%? — 그 80%의 진짜 의미",
+  "_note": "PresenterShort(원장 정면 클린 베이스 재립싱크 + 다크 RVM). 인포그래픽 4컷(c3·c4·c6·c7) = 언어중립 일러스트 + insertLabels(언어별 텍스트 오버레이). 이미지는 러프 플레이스홀더(public/images/키유전80/ig1~4.png), 추후 실제 이미지로 교체. 출처: 마케팅 콘텐츠 #1.",
+  "headerStyle": { "markBg": "#E0568A", "markFg": "#ffffff" },
+  "header": {
+    "ko": { "top": "우리 아이 키", "mark": "유전이 전부일까?" },
+    "en": { "top": "Your child's height", "mark": "all genetics?" },
+    "th": { "top": "ส่วนสูงของลูก", "mark": "พันธุกรรมล้วนๆ?" }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "en": "Check it out today",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay"
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 3.0,
+      "ko": "키는 유전 80%, 환경 20%. 다들 한 번쯤 들어보셨죠?",
+      "en": "Height is 80% genes, 20% environment. You've heard that, right?",
+      "th": "ส่วนสูง 80% มาจากพันธุกรรม 20% จากสิ่งแวดล้อม เคยได้ยินกันใช่ไหมครับ?",
+      "cap_ko": ["유전 80%", "환경 20%"], "hl_ko": "80%",
+      "cap_en": ["80% genes", "20% environment"], "hl_en": "80%",
+      "cap_th": ["พันธุกรรม 80%", "สิ่งแวดล้อม 20%"], "hl_th": "80%"
+    },
+    {
+      "id": "c2", "start": 3.0, "end": 6.0,
+      "ko": "그래서 우리 애 키는 이미 정해졌다? 절대 아닙니다.",
+      "en": "So your child's height is already fixed? Not at all.",
+      "th": "แปลว่าส่วนสูงของลูกถูกกำหนดไว้แล้ว? ไม่ใช่เลยครับ",
+      "cap_ko": ["이미 정해졌다?", "아닙니다"], "hl_ko": "아닙니다",
+      "cap_en": ["Already fixed?", "Not at all"], "hl_en": "Not at all",
+      "cap_th": ["ถูกกำหนดแล้ว?", "ไม่ใช่เลย"], "hl_th": "ไม่ใช่เลย"
+    },
+    {
+      "id": "c3", "start": 6.0, "end": 9.5, "insert": "images/키유전80/ig1.png",
+      "insertLabels": [
+        { "x": 0.5, "y": 0.435, "size": 64, "weight": 900, "color": "#5b5bd6", "ko": "유전 80%", "en": "Genes 80%", "th": "พันธุกรรม 80%" },
+        { "x": 0.5, "y": 0.565, "size": 58, "weight": 900, "color": "#0d9488", "ko": "환경 20%", "en": "Care 20%", "th": "ดูแล 20%" }
+      ],
+      "ko": "이 80%는, 부모 키로 결정된다는 뜻이 아니에요.",
+      "en": "That eighty percent doesn't mean your parents' height decides it.",
+      "th": "80% นี้ ไม่ได้แปลว่าส่วนสูงของพ่อแม่เป็นตัวกำหนด",
+      "cap_ko": ["80%는", "결정이 아니다"], "hl_ko": "결정이 아니다",
+      "cap_en": ["80% isn't", "the verdict"], "hl_en": "the verdict",
+      "cap_th": ["80% ไม่ใช่", "คำตัดสิน"], "hl_th": "ไม่ใช่"
+    },
+    {
+      "id": "c4", "start": 9.5, "end": 13.0, "insert": "images/키유전80/ig2.png",
+      "insertLabels": [
+        { "x": 0.595, "y": 0.105, "size": 40, "weight": 800, "color": "#5b3fa6", "ko": "잠재력", "en": "Potential", "th": "ศักยภาพ" },
+        { "x": 0.25, "y": 0.92, "size": 34, "weight": 800, "color": "#5b3fa6", "ko": "지금 여기", "en": "You are here", "th": "ตอนนี้" }
+      ],
+      "ko": "유전은 아이가 오를 수 있는 산의 높이만 정할 뿐이죠.",
+      "en": "Genes only set how high the mountain is.",
+      "th": "พันธุกรรมแค่กำหนดว่าภูเขาจะสูงแค่ไหนเท่านั้น",
+      "cap_ko": ["유전 =", "잠재력의 높이"], "hl_ko": "잠재력",
+      "cap_en": ["Genes set", "the peak height"], "hl_en": "peak",
+      "cap_th": ["พันธุกรรม =", "ความสูงยอดเขา"], "hl_th": "ยอดเขา"
+    },
+    {
+      "id": "c5", "start": 13.0, "end": 16.5,
+      "ko": "그 정상까지 실제로 오르게 하는 힘, 그게 환경 20%입니다.",
+      "en": "What gets your child to the very top — that's the twenty percent.",
+      "th": "สิ่งที่พาลูกขึ้นไปถึงยอด คือสิ่งแวดล้อม 20% นั่นเอง",
+      "cap_ko": ["정상에 오를 힘", "= 20%"], "hl_ko": "20%",
+      "cap_en": ["Reaching the top", "= the 20%"], "hl_en": "20%",
+      "cap_th": ["พาขึ้นถึงยอด", "= 20%"], "hl_th": "20%"
+    },
+    {
+      "id": "c6", "start": 16.5, "end": 20.5, "insert": "images/키유전80/ig3.png",
+      "insertLabels": [
+        { "x": 0.5, "y": 0.055, "size": 42, "weight": 800, "color": "#5b3fa6", "ko": "같은 유전자", "en": "Same genes", "th": "ยีนเดียวกัน" },
+        { "x": 0.85, "y": 0.30, "size": 52, "weight": 900, "color": "#0d9488", "ko": "5~10cm", "en": "5–10cm", "th": "5–10ซม." },
+        { "x": 0.305, "y": 0.95, "size": 30, "weight": 800, "color": "#9aa0ad", "ko": "관리 ✕", "en": "no care", "th": "ไม่ดูแล" },
+        { "x": 0.66, "y": 0.95, "size": 30, "weight": 800, "color": "#0d9488", "ko": "관리 ✓", "en": "cared", "th": "ดูแลดี" }
+      ],
+      "ko": "똑같은 유전자라도, 관리에 따라 최종 키가 5에서 10센티 갈립니다.",
+      "en": "Same genes, but care can swing the final height by five to ten centimeters.",
+      "th": "ยีนเดียวกัน แต่การดูแลทำให้ส่วนสูงสุดท้ายต่างกันได้ถึง 5 ถึง 10 เซนติเมตร",
+      "cap_ko": ["관리에 따라", "5~10cm 차이"], "hl_ko": "5~10cm",
+      "cap_en": ["Care can swing", "5–10 cm"], "hl_en": "5–10 cm",
+      "cap_th": ["การดูแลทำให้", "ต่างกัน 5–10 ซม."], "hl_th": "5–10 ซม."
+    },
+    {
+      "id": "c7", "start": 20.5, "end": 23.5, "insert": "images/키유전80/ig4.png",
+      "insertLabels": [
+        { "x": 0.265, "y": 0.405, "size": 30, "weight": 800, "color": "#ffffff", "ko": "영양", "en": "Nutrition", "th": "โภชนาการ" },
+        { "x": 0.735, "y": 0.405, "size": 30, "weight": 800, "color": "#ffffff", "ko": "깊은 잠", "en": "Deep sleep", "th": "นอนลึก" },
+        { "x": 0.265, "y": 0.915, "size": 30, "weight": 800, "color": "#ffffff", "ko": "운동", "en": "Exercise", "th": "ออกกำลังกาย" },
+        { "x": 0.735, "y": 0.915, "size": 27, "weight": 800, "color": "#ffffff", "ko": "성장기 관리", "en": "Growth care", "th": "ดูแลการเติบโต" }
+      ],
+      "ko": "영양, 깊은 잠, 운동, 그리고 성장기 관리.",
+      "en": "Nutrition, deep sleep, exercise, and growth-stage care.",
+      "th": "โภชนาการ การนอนหลับลึก การออกกำลังกาย และการดูแลช่วงวัยเจริญเติบโต",
+      "cap_ko": ["영양·수면·운동", "관리가 핵심"], "hl_ko": "핵심",
+      "cap_en": ["Food·sleep·move", "care is key"], "hl_en": "key",
+      "cap_th": ["กิน·นอน·ขยับ", "ดูแลคือหัวใจ"], "hl_th": "หัวใจ"
+    },
+    {
+      "id": "c8", "start": 23.5, "end": 27.5,
+      "ko": "부모님이 크지 않아도, 잠재력을 끝까지 채운 아이들 정말 많아요.",
+      "en": "Even when parents aren't tall, many kids reach their full potential.",
+      "th": "แม้พ่อแม่จะไม่สูง เด็กหลายคนก็เติบโตได้เต็มศักยภาพ",
+      "cap_ko": ["부모가 작아도", "더 클 수 있다"], "hl_ko": "더 클 수 있다",
+      "cap_en": ["Short parents,", "tall kids"], "hl_en": "tall kids",
+      "cap_th": ["พ่อแม่ไม่สูง", "ลูกก็สูงได้"], "hl_th": "ลูกก็สูงได้"
+    },
+    {
+      "id": "c9", "start": 27.5, "end": 30.5,
+      "ko": "유전이 한계가 아니라, 지금의 관리가 키를 만듭니다.",
+      "en": "Genes aren't the limit. Today's care builds height.",
+      "th": "พันธุกรรมไม่ใช่ขีดจำกัด การดูแลในวันนี้ต่างหากที่สร้างส่วนสูง",
+      "cap_ko": ["지금의 관리가", "키를 만든다"], "hl_ko": "키를 만든다",
+      "cap_en": ["Care today", "builds height"], "hl_en": "builds height",
+      "cap_th": ["ดูแลวันนี้", "สร้างส่วนสูง"], "hl_th": "สร้างส่วนสูง"
+    },
+    {
+      "id": "c10", "start": 30.5, "end": 33.5,
+      "ko": "우리 아이 성장 잠재력, 지금 바로 확인해 보세요.",
+      "en": "Check your child's growth potential today.",
+      "th": "มาเช็กศักยภาพการเติบโตของลูกคุณวันนี้กันครับ",
+      "cap_ko": ["성장 잠재력", "지금 확인"], "hl_ko": "지금 확인",
+      "cap_en": ["Growth potential", "check today"], "hl_en": "check today",
+      "cap_th": ["ศักยภาพการเติบโต", "เช็กวันนี้"], "hl_th": "เช็กวันนี้"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "fps": 30,
+  "newTotal": 191.521,
+  "segments": [
+    {
+      "type": "keep",
+      "s": 0,
+      "e": 8.2,
+      "origDur": 8.2,
+      "newDur": 8.2,
+      "speed": 1,
+      "newStart": 0,
+      "newEnd": 8.2,
+      "audioDur": null
+    },
+    {
+      "type": "warp",
+      "g": "g01",
+      "s": 8.2,
+      "e": 37,
+      "origDur": 28.8,
+      "newDur": 23.824,
+      "speed": 1.2089,
+      "newStart": 8.2,
+      "newEnd": 32.024,
+      "audioDur": 23.824
+    },
+    {
+      "type": "warp",
+      "g": "g02",
+      "s": 37,
+      "e": 49.7,
+      "origDur": 12.7,
+      "newDur": 11.656,
+      "speed": 1.0896,
+      "newStart": 32.024,
+      "newEnd": 43.68,
+      "audioDur": 11.656
+    },
+    {
+      "type": "skip",
+      "s": 49.7,
+      "e": 51.5,
+      "origDur": 1.8,
+      "newDur": 0,
+      "speed": 0
+    },
+    {
+      "type": "keep",
+      "s": 51.5,
+      "e": 54,
+      "origDur": 2.5,
+      "newDur": 2.5,
+      "speed": 1,
+      "newStart": 43.68,
+      "newEnd": 46.18,
+      "audioDur": null
+    },
+    {
+      "type": "warp",
+      "g": "g03",
+      "s": 54,
+      "e": 69,
+      "origDur": 15,
+      "newDur": 11.889,
+      "speed": 1.2617,
+      "newStart": 46.18,
+      "newEnd": 58.069,
+      "audioDur": 11.889
+    },
+    {
+      "type": "keep",
+      "s": 69,
+      "e": 72,
+      "origDur": 3,
+      "newDur": 3,
+      "speed": 1,
+      "newStart": 58.069,
+      "newEnd": 61.069,
+      "audioDur": null
+    },
+    {
+      "type": "warp",
+      "g": "g04",
+      "s": 72,
+      "e": 101,
+      "origDur": 29,
+      "newDur": 25.124,
+      "speed": 1.1543,
+      "newStart": 61.069,
+      "newEnd": 86.193,
+      "audioDur": 25.124
+    },
+    {
+      "type": "keep",
+      "s": 101,
+      "e": 104,
+      "origDur": 3,
+      "newDur": 3,
+      "speed": 1,
+      "newStart": 86.193,
+      "newEnd": 89.193,
+      "audioDur": null
+    },
+    {
+      "type": "warp",
+      "g": "g05",
+      "s": 104,
+      "e": 140,
+      "origDur": 36,
+      "newDur": 28.514,
+      "speed": 1.2625,
+      "newStart": 89.193,
+      "newEnd": 117.707,
+      "audioDur": 28.514
+    },
+    {
+      "type": "keep",
+      "s": 140,
+      "e": 143,
+      "origDur": 3,
+      "newDur": 3,
+      "speed": 1,
+      "newStart": 117.707,
+      "newEnd": 120.707,
+      "audioDur": null
+    },
+    {
+      "type": "warp",
+      "g": "g06",
+      "s": 143,
+      "e": 164,
+      "origDur": 21,
+      "newDur": 20.48,
+      "speed": 1.0254,
+      "newStart": 120.707,
+      "newEnd": 141.187,
+      "audioDur": 20.48
+    },
+    {
+      "type": "keep",
+      "s": 164,
+      "e": 167,
+      "origDur": 3,
+      "newDur": 3,
+      "speed": 1,
+      "newStart": 141.187,
+      "newEnd": 144.187,
+      "audioDur": null
+    },
+    {
+      "type": "warp",
+      "g": "g07",
+      "s": 167,
+      "e": 216,
+      "origDur": 49,
+      "newDur": 32.667,
+      "speed": 1.5,
+      "newStart": 144.187,
+      "newEnd": 176.854,
+      "audioDur": 30.325
+    },
+    {
+      "type": "warp",
+      "g": "g08",
+      "s": 216,
+      "e": 238,
+      "origDur": 22,
+      "newDur": 14.667,
+      "speed": 1.5,
+      "newStart": 176.854,
+      "newEnd": 191.521,
+      "audioDur": 11.471
+    }
+  ]
+}

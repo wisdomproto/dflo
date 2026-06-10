@@ -1,0 +1,105 @@
+{
+  "slug": "가짜성조숙증",
+  "src": "videos/가짜성조숙증-src.mp4",
+  "fps": 30,
+  "title": "가짜 성조숙증 3가지 체크",
+  "_note": "🔀혼합: 원장 토킹헤드(c2·c3·c9·c10) + 그래픽(지방·부신 일러스트, 단순 조기 유방 발육증 3조건 텍스트 리스트). 통영상 LatentSync(no-face 패치=원장만 립싱크). FaithfulShort linear. ★마스킹 정책(발사이즈 교훈 + 사용자 '한글 다 안가려도 됨'): cover 밴드 없음 → 영상 풀노출 + 헤더 스크림(태국어 제목) + 청크별 작은 자막박스. 원본 baked 한글(헤더 제외)은 같이 노출(이중언어). 한글 밀도 보고 dense 그래픽컷만 추후 카드화 가능(현재 전부 노출).",
+  "headerStyle": { "markBg": "#E0568A", "markFg": "#ffffff" },
+  "header": {
+    "en": { "top": "Could it be", "mark": "false puberty?" },
+    "th": { "top": "ลูกเราเป็น", "mark": "สาวก่อนวัยเทียม?" },
+    "ko": { "top": "혹시 우리 아이", "mark": "가짜 성조숙증?" }
+  },
+  "chunks": [
+    {
+      "id": "c1", "start": 0.0, "end": 2.335, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "우리 아이 가슴 멍울, 성조숙증일까요?",
+      "en": "A lump in your child's chest — is it precocious puberty?",
+      "cap_en": ["Chest lump =", "early puberty?"], "hl_en": "early puberty",
+      "th": "ก้อนที่หน้าอกลูก ใช่เป็นสาวก่อนวัยไหม?",
+      "cap_th": ["ก้อนที่หน้าอก =", "เป็นสาวก่อนวัย?"], "hl_th": "เป็นสาวก่อนวัย",
+      "cap_ko": ["가슴 멍울이", "성조숙증?"], "hl_ko": "성조숙증"
+    },
+    {
+      "id": "c2", "start": 2.335, "end": 5.755, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "모든 가슴 발달이 다 진짜 성조숙증은 아니에요.",
+      "en": "Not all breast development is true precocious puberty.",
+      "cap_en": ["Not always", "the real thing"], "hl_en": "Not always",
+      "th": "ไม่ใช่ทุกการพัฒนาหน้าอกจะเป็นของจริง",
+      "cap_th": ["ไม่ใช่ของจริง", "เสมอไป"], "hl_th": "ไม่ใช่ของจริง",
+      "cap_ko": ["다 진짜는", "아니에요"], "hl_ko": "아니에요"
+    },
+    {
+      "id": "c3", "start": 5.755, "end": 10.593, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "특히 통통한 여자아이에게 흔한 게 '가짜 성조숙증'이에요.",
+      "en": "Especially in chubby girls, 'false' precocious puberty is common.",
+      "cap_en": ["Chubby girls:", "'false' puberty"], "hl_en": "'false'",
+      "th": "โดยเฉพาะเด็กหญิงท้วม มัก 'เป็นสาวก่อนวัยเทียม'",
+      "cap_th": ["เด็กท้วม:", "ของเทียมพบบ่อย"], "hl_th": "เทียม",
+      "cap_ko": ["통통한 여아 :", "'가짜'가 흔해요"], "hl_ko": "가짜"
+    },
+    {
+      "id": "c4", "start": 10.593, "end": 14.514, "capY": 1190, "cover": [[1090, 260]], "insert": "images/가짜성조숙증/c4.png",
+      "ko": "지방이나 부신에서도 여성호르몬이 소량 나오기 때문이죠.",
+      "en": "Fat tissue and the adrenal glands can make small amounts of estrogen too.",
+      "cap_en": ["Fat & adrenals", "make estrogen too"], "hl_en": "Fat & adrenals",
+      "th": "เพราะไขมันและต่อมหมวกไตก็สร้างฮอร์โมนเพศหญิงได้",
+      "cap_th": ["ไขมัน·ต่อมหมวกไต", "ก็สร้างฮอร์โมน"], "hl_th": "ไขมัน",
+      "cap_ko": ["지방·부신도", "여성호르몬 분비"], "hl_ko": "지방·부신"
+    },
+    {
+      "id": "c5", "start": 14.514, "end": 18.435, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "의학적으로는 '단순 조기 유방 발육증'이라고 해요.",
+      "en": "Medically, it's called 'simple premature breast development.'",
+      "cap_en": ["= premature breast", "development"], "hl_en": "premature breast",
+      "th": "ทางการแพทย์เรียกว่า 'เต้านมโตก่อนวัยแบบธรรมดา'",
+      "cap_th": ["= เต้านมโต", "ก่อนวัยธรรมดา"], "hl_th": "ธรรมดา",
+      "cap_ko": ["= 단순 조기", "유방 발육증"], "hl_ko": "유방 발육증"
+    },
+    {
+      "id": "c6", "start": 18.435, "end": 22.147, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "그럼 어떻게 구분할까요? 이 세 가지를 함께 확인하세요.",
+      "en": "So how do you tell? Check these three together.",
+      "cap_en": ["How to tell?", "Check 3 things"], "hl_en": "3 things",
+      "th": "แล้วแยกยังไง? เช็ก 3 ข้อนี้พร้อมกัน",
+      "cap_th": ["แยกยังไง?", "เช็ก 3 ข้อ"], "hl_th": "3 ข้อ",
+      "cap_ko": ["어떻게 구분?", "3가지 체크"], "hl_ko": "3가지"
+    },
+    {
+      "id": "c7", "start": 22.147, "end": 24.482, "capY": 1190, "cover": [[1090, 260]], "insert": "images/가짜성조숙증/c7.png",
+      "ko": "첫째 급격한 키 성장 없음, 둘째 다른 2차 성징 없음, 셋째 오직 가슴만 발달.",
+      "en": "1) No rapid height spurt, 2) No other signs like periods, 3) Breast only.",
+      "cap_en": ["No height spurt,", "breast only"], "hl_en": "breast only",
+      "th": "1) ไม่สูงพุ่ง 2) ไม่มีสัญญาณอื่น 3) โตแค่หน้าอก",
+      "cap_th": ["ไม่สูงพุ่ง,", "โตแค่หน้าอก"], "hl_th": "แค่หน้าอก",
+      "cap_ko": ["급성장 X,", "가슴만 발달"], "hl_ko": "가슴만"
+    },
+    {
+      "id": "c8", "start": 24.482, "end": 29.195, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "이 조건이면 대부분 시간이 지나면서 자연스럽게 사라져요.",
+      "en": "If so, most cases fade away naturally over time.",
+      "cap_en": ["Usually fades", "on its own"], "hl_en": "fades",
+      "th": "ถ้าเข้าเกณฑ์นี้ ส่วนใหญ่จะค่อยๆ หายไปเอง",
+      "cap_th": ["ส่วนใหญ่", "หายเองได้"], "hl_th": "หายเอง",
+      "cap_ko": ["대부분", "자연히 사라져요"], "hl_ko": "자연히"
+    },
+    {
+      "id": "c9", "start": 29.195, "end": 32.532, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "하지만 가장 중요한 건, 자가 진단은 위험하다는 거예요.",
+      "en": "But most important: self-diagnosis is risky.",
+      "cap_en": ["Don't", "self-diagnose!"], "hl_en": "self-diagnose",
+      "th": "แต่ที่สำคัญที่สุด อย่าวินิจฉัยเอง อันตราย!",
+      "cap_th": ["อย่าวินิจฉัย", "เอง!"], "hl_th": "อย่าวินิจฉัยเอง",
+      "cap_ko": ["자가진단은", "위험해요!"], "hl_ko": "위험"
+    },
+    {
+      "id": "c10", "start": 32.532, "end": 35.035, "capY": 1190, "cover": [[1090, 260]],
+      "ko": "꼭 전문가 진료로 확인하세요.",
+      "en": "Always confirm with a specialist.",
+      "cap_en": ["Confirm with", "a specialist"], "hl_en": "specialist",
+      "th": "ควรตรวจกับแพทย์ผู้เชี่ยวชาญเสมอ",
+      "cap_th": ["ตรวจกับ", "แพทย์ผู้เชี่ยวชาญ"], "hl_th": "ผู้เชี่ยวชาญ",
+      "cap_ko": ["꼭 전문가", "진료로 확인"], "hl_ko": "전문가"
+    }
+  ]
+}
