@@ -106,6 +106,7 @@ cases/0. backup/
 cases/__pycache__/
 cases/*.sql
 cases/igg4*/
+cases/book-chunks.json
 
 # 마이그레이션/프로토타입 워크스페이스
 migration/

@@ -9,12 +9,12 @@ const sbK = createClient(process.env.SUPABASE_URL || process.env.VITE_SUPABASE_U
 
 export const knowledgeRouter = Router();
 
-// POST /api/knowledge/search { query, kPapers?, kInsights? } → { papers, insights }
+// POST /api/knowledge/search { query, kPapers?, kInsights?, kDocuments? } → { papers, insights, documents }
 knowledgeRouter.post('/search', async (req: Request, res: Response) => {
   const query = String(req.body?.query ?? '').trim();
   if (!query) return res.status(400).json({ success: false, error: 'query required' });
   try {
-    const result = await searchKnowledge(query, { kPapers: req.body?.kPapers, kInsights: req.body?.kInsights });
+    const result = await searchKnowledge(query, { kPapers: req.body?.kPapers, kInsights: req.body?.kInsights, kDocuments: req.body?.kDocuments });
     res.json({ success: true, ...result });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
@@ -60,8 +60,9 @@ knowledgeRouter.post('/rx-recommend', async (req: Request, res: Response) => {
       .filter((n) => !annotateMedName(n, legend ?? []).includes('non_drug'))
       .slice(0, 15).map((n) => annotateMedName(n, legend ?? []));
     // 근거 논문 검색
-    const { papers } = await searchKnowledge(`${profile} ${labText}`.slice(0, 1500), { kPapers: 5, kInsights: 0 });
-    const prompt = buildRxPrompt({ profile, labText, cohortMeds, papers });
+    const { papers, documents } = await searchKnowledge(`${profile} ${labText}`.slice(0, 1500), { kPapers: 5, kInsights: 0, kDocuments: 4 });
+    const bookPassages = documents.map((d) => ({ chapter: d.chapter, content: d.content }));
+    const prompt = buildRxPrompt({ profile, labText, cohortMeds, papers, bookPassages });
     const recommendation = (await generateText(prompt)).trim();
     const references = papers.map(({ abstract, ...rest }) => rest);
     res.json({ success: true, recommendation, references });

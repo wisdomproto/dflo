@@ -40,3 +40,26 @@ test('buildRxPrompt falls back to one-line when no abstract/key_finding', () => 
 test('buildRxPrompt: no papers → 관련 논문 없음', () => {
   assert.match(buildRxPrompt({ ...base, papers: [] }), /관련 논문 없음/);
 });
+
+const bp = { profile: '11세 여아', labText: '검사', cohortMeds: ['성장호르몬'] };
+
+test('buildRxPrompt injects 원장 저서 section when bookPassages present', () => {
+  const p = buildRxPrompt({ ...bp, papers: [], bookPassages: [{ chapter: '3장｜성조숙증', content: '원장 방침 발췌입니다.' }] });
+  assert.match(p, /## 원장님의 진료 철학·방침/);
+  assert.match(p, /1차 기준/);
+  assert.match(p, /3장｜성조숙증/);
+  assert.match(p, /원장 방침 발췌입니다/);
+});
+
+test('buildRxPrompt omits 저서 section when no bookPassages', () => {
+  const p = buildRxPrompt({ ...bp, papers: [] });
+  assert.ok(!p.includes('## 원장님의 진료 철학·방침'));
+});
+
+test('buildRxPrompt joins multiple bookPassages with blank line, in order', () => {
+  const p = buildRxPrompt({ ...bp, papers: [], bookPassages: [
+    { chapter: '1장｜A', content: '첫째 발췌' },
+    { chapter: '2장｜B', content: '둘째 발췌' },
+  ] });
+  assert.match(p, /\[1장｜A\] 첫째 발췌\n\n\[2장｜B\] 둘째 발췌/);
+});
