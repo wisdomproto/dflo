@@ -23,17 +23,8 @@ const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
   { key: 'calculator', label: '예상키 측정' },
 ];
 
-const CHANNEL_LABELS: Record<string, string> = {
-  'Organic Search': '자연 검색',
-  Direct: '직접',
-  'Organic Social': '소셜',
-  Referral: '추천',
-  'Paid Search': '유료 검색',
-  'Paid Social': '유료 소셜',
-  Email: '이메일',
-  Display: '디스플레이',
-  Unassigned: '미분류',
-};
+// 유입채널 라벨은 ai-server 가 소스를 플랫폼 단위(🔍 구글/📸 인스타그램/🤖 ChatGPT…)로
+// 정규화해 내려줌 — 클라 측 라벨 매핑 불필요 (옛 채널 그룹 매핑 제거).
 const DEVICE_LABELS: Record<string, string> = { mobile: '모바일', desktop: '데스크톱', tablet: '태블릿' };
 
 function fmtDuration(sec: number): string {
@@ -90,7 +81,7 @@ function BreakdownBars({ items, labels }: { items: NamedCount[]; labels?: Record
   const max = Math.max(...items.map((i) => i.sessions), 1);
   return (
     <ul className="space-y-1.5">
-      {items.slice(0, 6).map((it) => (
+      {items.slice(0, 8).map((it) => (
         <li key={it.label} className="text-xs">
           <div className="flex justify-between">
             <span className="text-gray-600">{labels?.[it.label] ?? it.label}</span>
@@ -215,7 +206,7 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <div>
                 <h4 className="mb-2 text-xs font-semibold text-gray-500">유입 채널</h4>
-                <BreakdownBars items={s.channels} labels={CHANNEL_LABELS} />
+                <BreakdownBars items={s.channels} />
               </div>
               <div>
                 <h4 className="mb-2 text-xs font-semibold text-gray-500">디바이스</h4>

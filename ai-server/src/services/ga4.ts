@@ -219,6 +219,44 @@ export async function fetchOverview(p: OverviewParams): Promise<AnalyticsOvervie
   };
 }
 
+// ── 소스 → 플랫폼 정규화 ─────────────────────────────────────────────
+// GA4 sessionSource 는 같은 플랫폼이 여러 도메인으로 파편화됨
+// (instagram / l.instagram.com / m.facebook.com / chatgpt.com …).
+// 사람이 읽는 플랫폼 단위(구글·네이버·인스타·페북·Threads·ChatGPT…)로 묶는다.
+// 순서 중요: gemini.google.com 은 구글보다 먼저, blog.naver 는 네이버보다 먼저.
+const PLATFORM_RULES: Array<{ key: string; label: string; test: RegExp }> = [
+  { key: 'gemini', label: '🤖 Gemini', test: /gemini\.google/ },
+  { key: 'chatgpt', label: '🤖 ChatGPT', test: /chatgpt|chat\.openai|openai\.com/ },
+  { key: 'perplexity', label: '🤖 Perplexity', test: /perplexity/ },
+  { key: 'youtube', label: '▶️ 유튜브', test: /youtube|youtu\.be/ },
+  { key: 'google', label: '🔍 구글', test: /^google$|^google\.|\.google\.|googleads|^adwords$/ },
+  { key: 'naver_blog', label: '🟢 네이버 블로그', test: /blog\.naver/ },
+  { key: 'naver', label: '🟢 네이버', test: /naver/ },
+  { key: 'daum', label: '🔍 다음', test: /daum/ },
+  { key: 'instagram', label: '📸 인스타그램', test: /instagram|^ig$/ },
+  { key: 'facebook', label: '📘 페이스북', test: /facebook|^fb$|fb\.me/ },
+  { key: 'threads', label: '🧵 Threads', test: /threads/ },
+  { key: 'tiktok', label: '🎵 TikTok', test: /tiktok/ },
+  { key: 'x', label: '✖️ X(트위터)', test: /twitter|^t\.co$|^x\.com$|\.x\.com$/ },
+  { key: 'kakao', label: '💬 카카오', test: /kakao/ },
+  { key: 'line', label: '💚 LINE', test: /(^|\.)line\.me|lin\.ee|^line$|liff/ },
+  { key: 'bing', label: '🔎 Bing', test: /bing/ },
+  { key: 'pantip', label: '🇹🇭 Pantip', test: /pantip/ },
+  { key: 'direct', label: '🌐 직접 유입', test: /^\(direct\)$/ },
+];
+const PAID_MEDIUM = /cpc|ppc|paid|cpm|banner|display/;
+
+export function normalizeSourcePlatform(source: string, medium = ''): { key: string; label: string } {
+  const s = source.trim().toLowerCase();
+  const hit = PLATFORM_RULES.find((r) => r.test.test(s));
+  const base = hit ?? { key: `other:${s}`, label: source || '(not set)' };
+  // 같은 플랫폼이라도 광고 유입은 별도 행으로 (구글 vs 구글 · 광고)
+  if (PAID_MEDIUM.test(medium.toLowerCase())) {
+    return { key: `${base.key}:ad`, label: `${base.label} · 광고` };
+  }
+  return { key: base.key, label: base.label };
+}
+
 // ── 채널 분석 (유입 분해) ─────────────────────────────────────────────
 // sessionDefaultChannelGroup / sessionSource+sessionMedium / country 는 모두
 // GA4 표준 측정기준이므로 tryRunReport 폴백 불필요 — runReport 직접 사용.
@@ -231,6 +269,7 @@ export interface ChannelRow {
 }
 
 export interface ChannelBreakdown {
+  platforms: ChannelRow[]; // 소스를 플랫폼 단위로 정규화·합산 (구글/네이버/인스타/페북/Threads/ChatGPT…)
   channelGroups: ChannelRow[];
   sourceMedium: ChannelRow[];
   countries: ChannelRow[];
@@ -271,13 +310,13 @@ export async function fetchChannels(days: number): Promise<ChannelBreakdown> {
     limit: '20',
   });
 
-  // 2) 소스 / 매체 (google / organic …)
+  // 2) 소스 / 매체 (google / organic …) — 플랫폼 합산용이라 넉넉히 100행
   const sourceMediumResp = await runReport({
     dateRanges,
     dimensions: [{ name: 'sessionSource' }, { name: 'sessionMedium' }],
     metrics,
     orderBys,
-    limit: '20',
+    limit: '100',
   });
 
   // 3) 국가
@@ -289,7 +328,24 @@ export async function fetchChannels(days: number): Promise<ChannelBreakdown> {
     limit: '20',
   });
 
+  // 소스/매체 행을 플랫폼 키로 합산 (l.instagram.com + instagram → 인스타그램)
+  const platformAgg = new Map<string, { label: string; sessions: number; users: number }>();
+  for (const row of sourceMediumResp.rows ?? []) {
+    const dims = (row.dimensionValues ?? []).map((d) => d.value ?? '');
+    const { key, label } = normalizeSourcePlatform(dims[0] ?? '', dims[1] ?? '');
+    const acc = platformAgg.get(key) ?? { label, sessions: 0, users: 0 };
+    acc.sessions += Number(row.metricValues?.[0]?.value ?? 0);
+    acc.users += Number(row.metricValues?.[1]?.value ?? 0);
+    platformAgg.set(key, acc);
+  }
+  const platformRows = [...platformAgg.values()].sort((a, b) => b.sessions - a.sessions);
+  const platformTotal = platformRows.reduce((s, r) => s + r.sessions, 0);
+
   return {
+    platforms: platformRows.map((r) => ({
+      ...r,
+      percentage: platformTotal > 0 ? +((r.sessions / platformTotal) * 100).toFixed(1) : 0,
+    })),
     channelGroups: mapChannelRows(channelResp, (d) => d[0] ?? ''),
     sourceMedium: mapChannelRows(sourceMediumResp, (d) =>
       [d[0], d[1]].filter(Boolean).join(' / '),
@@ -332,7 +388,8 @@ export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
       dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: ['height_calc_complete', 'consult_click'] } } },
       limit: '1000',
     }),
-    runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'sessionDefaultChannelGroup' }], metrics: [{ name: 'sessions' }], limit: '1000' }),
+    // 유입은 채널 그룹(Organic Search 등 5종) 대신 소스 → 플랫폼 정규화 (구글/인스타/페북/ChatGPT… 디테일)
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'sessionSource' }, { name: 'sessionMedium' }], metrics: [{ name: 'sessions' }], limit: '5000' }),
     runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'deviceCategory' }], metrics: [{ name: 'sessions' }], limit: '1000' }),
     runReport({
       dateRanges: [cur],
@@ -348,7 +405,11 @@ export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
     landingPrev: mapLanding(landPrevResp),
     pv: (pvResp.rows ?? []).map((r) => ({ pagePath: r.dimensionValues?.[0]?.value ?? '', views: Number(r.metricValues?.[0]?.value ?? 0) })),
     events: (evResp.rows ?? []).map((r) => ({ pagePath: r.dimensionValues?.[0]?.value ?? '', eventName: r.dimensionValues?.[1]?.value ?? '', count: Number(r.metricValues?.[0]?.value ?? 0) })),
-    channels: (chResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', channel: r.dimensionValues?.[1]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
+    channels: (chResp.rows ?? []).map((r) => ({
+      landingPage: r.dimensionValues?.[0]?.value ?? '',
+      channel: normalizeSourcePlatform(r.dimensionValues?.[1]?.value ?? '', r.dimensionValues?.[2]?.value ?? '').label,
+      sessions: Number(r.metricValues?.[0]?.value ?? 0),
+    })),
     devices: (dvResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', device: r.dimensionValues?.[1]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
     daily: (dailyResp.rows ?? []).map((r) => ({ date: r.dimensionValues?.[0]?.value ?? '', landingPage: r.dimensionValues?.[1]?.value ?? '', users: Number(r.metricValues?.[0]?.value ?? 0), sessions: Number(r.metricValues?.[1]?.value ?? 0), views: Number(r.metricValues?.[2]?.value ?? 0) })),
   });

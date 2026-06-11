@@ -96,7 +96,8 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
     }, 700);
   };
 
-  // 영상 업로드 — 썸네일이 없으면 첫 프레임 자동 추출해 한 단위로 채운다.
+  // 영상 업로드 — 썸네일이 없거나 자동 추출본이면 새 영상 첫 프레임으로 (재)추출해 한 단위 유지.
+  // 직접 올린 커버(coverAuto=false)만 영상 교체에도 보존.
   const onVideo = async (file?: File | null) => {
     if (!file) return;
     setUploading(true);
@@ -104,17 +105,19 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
     try {
       const videoUrl = await uploadVideoFile(file);
       let coverUrl = cur.coverUrl;
-      if (!coverUrl) {
+      let coverAuto = cur.coverAuto ?? true; // 플래그 없는 기존 데이터는 자동본 취급
+      if (!coverUrl || coverAuto) {
         try {
           setCoverBusy(true);
           coverUrl = await uploadCoverImage(await extractFirstFrame(file));
+          coverAuto = true;
         } catch {
-          coverUrl = null; // 자동 추출 실패는 치명적이지 않음 — 수동 업로드 안내
+          // 자동 추출 실패는 치명적이지 않음 — 기존 커버 유지 또는 수동 업로드 안내
         } finally {
           setCoverBusy(false);
         }
       }
-      patch({ videoUrl, coverUrl });
+      patch({ videoUrl, coverUrl, coverAuto });
     } catch (e) {
       setError(e instanceof Error ? e.message : '영상 업로드 실패');
     } finally {
@@ -127,7 +130,7 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
     setCoverBusy(true);
     setError(null);
     try {
-      patch({ coverUrl: await uploadCoverImage(file) });
+      patch({ coverUrl: await uploadCoverImage(file), coverAuto: false });
     } catch (e) {
       setError(e instanceof Error ? e.message : '커버 업로드 실패');
     } finally {
@@ -202,7 +205,7 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
             <span className="text-xs font-semibold text-gray-500">
               🎬 릴스 ({LANGS.find((l) => l.code === language)?.flag} {language}) — 썸네일 + 영상 한 단위
             </span>
-            <span className="text-[11px] text-gray-400">영상을 올리면 썸네일이 없을 때 첫 장면을 자동 사용</span>
+            <span className="text-[11px] text-gray-400">영상 업로드·교체 시 첫 장면을 썸네일로 자동 사용 (직접 올린 썸네일은 유지)</span>
           </div>
 
           {cur.videoUrl ? (

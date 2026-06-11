@@ -136,6 +136,7 @@ export interface BlogReference {
 export interface ReelsLangData {
   videoUrl: string | null;
   coverUrl: string | null; // 인스타 릴스 커버(섬네일) — 언어별 (텍스트가 박혀 있어 per-lang)
+  coverAuto?: boolean; // true = 영상 첫 프레임 자동 추출본 → 영상 교체 시 함께 재추출. false = 직접 올린 커버(유지)
   caption?: string; // 커스텀 콘텐츠 전용 (정규는 카드뉴스 공용)
   hashtags?: string; // 커스텀 콘텐츠 전용
 }

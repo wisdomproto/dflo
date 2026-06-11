@@ -13,6 +13,7 @@ export interface ChannelRow {
 }
 
 export interface ChannelBreakdown {
+  platforms?: ChannelRow[]; // 플랫폼 단위 정규화 합산 (구글/네이버/인스타/페북/Threads/ChatGPT…) — 구 ai-server 응답엔 없을 수 있어 optional
   channelGroups: ChannelRow[];
   sourceMedium: ChannelRow[];
   countries: ChannelRow[];
