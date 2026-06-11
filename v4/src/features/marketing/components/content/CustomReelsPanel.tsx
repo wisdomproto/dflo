@@ -60,6 +60,7 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
   const [coverBusy, setCoverBusy] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [landscape, setLandscape] = useState(false); // 가로 영상 경고 (IG 릴스는 9:16 권장)
   const [showPublish, setShowPublish] = useState(false);
   const reelsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const titleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -211,7 +212,8 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
                 <div className="mb-1.5 text-[11px] font-semibold text-gray-400">🖼️ 썸네일 (커버)</div>
                 {cur.coverUrl ? (
                   <div className="space-y-2">
-                    <img src={cur.coverUrl} alt="릴스 썸네일" className="mx-auto max-h-[400px] rounded-lg bg-black object-contain" style={{ aspectRatio: '9 / 16' }} />
+                    {/* 원본 비율 그대로 — 9:16 강제 시 가로 영상이 이중 레터박스로 작게 보임 */}
+                    <img src={cur.coverUrl} alt="릴스 썸네일" className="mx-auto max-h-[400px] w-auto rounded-lg" />
                     <div className="flex flex-wrap items-center gap-2">
                       <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
                         {coverBusy ? '처리 중…' : '교체'}
@@ -235,7 +237,17 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
                 <div className="mb-1.5 text-[11px] font-semibold text-gray-400">📹 영상</div>
                 <div className="space-y-2">
                   {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                  <video src={cur.videoUrl} controls className="mx-auto max-h-[400px] rounded-lg bg-black" style={{ aspectRatio: '9 / 16' }} />
+                  <video
+                    src={cur.videoUrl}
+                    controls
+                    className="mx-auto max-h-[400px] w-auto rounded-lg"
+                    onLoadedMetadata={(e) => setLandscape(e.currentTarget.videoWidth > e.currentTarget.videoHeight)}
+                  />
+                  {landscape && (
+                    <p className="rounded bg-amber-50 px-2 py-1 text-[11px] text-amber-700">
+                      ⚠️ 가로 영상입니다 — 인스타 릴스는 9:16 세로를 권장합니다. 세로 원본이 있으면 그걸 올려주세요.
+                    </p>
+                  )}
                   <div className="flex flex-wrap items-center gap-2">
                     <label className="cursor-pointer rounded bg-gray-700 px-3 py-1 text-xs font-semibold text-white">
                       {uploading ? '업로드 중…' : '영상 교체'}

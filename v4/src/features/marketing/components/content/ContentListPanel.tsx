@@ -112,8 +112,9 @@ export function ContentListPanel({
   articles, selectedId, onSelect, onNew, onNewCustom, onDelete, onReorder, onStatus, statusActive,
 }: Props) {
   const [filter, setFilter] = useState<string>('전체');
+  // 상단 탭: 정규(62개 토픽) / 커스텀(ad-hoc 릴스) — 카테고리·드래그 정렬은 정규에만.
+  const [tab, setTab] = useState<'regular' | 'custom'>('regular');
 
-  // 정규(62개 토픽) / 커스텀(ad-hoc 릴스) 분리 — 카테고리·드래그 정렬은 정규에만.
   const regular = articles.filter((a) => a.kind !== 'custom');
   const custom = articles.filter((a) => a.kind === 'custom');
 
@@ -168,18 +169,48 @@ export function ContentListPanel({
             >
               📊 현황
             </button>
-            <button
-              onClick={onNew}
-              className="text-xs font-semibold px-2 py-1 rounded-md text-white"
-              style={{ backgroundColor: ACCENT }}
-            >
-              + 새 글
-            </button>
+            {tab === 'regular' ? (
+              <button
+                onClick={onNew}
+                className="text-xs font-semibold px-2 py-1 rounded-md text-white"
+                style={{ backgroundColor: ACCENT }}
+              >
+                + 새 글
+              </button>
+            ) : (
+              <button
+                onClick={onNewCustom}
+                title="토픽 체계 밖의 릴스(영상+썸네일) 콘텐츠 추가"
+                className="text-xs font-semibold px-2 py-1 rounded-md text-white"
+                style={{ backgroundColor: ACCENT }}
+              >
+                + 커스텀
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Category chips */}
-        {categories.length > 0 && (
+        {/* 정규/커스텀 탭 */}
+        <div className="mb-2 flex overflow-hidden rounded-lg border border-gray-200">
+          {([
+            { key: 'regular', label: `정규 콘텐츠 (${regular.length})` },
+            { key: 'custom', label: `커스텀 (${custom.length})` },
+          ] as const).map((t) => (
+            <button
+              key={t.key}
+              onClick={() => setTab(t.key)}
+              className={`flex-1 px-2 py-1.5 text-xs font-semibold transition-colors ${
+                tab === t.key ? 'text-white' : 'text-gray-500 hover:text-gray-800'
+              }`}
+              style={tab === t.key ? { backgroundColor: ACCENT } : undefined}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Category chips — 정규 탭에서만 */}
+        {tab === 'regular' && categories.length > 0 && (
           <div className="flex gap-1 flex-wrap">
             {['전체', ...categories].map((cat) => {
               const active = filter === cat;
@@ -200,70 +231,53 @@ export function ContentListPanel({
         )}
       </div>
 
-      {/* List — 정규 콘텐츠 */}
+      {/* List — 활성 탭만 */}
       <div className="flex-1 overflow-y-auto px-1.5 py-2 space-y-0.5">
-        <div className="px-2 pt-1 pb-1.5 text-[11px] font-bold uppercase tracking-wide text-gray-400">
-          정규 콘텐츠 <span className="font-normal">({regular.length})</span>
-        </div>
-        {filtered.length === 0 ? (
-          <div className="text-center py-10 text-xs text-gray-400 px-3 leading-relaxed">
-            글이 없습니다. + 새 글 으로 시작하세요.
-          </div>
-        ) : canDrag ? (
-          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-            {list}
-          </DndContext>
-        ) : (
-          list
-        )}
-
-        {/* 커스텀 콘텐츠 — ad-hoc 릴스 (영상+썸네일+캡션) */}
-        <div className="mt-3 border-t border-gray-200 pt-2">
-          <div className="flex items-center justify-between px-2 pb-1.5">
-            <span className="text-[11px] font-bold uppercase tracking-wide text-gray-400">
-              커스텀 콘텐츠 <span className="font-normal">({custom.length})</span>
-            </span>
-            <button
-              onClick={onNewCustom}
-              className="text-[11px] font-semibold px-1.5 py-0.5 rounded text-[#4A2D6B] hover:bg-[#4A2D6B]/10"
-              title="토픽 체계 밖의 릴스(영상+썸네일) 콘텐츠 추가"
-            >
-              + 커스텀
-            </button>
-          </div>
-          {custom.length === 0 ? (
-            <p className="px-2 pb-2 text-[11px] leading-relaxed text-gray-300">
-              없음 — + 커스텀 으로 ad-hoc 릴스를 올리세요.
-            </p>
+        {tab === 'regular' ? (
+          filtered.length === 0 ? (
+            <div className="text-center py-10 text-xs text-gray-400 px-3 leading-relaxed">
+              글이 없습니다. + 새 글 으로 시작하세요.
+            </div>
+          ) : canDrag ? (
+            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+              {list}
+            </DndContext>
           ) : (
-            custom.map((a) => (
-              <div
-                key={a.id}
-                onClick={() => onSelect(a.id)}
-                className={`group flex items-center gap-1 px-1.5 py-2 rounded-lg cursor-pointer transition-colors ${
-                  a.id === selectedId ? 'bg-[#4A2D6B]/10' : 'hover:bg-gray-100'
-                }`}
-              >
-                <span className="shrink-0 w-6 text-center text-[12px]">🎨</span>
-                <div className="flex-1 min-w-0">
-                  <span className="block truncate text-sm font-medium text-gray-800" title={a.title}>
-                    {a.title || '(제목 없음)'}
-                  </span>
-                  <span className="mt-0.5 block text-[10px] text-gray-400">
-                    릴스 {Object.entries(a.reels ?? {}).filter(([, r]) => r?.videoUrl).map(([l]) => l).join(' ') || '영상 없음'}
-                  </span>
-                </div>
-                <button
-                  onClick={(e) => { e.stopPropagation(); onDelete(a.id); }}
-                  className="shrink-0 p-1 rounded text-gray-300 opacity-0 group-hover:opacity-100 hover:text-red-500 transition-opacity"
-                  title="삭제"
-                >
-                  🗑
-                </button>
+            list
+          )
+        ) : custom.length === 0 ? (
+          <div className="text-center py-10 text-xs text-gray-400 px-3 leading-relaxed">
+            커스텀 콘텐츠가 없습니다.
+            <br />+ 커스텀 으로 ad-hoc 릴스를 올리세요.
+          </div>
+        ) : (
+          custom.map((a) => (
+            <div
+              key={a.id}
+              onClick={() => onSelect(a.id)}
+              className={`group flex items-center gap-1 px-1.5 py-2 rounded-lg cursor-pointer transition-colors ${
+                a.id === selectedId ? 'bg-[#4A2D6B]/10' : 'hover:bg-gray-100'
+              }`}
+            >
+              <span className="shrink-0 w-6 text-center text-[12px]">🎨</span>
+              <div className="flex-1 min-w-0">
+                <span className="block truncate text-sm font-medium text-gray-800" title={a.title}>
+                  {a.title || '(제목 없음)'}
+                </span>
+                <span className="mt-0.5 block text-[10px] text-gray-400">
+                  릴스 {Object.entries(a.reels ?? {}).filter(([, r]) => r?.videoUrl).map(([l]) => l).join(' ') || '영상 없음'}
+                </span>
               </div>
-            ))
-          )}
-        </div>
+              <button
+                onClick={(e) => { e.stopPropagation(); onDelete(a.id); }}
+                className="shrink-0 p-1 rounded text-gray-300 opacity-0 group-hover:opacity-100 hover:text-red-500 transition-opacity"
+                title="삭제"
+              >
+                🗑
+              </button>
+            </div>
+          ))
+        )}
       </div>
     </aside>
   );
