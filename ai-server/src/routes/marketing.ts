@@ -17,7 +17,6 @@ import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt,
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
 import { fetchChannelFeed } from '../services/metaFeed.js';
-import { pushCampaign, fetchAccountInsights } from '../services/metaAds.js';
 import { publishQueueItem, deleteChannelPost } from '../services/publishExecutor.js';
 import { triggerDeploy } from '../services/deployHook.js';
 
@@ -544,29 +543,6 @@ marketingRouter.get('/meta/feed/:channelId', async (req, res) => {
   try {
     const r = await fetchChannelFeed(req.params.channelId);
     res.json({ success: true, ...r });
-  } catch (e) {
-    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
-  }
-});
-
-// POST /ads/push { campaignId } — 워크스페이스 캠페인을 Meta에 PAUSED로 생성(캠페인→세트→광고).
-marketingRouter.post('/ads/push', async (req, res) => {
-  const { campaignId } = (req.body ?? {}) as { campaignId?: string };
-  if (!campaignId) return res.status(400).json({ success: false, error: 'campaignId 필요' });
-  try {
-    const r = await pushCampaign(campaignId);
-    if (!r.ok) return res.status(400).json({ success: false, ...r });
-    res.json({ success: true, ...r });
-  } catch (e) {
-    res.status(500).json({ success: false, error: e instanceof Error ? e.message : 'error' });
-  }
-});
-
-// GET /ads/insights/:accountExternalId — 광고 계정 캠페인별 성과(읽기).
-marketingRouter.get('/ads/insights/:accountExternalId', async (req, res) => {
-  try {
-    const rows = await fetchAccountInsights(req.params.accountExternalId, (req.query.preset as string) || 'maximum');
-    res.json({ success: true, rows });
   } catch (e) {
     res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
   }
