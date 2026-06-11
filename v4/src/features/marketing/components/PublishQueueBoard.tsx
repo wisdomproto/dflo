@@ -13,6 +13,7 @@ const STATUS_FILTERS: PublishStatus[] = ['draft', 'scheduled', 'publishing', 'pu
 interface Props {
   items: PublishQueueItem[];
   sort: QueueSort;
+  pushingId?: string | null;
   onSetSchedule: (id: string, iso: string | null) => void;
   onMarkPublished: (id: string) => void;
   onPush: (id: string, channel: PublishChannel) => void;

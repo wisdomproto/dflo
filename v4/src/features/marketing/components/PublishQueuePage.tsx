@@ -27,7 +27,16 @@ export function PublishQueuePage() {
   const [view, setView] = useState<'list' | 'calendar'>('list');
   const [showAdd, setShowAdd] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [msg, setMsg] = useState<string | null>(null);
+  const [pushingId, setPushingId] = useState<string | null>(null);
   const [delTarget, setDelTarget] = useState<PublishQueueItem | null>(null);
+
+  // 성공 메시지는 4초 후 자동 사라짐.
+  useEffect(() => {
+    if (!msg) return;
+    const t = setTimeout(() => setMsg(null), 4000);
+    return () => clearTimeout(t);
+  }, [msg]);
 
   // 언어 필터(상단, null=전체). 채널·상태는 보드 컬럼에서 분리/필터.
   const [langF, setLangF] = useState<string | null>(null);
@@ -49,11 +58,13 @@ export function PublishQueuePage() {
     [items, langF],
   );
 
-  const guard = async (fn: () => Promise<void>) => {
+  const guard = async (fn: () => Promise<void>, successMsg?: string) => {
     setErr(null);
+    setMsg(null);
     try {
       await fn();
       reload();
+      if (successMsg) setMsg(successMsg);
     } catch (e) {
       setErr(e instanceof Error ? e.message : '작업 실패');
     }
@@ -86,16 +97,40 @@ export function PublishQueuePage() {
   const handleMarkPublished = (id: string) => {
     const url = window.prompt('발행된 글의 URL을 입력하세요 (조회수 매칭에 사용됩니다)');
     if (url === null) return; // 취소
-    guard(() => markPublished(id, url.trim()));
+    guard(() => markPublished(id, url.trim()), '✅ 발행됨으로 표시했습니다.');
   };
 
-  // 즉시 발행 — 모든 채널을 executor(/publish/run) 경유. 성공 시 큐 새로고침.
+  // 즉시 발행 — 모든 채널을 executor(/publish/run) 경유. 진행 중 표시 + 성공/실패 배너.
   const handlePush = async (id: string, _channel: PublishChannel) => {
+    const it = items.find((x) => x.id === id);
+    // 같은 글·채널·언어가 이미 published 면 중복 게시 경고(다른 큐 행으로 또 올리는 실수 방지).
+    const alreadyPublished =
+      !!it &&
+      items.some(
+        (x) =>
+          x.id !== id &&
+          x.status === 'published' &&
+          x.articleId === it.articleId &&
+          x.channel === it.channel &&
+          x.language === it.language,
+      );
+    if (
+      alreadyPublished &&
+      !window.confirm('이미 같은 채널에 발행된 콘텐츠입니다.\n다시 발행하면 중복 게시됩니다. 정말 또 발행할까요?')
+    ) {
+      return;
+    }
+    setErr(null);
+    setMsg(null);
+    setPushingId(id);
     try {
       await runPublish(id);
       reload();
+      setMsg('✅ 발행 완료! 채널에 게시되었습니다.');
     } catch (e) {
-      window.alert(e instanceof Error ? e.message : '발행 요청 실패');
+      setErr(e instanceof Error ? e.message : '발행 요청 실패');
+    } finally {
+      setPushingId(null);
     }
   };
 
@@ -176,10 +211,14 @@ export function PublishQueuePage() {
 
       <div className={`min-h-0 flex-1 p-6 ${view === 'list' ? 'overflow-hidden' : 'overflow-y-auto'}`}>
         {err && <p className="mb-3 text-xs text-red-500">{err}</p>}
+        {msg && (
+          <p className="mb-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">{msg}</p>
+        )}
         {view === 'list' ? (
           <PublishQueueBoard
             items={filtered}
             sort={sort}
+            pushingId={pushingId}
             onSetSchedule={handleSetSchedule}
             onMarkPublished={handleMarkPublished}
             onPush={handlePush}

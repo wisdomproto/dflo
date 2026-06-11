@@ -1,8 +1,17 @@
 // src/features/marketing/components/PublishQueueCard.tsx
 // 발행 큐 보드의 단일 카드(컬럼 안에 들어감). 컬럼이 곧 채널이라 플랫폼 배지는 생략.
-import type { PublishChannel, PublishQueueItem, ContentKind } from '../services/marketingPublishService';
+import type { PublishChannel, PublishQueueItem, ContentKind, PublishStatus } from '../services/marketingPublishService';
 import { localeFlag } from '../services/marketingChannelService';
 import { STATUS_LABELS, STATUS_COLORS } from '../utils/publishConstants';
+
+// 발행 전/후가 한눈에 구분되도록 카드 전체 배경+좌측 액센트바를 상태별로.
+const STATUS_CARD: Record<PublishStatus, string> = {
+  draft: 'border-gray-200 border-l-4 border-l-gray-300 bg-white',
+  scheduled: 'border-indigo-200 border-l-4 border-l-indigo-400 bg-indigo-50/70',
+  publishing: 'border-amber-200 border-l-4 border-l-amber-400 bg-amber-50',
+  published: 'border-emerald-300 border-l-4 border-l-emerald-500 bg-emerald-50',
+  failed: 'border-red-300 border-l-4 border-l-red-500 bg-red-50',
+};
 
 const KIND_META: Record<ContentKind, { label: string; cls: string }> = {
   blog: { label: '📝 블로그', cls: 'bg-sky-100 text-sky-700' },
@@ -53,16 +62,18 @@ const QUICK_SLOTS: Array<{ label: string; iso: () => string }> = [
 
 interface Props {
   item: PublishQueueItem;
+  pushingId?: string | null;
   onSetSchedule: (id: string, iso: string | null) => void;
   onMarkPublished: (id: string) => void;
   onPush: (id: string, channel: PublishChannel) => void;
   onDelete: (id: string) => void;
 }
 
-export function PublishQueueCard({ item: it, onSetSchedule, onMarkPublished, onPush, onDelete }: Props) {
+export function PublishQueueCard({ item: it, pushingId, onSetSchedule, onMarkPublished, onPush, onDelete }: Props) {
   const hint = bestTimeHint(it.language, it.channel);
+  const pushing = pushingId === it.id;
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-3">
+    <div className={`rounded-xl border p-3 transition-colors ${STATUS_CARD[it.status]}`}>
       <div className="flex flex-wrap items-center gap-1.5">
         <span className="rounded bg-[#4A2D6B]/10 px-1.5 py-0.5 text-xs font-semibold text-[#4A2D6B]">
           {localeFlag(it.language)} {it.language}
@@ -144,9 +155,10 @@ export function PublishQueueCard({ item: it, onSetSchedule, onMarkPublished, onP
             <button
               type="button"
               onClick={() => onPush(it.id, it.channel)}
-              className="rounded-lg border border-[#4A2D6B] px-2.5 py-1 text-xs text-[#4A2D6B] hover:bg-[#4A2D6B] hover:text-white"
+              disabled={pushing}
+              className="rounded-lg border border-[#4A2D6B] px-2.5 py-1 text-xs text-[#4A2D6B] hover:bg-[#4A2D6B] hover:text-white disabled:cursor-wait disabled:opacity-60 disabled:hover:bg-transparent disabled:hover:text-[#4A2D6B]"
             >
-              즉시 발행
+              {pushing ? '발행 중…' : '즉시 발행'}
             </button>
             <button
               type="button"
