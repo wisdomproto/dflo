@@ -353,8 +353,7 @@ realcases:
       stat_to: "183.6"
       unit: "cm"
       desc: "Flew from Japan every vacation — now 175.6cm"
-  line_text: "Want to see more cases like your child's?<br>Get the full case library and a 1:1 consultation."
-  line_btn: "See more cases on KakaoTalk"
+  line_text: "More treatment cases are available through a 1:1 consultation"
   back_label: "More cases"
 
 process:

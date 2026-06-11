@@ -353,8 +353,7 @@ realcases:
       stat_to: "183,6"
       unit: "cm"
       desc: "Từ Nhật sang mỗi kỳ nghỉ — nay 175,6cm, vượt di truyền"
-  line_text: "Bạn muốn xem thêm các ca giống con mình?<br>Nhận toàn bộ hồ sơ ca điều trị và tư vấn 1:1."
-  line_btn: "Xem thêm ca điều trị qua KakaoTalk"
+  line_text: "Xem thêm ca điều trị qua tư vấn 1:1"
   back_label: "Xem ca khác"
 
 process:
