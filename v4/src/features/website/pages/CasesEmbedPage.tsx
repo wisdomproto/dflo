@@ -4,7 +4,7 @@
 //
 // 다국어: 부모 페이지 (`/test/{lang}/cases.html`) 가 iframe src 에 `?lang={lang}` 을
 // 붙여서 들어오므로 useSearchParams 로 받아 SectionCarousel 에 전달.
-// 환자 데이터 자체(이름·메모·카테고리)는 한국어 그대로, UI 라벨/헤더만 번역된다.
+// 환자 이름은 뷰어 언어로 음역(casesLabels.transliterateName), 메모·카테고리는 CASES_I18N 번역.
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';

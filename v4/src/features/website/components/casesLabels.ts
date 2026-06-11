@@ -227,3 +227,22 @@ export function getCasesLabels(lang: CasesLang): LabelDict {
 export function isCasesLang(value: string | null | undefined): value is CasesLang {
   return value === 'ko' || value === 'en' || value === 'th' || value === 'vi';
 }
+
+// ── 환자 이름 음역 ───────────────────────────────────────────────────────────
+// 케이스 환자 데이터(website.json)의 이름은 한국어 원본 — 뷰어 언어로 소리나는 대로 표기.
+// 등록된 이름만 매핑(현재 공개 케이스 7명), 미등록 이름은 원본 그대로(graceful).
+const NAME_TRANSLIT: Record<string, Partial<Record<Exclude<CasesLang, 'ko'>, string>>> = {
+  도훈: { en: 'Dohun', th: 'โดฮุน', vi: 'Do-hun' },
+  민준: { en: 'Minjun', th: 'มินจุน', vi: 'Min-jun' },
+  성재: { en: 'Seongjae', th: 'ซองแจ', vi: 'Seong-jae' },
+  은우: { en: 'Eunwoo', th: 'อึนอู', vi: 'Eun-woo' },
+  민수: { en: 'Minsu', th: 'มินซู', vi: 'Min-su' },
+  민희: { en: 'Minhee', th: 'มินฮี', vi: 'Min-hee' },
+  제임스: { en: 'James', th: 'เจมส์', vi: 'James' },
+};
+
+export function transliterateName(name: string | undefined, lang: CasesLang): string {
+  const n = (name ?? '').trim();
+  if (!n || lang === 'ko') return n;
+  return NAME_TRANSLIT[n]?.[lang] ?? n;
+}

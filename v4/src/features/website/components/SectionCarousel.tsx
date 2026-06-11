@@ -8,7 +8,7 @@ import React, { useState, useCallback, useRef } from 'react';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { Slide, BannerSlide, VideoSlide, CasesSlide, IframeSlide, FaqSlide, FaqItem, HeightCalcSlide } from '../types/websiteSection';
 import { HeightCalcCard } from './HeightCalcCard';
-import { CasesLangContext, getCasesLabels, useCasesLang, useCasesLangCode, type CasesLang } from './casesLabels';
+import { CasesLangContext, getCasesLabels, useCasesLang, useCasesLangCode, transliterateName, type CasesLang } from './casesLabels';
 import { CASES_I18N, CASES_BANNER_I18N, type CaseLocale } from '../data/casesI18nData';
 
 export function extractVideoId(url: string): string | null {
@@ -647,7 +647,7 @@ function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide
   const t = useCasesLang();
   const lang = useCasesLangCode();
 
-  // Per-case translated overrides (patient name stays Korean by design).
+  // Per-case translated overrides. 이름은 transliterateName 으로 뷰어 언어 음역(미등록 이름은 원본).
   const i18n = lang === 'ko' ? null : CASES_I18N[s.id];
   const loc: CaseLocale | null = lang === 'ko' ? null : (lang as CaseLocale);
   const localizedCategory = (loc && i18n?.category?.[loc]) || s.category;
@@ -701,7 +701,7 @@ function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide
             {isMale ? '👦' : '👧'}
           </div>
           <div>
-            <p className="text-base font-bold text-gray-800">{s.patientName}</p>
+            <p className="text-base font-bold text-gray-800">{transliterateName(s.patientName, lang)}</p>
             <p className="text-xs text-gray-400">
               {isMale ? t.boy : t.girl}
               {localizedCategory && <span className="ml-1.5 px-1.5 py-0.5 rounded bg-purple-50 text-purple-600 text-[10px] font-medium">{localizedCategory}</span>}
