@@ -26,11 +26,11 @@ export interface ChannelMeta {
   dot: string; // hex for calendar chips
 }
 
+// 발행 보드 컬럼 순서: 블로그(자체 사이트) → 인스타 → 페북. (Threads 제거)
 export const CHANNELS: ChannelMeta[] = [
+  { id: 'website', label: '블로그', badge: 'bg-emerald-600 text-white', dot: '#059669' },
   { id: 'instagram', label: 'Instagram', badge: 'bg-pink-500 text-white', dot: '#e1306c' },
   { id: 'facebook', label: 'Facebook', badge: 'bg-[#1877f2] text-white', dot: '#1877f2' },
-  { id: 'threads', label: 'Threads', badge: 'bg-gray-900 text-white', dot: '#000000' },
-  { id: 'website', label: '자체 사이트', badge: 'bg-emerald-600 text-white', dot: '#059669' },
 ];
 
 export function channelMeta(ch: PublishChannel): ChannelMeta {

@@ -1,7 +1,7 @@
 // src/features/marketing/components/content/PublishDialog.tsx
 // 콘텐츠별 발행 모달. contentKind에 따라 타겟이 달라진다:
 //  - blog  → 자체 사이트(언어 자동). [미리보기] upsert draft + 미리보기 열기 / [발행] upsert published + 큐(website) 행.
-//  - cardnews/post → 선택 언어와 locale 일치하는 활성 소셜 계정(IG/FB/Threads) 선택 → 큐 행.
+//  - cardnews/post → 선택 언어와 locale 일치하는 활성 소셜 계정(IG/FB) 선택 → 큐 행.
 import { useEffect, useMemo, useState } from 'react';
 import type { MarketingArticle } from '../../types';
 import {
@@ -17,7 +17,7 @@ import {
   blogStaticPath,
 } from '../../services/blogPublishService';
 
-const SOCIAL_PLATFORMS: PublishChannel[] = ['instagram', 'facebook', 'threads'];
+const SOCIAL_PLATFORMS: PublishChannel[] = ['instagram', 'facebook'];
 
 interface Props {
   article: MarketingArticle;
@@ -35,20 +35,44 @@ export function PublishDialog({ article, contentKind, initialLanguage, onClose, 
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
 
-  // 발행 가능한 언어: 릴스 = 영상 올린 언어 / 그 외 = 마스터(ko) + 본문 있는 번역
+  // 발행 가능한 언어 — 콘텐츠 종류별로 실제 콘텐츠가 있는 곳에서 뽑는다.
+  //  릴스=영상 올린 언어 / 블로그=article.blog 언어 / 카드뉴스=활성 소셜 채널 언어(별도 테이블이라 채널 기준)
+  //  / 기본글=마스터(ko)+본문 있는 번역. 항상 현재 보고 있던 언어(initialLanguage)를 포함시켜 fallback 방지.
   const languageOptions = useMemo(() => {
+    const withCurrent = (langs: string[]) =>
+      langs.includes(initialLanguage) ? langs : [initialLanguage, ...langs];
+
     if (contentKind === 'reels') {
       const langs = Object.entries(article.reels ?? {})
         .filter(([, r]) => r?.videoUrl)
         .map(([l]) => l);
-      return langs.length ? langs : [initialLanguage];
+      return withCurrent(langs.length ? langs : [initialLanguage]);
+    }
+    if (contentKind === 'blog') {
+      const blog = article.blog ?? {};
+      const langs = Object.keys(blog).filter((l) => {
+        const b = blog[l as keyof typeof blog];
+        return !!b && (((b.sections ?? []).length > 0) || !!b.h1);
+      });
+      return withCurrent(langs.length ? langs : ['ko']);
+    }
+    if (contentKind === 'cardnews') {
+      // 카드뉴스는 marketing_cardnews(별도 테이블)에 있어 article에 없음 → 발행 가능 언어 = 활성 소셜 채널이 있는 언어.
+      const chLangs = [
+        ...new Set(
+          channels
+            .filter((c) => c.isActive && SOCIAL_PLATFORMS.includes(c.platform as PublishChannel))
+            .map((c) => c.locale),
+        ),
+      ];
+      return withCurrent(chLangs.length ? chLangs : ['ko']);
     }
     const opts = ['ko'];
     for (const [lang, t] of Object.entries(article.translations ?? {})) {
       if (t?.body?.trim()) opts.push(lang);
     }
-    return opts;
-  }, [article.translations, article.reels, contentKind, initialLanguage]);
+    return withCurrent(opts);
+  }, [article.translations, article.reels, article.blog, channels, contentKind, initialLanguage]);
 
   useEffect(() => {
     fetchChannels().then(setChannels).catch(() => setChannels([]));

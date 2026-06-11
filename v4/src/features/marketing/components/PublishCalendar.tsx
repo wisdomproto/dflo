@@ -93,14 +93,15 @@ export function PublishCalendar({ items }: { items: PublishQueueItem[] }) {
               <div className="space-y-0.5">
                 {dayItems.slice(0, 4).map((it) => {
                   const meta = channelMeta(it.channel);
+                  const num = typeof it.articleSortOrder === 'number' ? `${it.articleSortOrder}. ` : '';
                   return (
                     <div
                       key={it.id}
-                      title={`${meta.label} · ${it.articleTitle ?? ''}`}
+                      title={`${meta.label} · ${num}${it.articleTitle ?? ''}`}
                       className="truncate rounded px-1 py-0.5 text-[10px] text-white"
                       style={{ backgroundColor: meta.dot }}
                     >
-                      {(it.articleTitle ?? '(제목 없음)').slice(0, 15)}
+                      {num}{(it.articleTitle ?? '(제목 없음)').slice(0, 15)}
                     </div>
                   );
                 })}

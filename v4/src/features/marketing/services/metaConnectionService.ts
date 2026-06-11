@@ -41,3 +41,12 @@ export async function runPublish(queueId: string): Promise<string> {
   if (!res.ok || !b.success) throw new Error(b.error || '발행 실패');
   return (b.postId as string) ?? '';
 }
+
+// 발행된 채널 게시물 삭제(페이스북만). 큐 행 삭제는 호출 측에서 별도로 수행.
+export async function deleteChannelPost(queueId: string): Promise<void> {
+  const res = await fetch(`${BASE}/api/marketing/publish/delete-post`, {
+    method: 'POST', headers: mkHeaders({ 'Content-Type': 'application/json' }), body: JSON.stringify({ queueId }),
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || '게시물 삭제 실패');
+}

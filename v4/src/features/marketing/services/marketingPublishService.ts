@@ -29,6 +29,7 @@ export interface PublishQueueItem {
   // joined / derived (not DB columns):
   articleTitle?: string;
   articleCategory?: string;
+  articleSortOrder?: number;
   channelId?: string | null;
   channelName?: string;
   contentKind?: ContentKind;
@@ -57,6 +58,7 @@ function rowToQueueItem(r: Row): PublishQueueItem {
     updatedAt: (r.updated_at as string) ?? '',
     articleTitle: article ? ((article.title as string) ?? '') : undefined,
     articleCategory: article ? ((article.category as string) ?? '') : undefined,
+    articleSortOrder: article ? (article.sort_order as number | undefined) : undefined,
     channelId: (r.channel_id as string | null) ?? null,
     channelName: ch ? ((ch.name as string) ?? '') : undefined,
     contentKind: (r.content_kind as ContentKind) ?? 'post',
@@ -83,7 +85,7 @@ export async function fetchQueue(): Promise<PublishQueueItem[]> {
   // marketing_articles 조인으로 제목/카테고리 표시. 조인 실패(미적용/권한)면 빈 배열로 graceful.
   const { data, error } = await supabase
     .from('marketing_publish_queue')
-    .select('*, marketing_articles(title, category), marketing_channels(name, platform, locale)')
+    .select('*, marketing_articles(title, category, sort_order), marketing_channels(name, platform, locale)')
     .order('created_at', { ascending: false });
   if (error) {
     logger.warn('[marketing] fetchQueue failed:', error.message);
