@@ -372,9 +372,9 @@
   // ---------- markets (시장별 매뉴얼) ----------
   // bilingual=true 인 시장은 [한글 / 현지어] 전환 가능. kr 은 한국어 단일.
   const MARKETS = [
+    { key: 'th', tab: '🇹🇭 태국어', title: '🇹🇭 태국 환자 상담 매뉴얼',   locName: 'ภาษาไทย',     bilingual: true },
     { key: 'kr', tab: '🇰🇷 한글',   title: '🇰🇷 한국 환자 상담 매뉴얼',   locName: '한국어',      bilingual: false },
     { key: 'en', tab: '🇺🇸 영어',   title: '🇺🇸 영어권 환자 상담 매뉴얼', locName: 'English',     bilingual: true },
-    { key: 'th', tab: '🇹🇭 태국어', title: '🇹🇭 태국 환자 상담 매뉴얼',   locName: 'ภาษาไทย',     bilingual: true },
     { key: 'vn', tab: '🇻🇳 베트남어', title: '🇻🇳 베트남 환자 상담 매뉴얼', locName: 'Tiếng Việt', bilingual: true },
   ];
   const MARKET_KEYS = MARKETS.map(function (m) { return m.key; });
@@ -526,7 +526,7 @@
 
   // ---------- state ----------
   let state = loadCache() || buildFromSeed();
-  let currentMarket = 'kr';
+  let currentMarket = 'th';
   const langByMarket = { kr: 'ko', en: 'ko', th: 'ko', vn: 'ko' };
 
   function market() { return MARKETS.filter(function (m) { return m.key === currentMarket; })[0]; }

@@ -31,6 +31,8 @@ export default function CasesEmbedPage() {
   const [searchParams] = useSearchParams();
   const langParam = searchParams.get('lang');
   const lang: CasesLang = isCasesLang(langParam) ? langParam : 'ko';
+  // 홈 "실제 치료 사례" 버튼 딥링크 — ?case=N (cases 슬라이드 중 N번째, 1-base)
+  const caseParam = parseInt(searchParams.get('case') ?? '', 10);
   const [slides, setSlides] = useState<Slide[]>([]);
   const [showNav, setShowNav] = useState(true);
   const [initialIndex, setInitialIndex] = useState(0);
@@ -54,14 +56,22 @@ export default function CasesEmbedPage() {
           .sort((a, b) => (a.order || 0) - (b.order || 0));
         // 첫 진입은 케이스 슬라이드부터 — intro banner 에서 이탈해도 실제 사례 0개 본 일이 없도록.
         // 사용자가 swipe 로 앞쪽 인트로/배너에 접근은 가능.
-        const firstCaseIdx = ordered.findIndex((s) => s.template === 'cases');
+        // ?case=N 딥링크가 있으면 N번째 케이스(1-base, cases 슬라이드만 셈)를 바로 연다.
+        const caseIndexes = ordered
+          .map((s, i) => (s.template === 'cases' ? i : -1))
+          .filter((i) => i >= 0);
+        const deepIdx =
+          Number.isFinite(caseParam) && caseParam >= 1 && caseParam <= caseIndexes.length
+            ? caseIndexes[caseParam - 1]
+            : -1;
+        const firstCaseIdx = caseIndexes.length > 0 ? caseIndexes[0] : 0;
         setSlides(ordered);
         setShowNav(casesSection.showNav ?? true);
-        setInitialIndex(firstCaseIdx > 0 ? firstCaseIdx : 0);
+        setInitialIndex(deepIdx >= 0 ? deepIdx : firstCaseIdx > 0 ? firstCaseIdx : 0);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [lang]);
+  }, [lang, caseParam]);
 
   if (loading) {
     return (

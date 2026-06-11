@@ -126,6 +126,9 @@ scripts/
 - 마케팅/발행 확장: `037_marketing_channel_active.sql` ~ `042_channels_meta_target_and_queue_result.sql`
 - 치료완료 단계: `043_children_treatment_completed.sql` — treatment_status CHECK 에 `completed` 추가 (**MCP 권한 차단으로 Dashboard 수동 적용 필요**)
 - 광고 소재 기존게시물(boosting): `052_marketing_ads_source_post.sql` — marketing_ads 에 source_post_id/source_channel/source_url (적용 완료)
+- 광고 Meta 푸시 id 매핑: `053_marketing_ad_meta_ids.sql` — campaigns/sets/ads 에 meta_*_id + pushed_at/push_error (적용 완료)
+- 광고 전용 소재 라이브러리(다크 포스트): `054_marketing_ad_creatives.sql` — marketing_ad_creatives 테이블 (적용 완료)
+- 콘텐츠 정규/커스텀(ad-hoc 릴스) 구분: `055_marketing_articles_kind.sql` — marketing_articles.kind 'regular'|'custom' (적용 완료)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail

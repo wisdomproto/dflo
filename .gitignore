@@ -115,3 +115,6 @@ prototype/
 # v4 public 대용량 zip / pptx
 v4/public/first_session/*.pptx
 v4/public/images/랜딩페이지*.zip
+
+# 일회용 작업 폴더
+/tmp/

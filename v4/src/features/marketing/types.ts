@@ -28,7 +28,7 @@ export interface StrategyDoc {
   file: string;
   title: string;
   description: string;
-  group: '국내' | '글로벌' | '국가별 작전' | '채널분석';
+  group: '국내' | '글로벌' | '국가별 작전' | '채널분석' | '광고 전략';
   order: number;
 }
 
@@ -58,6 +58,9 @@ export interface MarketingConfig {
 
 export type ArticleStatus = 'draft' | 'done';
 
+// 콘텐츠 스튜디오 구분 (migration 055): regular = 62개 토픽 정규 / custom = ad-hoc 릴스
+export type ArticleKind = 'regular' | 'custom';
+
 // Per-language version of a content's base article. The master row holds the
 // Korean original (title/body); other languages live in `translations[lang]`.
 export interface ArticleTranslation {
@@ -79,6 +82,7 @@ export interface MarketingArticle {
   updatedAt: string;
   confirmed: boolean;
   sortOrder: number;
+  kind: ArticleKind; // 정규/커스텀 (migration 055, 미적용 DB는 'regular' 폴백)
   translations: Record<string, ArticleTranslation>; // keyed by lang, e.g. { th: {...} }
   blog: BlogSeoMap; // SEO blog (migration 045): per-language structured article
   reels: ReelsMap; // reels (migration 046): per-language video + caption + hashtags
@@ -125,11 +129,15 @@ export interface BlogReference {
 
 // ── Reels (migration 046) ───────────────────────────────────────────────────
 // Per-language short-form video (mp4 on R2). Keyed by lang (ko/th/vi/en/ch —
-// same set as the top language selector). Caption/hashtags are NOT stored here —
-// they are shared (single source) from the cardnews (marketing_cardnews).
+// same set as the top language selector). 정규 콘텐츠의 caption/hashtags 는 카드뉴스
+// 단일 소스(여기 저장 안 함). 커스텀 콘텐츠(kind='custom')는 카드뉴스가 없어
+// caption/hashtags 를 여기에 직접 저장 — 발행 실행기가 reels[lang].caption 우선,
+// 없으면 카드뉴스 폴백.
 export interface ReelsLangData {
   videoUrl: string | null;
   coverUrl: string | null; // 인스타 릴스 커버(섬네일) — 언어별 (텍스트가 박혀 있어 per-lang)
+  caption?: string; // 커스텀 콘텐츠 전용 (정규는 카드뉴스 공용)
+  hashtags?: string; // 커스텀 콘텐츠 전용
 }
 export type ReelsMap = Partial<Record<string, ReelsLangData>>;
 

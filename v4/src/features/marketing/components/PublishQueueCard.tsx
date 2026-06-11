@@ -87,9 +87,11 @@ export function PublishQueueCard({ item: it, pushingId, onSetSchedule, onMarkPub
       </div>
 
       <p className="mt-2 text-sm font-medium text-gray-800">
-        {typeof it.articleSortOrder === 'number' && (
+        {it.articleKind === 'custom' ? (
+          <span className="mr-1" title="커스텀 콘텐츠">🎨</span>
+        ) : typeof it.articleSortOrder === 'number' ? (
           <span className="mr-1 tabular-nums text-gray-400">{it.articleSortOrder}.</span>
-        )}
+        ) : null}
         {it.articleTitle || '(제목 없음)'}
       </p>
       <div className="mt-1 flex flex-wrap items-center gap-1.5">

@@ -61,14 +61,14 @@ export function CreativePicker({
           <div className="flex items-center gap-1.5">
             <h3 className="mr-2 text-sm font-bold text-gray-800">소재 선택 · {market.toUpperCase()}</h3>
             {tabBtn('feed', '📡 채널 피드')}
-            {tabBtn('upload', '⬆️ 직접 업로드')}
+            {tabBtn('upload', '🌑 다크 포스트')}
           </div>
           <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600">✕</button>
         </div>
         <p className="border-b border-gray-50 px-4 py-1.5 text-[11px] text-gray-400">
           {tab === 'feed'
             ? '채널에 이미 발행된 게시물을 광고로 증폭(부스팅) — 좋아요·댓글이 한 게시물에 누적됩니다.'
-            : '광고 전용 소재를 직접 업로드 — 다크 포스트로 피드에 노출되지 않고 타겟에게만 보입니다.'}
+            : '광고 전용 소재(다크 포스트) — 업로드하면 라이브러리에 저장되어 캠페인마다 재사용. 피드엔 노출 안 됩니다.'}
         </p>
 
         <div className="min-h-0 flex-1 overflow-y-auto p-4">

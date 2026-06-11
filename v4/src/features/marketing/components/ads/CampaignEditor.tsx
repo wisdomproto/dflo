@@ -3,7 +3,7 @@
 // 저장 시 Meta 구조로 정리: 캠페인 + 자동 광고세트 1개(타겟·예산·성과) + 콘텐츠당 광고 1개.
 import { useEffect, useState } from 'react';
 import type { AdCampaign, AdStatus } from '../../services/marketingAdsService';
-import { saveCampaign } from '../../services/marketingAdsService';
+import { saveCampaign, pushCampaignToMeta, type MetaPushResult } from '../../services/marketingAdsService';
 import type { AdAccount, AdTargeting, CreativeKind } from '../../services/adWorkspaceService';
 import { defaultTargeting, fetchAdSets, saveAdSet, fetchAds, saveAd, deleteAd } from '../../services/adWorkspaceService';
 import { OBJECTIVES, STATUSES, CREATIVE_KIND_LABEL } from './adConstants';
@@ -33,6 +33,10 @@ const num = (s: string) => {
   return Number.isFinite(n) ? n : 0;
 };
 
+// 시장(언어)별 랜딩 기본값 — ko=루트, 그 외는 /{lang}. 편집 시 저장된 값이 있으면 그게 우선.
+const LANDING_BASE = 'https://www.dr187growup.com';
+const defaultLandingUrl = (market: string) => (market === 'ko' ? `${LANDING_BASE}/` : `${LANDING_BASE}/${market}`);
+
 export function CampaignEditor({
   initial,
   market,
@@ -56,7 +60,7 @@ export function CampaignEditor({
   const [budgetType, setBudgetType] = useState<'daily' | 'lifetime'>('daily');
   const [periodStart, setPeriodStart] = useState(initial?.periodStart ?? '');
   const [periodEnd, setPeriodEnd] = useState(initial?.periodEnd ?? '');
-  const [landingUrl, setLandingUrl] = useState('');
+  const [landingUrl, setLandingUrl] = useState(() => defaultLandingUrl(market));
   const [contents, setContents] = useState<ContentDraft[]>([]);
   const [removedIds, setRemovedIds] = useState<string[]>([]);
   const [setId, setSetId] = useState<string | undefined>(undefined);
@@ -64,6 +68,8 @@ export function CampaignEditor({
   const [perf, setPerf] = useState({ spend: '0', impressions: '0', clicks: '0', conversions: '0', revenue: '0' });
   const [picking, setPicking] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [pushing, setPushing] = useState(false);
+  const [pushResult, setPushResult] = useState<MetaPushResult | null>(null);
 
   // 편집: 자동세트 + 광고 로드
   useEffect(() => {
@@ -96,32 +102,55 @@ export function CampaignEditor({
     });
   };
 
+  // 저장만(닫지 않음) — 저장된 캠페인 id 반환. onSave / Meta 푸시 공용.
+  const persist = async (): Promise<string> => {
+    const camp = await saveCampaign({
+      id: initial?.id, name: name.trim(), objective, accountId: accountId || null, market,
+      platform: 'meta', status, language: market, region: initial?.region ?? '',
+      periodStart: periodStart || null, periodEnd: periodEnd || null,
+    });
+    const set = await saveAdSet({
+      id: setId, campaignId: camp.id, name: '기본', status, targeting,
+      budget: num(budget), budgetType, periodStart: periodStart || null, periodEnd: periodEnd || null, placements,
+      spend: num(perf.spend), impressions: num(perf.impressions), clicks: num(perf.clicks), conversions: num(perf.conversions), revenue: num(perf.revenue),
+    });
+    setId === undefined && setSetId(set.id);
+    for (const id of removedIds) await deleteAd(id);
+    for (const c of contents) {
+      await saveAd({
+        id: c.id, adSetId: set.id, name: c.name, status: 'active',
+        creativeKind: c.kind, articleId: c.articleId, creativeLang: c.lang,
+        thumbnailUrl: c.thumbnailUrl, mediaUrl: c.mediaUrl, headline: '', primaryText: c.caption, landingUrl: landingUrl.trim(),
+        sourcePostId: c.sourcePostId, sourceChannel: c.sourceChannel, sourceUrl: c.sourceUrl,
+      });
+    }
+    return camp.id;
+  };
+
   const onSave = async () => {
     if (!name.trim()) return;
     setSaving(true);
     try {
-      const camp = await saveCampaign({
-        id: initial?.id, name: name.trim(), objective, accountId: accountId || null, market,
-        platform: 'meta', status, language: market, region: initial?.region ?? '',
-        periodStart: periodStart || null, periodEnd: periodEnd || null,
-      });
-      const set = await saveAdSet({
-        id: setId, campaignId: camp.id, name: '기본', status, targeting,
-        budget: num(budget), budgetType, periodStart: periodStart || null, periodEnd: periodEnd || null, placements,
-        spend: num(perf.spend), impressions: num(perf.impressions), clicks: num(perf.clicks), conversions: num(perf.conversions), revenue: num(perf.revenue),
-      });
-      for (const id of removedIds) await deleteAd(id);
-      for (const c of contents) {
-        await saveAd({
-          id: c.id, adSetId: set.id, name: c.name, status: 'active',
-          creativeKind: c.kind, articleId: c.articleId, creativeLang: c.lang,
-          thumbnailUrl: c.thumbnailUrl, mediaUrl: c.mediaUrl, headline: '', primaryText: c.caption, landingUrl: landingUrl.trim(),
-          sourcePostId: c.sourcePostId, sourceChannel: c.sourceChannel, sourceUrl: c.sourceUrl,
-        });
-      }
+      await persist();
       onSaved();
     } finally {
       setSaving(false);
+    }
+  };
+
+  // 저장 → Meta에 PAUSED로 푸시. 결과(생성된 Meta ID·경고)를 패널에 표시.
+  const onPushToMeta = async () => {
+    if (!name.trim()) return;
+    setPushing(true);
+    setPushResult(null);
+    try {
+      const campId = await persist();
+      const r = await pushCampaignToMeta(campId);
+      setPushResult(r);
+    } catch (e) {
+      setPushResult({ ok: false, warnings: [], error: e instanceof Error ? e.message : '푸시 오류' });
+    } finally {
+      setPushing(false);
     }
   };
 
@@ -245,10 +274,37 @@ export function CampaignEditor({
         )}
       </div>
 
-      {/* 저장 */}
-      <div className="flex justify-end gap-2">
+      {/* Meta 푸시 결과 */}
+      {pushResult && (
+        <div className={`rounded-xl border p-3 text-xs ${pushResult.ok ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-red-200 bg-red-50 text-red-700'}`}>
+          {pushResult.ok ? (
+            <>
+              <div className="font-semibold">✅ Meta에 일시중지(PAUSED) 상태로 생성됨</div>
+              <div className="mt-1 text-emerald-700">
+                캠페인 {pushResult.metaCampaignId} · 광고 {pushResult.adIds?.length ?? 0}개
+              </div>
+              <div className="mt-1 text-emerald-700">광고 관리자에서 검토 후 직접 게재(ON)하세요.</div>
+            </>
+          ) : (
+            <div className="font-semibold">⚠️ 푸시 실패: {pushResult.error}</div>
+          )}
+          {pushResult.warnings.length > 0 && (
+            <ul className="mt-1 list-inside list-disc text-amber-700">
+              {pushResult.warnings.map((w, i) => <li key={i}>{w}</li>)}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {/* 저장 / Meta 푸시 */}
+      <div className="flex items-center justify-end gap-2">
+        <span className="mr-auto text-[11px] text-gray-400">Meta 푸시는 항상 일시중지(PAUSED)로 생성 — 게재는 광고 관리자에서 직접</span>
         <button type="button" onClick={onClose} className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-600">취소</button>
-        <button type="button" onClick={onSave} disabled={saving || !name.trim()} className="rounded-lg bg-[#4A2D6B] px-5 py-2 text-sm font-semibold text-white disabled:opacity-40">
+        <button type="button" onClick={onPushToMeta} disabled={pushing || saving || !name.trim()}
+          className="rounded-lg border border-[#4A2D6B] px-4 py-2 text-sm font-semibold text-[#4A2D6B] disabled:opacity-40">
+          {pushing ? 'Meta 푸시 중…' : '📤 Meta에 푸시'}
+        </button>
+        <button type="button" onClick={onSave} disabled={saving || pushing || !name.trim()} className="rounded-lg bg-[#4A2D6B] px-5 py-2 text-sm font-semibold text-white disabled:opacity-40">
           {saving ? '저장 중…' : '저장'}
         </button>
       </div>

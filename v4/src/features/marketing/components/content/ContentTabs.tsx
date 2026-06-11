@@ -41,7 +41,7 @@ export function ContentTabs({ article, onSaved, onPatch }: Props) {
 
   return (
     <div className="flex h-full flex-col">
-      {/* Language selector (applies to 기본글) */}
+      {/* Language selector (기본글·블로그·카드뉴스 공통) */}
       <LanguageSelector article={article} language={language} onChange={setLanguage} />
 
       {/* Tab bar */}

@@ -93,7 +93,9 @@ export function PublishCalendar({ items }: { items: PublishQueueItem[] }) {
               <div className="space-y-0.5">
                 {dayItems.slice(0, 4).map((it) => {
                   const meta = channelMeta(it.channel);
-                  const num = typeof it.articleSortOrder === 'number' ? `${it.articleSortOrder}. ` : '';
+                  const num =
+                    it.articleKind === 'custom' ? '🎨 '
+                      : typeof it.articleSortOrder === 'number' ? `${it.articleSortOrder}. ` : '';
                   return (
                     <div
                       key={it.id}

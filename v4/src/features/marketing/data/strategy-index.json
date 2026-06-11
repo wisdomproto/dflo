@@ -54,5 +54,12 @@
     "description": "@187growup 성과 분석",
     "group": "채널분석",
     "order": 8
+  },
+  {
+    "file": "th-ad-strategy.html",
+    "title": "태국 광고·마케팅 전략",
+    "description": "고가진료(₩1,000만) 퍼널 · 오가닉+유료 · 치료사례 콘텐츠 · 계산기→LINE 전환",
+    "group": "광고 전략",
+    "order": 9
   }
 ]

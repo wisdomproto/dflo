@@ -17,7 +17,8 @@ import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt,
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
 import { fetchChannelFeed } from '../services/metaFeed.js';
-import { publishQueueItem } from '../services/publishExecutor.js';
+import { pushCampaign, fetchAccountInsights } from '../services/metaAds.js';
+import { publishQueueItem, deleteChannelPost } from '../services/publishExecutor.js';
 import { triggerDeploy } from '../services/deployHook.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
@@ -548,6 +549,29 @@ marketingRouter.get('/meta/feed/:channelId', async (req, res) => {
   }
 });
 
+// POST /ads/push { campaignId } — 워크스페이스 캠페인을 Meta에 PAUSED로 생성(캠페인→세트→광고).
+marketingRouter.post('/ads/push', async (req, res) => {
+  const { campaignId } = (req.body ?? {}) as { campaignId?: string };
+  if (!campaignId) return res.status(400).json({ success: false, error: 'campaignId 필요' });
+  try {
+    const r = await pushCampaign(campaignId);
+    if (!r.ok) return res.status(400).json({ success: false, ...r });
+    res.json({ success: true, ...r });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
+// GET /ads/insights/:accountExternalId — 광고 계정 캠페인별 성과(읽기).
+marketingRouter.get('/ads/insights/:accountExternalId', async (req, res) => {
+  try {
+    const rows = await fetchAccountInsights(req.params.accountExternalId, (req.query.preset as string) || 'maximum');
+    res.json({ success: true, rows });
+  } catch (e) {
+    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
 // POST /publish/run { queueId } — 큐 1건 실제 발행(meta/website 공용). website면 배포 훅.
 marketingRouter.post('/publish/run', async (req, res) => {
   const { queueId } = (req.body ?? {}) as { queueId?: string };
@@ -556,4 +580,13 @@ marketingRouter.post('/publish/run', async (req, res) => {
   if (r.ok && r.kind === 'website') await triggerDeploy();
   if (!r.ok) return res.status(400).json({ success: false, error: r.error });
   res.json({ success: true, postId: r.postId });
+});
+
+// POST /publish/delete-post { queueId } — 발행된 채널 게시물 삭제(페이스북만). 큐 행 삭제는 클라가 별도 수행.
+marketingRouter.post('/publish/delete-post', async (req, res) => {
+  const { queueId } = (req.body ?? {}) as { queueId?: string };
+  if (!queueId) return res.status(400).json({ success: false, error: 'queueId 필요' });
+  const r = await deleteChannelPost(queueId);
+  if (!r.ok) return res.status(400).json({ success: false, error: r.error });
+  res.json({ success: true });
 });

@@ -17,6 +17,7 @@ interface Props {
   selectedId: string | null;
   onSelect: (id: string) => void;
   onNew: () => void;
+  onNewCustom: () => void;
   onDelete: (id: string) => void;
   onReorder: (orderedIds: string[]) => void;
   onStatus: () => void;
@@ -108,12 +109,16 @@ function SortableRow({
 
 // ── Panel ───────────────────────────────────────────────────────────────────
 export function ContentListPanel({
-  articles, selectedId, onSelect, onNew, onDelete, onReorder, onStatus, statusActive,
+  articles, selectedId, onSelect, onNew, onNewCustom, onDelete, onReorder, onStatus, statusActive,
 }: Props) {
   const [filter, setFilter] = useState<string>('전체');
 
-  const categories = [...new Set(articles.map((a) => a.category).filter(Boolean))];
-  const filtered = filter === '전체' ? articles : articles.filter((a) => a.category === filter);
+  // 정규(62개 토픽) / 커스텀(ad-hoc 릴스) 분리 — 카테고리·드래그 정렬은 정규에만.
+  const regular = articles.filter((a) => a.kind !== 'custom');
+  const custom = articles.filter((a) => a.kind === 'custom');
+
+  const categories = [...new Set(regular.map((a) => a.category).filter(Boolean))];
+  const filtered = filter === '전체' ? regular : regular.filter((a) => a.category === filter);
   const canDrag = filter === '전체';
 
   const sensors = useSensors(
@@ -124,10 +129,10 @@ export function ContentListPanel({
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
-    const oldIdx = articles.findIndex((a) => a.id === active.id);
-    const newIdx = articles.findIndex((a) => a.id === over.id);
+    const oldIdx = regular.findIndex((a) => a.id === active.id);
+    const newIdx = regular.findIndex((a) => a.id === over.id);
     if (oldIdx < 0 || newIdx < 0) return;
-    onReorder(arrayMove(articles, oldIdx, newIdx).map((a) => a.id));
+    onReorder(arrayMove(regular, oldIdx, newIdx).map((a) => a.id));
   }
 
   const list = (
@@ -136,7 +141,7 @@ export function ContentListPanel({
         <SortableRow
           key={a.id}
           article={a}
-          index={articles.findIndex((x) => x.id === a.id) + 1}
+          index={regular.findIndex((x) => x.id === a.id) + 1}
           isSelected={a.id === selectedId}
           draggable={canDrag}
           onSelect={() => onSelect(a.id)}
@@ -195,8 +200,11 @@ export function ContentListPanel({
         )}
       </div>
 
-      {/* List */}
+      {/* List — 정규 콘텐츠 */}
       <div className="flex-1 overflow-y-auto px-1.5 py-2 space-y-0.5">
+        <div className="px-2 pt-1 pb-1.5 text-[11px] font-bold uppercase tracking-wide text-gray-400">
+          정규 콘텐츠 <span className="font-normal">({regular.length})</span>
+        </div>
         {filtered.length === 0 ? (
           <div className="text-center py-10 text-xs text-gray-400 px-3 leading-relaxed">
             글이 없습니다. + 새 글 으로 시작하세요.
@@ -208,6 +216,54 @@ export function ContentListPanel({
         ) : (
           list
         )}
+
+        {/* 커스텀 콘텐츠 — ad-hoc 릴스 (영상+썸네일+캡션) */}
+        <div className="mt-3 border-t border-gray-200 pt-2">
+          <div className="flex items-center justify-between px-2 pb-1.5">
+            <span className="text-[11px] font-bold uppercase tracking-wide text-gray-400">
+              커스텀 콘텐츠 <span className="font-normal">({custom.length})</span>
+            </span>
+            <button
+              onClick={onNewCustom}
+              className="text-[11px] font-semibold px-1.5 py-0.5 rounded text-[#4A2D6B] hover:bg-[#4A2D6B]/10"
+              title="토픽 체계 밖의 릴스(영상+썸네일) 콘텐츠 추가"
+            >
+              + 커스텀
+            </button>
+          </div>
+          {custom.length === 0 ? (
+            <p className="px-2 pb-2 text-[11px] leading-relaxed text-gray-300">
+              없음 — + 커스텀 으로 ad-hoc 릴스를 올리세요.
+            </p>
+          ) : (
+            custom.map((a) => (
+              <div
+                key={a.id}
+                onClick={() => onSelect(a.id)}
+                className={`group flex items-center gap-1 px-1.5 py-2 rounded-lg cursor-pointer transition-colors ${
+                  a.id === selectedId ? 'bg-[#4A2D6B]/10' : 'hover:bg-gray-100'
+                }`}
+              >
+                <span className="shrink-0 w-6 text-center text-[12px]">🎨</span>
+                <div className="flex-1 min-w-0">
+                  <span className="block truncate text-sm font-medium text-gray-800" title={a.title}>
+                    {a.title || '(제목 없음)'}
+                  </span>
+                  <span className="mt-0.5 block text-[10px] text-gray-400">
+                    릴스 {Object.entries(a.reels ?? {}).filter(([, r]) => r?.videoUrl).map(([l]) => l).join(' ') || '영상 없음'}
+                  </span>
+                </div>
+                <button
+                  onClick={(e) => { e.stopPropagation(); onDelete(a.id); }}
+                  className="shrink-0 p-1 rounded text-gray-300 opacity-0 group-hover:opacity-100 hover:text-red-500 transition-opacity"
+                  title="삭제"
+                >
+                  🗑
+                </button>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </aside>
   );

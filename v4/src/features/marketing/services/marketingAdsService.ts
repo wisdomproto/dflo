@@ -3,6 +3,13 @@ import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
+const MARKETING_KEY = import.meta.env.VITE_MARKETING_KEY as string | undefined;
+function marketingHeaders(json = false): Record<string, string> {
+  const h: Record<string, string> = {};
+  if (json) h['Content-Type'] = 'application/json';
+  if (MARKETING_KEY) h['x-marketing-key'] = MARKETING_KEY;
+  return h;
+}
 
 export type AdPlatform = 'meta' | 'google' | 'youtube' | 'naver';
 export type AdStatus = 'active' | 'paused' | 'ended' | 'draft';
@@ -163,6 +170,43 @@ export function deriveMetrics(c: {
     roas: spend > 0 ? revenue / spend : 0,
     convRate: clicks > 0 ? (conversions / clicks) * 100 : 0,
   };
+}
+
+// ── Meta Marketing API 푸시 ────────────────────────────────────────
+export interface MetaPushResult {
+  ok: boolean;
+  metaCampaignId?: string;
+  metaAdsetId?: string;
+  adIds?: string[];
+  warnings: string[];
+  error?: string;
+}
+
+// 워크스페이스 캠페인을 Meta에 PAUSED로 생성(캠페인→세트→광고). 저장된 캠페인 id 필요.
+export async function pushCampaignToMeta(campaignId: string): Promise<MetaPushResult> {
+  const res = await fetch(`${BASE}/api/marketing/ads/push`, {
+    method: 'POST',
+    headers: marketingHeaders(true),
+    body: JSON.stringify({ campaignId }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) {
+    return { ok: false, warnings: body.warnings ?? [], error: body.error || `푸시 실패: ${res.status}` };
+  }
+  return body as MetaPushResult;
+}
+
+export interface MetaInsightRow {
+  campaignId: string; campaignName: string;
+  spend: number; impressions: number; clicks: number; reach: number; ctr: number; cpc: number;
+}
+// 광고 계정(act_…) 성과 읽기.
+export async function fetchMetaInsights(accountExternalId: string, preset = 'maximum'): Promise<MetaInsightRow[]> {
+  const id = accountExternalId.replace(/^act_/, '');
+  const res = await fetch(`${BASE}/api/marketing/ads/insights/act_${id}?preset=${preset}`, { headers: marketingHeaders() });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) throw new Error(body.error || `성과 조회 실패: ${res.status}`);
+  return (body.rows ?? []) as MetaInsightRow[];
 }
 
 // GATED: Gemini 키 의존. 키 만료 시 502 → 호출부에서 에러 표시.

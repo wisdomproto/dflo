@@ -11,3 +11,10 @@ public/videos/*-panel.mp4
 # main clip source video (large) — only the asset dirs, NOT src/mainclip code
 /public/mainclip/
 /mainclip/
+
+# 대용량 작업 소스 (원본 다운로드·푸티지·TTS — 재생성/재다운로드 가능, src/shorts 코드와 무관)
+/assets/
+/shorts/
+/public/footage/
+/public/audio/narration/
+scripts/_tmp-*.txt

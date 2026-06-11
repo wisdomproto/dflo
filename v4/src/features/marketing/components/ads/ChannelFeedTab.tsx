@@ -32,6 +32,7 @@ export function ChannelFeedTab({
   const [channels, setChannels] = useState<MarketingChannel[]>([]);
   const [chId, setChId] = useState<string>('');
   const [posts, setPosts] = useState<ChannelFeedPost[]>([]);
+  const [kind, setKind] = useState<'feed' | 'reels'>('feed');
   const [loading, setLoading] = useState(false);
   const [notice, setNotice] = useState('');
 
@@ -40,6 +41,10 @@ export function ChannelFeedTab({
     [channels, market],
   );
   const channel = feedChannels.find((c) => c.id === chId) ?? null;
+
+  const feedCount = useMemo(() => posts.filter((p) => p.postKind === 'feed').length, [posts]);
+  const reelsCount = useMemo(() => posts.filter((p) => p.postKind === 'reels').length, [posts]);
+  const visiblePosts = useMemo(() => posts.filter((p) => p.postKind === kind), [posts, kind]);
 
   useEffect(() => {
     fetchChannels().then(setChannels);
@@ -106,15 +111,36 @@ export function ChannelFeedTab({
         ))}
       </div>
 
+      {/* 피드 / 릴스 서브탭 */}
+      <div className="flex gap-1.5">
+        {([
+          { key: 'feed', label: '피드', count: feedCount },
+          { key: 'reels', label: '릴스', count: reelsCount },
+        ] as const).map((t) => (
+          <button
+            key={t.key}
+            type="button"
+            onClick={() => setKind(t.key)}
+            className={`rounded-md px-3 py-1 text-xs font-semibold transition-colors ${
+              kind === t.key ? 'bg-[#4A2D6B] text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+            }`}
+          >
+            {t.label === '피드' ? '🖼' : '🎬'} {t.label} {t.count > 0 && <span className="opacity-70">{t.count}</span>}
+          </button>
+        ))}
+      </div>
+
       {notice && <p className="rounded-lg bg-amber-50 px-3 py-2 text-[11px] text-amber-700">{notice}</p>}
       {loading && <p className="py-10 text-center text-sm text-gray-400">피드 불러오는 중…</p>}
-      {!loading && posts.length === 0 && (
-        <p className="py-10 text-center text-sm text-gray-400">이 채널에서 가져올 게시물이 없습니다.</p>
+      {!loading && visiblePosts.length === 0 && (
+        <p className="py-10 text-center text-sm text-gray-400">
+          이 채널에 {kind === 'feed' ? '피드' : '릴스'} 게시물이 없습니다.
+        </p>
       )}
 
       {/* 게시물 그리드 */}
       <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
-        {posts.map((p, i) => {
+        {visiblePosts.map((p, i) => {
           const badge = PLATFORM_BADGE[p.channel];
           return (
             // div+onClick: 내부에 보기↗ <a> 가 있어 button 중첩(invalid HTML)을 피한다.

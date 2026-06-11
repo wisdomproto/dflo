@@ -20,14 +20,20 @@ async function sbClient(): Promise<Sb> {
 }
 
 export type FeedMediaType = 'image' | 'video' | 'carousel' | 'text';
+// 광고 소재 선택 축: 피드(이미지/카드뉴스) vs 릴스(동영상). 채널별로 나눠 보여준다.
+export type FeedPostKind = 'feed' | 'reels';
 export interface FeedPost {
   postId: string;
   caption: string;
   thumbnailUrl: string;
   mediaType: FeedMediaType;
+  postKind: FeedPostKind;
   permalink: string;
   createdAt: string;
 }
+
+// 프로필/커버 사진 변경 등 자동 생성 스토리 — 광고 소재가 아니라 피드에서 제외.
+const FB_STORY_ATTACHMENT_TYPES = new Set(['profile_media', 'cover_photo']);
 
 // ── 순수 매퍼 (테스트 대상) ────────────────────────────────────────
 export interface FbPostRaw {
@@ -36,12 +42,15 @@ export interface FbPostRaw {
   created_time?: string;
   permalink_url?: string;
   full_picture?: string;
-  attachments?: { data?: Array<{ media_type?: string }> };
+  attachments?: { data?: Array<{ media_type?: string; type?: string }> };
 }
 
 export function mapFbPost(raw: FbPostRaw): FeedPost | null {
   if (!raw.id) return null;
-  const at = raw.attachments?.data?.[0]?.media_type ?? '';
+  const att = raw.attachments?.data?.[0];
+  // 프로필/커버 사진 변경 스토리는 소재로 못 쓰니 제외.
+  if (att?.type && FB_STORY_ATTACHMENT_TYPES.has(att.type)) return null;
+  const at = att?.media_type ?? '';
   const mediaType: FeedMediaType =
     at === 'album' ? 'carousel'
       : at.includes('video') ? 'video'
@@ -52,6 +61,7 @@ export function mapFbPost(raw: FbPostRaw): FeedPost | null {
     caption: raw.message ?? '',
     thumbnailUrl: raw.full_picture ?? '',
     mediaType,
+    postKind: mediaType === 'video' ? 'reels' : 'feed',
     permalink: raw.permalink_url ?? '',
     createdAt: raw.created_time ?? '',
   };
@@ -61,6 +71,7 @@ export interface IgMediaRaw {
   id?: string;
   caption?: string;
   media_type?: string; // IMAGE | VIDEO | CAROUSEL_ALBUM
+  media_product_type?: string; // FEED | REELS | STORY | AD
   media_url?: string;
   thumbnail_url?: string; // VIDEO 만 반환됨
   permalink?: string;
@@ -70,14 +81,20 @@ export interface IgMediaRaw {
 
 export function mapIgMedia(raw: IgMediaRaw): FeedPost | null {
   if (!raw.id) return null;
+  // 스토리는 /media 에 거의 안 나오지만(별도 엣지), 혹시 들어오면 제외.
+  if (raw.media_product_type === 'STORY') return null;
   const mt = raw.media_type ?? '';
   const mediaType: FeedMediaType = mt === 'VIDEO' ? 'video' : mt === 'CAROUSEL_ALBUM' ? 'carousel' : 'image';
   const child = raw.children?.data?.[0];
+  const postKind: FeedPostKind = raw.media_product_type
+    ? (raw.media_product_type === 'REELS' ? 'reels' : 'feed')
+    : (mediaType === 'video' ? 'reels' : 'feed');
   return {
     postId: raw.id,
     caption: raw.caption ?? '',
     thumbnailUrl: raw.thumbnail_url || raw.media_url || child?.thumbnail_url || child?.media_url || '',
     mediaType,
+    postKind,
     permalink: raw.permalink ?? '',
     createdAt: raw.timestamp ?? '',
   };
@@ -96,13 +113,13 @@ async function gget<T>(path: string): Promise<T> {
 }
 
 export async function fetchPageFeed(pageId: string, token: string, limit = 25): Promise<FeedPost[]> {
-  const fields = 'id,message,created_time,permalink_url,full_picture,attachments{media_type}';
+  const fields = 'id,message,created_time,permalink_url,full_picture,attachments{media_type,type}';
   const j = await gget<{ data?: FbPostRaw[] }>(`${pageId}/posts?fields=${fields}&limit=${limit}&access_token=${token}`);
   return (j.data ?? []).map(mapFbPost).filter((p): p is FeedPost => p !== null);
 }
 
 export async function fetchIgMediaList(igId: string, token: string, limit = 25): Promise<FeedPost[]> {
-  const fields = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,children{media_url,thumbnail_url}';
+  const fields = 'id,caption,media_type,media_product_type,media_url,thumbnail_url,permalink,timestamp,children{media_url,thumbnail_url}';
   const j = await gget<{ data?: IgMediaRaw[] }>(`${igId}/media?fields=${fields}&limit=${limit}&access_token=${token}`);
   return (j.data ?? []).map(mapIgMedia).filter((p): p is FeedPost => p !== null);
 }

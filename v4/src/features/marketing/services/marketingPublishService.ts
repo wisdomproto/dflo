@@ -30,6 +30,7 @@ export interface PublishQueueItem {
   articleTitle?: string;
   articleCategory?: string;
   articleSortOrder?: number;
+  articleKind?: string; // 'regular' | 'custom' — 커스텀은 번호 대신 🎨 표시
   channelId?: string | null;
   channelName?: string;
   contentKind?: ContentKind;
@@ -59,6 +60,7 @@ function rowToQueueItem(r: Row): PublishQueueItem {
     articleTitle: article ? ((article.title as string) ?? '') : undefined,
     articleCategory: article ? ((article.category as string) ?? '') : undefined,
     articleSortOrder: article ? (article.sort_order as number | undefined) : undefined,
+    articleKind: article ? ((article.kind as string | undefined) ?? 'regular') : undefined,
     channelId: (r.channel_id as string | null) ?? null,
     channelName: ch ? ((ch.name as string) ?? '') : undefined,
     contentKind: (r.content_kind as ContentKind) ?? 'post',
@@ -82,11 +84,15 @@ function queueItemToRow(p: Partial<PublishQueueItem>): Row {
 }
 
 export async function fetchQueue(): Promise<PublishQueueItem[]> {
-  // marketing_articles 조인으로 제목/카테고리 표시. 조인 실패(미적용/권한)면 빈 배열로 graceful.
-  const { data, error } = await supabase
-    .from('marketing_publish_queue')
-    .select('*, marketing_articles(title, category, sort_order), marketing_channels(name, platform, locale)')
-    .order('created_at', { ascending: false });
+  // marketing_articles 조인으로 제목/카테고리 표시. kind(migration 055)는 미적용 DB에서
+  // 컬럼 에러를 내므로, 실패 시 kind 없는 select 로 1회 재시도(graceful).
+  const sel = (withKind: boolean) =>
+    supabase
+      .from('marketing_publish_queue')
+      .select(`*, marketing_articles(title, category, sort_order${withKind ? ', kind' : ''}), marketing_channels(name, platform, locale)`)
+      .order('created_at', { ascending: false });
+  let { data, error } = await sel(true);
+  if (error) ({ data, error } = await sel(false));
   if (error) {
     logger.warn('[marketing] fetchQueue failed:', error.message);
     return [];

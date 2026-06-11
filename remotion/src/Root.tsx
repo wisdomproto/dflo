@@ -26,6 +26,7 @@ import { Timing4KO, TIMING4_KO_DURATION, Timing4TH, TIMING4_TH_DURATION } from "
 import { PlateAgeKO, PLATEAGE_KO_DURATION, PlateAgeTH, PLATEAGE_TH_DURATION } from "./shorts/성장판나이";
 import { Thumb } from "./shorts/_thumbs/Thumb";
 import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
+import { OneCmTH, ONECM_TH_DURATION } from "./shorts/1cm/OneCmTH";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -171,6 +172,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="plateage-th" component={PlateAgeTH} durationInFrames={PLATEAGE_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="thumb" component={Thumb} durationInFrames={1} fps={30} width={1080} height={1920} defaultProps={{ n: 1, lang: "ko" }} />
       <Composition id="MainClipTH" component={MainClipTH} durationInFrames={MAINCLIP_DURATION} fps={30} width={1920} height={1080} />
+      <Composition id="onecm-th" component={OneCmTH} durationInFrames={ONECM_TH_DURATION} fps={30} width={1080} height={1920} />
     </>
   );
 };

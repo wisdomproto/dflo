@@ -307,6 +307,48 @@ late:
       cap_line2: "chăm sóc tăng trưởng"
   cta_label: "Cuối dậy thì — có thực sự muộn? &nbsp;Tư vấn chuyên gia 1:1"
 
+realcases:
+  eyebrow: "Ca điều trị thực tế"
+  heading_line1: "Câu chuyện tăng trưởng thật"
+  heading_accent: "được chứng minh bằng dữ liệu"
+  lead: "Hồ sơ tăng trưởng thực tế của các bé đã điều trị tại 187. Hãy chọn trường hợp giống với con bạn để xem chi tiết."
+  cards:
+    - case: 3
+      emoji: "👦"
+      color: "#9f3f7f"
+      bg: "#faeef6"
+      tag: "Dậy thì sớm · béo phì"
+      stat_from: "Từ dự đoán 162,9cm"
+      stat_to: "177,4cm"
+      desc: "Bé 9 tuổi có tuổi xương vượt 4 năm đã lội ngược dòng"
+    - case: 4
+      emoji: "⚾"
+      color: "#1f8f8d"
+      bg: "#eaf7f6"
+      tag: "Bố mẹ không cao"
+      stat_from: "Từ di truyền 170cm"
+      stat_to: "175,6cm"
+      desc: "Vượt chiều cao của bố và vẫn đang cao thêm"
+    - case: 6
+      emoji: "👧"
+      color: "#d6336c"
+      bg: "#fdeff4"
+      tag: "Bé gái · dậy thì sớm"
+      stat_from: "Từ dự đoán 153,8cm"
+      stat_to: "165,3cm"
+      desc: "Hai anh em từ Mỹ sang Hàn Quốc điều trị"
+    - case: 7
+      emoji: "🌏"
+      color: "#5f4aa0"
+      bg: "#f2effa"
+      tag: "Chậm tăng trưởng"
+      stat_from: "Từ dự đoán 167cm"
+      stat_to: "175,6cm"
+      desc: "Từ Nhật sang mỗi kỳ nghỉ, vượt mức di truyền"
+  line_text: "Bạn muốn xem thêm các ca giống con mình?<br>Nhận toàn bộ hồ sơ ca điều trị và tư vấn 1:1."
+  line_btn: "Xem thêm ca điều trị qua KakaoTalk"
+  back_label: "Xem ca khác"
+
 process:
   eyebrow: "Quy trình chăm sóc"
   heading_accent: "Quy trình chăm sóc"

@@ -11,6 +11,7 @@ const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://l
 const MARKETING_KEY = import.meta.env.VITE_MARKETING_KEY as string | undefined;
 
 export type FeedMediaType = 'image' | 'video' | 'carousel' | 'text';
+export type FeedPostKind = 'feed' | 'reels';
 
 export interface ChannelFeedPost {
   postId: string; // '' = 수동 발행이라 id 없음(URL만 기록된 항목)
@@ -18,6 +19,7 @@ export interface ChannelFeedPost {
   caption: string;
   thumbnailUrl: string;
   mediaType: FeedMediaType;
+  postKind: FeedPostKind;
   permalink: string;
   createdAt: string;
   articleId: string | null;
@@ -35,6 +37,7 @@ interface GraphFeedPost {
   caption: string;
   thumbnailUrl: string;
   mediaType: FeedMediaType;
+  postKind: FeedPostKind;
   permalink: string;
   createdAt: string;
 }
@@ -95,6 +98,7 @@ function queueItemToPost(
     caption: '',
     thumbnailUrl,
     mediaType: isReels ? 'video' : it.contentKind === 'cardnews' ? 'carousel' : 'image',
+    postKind: isReels ? 'reels' : 'feed',
     permalink: it.publishedUrl ?? '',
     createdAt: it.publishedAt ?? it.updatedAt,
     articleId: it.articleId,

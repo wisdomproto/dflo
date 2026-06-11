@@ -10,6 +10,7 @@ import {
 import { ContentListPanel } from './content/ContentListPanel';
 import { ContentTabs } from './content/ContentTabs';
 import { ContentStatusPanel } from './content/ContentStatusPanel';
+import { CustomReelsPanel } from './content/CustomReelsPanel';
 
 export function MarketingArticlesPage() {
   const [articles, setArticles] = useState<MarketingArticle[]>([]);
@@ -36,6 +37,34 @@ export function MarketingArticlesPage() {
     setView('editor');
   };
 
+  // 커스텀 콘텐츠(ad-hoc 릴스) — sort_order 1000번대(정규 1~62와 분리). migration 055 필요.
+  const handleNewCustom = async () => {
+    const maxCustom = articles
+      .filter((a) => a.kind === 'custom')
+      .reduce((m, a) => Math.max(m, a.sortOrder), 1000);
+    try {
+      const a = await saveArticle({
+        title: '새 커스텀 릴스',
+        language: 'ko',
+        status: 'draft',
+        keywords: [],
+        category: '',
+        kind: 'custom',
+        sortOrder: maxCustom + 1,
+      });
+      await reload();
+      setSelectedId(a.id);
+      setView('editor');
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      window.alert(
+        /kind/.test(msg)
+          ? '커스텀 콘텐츠를 만들려면 migration 055(marketing_articles.kind)를 먼저 적용해야 합니다.'
+          : `생성 실패: ${msg}`,
+      );
+    }
+  };
+
   const handleDelete = async (id: string) => {
     if (!window.confirm('이 글을 삭제할까요?')) return;
     await deleteArticle(id);
@@ -59,6 +88,7 @@ export function MarketingArticlesPage() {
         selectedId={selectedId}
         onSelect={(id) => { setSelectedId(id); setView('editor'); }}
         onNew={handleNew}
+        onNewCustom={handleNewCustom}
         onDelete={handleDelete}
         onReorder={handleReorder}
         onStatus={() => setView('status')}
@@ -66,7 +96,9 @@ export function MarketingArticlesPage() {
       />
       <div className="flex-1 overflow-y-auto">
         {view === 'status' ? (
-          <ContentStatusPanel articles={articles} />
+          <ContentStatusPanel articles={articles.filter((a) => a.kind !== 'custom')} />
+        ) : selected?.kind === 'custom' ? (
+          <CustomReelsPanel key={selected.id} article={selected} onSaved={reload} onPatch={patchSelected} />
         ) : selected ? (
           <ContentTabs key={selected.id} article={selected} onSaved={reload} onPatch={patchSelected} />
         ) : (

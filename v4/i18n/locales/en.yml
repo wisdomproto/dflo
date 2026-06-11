@@ -307,6 +307,48 @@ late:
       cap_line2: "growth care"
   cta_label: "Late puberty — is it really too late? &nbsp;1:1 expert consultation"
 
+realcases:
+  eyebrow: "Real Treatment Cases"
+  heading_line1: "Real growth stories,"
+  heading_accent: "backed by real data"
+  lead: "Actual growth records of children treated at 187. Pick the case that looks most like your child."
+  cards:
+    - case: 3
+      emoji: "👦"
+      color: "#9f3f7f"
+      bg: "#faeef6"
+      tag: "Precocious puberty · weight"
+      stat_from: "From predicted 162.9cm"
+      stat_to: "177.4cm"
+      desc: "A 9-year-old whose bone age ran 4 years ahead — turned around"
+    - case: 4
+      emoji: "⚾"
+      color: "#1f8f8d"
+      bg: "#eaf7f6"
+      tag: "Short parents"
+      stat_from: "From genetic 170cm"
+      stat_to: "175.6cm"
+      desc: "Taller than dad now — and still growing"
+    - case: 6
+      emoji: "👧"
+      color: "#d6336c"
+      bg: "#fdeff4"
+      tag: "Girl · early puberty"
+      stat_from: "From predicted 153.8cm"
+      stat_to: "165.3cm"
+      desc: "Siblings who flew from the US for treatment in Korea"
+    - case: 7
+      emoji: "🌏"
+      color: "#5f4aa0"
+      bg: "#f2effa"
+      tag: "Slow growth"
+      stat_from: "From predicted 167cm"
+      stat_to: "175.6cm"
+      desc: "Flew in from Japan every vacation — beat genetic height"
+  line_text: "Want to see more cases like your child's?<br>Get the full case library and a 1:1 consultation."
+  line_btn: "See more cases on KakaoTalk"
+  back_label: "More cases"
+
 process:
   eyebrow: "Care process"
   heading_accent: "Care process"

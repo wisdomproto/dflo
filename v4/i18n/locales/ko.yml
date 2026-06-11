@@ -307,6 +307,48 @@ late:
       cap_line2: "성장 관리"
   cta_label: "늦었을까 걱정되신다면 &nbsp;1:1 전문 상담"
 
+realcases:
+  eyebrow: "실제 치료 사례"
+  heading_line1: "기록으로 보여드리는"
+  heading_accent: "실제 성장 이야기"
+  lead: "187에서 치료받은 아이들의 실제 성장 기록입니다. 우리 아이와 비슷한 고민을 선택해 확인해보세요."
+  cards:
+    - case: 3
+      emoji: "👦"
+      color: "#9f3f7f"
+      bg: "#faeef6"
+      tag: "성조숙증 · 비만"
+      stat_from: "예상키 162.9cm에서"
+      stat_to: "177.4cm"
+      desc: "뼈나이가 4년이나 앞서 있던 9세 아이의 역전 기록"
+    - case: 4
+      emoji: "⚾"
+      color: "#1f8f8d"
+      bg: "#eaf7f6"
+      tag: "부모 키가 작은 경우"
+      stat_from: "유전 예상 170cm에서"
+      stat_to: "175.6cm"
+      desc: "아빠 키를 넘어 아직 성장 중인 야구 소년"
+    - case: 6
+      emoji: "👧"
+      color: "#d6336c"
+      bg: "#fdeff4"
+      tag: "여아 · 성조숙증"
+      stat_from: "예상키 153.8cm에서"
+      stat_to: "165.3cm"
+      desc: "미국에서 한국까지 찾아온 남매의 치료 기록"
+    - case: 7
+      emoji: "🌏"
+      color: "#5f4aa0"
+      bg: "#f2effa"
+      tag: "성장이 느린 아이"
+      stat_from: "예상키 167cm에서"
+      stat_to: "175.6cm"
+      desc: "일본에서 방학마다 찾아와 유전키를 넘었습니다"
+  line_text: "우리 아이 또래, 같은 고민의 사례가 더 궁금하신가요?<br>전체 사례와 1:1 상담을 받아보세요."
+  line_btn: "카카오톡으로 더 많은 사례 보기"
+  back_label: "다른 사례 보기"
+
 process:
   eyebrow: "진료 과정"
   heading_accent: "진료 과정"

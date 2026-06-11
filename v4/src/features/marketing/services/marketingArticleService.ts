@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, ArticleTranslation, BlogSeoMap, ReelsMap, ReelAssets, BlogReference } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleKind, ArticleTranslation, BlogSeoMap, ReelsMap, ReelAssets, BlogReference } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -22,6 +22,7 @@ function rowToArticle(r: Row): MarketingArticle {
     updatedAt: (r.updated_at as string) ?? '',
     confirmed: (r.confirmed as boolean) ?? false,
     sortOrder: (r.sort_order as number) ?? 0,
+    kind: ((r.kind as ArticleKind) ?? 'regular'), // migration 055 미적용이면 regular 폴백
     translations: (r.translations as Record<string, ArticleTranslation>) ?? {},
     blog: (r.blog as BlogSeoMap) ?? {},
     reels: (r.reels as ReelsMap) ?? {},
@@ -43,6 +44,8 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     updated_at: new Date().toISOString(),
     confirmed: a.confirmed ?? false,
     sort_order: a.sortOrder ?? 0,
+    // kind 는 'custom' 일 때만 기록 — migration 055 미적용 DB에서 정규 글 저장이 깨지지 않게.
+    ...(a.kind === 'custom' ? { kind: a.kind } : {}),
     // Only write translations when explicitly provided, so partial saves don't wipe them.
     ...(a.translations !== undefined ? { translations: a.translations } : {}),
     ...(a.blog !== undefined ? { blog: a.blog } : {}),

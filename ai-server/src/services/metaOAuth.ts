@@ -11,6 +11,10 @@ export const META_SCOPES = [
   'pages_manage_metadata',
   'instagram_basic',
   'instagram_content_publish',
+  // 광고 Marketing API — 캠페인/광고세트/광고 생성(ads_management) + 성과 조회(ads_read).
+  // 개발 모드에서도 앱 관리자(master)는 본인 광고계정에 한해 사용 가능. 표준 권한이라 다이얼로그 안 막힘.
+  'ads_management',
+  'ads_read',
   // ⚠️ threads_basic / threads_content_publish 는 Facebook 로그인 다이얼로그에서 Invalid Scope
   // (Threads API 는 별도 OAuth — graph.threads.net). 여기 넣으면 다이얼로그 전체가 막힘. 추후 별도 연동.
 ];
