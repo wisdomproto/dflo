@@ -31,8 +31,11 @@ export default function CasesEmbedPage() {
   const [searchParams] = useSearchParams();
   const langParam = searchParams.get('lang');
   const lang: CasesLang = isCasesLang(langParam) ? langParam : 'ko';
-  // 홈 "실제 치료 사례" 버튼 딥링크 — ?case=N (cases 슬라이드 중 N번째, 1-base)
+  // 치료사례 메뉴 딥링크 — ?case=N (cases 슬라이드 중 N번째, 1-base)
   const caseParam = parseInt(searchParams.get('case') ?? '', 10);
+  // ?only=3,4,6,7 — 메뉴에 노출한 케이스만 남김(인트로 배너·나머지 케이스 제외).
+  // 나머지 사례는 메신저(LINE/카톡) 게이트 뒤 — 뷰어에서 스와이프로 못 보게.
+  const onlyParam = searchParams.get('only') ?? '';
   const [slides, setSlides] = useState<Slide[]>([]);
   const [showNav, setShowNav] = useState(true);
   const [initialIndex, setInitialIndex] = useState(0);
@@ -64,6 +67,24 @@ export default function CasesEmbedPage() {
           Number.isFinite(caseParam) && caseParam >= 1 && caseParam <= caseIndexes.length
             ? caseIndexes[caseParam - 1]
             : -1;
+
+        // ?only=… 필터: 노출 케이스만 남김(스와이프 범위 제한). 딥링크 케이스는 항상 포함.
+        const wanted = onlyParam
+          .split(',')
+          .map((n) => parseInt(n, 10))
+          .filter((n) => Number.isFinite(n) && n >= 1 && n <= caseIndexes.length);
+        if (wanted.length > 0) {
+          const keep = new Set(wanted.map((n) => caseIndexes[n - 1]));
+          if (deepIdx >= 0) keep.add(deepIdx);
+          const filtered = ordered.filter((_, i) => keep.has(i));
+          const target = deepIdx >= 0 ? ordered[deepIdx] : filtered[0];
+          setSlides(filtered);
+          setShowNav(casesSection.showNav ?? true);
+          setInitialIndex(Math.max(0, filtered.indexOf(target)));
+          setLoading(false);
+          return;
+        }
+
         const firstCaseIdx = caseIndexes.length > 0 ? caseIndexes[0] : 0;
         setSlides(ordered);
         setShowNav(casesSection.showNav ?? true);
@@ -71,7 +92,7 @@ export default function CasesEmbedPage() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [lang, caseParam]);
+  }, [lang, caseParam, onlyParam]);
 
   if (loading) {
     return (

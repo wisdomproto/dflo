@@ -283,12 +283,25 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             <p><strong>{t.noteBoxCautionLabel}</strong> {t.noteBoxCautionBody}</p>
           </div>
 
+          {/* 상담 유도 맥락 — 결과 직후의 궁금증/걱정을 받아주는 문구.
+              "비슷한 사례"는 상담에서 병원이 전체 케이스에서 골라 보내주는 약속(공개 4개와 무관). */}
+          <p className="text-xs md:text-sm text-gray-600 text-center leading-relaxed break-keep px-2">
+            {t.ctaContext}
+          </p>
+
           {/* 상담 CTA — th 는 LINE, 나머지는 KakaoTalk */}
           <a href={messenger.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackKakaoConsult('height_calc_result')}
             className={`flex items-center justify-center gap-2 w-full rounded-xl ${messenger.bgClass} py-3.5 md:py-4
                        ${messenger.fgClass} font-bold text-base md:text-lg ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
             {t.kakaoCta}
+          </a>
+
+          {/* 공개 치료사례 페이지 링크 — iframe 임베드라 target=_top 으로 부모 프레임 이동 */}
+          <a href={`/${lang}/cases.html`} target="_top"
+            className="flex items-center justify-center w-full rounded-xl border border-[#4A2D6B]/30 py-3 md:py-3.5
+                       text-[#4A2D6B] font-bold text-sm md:text-base hover:bg-[#4A2D6B]/5 active:scale-[0.98] transition-all">
+            {t.casesLink}
           </a>
 
           {/* Reset button — embedded mode only (modal mode uses close button) */}

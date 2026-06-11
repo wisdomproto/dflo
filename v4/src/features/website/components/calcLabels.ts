@@ -56,6 +56,8 @@ type Dict = {
   noteBoxCautionLabel: string;
   noteBoxCautionBody: string;
   kakaoCta: string;
+  ctaContext: string; // 결과 직후 상담 유도 맥락 문구 (비슷한 사례는 상담에서 보내주는 약속)
+  casesLink: string; // 공개 치료사례 페이지 링크 (유사성 주장 없이 담백하게)
   reset: string;
 };
 
@@ -102,6 +104,8 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxCautionLabel: '⚠️ 참고:',
     noteBoxCautionBody: '골연령, 성장호르몬, 영양 상태 등은 반영되지 않은 통계적 추정치입니다. 정확한 진단은 전문의 상담이 필요합니다.',
     kakaoCta: '💬 전문 상담 받아보세요',
+    ctaContext: '이 결과가 걱정되시나요? 1:1 상담으로 정밀 분석과 우리 아이와 비슷한 실제 치료 사례를 받아보실 수 있어요.',
+    casesLink: '실제 치료 사례 보기 →',
     reset: '다시 측정하기',
   },
   en: {
@@ -146,6 +150,8 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxCautionLabel: '⚠️ Note:',
     noteBoxCautionBody: 'A statistical estimate not reflecting bone age, growth-hormone levels, or nutrition. Accurate diagnosis requires a specialist consultation.',
     kakaoCta: '💬 Get a specialist consultation',
+    ctaContext: 'Worried about this result? A 1:1 consultation gets you a detailed analysis plus real treatment cases similar to your child.',
+    casesLink: 'See real treatment cases →',
     reset: 'Measure again',
   },
   th: {
@@ -190,6 +196,8 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxCautionLabel: '⚠️ หมายเหตุ:',
     noteBoxCautionBody: 'เป็นการประมาณทางสถิติที่ไม่ได้รวมอายุกระดูก โกรทฮอร์โมน หรือโภชนาการ การวินิจฉัยที่แม่นยำต้องปรึกษาแพทย์',
     kakaoCta: '💬 ปรึกษาผู้เชี่ยวชาญ',
+    ctaContext: 'กังวลกับผลลัพธ์นี้ไหม? ปรึกษา 1:1 เพื่อรับการวิเคราะห์เชิงลึก พร้อมเคสรักษาจริงที่ใกล้เคียงกับลูกของคุณ',
+    casesLink: 'ดูเคสรักษาจริง →',
     reset: 'วัดอีกครั้ง',
   },
   vi: {
@@ -234,6 +242,8 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxCautionLabel: '⚠️ Lưu ý:',
     noteBoxCautionBody: 'Là ước tính thống kê chưa tính tuổi xương, hormone tăng trưởng, hay dinh dưỡng. Chẩn đoán chính xác cần tư vấn bác sĩ.',
     kakaoCta: '💬 Nhận tư vấn chuyên gia',
+    ctaContext: 'Lo lắng về kết quả này? Tư vấn 1:1 để nhận phân tích chuyên sâu cùng các ca điều trị thực tế giống con bạn.',
+    casesLink: 'Xem ca điều trị thực tế →',
     reset: 'Đo lại',
   },
 };

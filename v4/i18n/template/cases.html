@@ -60,33 +60,31 @@
      스와이프 배너 대신 능동 선택형: 4개는 고민 유형이 다른 무료 맛보기,
      아래 게이트가 "전체 사례 → 메신저" 리드 전환 다리.
      카드는 케이스별 컬러(--cc)와 이모지 아바타 + before→after 숫자가 주인공. */
+  /* 모바일 기본 = 컴팩트 — 헤더 + 카드 4장 + 라인 게이트가 한 화면에 들어오게.
+     리드문은 모바일에서 숨기고(>=768px 표시), 화살표는 카드 모서리에 겹쳐 높이 절약. */
   .rc-menu {
-    padding: 32px 20px 56px;
+    padding: 22px 16px 40px;
     background:
       radial-gradient(640px 240px at 50% -60px, rgba(74,45,107,0.10), rgba(74,45,107,0) 70%),
       #fff;
   }
-  .rc-head { text-align: center; max-width: 560px; margin: 0 auto 26px; }
-  .rc-head .eyebrow {
-    display: inline-block;
-    font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
-    color: #4A2D6B; background: rgba(74,45,107,0.09);
-    border-radius: 999px; padding: 7px 16px;
-  }
+  .rc-head { text-align: center; max-width: 560px; margin: 0 auto 18px; }
   .rc-head h1 {
-    margin-top: 16px;
-    font-size: 21px; font-weight: 800; color: #171717;
-    line-height: 1.45; letter-spacing: -0.5px;
+    font-size: 20px; font-weight: 900; color: #3a2a68;
+    line-height: 1.35; letter-spacing: -0.6px;
   }
-  .rc-head h1 .accent {
-    background: linear-gradient(120deg, #667eea, #764ba2);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: #764ba2;
-    font-weight: 900;
+  .rc-head h1 .accent { color: #3a2a68; font-weight: 900; }
+  .rc-deco {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 7px;
+    font-size: 11.5px; font-weight: 700; color: #764ba2;
+    letter-spacing: 0.02em;
   }
-  .rc-head .lead {
-    font-size: 14px; color: #777; line-height: 1.8; margin-top: 12px;
+  .rc-deco .ln {
+    width: 20px; height: 2px; border-radius: 1px;
+    background: rgba(118,75,162,0.45);
   }
+  .rc-head .lead { display: none; font-size: 13.5px; color: #8b8b95; line-height: 1.7; margin-top: 10px; }
   .rc-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -95,26 +93,26 @@
     margin: 0 auto;
   }
   .rc-card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 9px;
-    border: 1px solid rgba(23,23,23,0.06);
-    border-radius: 18px;
-    padding: 16px 15px 13px;
+    gap: 8px;
+    border-radius: 20px;
+    padding: 16px 14px 14px;
     text-decoration: none;
-    box-shadow: 0 3px 14px rgba(26,23,20,0.06);
+    box-shadow: 0 4px 10px rgba(58,42,104,0.10), 0 14px 30px rgba(58,42,104,0.16);
     transition: transform 0.15s ease, box-shadow 0.2s ease;
   }
-  .rc-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(26,23,20,0.13); }
+  .rc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(58,42,104,0.14), 0 22px 44px rgba(58,42,104,0.22); }
   .rc-card:active { transform: scale(0.98); }
   .rc-top { display: flex; align-items: center; gap: 8px; }
   .rc-avatar {
     flex: none;
-    width: 38px; height: 38px; border-radius: 50%;
+    width: 44px; height: 44px; border-radius: 50%;
     background: #fff;
     display: grid; place-items: center;
-    font-size: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08), inset 0 0 0 2px var(--cc);
+    font-size: 23px;
+    box-shadow: 0 4px 12px rgba(58,42,104,0.13);
   }
   .rc-tag {
     font-size: 10.5px;
@@ -123,66 +121,62 @@
     color: var(--cc);
     background: #fff;
     border-radius: 999px;
-    padding: 4px 9px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    line-height: 1.35;
+    padding: 4px 10px;
+    box-shadow: inset 0 0 0 1px var(--cc), 0 1px 4px rgba(0,0,0,0.04);
+    line-height: 1.3;
   }
   .rc-stat { display: flex; flex-direction: column; gap: 1px; }
   .rc-from {
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #8a8a8a;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #2b2b33;
+    letter-spacing: -0.3px;
   }
   .rc-to {
-    font-size: 23px;
+    font-size: 27px;
     font-weight: 900;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
     color: var(--cc);
   }
-  .rc-to .u { font-size: 14px; font-weight: 800; }
+  .rc-to .u { font-size: 14px; font-weight: 800; letter-spacing: 0; }
+  .rc-div {
+    height: 1px;
+    background: rgba(43,43,51,0.08);
+    margin: 2px 0;
+  }
   .rc-desc {
     font-size: 12px;
     line-height: 1.55;
-    color: #6b6b6b;
+    color: #7a7a85;
     word-break: keep-all;
     flex: 1;
+    padding-right: 28px; /* 모서리 화살표와 겹침 방지 */
   }
   .rc-arrow {
-    align-self: flex-end;
-    width: 27px; height: 27px; border-radius: 50%;
-    background: var(--cc); color: #fff;
+    position: absolute;
+    right: 11px; bottom: 11px;
+    width: 31px; height: 31px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cc), var(--cc2, var(--cc)));
+    color: #fff;
     display: grid; place-items: center;
-    font-size: 13px; font-weight: 700;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.16);
+    font-size: 14px; font-weight: 700;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.18);
   }
+  /* 메신저 버튼 단독 — 박스/문구 없이 카드 그리드와 시각적으로 분리 */
   .rc-line {
     max-width: 560px;
-    margin: 26px auto 0;
+    margin: 24px auto 0;
     text-align: center;
-    background: linear-gradient(135deg, #f3eefb, #fdfcff 70%);
-    border: 1px solid rgba(74,45,107,0.14);
-    border-radius: 20px;
-    padding: 26px 22px 24px;
-    box-shadow: 0 6px 22px rgba(74,45,107,0.08);
-  }
-  .rc-line-emo { font-size: 24px; margin-bottom: 8px; letter-spacing: 4px; }
-  .rc-line-text {
-    font-size: 14.5px;
-    font-weight: 700;
-    line-height: 1.6;
-    color: #171717;
-    margin-bottom: 16px;
-    word-break: keep-all;
   }
   .rc-line-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 9px;
     font-size: 15px;
     font-weight: 800;
-    padding: 16px 30px;
+    padding: 15px 30px;
     border-radius: 999px;
     text-decoration: none;
     box-shadow: 0 8px 22px rgba(0,0,0,0.16);
@@ -191,20 +185,46 @@
   .rc-line-btn:hover { filter: brightness(0.94); }
   .rc-line-btn:active { transform: scale(0.98); }
 
+  /* 작은 폰(높이 ≤700px, 예: iPhone SE) — 한 화면 fit 을 위해 한 단계 더 압축 */
+  @media (max-height: 700px) and (max-width: 767px) {
+    .rc-menu { padding-top: 10px; }
+    .rc-head { margin-bottom: 10px; }
+    .rc-head h1 { font-size: 17.5px; }
+    .rc-deco { margin-top: 5px; font-size: 11px; }
+    .rc-grid { gap: 8px; }
+    .rc-card { padding: 10px 11px 10px; gap: 5px; }
+    .rc-avatar { width: 35px; height: 35px; font-size: 18px; }
+    .rc-from { font-size: 13px; }
+    .rc-to { font-size: 21px; }
+    .rc-to .u { font-size: 12px; }
+    .rc-desc { font-size: 11px; line-height: 1.45; }
+    .rc-arrow { width: 24px; height: 24px; font-size: 12px; right: 8px; bottom: 8px; }
+    .rc-line { margin-top: 14px; }
+    .rc-line-btn { font-size: 13px; padding: 11px 22px; }
+  }
+
   @media (min-width: 768px) {
     body.is-menu { background: var(--shell-page-bg, #fafaf8); }
     body.is-menu .container {
       max-width: 680px;
       box-shadow: 0 1px 2px rgba(26,23,20,0.05), 0 18px 50px rgba(26,23,20,0.08);
     }
-    .rc-menu { padding: 44px 28px 72px; }
-    .rc-head h1 { font-size: 24px; }
-    .rc-head .lead { font-size: 15.5px; }
+    .rc-menu { padding: 36px 28px 64px; }
+    .rc-head { margin-bottom: 24px; }
+    .rc-head h1 { font-size: 26px; }
+    .rc-head .lead { display: block; }
+    .rc-deco { font-size: 13px; margin-top: 10px; }
     .rc-grid { gap: 14px; }
-    .rc-to { font-size: 26px; }
-    .rc-desc { font-size: 13px; }
-    .rc-line-text { font-size: 16px; }
-    .rc-line-btn { font-size: 16.5px; padding: 17px 36px; }
+    .rc-card { padding: 18px 16px 16px; gap: 9px; border-radius: 22px; }
+    .rc-avatar { width: 50px; height: 50px; font-size: 26px; }
+    .rc-tag { font-size: 11px; padding: 5px 11px; }
+    .rc-from { font-size: 16px; }
+    .rc-to { font-size: 32px; }
+    .rc-to .u { font-size: 16px; }
+    .rc-desc { font-size: 13px; padding-right: 32px; }
+    .rc-arrow { width: 34px; height: 34px; font-size: 15px; right: 12px; bottom: 12px; }
+    .rc-line { margin-top: 26px; }
+    .rc-line-btn { font-size: 15.5px; padding: 15px 32px; }
   }
 </style>
 </head>
@@ -216,22 +236,23 @@
   <!-- ===== 메뉴 모드 (기본): 케이스 선택 2×2 + 메신저 게이트 ===== -->
   <div class="rc-menu" id="rcMenu" hidden>
     <div class="rc-head">
-      <div class="eyebrow">{{realcases.eyebrow}}</div>
-      <h1>{{realcases.heading_line1}}<br><span class="accent">{{realcases.heading_accent}}</span></h1>
+      <h1>{{realcases.heading_line1}} <span class="accent">{{realcases.heading_accent}}</span></h1>
+      <div class="rc-deco"><span class="ln"></span>&bull;&nbsp; {{realcases.eyebrow}} &nbsp;&bull;<span class="ln"></span></div>
       <p class="lead">{{realcases.lead}}</p>
     </div>
 
     <div class="rc-grid">
       {{#each realcases.cards}}
-      <a class="rc-card" href="?case={{case}}" style="--cc:{{color}}; background:linear-gradient(165deg, #fff 42%, {{bg}})">
+      <a class="rc-card" href="?case={{case}}" style="--cc:{{color}}; --cc2:{{color2}}; background:{{bg}}">
         <span class="rc-top">
           <span class="rc-avatar">{{emoji}}</span>
           <span class="rc-tag">{{tag}}</span>
         </span>
         <span class="rc-stat">
           <span class="rc-from">{{stat_from}}</span>
-          <span class="rc-to">&rarr; {{stat_to}}</span>
+          <span class="rc-to">&rarr; {{stat_to}}<span class="u">{{unit}}</span></span>
         </span>
+        <span class="rc-div"></span>
         <span class="rc-desc">{{desc}}</span>
         <span class="rc-arrow">&rarr;</span>
       </a>
@@ -239,8 +260,6 @@
     </div>
 
     <div class="rc-line">
-      <div class="rc-line-emo">👦👧⚾🌏</div>
-      <p class="rc-line-text">{{realcases.line_text}}</p>
       <a class="rc-line-btn" href="{{messenger.url}}" target="_blank" rel="noopener"
          data-source="cases_menu_more" data-channel="{{messenger.channel}}"
          style="background:{{messenger.color_bg}}; color:{{messenger.color_fg}}">
@@ -260,13 +279,18 @@
   <script>
     // ?case=N 이면 뷰어(캐러셀, N번째 케이스에서 시작) / 없으면 선택 메뉴.
     // iframe src 는 뷰어일 때만 세팅 — 메뉴에서 무거운 임베드를 미리 로드하지 않는다.
+    // 뷰어는 메뉴에 노출한 케이스(only=…)로만 제한 — 나머지 사례는 메신저 게이트 뒤.
     (function () {
       var n = new URLSearchParams(location.search).get('case');
       var viewer = document.getElementById('rcViewer');
       var menu = document.getElementById('rcMenu');
       if (n && /^\d+$/.test(n)) {
+        var featured = Array.prototype.map.call(
+          document.querySelectorAll('#rcMenu .rc-card'),
+          function (a) { return (a.getAttribute('href').match(/case=(\d+)/) || [])[1]; }
+        ).filter(Boolean).join(',');
         var f = viewer.querySelector('iframe');
-        f.src = f.getAttribute('data-embed-base') + '&case=' + n;
+        f.src = f.getAttribute('data-embed-base') + '&case=' + n + (featured ? '&only=' + featured : '');
         viewer.hidden = false;
         document.body.classList.add('is-viewer');
       } else {
