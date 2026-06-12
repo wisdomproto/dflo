@@ -24,9 +24,25 @@ import { FakepubertyEN, FakepubertyENPreview, FakepubertyENFootage, FAKEPUB_EN_D
 import { HeightGenesKO, HEIGHTGENES_KO_DURATION, HeightGenesTH, HEIGHTGENES_TH_DURATION } from "./shorts/키유전80";
 import { Timing4KO, TIMING4_KO_DURATION, Timing4TH, TIMING4_TH_DURATION } from "./shorts/성장타이밍4";
 import { PlateAgeKO, PLATEAGE_KO_DURATION, PlateAgeTH, PLATEAGE_TH_DURATION } from "./shorts/성장판나이";
+import { Gh10KO, GH10_KO_DURATION } from "./shorts/성장호르몬10시";
+import { BoneXrayKO, BONEXRAY_KO_DURATION } from "./shorts/뼈나이xray";
+import { HeightFormulaKO, HEIGHTFORMULA_KO_DURATION } from "./shorts/예상키공식오차";
+import { GrandparentsKO, GRANDPARENTS_KO_DURATION } from "./shorts/격세유전조부모키";
+import { PrecociousPlateKO, PRECOCIOUSPLATE_KO_DURATION } from "./shorts/성조숙증성장판";
+import { ObesityEarlyKO, OBESITYEARLY_KO_DURATION } from "./shorts/비만일찍멈춤";
+import { PubertyOrderKO, PUBERTYORDER_KO_DURATION } from "./shorts/사춘기순서";
+import { TestisSignKO, TESTISSIGN_KO_DURATION } from "./shorts/고환크기신호";
+import { CortisolKO, CORTISOL_KO_DURATION } from "./shorts/코르티솔키";
+import { GrowingPainsKO, GROWINGPAINS_KO_DURATION } from "./shorts/성장통신호";
+import { ThyroidKO, THYROID_KO_DURATION } from "./shorts/갑상선성장";
+import { AllergyThiefKO, ALLERGYTHIEF_KO_DURATION } from "./shorts/알레르기성장도둑";
+import { EdcHormoneKO, EDCHORMONE_KO_DURATION } from "./shorts/환경호르몬성조숙";
+import { HeavyMetalKO, HEAVYMETAL_KO_DURATION } from "./shorts/중금속키성장";
+import { AdhdMedKO, ADHDMED_KO_DURATION } from "./shorts/adhd약키성장";
 import { Thumb } from "./shorts/_thumbs/Thumb";
 import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
 import { OneCmTH, ONECM_TH_DURATION } from "./shorts/1cm/OneCmTH";
+import { PresenterGeneric, calcPresenterMetadata } from "./shorts/_shared/PresenterGeneric";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -170,9 +186,34 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="timing4-th" component={Timing4TH} durationInFrames={TIMING4_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="plateage-ko" component={PlateAgeKO} durationInFrames={PLATEAGE_KO_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="plateage-th" component={PlateAgeTH} durationInFrames={PLATEAGE_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="gh10-ko" component={Gh10KO} durationInFrames={GH10_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="bonexray-ko" component={BoneXrayKO} durationInFrames={BONEXRAY_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="heightformula-ko" component={HeightFormulaKO} durationInFrames={HEIGHTFORMULA_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="grandparents-ko" component={GrandparentsKO} durationInFrames={GRANDPARENTS_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="precociousplate-ko" component={PrecociousPlateKO} durationInFrames={PRECOCIOUSPLATE_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="obesityearly-ko" component={ObesityEarlyKO} durationInFrames={OBESITYEARLY_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="pubertyorder-ko" component={PubertyOrderKO} durationInFrames={PUBERTYORDER_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="testissign-ko" component={TestisSignKO} durationInFrames={TESTISSIGN_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="cortisol-ko" component={CortisolKO} durationInFrames={CORTISOL_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="growingpains-ko" component={GrowingPainsKO} durationInFrames={GROWINGPAINS_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="thyroid-ko" component={ThyroidKO} durationInFrames={THYROID_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="allergythief-ko" component={AllergyThiefKO} durationInFrames={ALLERGYTHIEF_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="edchormone-ko" component={EdcHormoneKO} durationInFrames={EDCHORMONE_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="heavymetal-ko" component={HeavyMetalKO} durationInFrames={HEAVYMETAL_KO_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="adhdmed-ko" component={AdhdMedKO} durationInFrames={ADHDMED_KO_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="thumb" component={Thumb} durationInFrames={1} fps={30} width={1080} height={1920} defaultProps={{ n: 1, lang: "ko" }} />
       <Composition id="MainClipTH" component={MainClipTH} durationInFrames={MAINCLIP_DURATION} fps={30} width={1920} height={1080} />
       <Composition id="onecm-th" component={OneCmTH} durationInFrames={ONECM_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition
+        id="PresenterGeneric"
+        component={PresenterGeneric}
+        durationInFrames={300}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ script: {} as never, timing: [], lang: "ko", slug: "", assets: { videoSrc: "", audio: {} } }}
+        calculateMetadata={calcPresenterMetadata}
+      />
     </>
   );
 };
