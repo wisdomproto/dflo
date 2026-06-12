@@ -766,40 +766,9 @@ function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide
           <CasesGrowthChartSection measurements={ms} birthDate={s.birthDate} gender={s.gender} />
         )}
 
-        {/* 5. Measurement Table (회차별 기록) */}
-        {ms.length > 0 && (
-          <div className="px-2 overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">{t.tableNum}</th>
-                  <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">{t.tableDate}</th>
-                  <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">{t.tableHeight}</th>
-                  <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">{t.tableWeight}</th>
-                  {s.birthDate && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">{t.tableAge}</th>}
-                  {ms.some((m) => m.boneAge) && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">{t.tableBoneAge}</th>}
-                  <th className="px-1.5 py-1.5 text-right text-[#0F6E56] font-semibold">{t.tablePredicted}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ms.map((m, i) => {
-                  const age = s.birthDate && m.date ? calcAge(s.birthDate, m.date) : null;
-                  return (
-                    <tr key={i} className="border-t border-gray-100">
-                      <td className="px-1.5 py-1.5 text-gray-400">{i + 1}</td>
-                      <td className="px-1.5 py-1.5">{m.date ? formatDate(m.date) : '-'}</td>
-                      <td className="px-1.5 py-1.5 text-right font-bold">{m.height || '-'}</td>
-                      <td className="px-1.5 py-1.5 text-right text-gray-500">{m.weight || '-'}</td>
-                      {s.birthDate && <td className="px-1.5 py-1.5 text-center text-gray-500">{age !== null ? `${age}` : '-'}</td>}
-                      {ms.some((mm) => mm.boneAge) && <td className="px-1.5 py-1.5 text-center text-amber-600 font-semibold">{m.boneAge ? m.boneAge.toFixed(1) : '-'}</td>}
-                      <td className="px-1.5 py-1.5 text-right text-[#0F6E56] font-bold">{m.predictedHeight || '-'}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
+        {/* 5. Measurement Table (회차별 기록) — 기본 접힘. 핵심 메시지는 차트·요약줄이 전달하고,
+            숫자 표는 꼼꼼히 보고 싶은 보호자용 보너스로만 노출한다. */}
+        {ms.length > 0 && <MeasurementTableSection ms={ms} birthDate={s.birthDate} />}
 
         {/* Photos per measurement */}
         {ms.some((m) => m.photoFront || m.photoSide || m.xrayFront || m.xraySide) && (
@@ -808,13 +777,30 @@ function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide
           </div>
         )}
 
-        {/* 6. Final Memo (마무리 메모) */}
-        {localizedFinalMemo && (
-          <div className="mx-4 bg-green-50 rounded-xl p-3 border border-green-100">
-            <p className="text-[10px] font-semibold text-green-600 mb-1">{t.finalMemo}</p>
-            <p className="text-xs text-gray-700 whitespace-pre-line">{localizedFinalMemo}</p>
-          </div>
-        )}
+        {/* 6. Final Memo (마무리 메모) — 본문 속 보호자 인용("…" — 어머니)은 별도 인용 카드로 승격.
+            페이지에서 가장 감성적인 자산이 긴 소견문 안에 묻히지 않게 분리한다. */}
+        {localizedFinalMemo && (() => {
+          const { body, quote, attribution } = extractParentQuote(localizedFinalMemo);
+          return (
+            <>
+              {body && (
+                <div className="mx-4 bg-green-50 rounded-xl p-3 border border-green-100">
+                  <p className="text-[10px] font-semibold text-green-600 mb-1">{t.finalMemo}</p>
+                  <p className="text-xs text-gray-700 whitespace-pre-line">{body}</p>
+                </div>
+              )}
+              {quote && (
+                <div className="mx-4 relative rounded-2xl bg-gradient-to-br from-purple-50 to-white border border-purple-100 px-4 pt-5 pb-3">
+                  <span className="absolute top-1 left-3 text-3xl leading-none text-purple-300 font-serif select-none">“</span>
+                  <p className="text-[13px] font-semibold text-gray-800 leading-relaxed whitespace-pre-line">{quote}</p>
+                  {attribution && (
+                    <p className="mt-1.5 text-right text-[11px] font-bold text-purple-500">— {attribution}</p>
+                  )}
+                </div>
+              )}
+            </>
+          );
+        })()}
 
         {/* CTA */}
         {s.showCta && (
@@ -871,6 +857,70 @@ function formatDate(d: string) {
   if (!d) return '';
   const parts = d.split('-');
   return parts.length === 3 ? `${parts[0].slice(2)}/${parts[1]}/${parts[2]}` : d;
+}
+
+// 마무리 메모 속 보호자 인용 추출 — `"…" — 어머니` 형태의 줄(번역본도 동일 포맷)을 찾아
+// 본문과 분리한다. 포맷이 안 맞으면 메모 전체를 본문으로 그대로 둔다(graceful).
+function extractParentQuote(memo: string): { body: string; quote?: string; attribution?: string } {
+  const lines = memo.split('\n');
+  const idx = lines.findIndex((l) => /^["“].+["”]\s*[—–-]\s*\S+/.test(l.trim()));
+  if (idx === -1) return { body: memo };
+  const m = lines[idx].trim().match(/^["“](.+)["”]\s*[—–-]\s*(.+)$/);
+  if (!m) return { body: memo };
+  const body = [...lines.slice(0, idx), ...lines.slice(idx + 1)]
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  return { body, quote: m[1], attribution: m[2].trim() };
+}
+
+// 회차별 측정 테이블 — 기본 접힘 collapsible (AllergyDataSection 과 동일 패턴)
+function MeasurementTableSection({ ms, birthDate }: { ms: CaseMeasurementEntry[]; birthDate?: string }) {
+  const [open, setOpen] = React.useState(false);
+  const t = useCasesLang();
+  const hasBoneAge = ms.some((m) => m.boneAge);
+  return (
+    <div className="mx-4 rounded-xl border border-gray-200 overflow-hidden">
+      <button type="button" onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between bg-gray-50 px-3 py-2 hover:bg-gray-100 transition-colors">
+        <p className="text-[10px] font-semibold text-gray-500">{t.tableTitle(ms.length)}</p>
+        <span className={`text-[10px] text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
+      </button>
+      {open && (
+        <div className="overflow-x-auto border-t border-gray-100">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">{t.tableNum}</th>
+                <th className="px-1.5 py-1.5 text-left text-gray-500 font-semibold">{t.tableDate}</th>
+                <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">{t.tableHeight}</th>
+                <th className="px-1.5 py-1.5 text-right text-gray-500 font-semibold">{t.tableWeight}</th>
+                {birthDate && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">{t.tableAge}</th>}
+                {hasBoneAge && <th className="px-1.5 py-1.5 text-center text-gray-500 font-semibold">{t.tableBoneAge}</th>}
+                <th className="px-1.5 py-1.5 text-right text-[#0F6E56] font-semibold">{t.tablePredicted}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ms.map((m, i) => {
+                const age = birthDate && m.date ? calcAge(birthDate, m.date) : null;
+                return (
+                  <tr key={i} className="border-t border-gray-100">
+                    <td className="px-1.5 py-1.5 text-gray-400">{i + 1}</td>
+                    <td className="px-1.5 py-1.5">{m.date ? formatDate(m.date) : '-'}</td>
+                    <td className="px-1.5 py-1.5 text-right font-bold">{m.height || '-'}</td>
+                    <td className="px-1.5 py-1.5 text-right text-gray-500">{m.weight || '-'}</td>
+                    {birthDate && <td className="px-1.5 py-1.5 text-center text-gray-500">{age !== null ? `${age}` : '-'}</td>}
+                    {hasBoneAge && <td className="px-1.5 py-1.5 text-center text-amber-600 font-semibold">{m.boneAge ? m.boneAge.toFixed(1) : '-'}</td>}
+                    <td className="px-1.5 py-1.5 text-right text-[#0F6E56] font-bold">{m.predictedHeight || '-'}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function extractYoutubeId(url: string): string {

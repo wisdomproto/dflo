@@ -312,6 +312,7 @@ realcases:
   heading_line1: "Real treatment cases ·"
   heading_accent: "proven by records"
   lead: "Actual growth records of children treated at 187. Pick the case that looks most like your child."
+  lead_mobile: "Pick the case that looks most like your child"
   cards:
     - case: 3
       emoji: "👦"
@@ -322,6 +323,7 @@ realcases:
       stat_from: "First predicted 162.9cm"
       stat_to: "185.8"
       unit: "cm"
+      stat_to_label: "Final predicted height"
       desc: "Bone age 4 yrs ahead — now standing 177.4cm"
     - case: 4
       emoji: "📏"
@@ -332,6 +334,7 @@ realcases:
       stat_from: "First predicted 171.2cm"
       stat_to: "182.2"
       unit: "cm"
+      stat_to_label: "Final predicted height"
       desc: "Genetic ~170cm — already taller than dad"
     - case: 6
       emoji: "👧"
@@ -342,6 +345,7 @@ realcases:
       stat_from: "First predicted 153.8cm"
       stat_to: "165.3"
       unit: "cm"
+      stat_to_label: "Final predicted height"
       desc: "Siblings who flew from the US for treatment in Korea"
     - case: 7
       emoji: "✈️"
@@ -352,6 +356,7 @@ realcases:
       stat_from: "First predicted 167cm"
       stat_to: "183.6"
       unit: "cm"
+      stat_to_label: "Final predicted height"
       desc: "Flew from Japan every vacation — now 175.6cm"
   line_text: "More treatment cases are available through a 1:1 consultation"
   back_label: "More cases"
