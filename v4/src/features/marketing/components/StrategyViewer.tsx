@@ -4,7 +4,7 @@ import strategyIndexRaw from '../data/strategy-index.json';
 import type { StrategyDoc } from '../types';
 
 const DOCS = (strategyIndexRaw as StrategyDoc[]).slice().sort((a, b) => a.order - b.order);
-const GROUPS: StrategyDoc['group'][] = ['국내', '글로벌', '국가별 작전', '채널분석', '광고 전략'];
+const GROUPS: StrategyDoc['group'][] = ['국내', '글로벌', '국가별 작전', '채널분석', '광고 전략', '치료사례'];
 
 export function StrategyViewer() {
   const [active, setActive] = useState<string>(DOCS[0]?.file ?? '');
