@@ -130,6 +130,7 @@ scripts/
 - 광고 전용 소재 라이브러리(다크 포스트): `054_marketing_ad_creatives.sql` — marketing_ad_creatives 테이블 (적용 완료)
 - 콘텐츠 정규/커스텀(ad-hoc 릴스) 구분: `055_marketing_articles_kind.sql` — marketing_articles.kind 'regular'|'custom' (적용 완료)
 - 원장 저서 RAG: `056_knowledge_documents.sql` — `knowledge_documents`(pgvector 768d) + `match_knowledge_documents` RPC. 원장 저서 청크를 처방추천 1차 권위 지식소스로(상세 memory `book_knowledge_rag.md`). (적용 완료)
+- 릴스 라이트 에디터: `057_reels_editor.sql` — 릴스 라이트 에디터: reel_script/reel_runtime + 잡 큐 + 워커 heartbeat + 스티커 (수동 적용 필요)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
