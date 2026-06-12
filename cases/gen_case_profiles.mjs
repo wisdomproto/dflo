@@ -3,7 +3,11 @@
 // 내원사유·문진 발췌·알러지 강반응·스토리 포인트 초안)를 전부 미리 렌더한다.
 // JS 는 필터/체크/복사 enhancement 만 — 스크립트 차단 환경에서도 내용 전부 보임.
 // 환자 이름은 전부 가명(차트번호 순 결정적 배정) — 식별은 차트번호로. 배포 가능 전제로 noindex.
-import { writeFileSync } from 'node:fs';
+//
+// 원장 화자 풀 스토리: cases/case_stories.json ({chart: {title, story}}) 이 있으면 카드에
+// "🩺 원장 스토리" 접힘 섹션으로 렌더. 스토리 생성용 입력은 cases/_story_inputs.json 으로
+// 덤프(가명 적용 후) — PATIENT_STORY_GUIDE.md 톤으로 Claude 가 작성한다.
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 
 const URL = 'https://txirmofdvuljkrjkpzdg.supabase.co';
 const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4aXJtb2ZkdnVsamtyamtwemRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNTE0MjMsImV4cCI6MjA5MTgyNzQyM30.yBEnRDrresPy-pexp8DLhRo-8MlXjxvEC3Wh3hIqqfQ';
@@ -85,6 +89,7 @@ for (const c of children) {
   const firstBA = baRows[0], lastBA = baRows[baRows.length - 1];
   const mph = c.father_height && c.mother_height ? +(((c.father_height + c.mother_height) / 2 + (isMale ? 6.5 : -6.5))).toFixed(1) : null;
   const bmi = firstH?.weight && firstH?.height ? +(firstH.weight / ((firstH.height / 100) ** 2)).toFixed(1) : null;
+  const bmiLast = lastH?.weight && lastH?.height ? +(lastH.weight / ((lastH.height / 100) ** 2)).toFixed(1) : null;
 
   // 알러지 강반응/경계
   const items = allergyBy.get(c.id) || [];
@@ -150,7 +155,7 @@ for (const c of children) {
   rows.push({
     id: c.id, chart: c.chart_number, name: c.name, gender: isMale ? '남' : '여',
     birth: (c.birth_date || '').slice(0, 4), ageAtFirst, months,
-    fa: c.father_height, mo: c.mother_height, mph, bmi, desired: c.desired_height,
+    fa: c.father_height, mo: c.mother_height, mph, bmi, bmiLast, desired: c.desired_height,
     grade: c.grade, rank: c.class_height_rank,
     nMs: mm.length, nBA: baRows.length,
     hFirst: firstH?.height, hLast: lastH?.height, hDelta,
@@ -194,6 +199,26 @@ const GIRL_POOL = ['서연', '지유', '하은', '서현', '하윤', '지아', '
     r.name = r.gender === '남' ? BOY_POOL[bi++ % BOY_POOL.length] : GIRL_POOL[gi++ % GIRL_POOL.length];
   }
 }
+
+// ── 원장 스토리 입력 덤프 + 작성본 로드 ──
+// 입력 덤프는 가명 적용 후의 데이터만 담는다 (스토리 작성 에이전트가 실명을 볼 일 없게).
+writeFileSync('C:/project/dflo/cases/_story_inputs.json', JSON.stringify(list.map((r) => ({
+  chart: String(r.chart), name: r.name, gender: r.gender, birth: r.birth,
+  ageAtFirst: r.ageAtFirst, months: r.months, status: r.status,
+  firstDate: r.mm[0]?.date, lastDate: r.mm[r.mm.length - 1]?.date,
+  hFirst: r.hFirst, hLast: r.hLast, hDelta: r.hDelta,
+  pahFirst: r.pahFirst, pahLast: r.pahLast, pahDelta: r.pahDelta,
+  baFirst: r.baRows[0] ? { date: r.baRows[0].measured_date, age: r.baRows[0].age, boneAge: r.baRows[0].bone_age, gap: r.baRows[0].gap } : null,
+  baLast: r.baRows.length > 1 ? { date: r.baRows[r.baRows.length - 1].measured_date, age: r.baRows[r.baRows.length - 1].age, boneAge: r.baRows[r.baRows.length - 1].bone_age, gap: r.baRows[r.baRows.length - 1].gap } : null,
+  mph: r.mph, fa: r.fa, mo: r.mo, bmiFirst: r.bmi, bmiLast: r.bmiLast,
+  desired: r.desired, grade: r.grade, heightRank: r.rank,
+  tags: r.tags, chief: r.chief, allergyDanger: r.danger, allergyCaution: r.caution.slice(0, 6),
+  intake: r.intake,
+})), null, 1), 'utf8');
+
+const STORIES = existsSync('C:/project/dflo/cases/case_stories.json')
+  ? JSON.parse(readFileSync('C:/project/dflo/cases/case_stories.json', 'utf8'))
+  : {};
 
 const girls = list.filter((r) => r.gender === '여').length;
 const fmtDur = (m) => (m < 12 ? `${m}개월` : `${Math.floor(m / 12)}년${m % 12 ? ` ${m % 12}개월` : ''}`);
@@ -303,6 +328,10 @@ function card(r, i) {
       ${r.notes.length ? `<h4>📝 진료 메모 발췌</h4><ul class="pts dim">${r.notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}
     </div>
   </div>
+  ${STORIES[String(r.chart)] ? `<details class="story">
+    <summary>🩺 원장 스토리 — 「${esc(STORIES[String(r.chart)].title)}」 <span class="story-hint">펼쳐 읽기</span></summary>
+    <div class="story-body">${STORIES[String(r.chart)].story.split(/\n{2,}/).map((p) => `<p>${esc(p.trim())}</p>`).join('')}</div>
+  </details>` : ''}
 </article>`;
 }
 
@@ -380,6 +409,11 @@ const html = `<!DOCTYPE html>
   .chipA { display:inline-block; font-size:11px; border-radius:6px; padding:1.5px 7px; margin:1.5px 2px; }
   .chipA.d { background:#ffe8e8; color:#c92a2a; border:1px solid #ffc9c9; }
   .chipA.c { background:#fff4e0; color:#c47b08; border:1px solid #ffe1a8; }
+  .story { margin-top:14px; background:#fdfbf6; border:1px solid #efe7d4; border-radius:12px; padding:10px 14px; }
+  .story summary { font-size:13px; font-weight:800; color:#8a6d1d; cursor:pointer; }
+  .story-hint { font-size:11px; font-weight:600; color:#c2ab6e; margin-left:4px; }
+  .story-body { margin-top:8px; }
+  .story-body p { font-size:13.5px; color:#4a4438; line-height:1.85; margin:0 0 10px; }
   .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#3a2a68; color:#fff;
            border-radius:999px; padding:10px 22px; font-size:13px; font-weight:700; opacity:0;
            transition:opacity .25s; pointer-events:none; max-width:90vw; }
