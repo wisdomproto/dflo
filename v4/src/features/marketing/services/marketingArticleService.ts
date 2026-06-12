@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, ArticleKind, ArticleTranslation, BlogSeoMap, ReelsMap, ReelAssets, BlogReference } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleKind, ArticleTranslation, BlogSeoMap, ReelsMap, ReelAssets, BlogReference, ReelScriptDoc, ReelRuntimeDoc } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -28,6 +28,8 @@ function rowToArticle(r: Row): MarketingArticle {
     reels: (r.reels as ReelsMap) ?? {},
     reelAssets: (r.reel_assets as ReelAssets) ?? {},
     blogReferences: (r.blog_references as BlogReference[]) ?? [],
+    reelScript: (r.reel_script as ReelScriptDoc) ?? null,
+    reelRuntime: (r.reel_runtime as ReelRuntimeDoc) ?? null,
   };
 }
 
@@ -51,6 +53,7 @@ function articleToRow(a: Partial<MarketingArticle>): Row {
     ...(a.blog !== undefined ? { blog: a.blog } : {}),
     ...(a.reels !== undefined ? { reels: a.reels } : {}),
     // reel_assets(migration 050)는 전용 saveReelAssets 로만 기록 — 일반 저장이 미적용 컬럼을 건드려 깨지는 것 방지.
+    // reel_script(migration 057)는 전용 saveReelScript 로만 기록(웹 전용 컬럼). reel_runtime(워커 전용)은 절대 건드리지 않는다.
     ...(a.blogReferences !== undefined ? { blog_references: a.blogReferences } : {}),
   };
 }
@@ -209,6 +212,15 @@ export async function saveReels(id: string, reels: ReelsMap): Promise<void> {
     .update({ reels, updated_at: new Date().toISOString() })
     .eq('id', id);
   if (error) throw new Error(error.message);
+}
+
+/** reel_script만 부분 업데이트 — 웹 전용 기록 컬럼. reel_runtime(워커 전용)은 절대 건드리지 않는다. */
+export async function saveReelScript(id: string, reelScript: ReelScriptDoc): Promise<void> {
+  const { error } = await supabase
+    .from('marketing_articles')
+    .update({ reel_script: reelScript, updated_at: new Date().toISOString() })
+    .eq('id', id);
+  if (error) throw new Error(`릴 스크립트 저장 실패: ${error.message}`);
 }
 
 /** Partial update of just the reel_assets JSONB (migration 050, 인포그래픽 언어공용 이미지). */

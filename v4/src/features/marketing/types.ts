@@ -88,6 +88,8 @@ export interface MarketingArticle {
   reels: ReelsMap; // reels (migration 046): per-language video + caption + hashtags
   reelAssets: ReelAssets; // 릴스 인포그래픽 이미지 (migration 050): 언어공용 (텍스트 없음, 렌더가 언어별 오버레이)
   blogReferences: BlogReference[]; // 블로그 근거 논문 (migration 049), 아티클 단위·언어 독립
+  reelScript: ReelScriptDoc | null;   // 릴 에디터 script (migration 057) — 웹 전용 기록
+  reelRuntime: ReelRuntimeDoc | null; // timing/preview/tts_text — 워커 전용 기록(웹은 읽기만)
 }
 
 // ── SEO blog (migration 045) ────────────────────────────────────────────────
@@ -147,6 +149,58 @@ export type ReelsMap = Partial<Record<string, ReelsLangData>>;
 // 텍스트는 렌더(PresenterShort)가 insertLabels 로 언어별 오버레이 → 이미지는 언어 무관.
 export interface ReelAssets {
   infographics?: Record<string, string>; // { ig1: '<r2-url>', ... }
+}
+
+// ── 릴스 라이트 에디터 (migration 057) ───────────────────────────────────────
+export type ReelLang = 'ko' | 'th' | 'vi' | 'en' | 'cn' | 'ch';
+
+export type ReelStickerAnim = 'none' | 'pop' | 'float' | 'pulse' | 'shake';
+export interface ReelStickerItem {
+  id: string;
+  src: string;                 // R2 절대 URL
+  kind: 'image' | 'gif';
+  x: number; y: number; w: number; rot: number;  // 1080×1920 전체 캔버스 분수(중심 기준), w=가로폭 분수
+  fromFrac: number;            // 청크 길이 대비 시작 비율 0~1
+  durFrac: number | null;      // null = 청크 끝까지
+  anim: ReelStickerAnim;
+  loop?: boolean;
+}
+export type ReelInsertLabel = {
+  x: number; y: number;        // 인서트 패널 존 내 분수 (캔버스 분수와 다른 좌표계!)
+  size?: number; weight?: number; color?: string; pill?: string;
+} & Partial<Record<ReelLang, string>>;
+// 청크: 언어 필드(ko, cap_ko, hl_ko, …)가 동적 키라 Record 합성. start/end 등 기존 필드 라운드트립 보존.
+export type ReelChunk = {
+  id: string;
+  insert?: string;             // R2 절대 URL (시드 시 치환)
+  insertLabels?: ReelInsertLabel[];
+  stickers?: ReelStickerItem[];
+} & Record<string, unknown>;
+export interface ReelScriptDoc {
+  slug: string;
+  script: {
+    header: Record<string, { top: string; mark: string }>;
+    headerStyle?: { markBg?: string; markFg?: string };
+    cta?: Record<string, string>;
+    chunks: ReelChunk[];
+  } & Record<string, unknown>; // title/_note/fps 등 미편집 필드 보존
+}
+export interface ReelTimingEntry { id: string; durFrames: number; origStartF: number; rate: number; natSec?: number }
+export interface ReelRuntimeDoc {
+  timing?: Partial<Record<ReelLang, ReelTimingEntry[]>>;
+  preview?: Partial<Record<ReelLang, { lipsyncUrl: string; audio: Record<string, string> }>>;
+  tts_text?: Partial<Record<ReelLang, Record<string, string>>>;
+}
+export type ReelJobStatus = 'queued' | 'claimed' | 'tts' | 'lipsync' | 'upload_preview' | 'render' | 'upload' | 'done' | 'failed';
+export interface ReelJob {
+  id: string; articleId: string; slug: string; lang: ReelLang;
+  kind: 'render' | 'full'; status: ReelJobStatus;
+  progressNote: string | null; error: string | null;
+  requestedAt: string; startedAt: string | null; finishedAt: string | null; updatedAt: string;
+}
+export interface ReelStickerAsset {
+  id: string; name: string; category: 'sticker' | 'emoji';
+  url: string; kind: 'image' | 'gif'; createdAt: string;
 }
 
 export interface KeywordHit {
