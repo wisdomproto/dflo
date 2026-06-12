@@ -34,6 +34,9 @@ const ms = await rest('hospital_measurements?select=child_id,measured_date,heigh
 const labs = await rest('lab_tests?select=child_id,test_type,result_data');
 const xrays = await rest('xray_readings?select=child_id,image_path');
 const visits = await rest('visits?select=child_id,visit_date,chief_complaint,notes,is_intake');
+const meds = await rest('medications?select=id,name');
+const medLegend = await rest('medication_legend?select=medication_id,drug_class').catch(() => []);
+const rxAll = await rest('prescriptions?select=child_id,medication_id');
 
 // ── 공개 케이스 가상 children 제외 ──
 const byParent = new Map();
@@ -51,8 +54,53 @@ const xrayBy = new Map();
 for (const x of xrays) if (x.image_path) xrayBy.set(x.child_id, (xrayBy.get(x.child_id) || 0) + 1);
 const allergyBy = new Map();
 for (const l of labs) if (l.test_type === 'allergy' && l.result_data?.items) allergyBy.set(l.child_id, l.result_data.items);
+
+// 혈액검사 특이 신호 — 검사기관의 공식 H/L 플래그만 사용 (자체 기준 판정 금지).
+// 성호르몬은 '높음'만 신호로 (소아 Testosterone [L]은 정상이라 제외).
+const bloodSignalsBy = new Map();
+for (const l of labs) {
+  if (l.test_type !== 'blood' || !l.result_data?.items) continue;
+  const set = bloodSignalsBy.get(l.child_id) || new Set();
+  for (const it of l.result_data.items) {
+    if (!it.flag) continue;
+    const name = (it.name || '').trim();
+    if (it.panel === 'Thyroid' || /^(TSH|T3|T4|Free T[34])$/i.test(name)) set.add('갑상선 호르몬 수치 이상');
+    else if (it.flag === 'H' && /Estradiol|Free Testosterone|^LH$/i.test(name)) set.add('성호르몬 수치 높음(사춘기 진행 신호)');
+    else if (it.flag === 'H' && /^HbA1c|Triglyceride|Cholesterol,Total/i.test(name)) set.add('혈당·지질 수치 높음');
+    else if (it.flag === 'L' && /^(Hb|Ferritin)$/i.test(name)) set.add('빈혈·철분 부족 신호');
+  }
+  if (set.size) bloodSignalsBy.set(l.child_id, set);
+}
 const visitsBy = new Map();
 for (const v of visits) visitsBy.set(v.child_id, [...(visitsBy.get(v.child_id) || []), v]);
+
+// 처방 → 치료 테마 신호. GH·아로마타제·수면제는 전 환자 프로토콜이라 "보유 여부"는 신호가
+// 아니고, 구분력 있는 것만: 루프린(GnRH, legend 미등록 코드가 있어 이름으로 매칭) ·
+// 수면 처방 "비중"(>20% = 수면 문제가 큰 축) · 식욕 촉진(트레스탄) · 위장/장 케어.
+const medNameById = new Map(meds.map((m) => [m.id, m.name || '']));
+const sleepMedIds = new Set(medLegend.filter((l) => l.drug_class === 'sleep_aid').map((l) => l.medication_id));
+const rxSignalsBy = new Map();
+{
+  const acc = new Map();
+  for (const p of rxAll) {
+    const e = acc.get(p.child_id) || { total: 0, sleep: 0, gnrh: 0, appetite: 0, gut: 0 };
+    e.total++;
+    const name = medNameById.get(p.medication_id) || '';
+    if (sleepMedIds.has(p.medication_id)) e.sleep++;
+    if (/루프린|류프로렐린/.test(name)) e.gnrh++;
+    if (/트레스탄/.test(name)) e.appetite++;
+    if (/스티올렌|노르믹스|프로바이오/.test(name)) e.gut++;
+    acc.set(p.child_id, e);
+  }
+  for (const [cid, e] of acc) {
+    const sig = [];
+    if (e.gnrh > 0) sig.push('사춘기 억제 주사(GnRH) 치료 병행 — 성조숙 적극 치료');
+    if (e.total >= 20 && e.sleep / e.total > 0.2) sig.push('수면 보조 처방 비중이 유난히 높음 — 수면 문제가 치료의 큰 축');
+    if (e.appetite > 0) sig.push('식욕 촉진 처방 — 입이 짧아 먹는 일부터 과제였던 아이');
+    if (e.gut >= 10) sig.push('위장·장 케어 처방이 꾸준함 — 소화·흡수 관리 병행');
+    if (sig.length) rxSignalsBy.set(cid, sig);
+  }
+}
 
 const yearsBetween = (a, b) => (new Date(b) - new Date(a)) / (365.25 * 86400e3);
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -97,13 +145,28 @@ for (const c of children) {
   const caution = items.filter((i) => { const cl = parseInt(i.class, 10); return cl >= 3 && cl <= 4; }).map((i) => i.name.split('(')[0]);
 
   // 내원 사유(초진 visit 우선) — OCR/임포트 아티팩트·무의미 라벨 제외.
-  // visits.notes 는 OCR 손글씨 산출물이라 노이즈가 심해 카드에 싣지 않는다.
+  // visits.notes 는 OCR 손글씨 산출물이라 노이즈가 심함 — 카드에는 안 싣고,
+  // 스토리 재료로만 "수면·식습관·꿈(운동선수/연습생)·가족" 키워드 매칭 줄만 발췌한다.
   const ARTIFACT = /OCR|임포트|import|auto-created|C\.C\.|^초진/i;
   const vv = (visitsBy.get(c.id) || []).slice().sort((a, b) => (a.visit_date < b.visit_date ? -1 : 1));
   const chiefCands = [vv.find((v) => v.is_intake)?.chief_complaint, ...vv.map((v) => v.chief_complaint)]
     .map((s) => (s || '').trim()).filter((s) => s && !ARTIFACT.test(s));
   const chief = chiefCands[0] || '';
   const notes = [];
+  const STORY_KW = /운동선수|연습생|배우|모델|아이돌|축구|야구|농구|골프|발레|수영|태권도|쌍둥이|남매|형제|수면|늦게 잔|새벽|핸드폰|게임|라면|편식|야식|식욕|입이 짧/;
+  const noteSnippets = [];
+  const seenSnip = new Set();
+  for (const v of vv) {
+    for (const t of [v.chief_complaint, v.notes]) {
+      const s = (t || '').replace(/\r?\n/g, ' · ').trim();
+      if (!s || s.length > 90 || ARTIFACT.test(s) || !STORY_KW.test(s)) continue;
+      if (seenSnip.has(s)) continue;
+      seenSnip.add(s);
+      noteSnippets.push(s);
+      if (noteSnippets.length >= 4) break;
+    }
+    if (noteSnippets.length >= 4) break;
+  }
 
   // 문진 발췌 (contact/raw_files 등 PII 제외)
   const sv = c.intake_survey || {};
@@ -148,6 +211,11 @@ for (const c of children) {
   const yearsTotal = months / 12;
   if (yearsTotal >= 1) points.push(`연평균 성장 ${(hDelta / yearsTotal).toFixed(1)}cm/년 (총 +${hDelta}cm)`);
   if (danger.length) points.push(`알러지 강반응: ${danger.slice(0, 4).join('·')} — "매일 먹이던 음식이 문제였다" 식단 교정 서사 가능`);
+  const bloodSignals = [...(bloodSignalsBy.get(c.id) || [])];
+  if (bloodSignals.length) points.push(`혈액검사 신호: ${bloodSignals.join(', ')}`);
+  const rxSignals = rxSignalsBy.get(c.id) || [];
+  if (rxSignals.length) points.push(`처방 신호: ${rxSignals.map((s) => s.split(' — ')[0]).join(', ')}`);
+  if (noteSnippets.length) points.push(`진료 메모 단서: ${noteSnippets.slice(0, 2).join(' / ')}`);
   if (xrayBy.get(c.id)) points.push(`X-ray ${xrayBy.get(c.id)}장 보유 — 성장판 전후 비교 슬롯 가능`);
   if (intake.athlete || /운동선수|연습생|배우|모델/.test(chief)) points.push(`꿈/직업 서사: ${chief || '운동선수'}`);
   if (c.desired_height) points.push(`희망 키 ${c.desired_height} — 목표 대비 진행 표현 가능`);
@@ -160,7 +228,7 @@ for (const c of children) {
     nMs: mm.length, nBA: baRows.length,
     hFirst: firstH?.height, hLast: lastH?.height, hDelta,
     pahFirst: first.pah, pahLast: last.pah, pahDelta,
-    xray: xrayBy.get(c.id) || 0, danger, caution,
+    xray: xrayBy.get(c.id) || 0, danger, caution, bloodSignals, rxSignals, noteSnippets,
     chief, notes, intake, status: c.treatment_status, tags, score, headline, points,
     mm: mm.map((m) => ({
       date: m.measured_date, h: m.height, w: m.weight, ba: m.bone_age, pah: (m.pah > 0 && m.pah < 230) ? m.pah : null,
@@ -213,6 +281,7 @@ writeFileSync('C:/project/dflo/cases/_story_inputs.json', JSON.stringify(list.ma
   mph: r.mph, fa: r.fa, mo: r.mo, bmiFirst: r.bmi, bmiLast: r.bmiLast,
   desired: r.desired, grade: r.grade, heightRank: r.rank,
   tags: r.tags, chief: r.chief, allergyDanger: r.danger, allergyCaution: r.caution.slice(0, 6),
+  bloodSignals: r.bloodSignals, rxSignals: r.rxSignals, noteSnippets: r.noteSnippets,
   intake: r.intake,
 })), null, 1), 'utf8');
 
