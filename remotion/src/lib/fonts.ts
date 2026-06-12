@@ -1,4 +1,4 @@
-import { continueRender, delayRender, staticFile } from "remotion";
+import { continueRender, delayRender, getRemotionEnvironment } from "remotion";
 
 const NOTO_SANS_KR_URL =
   "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap";
@@ -17,7 +17,9 @@ export function ensureFonts() {
   if (loaded) return;
   loaded = true;
 
-  const handle = delayRender("Loading fonts");
+  // Player(v4)에선 delayRender 생략 — Google Fonts 지연 시 Player 에러 오버레이 방지.
+  const isPlayer = getRemotionEnvironment().isPlayer;
+  const handle = isPlayer ? null : delayRender("Loading fonts");
 
   const link1 = document.createElement("link");
   link1.rel = "stylesheet";
@@ -50,7 +52,7 @@ export function ensureFonts() {
     document.fonts.load("700 16px 'Noto Sans Thai'"),
     document.fonts.load("700 16px 'Inter'"),
   ]).then(() => {
-    continueRender(handle);
+    if (handle !== null) continueRender(handle);
   });
 }
 

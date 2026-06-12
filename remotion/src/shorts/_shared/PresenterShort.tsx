@@ -3,12 +3,12 @@
 // 비정면/B-roll 컷은 인서트존(c3·c4·c6·c7)에 숨겨 가린다. 우리 포맷 표준(2026-06-09 사용자 확정).
 import {
   AbsoluteFill, Audio, Img, OffthreadVideo, Sequence,
-  staticFile, spring, useCurrentFrame, useVideoConfig, interpolate,
+  spring, useCurrentFrame, useVideoConfig, interpolate,
 } from "remotion";
+import { asset } from "../../lib/assets";
 import { ensureFonts, NOTO_SANS_KR } from "../../lib/fonts";
 import { ShortLogo } from "./ShortLogo";
 
-ensureFonts();
 const YELLOW = "#FCE61A";
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const stroke = "2px 2px 7px rgba(0,0,0,0.92), 0 0 16px rgba(0,0,0,0.7)";
@@ -68,7 +68,7 @@ const InsertPanel: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
   return (
     <div style={{ position: "absolute", left: 0, top: PANEL_TOP, width: 1080, height: PANEL_H, opacity: op, borderRadius: PANEL_R, overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,#fdeef4,#ffffff 55%,#f3effa)" }} />
-      <Img src={staticFile(src)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: `scale(${interpolate(pop, [0, 1], [0.92, 1])})` }} />
+      <Img src={asset(src)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: `scale(${interpolate(pop, [0, 1], [0.92, 1])})` }} />
       {labels.map((L, k) => {
         const txt: string = L[lang] ?? L.ko ?? "";
         if (!txt) return null;
@@ -102,7 +102,7 @@ const IntroCard: React.FC<{ head: { top: string; mark: string }; logoSrc: string
     <AbsoluteFill style={{ opacity: out, transform: `translateY(${up}px)` }}>
       <AbsoluteFill style={{ background: PURPLE_BG }} />
       <div style={{ position: "absolute", top: 150, left: 0, right: 0, display: "flex", justifyContent: "center", opacity: interpolate(frame, [2, 16], [0, 1], clamp) }}>
-        <Img src={staticFile(logoSrc)} style={{ width: 300, height: "auto", filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.25))" }} />
+        <Img src={asset(logoSrc)} style={{ width: 300, height: "auto", filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.25))" }} />
       </div>
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", fontFamily: NOTO_SANS_KR, padding: "0 72px" }}>
         <div style={{ fontSize: 60, fontWeight: 800, color: "rgba(255,255,255,0.92)", marginBottom: 26, opacity: interpolate(frame, [6, 18], [0, 1], clamp) }}>{head.top}</div>
@@ -124,7 +124,7 @@ const CTACard: React.FC<{ ctaLine?: string; logoSrc: string; url: string }> = ({
       <AbsoluteFill style={{ background: PURPLE_BG }} />
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", fontFamily: NOTO_SANS_KR, padding: "0 80px" }}>
         {ctaLine ? <div style={{ fontSize: 54, fontWeight: 800, color: "rgba(255,255,255,0.95)", marginBottom: 44, opacity: interpolate(frame, [8, 20], [0, 1], clamp) }}>{ctaLine}</div> : null}
-        <Img src={staticFile(logoSrc)} style={{ width: 640, height: "auto", transform: `scale(${interpolate(pop, [0, 1], [0.7, 1], clamp)})`, filter: "drop-shadow(0 12px 34px rgba(0,0,0,0.32))" }} />
+        <Img src={asset(logoSrc)} style={{ width: 640, height: "auto", transform: `scale(${interpolate(pop, [0, 1], [0.7, 1], clamp)})`, filter: "drop-shadow(0 12px 34px rgba(0,0,0,0.32))" }} />
         <div style={{ marginTop: 58, fontSize: 44, fontWeight: 800, color: "#fff", background: "rgba(255,255,255,0.16)", border: "2px solid rgba(255,255,255,0.55)", padding: "14px 42px", borderRadius: 999, opacity: interpolate(frame, [14, 26], [0, 1], clamp) }}>🌐 {url}</div>
       </div>
     </AbsoluteFill>
@@ -135,8 +135,11 @@ export const presenterDuration = (timing: Timing[]) => timing.reduce((n, t) => n
 
 export const PresenterShort: React.FC<{
   script: Script; timing: Timing[]; lang: string; slug: string; videoSrc: string;
-}> = ({ script, timing, lang, slug, videoSrc }) => {
+  assets?: { videoSrc: string; audio: Record<string, string> };
+}> = ({ script, timing, lang, slug, videoSrc, assets }) => {
+  ensureFonts(); // top-level 호출은 v4 import 시점 실행이라 환경 판정이 불안정 — 본문에서(idempotent)
   const frame = useCurrentFrame();
+  const vsrc = assets?.videoSrc ?? videoSrc;
   const chunks = timing.map((t) => ({ ...t, ...(script.chunks.find((c) => c.id === t.id) || {}) }));
   const FROM: number[] = [];
   chunks.forEach((c, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
@@ -158,7 +161,13 @@ export const PresenterShort: React.FC<{
     <AbsoluteFill style={{ background: "linear-gradient(180deg,#17181d,#0b0c0f)" }}>
       {/* ── 원장 라운드 카드 (립싱크 정면 베이스, 선형 재생) ── */}
       <div style={{ position: "absolute", left: 0, top: PANEL_TOP, width: 1080, height: PANEL_H, borderRadius: PANEL_R, overflow: "hidden", background: "#000" }}>
-        <OffthreadVideo src={staticFile(videoSrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        {vsrc ? (
+          <OffthreadVideo src={asset(vsrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        ) : (
+          <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#666", fontFamily: NOTO_SANS_KR, fontSize: 38, background: "#15161a" }}>
+            영상 미생성 — 렌더 요청 시 자동 생성
+          </AbsoluteFill>
+        )}
       </div>
 
       {/* ── 인포그래픽 인서트 (패널 교체) ── */}
@@ -197,13 +206,16 @@ export const PresenterShort: React.FC<{
         <CTACard ctaLine={script.cta?.[lang]} logoSrc={ctaLogo} url={SITE[lang] || SITE.en} />
       </Sequence>
 
-      {/* ── 오디오 ── */}
-      <Audio src={staticFile("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, 0.06, 0.06, 0], clamp)} />
-      {chunks.map((c, i) => (
-        <Sequence key={"a" + c.id} from={FROM[i]}>
-          <Audio src={staticFile(`audio/shorts/${slug}/${lang}/${c.id}.wav`)} />
-        </Sequence>
-      ))}
+      {/* ── 오디오 — 청크 오디오는 assets 있으면 명시 URL(없는 id는 스킵 — 404 <Audio> 방지) ── */}
+      <Audio src={asset("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, 0.06, 0.06, 0], clamp)} />
+      {chunks.map((c, i) => {
+        const aSrc = assets ? assets.audio[c.id] : asset(`audio/shorts/${slug}/${lang}/${c.id}.wav`);
+        return aSrc ? (
+          <Sequence key={"a" + c.id} from={FROM[i]}>
+            <Audio src={aSrc} />
+          </Sequence>
+        ) : null;
+      })}
     </AbsoluteFill>
   );
 };
