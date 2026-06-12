@@ -21,8 +21,9 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@reel/*": ["../remotion/src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "../remotion/src/lib", "../remotion/src/shorts/_shared"]
 }

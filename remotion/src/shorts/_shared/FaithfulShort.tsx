@@ -110,7 +110,7 @@ export const FaithfulShort: React.FC<{
   const { fps } = useVideoConfig();
   const chunks = timing.map((t) => ({ ...t, ...(script.chunks.find((c) => c.id === t.id) || {}) }));
   const FROM: number[] = [];
-  chunks.forEach((c, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
+  chunks.forEach((_, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
   const total = chunks.reduce((n, c) => n + c.durFrames, 0);
   const head = script.header[lang] || { top: "", mark: "" };
   const hs = script.headerStyle || {};
