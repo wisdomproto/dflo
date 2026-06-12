@@ -1460,6 +1460,7 @@ git commit -m "docs: reel lite editor - architecture notes + migration 057"
 
 ## 실행 메모
 
+- **⚠️ v4 타입 게이트(Chunk 1 실행 중 발견)**: v4 루트 `npx tsc --noEmit` 는 solution tsconfig(files:[]+references) 라 **0개 파일 검사하는 no-op**. 본 플랜의 모든 "cd v4 && npx tsc --noEmit" 는 **`npx tsc -b --noEmit`** 로 읽을 것(빌드 체인과 동일한 진짜 게이트).
 - **순서 의존**: Task 2(asset 리팩터)가 Task 8(시드 — insert URL 화)보다 반드시 먼저. Chunk 간 순차, Chunk 내 태스크도 번호 순.
 - **사용자 개입 지점**: ① migration 057 적용(Task 8 전) ② R2 CORS(Task 20) ③ 시드/워커/E2E 실행 시 로컬 ai-server 기동.
 - **fallback 트리거**(스펙): Task 4에서 dedupe·optimizeDeps·alias 적용 후에도 Player 런타임 깨질 때만 사본 포팅 전환 — 사소한 tsc 에러는 공유 소스 수정으로 해소.
