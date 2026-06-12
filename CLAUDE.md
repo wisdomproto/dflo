@@ -93,6 +93,14 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 - 프로그램 이미지: `_common`(한국어 기본본 + index 아이콘 세트 `need-1~6`·`pstep-1~7`) + **th 번역 오버라이드 6개**(`director`,`golden-time`,`fat-cell`,`arrow-illust`,`ratio`,`comparison`). vi/en 은 미번역 → `_common` fallback. 추후 번역 시 `{lang}/{slug}/`에 파일만 추가
 - 남은 작업: vi/en 프로그램 이미지 + Railway 프로덕션 배포 검증
 
+### SEO 하드닝 (2026-06-12, 라이브 감사 후)
+실사이트 구글 SEO 감사(점수 ~50/100, 골격은 모범·운영 구멍 발견) 후 코드 측 보강 완료:
+- **`/` 루트 301** → `/ko/`(쿼리 보존) + **apex→www 301** — Railway 가 `vite preview` 로 서빙하므로 `vite.config.ts` `seoRedirects` preview 미들웨어로 처리. 루트가 title "v4" 빈 SPA 셸로 노출되던 문제 제거(SPA 셸 `index.html` 도 브랜드 메타로 교체)
+- **sitemap 블로그 가드**(`lib/sitemap.mjs`): `blogSlugs[lang]` 빈 배열(truthy) 버그 — 포스트 0개 언어는 블로그 URL·hreflang 미등재(이전엔 빈 SPA 셸 4 URL 이 sitemap 에 등재돼 있었음)
+- **이미지 lazy 후처리**(`lib/img-attrs.mjs` 신규, build-i18n 연결): 첫 2장(로고+히어로)=eager+`fetchpriority=high`, 나머지 `loading="lazy"`, `<script>` 블록 보호
+- **OG 4종 실물 제작**(`public/og/`, 207B placeholder → 1200×630 ~60KB. PIL raqm 부재로 **Windows GDI+ 렌더** — 태국어 성조부호 정확) · **logo_en.png 881KB→11.6KB**(800w+256색 quantize) · **favicon.ico 신규**(보라 #703080 + "187")
+- ⚠️ **남은 사용자 액션**: ① apex `dr187growup.com` TLS 깨짐(DNS 가 옛 Railway 타겟 `xr5zd4jj` — www 는 `zhvo50p2` 정상. apex 재연결 필요, `http→https(apex)` 301 이라 bare 도메인 유입 전부 인증서 경고) ② GSC 등록+sitemap 제출(현재 구글 사실상 미색인 — 브랜드 검색은 SNS+`yssaebomq.com`(Wix 구사이트)이 점유, 도메인 이원화 전략 결정 필요) ③ Railway 에 `CONTENTFLOW_API_URL/PROJECT_ID`(블로그 빌드) ④ 콘텐츠: cases 512자/calculator 18자(iframe 라 구글엔 빈 페이지) 텍스트 보강 + **블로그 248편 발행이 최대 성장 레버**
+
 ### 위성 콘텐츠 배포 정책
 메인 블로그는 우리 도메인(`/blog/{lang}/`). 위성(네이버 블로그·FB·Pantip)은 발췌+`canonical` 메인 가리키기 (중복 콘텐츠 페널티 회피).
 

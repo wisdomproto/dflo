@@ -10,6 +10,7 @@ import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
 import { loadPublishedBlogAll } from './lib/blog-supabase.mjs';
 import { localizeProgramImages } from './lib/program-img.mjs';
+import { lazifyImages } from './lib/img-attrs.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -41,14 +42,14 @@ async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate,
     posts, template: indexTemplate, locale,
     seoHead: buildBlogIndexHead(lang),
   });
-  writeFile(join(ROOT, 'public', lang, 'blog/index.html'), indexHtml);
+  writeFile(join(ROOT, 'public', lang, 'blog/index.html'), lazifyImages(indexHtml));
 
   for (const post of posts) {
     const html = renderPost({
       post, template: postTemplate, locale, messenger,
       seoHead: buildBlogPostHead({ post, lang }),
     });
-    writeFile(join(ROOT, 'public', lang, 'blog', post.slug, 'index.html'), html);
+    writeFile(join(ROOT, 'public', lang, 'blog', post.slug, 'index.html'), lazifyImages(html));
   }
   return posts.length;
 }
@@ -112,9 +113,9 @@ async function main() {
       return out;
     };
 
-    // Home
+    // Home — 이미지 지연 로딩 후처리까지 거쳐 최종 산출 (첫 이미지=로고만 eager)
     locale.seo_head = buildHead(lang, { path: '/' });
-    writeFile(join(ROOT, 'public', lang, 'index.html'), localizeProgramImg(render(homeTemplate, locale)));
+    writeFile(join(ROOT, 'public', lang, 'index.html'), lazifyImages(localizeProgramImg(render(homeTemplate, locale))));
 
     // Subpages — re-bind seo_head per page so canonical/hreflang/title are correct
     for (const sub of SUBPAGES) {
@@ -122,7 +123,7 @@ async function main() {
       let title = locale;
       for (const p of titleParts) title = title?.[p];
       locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, skipJsonLd: true });
-      writeFile(join(ROOT, 'public', lang, sub.file), localizeProgramImg(render(sub.template, locale)));
+      writeFile(join(ROOT, 'public', lang, sub.file), lazifyImages(localizeProgramImg(render(sub.template, locale))));
     }
 
     const cached = loadCachedPosts(CACHE_DIR, lang);

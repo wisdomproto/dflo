@@ -30,11 +30,13 @@ export function buildSitemap({ activeLangs, blogSlugs = {} }) {
     }
   }
 
-  const blogListPaths = Object.fromEntries(activeLangs.map((l) => [l, '/blog/']));
-  for (const lang of activeLangs) {
-    if (blogSlugs[lang]) {
-      entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/blog/`, blogListPaths));
-    }
+  // Blog index only when that lang actually has built posts — an empty array means the
+  // static blog was skipped (no ContentFlow env / nothing published), so /{lang}/blog/
+  // falls through to the SPA shell and listing it would point Google at a soft-404.
+  const blogLangs = activeLangs.filter((l) => blogSlugs[l]?.length);
+  const blogListPaths = Object.fromEntries(blogLangs.map((l) => [l, '/blog/']));
+  for (const lang of blogLangs) {
+    entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/blog/`, blogListPaths));
   }
 
   for (const [lang, slugs] of Object.entries(blogSlugs)) {

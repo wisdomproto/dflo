@@ -42,3 +42,24 @@ test('sitemap adds per-post entries when blogSlugs provided', () => {
   assert.ok(xml.includes('/ko/blog/hello-world/'));
   assert.ok(xml.includes('/ko/blog/second-post/'));
 });
+
+test('sitemap omits blog index when a lang has zero built posts', () => {
+  // Production builds without ContentFlow env produce blogSlugs full of empty arrays —
+  // those URLs serve the SPA shell, so they must never be advertised to crawlers.
+  const xml = buildSitemap({
+    activeLangs: ['ko', 'th', 'vi', 'en'],
+    blogSlugs: { ko: [], th: [], vi: [], en: [] },
+  });
+  assert.ok(!xml.includes('/blog/'), 'no blog URLs expected when all langs are empty');
+  assert.equal((xml.match(/<loc>/g) || []).length, 16);
+});
+
+test('blog index hreflang alternates only reference langs that have posts', () => {
+  const xml = buildSitemap({
+    activeLangs: ['ko', 'th'],
+    blogSlugs: { ko: ['hello-world'], th: [] },
+  });
+  assert.ok(xml.includes('<loc>https://www.dr187growup.com/ko/blog/</loc>'));
+  assert.ok(!xml.includes('<loc>https://www.dr187growup.com/th/blog/</loc>'));
+  assert.ok(!xml.includes('hreflang="th" href="https://www.dr187growup.com/th/blog/"'));
+});
