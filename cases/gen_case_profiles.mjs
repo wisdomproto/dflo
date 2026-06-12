@@ -31,7 +31,9 @@ async function rest(path) {
 
 const children = await rest('children?select=id,name,chart_number,gender,birth_date,father_height,mother_height,desired_height,grade,class_height_rank,parent_id,treatment_status,intake_survey');
 const ms = await rest('hospital_measurements?select=child_id,measured_date,height,weight,bone_age,pah');
-const labs = await rest('lab_tests?select=child_id,test_type,result_data');
+const labs = await rest('lab_tests?select=child_id,test_type,result_data,visit_id');
+const visitRows = await rest('visits?select=id,visit_date');
+const visitDateById = new Map(visitRows.map((v) => [v.id, v.visit_date]));
 const xrays = await rest('xray_readings?select=child_id,image_path');
 const visits = await rest('visits?select=child_id,visit_date,chief_complaint,notes,is_intake');
 const meds = await rest('medications?select=id,name');
@@ -57,19 +59,64 @@ for (const l of labs) if (l.test_type === 'allergy' && l.result_data?.items) all
 
 // 혈액검사 특이 신호 — 검사기관의 공식 H/L 플래그만 사용 (자체 기준 판정 금지).
 // 성호르몬은 '높음'만 신호로 (소아 Testosterone [L]은 정상이라 제외).
-const bloodSignalsBy = new Map();
+// ★ 피검사는 ~6개월마다 반복되므로 "어느 시점 검사의 신호인지"가 중요 — 검사를 날짜순으로
+//   보고 신호마다 (a) 첫 혈액검사부터였는지 / 치료 중 검사부터였는지 (b) 그 항목을 잰 가장
+//   최근 검사에서 정상으로 돌아왔는지(=검증 가능한 호전)를 함께 기록한다.
+const SIGNAL_DEFS = [
+  { key: 'thyroid', label: '갑상선 호르몬 수치 이상', match: (it) => it.flag && (it.panel === 'Thyroid' || /^(TSH|T3|T4|Free T[34])$/i.test((it.name || '').trim())), measured: (it) => it.panel === 'Thyroid' || /^(TSH|T3|T4|Free T[34])$/i.test((it.name || '').trim()) },
+  { key: 'pubHormone', label: '성호르몬 수치 높음(사춘기 진행 신호)', match: (it) => it.flag === 'H' && /Estradiol|Free Testosterone|^LH$/i.test((it.name || '').trim()), measured: (it) => /Estradiol|Free Testosterone|^LH$/i.test((it.name || '').trim()) },
+  { key: 'metabolic', label: '혈당·지질 수치 높음', match: (it) => it.flag === 'H' && /^HbA1c|Triglyceride|Cholesterol,Total/i.test((it.name || '').trim()), measured: (it) => /^HbA1c|Triglyceride|Cholesterol,Total/i.test((it.name || '').trim()) },
+  { key: 'anemia', label: '빈혈·철분 부족 신호', match: (it) => it.flag === 'L' && /^(Hb|Ferritin)$/i.test((it.name || '').trim()), measured: (it) => /^(Hb|Ferritin)$/i.test((it.name || '').trim()) },
+];
+const bloodTestsBy = new Map();
 for (const l of labs) {
   if (l.test_type !== 'blood' || !l.result_data?.items) continue;
-  const set = bloodSignalsBy.get(l.child_id) || new Set();
-  for (const it of l.result_data.items) {
-    if (!it.flag) continue;
-    const name = (it.name || '').trim();
-    if (it.panel === 'Thyroid' || /^(TSH|T3|T4|Free T[34])$/i.test(name)) set.add('갑상선 호르몬 수치 이상');
-    else if (it.flag === 'H' && /Estradiol|Free Testosterone|^LH$/i.test(name)) set.add('성호르몬 수치 높음(사춘기 진행 신호)');
-    else if (it.flag === 'H' && /^HbA1c|Triglyceride|Cholesterol,Total/i.test(name)) set.add('혈당·지질 수치 높음');
-    else if (it.flag === 'L' && /^(Hb|Ferritin)$/i.test(name)) set.add('빈혈·철분 부족 신호');
+  const date = visitDateById.get(l.visit_id) || '';
+  bloodTestsBy.set(l.child_id, [...(bloodTestsBy.get(l.child_id) || []), { date, items: l.result_data.items }]);
+}
+const bloodSignalsBy = new Map();
+const bloodTimelineBy = new Map();
+for (const [cid, tests] of bloodTestsBy) {
+  tests.sort((a, b) => (a.date < b.date ? -1 : 1));
+  const out = [];
+  for (const def of SIGNAL_DEFS) {
+    const measured = tests.filter((t) => t.items.some(def.measured));
+    if (!measured.length) continue;
+    const flaggedTests = measured.filter((t) => t.items.some(def.match));
+    if (!flaggedTests.length) continue;
+    const fromFirstTest = measured[0] === flaggedTests[0] && flaggedTests[0].date === measured[0].date;
+    const lastMeasured = measured[measured.length - 1];
+    const resolved = measured.length >= 2 && !lastMeasured.items.some(def.match) && flaggedTests[flaggedTests.length - 1].date < lastMeasured.date;
+    const timing = fromFirstTest ? '초진 무렵 검사부터' : '치료 중 검사에서';
+    const trend = resolved ? '최근 검사에선 정상 범위(호전)' : '최근 검사까지 관찰됨';
+    out.push(`${def.label} — ${timing}, ${trend}`);
   }
-  if (set.size) bloodSignalsBy.set(l.child_id, set);
+  if (out.length) bloodSignalsBy.set(cid, new Set(out));
+
+  // 피검사 연대기 — 신호 집합이 바뀐 검사만 기록 (좋아짐/새 문제 등장 비트의 근거)
+  const SHORT = { thyroid: '갑상선', pubHormone: '성호르몬↑', metabolic: '혈당지질', anemia: '빈혈철분' };
+  const timeline = [];
+  let prev = null;
+  for (const t of tests) {
+    const cur = new Set(SIGNAL_DEFS.filter((d) => t.items.some(d.match)).map((d) => d.key));
+    const measuredKeys = new Set(SIGNAL_DEFS.filter((d) => t.items.some(d.measured)).map((d) => d.key));
+    if (prev === null) {
+      timeline.push(`${t.date.slice(2, 7)} 첫 피검사: ${cur.size ? [...cur].map((k) => SHORT[k]).join('·') : '특이 신호 없음'}`);
+    } else {
+      const added = [...cur].filter((k) => !prev.has(k));
+      const cleared = [...prev].filter((k) => !cur.has(k) && measuredKeys.has(k));
+      if (added.length || cleared.length) {
+        const parts = [];
+        if (cleared.length) parts.push(`${cleared.map((k) => SHORT[k]).join('·')} 정상화`);
+        if (added.length) parts.push(`${added.map((k) => SHORT[k]).join('·')} 새로 관찰`);
+        timeline.push(`${t.date.slice(2, 7)} ${parts.join(' / ')}`);
+      }
+      // 측정 안 된 항목의 이전 상태는 유지
+      for (const k of prev) if (!measuredKeys.has(k)) cur.add(k);
+    }
+    prev = cur;
+  }
+  if (timeline.length) bloodTimelineBy.set(cid, timeline);
 }
 const visitsBy = new Map();
 for (const v of visits) visitsBy.set(v.child_id, [...(visitsBy.get(v.child_id) || []), v]);
@@ -189,6 +236,26 @@ for (const c of children) {
   if (danger.length || caution.length) tags.push('알러지검사');
   if (firstBA?.gap != null && firstBA.gap <= -1.0) tags.push(`성장지연(뼈나이 ${firstBA.gap}년)`);
 
+  // 성장 리듬 — 정체기(6개월 환산 <2cm)·스퍼트(>5cm) 구간. 150~240일 간격 측정쌍 기준
+  const hms = mm.filter((m) => m.height > 0);
+  let slowPhase = null, spurtPhase = null;
+  for (let i = 0; i < hms.length; i++) {
+    for (let j = i + 1; j < hms.length; j++) {
+      const days = (new Date(hms[j].measured_date) - new Date(hms[i].measured_date)) / 86400e3;
+      if (days < 150) continue;
+      if (days > 240) break;
+      const rate = ((hms[j].height - hms[i].height) / days) * 182.6;
+      if (rate < -1) continue; // 키가 줄 수는 없음 — 측정/입력 오류 쌍은 제외
+      const span = `${hms[i].measured_date.slice(2, 7)}~${hms[j].measured_date.slice(2, 7)}`;
+      if (!slowPhase || rate < slowPhase.rate) slowPhase = { span, rate };
+      if (!spurtPhase || rate > spurtPhase.rate) spurtPhase = { span, rate };
+    }
+  }
+  const fmtRate = (r) => `${Math.max(0, r).toFixed(1)}cm`;
+  const growthRhythm = [];
+  if (slowPhase && slowPhase.rate < 2) growthRhythm.push(`정체기 ${slowPhase.span}: 6개월 환산 +${fmtRate(slowPhase.rate)}`);
+  if (spurtPhase && spurtPhase.rate > 5) growthRhythm.push(`스퍼트 ${spurtPhase.span}: 6개월 환산 +${fmtRate(spurtPhase.rate)}`);
+
   const hDelta = firstH && lastH ? +(lastH.height - firstH.height).toFixed(1) : 0;
   const score = Math.round(pahDelta * 3 + Math.min(hDelta, 35) + months / 6 + (xrayBy.get(c.id) ? 5 : 0) + (danger.length || caution.length ? 3 : 0));
 
@@ -229,6 +296,7 @@ for (const c of children) {
     hFirst: firstH?.height, hLast: lastH?.height, hDelta,
     pahFirst: first.pah, pahLast: last.pah, pahDelta,
     xray: xrayBy.get(c.id) || 0, danger, caution, bloodSignals, rxSignals, noteSnippets,
+    bloodTimeline: bloodTimelineBy.get(c.id) || [], growthRhythm,
     chief, notes, intake, status: c.treatment_status, tags, score, headline, points,
     mm: mm.map((m) => ({
       date: m.measured_date, h: m.height, w: m.weight, ba: m.bone_age, pah: (m.pah > 0 && m.pah < 230) ? m.pah : null,
@@ -282,6 +350,7 @@ writeFileSync('C:/project/dflo/cases/_story_inputs.json', JSON.stringify(list.ma
   desired: r.desired, grade: r.grade, heightRank: r.rank,
   tags: r.tags, chief: r.chief, allergyDanger: r.danger, allergyCaution: r.caution.slice(0, 6),
   bloodSignals: r.bloodSignals, rxSignals: r.rxSignals, noteSnippets: r.noteSnippets,
+  bloodTimeline: r.bloodTimeline, growthRhythm: r.growthRhythm,
   intake: r.intake,
 })), null, 1), 'utf8');
 
