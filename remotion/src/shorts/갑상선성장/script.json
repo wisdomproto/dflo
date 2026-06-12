@@ -1,0 +1,528 @@
+{
+  "slug": "갑상선성장",
+  "fps": 30,
+  "title": "성장호르몬만 봤다면? — 키를 멈추는 숨은 사령관, 갑상선",
+  "_note": "자동 생성(storyboard-to-reel 14). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "갑자기 멈췄다면?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키가 갑자기 멈췄다면, 의외의 범인은 '갑상선'일 수 있습니다.",
+      "cap_ko": [
+        "키가 멈췄다면?",
+        "범인은 갑상선"
+      ],
+      "hl_ko": "범인은 갑상선",
+      "th": "ถ้าลูกหยุดสูงกะทันหัน ตัวการที่คาดไม่ถึงอาจคือ 'ไทรอยด์'",
+      "cap_th": [
+        "ลูกหยุดสูง?",
+        "ตัวการคือไทรอยด์"
+      ],
+      "hl_th": "ไทรอยด์",
+      "vi": "Nếu con bỗng ngừng cao, thủ phạm bất ngờ có thể là 'tuyến giáp'.",
+      "cap_vi": [
+        "Con ngừng cao?",
+        "Thủ phạm: tuyến giáp"
+      ],
+      "hl_vi": "tuyến giáp",
+      "en": "If your child's height suddenly stalls, the surprise culprit may be the thyroid.",
+      "cap_en": [
+        "Height stalled?",
+        "Culprit: thyroid"
+      ],
+      "hl_en": "thyroid",
+      "cn": "如果孩子突然不长个了，意外的元凶可能是'甲状腺'。",
+      "cap_cn": [
+        "突然不长？",
+        "元凶是甲状腺"
+      ],
+      "hl_cn": "甲状腺",
+      "ch": "如果孩子突然不長個了，意外的元兇可能是'甲狀腺'。",
+      "cap_ch": [
+        "突然不長？",
+        "元兇是甲狀腺"
+      ],
+      "hl_ch": "甲狀腺"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "키가 안 크면 보통 성장호르몬만 떠올립니다. 그런데 숨은 사령관이 따로 있습니다.",
+      "cap_ko": [
+        "성장호르몬만?",
+        "숨은 사령관"
+      ],
+      "hl_ko": "숨은 사령관",
+      "th": "ไม่สูงมักนึกถึงแค่โกรทฮอร์โมน แต่มีผู้บัญชาการที่ซ่อนอยู่",
+      "cap_th": [
+        "แค่โกรทฮอร์โมน?",
+        "ผู้บัญชาการที่ซ่อน"
+      ],
+      "hl_th": "ผู้บัญชาการที่ซ่อน",
+      "vi": "Không cao thì thường chỉ nghĩ tới hormone tăng trưởng — nhưng có vị chỉ huy ẩn.",
+      "cap_vi": [
+        "Chỉ hormone tăng trưởng?",
+        "Vị chỉ huy ẩn"
+      ],
+      "hl_vi": "chỉ huy ẩn",
+      "en": "We usually blame only growth hormone — but there's a hidden commander.",
+      "cap_en": [
+        "Only growth hormone?",
+        "A hidden commander"
+      ],
+      "hl_en": "hidden commander",
+      "cn": "长不高通常只想到生长激素，但还有个隐藏的指挥官。",
+      "cap_cn": [
+        "只怪生长激素？",
+        "隐藏的指挥官"
+      ],
+      "hl_cn": "隐藏的指挥官",
+      "ch": "長不高通常只想到生長激素，但還有個隱藏的指揮官。",
+      "cap_ch": [
+        "只怪生長激素？",
+        "隱藏的指揮官"
+      ],
+      "hl_ch": "隱藏的指揮官"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "갑상선은 목 앞에 있는 작은 나비 모양 기관입니다.",
+      "cap_ko": [
+        "목 앞에",
+        "나비 모양 갑상선"
+      ],
+      "hl_ko": "나비 모양 갑상선",
+      "th": "ไทรอยด์คืออวัยวะรูปผีเสื้อเล็กๆ อยู่หน้าคอ",
+      "cap_th": [
+        "อยู่หน้าคอ",
+        "รูปผีเสื้อ"
+      ],
+      "hl_th": "รูปผีเสื้อ",
+      "vi": "Tuyến giáp là cơ quan nhỏ hình cánh bướm ở trước cổ.",
+      "cap_vi": [
+        "Ở trước cổ",
+        "hình cánh bướm"
+      ],
+      "hl_vi": "hình cánh bướm",
+      "en": "The thyroid is a small butterfly-shaped gland in the front of the neck.",
+      "cap_en": [
+        "Front of the neck",
+        "butterfly-shaped"
+      ],
+      "hl_en": "butterfly-shaped",
+      "cn": "甲状腺是颈部前方一个蝴蝶形的小器官。",
+      "cap_cn": [
+        "颈部前方",
+        "蝴蝶形腺体"
+      ],
+      "hl_cn": "蝴蝶形腺体",
+      "ch": "甲狀腺是頸部前方一個蝴蝶形的小器官。",
+      "cap_ch": [
+        "頸部前方",
+        "蝴蝶形腺體"
+      ],
+      "hl_ch": "蝴蝶形腺體",
+      "insert": "images/갑상선성장/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.75,
+          "y": 0.7,
+          "size": 28,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "갑상선",
+          "en": "Thyroid",
+          "th": "ไทรอยด์"
+        },
+        {
+          "x": 0.26,
+          "y": 0.72,
+          "size": 26,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "나비 모양",
+          "en": "Butterfly shape",
+          "th": "รูปผีเสื้อ"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "이 호르몬이 온몸의 대사와 뼈 성장을 지휘하는 사령관입니다.",
+      "cap_ko": [
+        "온몸 대사 지휘",
+        "뼈 성장 사령관"
+      ],
+      "hl_ko": "뼈 성장 사령관",
+      "th": "ฮอร์โมนนี้คือผู้บัญชาการที่คุมเมตาบอลิซึมและการโตของกระดูก",
+      "cap_th": [
+        "คุมเมตาบอลิซึม",
+        "ผู้บัญชาการกระดูก"
+      ],
+      "hl_th": "ผู้บัญชาการกระดูก",
+      "vi": "Hormone này là vị chỉ huy điều khiển chuyển hóa và sự lớn lên của xương.",
+      "cap_vi": [
+        "Điều khiển chuyển hóa",
+        "chỉ huy xương lớn"
+      ],
+      "hl_vi": "chỉ huy xương lớn",
+      "en": "This hormone is the commander directing whole-body metabolism and bone growth.",
+      "cap_en": [
+        "Runs metabolism",
+        "bone-growth commander"
+      ],
+      "hl_en": "bone-growth commander",
+      "cn": "这个激素是指挥全身代谢和骨骼生长的总司令。",
+      "cap_cn": [
+        "指挥全身代谢",
+        "骨骼生长司令"
+      ],
+      "hl_cn": "骨骼生长司令",
+      "ch": "這個激素是指揮全身代謝和骨骼生長的總司令。",
+      "cap_ch": [
+        "指揮全身代謝",
+        "骨骼生長司令"
+      ],
+      "hl_ch": "骨骼生長司令",
+      "insert": "images/갑상선성장/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.12,
+          "y": 0.7,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "대사",
+          "en": "Metabolism",
+          "th": "เมตาบอลิซึม"
+        },
+        {
+          "x": 0.85,
+          "y": 0.72,
+          "size": 28,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "뼈 성장 ↑",
+          "en": "Bone growth ↑",
+          "th": "กระดูกโต ↑"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "이게 부족하면 대사가 떨어지고, 뼈와 연골 성장이 통째로 느려집니다.",
+      "cap_ko": [
+        "부족하면",
+        "뼈 성장 느려짐"
+      ],
+      "hl_ko": "뼈 성장 느려짐",
+      "th": "ถ้าขาด เมตาบอลิซึมตก กระดูกและกระดูกอ่อนโตช้าลงทั้งหมด",
+      "cap_th": [
+        "ถ้าขาด",
+        "กระดูกโตช้า"
+      ],
+      "hl_th": "กระดูกโตช้า",
+      "vi": "Thiếu nó, chuyển hóa giảm, xương và sụn lớn chậm lại toàn bộ.",
+      "cap_vi": [
+        "Khi thiếu",
+        "xương lớn chậm"
+      ],
+      "hl_vi": "xương lớn chậm",
+      "en": "Too little, and metabolism drops — bone and cartilage growth slow right down.",
+      "cap_en": [
+        "When it's low",
+        "bone growth slows"
+      ],
+      "hl_en": "bone growth slows",
+      "cn": "它不足时，代谢下降，骨骼和软骨的生长整体变慢。",
+      "cap_cn": [
+        "不足时",
+        "骨骼生长变慢"
+      ],
+      "hl_cn": "骨骼生长变慢",
+      "ch": "它不足時，代謝下降，骨骼和軟骨的生長整體變慢。",
+      "cap_ch": [
+        "不足時",
+        "骨骼生長變慢"
+      ],
+      "hl_ch": "骨骼生長變慢"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "게다가 성장호르몬의 작용까지 약해져서, 이중으로 성장을 막습니다.",
+      "cap_ko": [
+        "성장호르몬도 약화",
+        "이중 브레이크"
+      ],
+      "hl_ko": "이중 브레이크",
+      "th": "ซ้ำยังทำให้โกรทฮอร์โมนทำงานอ่อนลง เบรกการโตซ้ำสอง",
+      "cap_th": [
+        "โกรทฮอร์โมนอ่อนลง",
+        "เบรกซ้ำสอง"
+      ],
+      "hl_th": "เบรกซ้ำสอง",
+      "vi": "Hơn nữa, tác dụng của hormone tăng trưởng cũng yếu đi — phanh kép.",
+      "cap_vi": [
+        "Hormone TT yếu đi",
+        "phanh kép"
+      ],
+      "hl_vi": "phanh kép",
+      "en": "It also weakens growth hormone's action — a double brake on growth.",
+      "cap_en": [
+        "GH weakens too",
+        "double brake"
+      ],
+      "hl_en": "double brake",
+      "cn": "它还让生长激素的作用变弱，等于给成长踩了双重刹车。",
+      "cap_cn": [
+        "生长激素也变弱",
+        "双重刹车"
+      ],
+      "hl_cn": "双重刹车",
+      "ch": "它還讓生長激素的作用變弱，等於給成長踩了雙重剎車。",
+      "cap_ch": [
+        "生長激素也變弱",
+        "雙重剎車"
+      ],
+      "hl_ch": "雙重剎車",
+      "insert": "images/갑상선성장/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.08,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "갑상선 ↓",
+          "en": "Thyroid ↓",
+          "th": "ไทรอยด์ ↓"
+        },
+        {
+          "x": 0.62,
+          "y": 0.95,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "성장호르몬 약화",
+          "en": "GH weakened",
+          "th": "โกรทฮอร์โมนอ่อน"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "핵심은 성조숙증과 반대라는 점입니다. 일찍 닫는 게 아니라, 뼈나이가 또래보다 어리게 나옵니다.",
+      "cap_ko": [
+        "성조숙증과 반대",
+        "뼈나이 어림"
+      ],
+      "hl_ko": "뼈나이 어림",
+      "th": "จุดสำคัญตรงข้ามภาวะก่อนวัย ไม่ได้ปิดเร็ว แต่อายุกระดูกอ่อนกว่าวัย",
+      "cap_th": [
+        "ตรงข้ามก่อนวัย",
+        "อายุกระดูกอ่อน"
+      ],
+      "hl_th": "อายุกระดูกอ่อน",
+      "vi": "Điểm mấu chốt: ngược với dậy thì sớm — không đóng sớm mà tuổi xương trẻ hơn tuổi.",
+      "cap_vi": [
+        "Ngược dậy thì sớm",
+        "tuổi xương trẻ hơn"
+      ],
+      "hl_vi": "tuổi xương trẻ hơn",
+      "en": "Key point: the opposite of early puberty — plates don't close early, bone age reads younger.",
+      "cap_en": [
+        "Opposite of early puberty",
+        "bone age younger"
+      ],
+      "hl_en": "bone age younger",
+      "cn": "关键是和性早熟相反：不是提前闭合，而是骨龄比同龄人偏小。",
+      "cap_cn": [
+        "与性早熟相反",
+        "骨龄偏小"
+      ],
+      "hl_cn": "骨龄偏小",
+      "ch": "關鍵是和性早熟相反：不是提前閉合，而是骨齡比同齡人偏小。",
+      "cap_ch": [
+        "與性早熟相反",
+        "骨齡偏小"
+      ],
+      "hl_ch": "骨齡偏小",
+      "insert": "images/갑상선성장/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.96,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "또래 뼈나이",
+          "en": "Peer bone age",
+          "th": "อายุกระดูกเพื่อน"
+        },
+        {
+          "x": 0.68,
+          "y": 0.96,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "뼈나이 어림",
+          "en": "Younger bone age",
+          "th": "อายุกระดูกอ่อน"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 29.5,
+      "ko": "키 멈춤에 피로, 추위를 잘 타고, 살이 물렁하게 찐다면 함께 의심해 보십시오.",
+      "cap_ko": [
+        "피로·추위·체중",
+        "함께 의심"
+      ],
+      "hl_ko": "함께 의심",
+      "th": "ถ้าหยุดสูงพร้อมอ่อนเพลีย ขี้หนาว น้ำหนักขึ้นนุ่มๆ ให้สงสัยไว้",
+      "cap_th": [
+        "เพลีย·ขี้หนาว·อ้วน",
+        "สงสัยไว้"
+      ],
+      "hl_th": "สงสัยไว้",
+      "vi": "Ngừng cao kèm mệt mỏi, sợ lạnh, tăng cân mềm nhão — hãy nghi ngờ.",
+      "cap_vi": [
+        "Mệt·lạnh·tăng cân",
+        "hãy nghi ngờ"
+      ],
+      "hl_vi": "hãy nghi ngờ",
+      "en": "Stalled height plus fatigue, feeling cold, soft weight gain? Worth suspecting.",
+      "cap_en": [
+        "Tired·cold·weight",
+        "worth a check"
+      ],
+      "hl_en": "worth a check",
+      "cn": "不长个还伴随疲劳、怕冷、虚胖，就值得一起怀疑。",
+      "cap_cn": [
+        "疲劳·怕冷·虚胖",
+        "一起怀疑"
+      ],
+      "hl_cn": "一起怀疑",
+      "ch": "不長個還伴隨疲勞、怕冷、虛胖，就值得一起懷疑。",
+      "cap_ch": [
+        "疲勞·怕冷·虛胖",
+        "一起懷疑"
+      ],
+      "hl_ch": "一起懷疑"
+    },
+    {
+      "id": "c9",
+      "start": 29.5,
+      "end": 32.5,
+      "ko": "좋은 소식은, 찾아서 호르몬을 채워주면 성장 속도가 다시 회복된다는 것입니다.",
+      "cap_ko": [
+        "채워주면",
+        "다시 자란다"
+      ],
+      "hl_ko": "다시 자란다",
+      "th": "ข่าวดีคือ ถ้าเจอแล้วเติมฮอร์โมน ความเร็วการโตกลับมาได้",
+      "cap_th": [
+        "เติมฮอร์โมน",
+        "กลับมาโตได้"
+      ],
+      "hl_th": "กลับมาโตได้",
+      "vi": "Tin tốt: tìm ra và bù hormone thì tốc độ tăng trưởng hồi phục.",
+      "cap_vi": [
+        "Bù hormone",
+        "cao lại được"
+      ],
+      "hl_vi": "cao lại được",
+      "en": "Good news: find it, replace the hormone, and growth speed can recover.",
+      "cap_en": [
+        "Replace it",
+        "growth recovers"
+      ],
+      "hl_en": "growth recovers",
+      "cn": "好消息是，找出来补上激素，长高速度就能恢复。",
+      "cap_cn": [
+        "补上激素",
+        "重新长高"
+      ],
+      "hl_cn": "重新长高",
+      "ch": "好消息是，找出來補上激素，長高速度就能恢復。",
+      "cap_ch": [
+        "補上激素",
+        "重新長高"
+      ],
+      "hl_ch": "重新長高"
+    },
+    {
+      "id": "c10",
+      "start": 32.5,
+      "end": 35,
+      "ko": "우리 아이 키가 멈춘 진짜 이유, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "키 멈춘 진짜 이유",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กสาเหตุจริงที่ลูกหยุดสูงวันนี้",
+      "cap_th": [
+        "สาเหตุจริง",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra lý do thật sự khiến con ngừng cao ngay hôm nay.",
+      "cap_vi": [
+        "Lý do thật sự",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Find the real reason your child's height stalled — today.",
+      "cap_en": [
+        "The real reason",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子不长个的真正原因吧。",
+      "cap_cn": [
+        "真正原因",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子不長個的真正原因吧。",
+      "cap_ch": [
+        "真正原因",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

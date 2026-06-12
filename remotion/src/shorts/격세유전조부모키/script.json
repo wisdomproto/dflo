@@ -1,0 +1,558 @@
+{
+  "slug": "격세유전조부모키",
+  "fps": 30,
+  "title": "부모 키가 다가 아니다 — 조부모 키와 격세유전",
+  "_note": "자동 생성(storyboard-to-reel 7). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "부모만 보면 될까?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키, 부모 키만 보면 안 된다는 것, 알고 계십니까?",
+      "cap_ko": [
+        "부모 키만으론",
+        "답이 안 나와요"
+      ],
+      "hl_ko": "부모 키만으론",
+      "th": "รู้ไหมว่าความสูงของลูก ดูแค่พ่อแม่ไม่พอ?",
+      "cap_th": [
+        "ดูแค่พ่อแม่",
+        "ยังไม่พอ"
+      ],
+      "hl_th": "ดูแค่พ่อแม่",
+      "vi": "Bạn có biết chiều cao của con không thể chỉ nhìn vào bố mẹ?",
+      "cap_vi": [
+        "Chỉ nhìn bố mẹ",
+        "là chưa đủ"
+      ],
+      "hl_vi": "Chỉ nhìn bố mẹ",
+      "en": "Did you know your child's height isn't just about the parents?",
+      "cap_en": [
+        "Parents alone",
+        "aren't the answer"
+      ],
+      "hl_en": "Parents alone",
+      "cn": "你知道孩子的身高，只看父母是不够的吗？",
+      "cap_cn": [
+        "只看父母",
+        "还不够"
+      ],
+      "hl_cn": "只看父母",
+      "ch": "你知道孩子的身高，只看父母是不夠的嗎？",
+      "cap_ch": [
+        "只看父母",
+        "還不夠"
+      ],
+      "hl_ch": "只看父母"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "키는 유전이 약 80퍼센트입니다. 그런데 그 유전, 부모만의 몫이 아닙니다.",
+      "cap_ko": [
+        "유전 약 80%",
+        "부모만이 아니다"
+      ],
+      "hl_ko": "유전 약 80%",
+      "th": "ความสูงเป็นพันธุกรรมราว 80% แต่ไม่ได้มาจากพ่อแม่เท่านั้น",
+      "cap_th": [
+        "พันธุกรรม 80%",
+        "ไม่ใช่แค่พ่อแม่"
+      ],
+      "hl_th": "พันธุกรรม 80%",
+      "vi": "Chiều cao do di truyền khoảng 80% — nhưng không chỉ từ bố mẹ.",
+      "cap_vi": [
+        "Di truyền ~80%",
+        "không chỉ bố mẹ"
+      ],
+      "hl_vi": "Di truyền ~80%",
+      "en": "Height is about 80% genetic — but that's not just from the parents.",
+      "cap_en": [
+        "~80% genetic",
+        "not just parents"
+      ],
+      "hl_en": "~80% genetic",
+      "cn": "身高约80%由遗传决定——但不只来自父母。",
+      "cap_cn": [
+        "遗传约80%",
+        "不只是父母"
+      ],
+      "hl_cn": "遗传约80%",
+      "ch": "身高約80%由遺傳決定——但不只來自父母。",
+      "cap_ch": [
+        "遺傳約80%",
+        "不只是父母"
+      ],
+      "hl_ch": "遺傳約80%"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 10.5,
+      "ko": "바로 '격세유전'입니다. 부모에겐 나타나지 않은 형질이 한 세대를 건너뛰어 나타나는 것입니다.",
+      "cap_ko": [
+        "한 세대 건너뛰는",
+        "격세유전"
+      ],
+      "hl_ko": "격세유전",
+      "th": "นั่นคือ 'การถ่ายทอดข้ามรุ่น' ลักษณะที่ข้ามพ่อแม่ไปโผล่ที่หลาน",
+      "cap_th": [
+        "ข้ามรุ่น",
+        "สู่หลาน"
+      ],
+      "hl_th": "ข้ามรุ่น",
+      "vi": "Đó là 'di truyền cách đời' — đặc điểm bỏ qua bố mẹ, hiện ở đời cháu.",
+      "cap_vi": [
+        "Di truyền",
+        "cách đời"
+      ],
+      "hl_vi": "cách đời",
+      "en": "It's called atavism — a trait that skips the parents and reappears in the child.",
+      "cap_en": [
+        "Skips a generation",
+        "atavism"
+      ],
+      "hl_en": "atavism",
+      "cn": "这叫'隔代遗传'——跳过父母，在孙辈重新出现。",
+      "cap_cn": [
+        "跳过一代",
+        "隔代遗传"
+      ],
+      "hl_cn": "隔代遗传",
+      "ch": "這叫'隔代遺傳'——跳過父母，在孫輩重新出現。",
+      "cap_ch": [
+        "跳過一代",
+        "隔代遺傳"
+      ],
+      "hl_ch": "隔代遺傳",
+      "insert": "images/격세유전조부모키/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.13,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "조부모",
+          "en": "Grandparent",
+          "th": "ปู่ย่าตายาย"
+        },
+        {
+          "x": 0.2,
+          "y": 0.45,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "부모",
+          "en": "Parent",
+          "th": "พ่อแม่"
+        },
+        {
+          "x": 0.2,
+          "y": 0.8,
+          "size": 30,
+          "weight": 800,
+          "color": "#db2777",
+          "ko": "우리 아이",
+          "en": "Child",
+          "th": "ลูก"
+        },
+        {
+          "x": 0.73,
+          "y": 0.46,
+          "size": 26,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "한 세대 건너뜀",
+          "en": "Skips a generation",
+          "th": "ข้ามรุ่น"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 10.5,
+      "end": 14,
+      "ko": "우성·열성이 있어서, 조부모의 키 유전자가 부모를 건너 아이에게서 깨어날 수 있습니다.",
+      "cap_ko": [
+        "조부모 키 유전자",
+        "아이에게서 깨어남"
+      ],
+      "hl_ko": "조부모 키 유전자",
+      "th": "มียีนเด่นยีนด้อย ยีนความสูงของปู่ย่าอาจตื่นขึ้นในตัวหลาน",
+      "cap_th": [
+        "ยีนของปู่ย่า",
+        "ตื่นในหลาน"
+      ],
+      "hl_th": "ยีนของปู่ย่า",
+      "vi": "Có gen trội gen lặn — gen chiều cao của ông bà có thể thức dậy ở cháu.",
+      "cap_vi": [
+        "Gen của ông bà",
+        "thức dậy ở cháu"
+      ],
+      "hl_vi": "Gen của ông bà",
+      "en": "With dominant and recessive genes, grandparents' height genes can wake up in the child.",
+      "cap_en": [
+        "Grandparents' genes",
+        "wake up in the child"
+      ],
+      "hl_en": "Grandparents' genes",
+      "cn": "有显性隐性之分，祖父母的身高基因可能在孩子身上苏醒。",
+      "cap_cn": [
+        "祖父母的基因",
+        "在孩子身上苏醒"
+      ],
+      "hl_cn": "祖父母的基因",
+      "ch": "有顯性隱性之分，祖父母的身高基因可能在孩子身上甦醒。",
+      "cap_ch": [
+        "祖父母的基因",
+        "在孩子身上甦醒"
+      ],
+      "hl_ch": "祖父母的基因",
+      "insert": "images/격세유전조부모키/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.78,
+          "y": 0.14,
+          "size": 28,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "우성",
+          "en": "Dominant",
+          "th": "ลักษณะเด่น"
+        },
+        {
+          "x": 0.16,
+          "y": 0.45,
+          "size": 28,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "열성(잠재)",
+          "en": "Recessive",
+          "th": "ลักษณะด้อย"
+        },
+        {
+          "x": 0.83,
+          "y": 0.78,
+          "size": 28,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "다시 발현",
+          "en": "Switches on",
+          "th": "แสดงออกอีกครั้ง"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14,
+      "end": 18,
+      "ko": "그래서 부모가 커도 조부모가 작으면 아이가 작을 수 있습니다.",
+      "cap_ko": [
+        "부모 커도",
+        "작을 수 있다"
+      ],
+      "hl_ko": "부모 커도",
+      "th": "พ่อแม่สูง แต่ถ้าปู่ย่าตัวเล็ก ลูกก็อาจเตี้ยได้",
+      "cap_th": [
+        "พ่อแม่สูง",
+        "แต่ลูกอาจเตี้ย"
+      ],
+      "hl_th": "พ่อแม่สูง",
+      "vi": "Nên bố mẹ cao mà ông bà thấp, con vẫn có thể thấp.",
+      "cap_vi": [
+        "Bố mẹ cao",
+        "con vẫn có thể thấp"
+      ],
+      "hl_vi": "Bố mẹ cao",
+      "en": "So even tall parents can have a shorter child if the grandparents were short.",
+      "cap_en": [
+        "Tall parents",
+        "child can be short"
+      ],
+      "hl_en": "Tall parents",
+      "cn": "所以父母高，若祖父母矮，孩子也可能矮。",
+      "cap_cn": [
+        "父母高",
+        "孩子也可能矮"
+      ],
+      "hl_cn": "父母高",
+      "ch": "所以父母高，若祖父母矮，孩子也可能矮。",
+      "cap_ch": [
+        "父母高",
+        "孩子也可能矮"
+      ],
+      "hl_ch": "父母高"
+    },
+    {
+      "id": "c6",
+      "start": 18,
+      "end": 22,
+      "ko": "반대로 부모가 작아도, 조부모가 크셨다면 아이는 훌쩍 클 잠재력이 있습니다.",
+      "cap_ko": [
+        "부모 작아도",
+        "훌쩍 클 잠재력"
+      ],
+      "hl_ko": "훌쩍 클 잠재력",
+      "th": "กลับกัน พ่อแม่ตัวเล็ก แต่ถ้าปู่ย่าสูง ลูกก็มีศักยภาพสูงได้",
+      "cap_th": [
+        "พ่อแม่เล็ก",
+        "แต่มีศักยภาพสูง"
+      ],
+      "hl_th": "ศักยภาพสูง",
+      "vi": "Ngược lại, bố mẹ thấp mà ông bà cao, con vẫn có tiềm năng cao vượt trội.",
+      "cap_vi": [
+        "Bố mẹ thấp",
+        "vẫn có tiềm năng cao"
+      ],
+      "hl_vi": "tiềm năng cao",
+      "en": "And short parents whose own parents were tall can still have a child with big potential.",
+      "cap_en": [
+        "Short parents",
+        "still big potential"
+      ],
+      "hl_en": "big potential",
+      "cn": "反过来，父母矮但祖父母高，孩子也有长高的潜力。",
+      "cap_cn": [
+        "父母矮",
+        "也有长高潜力"
+      ],
+      "hl_cn": "长高潜力",
+      "ch": "反過來，父母矮但祖父母高，孩子也有長高的潛力。",
+      "cap_ch": [
+        "父母矮",
+        "也有長高潛力"
+      ],
+      "hl_ch": "長高潛力",
+      "insert": "images/격세유전조부모키/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.95,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "부모",
+          "en": "Parents",
+          "th": "พ่อแม่"
+        },
+        {
+          "x": 0.8,
+          "y": 0.3,
+          "size": 30,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "숨은 잠재력",
+          "en": "Hidden potential",
+          "th": "ศักยภาพที่ซ่อนอยู่"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "조부모 중 작은 분이 계시면 '가족성 저신장'을 미리 살필 수 있습니다.",
+      "cap_ko": [
+        "가족력 보면",
+        "가족성 저신장 미리 파악"
+      ],
+      "hl_ko": "가족성 저신장",
+      "th": "ถ้าปู่ย่าตัวเล็ก เราเฝ้าระวัง 'ภาวะเตี้ยจากพันธุกรรม' ได้แต่เนิ่นๆ",
+      "cap_th": [
+        "ดูประวัติครอบครัว",
+        "เตี้ยจากพันธุกรรม"
+      ],
+      "hl_th": "เตี้ยจากพันธุกรรม",
+      "vi": "Nếu ông bà thấp, ta có thể tầm soát sớm 'thấp lùn gia đình'.",
+      "cap_vi": [
+        "Xem tiền sử",
+        "thấp lùn gia đình"
+      ],
+      "hl_vi": "thấp lùn gia đình",
+      "en": "If grandparents were short, we can watch early for 'familial short stature.'",
+      "cap_en": [
+        "Family history",
+        "familial short stature"
+      ],
+      "hl_en": "familial short stature",
+      "cn": "若祖父母矮，可及早留意'家族性矮小'。",
+      "cap_cn": [
+        "看家族史",
+        "家族性矮小"
+      ],
+      "hl_cn": "家族性矮小",
+      "ch": "若祖父母矮，可及早留意'家族性矮小'。",
+      "cap_ch": [
+        "看家族史",
+        "家族性矮小"
+      ],
+      "hl_ch": "家族性矮小"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 29.5,
+      "ko": "미리 알면 성장판이 닫히기 전에 도울 수 있기 때문입니다.",
+      "cap_ko": [
+        "성장판 닫히기 전",
+        "도울 수 있다"
+      ],
+      "hl_ko": "성장판 닫히기 전",
+      "th": "รู้ก่อน เราช่วยได้ก่อนแผ่นกระดูกปิด",
+      "cap_th": [
+        "ก่อนแผ่นกระดูกปิด",
+        "ช่วยได้"
+      ],
+      "hl_th": "ก่อนแผ่นกระดูกปิด",
+      "vi": "Biết sớm thì giúp được — trước khi sụn tăng trưởng đóng lại.",
+      "cap_vi": [
+        "Trước khi sụn đóng",
+        "còn giúp được"
+      ],
+      "hl_vi": "Trước khi sụn đóng",
+      "en": "Knowing early means we can help — before the growth plates close.",
+      "cap_en": [
+        "Before plates close",
+        "we can help"
+      ],
+      "hl_en": "Before plates close",
+      "cn": "早知道，就能在生长板闭合前帮上忙。",
+      "cap_cn": [
+        "生长板闭合前",
+        "就能帮上忙"
+      ],
+      "hl_cn": "生长板闭合前",
+      "ch": "早知道，就能在生長板閉合前幫上忙。",
+      "cap_ch": [
+        "生長板閉合前",
+        "就能幫上忙"
+      ],
+      "hl_ch": "生長板閉合前",
+      "insert": "images/격세유전조부모키/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.14,
+          "y": 0.45,
+          "size": 28,
+          "weight": 900,
+          "color": "#7c2d12",
+          "ko": "성장판",
+          "en": "Growth plate",
+          "th": "แผ่นกระดูก"
+        },
+        {
+          "x": 0.78,
+          "y": 0.93,
+          "size": 32,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "골든타임",
+          "en": "Golden time",
+          "th": "ช่วงเวลาทอง"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 29.5,
+      "end": 32.5,
+      "ko": "조부모 키까지 넣은 가족력에 뼈나이를 더하면, 진짜 잠재력이 보입니다.",
+      "cap_ko": [
+        "가족력 + 뼈나이",
+        "진짜 잠재력"
+      ],
+      "hl_ko": "진짜 잠재력",
+      "th": "ใส่ความสูงปู่ย่าในประวัติครอบครัว บวกอายุกระดูก เห็นศักยภาพจริง",
+      "cap_th": [
+        "ประวัติ + อายุกระดูก",
+        "ศักยภาพจริง"
+      ],
+      "hl_th": "ศักยภาพจริง",
+      "vi": "Thêm chiều cao ông bà vào tiền sử, cộng tuổi xương — thấy rõ tiềm năng thật.",
+      "cap_vi": [
+        "Tiền sử + tuổi xương",
+        "tiềm năng thật"
+      ],
+      "hl_vi": "tiềm năng thật",
+      "en": "Add grandparents' height to the family history plus bone age — you see the real potential.",
+      "cap_en": [
+        "Family + bone age",
+        "real potential"
+      ],
+      "hl_en": "real potential",
+      "cn": "把祖父母身高加进家族史，再看骨龄，真正的潜力就清楚了。",
+      "cap_cn": [
+        "家族史 + 骨龄",
+        "真正的潜力"
+      ],
+      "hl_cn": "真正的潜力",
+      "ch": "把祖父母身高加進家族史，再看骨齡，真正的潛力就清楚了。",
+      "cap_ch": [
+        "家族史 + 骨齡",
+        "真正的潛力"
+      ],
+      "hl_ch": "真正的潛力"
+    },
+    {
+      "id": "c10",
+      "start": 32.5,
+      "end": 35,
+      "ko": "조부모 키까지 넣어서, 우리 아이 예측키 지금 확인해 보십시오.",
+      "cap_ko": [
+        "우리 아이 예측키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "ใส่ความสูงปู่ย่าด้วย เช็กความสูงที่คาดการณ์ของลูกวันนี้",
+      "cap_th": [
+        "ความสูงที่คาดการณ์",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Thêm cả chiều cao ông bà — kiểm tra chiều cao dự đoán của con ngay.",
+      "cap_vi": [
+        "Chiều cao dự đoán",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Add the grandparents' height and check your child's predicted height now.",
+      "cap_en": [
+        "Predicted height",
+        "check now"
+      ],
+      "hl_en": "check now",
+      "cn": "把祖父母身高也算上，现在就查孩子的预测身高吧。",
+      "cap_cn": [
+        "孩子预测身高",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "把祖父母身高也算上，現在就查孩子的預測身高吧。",
+      "cap_ch": [
+        "孩子預測身高",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+{
+  "slug": "adhd약키성장",
+  "fps": 30,
+  "title": "ADHD 약 먹으면 키 안 큰다? 진짜 답",
+  "_note": "자동 생성(storyboard-to-reel 18). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "ADHD 약 괜찮을까?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "에이디에이치디 약을 먹으면 키가 안 큰다? 부모님들이 제일 걱정하시는 부분, 오늘 정리해 드리겠습니다.",
+      "cap_ko": [
+        "ADHD 약 먹으면",
+        "키 안 큰다?"
+      ],
+      "hl_ko": "키 안 큰다?",
+      "th": "ยา ADHD ทำให้ลูกตัวไม่สูง? วันนี้เคลียร์ให้ชัด",
+      "cap_th": [
+        "ยา ADHD",
+        "ตัวไม่สูง?"
+      ],
+      "hl_th": "ตัวไม่สูง?",
+      "vi": "Uống thuốc ADHD thì con không cao? Hôm nay giải đáp rõ.",
+      "cap_vi": [
+        "Thuốc ADHD",
+        "khiến thấp?"
+      ],
+      "hl_vi": "khiến thấp?",
+      "en": "Does ADHD medication stunt your child's height? Let's set it straight today.",
+      "cap_en": [
+        "ADHD meds",
+        "stunt height?"
+      ],
+      "hl_en": "stunt height?",
+      "cn": "吃ADHD药孩子就长不高？今天讲清楚。",
+      "cap_cn": [
+        "ADHD药",
+        "长不高？"
+      ],
+      "hl_cn": "长不高？",
+      "ch": "吃ADHD藥孩子就長不高？今天講清楚。",
+      "cap_ch": [
+        "ADHD藥",
+        "長不高？"
+      ],
+      "hl_ch": "長不高？"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "이 걱정은 약이 식욕을 떨어뜨려서 생기는 것입니다. 밥을 잘 안 먹게 되기 때문입니다.",
+      "cap_ko": [
+        "약이 식욕을",
+        "떨어뜨려서"
+      ],
+      "hl_ko": "식욕을",
+      "th": "ความกังวลนี้มาจากยาทำให้ความอยากอาหารลด เด็กกินน้อยลง",
+      "cap_th": [
+        "ยาลด",
+        "ความอยากอาหาร"
+      ],
+      "hl_th": "ความอยากอาหาร",
+      "vi": "Lo lắng này đến từ việc thuốc làm giảm thèm ăn, con ăn ít đi.",
+      "cap_vi": [
+        "Thuốc giảm",
+        "thèm ăn"
+      ],
+      "hl_vi": "thèm ăn",
+      "en": "This worry comes from the meds curbing appetite — kids eat less.",
+      "cap_en": [
+        "Meds curb",
+        "appetite"
+      ],
+      "hl_en": "appetite",
+      "cn": "这担心来自药物抑制食欲，孩子吃得少了。",
+      "cap_cn": [
+        "药物抑制",
+        "食欲"
+      ],
+      "hl_cn": "食欲",
+      "ch": "這擔心來自藥物抑制食慾，孩子吃得少了。",
+      "cap_ch": [
+        "藥物抑制",
+        "食慾"
+      ],
+      "hl_ch": "食慾"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "에이디에이치디 약은 각성제라 집중력은 올리지만 식욕을 누릅니다. 그래서 초반엔 살짝 더디게 클 수 있습니다.",
+      "cap_ko": [
+        "각성제가",
+        "식욕 억제"
+      ],
+      "hl_ko": "식욕 억제",
+      "th": "ยา ADHD เป็นยากระตุ้น เพิ่มสมาธิแต่กดความอยากอาหาร ช่วงแรกอาจโตช้าลง",
+      "cap_th": [
+        "ยากระตุ้น",
+        "กดความอยากอาหาร"
+      ],
+      "hl_th": "กดความอยากอาหาร",
+      "vi": "Thuốc ADHD là chất kích thích, tăng tập trung nhưng ức chế thèm ăn — đầu có thể chậm lớn.",
+      "cap_vi": [
+        "Chất kích thích",
+        "ức chế thèm ăn"
+      ],
+      "hl_vi": "ức chế thèm ăn",
+      "en": "ADHD meds are stimulants — they boost focus but suppress appetite, so growth may slow at first.",
+      "cap_en": [
+        "Stimulant",
+        "suppresses appetite"
+      ],
+      "hl_en": "suppresses appetite",
+      "cn": "ADHD药是兴奋剂，提升专注却抑制食欲，初期可能长得慢些。",
+      "cap_cn": [
+        "兴奋剂",
+        "抑制食欲"
+      ],
+      "hl_cn": "抑制食欲",
+      "ch": "ADHD藥是興奮劑，提升專注卻抑制食慾，初期可能長得慢些。",
+      "cap_ch": [
+        "興奮劑",
+        "抑制食慾"
+      ],
+      "hl_ch": "抑制食慾",
+      "insert": "images/adhd약키성장/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.18,
+          "y": 0.88,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "각성제",
+          "en": "Stimulant",
+          "th": "ยากระตุ้น"
+        },
+        {
+          "x": 0.72,
+          "y": 0.22,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "식욕 ↓",
+          "en": "Appetite ↓",
+          "th": "ความอยากอาหาร ↓"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "그런데 여기서 중요한 것이 있습니다. 이 지연은 '일시적'이라는 점입니다.",
+      "cap_ko": [
+        "이 지연은",
+        "일시적!"
+      ],
+      "hl_ko": "일시적!",
+      "th": "แต่จุดสำคัญคือ การโตช้านี้เป็นแค่ชั่วคราว",
+      "cap_th": [
+        "โตช้านี้",
+        "แค่ชั่วคราว"
+      ],
+      "hl_th": "แค่ชั่วคราว",
+      "vi": "Nhưng điểm quan trọng: sự chậm này chỉ là tạm thời.",
+      "cap_vi": [
+        "Chậm này",
+        "chỉ tạm thời"
+      ],
+      "hl_vi": "chỉ tạm thời",
+      "en": "But here's the key — this slowdown is only temporary.",
+      "cap_en": [
+        "This slowdown",
+        "only temporary"
+      ],
+      "hl_en": "only temporary",
+      "cn": "但关键在于：这种变慢只是暂时的。",
+      "cap_cn": [
+        "这种变慢",
+        "只是暂时"
+      ],
+      "hl_cn": "只是暂时",
+      "ch": "但關鍵在於：這種變慢只是暫時的。",
+      "cap_ch": [
+        "這種變慢",
+        "只是暫時"
+      ],
+      "hl_ch": "只是暫時"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "용량을 조절하거나 잘 관리하면, '따라잡기 성장'으로 다시 정상 궤도로 돌아옵니다.",
+      "cap_ko": [
+        "따라잡기 성장으로",
+        "정상 회복"
+      ],
+      "hl_ko": "따라잡기 성장",
+      "th": "ปรับขนาดยาหรือดูแลดีๆ จะกลับมาปกติด้วยการโตชดเชย",
+      "cap_th": [
+        "การโตชดเชย",
+        "กลับมาปกติ"
+      ],
+      "hl_th": "การโตชดเชย",
+      "vi": "Chỉnh liều và quản lý tốt, con quay lại quỹ đạo nhờ tăng trưởng bù.",
+      "cap_vi": [
+        "Tăng trưởng bù",
+        "về bình thường"
+      ],
+      "hl_vi": "Tăng trưởng bù",
+      "en": "Adjust the dose and manage it well, and catch-up growth brings them back on track.",
+      "cap_en": [
+        "Catch-up growth",
+        "back on track"
+      ],
+      "hl_en": "Catch-up growth",
+      "cn": "调整剂量、管理得当，靠追赶性生长就能回到正轨。",
+      "cap_cn": [
+        "追赶性生长",
+        "回到正轨"
+      ],
+      "hl_cn": "追赶性生长",
+      "ch": "調整劑量、管理得當，靠追趕性生長就能回到正軌。",
+      "cap_ch": [
+        "追趕性生長",
+        "回到正軌"
+      ],
+      "hl_ch": "追趕性生長",
+      "insert": "images/adhd약키성장/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.82,
+          "size": 26,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "일시적 지연",
+          "en": "Temporary dip",
+          "th": "ชะลอชั่วคราว"
+        },
+        {
+          "x": 0.66,
+          "y": 0.22,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "따라잡기 성장",
+          "en": "Catch-up",
+          "th": "โตชดเชย"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22.5,
+      "ko": "유명한 엠티에이 연구에서 10년을 추적했는데, 최종 성인 키는 차이가 없었습니다. 있어봐야 1에서 2센티입니다.",
+      "cap_ko": [
+        "10년 추적: 최종 키",
+        "차이 없음"
+      ],
+      "hl_ko": "차이 없음",
+      "th": "งานวิจัย MTA ติดตาม 10 ปี ส่วนสูงสุดท้ายไม่ต่างกัน อย่างมากแค่ 1–2 ซม.",
+      "cap_th": [
+        "ติดตาม 10 ปี",
+        "ไม่ต่างกัน"
+      ],
+      "hl_th": "ไม่ต่างกัน",
+      "vi": "Nghiên cứu MTA theo dõi 10 năm: chiều cao cuối không khác biệt, cùng lắm 1–2cm.",
+      "cap_vi": [
+        "10 năm: chiều cao",
+        "không khác biệt"
+      ],
+      "hl_vi": "không khác biệt",
+      "en": "The famous MTA study tracked 10 years — final adult height showed no real difference, 1–2cm at most.",
+      "cap_en": [
+        "10-yr: final height",
+        "no difference"
+      ],
+      "hl_en": "no difference",
+      "cn": "著名的MTA研究追踪10年，最终成年身高没有差异，最多1～2厘米。",
+      "cap_cn": [
+        "追踪10年: 终身高",
+        "无差异"
+      ],
+      "hl_cn": "无差异",
+      "ch": "著名的MTA研究追蹤10年，最終成年身高沒有差異，最多1～2公分。",
+      "cap_ch": [
+        "追蹤10年: 終身高",
+        "無差異"
+      ],
+      "hl_ch": "無差異",
+      "insert": "images/adhd약키성장/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.93,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "약물 복용군",
+          "en": "On meds",
+          "th": "กลุ่มใช้ยา"
+        },
+        {
+          "x": 0.78,
+          "y": 0.93,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "비복용군",
+          "en": "No meds",
+          "th": "กลุ่มไม่ใช้ยา"
+        },
+        {
+          "x": 0.5,
+          "y": 0.32,
+          "size": 28,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "≈ 차이 없음",
+          "en": "≈ same",
+          "th": "≈ เท่ากัน"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22.5,
+      "end": 26,
+      "ko": "그러니까 키 걱정 때문에 약을 끊는 것은 오히려 손해입니다. 끊지 말고 관리하는 것이 답입니다.",
+      "cap_ko": [
+        "약 끊지 말고",
+        "관리가 답"
+      ],
+      "hl_ko": "관리가 답",
+      "th": "ดังนั้นหยุดยาเพราะกลัวเตี้ยกลับเสียมากกว่า อย่าหยุด แต่จัดการ",
+      "cap_th": [
+        "อย่าหยุดยา",
+        "แต่จัดการ"
+      ],
+      "hl_th": "แต่จัดการ",
+      "vi": "Nên ngừng thuốc vì sợ thấp lại thiệt hơn — đừng ngừng, hãy quản lý.",
+      "cap_vi": [
+        "Đừng ngừng thuốc",
+        "hãy quản lý"
+      ],
+      "hl_vi": "hãy quản lý",
+      "en": "So stopping the meds over height fears backfires — don't quit, manage it.",
+      "cap_en": [
+        "Don't quit meds",
+        "manage it"
+      ],
+      "hl_en": "manage it",
+      "cn": "所以因怕长不高就停药反而吃亏，别停药，要管理。",
+      "cap_cn": [
+        "别停药",
+        "要管理"
+      ],
+      "hl_cn": "要管理",
+      "ch": "所以因怕長不高就停藥反而吃虧，別停藥，要管理。",
+      "cap_ch": [
+        "別停藥",
+        "要管理"
+      ],
+      "hl_ch": "要管理"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "관리는 세 가지입니다. 저녁에 고칼로리로 영양을 채우고, 뼈나이로 성장을 추적하고, 주치의와 복용 시간을 맞춥니다.",
+      "cap_ko": [
+        "영양·뼈나이 추적",
+        "주치의 소통"
+      ],
+      "hl_ko": "뼈나이 추적",
+      "th": "จัดการ 3 อย่าง: เติมแคลอรีมื้อเย็น ติดตามด้วยอายุกระดูก คุยกับแพทย์เรื่องเวลายา",
+      "cap_th": [
+        "โภชนาการ·อายุกระดูก",
+        "คุยกับแพทย์"
+      ],
+      "hl_th": "อายุกระดูก",
+      "vi": "Ba cách: bữa tối giàu calo, theo dõi bằng tuổi xương, bàn với bác sĩ về giờ uống.",
+      "cap_vi": [
+        "Dinh dưỡng·tuổi xương",
+        "trao đổi bác sĩ"
+      ],
+      "hl_vi": "tuổi xương",
+      "en": "Three steps: high-calorie dinners, track with bone age, and time the dose with the doctor.",
+      "cap_en": [
+        "Nutrition·bone age",
+        "talk to doctor"
+      ],
+      "hl_en": "bone age",
+      "cn": "管理三招：晚餐补高热量、用骨龄追踪、和医生协调服药时间。",
+      "cap_cn": [
+        "营养·骨龄追踪",
+        "医生沟通"
+      ],
+      "hl_cn": "骨龄追踪",
+      "ch": "管理三招：晚餐補高熱量、用骨齡追蹤、和醫生協調服藥時間。",
+      "cap_ch": [
+        "營養·骨齡追蹤",
+        "醫生溝通"
+      ],
+      "hl_ch": "骨齡追蹤",
+      "insert": "images/adhd약키성장/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.16,
+          "y": 0.85,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "x": 0.5,
+          "y": 0.85,
+          "size": 26,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "뼈나이 추적",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "x": 0.83,
+          "y": 0.85,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "주치의 소통",
+          "en": "Doctor",
+          "th": "ปรึกษาแพทย์"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이와 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이·예측키로",
+        "성장 확인"
+      ],
+      "hl_ko": "성장 확인",
+      "th": "อายุกระดูกและส่วนสูงที่คาดการณ์ บอกได้ทันทีว่าลูกโตดีไหม",
+      "cap_th": [
+        "อายุกระดูก·คาดการณ์",
+        "เช็กการโต"
+      ],
+      "hl_th": "เช็กการโต",
+      "vi": "Tuổi xương và chiều cao dự đoán cho biết ngay con có lớn tốt không.",
+      "cap_vi": [
+        "Tuổi xương·dự đoán",
+        "kiểm tra tăng trưởng"
+      ],
+      "hl_vi": "kiểm tra tăng trưởng",
+      "en": "Bone age and predicted height tell you right away if your child's growing well.",
+      "cap_en": [
+        "Bone age·prediction",
+        "check growth"
+      ],
+      "hl_en": "check growth",
+      "cn": "看骨龄和预测身高，马上知道孩子长得好不好。",
+      "cap_cn": [
+        "骨龄·预测身高",
+        "查看成长"
+      ],
+      "hl_cn": "查看成长",
+      "ch": "看骨齡和預測身高，馬上知道孩子長得好不好。",
+      "cap_ch": [
+        "骨齡·預測身高",
+        "查看成長"
+      ],
+      "hl_ch": "查看成長"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보십시오.",
+      "cap_ko": [
+        "뼈나이·예측키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้",
+      "cap_th": [
+        "อายุกระดูก·คาดการณ์",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.",
+      "cap_vi": [
+        "Tuổi xương·dự đoán",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's growth with bone age and predicted height today.",
+      "cap_en": [
+        "Bone age·height",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就用骨龄和预测身高查查孩子的成长吧。",
+      "cap_cn": [
+        "骨龄·预测身高",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就用骨齡和預測身高查查孩子的成長吧。",
+      "cap_ch": [
+        "骨齡·預測身高",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

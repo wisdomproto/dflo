@@ -1,0 +1,548 @@
+{
+  "slug": "예상키공식오차",
+  "fps": 30,
+  "title": "부모 키 더해서 나누면 끝? — 예상키 공식의 함정",
+  "_note": "자동 생성(storyboard-to-reel 6). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "공식이 맞을까?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "아빠 키 엄마 키 더해서 나누면 우리 아이 키가 나온다고요? 사실은 절반만 맞습니다.",
+      "cap_ko": [
+        "부모 키 공식",
+        "절반만 맞다"
+      ],
+      "hl_ko": "절반만 맞다",
+      "th": "เอาส่วนสูงพ่อแม่มาบวกหารสองได้ความสูงลูกจริงเหรอ? จริงๆ ถูกแค่ครึ่งเดียว",
+      "cap_th": [
+        "สูตรพ่อแม่",
+        "ถูกแค่ครึ่ง"
+      ],
+      "hl_th": "ถูกแค่ครึ่ง",
+      "vi": "Cộng chiều cao bố mẹ chia đôi là ra chiều cao con? Thật ra chỉ đúng một nửa.",
+      "cap_vi": [
+        "Công thức bố mẹ",
+        "chỉ đúng nửa"
+      ],
+      "hl_vi": "chỉ đúng nửa",
+      "en": "Add mom and dad's height, divide — and that's your child's height? It's only half true.",
+      "cap_en": [
+        "Parent formula",
+        "only half true"
+      ],
+      "hl_en": "only half true",
+      "cn": "爸妈身高加起来除以二就是孩子身高？其实只对了一半。",
+      "cap_cn": [
+        "父母公式",
+        "只对一半"
+      ],
+      "hl_cn": "只对一半",
+      "ch": "爸媽身高加起來除以二就是孩子身高？其實只對了一半。",
+      "cap_ch": [
+        "父母公式",
+        "只對一半"
+      ],
+      "hl_ch": "只對一半"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "이 공식은 유전이라는 '뼈대'일 뿐, 우리 아이 키의 전체 그림이 아닙니다.",
+      "cap_ko": [
+        "공식은 뼈대",
+        "전체 그림 X"
+      ],
+      "hl_ko": "공식은 뼈대",
+      "th": "สูตรนี้เป็นแค่โครงจากพันธุกรรม ไม่ใช่ภาพรวมความสูงทั้งหมดของลูก",
+      "cap_th": [
+        "แค่โครงพันธุกรรม",
+        "ไม่ใช่ทั้งหมด"
+      ],
+      "hl_th": "แค่โครงพันธุกรรม",
+      "vi": "Công thức này chỉ là cái khung di truyền, không phải bức tranh đầy đủ về chiều cao của con.",
+      "cap_vi": [
+        "Chỉ là khung gen",
+        "không phải tất cả"
+      ],
+      "hl_vi": "Chỉ là khung gen",
+      "en": "This formula is just the genetic skeleton — not the whole picture of your child's height.",
+      "cap_en": [
+        "Just the frame",
+        "not whole picture"
+      ],
+      "hl_en": "Just the frame",
+      "cn": "这个公式只是遗传的'骨架'，不是孩子身高的完整画面。",
+      "cap_cn": [
+        "只是遗传骨架",
+        "非完整画面"
+      ],
+      "hl_cn": "只是遗传骨架",
+      "ch": "這個公式只是遺傳的'骨架'，不是孩子身高的完整畫面。",
+      "cap_ch": [
+        "只是遺傳骨架",
+        "非完整畫面"
+      ],
+      "hl_ch": "只是遺傳骨架"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "공식은 이렇습니다. 남아는 아빠 엄마 키 더하기 13 나누기 2, 여아는 빼기 13입니다.",
+      "cap_ko": [
+        "남아 +13÷2",
+        "여아 −13÷2"
+      ],
+      "hl_ko": "남아 +13÷2",
+      "th": "สูตรเป็นแบบนี้ ชายคือพ่อบวกแม่บวก13หาร2 หญิงคือลบ13",
+      "cap_th": [
+        "ชาย +13÷2",
+        "หญิง −13÷2"
+      ],
+      "hl_th": "ชาย +13÷2",
+      "vi": "Công thức là: bé trai = bố cộng mẹ cộng 13 chia 2, bé gái thì trừ 13.",
+      "cap_vi": [
+        "Trai +13÷2",
+        "Gái −13÷2"
+      ],
+      "hl_vi": "Trai +13÷2",
+      "en": "The formula: boys are dad plus mom plus 13, over 2; girls are minus 13.",
+      "cap_en": [
+        "Boys +13÷2",
+        "Girls −13÷2"
+      ],
+      "hl_en": "Boys +13÷2",
+      "cn": "公式是这样：男孩是爸加妈加13除以2，女孩是减13。",
+      "cap_cn": [
+        "男孩 +13÷2",
+        "女孩 −13÷2"
+      ],
+      "hl_cn": "男孩 +13÷2",
+      "ch": "公式是這樣：男孩是爸加媽加13除以2，女孩是減13。",
+      "cap_ch": [
+        "男孩 +13÷2",
+        "女孩 −13÷2"
+      ],
+      "hl_ch": "男孩 +13÷2",
+      "insert": "images/예상키공식오차/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.19,
+          "y": 0.83,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "아빠 + 엄마",
+          "en": "Dad + Mom",
+          "th": "พ่อ + แม่"
+        },
+        {
+          "x": 0.54,
+          "y": 0.7,
+          "size": 30,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "÷ 2 (±13)",
+          "en": "÷ 2 (±13)",
+          "th": "÷ 2 (±13)"
+        },
+        {
+          "x": 0.79,
+          "y": 0.73,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "= 평균치",
+          "en": "= average",
+          "th": "= ค่าเฉลี่ย"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "문제는 '평균'만 본다는 것입니다. 부모가 작아도 크게, 커도 작게 자라는 아이가 많습니다.",
+      "cap_ko": [
+        "공식은 평균만",
+        "예외가 많다"
+      ],
+      "hl_ko": "예외가 많다",
+      "th": "ปัญหาคือมันดูแค่ค่าเฉลี่ย พ่อแม่เตี้ยลูกสูงก็มี พ่อแม่สูงลูกเตี้ยก็มี",
+      "cap_th": [
+        "ดูแค่ค่าเฉลี่ย",
+        "มีข้อยกเว้นเยอะ"
+      ],
+      "hl_th": "มีข้อยกเว้นเยอะ",
+      "vi": "Vấn đề là nó chỉ nhìn 'trung bình'. Bố mẹ thấp con vẫn cao, bố mẹ cao con vẫn thấp.",
+      "cap_vi": [
+        "Chỉ nhìn trung bình",
+        "nhiều ngoại lệ"
+      ],
+      "hl_vi": "nhiều ngoại lệ",
+      "en": "The catch: it only shows the average. Short parents have tall kids, tall parents have short kids.",
+      "cap_en": [
+        "Just the average",
+        "many exceptions"
+      ],
+      "hl_en": "many exceptions",
+      "cn": "问题是它只看'平均'。父母矮孩子高、父母高孩子矮的例子很多。",
+      "cap_cn": [
+        "只看平均",
+        "例外很多"
+      ],
+      "hl_cn": "例外很多",
+      "ch": "問題是它只看'平均'。父母矮孩子高、父母高孩子矮的例子很多。",
+      "cap_ch": [
+        "只看平均",
+        "例外很多"
+      ],
+      "hl_ch": "例外很多"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "키는 유전이 70에서 80퍼센트입니다. 하지만 나머지 20에서 30퍼센트가 진짜 변수입니다.",
+      "cap_ko": [
+        "유전 70~80%",
+        "나머지 20~30%"
+      ],
+      "hl_ko": "유전 70~80%",
+      "th": "ความสูงเป็นพันธุกรรม 70 ถึง 80% แต่อีก 20 ถึง 30% คือตัวแปรจริง",
+      "cap_th": [
+        "พันธุกรรม 70~80%",
+        "อีก 20~30%"
+      ],
+      "hl_th": "พันธุกรรม 70~80%",
+      "vi": "Chiều cao do gen quyết định 70 đến 80%, nhưng 20 đến 30% còn lại mới là biến số thật.",
+      "cap_vi": [
+        "Gen 70~80%",
+        "còn 20~30%"
+      ],
+      "hl_vi": "Gen 70~80%",
+      "en": "Height is 70 to 80 percent genes — but the other 20 to 30 percent is the real variable.",
+      "cap_en": [
+        "Genes 70~80%",
+        "rest 20~30%"
+      ],
+      "hl_en": "Genes 70~80%",
+      "cn": "身高有70到80%靠遗传，但剩下的20到30%才是真正的变量。",
+      "cap_cn": [
+        "遗传 70~80%",
+        "其余 20~30%"
+      ],
+      "hl_cn": "遗传 70~80%",
+      "ch": "身高有70到80%靠遺傳，但剩下的20到30%才是真正的變數。",
+      "cap_ch": [
+        "遺傳 70~80%",
+        "其餘 20~30%"
+      ],
+      "hl_ch": "遺傳 70~80%",
+      "insert": "images/예상키공식오차/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.3,
+          "y": 0.6,
+          "size": 34,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "유전 70~80%",
+          "en": "Genes 70-80%",
+          "th": "พันธุกรรม 70-80%"
+        },
+        {
+          "x": 0.84,
+          "y": 0.07,
+          "size": 30,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "환경 20~30%",
+          "en": "Lifestyle 20-30%",
+          "th": "สิ่งแวดล้อม 20-30%"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "영양, 수면, 운동. 이 셋이 타고난 잠재력을 다 채우게도, 못 채우게도 합니다.",
+      "cap_ko": [
+        "영양·수면·운동",
+        "잠재력 좌우"
+      ],
+      "hl_ko": "잠재력 좌우",
+      "th": "อาหาร การนอน การออกกำลังกาย สามอย่างนี้ทำให้ลูกถึงศักยภาพหรือไม่ก็ได้",
+      "cap_th": [
+        "อาหาร·นอน·ออกกำลัง",
+        "กำหนดศักยภาพ"
+      ],
+      "hl_th": "กำหนดศักยภาพ",
+      "vi": "Dinh dưỡng, giấc ngủ, vận động — ba thứ này quyết định con có đạt hết tiềm năng hay không.",
+      "cap_vi": [
+        "Ăn·ngủ·vận động",
+        "quyết định tiềm năng"
+      ],
+      "hl_vi": "quyết định tiềm năng",
+      "en": "Nutrition, sleep, exercise — these three decide whether your child reaches full potential.",
+      "cap_en": [
+        "Food·sleep·exercise",
+        "decide potential"
+      ],
+      "hl_en": "decide potential",
+      "cn": "营养、睡眠、运动，这三样决定孩子能否发挥全部潜力。",
+      "cap_cn": [
+        "营养·睡眠·运动",
+        "决定潜力"
+      ],
+      "hl_cn": "决定潜力",
+      "ch": "營養、睡眠、運動，這三樣決定孩子能否發揮全部潛力。",
+      "cap_ch": [
+        "營養·睡眠·運動",
+        "決定潛力"
+      ],
+      "hl_ch": "決定潛力"
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "게다가 공식은 뼈나이, 성장 속도, 사춘기 단계를 전혀 보지 못합니다. 가장 중요한 것인데도 말입니다.",
+      "cap_ko": [
+        "뼈나이·속도·사춘기",
+        "공식은 못 본다"
+      ],
+      "hl_ko": "공식은 못 본다",
+      "th": "ยิ่งกว่านั้น สูตรมองไม่เห็นอายุกระดูก อัตราการโต และวัยแรกรุ่นเลย ทั้งที่สำคัญที่สุด",
+      "cap_th": [
+        "กระดูก·อัตราโต·แรกรุ่น",
+        "สูตรมองไม่เห็น"
+      ],
+      "hl_th": "สูตรมองไม่เห็น",
+      "vi": "Hơn nữa, công thức không thấy tuổi xương, tốc độ tăng trưởng và giai đoạn dậy thì — những thứ quan trọng nhất.",
+      "cap_vi": [
+        "Xương·tốc độ·dậy thì",
+        "công thức bỏ qua"
+      ],
+      "hl_vi": "công thức bỏ qua",
+      "en": "And the formula can't see bone age, growth speed, or puberty stage — the things that matter most.",
+      "cap_en": [
+        "Bone·speed·puberty",
+        "formula misses"
+      ],
+      "hl_en": "formula misses",
+      "cn": "而且公式根本看不到骨龄、生长速度和青春期阶段，偏偏这些最重要。",
+      "cap_cn": [
+        "骨龄·速度·青春期",
+        "公式看不到"
+      ],
+      "hl_cn": "公式看不到",
+      "ch": "而且公式根本看不到骨齡、生長速度和青春期階段，偏偏這些最重要。",
+      "cap_ch": [
+        "骨齡·速度·青春期",
+        "公式看不到"
+      ],
+      "hl_ch": "公式看不到",
+      "insert": "images/예상키공식오차/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.21,
+          "y": 0.95,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "x": 0.5,
+          "y": 0.95,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "성장 속도",
+          "en": "Growth speed",
+          "th": "อัตราการโต"
+        },
+        {
+          "x": 0.81,
+          "y": 0.95,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "사춘기 단계",
+          "en": "Puberty stage",
+          "th": "ระยะแรกรุ่น"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 29.5,
+      "ko": "이런 것은 전문의가 종합적으로 봐야 알 수 있습니다. 공식과는 정확도가 차원이 다릅니다.",
+      "cap_ko": [
+        "전문의 종합진단",
+        "정확도가 다르다"
+      ],
+      "hl_ko": "정확도가 다르다",
+      "th": "สิ่งเหล่านี้ต้องให้แพทย์เฉพาะทางดูรวมๆ ความแม่นยำต่างจากสูตรคนละระดับ",
+      "cap_th": [
+        "แพทย์ดูรวม",
+        "แม่นยำกว่ามาก"
+      ],
+      "hl_th": "แม่นยำกว่ามาก",
+      "vi": "Những điều này cần bác sĩ chuyên khoa đánh giá tổng thể — độ chính xác khác hẳn công thức.",
+      "cap_vi": [
+        "Bác sĩ đánh giá",
+        "chính xác hơn hẳn"
+      ],
+      "hl_vi": "chính xác hơn hẳn",
+      "en": "A specialist reads all of these together — far more accurate than any formula.",
+      "cap_en": [
+        "Specialist exam",
+        "far more accurate"
+      ],
+      "hl_en": "far more accurate",
+      "cn": "这些需要专科医生综合判断，准确度和公式完全是两个级别。",
+      "cap_cn": [
+        "专科综合判断",
+        "准确度更高"
+      ],
+      "hl_cn": "准确度更高",
+      "ch": "這些需要專科醫師綜合判斷，準確度和公式完全是兩個級別。",
+      "cap_ch": [
+        "專科綜合判斷",
+        "準確度更高"
+      ],
+      "hl_ch": "準確度更高"
+    },
+    {
+      "id": "c9",
+      "start": 29.5,
+      "end": 32.5,
+      "ko": "손목 뼈나이를 보면 남은 성장 기간까지 알 수 있습니다. 진짜 예측키는 여기서 나옵니다.",
+      "cap_ko": [
+        "손목 뼈나이로",
+        "진짜 예측키"
+      ],
+      "hl_ko": "진짜 예측키",
+      "th": "อายุกระดูกข้อมือบอกได้ถึงเวลาที่เหลือ ความสูงที่แท้จริงทำนายจากตรงนี้",
+      "cap_th": [
+        "อายุกระดูกข้อมือ",
+        "ทำนายตัวจริง"
+      ],
+      "hl_th": "ทำนายตัวจริง",
+      "vi": "Tuổi xương cổ tay còn cho biết thời gian tăng trưởng còn lại — chiều cao thật được dự đoán từ đây.",
+      "cap_vi": [
+        "Tuổi xương cổ tay",
+        "dự đoán thật"
+      ],
+      "hl_vi": "dự đoán thật",
+      "en": "A wrist bone age even shows the growth time left — the real height prediction comes from here.",
+      "cap_en": [
+        "Wrist bone age",
+        "real prediction"
+      ],
+      "hl_en": "real prediction",
+      "cn": "看手腕骨龄还能知道剩余生长时间，真正的预测身高就来自这里。",
+      "cap_cn": [
+        "手腕骨龄",
+        "真正的预测"
+      ],
+      "hl_cn": "真正的预测",
+      "ch": "看手腕骨齡還能知道剩餘生長時間，真正的預測身高就來自這裡。",
+      "cap_ch": [
+        "手腕骨齡",
+        "真正的預測"
+      ],
+      "hl_ch": "真正的預測",
+      "insert": "images/예상키공식오차/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.3,
+          "y": 0.93,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "손목 X-ray",
+          "en": "Wrist X-ray",
+          "th": "เอกซเรย์ข้อมือ"
+        },
+        {
+          "x": 0.8,
+          "y": 0.24,
+          "size": 30,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "진짜 예측키",
+          "en": "Real prediction",
+          "th": "ทำนายตัวจริง"
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "start": 32.5,
+      "end": 35,
+      "ko": "공식 말고 진짜 예측키! 우리 아이 뼈나이, 지금 바로 확인하십시오.",
+      "cap_ko": [
+        "진짜 예측키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "ไม่ใช่แค่สูตร แต่เป็นการทำนายจริง! เช็กอายุกระดูกของลูกวันนี้",
+      "cap_th": [
+        "ทำนายตัวจริง",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Không phải công thức — mà là dự đoán thật! Kiểm tra tuổi xương của con ngay.",
+      "cap_vi": [
+        "Dự đoán thật",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Not a formula — a real prediction! Check your child's bone age today.",
+      "cap_en": [
+        "Real prediction",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "不是公式，而是真正的预测！现在就查查孩子的骨龄吧。",
+      "cap_cn": [
+        "真正的预测",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "不是公式，而是真正的預測！現在就查查孩子的骨齡吧。",
+      "cap_ch": [
+        "真正的預測",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

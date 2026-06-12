@@ -1,0 +1,528 @@
+{
+  "slug": "뼈나이xray",
+  "fps": 30,
+  "title": "엑스레이 한 장으로 미래 키가 보인다 — 뼈나이",
+  "_note": "자동 생성(storyboard-to-reel 5). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "뼈나이가 진짜 나이?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 진짜 나이는 주민번호가 아니라, '뼈나이'입니다.",
+      "cap_ko": [
+        "진짜 나이는",
+        "뼈나이"
+      ],
+      "hl_ko": "뼈나이",
+      "th": "อายุจริงของลูกไม่ใช่อายุตามบัตร แต่คือ 'อายุกระดูก'",
+      "cap_th": [
+        "อายุจริงคือ",
+        "อายุกระดูก"
+      ],
+      "hl_th": "อายุกระดูก",
+      "vi": "Tuổi thật của con không nằm trên giấy khai sinh — đó là 'tuổi xương'.",
+      "cap_vi": [
+        "Tuổi thật là",
+        "tuổi xương"
+      ],
+      "hl_vi": "tuổi xương",
+      "en": "Your child's real age isn't on their ID — it's their 'bone age'.",
+      "cap_en": [
+        "Real age is",
+        "bone age"
+      ],
+      "hl_en": "bone age",
+      "cn": "孩子真正的年龄不在身份证上，而是'骨龄'。",
+      "cap_cn": [
+        "真正的年龄是",
+        "骨龄"
+      ],
+      "hl_cn": "骨龄",
+      "ch": "孩子真正的年齡不在身分證上，而是'骨齡'。",
+      "cap_ch": [
+        "真正的年齡是",
+        "骨齡"
+      ],
+      "hl_ch": "骨齡"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "같은 8살이라도 어떤 아이는 뼈나이가 10살, 어떤 아이는 6살입니다.",
+      "cap_ko": [
+        "같은 8살이라도",
+        "뼈나이는 제각각"
+      ],
+      "hl_ko": "뼈나이는 제각각",
+      "th": "อายุ 8 ขวบเท่ากัน แต่บางคนอายุกระดูก 10 บางคน 6",
+      "cap_th": [
+        "อายุเท่ากัน",
+        "อายุกระดูกต่างกัน"
+      ],
+      "hl_th": "อายุกระดูกต่างกัน",
+      "vi": "Cùng 8 tuổi, có bé tuổi xương 10, có bé chỉ 6.",
+      "cap_vi": [
+        "Cùng 8 tuổi",
+        "tuổi xương khác nhau"
+      ],
+      "hl_vi": "tuổi xương khác nhau",
+      "en": "Two 8-year-olds — one's bone age is 10, the other's is 6.",
+      "cap_en": [
+        "Same age 8",
+        "bone ages differ"
+      ],
+      "hl_en": "bone ages differ",
+      "cn": "同样8岁，有的孩子骨龄10岁，有的才6岁。",
+      "cap_cn": [
+        "同样8岁",
+        "骨龄各不同"
+      ],
+      "hl_cn": "骨龄各不同",
+      "ch": "同樣8歲，有的孩子骨齡10歲，有的才6歲。",
+      "cap_ch": [
+        "同樣8歲",
+        "骨齡各不同"
+      ],
+      "hl_ch": "骨齡各不同"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "실제나이는 생일로 세고, 뼈나이는 몸이 얼마나 자랐는지 성숙도를 봅니다.",
+      "cap_ko": [
+        "실제나이 vs",
+        "뼈나이 = 성숙도"
+      ],
+      "hl_ko": "뼈나이 = 성숙도",
+      "th": "อายุจริงนับจากวันเกิด อายุกระดูกดูที่วุฒิภาวะร่างกาย",
+      "cap_th": [
+        "อายุจริง vs",
+        "อายุกระดูก = วุฒิภาวะ"
+      ],
+      "hl_th": "อายุกระดูก = วุฒิภาวะ",
+      "vi": "Tuổi thật tính theo ngày sinh, tuổi xương đo độ trưởng thành của cơ thể.",
+      "cap_vi": [
+        "Tuổi thật vs",
+        "tuổi xương = trưởng thành"
+      ],
+      "hl_vi": "tuổi xương = trưởng thành",
+      "en": "Real age counts birthdays; bone age reads how mature the body is.",
+      "cap_en": [
+        "Real age vs",
+        "bone age = maturity"
+      ],
+      "hl_en": "bone age = maturity",
+      "cn": "实际年龄按生日算，骨龄看身体成熟度。",
+      "cap_cn": [
+        "实际年龄 vs",
+        "骨龄 = 成熟度"
+      ],
+      "hl_cn": "骨龄 = 成熟度",
+      "ch": "實際年齡按生日算，骨齡看身體成熟度。",
+      "cap_ch": [
+        "實際年齡 vs",
+        "骨齡 = 成熟度"
+      ],
+      "hl_ch": "骨齡 = 成熟度",
+      "insert": "images/뼈나이xray/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.94,
+          "size": 34,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "실제나이",
+          "en": "Real age",
+          "th": "อายุจริง"
+        },
+        {
+          "x": 0.75,
+          "y": 0.94,
+          "size": 34,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "뼈나이",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "측정은 아주 간단합니다. 왼쪽 손목을 엑스레이 한 장 딱 찍으면 끝입니다.",
+      "cap_ko": [
+        "왼손목",
+        "X-ray 한 장"
+      ],
+      "hl_ko": "X-ray 한 장",
+      "th": "ตรวจง่ายมาก แค่ X-ray ข้อมือซ้ายภาพเดียว",
+      "cap_th": [
+        "ข้อมือซ้าย",
+        "X-ray ภาพเดียว"
+      ],
+      "hl_th": "X-ray ภาพเดียว",
+      "vi": "Đo rất đơn giản — chỉ một tấm X-quang cổ tay trái.",
+      "cap_vi": [
+        "Cổ tay trái",
+        "một tấm X-quang"
+      ],
+      "hl_vi": "một tấm X-quang",
+      "en": "It's simple — just one X-ray of the left hand and wrist.",
+      "cap_en": [
+        "Left wrist",
+        "one X-ray"
+      ],
+      "hl_en": "one X-ray",
+      "cn": "检查很简单，左手腕拍一张X光就行。",
+      "cap_cn": [
+        "左手腕",
+        "一张X光"
+      ],
+      "hl_cn": "一张X光",
+      "ch": "檢查很簡單，左手腕拍一張X光就行。",
+      "cap_ch": [
+        "左手腕",
+        "一張X光"
+      ],
+      "hl_ch": "一張X光"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "엑스레이에서 뼈와 뼈 사이 검은 선, 이게 바로 열려 있는 성장판입니다.",
+      "cap_ko": [
+        "검은 선 =",
+        "열린 성장판"
+      ],
+      "hl_ko": "열린 성장판",
+      "th": "เส้นสีดำระหว่างกระดูกใน X-ray คือแผ่นกระดูกที่เปิดอยู่",
+      "cap_th": [
+        "เส้นสีดำ =",
+        "แผ่นกระดูกเปิด"
+      ],
+      "hl_th": "แผ่นกระดูกเปิด",
+      "vi": "Vạch đen giữa hai xương trên X-quang chính là sụn tăng trưởng đang mở.",
+      "cap_vi": [
+        "Vạch đen =",
+        "sụn đang mở"
+      ],
+      "hl_vi": "sụn đang mở",
+      "en": "That black line between bones on the X-ray? An open growth plate.",
+      "cap_en": [
+        "Black line =",
+        "open plate"
+      ],
+      "hl_en": "open plate",
+      "cn": "X光上骨头之间的黑线，就是打开的生长板。",
+      "cap_cn": [
+        "黑线 =",
+        "打开的生长板"
+      ],
+      "hl_cn": "打开的生长板",
+      "ch": "X光上骨頭之間的黑線，就是打開的生長板。",
+      "cap_ch": [
+        "黑線 =",
+        "打開的生長板"
+      ],
+      "hl_ch": "打開的生長板",
+      "insert": "images/뼈나이xray/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.15,
+          "y": 0.1,
+          "size": 28,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "검은 선 = 열림",
+          "en": "Black line = open",
+          "th": "เส้นดำ = เปิด"
+        },
+        {
+          "x": 0.2,
+          "y": 0.88,
+          "size": 28,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "왼손목",
+          "en": "Left wrist",
+          "th": "ข้อมือซ้าย"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "이 선이 흐려지다 사라지면 성장판이 닫힌 것이고, 키 성장도 거의 끝입니다.",
+      "cap_ko": [
+        "선이 사라지면",
+        "성장판 닫힘"
+      ],
+      "hl_ko": "성장판 닫힘",
+      "th": "ถ้าเส้นจางหายไป แผ่นกระดูกปิด การเติบโตเกือบจบ",
+      "cap_th": [
+        "เส้นหายไป =",
+        "แผ่นกระดูกปิด"
+      ],
+      "hl_th": "แผ่นกระดูกปิด",
+      "vi": "Khi vạch mờ rồi biến mất, sụn đã đóng — chiều cao gần như dừng.",
+      "cap_vi": [
+        "Vạch biến mất =",
+        "sụn đã đóng"
+      ],
+      "hl_vi": "sụn đã đóng",
+      "en": "When the line fades and vanishes, the plate is closed — growth nearly done.",
+      "cap_en": [
+        "Line gone =",
+        "plate closed"
+      ],
+      "hl_en": "plate closed",
+      "cn": "线变淡消失，生长板就闭合了，长高也快结束了。",
+      "cap_cn": [
+        "线消失 =",
+        "生长板闭合"
+      ],
+      "hl_cn": "生长板闭合",
+      "ch": "線變淡消失，生長板就閉合了，長高也快結束了。",
+      "cap_ch": [
+        "線消失 =",
+        "生長板閉合"
+      ],
+      "hl_ch": "生長板閉合",
+      "insert": "images/뼈나이xray/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.17,
+          "y": 0.95,
+          "size": 30,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "열림",
+          "en": "Open",
+          "th": "เปิด"
+        },
+        {
+          "x": 0.84,
+          "y": 0.95,
+          "size": 30,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "닫힘",
+          "en": "Closed",
+          "th": "ปิด"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "뼈나이가 실제보다 2년 이상 빠르면, 성조숙증을 의심해 봐야 합니다.",
+      "cap_ko": [
+        "2년 이상 빠르면",
+        "성조숙 신호"
+      ],
+      "hl_ko": "성조숙 신호",
+      "th": "ถ้าอายุกระดูกล้ำหน้า 2 ปีขึ้นไป ต้องสงสัยภาวะก่อนวัย",
+      "cap_th": [
+        "ล้ำหน้า 2 ปี+",
+        "สัญญาณก่อนวัย"
+      ],
+      "hl_th": "สัญญาณก่อนวัย",
+      "vi": "Nếu tuổi xương vượt 2 năm trở lên, hãy nghĩ đến dậy thì sớm.",
+      "cap_vi": [
+        "Vượt 2 năm+",
+        "dấu hiệu dậy thì sớm"
+      ],
+      "hl_vi": "dấu hiệu dậy thì sớm",
+      "en": "If bone age runs 2+ years ahead, think early puberty.",
+      "cap_en": [
+        "2+ years ahead",
+        "early-puberty sign"
+      ],
+      "hl_en": "early-puberty sign",
+      "cn": "如果骨龄超前2年以上，要警惕性早熟。",
+      "cap_cn": [
+        "超前2年以上",
+        "性早熟信号"
+      ],
+      "hl_cn": "性早熟信号",
+      "ch": "如果骨齡超前2年以上，要警惕性早熟。",
+      "cap_ch": [
+        "超前2年以上",
+        "性早熟訊號"
+      ],
+      "hl_ch": "性早熟訊號"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "반대로 뼈나이가 느리면, 성장판이 늦게 닫혀 더 클 기회가 남은 것입니다.",
+      "cap_ko": [
+        "뼈나이 느리면",
+        "더 클 기회"
+      ],
+      "hl_ko": "더 클 기회",
+      "th": "ตรงข้าม ถ้าอายุกระดูกช้า แผ่นกระดูกปิดช้า ยังมีโอกาสสูงอีก",
+      "cap_th": [
+        "อายุกระดูกช้า",
+        "ยังมีโอกาสสูง"
+      ],
+      "hl_th": "ยังมีโอกาสสูง",
+      "vi": "Ngược lại, tuổi xương chậm thì sụn đóng muộn — vẫn còn cơ hội cao thêm.",
+      "cap_vi": [
+        "Tuổi xương chậm",
+        "còn cơ hội cao"
+      ],
+      "hl_vi": "còn cơ hội cao",
+      "en": "If bone age is behind, the plate closes later — more room to grow.",
+      "cap_en": [
+        "Bone age behind",
+        "more room to grow"
+      ],
+      "hl_en": "more room to grow",
+      "cn": "反过来，骨龄偏慢，生长板晚闭合，还有长高的机会。",
+      "cap_cn": [
+        "骨龄偏慢",
+        "还有长高机会"
+      ],
+      "hl_cn": "还有长高机会",
+      "ch": "反過來，骨齡偏慢，生長板晚閉合，還有長高的機會。",
+      "cap_ch": [
+        "骨齡偏慢",
+        "還有長高機會"
+      ],
+      "hl_ch": "還有長高機會",
+      "insert": "images/뼈나이xray/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.47,
+          "y": 0.12,
+          "size": 28,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "빠르면 일찍 닫힘",
+          "en": "Ahead = closes early",
+          "th": "เร็ว = ปิดเร็ว"
+        },
+        {
+          "x": 0.45,
+          "y": 0.94,
+          "size": 28,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "느리면 더 클 기회",
+          "en": "Behind = more room",
+          "th": "ช้า = โอกาสมากกว่า"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "그래서 뼈나이를 보면 남은 성장 기간과 미래 키까지 예측할 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "미래 키 예측"
+      ],
+      "hl_ko": "미래 키 예측",
+      "th": "อายุกระดูกจึงทำนายเวลาที่เหลือและส่วนสูงในอนาคตได้",
+      "cap_th": [
+        "อายุกระดูก",
+        "ทำนายส่วนสูง"
+      ],
+      "hl_th": "ทำนายส่วนสูง",
+      "vi": "Vậy nên tuổi xương dự đoán được thời gian còn lại và chiều cao tương lai.",
+      "cap_vi": [
+        "Tuổi xương",
+        "dự đoán chiều cao"
+      ],
+      "hl_vi": "dự đoán chiều cao",
+      "en": "So bone age predicts the time left and your child's future height.",
+      "cap_en": [
+        "Bone age",
+        "predicts future height"
+      ],
+      "hl_en": "predicts future height",
+      "cn": "所以骨龄能预测剩余时间和孩子未来的身高。",
+      "cap_cn": [
+        "骨龄",
+        "预测未来身高"
+      ],
+      "hl_cn": "预测未来身高",
+      "ch": "所以骨齡能預測剩餘時間和孩子未來的身高。",
+      "cap_ch": [
+        "骨齡",
+        "預測未來身高"
+      ],
+      "hl_ch": "預測未來身高"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 뼈나이와 성장판 상태, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "뼈나이·성장판",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กอายุกระดูกและแผ่นกระดูกของลูกวันนี้",
+      "cap_th": [
+        "อายุกระดูก·แผ่นกระดูก",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tuổi xương và sụn tăng trưởng của con ngay hôm nay.",
+      "cap_vi": [
+        "Tuổi xương·sụn",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's bone age and growth plates today.",
+      "cap_en": [
+        "Bone age & plates",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的骨龄和生长板状态吧。",
+      "cap_cn": [
+        "骨龄·生长板",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的骨齡和生長板狀態吧。",
+      "cap_ch": [
+        "骨齡·生長板",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

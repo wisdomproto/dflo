@@ -1,0 +1,554 @@
+{
+  "slug": "성장통신호",
+  "fps": 30,
+  "title": "성장통 = 키 크는 신호? 진짜 원인은 따로 있어요",
+  "_note": "자동 생성(storyboard-to-reel 13). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 다리 통증",
+      "mark": "키 크는 신호일까?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "밤마다 다리가 아프다고 깨는 우리 아이, '키 크려고 그러는 것'이라고만 생각하셨습니까?",
+      "cap_ko": [
+        "밤마다 다리 통증",
+        "키 크는 신호?"
+      ],
+      "hl_ko": "키 크는 신호?",
+      "th": "ลูกตื่นมาร้องปวดขาทุกคืน คิดว่าเป็นเพราะกำลังจะสูงใช่ไหม?",
+      "cap_th": [
+        "ปวดขาทุกคืน",
+        "สัญญาณโตจริงไหม?"
+      ],
+      "hl_th": "สัญญาณโตจริงไหม?",
+      "vi": "Con đau chân mỗi đêm — bạn vẫn nghĩ đó là dấu hiệu sắp cao phải không?",
+      "cap_vi": [
+        "Đêm nào cũng đau chân",
+        "dấu hiệu cao lên?"
+      ],
+      "hl_vi": "dấu hiệu cao lên?",
+      "en": "Your child wakes up with leg pain every night — you thought it just meant growing, right?",
+      "cap_en": [
+        "Nightly leg pain",
+        "a sign of growing?"
+      ],
+      "hl_en": "a sign of growing?",
+      "cn": "孩子每晚喊腿疼，你以为是要长高了，对吧？",
+      "cap_cn": [
+        "每晚腿疼",
+        "是长高信号吗？"
+      ],
+      "hl_cn": "是长高信号吗？",
+      "ch": "孩子每晚喊腿疼，你以為是要長高了，對吧？",
+      "cap_ch": [
+        "每晚腿疼",
+        "是長高信號嗎？"
+      ],
+      "hl_ch": "是長高信號嗎？"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "그런데 성장통은 사실 키 크는 '신호'가 아닙니다. 진짜 원인은 따로 있습니다.",
+      "cap_ko": [
+        "성장통은",
+        "키 신호가 아니다"
+      ],
+      "hl_ko": "키 신호가 아니다",
+      "th": "แต่จริงๆ แล้วอาการปวดโตไม่ใช่ 'สัญญาณ' ว่าจะสูง สาเหตุจริงอยู่ที่อื่น",
+      "cap_th": [
+        "ปวดโต",
+        "ไม่ใช่สัญญาณ"
+      ],
+      "hl_th": "ไม่ใช่สัญญาณ",
+      "vi": "Nhưng thật ra đau tăng trưởng không phải 'dấu hiệu' cao lên. Nguyên nhân thật nằm ở chỗ khác.",
+      "cap_vi": [
+        "Đau tăng trưởng",
+        "không phải dấu hiệu"
+      ],
+      "hl_vi": "không phải dấu hiệu",
+      "en": "But growing pains aren't actually a 'signal' of height. The real cause is something else.",
+      "cap_en": [
+        "Growing pains",
+        "not a height signal"
+      ],
+      "hl_en": "not a height signal",
+      "cn": "其实，生长痛并不是长高的'信号'。真正的原因另有其因。",
+      "cap_cn": [
+        "生长痛",
+        "不是长高信号"
+      ],
+      "hl_cn": "不是长高信号",
+      "ch": "其實，生長痛並不是長高的'信號'。真正的原因另有其因。",
+      "cap_ch": [
+        "生長痛",
+        "不是長高信號"
+      ],
+      "hl_ch": "不是長高信號"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "뼈에는 통증을 느끼는 신경이 거의 없습니다. 뼈가 늘어나서 아픈 게 아닙니다.",
+      "cap_ko": [
+        "뼈엔 통증신경",
+        "거의 없어요"
+      ],
+      "hl_ko": "거의 없어요",
+      "th": "กระดูกแทบไม่มีเส้นประสาทรับความเจ็บปวด ไม่ได้ปวดเพราะกระดูกยืด",
+      "cap_th": [
+        "กระดูก",
+        "แทบไม่มีเส้นประสาท"
+      ],
+      "hl_th": "แทบไม่มีเส้นประสาท",
+      "vi": "Xương gần như không có dây thần kinh cảm nhận đau. Không phải xương dài ra mà đau.",
+      "cap_vi": [
+        "Xương",
+        "gần như không có thần kinh"
+      ],
+      "hl_vi": "gần như không có thần kinh",
+      "en": "Bones have almost no pain nerves. It's not the bone stretching that hurts.",
+      "cap_en": [
+        "Bones have",
+        "almost no pain nerves"
+      ],
+      "hl_en": "almost no pain nerves",
+      "cn": "骨头几乎没有痛觉神经。疼不是因为骨头在拉长。",
+      "cap_cn": [
+        "骨头",
+        "几乎没有痛觉神经"
+      ],
+      "hl_cn": "几乎没有痛觉神经",
+      "ch": "骨頭幾乎沒有痛覺神經。疼不是因為骨頭在拉長。",
+      "cap_ch": [
+        "骨頭",
+        "幾乎沒有痛覺神經"
+      ],
+      "hl_ch": "幾乎沒有痛覺神經",
+      "insert": "images/성장통신호/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.2,
+          "size": 30,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "뼈",
+          "en": "Bone",
+          "th": "กระดูก"
+        },
+        {
+          "x": 0.79,
+          "y": 0.24,
+          "size": 24,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "통증 신경 거의 없음",
+          "en": "Almost no pain nerves",
+          "th": "แทบไม่มีเส้นประสาท"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "그래서 성장통은 '신호'라기보다, 빠르게 크는 과정에서 나타나는 '현상'에 가깝습니다.",
+      "cap_ko": [
+        "신호가 아니라",
+        "성장기의 현상"
+      ],
+      "hl_ko": "성장기의 현상",
+      "th": "ดังนั้นปวดโตไม่ใช่ 'สัญญาณ' แต่เป็น 'ปรากฏการณ์' ระหว่างที่โตเร็ว",
+      "cap_th": [
+        "ไม่ใช่สัญญาณ",
+        "แต่เป็นปรากฏการณ์"
+      ],
+      "hl_th": "แต่เป็นปรากฏการณ์",
+      "vi": "Nên đau tăng trưởng không phải 'dấu hiệu' mà là 'hiện tượng' khi cơ thể lớn nhanh.",
+      "cap_vi": [
+        "Không phải dấu hiệu",
+        "mà là hiện tượng"
+      ],
+      "hl_vi": "mà là hiện tượng",
+      "en": "So growing pains are less a 'signal' and more a 'phenomenon' of fast growth.",
+      "cap_en": [
+        "Not a signal",
+        "a growth phenomenon"
+      ],
+      "hl_en": "a growth phenomenon",
+      "cn": "所以生长痛与其说是'信号'，不如说是快速成长中的'现象'。",
+      "cap_cn": [
+        "不是信号",
+        "而是成长现象"
+      ],
+      "hl_cn": "而是成长现象",
+      "ch": "所以生長痛與其說是'信號'，不如說是快速成長中的'現象'。",
+      "cap_ch": [
+        "不是信號",
+        "而是成長現象"
+      ],
+      "hl_ch": "而是成長現象"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "진짜 원인은 네 가지입니다. 낮 동안 쌓인 근육 피로가 가장 유력합니다.",
+      "cap_ko": [
+        "진짜 원인",
+        "근육 피로가 1순위"
+      ],
+      "hl_ko": "근육 피로가 1순위",
+      "th": "สาเหตุจริงมี 4 อย่าง ความล้าของกล้ามเนื้อจากกลางวันคือตัวหลัก",
+      "cap_th": [
+        "สาเหตุจริง 4 อย่าง",
+        "กล้ามเนื้อล้าเป็นหลัก"
+      ],
+      "hl_th": "กล้ามเนื้อล้าเป็นหลัก",
+      "vi": "Có bốn nguyên nhân thật. Cơ bắp mỏi sau cả ngày chơi là số một.",
+      "cap_vi": [
+        "4 nguyên nhân thật",
+        "cơ mỏi là số một"
+      ],
+      "hl_vi": "cơ mỏi là số một",
+      "en": "There are four real causes. Muscle fatigue from the day is the top one.",
+      "cap_en": [
+        "4 real causes",
+        "muscle fatigue is #1"
+      ],
+      "hl_en": "muscle fatigue is #1",
+      "cn": "真正的原因有四个。白天累积的肌肉疲劳最主要。",
+      "cap_cn": [
+        "4个真正原因",
+        "肌肉疲劳居首"
+      ],
+      "hl_cn": "肌肉疲劳居首",
+      "ch": "真正的原因有四個。白天累積的肌肉疲勞最主要。",
+      "cap_ch": [
+        "4個真正原因",
+        "肌肉疲勞居首"
+      ],
+      "hl_ch": "肌肉疲勞居首",
+      "insert": "images/성장통신호/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.26,
+          "y": 0.45,
+          "size": 24,
+          "weight": 800,
+          "color": "#b45309",
+          "ko": "근육 피로",
+          "en": "Muscle fatigue",
+          "th": "กล้ามเนื้อล้า",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.76,
+          "y": 0.45,
+          "size": 24,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "뼈·힘줄 불균형",
+          "en": "Bone–tendon gap",
+          "th": "กระดูก-เอ็นไม่สมดุล",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.26,
+          "y": 0.95,
+          "size": 24,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "신경·혈관 성장",
+          "en": "Nerve & vessel",
+          "th": "เส้นประสาท-หลอดเลือด",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.76,
+          "y": 0.95,
+          "size": 24,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "심리·통증 역치",
+          "en": "Emotion & threshold",
+          "th": "จิตใจ-เกณฑ์ปวด",
+          "pill": "rgba(255,255,255,0.92)"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "뼈가 쑥 자랄 때 근육과 힘줄이 못 따라가서 당겨지는 것도 큰 이유입니다.",
+      "cap_ko": [
+        "뼈 vs 근육",
+        "성장 속도 차이"
+      ],
+      "hl_ko": "성장 속도 차이",
+      "th": "เมื่อกระดูกโตเร็วแต่กล้ามเนื้อเอ็นตามไม่ทัน เกิดแรงตึง ก็เป็นสาเหตุใหญ่",
+      "cap_th": [
+        "กระดูกกับกล้ามเนื้อ",
+        "โตไม่เท่ากัน"
+      ],
+      "hl_th": "โตไม่เท่ากัน",
+      "vi": "Khi xương dài nhanh mà cơ và gân theo không kịp, bị kéo căng — cũng là lý do lớn.",
+      "cap_vi": [
+        "Xương và cơ",
+        "lớn không cùng tốc độ"
+      ],
+      "hl_vi": "lớn không cùng tốc độ",
+      "en": "When bone shoots up but muscles and tendons lag and tug, that's a big reason too.",
+      "cap_en": [
+        "Bone vs muscle",
+        "growth speed gap"
+      ],
+      "hl_en": "growth speed gap",
+      "cn": "骨头猛长、肌肉肌腱跟不上被拉扯，也是重要原因。",
+      "cap_cn": [
+        "骨头与肌肉",
+        "生长速度差"
+      ],
+      "hl_cn": "生长速度差",
+      "ch": "骨頭猛長、肌肉肌腱跟不上被拉扯，也是重要原因。",
+      "cap_ch": [
+        "骨頭與肌肉",
+        "生長速度差"
+      ],
+      "hl_ch": "生長速度差",
+      "insert": "images/성장통신호/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.78,
+          "y": 0.1,
+          "size": 26,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "뼈 빠르게 ↑",
+          "en": "Bone fast",
+          "th": "กระดูกโตเร็ว"
+        },
+        {
+          "x": 0.85,
+          "y": 0.43,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "근육 따라붙기",
+          "en": "Muscle lags",
+          "th": "กล้ามเนื้อตามไม่ทัน"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "보통 양쪽 다리가 밤에 욱신거리고, 열이나 붓기는 없습니다. 한쪽만 아프거나 부으면 병원에 가야 합니다.",
+      "cap_ko": [
+        "양쪽·밤·열 없음 ✅",
+        "한쪽·부으면 병원 ⚠️"
+      ],
+      "hl_ko": "한쪽·부으면 병원 ⚠️",
+      "th": "ปกติปวดสองข้าง ตอนกลางคืน ไม่บวมไม่ร้อน ถ้าข้างเดียวหรือบวม ไปหาหมอ",
+      "cap_th": [
+        "สองข้าง กลางคืน ไม่บวม ✅",
+        "ข้างเดียว/บวม พบหมอ ⚠️"
+      ],
+      "hl_th": "ข้างเดียว/บวม พบหมอ ⚠️",
+      "vi": "Thường đau hai chân, ban đêm, không sưng nóng. Một chân hoặc sưng thì đi khám.",
+      "cap_vi": [
+        "Hai chân, ban đêm, không sưng ✅",
+        "Một chân/sưng đi khám ⚠️"
+      ],
+      "hl_vi": "Một chân/sưng đi khám ⚠️",
+      "en": "Usually both legs, at night, no heat or swelling. One leg or swollen? See a doctor.",
+      "cap_en": [
+        "Both legs, night, no swelling ✅",
+        "One leg / swelling = doctor ⚠️"
+      ],
+      "hl_en": "One leg / swelling = doctor ⚠️",
+      "cn": "通常双腿、夜间、不红不肿。只痛一条腿或肿胀就该看医生。",
+      "cap_cn": [
+        "双腿·夜间·不肿 ✅",
+        "单腿/肿胀看医生 ⚠️"
+      ],
+      "hl_cn": "单腿/肿胀看医生 ⚠️",
+      "ch": "通常雙腿、夜間、不紅不腫。只痛一條腿或腫脹就該看醫生。",
+      "cap_ch": [
+        "雙腿·夜間·不腫 ✅",
+        "單腿/腫脹看醫生 ⚠️"
+      ],
+      "hl_ch": "單腿/腫脹看醫生 ⚠️",
+      "insert": "images/성장통신호/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.94,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "양쪽·밤·열 없음",
+          "en": "Both legs · night · no swelling",
+          "th": "สองข้าง·กลางคืน·ไม่บวม",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.75,
+          "y": 0.94,
+          "size": 24,
+          "weight": 800,
+          "color": "#dc2626",
+          "ko": "한쪽·붓기·낮에도",
+          "en": "One leg · swelling · daytime",
+          "th": "ข้างเดียว·บวม·กลางวัน",
+          "pill": "rgba(255,255,255,0.92)"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "대부분은 따뜻하게 찜질·마사지하고 푹 재우면 괜찮아집니다. 공감만 해줘도 덜 아파합니다.",
+      "cap_ko": [
+        "따뜻한 마사지·수면",
+        "대부분 괜찮아요"
+      ],
+      "hl_ko": "대부분 괜찮아요",
+      "th": "ส่วนใหญ่ประคบอุ่น นวด นอนหลับเพียงพอ ก็ดีขึ้น แค่เข้าใจลูกก็ปวดน้อยลง",
+      "cap_th": [
+        "ประคบอุ่น·นอนพอ",
+        "ส่วนใหญ่หายได้"
+      ],
+      "hl_th": "ส่วนใหญ่หายได้",
+      "vi": "Phần lớn chườm ấm, massage và ngủ đủ là ổn. Chỉ cần đồng cảm con cũng bớt đau.",
+      "cap_vi": [
+        "Chườm ấm · ngủ đủ",
+        "phần lớn sẽ ổn"
+      ],
+      "hl_vi": "phần lớn sẽ ổn",
+      "en": "Most ease up with warm compresses, massage, and good sleep. Even empathy helps.",
+      "cap_en": [
+        "Warm care · sleep",
+        "most get better"
+      ],
+      "hl_en": "most get better",
+      "cn": "大多数热敷、按摩、睡好就缓解了。光是共情也能让孩子没那么疼。",
+      "cap_cn": [
+        "热敷·按摩·睡好",
+        "大多会好转"
+      ],
+      "hl_cn": "大多会好转",
+      "ch": "大多數熱敷、按摩、睡好就緩解了。光是共情也能讓孩子沒那麼疼。",
+      "cap_ch": [
+        "熱敷·按摩·睡好",
+        "大多會好轉"
+      ],
+      "hl_ch": "大多會好轉"
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "그리고 이 시기는 우리 아이가 한창 크는 때입니다. 키가 잘 크고 있는지 점검하기 딱 좋습니다.",
+      "cap_ko": [
+        "한창 크는 시기",
+        "키 점검 타이밍"
+      ],
+      "hl_ko": "키 점검 타이밍",
+      "th": "และช่วงนี้คือตอนที่ลูกกำลังโตเต็มที่ เป็นจังหวะดีที่จะเช็กการเติบโต",
+      "cap_th": [
+        "ช่วงกำลังโต",
+        "จังหวะเช็กความสูง"
+      ],
+      "hl_th": "จังหวะเช็กความสูง",
+      "vi": "Và đây là lúc con đang lớn nhanh — thời điểm tốt để kiểm tra chiều cao.",
+      "cap_vi": [
+        "Lúc đang lớn nhanh",
+        "thời điểm kiểm tra"
+      ],
+      "hl_vi": "thời điểm kiểm tra",
+      "en": "And this is when your child is growing fast — a perfect time to check their height.",
+      "cap_en": [
+        "A fast-growth phase",
+        "time to check height"
+      ],
+      "hl_en": "time to check height",
+      "cn": "而且这正是孩子猛长的时期，是检查身高的好时机。",
+      "cap_cn": [
+        "正在猛长",
+        "查身高好时机"
+      ],
+      "hl_cn": "查身高好时机",
+      "ch": "而且這正是孩子猛長的時期，是檢查身高的好時機。",
+      "cap_ch": [
+        "正在猛長",
+        "查身高好時機"
+      ],
+      "hl_ch": "查身高好時機"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 36,
+      "ko": "우리 아이 키, 잘 크고 있는지 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "우리 아이 키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กว่าลูกของคุณกำลังโตดีไหม วันนี้เลย",
+      "cap_th": [
+        "ความสูงของลูก",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra xem con bạn có đang cao tốt không, ngay hôm nay.",
+      "cap_vi": [
+        "Chiều cao của con",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check whether your child is growing well — right now.",
+      "cap_en": [
+        "Your child's height",
+        "check now"
+      ],
+      "hl_en": "check now",
+      "cn": "现在就查查孩子是不是长得好吧。",
+      "cap_cn": [
+        "孩子的身高",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子是不是長得好吧。",
+      "cap_ch": [
+        "孩子的身高",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

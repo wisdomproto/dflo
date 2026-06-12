@@ -1,0 +1,568 @@
+{
+  "slug": "비만일찍멈춤",
+  "fps": 30,
+  "title": "살집 있으면 키도 큰다? 일찍 크고 일찍 멈추는 함정",
+  "_note": "자동 생성(storyboard-to-reel 9). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "살쪄서 큰 거 맞아?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "살집 있는 우리 아이가 또래보다 크면, 그냥 '덩치가 커서'라고 생각하시기 쉽습니다.",
+      "cap_ko": [
+        "살쪄서 키 크다?",
+        "사실은 함정"
+      ],
+      "hl_ko": "사실은 함정",
+      "th": "ลูกท้วมแล้วสูงกว่าเพื่อน เรามักคิดว่า 'ตัวใหญ่เลยสูง' ใช่ไหม?",
+      "cap_th": [
+        "อ้วนแล้วสูง?",
+        "จริงๆ คือกับดัก"
+      ],
+      "hl_th": "กับดัก",
+      "vi": "Con mũm mĩm mà cao hơn bạn, ta hay nghĩ 'to con nên cao' đúng không?",
+      "cap_vi": [
+        "Mập nên cao?",
+        "Thật ra là cái bẫy"
+      ],
+      "hl_vi": "cái bẫy",
+      "en": "Chubby kid taller than friends? We assume 'big build, that's why.'",
+      "cap_en": [
+        "Chubby = tall?",
+        "It's a trap"
+      ],
+      "hl_en": "a trap",
+      "cn": "胖一点的孩子比同龄高，我们常以为'块头大才高'，对吧？",
+      "cap_cn": [
+        "胖所以高？",
+        "其实是陷阱"
+      ],
+      "hl_cn": "陷阱",
+      "ch": "胖一點的孩子比同齡高，我們常以為'塊頭大才高'，對吧？",
+      "cap_ch": [
+        "胖所以高？",
+        "其實是陷阱"
+      ],
+      "hl_ch": "陷阱"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "그런데 비만 아이는 '일찍 크고 일찍 멈추는' 역설이 있습니다. 최종 키는 더 작아질 수 있습니다.",
+      "cap_ko": [
+        "일찍 크고",
+        "일찍 멈춘다"
+      ],
+      "hl_ko": "일찍 멈춘다",
+      "th": "แต่เด็กอ้วนมีปรากฏการณ์ย้อนแย้ง 'โตเร็ว หยุดเร็ว' สุดท้ายอาจเตี้ยลง",
+      "cap_th": [
+        "โตเร็ว",
+        "หยุดเร็ว"
+      ],
+      "hl_th": "หยุดเร็ว",
+      "vi": "Nhưng trẻ béo phì có nghịch lý: lớn sớm, dừng sớm. Chiều cao cuối có thể thấp hơn.",
+      "cap_vi": [
+        "Lớn sớm",
+        "dừng sớm"
+      ],
+      "hl_vi": "dừng sớm",
+      "en": "But obese kids face a paradox: grow early, stop early. Final height may be shorter.",
+      "cap_en": [
+        "Grow early",
+        "stop early"
+      ],
+      "hl_en": "stop early",
+      "cn": "但肥胖孩子有个悖论：长得早，停得早。最终身高可能更矮。",
+      "cap_cn": [
+        "长得早",
+        "停得早"
+      ],
+      "hl_cn": "停得早",
+      "ch": "但肥胖孩子有個悖論：長得早，停得早。最終身高可能更矮。",
+      "cap_ch": [
+        "長得早",
+        "停得早"
+      ],
+      "hl_ch": "停得早"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "어릴 땐 또래보다 위로 쑥 자랍니다. 그런데 어느 순간 멈추고, 친구들이 따라잡아 넘어섭니다.",
+      "cap_ko": [
+        "처음엔 앞서다",
+        "결국 추월당함"
+      ],
+      "hl_ko": "결국 추월당함",
+      "th": "ตอนเล็กนำเพื่อน แต่พอถึงจุดหนึ่งหยุด แล้วเพื่อนแซงขึ้นไป",
+      "cap_th": [
+        "แรกๆ นำ",
+        "สุดท้ายโดนแซง"
+      ],
+      "hl_th": "โดนแซง",
+      "vi": "Lúc nhỏ vượt bạn, rồi đột nhiên dừng, bạn bè đuổi kịp và vượt qua.",
+      "cap_vi": [
+        "Đầu dẫn trước",
+        "cuối bị vượt"
+      ],
+      "hl_vi": "bị vượt",
+      "en": "Ahead early, then it stalls — and friends catch up and pass them.",
+      "cap_en": [
+        "Ahead early",
+        "passed later"
+      ],
+      "hl_en": "passed later",
+      "cn": "小时候领先，可某天就停了，同龄人反超过去。",
+      "cap_cn": [
+        "早期领先",
+        "最终被反超"
+      ],
+      "hl_cn": "被反超",
+      "ch": "小時候領先，可某天就停了，同齡人反超過去。",
+      "cap_ch": [
+        "早期領先",
+        "最終被反超"
+      ],
+      "hl_ch": "被反超",
+      "insert": "images/비만일찍멈춤/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.18,
+          "y": 0.33,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "일찍 앞섬",
+          "en": "Early lead",
+          "th": "นำช่วงแรก"
+        },
+        {
+          "x": 0.52,
+          "y": 0.31,
+          "size": 28,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "추월",
+          "en": "Overtaken",
+          "th": "ถูกแซง"
+        },
+        {
+          "x": 0.8,
+          "y": 0.08,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "최종 더 큼",
+          "en": "Taller in the end",
+          "th": "สุดท้ายสูงกว่า"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "비만은 인슐린 저항으로 인슐린이 늘고, 아이지에프 원도 높아져 성장판을 '일시적으로' 자극합니다.",
+      "cap_ko": [
+        "인슐린·IGF-1↑",
+        "일시적 성장 촉진"
+      ],
+      "hl_ko": "일시적 성장 촉진",
+      "th": "ความอ้วนทำให้อินซูลินและ IGF-1 สูงขึ้น กระตุ้นแผ่นกระดูก 'ชั่วคราว'",
+      "cap_th": [
+        "อินซูลิน·IGF-1 ↑",
+        "กระตุ้นชั่วคราว"
+      ],
+      "hl_th": "ชั่วคราว",
+      "vi": "Béo phì làm insulin và IGF-1 tăng, kích thích sụn tăng trưởng — nhưng chỉ tạm thời.",
+      "cap_vi": [
+        "Insulin·IGF-1 ↑",
+        "kích thích tạm thời"
+      ],
+      "hl_vi": "tạm thời",
+      "en": "Obesity raises insulin and IGF-1, which spur the growth plate — but only briefly.",
+      "cap_en": [
+        "Insulin·IGF-1 ↑",
+        "temporary boost"
+      ],
+      "hl_en": "temporary boost",
+      "cn": "肥胖让胰岛素和IGF-1升高，刺激生长板——但只是暂时的。",
+      "cap_cn": [
+        "胰岛素·IGF-1 ↑",
+        "暂时性促长"
+      ],
+      "hl_cn": "暂时性促长",
+      "ch": "肥胖讓胰島素和IGF-1升高，刺激生長板——但只是暫時的。",
+      "cap_ch": [
+        "胰島素·IGF-1 ↑",
+        "暫時性促長"
+      ],
+      "hl_ch": "暫時性促長",
+      "insert": "images/비만일찍멈춤/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.13,
+          "y": 0.62,
+          "size": 28,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "인슐린",
+          "en": "Insulin",
+          "th": "อินซูลิน"
+        },
+        {
+          "x": 0.84,
+          "y": 0.6,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "IGF-1",
+          "en": "IGF-1",
+          "th": "IGF-1"
+        },
+        {
+          "x": 0.68,
+          "y": 0.12,
+          "size": 28,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "일시적 ↑",
+          "en": "Temporary ↑",
+          "th": "ชั่วคราว ↑"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "진짜 함정은 여기에 있습니다. 지방이 많으면 '아로마타제'라는 효소가 활발해집니다.",
+      "cap_ko": [
+        "지방 많으면",
+        "아로마타제 활성"
+      ],
+      "hl_ko": "아로마타제 활성",
+      "th": "กับดักจริงอยู่ตรงนี้ ไขมันเยอะทำให้เอนไซม์ 'อะโรมาเตส' ทำงานมากขึ้น",
+      "cap_th": [
+        "ไขมันเยอะ",
+        "อะโรมาเตสทำงาน"
+      ],
+      "hl_th": "อะโรมาเตส",
+      "vi": "Cái bẫy thật ở đây: nhiều mỡ khiến enzyme 'aromatase' hoạt động mạnh.",
+      "cap_vi": [
+        "Nhiều mỡ",
+        "aromatase hoạt động"
+      ],
+      "hl_vi": "aromatase",
+      "en": "Here's the real trap: more fat means the enzyme 'aromatase' gets busy.",
+      "cap_en": [
+        "More fat",
+        "aromatase active"
+      ],
+      "hl_en": "aromatase",
+      "cn": "真正的陷阱在这里：脂肪多，'芳香化酶'就变得活跃。",
+      "cap_cn": [
+        "脂肪多",
+        "芳香化酶活跃"
+      ],
+      "hl_cn": "芳香化酶",
+      "ch": "真正的陷阱在這裡：脂肪多，'芳香化酶'就變得活躍。",
+      "cap_ch": [
+        "脂肪多",
+        "芳香化酶活躍"
+      ],
+      "hl_ch": "芳香化酶"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22.5,
+      "ko": "이 효소가 남성호르몬을 에스트로겐으로 바꿔, 에스트로겐이 뼈나이를 확 앞당깁니다.",
+      "cap_ko": [
+        "에스트로겐↑",
+        "뼈나이 가속"
+      ],
+      "hl_ko": "뼈나이 가속",
+      "th": "เอนไซม์นี้เปลี่ยนฮอร์โมนชายเป็นเอสโตรเจน เร่งอายุกระดูกให้เร็วขึ้น",
+      "cap_th": [
+        "เอสโตรเจน ↑",
+        "อายุกระดูกเร่ง"
+      ],
+      "hl_th": "อายุกระดูกเร่ง",
+      "vi": "Enzyme này biến hormone nam thành estrogen, đẩy tuổi xương vọt lên.",
+      "cap_vi": [
+        "Estrogen ↑",
+        "tuổi xương vọt"
+      ],
+      "hl_vi": "tuổi xương vọt",
+      "en": "It turns male hormones into estrogen, which races bone age ahead.",
+      "cap_en": [
+        "Estrogen ↑",
+        "bone age races"
+      ],
+      "hl_en": "bone age races",
+      "cn": "它把雄激素变成雌激素，雌激素让骨龄急速超前。",
+      "cap_cn": [
+        "雌激素 ↑",
+        "骨龄加速"
+      ],
+      "hl_cn": "骨龄加速",
+      "ch": "它把雄激素變成雌激素，雌激素讓骨齡急速超前。",
+      "cap_ch": [
+        "雌激素 ↑",
+        "骨齡加速"
+      ],
+      "hl_ch": "骨齡加速",
+      "insert": "images/비만일찍멈춤/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.1,
+          "y": 0.62,
+          "size": 28,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "지방",
+          "en": "Fat",
+          "th": "ไขมัน"
+        },
+        {
+          "x": 0.6,
+          "y": 0.62,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "에스트로겐",
+          "en": "Estrogen",
+          "th": "เอสโตรเจน"
+        },
+        {
+          "x": 0.85,
+          "y": 0.66,
+          "size": 26,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "뼈나이 빨라짐",
+          "en": "Bone age speeds up",
+          "th": "อายุกระดูกเร่ง"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22.5,
+      "end": 26.5,
+      "ko": "뼈나이가 빨라지면 성장판이 일찍 닫힙니다. 성장 에너지를 미리 당겨 쓴 셈입니다.",
+      "cap_ko": [
+        "성장판 일찍 닫힘",
+        "키를 미리 당겨 씀"
+      ],
+      "hl_ko": "키를 미리 당겨 씀",
+      "th": "อายุกระดูกเร็ว แผ่นกระดูกปิดเร็ว เท่ากับดึงพลังการโตมาใช้ล่วงหน้า",
+      "cap_th": [
+        "แผ่นกระดูกปิดเร็ว",
+        "ดึงมาใช้ล่วงหน้า"
+      ],
+      "hl_th": "ดึงมาใช้ล่วงหน้า",
+      "vi": "Tuổi xương nhanh thì sụn đóng sớm — như tiêu trước phần chiều cao tương lai.",
+      "cap_vi": [
+        "Sụn đóng sớm",
+        "tiêu trước chiều cao"
+      ],
+      "hl_vi": "tiêu trước chiều cao",
+      "en": "Faster bone age closes the plates early — like spending future height in advance.",
+      "cap_en": [
+        "Plates close early",
+        "height spent early"
+      ],
+      "hl_en": "height spent early",
+      "cn": "骨龄变快，生长板提前闭合——等于把未来的身高提前花掉。",
+      "cap_cn": [
+        "生长板早闭",
+        "提前花掉身高"
+      ],
+      "hl_cn": "提前花掉身高",
+      "ch": "骨齡變快，生長板提前閉合——等於把未來的身高提前花掉。",
+      "cap_ch": [
+        "生長板早閉",
+        "提前花掉身高"
+      ],
+      "hl_ch": "提前花掉身高"
+    },
+    {
+      "id": "c8",
+      "start": 26.5,
+      "end": 30,
+      "ko": "좋은 소식은, 식단·운동·수면으로 관리하면 뼈나이 가속을 충분히 늦출 수 있다는 것입니다.",
+      "cap_ko": [
+        "식단·운동·수면",
+        "지킬 수 있다"
+      ],
+      "hl_ko": "지킬 수 있다",
+      "th": "ข่าวดีคือ จัดการอาหาร ออกกำลังกาย การนอน ชะลออายุกระดูกได้เพียงพอ",
+      "cap_th": [
+        "อาหาร·ออกกำลัง·นอน",
+        "ปกป้องได้"
+      ],
+      "hl_th": "ปกป้องได้",
+      "vi": "Tin tốt: ăn uống, vận động, ngủ đủ có thể làm chậm tuổi xương rất hiệu quả.",
+      "cap_vi": [
+        "Ăn·vận động·ngủ",
+        "giữ được"
+      ],
+      "hl_vi": "giữ được",
+      "en": "Good news: diet, exercise and sleep can slow that bone-age rush — you can protect it.",
+      "cap_en": [
+        "Diet·exercise·sleep",
+        "you can protect"
+      ],
+      "hl_en": "you can protect",
+      "cn": "好消息是：饮食、运动、睡眠管理好，完全能延缓骨龄加速。",
+      "cap_cn": [
+        "饮食·运动·睡眠",
+        "守得住"
+      ],
+      "hl_cn": "守得住",
+      "ch": "好消息是：飲食、運動、睡眠管理好，完全能延緩骨齡加速。",
+      "cap_ch": [
+        "飲食·運動·睡眠",
+        "守得住"
+      ],
+      "hl_ch": "守得住",
+      "insert": "images/비만일찍멈춤/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.265,
+          "size": 26,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "식단",
+          "en": "Diet",
+          "th": "อาหาร"
+        },
+        {
+          "x": 0.13,
+          "y": 0.85,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "운동",
+          "en": "Exercise",
+          "th": "ออกกำลังกาย"
+        },
+        {
+          "x": 0.85,
+          "y": 0.85,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이를 보면 우리 아이가 일찍 멈출 위험인지 지금 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "ตรวจอายุกระดูก รู้เลยว่าลูกเสี่ยงหยุดโตเร็วไหม",
+      "cap_th": [
+        "ดูอายุกระดูก",
+        "รู้ตอนนี้"
+      ],
+      "hl_th": "รู้ตอนนี้",
+      "vi": "Xem tuổi xương là biết ngay con có nguy cơ dừng sớm hay không.",
+      "cap_vi": [
+        "Xem tuổi xương",
+        "biết ngay"
+      ],
+      "hl_vi": "biết ngay",
+      "en": "Bone age shows right now if your child risks stopping early.",
+      "cap_en": [
+        "Bone age",
+        "know now"
+      ],
+      "hl_en": "know now",
+      "cn": "看骨龄，现在就能知道孩子是否有提前停长的风险。",
+      "cap_cn": [
+        "看骨龄",
+        "现在就知道"
+      ],
+      "hl_cn": "现在就知道",
+      "ch": "看骨齡，現在就能知道孩子是否有提前停長的風險。",
+      "cap_ch": [
+        "看骨齡",
+        "現在就知道"
+      ],
+      "hl_ch": "現在就知道"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 뼈나이, 지금 바로 예측키로 확인해 보십시오.",
+      "cap_ko": [
+        "뼈나이·예측키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กอายุกระดูกและส่วนสูงที่คาดการณ์ของลูกวันนี้",
+      "cap_th": [
+        "อายุกระดูก·คาดส่วนสูง",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tuổi xương và chiều cao dự đoán của con ngay hôm nay.",
+      "cap_vi": [
+        "Tuổi xương·dự đoán",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's bone age and predicted height today.",
+      "cap_en": [
+        "Bone age·prediction",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的骨龄和预测身高吧。",
+      "cap_cn": [
+        "骨龄·预测身高",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的骨齡和預測身高吧。",
+      "cap_ch": [
+        "骨齡·預測身高",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

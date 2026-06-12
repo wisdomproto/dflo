@@ -1,0 +1,538 @@
+{
+  "slug": "중금속키성장",
+  "fps": 30,
+  "title": "밥 잘 먹는데 왜 안 클까? — 키 막는 숨은 적, 중금속",
+  "_note": "자동 생성(storyboard-to-reel 17). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "숨은 적이 있다?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "잘 먹고 잘 자는데도 키가 더디다면, 일상 속 '숨은 적'을 의심해 보십시오.",
+      "cap_ko": [
+        "잘 먹는데 더디다면",
+        "숨은 적 의심"
+      ],
+      "hl_ko": "숨은 적 의심",
+      "th": "กินดีนอนดีแต่ตัวไม่ค่อยสูง? อาจมี 'ศัตรูที่ซ่อนอยู่' ในชีวิตประจำวัน",
+      "cap_th": [
+        "กินดีแต่ไม่สูง?",
+        "ศัตรูที่ซ่อนอยู่"
+      ],
+      "hl_th": "ศัตรูที่ซ่อนอยู่",
+      "vi": "Ăn ngủ tốt mà con vẫn chậm cao? Hãy nghi ngờ 'kẻ thù giấu mặt' quanh ta.",
+      "cap_vi": [
+        "Ăn tốt mà vẫn chậm?",
+        "kẻ thù giấu mặt"
+      ],
+      "hl_vi": "kẻ thù giấu mặt",
+      "en": "Eating and sleeping well but still growing slow? Suspect a hidden enemy in daily life.",
+      "cap_en": [
+        "Eats well, grows slow?",
+        "a hidden enemy"
+      ],
+      "hl_en": "a hidden enemy",
+      "cn": "吃得好睡得好却长得慢？怀疑一下生活里的'隐形敌人'。",
+      "cap_cn": [
+        "吃得好却长得慢？",
+        "隐形敌人"
+      ],
+      "hl_cn": "隐形敌人",
+      "ch": "吃得好睡得好卻長得慢？懷疑一下生活裡的'隱形敵人'。",
+      "cap_ch": [
+        "吃得好卻長得慢？",
+        "隱形敵人"
+      ],
+      "hl_ch": "隱形敵人"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "그 정체는 일상에서 쉽게 노출되는 중금속, 납·수은·카드뮴입니다.",
+      "cap_ko": [
+        "그 정체는",
+        "중금속 3가지"
+      ],
+      "hl_ko": "중금속 3가지",
+      "th": "ตัวการคือโลหะหนักที่สัมผัสง่ายในชีวิตประจำวัน ตะกั่ว ปรอท แคดเมียม",
+      "cap_th": [
+        "ตัวการคือ",
+        "โลหะหนัก 3 ชนิด"
+      ],
+      "hl_th": "โลหะหนัก 3 ชนิด",
+      "vi": "Đó là kim loại nặng dễ nhiễm hằng ngày: chì, thủy ngân, cadmium.",
+      "cap_vi": [
+        "Thủ phạm là",
+        "3 kim loại nặng"
+      ],
+      "hl_vi": "3 kim loại nặng",
+      "en": "It's heavy metals we're exposed to daily — lead, mercury, and cadmium.",
+      "cap_en": [
+        "The culprit:",
+        "3 heavy metals"
+      ],
+      "hl_en": "3 heavy metals",
+      "cn": "它就是日常容易接触的重金属——铅、汞、镉。",
+      "cap_cn": [
+        "真凶是",
+        "三种重金属"
+      ],
+      "hl_cn": "三种重金属",
+      "ch": "它就是日常容易接觸的重金屬——鉛、汞、鎘。",
+      "cap_ch": [
+        "真凶是",
+        "三種重金屬"
+      ],
+      "hl_ch": "三種重金屬"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "납은 칼슘인 척 뼈에 쌓여서, 뼈를 키우는 성장판 세포를 망가뜨립니다.",
+      "cap_ko": [
+        "납은 칼슘인 척",
+        "성장판 방해"
+      ],
+      "hl_ko": "성장판 방해",
+      "th": "ตะกั่วปลอมเป็นแคลเซียมสะสมในกระดูก ทำลายเซลล์แผ่นกระดูก",
+      "cap_th": [
+        "ตะกั่วปลอมเป็นแคลเซียม",
+        "ทำลายแผ่นกระดูก"
+      ],
+      "hl_th": "ทำลายแผ่นกระดูก",
+      "vi": "Chì giả làm canxi, tích trong xương và phá hỏng tế bào sụn tăng trưởng.",
+      "cap_vi": [
+        "Chì giả làm canxi",
+        "hại sụn tăng trưởng"
+      ],
+      "hl_vi": "hại sụn tăng trưởng",
+      "en": "Lead poses as calcium, piles into bone, and wrecks growth-plate cells.",
+      "cap_en": [
+        "Lead poses as calcium",
+        "harms growth plate"
+      ],
+      "hl_en": "harms growth plate",
+      "cn": "铅伪装成钙堆进骨头，破坏造骨的生长板细胞。",
+      "cap_cn": [
+        "铅伪装成钙",
+        "破坏生长板"
+      ],
+      "hl_cn": "破坏生长板",
+      "ch": "鉛偽裝成鈣堆進骨頭，破壞造骨的生長板細胞。",
+      "cap_ch": [
+        "鉛偽裝成鈣",
+        "破壞生長板"
+      ],
+      "hl_ch": "破壞生長板",
+      "insert": "images/중금속키성장/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.13,
+          "y": 0.17,
+          "size": 24,
+          "weight": 800,
+          "color": "#4b5563",
+          "ko": "납(칼슘 위장)",
+          "en": "Lead in disguise",
+          "th": "ตะกั่วปลอมตัว"
+        },
+        {
+          "x": 0.85,
+          "y": 0.64,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "성장판 손상",
+          "en": "Plate harmed",
+          "th": "แผ่นกระดูกเสียหาย"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "게다가 아이는 몸무게 대비 흡수율이 높고 해독 능력은 미숙해서 더 취약합니다.",
+      "cap_ko": [
+        "아이는 흡수율 ↑",
+        "해독은 미숙"
+      ],
+      "hl_ko": "아이는 흡수율 ↑",
+      "th": "ยิ่งกว่านั้น เด็กดูดซึมสูงกว่าตามน้ำหนัก แต่ล้างพิษยังไม่เก่ง จึงเสี่ยงกว่า",
+      "cap_th": [
+        "เด็กดูดซึมสูง",
+        "ล้างพิษยังไม่เก่ง"
+      ],
+      "hl_th": "เด็กดูดซึมสูง",
+      "vi": "Hơn nữa, trẻ hấp thu nhiều hơn theo cân nặng nhưng thải độc còn non, nên dễ tổn thương.",
+      "cap_vi": [
+        "Trẻ hấp thu cao",
+        "thải độc còn non"
+      ],
+      "hl_vi": "Trẻ hấp thu cao",
+      "en": "And kids absorb more per body weight while their detox is immature — far more vulnerable.",
+      "cap_en": [
+        "Kids absorb more",
+        "detox immature"
+      ],
+      "hl_en": "Kids absorb more",
+      "cn": "而且孩子按体重吸收率更高，排毒能力却不成熟，所以更脆弱。",
+      "cap_cn": [
+        "孩子吸收率高",
+        "排毒不成熟"
+      ],
+      "hl_cn": "孩子吸收率高",
+      "ch": "而且孩子按體重吸收率更高，排毒能力卻不成熟，所以更脆弱。",
+      "cap_ch": [
+        "孩子吸收率高",
+        "排毒不成熟"
+      ],
+      "hl_ch": "孩子吸收率高",
+      "insert": "images/중금속키성장/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.47,
+          "y": 0.15,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "흡수율 높음",
+          "en": "Absorbs more",
+          "th": "ดูดซึมมากกว่า"
+        },
+        {
+          "x": 0.22,
+          "y": 0.92,
+          "size": 24,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "해독 미숙",
+          "en": "Weak detox",
+          "th": "ล้างพิษอ่อน"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "수은은 큰 생선을 통해 들어와, 갑상선과 성장호르몬을 방해합니다.",
+      "cap_ko": [
+        "수은은 큰 생선으로",
+        "호르몬 방해"
+      ],
+      "hl_ko": "호르몬 방해",
+      "th": "ปรอทเข้าทางปลาตัวใหญ่ รบกวนไทรอยด์และฮอร์โมนการเจริญเติบโต",
+      "cap_th": [
+        "ปรอทจากปลาใหญ่",
+        "รบกวนฮอร์โมน"
+      ],
+      "hl_th": "รบกวนฮอร์โมน",
+      "vi": "Thủy ngân vào qua cá lớn, quấy rối tuyến giáp và hormone tăng trưởng.",
+      "cap_vi": [
+        "Thủy ngân từ cá lớn",
+        "rối loạn hormone"
+      ],
+      "hl_vi": "rối loạn hormone",
+      "en": "Mercury comes in through big fish and disrupts the thyroid and growth hormone.",
+      "cap_en": [
+        "Mercury via big fish",
+        "disrupts hormones"
+      ],
+      "hl_en": "disrupts hormones",
+      "cn": "汞通过大型鱼进入体内，干扰甲状腺和生长激素。",
+      "cap_cn": [
+        "汞来自大型鱼",
+        "干扰激素"
+      ],
+      "hl_cn": "干扰激素",
+      "ch": "汞透過大型魚進入體內，干擾甲狀腺和生長激素。",
+      "cap_ch": [
+        "汞來自大型魚",
+        "干擾激素"
+      ],
+      "hl_ch": "干擾激素"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22.5,
+      "ko": "카드뮴은 신장에서 칼슘을 빼내 골밀도를 낮추고, 성장인자 아이지에프 원까지 막습니다.",
+      "cap_ko": [
+        "카드뮴은 골밀도 ↓",
+        "IGF-1 차단"
+      ],
+      "hl_ko": "IGF-1 차단",
+      "th": "แคดเมียมดึงแคลเซียมออกทางไต ลดความหนาแน่นกระดูก และขวาง IGF-1",
+      "cap_th": [
+        "แคดเมียมลดมวลกระดูก",
+        "ขวาง IGF-1"
+      ],
+      "hl_th": "ขวาง IGF-1",
+      "vi": "Cadmium rút canxi qua thận, giảm mật độ xương và chặn cả yếu tố tăng trưởng IGF-1.",
+      "cap_vi": [
+        "Cadmium giảm mật độ xương",
+        "chặn IGF-1"
+      ],
+      "hl_vi": "chặn IGF-1",
+      "en": "Cadmium pulls calcium out via the kidneys, lowering bone density and blocking growth factor IGF-1.",
+      "cap_en": [
+        "Cadmium lowers density",
+        "blocks IGF-1"
+      ],
+      "hl_en": "blocks IGF-1",
+      "cn": "镉经肾脏把钙排走，降低骨密度，还阻断生长因子IGF-1。",
+      "cap_cn": [
+        "镉降低骨密度",
+        "阻断IGF-1"
+      ],
+      "hl_cn": "阻断IGF-1",
+      "ch": "鎘經腎臟把鈣排走，降低骨密度，還阻斷生長因子IGF-1。",
+      "cap_ch": [
+        "鎘降低骨密度",
+        "阻斷IGF-1"
+      ],
+      "hl_ch": "阻斷IGF-1",
+      "insert": "images/중금속키성장/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.16,
+          "y": 0.88,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "칼슘 빠짐",
+          "en": "Calcium lost",
+          "th": "แคลเซียมรั่ว"
+        },
+        {
+          "x": 0.5,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "골밀도 ↓",
+          "en": "Bone density ↓",
+          "th": "มวลกระดูก ↓"
+        },
+        {
+          "x": 0.83,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#4b5563",
+          "ko": "IGF-1 차단",
+          "en": "IGF-1 blocked",
+          "th": "ขวาง IGF-1"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22.5,
+      "end": 26,
+      "ko": "좋은 소식이 있습니다. 칼슘·철·아연·셀레늄이 흡수를 막고 배출까지 돕습니다.",
+      "cap_ko": [
+        "칼슘·철·아연·셀레늄",
+        "흡수 막고 배출"
+      ],
+      "hl_ko": "흡수 막고 배출",
+      "th": "ข่าวดี! แคลเซียม เหล็ก สังกะสี ซีลีเนียม ช่วยกันดูดซึมและช่วยขับออก",
+      "cap_th": [
+        "แคลเซียม·เหล็ก·สังกะสี",
+        "กันดูดซึม ช่วยขับ"
+      ],
+      "hl_th": "กันดูดซึม ช่วยขับ",
+      "vi": "Tin vui! Canxi, sắt, kẽm, selen chặn hấp thu và còn giúp đào thải.",
+      "cap_vi": [
+        "Canxi·sắt·kẽm·selen",
+        "chặn & đào thải"
+      ],
+      "hl_vi": "chặn & đào thải",
+      "en": "Good news! Calcium, iron, zinc, and selenium block absorption and help flush it out.",
+      "cap_en": [
+        "Calcium·iron·zinc·selenium",
+        "block & flush out"
+      ],
+      "hl_en": "block & flush out",
+      "cn": "好消息！钙、铁、锌、硒能阻挡吸收，还帮助排出。",
+      "cap_cn": [
+        "钙·铁·锌·硒",
+        "阻吸收助排出"
+      ],
+      "hl_cn": "阻吸收助排出",
+      "ch": "好消息！鈣、鐵、鋅、硒能阻擋吸收，還幫助排出。",
+      "cap_ch": [
+        "鈣·鐵·鋅·硒",
+        "阻吸收助排出"
+      ],
+      "hl_ch": "阻吸收助排出",
+      "insert": "images/중금속키성장/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.06,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "칼슘·철·아연·셀레늄",
+          "en": "Ca·Fe·Zn·Se",
+          "th": "แคลเซียม·เหล็ก·สังกะสี·ซีลีเนียม"
+        },
+        {
+          "x": 0.65,
+          "y": 0.88,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "배출 ↓",
+          "en": "Flushed out ↓",
+          "th": "ขับออก ↓"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "여기에 자주 환기·청소하고, 케이씨 인증 장난감만 골라도 노출을 확 줄일 수 있습니다.",
+      "cap_ko": [
+        "환기·청소 +",
+        "KC 장난감"
+      ],
+      "hl_ko": "KC 장난감",
+      "th": "เพิ่มการระบายอากาศ ทำความสะอาด เลือกของเล่นมีมาตรฐาน ก็ลดการสัมผัสได้มาก",
+      "cap_th": [
+        "ระบายอากาศ·ทำความสะอาด",
+        "ของเล่นมาตรฐาน"
+      ],
+      "hl_th": "ของเล่นมาตรฐาน",
+      "vi": "Thêm vào: năng thông gió, lau dọn và chọn đồ chơi đạt chuẩn là giảm hẳn phơi nhiễm.",
+      "cap_vi": [
+        "Thông gió·lau dọn",
+        "đồ chơi đạt chuẩn"
+      ],
+      "hl_vi": "đồ chơi đạt chuẩn",
+      "en": "Add frequent airing and cleaning, and pick certified-safe toys — exposure drops fast.",
+      "cap_en": [
+        "Air out & clean +",
+        "certified toys"
+      ],
+      "hl_en": "certified toys",
+      "cn": "再加上常通风清洁、只选合格认证玩具，接触就大大减少。",
+      "cap_cn": [
+        "通风清洁 +",
+        "认证玩具"
+      ],
+      "hl_cn": "认证玩具",
+      "ch": "再加上常通風清潔、只選合格認證玩具，接觸就大大減少。",
+      "cap_ch": [
+        "通風清潔 +",
+        "認證玩具"
+      ],
+      "hl_ch": "認證玩具"
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이와 예측키를 보면, 우리 아이가 잘 크고 있는지 바로 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이·예측키로",
+        "성장 확인"
+      ],
+      "hl_ko": "성장 확인",
+      "th": "อายุกระดูกและส่วนสูงที่คาดการณ์ บอกได้ทันทีว่าลูกโตดีไหม",
+      "cap_th": [
+        "อายุกระดูก·คาดการณ์",
+        "เช็กการโต"
+      ],
+      "hl_th": "เช็กการโต",
+      "vi": "Tuổi xương và chiều cao dự đoán cho biết ngay con có lớn tốt không.",
+      "cap_vi": [
+        "Tuổi xương·dự đoán",
+        "kiểm tra tăng trưởng"
+      ],
+      "hl_vi": "kiểm tra tăng trưởng",
+      "en": "Bone age and predicted height tell you right away if your child's growing well.",
+      "cap_en": [
+        "Bone age·prediction",
+        "check growth"
+      ],
+      "hl_en": "check growth",
+      "cn": "看骨龄和预测身高，马上知道孩子长得好不好。",
+      "cap_cn": [
+        "骨龄·预测身高",
+        "查看成长"
+      ],
+      "hl_cn": "查看成长",
+      "ch": "看骨齡和預測身高，馬上知道孩子長得好不好。",
+      "cap_ch": [
+        "骨齡·預測身高",
+        "查看成長"
+      ],
+      "hl_ch": "查看成長"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 성장, 지금 바로 뼈나이·예측키로 확인해 보십시오.",
+      "cap_ko": [
+        "뼈나이·예측키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กการเติบโตของลูกด้วยอายุกระดูกวันนี้",
+      "cap_th": [
+        "อายุกระดูก·คาดการณ์",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tăng trưởng của con bằng tuổi xương ngay hôm nay.",
+      "cap_vi": [
+        "Tuổi xương·dự đoán",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's growth with bone age and predicted height today.",
+      "cap_en": [
+        "Bone age·height",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就用骨龄和预测身高查查孩子的成长吧。",
+      "cap_cn": [
+        "骨龄·预测身高",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就用骨齡和預測身高查查孩子的成長吧。",
+      "cap_ch": [
+        "骨齡·預測身高",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+{
+  "slug": "성조숙증성장판",
+  "fps": 30,
+  "title": "또래보다 빨리 크면 좋은 거 아닌가요? — 성조숙증의 함정",
+  "_note": "자동 생성(storyboard-to-reel 8). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "일찍 크면 손해?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "또래보다 빨리 크면 좋은 거 아니냐고요? 사실은 정반대일 수 있습니다.",
+      "cap_ko": [
+        "빨리 크면 좋다?",
+        "사실은 반대"
+      ],
+      "hl_ko": "사실은 반대",
+      "th": "สูงเร็วกว่าเพื่อนคือเรื่องดีจริงเหรอ? อาจตรงกันข้ามเลย",
+      "cap_th": [
+        "สูงเร็ว = ดี?",
+        "จริงๆ ตรงกันข้าม"
+      ],
+      "hl_th": "ตรงกันข้าม",
+      "vi": "Con cao sớm hơn bạn là tốt? Thật ra có thể ngược lại.",
+      "cap_vi": [
+        "Cao sớm là tốt?",
+        "Thật ra ngược lại"
+      ],
+      "hl_vi": "ngược lại",
+      "en": "Growing faster than friends is good, right? It can be the opposite.",
+      "cap_en": [
+        "Taller early = good?",
+        "Actually the opposite"
+      ],
+      "hl_en": "the opposite",
+      "cn": "比同龄人长得快是好事？其实可能恰恰相反。",
+      "cap_cn": [
+        "长得快=好事？",
+        "其实相反"
+      ],
+      "hl_cn": "其实相反",
+      "ch": "比同齡人長得快是好事？其實可能恰恰相反。",
+      "cap_ch": [
+        "長得快=好事？",
+        "其實相反"
+      ],
+      "hl_ch": "其實相反"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "일찍 크는 아이는, 사실 키 클 시간을 미리 당겨 쓰는 것입니다.",
+      "cap_ko": [
+        "일찍 크면",
+        "시간을 당겨 씀"
+      ],
+      "hl_ko": "시간을 당겨 씀",
+      "th": "เด็กที่สูงเร็ว จริงๆ คือดึงเวลาโตมาใช้ก่อน",
+      "cap_th": [
+        "สูงเร็ว",
+        "คือใช้เวลาก่อน"
+      ],
+      "hl_th": "ใช้เวลาก่อน",
+      "vi": "Con cao sớm thực ra đang dùng trước thời gian để lớn.",
+      "cap_vi": [
+        "Cao sớm",
+        "là dùng trước thời gian"
+      ],
+      "hl_vi": "dùng trước thời gian",
+      "en": "Kids who grow early are really spending their growth time early.",
+      "cap_en": [
+        "Early growth",
+        "spends time early"
+      ],
+      "hl_en": "spends time early",
+      "cn": "长得早的孩子，其实是提前用掉了长高的时间。",
+      "cap_cn": [
+        "长得早",
+        "提前用掉时间"
+      ],
+      "hl_cn": "提前用掉时间",
+      "ch": "長得早的孩子，其實是提前用掉了長高的時間。",
+      "cap_ch": [
+        "長得早",
+        "提前用掉時間"
+      ],
+      "hl_ch": "提前用掉時間"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "긴 뼈 끝엔 성장판이 있습니다. 새 뼈를 만드는 작은 공장입니다.",
+      "cap_ko": [
+        "뼈 끝 성장판",
+        "뼈 만드는 공장"
+      ],
+      "hl_ko": "뼈 만드는 공장",
+      "th": "ปลายกระดูกยาวมีแผ่นการเจริญเติบโต โรงงานสร้างกระดูกใหม่",
+      "cap_th": [
+        "แผ่นกระดูก",
+        "โรงงานสร้างกระดูก"
+      ],
+      "hl_th": "โรงงานสร้างกระดูก",
+      "vi": "Đầu xương dài có sụn tăng trưởng — nhà máy tạo xương mới.",
+      "cap_vi": [
+        "Sụn tăng trưởng",
+        "nhà máy tạo xương"
+      ],
+      "hl_vi": "nhà máy tạo xương",
+      "en": "At bone ends sit growth plates — tiny factories making new bone.",
+      "cap_en": [
+        "Growth plates",
+        "bone factory"
+      ],
+      "hl_en": "bone factory",
+      "cn": "长骨末端有生长板，是制造新骨的小工厂。",
+      "cap_cn": [
+        "生长板",
+        "造骨工厂"
+      ],
+      "hl_cn": "造骨工厂",
+      "ch": "長骨末端有生長板，是製造新骨的小工廠。",
+      "cap_ch": [
+        "生長板",
+        "造骨工廠"
+      ],
+      "hl_ch": "造骨工廠",
+      "insert": "images/성조숙증성장판/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.17,
+          "y": 0.3,
+          "size": 30,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "성장판",
+          "en": "Growth plate",
+          "th": "แผ่นกระดูก"
+        },
+        {
+          "x": 0.78,
+          "y": 0.08,
+          "size": 28,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "새 뼈 ↑",
+          "en": "New bone ↑",
+          "th": "กระดูกใหม่ ↑"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "성조숙증은 여아 8세, 남아 9세 전에 사춘기 신호가 오는 것입니다.",
+      "cap_ko": [
+        "여아 8세 · 남아 9세",
+        "그 전 사춘기"
+      ],
+      "hl_ko": "여아 8세 · 남아 9세",
+      "th": "ภาวะก่อนวัยคือสัญญาณแรกรุ่นก่อนหญิง 8 ชาย 9 ปี",
+      "cap_th": [
+        "หญิง 8 · ชาย 9 ปี",
+        "ก่อนวัย"
+      ],
+      "hl_th": "หญิง 8 · ชาย 9 ปี",
+      "vi": "Dậy thì sớm là dấu hiệu trước 8 tuổi (gái), 9 tuổi (trai).",
+      "cap_vi": [
+        "Gái 8 · Trai 9 tuổi",
+        "trước tuổi"
+      ],
+      "hl_vi": "Gái 8 · Trai 9 tuổi",
+      "en": "Early puberty: signs before age 8 in girls, 9 in boys.",
+      "cap_en": [
+        "Girls 8 · Boys 9",
+        "too early"
+      ],
+      "hl_en": "Girls 8 · Boys 9",
+      "cn": "性早熟：女孩8岁、男孩9岁前出现青春期信号。",
+      "cap_cn": [
+        "女8 · 男9 岁",
+        "提前发育"
+      ],
+      "hl_cn": "女8 · 男9 岁",
+      "ch": "性早熟：女孩8歲、男孩9歲前出現青春期信號。",
+      "cap_ch": [
+        "女8 · 男9 歲",
+        "提前發育"
+      ],
+      "hl_ch": "女8 · 男9 歲",
+      "insert": "images/성조숙증성장판/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.21,
+          "y": 0.16,
+          "size": 30,
+          "weight": 900,
+          "color": "#db2777",
+          "ko": "여아 8세 전",
+          "en": "Girls < 8",
+          "th": "หญิง < 8"
+        },
+        {
+          "x": 0.76,
+          "y": 0.18,
+          "size": 30,
+          "weight": 900,
+          "color": "#2563eb",
+          "ko": "남아 9세 전",
+          "en": "Boys < 9",
+          "th": "ชาย < 9"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "성호르몬은 이 공장을 처음엔 빨리 돌립니다. 그래서 잠깐은 더 커 보입니다.",
+      "cap_ko": [
+        "성호르몬이",
+        "공장 빨리 돌림"
+      ],
+      "hl_ko": "공장 빨리 돌림",
+      "th": "ฮอร์โมนเพศเร่งโรงงานนี้ก่อน เลยดูสูงขึ้นชั่วคราว",
+      "cap_th": [
+        "ฮอร์โมนเพศ",
+        "เร่งโรงงาน"
+      ],
+      "hl_th": "เร่งโรงงาน",
+      "vi": "Hormone giới tính đẩy nhà máy chạy nhanh trước — nên cao vọt tạm thời.",
+      "cap_vi": [
+        "Hormone",
+        "đẩy chạy nhanh"
+      ],
+      "hl_vi": "đẩy chạy nhanh",
+      "en": "Sex hormones speed the factory up first — so they look taller briefly.",
+      "cap_en": [
+        "Sex hormones",
+        "speed it up"
+      ],
+      "hl_en": "speed it up",
+      "cn": "性激素先让工厂加速运转，所以暂时显得更高。",
+      "cap_cn": [
+        "性激素",
+        "让工厂加速"
+      ],
+      "hl_cn": "让工厂加速",
+      "ch": "性激素先讓工廠加速運轉，所以暫時顯得更高。",
+      "cap_ch": [
+        "性激素",
+        "讓工廠加速"
+      ],
+      "hl_ch": "讓工廠加速"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22.5,
+      "ko": "그런데 같은 호르몬이 성장판을 딱딱한 뼈로 굳혀, 공장 문을 일찍 닫습니다.",
+      "cap_ko": [
+        "성장판이 굳어",
+        "문을 일찍 닫음"
+      ],
+      "hl_ko": "문을 일찍 닫음",
+      "th": "แต่ฮอร์โมนเดียวกันทำให้แผ่นกระดูกแข็ง ปิดโรงงานเร็ว",
+      "cap_th": [
+        "แผ่นกระดูกแข็ง",
+        "ปิดเร็ว"
+      ],
+      "hl_th": "ปิดเร็ว",
+      "vi": "Nhưng chính hormone đó làm sụn cứng lại, đóng nhà máy sớm.",
+      "cap_vi": [
+        "Sụn cứng lại",
+        "đóng sớm"
+      ],
+      "hl_vi": "đóng sớm",
+      "en": "But the same hormone hardens the plate, shutting the factory early.",
+      "cap_en": [
+        "Plate hardens",
+        "closes early"
+      ],
+      "hl_en": "closes early",
+      "cn": "但同样的激素让生长板变硬，提前关闭工厂。",
+      "cap_cn": [
+        "生长板变硬",
+        "提前关闭"
+      ],
+      "hl_cn": "提前关闭",
+      "ch": "但同樣的激素讓生長板變硬，提前關閉工廠。",
+      "cap_ch": [
+        "生長板變硬",
+        "提前關閉"
+      ],
+      "hl_ch": "提前關閉",
+      "insert": "images/성조숙증성장판/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.62,
+          "size": 28,
+          "weight": 900,
+          "color": "#0f766e",
+          "ko": "열린 성장판",
+          "en": "Open plate",
+          "th": "แผ่นเปิด"
+        },
+        {
+          "x": 0.8,
+          "y": 0.62,
+          "size": 28,
+          "weight": 900,
+          "color": "#b45309",
+          "ko": "조기 폐쇄",
+          "en": "Closes early",
+          "th": "ปิดก่อนวัย"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22.5,
+      "end": 26,
+      "ko": "그래서 처음엔 앞서가도, 또래가 자랄 때 멈춰서 결국 역전당합니다.",
+      "cap_ko": [
+        "처음엔 앞서도",
+        "나중엔 역전"
+      ],
+      "hl_ko": "나중엔 역전",
+      "th": "ตอนแรกนำหน้า แต่พอเพื่อนโต กลับหยุด สุดท้ายถูกแซง",
+      "cap_th": [
+        "แรกนำหน้า",
+        "สุดท้ายถูกแซง"
+      ],
+      "hl_th": "ถูกแซง",
+      "vi": "Lúc đầu dẫn trước, nhưng khi bạn lớn thì dừng — cuối cùng bị vượt.",
+      "cap_vi": [
+        "Đầu dẫn trước",
+        "cuối bị vượt"
+      ],
+      "hl_vi": "bị vượt",
+      "en": "Ahead at first, but stops while peers grow — and gets overtaken.",
+      "cap_en": [
+        "Ahead at first",
+        "then overtaken"
+      ],
+      "hl_en": "overtaken",
+      "cn": "起初领先，但同龄人长高时却停了，最终被反超。",
+      "cap_cn": [
+        "起初领先",
+        "最终被反超"
+      ],
+      "hl_cn": "被反超",
+      "ch": "起初領先，但同齡人長高時卻停了，最終被反超。",
+      "cap_ch": [
+        "起初領先",
+        "最終被反超"
+      ],
+      "hl_ch": "被反超",
+      "insert": "images/성조숙증성장판/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.88,
+          "y": 0.44,
+          "size": 26,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "일찍 멈춤",
+          "en": "Stops early",
+          "th": "หยุดเร็ว"
+        },
+        {
+          "x": 0.82,
+          "y": 0.1,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "최종 역전",
+          "en": "Ends taller",
+          "th": "แซงในที่สุด"
+        },
+        {
+          "x": 0.74,
+          "y": 0.5,
+          "size": 26,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "역전 지점",
+          "en": "Crossover",
+          "th": "จุดแซง"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 29.5,
+      "ko": "좋은 소식은, 성장판이 닫히기 전이라면 그 속도를 늦출 수 있다는 것입니다.",
+      "cap_ko": [
+        "닫히기 전이면",
+        "늦출 수 있다"
+      ],
+      "hl_ko": "늦출 수 있다",
+      "th": "ข่าวดีคือ ถ้ายังไม่ปิด เราชะลอได้",
+      "cap_th": [
+        "ถ้ายังไม่ปิด",
+        "ชะลอได้"
+      ],
+      "hl_th": "ชะลอได้",
+      "vi": "Tin tốt: nếu sụn chưa đóng, ta có thể làm chậm lại.",
+      "cap_vi": [
+        "Nếu chưa đóng",
+        "có thể làm chậm"
+      ],
+      "hl_vi": "có thể làm chậm",
+      "en": "Good news: if the plate isn't closed yet, we can slow it down.",
+      "cap_en": [
+        "If not closed yet",
+        "we can slow it"
+      ],
+      "hl_en": "we can slow it",
+      "cn": "好消息是，只要生长板还没闭合，就能延缓它。",
+      "cap_cn": [
+        "还没闭合",
+        "就能延缓"
+      ],
+      "hl_cn": "就能延缓",
+      "ch": "好消息是，只要生長板還沒閉合，就能延緩它。",
+      "cap_ch": [
+        "還沒閉合",
+        "就能延緩"
+      ],
+      "hl_ch": "就能延緩"
+    },
+    {
+      "id": "c9",
+      "start": 29.5,
+      "end": 32.5,
+      "ko": "뼈나이를 보면 우리 아이 성장판이 얼마나 남았는지 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "성장판 남은 양"
+      ],
+      "hl_ko": "성장판 남은 양",
+      "th": "อายุกระดูกบอกว่าแผ่นกระดูกของลูกเหลือเท่าไร",
+      "cap_th": [
+        "อายุกระดูก",
+        "เหลือเท่าไร"
+      ],
+      "hl_th": "เหลือเท่าไร",
+      "vi": "Tuổi xương cho biết sụn của con còn lại bao nhiêu.",
+      "cap_vi": [
+        "Tuổi xương",
+        "còn lại bao nhiêu"
+      ],
+      "hl_vi": "còn lại bao nhiêu",
+      "en": "Bone age shows how much growth plate your child has left.",
+      "cap_en": [
+        "Bone age",
+        "how much left"
+      ],
+      "hl_en": "how much left",
+      "cn": "骨龄能告诉你，孩子的生长板还剩多少。",
+      "cap_cn": [
+        "骨龄",
+        "还剩多少"
+      ],
+      "hl_cn": "还剩多少",
+      "ch": "骨齡能告訴你，孩子的生長板還剩多少。",
+      "cap_ch": [
+        "骨齡",
+        "還剩多少"
+      ],
+      "hl_ch": "還剩多少"
+    },
+    {
+      "id": "c10",
+      "start": 32.5,
+      "end": 35,
+      "ko": "우리 아이 성장판, 얼마나 남았는지 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "성장판 남은 시간",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กว่าแผ่นกระดูกของลูกเหลือเวลาเท่าไรวันนี้",
+      "cap_th": [
+        "เวลาที่เหลือ",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra sụn tăng trưởng của con còn bao nhiêu thời gian ngay hôm nay.",
+      "cap_vi": [
+        "Thời gian còn lại",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check how much time your child's growth plate has left — today.",
+      "cap_en": [
+        "Time left",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的生长板还剩多少时间吧。",
+      "cap_cn": [
+        "剩余时间",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的生長板還剩多少時間吧。",
+      "cap_ch": [
+        "剩餘時間",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

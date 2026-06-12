@@ -1,0 +1,572 @@
+{
+  "slug": "환경호르몬성조숙",
+  "fps": 30,
+  "title": "우리 아이 성장판 노리는 '가짜 호르몬' — 환경호르몬의 정체",
+  "_note": "자동 생성(storyboard-to-reel 16). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 성장판",
+      "mark": "가짜 호르몬?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 성장판을 노리는 '가짜 호르몬'이 집 안에 숨어 있다는 것, 알고 계십니까?",
+      "cap_ko": [
+        "성장판 노리는",
+        "가짜 호르몬"
+      ],
+      "hl_ko": "가짜 호르몬",
+      "th": "รู้ไหมว่ามี 'ฮอร์โมนปลอม' ซ่อนอยู่ในบ้าน คอยจ้องแผ่นกระดูกของลูก?",
+      "cap_th": [
+        "จ้องแผ่นกระดูก",
+        "ฮอร์โมนปลอม"
+      ],
+      "hl_th": "ฮอร์โมนปลอม",
+      "vi": "Bạn có biết 'hormone giả' đang ẩn trong nhà, nhắm vào sụn tăng trưởng của con?",
+      "cap_vi": [
+        "Nhắm sụn tăng trưởng",
+        "hormone giả"
+      ],
+      "hl_vi": "hormone giả",
+      "en": "Did you know a 'fake hormone' hides in your home, targeting your child's growth plates?",
+      "cap_en": [
+        "Targets growth plates",
+        "fake hormone"
+      ],
+      "hl_en": "fake hormone",
+      "cn": "你知道有种'假激素'藏在家里，正盯着孩子的生长板吗？",
+      "cap_cn": [
+        "盯上生长板",
+        "假激素"
+      ],
+      "hl_cn": "假激素",
+      "ch": "你知道有種'假激素'藏在家裡，正盯著孩子的生長板嗎？",
+      "cap_ch": [
+        "盯上生長板",
+        "假激素"
+      ],
+      "hl_ch": "假激素"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "바로 환경호르몬입니다. 정식 이름은 '내분비계 교란 물질'입니다.",
+      "cap_ko": [
+        "환경호르몬",
+        "내분비계 교란"
+      ],
+      "hl_ko": "환경호르몬",
+      "th": "นั่นคือฮอร์โมนสิ่งแวดล้อม ชื่อจริงคือ 'สารก่อกวนต่อมไร้ท่อ'",
+      "cap_th": [
+        "ฮอร์โมนสิ่งแวดล้อม",
+        "ก่อกวนต่อมไร้ท่อ"
+      ],
+      "hl_th": "ฮอร์โมนสิ่งแวดล้อม",
+      "vi": "Đó là hormone môi trường — tên thật là 'chất gây rối loạn nội tiết'.",
+      "cap_vi": [
+        "Hormone môi trường",
+        "rối loạn nội tiết"
+      ],
+      "hl_vi": "Hormone môi trường",
+      "en": "It's the environmental hormone — officially, an 'endocrine disruptor'.",
+      "cap_en": [
+        "Environmental hormone",
+        "endocrine disruptor"
+      ],
+      "hl_en": "endocrine disruptor",
+      "cn": "那就是环境激素，正式名叫'内分泌干扰物'。",
+      "cap_cn": [
+        "环境激素",
+        "内分泌干扰物"
+      ],
+      "hl_cn": "内分泌干扰物",
+      "ch": "那就是環境激素，正式名叫'內分泌干擾物'。",
+      "cap_ch": [
+        "環境激素",
+        "內分泌干擾物"
+      ],
+      "hl_ch": "內分泌干擾物"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "이 물질은 진짜 성호르몬과 구조가 닮아서, 우리 몸 수용체에 가짜 열쇠처럼 끼어듭니다.",
+      "cap_ko": [
+        "성호르몬과 닮은꼴",
+        "가짜 열쇠"
+      ],
+      "hl_ko": "가짜 열쇠",
+      "th": "มันมีโครงสร้างคล้ายฮอร์โมนเพศจริง จึงสวมเข้าตัวรับเหมือนกุญแจปลอม",
+      "cap_th": [
+        "คล้ายฮอร์โมนเพศ",
+        "กุญแจปลอม"
+      ],
+      "hl_th": "กุญแจปลอม",
+      "vi": "Nó giống hormone giới tính thật, nên cắm vào thụ thể như một chiếc chìa khóa giả.",
+      "cap_vi": [
+        "Giống hormone thật",
+        "chìa khóa giả"
+      ],
+      "hl_vi": "chìa khóa giả",
+      "en": "It mimics real sex hormones, slipping into the body's receptors like a fake key.",
+      "cap_en": [
+        "Mimics real hormone",
+        "fake key"
+      ],
+      "hl_en": "fake key",
+      "cn": "它的结构像真性激素，像假钥匙一样插进身体的受体。",
+      "cap_cn": [
+        "酷似真激素",
+        "假钥匙"
+      ],
+      "hl_cn": "假钥匙",
+      "ch": "它的結構像真性激素，像假鑰匙一樣插進身體的受體。",
+      "cap_ch": [
+        "酷似真激素",
+        "假鑰匙"
+      ],
+      "hl_ch": "假鑰匙",
+      "insert": "images/환경호르몬성조숙/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.16,
+          "y": 0.55,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "진짜 성호르몬",
+          "en": "Real hormone",
+          "th": "ฮอร์โมนจริง"
+        },
+        {
+          "x": 0.82,
+          "y": 0.55,
+          "size": 26,
+          "weight": 900,
+          "color": "#dc2626",
+          "ko": "가짜 열쇠",
+          "en": "Fake key",
+          "th": "กุญแจปลอม"
+        },
+        {
+          "x": 0.5,
+          "y": 0.87,
+          "size": 26,
+          "weight": 900,
+          "color": "#4c1d95",
+          "ko": "수용체",
+          "en": "Receptor",
+          "th": "ตัวรับ"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 15,
+      "ko": "그러면 몸이 '벌써 성호르몬이 나온다'고 착각해서, 사춘기를 너무 일찍 시작합니다.",
+      "cap_ko": [
+        "몸이 착각",
+        "사춘기 앞당김"
+      ],
+      "hl_ko": "사춘기 앞당김",
+      "th": "ร่างกายเลยเข้าใจผิดว่าฮอร์โมนเพศหลั่งแล้ว ทำให้แรกรุ่นมาเร็วเกินไป",
+      "cap_th": [
+        "ร่างกายเข้าใจผิด",
+        "แรกรุ่นมาเร็ว"
+      ],
+      "hl_th": "แรกรุ่นมาเร็ว",
+      "vi": "Cơ thể tưởng hormone giới tính đã tiết ra, nên dậy thì đến quá sớm.",
+      "cap_vi": [
+        "Cơ thể bị đánh lừa",
+        "dậy thì sớm"
+      ],
+      "hl_vi": "dậy thì sớm",
+      "en": "The body thinks sex hormones are flowing — so puberty starts far too early.",
+      "cap_en": [
+        "Body is fooled",
+        "puberty too early"
+      ],
+      "hl_en": "puberty too early",
+      "cn": "身体误以为性激素已经分泌，于是青春期提前太多。",
+      "cap_cn": [
+        "身体被骗",
+        "青春期提前"
+      ],
+      "hl_cn": "青春期提前",
+      "ch": "身體誤以為性激素已經分泌，於是青春期提前太多。",
+      "cap_ch": [
+        "身體被騙",
+        "青春期提前"
+      ],
+      "hl_ch": "青春期提前"
+    },
+    {
+      "id": "c5",
+      "start": 15,
+      "end": 19,
+      "ko": "또래보다 2차 성징이 일찍 나타나면, 성조숙증을 의심해 볼 수 있습니다.",
+      "cap_ko": [
+        "또래보다 일찍",
+        "2차 성징"
+      ],
+      "hl_ko": "2차 성징",
+      "th": "ถ้าพัฒนาการทางเพศมาเร็วกว่าเพื่อนวัยเดียวกัน อาจสงสัยภาวะเป็นหนุ่มสาวก่อนวัย",
+      "cap_th": [
+        "เร็วกว่าเพื่อน",
+        "พัฒนาการทางเพศ"
+      ],
+      "hl_th": "พัฒนาการทางเพศ",
+      "vi": "Nếu dậy thì đến sớm hơn bạn bè, hãy nghĩ đến dậy thì sớm.",
+      "cap_vi": [
+        "Sớm hơn bạn bè",
+        "dấu hiệu dậy thì"
+      ],
+      "hl_vi": "dấu hiệu dậy thì",
+      "en": "If puberty signs show earlier than peers, it could be precocious puberty.",
+      "cap_en": [
+        "Earlier than peers",
+        "puberty signs"
+      ],
+      "hl_en": "puberty signs",
+      "cn": "如果第二性征比同龄人早出现，就要警惕性早熟。",
+      "cap_cn": [
+        "比同龄早",
+        "第二性征"
+      ],
+      "hl_cn": "第二性征",
+      "ch": "如果第二性徵比同齡人早出現，就要警惕性早熟。",
+      "cap_ch": [
+        "比同齡早",
+        "第二性徵"
+      ],
+      "hl_ch": "第二性徵",
+      "insert": "images/환경호르몬성조숙/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.16,
+          "y": 0.78,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "또래보다 이른",
+          "en": "Earlier than peers",
+          "th": "เร็วกว่าเพื่อน"
+        },
+        {
+          "x": 0.22,
+          "y": 0.06,
+          "size": 24,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "성조숙증 신호",
+          "en": "Early puberty",
+          "th": "สัญญาณก่อนวัย"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 19,
+      "end": 23,
+      "ko": "성조숙증은 단순히 일찍 크는 게 아니라, 성장판이 일찍 닫혀 최종 키가 작아집니다.",
+      "cap_ko": [
+        "성장판 일찍 닫힘",
+        "최종 키 손해"
+      ],
+      "hl_ko": "최종 키 손해",
+      "th": "ภาวะนี้ไม่ใช่แค่สูงเร็ว แต่แผ่นกระดูกปิดเร็ว ทำให้ส่วนสูงสุดท้ายลดลง",
+      "cap_th": [
+        "แผ่นกระดูกปิดเร็ว",
+        "ส่วนสูงลดลง"
+      ],
+      "hl_th": "ส่วนสูงลดลง",
+      "vi": "Đây không chỉ là cao sớm — sụn đóng sớm khiến chiều cao cuối cùng thấp hơn.",
+      "cap_vi": [
+        "Sụn đóng sớm",
+        "mất chiều cao"
+      ],
+      "hl_vi": "mất chiều cao",
+      "en": "It's not just early growth — the plates close early, so final height ends up shorter.",
+      "cap_en": [
+        "Plates close early",
+        "shorter height"
+      ],
+      "hl_en": "shorter height",
+      "cn": "这不只是长得早——生长板提前闭合，最终身高反而更矮。",
+      "cap_cn": [
+        "生长板早闭",
+        "最终更矮"
+      ],
+      "hl_cn": "最终更矮",
+      "ch": "這不只是長得早——生長板提前閉合，最終身高反而更矮。",
+      "cap_ch": [
+        "生長板早閉",
+        "最終更矮"
+      ],
+      "hl_ch": "最終更矮"
+    },
+    {
+      "id": "c7",
+      "start": 23,
+      "end": 27,
+      "ko": "그럼 어디에 숨어 있을까요? 플라스틱 용기, 생활용품, 농약, 가공식품입니다.",
+      "cap_ko": [
+        "플라스틱·생활용품",
+        "농약·가공식품"
+      ],
+      "hl_ko": "플라스틱·생활용품",
+      "th": "แล้วมันซ่อนที่ไหน? ภาชนะพลาสติก ของใช้ ยาฆ่าแมลง และอาหารแปรรูป",
+      "cap_th": [
+        "พลาสติก·ของใช้",
+        "ยาฆ่าแมลง·อาหารแปรรูป"
+      ],
+      "hl_th": "พลาสติก·ของใช้",
+      "vi": "Vậy nó ẩn ở đâu? Hộp nhựa, đồ gia dụng, thuốc trừ sâu và thực phẩm chế biến.",
+      "cap_vi": [
+        "Nhựa·đồ gia dụng",
+        "thuốc sâu·đồ chế biến"
+      ],
+      "hl_vi": "Nhựa·đồ gia dụng",
+      "en": "So where does it hide? Plastic containers, household items, pesticides, processed food.",
+      "cap_en": [
+        "Plastics·household",
+        "pesticides·processed"
+      ],
+      "hl_en": "Plastics·household",
+      "cn": "那它藏在哪？塑料容器、生活用品、农药和加工食品。",
+      "cap_cn": [
+        "塑料·生活用品",
+        "农药·加工食品"
+      ],
+      "hl_cn": "塑料·生活用品",
+      "ch": "那它藏在哪？塑膠容器、生活用品、農藥和加工食品。",
+      "cap_ch": [
+        "塑膠·生活用品",
+        "農藥·加工食品"
+      ],
+      "hl_ch": "塑膠·生活用品",
+      "insert": "images/환경호르몬성조숙/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.26,
+          "y": 0.45,
+          "size": 26,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "플라스틱",
+          "en": "Plastics",
+          "th": "พลาสติก",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.76,
+          "y": 0.45,
+          "size": 26,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "생활용품",
+          "en": "Household",
+          "th": "ของใช้",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.26,
+          "y": 0.95,
+          "size": 26,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "농약",
+          "en": "Pesticides",
+          "th": "ยาฆ่าแมลง",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.76,
+          "y": 0.95,
+          "size": 26,
+          "weight": 800,
+          "color": "#4c1d95",
+          "ko": "가공식품",
+          "en": "Processed food",
+          "th": "อาหารแปรรูป",
+          "pill": "rgba(255,255,255,0.92)"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 27,
+      "end": 30.5,
+      "ko": "다행히 막을 수 있습니다. 유리나 스테인리스를 쓰고, 채소를 잘 씻고, 자주 환기해 주십시오.",
+      "cap_ko": [
+        "유리·스테인리스",
+        "씻고 환기"
+      ],
+      "hl_ko": "유리·스테인리스",
+      "th": "โชคดีที่ป้องกันได้ ใช้แก้ว·สเตนเลส ล้างผักให้สะอาด และระบายอากาศบ่อยๆ",
+      "cap_th": [
+        "แก้ว·สเตนเลส",
+        "ล้าง·ระบายอากาศ"
+      ],
+      "hl_th": "แก้ว·สเตนเลส",
+      "vi": "May thay, có thể phòng được: dùng thủy tinh·thép, rửa rau kỹ, thông gió thường xuyên.",
+      "cap_vi": [
+        "Thủy tinh·thép",
+        "rửa·thông gió"
+      ],
+      "hl_vi": "Thủy tinh·thép",
+      "en": "The good news: you can prevent it — use glass·steel, wash produce, ventilate often.",
+      "cap_en": [
+        "Glass·steel",
+        "wash·ventilate"
+      ],
+      "hl_en": "Glass·steel",
+      "cn": "好消息是可以预防：改用玻璃·不锈钢，洗净蔬果，常开窗通风。",
+      "cap_cn": [
+        "玻璃·不锈钢",
+        "洗净·通风"
+      ],
+      "hl_cn": "玻璃·不锈钢",
+      "ch": "好消息是可以預防：改用玻璃·不鏽鋼，洗淨蔬果，常開窗通風。",
+      "cap_ch": [
+        "玻璃·不鏽鋼",
+        "洗淨·通風"
+      ],
+      "hl_ch": "玻璃·不鏽鋼",
+      "insert": "images/환경호르몬성조숙/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.17,
+          "y": 0.57,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "유리·스테인리스",
+          "en": "Glass·steel",
+          "th": "แก้ว·สเตนเลส"
+        },
+        {
+          "x": 0.5,
+          "y": 0.57,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "깨끗이 씻기",
+          "en": "Wash well",
+          "th": "ล้างให้สะอาด"
+        },
+        {
+          "x": 0.82,
+          "y": 0.57,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "자주 환기",
+          "en": "Ventilate",
+          "th": "ระบายอากาศ"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30.5,
+      "end": 33,
+      "ko": "그리고 뼈나이를 보면, 사춘기가 빠른지 성장판이 얼마나 남았는지 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "사춘기·성장판 확인"
+      ],
+      "hl_ko": "사춘기·성장판 확인",
+      "th": "และอายุกระดูกจะบอกว่าแรกรุ่นเร็วไหม เหลือแผ่นกระดูกอีกเท่าไร",
+      "cap_th": [
+        "อายุกระดูก",
+        "เช็กแรกรุ่น"
+      ],
+      "hl_th": "เช็กแรกรุ่น",
+      "vi": "Và tuổi xương cho biết dậy thì có sớm không, sụn còn lại bao nhiêu.",
+      "cap_vi": [
+        "Tuổi xương",
+        "kiểm tra dậy thì"
+      ],
+      "hl_vi": "kiểm tra dậy thì",
+      "en": "And bone age reveals if puberty is early and how much growth plate is left.",
+      "cap_en": [
+        "Bone age",
+        "check puberty"
+      ],
+      "hl_en": "check puberty",
+      "cn": "而骨龄能看出青春期是否偏早、生长板还剩多少。",
+      "cap_cn": [
+        "看骨龄",
+        "查青春期"
+      ],
+      "hl_cn": "查青春期",
+      "ch": "而骨齡能看出青春期是否偏早、生長板還剩多少。",
+      "cap_ch": [
+        "看骨齡",
+        "查青春期"
+      ],
+      "hl_ch": "查青春期"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 성장 속도와 사춘기 신호, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "성장·사춘기 신호",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กอัตราการเติบโตและสัญญาณแรกรุ่นของลูกวันนี้",
+      "cap_th": [
+        "การเติบโต·แรกรุ่น",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tốc độ tăng trưởng và dấu hiệu dậy thì của con ngay hôm nay.",
+      "cap_vi": [
+        "Tăng trưởng·dậy thì",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's growth rate and puberty signs today.",
+      "cap_en": [
+        "Growth·puberty signs",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的成长速度和青春期信号吧。",
+      "cap_cn": [
+        "成长·青春期信号",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的成長速度和青春期信號吧。",
+      "cap_ch": [
+        "成長·青春期信號",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}
