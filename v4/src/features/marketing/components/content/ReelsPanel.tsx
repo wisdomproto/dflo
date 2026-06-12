@@ -1,11 +1,14 @@
 // src/features/marketing/components/content/ReelsPanel.tsx
-// 릴스 패널 — 2 서브탭: [스토리보드](HTML 뷰어, 생성은 추후·전 언어 공용) / [영상 제작](언어별 mp4→R2 + 카드뉴스 공용 캡션).
-import { useEffect, useRef, useState } from 'react';
+// 릴스 패널 — 3 서브탭: [스토리보드](HTML 뷰어, 전 언어 공용) / [영상 제작](언어별 mp4→R2 + 카드뉴스 공용 캡션) / [에디터](릴 라이트 에디터, lazy).
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import type { MarketingArticle, ReelsMap, ReelsLangData, Cardnews, CardLang } from '../../types';
 import { saveReels } from '../../services/marketingArticleService';
 import { uploadVideoFile, uploadCoverImage } from '../../services/aiImageService';
 import { fetchCardnews } from '../../services/cardnewsService';
 import { InfographicAssetsPanel } from './InfographicAssetsPanel';
+
+// 에디터는 remotion deps(@remotion/player + 공유 컴포지션)를 끌고 와 별도 청크로 lazy 로드.
+const ReelEditorPanel = lazy(() => import('./reelEditor/ReelEditorPanel'));
 
 interface Props { article: MarketingArticle; language: string; onPatch?: (partial: Partial<MarketingArticle>) => void; }
 
@@ -14,10 +17,11 @@ const LANG_LABELS: Record<string, string> = {
   ko: '🇰🇷 한국어', th: '🇹🇭 TH', vi: '🇻🇳 VI', en: '🇺🇸 EN', ch: '🇹🇼 中文(번체)', cn: '🇨🇳 中文(간체)',
 };
 const EMPTY: ReelsLangData = { videoUrl: null, coverUrl: null };
-type Sub = 'storyboard' | 'video';
+type Sub = 'storyboard' | 'video' | 'editor';
 const SUBS: { key: Sub; label: string }[] = [
   { key: 'storyboard', label: '📋 스토리보드' },
   { key: 'video', label: '🎬 영상 제작' },
+  { key: 'editor', label: '✂️ 에디터' },
 ];
 
 // 스토리보드 매니페스트(sortOrder[] — 어느 콘텐츠에 스토리보드가 있는지). 1회 로드 후 캐시.
@@ -144,6 +148,13 @@ export function ReelsPanel({ article, language, onPatch }: Props) {
           <div className="w-[360px] shrink-0 overflow-hidden border-l border-gray-200">
             <InfographicAssetsPanel article={article} onPatch={onPatch} />
           </div>
+        </div>
+      ) : sub === 'editor' ? (
+        /* 에디터 — 릴 라이트 에디터 (P1 읽기전용: Player + 청크 스트립 + 시킹) */
+        <div className="flex-1 overflow-y-auto p-4">
+          <Suspense fallback={<div className="p-10 text-center text-sm text-gray-400">에디터 로딩…</div>}>
+            <ReelEditorPanel article={article} language={language} onPatch={onPatch} />
+          </Suspense>
         </div>
       ) : (
         /* 영상 제작 — 언어별 영상 + 카드뉴스 공용 캡션 */
