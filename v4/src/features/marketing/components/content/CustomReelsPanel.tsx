@@ -4,7 +4,7 @@
 // 영상 업로드 시 썸네일이 없으면 첫 프레임을 자동 추출해 커버로 올린다.
 import { useEffect, useRef, useState } from 'react';
 import type { MarketingArticle, ReelsMap, ReelsLangData } from '../../types';
-import { saveArticle, saveReels } from '../../services/marketingArticleService';
+import { saveArticle, saveReelsLang } from '../../services/marketingArticleService';
 import { uploadVideoFile, uploadCoverImage } from '../../services/aiImageService';
 import { PublishDialog } from './PublishDialog';
 
@@ -64,6 +64,8 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
   const [showPublish, setShowPublish] = useState(false);
   const reelsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const titleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // pending flush: 언어 전환 시 이전 언어의 미발사 저장을 즉시 실행해 유실 방지
+  const pendingFlush = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     setTitle(article.title);
@@ -71,19 +73,30 @@ export function CustomReelsPanel({ article, onSaved, onPatch }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [article.id]);
 
+  // 언어 전환 시 pending 디바운스를 즉시 flush해 이전 언어 저장 유실 방지
+  useEffect(() => {
+    return () => {
+      if (pendingFlush.current) { pendingFlush.current(); pendingFlush.current = null; }
+    };
+  }, [language]);
+
   const cur = reels[language] ?? EMPTY;
 
-  const queueReelsSave = (next: ReelsMap) => {
+  const queueReelsSave = (lang: string, data: ReelsLangData) => {
     if (reelsTimer.current) clearTimeout(reelsTimer.current);
-    reelsTimer.current = setTimeout(() => {
-      void saveReels(article.id, next).catch((e) => setError(e instanceof Error ? e.message : '저장 실패'));
-    }, 700);
+    const flush = () => {
+      pendingFlush.current = null;
+      void saveReelsLang(article.id, lang, data).catch((e) => setError(e instanceof Error ? e.message : '저장 실패'));
+    };
+    pendingFlush.current = flush;
+    reelsTimer.current = setTimeout(flush, 700);
   };
   const patch = (p: Partial<ReelsLangData>) => {
-    const next: ReelsMap = { ...reels, [language]: { ...cur, ...p } };
+    const langData: ReelsLangData = { ...cur, ...p };
+    const next: ReelsMap = { ...reels, [language]: langData };
     setReels(next);
     onPatch?.({ reels: next });
-    queueReelsSave(next);
+    queueReelsSave(language, langData);
   };
 
   const onTitle = (v: string) => {

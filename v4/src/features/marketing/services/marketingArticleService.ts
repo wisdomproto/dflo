@@ -1,7 +1,7 @@
 // src/features/marketing/services/marketingArticleService.ts
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { MarketingArticle, ArticleStatus, ArticleKind, ArticleTranslation, BlogSeoMap, ReelsMap, ReelAssets, BlogReference, ReelScriptDoc, ReelRuntimeDoc } from '../types';
+import type { MarketingArticle, ArticleStatus, ArticleKind, ArticleTranslation, BlogSeoMap, ReelsMap, ReelsLangData, ReelAssets, BlogReference, ReelScriptDoc, ReelRuntimeDoc } from '../types';
 
 const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
@@ -205,11 +205,20 @@ export async function saveBlogSeo(id: string, blog: BlogSeoMap): Promise<void> {
   if (error) throw new Error(error.message);
 }
 
-/** Partial update of just the reels JSONB (migration 046) — does not touch title/body. */
-export async function saveReels(id: string, reels: ReelsMap): Promise<void> {
+/** lang 단위 비파괴 병합 저장 — fresh select 후 lang 키만 덮어쓰기. 워커의 videoUrl 병합과 충돌 창 최소화. */
+export async function saveReelsLang(id: string, lang: string, data: ReelsLangData): Promise<void> {
+  // 최신 reels 읽기 (다른 lang/워커 기록 보존)
+  const { data: rows, error: selErr } = await supabase
+    .from('marketing_articles')
+    .select('reels')
+    .eq('id', id)
+    .single();
+  if (selErr) throw new Error(selErr.message);
+  const cur = ((rows as Record<string, unknown>)?.reels ?? {}) as ReelsMap;
+  const next: ReelsMap = { ...cur, [lang]: { ...(cur[lang] ?? {}), ...data } };
   const { error } = await supabase
     .from('marketing_articles')
-    .update({ reels, updated_at: new Date().toISOString() })
+    .update({ reels: next, updated_at: new Date().toISOString() })
     .eq('id', id);
   if (error) throw new Error(error.message);
 }

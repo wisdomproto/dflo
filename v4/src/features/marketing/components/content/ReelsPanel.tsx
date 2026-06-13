@@ -2,7 +2,7 @@
 // 릴스 패널 — 3 서브탭: [스토리보드](HTML 뷰어, 전 언어 공용) / [영상 제작](언어별 mp4→R2 + 카드뉴스 공용 캡션) / [에디터](릴 라이트 에디터, lazy).
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import type { MarketingArticle, ReelsMap, ReelsLangData, Cardnews, CardLang } from '../../types';
-import { saveReels } from '../../services/marketingArticleService';
+import { saveReelsLang } from '../../services/marketingArticleService';
 import { uploadVideoFile, uploadCoverImage } from '../../services/aiImageService';
 import { fetchCardnews } from '../../services/cardnewsService';
 import { InfographicAssetsPanel } from './InfographicAssetsPanel';
@@ -46,6 +46,8 @@ export function ReelsPanel({ article, language, onPatch }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // pending flush: 언어 전환 시 이전 언어의 미발사 저장을 즉시 실행해 유실 방지
+  const pendingFlush = useRef<(() => void) | null>(null);
   const [sbSet, setSbSet] = useState<Set<number> | null>(null);
   useEffect(() => {
     let alive = true;
@@ -71,17 +73,28 @@ export function ReelsPanel({ article, language, onPatch }: Props) {
   // 스토리보드(전 언어 공용) — sortOrder 매칭 정적 HTML(/storyboards/{n}.html). 없으면 플레이스홀더.
   const storyboardSrc = sbSet && sbSet.has(article.sortOrder) ? `/storyboards/${article.sortOrder}.html` : null;
 
-  const queueSave = (next: ReelsMap) => {
+  // 언어 전환 시 pending 디바운스를 즉시 flush해 이전 언어 저장 유실 방지
+  useEffect(() => {
+    return () => {
+      if (pendingFlush.current) { pendingFlush.current(); pendingFlush.current = null; }
+    };
+  }, [language]);
+
+  const queueSave = (lang: string, data: ReelsLangData) => {
     if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => {
-      void saveReels(article.id, next).catch((e) => setError(e instanceof Error ? e.message : '저장 실패'));
-    }, 700);
+    const flush = () => {
+      pendingFlush.current = null;
+      void saveReelsLang(article.id, lang, data).catch((e) => setError(e instanceof Error ? e.message : '저장 실패'));
+    };
+    pendingFlush.current = flush;
+    timer.current = setTimeout(flush, 700);
   };
   const patch = (p: Partial<ReelsLangData>) => {
-    const next: ReelsMap = { ...reels, [language]: { ...cur, ...p } };
+    const langData: ReelsLangData = { ...cur, ...p };
+    const next: ReelsMap = { ...reels, [language]: langData };
     setReels(next);
     onPatch?.({ reels: next }); // 부모 article 도 즉시 갱신 → 페이지 이동 후에도 stale 안 됨
-    queueSave(next);
+    queueSave(language, langData);
   };
 
   const onVideo = async (file?: File | null) => {
