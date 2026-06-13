@@ -10,6 +10,7 @@ import {
 } from '../../../utils/reelEditor';
 import type { ReelChunk } from '../../../types';
 import PresenterBridge from './PresenterBridge';
+import { CanvasDragLayer } from './CanvasDragLayer';
 import { ChunkStrip } from './ChunkStrip';
 import { ChunkInspector } from './ChunkInspector';
 import { HeaderCtaForm } from './HeaderCtaForm';
@@ -123,15 +124,22 @@ function EditorInner({ article, doc0, language, onPatch }: {
       )}
 
       <div className="grid grid-cols-[minmax(280px,420px)_1fr] gap-4">
-        {/* 좌: 실시간 미리보기 Player */}
-        <PresenterBridge
-          ref={playerRef}
-          doc={doc}
-          timing={timingForPlayer}
-          lang={language}
-          assets={assets}
-          durationInFrames={total}
-        />
+        {/* 좌: 실시간 미리보기 Player + 라벨 드래그 레이어(inset-0, 좌표 환산 동일 rect) */}
+        <div className="relative h-fit">
+          <PresenterBridge
+            ref={playerRef}
+            doc={doc}
+            timing={timingForPlayer}
+            lang={language}
+            assets={assets}
+            durationInFrames={total}
+          />
+          <CanvasDragLayer
+            chunk={selChunk}
+            language={lang}
+            onCommit={(insertLabels) => patchSelChunk(sel, { insertLabels })}
+          />
+        </div>
 
         {/* 우: 인스펙터 — 헤더/CTA(아코디언) + 선택 청크(자막/하이라이트/인서트/라벨). 편집 → setDoc → Player inputProps 즉시 반영 */}
         <div className="min-w-0 space-y-3">
