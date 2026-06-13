@@ -1,7 +1,8 @@
-// 선택 청크 인스펙터 — 자막(cap 2줄)·하이라이트(hl)·인서트(인포그래픽 선택)·라벨 값 편집 + 스티커.
-// 좌표(x/y)는 캔버스 드래그(Task 13)가 담당 — 여기선 숫자 미노출. 나레이션 textarea 는 P3(Task 16).
+// 선택 청크 인스펙터 — 나레이션·자막(cap 2줄)·하이라이트(hl)·인서트(인포그래픽 선택)·라벨 값 편집 + 스티커.
+// 좌표(x/y)는 캔버스 드래그(Task 13)가 담당 — 여기선 숫자 미노출.
 // 텍스트 input 은 CommitInput(blur 커밋)로 undo 스냅샷 보호, 셀렉트/색상/슬라이더는 즉시 onPatch.
-import type { ReelAssets, ReelChunk, ReelInsertLabel, ReelLang, ReelStickerAnim, ReelStickerAsset, ReelStickerItem } from '../../../types';
+import type { ReelAssets, ReelChunk, ReelInsertLabel, ReelLang, ReelRuntimeDoc, ReelStickerAnim, ReelStickerAsset, ReelStickerItem } from '../../../types';
+import { chunkTtsDirty } from '../../../utils/reelEditor';
 import { CommitInput } from './CommitInput';
 import { StickerLibraryPanel } from './StickerLibraryPanel';
 
@@ -11,6 +12,7 @@ interface Props {
   chunkCount: number; // 마지막 청크(CTA 덮음) 판정용
   language: ReelLang;
   reelAssets: ReelAssets;
+  runtime: ReelRuntimeDoc | null; // 🎙 dirty 배지(나레이션이 마지막 TTS와 다름) 판정용 — 스트립과 동일 소스
   onPatch: (patch: Partial<ReelChunk>) => void;
 }
 
@@ -18,7 +20,12 @@ const sectionCls = 'rounded-lg border border-gray-200 bg-white p-3';
 const labelCls = 'mb-0.5 block text-[11px] font-semibold text-gray-500';
 const STICKER_ANIMS: ReelStickerAnim[] = ['none', 'pop', 'float', 'pulse', 'shake'];
 
-export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAssets, onPatch }: Props) {
+export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAssets, runtime, onPatch }: Props) {
+  // 나레이션: chunk[lang] = 음성 대본(TTS·립싱크 소스). cap_{lang}(자막)과 별개 필드.
+  const narration = typeof chunk[language] === 'string' ? (chunk[language] as string) : '';
+  const ttsDirty = chunkTtsDirty(chunk, language, runtime); // 마지막 TTS와 달라 음성 재생성 필요
+  const commitNarration = (value: string) => onPatch({ [language]: value });
+
   // 자막: cap_{lang} = string[] (PresenterShort 가 줄 배열로 읽음). 최대 2줄, 빈 줄 제거 후 저장.
   const capRaw = chunk[`cap_${language}`];
   const cap = Array.isArray(capRaw) ? (capRaw as string[]) : [];
@@ -70,8 +77,20 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
 
   return (
     <div className="space-y-3">
-      <div className="text-xs font-semibold text-gray-600">
+      <div className="flex items-center gap-2 text-xs font-semibold text-gray-600">
         ✏️ 청크 편집 — <span style={{ color: '#4A2D6B' }}>{chunk.id}</span> (#{chunkIdx + 1})
+        {ttsDirty && (
+          <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700" title="나레이션이 마지막 음성과 달라 재생성이 필요합니다">
+            🎙 재생성 필요
+          </span>
+        )}
+      </div>
+
+      {/* 나레이션(음성 대본) — 자막과 별개. 수정 시 이 언어 음성·립싱크 재생성 필요 */}
+      <div className={sectionCls}>
+        <div className={labelCls}>나레이션 ({language})</div>
+        <CommitInput value={narration} onCommit={commitNarration} placeholder="원장 음성 대본" rows={3} />
+        <p className="mt-1 text-[11px] text-amber-700">수정 시 이 언어는 음성·립싱크 재생성(수십 분)이 필요합니다.</p>
       </div>
 
       {/* 자막 (2줄) + 하이라이트 */}

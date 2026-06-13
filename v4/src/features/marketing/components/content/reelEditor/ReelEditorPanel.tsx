@@ -152,6 +152,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
             chunkCount={chunks.length}
             language={lang}
             reelAssets={article.reelAssets ?? {}}
+            runtime={runtime}
             onPatch={(patch) => patchSelChunk(sel, patch)}
           />
           <RenderJobWidget
