@@ -1,12 +1,14 @@
-// 선택 청크 인스펙터 — 자막(cap 2줄)·하이라이트(hl)·인서트(인포그래픽 선택)·라벨 값 편집.
+// 선택 청크 인스펙터 — 자막(cap 2줄)·하이라이트(hl)·인서트(인포그래픽 선택)·라벨 값 편집 + 스티커.
 // 좌표(x/y)는 캔버스 드래그(Task 13)가 담당 — 여기선 숫자 미노출. 나레이션 textarea 는 P3(Task 16).
-// 텍스트 input 은 CommitInput(blur 커밋)로 undo 스냅샷 보호, 셀렉트/색상은 즉시 onPatch.
-import type { ReelAssets, ReelChunk, ReelInsertLabel, ReelLang } from '../../../types';
+// 텍스트 input 은 CommitInput(blur 커밋)로 undo 스냅샷 보호, 셀렉트/색상/슬라이더는 즉시 onPatch.
+import type { ReelAssets, ReelChunk, ReelInsertLabel, ReelLang, ReelStickerAnim, ReelStickerAsset, ReelStickerItem } from '../../../types';
 import { CommitInput } from './CommitInput';
+import { StickerLibraryPanel } from './StickerLibraryPanel';
 
 interface Props {
   chunk: ReelChunk;
   chunkIdx: number;
+  chunkCount: number; // 마지막 청크(CTA 덮음) 판정용
   language: ReelLang;
   reelAssets: ReelAssets;
   onPatch: (patch: Partial<ReelChunk>) => void;
@@ -14,8 +16,9 @@ interface Props {
 
 const sectionCls = 'rounded-lg border border-gray-200 bg-white p-3';
 const labelCls = 'mb-0.5 block text-[11px] font-semibold text-gray-500';
+const STICKER_ANIMS: ReelStickerAnim[] = ['none', 'pop', 'float', 'pulse', 'shake'];
 
-export function ChunkInspector({ chunk, chunkIdx, language, reelAssets, onPatch }: Props) {
+export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAssets, onPatch }: Props) {
   // 자막: cap_{lang} = string[] (PresenterShort 가 줄 배열로 읽음). 최대 2줄, 빈 줄 제거 후 저장.
   const capRaw = chunk[`cap_${language}`];
   const cap = Array.isArray(capRaw) ? (capRaw as string[]) : [];
@@ -45,6 +48,25 @@ export function ChunkInspector({ chunk, chunkIdx, language, reelAssets, onPatch 
     onPatch({
       insertLabels: [...labels, { x: 0.5, y: 0.5, size: 32, weight: 800, color: '#5b3fa6', [language]: '' }],
     });
+
+  // 스티커: 청크별 stickers 배열. 마지막 청크(CTA 카드가 전체 구간 덮음)·인트로(첫 청크 0~52f 카드 덮음)는
+  // 스티커가 카드 아래 레이어라 안 보임 → 추가 비활성 + 안내(StickerLayer 레이어 순서: 인서트 위·카드 아래).
+  const stickers = Array.isArray(chunk.stickers) ? (chunk.stickers as ReelStickerItem[]) : [];
+  const stickerDisabledReason =
+    chunkIdx === chunkCount - 1 ? 'CTA 카드가 전체 구간을 덮어 스티커가 보이지 않아요.'
+    : chunkIdx === 0 ? '인트로 카드(처음 약 1.7초)가 덮는 청크라 스티커가 보이지 않아요.'
+    : null;
+
+  const addSticker = (a: ReelStickerAsset) =>
+    onPatch({
+      stickers: [
+        ...stickers,
+        { id: crypto.randomUUID(), src: a.url, kind: a.kind, x: 0.5, y: 0.3, w: 0.18, rot: 0, fromFrac: 0, durFrac: null, anim: 'pop' },
+      ],
+    });
+  const patchSticker = (idx: number, patch: Partial<ReelStickerItem>) =>
+    onPatch({ stickers: stickers.map((s, i) => (i === idx ? { ...s, ...patch } : s)) });
+  const removeSticker = (idx: number) => onPatch({ stickers: stickers.filter((_, i) => i !== idx) });
 
   return (
     <div className="space-y-3">
@@ -149,6 +171,79 @@ export function ChunkInspector({ chunk, chunkIdx, language, reelAssets, onPatch 
           )}
         </div>
       )}
+
+      {/* 스티커 — 청크별. 마지막/인트로 청크는 카드가 덮어 비활성 */}
+      <div className={sectionCls}>
+        <div className={labelCls + ' mb-1'}>스티커 ({stickers.length})</div>
+        {stickerDisabledReason ? (
+          <p className="text-[11px] text-amber-700">⚠️ {stickerDisabledReason}</p>
+        ) : stickers.length === 0 ? (
+          <p className="text-[11px] text-gray-400">아래 라이브러리에서 클릭해 추가하세요. 위치·크기는 미리보기에서 드래그로 조정해요.</p>
+        ) : (
+          <div className="space-y-2">
+            {stickers.map((s, i) => {
+              const fromPct = Math.round((s.fromFrac ?? 0) * 100);
+              const durIsFull = s.durFrac == null;
+              const durPct = durIsFull ? 100 : Math.round((s.durFrac ?? 0) * 100);
+              return (
+                <div key={s.id} className="rounded border border-gray-100 bg-gray-50/60 p-2">
+                  <div className="mb-1.5 flex items-center gap-2">
+                    <img src={s.src} alt="스티커" className="h-9 w-9 shrink-0 rounded border border-gray-200 bg-white object-contain" />
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      효과
+                      <select
+                        value={s.anim}
+                        onChange={(e) => patchSticker(i, { anim: e.target.value as ReelStickerAnim })}
+                        className="rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
+                      >
+                        {STICKER_ANIMS.map((a) => (
+                          <option key={a} value={a}>{a}</option>
+                        ))}
+                      </select>
+                    </label>
+                    {s.kind === 'gif' && <span className="rounded bg-black/60 px-1 text-[9px] font-bold text-white">GIF</span>}
+                    <button type="button" onClick={() => removeSticker(i)} className="ml-auto shrink-0 rounded border border-gray-200 px-2 py-1 text-[11px] text-gray-400 hover:text-red-600">
+                      삭제
+                    </button>
+                  </div>
+                  {/* 구간 — 청크 길이 대비 % (시작 fromFrac / 길이 durFrac) */}
+                  <div className="space-y-1">
+                    <label className="flex items-center gap-2 text-[11px] text-gray-500">
+                      <span className="w-8 shrink-0">시작</span>
+                      <input
+                        type="range" min={0} max={100} value={fromPct}
+                        onChange={(e) => patchSticker(i, { fromFrac: Number(e.target.value) / 100 })}
+                        className="flex-1 accent-[#4A2D6B]"
+                      />
+                      <span className="w-9 shrink-0 text-right tabular-nums">{fromPct}%</span>
+                    </label>
+                    <label className={'flex items-center gap-2 text-[11px] text-gray-500' + (durIsFull ? ' opacity-40' : '')}>
+                      <span className="w-8 shrink-0">길이</span>
+                      <input
+                        type="range" min={5} max={100} value={durPct} disabled={durIsFull}
+                        onChange={(e) => patchSticker(i, { durFrac: Number(e.target.value) / 100 })}
+                        className="flex-1 accent-[#4A2D6B]"
+                      />
+                      <span className="w-9 shrink-0 text-right tabular-nums">{durIsFull ? '끝' : `${durPct}%`}</span>
+                    </label>
+                    <label className="flex items-center gap-1.5 text-[11px] text-gray-500">
+                      <input
+                        type="checkbox" checked={durIsFull}
+                        onChange={(e) => patchSticker(i, { durFrac: e.target.checked ? null : 0.5 })}
+                        className="accent-[#4A2D6B]"
+                      />
+                      청크 끝까지
+                    </label>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* 라이브러리 — 비활성 청크에선 onAdd 미전달(클릭 추가 차단) + 사유 안내 */}
+      <StickerLibraryPanel onAdd={stickerDisabledReason ? undefined : addSticker} disabledReason={stickerDisabledReason} />
     </div>
   );
 }

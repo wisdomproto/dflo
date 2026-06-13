@@ -148,6 +148,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
           <ChunkInspector
             chunk={selChunk}
             chunkIdx={sel}
+            chunkCount={chunks.length}
             language={lang}
             reelAssets={article.reelAssets ?? {}}
             onPatch={(patch) => patchSelChunk(sel, patch)}
@@ -160,7 +161,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
             onPatch={onPatch}
           />
           <p className="text-[11px] text-gray-400">
-            스티커는 다음 단계에서 열립니다. 라벨 위치는 미리보기 위에서 드래그해 조정해요.
+            라벨·스티커 위치는 미리보기 위에서 드래그해 조정해요.
           </p>
         </div>
       </div>
