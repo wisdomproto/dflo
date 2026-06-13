@@ -14,6 +14,7 @@ import { CanvasDragLayer } from './CanvasDragLayer';
 import { ChunkStrip } from './ChunkStrip';
 import { ChunkInspector } from './ChunkInspector';
 import { HeaderCtaForm } from './HeaderCtaForm';
+import { RenderJobWidget } from './RenderJobWidget';
 import { useUndoableDoc } from './useUndoableDoc';
 
 interface Props {
@@ -151,8 +152,15 @@ function EditorInner({ article, doc0, language, onPatch }: {
             reelAssets={article.reelAssets ?? {}}
             onPatch={(patch) => patchSelChunk(sel, patch)}
           />
+          <RenderJobWidget
+            article={article}
+            language={language}
+            doc={doc}
+            runtime={runtime}
+            onPatch={onPatch}
+          />
           <p className="text-[11px] text-gray-400">
-            나레이션 편집·스티커·렌더 요청은 다음 단계에서 열립니다. 라벨 위치는 미리보기 드래그(추가 예정)로 조정해요.
+            스티커는 다음 단계에서 열립니다. 라벨 위치는 미리보기 위에서 드래그해 조정해요.
           </p>
         </div>
       </div>
