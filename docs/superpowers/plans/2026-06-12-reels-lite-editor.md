@@ -1461,8 +1461,8 @@ git commit -m "docs: reel lite editor - architecture notes + migration 057"
 ## 알려진 이슈
 
 - **[픽스 적용 — 브라우저 검증 대기] Player 시킹 시 빈 화면 (preview 전용, 렌더 산출물 무관)** — P1 검증 중 발견(2026-06-13).
-  **원인 확정**: `<OffthreadVideo>`를 Player에서 수동 시킹하면 빈 화면(트리거가 전부 seek·헤드리스 정상·throw 아님으로 좁힘).
-  **픽스**: `PresenterShort` 영상 패널을 `getRemotionEnvironment().isPlayer ? <Video> : <OffthreadVideo>` 분기(렌더·스튜디오는 OffthreadVideo 유지). 양쪽 tsc 0 + 헤드리스 렌더 회귀 0. **사용자 브라우저 확인 후 종결**.
+  **진짜 원인(errorFallback이 잡음)**: 청크 오디오 `<Sequence from={FROM[i]}>`에 `durationInFrames` 누락 → 시작한 오디오 시퀀스가 끝까지 안 닫혀, c5에서 BGM(1)+c1~c5 오디오(5)=6개 `<Html5Audio>` 동시 mount → **Player 동시 audio 태그 한도(기본 5) 초과 → throw → 래치**(c1~c4는 ≤5라 정상, 헤드리스 렌더엔 한도 없음). 자막·인서트 시퀀스는 이미 닫혀 있는데 오디오만 누락.
+  **픽스**: 오디오 `<Sequence>`에 `durationInFrames={c.durFrames}` 추가(wav 길이=natSec×30=durFrames라 렌더 오디오 무손실). + 보조로 영상 패널 `getRemotionEnvironment().isPlayer ? <Video> : <OffthreadVideo>` 분기(Remotion 권장, 모든 seek가 오디오 에러로 막혀 OffthreadVideo seek는 미검증이었음 — 변수 제거). 양쪽 tsc 0 + 헤드리스 렌더 회귀 0. **첫 가설(OffthreadVideo seek)은 오답 — errorFallback 계측이 진짜 원인을 잡아줌.** 사용자 브라우저 확인 후 종결.
   (참고 — 원래 발견 맥락:)
   ✂️ 에디터 Player에서 청크 스트립 클릭(`seekTo`) 후 화면이 비고, c1로 돌아와도 안 보임.
   처음부터 연속 재생(c1~c4)은 정상. **헤드리스 렌더(`PresenterGeneric`, 시드 R2 데이터,

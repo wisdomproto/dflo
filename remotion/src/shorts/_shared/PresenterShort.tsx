@@ -212,11 +212,12 @@ export const PresenterShort: React.FC<{
       </Sequence>
 
       {/* ── 오디오 — 청크 오디오는 assets 있으면 명시 URL(없는 id는 스킵 — 404 <Audio> 방지) ── */}
+      {/* durationInFrames 로 청크 구간만 mount: 없으면 시작한 오디오가 끝까지 안 닫혀 Player 동시 audio 태그 한도(기본 5) 초과 → 시킹 시 throw. 자막·인서트 시퀀스와 동일하게 닫는다. */}
       <Audio src={asset("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, 0.06, 0.06, 0], clamp)} />
       {chunks.map((c, i) => {
         const aSrc = assets ? assets.audio[c.id] : asset(`audio/shorts/${slug}/${lang}/${c.id}.wav`);
         return aSrc ? (
-          <Sequence key={"a" + c.id} from={FROM[i]}>
+          <Sequence key={"a" + c.id} from={FROM[i]} durationInFrames={c.durFrames}>
             <Audio src={aSrc} />
           </Sequence>
         ) : null;
