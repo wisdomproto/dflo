@@ -201,6 +201,14 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
                         ))}
                       </select>
                     </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      회전°
+                      <input
+                        type="number" min={-180} max={180} value={s.rot ?? 0}
+                        onChange={(e) => patchSticker(i, { rot: Math.max(-180, Math.min(180, Number(e.target.value) || 0)) })}
+                        className="w-14 rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
+                      />
+                    </label>
                     {s.kind === 'gif' && <span className="rounded bg-black/60 px-1 text-[9px] font-bold text-white">GIF</span>}
                     <button type="button" onClick={() => removeSticker(i)} className="ml-auto shrink-0 rounded border border-gray-200 px-2 py-1 text-[11px] text-gray-400 hover:text-red-600">
                       삭제

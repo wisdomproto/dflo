@@ -139,6 +139,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
             chunk={selChunk}
             language={lang}
             onCommit={(insertLabels) => patchSelChunk(sel, { insertLabels })}
+            onCommitStickers={(stickers) => patchSelChunk(sel, { stickers })}
           />
         </div>
 
