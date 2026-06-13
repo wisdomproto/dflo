@@ -16,6 +16,12 @@ const STATUS_LABEL: Record<ReelJob['status'], string> = {
   upload_preview: '미리보기 업로드', render: '렌더', upload: '업로드', done: '완료', failed: '실패',
 };
 
+// full 잡 단계 타임라인 — 워커 processJob 의 status 전이 순서와 동일(claimed→tts→…→upload→done).
+const FULL_STAGES = ['tts', 'lipsync', 'upload_preview', 'render', 'upload'] as const;
+const STAGE_SHORT: Record<(typeof FULL_STAGES)[number], string> = {
+  tts: '음성', lipsync: '립싱크', upload_preview: '미리보기', render: '렌더', upload: '업로드',
+};
+
 interface Props {
   article: MarketingArticle;
   language: string;
@@ -188,9 +194,36 @@ function JobRow({ job, onRetry, retryDisabled }: { job: ReelJob; onRetry: () => 
           </button>
         )}
       </div>
+      {active && job.kind === 'full' && <StageTimeline status={job.status} />}
       {failed && job.error && (
         <p className="mt-1 whitespace-pre-wrap break-words text-red-500">{job.error}</p>
       )}
+    </div>
+  );
+}
+
+// full 잡 진행 단계 칩 — 현재 단계(파랑) / 완료 단계(녹색) / 대기 단계(회색). queued·claimed 는 아직 tts 전이라 전부 대기.
+function StageTimeline({ status }: { status: ReelJob['status'] }) {
+  const curIdx = (FULL_STAGES as readonly string[]).indexOf(status); // -1 = queued/claimed (전 단계 대기)
+  return (
+    <div className="mt-1.5 flex flex-wrap items-center gap-1">
+      {FULL_STAGES.map((stage, i) => {
+        const state = curIdx < 0 ? 'pending' : i < curIdx ? 'done' : i === curIdx ? 'current' : 'pending';
+        return (
+          <span
+            key={stage}
+            className={`rounded px-1.5 py-0.5 text-[10px] font-medium ${
+              state === 'current'
+                ? 'bg-blue-100 text-blue-700 ring-1 ring-blue-300'
+                : state === 'done'
+                  ? 'bg-emerald-50 text-emerald-600'
+                  : 'bg-gray-100 text-gray-400'
+            }`}
+          >
+            {STAGE_SHORT[stage]}
+          </span>
+        );
+      })}
     </div>
   );
 }
