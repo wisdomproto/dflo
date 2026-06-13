@@ -132,3 +132,22 @@ export async function uploadInfographicImage(file: File): Promise<string> {
   if (!res.ok || !b.success) throw new Error(b.error || `인포그래픽 업로드 실패: ${res.status}`);
   return b.url as string;
 }
+
+/**
+ * Uploads a reel STICKER (PNG/WebP/GIF) to R2 — 원본 무변환(GIF 애니메이션 보존).
+ * ⚠️ uploadImageFile/uploadGeneratedImage 의 WebP 변환 경로를 절대 쓰지 말 것: GIF 가 정적 1프레임이 돼 깨진다.
+ * Returns the public URL.
+ */
+export async function uploadStickerFile(file: File): Promise<string> {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('folder', 'marketing/reels/stickers');
+  const res = await fetch(`${BASE}/api/r2/upload`, {
+    method: 'POST',
+    headers: { 'x-admin-pin': PIN },
+    body: fd,
+  });
+  const b = await res.json().catch(() => ({}));
+  if (!res.ok || !b.success) throw new Error(b.error || `스티커 업로드 실패: ${res.status}`);
+  return b.url as string;
+}
