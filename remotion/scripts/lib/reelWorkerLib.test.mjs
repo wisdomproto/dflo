@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildPushDoc, toLocalScriptJson, ACTIVE_STATUSES, isStale } from "./reelWorkerLib.mjs";
+import { buildPushDoc, toLocalScriptJson, ACTIVE_STATUSES, isStale, renderPrecondition } from "./reelWorkerLib.mjs";
 
 test("buildPushDoc: insert 로컬 경로 → reel_assets URL 치환 + script 서브트리 구성", () => {
   const local = { slug: "성장판나이", fps: 30, title: "t", header: {}, chunks: [{ id: "c3", insert: "images/성장판나이/ig1.png" }] };
@@ -28,4 +28,8 @@ test("isStale: updated_at 10분 초과 active 만 true, queued 는 제외", () =
   assert.equal(isStale({ status: "queued", updated_at: old }, Date.now()), false);
   assert.equal(isStale({ status: "render", updated_at: new Date().toISOString() }, Date.now()), false);
   assert.equal(ACTIVE_STATUSES.includes("upload_preview"), true);
+});
+test("renderPrecondition: preview/timing 없으면 불가", () => {
+  assert.equal(renderPrecondition({}, "ko").ok, false);
+  assert.equal(renderPrecondition({ preview: { ko: { lipsyncUrl: "u" } }, timing: { ko: [{ id: "c1", durFrames: 1 }] } }, "ko").ok, true);
 });
