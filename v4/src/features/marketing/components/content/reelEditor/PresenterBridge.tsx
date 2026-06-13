@@ -8,6 +8,19 @@ import type { ReelScriptDoc, ReelTimingEntry } from '../../../types';
 
 setAssetResolver((p) => '/' + p);
 
+// Player 컴포지션이 throw 하면 에러 박스로 표시(빈 화면 + 래치 방지) + 콘솔에 전체 스택.
+function PlayerError({ error }: { error: Error }) {
+  // eslint-disable-next-line no-console
+  console.error('[ReelEditor Player]', error);
+  return (
+    <div style={{ position: 'absolute', inset: 0, background: '#1a1320', color: '#ffd6d6', padding: 16, overflow: 'auto', fontFamily: 'monospace', fontSize: 11 }}>
+      <div style={{ fontWeight: 700, marginBottom: 8 }}>⚠️ 미리보기 렌더 에러</div>
+      <div style={{ whiteSpace: 'pre-wrap' }}>{error.message}</div>
+      <pre style={{ whiteSpace: 'pre-wrap', opacity: 0.7, marginTop: 8 }}>{error.stack}</pre>
+    </div>
+  );
+}
+
 export interface BridgeAssets { videoSrc: string; audio: Record<string, string> }
 interface Props {
   doc: ReelScriptDoc; timing: ReelTimingEntry[]; lang: string;
@@ -31,6 +44,7 @@ const PresenterBridge = forwardRef<PlayerRef, Props>(function PresenterBridge({ 
         fps={30}
         controls
         loop
+        errorFallback={PlayerError}
         style={{ width: '100%', height: '100%' }}
       />
     </div>

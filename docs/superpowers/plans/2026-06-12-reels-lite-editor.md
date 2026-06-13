@@ -1458,6 +1458,18 @@ git commit -m "docs: reel lite editor - architecture notes + migration 057"
 
 ---
 
+## 알려진 이슈 (보류 — 사용자 지시)
+
+- **Player 시킹 시 빈 화면 (preview 전용, 렌더 산출물 무관)** — P1 검증 중 발견(2026-06-13).
+  ✂️ 에디터 Player에서 청크 스트립 클릭(`seekTo`) 후 화면이 비고, c1로 돌아와도 안 보임.
+  처음부터 연속 재생(c1~c4)은 정상. **헤드리스 렌더(`PresenterGeneric`, 시드 R2 데이터,
+  c5 프레임)는 완벽 렌더 — 즉 워커 렌더/실제 영상에는 영향 없음**(repro 확인). `errorFallback`
+  계측 결과 **throw 아님**(빈 화면, 에러박스 미표시) → Player 런타임의 조용한 미렌더.
+  **유력 원인: `<OffthreadVideo>`가 Player 시킹에서 블랭크**(Remotion은 Player에 `<Video>` 권장).
+  차선 가설: `<Img>`/폰트 `delayRender` 미해제. **픽스 후보**: PresenterShort에서
+  `getRemotionEnvironment().isPlayer` 분기로 OffthreadVideo→Video(또는 렌더만 OffthreadVideo).
+  브라우저 콘솔로 A/B 확정 후 적용 예정. Chunk 2 이후 처리.
+
 ## 실행 메모
 
 - **⚠️ v4 타입 게이트(Chunk 1 실행 중 발견)**: v4 루트 `npx tsc --noEmit` 는 solution tsconfig(files:[]+references) 라 **0개 파일 검사하는 no-op**. 본 플랜의 모든 "cd v4 && npx tsc --noEmit" 는 **`npx tsc -b --noEmit`** 로 읽을 것(빌드 체인과 동일한 진짜 게이트).
