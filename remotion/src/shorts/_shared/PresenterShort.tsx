@@ -8,6 +8,7 @@ import {
 import { asset } from "../../lib/assets";
 import { ensureFonts, NOTO_SANS_KR } from "../../lib/fonts";
 import { ShortLogo } from "./ShortLogo";
+import { StickerLayer } from "./StickerLayer";
 
 const YELLOW = "#FCE61A";
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -198,6 +199,13 @@ export const PresenterShort: React.FC<{
           <CaptionZone c={c} lang={lang} />
         </Sequence>
       )))}
+
+      {/* ── 스티커 (인서트 위·인트로/CTA 카드 아래 = 헤더/자막과 같은 층) ── */}
+      {chunks.map((c, i) => (c.stickers?.length ? (
+        <Sequence key={"st" + c.id} from={FROM[i]} durationInFrames={c.durFrames} layout="none">
+          <StickerLayer stickers={c.stickers} durFrames={c.durFrames} />
+        </Sequence>
+      ) : null))}
 
       <ShortLogo />
 
