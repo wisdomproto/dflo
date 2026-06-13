@@ -125,6 +125,21 @@
   .imgp .h{font-size:12.5px;font-weight:800;color:var(--b2);margin-bottom:6px;display:flex;align-items:center;gap:7px}
   .imgp code{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px;color:#3c3650;white-space:pre-wrap;line-height:1.55;font-family:'Noto Sans KR',sans-serif}
   .note{font-size:12.5px;color:var(--mut);margin-top:10px}
+  /* glossary */
+  .glos{margin-top:14px;border:1px solid #ddd0f2;border-radius:13px;background:linear-gradient(180deg,#faf8ff,#f4f0fb);padding:14px 16px}
+  .glos .gh{font-size:13.5px;font-weight:800;color:var(--brand);margin-bottom:9px}
+  .glos .gg{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+  @media(max-width:680px){.glos .gg{grid-template-columns:1fr}}
+  .glos .gi{font-size:12.5px;color:#3c3650;line-height:1.5}
+  .glos .gi b{color:var(--brand);font-weight:800;margin-right:4px}
+  /* compounding chart */
+  .cchart{margin-top:10px}
+  .cchart text{font-family:'Noto Sans KR',sans-serif}
+  /* gantt timeline */
+  .gantt{display:grid;grid-template-columns:130px repeat(3,1fr);gap:6px;margin-top:14px;align-items:center}
+  .gantt .gl{font-size:12px;font-weight:700;color:#3c3650}
+  .gantt .gh{font-size:11.5px;font-weight:800;color:var(--mut);text-align:center;padding-bottom:2px}
+  .gbar{height:22px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:800;color:#fff}
   .linkrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
   .linkrow a{font-size:12px;font-weight:700;color:var(--brand);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 11px;background:#fcfbfe}
   .linkrow a:hover{background:#f4f0fb}
@@ -164,6 +179,22 @@
       <div class="stat"><div class="n">58<small> 명</small></div><div class="l">치료사례 후보 (공개 7 + 비식별)</div></div>
     </div>
     <p class="note">＊ 이 문서는 <b>내부 실행 청사진</b>입니다. 언어×채널 세부 캘린더·예산은 하단 국가별 작전 문서로 연결됩니다.</p>
+
+    <div class="glos">
+      <div class="gh">💡 마케팅 용어 한 줄 사전 <span style="font-weight:600;color:var(--mut);font-size:11.5px">— 본문에 약어가 나오면 여기를 참고하세요</span></div>
+      <div class="gg">
+        <div class="gi"><b>오가닉</b> 광고비 없이 검색·자연 유입으로 들어오는 무료 트래픽</div>
+        <div class="gi"><b>SEO</b> 구글 검색 결과 상위에 노출되게 만드는 작업</div>
+        <div class="gi"><b>퍼널</b> 방문자가 상담까지 가는 단계별 깔때기 흐름</div>
+        <div class="gi"><b>CAC</b> 고객(상담 문의) 한 명을 데려오는 데 드는 비용</div>
+        <div class="gi"><b>부스팅</b> 이미 올린 게시물에 돈을 얹어 더 퍼뜨리기</div>
+        <div class="gi"><b>다크 포스트</b> 피드엔 안 뜨고 광고로만 노출되는 게시물</div>
+        <div class="gi"><b>픽셀</b> 방문·측정·상담을 추적해 광고를 똑똑하게 만드는 코드</div>
+        <div class="gi"><b>ROAS</b> 광고비 1원당 돌아온 매출 (높을수록 좋음)</div>
+        <div class="gi"><b>RAG</b> 책·논문을 AI가 찾아 근거로 대게 하는 방식</div>
+        <div class="gi"><b>해자(moat)</b> 경쟁사가 쉽게 못 따라오는 진입장벽</div>
+      </div>
+    </div>
   </section>
 
   <!-- ───────── 1. 큰 그림 ───────── -->
@@ -182,7 +213,27 @@
 
     <div class="box" style="background:linear-gradient(180deg,#f0fbf6,#eafaf3);border-color:#bde6d6;margin-top:4px">
       <h4>📉 오가닉의 복리 — 익을수록 마케팅 비용이 줄어든다</h4>
-      <p style="font-size:13px;color:#2c4a3e;margin:0">초기엔 유료 광고로 트래픽을 산다. 하지만 <b>블로그·SEO가 구글 상위에 자리잡으면 그 트래픽은 공짜로 계속 들어온다</b> — 한 번 쓴 글이 몇 년간 방문자를 데려오는 자산. 오가닉이 익을수록 <b>유료 광고 의존도 ↓ → 같은 유입을 더 싸게</b>. 장기적으로 CAC(고객획득비용)가 구조적으로 내려가는 게 오가닉 우선 전략의 핵심.</p>
+      <p style="font-size:13px;color:#2c4a3e;margin:0 0 8px">초기엔 유료 광고로 트래픽을 산다. 하지만 <b>블로그·SEO가 구글 상위에 자리잡으면 그 트래픽은 공짜로 계속 들어온다</b> — 한 번 쓴 글이 몇 년간 방문자를 데려오는 자산. 오가닉이 익을수록 <b>유료 광고 의존도↓ → 같은 유입을 더 싸게</b>. 장기적으로 <b>고객 한 명 데려오는 비용(CAC)</b>이 구조적으로 내려간다.</p>
+      <svg class="cchart" viewBox="0 0 560 200" width="100%" role="img" aria-label="시간에 따라 유료 광고비는 줄고 오가닉 무료 유입은 늘어 교차하는 그래프">
+        <!-- axes -->
+        <line x1="48" y1="20" x2="48" y2="168" stroke="#cdbff0" stroke-width="1.5"/>
+        <line x1="48" y1="168" x2="540" y2="168" stroke="#cdbff0" stroke-width="1.5"/>
+        <text x="44" y="20" text-anchor="end" font-size="11" fill="#8b8a96">유입</text>
+        <text x="535" y="186" text-anchor="end" font-size="11" fill="#8b8a96">시간 →</text>
+        <text x="20" y="96" text-anchor="middle" font-size="11" fill="#8b8a96" transform="rotate(-90 20 96)">월별 유입</text>
+        <!-- paid: starts high, declines -->
+        <path d="M60,52 C170,72 300,120 530,150" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+        <!-- organic: starts low, compounds up -->
+        <path d="M60,158 C220,150 330,96 530,36" fill="none" stroke="#10a572" stroke-width="3" stroke-linecap="round"/>
+        <!-- crossover marker -->
+        <circle cx="322" cy="118" r="5" fill="#764ba2"/>
+        <line x1="322" y1="118" x2="322" y2="168" stroke="#a98fd6" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="322" y="135" text-anchor="middle" font-size="10.5" font-weight="700" fill="#764ba2">손익 역전</text>
+        <!-- labels -->
+        <text x="70" y="44" font-size="12" font-weight="800" fill="#ef4444">유료 광고비 (우하향)</text>
+        <text x="360" y="30" font-size="12" font-weight="800" fill="#10a572">오가닉 무료 유입 (우상향)</text>
+      </svg>
+      <p style="font-size:11.5px;color:#5d7a6e;margin:6px 0 0;text-align:center">초기엔 광고로 사다가, 콘텐츠가 쌓이면 공짜 유입이 광고를 추월한다 (개념도)</p>
     </div>
 
     <h3>전체 전환 퍼널</h3>
@@ -193,7 +244,7 @@
       <div class="farrow">▼</div>
       <div class="fstep f-act"><div class="ic" style="background:#d5f3e6">📏</div><div><div class="ft">③ 예측키 측정 + 치료사례 맛보기 (4명)</div><div class="fd">국가별 성장표준 계산기 · "더 많은 사례는 상담으로" 게이트</div></div></div>
       <div class="farrow">▼</div>
-      <div class="fstep f-msg"><div class="ic" style="background:#ffeec2">💬</div><div><div class="ft">④ 메신저로 꼬심</div><div class="fd">한국=카카오 · 태국=LINE · 그 외 시장별 메신저</div></div></div>
+      <div class="fstep f-msg"><div class="ic" style="background:#ffeec2">💬</div><div><div class="ft">④ 메신저로 1:1 상담 연결</div><div class="fd">한국=카카오 · 태국=LINE · 그 외 시장별 메신저</div></div></div>
     </div>
 
     <div class="boundary"><span>━━ 여기까지가 마케팅 플랫폼의 역할 ━━</span></div>
@@ -217,9 +268,10 @@
     <p class="sub">콘텐츠·광고·상담·임상이 <b>하나의 자동화 플랫폼</b> 위에서 돈다. 사람은 전략만, 반복은 기계가. 이게 우리의 진짜 해자(moat).</p>
 
     <h3>4계층 아키텍처</h3>
+    <div class="box" style="background:#f4f0fb;border-color:#ddd0f2;margin:0 0 10px"><p style="margin:0;font-size:13px;color:#2c2640"><b>쉽게 말하면</b> — 콘텐츠를 만들고·6개 언어로 번역하고·근거 논문을 달고·정해진 시각에 자동 발행하는 일을, <b>사람 손 없이 한 시스템이 처리</b>합니다. 그 밑을 환자 임상 데이터와 원장님 저서·논문이 떠받칩니다. (아래는 기술 구성 — 디테일은 넘어가셔도 됩니다)</p></div>
     <div class="stack">
       <div class="layer l1"><div class="lic">📣</div><div><div class="ltt">마케팅 자동화 계층</div><div class="ld">콘텐츠 스튜디오(블로그·카드뉴스·릴스 AI 생성) · 통합 블로그 SEO 위저드 · 발행 큐+월 캘린더+<b>자동 예약 스케줄러</b> · Meta 발행/광고 푸시/픽셀 · 분석(GA4·채널·SEO·경쟁사)</div></div></div>
-      <div class="layer l2"><div class="lic">🌐</div><div><div class="ltt">글로벌 표면 계층</div><div class="ld">6개 언어 i18n 홈페이지(hreflang·sitemap 자동) · 환자앱(상담/치료/완료 단계 분기) · 어드민 임상 대시보드(진료·X-ray·Lab·처방)</div></div></div>
+      <div class="layer l2"><div class="lic">🌐</div><div><div class="ltt">글로벌 표면 계층</div><div class="ld">6개 언어 홈페이지(검색엔진 다국어 인식 자동) · 환자앱(상담/치료/완료 단계 분기) · 어드민 임상 대시보드(진료·X-ray·검사·처방)</div></div></div>
       <div class="layer l3"><div class="lic">⚙️</div><div><div class="ltt">백엔드 · AI 계층</div><div class="ld">ai-server(Express+Gemini 2.5) · RAG 콘텐츠 검수·유사케이스·코칭 · 번역·SEO감사·키워드 · node-cron 스케줄러 · Meta OAuth/Graph</div></div></div>
       <div class="layer l4"><div class="lic">🗄️</div><div><div class="ltt">데이터 계층 (해자의 뿌리)</div><div class="ld">임상 DB 245명·진료 3,861회·측정 2,993건 · 지식 브레인(원장 책 227청크 + 논문 281편, pgvector RAG) · Supabase + Cloudflare R2</div></div></div>
     </div>
@@ -276,7 +328,7 @@
       </div>
     </div>
 
-    <h3>콘텐츠 자산 현황 매트릭스</h3>
+    <h3>콘텐츠 <u>제작</u> 현황 매트릭스 <span style="font-size:12px;font-weight:600;color:var(--mut)">— 만들어 둔 것 기준 (실제 발행은 §6 참조)</span></h3>
     <table class="mx">
       <thead><tr><th></th><th>🇰🇷 ko</th><th>🇬🇧 en</th><th>🇹🇭 th</th><th>🇻🇳 vi</th><th>🇹🇼 번체</th><th>🇨🇳 간체</th></tr></thead>
       <tbody>
@@ -287,7 +339,7 @@
         <tr><td class="row">릴스 커버(썸네일)</td>
           <td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td></tr>
         <tr><td class="row">릴스 영상</td>
-          <td class="cell c-mid">53%</td><td class="cell c-no">0%</td><td class="cell c-low">6%</td><td class="cell c-no">0%</td><td class="cell c-no">0%</td><td class="cell c-no">0%</td></tr>
+          <td class="cell c-mid">53%<br><small style="font-weight:600;opacity:.85">33/62</small></td><td class="cell c-no">0%</td><td class="cell c-low">6%<br><small style="font-weight:600;opacity:.85">4/62</small></td><td class="cell c-no">0%</td><td class="cell c-no">0%</td><td class="cell c-no">0%</td></tr>
       </tbody>
     </table>
     <div class="legend"><span><i style="background:#10a572"></i>완비</span><span><i style="background:#f59e0b"></i>진행중</span><span><i style="background:#cbd5e1"></i>착수</span><span><i style="background:#eef0f4"></i>미착수</span></div>
@@ -406,11 +458,27 @@
       <div class="pcard pr3"><div class="pn">P3 · 전환</div><div class="ph">메타광고 집행</div><div class="pp">릴스 소재로 부스팅. 픽셀 전환(예측키·상담) 학습 → 언어권별 ROAS 비교.</div></div>
       <div class="pcard pr4"><div class="pn">P4 · 운영</div><div class="ph">핸드오프 정비</div><div class="pp">메신저 후 설문·사례 전송 키트 표준화. 상담 매뉴얼 5개국어 정렬.</div></div>
     </div>
-    <div class="imgp" style="margin-top:18px">
-      <div class="h">🎨 이미지 프롬프트 — 90일 로드맵 일러스트 (선택)</div>
-      <code>A simple flat illustration of a growth path: four ascending stepping stones leading upward to a flag, each stone a different soft color (green, purple, amber, slate). A small rocket or sprout climbing the steps. Minimal, purple-and-mint palette, white background, no text. 16:9.</code>
+
+    <h3>90일 타임라인</h3>
+    <div class="gantt">
+      <div></div><div class="gh">0–30일</div><div class="gh">30–60일</div><div class="gh">60–90일</div>
+      <div class="gl">블로그 발행</div>
+        <div class="gbar pr1" style="grid-column:2/5">372편 순차 발행 + 색인</div><div></div><div></div>
+      <div class="gl">릴스 영상</div>
+        <div class="gbar pr2" style="grid-column:2/4">ko·th 마무리 → vi·en·중</div><div></div>
+      <div class="gl">메타광고</div>
+        <div></div><div class="gbar pr3" style="grid-column:3/5">픽셀 학습 → 언어권 확대</div>
+      <div class="gl">핸드오프 정비</div>
+        <div class="gbar pr4" style="grid-column:2/3">키트 표준화</div><div></div><div></div>
     </div>
-    <p class="note">언어×채널 세부 캘린더·예산·KPI는 국가별 작전 문서로 연결 — 이 마스터는 <b>전체 프레임과 퍼널</b>을 잡는 역할.</p>
+
+    <h3>투입 vs 기대 <span style="font-size:12px;font-weight:600;color:var(--bad)">— 숫자 협의 필요</span></h3>
+    <div class="grid3">
+      <div class="box"><h4>💰 월 광고 예산</h4><p style="font-size:13px;color:#3c3650;margin:0"><b>＿＿＿ 만원/월</b><br><span style="font-size:12px;color:var(--mut)">언어권별 배분(예: 태국 우선). 픽셀 데이터 쌓일 때까지 테스트 예산.</span></p></div>
+      <div class="box"><h4>📈 90일 기대 지표</h4><p style="font-size:13px;color:#3c3650;margin:0">월 오가닉 방문 <b>＿＿</b> · 메신저 문의 <b>＿＿건/월</b><br><span style="font-size:12px;color:var(--mut)">발행·광고 시작 후 1차 목표치.</span></p></div>
+      <div class="box"><h4>⏳ 효과 타임라인</h4><p style="font-size:13px;color:#3c3650;margin:0">유료 광고 = <b>즉시</b> · 오가닉(블로그) = <b>3~6개월 후 복리</b><br><span style="font-size:12px;color:var(--mut)">오가닉은 늦게 터지지만 갈수록 싸진다.</span></p></div>
+    </div>
+    <p class="note">＊ 광고 예산·목표 수치는 원장님과 협의해 확정 → 이후 언어×채널 세부 캘린더는 국가별 작전 문서에 반영. 이 마스터는 <b>전체 프레임과 퍼널</b>을 잡는 역할.</p>
   </section>
 
   <p class="foot">187 GROWUP · 마케팅 마스터 청사진 · 내부 실행용 (noindex) · 수치는 라이브 집계 기준</p>
