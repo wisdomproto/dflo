@@ -289,7 +289,7 @@ for (const c of children) {
 
   rows.push({
     id: c.id, chart: c.chart_number, name: c.name, gender: isMale ? '남' : '여',
-    birth: (c.birth_date || '').slice(0, 4), ageAtFirst, months,
+    birth: (c.birth_date || '').slice(0, 4), birthDate: c.birth_date, ageAtFirst, months,
     fa: c.father_height, mo: c.mother_height, mph, bmi, bmiLast, desired: c.desired_height,
     grade: c.grade, rank: c.class_height_rank,
     nMs: mm.length, nBA: baRows.length,
@@ -403,6 +403,13 @@ function growthSvg(r) {
 function card(r, i) {
   const key = String(r.chart ?? r.name);
   const isF = r.gender === '여';
+  // 환자 진료 차트 모듈(case-charts.js)에 넘길 데이터 — child 최소 필드 + 측정 이력.
+  const chartData = {
+    gender: isF ? 'female' : 'male',
+    birth_date: r.birthDate,
+    nationality: 'KR',
+    measurements: r.mm.filter((m) => m.h > 0).map((m) => ({ measured_date: m.date, height: m.h, bone_age: m.ba ?? null })),
+  };
   const cc = isF ? '#d6336c' : '#2563EB';
   const ccBg = isF ? '#fdeef4' : '#eef3ff';
   const tagHtml = r.tags.map((t) => {
@@ -447,7 +454,15 @@ function card(r, i) {
     <div class="kpi"><span>측정</span><b>${r.nMs}회<i>BA ${r.nBA}회</i></b></div>
   </div>
   <div class="tags">${tagHtml}${r.xray ? `<span class="asset">X-ray ${r.xray}장</span>` : ''}${r.desired ? `<span class="asset">희망 ${esc(r.desired)}</span>` : ''}</div>
-  <div class="chart">${growthSvg(r)}</div>
+  <div class="chart">
+    <div class="ctabs">
+      <button class="ctab on" data-t="g">성장 곡선</button>
+      <button class="ctab" data-t="t">예측키 추세</button>
+    </div>
+    <div class="cpane cpane-g"><div class="cwrap"><canvas></canvas></div></div>
+    <div class="cpane cpane-t" hidden><div class="cwrap"><canvas></canvas></div><div class="tgrid"></div></div>
+    <script type="application/json" class="cdata">${JSON.stringify(chartData).replace(/</g, '\\u003c')}</script>
+  </div>
   <div class="cols">
     <div class="col">
       <h4>🦴 뼈나이 회차 (${r.nBA}회)</h4>
@@ -529,7 +544,12 @@ const html = `<!DOCTYPE html>
   .tag.t-gene { background:#f1ecfb; color:#6741d9; } .tag.t-slow { background:#e6fcf5; color:#0b8a5e; }
   .tag.t-warn { background:#ffe8e8; color:#c92a2a; }
   .asset { background:#f4f3f8; color:#777; }
-  .chart { margin-top:12px; background:#fcfbfe; border:1px solid #f0edf6; border-radius:12px; padding:8px; }
+  .chart { margin-top:12px; background:#fcfbfe; border:1px solid #f0edf6; border-radius:12px; padding:10px; }
+  .ctabs { display:flex; gap:6px; margin-bottom:8px; }
+  .ctab { border:1.5px solid #e3def0; background:#fff; color:#777; border-radius:999px; padding:4px 13px; font-size:12px; font-weight:700; cursor:pointer; }
+  .ctab.on { background:#4A2D6B; border-color:#4A2D6B; color:#fff; }
+  .cwrap { position:relative; height:230px; }
+  .tgrid { margin-top:2px; }
   .cols { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:14px; }
   @media (max-width:720px) { .cols { grid-template-columns:1fr; } }
   h4 { font-size:12px; font-weight:800; color:#4A2D6B; margin:10px 0 5px; }
@@ -565,7 +585,7 @@ const html = `<!DOCTYPE html>
   <h1>치료사례 후보 ${list.length}명 — 상세 프로필</h1>
   <p class="sub">생성 2026-06-12 · 점수순 · 카드의 <b style="color:#10a572">채택</b> 체크 → 하단 "선택 차트번호 복사" · 체크는 브라우저에 자동 저장</p>
   <div class="note"><b>읽는 법</b> : <b>환자 이름은 전부 가명</b>입니다 — 식별은 차트번호로 해주세요. 헤드라인·스토리 포인트는 데이터 기반 자동 초안입니다(최종 카피 아님).
-  그래프 — 실선=실제 키, 점선=예상키(PAH). 뼈나이 "격차"=뼈나이−실제나이(<b style="color:#d6336c">+빨강=조숙</b>, <b style="color:#0b8a5e">−초록=여유</b>). 문진·내원사유는 원본 발췌라 표현 그대로입니다.</div>
+  그래프 — <b>환자 진료 화면과 동일한 2탭</b>: [성장 곡선] 백분위 곡선+실측 다이아+예측 투영 / [예측키 추세] 회차별 예측키 라인+또래 백분위. 뼈나이 "격차"=뼈나이−실제나이(<b style="color:#d6336c">+빨강=조숙</b>, <b style="color:#0b8a5e">−초록=여유</b>). 문진·내원사유는 원본 발췌라 표현 그대로입니다.</div>
 
   <div class="controls">
     <button class="chip on" data-g="all">전체 ${list.length}</button>
@@ -587,6 +607,7 @@ const html = `<!DOCTYPE html>
   ${cardsHtml}
 </div>
 <div class="toast" id="toast"></div>
+<script src="case-charts.js"></script>
 <script>
 const store = {
   get() { try { return JSON.parse(localStorage.getItem('caseCandidates2026') || '[]'); } catch { return []; } },
@@ -630,6 +651,42 @@ document.getElementById('copySel').addEventListener('click', () => {
     () => show('복사 실패 — 수동으로: ' + v));
 });
 apply();
+
+// ── 차트 (환자 진료 모듈 재사용) — 58×2개라 뷰포트 진입 시 지연 렌더 ──
+const CC = window.CaseCharts;
+function cardData(card) {
+  if (card._data !== undefined) return card._data;
+  const el = card.querySelector('.cdata');
+  try { card._data = el ? JSON.parse(el.textContent) : null; } catch { card._data = null; }
+  return card._data;
+}
+function renderGrowth(card) {
+  if (card._g || !CC) return;
+  const d = cardData(card), cv = card.querySelector('.cpane-g canvas');
+  if (!d || !cv) return;
+  try { CC.renderGrowth(cv, d); card._g = true; } catch (e) { console.error('growth', e); }
+}
+function renderTrend(card) {
+  if (card._t || !CC) return;
+  const d = cardData(card), cv = card.querySelector('.cpane-t canvas'), grid = card.querySelector('.tgrid');
+  if (!d || !cv) return;
+  try { CC.renderTrend(cv, grid, d); card._t = true; } catch (e) { console.error('trend', e); }
+}
+const io = new IntersectionObserver((es) => {
+  es.forEach(e => { if (e.isIntersecting) renderGrowth(e.target); });
+}, { rootMargin: '300px' });
+cards.forEach(c => io.observe(c));
+document.querySelectorAll('.ctabs').forEach(tabs => {
+  const card = tabs.closest('.card');
+  tabs.querySelectorAll('.ctab').forEach(btn => btn.addEventListener('click', () => {
+    tabs.querySelectorAll('.ctab').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const t = btn.dataset.t;
+    card.querySelector('.cpane-g').hidden = t !== 'g';
+    card.querySelector('.cpane-t').hidden = t !== 't';
+    if (t === 'g') renderGrowth(card); else renderTrend(card);
+  }));
+});
 </script>
 </body>
 </html>`;
@@ -638,3 +695,188 @@ writeFileSync('C:/project/dflo/cases/케이스후보_상세프로필.html', html
 // 마케팅 페이지 전략 폴더 사본 — PHI 포함이라 v4/.gitignore 로 배포 차단(로컬 전용)
 writeFileSync('C:/project/dflo/v4/public/marketing/strategy/case-candidates.html', html, 'utf8');
 console.log(`done: ${list.length}명 (여 ${girls}) → 케이스후보_상세프로필.html + marketing/strategy/case-candidates.html (${Math.round(html.length / 1024)}KB)`);
+
+// ════════════════════════════════════════════════════════════════════════════
+// 비식별 외부 쇼케이스 — 치료사례_외부.html (웹 주소로 접근, PIN 8054)
+// 공개 범위: 가명 + 고민태그 + 헤드라인 + KPI(키·예상키·치료기간·유전예상) + 2그래프(나이기준, 좌우 배치).
+// 제외: 차트번호·생년월일·정확한 측정일·진료메모·문진·스토리포인트·알러지·원장스토리·채택/복사 컨트롤.
+// 그래프는 만나이 기준이라 생일/측정일이 새지 않는다(case-charts.js 의 비식별 모드 ageDecimal/caY/caM).
+// ════════════════════════════════════════════════════════════════════════════
+function ageYM(birth, date) {
+  const b = new Date(birth), d = new Date(date);
+  if (isNaN(+b) || isNaN(+d)) return { years: 0, months: 0, decimal: 0 };
+  let years = d.getFullYear() - b.getFullYear();
+  let months = d.getMonth() - b.getMonth();
+  if (d.getDate() < b.getDate()) months--;
+  if (months < 0) { years--; months += 12; }
+  const decimal = +((d - b) / (365.25 * 86400000)).toFixed(2);
+  return { years, months, decimal };
+}
+function extChartData(r) {
+  return {
+    gender: r.gender === '여' ? 'female' : 'male',
+    measurements: r.mm.filter((m) => m.h > 0).map((m) => {
+      const a = r.birthDate ? ageYM(r.birthDate, m.date) : { years: 0, months: 0, decimal: m.age ?? 0 };
+      return { ageDecimal: a.decimal, caY: a.years, caM: a.months, height: m.h, bone_age: m.ba ?? null };
+    }),
+  };
+}
+function extTagCls(t) {
+  return t.startsWith('성조숙') ? 't-prec' : t.startsWith('늦은') ? 't-late' : t.startsWith('비만') ? 't-obes'
+    : t.startsWith('알러지') ? 't-alle' : t.startsWith('유전') ? 't-gene' : t.startsWith('성장지연') ? 't-slow' : 't-warn';
+}
+function cardExt(r, i) {
+  const isF = r.gender === '여';
+  const cc = isF ? '#d6336c' : '#2563EB';
+  const ccBg = isF ? '#fdeef4' : '#eef3ff';
+  // ⚠️ 내부 표식 태그 제외 + 괄호 속 수치(MPH 등) 제거 — 식별·내부정보 노출 차단.
+  const tagHtml = r.tags.filter((t) => !t.startsWith('⚠️')).map((t) => {
+    const base = t.split('(')[0].trim();
+    return `<span class="tag ${extTagCls(t)}">${esc(base)}</span>`;
+  }).join('');
+  const chartData = extChartData(r);
+  return `<article class="card" data-g="${r.gender}">
+  <header style="--cc:${cc};--ccbg:${ccBg}">
+    <span class="nm">${isF ? '👧' : '👦'} ${esc(r.name)}</span>
+    <span class="meta">초진 만 ${r.ageAtFirst}세 · ${r.status === 'completed' ? '치료 완료' : '치료 중'}</span>
+  </header>
+  <p class="headline">"${esc(r.headline)}"</p>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>${fmtDur(r.months)}</b></div>
+    <div class="kpi"><span>실제 키</span><b>${r.hFirst}→${r.hLast}<i>+${r.hDelta}cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>${r.pahFirst}→${r.pahLast}<i>+${r.pahDelta}cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>${r.mph ? r.mph + 'cm' : '-'}</b></div>
+  </div>
+  <div class="tags">${tagHtml}</div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">${JSON.stringify(chartData).replace(/</g, '\\u003c')}</script>
+</article>`;
+}
+
+const extCards = list.map(cardExt).join('\n');
+const extHtml = `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>187 성장클리닉 — 치료사례</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'Noto Sans KR','Malgun Gothic',sans-serif; background:#f4f2f8; color:#1f2433; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:940px; margin:0 auto; padding:20px 16px 60px; }
+  .top { text-align:center; padding:14px 0 6px; }
+  .top h1 { margin:0; font-size:26px; color:#4A2D6B; letter-spacing:-0.5px; }
+  .top p { margin:6px 0 0; color:#6b7280; font-size:13px; }
+  .filters { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:16px 0 20px; }
+  .chip { border:1.5px solid #e3def0; background:#fff; color:#6b6677; border-radius:999px; padding:6px 16px; font-size:13px; font-weight:700; cursor:pointer; }
+  .chip.on { background:#4A2D6B; border-color:#4A2D6B; color:#fff; }
+  .card { background:#fff; border:1px solid #ece8f4; border-radius:16px; padding:18px 18px 20px; margin-bottom:18px; box-shadow:0 1px 3px rgba(40,30,70,.05); }
+  .card header { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-left:4px solid var(--cc); background:var(--ccbg); padding:8px 12px; border-radius:9px; }
+  .nm { font-size:18px; font-weight:800; color:#22252e; }
+  .meta { font-size:12px; color:#6b7280; }
+  .headline { font-size:16px; font-weight:700; color:#33294d; margin:14px 2px 12px; line-height:1.5; }
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:10px 0; }
+  @media(max-width:560px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
+  .kpi { background:#f8f7fb; border:1px solid #efedf5; border-radius:10px; padding:8px 10px; }
+  .kpi span { display:block; font-size:11px; color:#8b8a96; margin-bottom:3px; }
+  .kpi b { font-size:15px; color:#262a36; font-weight:800; }
+  .kpi b i { font-style:normal; font-size:12px; color:#10a572; font-weight:700; margin-left:4px; }
+  .kpi.hl { background:#f0ecfa; border-color:#ded3f4; }
+  .kpi.hl b { color:#5b3a9e; }
+  .tags { display:flex; gap:5px; flex-wrap:wrap; margin:6px 0 4px; }
+  .tag { font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; }
+  .t-prec{background:#fff1f0;color:#d4380d}.t-late{background:#fff7e6;color:#d46b08}.t-obes{background:#fff0f6;color:#c41d7f}
+  .t-alle{background:#fcffe6;color:#7cb305}.t-gene{background:#e6fffb;color:#08979c}.t-slow{background:#e6f4ff;color:#0958d9}.t-warn{background:#f0f0f0;color:#595959}
+  .charts2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  @media(max-width:680px){ .charts2{ grid-template-columns:1fr; } }
+  .clbl { font-size:13px; font-weight:700; color:#475569; margin-bottom:6px; }
+  .cwrap { position:relative; height:280px; background:#fff; border:1px solid #eef0f4; border-radius:10px; padding:6px; }
+  .tgrid { margin-top:4px; }
+  /* PIN 게이트 */
+  #gate { position:fixed; inset:0; background:linear-gradient(160deg,#4A2D6B,#764ba2); display:flex; align-items:center; justify-content:center; z-index:9999; }
+  #gate .box { background:#fff; border-radius:18px; padding:34px 30px; width:300px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.3); }
+  #gate h2 { margin:0 0 4px; font-size:20px; color:#4A2D6B; }
+  #gate p { margin:0 0 18px; font-size:13px; color:#8b8a96; }
+  #gate input { width:100%; padding:12px; font-size:18px; text-align:center; letter-spacing:6px; border:2px solid #e3def0; border-radius:10px; outline:none; }
+  #gate input:focus { border-color:#764ba2; }
+  #gate button { width:100%; margin-top:12px; padding:12px; font-size:15px; font-weight:700; color:#fff; background:#4A2D6B; border:0; border-radius:10px; cursor:pointer; }
+  #gate .err { color:#e03131; font-size:12px; height:16px; margin-top:8px; }
+  #content[hidden] { display:none; }
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="box">
+    <h2>🔒 치료사례</h2>
+    <p>열람용 비밀번호를 입력하세요</p>
+    <input id="pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">
+    <button id="enter">입장</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+<div id="content" hidden>
+  <div class="wrap">
+    <div class="top">
+      <h1>187 성장클리닉 치료사례</h1>
+      <p>실제 진료 데이터 기반 · 환자 이름은 모두 가명입니다 · 그래프는 만나이 기준</p>
+    </div>
+    <div class="filters">
+      <button class="chip on" data-g="all">전체 ${list.length}</button>
+      <button class="chip" data-g="남">👦 남아 ${list.length - girls}</button>
+      <button class="chip" data-g="여">👧 여아 ${girls}</button>
+    </div>
+    <div id="cards">${extCards}</div>
+  </div>
+</div>
+<script src="/marketing/strategy/case-charts.js"></script>
+<script>
+(function(){
+  var PIN='8054', gate=document.getElementById('gate'), content=document.getElementById('content');
+  function reveal(){ gate.style.display='none'; content.hidden=false; initCharts(); initFilters(); }
+  function tryPin(v){ if(v===PIN){ try{sessionStorage.setItem('casePin',PIN);}catch(e){} reveal(); } else { document.getElementById('err').textContent='비밀번호가 올바르지 않습니다'; } }
+  try{ if(sessionStorage.getItem('casePin')===PIN){ reveal(); return; } }catch(e){}
+  var inp=document.getElementById('pin');
+  document.getElementById('enter').addEventListener('click',function(){ tryPin(inp.value.trim()); });
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter') tryPin(inp.value.trim()); });
+  inp.focus();
+
+  var _started=false;
+  function initFilters(){
+    var cards=[].slice.call(document.querySelectorAll('#cards .card'));
+    document.querySelectorAll('.chip[data-g]').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.chip[data-g]').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on'); var g=b.dataset.g;
+        cards.forEach(function(c){ c.style.display=(g==='all'||c.dataset.g===g)?'':'none'; });
+      });
+    });
+  }
+  function initCharts(){
+    if(_started) return; _started=true;
+    var CC=window.CaseCharts;
+    function dataOf(card){ if(card._d!==undefined) return card._d; var el=card.querySelector('.cdata'); try{card._d=el?JSON.parse(el.textContent):null;}catch(e){card._d=null;} return card._d; }
+    function draw(card){
+      if(card._done||!CC) return;
+      var d=dataOf(card); if(!d) return;
+      var g=card.querySelector('.cpane-g canvas'), t=card.querySelector('.cpane-t canvas'), grid=card.querySelector('.tgrid');
+      try{ if(g) CC.renderGrowth(g,d); }catch(e){ console.error('growth',e); }
+      try{ if(t&&grid) CC.renderTrend(t,grid,d); }catch(e){ console.error('trend',e); }
+      card._done=true;
+    }
+    var cards=[].slice.call(document.querySelectorAll('#cards .card'));
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ draw(e.target); io.unobserve(e.target); } }); },{rootMargin:'400px'});
+      cards.forEach(function(c){ io.observe(c); });
+    } else { cards.forEach(draw); }
+  }
+})();
+</script>
+</body>
+</html>`;
+
+writeFileSync('C:/project/dflo/v4/public/치료사례_외부.html', extHtml, 'utf8');
+console.log(`done: 치료사례_외부.html (비식별, ${Math.round(extHtml.length / 1024)}KB) → /치료사례_외부.html [PIN 8054]`);
