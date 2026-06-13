@@ -1,5 +1,12 @@
 [
   {
+    "file": "marketing-master.html",
+    "title": "🎯 마케팅 마스터 청사진",
+    "description": "글로벌 5개 언어권 토탈 전략 — 오가닉×메타광고 2축 · 콘텐츠 엔진(책·논문 기반 정보 + 기존 쇼츠 다국어 재제작 + 광고 릴스) · 홈페이지 전환 퍼널 · 자산 현황 분석 · 90일 우선순위",
+    "group": "종합 전략",
+    "order": 0
+  },
+  {
     "file": "domestic-strategy.html",
     "title": "국내 마케팅 마스터",
     "description": "키워드·주제·예산·채널·퍼널·KPI 종합",

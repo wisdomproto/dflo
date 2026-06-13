@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>187 GROWUP — 마케팅 마스터 청사진</title>
+<style>
+  :root{
+    --brand:#4A2D6B; --b1:#667eea; --b2:#764ba2;
+    --ink:#1f2433; --mut:#6b7280; --line:#e9e5f2; --bg:#f6f4fb; --card:#fff;
+    --ok:#10a572; --warn:#f59e0b; --bad:#ef4444; --info:#2563eb;
+    --ko:#5b3a9e; --th:#06c755; --vi:#e11d48; --en:#2563eb; --cn:#dc2626; --ch:#d97706;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-text-size-adjust:100%}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 18px 80px}
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(246,244,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-bottom:8px}
+  nav .inner{max-width:1040px;margin:0 auto;padding:9px 18px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  nav a{font-size:12.5px;font-weight:700;color:var(--mut);text-decoration:none;padding:5px 11px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+  nav a:hover{background:#fff;border-color:var(--line);color:var(--brand)}
+  nav .brand{font-weight:900;color:var(--brand);margin-right:6px;font-size:13px}
+  /* hero */
+  .hero{background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;border-radius:22px;padding:34px 30px;margin:14px 0 10px;box-shadow:0 14px 40px rgba(102,73,162,.28)}
+  .hero h1{margin:0 0 6px;font-size:30px;letter-spacing:-.6px;font-weight:900}
+  .hero .goal{font-size:16px;opacity:.96;margin:0 0 18px;font-weight:600}
+  .hero .langs{display:flex;gap:8px;flex-wrap:wrap}
+  .hero .lang{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 13px;font-size:13px;font-weight:700}
+  /* sections */
+  section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 26px 28px;margin:18px 0;scroll-margin-top:64px}
+  section>h2{margin:0 0 4px;font-size:21px;color:var(--brand);letter-spacing:-.4px;display:flex;align-items:center;gap:9px}
+  section>.sub{margin:0 0 18px;color:var(--mut);font-size:13.5px}
+  .secno{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;border-radius:8px;background:var(--brand);color:#fff;font-size:14px;font-weight:800;flex:0 0 auto}
+  h3{font-size:15.5px;margin:22px 0 10px;color:#33294d;font-weight:800}
+  /* stat dashboard */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:linear-gradient(180deg,#faf8ff,#f4f0fb);border:1px solid var(--line);border-radius:13px;padding:14px 14px}
+  .stat .n{font-size:25px;font-weight:900;color:var(--brand);line-height:1.1}
+  .stat .n small{font-size:13px;font-weight:800;color:var(--b2)}
+  .stat .l{font-size:12px;color:var(--mut);margin-top:3px;font-weight:600}
+  /* generic */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+  .box{border:1px solid var(--line);border-radius:13px;padding:15px 16px;background:#fcfbfe}
+  .box h4{margin:0 0 8px;font-size:14px;font-weight:800;color:#2c2640;display:flex;align-items:center;gap:7px}
+  .box ul{margin:6px 0 0;padding-left:18px}
+  .box li{font-size:13px;color:#3c3650;margin:3px 0}
+  .pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:999px}
+  .p-org{background:#e6fff5;color:#067a55}.p-paid{background:#fff0f0;color:#c0322a}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;background:#f0ecfa;color:#5b3a9e;margin:2px 3px 2px 0}
+  /* funnel */
+  .funnel{margin:6px 0}
+  .fstep{position:relative;background:#fff;border:2px solid var(--line);border-radius:14px;padding:13px 16px;margin:0 auto;display:flex;align-items:center;gap:13px}
+  .fstep .ic{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:21px;flex:0 0 auto}
+  .fstep .ft{font-weight:800;font-size:15px;color:#2c2640}
+  .fstep .fd{font-size:12.5px;color:var(--mut)}
+  .farrow{display:flex;justify-content:center;color:#c3b8e0;font-size:20px;margin:3px 0;font-weight:900}
+  .f-content{border-color:#cdd9f7;background:#f4f7ff}
+  .f-home{border-color:#d3c4f4;background:#f7f3ff}
+  .f-act{border-color:#bde6d6;background:#f0fbf6}
+  .f-msg{border-color:#ffe08a;background:#fffaf0}
+  .boundary{text-align:center;margin:16px 0 6px;position:relative}
+  .boundary span{background:var(--brand);color:#fff;font-size:12px;font-weight:800;padding:5px 16px;border-radius:999px;position:relative;z-index:2}
+  .boundary:before{content:"";position:absolute;top:50%;left:0;right:0;border-top:2px dashed #c3b8e0}
+  .f-human{border-color:#f6c9da;background:#fdf2f7}
+  /* matrix heatmap */
+  table.mx{width:100%;border-collapse:separate;border-spacing:4px;margin-top:6px}
+  table.mx th{font-size:11.5px;color:var(--mut);font-weight:800;padding:4px;text-align:center}
+  table.mx td.row{font-size:13px;font-weight:800;color:#2c2640;text-align:left;white-space:nowrap;padding-right:8px}
+  .cell{border-radius:9px;padding:9px 4px;text-align:center;font-size:12px;font-weight:800;color:#fff}
+  .c-full{background:#10a572}.c-mid{background:#f59e0b}.c-low{background:#cbd5e1;color:#475569}.c-no{background:#eef0f4;color:#94a3b8}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:var(--mut)}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  /* knowledge brain */
+  .brain{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-top:8px}
+  @media(max-width:760px){.brain{grid-template-columns:1fr}}
+  .ksrc{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fcfbfe}
+  .konn{text-align:center;font-size:24px;color:#a98fd6}
+  /* tech stack */
+  .stack{display:flex;flex-direction:column;gap:8px;margin:6px 0 4px}
+  .layer{display:flex;align-items:center;gap:14px;border-radius:13px;padding:14px 16px;color:#fff;box-shadow:0 3px 10px rgba(40,30,70,.12)}
+  .layer .lic{font-size:25px;width:42px;text-align:center;flex:0 0 auto}
+  .layer .ltt{font-weight:900;font-size:14.5px}
+  .layer .ld{font-size:12px;opacity:.96;line-height:1.5}
+  .l1{background:linear-gradient(135deg,#10a572,#0c8f64)}
+  .l2{background:linear-gradient(135deg,#2563eb,#1d4ed8)}
+  .l3{background:linear-gradient(135deg,#7c3aed,#6d28d9)}
+  .l4{background:linear-gradient(135deg,#475569,#334155)}
+  .stackcap{text-align:center;font-size:11.5px;color:var(--mut);margin:2px 0 0}
+  .auto3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  @media(max-width:760px){.auto3{grid-template-columns:1fr}}
+  .acard{border:1px solid var(--line);border-radius:13px;padding:15px;background:linear-gradient(180deg,#fbfdff,#f4f9ff)}
+  .acard .big{font-size:21px;font-weight:900;color:#0c6f9e;line-height:1.15;margin-bottom:5px}
+  .acard .big small{font-size:12px;color:#3a8fb8;font-weight:800}
+  .acard .t{font-size:12.5px;color:#3c3650;font-weight:600}
+  .moat{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+  .moat .m{flex:1 1 200px;border:1px solid var(--line);border-radius:12px;padding:13px 14px;background:#fcfbfe}
+  .moat .m b{display:block;color:var(--brand);font-size:13.5px;margin-bottom:3px}
+  .moat .m span{font-size:12.5px;color:#3c3650}
+  /* channel table */
+  table.ch{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+  table.ch th,table.ch td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.ch th{background:#f4f0fb;color:var(--brand);font-weight:800;font-size:12.5px}
+  table.ch td .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+  /* gap */
+  .gap-row{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .gap-row:last-child{border-bottom:0}
+  .gbadge{font-size:11px;font-weight:800;padding:3px 9px;border-radius:7px;flex:0 0 auto;width:74px;text-align:center}
+  .g-done{background:#e6fff5;color:#067a55}.g-prog{background:#fff7e6;color:#b3791a}.g-todo{background:#fff0f0;color:#c0322a}
+  .gap-row .gt{font-size:13px}.gap-row .gt b{color:#2c2640}
+  /* priority */
+  .prio{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:6px}
+  @media(max-width:760px){.prio{grid-template-columns:1fr 1fr}}
+  .pcard{border-radius:13px;padding:14px;color:#fff;position:relative;overflow:hidden}
+  .pcard .pn{font-size:12px;font-weight:800;opacity:.85}
+  .pcard .ph{font-size:15px;font-weight:900;margin:4px 0 6px}
+  .pcard .pp{font-size:12px;opacity:.95;line-height:1.5}
+  .pr1{background:linear-gradient(135deg,#10a572,#0c8f64)}.pr2{background:linear-gradient(135deg,#667eea,#764ba2)}
+  .pr3{background:linear-gradient(135deg,#f59e0b,#d97706)}.pr4{background:linear-gradient(135deg,#64748b,#475569)}
+  /* image prompt callout */
+  .imgp{border:1.5px dashed #c3b8e0;border-radius:13px;padding:14px 16px;background:#faf8ff;margin:14px 0}
+  .imgp .h{font-size:12.5px;font-weight:800;color:var(--b2);margin-bottom:6px;display:flex;align-items:center;gap:7px}
+  .imgp code{display:block;background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12px;color:#3c3650;white-space:pre-wrap;line-height:1.55;font-family:'Noto Sans KR',sans-serif}
+  .note{font-size:12.5px;color:var(--mut);margin-top:10px}
+  .linkrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .linkrow a{font-size:12px;font-weight:700;color:var(--brand);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 11px;background:#fcfbfe}
+  .linkrow a:hover{background:#f4f0fb}
+  .foot{text-align:center;color:#a99fc0;font-size:11.5px;margin-top:30px}
+</style>
+</head>
+<body>
+<nav><div class="inner">
+  <span class="brand">187 GROWUP</span>
+  <a href="#s0">한눈에</a><a href="#s1">큰 그림</a><a href="#stech">플랫폼 자산</a><a href="#s2">콘텐츠 엔진</a>
+  <a href="#s3">채널</a><a href="#s4">전환 허브</a><a href="#s5">자산 현황</a><a href="#s6">90일</a>
+</div></nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>마케팅 마스터 청사진</h1>
+    <p class="goal">🎯 글로벌 5개 언어권에서 콘텐츠로 각국 홈페이지에 유입 → 예측키·치료사례로 신뢰 → 메신저 상담 전환</p>
+    <div class="langs">
+      <span class="lang">🇰🇷 한국어</span><span class="lang">🇹🇭 태국어</span><span class="lang">🇻🇳 베트남어</span>
+      <span class="lang">🇬🇧 영어</span><span class="lang">🇹🇼 중국어 번체</span><span class="lang">🇨🇳 중국어 간체</span>
+    </div>
+  </div>
+
+  <!-- ───────── 0. 한눈에 ───────── -->
+  <section id="s0">
+    <h2><span class="secno">0</span> 한눈에 — 지금까지 쌓은 자산</h2>
+    <p class="sub">콘텐츠·지식·임상 데이터·발행 인프라가 모두 구축된 상태. 아래는 라이브 집계 수치.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">62<small> 토픽</small></div><div class="l">정보 콘텐츠 (책·논문 기반)</div></div>
+      <div class="stat"><div class="n">372<small> 편</small></div><div class="l">블로그 (62 × 6언어, 구글 SEO)</div></div>
+      <div class="stat"><div class="n">62<small> 세트</small></div><div class="l">카드뉴스 (466 슬라이드, 6언어 캡션)</div></div>
+      <div class="stat"><div class="n">~78<small> 편</small></div><div class="l">기존 유튜브 쇼츠 (다국어 재제작 대상)</div></div>
+      <div class="stat"><div class="n">281<small> 편</small></div><div class="l">국제 SCI 논문 (임베딩 완료)</div></div>
+      <div class="stat"><div class="n">227<small> 청크</small></div><div class="l">원장 저서 「키 성장 바이블」</div></div>
+      <div class="stat"><div class="n">245<small> 명</small></div><div class="l">환자 임상 DB (진료 3,861회)</div></div>
+      <div class="stat"><div class="n">58<small> 명</small></div><div class="l">치료사례 후보 (공개 7 + 비식별)</div></div>
+    </div>
+    <p class="note">＊ 이 문서는 <b>내부 실행 청사진</b>입니다. 언어×채널 세부 캘린더·예산은 하단 국가별 작전 문서로 연결됩니다.</p>
+  </section>
+
+  <!-- ───────── 1. 큰 그림 ───────── -->
+  <section id="s1">
+    <h2><span class="secno">1</span> 큰 그림 — 2축 × 5시장 × 1퍼널</h2>
+    <p class="sub">마케팅은 <b>오가닉</b>과 <b>메타광고</b> 두 축으로 돌리고, 모든 화살표는 결국 <b>각국 홈페이지 → 메신저</b>로 모인다.</p>
+
+    <div class="grid2" style="margin-bottom:8px">
+      <div class="box"><h4><span class="pill p-org">ORGANIC</span> 오가닉 (무료·축적형)</h4>
+        <ul><li><b>블로그</b> — 구글 검색이 메인 엔진 (SEO)</li><li><b>SNS 카드뉴스</b> — 인스타·페북 피드</li><li><b>릴스</b> — 인스타·페북·유튜브 쇼츠</li></ul>
+      </div>
+      <div class="box"><h4><span class="pill p-paid">PAID</span> 메타광고 (유료·즉시형)</h4>
+        <ul><li><b>릴스 광고</b> — 5개국어 광고 전용 소재</li><li>기존 게시물 <b>부스팅</b> + <b>다크 포스트</b></li><li>캠페인→광고세트→광고, 픽셀 전환 추적</li></ul>
+      </div>
+    </div>
+
+    <div class="box" style="background:linear-gradient(180deg,#f0fbf6,#eafaf3);border-color:#bde6d6;margin-top:4px">
+      <h4>📉 오가닉의 복리 — 익을수록 마케팅 비용이 줄어든다</h4>
+      <p style="font-size:13px;color:#2c4a3e;margin:0">초기엔 유료 광고로 트래픽을 산다. 하지만 <b>블로그·SEO가 구글 상위에 자리잡으면 그 트래픽은 공짜로 계속 들어온다</b> — 한 번 쓴 글이 몇 년간 방문자를 데려오는 자산. 오가닉이 익을수록 <b>유료 광고 의존도 ↓ → 같은 유입을 더 싸게</b>. 장기적으로 CAC(고객획득비용)가 구조적으로 내려가는 게 오가닉 우선 전략의 핵심.</p>
+    </div>
+
+    <h3>전체 전환 퍼널</h3>
+    <div class="funnel">
+      <div class="fstep f-content"><div class="ic" style="background:#dce7ff">📣</div><div><div class="ft">① 콘텐츠 노출</div><div class="fd">오가닉(블로그·카드뉴스·릴스) + 메타광고 · 5개 언어권</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-home"><div class="ic" style="background:#e7ddfb">🏠</div><div><div class="ft">② 각국 홈페이지 유입</div><div class="fd">언어별 i18n 사이트 — 병원 기본 정보 + 신뢰 신호</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-act"><div class="ic" style="background:#d5f3e6">📏</div><div><div class="ft">③ 예측키 측정 + 치료사례 맛보기 (4명)</div><div class="fd">국가별 성장표준 계산기 · "더 많은 사례는 상담으로" 게이트</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-msg"><div class="ic" style="background:#ffeec2">💬</div><div><div class="ft">④ 메신저로 꼬심</div><div class="fd">한국=카카오 · 태국=LINE · 그 외 시장별 메신저</div></div></div>
+    </div>
+
+    <div class="boundary"><span>━━ 여기까지가 마케팅 플랫폼의 역할 ━━</span></div>
+
+    <div class="funnel">
+      <div class="fstep f-human"><div class="ic" style="background:#fbd9e7">📨</div><div><div class="ft">⑤ 사람 핸드오프 — 설문지 + 추가 치료사례 전송</div><div class="fd">메신저 문의 → 미리 준비된 설문지 + 비공개 사례 데이터 발송</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep" style="border-color:#cbb8ec;background:#f3eefb"><div class="ic" style="background:#e2d6f7">🩺</div><div><div class="ft">⑥ 상담 → 치료 시작</div><div class="fd">원장 첫 상담 → 치료 단계 전환 (환자앱·임상 DB로 이어짐)</div></div></div>
+    </div>
+    <p class="note">핵심: 플랫폼은 <b>"메신저 문의 발생"까지</b> 책임진다. 그 다음(설문·사례 전송·상담)은 사람이 운영하되, 자료는 미리 준비해 둔다.</p>
+
+    <div class="imgp">
+      <div class="h">🎨 이미지 프롬프트 — 표지 히어로 (직접 그려 넣을 것)</div>
+      <code>A clean, friendly flat-illustration hero banner for a children's growth clinic's global marketing. A stylized world map with 5 location pins (Korea, Thailand, Vietnam, an English-speaking flag, Taiwan/China) connected by soft glowing arcs that all converge into a single warm clinic building icon in the center. A child silhouette growing taller (height measurement ruler) beside it. Palette: purple #667eea to #764ba2 gradient, mint and cream accents, white background. No text. 16:9, modern, minimal, medical-trust tone.</code>
+    </div>
+  </section>
+
+  <!-- ───────── 2. 플랫폼 자산 ───────── -->
+  <section id="stech">
+    <h2><span class="secno">2</span> 플랫폼 자산 — 글로벌을 한 번에 굴리는 기술 엔진</h2>
+    <p class="sub">콘텐츠·광고·상담·임상이 <b>하나의 자동화 플랫폼</b> 위에서 돈다. 사람은 전략만, 반복은 기계가. 이게 우리의 진짜 해자(moat).</p>
+
+    <h3>4계층 아키텍처</h3>
+    <div class="stack">
+      <div class="layer l1"><div class="lic">📣</div><div><div class="ltt">마케팅 자동화 계층</div><div class="ld">콘텐츠 스튜디오(블로그·카드뉴스·릴스 AI 생성) · 통합 블로그 SEO 위저드 · 발행 큐+월 캘린더+<b>자동 예약 스케줄러</b> · Meta 발행/광고 푸시/픽셀 · 분석(GA4·채널·SEO·경쟁사)</div></div></div>
+      <div class="layer l2"><div class="lic">🌐</div><div><div class="ltt">글로벌 표면 계층</div><div class="ld">6개 언어 i18n 홈페이지(hreflang·sitemap 자동) · 환자앱(상담/치료/완료 단계 분기) · 어드민 임상 대시보드(진료·X-ray·Lab·처방)</div></div></div>
+      <div class="layer l3"><div class="lic">⚙️</div><div><div class="ltt">백엔드 · AI 계층</div><div class="ld">ai-server(Express+Gemini 2.5) · RAG 콘텐츠 검수·유사케이스·코칭 · 번역·SEO감사·키워드 · node-cron 스케줄러 · Meta OAuth/Graph</div></div></div>
+      <div class="layer l4"><div class="lic">🗄️</div><div><div class="ltt">데이터 계층 (해자의 뿌리)</div><div class="ld">임상 DB 245명·진료 3,861회·측정 2,993건 · 지식 브레인(원장 책 227청크 + 논문 281편, pgvector RAG) · Supabase + Cloudflare R2</div></div></div>
+    </div>
+    <p class="stackcap">아래 계층(데이터·AI)이 위 계층(표면·마케팅)을 자동으로 떠받친다 — 경쟁사가 쉽게 못 따라오는 누적 자산</p>
+
+    <h3>① 자동화 = 효율 극대화</h3>
+    <div class="auto3">
+      <div class="acard"><div class="big">1 → 18<small> 배</small></div><div class="t">토픽 1개를 <b>6언어 × 3포맷 = 18개 자산</b>으로 한 번에 전개. 번역·근거 인용까지 AI가.</div></div>
+      <div class="acard"><div class="big">0<small> 명 손</small></div><div class="t">발행 예약만 걸면 <b>스케줄러가 알아서</b> IG·FB·블로그에 정해진 시각에 게시(node-cron 매분).</div></div>
+      <div class="acard"><div class="big">RAG<small> 검수</small></div><div class="t">생성 콘텐츠를 <b>지식 브레인(책·논문)으로 사실 검수</b> + 근거 논문 자동 인용 + 원장 철학 정렬 — 신뢰도가 코드로 보장.</div></div>
+    </div>
+
+    <h3>② 글로벌을 한 화면에서</h3>
+    <div class="moat">
+      <div class="m"><b>언어=시장 일원화</b><span>콘텐츠 1개 = 한국어 마스터 + 번역. 상단 언어 셀렉터 하나로 6언어 전환 — 행이 갈라지지 않는다.</span></div>
+      <div class="m"><b>현황을 매트릭스로</b><span>62토픽 × [블로그·카드뉴스·릴스] × 6언어 완성도를 한 보드에서 🟩🟨⬜. 발행 상태도 채널별 점으로.</span></div>
+      <div class="m"><b>채널·광고·분석 통합</b><span>발행·부스팅·픽셀·트래픽이 같은 대시보드. 6개 언어권을 따로 안 돌리고 한 자리에서.</span></div>
+    </div>
+
+    <h3>③ 글로벌 1차 상담까지 자동화 ⭐</h3>
+    <p class="sub" style="margin-bottom:10px">시간대·언어가 달라도, 해외 부모가 <b>첫 상담 경험을 자동으로</b> 받는다. 사람이 붙기 전에 플랫폼이 1차를 처리.</p>
+    <div class="funnel">
+      <div class="fstep f-act"><div class="ic" style="background:#d5f3e6">📏</div><div><div class="ft">예측키 계산기 = 셀프 1차 진단</div><div class="fd">국가별 성장표준(KR·태 TSPE·중 근사)으로 18세 예측키·유전 갭 즉시 산출</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-home"><div class="ic" style="background:#e7ddfb">📝</div><div><div class="ft">공개 설문(intake) — 4언어 6스텝 마법사</div><div class="fd">부모가 직접 입력 → 어드민 검토 큐에 자동 적재 → 승인 시 환자 생성</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-msg"><div class="ic" style="background:#ffeec2">🪄</div><div><div class="ft">첫 상담 자동 덱 — 환자 데이터 기반 동적 14카드</div><div class="fd">원장 소개·예측키·MPH 갭·뼈나이·원장 손편지까지 자동 생성, 가족 공유 가능 → 한국 병원 원격 진료로 연결</div></div></div>
+    </div>
+    <p class="note">즉, <b>예측키→설문→자동 상담덱</b>이 사람 손 없이 1차를 돌리고, 실제 진료는 <b>한국 병원의 원격 상담</b>으로 이어진다. 글로벌로 늘려도 운영 인력이 선형으로 안 늘어난다.</p>
+
+    <div class="imgp">
+      <div class="h">🎨 이미지 프롬프트 — 플랫폼 컨트롤 패널 (직접 그려 넣을 것)</div>
+      <code>A sleek isometric illustration of a single control dashboard powering a global children's growth clinic. A central glowing control panel with screens showing charts, a content calendar, and language toggles (6 language chips), with automated pipelines/gears flowing out to small icons: blog, social cards, video reels, ads, and a chat/consultation bubble — all radiating to 5 mini globes. Convey "one panel runs everything, automatically." Palette: purple #667eea–#764ba2, mint, blue accents, white background. No readable text. 16:9, modern, premium tech feel.</code>
+    </div>
+  </section>
+
+  <!-- ───────── 3. 콘텐츠 엔진 ───────── -->
+  <section id="s2">
+    <h2><span class="secno">3</span> 콘텐츠 엔진 — 3개 소스 × 3개 포맷 × 6개 언어</h2>
+    <p class="sub">모든 콘텐츠는 <b>원장 저서 + 국제 논문</b>이라는 지식 브레인에 뿌리를 둔다. 소스는 세 갈래.</p>
+
+    <div class="grid3">
+      <div class="box"><h4>① 정보 콘텐츠</h4>
+        <p style="font-size:12.5px;color:var(--mut);margin:0 0 6px">원장 책·논문 기반 신뢰형 교육 콘텐츠</p>
+        <ul><li>62 토픽 체계</li><li>블로그 / 카드뉴스 / 릴스 3포맷</li><li>5개국어(6빌드) 전개</li></ul>
+      </div>
+      <div class="box"><h4>② 기존 쇼츠 재제작</h4>
+        <p style="font-size:12.5px;color:var(--mut);margin:0 0 6px">@187growup 한국어 쇼츠 ~78편</p>
+        <ul><li>현재: 한국어 텍스트 (자막만 일부 다국어)</li><li>→ <b>텍스트까지 5개국어 전면 재제작</b></li><li>클론음성 + 립싱크 + 텍스트 현지화</li></ul>
+      </div>
+      <div class="box"><h4>③ 메타광고 릴스</h4>
+        <p style="font-size:12.5px;color:var(--mut);margin:0 0 6px">유료 광고 전용 소재</p>
+        <ul><li>5개국어 광고 릴스</li><li>부스팅 + 다크 포스트</li><li>전환(예측키 측정·상담) 최적화</li></ul>
+      </div>
+    </div>
+
+    <h3>콘텐츠 자산 현황 매트릭스</h3>
+    <table class="mx">
+      <thead><tr><th></th><th>🇰🇷 ko</th><th>🇬🇧 en</th><th>🇹🇭 th</th><th>🇻🇳 vi</th><th>🇹🇼 번체</th><th>🇨🇳 간체</th></tr></thead>
+      <tbody>
+        <tr><td class="row">블로그 (구글 SEO)</td>
+          <td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td></tr>
+        <tr><td class="row">카드뉴스 (텍스트)</td>
+          <td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td></tr>
+        <tr><td class="row">릴스 커버(썸네일)</td>
+          <td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td><td class="cell c-full">100%</td></tr>
+        <tr><td class="row">릴스 영상</td>
+          <td class="cell c-mid">53%</td><td class="cell c-no">0%</td><td class="cell c-low">6%</td><td class="cell c-no">0%</td><td class="cell c-no">0%</td><td class="cell c-no">0%</td></tr>
+      </tbody>
+    </table>
+    <div class="legend"><span><i style="background:#10a572"></i>완비</span><span><i style="background:#f59e0b"></i>진행중</span><span><i style="background:#cbd5e1"></i>착수</span><span><i style="background:#eef0f4"></i>미착수</span></div>
+    <p class="note">텍스트 자산(블로그·카드뉴스·커버)은 <b>6개 언어 전부 완비</b>. 남은 병목은 <b>릴스 영상 제작</b> — ko 절반·th 일부, 나머지 4개 언어 0%.</p>
+
+    <h3>지식 브레인 → 콘텐츠 근거 연결</h3>
+    <div class="brain">
+      <div class="ksrc"><h4 style="margin:0 0 6px;font-size:13.5px">📚 원장 저서 (1차 권위)</h4>
+        <p style="font-size:12px;color:var(--mut);margin:0">「우리 아이 키 성장 바이블」 227청크 — 원장 진료 철학·방침</p></div>
+      <div class="konn">＋</div>
+      <div class="ksrc"><h4 style="margin:0 0 6px;font-size:13.5px">🔬 국제 논문 (보조 근거)</h4>
+        <p style="font-size:12px;color:var(--mut);margin:0">SCI 281편(임베딩) — 블로그 참고문헌 자동 인용·콘텐츠 검수 RAG</p></div>
+    </div>
+    <div class="farrow" style="margin:10px 0">▼</div>
+    <div class="grid2">
+      <div class="box" style="background:#f4f0fb;border-color:#ddd0f2"><h4>🔎 RAG 콘텐츠 검수</h4>
+        <p style="font-size:12.5px;color:#3c3650;margin:0">모든 마케팅 콘텐츠를 <b>지식 브레인(원장 책 227청크 + 논문 281편)에 대조해 사실 검수</b>. 근거 없는 주장·원장 철학과 어긋나는 내용을 걸러, 의료 콘텐츠 신뢰도를 코드로 담보.</p></div>
+      <div class="box" style="background:#eef6ff;border-color:#cfe2f7"><h4>📚 블로그 참고문헌 자동 첨부</h4>
+        <p style="font-size:12.5px;color:#3c3650;margin:0">블로그 글 하단에 <b>관련 SCI 논문을 참고문헌으로 자동 매칭·표기</b>(코사인 유사도 게이트, 61/62 토픽 평균 4.6편 · PubMed/DOI 링크). 구글·독자 모두에게 "근거 있는 글" 신호.</p></div>
+    </div>
+    <p class="note">＊ 일반 콘텐츠 공장과의 결정적 차이 — <b>출처가 검증된 의학 콘텐츠</b>라 SEO·전환·신뢰 모두에 유리. <span class="tag">신뢰도 차별화</span></p>
+  </section>
+
+  <!-- ───────── 3. 채널 ───────── -->
+  <section id="s3">
+    <h2><span class="secno">4</span> 채널 전략 — 오가닉 + 유료, 언어권별 매핑</h2>
+    <p class="sub">채널은 <b>언어(시장)</b> 단위로 운영. 지역 타겟팅은 광고에만 적용.</p>
+    <table class="ch">
+      <thead><tr><th>언어권</th><th>오가닉 블로그</th><th>SNS (카드뉴스·릴스)</th><th>유료 광고</th><th>전환 메신저</th></tr></thead>
+      <tbody>
+        <tr><td><span class="dot" style="background:var(--ko)"></span><b>🇰🇷 한국어</b></td><td>구글 + 자체 도메인</td><td>인스타 · 페북</td><td>메타</td><td>카카오톡</td></tr>
+        <tr><td><span class="dot" style="background:var(--th)"></span><b>🇹🇭 태국어</b></td><td>구글</td><td>인스타 · 페북 (라이브)</td><td>메타</td><td><b>LINE OA</b></td></tr>
+        <tr><td><span class="dot" style="background:var(--vi)"></span><b>🇻🇳 베트남어</b></td><td>구글</td><td>인스타 · 페북</td><td>메타</td><td>(시장별 — Zalo 후보)</td></tr>
+        <tr><td><span class="dot" style="background:var(--en)"></span><b>🇬🇧 영어</b></td><td>구글</td><td>인스타 · 페북</td><td>메타</td><td>카카오 / 메신저</td></tr>
+        <tr><td><span class="dot" style="background:var(--ch)"></span><b>🇹🇼 중국어 번체</b></td><td>구글</td><td>인스타 · 페북 (小红书 검토)</td><td>메타</td><td>(시장별)</td></tr>
+        <tr><td><span class="dot" style="background:var(--cn)"></span><b>🇨🇳 중국어 간체</b></td><td>구글</td><td>동남아·미국 화교 타겟</td><td>메타</td><td>(시장별)</td></tr>
+      </tbody>
+    </table>
+    <p class="note">블로그 = <b>우리 도메인 단일 소스</b>(dr187growup.com/{lang}/blog). 위성(네이버·FB·Pantip)은 발췌 + canonical로 메인을 가리켜 중복 페널티 회피.</p>
+    <div class="linkrow">
+      <a href="th-operations.html">🇹🇭 태국 작전 →</a><a href="vn-operations.html">🇻🇳 베트남 작전 →</a>
+      <a href="en-operations.html">🇬🇧 영어 4시장 →</a><a href="th-ad-strategy.html">📈 태국 광고 전략 →</a>
+      <a href="youtube-analysis.html">▶ 유튜브 채널 분석 →</a>
+    </div>
+  </section>
+
+  <!-- ───────── 4. 전환 허브 ───────── -->
+  <section id="s4">
+    <h2><span class="secno">5</span> 전환 허브 — 각국 홈페이지</h2>
+    <p class="sub">콘텐츠가 데려온 방문자를 <b>측정 → 사례 → 메신저</b> 순서로 설득하는 단일 착지점.</p>
+    <div class="grid3">
+      <div class="box"><h4>🏥 병원 기본 정보</h4><p style="font-size:12.5px;color:#3c3650;margin:0">원장 소개·진료 철학·프로그램·위치. 신뢰의 토대.</p></div>
+      <div class="box"><h4>📏 예측키 재보기</h4><p style="font-size:12.5px;color:#3c3650;margin:0">국가별 성장표준(한 KR·태 TSPE·중 근사) 기반 계산기. 측정 완료 = 강한 참여 신호.</p></div>
+      <div class="box"><h4>👧 치료사례 맛보기 (4명)</h4><p style="font-size:12.5px;color:#3c3650;margin:0">공개 4사례 스와이프 → "더 많은 사례는 1:1 상담으로" 게이트.</p></div>
+    </div>
+    <h3>측정 → 사례 → 메신저 동선</h3>
+    <div class="funnel">
+      <div class="fstep f-act"><div class="ic" style="background:#d5f3e6">📏</div><div><div class="ft">예측키 결과</div><div class="fd">결과 직후 "비슷한 사례를 받아보세요" 맥락 문구 + 치료사례 링크</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-act"><div class="ic" style="background:#d5f3e6">👀</div><div><div class="ft">치료사례 4명 열람</div><div class="fd">초진 예상키 → 최종 예상키 변화 · 그래프 · 보호자 인용</div></div></div>
+      <div class="farrow">▼</div>
+      <div class="fstep f-msg"><div class="ic" style="background:#ffeec2">💬</div><div><div class="ft">메신저 상담 버튼</div><div class="fd">"더 많은 사례는 1:1 상담으로" — 카카오/LINE 등 언어별 분기</div></div></div>
+    </div>
+    <div class="boundary"><span>━━ 메신저 문의 발생 = 플랫폼 목표 달성 ━━</span></div>
+    <h3>메신저 후 핸드오프 (사람 운영 · 자료는 준비됨)</h3>
+    <div class="grid2">
+      <div class="box"><h4>📋 설문지 전송</h4><p style="font-size:12.5px;color:#3c3650;margin:0">미리 준비된 시장별 설문(공개 intake 폼/상담 매뉴얼) 발송 → 응답으로 리드 자격 판별.</p></div>
+      <div class="box"><h4>📨 추가 치료사례 데이터</h4><p style="font-size:12.5px;color:#3c3650;margin:0">공개 4사례 외 <b>비공개 사례 묶음</b>을 상담에서 환자별 맞춤 선별·전송.</p></div>
+    </div>
+    <p class="note">치료사례는 3단 노출 구조: <b>공개 4명</b>(홈페이지) → <b>비식별 외부 쇼케이스</b>(PIN, 상담 링크용) → <b>내부 58명 후보</b>(어드민 전용, PHI 보호).</p>
+  </section>
+
+  <!-- ───────── 5. 자산 현황 ───────── -->
+  <section id="s5">
+    <h2><span class="secno">6</span> 자산 현황 — 빌드된 것 vs 남은 갭</h2>
+    <p class="sub">인프라는 거의 다 깔렸다. 남은 건 대부분 <b>"콘텐츠 영상 양산 + 운영 스위치 켜기"</b>.</p>
+
+    <h3>✅ 구축 완료 인프라</h3>
+    <div class="grid2">
+      <div class="box"><h4>🌐 콘텐츠·SEO</h4><ul>
+        <li>i18n 정적 사이트(ko/th/vi/en) + hreflang·sitemap</li>
+        <li>블로그 372편 · 카드뉴스 62세트 · 릴스 커버 372장</li>
+        <li>통합 블로그 SEO 위저드 + 근거 논문 자동 인용</li></ul></div>
+      <div class="box"><h4>📤 발행·광고</h4><ul>
+        <li>발행 큐 + 월 캘린더 + <b>자동 예약 스케줄러</b></li>
+        <li>Meta 연동 라이브(IG·FB 캐러셀/앨범/릴스 발행)</li>
+        <li>광고 워크스페이스 + Meta 푸시 + 픽셀</li></ul></div>
+      <div class="box"><h4>🧠 지식·임상</h4><ul>
+        <li>지식 브레인(책 227 + 논문 281) RAG</li>
+        <li>환자 임상 DB 245명 · 유사케이스 검색</li>
+        <li>치료사례 파이프라인(공개·비식별·내부 3단)</li></ul></div>
+      <div class="box"><h4>📊 분석</h4><ul>
+        <li>GA4 사이트 분석(국가·유입 플랫폼 정규화)</li>
+        <li>채널 분석 · SEO 감사 · 경쟁사 분석</li>
+        <li>예측키 계산기(국가별 성장표준)</li></ul></div>
+    </div>
+
+    <h3>⚠️ 남은 갭 (우선순위 순)</h3>
+    <div class="box" style="background:#fff">
+      <div class="gap-row"><span class="gbadge g-prog">진행중</span><div class="gt"><b>릴스 영상 양산</b> — ko 33/62, th 4/62, vi·en·중 0. 텍스트·커버는 완비라 <b>영상만</b> 남음 (PresenterShort 파이프라인 가동 중)</div></div>
+      <div class="gap-row"><span class="gbadge g-prog">진행중</span><div class="gt"><b>기존 쇼츠 ~78편 다국어 재제작</b> — 30토픽 소스 착수, 텍스트까지 현지화</div></div>
+      <div class="gap-row"><span class="gbadge g-todo">할 일</span><div class="gt"><b>블로그 발행</b> — 372편 생성 완료, <b>실제 게시(발행 스케줄러 가동)</b>가 최대 성장 레버</div></div>
+      <div class="gap-row"><span class="gbadge g-todo">할 일</span><div class="gt"><b>메타광고 스케일</b> — 연동·푸시는 라이브, 픽셀 데이터 쌓고 예산 집행</div></div>
+      <div class="gap-row"><span class="gbadge g-todo">할 일</span><div class="gt"><b>apex 도메인 TLS 복구</b> — dr187growup.com(www는 정상) DNS 재연결 + GSC 등록·sitemap 제출</div></div>
+      <div class="gap-row"><span class="gbadge g-todo">할 일</span><div class="gt"><b>prod 인증</b> — 마케팅 도구 일부 dev 전용, prod 배포 시 auth 일괄 처리</div></div>
+    </div>
+  </section>
+
+  <!-- ───────── 6. 90일 ───────── -->
+  <section id="s6">
+    <h2><span class="secno">7</span> 90일 실행 우선순위</h2>
+    <p class="sub">임팩트 대비 노력 순. <b>이미 만든 자산을 "발행"으로 전환</b>하는 게 1순위.</p>
+    <div class="prio">
+      <div class="pcard pr1"><div class="pn">P1 · 최대 레버</div><div class="ph">블로그 발행 ON</div><div class="pp">372편 → 스케줄러로 게시. 구글 색인 = 무료 트래픽 복리 → <b>광고비 의존 ↓·CAC ↓</b>. apex TLS·GSC 함께.</div></div>
+      <div class="pcard pr2"><div class="pn">P2 · 차별화</div><div class="ph">릴스 영상 양산</div><div class="pp">ko 완성 → th·vi·en·중 확장. 기존 78쇼츠 재제작 병행. SNS·광고 동시 공급.</div></div>
+      <div class="pcard pr3"><div class="pn">P3 · 전환</div><div class="ph">메타광고 집행</div><div class="pp">릴스 소재로 부스팅. 픽셀 전환(예측키·상담) 학습 → 언어권별 ROAS 비교.</div></div>
+      <div class="pcard pr4"><div class="pn">P4 · 운영</div><div class="ph">핸드오프 정비</div><div class="pp">메신저 후 설문·사례 전송 키트 표준화. 상담 매뉴얼 5개국어 정렬.</div></div>
+    </div>
+    <div class="imgp" style="margin-top:18px">
+      <div class="h">🎨 이미지 프롬프트 — 90일 로드맵 일러스트 (선택)</div>
+      <code>A simple flat illustration of a growth path: four ascending stepping stones leading upward to a flag, each stone a different soft color (green, purple, amber, slate). A small rocket or sprout climbing the steps. Minimal, purple-and-mint palette, white background, no text. 16:9.</code>
+    </div>
+    <p class="note">언어×채널 세부 캘린더·예산·KPI는 국가별 작전 문서로 연결 — 이 마스터는 <b>전체 프레임과 퍼널</b>을 잡는 역할.</p>
+  </section>
+
+  <p class="foot">187 GROWUP · 마케팅 마스터 청사진 · 내부 실행용 (noindex) · 수치는 라이브 집계 기준</p>
+</div>
+</body>
+</html>
