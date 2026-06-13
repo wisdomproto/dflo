@@ -1458,9 +1458,12 @@ git commit -m "docs: reel lite editor - architecture notes + migration 057"
 
 ---
 
-## 알려진 이슈 (보류 — 사용자 지시)
+## 알려진 이슈
 
-- **Player 시킹 시 빈 화면 (preview 전용, 렌더 산출물 무관)** — P1 검증 중 발견(2026-06-13).
+- **[픽스 적용 — 브라우저 검증 대기] Player 시킹 시 빈 화면 (preview 전용, 렌더 산출물 무관)** — P1 검증 중 발견(2026-06-13).
+  **원인 확정**: `<OffthreadVideo>`를 Player에서 수동 시킹하면 빈 화면(트리거가 전부 seek·헤드리스 정상·throw 아님으로 좁힘).
+  **픽스**: `PresenterShort` 영상 패널을 `getRemotionEnvironment().isPlayer ? <Video> : <OffthreadVideo>` 분기(렌더·스튜디오는 OffthreadVideo 유지). 양쪽 tsc 0 + 헤드리스 렌더 회귀 0. **사용자 브라우저 확인 후 종결**.
+  (참고 — 원래 발견 맥락:)
   ✂️ 에디터 Player에서 청크 스트립 클릭(`seekTo`) 후 화면이 비고, c1로 돌아와도 안 보임.
   처음부터 연속 재생(c1~c4)은 정상. **헤드리스 렌더(`PresenterGeneric`, 시드 R2 데이터,
   c5 프레임)는 완벽 렌더 — 즉 워커 렌더/실제 영상에는 영향 없음**(repro 확인). `errorFallback`

@@ -2,8 +2,8 @@
 // videoSrc = 립싱크된 원장 "정면" 베이스(정사각 1080, 크림 배경 그대로 — RVM 매팅 없음).
 // 비정면/B-roll 컷은 인서트존(c3·c4·c6·c7)에 숨겨 가린다. 우리 포맷 표준(2026-06-09 사용자 확정).
 import {
-  AbsoluteFill, Audio, Img, OffthreadVideo, Sequence,
-  spring, useCurrentFrame, useVideoConfig, interpolate,
+  AbsoluteFill, Audio, Img, OffthreadVideo, Video, Sequence,
+  spring, useCurrentFrame, useVideoConfig, interpolate, getRemotionEnvironment,
 } from "remotion";
 import { asset } from "../../lib/assets";
 import { ensureFonts, NOTO_SANS_KR } from "../../lib/fonts";
@@ -160,9 +160,14 @@ export const PresenterShort: React.FC<{
   return (
     <AbsoluteFill style={{ background: "linear-gradient(180deg,#17181d,#0b0c0f)" }}>
       {/* ── 원장 라운드 카드 (립싱크 정면 베이스, 선형 재생) ── */}
+      {/* Player(에디터 미리보기)는 <Video> — OffthreadVideo 는 시킹 시 빈 화면(Remotion 권장: Player=Video). 렌더·스튜디오는 OffthreadVideo 유지. */}
       <div style={{ position: "absolute", left: 0, top: PANEL_TOP, width: 1080, height: PANEL_H, borderRadius: PANEL_R, overflow: "hidden", background: "#000" }}>
         {vsrc ? (
-          <OffthreadVideo src={asset(vsrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+          getRemotionEnvironment().isPlayer ? (
+            <Video src={asset(vsrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+          ) : (
+            <OffthreadVideo src={asset(vsrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+          )
         ) : (
           <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#666", fontFamily: NOTO_SANS_KR, fontSize: 38, background: "#15161a" }}>
             영상 미생성 — 렌더 요청 시 자동 생성
