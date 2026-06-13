@@ -1,22 +1,24 @@
 // 릴 라이트 에디터 오케스트레이터. P1: Player + 청크 스트립 + 시킹 (편집은 P2~).
 // 데이터: article.reelScript(웹 소유) / article.reelRuntime(워커 소유, 읽기만).
 // 훅은 전부 EditorInner 안에서만 — reelScript null↔non-null 전환 시 훅 개수 불일치 원천 차단.
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PlayerRef } from '@remotion/player';
 import type { MarketingArticle, ReelLang, ReelScriptDoc } from '../../../types';
+import { saveReelScript } from '../../../services/marketingArticleService';
 import {
   FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, chunkTtsDirty, totalFrames,
 } from '../../../utils/reelEditor';
 import PresenterBridge from './PresenterBridge';
 import { ChunkStrip } from './ChunkStrip';
+import { useUndoableDoc } from './useUndoableDoc';
 
 interface Props {
   article: MarketingArticle;
   language: string;
-  onPatch?: (partial: Partial<MarketingArticle>) => void; // P2(편집·저장)부터 사용
+  onPatch?: (partial: Partial<MarketingArticle>) => void; // 편집 커밋 시 부모 article 즉시 갱신(stale 방지)
 }
 
-export default function ReelEditorPanel({ article, language }: Props) {
+export default function ReelEditorPanel({ article, language, onPatch }: Props) {
   const doc = article.reelScript;
   // 빈 상태 — reelScript 없음(미온보딩 콘텐츠 또는 migration 057 미적용)
   if (!doc || (doc.script.chunks?.length ?? 0) === 0) {
@@ -32,15 +34,44 @@ export default function ReelEditorPanel({ article, language }: Props) {
       </div>
     );
   }
-  return <EditorInner article={article} doc={doc} language={language} />;
+  return <EditorInner article={article} doc0={doc} language={language} onPatch={onPatch} />;
 }
 
-function EditorInner({ article, doc, language }: { article: MarketingArticle; doc: ReelScriptDoc; language: string }) {
+function EditorInner({ article, doc0, language, onPatch }: {
+  article: MarketingArticle; doc0: ReelScriptDoc; language: string;
+  onPatch?: (partial: Partial<MarketingArticle>) => void;
+}) {
   const [selected, setSelected] = useState(0);
   const playerRef = useRef<PlayerRef>(null);
+  const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // 콘텐츠/언어 전환 시 선택 청크 리셋
-  useEffect(() => { setSelected(0); }, [article.id, language]);
+  // 커밋: onPatch 는 즉시(부모 article 갱신 → 페이지 이동 후 stale 방지), 저장만 700ms debounce.
+  const handleCommit = useCallback((next: ReelScriptDoc) => {
+    onPatch?.({ reelScript: next });
+    setSaveState('saving'); setSaveError(null);
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => {
+      void saveReelScript(article.id, next)
+        .then(() => setSaveState('saved'))
+        .catch((e) => { setSaveState('error'); setSaveError(e instanceof Error ? e.message : '저장 실패'); });
+    }, 700);
+  }, [article.id, onPatch]);
+
+  // 언마운트 시 대기 중 저장 타이머 정리
+  useEffect(() => () => { if (saveTimer.current) clearTimeout(saveTimer.current); }, []);
+
+  const { doc, setDoc, reset } = useUndoableDoc<ReelScriptDoc>(doc0, handleCommit);
+  void setDoc; // P2(편집·드래그·삭제)부터 사용 — P11 은 훅 배선만
+
+  // 콘텐츠 전환 시 undo 스택 리셋 + 선택 청크 리셋(언어 전환은 같은 doc 라 선택만 리셋)
+  useEffect(() => {
+    if (article.reelScript) reset(article.reelScript);
+    setSelected(0);
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [article.id]);
+  useEffect(() => { setSelected(0); }, [language]);
 
   const lang = language as ReelLang;
   const chunks = doc.script.chunks;
@@ -65,6 +96,15 @@ function EditorInner({ article, doc, language }: { article: MarketingArticle; do
 
   return (
     <div className="space-y-3">
+      {/* 저장 상태 한 줄 — onPatch 는 즉시, 영구화는 700ms debounce */}
+      <div className="flex items-center justify-end gap-2 text-[11px]">
+        {saveState === 'saving' && <span className="text-gray-400">저장 중…</span>}
+        {saveState === 'saved' && <span className="text-emerald-600">저장됨 ✓</span>}
+        {saveState === 'error' && (
+          <span className="text-red-600" title={saveError ?? undefined}>저장 실패 — {saveError ?? '알 수 없는 오류'}</span>
+        )}
+      </div>
+
       {/* 제한 모드 배너 — preview(음성·립싱크) 미생성 언어 */}
       {!preview && (
         <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[11px] text-amber-700">
