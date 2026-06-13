@@ -312,6 +312,7 @@ realcases:
   heading_line1: "Ca điều trị thực tế ·"
   heading_accent: "minh chứng bằng hồ sơ thật"
   lead: "Hồ sơ tăng trưởng thực tế của các bé đã điều trị tại 187. Hãy chọn trường hợp giống với con bạn để xem chi tiết."
+  lead_mobile: "Chọn trường hợp giống với con bạn để xem"
   cards:
     - case: 3
       emoji: "👦"
@@ -322,6 +323,7 @@ realcases:
       stat_from: "Dự đoán ban đầu 162,9cm"
       stat_to: "185,8"
       unit: "cm"
+      stat_to_label: "Dự đoán cuối cùng"
       desc: "Tuổi xương vượt 4 năm — nay đã cao 177,4cm"
     - case: 4
       emoji: "📏"
@@ -332,6 +334,7 @@ realcases:
       stat_from: "Dự đoán ban đầu 171,2cm"
       stat_to: "182,2"
       unit: "cm"
+      stat_to_label: "Dự đoán cuối cùng"
       desc: "Di truyền ~170cm — nay đã vượt chiều cao của bố"
     - case: 6
       emoji: "👧"
@@ -342,6 +345,7 @@ realcases:
       stat_from: "Dự đoán ban đầu 153,8cm"
       stat_to: "165,3"
       unit: "cm"
+      stat_to_label: "Dự đoán cuối cùng"
       desc: "Hai anh em từ Mỹ sang Hàn Quốc điều trị"
     - case: 7
       emoji: "✈️"
@@ -352,6 +356,7 @@ realcases:
       stat_from: "Dự đoán ban đầu 167cm"
       stat_to: "183,6"
       unit: "cm"
+      stat_to_label: "Dự đoán cuối cùng"
       desc: "Từ Nhật sang mỗi kỳ nghỉ — nay 175,6cm, vượt di truyền"
   line_text: "Xem thêm ca điều trị qua tư vấn 1:1"
   back_label: "Xem ca khác"

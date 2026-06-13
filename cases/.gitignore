@@ -39,3 +39,11 @@ _region_tmp.mjs
 # Patient story work files (PHI: names, measurements, prescriptions)
 _patient_contexts.json
 _stories_chunk*.json
+
+# 치료사례 후보 검토 산출물 (원장검토용 md/html 은 실명 포함 PHI, 상세프로필은 생성물 — 전부 로컬 전용)
+# 재생성: node cases/select_case_candidates.mjs · node cases/gen_case_profiles.mjs
+케이스후보_*.md
+케이스후보_*.html
+
+# 원장 스토리 작성용 입력 덤프 (가명이지만 생성물 — 로컬 전용)
+_story_inputs.json

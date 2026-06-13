@@ -2,6 +2,15 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
+import fs from 'fs';
+
+// '@reel' = remotion 컴포지션 단일 소스 공유(로컬). Railway 배포 빌드는 root dir=v4 라
+// ../remotion 이 컨텍스트에 없음 → src/reel-stubs 폴백(미리보기 자리에 안내만 렌더).
+// REEL_STUBS=1 로 로컬에서도 배포 경로를 강제해 빌드 검증 가능.
+const remotionSrc = path.resolve(__dirname, '../remotion/src');
+const reelAlias = process.env.REEL_STUBS !== '1' && fs.existsSync(remotionSrc)
+  ? remotionSrc
+  : path.resolve(__dirname, 'src/reel-stubs');
 
 // SEO 서버측 리다이렉트 (Railway 가 `vite preview` 로 서빙하므로 여기서 처리):
 // - `/` → `/ko/` 301 — 구글이 루트에서 빈 SPA 셸 대신 정적 한국어 홈을 보게 한다
@@ -36,7 +45,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@reel': path.resolve(__dirname, '../remotion/src'), // 컴포지션 단일 소스 공유
+      '@reel': reelAlias, // 컴포지션 단일 소스 공유 (remotion 부재 시 reel-stubs)
     },
     // 크로스 import 1순위 실패 모드 방지: ../remotion/src 소스의 import "remotion"/"react"가
     // remotion/node_modules로 해석돼 이중 인스턴스가 되면 Invalid hook call / 프레임 0 고정.

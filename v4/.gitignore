@@ -33,3 +33,7 @@ dist-ssr
 /public/en/
 /public/sitemap.xml
 /i18n/blog-cache/
+
+# 치료사례 후보 페이지 — PHI(차트번호·생년월일·측정일·진료메모·문진) 포함, 배포 차단(로컬 전용).
+# 외부 공개용은 비식별 /public/치료사례_외부.html (tracked) + /public/marketing/strategy/case-charts.js (tracked).
+/public/marketing/strategy/case-candidates.html

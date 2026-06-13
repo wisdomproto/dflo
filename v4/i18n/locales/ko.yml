@@ -312,6 +312,7 @@ realcases:
   heading_line1: "실제 치료 사례 ·"
   heading_accent: "기록으로 증명합니다"
   lead: "187에서 치료받은 아이들의 실제 성장 기록입니다. 우리 아이와 비슷한 고민을 선택해 확인해보세요."
+  lead_mobile: "우리 아이와 비슷한 고민을 골라 확인해보세요"
   cards:
     - case: 3
       emoji: "👦"
@@ -322,6 +323,7 @@ realcases:
       stat_from: "초진 예상키 162.9cm"
       stat_to: "185.8"
       unit: "cm"
+      stat_to_label: "최종 예상키"
       desc: "뼈나이 4년 앞섰던 9세 — 현재 177.4cm까지 성장"
     - case: 4
       emoji: "📏"
@@ -332,6 +334,7 @@ realcases:
       stat_from: "초진 예상키 171.2cm"
       stat_to: "182.2"
       unit: "cm"
+      stat_to_label: "최종 예상키"
       desc: "유전 한계 170cm — 이미 아빠 키를 넘어 성장 중"
     - case: 6
       emoji: "👧"
@@ -342,6 +345,7 @@ realcases:
       stat_from: "초진 예상키 153.8cm"
       stat_to: "165.3"
       unit: "cm"
+      stat_to_label: "최종 예상키"
       desc: "미국에서 한국까지 찾아온 남매의 치료 기록"
     - case: 7
       emoji: "✈️"
@@ -352,6 +356,7 @@ realcases:
       stat_from: "초진 예상키 167cm"
       stat_to: "183.6"
       unit: "cm"
+      stat_to_label: "최종 예상키"
       desc: "일본에서 방학마다 — 현재 175.6cm, 유전키 돌파"
   line_text: "더 많은 치료 사례는 1:1 상담으로 받아보실 수 있어요"
   back_label: "다른 사례 보기"

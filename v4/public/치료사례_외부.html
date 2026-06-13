@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>187 성장클리닉 — 치료사례</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'Noto Sans KR','Malgun Gothic',sans-serif; background:#f4f2f8; color:#1f2433; -webkit-text-size-adjust:100%; }
+  .wrap { max-width:940px; margin:0 auto; padding:20px 16px 60px; }
+  .top { text-align:center; padding:14px 0 6px; }
+  .top h1 { margin:0; font-size:26px; color:#4A2D6B; letter-spacing:-0.5px; }
+  .top p { margin:6px 0 0; color:#6b7280; font-size:13px; }
+  .filters { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:16px 0 20px; }
+  .chip { border:1.5px solid #e3def0; background:#fff; color:#6b6677; border-radius:999px; padding:6px 16px; font-size:13px; font-weight:700; cursor:pointer; }
+  .chip.on { background:#4A2D6B; border-color:#4A2D6B; color:#fff; }
+  .card { background:#fff; border:1px solid #ece8f4; border-radius:16px; padding:18px 18px 20px; margin-bottom:18px; box-shadow:0 1px 3px rgba(40,30,70,.05); }
+  .card header { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-left:4px solid var(--cc); background:var(--ccbg); padding:8px 12px; border-radius:9px; }
+  .nm { font-size:18px; font-weight:800; color:#22252e; }
+  .meta { font-size:12px; color:#6b7280; }
+  .headline { font-size:16px; font-weight:700; color:#33294d; margin:14px 2px 10px; line-height:1.5; }
+  .hilite { background:linear-gradient(180deg,#f4f0fc,#f8f6fd); border:1px solid #e4daf6; border-radius:12px; padding:11px 14px; margin:6px 0 12px; }
+  .hilite-t { font-size:12.5px; font-weight:800; color:#6b46c1; margin-bottom:6px; letter-spacing:-0.2px; }
+  .hilite ul { margin:0; padding-left:0; list-style:none; }
+  .hilite li { position:relative; padding-left:18px; font-size:13.5px; color:#3a3550; line-height:1.7; }
+  .hilite li::before { content:'›'; position:absolute; left:4px; color:#9b7fd4; font-weight:800; }
+  .hilite li b { color:#5b3a9e; font-weight:800; }
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:10px 0; }
+  @media(max-width:560px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
+  .kpi { background:#f8f7fb; border:1px solid #efedf5; border-radius:10px; padding:8px 10px; }
+  .kpi span { display:block; font-size:11px; color:#8b8a96; margin-bottom:3px; }
+  .kpi b { font-size:15px; color:#262a36; font-weight:800; }
+  .kpi b i { font-style:normal; font-size:12px; color:#10a572; font-weight:700; margin-left:4px; }
+  .kpi.hl { background:#f0ecfa; border-color:#ded3f4; }
+  .kpi.hl b { color:#5b3a9e; }
+  .tags { display:flex; gap:5px; flex-wrap:wrap; margin:6px 0 4px; }
+  .tag { font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; }
+  .t-prec{background:#fff1f0;color:#d4380d}.t-late{background:#fff7e6;color:#d46b08}.t-obes{background:#fff0f6;color:#c41d7f}
+  .t-alle{background:#fcffe6;color:#7cb305}.t-gene{background:#e6fffb;color:#08979c}.t-slow{background:#e6f4ff;color:#0958d9}.t-warn{background:#f0f0f0;color:#595959}
+  .charts2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  @media(max-width:680px){ .charts2{ grid-template-columns:1fr; } }
+  .clbl { font-size:13px; font-weight:700; color:#475569; margin-bottom:6px; }
+  .cwrap { position:relative; height:280px; background:#fff; border:1px solid #eef0f4; border-radius:10px; padding:6px; }
+  .tgrid { margin-top:4px; }
+  /* PIN 게이트 */
+  #gate { position:fixed; inset:0; background:linear-gradient(160deg,#4A2D6B,#764ba2); display:flex; align-items:center; justify-content:center; z-index:9999; }
+  #gate .box { background:#fff; border-radius:18px; padding:34px 30px; width:300px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.3); }
+  #gate h2 { margin:0 0 4px; font-size:20px; color:#4A2D6B; }
+  #gate p { margin:0 0 18px; font-size:13px; color:#8b8a96; }
+  #gate input { width:100%; padding:12px; font-size:18px; text-align:center; letter-spacing:6px; border:2px solid #e3def0; border-radius:10px; outline:none; }
+  #gate input:focus { border-color:#764ba2; }
+  #gate button { width:100%; margin-top:12px; padding:12px; font-size:15px; font-weight:700; color:#fff; background:#4A2D6B; border:0; border-radius:10px; cursor:pointer; }
+  #gate .err { color:#e03131; font-size:12px; height:16px; margin-top:8px; }
+  #content[hidden] { display:none; }
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="box">
+    <h2>🔒 치료사례</h2>
+    <p>열람용 비밀번호를 입력하세요</p>
+    <input id="pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">
+    <button id="enter">입장</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+<div id="content" hidden>
+  <div class="wrap">
+    <div class="top">
+      <h1>187 성장클리닉 치료사례</h1>
+      <p>실제 진료 데이터 기반 · 환자 이름은 모두 가명입니다 · 그래프는 만나이 기준</p>
+    </div>
+    <div class="filters">
+      <button class="chip on" data-g="all">전체 58</button>
+      <button class="chip" data-g="남">👦 남아 40</button>
+      <button class="chip" data-g="여">👧 여아 18</button>
+    </div>
+    <div id="cards"><article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 시우</span>
+    <span class="meta">초진 만 9.9세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 168cm → 186.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 3개월 동안 키 <b>37.1cm</b> 성장 (146.2→183.3cm)</li><li>예측 성인키 <b>+18.9cm</b> 상승 (168→186.9cm)</li><li>연평균 <b>8.7cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 3개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.2→183.3<i>+37.1cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>168→186.9<i>+18.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.95,"caY":9,"caM":11,"height":146.2,"bone_age":null},{"ageDecimal":10.21,"caY":10,"caM":2,"height":148.6,"bone_age":null},{"ageDecimal":10.28,"caY":10,"caM":3,"height":149,"bone_age":null},{"ageDecimal":10.54,"caY":10,"caM":6,"height":151.3,"bone_age":null},{"ageDecimal":10.7,"caY":10,"caM":8,"height":150.3,"bone_age":null},{"ageDecimal":10.88,"caY":10,"caM":10,"height":154,"bone_age":null},{"ageDecimal":11.11,"caY":11,"caM":1,"height":156,"bone_age":null},{"ageDecimal":11.22,"caY":11,"caM":2,"height":157.3,"bone_age":null},{"ageDecimal":11.44,"caY":11,"caM":5,"height":158.8,"bone_age":null},{"ageDecimal":11.66,"caY":11,"caM":7,"height":163,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":165.2,"bone_age":null},{"ageDecimal":11.93,"caY":11,"caM":11,"height":166.7,"bone_age":null},{"ageDecimal":12.07,"caY":12,"caM":0,"height":168,"bone_age":null},{"ageDecimal":12.54,"caY":12,"caM":6,"height":174,"bone_age":null},{"ageDecimal":13.11,"caY":13,"caM":1,"height":178.2,"bone_age":13.67},{"ageDecimal":13.48,"caY":13,"caM":5,"height":179.8,"bone_age":null},{"ageDecimal":14.18,"caY":14,"caM":2,"height":183.3,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 지후</span>
+    <span class="meta">초진 만 11세 · 치료 완료</span>
+  </header>
+  <p class="headline">"11살인데 뼈나이는 13살이었습니다 — 예상키 +17.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 9개월 동안 키 <b>32.2cm</b> 성장 (142.8→175cm)</li><li>예측 성인키 <b>+17.2cm</b> 상승 (164.6→181.8cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 9개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>142.8→175<i>+32.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>164.6→181.8<i>+17.2cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-obes">비만 동반</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.96,"caY":10,"caM":11,"height":142.8,"bone_age":12.5},{"ageDecimal":11,"caY":10,"caM":11,"height":143.4,"bone_age":null},{"ageDecimal":11.03,"caY":11,"caM":0,"height":145,"bone_age":null},{"ageDecimal":11.12,"caY":11,"caM":1,"height":146,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":147,"bone_age":null},{"ageDecimal":11.3,"caY":11,"caM":3,"height":147.8,"bone_age":null},{"ageDecimal":11.69,"caY":11,"caM":8,"height":150.3,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":150.5,"bone_age":null},{"ageDecimal":12.24,"caY":12,"caM":2,"height":160.8,"bone_age":null},{"ageDecimal":12.71,"caY":12,"caM":8,"height":160.8,"bone_age":13.67},{"ageDecimal":13.35,"caY":13,"caM":4,"height":166.4,"bone_age":13.33},{"ageDecimal":13.5,"caY":13,"caM":5,"height":167.2,"bone_age":null},{"ageDecimal":13.56,"caY":13,"caM":6,"height":167.2,"bone_age":null},{"ageDecimal":13.63,"caY":13,"caM":7,"height":168,"bone_age":13.3},{"ageDecimal":13.72,"caY":13,"caM":8,"height":169.1,"bone_age":null},{"ageDecimal":13.8,"caY":13,"caM":9,"height":168.4,"bone_age":null},{"ageDecimal":13.9,"caY":13,"caM":10,"height":167.6,"bone_age":null},{"ageDecimal":13.97,"caY":13,"caM":11,"height":168.1,"bone_age":null},{"ageDecimal":14.05,"caY":14,"caM":0,"height":168.4,"bone_age":13.3},{"ageDecimal":14.16,"caY":14,"caM":1,"height":168.6,"bone_age":null},{"ageDecimal":14.25,"caY":14,"caM":2,"height":169.6,"bone_age":null},{"ageDecimal":14.31,"caY":14,"caM":3,"height":170,"bone_age":null},{"ageDecimal":14.4,"caY":14,"caM":4,"height":170.8,"bone_age":13.3},{"ageDecimal":14.6,"caY":14,"caM":7,"height":171.1,"bone_age":null},{"ageDecimal":14.69,"caY":14,"caM":8,"height":171,"bone_age":null},{"ageDecimal":14.78,"caY":14,"caM":9,"height":171.6,"bone_age":null},{"ageDecimal":14.87,"caY":14,"caM":10,"height":171.6,"bone_age":null},{"ageDecimal":15.04,"caY":15,"caM":0,"height":172,"bone_age":null},{"ageDecimal":15.49,"caY":15,"caM":5,"height":173,"bone_age":null},{"ageDecimal":15.69,"caY":15,"caM":8,"height":175,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 우진</span>
+    <span class="meta">초진 만 10세 · 치료 중</span>
+  </header>
+  <p class="headline">"10살인데 뼈나이는 12살이었습니다 — 예상키 +14.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 11개월 동안 키 <b>35.1cm</b> 성장 (134→169.1cm)</li><li>예측 성인키 <b>+14.1cm</b> 상승 (162→176.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>134→169.1<i>+35.1cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>162→176.1<i>+14.1cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.98,"caY":9,"caM":11,"height":134,"bone_age":11.5},{"ageDecimal":10.02,"caY":10,"caM":0,"height":141.6,"bone_age":null},{"ageDecimal":10.11,"caY":10,"caM":1,"height":142.6,"bone_age":null},{"ageDecimal":10.61,"caY":10,"caM":7,"height":147.8,"bone_age":null},{"ageDecimal":10.65,"caY":10,"caM":7,"height":148.1,"bone_age":null},{"ageDecimal":10.73,"caY":10,"caM":8,"height":150.4,"bone_age":null},{"ageDecimal":10.8,"caY":10,"caM":9,"height":150.6,"bone_age":null},{"ageDecimal":11.02,"caY":11,"caM":0,"height":141.6,"bone_age":12.17},{"ageDecimal":11.61,"caY":11,"caM":7,"height":147.8,"bone_age":13.08},{"ageDecimal":11.96,"caY":11,"caM":11,"height":153,"bone_age":13.42},{"ageDecimal":12.22,"caY":12,"caM":2,"height":153.5,"bone_age":13.5},{"ageDecimal":12.27,"caY":12,"caM":3,"height":153.1,"bone_age":null},{"ageDecimal":12.46,"caY":12,"caM":5,"height":154.7,"bone_age":null},{"ageDecimal":12.66,"caY":12,"caM":7,"height":155.3,"bone_age":13.5},{"ageDecimal":13.19,"caY":13,"caM":2,"height":158.6,"bone_age":13.58},{"ageDecimal":13.79,"caY":13,"caM":9,"height":161.3,"bone_age":13.5},{"ageDecimal":14.02,"caY":14,"caM":0,"height":164.2,"bone_age":null},{"ageDecimal":14.21,"caY":14,"caM":2,"height":165.9,"bone_age":13.67},{"ageDecimal":14.35,"caY":14,"caM":4,"height":166.4,"bone_age":null},{"ageDecimal":14.43,"caY":14,"caM":5,"height":166.4,"bone_age":null},{"ageDecimal":14.52,"caY":14,"caM":6,"height":166.9,"bone_age":null},{"ageDecimal":14.6,"caY":14,"caM":7,"height":168,"bone_age":null},{"ageDecimal":14.72,"caY":14,"caM":8,"height":168.3,"bone_age":null},{"ageDecimal":14.75,"caY":14,"caM":9,"height":168.1,"bone_age":null},{"ageDecimal":14.89,"caY":14,"caM":10,"height":169.1,"bone_age":14.25}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 정우</span>
+    <span class="meta">초진 만 10.5세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 171.7cm → 187cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 4개월 동안 키 <b>34.3cm</b> 성장 (145.6→179.9cm)</li><li>예측 성인키 <b>+15.3cm</b> 상승 (171.7→187cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 4개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>145.6→179.9<i>+34.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>171.7→187<i>+15.3cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.47,"caY":10,"caM":5,"height":145.6,"bone_age":11.5},{"ageDecimal":10.54,"caY":10,"caM":6,"height":146,"bone_age":null},{"ageDecimal":10.61,"caY":10,"caM":7,"height":147,"bone_age":null},{"ageDecimal":10.69,"caY":10,"caM":8,"height":147.4,"bone_age":null},{"ageDecimal":10.82,"caY":10,"caM":9,"height":148,"bone_age":null},{"ageDecimal":10.87,"caY":10,"caM":10,"height":149.3,"bone_age":11.6},{"ageDecimal":11,"caY":11,"caM":0,"height":150.3,"bone_age":null},{"ageDecimal":11.1,"caY":11,"caM":1,"height":151.7,"bone_age":null},{"ageDecimal":11.2,"caY":11,"caM":2,"height":152.4,"bone_age":null},{"ageDecimal":11.3,"caY":11,"caM":3,"height":152.7,"bone_age":null},{"ageDecimal":11.42,"caY":11,"caM":4,"height":154.3,"bone_age":11.75},{"ageDecimal":11.51,"caY":11,"caM":6,"height":154.5,"bone_age":null},{"ageDecimal":11.61,"caY":11,"caM":7,"height":155.5,"bone_age":null},{"ageDecimal":11.69,"caY":11,"caM":8,"height":157.1,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":157.1,"bone_age":null},{"ageDecimal":11.88,"caY":11,"caM":10,"height":158,"bone_age":12.33},{"ageDecimal":11.97,"caY":11,"caM":11,"height":158.8,"bone_age":null},{"ageDecimal":12.05,"caY":12,"caM":0,"height":160.2,"bone_age":null},{"ageDecimal":12.13,"caY":12,"caM":1,"height":162,"bone_age":null},{"ageDecimal":12.26,"caY":12,"caM":3,"height":161.2,"bone_age":null},{"ageDecimal":12.35,"caY":12,"caM":4,"height":161.5,"bone_age":12.7},{"ageDecimal":12.43,"caY":12,"caM":5,"height":162.1,"bone_age":null},{"ageDecimal":12.55,"caY":12,"caM":6,"height":162.7,"bone_age":null},{"ageDecimal":12.64,"caY":12,"caM":7,"height":163.3,"bone_age":null},{"ageDecimal":12.75,"caY":12,"caM":9,"height":163.8,"bone_age":null},{"ageDecimal":12.84,"caY":12,"caM":10,"height":165.5,"bone_age":12.9},{"ageDecimal":12.94,"caY":12,"caM":11,"height":166.1,"bone_age":null},{"ageDecimal":13.02,"caY":13,"caM":0,"height":166.6,"bone_age":null},{"ageDecimal":13.11,"caY":13,"caM":1,"height":167,"bone_age":null},{"ageDecimal":13.19,"caY":13,"caM":2,"height":166.4,"bone_age":null},{"ageDecimal":13.28,"caY":13,"caM":3,"height":168.1,"bone_age":null},{"ageDecimal":13.38,"caY":13,"caM":4,"height":168.8,"bone_age":13.2},{"ageDecimal":13.46,"caY":13,"caM":5,"height":167.8,"bone_age":null},{"ageDecimal":13.55,"caY":13,"caM":6,"height":168.3,"bone_age":null},{"ageDecimal":13.65,"caY":13,"caM":7,"height":168.8,"bone_age":null},{"ageDecimal":13.73,"caY":13,"caM":8,"height":168.4,"bone_age":null},{"ageDecimal":13.82,"caY":13,"caM":9,"height":171.3,"bone_age":13.2},{"ageDecimal":13.89,"caY":13,"caM":10,"height":172.5,"bone_age":null},{"ageDecimal":14,"caY":14,"caM":0,"height":172.4,"bone_age":null},{"ageDecimal":14.09,"caY":14,"caM":1,"height":175,"bone_age":null},{"ageDecimal":14.15,"caY":14,"caM":1,"height":175.1,"bone_age":13.25},{"ageDecimal":14.24,"caY":14,"caM":2,"height":176.9,"bone_age":null},{"ageDecimal":14.36,"caY":14,"caM":4,"height":178.1,"bone_age":null},{"ageDecimal":14.52,"caY":14,"caM":6,"height":178.4,"bone_age":13.7},{"ageDecimal":14.61,"caY":14,"caM":7,"height":179.7,"bone_age":null},{"ageDecimal":14.68,"caY":14,"caM":8,"height":180.2,"bone_age":null},{"ageDecimal":14.78,"caY":14,"caM":9,"height":179.9,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 시윤</span>
+    <span class="meta">초진 만 11.5세 · 치료 중</span>
+  </header>
+  <p class="headline">"12살인데 뼈나이는 13살이었습니다 — 예상키 +20.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 11개월 동안 키 <b>21.4cm</b> 성장 (152.1→173.5cm)</li><li>예측 성인키 <b>+20.9cm</b> 상승 (167.6→188.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>3.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>152.1→173.5<i>+21.4cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>167.6→188.5<i>+20.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.53,"caY":11,"caM":6,"height":152.1,"bone_age":13.25},{"ageDecimal":11.95,"caY":11,"caM":11,"height":155.6,"bone_age":13.5},{"ageDecimal":12.1,"caY":12,"caM":1,"height":156.3,"bone_age":null},{"ageDecimal":12.75,"caY":12,"caM":9,"height":160,"bone_age":null},{"ageDecimal":12.83,"caY":12,"caM":9,"height":161.2,"bone_age":null},{"ageDecimal":12.93,"caY":12,"caM":11,"height":160,"bone_age":13.42},{"ageDecimal":13.17,"caY":13,"caM":2,"height":161.3,"bone_age":null},{"ageDecimal":13.35,"caY":13,"caM":4,"height":162.6,"bone_age":null},{"ageDecimal":13.42,"caY":13,"caM":5,"height":163.6,"bone_age":13.42},{"ageDecimal":13.77,"caY":13,"caM":9,"height":165.4,"bone_age":null},{"ageDecimal":13.85,"caY":13,"caM":10,"height":167.8,"bone_age":null},{"ageDecimal":13.94,"caY":13,"caM":11,"height":168.5,"bone_age":13.42},{"ageDecimal":14.04,"caY":14,"caM":0,"height":169.7,"bone_age":null},{"ageDecimal":14.11,"caY":14,"caM":1,"height":170.1,"bone_age":null},{"ageDecimal":14.19,"caY":14,"caM":2,"height":171.2,"bone_age":null},{"ageDecimal":14.38,"caY":14,"caM":4,"height":172.6,"bone_age":null},{"ageDecimal":14.48,"caY":14,"caM":5,"height":173.5,"bone_age":12.5}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 준서</span>
+    <span class="meta">초진 만 9.9세 · 치료 완료</span>
+  </header>
+  <p class="headline">"10살인데 뼈나이는 12살이었습니다 — 예상키 +16.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 동안 키 <b>28.8cm</b> 성장 (148→176.8cm)</li><li>예측 성인키 <b>+16.8cm</b> 상승 (168.7→185.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년</b></div>
+    <div class="kpi"><span>실제 키</span><b>148→176.8<i>+28.8cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>168.7→185.5<i>+16.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-obes">비만 동반</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.91,"caY":9,"caM":10,"height":148,"bone_age":12.42},{"ageDecimal":9.92,"caY":9,"caM":11,"height":148.1,"bone_age":null},{"ageDecimal":10,"caY":9,"caM":11,"height":148.8,"bone_age":null},{"ageDecimal":10.08,"caY":10,"caM":0,"height":150.6,"bone_age":null},{"ageDecimal":10.17,"caY":10,"caM":2,"height":150.9,"bone_age":null},{"ageDecimal":10.23,"caY":10,"caM":2,"height":151.7,"bone_age":null},{"ageDecimal":10.32,"caY":10,"caM":3,"height":153.1,"bone_age":null},{"ageDecimal":10.4,"caY":10,"caM":4,"height":153.5,"bone_age":12.58},{"ageDecimal":10.5,"caY":10,"caM":6,"height":154.8,"bone_age":null},{"ageDecimal":10.57,"caY":10,"caM":6,"height":154.7,"bone_age":null},{"ageDecimal":10.67,"caY":10,"caM":8,"height":155.5,"bone_age":null},{"ageDecimal":10.76,"caY":10,"caM":9,"height":156.4,"bone_age":null},{"ageDecimal":10.85,"caY":10,"caM":10,"height":158,"bone_age":null},{"ageDecimal":10.94,"caY":10,"caM":11,"height":157.8,"bone_age":13.25},{"ageDecimal":11.02,"caY":11,"caM":0,"height":158,"bone_age":null},{"ageDecimal":11.11,"caY":11,"caM":1,"height":158.7,"bone_age":null},{"ageDecimal":11.18,"caY":11,"caM":2,"height":159.2,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":160.2,"bone_age":null},{"ageDecimal":11.33,"caY":11,"caM":4,"height":160.6,"bone_age":null},{"ageDecimal":11.4,"caY":11,"caM":4,"height":161.2,"bone_age":13.33},{"ageDecimal":11.47,"caY":11,"caM":5,"height":162.3,"bone_age":null},{"ageDecimal":11.55,"caY":11,"caM":6,"height":163.3,"bone_age":null},{"ageDecimal":11.65,"caY":11,"caM":7,"height":163.5,"bone_age":null},{"ageDecimal":11.72,"caY":11,"caM":8,"height":164,"bone_age":13.42},{"ageDecimal":11.81,"caY":11,"caM":9,"height":164.4,"bone_age":null},{"ageDecimal":11.89,"caY":11,"caM":10,"height":165.7,"bone_age":null},{"ageDecimal":11.96,"caY":11,"caM":11,"height":165.8,"bone_age":null},{"ageDecimal":12.04,"caY":12,"caM":0,"height":166.4,"bone_age":null},{"ageDecimal":12.12,"caY":12,"caM":1,"height":166.2,"bone_age":null},{"ageDecimal":12.21,"caY":12,"caM":2,"height":167.2,"bone_age":13.5},{"ageDecimal":12.29,"caY":12,"caM":3,"height":167.8,"bone_age":null},{"ageDecimal":12.37,"caY":12,"caM":4,"height":167.5,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":168.4,"bone_age":null},{"ageDecimal":12.52,"caY":12,"caM":6,"height":168.6,"bone_age":null},{"ageDecimal":12.61,"caY":12,"caM":7,"height":170.5,"bone_age":null},{"ageDecimal":12.71,"caY":12,"caM":8,"height":169,"bone_age":13.5},{"ageDecimal":12.89,"caY":12,"caM":10,"height":170.4,"bone_age":null},{"ageDecimal":13,"caY":12,"caM":11,"height":171,"bone_age":null},{"ageDecimal":13.1,"caY":13,"caM":1,"height":170.6,"bone_age":null},{"ageDecimal":13.9,"caY":13,"caM":10,"height":176.8,"bone_age":13.67}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 예준</span>
+    <span class="meta">초진 만 11.2세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 168.3cm → 183.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 11개월 동안 키 <b>32.7cm</b> 성장 (145.8→178.5cm)</li><li>예측 성인키 <b>+15.1cm</b> 상승 (168.3→183.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.3년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>145.8→178.5<i>+32.7cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>168.3→183.4<i>+15.1cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.21,"caY":11,"caM":2,"height":145.8,"bone_age":12.17},{"ageDecimal":11.74,"caY":11,"caM":8,"height":151,"bone_age":null},{"ageDecimal":11.93,"caY":11,"caM":11,"height":152.9,"bone_age":12.42},{"ageDecimal":12.01,"caY":12,"caM":0,"height":154.5,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":159.5,"bone_age":null},{"ageDecimal":12.43,"caY":12,"caM":5,"height":159.5,"bone_age":null},{"ageDecimal":12.54,"caY":12,"caM":6,"height":159.5,"bone_age":12.92},{"ageDecimal":12.82,"caY":12,"caM":9,"height":160,"bone_age":12.8},{"ageDecimal":13.03,"caY":13,"caM":0,"height":161,"bone_age":null},{"ageDecimal":13.05,"caY":13,"caM":0,"height":164.6,"bone_age":null},{"ageDecimal":13.09,"caY":13,"caM":1,"height":163,"bone_age":null},{"ageDecimal":13.17,"caY":13,"caM":2,"height":165.3,"bone_age":null},{"ageDecimal":13.38,"caY":13,"caM":4,"height":168.3,"bone_age":null},{"ageDecimal":13.47,"caY":13,"caM":5,"height":168.9,"bone_age":13.25},{"ageDecimal":13.59,"caY":13,"caM":7,"height":170.4,"bone_age":null},{"ageDecimal":13.88,"caY":13,"caM":10,"height":172.2,"bone_age":null},{"ageDecimal":14.09,"caY":14,"caM":1,"height":174,"bone_age":null},{"ageDecimal":14.27,"caY":14,"caM":3,"height":175,"bone_age":13.83},{"ageDecimal":14.33,"caY":14,"caM":3,"height":175.9,"bone_age":13.83},{"ageDecimal":14.61,"caY":14,"caM":7,"height":176.8,"bone_age":null},{"ageDecimal":14.64,"caY":14,"caM":7,"height":176.8,"bone_age":14.58},{"ageDecimal":14.93,"caY":14,"caM":11,"height":177.7,"bone_age":null},{"ageDecimal":15.14,"caY":15,"caM":1,"height":178.5,"bone_age":14.8}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 선우</span>
+    <span class="meta">초진 만 12.6세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 167.1cm → 183.7cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 5개월 동안 키 <b>28.8cm</b> 성장 (146.8→175.6cm)</li><li>예측 성인키 <b>+16.6cm</b> 상승 (167.1→183.7cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.8→175.6<i>+28.8cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>167.1→183.7<i>+16.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.61,"caY":12,"caM":7,"height":146.8,"bone_age":12.58},{"ageDecimal":12.71,"caY":12,"caM":8,"height":148.3,"bone_age":null},{"ageDecimal":12.79,"caY":12,"caM":9,"height":149.4,"bone_age":null},{"ageDecimal":12.86,"caY":12,"caM":10,"height":149.5,"bone_age":null},{"ageDecimal":12.94,"caY":12,"caM":11,"height":150.4,"bone_age":null},{"ageDecimal":13.02,"caY":13,"caM":0,"height":151.3,"bone_age":null},{"ageDecimal":13.09,"caY":13,"caM":1,"height":152,"bone_age":12.92},{"ageDecimal":13.18,"caY":13,"caM":2,"height":152.9,"bone_age":null},{"ageDecimal":13.26,"caY":13,"caM":3,"height":152.6,"bone_age":null},{"ageDecimal":13.34,"caY":13,"caM":4,"height":154.4,"bone_age":null},{"ageDecimal":13.43,"caY":13,"caM":5,"height":155.2,"bone_age":null},{"ageDecimal":13.58,"caY":13,"caM":7,"height":156.2,"bone_age":null},{"ageDecimal":13.95,"caY":13,"caM":11,"height":161,"bone_age":13.08},{"ageDecimal":14.01,"caY":14,"caM":0,"height":161.8,"bone_age":null},{"ageDecimal":14.09,"caY":14,"caM":1,"height":162.2,"bone_age":null},{"ageDecimal":14.17,"caY":14,"caM":2,"height":163.1,"bone_age":null},{"ageDecimal":14.25,"caY":14,"caM":3,"height":164.6,"bone_age":null},{"ageDecimal":14.35,"caY":14,"caM":4,"height":165.4,"bone_age":null},{"ageDecimal":14.46,"caY":14,"caM":5,"height":165.8,"bone_age":13.25},{"ageDecimal":14.55,"caY":14,"caM":6,"height":166.2,"bone_age":null},{"ageDecimal":14.63,"caY":14,"caM":7,"height":167.8,"bone_age":null},{"ageDecimal":14.7,"caY":14,"caM":8,"height":168.6,"bone_age":null},{"ageDecimal":14.78,"caY":14,"caM":9,"height":169.1,"bone_age":null},{"ageDecimal":14.86,"caY":14,"caM":10,"height":169.8,"bone_age":null},{"ageDecimal":14.93,"caY":14,"caM":11,"height":170.4,"bone_age":13.5},{"ageDecimal":15.05,"caY":15,"caM":0,"height":170.9,"bone_age":null},{"ageDecimal":15.13,"caY":15,"caM":1,"height":171.7,"bone_age":null},{"ageDecimal":15.23,"caY":15,"caM":2,"height":172.1,"bone_age":null},{"ageDecimal":15.3,"caY":15,"caM":3,"height":172.8,"bone_age":null},{"ageDecimal":15.46,"caY":15,"caM":5,"height":173.9,"bone_age":13.83},{"ageDecimal":15.82,"caY":15,"caM":9,"height":174.9,"bone_age":null},{"ageDecimal":16,"caY":16,"caM":0,"height":175.6,"bone_age":13.83}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 현우</span>
+    <span class="meta">초진 만 10.4세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 173.7cm → 187.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 4개월 동안 키 <b>33.3cm</b> 성장 (148.1→181.4cm)</li><li>예측 성인키 <b>+13.6cm</b> 상승 (173.7→187.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 4개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>148.1→181.4<i>+33.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>173.7→187.3<i>+13.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.42,"caY":10,"caM":5,"height":148.1,"bone_age":11.5},{"ageDecimal":10.51,"caY":10,"caM":6,"height":148.1,"bone_age":null},{"ageDecimal":10.6,"caY":10,"caM":7,"height":150.1,"bone_age":null},{"ageDecimal":10.82,"caY":10,"caM":9,"height":152.1,"bone_age":null},{"ageDecimal":10.89,"caY":10,"caM":10,"height":153.3,"bone_age":null},{"ageDecimal":11.06,"caY":11,"caM":0,"height":155,"bone_age":11.83},{"ageDecimal":11.34,"caY":11,"caM":4,"height":158.1,"bone_age":null},{"ageDecimal":11.41,"caY":11,"caM":5,"height":160.1,"bone_age":null},{"ageDecimal":11.5,"caY":11,"caM":5,"height":163.2,"bone_age":null},{"ageDecimal":12,"caY":12,"caM":0,"height":166.3,"bone_age":13.33},{"ageDecimal":12.25,"caY":12,"caM":3,"height":167.2,"bone_age":null},{"ageDecimal":12.32,"caY":12,"caM":3,"height":167.7,"bone_age":null},{"ageDecimal":12.4,"caY":12,"caM":4,"height":168.4,"bone_age":null},{"ageDecimal":12.58,"caY":12,"caM":7,"height":170.1,"bone_age":13.42},{"ageDecimal":12.81,"caY":12,"caM":9,"height":171,"bone_age":null},{"ageDecimal":12.88,"caY":12,"caM":10,"height":173,"bone_age":null},{"ageDecimal":13.23,"caY":13,"caM":2,"height":175.2,"bone_age":null},{"ageDecimal":13.74,"caY":13,"caM":8,"height":178.5,"bone_age":13.67},{"ageDecimal":13.84,"caY":13,"caM":10,"height":180.4,"bone_age":null},{"ageDecimal":14.24,"caY":14,"caM":2,"height":180.4,"bone_age":null},{"ageDecimal":14.59,"caY":14,"caM":7,"height":180.5,"bone_age":null},{"ageDecimal":14.68,"caY":14,"caM":8,"height":180.6,"bone_age":14.25},{"ageDecimal":14.75,"caY":14,"caM":9,"height":181.4,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 이안</span>
+    <span class="meta">초진 만 9.4세 · 치료 중</span>
+  </header>
+  <p class="headline">"9살인데 뼈나이는 11살이었습니다 — 예상키 +12.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 7개월 동안 키 <b>34.7cm</b> 성장 (140.7→175.4cm)</li><li>예측 성인키 <b>+12.2cm</b> 상승 (169.7→181.9cm)</li><li>연평균 <b>9.7cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 7개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>140.7→175.4<i>+34.7cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>169.7→181.9<i>+12.2cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.38,"caY":9,"caM":4,"height":140.7,"bone_age":11.08},{"ageDecimal":9.45,"caY":9,"caM":5,"height":142.2,"bone_age":null},{"ageDecimal":9.53,"caY":9,"caM":6,"height":141.6,"bone_age":null},{"ageDecimal":9.67,"caY":9,"caM":8,"height":145,"bone_age":null},{"ageDecimal":9.75,"caY":9,"caM":9,"height":145.1,"bone_age":null},{"ageDecimal":9.85,"caY":9,"caM":10,"height":146.6,"bone_age":11.5},{"ageDecimal":9.93,"caY":9,"caM":11,"height":148.2,"bone_age":null},{"ageDecimal":10.01,"caY":10,"caM":0,"height":148.1,"bone_age":null},{"ageDecimal":10.11,"caY":10,"caM":1,"height":148.8,"bone_age":null},{"ageDecimal":10.18,"caY":10,"caM":2,"height":150.8,"bone_age":null},{"ageDecimal":10.28,"caY":10,"caM":3,"height":152.1,"bone_age":null},{"ageDecimal":10.35,"caY":10,"caM":4,"height":152.8,"bone_age":12.08},{"ageDecimal":10.43,"caY":10,"caM":5,"height":153.6,"bone_age":null},{"ageDecimal":10.52,"caY":10,"caM":6,"height":155,"bone_age":null},{"ageDecimal":10.75,"caY":10,"caM":9,"height":156.8,"bone_age":null},{"ageDecimal":10.84,"caY":10,"caM":10,"height":158.5,"bone_age":12.58},{"ageDecimal":10.92,"caY":10,"caM":11,"height":160.6,"bone_age":null},{"ageDecimal":11.1,"caY":11,"caM":1,"height":163,"bone_age":null},{"ageDecimal":11.28,"caY":11,"caM":3,"height":164.5,"bone_age":null},{"ageDecimal":11.4,"caY":11,"caM":4,"height":166,"bone_age":null},{"ageDecimal":11.52,"caY":11,"caM":6,"height":167.5,"bone_age":null},{"ageDecimal":11.6,"caY":11,"caM":7,"height":169.6,"bone_age":null},{"ageDecimal":11.7,"caY":11,"caM":8,"height":169.9,"bone_age":null},{"ageDecimal":11.93,"caY":11,"caM":11,"height":168.4,"bone_age":13.25},{"ageDecimal":12.2,"caY":12,"caM":2,"height":172,"bone_age":null},{"ageDecimal":12.4,"caY":12,"caM":4,"height":173.1,"bone_age":13.5},{"ageDecimal":12.47,"caY":12,"caM":5,"height":172.4,"bone_age":null},{"ageDecimal":13,"caY":13,"caM":0,"height":175.4,"bone_age":14.25}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 태윤</span>
+    <span class="meta">초진 만 12.4세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 169.9cm → 185.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 동안 키 <b>24.4cm</b> 성장 (154.2→178.6cm)</li><li>예측 성인키 <b>+15.4cm</b> 상승 (169.9→185.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년</b></div>
+    <div class="kpi"><span>실제 키</span><b>154.2→178.6<i>+24.4cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>169.9→185.3<i>+15.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.45,"caY":12,"caM":5,"height":154.2,"bone_age":13.08},{"ageDecimal":12.51,"caY":12,"caM":6,"height":155.8,"bone_age":null},{"ageDecimal":12.59,"caY":12,"caM":7,"height":156,"bone_age":null},{"ageDecimal":12.67,"caY":12,"caM":8,"height":157.5,"bone_age":null},{"ageDecimal":12.77,"caY":12,"caM":9,"height":158.8,"bone_age":null},{"ageDecimal":12.87,"caY":12,"caM":10,"height":160.4,"bone_age":null},{"ageDecimal":12.96,"caY":12,"caM":11,"height":161.5,"bone_age":13.33},{"ageDecimal":13.11,"caY":13,"caM":1,"height":162.6,"bone_age":null},{"ageDecimal":13.21,"caY":13,"caM":2,"height":165,"bone_age":null},{"ageDecimal":13.38,"caY":13,"caM":4,"height":166.4,"bone_age":13.5},{"ageDecimal":13.55,"caY":13,"caM":6,"height":168.6,"bone_age":null},{"ageDecimal":13.63,"caY":13,"caM":7,"height":169.2,"bone_age":null},{"ageDecimal":13.71,"caY":13,"caM":8,"height":169.9,"bone_age":null},{"ageDecimal":13.8,"caY":13,"caM":9,"height":170.1,"bone_age":null},{"ageDecimal":13.88,"caY":13,"caM":10,"height":172,"bone_age":13.5},{"ageDecimal":13.96,"caY":13,"caM":11,"height":172.8,"bone_age":null},{"ageDecimal":14.07,"caY":14,"caM":0,"height":173.6,"bone_age":null},{"ageDecimal":14.15,"caY":14,"caM":1,"height":173.9,"bone_age":null},{"ageDecimal":14.22,"caY":14,"caM":2,"height":174.9,"bone_age":13.58},{"ageDecimal":14.76,"caY":14,"caM":9,"height":176.8,"bone_age":13.83},{"ageDecimal":15.47,"caY":15,"caM":5,"height":178.6,"bone_age":14.2}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 은찬</span>
+    <span class="meta">초진 만 9.8세 · 치료 완료</span>
+  </header>
+  <p class="headline">"10살인데 뼈나이는 12살이었습니다 — 예상키 +12.6cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 동안 키 <b>30.2cm</b> 성장 (141→171.2cm)</li><li>예측 성인키 <b>+12.6cm</b> 상승 (165.8→178.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년</b></div>
+    <div class="kpi"><span>실제 키</span><b>141→171.2<i>+30.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>165.8→178.4<i>+12.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.81,"caY":9,"caM":9,"height":141,"bone_age":null},{"ageDecimal":9.82,"caY":9,"caM":9,"height":141,"bone_age":11.92},{"ageDecimal":9.89,"caY":9,"caM":10,"height":141.6,"bone_age":null},{"ageDecimal":9.96,"caY":9,"caM":11,"height":142.1,"bone_age":null},{"ageDecimal":10.02,"caY":10,"caM":0,"height":141.7,"bone_age":null},{"ageDecimal":10.08,"caY":10,"caM":0,"height":144.4,"bone_age":null},{"ageDecimal":10.19,"caY":10,"caM":2,"height":145.4,"bone_age":null},{"ageDecimal":10.27,"caY":10,"caM":3,"height":146.6,"bone_age":13},{"ageDecimal":10.37,"caY":10,"caM":4,"height":147.4,"bone_age":null},{"ageDecimal":10.48,"caY":10,"caM":5,"height":147.7,"bone_age":null},{"ageDecimal":10.56,"caY":10,"caM":6,"height":148.5,"bone_age":null},{"ageDecimal":10.65,"caY":10,"caM":7,"height":150.3,"bone_age":null},{"ageDecimal":10.77,"caY":10,"caM":9,"height":151.6,"bone_age":null},{"ageDecimal":10.86,"caY":10,"caM":10,"height":152.5,"bone_age":null},{"ageDecimal":10.93,"caY":10,"caM":11,"height":152.2,"bone_age":13.25},{"ageDecimal":11,"caY":11,"caM":0,"height":152.5,"bone_age":null},{"ageDecimal":11.07,"caY":11,"caM":0,"height":153.5,"bone_age":null},{"ageDecimal":11.15,"caY":11,"caM":1,"height":155,"bone_age":null},{"ageDecimal":11.27,"caY":11,"caM":3,"height":155.2,"bone_age":null},{"ageDecimal":11.34,"caY":11,"caM":4,"height":157.4,"bone_age":13.25},{"ageDecimal":11.57,"caY":11,"caM":6,"height":158,"bone_age":null},{"ageDecimal":11.62,"caY":11,"caM":7,"height":157.8,"bone_age":null},{"ageDecimal":11.65,"caY":11,"caM":7,"height":158.6,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":159.1,"bone_age":null},{"ageDecimal":11.85,"caY":11,"caM":10,"height":159,"bone_age":13.33},{"ageDecimal":11.98,"caY":11,"caM":11,"height":160.5,"bone_age":null},{"ageDecimal":12.12,"caY":12,"caM":1,"height":160.8,"bone_age":null},{"ageDecimal":12.23,"caY":12,"caM":2,"height":160.9,"bone_age":13.42},{"ageDecimal":12.39,"caY":12,"caM":4,"height":165,"bone_age":null},{"ageDecimal":12.82,"caY":12,"caM":9,"height":164,"bone_age":13.5},{"ageDecimal":12.9,"caY":12,"caM":10,"height":166.5,"bone_age":null},{"ageDecimal":12.99,"caY":12,"caM":11,"height":166,"bone_age":null},{"ageDecimal":13.07,"caY":13,"caM":0,"height":167,"bone_age":null},{"ageDecimal":13.14,"caY":13,"caM":1,"height":167.4,"bone_age":null},{"ageDecimal":13.24,"caY":13,"caM":2,"height":167,"bone_age":13.5},{"ageDecimal":13.32,"caY":13,"caM":3,"height":168.1,"bone_age":null},{"ageDecimal":13.41,"caY":13,"caM":4,"height":168.5,"bone_age":null},{"ageDecimal":13.57,"caY":13,"caM":6,"height":168.9,"bone_age":null},{"ageDecimal":13.66,"caY":13,"caM":7,"height":168.5,"bone_age":13.6},{"ageDecimal":13.74,"caY":13,"caM":8,"height":170.4,"bone_age":null},{"ageDecimal":13.82,"caY":13,"caM":9,"height":171.2,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 민재</span>
+    <span class="meta">초진 만 12.3세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 170.6cm → 187.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 7개월 동안 키 <b>21.3cm</b> 성장 (155.7→177cm)</li><li>예측 성인키 <b>+16.6cm</b> 상승 (170.6→187.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.9년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 7개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>155.7→177<i>+21.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>170.6→187.2<i>+16.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.27,"caY":12,"caM":3,"height":155.7,"bone_age":13.17},{"ageDecimal":12.34,"caY":12,"caM":4,"height":156.3,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":157.1,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":157.8,"bone_age":null},{"ageDecimal":12.59,"caY":12,"caM":7,"height":158.5,"bone_age":null},{"ageDecimal":12.67,"caY":12,"caM":8,"height":160.3,"bone_age":null},{"ageDecimal":12.8,"caY":12,"caM":9,"height":161.6,"bone_age":13.33},{"ageDecimal":12.88,"caY":12,"caM":10,"height":162.6,"bone_age":null},{"ageDecimal":12.97,"caY":12,"caM":11,"height":163.2,"bone_age":null},{"ageDecimal":13.05,"caY":13,"caM":0,"height":163.7,"bone_age":null},{"ageDecimal":13.16,"caY":13,"caM":1,"height":165.2,"bone_age":null},{"ageDecimal":13.23,"caY":13,"caM":2,"height":166.4,"bone_age":13.42},{"ageDecimal":13.35,"caY":13,"caM":4,"height":168.3,"bone_age":null},{"ageDecimal":13.43,"caY":13,"caM":5,"height":168.6,"bone_age":null},{"ageDecimal":13.5,"caY":13,"caM":6,"height":169.4,"bone_age":null},{"ageDecimal":13.57,"caY":13,"caM":6,"height":171,"bone_age":null},{"ageDecimal":13.6,"caY":13,"caM":7,"height":171,"bone_age":null},{"ageDecimal":13.75,"caY":13,"caM":9,"height":172,"bone_age":13.58},{"ageDecimal":13.85,"caY":13,"caM":10,"height":173.3,"bone_age":null},{"ageDecimal":13.92,"caY":13,"caM":11,"height":174.4,"bone_age":null},{"ageDecimal":14.03,"caY":14,"caM":0,"height":174.8,"bone_age":13.5},{"ageDecimal":14.52,"caY":14,"caM":6,"height":177.9,"bone_age":13.5},{"ageDecimal":14.89,"caY":14,"caM":10,"height":177,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 도윤</span>
+    <span class="meta">초진 만 9.2세 · 치료 완료</span>
+  </header>
+  <p class="headline">"9살인데 뼈나이는 12살이었습니다 — 예상키 +11.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 11개월 동안 키 <b>30.6cm</b> 성장 (146.2→176.8cm)</li><li>예측 성인키 <b>+11.5cm</b> 상승 (170.8→182.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.2→176.8<i>+30.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>170.8→182.3<i>+11.5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.22,"caY":9,"caM":2,"height":146.2,"bone_age":11.75},{"ageDecimal":9.75,"caY":9,"caM":9,"height":146.2,"bone_age":null},{"ageDecimal":9.89,"caY":9,"caM":10,"height":146.9,"bone_age":null},{"ageDecimal":10.02,"caY":10,"caM":0,"height":148.1,"bone_age":null},{"ageDecimal":10.07,"caY":10,"caM":0,"height":149.6,"bone_age":null},{"ageDecimal":10.17,"caY":10,"caM":2,"height":150,"bone_age":null},{"ageDecimal":10.3,"caY":10,"caM":3,"height":151.7,"bone_age":null},{"ageDecimal":10.37,"caY":10,"caM":4,"height":151.7,"bone_age":12},{"ageDecimal":10.38,"caY":10,"caM":4,"height":153.8,"bone_age":null},{"ageDecimal":10.46,"caY":10,"caM":5,"height":153.9,"bone_age":null},{"ageDecimal":10.66,"caY":10,"caM":7,"height":156.3,"bone_age":null},{"ageDecimal":10.76,"caY":10,"caM":9,"height":156.4,"bone_age":null},{"ageDecimal":10.83,"caY":10,"caM":9,"height":156.6,"bone_age":13.08},{"ageDecimal":10.88,"caY":10,"caM":10,"height":156.6,"bone_age":null},{"ageDecimal":11.07,"caY":11,"caM":0,"height":160.4,"bone_age":null},{"ageDecimal":11.18,"caY":11,"caM":2,"height":160.3,"bone_age":null},{"ageDecimal":11.27,"caY":11,"caM":3,"height":162.5,"bone_age":null},{"ageDecimal":11.31,"caY":11,"caM":3,"height":164.1,"bone_age":13.42},{"ageDecimal":11.37,"caY":11,"caM":4,"height":164.1,"bone_age":null},{"ageDecimal":11.47,"caY":11,"caM":5,"height":166,"bone_age":null},{"ageDecimal":11.54,"caY":11,"caM":6,"height":165.6,"bone_age":null},{"ageDecimal":11.8,"caY":11,"caM":9,"height":168,"bone_age":null},{"ageDecimal":11.82,"caY":11,"caM":9,"height":168,"bone_age":13.5},{"ageDecimal":11.89,"caY":11,"caM":10,"height":168,"bone_age":null},{"ageDecimal":11.92,"caY":11,"caM":11,"height":168,"bone_age":null},{"ageDecimal":11.95,"caY":11,"caM":11,"height":169,"bone_age":null},{"ageDecimal":11.97,"caY":11,"caM":11,"height":159.6,"bone_age":null},{"ageDecimal":12.21,"caY":12,"caM":2,"height":171,"bone_age":null},{"ageDecimal":12.36,"caY":12,"caM":4,"height":170.2,"bone_age":null},{"ageDecimal":12.36,"caY":12,"caM":4,"height":171,"bone_age":13.67},{"ageDecimal":12.44,"caY":12,"caM":5,"height":171.8,"bone_age":null},{"ageDecimal":12.51,"caY":12,"caM":6,"height":171.9,"bone_age":null},{"ageDecimal":12.6,"caY":12,"caM":7,"height":171.8,"bone_age":null},{"ageDecimal":12.68,"caY":12,"caM":8,"height":173.4,"bone_age":null},{"ageDecimal":12.74,"caY":12,"caM":8,"height":173.6,"bone_age":null},{"ageDecimal":12.8,"caY":12,"caM":9,"height":174,"bone_age":null},{"ageDecimal":12.8,"caY":12,"caM":9,"height":173.6,"bone_age":13.67},{"ageDecimal":12.88,"caY":12,"caM":10,"height":174.4,"bone_age":null},{"ageDecimal":13.3,"caY":13,"caM":3,"height":175.3,"bone_age":null},{"ageDecimal":13.45,"caY":13,"caM":5,"height":175.6,"bone_age":null},{"ageDecimal":13.76,"caY":13,"caM":9,"height":175.4,"bone_age":null},{"ageDecimal":13.82,"caY":13,"caM":9,"height":175.8,"bone_age":14.25},{"ageDecimal":13.98,"caY":13,"caM":11,"height":176.1,"bone_age":null},{"ageDecimal":14.05,"caY":14,"caM":0,"height":176.1,"bone_age":null},{"ageDecimal":14.13,"caY":14,"caM":1,"height":176.8,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 하준</span>
+    <span class="meta">초진 만 11세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 177.1cm → 188.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 8개월 동안 키 <b>32.9cm</b> 성장 (152→184.9cm)</li><li>예측 성인키 <b>+11cm</b> 상승 (177.1→188.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 8개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>152→184.9<i>+32.9cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>177.1→188.1<i>+11cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.04,"caY":11,"caM":0,"height":152,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":154,"bone_age":null},{"ageDecimal":11.46,"caY":11,"caM":5,"height":154.6,"bone_age":11.83},{"ageDecimal":11.79,"caY":11,"caM":9,"height":158,"bone_age":null},{"ageDecimal":11.96,"caY":11,"caM":11,"height":159.6,"bone_age":11.8},{"ageDecimal":12.17,"caY":12,"caM":2,"height":159.3,"bone_age":null},{"ageDecimal":12.31,"caY":12,"caM":3,"height":162.5,"bone_age":null},{"ageDecimal":12.31,"caY":12,"caM":3,"height":161,"bone_age":null},{"ageDecimal":12.36,"caY":12,"caM":4,"height":163.1,"bone_age":null},{"ageDecimal":12.47,"caY":12,"caM":5,"height":163.8,"bone_age":12.42},{"ageDecimal":12.54,"caY":12,"caM":6,"height":165.8,"bone_age":null},{"ageDecimal":12.86,"caY":12,"caM":10,"height":168.3,"bone_age":13},{"ageDecimal":13.08,"caY":13,"caM":0,"height":170,"bone_age":null},{"ageDecimal":13.15,"caY":13,"caM":1,"height":170,"bone_age":null},{"ageDecimal":13.3,"caY":13,"caM":3,"height":172.2,"bone_age":13.25},{"ageDecimal":13.32,"caY":13,"caM":3,"height":172.2,"bone_age":null},{"ageDecimal":13.77,"caY":13,"caM":9,"height":174,"bone_age":13.25},{"ageDecimal":13.96,"caY":13,"caM":11,"height":176.5,"bone_age":null},{"ageDecimal":14.18,"caY":14,"caM":2,"height":178,"bone_age":null},{"ageDecimal":14.19,"caY":14,"caM":2,"height":178,"bone_age":null},{"ageDecimal":14.21,"caY":14,"caM":2,"height":176.7,"bone_age":13.67},{"ageDecimal":14.31,"caY":14,"caM":3,"height":178.3,"bone_age":null},{"ageDecimal":14.54,"caY":14,"caM":6,"height":180,"bone_age":null},{"ageDecimal":14.78,"caY":14,"caM":9,"height":180.5,"bone_age":null},{"ageDecimal":14.81,"caY":14,"caM":9,"height":180.7,"bone_age":null},{"ageDecimal":15.24,"caY":15,"caM":2,"height":185,"bone_age":null},{"ageDecimal":15.39,"caY":15,"caM":4,"height":185,"bone_age":null},{"ageDecimal":15.69,"caY":15,"caM":8,"height":184.9,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 연우</span>
+    <span class="meta">초진 만 11.4세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 170.8cm → 182.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 5개월 동안 키 <b>30.6cm</b> 성장 (146.2→176.8cm)</li><li>예측 성인키 <b>+11.4cm</b> 상승 (170.8→182.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.2→176.8<i>+30.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>170.8→182.2<i>+11.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.43,"caY":11,"caM":5,"height":146.2,"bone_age":11.75},{"ageDecimal":11.51,"caY":11,"caM":6,"height":146.7,"bone_age":null},{"ageDecimal":11.58,"caY":11,"caM":6,"height":146.7,"bone_age":null},{"ageDecimal":11.66,"caY":11,"caM":7,"height":148.1,"bone_age":null},{"ageDecimal":11.74,"caY":11,"caM":8,"height":149.6,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":150,"bone_age":null},{"ageDecimal":11.97,"caY":11,"caM":11,"height":151.7,"bone_age":12},{"ageDecimal":12.05,"caY":12,"caM":0,"height":153.8,"bone_age":null},{"ageDecimal":12.13,"caY":12,"caM":1,"height":153.9,"bone_age":null},{"ageDecimal":12.33,"caY":12,"caM":4,"height":156.3,"bone_age":null},{"ageDecimal":12.43,"caY":12,"caM":5,"height":156.4,"bone_age":null},{"ageDecimal":12.55,"caY":12,"caM":6,"height":156.6,"bone_age":13.08},{"ageDecimal":12.64,"caY":12,"caM":7,"height":159.6,"bone_age":null},{"ageDecimal":12.74,"caY":12,"caM":8,"height":160.4,"bone_age":null},{"ageDecimal":12.85,"caY":12,"caM":10,"height":160.3,"bone_age":null},{"ageDecimal":12.94,"caY":12,"caM":11,"height":162.5,"bone_age":null},{"ageDecimal":13.04,"caY":13,"caM":0,"height":164.1,"bone_age":13.42},{"ageDecimal":13.21,"caY":13,"caM":2,"height":165.6,"bone_age":null},{"ageDecimal":13.32,"caY":13,"caM":3,"height":165.5,"bone_age":null},{"ageDecimal":13.56,"caY":13,"caM":6,"height":168,"bone_age":13.5},{"ageDecimal":13.62,"caY":13,"caM":7,"height":168,"bone_age":null},{"ageDecimal":13.88,"caY":13,"caM":10,"height":171,"bone_age":13.67},{"ageDecimal":14.03,"caY":14,"caM":0,"height":170.2,"bone_age":null},{"ageDecimal":14.11,"caY":14,"caM":1,"height":171.8,"bone_age":null},{"ageDecimal":14.18,"caY":14,"caM":2,"height":171.8,"bone_age":null},{"ageDecimal":14.27,"caY":14,"caM":3,"height":171.8,"bone_age":null},{"ageDecimal":14.35,"caY":14,"caM":4,"height":173.4,"bone_age":null},{"ageDecimal":14.41,"caY":14,"caM":4,"height":173.6,"bone_age":13.67},{"ageDecimal":14.47,"caY":14,"caM":5,"height":174,"bone_age":null},{"ageDecimal":14.55,"caY":14,"caM":6,"height":174.4,"bone_age":null},{"ageDecimal":14.96,"caY":14,"caM":11,"height":175.3,"bone_age":13.6},{"ageDecimal":15.08,"caY":15,"caM":0,"height":175.6,"bone_age":null},{"ageDecimal":15.33,"caY":15,"caM":3,"height":175.4,"bone_age":null},{"ageDecimal":15.43,"caY":15,"caM":5,"height":175.7,"bone_age":14.25},{"ageDecimal":15.55,"caY":15,"caM":6,"height":175.7,"bone_age":null},{"ageDecimal":15.67,"caY":15,"caM":7,"height":176.1,"bone_age":null},{"ageDecimal":15.72,"caY":15,"caM":8,"height":176.1,"bone_age":null},{"ageDecimal":15.8,"caY":15,"caM":9,"height":176.8,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 소율</span>
+    <span class="meta">초진 만 9세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 149.7cm → 162.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 4개월 동안 키 <b>26.9cm</b> 성장 (124.2→151.1cm)</li><li>예측 성인키 <b>+12.4cm</b> 상승 (149.7→162.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 4개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>124.2→151.1<i>+26.9cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>149.7→162.1<i>+12.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":9.01,"caY":9,"caM":0,"height":124.2,"bone_age":9.67},{"ageDecimal":9.07,"caY":9,"caM":0,"height":125.7,"bone_age":null},{"ageDecimal":9.17,"caY":9,"caM":2,"height":126.1,"bone_age":null},{"ageDecimal":9.24,"caY":9,"caM":2,"height":126.4,"bone_age":null},{"ageDecimal":9.32,"caY":9,"caM":3,"height":127.2,"bone_age":null},{"ageDecimal":9.42,"caY":9,"caM":4,"height":128.3,"bone_age":null},{"ageDecimal":9.49,"caY":9,"caM":5,"height":129.2,"bone_age":9.83},{"ageDecimal":9.57,"caY":9,"caM":6,"height":131.1,"bone_age":null},{"ageDecimal":9.66,"caY":9,"caM":8,"height":130.8,"bone_age":null},{"ageDecimal":9.78,"caY":9,"caM":9,"height":132.2,"bone_age":null},{"ageDecimal":9.88,"caY":9,"caM":10,"height":134,"bone_age":null},{"ageDecimal":9.95,"caY":9,"caM":11,"height":133.6,"bone_age":10.42},{"ageDecimal":10.05,"caY":10,"caM":0,"height":134.3,"bone_age":null},{"ageDecimal":10.2,"caY":10,"caM":2,"height":135,"bone_age":null},{"ageDecimal":10.3,"caY":10,"caM":3,"height":137.2,"bone_age":null},{"ageDecimal":10.37,"caY":10,"caM":4,"height":137.8,"bone_age":null},{"ageDecimal":10.45,"caY":10,"caM":5,"height":139,"bone_age":11.5},{"ageDecimal":10.55,"caY":10,"caM":6,"height":139.9,"bone_age":null},{"ageDecimal":10.64,"caY":10,"caM":7,"height":139.7,"bone_age":null},{"ageDecimal":10.74,"caY":10,"caM":8,"height":141.3,"bone_age":null},{"ageDecimal":10.81,"caY":10,"caM":9,"height":141,"bone_age":null},{"ageDecimal":10.91,"caY":10,"caM":10,"height":142.6,"bone_age":null},{"ageDecimal":11.01,"caY":11,"caM":0,"height":143.1,"bone_age":11.67},{"ageDecimal":11.06,"caY":11,"caM":0,"height":143.3,"bone_age":null},{"ageDecimal":11.14,"caY":11,"caM":1,"height":143.6,"bone_age":null},{"ageDecimal":11.22,"caY":11,"caM":2,"height":143.8,"bone_age":null},{"ageDecimal":11.29,"caY":11,"caM":3,"height":145.2,"bone_age":null},{"ageDecimal":11.41,"caY":11,"caM":4,"height":146.8,"bone_age":null},{"ageDecimal":11.5,"caY":11,"caM":6,"height":146.3,"bone_age":11.17},{"ageDecimal":11.58,"caY":11,"caM":7,"height":146.5,"bone_age":null},{"ageDecimal":11.66,"caY":11,"caM":7,"height":146.8,"bone_age":null},{"ageDecimal":11.72,"caY":11,"caM":8,"height":147.6,"bone_age":null},{"ageDecimal":11.79,"caY":11,"caM":9,"height":147,"bone_age":null},{"ageDecimal":11.87,"caY":11,"caM":10,"height":148.3,"bone_age":null},{"ageDecimal":11.96,"caY":11,"caM":11,"height":148.8,"bone_age":11.58},{"ageDecimal":12.06,"caY":12,"caM":0,"height":148.3,"bone_age":null},{"ageDecimal":12.14,"caY":12,"caM":1,"height":148.4,"bone_age":null},{"ageDecimal":12.21,"caY":12,"caM":2,"height":150,"bone_age":null},{"ageDecimal":12.29,"caY":12,"caM":3,"height":150.1,"bone_age":null},{"ageDecimal":12.38,"caY":12,"caM":4,"height":151.1,"bone_age":11.58}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 지아</span>
+    <span class="meta">초진 만 8.4세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 155.3cm → 165.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 9개월 동안 키 <b>33.3cm</b> 성장 (123→156.3cm)</li><li>예측 성인키 <b>+10.1cm</b> 상승 (155.3→165.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 9개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>123→156.3<i>+33.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>155.3→165.4<i>+10.1cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":8.38,"caY":8,"caM":4,"height":123,"bone_age":8.33},{"ageDecimal":9.42,"caY":9,"caM":5,"height":130,"bone_age":null},{"ageDecimal":9.49,"caY":9,"caM":5,"height":130,"bone_age":null},{"ageDecimal":9.57,"caY":9,"caM":6,"height":130.3,"bone_age":null},{"ageDecimal":9.65,"caY":9,"caM":7,"height":130.8,"bone_age":null},{"ageDecimal":9.73,"caY":9,"caM":8,"height":130.8,"bone_age":9.83},{"ageDecimal":10.14,"caY":10,"caM":1,"height":135.2,"bone_age":null},{"ageDecimal":10.24,"caY":10,"caM":2,"height":136.1,"bone_age":10.17},{"ageDecimal":10.33,"caY":10,"caM":4,"height":136.7,"bone_age":null},{"ageDecimal":10.39,"caY":10,"caM":4,"height":137.2,"bone_age":null},{"ageDecimal":10.58,"caY":10,"caM":7,"height":139.4,"bone_age":null},{"ageDecimal":10.75,"caY":10,"caM":9,"height":140.6,"bone_age":10.75},{"ageDecimal":10.83,"caY":10,"caM":10,"height":141.4,"bone_age":null},{"ageDecimal":10.91,"caY":10,"caM":10,"height":142.3,"bone_age":null},{"ageDecimal":11,"caY":11,"caM":0,"height":141.4,"bone_age":null},{"ageDecimal":11.1,"caY":11,"caM":1,"height":142,"bone_age":null},{"ageDecimal":11.13,"caY":11,"caM":1,"height":143.1,"bone_age":null},{"ageDecimal":11.16,"caY":11,"caM":1,"height":143.4,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":143.7,"bone_age":11.08},{"ageDecimal":11.25,"caY":11,"caM":3,"height":143.1,"bone_age":null},{"ageDecimal":11.32,"caY":11,"caM":3,"height":143.7,"bone_age":null},{"ageDecimal":11.39,"caY":11,"caM":4,"height":144.6,"bone_age":null},{"ageDecimal":11.47,"caY":11,"caM":5,"height":145.4,"bone_age":null},{"ageDecimal":11.53,"caY":11,"caM":6,"height":146.3,"bone_age":null},{"ageDecimal":11.56,"caY":11,"caM":6,"height":146.7,"bone_age":null},{"ageDecimal":11.73,"caY":11,"caM":8,"height":147.1,"bone_age":11.25},{"ageDecimal":11.9,"caY":11,"caM":10,"height":148,"bone_age":null},{"ageDecimal":11.98,"caY":11,"caM":11,"height":149.1,"bone_age":null},{"ageDecimal":12.06,"caY":12,"caM":0,"height":149.4,"bone_age":11.58},{"ageDecimal":12.23,"caY":12,"caM":2,"height":150.1,"bone_age":null},{"ageDecimal":12.34,"caY":12,"caM":4,"height":150.4,"bone_age":null},{"ageDecimal":12.39,"caY":12,"caM":4,"height":150.7,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":150.1,"bone_age":null},{"ageDecimal":12.62,"caY":12,"caM":7,"height":151.8,"bone_age":null},{"ageDecimal":12.67,"caY":12,"caM":8,"height":152.3,"bone_age":11.58},{"ageDecimal":12.85,"caY":12,"caM":10,"height":152.8,"bone_age":null},{"ageDecimal":13,"caY":12,"caM":11,"height":153,"bone_age":null},{"ageDecimal":13.07,"caY":13,"caM":0,"height":154,"bone_age":null},{"ageDecimal":13.13,"caY":13,"caM":1,"height":156.3,"bone_age":11.83}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 수아</span>
+    <span class="meta">초진 만 9.1세 · 치료 완료</span>
+  </header>
+  <p class="headline">"9살인데 뼈나이는 11살이었습니다 — 예상키 +14cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 5개월 동안 키 <b>26.6cm</b> 성장 (135→161.6cm)</li><li>예측 성인키 <b>+14cm</b> 상승 (154→168cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>135→161.6<i>+26.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>154→168<i>+14cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":9.09,"caY":9,"caM":1,"height":135,"bone_age":11},{"ageDecimal":9.16,"caY":9,"caM":1,"height":135.5,"bone_age":null},{"ageDecimal":9.24,"caY":9,"caM":2,"height":135.9,"bone_age":null},{"ageDecimal":9.32,"caY":9,"caM":3,"height":137.8,"bone_age":null},{"ageDecimal":9.39,"caY":9,"caM":4,"height":138.5,"bone_age":null},{"ageDecimal":9.47,"caY":9,"caM":5,"height":140.1,"bone_age":11},{"ageDecimal":9.55,"caY":9,"caM":6,"height":140.3,"bone_age":null},{"ageDecimal":9.62,"caY":9,"caM":7,"height":141.1,"bone_age":null},{"ageDecimal":9.7,"caY":9,"caM":8,"height":141.6,"bone_age":null},{"ageDecimal":9.78,"caY":9,"caM":9,"height":142.2,"bone_age":null},{"ageDecimal":9.87,"caY":9,"caM":10,"height":143.1,"bone_age":null},{"ageDecimal":9.97,"caY":9,"caM":11,"height":143.6,"bone_age":11.42},{"ageDecimal":10.12,"caY":10,"caM":1,"height":145,"bone_age":null},{"ageDecimal":10.22,"caY":10,"caM":2,"height":145.5,"bone_age":null},{"ageDecimal":10.31,"caY":10,"caM":3,"height":146.3,"bone_age":null},{"ageDecimal":10.39,"caY":10,"caM":4,"height":146.6,"bone_age":12},{"ageDecimal":10.49,"caY":10,"caM":5,"height":148.8,"bone_age":null},{"ageDecimal":10.6,"caY":10,"caM":7,"height":149.2,"bone_age":null},{"ageDecimal":10.7,"caY":10,"caM":8,"height":149.3,"bone_age":null},{"ageDecimal":10.83,"caY":10,"caM":9,"height":150.5,"bone_age":null},{"ageDecimal":10.91,"caY":10,"caM":10,"height":151.1,"bone_age":11.42},{"ageDecimal":10.98,"caY":10,"caM":11,"height":151.9,"bone_age":null},{"ageDecimal":11.09,"caY":11,"caM":1,"height":152,"bone_age":null},{"ageDecimal":11.18,"caY":11,"caM":2,"height":152.7,"bone_age":null},{"ageDecimal":11.27,"caY":11,"caM":3,"height":152.7,"bone_age":null},{"ageDecimal":11.33,"caY":11,"caM":3,"height":153.7,"bone_age":null},{"ageDecimal":11.41,"caY":11,"caM":4,"height":154.1,"bone_age":12},{"ageDecimal":11.5,"caY":11,"caM":5,"height":154.9,"bone_age":null},{"ageDecimal":11.6,"caY":11,"caM":7,"height":155.5,"bone_age":null},{"ageDecimal":11.68,"caY":11,"caM":8,"height":156,"bone_age":null},{"ageDecimal":11.77,"caY":11,"caM":9,"height":156.8,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":158.8,"bone_age":null},{"ageDecimal":11.92,"caY":11,"caM":11,"height":159.5,"bone_age":11.83},{"ageDecimal":12.48,"caY":12,"caM":5,"height":161.6,"bone_age":12.17}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 유준</span>
+    <span class="meta">초진 만 11.4세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 4년 — 예상키 166.8cm → 178.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 7개월 동안 키 <b>29.5cm</b> 성장 (138.8→168.3cm)</li><li>예측 성인키 <b>+11.4cm</b> 상승 (166.8→178.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>4년 7개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>138.8→168.3<i>+29.5cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>166.8→178.2<i>+11.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.39,"caY":11,"caM":4,"height":138.8,"bone_age":11.33},{"ageDecimal":11.46,"caY":11,"caM":5,"height":138.1,"bone_age":null},{"ageDecimal":11.55,"caY":11,"caM":6,"height":138.9,"bone_age":null},{"ageDecimal":11.75,"caY":11,"caM":8,"height":141,"bone_age":null},{"ageDecimal":11.82,"caY":11,"caM":9,"height":141,"bone_age":null},{"ageDecimal":11.85,"caY":11,"caM":10,"height":141.8,"bone_age":11.5},{"ageDecimal":11.91,"caY":11,"caM":10,"height":142.2,"bone_age":null},{"ageDecimal":11.97,"caY":11,"caM":11,"height":141.8,"bone_age":null},{"ageDecimal":11.98,"caY":11,"caM":11,"height":141.9,"bone_age":null},{"ageDecimal":12.01,"caY":12,"caM":0,"height":142.6,"bone_age":null},{"ageDecimal":12.05,"caY":12,"caM":0,"height":142.4,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":144,"bone_age":null},{"ageDecimal":12.3,"caY":12,"caM":3,"height":144.8,"bone_age":null},{"ageDecimal":13.88,"caY":13,"caM":10,"height":154.3,"bone_age":13.25},{"ageDecimal":14.02,"caY":14,"caM":0,"height":155.5,"bone_age":null},{"ageDecimal":14.09,"caY":14,"caM":1,"height":155.1,"bone_age":null},{"ageDecimal":14.17,"caY":14,"caM":2,"height":156.5,"bone_age":null},{"ageDecimal":14.23,"caY":14,"caM":2,"height":156.4,"bone_age":null},{"ageDecimal":14.3,"caY":14,"caM":3,"height":157,"bone_age":null},{"ageDecimal":14.4,"caY":14,"caM":4,"height":157.4,"bone_age":13.75},{"ageDecimal":14.49,"caY":14,"caM":5,"height":158.1,"bone_age":null},{"ageDecimal":14.57,"caY":14,"caM":6,"height":158.3,"bone_age":null},{"ageDecimal":14.65,"caY":14,"caM":7,"height":158.1,"bone_age":null},{"ageDecimal":14.74,"caY":14,"caM":8,"height":158.8,"bone_age":null},{"ageDecimal":14.83,"caY":14,"caM":9,"height":159,"bone_age":null},{"ageDecimal":14.87,"caY":14,"caM":10,"height":160,"bone_age":null},{"ageDecimal":14.91,"caY":14,"caM":10,"height":159,"bone_age":13.25},{"ageDecimal":14.98,"caY":14,"caM":11,"height":159.3,"bone_age":null},{"ageDecimal":15.05,"caY":15,"caM":0,"height":160.4,"bone_age":null},{"ageDecimal":15.15,"caY":15,"caM":1,"height":162,"bone_age":null},{"ageDecimal":15.23,"caY":15,"caM":2,"height":161.9,"bone_age":null},{"ageDecimal":15.34,"caY":15,"caM":4,"height":164.3,"bone_age":null},{"ageDecimal":15.41,"caY":15,"caM":4,"height":164.7,"bone_age":13.42},{"ageDecimal":15.49,"caY":15,"caM":5,"height":165.5,"bone_age":null},{"ageDecimal":15.55,"caY":15,"caM":6,"height":165.2,"bone_age":null},{"ageDecimal":15.62,"caY":15,"caM":7,"height":166.6,"bone_age":null},{"ageDecimal":15.71,"caY":15,"caM":8,"height":167.5,"bone_age":null},{"ageDecimal":15.79,"caY":15,"caM":9,"height":167.6,"bone_age":null},{"ageDecimal":15.85,"caY":15,"caM":10,"height":168.3,"bone_age":13.6},{"ageDecimal":15.95,"caY":15,"caM":11,"height":168.3,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 승민</span>
+    <span class="meta">초진 만 8.9세 · 치료 완료</span>
+  </header>
+  <p class="headline">"9살인데 뼈나이는 12살이었습니다 — 예상키 +11.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 2개월 동안 키 <b>24cm</b> 성장 (139.4→163.4cm)</li><li>예측 성인키 <b>+11.9cm</b> 상승 (166.5→178.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 2개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>139.4→163.4<i>+24cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>166.5→178.4<i>+11.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":8.93,"caY":8,"caM":11,"height":139.4,"bone_age":11.5},{"ageDecimal":9.01,"caY":9,"caM":0,"height":140,"bone_age":null},{"ageDecimal":9.09,"caY":9,"caM":1,"height":140.7,"bone_age":null},{"ageDecimal":9.17,"caY":9,"caM":2,"height":142.5,"bone_age":null},{"ageDecimal":9.26,"caY":9,"caM":3,"height":141.8,"bone_age":null},{"ageDecimal":9.36,"caY":9,"caM":4,"height":144.1,"bone_age":11.75},{"ageDecimal":9.47,"caY":9,"caM":5,"height":144.4,"bone_age":null},{"ageDecimal":9.57,"caY":9,"caM":6,"height":145.5,"bone_age":null},{"ageDecimal":9.65,"caY":9,"caM":7,"height":146,"bone_age":null},{"ageDecimal":9.74,"caY":9,"caM":8,"height":146.8,"bone_age":null},{"ageDecimal":9.82,"caY":9,"caM":9,"height":147.6,"bone_age":null},{"ageDecimal":9.89,"caY":9,"caM":10,"height":148.2,"bone_age":null},{"ageDecimal":9.97,"caY":9,"caM":11,"height":149,"bone_age":11.92},{"ageDecimal":10.05,"caY":10,"caM":0,"height":148.7,"bone_age":null},{"ageDecimal":10.2,"caY":10,"caM":2,"height":151.1,"bone_age":null},{"ageDecimal":10.3,"caY":10,"caM":3,"height":150.7,"bone_age":null},{"ageDecimal":10.39,"caY":10,"caM":4,"height":151.6,"bone_age":null},{"ageDecimal":10.47,"caY":10,"caM":5,"height":152.3,"bone_age":12.17},{"ageDecimal":10.55,"caY":10,"caM":6,"height":152.1,"bone_age":null},{"ageDecimal":10.72,"caY":10,"caM":8,"height":153,"bone_age":null},{"ageDecimal":10.8,"caY":10,"caM":9,"height":154.6,"bone_age":null},{"ageDecimal":10.87,"caY":10,"caM":10,"height":155.6,"bone_age":null},{"ageDecimal":10.99,"caY":10,"caM":11,"height":155.7,"bone_age":12.67},{"ageDecimal":11.02,"caY":11,"caM":0,"height":155.7,"bone_age":null},{"ageDecimal":11.1,"caY":11,"caM":1,"height":156.5,"bone_age":null},{"ageDecimal":11.18,"caY":11,"caM":2,"height":156.5,"bone_age":null},{"ageDecimal":11.26,"caY":11,"caM":3,"height":156.3,"bone_age":null},{"ageDecimal":11.34,"caY":11,"caM":4,"height":157,"bone_age":null},{"ageDecimal":11.45,"caY":11,"caM":5,"height":158.6,"bone_age":null},{"ageDecimal":11.52,"caY":11,"caM":6,"height":159.4,"bone_age":12.25},{"ageDecimal":11.62,"caY":11,"caM":7,"height":160.1,"bone_age":null},{"ageDecimal":11.75,"caY":11,"caM":9,"height":159.8,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":160.8,"bone_age":null},{"ageDecimal":11.91,"caY":11,"caM":10,"height":161.8,"bone_age":null},{"ageDecimal":11.98,"caY":11,"caM":11,"height":162.8,"bone_age":null},{"ageDecimal":12.1,"caY":12,"caM":1,"height":163.4,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 다은</span>
+    <span class="meta">초진 만 11.7세 · 치료 중</span>
+  </header>
+  <p class="headline">"12세, 늦었다고 생각했지만 — 예상키 +13.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 11개월 동안 키 <b>20.3cm</b> 성장 (136.5→156.8cm)</li><li>예측 성인키 <b>+13.8cm</b> 상승 (150.9→164.7cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>136.5→156.8<i>+20.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>150.9→164.7<i>+13.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":11.68,"caY":11,"caM":8,"height":136.5,"bone_age":11.67},{"ageDecimal":11.76,"caY":11,"caM":9,"height":138,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":138.6,"bone_age":null},{"ageDecimal":11.92,"caY":11,"caM":10,"height":138.2,"bone_age":null},{"ageDecimal":12,"caY":12,"caM":0,"height":139.5,"bone_age":null},{"ageDecimal":12.08,"caY":12,"caM":0,"height":140.1,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":140.8,"bone_age":11.75},{"ageDecimal":12.16,"caY":12,"caM":1,"height":140.8,"bone_age":null},{"ageDecimal":12.22,"caY":12,"caM":2,"height":142,"bone_age":null},{"ageDecimal":12.31,"caY":12,"caM":3,"height":141.4,"bone_age":null},{"ageDecimal":12.36,"caY":12,"caM":4,"height":143.2,"bone_age":null},{"ageDecimal":12.44,"caY":12,"caM":5,"height":143.3,"bone_age":null},{"ageDecimal":12.62,"caY":12,"caM":7,"height":144,"bone_age":11.83},{"ageDecimal":12.79,"caY":12,"caM":9,"height":146.6,"bone_age":null},{"ageDecimal":12.88,"caY":12,"caM":10,"height":146.2,"bone_age":null},{"ageDecimal":12.95,"caY":12,"caM":11,"height":147.5,"bone_age":null},{"ageDecimal":13.02,"caY":13,"caM":0,"height":147.1,"bone_age":null},{"ageDecimal":13.08,"caY":13,"caM":0,"height":146.9,"bone_age":11.83},{"ageDecimal":13.16,"caY":13,"caM":1,"height":148,"bone_age":null},{"ageDecimal":13.23,"caY":13,"caM":2,"height":148.6,"bone_age":null},{"ageDecimal":13.31,"caY":13,"caM":3,"height":148,"bone_age":null},{"ageDecimal":13.4,"caY":13,"caM":4,"height":150,"bone_age":null},{"ageDecimal":13.5,"caY":13,"caM":5,"height":150.2,"bone_age":null},{"ageDecimal":13.57,"caY":13,"caM":6,"height":150.3,"bone_age":11.58},{"ageDecimal":13.64,"caY":13,"caM":7,"height":150.7,"bone_age":null},{"ageDecimal":13.73,"caY":13,"caM":8,"height":151,"bone_age":null},{"ageDecimal":13.82,"caY":13,"caM":9,"height":152.3,"bone_age":null},{"ageDecimal":13.92,"caY":13,"caM":11,"height":152.9,"bone_age":null},{"ageDecimal":14.02,"caY":14,"caM":0,"height":153,"bone_age":null},{"ageDecimal":14.1,"caY":14,"caM":1,"height":154.2,"bone_age":11.58},{"ageDecimal":14.58,"caY":14,"caM":6,"height":156.8,"bone_age":12.08}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 민성</span>
+    <span class="meta">초진 만 12.7세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 172.9cm → 186.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 1개월 동안 키 <b>19.6cm</b> 성장 (154.7→174.3cm)</li><li>예측 성인키 <b>+13.4cm</b> 상승 (172.9→186.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 1개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>154.7→174.3<i>+19.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>172.9→186.3<i>+13.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-obes">비만 동반</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.65,"caY":12,"caM":7,"height":154.7,"bone_age":12.58},{"ageDecimal":12.72,"caY":12,"caM":8,"height":155.7,"bone_age":null},{"ageDecimal":12.8,"caY":12,"caM":9,"height":156,"bone_age":null},{"ageDecimal":12.87,"caY":12,"caM":10,"height":156.8,"bone_age":null},{"ageDecimal":12.98,"caY":12,"caM":11,"height":158.7,"bone_age":null},{"ageDecimal":13.08,"caY":13,"caM":0,"height":159.1,"bone_age":null},{"ageDecimal":13.15,"caY":13,"caM":1,"height":160.8,"bone_age":13.25},{"ageDecimal":13.25,"caY":13,"caM":3,"height":162.3,"bone_age":null},{"ageDecimal":13.34,"caY":13,"caM":4,"height":164,"bone_age":null},{"ageDecimal":13.41,"caY":13,"caM":4,"height":163.5,"bone_age":null},{"ageDecimal":13.49,"caY":13,"caM":5,"height":165.6,"bone_age":null},{"ageDecimal":13.58,"caY":13,"caM":7,"height":165.6,"bone_age":13.58},{"ageDecimal":13.75,"caY":13,"caM":8,"height":166.5,"bone_age":null},{"ageDecimal":13.81,"caY":13,"caM":9,"height":166.6,"bone_age":null},{"ageDecimal":13.89,"caY":13,"caM":10,"height":166,"bone_age":null},{"ageDecimal":13.97,"caY":13,"caM":11,"height":167,"bone_age":null},{"ageDecimal":14.06,"caY":14,"caM":0,"height":168,"bone_age":null},{"ageDecimal":14.13,"caY":14,"caM":1,"height":168.1,"bone_age":13.6},{"ageDecimal":14.21,"caY":14,"caM":2,"height":168.8,"bone_age":null},{"ageDecimal":14.31,"caY":14,"caM":3,"height":169.8,"bone_age":null},{"ageDecimal":14.4,"caY":14,"caM":4,"height":171,"bone_age":null},{"ageDecimal":14.54,"caY":14,"caM":6,"height":172.1,"bone_age":12.67},{"ageDecimal":14.77,"caY":14,"caM":9,"height":174.3,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 주원</span>
+    <span class="meta">초진 만 8.6세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 5년 — 예상키 174.8cm → 180.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 5년 11개월 동안 키 <b>38.2cm</b> 성장 (132.6→170.8cm)</li><li>예측 성인키 <b>+5.6cm</b> 상승 (174.8→180.4cm)</li><li>연평균 <b>6.5cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>5년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>132.6→170.8<i>+38.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>174.8→180.4<i>+5.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":8.55,"caY":8,"caM":6,"height":132.6,"bone_age":null},{"ageDecimal":9.19,"caY":9,"caM":2,"height":135.5,"bone_age":9.17},{"ageDecimal":9.9,"caY":9,"caM":10,"height":139.1,"bone_age":null},{"ageDecimal":10.34,"caY":10,"caM":4,"height":141.7,"bone_age":10.63},{"ageDecimal":10.85,"caY":10,"caM":10,"height":145,"bone_age":11.75},{"ageDecimal":10.92,"caY":10,"caM":10,"height":145.5,"bone_age":null},{"ageDecimal":10.97,"caY":10,"caM":11,"height":146.3,"bone_age":null},{"ageDecimal":11,"caY":11,"caM":0,"height":145.6,"bone_age":null},{"ageDecimal":11.13,"caY":11,"caM":1,"height":147.6,"bone_age":null},{"ageDecimal":11.21,"caY":11,"caM":2,"height":148.7,"bone_age":null},{"ageDecimal":11.29,"caY":11,"caM":3,"height":149,"bone_age":null},{"ageDecimal":11.37,"caY":11,"caM":4,"height":149.1,"bone_age":12.42},{"ageDecimal":11.51,"caY":11,"caM":6,"height":151.3,"bone_age":null},{"ageDecimal":11.59,"caY":11,"caM":7,"height":151.9,"bone_age":null},{"ageDecimal":11.67,"caY":11,"caM":8,"height":153.3,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":155,"bone_age":null},{"ageDecimal":11.86,"caY":11,"caM":10,"height":154.9,"bone_age":null},{"ageDecimal":11.94,"caY":11,"caM":11,"height":156,"bone_age":13},{"ageDecimal":12.01,"caY":12,"caM":0,"height":156.5,"bone_age":null},{"ageDecimal":12.08,"caY":12,"caM":0,"height":157.4,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":156,"bone_age":null},{"ageDecimal":12.24,"caY":12,"caM":2,"height":158.6,"bone_age":null},{"ageDecimal":12.31,"caY":12,"caM":3,"height":158.4,"bone_age":13.33},{"ageDecimal":12.38,"caY":12,"caM":4,"height":160,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":161.9,"bone_age":null},{"ageDecimal":12.57,"caY":12,"caM":6,"height":162.5,"bone_age":null},{"ageDecimal":12.65,"caY":12,"caM":7,"height":163,"bone_age":null},{"ageDecimal":12.73,"caY":12,"caM":8,"height":163.1,"bone_age":null},{"ageDecimal":12.8,"caY":12,"caM":9,"height":163.8,"bone_age":13.3},{"ageDecimal":12.88,"caY":12,"caM":10,"height":163.8,"bone_age":null},{"ageDecimal":12.97,"caY":12,"caM":11,"height":164.1,"bone_age":null},{"ageDecimal":13.12,"caY":13,"caM":1,"height":166,"bone_age":null},{"ageDecimal":13.2,"caY":13,"caM":2,"height":166,"bone_age":null},{"ageDecimal":13.28,"caY":13,"caM":3,"height":166,"bone_age":13.5},{"ageDecimal":13.36,"caY":13,"caM":4,"height":166.9,"bone_age":null},{"ageDecimal":13.44,"caY":13,"caM":5,"height":167.3,"bone_age":null},{"ageDecimal":13.51,"caY":13,"caM":6,"height":167.8,"bone_age":null},{"ageDecimal":13.59,"caY":13,"caM":7,"height":168,"bone_age":null},{"ageDecimal":13.67,"caY":13,"caM":8,"height":168.1,"bone_age":13.67},{"ageDecimal":13.97,"caY":13,"caM":11,"height":171,"bone_age":null},{"ageDecimal":14.04,"caY":14,"caM":0,"height":171.4,"bone_age":null},{"ageDecimal":14.12,"caY":14,"caM":1,"height":171.4,"bone_age":13.7},{"ageDecimal":14.44,"caY":14,"caM":5,"height":170.8,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 승현</span>
+    <span class="meta">초진 만 13.6세 · 치료 중</span>
+  </header>
+  <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +13.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 동안 키 <b>20.2cm</b> 성장 (153.5→173.7cm)</li><li>예측 성인키 <b>+13.8cm</b> 상승 (167.4→181.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년</b></div>
+    <div class="kpi"><span>실제 키</span><b>153.5→173.7<i>+20.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>167.4→181.2<i>+13.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":13.57,"caY":13,"caM":6,"height":153.5,"bone_age":13.5},{"ageDecimal":13.64,"caY":13,"caM":7,"height":155.2,"bone_age":null},{"ageDecimal":13.72,"caY":13,"caM":8,"height":156,"bone_age":null},{"ageDecimal":13.79,"caY":13,"caM":9,"height":157.6,"bone_age":null},{"ageDecimal":13.98,"caY":13,"caM":11,"height":159.3,"bone_age":13.6},{"ageDecimal":14.29,"caY":14,"caM":3,"height":160,"bone_age":null},{"ageDecimal":14.32,"caY":14,"caM":3,"height":161.7,"bone_age":null},{"ageDecimal":14.44,"caY":14,"caM":5,"height":162.9,"bone_age":13.5},{"ageDecimal":14.79,"caY":14,"caM":9,"height":166.4,"bone_age":null},{"ageDecimal":14.87,"caY":14,"caM":10,"height":165,"bone_age":null},{"ageDecimal":14.89,"caY":14,"caM":10,"height":167.1,"bone_age":null},{"ageDecimal":14.92,"caY":14,"caM":11,"height":168.2,"bone_age":null},{"ageDecimal":14.96,"caY":14,"caM":11,"height":168.7,"bone_age":13.67},{"ageDecimal":15.04,"caY":15,"caM":0,"height":168,"bone_age":null},{"ageDecimal":15.12,"caY":15,"caM":1,"height":168.1,"bone_age":null},{"ageDecimal":15.21,"caY":15,"caM":2,"height":171.4,"bone_age":null},{"ageDecimal":15.38,"caY":15,"caM":4,"height":172.4,"bone_age":null},{"ageDecimal":15.46,"caY":15,"caM":5,"height":172.9,"bone_age":13.83},{"ageDecimal":15.56,"caY":15,"caM":6,"height":173.7,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 지안</span>
+    <span class="meta">초진 만 11.4세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 176.1cm → 186.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 3개월 동안 키 <b>26.2cm</b> 성장 (152.8→179cm)</li><li>예측 성인키 <b>+10cm</b> 상승 (176.1→186.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.9년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 3개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>152.8→179<i>+26.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>176.1→186.1<i>+10cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.42,"caY":11,"caM":5,"height":152.8,"bone_age":11.75},{"ageDecimal":11.5,"caY":11,"caM":6,"height":154.5,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":157,"bone_age":null},{"ageDecimal":11.83,"caY":11,"caM":10,"height":158,"bone_age":11.8},{"ageDecimal":12.04,"caY":12,"caM":0,"height":158.6,"bone_age":null},{"ageDecimal":12.32,"caY":12,"caM":3,"height":162.6,"bone_age":12.67},{"ageDecimal":12.41,"caY":12,"caM":4,"height":163,"bone_age":null},{"ageDecimal":12.47,"caY":12,"caM":5,"height":164.6,"bone_age":null},{"ageDecimal":12.75,"caY":12,"caM":9,"height":167.4,"bone_age":13.08},{"ageDecimal":12.87,"caY":12,"caM":10,"height":169.1,"bone_age":null},{"ageDecimal":13.04,"caY":13,"caM":0,"height":170.3,"bone_age":null},{"ageDecimal":13.28,"caY":13,"caM":3,"height":172.8,"bone_age":13.33},{"ageDecimal":13.35,"caY":13,"caM":4,"height":173.3,"bone_age":null},{"ageDecimal":13.43,"caY":13,"caM":5,"height":174.1,"bone_age":null},{"ageDecimal":13.51,"caY":13,"caM":6,"height":174.8,"bone_age":null},{"ageDecimal":13.56,"caY":13,"caM":6,"height":175,"bone_age":null},{"ageDecimal":13.77,"caY":13,"caM":9,"height":175.8,"bone_age":13.5},{"ageDecimal":14.27,"caY":14,"caM":3,"height":177.5,"bone_age":13.92},{"ageDecimal":14.28,"caY":14,"caM":3,"height":178,"bone_age":null},{"ageDecimal":14.43,"caY":14,"caM":5,"height":178.2,"bone_age":14.2},{"ageDecimal":14.71,"caY":14,"caM":8,"height":179,"bone_age":14.08}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 윤우</span>
+    <span class="meta">초진 만 12.3세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 173.9cm → 185.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 6개월 동안 키 <b>23cm</b> 성장 (151.8→174.8cm)</li><li>예측 성인키 <b>+11.3cm</b> 상승 (173.9→185.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 6개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>151.8→174.8<i>+23cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>173.9→185.2<i>+11.3cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.26,"caY":12,"caM":3,"height":151.8,"bone_age":12},{"ageDecimal":12.34,"caY":12,"caM":4,"height":151.1,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":153.4,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":5,"height":154.5,"bone_age":null},{"ageDecimal":12.65,"caY":12,"caM":7,"height":156.2,"bone_age":null},{"ageDecimal":12.76,"caY":12,"caM":9,"height":156.4,"bone_age":12.42},{"ageDecimal":12.84,"caY":12,"caM":10,"height":157.2,"bone_age":null},{"ageDecimal":12.94,"caY":12,"caM":11,"height":158.4,"bone_age":null},{"ageDecimal":13.05,"caY":13,"caM":0,"height":158.9,"bone_age":null},{"ageDecimal":13.19,"caY":13,"caM":2,"height":158.9,"bone_age":null},{"ageDecimal":13.3,"caY":13,"caM":3,"height":160.6,"bone_age":12.67},{"ageDecimal":13.52,"caY":13,"caM":6,"height":162.6,"bone_age":null},{"ageDecimal":13.68,"caY":13,"caM":8,"height":164.4,"bone_age":null},{"ageDecimal":13.86,"caY":13,"caM":10,"height":166.3,"bone_age":13},{"ageDecimal":13.96,"caY":13,"caM":11,"height":167,"bone_age":null},{"ageDecimal":14.1,"caY":14,"caM":1,"height":167.5,"bone_age":null},{"ageDecimal":14.3,"caY":14,"caM":3,"height":170.5,"bone_age":null},{"ageDecimal":14.4,"caY":14,"caM":4,"height":171.8,"bone_age":13.25},{"ageDecimal":14.47,"caY":14,"caM":5,"height":172.7,"bone_age":null},{"ageDecimal":14.55,"caY":14,"caM":6,"height":173.8,"bone_age":null},{"ageDecimal":14.63,"caY":14,"caM":7,"height":174,"bone_age":null},{"ageDecimal":14.79,"caY":14,"caM":9,"height":174.8,"bone_age":13.33}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 현준</span>
+    <span class="meta">초진 만 10.5세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 172.2cm → 181.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 9개월 동안 키 <b>27.2cm</b> 성장 (146.3→173.5cm)</li><li>예측 성인키 <b>+9.3cm</b> 상승 (172.2→181.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 9개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.3→173.5<i>+27.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>172.2→181.5<i>+9.3cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.51,"caY":10,"caM":6,"height":146.3,"bone_age":11.5},{"ageDecimal":10.58,"caY":10,"caM":7,"height":148.3,"bone_age":null},{"ageDecimal":10.66,"caY":10,"caM":7,"height":148.6,"bone_age":null},{"ageDecimal":10.76,"caY":10,"caM":9,"height":149.5,"bone_age":null},{"ageDecimal":10.83,"caY":10,"caM":10,"height":149.9,"bone_age":null},{"ageDecimal":10.93,"caY":10,"caM":11,"height":150.2,"bone_age":null},{"ageDecimal":11.03,"caY":11,"caM":0,"height":151,"bone_age":11.67},{"ageDecimal":11.12,"caY":11,"caM":1,"height":152.7,"bone_age":null},{"ageDecimal":11.2,"caY":11,"caM":2,"height":153,"bone_age":null},{"ageDecimal":11.27,"caY":11,"caM":3,"height":153.7,"bone_age":null},{"ageDecimal":11.37,"caY":11,"caM":4,"height":154.6,"bone_age":null},{"ageDecimal":11.45,"caY":11,"caM":5,"height":156.4,"bone_age":null},{"ageDecimal":11.52,"caY":11,"caM":6,"height":157.1,"bone_age":12.17},{"ageDecimal":11.62,"caY":11,"caM":7,"height":157.6,"bone_age":null},{"ageDecimal":11.72,"caY":11,"caM":8,"height":158.2,"bone_age":null},{"ageDecimal":11.81,"caY":11,"caM":9,"height":158.6,"bone_age":null},{"ageDecimal":11.91,"caY":11,"caM":10,"height":161,"bone_age":null},{"ageDecimal":12,"caY":12,"caM":0,"height":162.3,"bone_age":12.58},{"ageDecimal":12.1,"caY":12,"caM":1,"height":163.4,"bone_age":null},{"ageDecimal":12.19,"caY":12,"caM":2,"height":164.1,"bone_age":null},{"ageDecimal":12.29,"caY":12,"caM":3,"height":165.8,"bone_age":null},{"ageDecimal":12.39,"caY":12,"caM":4,"height":166.9,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":168.3,"bone_age":13.33},{"ageDecimal":12.58,"caY":12,"caM":6,"height":168.1,"bone_age":null},{"ageDecimal":12.65,"caY":12,"caM":7,"height":168.9,"bone_age":null},{"ageDecimal":12.73,"caY":12,"caM":8,"height":169.7,"bone_age":null},{"ageDecimal":12.81,"caY":12,"caM":9,"height":170.1,"bone_age":null},{"ageDecimal":12.88,"caY":12,"caM":10,"height":171.1,"bone_age":null},{"ageDecimal":12.98,"caY":12,"caM":11,"height":171.5,"bone_age":null},{"ageDecimal":13.08,"caY":13,"caM":0,"height":171.6,"bone_age":13.5},{"ageDecimal":13.17,"caY":13,"caM":2,"height":172,"bone_age":null},{"ageDecimal":13.25,"caY":13,"caM":3,"height":173.5,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 지환</span>
+    <span class="meta">초진 만 9.3세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 167.4cm → 175.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 3개월 동안 키 <b>29.6cm</b> 성장 (132.5→162.1cm)</li><li>예측 성인키 <b>+7.8cm</b> 상승 (167.4→175.2cm)</li><li>연평균 <b>9.1cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년 3개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>132.5→162.1<i>+29.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>167.4→175.2<i>+7.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":9.32,"caY":9,"caM":3,"height":132.5,"bone_age":10},{"ageDecimal":9.38,"caY":9,"caM":4,"height":132.3,"bone_age":null},{"ageDecimal":9.46,"caY":9,"caM":5,"height":137.4,"bone_age":null},{"ageDecimal":9.54,"caY":9,"caM":6,"height":135.7,"bone_age":null},{"ageDecimal":9.63,"caY":9,"caM":7,"height":136.7,"bone_age":null},{"ageDecimal":9.71,"caY":9,"caM":8,"height":138.4,"bone_age":null},{"ageDecimal":9.79,"caY":9,"caM":9,"height":138.2,"bone_age":10.5},{"ageDecimal":9.89,"caY":9,"caM":10,"height":138.5,"bone_age":null},{"ageDecimal":9.97,"caY":9,"caM":11,"height":140,"bone_age":null},{"ageDecimal":10.06,"caY":10,"caM":0,"height":139.7,"bone_age":null},{"ageDecimal":10.15,"caY":10,"caM":1,"height":142.1,"bone_age":null},{"ageDecimal":10.2,"caY":10,"caM":2,"height":142.8,"bone_age":null},{"ageDecimal":10.28,"caY":10,"caM":3,"height":145,"bone_age":11.58},{"ageDecimal":10.36,"caY":10,"caM":4,"height":144,"bone_age":null},{"ageDecimal":10.43,"caY":10,"caM":5,"height":145,"bone_age":null},{"ageDecimal":10.51,"caY":10,"caM":6,"height":145.3,"bone_age":null},{"ageDecimal":10.61,"caY":10,"caM":7,"height":145.5,"bone_age":null},{"ageDecimal":10.7,"caY":10,"caM":8,"height":146.8,"bone_age":null},{"ageDecimal":10.78,"caY":10,"caM":9,"height":147,"bone_age":12.17},{"ageDecimal":10.87,"caY":10,"caM":10,"height":148.8,"bone_age":null},{"ageDecimal":10.97,"caY":10,"caM":11,"height":149.1,"bone_age":null},{"ageDecimal":11.07,"caY":11,"caM":0,"height":149.7,"bone_age":null},{"ageDecimal":11.22,"caY":11,"caM":2,"height":151.2,"bone_age":12.42},{"ageDecimal":11.3,"caY":11,"caM":3,"height":151.6,"bone_age":null},{"ageDecimal":11.37,"caY":11,"caM":4,"height":152.2,"bone_age":null},{"ageDecimal":11.47,"caY":11,"caM":5,"height":153.5,"bone_age":null},{"ageDecimal":11.56,"caY":11,"caM":6,"height":154,"bone_age":null},{"ageDecimal":11.66,"caY":11,"caM":7,"height":155.5,"bone_age":null},{"ageDecimal":11.78,"caY":11,"caM":9,"height":156.9,"bone_age":12.58},{"ageDecimal":11.85,"caY":11,"caM":10,"height":157,"bone_age":null},{"ageDecimal":11.93,"caY":11,"caM":11,"height":157,"bone_age":null},{"ageDecimal":12.01,"caY":12,"caM":0,"height":157.3,"bone_age":null},{"ageDecimal":12.1,"caY":12,"caM":1,"height":157.8,"bone_age":null},{"ageDecimal":12.18,"caY":12,"caM":2,"height":161,"bone_age":null},{"ageDecimal":12.35,"caY":12,"caM":4,"height":161.3,"bone_age":13.08},{"ageDecimal":12.43,"caY":12,"caM":5,"height":162.1,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":162.6,"bone_age":null},{"ageDecimal":12.57,"caY":12,"caM":6,"height":162.1,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 채원</span>
+    <span class="meta">초진 만 11세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 159.2cm → 170.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 6개월 동안 키 <b>17.5cm</b> 성장 (143.9→161.4cm)</li><li>예측 성인키 <b>+10.9cm</b> 상승 (159.2→170.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 6개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>143.9→161.4<i>+17.5cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>159.2→170.1<i>+10.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":11.03,"caY":11,"caM":0,"height":143.9,"bone_age":11},{"ageDecimal":11.05,"caY":11,"caM":0,"height":143.5,"bone_age":null},{"ageDecimal":11.12,"caY":11,"caM":1,"height":144.8,"bone_age":null},{"ageDecimal":11.2,"caY":11,"caM":2,"height":146.5,"bone_age":null},{"ageDecimal":11.28,"caY":11,"caM":3,"height":146.5,"bone_age":null},{"ageDecimal":11.36,"caY":11,"caM":4,"height":146.5,"bone_age":null},{"ageDecimal":11.44,"caY":11,"caM":5,"height":148.5,"bone_age":null},{"ageDecimal":11.53,"caY":11,"caM":6,"height":147.7,"bone_age":null},{"ageDecimal":11.6,"caY":11,"caM":7,"height":149.2,"bone_age":11.33},{"ageDecimal":11.67,"caY":11,"caM":8,"height":149.2,"bone_age":null},{"ageDecimal":11.74,"caY":11,"caM":8,"height":149.5,"bone_age":null},{"ageDecimal":11.83,"caY":11,"caM":9,"height":150.4,"bone_age":null},{"ageDecimal":12.12,"caY":12,"caM":1,"height":151.5,"bone_age":null},{"ageDecimal":12.21,"caY":12,"caM":2,"height":152,"bone_age":null},{"ageDecimal":12.61,"caY":12,"caM":7,"height":154,"bone_age":null},{"ageDecimal":12.7,"caY":12,"caM":8,"height":154.5,"bone_age":null},{"ageDecimal":12.82,"caY":12,"caM":9,"height":157,"bone_age":11.83},{"ageDecimal":12.99,"caY":12,"caM":11,"height":158.8,"bone_age":null},{"ageDecimal":13.06,"caY":13,"caM":0,"height":158.9,"bone_age":null},{"ageDecimal":13.14,"caY":13,"caM":1,"height":159,"bone_age":null},{"ageDecimal":13.22,"caY":13,"caM":2,"height":159.5,"bone_age":null},{"ageDecimal":13.3,"caY":13,"caM":3,"height":160.5,"bone_age":null},{"ageDecimal":13.51,"caY":13,"caM":6,"height":161.4,"bone_age":11.83}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 은서</span>
+    <span class="meta">초진 만 9.2세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 3년 — 예상키 155.1cm → 164.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 동안 키 <b>20.3cm</b> 성장 (135.4→155.7cm)</li><li>예측 성인키 <b>+9.1cm</b> 상승 (155.1→164.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>3년</b></div>
+    <div class="kpi"><span>실제 키</span><b>135.4→155.7<i>+20.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>155.1→164.2<i>+9.1cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":9.24,"caY":9,"caM":2,"height":135.4,"bone_age":10.5},{"ageDecimal":9.42,"caY":9,"caM":5,"height":137.8,"bone_age":null},{"ageDecimal":9.51,"caY":9,"caM":6,"height":138,"bone_age":null},{"ageDecimal":9.59,"caY":9,"caM":7,"height":138.6,"bone_age":null},{"ageDecimal":9.66,"caY":9,"caM":7,"height":139.6,"bone_age":null},{"ageDecimal":10.01,"caY":10,"caM":0,"height":141.3,"bone_age":11.67},{"ageDecimal":10.24,"caY":10,"caM":2,"height":143.8,"bone_age":null},{"ageDecimal":10.44,"caY":10,"caM":5,"height":145,"bone_age":null},{"ageDecimal":10.49,"caY":10,"caM":5,"height":145.2,"bone_age":11.75},{"ageDecimal":10.56,"caY":10,"caM":6,"height":145.8,"bone_age":null},{"ageDecimal":10.68,"caY":10,"caM":8,"height":146.8,"bone_age":null},{"ageDecimal":10.86,"caY":10,"caM":10,"height":146.6,"bone_age":null},{"ageDecimal":10.96,"caY":10,"caM":11,"height":147.3,"bone_age":null},{"ageDecimal":11.03,"caY":11,"caM":0,"height":148.3,"bone_age":11.92},{"ageDecimal":11.25,"caY":11,"caM":3,"height":149.7,"bone_age":null},{"ageDecimal":11.33,"caY":11,"caM":3,"height":149.9,"bone_age":null},{"ageDecimal":11.39,"caY":11,"caM":4,"height":150.7,"bone_age":null},{"ageDecimal":11.48,"caY":11,"caM":5,"height":151,"bone_age":null},{"ageDecimal":11.58,"caY":11,"caM":7,"height":152.7,"bone_age":11.67},{"ageDecimal":11.66,"caY":11,"caM":7,"height":153.2,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":152.8,"bone_age":null},{"ageDecimal":11.88,"caY":11,"caM":10,"height":153.5,"bone_age":null},{"ageDecimal":11.96,"caY":11,"caM":11,"height":153.4,"bone_age":null},{"ageDecimal":12.05,"caY":12,"caM":0,"height":155,"bone_age":null},{"ageDecimal":12.12,"caY":12,"caM":1,"height":154.9,"bone_age":11.83},{"ageDecimal":12.22,"caY":12,"caM":2,"height":155.8,"bone_age":null},{"ageDecimal":12.28,"caY":12,"caM":3,"height":155.7,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 서진</span>
+    <span class="meta">초진 만 11.9세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 161.8cm → 171.7cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 3개월 동안 키 <b>17.2cm</b> 성장 (143.3→160.5cm)</li><li>예측 성인키 <b>+9.9cm</b> 상승 (161.8→171.7cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 3개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>143.3→160.5<i>+17.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>161.8→171.7<i>+9.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.94,"caY":11,"caM":11,"height":143.3,"bone_age":13.25},{"ageDecimal":12.02,"caY":12,"caM":0,"height":143.9,"bone_age":null},{"ageDecimal":12.09,"caY":12,"caM":1,"height":144.7,"bone_age":null},{"ageDecimal":12.18,"caY":12,"caM":2,"height":146.6,"bone_age":null},{"ageDecimal":12.27,"caY":12,"caM":3,"height":148.7,"bone_age":null},{"ageDecimal":12.33,"caY":12,"caM":3,"height":148.5,"bone_age":null},{"ageDecimal":12.4,"caY":12,"caM":4,"height":148.3,"bone_age":null},{"ageDecimal":12.46,"caY":12,"caM":5,"height":149.8,"bone_age":null},{"ageDecimal":12.62,"caY":12,"caM":7,"height":150.8,"bone_age":13.25},{"ageDecimal":12.71,"caY":12,"caM":8,"height":151.2,"bone_age":null},{"ageDecimal":12.84,"caY":12,"caM":10,"height":152.3,"bone_age":null},{"ageDecimal":13.42,"caY":13,"caM":5,"height":154.6,"bone_age":13.42},{"ageDecimal":13.61,"caY":13,"caM":7,"height":157.7,"bone_age":null},{"ageDecimal":13.7,"caY":13,"caM":8,"height":156.7,"bone_age":null},{"ageDecimal":13.9,"caY":13,"caM":10,"height":158,"bone_age":null},{"ageDecimal":14.04,"caY":14,"caM":0,"height":160,"bone_age":null},{"ageDecimal":14.19,"caY":14,"caM":2,"height":160.5,"bone_age":13.67}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 시은</span>
+    <span class="meta">초진 만 10.4세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 153.9cm → 163.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 6개월 동안 키 <b>15.6cm</b> 성장 (139.4→155cm)</li><li>예측 성인키 <b>+9.9cm</b> 상승 (153.9→163.8cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 6개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>139.4→155<i>+15.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>153.9→163.8<i>+9.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":10.44,"caY":10,"caM":5,"height":139.4,"bone_age":11.42},{"ageDecimal":10.51,"caY":10,"caM":6,"height":139.5,"bone_age":null},{"ageDecimal":10.59,"caY":10,"caM":7,"height":140.1,"bone_age":null},{"ageDecimal":10.67,"caY":10,"caM":7,"height":140.6,"bone_age":null},{"ageDecimal":10.75,"caY":10,"caM":8,"height":141.4,"bone_age":null},{"ageDecimal":10.84,"caY":10,"caM":10,"height":142,"bone_age":null},{"ageDecimal":10.93,"caY":10,"caM":11,"height":142.6,"bone_age":11.5},{"ageDecimal":11.01,"caY":11,"caM":0,"height":143.2,"bone_age":null},{"ageDecimal":11.11,"caY":11,"caM":1,"height":144.3,"bone_age":null},{"ageDecimal":11.18,"caY":11,"caM":2,"height":144.8,"bone_age":null},{"ageDecimal":11.28,"caY":11,"caM":3,"height":145.6,"bone_age":null},{"ageDecimal":11.38,"caY":11,"caM":4,"height":146.2,"bone_age":null},{"ageDecimal":11.47,"caY":11,"caM":5,"height":146.9,"bone_age":11.83},{"ageDecimal":11.55,"caY":11,"caM":6,"height":147.6,"bone_age":null},{"ageDecimal":11.62,"caY":11,"caM":7,"height":148.6,"bone_age":null},{"ageDecimal":11.7,"caY":11,"caM":8,"height":148.9,"bone_age":null},{"ageDecimal":11.78,"caY":11,"caM":9,"height":149.5,"bone_age":null},{"ageDecimal":11.85,"caY":11,"caM":10,"height":148.1,"bone_age":null},{"ageDecimal":11.95,"caY":11,"caM":11,"height":149.6,"bone_age":11.83},{"ageDecimal":12.03,"caY":12,"caM":0,"height":150.4,"bone_age":null},{"ageDecimal":12.08,"caY":12,"caM":1,"height":150.1,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":150.2,"bone_age":null},{"ageDecimal":12.24,"caY":12,"caM":2,"height":151.4,"bone_age":null},{"ageDecimal":12.33,"caY":12,"caM":3,"height":152.2,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":152.8,"bone_age":11.92},{"ageDecimal":12.51,"caY":12,"caM":6,"height":153.4,"bone_age":null},{"ageDecimal":12.58,"caY":12,"caM":6,"height":153.2,"bone_age":null},{"ageDecimal":12.66,"caY":12,"caM":7,"height":154.4,"bone_age":null},{"ageDecimal":12.76,"caY":12,"caM":9,"height":154,"bone_age":null},{"ageDecimal":12.83,"caY":12,"caM":10,"height":155.4,"bone_age":null},{"ageDecimal":12.91,"caY":12,"caM":10,"height":155,"bone_age":11.92}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 가은</span>
+    <span class="meta">초진 만 10.3세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 152.3cm → 162.6cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 2개월 동안 키 <b>15.1cm</b> 성장 (138.1→153.2cm)</li><li>예측 성인키 <b>+10.3cm</b> 상승 (152.3→162.6cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 2개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>138.1→153.2<i>+15.1cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>152.3→162.6<i>+10.3cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":10.31,"caY":10,"caM":3,"height":138.1,"bone_age":11.58},{"ageDecimal":10.39,"caY":10,"caM":4,"height":139.4,"bone_age":null},{"ageDecimal":10.47,"caY":10,"caM":5,"height":139.8,"bone_age":null},{"ageDecimal":10.54,"caY":10,"caM":6,"height":139.4,"bone_age":null},{"ageDecimal":10.66,"caY":10,"caM":7,"height":140.4,"bone_age":null},{"ageDecimal":10.74,"caY":10,"caM":8,"height":141.3,"bone_age":null},{"ageDecimal":10.87,"caY":10,"caM":10,"height":142.5,"bone_age":11.75},{"ageDecimal":10.93,"caY":10,"caM":11,"height":143.2,"bone_age":null},{"ageDecimal":11,"caY":11,"caM":0,"height":143.8,"bone_age":null},{"ageDecimal":11.08,"caY":11,"caM":0,"height":144.1,"bone_age":null},{"ageDecimal":11.15,"caY":11,"caM":1,"height":144.6,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":145.1,"bone_age":null},{"ageDecimal":11.3,"caY":11,"caM":3,"height":145.8,"bone_age":null},{"ageDecimal":11.38,"caY":11,"caM":4,"height":146.8,"bone_age":11.83},{"ageDecimal":11.45,"caY":11,"caM":5,"height":146.7,"bone_age":null},{"ageDecimal":11.53,"caY":11,"caM":6,"height":146.4,"bone_age":null},{"ageDecimal":11.62,"caY":11,"caM":7,"height":146.9,"bone_age":null},{"ageDecimal":11.7,"caY":11,"caM":8,"height":147.4,"bone_age":null},{"ageDecimal":11.8,"caY":11,"caM":9,"height":148,"bone_age":null},{"ageDecimal":11.9,"caY":11,"caM":10,"height":150.3,"bone_age":11.83},{"ageDecimal":11.98,"caY":11,"caM":11,"height":150,"bone_age":null},{"ageDecimal":12.06,"caY":12,"caM":0,"height":149.8,"bone_age":null},{"ageDecimal":12.14,"caY":12,"caM":1,"height":150.4,"bone_age":null},{"ageDecimal":12.21,"caY":12,"caM":2,"height":151.3,"bone_age":null},{"ageDecimal":12.34,"caY":12,"caM":4,"height":153.1,"bone_age":11.83},{"ageDecimal":12.42,"caY":12,"caM":5,"height":153.5,"bone_age":null},{"ageDecimal":12.52,"caY":12,"caM":6,"height":153.2,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 서연</span>
+    <span class="meta">초진 만 9.6세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 162cm → 171cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>20cm</b> 성장 (137.4→157.4cm)</li><li>예측 성인키 <b>+9cm</b> 상승 (162→171cm)</li><li>연평균 <b>8.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>137.4→157.4<i>+20cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>162→171<i>+9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":9.58,"caY":9,"caM":6,"height":137.4,"bone_age":9.5},{"ageDecimal":9.67,"caY":9,"caM":8,"height":137.8,"bone_age":null},{"ageDecimal":9.75,"caY":9,"caM":8,"height":138.6,"bone_age":null},{"ageDecimal":9.82,"caY":9,"caM":9,"height":139.3,"bone_age":null},{"ageDecimal":9.9,"caY":9,"caM":10,"height":140.9,"bone_age":null},{"ageDecimal":9.98,"caY":9,"caM":11,"height":141,"bone_age":null},{"ageDecimal":10.06,"caY":10,"caM":0,"height":142.6,"bone_age":10},{"ageDecimal":10.14,"caY":10,"caM":1,"height":143.8,"bone_age":null},{"ageDecimal":10.22,"caY":10,"caM":2,"height":143.4,"bone_age":null},{"ageDecimal":10.28,"caY":10,"caM":3,"height":145.3,"bone_age":null},{"ageDecimal":10.36,"caY":10,"caM":4,"height":145.7,"bone_age":null},{"ageDecimal":10.44,"caY":10,"caM":5,"height":146,"bone_age":10.42},{"ageDecimal":10.52,"caY":10,"caM":6,"height":146.3,"bone_age":null},{"ageDecimal":10.61,"caY":10,"caM":7,"height":147.2,"bone_age":null},{"ageDecimal":10.69,"caY":10,"caM":8,"height":148.2,"bone_age":null},{"ageDecimal":10.77,"caY":10,"caM":9,"height":148,"bone_age":null},{"ageDecimal":10.99,"caY":10,"caM":11,"height":149.2,"bone_age":10.83},{"ageDecimal":11.06,"caY":11,"caM":0,"height":151.1,"bone_age":null},{"ageDecimal":11.13,"caY":11,"caM":1,"height":151.5,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":151.8,"bone_age":null},{"ageDecimal":11.31,"caY":11,"caM":3,"height":152.1,"bone_age":null},{"ageDecimal":11.38,"caY":11,"caM":4,"height":153.1,"bone_age":null},{"ageDecimal":11.47,"caY":11,"caM":5,"height":153.7,"bone_age":11.25},{"ageDecimal":11.54,"caY":11,"caM":6,"height":154.4,"bone_age":null},{"ageDecimal":11.61,"caY":11,"caM":7,"height":155.2,"bone_age":null},{"ageDecimal":11.69,"caY":11,"caM":8,"height":155.9,"bone_age":null},{"ageDecimal":11.77,"caY":11,"caM":9,"height":155.8,"bone_age":null},{"ageDecimal":11.86,"caY":11,"caM":10,"height":156.2,"bone_age":null},{"ageDecimal":11.96,"caY":11,"caM":11,"height":157.4,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 동현</span>
+    <span class="meta">초진 만 10.1세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 1년 — 예상키 167.5cm → 175.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 10개월 동안 키 <b>20.7cm</b> 성장 (140.6→161.3cm)</li><li>예측 성인키 <b>+7.6cm</b> 상승 (167.5→175.1cm)</li><li>연평균 <b>11.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 10개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>140.6→161.3<i>+20.7cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>167.5→175.1<i>+7.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.07,"caY":10,"caM":0,"height":140.6,"bone_age":11.5},{"ageDecimal":10.09,"caY":10,"caM":1,"height":142.4,"bone_age":null},{"ageDecimal":10.15,"caY":10,"caM":1,"height":143.3,"bone_age":null},{"ageDecimal":10.25,"caY":10,"caM":2,"height":144,"bone_age":null},{"ageDecimal":10.33,"caY":10,"caM":3,"height":144.7,"bone_age":null},{"ageDecimal":10.4,"caY":10,"caM":4,"height":145.8,"bone_age":null},{"ageDecimal":10.48,"caY":10,"caM":5,"height":145.9,"bone_age":null},{"ageDecimal":10.56,"caY":10,"caM":6,"height":147.3,"bone_age":null},{"ageDecimal":10.62,"caY":10,"caM":7,"height":147.3,"bone_age":11.3},{"ageDecimal":10.71,"caY":10,"caM":8,"height":149,"bone_age":null},{"ageDecimal":10.79,"caY":10,"caM":9,"height":149.3,"bone_age":null},{"ageDecimal":10.88,"caY":10,"caM":10,"height":150.5,"bone_age":null},{"ageDecimal":10.96,"caY":10,"caM":11,"height":151.5,"bone_age":null},{"ageDecimal":11.04,"caY":11,"caM":0,"height":152.2,"bone_age":null},{"ageDecimal":11.11,"caY":11,"caM":1,"height":153,"bone_age":12.25},{"ageDecimal":11.21,"caY":11,"caM":2,"height":154.5,"bone_age":null},{"ageDecimal":11.29,"caY":11,"caM":3,"height":154.4,"bone_age":null},{"ageDecimal":11.38,"caY":11,"caM":4,"height":155.3,"bone_age":null},{"ageDecimal":11.46,"caY":11,"caM":5,"height":156.4,"bone_age":null},{"ageDecimal":11.53,"caY":11,"caM":6,"height":156.8,"bone_age":null},{"ageDecimal":11.61,"caY":11,"caM":7,"height":158.2,"bone_age":12.67},{"ageDecimal":11.69,"caY":11,"caM":8,"height":159,"bone_age":null},{"ageDecimal":11.78,"caY":11,"caM":9,"height":160,"bone_age":null},{"ageDecimal":11.86,"caY":11,"caM":10,"height":161.3,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 예린</span>
+    <span class="meta">초진 만 10.7세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 158.1cm → 166.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 동안 키 <b>15.9cm</b> 성장 (140.4→156.3cm)</li><li>예측 성인키 <b>+8.4cm</b> 상승 (158.1→166.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년</b></div>
+    <div class="kpi"><span>실제 키</span><b>140.4→156.3<i>+15.9cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>158.1→166.5<i>+8.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":10.67,"caY":10,"caM":8,"height":140.4,"bone_age":10.67},{"ageDecimal":10.74,"caY":10,"caM":8,"height":141.2,"bone_age":null},{"ageDecimal":10.82,"caY":10,"caM":9,"height":141.1,"bone_age":null},{"ageDecimal":10.93,"caY":10,"caM":11,"height":142.5,"bone_age":null},{"ageDecimal":11.01,"caY":11,"caM":0,"height":144,"bone_age":null},{"ageDecimal":11.09,"caY":11,"caM":1,"height":144.7,"bone_age":null},{"ageDecimal":11.16,"caY":11,"caM":2,"height":145.6,"bone_age":null},{"ageDecimal":11.28,"caY":11,"caM":3,"height":146.4,"bone_age":11.17},{"ageDecimal":11.38,"caY":11,"caM":4,"height":147.5,"bone_age":null},{"ageDecimal":11.45,"caY":11,"caM":5,"height":148.6,"bone_age":null},{"ageDecimal":11.55,"caY":11,"caM":6,"height":149.2,"bone_age":null},{"ageDecimal":11.61,"caY":11,"caM":7,"height":149.9,"bone_age":null},{"ageDecimal":11.68,"caY":11,"caM":8,"height":150.4,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":150.9,"bone_age":null},{"ageDecimal":11.84,"caY":11,"caM":10,"height":151.1,"bone_age":11.33},{"ageDecimal":11.91,"caY":11,"caM":10,"height":151.5,"bone_age":null},{"ageDecimal":11.99,"caY":11,"caM":11,"height":151.8,"bone_age":null},{"ageDecimal":12.07,"caY":12,"caM":0,"height":152.1,"bone_age":null},{"ageDecimal":12.14,"caY":12,"caM":1,"height":152.7,"bone_age":null},{"ageDecimal":12.29,"caY":12,"caM":3,"height":153.1,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":154,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":154.5,"bone_age":null},{"ageDecimal":12.64,"caY":12,"caM":7,"height":156.3,"bone_age":11.58}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 수호</span>
+    <span class="meta">초진 만 11.9세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 174.9cm → 183.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 11개월 동안 키 <b>21.7cm</b> 성장 (156.7→178.4cm)</li><li>예측 성인키 <b>+8.2cm</b> 상승 (174.9→183.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>156.7→178.4<i>+21.7cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>174.9→183.1<i>+8.2cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.88,"caY":11,"caM":10,"height":156.7,"bone_age":12.5},{"ageDecimal":11.95,"caY":11,"caM":11,"height":157.3,"bone_age":null},{"ageDecimal":12.05,"caY":12,"caM":0,"height":159,"bone_age":null},{"ageDecimal":12.13,"caY":12,"caM":1,"height":161.4,"bone_age":null},{"ageDecimal":12.25,"caY":12,"caM":2,"height":161.8,"bone_age":null},{"ageDecimal":12.4,"caY":12,"caM":4,"height":163.5,"bone_age":12.25},{"ageDecimal":12.7,"caY":12,"caM":8,"height":166.2,"bone_age":null},{"ageDecimal":12.94,"caY":12,"caM":11,"height":172.6,"bone_age":13.67},{"ageDecimal":13.6,"caY":13,"caM":7,"height":173.1,"bone_age":null},{"ageDecimal":13.97,"caY":13,"caM":11,"height":175.3,"bone_age":13.92},{"ageDecimal":14.79,"caY":14,"caM":9,"height":178.4,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 진우</span>
+    <span class="meta">초진 만 13.2세 · 치료 중</span>
+  </header>
+  <p class="headline">"13세, 늦었다고 생각했지만 — 예상키 +10cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>16.4cm</b> 성장 (164.4→180.8cm)</li><li>예측 성인키 <b>+10cm</b> 상승 (177→187cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.4년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>164.4→180.8<i>+16.4cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>177→187<i>+10cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":13.24,"caY":13,"caM":2,"height":164.4,"bone_age":13.5},{"ageDecimal":13.31,"caY":13,"caM":3,"height":164.2,"bone_age":null},{"ageDecimal":13.42,"caY":13,"caM":5,"height":164.7,"bone_age":null},{"ageDecimal":13.51,"caY":13,"caM":6,"height":166.2,"bone_age":null},{"ageDecimal":13.58,"caY":13,"caM":7,"height":165.2,"bone_age":12.67},{"ageDecimal":13.66,"caY":13,"caM":7,"height":167.3,"bone_age":null},{"ageDecimal":14.01,"caY":14,"caM":0,"height":170.1,"bone_age":13.5},{"ageDecimal":14.11,"caY":14,"caM":1,"height":173,"bone_age":null},{"ageDecimal":14.21,"caY":14,"caM":2,"height":174,"bone_age":null},{"ageDecimal":14.4,"caY":14,"caM":4,"height":175,"bone_age":null},{"ageDecimal":14.44,"caY":14,"caM":5,"height":176,"bone_age":null},{"ageDecimal":14.48,"caY":14,"caM":5,"height":176,"bone_age":null},{"ageDecimal":14.49,"caY":14,"caM":5,"height":174.8,"bone_age":null},{"ageDecimal":14.68,"caY":14,"caM":8,"height":176.1,"bone_age":null},{"ageDecimal":14.85,"caY":14,"caM":10,"height":177,"bone_age":null},{"ageDecimal":15.03,"caY":15,"caM":0,"height":178.8,"bone_age":13.92},{"ageDecimal":15.64,"caY":15,"caM":7,"height":180.8,"bone_age":14.5}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 지호</span>
+    <span class="meta">초진 만 13.9세 · 치료 중</span>
+  </header>
+  <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +9.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 4개월 동안 키 <b>17.3cm</b> 성장 (161.2→178.5cm)</li><li>예측 성인키 <b>+9.8cm</b> 상승 (171.5→181.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 4개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>161.2→178.5<i>+17.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>171.5→181.3<i>+9.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-obes">비만 동반</span><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":13.86,"caY":13,"caM":10,"height":161.2,"bone_age":13.83},{"ageDecimal":13.94,"caY":13,"caM":11,"height":162.4,"bone_age":null},{"ageDecimal":14.12,"caY":14,"caM":1,"height":164,"bone_age":null},{"ageDecimal":14.39,"caY":14,"caM":4,"height":166.4,"bone_age":null},{"ageDecimal":14.6,"caY":14,"caM":7,"height":170,"bone_age":null},{"ageDecimal":14.77,"caY":14,"caM":9,"height":170,"bone_age":13.5},{"ageDecimal":14.91,"caY":14,"caM":10,"height":170.7,"bone_age":null},{"ageDecimal":14.97,"caY":14,"caM":11,"height":171.8,"bone_age":null},{"ageDecimal":15.12,"caY":15,"caM":1,"height":173.1,"bone_age":null},{"ageDecimal":15.2,"caY":15,"caM":2,"height":174.5,"bone_age":null},{"ageDecimal":15.35,"caY":15,"caM":4,"height":174.1,"bone_age":14.08},{"ageDecimal":15.43,"caY":15,"caM":5,"height":175.3,"bone_age":null},{"ageDecimal":15.58,"caY":15,"caM":7,"height":176,"bone_age":null},{"ageDecimal":15.69,"caY":15,"caM":8,"height":176.5,"bone_age":null},{"ageDecimal":16.13,"caY":16,"caM":1,"height":178,"bone_age":null},{"ageDecimal":16.21,"caY":16,"caM":2,"height":178.5,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 원준</span>
+    <span class="meta">초진 만 7.7세 · 치료 중</span>
+  </header>
+  <p class="headline">"8살인데 뼈나이는 9살이었습니다 — 예상키 +5.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 8개월 동안 키 <b>20.5cm</b> 성장 (126.8→147.3cm)</li><li>예측 성인키 <b>+5.5cm</b> 상승 (165.9→171.4cm)</li><li>연평균 <b>7.7cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 8개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>126.8→147.3<i>+20.5cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>165.9→171.4<i>+5.5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":7.74,"caY":7,"caM":8,"height":126.8,"bone_age":9.17},{"ageDecimal":7.81,"caY":7,"caM":9,"height":126.8,"bone_age":null},{"ageDecimal":7.89,"caY":7,"caM":10,"height":127.4,"bone_age":null},{"ageDecimal":7.96,"caY":7,"caM":11,"height":127.8,"bone_age":null},{"ageDecimal":8.1,"caY":8,"caM":1,"height":129.5,"bone_age":null},{"ageDecimal":8.18,"caY":8,"caM":2,"height":130.3,"bone_age":null},{"ageDecimal":8.25,"caY":8,"caM":3,"height":130,"bone_age":9.67},{"ageDecimal":8.33,"caY":8,"caM":4,"height":131.7,"bone_age":null},{"ageDecimal":8.41,"caY":8,"caM":4,"height":132.5,"bone_age":null},{"ageDecimal":8.48,"caY":8,"caM":5,"height":133,"bone_age":null},{"ageDecimal":8.58,"caY":8,"caM":6,"height":134.1,"bone_age":null},{"ageDecimal":8.66,"caY":8,"caM":7,"height":134.8,"bone_age":null},{"ageDecimal":8.73,"caY":8,"caM":8,"height":135.8,"bone_age":10.25},{"ageDecimal":8.81,"caY":8,"caM":9,"height":136.6,"bone_age":null},{"ageDecimal":8.89,"caY":8,"caM":10,"height":136.9,"bone_age":null},{"ageDecimal":8.98,"caY":8,"caM":11,"height":137.8,"bone_age":null},{"ageDecimal":9.06,"caY":9,"caM":0,"height":138.1,"bone_age":11.25},{"ageDecimal":9.14,"caY":9,"caM":1,"height":139,"bone_age":null},{"ageDecimal":9.21,"caY":9,"caM":2,"height":139.8,"bone_age":null},{"ageDecimal":9.29,"caY":9,"caM":3,"height":140.4,"bone_age":null},{"ageDecimal":9.35,"caY":9,"caM":4,"height":141.1,"bone_age":null},{"ageDecimal":9.44,"caY":9,"caM":5,"height":141.4,"bone_age":null},{"ageDecimal":9.52,"caY":9,"caM":6,"height":141.7,"bone_age":null},{"ageDecimal":9.6,"caY":9,"caM":7,"height":142.3,"bone_age":11.58},{"ageDecimal":9.67,"caY":9,"caM":8,"height":142.8,"bone_age":null},{"ageDecimal":9.75,"caY":9,"caM":9,"height":143.5,"bone_age":null},{"ageDecimal":9.81,"caY":9,"caM":9,"height":143.8,"bone_age":null},{"ageDecimal":9.88,"caY":9,"caM":10,"height":144,"bone_age":null},{"ageDecimal":9.98,"caY":9,"caM":11,"height":144.7,"bone_age":null},{"ageDecimal":10.06,"caY":10,"caM":0,"height":145.3,"bone_age":11.67},{"ageDecimal":10.13,"caY":10,"caM":1,"height":145.9,"bone_age":null},{"ageDecimal":10.21,"caY":10,"caM":2,"height":146.4,"bone_age":null},{"ageDecimal":10.29,"caY":10,"caM":3,"height":146.3,"bone_age":11.67},{"ageDecimal":10.36,"caY":10,"caM":4,"height":147.3,"bone_age":11.8}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 규민</span>
+    <span class="meta">초진 만 10.2세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 1년 — 예상키 160.7cm → 168.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 10개월 동안 키 <b>15.9cm</b> 성장 (132.9→148.8cm)</li><li>예측 성인키 <b>+7.4cm</b> 상승 (160.7→168.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 10개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>132.9→148.8<i>+15.9cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>160.7→168.1<i>+7.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-obes">비만 동반</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.25,"caY":10,"caM":2,"height":132.9,"bone_age":11.58},{"ageDecimal":10.32,"caY":10,"caM":3,"height":133.6,"bone_age":null},{"ageDecimal":10.37,"caY":10,"caM":4,"height":134.3,"bone_age":null},{"ageDecimal":10.46,"caY":10,"caM":5,"height":135.4,"bone_age":null},{"ageDecimal":10.53,"caY":10,"caM":6,"height":136,"bone_age":null},{"ageDecimal":10.63,"caY":10,"caM":7,"height":137.1,"bone_age":null},{"ageDecimal":10.72,"caY":10,"caM":8,"height":138,"bone_age":11.67},{"ageDecimal":10.8,"caY":10,"caM":9,"height":139,"bone_age":null},{"ageDecimal":10.86,"caY":10,"caM":10,"height":140.5,"bone_age":null},{"ageDecimal":11.08,"caY":11,"caM":0,"height":141.4,"bone_age":null},{"ageDecimal":11.14,"caY":11,"caM":1,"height":141.4,"bone_age":null},{"ageDecimal":11.24,"caY":11,"caM":2,"height":142.3,"bone_age":12},{"ageDecimal":11.33,"caY":11,"caM":3,"height":143.1,"bone_age":null},{"ageDecimal":11.44,"caY":11,"caM":5,"height":144.8,"bone_age":null},{"ageDecimal":11.53,"caY":11,"caM":6,"height":145.4,"bone_age":null},{"ageDecimal":11.54,"caY":11,"caM":6,"height":145.8,"bone_age":null},{"ageDecimal":11.7,"caY":11,"caM":8,"height":146.1,"bone_age":12.25},{"ageDecimal":11.89,"caY":11,"caM":10,"height":148.2,"bone_age":null},{"ageDecimal":12.05,"caY":12,"caM":0,"height":148.2,"bone_age":null},{"ageDecimal":12.09,"caY":12,"caM":1,"height":148.8,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 태민</span>
+    <span class="meta">초진 만 12세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 1년 — 예상키 170.5cm → 181cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 11개월 동안 키 <b>11.2cm</b> 성장 (157.8→169cm)</li><li>예측 성인키 <b>+10.5cm</b> 상승 (170.5→181cm)</li><li>연평균 <b>5.8cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>157.8→169<i>+11.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>170.5→181<i>+10.5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":11.97,"caY":11,"caM":11,"height":157.8,"bone_age":11.92},{"ageDecimal":12.23,"caY":12,"caM":2,"height":158.3,"bone_age":null},{"ageDecimal":12.33,"caY":12,"caM":3,"height":160.1,"bone_age":null},{"ageDecimal":12.43,"caY":12,"caM":5,"height":160.7,"bone_age":12.58},{"ageDecimal":12.53,"caY":12,"caM":6,"height":160.5,"bone_age":null},{"ageDecimal":12.72,"caY":12,"caM":8,"height":161.8,"bone_age":null},{"ageDecimal":12.92,"caY":12,"caM":11,"height":162.8,"bone_age":12.25},{"ageDecimal":13.07,"caY":13,"caM":0,"height":165,"bone_age":null},{"ageDecimal":13.36,"caY":13,"caM":4,"height":165.6,"bone_age":12.25},{"ageDecimal":13.88,"caY":13,"caM":10,"height":169,"bone_age":13.5}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 지유</span>
+    <span class="meta">초진 만 10.4세 · 치료 완료</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 158.9cm → 166cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>17.6cm</b> 성장 (146.6→164.2cm)</li><li>예측 성인키 <b>+7.1cm</b> 상승 (158.9→166cm)</li><li>연평균 <b>7.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.6→164.2<i>+17.6cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>158.9→166<i>+7.1cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-obes">비만 동반</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":10.37,"caY":10,"caM":4,"height":146.6,"bone_age":11.5},{"ageDecimal":10.47,"caY":10,"caM":5,"height":147.1,"bone_age":null},{"ageDecimal":10.52,"caY":10,"caM":6,"height":147.6,"bone_age":null},{"ageDecimal":10.54,"caY":10,"caM":6,"height":148.7,"bone_age":null},{"ageDecimal":10.62,"caY":10,"caM":7,"height":148.3,"bone_age":11.4},{"ageDecimal":10.83,"caY":10,"caM":10,"height":151.2,"bone_age":null},{"ageDecimal":11.01,"caY":11,"caM":0,"height":153.5,"bone_age":11.67},{"ageDecimal":11.15,"caY":11,"caM":1,"height":154.6,"bone_age":null},{"ageDecimal":11.31,"caY":11,"caM":3,"height":156.3,"bone_age":null},{"ageDecimal":11.55,"caY":11,"caM":6,"height":158,"bone_age":12.25},{"ageDecimal":11.64,"caY":11,"caM":7,"height":159.8,"bone_age":null},{"ageDecimal":11.78,"caY":11,"caM":9,"height":160,"bone_age":null},{"ageDecimal":11.85,"caY":11,"caM":10,"height":161,"bone_age":null},{"ageDecimal":12.02,"caY":12,"caM":0,"height":161,"bone_age":12.83},{"ageDecimal":12.26,"caY":12,"caM":3,"height":162.9,"bone_age":null},{"ageDecimal":12.34,"caY":12,"caM":4,"height":163,"bone_age":14},{"ageDecimal":12.57,"caY":12,"caM":6,"height":164.2,"bone_age":null},{"ageDecimal":12.65,"caY":12,"caM":7,"height":164.5,"bone_age":null},{"ageDecimal":12.72,"caY":12,"caM":8,"height":164,"bone_age":null},{"ageDecimal":12.81,"caY":12,"caM":9,"height":164.2,"bone_age":14.3}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 유나</span>
+    <span class="meta">초진 만 11.4세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 1년 — 예상키 155.5cm → 164cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 8개월 동안 키 <b>12.5cm</b> 성장 (143.6→156.1cm)</li><li>예측 성인키 <b>+8.5cm</b> 상승 (155.5→164cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.4년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 8개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>143.6→156.1<i>+12.5cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>155.5→164<i>+8.5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":11.43,"caY":11,"caM":5,"height":143.6,"bone_age":11.75},{"ageDecimal":11.51,"caY":11,"caM":6,"height":144.3,"bone_age":null},{"ageDecimal":11.6,"caY":11,"caM":7,"height":145.3,"bone_age":null},{"ageDecimal":11.68,"caY":11,"caM":8,"height":144.8,"bone_age":null},{"ageDecimal":11.76,"caY":11,"caM":9,"height":146.8,"bone_age":null},{"ageDecimal":11.83,"caY":11,"caM":10,"height":146.7,"bone_age":null},{"ageDecimal":11.93,"caY":11,"caM":11,"height":148.9,"bone_age":11.83},{"ageDecimal":12.01,"caY":12,"caM":0,"height":148.6,"bone_age":null},{"ageDecimal":12.08,"caY":12,"caM":0,"height":149.7,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":150,"bone_age":null},{"ageDecimal":12.24,"caY":12,"caM":2,"height":150.4,"bone_age":null},{"ageDecimal":12.31,"caY":12,"caM":3,"height":151.3,"bone_age":null},{"ageDecimal":12.39,"caY":12,"caM":4,"height":151.6,"bone_age":null},{"ageDecimal":12.47,"caY":12,"caM":5,"height":152,"bone_age":11.83},{"ageDecimal":12.56,"caY":12,"caM":6,"height":152.4,"bone_age":null},{"ageDecimal":12.66,"caY":12,"caM":7,"height":152.8,"bone_age":null},{"ageDecimal":12.75,"caY":12,"caM":9,"height":153.3,"bone_age":null},{"ageDecimal":12.83,"caY":12,"caM":9,"height":154.4,"bone_age":null},{"ageDecimal":12.91,"caY":12,"caM":10,"height":155,"bone_age":null},{"ageDecimal":12.97,"caY":12,"caM":11,"height":155.2,"bone_age":11.92},{"ageDecimal":13.14,"caY":13,"caM":1,"height":156.1,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 준우</span>
+    <span class="meta">초진 만 13.6세 · 치료 완료</span>
+  </header>
+  <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +7.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>11.8cm</b> 성장 (169.7→181.5cm)</li><li>예측 성인키 <b>+7.8cm</b> 상승 (179.8→187.6cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.4년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>169.7→181.5<i>+11.8cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>179.8→187.6<i>+7.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":13.56,"caY":13,"caM":6,"height":169.7,"bone_age":13.5},{"ageDecimal":13.71,"caY":13,"caM":8,"height":171.3,"bone_age":null},{"ageDecimal":13.81,"caY":13,"caM":9,"height":171.3,"bone_age":null},{"ageDecimal":13.89,"caY":13,"caM":10,"height":172.1,"bone_age":14},{"ageDecimal":13.97,"caY":13,"caM":11,"height":172.6,"bone_age":null},{"ageDecimal":14.04,"caY":14,"caM":0,"height":173,"bone_age":null},{"ageDecimal":14.12,"caY":14,"caM":1,"height":173.9,"bone_age":null},{"ageDecimal":14.2,"caY":14,"caM":2,"height":174.3,"bone_age":null},{"ageDecimal":14.27,"caY":14,"caM":3,"height":175.5,"bone_age":14.2},{"ageDecimal":14.35,"caY":14,"caM":4,"height":175.2,"bone_age":null},{"ageDecimal":14.43,"caY":14,"caM":5,"height":175.8,"bone_age":null},{"ageDecimal":14.5,"caY":14,"caM":6,"height":176,"bone_age":null},{"ageDecimal":14.58,"caY":14,"caM":6,"height":176.3,"bone_age":null},{"ageDecimal":14.66,"caY":14,"caM":7,"height":176.8,"bone_age":null},{"ageDecimal":14.73,"caY":14,"caM":8,"height":177.3,"bone_age":null},{"ageDecimal":14.83,"caY":14,"caM":9,"height":177.7,"bone_age":null},{"ageDecimal":14.9,"caY":14,"caM":10,"height":178.3,"bone_age":null},{"ageDecimal":14.98,"caY":14,"caM":11,"height":179,"bone_age":null},{"ageDecimal":15.06,"caY":15,"caM":0,"height":179.1,"bone_age":14.2},{"ageDecimal":15.13,"caY":15,"caM":1,"height":179,"bone_age":null},{"ageDecimal":15.33,"caY":15,"caM":3,"height":179,"bone_age":null},{"ageDecimal":15.48,"caY":15,"caM":5,"height":180.1,"bone_age":null},{"ageDecimal":15.63,"caY":15,"caM":7,"height":180.8,"bone_age":null},{"ageDecimal":15.71,"caY":15,"caM":8,"height":180.8,"bone_age":14.2},{"ageDecimal":15.81,"caY":15,"caM":9,"height":181.5,"bone_age":null},{"ageDecimal":16,"caY":15,"caM":11,"height":181.5,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 준혁</span>
+    <span class="meta">초진 만 12.2세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 1년 — 예상키 167.5cm → 174cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 7개월 동안 키 <b>14.3cm</b> 성장 (146.8→161.1cm)</li><li>예측 성인키 <b>+6.5cm</b> 상승 (167.5→174cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 7개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.8→161.1<i>+14.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>167.5→174<i>+6.5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-obes">비만 동반</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.19,"caY":12,"caM":2,"height":146.8,"bone_age":12.5},{"ageDecimal":12.27,"caY":12,"caM":3,"height":148.5,"bone_age":null},{"ageDecimal":12.34,"caY":12,"caM":4,"height":149,"bone_age":null},{"ageDecimal":12.41,"caY":12,"caM":4,"height":150.1,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":5,"height":150.8,"bone_age":null},{"ageDecimal":12.58,"caY":12,"caM":6,"height":152.8,"bone_age":null},{"ageDecimal":12.66,"caY":12,"caM":7,"height":153.3,"bone_age":13.25},{"ageDecimal":12.82,"caY":12,"caM":9,"height":154.5,"bone_age":null},{"ageDecimal":12.9,"caY":12,"caM":10,"height":155.6,"bone_age":null},{"ageDecimal":12.97,"caY":12,"caM":11,"height":156.4,"bone_age":null},{"ageDecimal":13.06,"caY":13,"caM":0,"height":157.4,"bone_age":null},{"ageDecimal":13.14,"caY":13,"caM":1,"height":157.4,"bone_age":13.33},{"ageDecimal":13.21,"caY":13,"caM":2,"height":158.2,"bone_age":null},{"ageDecimal":13.3,"caY":13,"caM":3,"height":157.7,"bone_age":null},{"ageDecimal":13.38,"caY":13,"caM":4,"height":158.3,"bone_age":null},{"ageDecimal":13.46,"caY":13,"caM":5,"height":158.9,"bone_age":null},{"ageDecimal":13.54,"caY":13,"caM":6,"height":158.5,"bone_age":null},{"ageDecimal":13.63,"caY":13,"caM":7,"height":159.3,"bone_age":13.42},{"ageDecimal":13.71,"caY":13,"caM":8,"height":160.1,"bone_age":null},{"ageDecimal":13.81,"caY":13,"caM":9,"height":161.1,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 재윤</span>
+    <span class="meta">초진 만 10.5세 · 치료 중</span>
+  </header>
+  <p class="headline">"11살인데 뼈나이는 13살이었습니다 — 예상키 +6.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 8개월 동안 키 <b>12.2cm</b> 성장 (146.6→158.8cm)</li><li>예측 성인키 <b>+6.8cm</b> 상승 (163.2→170cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 8개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>146.6→158.8<i>+12.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>163.2→170<i>+6.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-prec">성조숙</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":10.55,"caY":10,"caM":6,"height":146.6,"bone_age":13.42},{"ageDecimal":10.67,"caY":10,"caM":8,"height":146.6,"bone_age":null},{"ageDecimal":10.75,"caY":10,"caM":8,"height":147.7,"bone_age":null},{"ageDecimal":10.82,"caY":10,"caM":9,"height":148,"bone_age":null},{"ageDecimal":10.9,"caY":10,"caM":10,"height":148.6,"bone_age":null},{"ageDecimal":10.98,"caY":10,"caM":11,"height":149.2,"bone_age":null},{"ageDecimal":11.05,"caY":11,"caM":0,"height":150,"bone_age":13.42},{"ageDecimal":11.14,"caY":11,"caM":1,"height":150.7,"bone_age":null},{"ageDecimal":11.21,"caY":11,"caM":2,"height":151.1,"bone_age":null},{"ageDecimal":11.29,"caY":11,"caM":3,"height":152.1,"bone_age":null},{"ageDecimal":11.37,"caY":11,"caM":4,"height":152.3,"bone_age":null},{"ageDecimal":11.47,"caY":11,"caM":5,"height":153.5,"bone_age":null},{"ageDecimal":11.54,"caY":11,"caM":6,"height":154,"bone_age":13.42},{"ageDecimal":11.61,"caY":11,"caM":7,"height":154.3,"bone_age":null},{"ageDecimal":11.69,"caY":11,"caM":8,"height":154.3,"bone_age":null},{"ageDecimal":11.78,"caY":11,"caM":9,"height":154.8,"bone_age":null},{"ageDecimal":11.85,"caY":11,"caM":10,"height":155,"bone_age":null},{"ageDecimal":11.93,"caY":11,"caM":11,"height":156,"bone_age":null},{"ageDecimal":12,"caY":12,"caM":0,"height":156.6,"bone_age":13.42},{"ageDecimal":12.07,"caY":12,"caM":0,"height":156.1,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":157.6,"bone_age":null},{"ageDecimal":12.23,"caY":12,"caM":2,"height":158.8,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 시현</span>
+    <span class="meta">초진 만 14.3세 · 치료 완료</span>
+  </header>
+  <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +6.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 2개월 동안 키 <b>11.3cm</b> 성장 (161.5→172.8cm)</li><li>예측 성인키 <b>+6.8cm</b> 상승 (173.2→180cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.3년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 2개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>161.5→172.8<i>+11.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>173.2→180<i>+6.8cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-obes">비만 동반</span><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":14.29,"caY":14,"caM":3,"height":161.5,"bone_age":13.5},{"ageDecimal":14.37,"caY":14,"caM":4,"height":160.8,"bone_age":null},{"ageDecimal":14.43,"caY":14,"caM":5,"height":162.2,"bone_age":null},{"ageDecimal":14.5,"caY":14,"caM":6,"height":162.8,"bone_age":null},{"ageDecimal":14.58,"caY":14,"caM":7,"height":163.3,"bone_age":null},{"ageDecimal":14.67,"caY":14,"caM":8,"height":164.2,"bone_age":null},{"ageDecimal":14.75,"caY":14,"caM":9,"height":165.7,"bone_age":null},{"ageDecimal":14.82,"caY":14,"caM":9,"height":166.5,"bone_age":13.67},{"ageDecimal":14.9,"caY":14,"caM":10,"height":166.6,"bone_age":null},{"ageDecimal":14.98,"caY":14,"caM":11,"height":167.7,"bone_age":null},{"ageDecimal":15.06,"caY":15,"caM":0,"height":167.2,"bone_age":null},{"ageDecimal":15.15,"caY":15,"caM":1,"height":168.2,"bone_age":null},{"ageDecimal":15.21,"caY":15,"caM":2,"height":168,"bone_age":null},{"ageDecimal":15.28,"caY":15,"caM":3,"height":168.8,"bone_age":null},{"ageDecimal":15.35,"caY":15,"caM":4,"height":168.5,"bone_age":null},{"ageDecimal":15.66,"caY":15,"caM":7,"height":170.3,"bone_age":14},{"ageDecimal":15.74,"caY":15,"caM":8,"height":170.5,"bone_age":null},{"ageDecimal":15.84,"caY":15,"caM":10,"height":170.7,"bone_age":null},{"ageDecimal":15.94,"caY":15,"caM":11,"height":171.8,"bone_age":null},{"ageDecimal":16.02,"caY":16,"caM":0,"height":171.8,"bone_age":null},{"ageDecimal":16.28,"caY":16,"caM":3,"height":171.9,"bone_age":14.2},{"ageDecimal":16.36,"caY":16,"caM":4,"height":172.8,"bone_age":null},{"ageDecimal":16.47,"caY":16,"caM":5,"height":172.8,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 윤서</span>
+    <span class="meta">초진 만 12.9세 · 치료 중</span>
+  </header>
+  <p class="headline">"13세, 늦었다고 생각했지만 — 예상키 +7.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 동안 키 <b>6.9cm</b> 성장 (158.7→165.6cm)</li><li>예측 성인키 <b>+7.4cm</b> 상승 (161.6→169cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.3년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년</b></div>
+    <div class="kpi"><span>실제 키</span><b>158.7→165.6<i>+6.9cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>161.6→169<i>+7.4cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":12.93,"caY":12,"caM":11,"height":158.7,"bone_age":13.67},{"ageDecimal":13.05,"caY":13,"caM":0,"height":158.3,"bone_age":null},{"ageDecimal":13.08,"caY":13,"caM":0,"height":158.7,"bone_age":null},{"ageDecimal":13.17,"caY":13,"caM":2,"height":159.8,"bone_age":null},{"ageDecimal":13.25,"caY":13,"caM":2,"height":160.4,"bone_age":null},{"ageDecimal":13.33,"caY":13,"caM":4,"height":160,"bone_age":null},{"ageDecimal":13.4,"caY":13,"caM":4,"height":160.5,"bone_age":13.33},{"ageDecimal":13.46,"caY":13,"caM":5,"height":161.1,"bone_age":null},{"ageDecimal":13.59,"caY":13,"caM":7,"height":162,"bone_age":null},{"ageDecimal":13.66,"caY":13,"caM":7,"height":161.4,"bone_age":null},{"ageDecimal":13.74,"caY":13,"caM":8,"height":161.8,"bone_age":null},{"ageDecimal":13.82,"caY":13,"caM":9,"height":163,"bone_age":13.4},{"ageDecimal":13.92,"caY":13,"caM":11,"height":163.8,"bone_age":null},{"ageDecimal":13.99,"caY":13,"caM":11,"height":163.1,"bone_age":null},{"ageDecimal":14.07,"caY":14,"caM":0,"height":163.5,"bone_age":null},{"ageDecimal":14.17,"caY":14,"caM":2,"height":164,"bone_age":null},{"ageDecimal":14.32,"caY":14,"caM":3,"height":164.1,"bone_age":13.4},{"ageDecimal":14.4,"caY":14,"caM":4,"height":165.1,"bone_age":null},{"ageDecimal":14.93,"caY":14,"caM":11,"height":165.6,"bone_age":13.4}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 서준</span>
+    <span class="meta">초진 만 12세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 173cm → 179.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 1개월 동안 키 <b>17.3cm</b> 성장 (156.2→173.5cm)</li><li>예측 성인키 <b>+6.1cm</b> 상승 (173→179.1cm)</li><li>연평균 <b>8.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 1개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>156.2→173.5<i>+17.3cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>173→179.1<i>+6.1cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.02,"caY":12,"caM":0,"height":156.2,"bone_age":null},{"ageDecimal":12.15,"caY":12,"caM":1,"height":156.8,"bone_age":null},{"ageDecimal":12.34,"caY":12,"caM":4,"height":159.5,"bone_age":null},{"ageDecimal":12.39,"caY":12,"caM":4,"height":161.4,"bone_age":null},{"ageDecimal":12.59,"caY":12,"caM":7,"height":164.3,"bone_age":null},{"ageDecimal":12.67,"caY":12,"caM":8,"height":165,"bone_age":null},{"ageDecimal":12.75,"caY":12,"caM":8,"height":166,"bone_age":null},{"ageDecimal":12.85,"caY":12,"caM":10,"height":166.2,"bone_age":13.33},{"ageDecimal":12.92,"caY":12,"caM":11,"height":167.2,"bone_age":null},{"ageDecimal":13.01,"caY":13,"caM":0,"height":167.4,"bone_age":null},{"ageDecimal":13.1,"caY":13,"caM":1,"height":168.8,"bone_age":null},{"ageDecimal":13.23,"caY":13,"caM":2,"height":168.8,"bone_age":13.5},{"ageDecimal":13.31,"caY":13,"caM":3,"height":170.1,"bone_age":null},{"ageDecimal":13.38,"caY":13,"caM":4,"height":171,"bone_age":null},{"ageDecimal":13.49,"caY":13,"caM":5,"height":171.5,"bone_age":null},{"ageDecimal":13.57,"caY":13,"caM":6,"height":172.4,"bone_age":null},{"ageDecimal":14.08,"caY":14,"caM":0,"height":173.5,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 서현</span>
+    <span class="meta">초진 만 10.8세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 153.8cm → 159.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 3개월 동안 키 <b>12.8cm</b> 성장 (142.7→155.5cm)</li><li>예측 성인키 <b>+5.5cm</b> 상승 (153.8→159.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.9년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 3개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>142.7→155.5<i>+12.8cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>153.8→159.3<i>+5.5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":10.84,"caY":10,"caM":10,"height":142.7,"bone_age":12},{"ageDecimal":11,"caY":10,"caM":11,"height":144.2,"bone_age":null},{"ageDecimal":11.16,"caY":11,"caM":2,"height":145.1,"bone_age":null},{"ageDecimal":11.23,"caY":11,"caM":2,"height":147.2,"bone_age":null},{"ageDecimal":11.31,"caY":11,"caM":3,"height":147.2,"bone_age":12.33},{"ageDecimal":11.39,"caY":11,"caM":4,"height":148.2,"bone_age":null},{"ageDecimal":11.48,"caY":11,"caM":5,"height":148.9,"bone_age":null},{"ageDecimal":11.56,"caY":11,"caM":6,"height":149.5,"bone_age":null},{"ageDecimal":11.65,"caY":11,"caM":7,"height":149.8,"bone_age":null},{"ageDecimal":11.73,"caY":11,"caM":8,"height":150.7,"bone_age":null},{"ageDecimal":11.81,"caY":11,"caM":9,"height":151,"bone_age":13.71},{"ageDecimal":11.9,"caY":11,"caM":10,"height":151.8,"bone_age":null},{"ageDecimal":11.98,"caY":11,"caM":11,"height":151.8,"bone_age":null},{"ageDecimal":12.07,"caY":12,"caM":0,"height":152.1,"bone_age":null},{"ageDecimal":12.15,"caY":12,"caM":1,"height":152.4,"bone_age":null},{"ageDecimal":12.23,"caY":12,"caM":2,"height":152.8,"bone_age":13.17},{"ageDecimal":12.32,"caY":12,"caM":3,"height":153.3,"bone_age":null},{"ageDecimal":12.42,"caY":12,"caM":5,"height":153.8,"bone_age":null},{"ageDecimal":12.5,"caY":12,"caM":6,"height":152.1,"bone_age":null},{"ageDecimal":12.58,"caY":12,"caM":6,"height":152.4,"bone_age":null},{"ageDecimal":12.69,"caY":12,"caM":8,"height":154.1,"bone_age":13.4},{"ageDecimal":12.76,"caY":12,"caM":9,"height":153.3,"bone_age":null},{"ageDecimal":12.84,"caY":12,"caM":10,"height":153.8,"bone_age":null},{"ageDecimal":12.93,"caY":12,"caM":11,"height":155.8,"bone_age":null},{"ageDecimal":13.01,"caY":13,"caM":0,"height":155.8,"bone_age":null},{"ageDecimal":13.09,"caY":13,"caM":1,"height":155.5,"bone_age":13.4}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 승우</span>
+    <span class="meta">초진 만 12.1세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 1년 — 예상키 172cm → 177cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 11개월 동안 키 <b>17.8cm</b> 성장 (148.5→166.3cm)</li><li>예측 성인키 <b>+5cm</b> 상승 (172→177cm)</li><li>연평균 <b>9.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 11개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>148.5→166.3<i>+17.8cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>172→177<i>+5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":12.05,"caY":12,"caM":0,"height":148.5,"bone_age":12.33},{"ageDecimal":12.11,"caY":12,"caM":1,"height":150.8,"bone_age":null},{"ageDecimal":12.16,"caY":12,"caM":1,"height":151.2,"bone_age":null},{"ageDecimal":12.28,"caY":12,"caM":3,"height":153.3,"bone_age":null},{"ageDecimal":12.41,"caY":12,"caM":4,"height":154.7,"bone_age":null},{"ageDecimal":12.51,"caY":12,"caM":6,"height":157.4,"bone_age":12.67},{"ageDecimal":12.69,"caY":12,"caM":8,"height":158,"bone_age":null},{"ageDecimal":12.78,"caY":12,"caM":9,"height":160,"bone_age":null},{"ageDecimal":12.83,"caY":12,"caM":9,"height":160.5,"bone_age":null},{"ageDecimal":12.95,"caY":12,"caM":11,"height":161,"bone_age":null},{"ageDecimal":13.1,"caY":13,"caM":1,"height":163,"bone_age":13},{"ageDecimal":13.21,"caY":13,"caM":2,"height":163.8,"bone_age":null},{"ageDecimal":13.32,"caY":13,"caM":3,"height":164.6,"bone_age":null},{"ageDecimal":13.65,"caY":13,"caM":7,"height":166.4,"bone_age":null},{"ageDecimal":13.94,"caY":13,"caM":11,"height":166.3,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 하윤</span>
+    <span class="meta">초진 만 12.1세 · 치료 중</span>
+  </header>
+  <p class="headline">"12세, 늦었다고 생각했지만 — 예상키 +5.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 9개월 동안 키 <b>7.2cm</b> 성장 (157.1→164.3cm)</li><li>예측 성인키 <b>+5.9cm</b> 상승 (161.5→167.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 9개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>157.1→164.3<i>+7.2cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>161.5→167.4<i>+5.9cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":12.11,"caY":12,"caM":1,"height":157.1,"bone_age":13.08},{"ageDecimal":12.15,"caY":12,"caM":1,"height":157.1,"bone_age":null},{"ageDecimal":12.23,"caY":12,"caM":2,"height":158.8,"bone_age":null},{"ageDecimal":12.31,"caY":12,"caM":3,"height":158.1,"bone_age":null},{"ageDecimal":12.38,"caY":12,"caM":4,"height":158.6,"bone_age":null},{"ageDecimal":12.46,"caY":12,"caM":5,"height":158.6,"bone_age":12.8},{"ageDecimal":12.55,"caY":12,"caM":6,"height":159.8,"bone_age":null},{"ageDecimal":12.63,"caY":12,"caM":7,"height":160,"bone_age":null},{"ageDecimal":12.71,"caY":12,"caM":8,"height":160,"bone_age":null},{"ageDecimal":12.79,"caY":12,"caM":9,"height":161.5,"bone_age":null},{"ageDecimal":12.88,"caY":12,"caM":10,"height":162,"bone_age":null},{"ageDecimal":12.96,"caY":12,"caM":11,"height":162.4,"bone_age":12.8},{"ageDecimal":13.07,"caY":13,"caM":0,"height":162.3,"bone_age":null},{"ageDecimal":13.15,"caY":13,"caM":1,"height":162.8,"bone_age":null},{"ageDecimal":13.23,"caY":13,"caM":2,"height":162.5,"bone_age":null},{"ageDecimal":13.32,"caY":13,"caM":3,"height":163.1,"bone_age":null},{"ageDecimal":13.42,"caY":13,"caM":5,"height":163.1,"bone_age":null},{"ageDecimal":13.57,"caY":13,"caM":6,"height":163.3,"bone_age":null},{"ageDecimal":13.65,"caY":13,"caM":7,"height":164,"bone_age":null},{"ageDecimal":13.9,"caY":13,"caM":10,"height":164.3,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 하은</span>
+    <span class="meta">초진 만 12.5세 · 치료 중</span>
+  </header>
+  <p class="headline">"13세, 늦었다고 생각했지만 — 예상키 +5.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 4개월 동안 키 <b>7.9cm</b> 성장 (155.3→163.2cm)</li><li>예측 성인키 <b>+5.3cm</b> 상승 (159.9→165.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 4개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>155.3→163.2<i>+7.9cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>159.9→165.2<i>+5.3cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":12.52,"caY":12,"caM":6,"height":155.3,"bone_age":13.08},{"ageDecimal":12.63,"caY":12,"caM":7,"height":155.6,"bone_age":null},{"ageDecimal":12.67,"caY":12,"caM":8,"height":155.5,"bone_age":null},{"ageDecimal":12.69,"caY":12,"caM":8,"height":155,"bone_age":null},{"ageDecimal":12.77,"caY":12,"caM":9,"height":157.1,"bone_age":null},{"ageDecimal":12.85,"caY":12,"caM":10,"height":158,"bone_age":null},{"ageDecimal":12.92,"caY":12,"caM":11,"height":158,"bone_age":null},{"ageDecimal":12.99,"caY":12,"caM":11,"height":158.5,"bone_age":null},{"ageDecimal":13.01,"caY":13,"caM":0,"height":158.5,"bone_age":null},{"ageDecimal":13.17,"caY":13,"caM":2,"height":158.9,"bone_age":null},{"ageDecimal":13.24,"caY":13,"caM":2,"height":159.5,"bone_age":null},{"ageDecimal":13.4,"caY":13,"caM":4,"height":159.6,"bone_age":null},{"ageDecimal":13.48,"caY":13,"caM":5,"height":160.8,"bone_age":null},{"ageDecimal":13.66,"caY":13,"caM":7,"height":161.3,"bone_age":null},{"ageDecimal":13.69,"caY":13,"caM":8,"height":161.5,"bone_age":13.83},{"ageDecimal":13.77,"caY":13,"caM":9,"height":161.7,"bone_age":null},{"ageDecimal":13.84,"caY":13,"caM":10,"height":162,"bone_age":null},{"ageDecimal":13.92,"caY":13,"caM":11,"height":162.2,"bone_age":null},{"ageDecimal":14,"caY":13,"caM":11,"height":162.5,"bone_age":null},{"ageDecimal":14.07,"caY":14,"caM":0,"height":162.8,"bone_age":14.3},{"ageDecimal":14.15,"caY":14,"caM":1,"height":162.8,"bone_age":null},{"ageDecimal":14.74,"caY":14,"caM":8,"height":163.4,"bone_age":14.3},{"ageDecimal":14.79,"caY":14,"caM":9,"height":163.2,"bone_age":null},{"ageDecimal":14.86,"caY":14,"caM":10,"height":163.2,"bone_age":null}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 예은</span>
+    <span class="meta">초진 만 11.4세 · 치료 중</span>
+  </header>
+  <p class="headline">"치료 2년 — 예상키 158cm → 163cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 1개월 동안 키 <b>9.4cm</b> 성장 (148.6→158cm)</li><li>예측 성인키 <b>+5cm</b> 상승 (158→163cm)</li><li>연평균 <b>4.5cm/년</b> 꾸준한 성장 유지</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>2년 1개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>148.6→158<i>+9.4cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>158→163<i>+5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-alle">알러지검사</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":11.39,"caY":11,"caM":4,"height":148.6,"bone_age":11.5},{"ageDecimal":11.47,"caY":11,"caM":5,"height":148.9,"bone_age":null},{"ageDecimal":11.55,"caY":11,"caM":6,"height":149.8,"bone_age":null},{"ageDecimal":11.6,"caY":11,"caM":7,"height":149.8,"bone_age":null},{"ageDecimal":11.75,"caY":11,"caM":8,"height":150.7,"bone_age":null},{"ageDecimal":11.83,"caY":11,"caM":9,"height":151.7,"bone_age":null},{"ageDecimal":11.9,"caY":11,"caM":10,"height":152.3,"bone_age":null},{"ageDecimal":11.99,"caY":11,"caM":11,"height":153.2,"bone_age":null},{"ageDecimal":12.06,"caY":12,"caM":0,"height":153.5,"bone_age":null},{"ageDecimal":12.14,"caY":12,"caM":1,"height":154.1,"bone_age":null},{"ageDecimal":12.24,"caY":12,"caM":2,"height":154.8,"bone_age":null},{"ageDecimal":13.49,"caY":13,"caM":5,"height":158,"bone_age":14}]}</script>
+</article>
+<article class="card" data-g="여">
+  <header style="--cc:#d6336c;--ccbg:#fdeef4">
+    <span class="nm">👧 주아</span>
+    <span class="meta">초진 만 14세 · 치료 중</span>
+  </header>
+  <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +5.6cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 6개월 동안 키 <b>6.5cm</b> 성장 (151.9→158.4cm)</li><li>예측 성인키 <b>+5.6cm</b> 상승 (159.9→165.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 6개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>151.9→158.4<i>+6.5cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>159.9→165.5<i>+5.6cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span><span class="tag t-slow">성장지연</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"female","measurements":[{"ageDecimal":13.98,"caY":13,"caM":11,"height":151.9,"bone_age":12.25},{"ageDecimal":14.05,"caY":14,"caM":0,"height":152.2,"bone_age":null},{"ageDecimal":14.12,"caY":14,"caM":1,"height":153.5,"bone_age":null},{"ageDecimal":14.21,"caY":14,"caM":2,"height":153.5,"bone_age":null},{"ageDecimal":14.29,"caY":14,"caM":3,"height":154,"bone_age":null},{"ageDecimal":14.37,"caY":14,"caM":4,"height":154,"bone_age":null},{"ageDecimal":14.44,"caY":14,"caM":5,"height":154.6,"bone_age":null},{"ageDecimal":14.52,"caY":14,"caM":6,"height":154.7,"bone_age":12.08},{"ageDecimal":14.66,"caY":14,"caM":7,"height":155.3,"bone_age":null},{"ageDecimal":14.74,"caY":14,"caM":8,"height":155.8,"bone_age":null},{"ageDecimal":14.83,"caY":14,"caM":9,"height":156.5,"bone_age":null},{"ageDecimal":14.9,"caY":14,"caM":10,"height":156.7,"bone_age":null},{"ageDecimal":14.98,"caY":14,"caM":11,"height":157.1,"bone_age":12.08},{"ageDecimal":15.08,"caY":15,"caM":0,"height":157.1,"bone_age":null},{"ageDecimal":15.15,"caY":15,"caM":1,"height":157.6,"bone_age":null},{"ageDecimal":15.24,"caY":15,"caM":2,"height":157.7,"bone_age":null},{"ageDecimal":15.41,"caY":15,"caM":4,"height":158.1,"bone_age":null},{"ageDecimal":15.5,"caY":15,"caM":6,"height":158.4,"bone_age":12.25}]}</script>
+</article>
+<article class="card" data-g="남">
+  <header style="--cc:#2563EB;--ccbg:#eef3ff">
+    <span class="nm">👦 건우</span>
+    <span class="meta">초진 만 14.1세 · 치료 중</span>
+  </header>
+  <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 7개월 동안 키 <b>8.5cm</b> 성장 (158.8→167.3cm)</li><li>예측 성인키 <b>+5cm</b> 상승 (165.4→170.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.1년</b> 늦춰 성장할 시간 확보</li></ul></div>
+  <div class="kpis">
+    <div class="kpi"><span>치료 기간</span><b>1년 7개월</b></div>
+    <div class="kpi"><span>실제 키</span><b>158.8→167.3<i>+8.5cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b>165.4→170.4<i>+5cm</i></b></div>
+    <div class="kpi"><span>유전 예상</span><b>-</b></div>
+  </div>
+  <div class="tags"><span class="tag t-late">늦은 시작</span></div>
+  <div class="charts2">
+    <div class="c2"><div class="clbl">📈 성장 곡선 (실제 키)</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+    <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
+  </div>
+  <script type="application/json" class="cdata">{"gender":"male","measurements":[{"ageDecimal":14.12,"caY":14,"caM":1,"height":158.8,"bone_age":14.92},{"ageDecimal":14.21,"caY":14,"caM":2,"height":160.5,"bone_age":null},{"ageDecimal":14.33,"caY":14,"caM":3,"height":160.5,"bone_age":null},{"ageDecimal":14.41,"caY":14,"caM":4,"height":161.4,"bone_age":null},{"ageDecimal":14.48,"caY":14,"caM":5,"height":162,"bone_age":null},{"ageDecimal":14.61,"caY":14,"caM":7,"height":163.2,"bone_age":null},{"ageDecimal":14.69,"caY":14,"caM":8,"height":163.3,"bone_age":null},{"ageDecimal":14.81,"caY":14,"caM":9,"height":164.1,"bone_age":null},{"ageDecimal":15.31,"caY":15,"caM":3,"height":164.5,"bone_age":null},{"ageDecimal":15.38,"caY":15,"caM":4,"height":166.1,"bone_age":null},{"ageDecimal":15.46,"caY":15,"caM":5,"height":166.6,"bone_age":null},{"ageDecimal":15.56,"caY":15,"caM":6,"height":165.6,"bone_age":null},{"ageDecimal":15.63,"caY":15,"caM":7,"height":166.5,"bone_age":15.33},{"ageDecimal":15.73,"caY":15,"caM":8,"height":167.3,"bone_age":null}]}</script>
+</article></div>
+  </div>
+</div>
+<script src="/marketing/strategy/case-charts.js"></script>
+<script>
+(function(){
+  var PIN='8054', gate=document.getElementById('gate'), content=document.getElementById('content');
+  function reveal(){ gate.style.display='none'; content.hidden=false; initCharts(); initFilters(); }
+  function tryPin(v){ if(v===PIN){ try{sessionStorage.setItem('casePin',PIN);}catch(e){} reveal(); } else { document.getElementById('err').textContent='비밀번호가 올바르지 않습니다'; } }
+  try{ if(sessionStorage.getItem('casePin')===PIN){ reveal(); return; } }catch(e){}
+  var inp=document.getElementById('pin');
+  document.getElementById('enter').addEventListener('click',function(){ tryPin(inp.value.trim()); });
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter') tryPin(inp.value.trim()); });
+  inp.focus();
+
+  var _started=false;
+  function initFilters(){
+    var cards=[].slice.call(document.querySelectorAll('#cards .card'));
+    document.querySelectorAll('.chip[data-g]').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.chip[data-g]').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on'); var g=b.dataset.g;
+        cards.forEach(function(c){ c.style.display=(g==='all'||c.dataset.g===g)?'':'none'; });
+      });
+    });
+  }
+  function initCharts(){
+    if(_started) return; _started=true;
+    var CC=window.CaseCharts;
+    function dataOf(card){ if(card._d!==undefined) return card._d; var el=card.querySelector('.cdata'); try{card._d=el?JSON.parse(el.textContent):null;}catch(e){card._d=null;} return card._d; }
+    function draw(card){
+      if(card._done||!CC) return;
+      var d=dataOf(card); if(!d) return;
+      var g=card.querySelector('.cpane-g canvas'), t=card.querySelector('.cpane-t canvas'), grid=card.querySelector('.tgrid');
+      try{ if(g) CC.renderGrowth(g,d); }catch(e){ console.error('growth',e); }
+      try{ if(t&&grid) CC.renderTrend(t,grid,d); }catch(e){ console.error('trend',e); }
+      card._done=true;
+    }
+    var cards=[].slice.call(document.querySelectorAll('#cards .card'));
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ draw(e.target); io.unobserve(e.target); } }); },{rootMargin:'400px'});
+      cards.forEach(function(c){ io.observe(c); });
+    } else { cards.forEach(draw); }
+  }
+})();
+</script>
+</body>
+</html>

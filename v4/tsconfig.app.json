@@ -22,7 +22,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@reel/*": ["../remotion/src/*"]
+      // 1순위 remotion 실소스(로컬), 부재 시 reel-stubs 폴백 — Railway 빌드 컨텍스트(root dir=v4)
+      // 에는 ../remotion 이 없어 폴백이 없으면 TS2307 로 배포 빌드가 깨진다.
+      "@reel/*": ["../remotion/src/*", "./src/reel-stubs/*"]
     }
   },
   "include": ["src", "../remotion/src/lib", "../remotion/src/shorts/_shared"]

@@ -24,6 +24,7 @@ type LabelDict = {
   chartCurrentGrowth: string;
   chartAxisAge: string;
   chartAxisHeight: string;
+  tableTitle: (n: number) => string;
   tableNum: string;
   tableDate: string;
   tableHeight: string;
@@ -77,6 +78,7 @@ const DICT: Record<CasesLang, LabelDict> = {
     loading: '로딩...',
     chartActualHeight: '실제 키', chartInitialGrowth: '초진 예상 성장', chartCurrentGrowth: '현재 예상 성장',
     chartAxisAge: '나이(세)', chartAxisHeight: '키(cm)',
+    tableTitle: (n) => `📋 회차별 측정 기록 (${n}회)`,
     tableNum: '#',
     tableDate: '날짜', tableHeight: '키', tableWeight: '체중',
     tableAge: '나이', tableBoneAge: '뼈나이', tablePredicted: '예상키',
@@ -113,6 +115,7 @@ const DICT: Record<CasesLang, LabelDict> = {
     loading: 'Loading…',
     chartActualHeight: 'Actual height', chartInitialGrowth: 'Initial projection', chartCurrentGrowth: 'Current projection',
     chartAxisAge: 'Age (yrs)', chartAxisHeight: 'Height (cm)',
+    tableTitle: (n) => `📋 Visit-by-visit records (${n})`,
     tableNum: '#',
     tableDate: 'Date', tableHeight: 'Height', tableWeight: 'Weight',
     tableAge: 'Age', tableBoneAge: 'Bone age', tablePredicted: 'Predicted',
@@ -149,6 +152,7 @@ const DICT: Record<CasesLang, LabelDict> = {
     loading: 'กำลังโหลด...',
     chartActualHeight: 'ส่วนสูงจริง', chartInitialGrowth: 'คาดการณ์ครั้งแรก', chartCurrentGrowth: 'คาดการณ์ปัจจุบัน',
     chartAxisAge: 'อายุ (ปี)', chartAxisHeight: 'ส่วนสูง (ซม.)',
+    tableTitle: (n) => `📋 บันทึกการวัดแต่ละครั้ง (${n} ครั้ง)`,
     tableNum: '#',
     tableDate: 'วันที่', tableHeight: 'ส่วนสูง', tableWeight: 'น้ำหนัก',
     tableAge: 'อายุ', tableBoneAge: 'อายุกระดูก', tablePredicted: 'คาดการณ์',
@@ -185,6 +189,7 @@ const DICT: Record<CasesLang, LabelDict> = {
     loading: 'Đang tải...',
     chartActualHeight: 'Chiều cao thực', chartInitialGrowth: 'Dự đoán ban đầu', chartCurrentGrowth: 'Dự đoán hiện tại',
     chartAxisAge: 'Tuổi (năm)', chartAxisHeight: 'Chiều cao (cm)',
+    tableTitle: (n) => `📋 Bảng đo từng lần khám (${n} lần)`,
     tableNum: '#',
     tableDate: 'Ngày', tableHeight: 'Chiều cao', tableWeight: 'Cân nặng',
     tableAge: 'Tuổi', tableBoneAge: 'Tuổi xương', tablePredicted: 'Dự đoán',
