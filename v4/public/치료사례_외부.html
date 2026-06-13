@@ -19,7 +19,13 @@
   .card header { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-left:4px solid var(--cc); background:var(--ccbg); padding:8px 12px; border-radius:9px; }
   .nm { font-size:18px; font-weight:800; color:#22252e; }
   .meta { font-size:12px; color:#6b7280; }
-  .headline { font-size:16px; font-weight:700; color:#33294d; margin:14px 2px 12px; line-height:1.5; }
+  .headline { font-size:16px; font-weight:700; color:#33294d; margin:14px 2px 10px; line-height:1.5; }
+  .hilite { background:linear-gradient(180deg,#f4f0fc,#f8f6fd); border:1px solid #e4daf6; border-radius:12px; padding:11px 14px; margin:6px 0 12px; }
+  .hilite-t { font-size:12.5px; font-weight:800; color:#6b46c1; margin-bottom:6px; letter-spacing:-0.2px; }
+  .hilite ul { margin:0; padding-left:0; list-style:none; }
+  .hilite li { position:relative; padding-left:18px; font-size:13.5px; color:#3a3550; line-height:1.7; }
+  .hilite li::before { content:'›'; position:absolute; left:4px; color:#9b7fd4; font-weight:800; }
+  .hilite li b { color:#5b3a9e; font-weight:800; }
   .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:10px 0; }
   @media(max-width:560px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
   .kpi { background:#f8f7fb; border:1px solid #efedf5; border-radius:10px; padding:8px 10px; }
@@ -76,6 +82,7 @@
     <span class="meta">초진 만 9.9세 · 치료 중</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 168cm → 186.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 3개월 동안 키 <b>37.1cm</b> 성장 (146.2→183.3cm)</li><li>예측 성인키 <b>+18.9cm</b> 상승 (168→186.9cm)</li><li>연평균 <b>8.7cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 3개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.2→183.3<i>+37.1cm</i></b></div>
@@ -95,6 +102,7 @@
     <span class="meta">초진 만 11세 · 치료 완료</span>
   </header>
   <p class="headline">"11살인데 뼈나이는 13살이었습니다 — 예상키 +17.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 9개월 동안 키 <b>32.2cm</b> 성장 (142.8→175cm)</li><li>예측 성인키 <b>+17.2cm</b> 상승 (164.6→181.8cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 9개월</b></div>
     <div class="kpi"><span>실제 키</span><b>142.8→175<i>+32.2cm</i></b></div>
@@ -114,6 +122,7 @@
     <span class="meta">초진 만 10세 · 치료 중</span>
   </header>
   <p class="headline">"10살인데 뼈나이는 12살이었습니다 — 예상키 +14.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 11개월 동안 키 <b>35.1cm</b> 성장 (134→169.1cm)</li><li>예측 성인키 <b>+14.1cm</b> 상승 (162→176.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>134→169.1<i>+35.1cm</i></b></div>
@@ -133,6 +142,7 @@
     <span class="meta">초진 만 10.5세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 171.7cm → 187cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 4개월 동안 키 <b>34.3cm</b> 성장 (145.6→179.9cm)</li><li>예측 성인키 <b>+15.3cm</b> 상승 (171.7→187cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 4개월</b></div>
     <div class="kpi"><span>실제 키</span><b>145.6→179.9<i>+34.3cm</i></b></div>
@@ -152,6 +162,7 @@
     <span class="meta">초진 만 11.5세 · 치료 중</span>
   </header>
   <p class="headline">"12살인데 뼈나이는 13살이었습니다 — 예상키 +20.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 11개월 동안 키 <b>21.4cm</b> 성장 (152.1→173.5cm)</li><li>예측 성인키 <b>+20.9cm</b> 상승 (167.6→188.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>3.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>152.1→173.5<i>+21.4cm</i></b></div>
@@ -171,6 +182,7 @@
     <span class="meta">초진 만 9.9세 · 치료 완료</span>
   </header>
   <p class="headline">"10살인데 뼈나이는 12살이었습니다 — 예상키 +16.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 동안 키 <b>28.8cm</b> 성장 (148→176.8cm)</li><li>예측 성인키 <b>+16.8cm</b> 상승 (168.7→185.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년</b></div>
     <div class="kpi"><span>실제 키</span><b>148→176.8<i>+28.8cm</i></b></div>
@@ -190,6 +202,7 @@
     <span class="meta">초진 만 11.2세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 168.3cm → 183.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 11개월 동안 키 <b>32.7cm</b> 성장 (145.8→178.5cm)</li><li>예측 성인키 <b>+15.1cm</b> 상승 (168.3→183.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.3년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>145.8→178.5<i>+32.7cm</i></b></div>
@@ -209,6 +222,7 @@
     <span class="meta">초진 만 12.6세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 167.1cm → 183.7cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 5개월 동안 키 <b>28.8cm</b> 성장 (146.8→175.6cm)</li><li>예측 성인키 <b>+16.6cm</b> 상승 (167.1→183.7cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.8→175.6<i>+28.8cm</i></b></div>
@@ -228,6 +242,7 @@
     <span class="meta">초진 만 10.4세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 173.7cm → 187.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 4개월 동안 키 <b>33.3cm</b> 성장 (148.1→181.4cm)</li><li>예측 성인키 <b>+13.6cm</b> 상승 (173.7→187.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 4개월</b></div>
     <div class="kpi"><span>실제 키</span><b>148.1→181.4<i>+33.3cm</i></b></div>
@@ -247,6 +262,7 @@
     <span class="meta">초진 만 9.4세 · 치료 중</span>
   </header>
   <p class="headline">"9살인데 뼈나이는 11살이었습니다 — 예상키 +12.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 7개월 동안 키 <b>34.7cm</b> 성장 (140.7→175.4cm)</li><li>예측 성인키 <b>+12.2cm</b> 상승 (169.7→181.9cm)</li><li>연평균 <b>9.7cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 7개월</b></div>
     <div class="kpi"><span>실제 키</span><b>140.7→175.4<i>+34.7cm</i></b></div>
@@ -266,6 +282,7 @@
     <span class="meta">초진 만 12.4세 · 치료 중</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 169.9cm → 185.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 동안 키 <b>24.4cm</b> 성장 (154.2→178.6cm)</li><li>예측 성인키 <b>+15.4cm</b> 상승 (169.9→185.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년</b></div>
     <div class="kpi"><span>실제 키</span><b>154.2→178.6<i>+24.4cm</i></b></div>
@@ -285,6 +302,7 @@
     <span class="meta">초진 만 9.8세 · 치료 완료</span>
   </header>
   <p class="headline">"10살인데 뼈나이는 12살이었습니다 — 예상키 +12.6cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 동안 키 <b>30.2cm</b> 성장 (141→171.2cm)</li><li>예측 성인키 <b>+12.6cm</b> 상승 (165.8→178.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년</b></div>
     <div class="kpi"><span>실제 키</span><b>141→171.2<i>+30.2cm</i></b></div>
@@ -304,6 +322,7 @@
     <span class="meta">초진 만 12.3세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 170.6cm → 187.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 7개월 동안 키 <b>21.3cm</b> 성장 (155.7→177cm)</li><li>예측 성인키 <b>+16.6cm</b> 상승 (170.6→187.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.9년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 7개월</b></div>
     <div class="kpi"><span>실제 키</span><b>155.7→177<i>+21.3cm</i></b></div>
@@ -323,6 +342,7 @@
     <span class="meta">초진 만 9.2세 · 치료 완료</span>
   </header>
   <p class="headline">"9살인데 뼈나이는 12살이었습니다 — 예상키 +11.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 11개월 동안 키 <b>30.6cm</b> 성장 (146.2→176.8cm)</li><li>예측 성인키 <b>+11.5cm</b> 상승 (170.8→182.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.2→176.8<i>+30.6cm</i></b></div>
@@ -342,6 +362,7 @@
     <span class="meta">초진 만 11세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 177.1cm → 188.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 8개월 동안 키 <b>32.9cm</b> 성장 (152→184.9cm)</li><li>예측 성인키 <b>+11cm</b> 상승 (177.1→188.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 8개월</b></div>
     <div class="kpi"><span>실제 키</span><b>152→184.9<i>+32.9cm</i></b></div>
@@ -361,6 +382,7 @@
     <span class="meta">초진 만 11.4세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 170.8cm → 182.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 5개월 동안 키 <b>30.6cm</b> 성장 (146.2→176.8cm)</li><li>예측 성인키 <b>+11.4cm</b> 상승 (170.8→182.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.2→176.8<i>+30.6cm</i></b></div>
@@ -380,6 +402,7 @@
     <span class="meta">초진 만 9세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 149.7cm → 162.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 4개월 동안 키 <b>26.9cm</b> 성장 (124.2→151.1cm)</li><li>예측 성인키 <b>+12.4cm</b> 상승 (149.7→162.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 4개월</b></div>
     <div class="kpi"><span>실제 키</span><b>124.2→151.1<i>+26.9cm</i></b></div>
@@ -399,6 +422,7 @@
     <span class="meta">초진 만 8.4세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 155.3cm → 165.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 9개월 동안 키 <b>33.3cm</b> 성장 (123→156.3cm)</li><li>예측 성인키 <b>+10.1cm</b> 상승 (155.3→165.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 9개월</b></div>
     <div class="kpi"><span>실제 키</span><b>123→156.3<i>+33.3cm</i></b></div>
@@ -418,6 +442,7 @@
     <span class="meta">초진 만 9.1세 · 치료 완료</span>
   </header>
   <p class="headline">"9살인데 뼈나이는 11살이었습니다 — 예상키 +14cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 5개월 동안 키 <b>26.6cm</b> 성장 (135→161.6cm)</li><li>예측 성인키 <b>+14cm</b> 상승 (154→168cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>135→161.6<i>+26.6cm</i></b></div>
@@ -437,6 +462,7 @@
     <span class="meta">초진 만 11.4세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 4년 — 예상키 166.8cm → 178.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 4년 7개월 동안 키 <b>29.5cm</b> 성장 (138.8→168.3cm)</li><li>예측 성인키 <b>+11.4cm</b> 상승 (166.8→178.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>4년 7개월</b></div>
     <div class="kpi"><span>실제 키</span><b>138.8→168.3<i>+29.5cm</i></b></div>
@@ -456,6 +482,7 @@
     <span class="meta">초진 만 8.9세 · 치료 완료</span>
   </header>
   <p class="headline">"9살인데 뼈나이는 12살이었습니다 — 예상키 +11.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 2개월 동안 키 <b>24cm</b> 성장 (139.4→163.4cm)</li><li>예측 성인키 <b>+11.9cm</b> 상승 (166.5→178.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 2개월</b></div>
     <div class="kpi"><span>실제 키</span><b>139.4→163.4<i>+24cm</i></b></div>
@@ -475,6 +502,7 @@
     <span class="meta">초진 만 11.7세 · 치료 중</span>
   </header>
   <p class="headline">"12세, 늦었다고 생각했지만 — 예상키 +13.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 11개월 동안 키 <b>20.3cm</b> 성장 (136.5→156.8cm)</li><li>예측 성인키 <b>+13.8cm</b> 상승 (150.9→164.7cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>136.5→156.8<i>+20.3cm</i></b></div>
@@ -494,6 +522,7 @@
     <span class="meta">초진 만 12.7세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 172.9cm → 186.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 1개월 동안 키 <b>19.6cm</b> 성장 (154.7→174.3cm)</li><li>예측 성인키 <b>+13.4cm</b> 상승 (172.9→186.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 1개월</b></div>
     <div class="kpi"><span>실제 키</span><b>154.7→174.3<i>+19.6cm</i></b></div>
@@ -513,6 +542,7 @@
     <span class="meta">초진 만 8.6세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 5년 — 예상키 174.8cm → 180.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 5년 11개월 동안 키 <b>38.2cm</b> 성장 (132.6→170.8cm)</li><li>예측 성인키 <b>+5.6cm</b> 상승 (174.8→180.4cm)</li><li>연평균 <b>6.5cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>5년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>132.6→170.8<i>+38.2cm</i></b></div>
@@ -532,6 +562,7 @@
     <span class="meta">초진 만 13.6세 · 치료 중</span>
   </header>
   <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +13.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 동안 키 <b>20.2cm</b> 성장 (153.5→173.7cm)</li><li>예측 성인키 <b>+13.8cm</b> 상승 (167.4→181.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년</b></div>
     <div class="kpi"><span>실제 키</span><b>153.5→173.7<i>+20.2cm</i></b></div>
@@ -551,6 +582,7 @@
     <span class="meta">초진 만 11.4세 · 치료 중</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 176.1cm → 186.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 3개월 동안 키 <b>26.2cm</b> 성장 (152.8→179cm)</li><li>예측 성인키 <b>+10cm</b> 상승 (176.1→186.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.9년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 3개월</b></div>
     <div class="kpi"><span>실제 키</span><b>152.8→179<i>+26.2cm</i></b></div>
@@ -570,6 +602,7 @@
     <span class="meta">초진 만 12.3세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 173.9cm → 185.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 6개월 동안 키 <b>23cm</b> 성장 (151.8→174.8cm)</li><li>예측 성인키 <b>+11.3cm</b> 상승 (173.9→185.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 6개월</b></div>
     <div class="kpi"><span>실제 키</span><b>151.8→174.8<i>+23cm</i></b></div>
@@ -589,6 +622,7 @@
     <span class="meta">초진 만 10.5세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 172.2cm → 181.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 9개월 동안 키 <b>27.2cm</b> 성장 (146.3→173.5cm)</li><li>예측 성인키 <b>+9.3cm</b> 상승 (172.2→181.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 9개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.3→173.5<i>+27.2cm</i></b></div>
@@ -608,6 +642,7 @@
     <span class="meta">초진 만 9.3세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 167.4cm → 175.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 3개월 동안 키 <b>29.6cm</b> 성장 (132.5→162.1cm)</li><li>예측 성인키 <b>+7.8cm</b> 상승 (167.4→175.2cm)</li><li>연평균 <b>9.1cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년 3개월</b></div>
     <div class="kpi"><span>실제 키</span><b>132.5→162.1<i>+29.6cm</i></b></div>
@@ -627,6 +662,7 @@
     <span class="meta">초진 만 11세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 159.2cm → 170.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 6개월 동안 키 <b>17.5cm</b> 성장 (143.9→161.4cm)</li><li>예측 성인키 <b>+10.9cm</b> 상승 (159.2→170.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 6개월</b></div>
     <div class="kpi"><span>실제 키</span><b>143.9→161.4<i>+17.5cm</i></b></div>
@@ -646,6 +682,7 @@
     <span class="meta">초진 만 9.2세 · 치료 중</span>
   </header>
   <p class="headline">"치료 3년 — 예상키 155.1cm → 164.2cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 3년 동안 키 <b>20.3cm</b> 성장 (135.4→155.7cm)</li><li>예측 성인키 <b>+9.1cm</b> 상승 (155.1→164.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.6년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>3년</b></div>
     <div class="kpi"><span>실제 키</span><b>135.4→155.7<i>+20.3cm</i></b></div>
@@ -665,6 +702,7 @@
     <span class="meta">초진 만 11.9세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 161.8cm → 171.7cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 3개월 동안 키 <b>17.2cm</b> 성장 (143.3→160.5cm)</li><li>예측 성인키 <b>+9.9cm</b> 상승 (161.8→171.7cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 3개월</b></div>
     <div class="kpi"><span>실제 키</span><b>143.3→160.5<i>+17.2cm</i></b></div>
@@ -684,6 +722,7 @@
     <span class="meta">초진 만 10.4세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 153.9cm → 163.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 6개월 동안 키 <b>15.6cm</b> 성장 (139.4→155cm)</li><li>예측 성인키 <b>+9.9cm</b> 상승 (153.9→163.8cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 6개월</b></div>
     <div class="kpi"><span>실제 키</span><b>139.4→155<i>+15.6cm</i></b></div>
@@ -703,6 +742,7 @@
     <span class="meta">초진 만 10.3세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 152.3cm → 162.6cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 2개월 동안 키 <b>15.1cm</b> 성장 (138.1→153.2cm)</li><li>예측 성인키 <b>+10.3cm</b> 상승 (152.3→162.6cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 2개월</b></div>
     <div class="kpi"><span>실제 키</span><b>138.1→153.2<i>+15.1cm</i></b></div>
@@ -722,6 +762,7 @@
     <span class="meta">초진 만 9.6세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 162cm → 171cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>20cm</b> 성장 (137.4→157.4cm)</li><li>예측 성인키 <b>+9cm</b> 상승 (162→171cm)</li><li>연평균 <b>8.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>137.4→157.4<i>+20cm</i></b></div>
@@ -741,6 +782,7 @@
     <span class="meta">초진 만 10.1세 · 치료 중</span>
   </header>
   <p class="headline">"치료 1년 — 예상키 167.5cm → 175.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 10개월 동안 키 <b>20.7cm</b> 성장 (140.6→161.3cm)</li><li>예측 성인키 <b>+7.6cm</b> 상승 (167.5→175.1cm)</li><li>연평균 <b>11.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 10개월</b></div>
     <div class="kpi"><span>실제 키</span><b>140.6→161.3<i>+20.7cm</i></b></div>
@@ -760,6 +802,7 @@
     <span class="meta">초진 만 10.7세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 158.1cm → 166.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 동안 키 <b>15.9cm</b> 성장 (140.4→156.3cm)</li><li>예측 성인키 <b>+8.4cm</b> 상승 (158.1→166.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년</b></div>
     <div class="kpi"><span>실제 키</span><b>140.4→156.3<i>+15.9cm</i></b></div>
@@ -779,6 +822,7 @@
     <span class="meta">초진 만 11.9세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 174.9cm → 183.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 11개월 동안 키 <b>21.7cm</b> 성장 (156.7→178.4cm)</li><li>예측 성인키 <b>+8.2cm</b> 상승 (174.9→183.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.7년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>156.7→178.4<i>+21.7cm</i></b></div>
@@ -798,6 +842,7 @@
     <span class="meta">초진 만 13.2세 · 치료 중</span>
   </header>
   <p class="headline">"13세, 늦었다고 생각했지만 — 예상키 +10cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>16.4cm</b> 성장 (164.4→180.8cm)</li><li>예측 성인키 <b>+10cm</b> 상승 (177→187cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.4년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>164.4→180.8<i>+16.4cm</i></b></div>
@@ -817,6 +862,7 @@
     <span class="meta">초진 만 13.9세 · 치료 중</span>
   </header>
   <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +9.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 4개월 동안 키 <b>17.3cm</b> 성장 (161.2→178.5cm)</li><li>예측 성인키 <b>+9.8cm</b> 상승 (171.5→181.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 4개월</b></div>
     <div class="kpi"><span>실제 키</span><b>161.2→178.5<i>+17.3cm</i></b></div>
@@ -836,6 +882,7 @@
     <span class="meta">초진 만 7.7세 · 치료 중</span>
   </header>
   <p class="headline">"8살인데 뼈나이는 9살이었습니다 — 예상키 +5.5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 8개월 동안 키 <b>20.5cm</b> 성장 (126.8→147.3cm)</li><li>예측 성인키 <b>+5.5cm</b> 상승 (165.9→171.4cm)</li><li>연평균 <b>7.7cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 8개월</b></div>
     <div class="kpi"><span>실제 키</span><b>126.8→147.3<i>+20.5cm</i></b></div>
@@ -855,6 +902,7 @@
     <span class="meta">초진 만 10.2세 · 치료 중</span>
   </header>
   <p class="headline">"치료 1년 — 예상키 160.7cm → 168.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 10개월 동안 키 <b>15.9cm</b> 성장 (132.9→148.8cm)</li><li>예측 성인키 <b>+7.4cm</b> 상승 (160.7→168.1cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.8년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 10개월</b></div>
     <div class="kpi"><span>실제 키</span><b>132.9→148.8<i>+15.9cm</i></b></div>
@@ -874,6 +922,7 @@
     <span class="meta">초진 만 12세 · 치료 중</span>
   </header>
   <p class="headline">"치료 1년 — 예상키 170.5cm → 181cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 11개월 동안 키 <b>11.2cm</b> 성장 (157.8→169cm)</li><li>예측 성인키 <b>+10.5cm</b> 상승 (170.5→181cm)</li><li>연평균 <b>5.8cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>157.8→169<i>+11.2cm</i></b></div>
@@ -893,6 +942,7 @@
     <span class="meta">초진 만 10.4세 · 치료 완료</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 158.9cm → 166cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>17.6cm</b> 성장 (146.6→164.2cm)</li><li>예측 성인키 <b>+7.1cm</b> 상승 (158.9→166cm)</li><li>연평균 <b>7.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.6→164.2<i>+17.6cm</i></b></div>
@@ -912,6 +962,7 @@
     <span class="meta">초진 만 11.4세 · 치료 중</span>
   </header>
   <p class="headline">"치료 1년 — 예상키 155.5cm → 164cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 8개월 동안 키 <b>12.5cm</b> 성장 (143.6→156.1cm)</li><li>예측 성인키 <b>+8.5cm</b> 상승 (155.5→164cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.4년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 8개월</b></div>
     <div class="kpi"><span>실제 키</span><b>143.6→156.1<i>+12.5cm</i></b></div>
@@ -931,6 +982,7 @@
     <span class="meta">초진 만 13.6세 · 치료 완료</span>
   </header>
   <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +7.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 5개월 동안 키 <b>11.8cm</b> 성장 (169.7→181.5cm)</li><li>예측 성인키 <b>+7.8cm</b> 상승 (179.8→187.6cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.4년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 5개월</b></div>
     <div class="kpi"><span>실제 키</span><b>169.7→181.5<i>+11.8cm</i></b></div>
@@ -950,6 +1002,7 @@
     <span class="meta">초진 만 12.2세 · 치료 중</span>
   </header>
   <p class="headline">"치료 1년 — 예상키 167.5cm → 174cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 7개월 동안 키 <b>14.3cm</b> 성장 (146.8→161.1cm)</li><li>예측 성인키 <b>+6.5cm</b> 상승 (167.5→174cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 7개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.8→161.1<i>+14.3cm</i></b></div>
@@ -969,6 +1022,7 @@
     <span class="meta">초진 만 10.5세 · 치료 중</span>
   </header>
   <p class="headline">"11살인데 뼈나이는 13살이었습니다 — 예상키 +6.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 8개월 동안 키 <b>12.2cm</b> 성장 (146.6→158.8cm)</li><li>예측 성인키 <b>+6.8cm</b> 상승 (163.2→170cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 8개월</b></div>
     <div class="kpi"><span>실제 키</span><b>146.6→158.8<i>+12.2cm</i></b></div>
@@ -988,6 +1042,7 @@
     <span class="meta">초진 만 14.3세 · 치료 완료</span>
   </header>
   <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +6.8cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 2개월 동안 키 <b>11.3cm</b> 성장 (161.5→172.8cm)</li><li>예측 성인키 <b>+6.8cm</b> 상승 (173.2→180cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.3년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 2개월</b></div>
     <div class="kpi"><span>실제 키</span><b>161.5→172.8<i>+11.3cm</i></b></div>
@@ -1007,6 +1062,7 @@
     <span class="meta">초진 만 12.9세 · 치료 중</span>
   </header>
   <p class="headline">"13세, 늦었다고 생각했지만 — 예상키 +7.4cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 동안 키 <b>6.9cm</b> 성장 (158.7→165.6cm)</li><li>예측 성인키 <b>+7.4cm</b> 상승 (161.6→169cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>2.3년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년</b></div>
     <div class="kpi"><span>실제 키</span><b>158.7→165.6<i>+6.9cm</i></b></div>
@@ -1026,6 +1082,7 @@
     <span class="meta">초진 만 12세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 173cm → 179.1cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 1개월 동안 키 <b>17.3cm</b> 성장 (156.2→173.5cm)</li><li>예측 성인키 <b>+6.1cm</b> 상승 (173→179.1cm)</li><li>연평균 <b>8.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 1개월</b></div>
     <div class="kpi"><span>실제 키</span><b>156.2→173.5<i>+17.3cm</i></b></div>
@@ -1045,6 +1102,7 @@
     <span class="meta">초진 만 10.8세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 153.8cm → 159.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 3개월 동안 키 <b>12.8cm</b> 성장 (142.7→155.5cm)</li><li>예측 성인키 <b>+5.5cm</b> 상승 (153.8→159.3cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>0.9년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 3개월</b></div>
     <div class="kpi"><span>실제 키</span><b>142.7→155.5<i>+12.8cm</i></b></div>
@@ -1064,6 +1122,7 @@
     <span class="meta">초진 만 12.1세 · 치료 중</span>
   </header>
   <p class="headline">"치료 1년 — 예상키 172cm → 177cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 11개월 동안 키 <b>17.8cm</b> 성장 (148.5→166.3cm)</li><li>예측 성인키 <b>+5cm</b> 상승 (172→177cm)</li><li>연평균 <b>9.3cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 11개월</b></div>
     <div class="kpi"><span>실제 키</span><b>148.5→166.3<i>+17.8cm</i></b></div>
@@ -1083,6 +1142,7 @@
     <span class="meta">초진 만 12.1세 · 치료 중</span>
   </header>
   <p class="headline">"12세, 늦었다고 생각했지만 — 예상키 +5.9cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 9개월 동안 키 <b>7.2cm</b> 성장 (157.1→164.3cm)</li><li>예측 성인키 <b>+5.9cm</b> 상승 (161.5→167.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.2년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 9개월</b></div>
     <div class="kpi"><span>실제 키</span><b>157.1→164.3<i>+7.2cm</i></b></div>
@@ -1102,6 +1162,7 @@
     <span class="meta">초진 만 12.5세 · 치료 중</span>
   </header>
   <p class="headline">"13세, 늦었다고 생각했지만 — 예상키 +5.3cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 4개월 동안 키 <b>7.9cm</b> 성장 (155.3→163.2cm)</li><li>예측 성인키 <b>+5.3cm</b> 상승 (159.9→165.2cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 4개월</b></div>
     <div class="kpi"><span>실제 키</span><b>155.3→163.2<i>+7.9cm</i></b></div>
@@ -1121,6 +1182,7 @@
     <span class="meta">초진 만 11.4세 · 치료 중</span>
   </header>
   <p class="headline">"치료 2년 — 예상키 158cm → 163cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 2년 1개월 동안 키 <b>9.4cm</b> 성장 (148.6→158cm)</li><li>예측 성인키 <b>+5cm</b> 상승 (158→163cm)</li><li>연평균 <b>4.5cm/년</b> 꾸준한 성장 유지</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>2년 1개월</b></div>
     <div class="kpi"><span>실제 키</span><b>148.6→158<i>+9.4cm</i></b></div>
@@ -1140,6 +1202,7 @@
     <span class="meta">초진 만 14세 · 치료 중</span>
   </header>
   <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +5.6cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 6개월 동안 키 <b>6.5cm</b> 성장 (151.9→158.4cm)</li><li>예측 성인키 <b>+5.6cm</b> 상승 (159.9→165.5cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.5년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 6개월</b></div>
     <div class="kpi"><span>실제 키</span><b>151.9→158.4<i>+6.5cm</i></b></div>
@@ -1159,6 +1222,7 @@
     <span class="meta">초진 만 14.1세 · 치료 중</span>
   </header>
   <p class="headline">"14세, 늦었다고 생각했지만 — 예상키 +5cm"</p>
+  <div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul><li>치료 1년 7개월 동안 키 <b>8.5cm</b> 성장 (158.8→167.3cm)</li><li>예측 성인키 <b>+5cm</b> 상승 (165.4→170.4cm)</li><li>또래보다 앞서던 뼈나이 진행을 <b>1.1년</b> 늦춰 성장할 시간 확보</li></ul></div>
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>1년 7개월</b></div>
     <div class="kpi"><span>실제 키</span><b>158.8→167.3<i>+8.5cm</i></b></div>

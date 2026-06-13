@@ -725,6 +725,21 @@ function extTagCls(t) {
   return t.startsWith('성조숙') ? 't-prec' : t.startsWith('늦은') ? 't-late' : t.startsWith('비만') ? 't-obes'
     : t.startsWith('알러지') ? 't-alle' : t.startsWith('유전') ? 't-gene' : t.startsWith('성장지연') ? 't-slow' : 't-warn';
 }
+// 비식별 치료 하이라이트 — 집계 결과(키성장·예측키·뼈나이 격차·유전대비)만. 내부 신호(혈액/처방/메모/알러지) 미사용.
+function extHighlights(r) {
+  const hi = [];
+  if (r.hDelta > 0) hi.push(`치료 ${fmtDur(r.months)} 동안 키 <b>${r.hDelta}cm</b> 성장 (${r.hFirst}→${r.hLast}cm)`);
+  if (r.pahDelta > 0) hi.push(`예측 성인키 <b>+${r.pahDelta}cm</b> 상승 (${r.pahFirst}→${r.pahLast}cm)`);
+  const bf = r.baRows[0], bl = r.baRows[r.baRows.length - 1];
+  if (bf && bl && bf !== bl && bf.gap != null && bl.gap != null) {
+    const imp = +(bf.gap - bl.gap).toFixed(1); // 격차(뼈−만) 축소량
+    if (imp >= 0.5) hi.push(`또래보다 앞서던 뼈나이 진행을 <b>${imp}년</b> 늦춰 성장할 시간 확보`);
+  }
+  if (r.mph && r.pahLast - r.mph >= 3) hi.push(`유전 기대키 ${r.mph}cm보다 <b>+${(r.pahLast - r.mph).toFixed(1)}cm</b> 높은 예측키 도달`);
+  const yrs = r.months / 12;
+  if (yrs >= 1 && r.hDelta > 0) hi.push(`연평균 <b>${(r.hDelta / yrs).toFixed(1)}cm/년</b> 꾸준한 성장 유지`);
+  return hi.slice(0, 3);
+}
 function cardExt(r, i) {
   const isF = r.gender === '여';
   const cc = isF ? '#d6336c' : '#2563EB';
@@ -734,6 +749,10 @@ function cardExt(r, i) {
     const base = t.split('(')[0].trim();
     return `<span class="tag ${extTagCls(t)}">${esc(base)}</span>`;
   }).join('');
+  const hi = extHighlights(r);
+  const hiHtml = hi.length
+    ? `<div class="hilite"><div class="hilite-t">✨ 치료 하이라이트</div><ul>${hi.map((h) => `<li>${h}</li>`).join('')}</ul></div>`
+    : '';
   const chartData = extChartData(r);
   return `<article class="card" data-g="${r.gender}">
   <header style="--cc:${cc};--ccbg:${ccBg}">
@@ -741,6 +760,7 @@ function cardExt(r, i) {
     <span class="meta">초진 만 ${r.ageAtFirst}세 · ${r.status === 'completed' ? '치료 완료' : '치료 중'}</span>
   </header>
   <p class="headline">"${esc(r.headline)}"</p>
+  ${hiHtml}
   <div class="kpis">
     <div class="kpi"><span>치료 기간</span><b>${fmtDur(r.months)}</b></div>
     <div class="kpi"><span>실제 키</span><b>${r.hFirst}→${r.hLast}<i>+${r.hDelta}cm</i></b></div>
@@ -778,7 +798,13 @@ const extHtml = `<!DOCTYPE html>
   .card header { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; border-left:4px solid var(--cc); background:var(--ccbg); padding:8px 12px; border-radius:9px; }
   .nm { font-size:18px; font-weight:800; color:#22252e; }
   .meta { font-size:12px; color:#6b7280; }
-  .headline { font-size:16px; font-weight:700; color:#33294d; margin:14px 2px 12px; line-height:1.5; }
+  .headline { font-size:16px; font-weight:700; color:#33294d; margin:14px 2px 10px; line-height:1.5; }
+  .hilite { background:linear-gradient(180deg,#f4f0fc,#f8f6fd); border:1px solid #e4daf6; border-radius:12px; padding:11px 14px; margin:6px 0 12px; }
+  .hilite-t { font-size:12.5px; font-weight:800; color:#6b46c1; margin-bottom:6px; letter-spacing:-0.2px; }
+  .hilite ul { margin:0; padding-left:0; list-style:none; }
+  .hilite li { position:relative; padding-left:18px; font-size:13.5px; color:#3a3550; line-height:1.7; }
+  .hilite li::before { content:'›'; position:absolute; left:4px; color:#9b7fd4; font-weight:800; }
+  .hilite li b { color:#5b3a9e; font-weight:800; }
   .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:10px 0; }
   @media(max-width:560px){ .kpis{ grid-template-columns:repeat(2,1fr); } }
   .kpi { background:#f8f7fb; border:1px solid #efedf5; border-radius:10px; padding:8px 10px; }
