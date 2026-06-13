@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildPushDoc, toLocalScriptJson, ACTIVE_STATUSES, isStale, renderPrecondition } from "./reelWorkerLib.mjs";
+import { buildPushDoc, toLocalScriptJson, ACTIVE_STATUSES, isStale, renderPrecondition, ttsTextSnapshot } from "./reelWorkerLib.mjs";
 
 test("buildPushDoc: insert 로컬 경로 → reel_assets URL 치환 + script 서브트리 구성", () => {
   const local = { slug: "성장판나이", fps: 30, title: "t", header: {}, chunks: [{ id: "c3", insert: "images/성장판나이/ig1.png" }] };
@@ -32,4 +32,8 @@ test("isStale: updated_at 10분 초과 active 만 true, queued 는 제외", () =
 test("renderPrecondition: preview/timing 없으면 불가", () => {
   assert.equal(renderPrecondition({}, "ko").ok, false);
   assert.equal(renderPrecondition({ preview: { ko: { lipsyncUrl: "u" } }, timing: { ko: [{ id: "c1", durFrames: 1 }] } }, "ko").ok, true);
+});
+test("ttsTextSnapshot: lang 나레이션만 {id: 원문}", () => {
+  const chunks = [{ id: "c1", ko: "가", th: "ก" }, { id: "c2", th: "ข" }];
+  assert.deepEqual(ttsTextSnapshot(chunks, "ko"), { c1: "가" });
 });

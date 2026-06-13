@@ -1,15 +1,17 @@
 // 릴 렌더 워커 — marketing_reel_jobs 폴링. --once(큐 소진 후 종료) / --watch(15s 상주).
 // render 잡: DB script + R2 preview(전원격) → PresenterGeneric renderMedia → R2 업로드 → reels[lang].videoUrl.
-// full 잡: P3 에서 구현 (현재는 명시 failed).
+// full 잡: TTS(gen-tts-short) → prep-lipsync + LatentSync 인퍼런스 → upload_preview(렌더보다 먼저) → mergeRuntime → 공통 render.
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
-import { mkdirSync, writeFileSync } from "node:fs";
+import { execFileSync, spawn } from "node:child_process";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ACTIVE_STATUSES, isStale, renderPrecondition, toLocalScriptJson } from "./lib/reelWorkerLib.mjs";
-import { assertEnv, rest, claimJob, updateJob, heartbeat, mergeReelsVideoUrl, uploadR2 } from "./lib/reelDb.mjs";
+import { ACTIVE_STATUSES, isStale, renderPrecondition, toLocalScriptJson, ttsTextSnapshot } from "./lib/reelWorkerLib.mjs";
+import { assertEnv, rest, claimJob, updateJob, heartbeat, mergeRuntime, mergeReelsVideoUrl, uploadR2 } from "./lib/reelDb.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const LS = "C:/Users/101024/lipsync/LatentSync"; // prep-lipsync.mjs:10 과 동일 상수
 const WATCH = process.argv.includes("--watch");
 const POLL_MS = 15_000;
 
@@ -60,6 +62,32 @@ async function renderStage(job, scriptDoc, runtime) {
   return out;
 }
 
+// LatentSync 인퍼런스 — 블로킹 execFileSync 금지(수십 분 > stale 10분 → 다른 프로세스에 회수당함).
+// spawn + Promise 로 exit 대기, 진행 중 60초마다 heartbeat(progress_note). interval 은 error/close 양 경로에서 반드시 clear.
+function runLipsync(job) {
+  const pythonPath = join(LS, ".venv", "Scripts", "python.exe");
+  const args = ["-m", "scripts.inference", "--unet_config_path", "configs/unet/stage2.yaml",
+    "--inference_ckpt_path", "checkpoints/latentsync_unet.pt", "--inference_steps", "20",
+    "--guidance_scale", "1.5", "--enable_deepcache",
+    "--video_path", `input/${job.slug}_${job.lang}_footage.mp4`,
+    "--audio_path", `input/${job.slug}_${job.lang}.wav`,
+    "--video_out_path", `output/${job.slug}_${job.lang}.mp4`];
+  return new Promise((resolve, reject) => {
+    const startMs = Date.now();
+    const child = spawn(pythonPath, args, { stdio: "inherit", cwd: LS });
+    const beat = setInterval(() => {
+      const min = Math.round((Date.now() - startMs) / 60_000);
+      updateJob(job.id, { progress_note: `인퍼런스 ${min}분 경과` }).catch(() => {});
+    }, 60_000);
+    child.on("error", (e) => { clearInterval(beat); reject(e); });
+    child.on("close", (code) => {
+      clearInterval(beat);
+      if (code === 0) resolve();
+      else reject(new Error(`LatentSync 인퍼런스 실패 (exit ${code})`));
+    });
+  });
+}
+
 async function processJob(job) {
   const art = (await (await rest(`marketing_articles?id=eq.${job.article_id}&select=reel_script,reel_runtime`)).json())[0];
   if (!art?.reel_script) throw new Error("reel_script 없음 — push-reel-script 온보딩 필요");
@@ -68,7 +96,33 @@ async function processJob(job) {
   // sync: 로컬 script.json 갱신 (full 경로의 기존 TTS 스크립트 + 스튜디오 프리뷰 일치용)
   writeFileSync(join(ROOT, "src", "shorts", job.slug, "script.json"), JSON.stringify(toLocalScriptJson(scriptDoc), null, 2));
 
-  if (job.kind === "full") throw new Error("full 파이프라인은 미구현(P3) — render 잡만 지원");
+  if (job.kind === "full") {
+    // 3a. TTS (기존 스크립트 무수정 재사용 — sync 된 script.json 을 읽는다)
+    await updateJob(job.id, { status: "tts", progress_note: "클론음성 생성 중" });
+    execFileSync("node", [join(ROOT, "scripts", "gen-tts-short.mjs"), job.slug, job.lang], { stdio: "inherit", cwd: ROOT });
+    const timing = JSON.parse(readFileSync(join(ROOT, "src", "shorts", job.slug, `timing-${job.lang}.json`), "utf8"));
+    if (!timing.length) throw new Error(`이 언어(${job.lang}) 나레이션이 script 에 없음 — TTS 결과 0청크`); // gen-tts 는 전 청크 skip 시에도 exit 0
+    // 3b. 립싱크 입력 준비 + LatentSync 인퍼런스 (GPU, 수십 분 가능)
+    await updateJob(job.id, { status: "lipsync", progress_note: "립싱크 입력 준비" });
+    execFileSync("node", [join(ROOT, "scripts", "prep-lipsync.mjs"), job.slug, job.lang], { stdio: "inherit", cwd: ROOT });
+    await updateJob(job.id, { progress_note: "LatentSync 인퍼런스 중 (GPU)" });
+    await runLipsync(job);
+    const lsOut = join(LS, "output", `${job.slug}_${job.lang}.mp4`);
+    if (!existsSync(lsOut)) throw new Error("LatentSync exit 0 인데 산출물 없음: " + lsOut);
+    const localLip = join(ROOT, "public", "videos", `${job.slug}-presenter-lipsync-${job.lang}.mp4`);
+    mkdirSync(dirname(localLip), { recursive: true });
+    copyFileSync(lsOut, localLip); // 스튜디오/레거시 호환 배치
+    // 4. upload_preview — 렌더(전원격)보다 먼저! (bundle 캐시 안전의 전제)
+    await updateJob(job.id, { status: "upload_preview", progress_note: "미리보기 에셋 업로드" });
+    const folder = `marketing/reels/preview/${job.article_id}/${job.lang}`; // ASCII folder — 한글 slug 금지(서버가 strip)
+    const lipsyncUrl = await uploadR2(localLip, folder);
+    const audio = {};
+    for (const t of timing)
+      audio[t.id] = await uploadR2(join(ROOT, "public", "audio", "shorts", job.slug, job.lang, `${t.id}.wav`), folder);
+    runtime = await mergeRuntime(job.article_id, job.lang, {
+      timing, preview: { lipsyncUrl, audio }, tts_text: ttsTextSnapshot(scriptDoc.script.chunks, job.lang),
+    });
+  }
   const pre = renderPrecondition(runtime, job.lang);
   if (!pre.ok) throw new Error(pre.reason);
 
