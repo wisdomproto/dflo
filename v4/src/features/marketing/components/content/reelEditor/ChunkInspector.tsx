@@ -1,0 +1,154 @@
+// 선택 청크 인스펙터 — 자막(cap 2줄)·하이라이트(hl)·인서트(인포그래픽 선택)·라벨 값 편집.
+// 좌표(x/y)는 캔버스 드래그(Task 13)가 담당 — 여기선 숫자 미노출. 나레이션 textarea 는 P3(Task 16).
+// 텍스트 input 은 CommitInput(blur 커밋)로 undo 스냅샷 보호, 셀렉트/색상은 즉시 onPatch.
+import type { ReelAssets, ReelChunk, ReelInsertLabel, ReelLang } from '../../../types';
+import { CommitInput } from './CommitInput';
+
+interface Props {
+  chunk: ReelChunk;
+  chunkIdx: number;
+  language: ReelLang;
+  reelAssets: ReelAssets;
+  onPatch: (patch: Partial<ReelChunk>) => void;
+}
+
+const sectionCls = 'rounded-lg border border-gray-200 bg-white p-3';
+const labelCls = 'mb-0.5 block text-[11px] font-semibold text-gray-500';
+
+export function ChunkInspector({ chunk, chunkIdx, language, reelAssets, onPatch }: Props) {
+  // 자막: cap_{lang} = string[] (PresenterShort 가 줄 배열로 읽음). 최대 2줄, 빈 줄 제거 후 저장.
+  const capRaw = chunk[`cap_${language}`];
+  const cap = Array.isArray(capRaw) ? (capRaw as string[]) : [];
+  const hl = typeof chunk[`hl_${language}`] === 'string' ? (chunk[`hl_${language}`] as string) : '';
+
+  const commitCapLine = (idx: 0 | 1, value: string) => {
+    const next = [cap[0] ?? '', cap[1] ?? ''];
+    next[idx] = value;
+    onPatch({ [`cap_${language}`]: next.filter((s) => s.trim() !== '') });
+  };
+  const commitHl = (value: string) => onPatch({ [`hl_${language}`]: value });
+
+  // 인서트 옵션 — reelAssets.infographics 의 {igKey, url}.
+  const igs = Object.entries(reelAssets.infographics ?? {}); // [ [igKey, url], ... ]
+  const insert = typeof chunk.insert === 'string' ? chunk.insert : '';
+  const labels = Array.isArray(chunk.insertLabels) ? (chunk.insertLabels as ReelInsertLabel[]) : [];
+
+  const onSelectInsert = (url: string) => onPatch({ insert: url || undefined });
+
+  // 라벨 불변 패치 — 현재 언어 텍스트/스타일 한 필드만 갱신.
+  const patchLabel = (idx: number, field: keyof ReelInsertLabel | ReelLang, value: string | number | undefined) => {
+    const next = labels.map((l, i) => (i === idx ? { ...l, [field]: value } : l));
+    onPatch({ insertLabels: next });
+  };
+  const removeLabel = (idx: number) => onPatch({ insertLabels: labels.filter((_, i) => i !== idx) });
+  const addLabel = () =>
+    onPatch({
+      insertLabels: [...labels, { x: 0.5, y: 0.5, size: 32, weight: 800, color: '#5b3fa6', [language]: '' }],
+    });
+
+  return (
+    <div className="space-y-3">
+      <div className="text-xs font-semibold text-gray-600">
+        ✏️ 청크 편집 — <span style={{ color: '#4A2D6B' }}>{chunk.id}</span> (#{chunkIdx + 1})
+      </div>
+
+      {/* 자막 (2줄) + 하이라이트 */}
+      <div className={sectionCls}>
+        <div className={labelCls}>자막 ({language})</div>
+        <div className="space-y-1.5">
+          <CommitInput value={cap[0] ?? ''} onCommit={(v) => commitCapLine(0, v)} placeholder="자막 1줄" />
+          <CommitInput value={cap[1] ?? ''} onCommit={(v) => commitCapLine(1, v)} placeholder="자막 2줄 (선택)" />
+        </div>
+        <div className="mt-2">
+          <div className={labelCls}>노란 강조 문구</div>
+          <CommitInput value={hl} onCommit={commitHl} placeholder="언제까지 클까?" />
+          <p className="mt-1 text-[11px] text-gray-400">자막에 포함된 문구만 노랗게 강조됩니다.</p>
+        </div>
+      </div>
+
+      {/* 인서트(인포그래픽) */}
+      <div className={sectionCls}>
+        <div className={labelCls}>인서트 (인포그래픽)</div>
+        {insert ? (
+          <img src={insert} alt="인서트" className="mb-2 max-h-40 rounded border border-gray-200 bg-white object-contain" />
+        ) : null}
+        <select
+          value={insert}
+          onChange={(e) => onSelectInsert(e.target.value)}
+          className="w-full rounded border border-gray-200 px-2 py-1 text-sm focus:border-[#4A2D6B] focus:outline-none"
+        >
+          <option value="">없음</option>
+          {igs.map(([key, url]) => (
+            <option key={key} value={url}>{key}</option>
+          ))}
+          {/* 현재 insert 가 라이브러리에 없는 경우(예: 직접 시드된 URL)도 선택 유지 */}
+          {insert && !igs.some(([, url]) => url === insert) && <option value={insert}>현재 이미지(라이브러리 외)</option>}
+        </select>
+        {igs.length === 0 && (
+          <p className="mt-1 text-[11px] text-gray-400">📋 스토리보드 탭에서 인포그래픽 이미지를 먼저 업로드하세요.</p>
+        )}
+      </div>
+
+      {/* 라벨 — 인서트 있을 때만 */}
+      {insert && (
+        <div className={sectionCls}>
+          <div className="mb-1.5 flex items-center justify-between">
+            <span className={labelCls + ' mb-0'}>라벨 ({labels.length})</span>
+            <button type="button" onClick={addLabel} className="rounded bg-gray-100 px-2 py-0.5 text-[11px] font-semibold text-gray-600 hover:bg-gray-200">
+              + 라벨
+            </button>
+          </div>
+          {labels.length === 0 ? (
+            <p className="text-[11px] text-gray-400">라벨이 없습니다. 위치는 미리보기에서 드래그로 조정해요.</p>
+          ) : (
+            <div className="space-y-2">
+              {labels.map((l, i) => (
+                <div key={i} className="rounded border border-gray-100 bg-gray-50/60 p-2">
+                  <div className="mb-1 flex items-center gap-2">
+                    <CommitInput
+                      value={typeof l[language] === 'string' ? (l[language] as string) : ''}
+                      onCommit={(v) => patchLabel(i, language, v)}
+                      placeholder="라벨 텍스트"
+                    />
+                    <button type="button" onClick={() => removeLabel(i)} className="shrink-0 rounded border border-gray-200 px-2 py-1 text-[11px] text-gray-400 hover:text-red-600">
+                      삭제
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      크기
+                      <input
+                        type="number"
+                        value={l.size ?? 32}
+                        onChange={(e) => patchLabel(i, 'size', Number(e.target.value) || undefined)}
+                        className="w-14 rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
+                      />
+                    </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      색
+                      <input
+                        type="color"
+                        value={l.color ?? '#5b3fa6'}
+                        onChange={(e) => patchLabel(i, 'color', e.target.value)}
+                        className="h-5 w-7 cursor-pointer rounded border border-gray-200"
+                      />
+                    </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      pill 배경
+                      <CommitInput
+                        value={l.pill ?? ''}
+                        onCommit={(v) => patchLabel(i, 'pill', v || undefined)}
+                        placeholder="없음"
+                        className="w-20 rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
+                      />
+                    </label>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

@@ -6,10 +6,13 @@ import type { PlayerRef } from '@remotion/player';
 import type { MarketingArticle, ReelLang, ReelScriptDoc } from '../../../types';
 import { saveReelScript } from '../../../services/marketingArticleService';
 import {
-  FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, chunkTtsDirty, totalFrames,
+  FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, chunkTtsDirty, totalFrames, updateChunk,
 } from '../../../utils/reelEditor';
+import type { ReelChunk } from '../../../types';
 import PresenterBridge from './PresenterBridge';
 import { ChunkStrip } from './ChunkStrip';
+import { ChunkInspector } from './ChunkInspector';
+import { HeaderCtaForm } from './HeaderCtaForm';
 import { useUndoableDoc } from './useUndoableDoc';
 
 interface Props {
@@ -63,7 +66,15 @@ function EditorInner({ article, doc0, language, onPatch }: {
   useEffect(() => () => { if (saveTimer.current) clearTimeout(saveTimer.current); }, []);
 
   const { doc, setDoc, reset } = useUndoableDoc<ReelScriptDoc>(doc0, handleCommit);
-  void setDoc; // P2(편집·드래그·삭제)부터 사용 — P11 은 훅 배선만
+
+  // script 서브트리 부분 패치(헤더/CTA) — 불변 갱신 후 setDoc 1회(=undo 1스텝, Player inputProps 즉시 반영).
+  const patchScript = useCallback((patch: Partial<ReelScriptDoc['script']>) => {
+    setDoc({ ...doc, script: { ...doc.script, ...patch } });
+  }, [doc, setDoc]);
+  // 선택 청크 부분 패치(자막/하이라이트/인서트/라벨) — updateChunk 경유 불변 패치.
+  const patchSelChunk = useCallback((idx: number, patch: Partial<ReelChunk>) => {
+    setDoc({ ...doc, script: { ...doc.script, chunks: updateChunk(doc.script.chunks, idx, patch) } });
+  }, [doc, setDoc]);
 
   // 콘텐츠 전환 시 undo 스택 리셋 + 선택 청크 리셋(언어 전환은 같은 doc 라 선택만 리셋)
   useEffect(() => {
@@ -90,8 +101,6 @@ function EditorInner({ article, doc0, language, onPatch }: {
 
   const sel = Math.min(selected, chunks.length - 1); // 전환 직후 effect 전 1렌더 out-of-range 가드
   const selChunk = chunks[sel];
-  const rawNarr = selChunk[lang];
-  const narration = typeof rawNarr === 'string' ? rawNarr : '';
   const items = chunks.map((c, i) => ({ id: c.id, durFrames: durs[i], dirty: chunkTtsDirty(c, lang, runtime) }));
 
   return (
@@ -124,19 +133,18 @@ function EditorInner({ article, doc0, language, onPatch }: {
           durationInFrames={total}
         />
 
-        {/* 우: 안내 패널 — P2에서 자막/인서트 인스펙터로 교체될 자리 */}
+        {/* 우: 인스펙터 — 헤더/CTA(아코디언) + 선택 청크(자막/하이라이트/인서트/라벨). 편집 → setDoc → Player inputProps 즉시 반영 */}
         <div className="min-w-0 space-y-3">
-          <div className="rounded-lg border border-gray-200 bg-gray-50/60 p-3">
-            <div className="mb-1 text-xs font-semibold text-gray-500">
-              선택 청크 — {selChunk.id} · {(durs[sel] / 30).toFixed(1)}초
-            </div>
-            <p className="whitespace-pre-wrap rounded border border-gray-200 bg-white px-2 py-1.5 text-sm text-gray-700">
-              {narration || '— (이 언어 나레이션 없음)'}
-            </p>
-          </div>
+          <HeaderCtaForm doc={doc} language={lang} onPatchScript={patchScript} />
+          <ChunkInspector
+            chunk={selChunk}
+            chunkIdx={sel}
+            language={lang}
+            reelAssets={article.reelAssets ?? {}}
+            onPatch={(patch) => patchSelChunk(sel, patch)}
+          />
           <p className="text-[11px] text-gray-400">
-            ✂️ 지금은 읽기 전용 미리보기 단계예요. 하단 청크를 클릭하면 해당 구간으로 이동합니다.
-            자막·헤더/CTA·인서트·스티커 편집과 렌더 요청은 다음 단계에서 열립니다.
+            나레이션 편집·스티커·렌더 요청은 다음 단계에서 열립니다. 라벨 위치는 미리보기 드래그(추가 예정)로 조정해요.
           </p>
         </div>
       </div>
