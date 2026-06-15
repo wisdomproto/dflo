@@ -60,3 +60,62 @@ export function chunkTtsDirty(c: ReelChunk, lang: ReelLang, runtime: ReelRuntime
 export function updateChunk(chunks: ReelChunk[], idx: number, patch: Partial<ReelChunk>): ReelChunk[] {
   return chunks.map((c, i) => (i === idx ? { ...c, ...patch } : c));
 }
+
+// ── 타임라인(멀티트랙) 좌표 — 시간축 위 위치는 전부 분수(0..1), px 매핑은 컴포넌트가 폭 곱함 ──
+/** 청크 i 가 전체 시간축에서 차지하는 범위(분수). */
+export function chunkFracRange(i: number, starts: number[], durs: number[], total: number): { leftFrac: number; widthFrac: number } {
+  if (total <= 0) return { leftFrac: 0, widthFrac: 0 };
+  return { leftFrac: starts[i] / total, widthFrac: durs[i] / total };
+}
+/** 레인 내 px → 전체 프레임(빈영역 클릭 시킹용). laneWidth=시간축(거터 제외) px. */
+export function laneXToFrame(px: number, laneWidth: number, total: number): number {
+  if (laneWidth <= 0) return 0;
+  return Math.round(clamp01(px / laneWidth) * total);
+}
+/** durFrac=null(끝까지)을 (1-fromFrac)로 정규화. */
+export function stickerFracRange(s: { fromFrac: number; durFrac: number | null }): { fromFrac: number; durFrac: number } {
+  const fromFrac = clamp01(s.fromFrac);
+  const durFrac = s.durFrac == null ? Math.max(0, 1 - fromFrac) : clamp01(s.durFrac);
+  return { fromFrac, durFrac };
+}
+/** 스티커를 전체 시간축에서 어디에 그릴지(분수). chunkStart/chunkDur=프레임. */
+export function stickerTimelineRange(
+  s: { fromFrac: number; durFrac: number | null }, chunkStart: number, chunkDur: number, total: number,
+): { leftFrac: number; widthFrac: number } {
+  if (total <= 0) return { leftFrac: 0, widthFrac: 0 };
+  const { fromFrac, durFrac } = stickerFracRange(s);
+  return { leftFrac: (chunkStart + fromFrac * chunkDur) / total, widthFrac: (durFrac * chunkDur) / total };
+}
+export const STICKER_MIN_FRAC = 0.05; // 타임라인 최소 길이
+/** 스티커 시간 드래그/트림 — 순수·결정적. pointerFracInChunk=청크 내 0..1(클램프 전 원시). */
+export function resolveStickerTimeDrag(
+  mode: 'move' | 'trim-left' | 'trim-right',
+  pointerFracInChunk: number,
+  orig: { fromFrac: number; durFrac: number },  // durFrac 은 호출 전 stickerFracRange 로 정규화된 값
+  grabOffset: number,                            // move 전용: (pointerFracInChunk - fromFrac) at down. trim 무시
+): { fromFrac: number; durFrac: number } {
+  const p = clamp01(pointerFracInChunk);
+  if (mode === 'move') {
+    const from = Math.min(Math.max(0, p - grabOffset), 1 - orig.durFrac);
+    return { fromFrac: from, durFrac: orig.durFrac };
+  }
+  if (mode === 'trim-left') {
+    const end = orig.fromFrac + orig.durFrac;              // 오른쪽 끝 고정
+    const from = Math.min(Math.max(0, p), end - STICKER_MIN_FRAC);
+    return { fromFrac: from, durFrac: end - from };
+  }
+  // trim-right: 왼쪽 끝 고정
+  const dur = Math.min(Math.max(STICKER_MIN_FRAC, p - orig.fromFrac), 1 - orig.fromFrac);
+  return { fromFrac: orig.fromFrac, durFrac: dur };
+}
+/** 결정적 스키매틱 파형 — 청크 id 시드(0..1 막대 높이 bars 개). */
+export function pseudoWaveform(chunkId: string, bars: number): number[] {
+  let seed = 0;
+  for (const ch of chunkId) seed = (seed * 31 + ch.charCodeAt(0)) % 100000;
+  const out: number[] = [];
+  for (let i = 0; i < bars; i++) {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    out.push(0.25 + (seed % 1000) / 1000 * 0.7); // 0.25~0.95
+  }
+  return out;
+}
