@@ -182,29 +182,48 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
               </div>
             </div>
 
-            {/* 이벤트 — 예측키 열람→측정 완료 퍼널 + 메신저 전환 */}
+            {/* 전환 퍼널 — 단계별 드롭오프(어디서 이탈?) */}
             <div>
-              <h4 className="mb-2 text-xs font-semibold text-gray-500">핵심 이벤트 (예측키 퍼널)</h4>
-              <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                  <div className="text-xs text-gray-400">예측키 패널 열람</div>
-                  <div className="mt-1 text-xl font-bold tabular-nums text-[#4A2D6B]">{s.events.calcOpen.toLocaleString()}</div>
-                </div>
-                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                  <div className="text-xs text-gray-400">예상키 측정 완료</div>
-                  <div className="mt-1 text-xl font-bold tabular-nums text-[#4A2D6B]">{s.events.heightCalc.toLocaleString()}</div>
-                  <div className="mt-0.5 text-[10px] text-emerald-600">열람 중 {s.calcCompletionRate.toFixed(1)}% 완료</div>
-                </div>
-                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                  <div className="text-xs text-gray-400">{messengerLabel} 클릭</div>
-                  <div className="mt-1 text-xl font-bold tabular-nums text-[#4A2D6B]">{s.events.messenger.toLocaleString()}</div>
-                </div>
-                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                  <div className="text-xs text-gray-400">전환율</div>
-                  <div className="mt-1 text-xl font-bold tabular-nums text-gray-800">{s.conversionRate.toFixed(2)}%</div>
-                </div>
-              </div>
-              <p className="mt-1 text-[11px] text-gray-400">열람→완료 = 측정 완료 / 패널 열람 · 전환율 = {messengerLabel} 클릭 / 총 페이지뷰</p>
+              <h4 className="mb-2 text-xs font-semibold text-gray-500">전환 퍼널 — 어디서 이탈하나</h4>
+              {(() => {
+                const stages = [
+                  { label: '홈 방문', value: s.pageViews.main },
+                  { label: '예측키 패널 열람', value: s.events.calcOpen },
+                  { label: '측정 완료', value: s.events.heightCalc },
+                  { label: `${messengerLabel} 클릭`, value: s.events.messenger },
+                ];
+                const max = Math.max(1, ...stages.map((x) => x.value));
+                return (
+                  <div className="space-y-0.5">
+                    {stages.map((st, i) => {
+                      const prev = i > 0 ? stages[i - 1].value : null;
+                      const drop = prev && prev > 0 ? Math.max(0, (1 - st.value / prev) * 100) : null;
+                      const keep = prev && prev > 0 ? (st.value / prev) * 100 : null;
+                      return (
+                        <div key={st.label}>
+                          {i > 0 && (
+                            <div className="py-0.5 pl-24 text-[10px] text-rose-500">
+                              ↓ {drop !== null ? `${drop.toFixed(1)}% 이탈` : '—'}
+                              {keep !== null && <span className="text-gray-400"> (유지 {keep.toFixed(0)}%)</span>}
+                            </div>
+                          )}
+                          <div className="flex items-center gap-2">
+                            <div className="w-24 shrink-0 text-xs text-gray-500">{st.label}</div>
+                            <div className="h-6 flex-1 overflow-hidden rounded bg-gray-100">
+                              <div className="h-full rounded bg-[#667eea]" style={{ width: `${(st.value / max) * 100}%` }} />
+                            </div>
+                            <div className="w-14 text-right text-sm font-bold tabular-nums text-[#4A2D6B]">{st.value.toLocaleString()}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
+              <p className="mt-2 text-[11px] text-gray-400">
+                치료사례 페이지 열람 {s.pageViews.cases.toLocaleString()}회 · 전체 전환율 {s.conversionRate.toFixed(2)}%({messengerLabel} 클릭 / 총 PV)
+                <br />광고(cpc) 유입은 홈에서 예측키 패널이 자동으로 떠 <b>홈 방문 ≈ 열람</b>. 큰 이탈은 보통 <b>열람→측정 완료</b> 구간.
+              </p>
             </div>
 
             {/* 유입 채널 + 디바이스 */}
