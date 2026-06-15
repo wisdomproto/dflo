@@ -6,12 +6,12 @@ import type { PlayerRef } from '@remotion/player';
 import type { MarketingArticle, ReelLang, ReelScriptDoc } from '../../../types';
 import { saveReelScript } from '../../../services/marketingArticleService';
 import {
-  FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, chunkTtsDirty, totalFrames, updateChunk,
+  FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, totalFrames, updateChunk,
 } from '../../../utils/reelEditor';
 import type { ReelChunk } from '../../../types';
 import PresenterBridge from './PresenterBridge';
 import { CanvasDragLayer } from './CanvasDragLayer';
-import { ChunkStrip } from './ChunkStrip';
+import { ReelTimeline } from './ReelTimeline';
 import { ChunkInspector } from './ChunkInspector';
 import { HeaderCtaForm } from './HeaderCtaForm';
 import { RenderJobWidget } from './RenderJobWidget';
@@ -103,7 +103,6 @@ function EditorInner({ article, doc0, language, onPatch }: {
 
   const sel = Math.min(selected, chunks.length - 1); // 전환 직후 effect 전 1렌더 out-of-range 가드
   const selChunk = chunks[sel];
-  const items = chunks.map((c, i) => ({ id: c.id, durFrames: durs[i], dirty: chunkTtsDirty(c, lang, runtime) }));
 
   return (
     <div className="space-y-3">
@@ -168,11 +167,18 @@ function EditorInner({ article, doc0, language, onPatch }: {
         </div>
       </div>
 
-      {/* 하단: 청크 스트립 (길이 비례 폭 · 클릭=시킹) */}
-      <ChunkStrip
-        items={items}
+      {/* 하단: 멀티트랙 타임라인 (5트랙 · 클릭=선택+시킹 · 플레이헤드) */}
+      <ReelTimeline
+        playerRef={playerRef}
+        chunks={chunks}
+        durs={durs}
+        starts={starts}
+        total={total}
         selected={sel}
-        onSelect={(i) => { setSelected(i); playerRef.current?.seekTo(starts[i]); }}
+        onSelectChunk={(i) => setSelected(i)}
+        language={lang}
+        runtime={runtime}
+        hasPreview={!!preview}
       />
     </div>
   );
