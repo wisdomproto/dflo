@@ -80,7 +80,8 @@ const EmphasisZone: React.FC<{ lines: string[]; hl: string; dur: number }> = ({ 
 const KaraokeCaptionZone: React.FC<{ phrases: Phrase[]; dur: number }> = ({ phrases, dur }) => {
   const frame = useCurrentFrame();
   if (!phrases.length) return null;
-  const active = phrases.find((p) => frame >= p.fromFrame && frame < p.fromFrame + p.durFrames) || phrases[phrases.length - 1];
+  const active = phrases.find((p) => frame >= p.fromFrame && frame < p.fromFrame + p.durFrames)
+    ?? (frame < phrases[0].fromFrame ? phrases[0] : phrases[phrases.length - 1]);
   const local = frame - active.fromFrame;
   const op = interpolate(local, [0, 4], [0, 1], clamp) * interpolate(frame, [dur - 6, dur], [1, 0], clamp);
   return (
