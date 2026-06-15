@@ -18,7 +18,7 @@ const stroke = "2px 2px 7px rgba(0,0,0,0.92), 0 0 16px rgba(0,0,0,0.7)";
 const PANEL_TOP = 300, PANEL_H = 1080;   // 정사각 영상 패널 (y300~1380)
 const CAP_TOP = 1404, CAP_H = 280;       // 자막 존 (패널 아래)
 const EMPH_TOP = 330, EMPH_H = 250;        // 강조 오버레이 (영상 상단, 헤더 아래)
-const CAP2_TOP = 1392, CAP2_H = 200;       // 이해 자막 밴드 (세이프존 상향, 2트랙)
+const CAP2_TOP = 1300, CAP2_H = 180;       // 이해 자막 밴드 (세이프존 상향, 2트랙 — 하단 UI 1500~ 회피)
 const PANEL_R = 44;                      // 패널 라운드
 const INTRO_F = 52;                      // 인트로 길이(프레임)
 const PURPLE_BG = "linear-gradient(145deg,#7C6BF0 0%,#6A46B5 52%,#8E4FA6 100%)";
