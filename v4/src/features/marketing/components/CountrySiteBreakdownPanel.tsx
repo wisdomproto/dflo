@@ -182,13 +182,18 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
               </div>
             </div>
 
-            {/* 이벤트 */}
+            {/* 이벤트 — 예측키 열람→측정 완료 퍼널 + 메신저 전환 */}
             <div>
-              <h4 className="mb-2 text-xs font-semibold text-gray-500">핵심 이벤트</h4>
-              <div className="grid grid-cols-3 gap-2">
+              <h4 className="mb-2 text-xs font-semibold text-gray-500">핵심 이벤트 (예측키 퍼널)</h4>
+              <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
                 <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
-                  <div className="text-xs text-gray-400">예상키 측정</div>
+                  <div className="text-xs text-gray-400">예측키 패널 열람</div>
+                  <div className="mt-1 text-xl font-bold tabular-nums text-[#4A2D6B]">{s.events.calcOpen.toLocaleString()}</div>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
+                  <div className="text-xs text-gray-400">예상키 측정 완료</div>
                   <div className="mt-1 text-xl font-bold tabular-nums text-[#4A2D6B]">{s.events.heightCalc.toLocaleString()}</div>
+                  <div className="mt-0.5 text-[10px] text-emerald-600">열람 중 {s.calcCompletionRate.toFixed(1)}% 완료</div>
                 </div>
                 <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
                   <div className="text-xs text-gray-400">{messengerLabel} 클릭</div>
@@ -199,7 +204,7 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
                   <div className="mt-1 text-xl font-bold tabular-nums text-gray-800">{s.conversionRate.toFixed(2)}%</div>
                 </div>
               </div>
-              <p className="mt-1 text-[11px] text-gray-400">전환율 = {messengerLabel} 클릭 / 총 페이지뷰</p>
+              <p className="mt-1 text-[11px] text-gray-400">열람→완료 = 측정 완료 / 패널 열람 · 전환율 = {messengerLabel} 클릭 / 총 페이지뷰</p>
             </div>
 
             {/* 유입 채널 + 디바이스 */}

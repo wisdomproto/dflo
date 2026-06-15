@@ -40,22 +40,23 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// 예상키 측정 완료 — iframe(/calc-embed) 자식이 보낸 postMessage 를 받아 GA4 발사.
-// 부모 페이지 경로(/th/calculator.html 등)에서 발사되므로 pagePath 로 국가·진입 페이지 자동 구분.
+// 예측키 패널 열람(calc_open) / 측정 완료(height_calc_complete) — iframe(/calc-embed) 자식이 보낸
+// postMessage 를 받아 GA4 발사. 부모 경로(/th/ 등)에서 발사되므로 pagePath 로 국가·진입 페이지 자동 구분.
+// 열람→완료 두 이벤트로 "패널 봤지만 측정 안 끝낸" 이탈 퍼널을 사이트 분석에서 볼 수 있다.
 window.addEventListener('message', function (e) {
   var d = e && e.data;
-  if (!d || d.type !== 'height_calc_complete') return;
+  if (!d || (d.type !== 'calc_open' && d.type !== 'height_calc_complete')) return;
   var i18n = window.__I18N__ || {};
   var allowed = ['ko', 'th', 'vi', 'en'];
   var loc = allowed.indexOf(d.locale) >= 0 ? d.locale : (i18n.locale || 'unknown');
   if (typeof gtag !== 'undefined') {
-    gtag('event', 'height_calc_complete', {
+    gtag('event', d.type, {
       locale: loc,
       page_type: i18n.page_type || 'home',
     });
   }
-  // Meta Pixel 보조 전환 — 예측키 측정 완료 = 커스텀 이벤트.
-  if (typeof fbq !== 'undefined') {
+  // Meta Pixel 보조 전환 — 측정 완료만 커스텀 이벤트(열람은 약한 신호라 픽셀 미발사).
+  if (d.type === 'height_calc_complete' && typeof fbq !== 'undefined') {
     fbq('trackCustom', 'HeightCalcComplete', { locale: loc });
   }
 });

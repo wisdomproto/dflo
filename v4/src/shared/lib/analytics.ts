@@ -158,6 +158,11 @@ export function trackKakaoConsult(source: string): void {
   }
 }
 
+/** 예측키 패널 열람 — 측정 시작 전 "패널을 봤다" 신호(열람→완료 퍼널용, 정적은 _shell.js 가 처리). */
+export function trackCalcOpen(source = 'calc_modal'): void {
+  trackEvent('calc_open', { source });
+}
+
 /** 예상키 측정 완료 — React(SPA) 컨텍스트에서 직접 발사(정적은 _shell.js 가 처리). */
 export function trackHeightCalcComplete(source = 'calc_modal'): void {
   trackEvent('height_calc_complete', { source });
