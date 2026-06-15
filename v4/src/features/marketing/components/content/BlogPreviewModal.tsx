@@ -4,16 +4,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { BlogSeoArticle, BlogReference } from '../../types';
+import { esc, buildBlogBodyHtml, buildBlogReferencesHtml } from '../../utils/blogHtml';
 
 const ACCENT = '#4A2D6B';
-const FAQ_HEADING: Record<string, string> = { ko: '자주 묻는 질문', en: 'FAQ', th: 'คำถามที่พบบ่อย', vi: 'Câu hỏi thường gặp' };
-// 발행 blog.mjs renderReferencesHtml 의 REF_HEADINGS 와 동일 (6언어).
-const REF_HEADING: Record<string, string> = { ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง', vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献' };
-
-const esc = (s: string) =>
-  String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 // 발행 blog-post.html <style> + 본문 타이포(h2/h3/p/ul/img) + CSS 변수 폴백(_shell.css 로드 실패 대비).
+// HTML 조립 순수 함수는 ../../utils/blogHtml (미리보기·발행 단일 소스).
 const PREVIEW_CSS = `
 :root{--ink:#1a1a2e;--body:#333;--muted:#8a8a9a;--hairline:#e6e6ef;--shell-page-bg:#f6f5fb;}
 *{box-sizing:border-box;}
@@ -41,43 +37,6 @@ body{margin:0;font-family:'Noto Sans KR',system-ui,-apple-system,sans-serif;back
 @media(min-width:640px){.post-title{font-size:36px;}.post-body h2{font-size:26px;}}
 `;
 
-function buildBody(a: BlogSeoArticle, lang: string): string {
-  const sections = (a.sections ?? [])
-    .map((s) => {
-      const h = s.heading ? `<h2>${esc(s.heading)}</h2>` : '';
-      const img = s.imageUrl ? `<img src="${esc(s.imageUrl)}" alt="${esc(s.heading)}" loading="lazy">` : '';
-      const body = (s.html && s.html.trim()) ? s.html : '<p class="post-empty">(본문 비어 있음)</p>';
-      return `${h}${img}${body}`;
-    })
-    .join('\n');
-  const faqItems = (a.faq ?? []).filter((f) => f.q?.trim());
-  const faq = faqItems.length
-    ? `<section class="post-faq"><h2>${FAQ_HEADING[lang] ?? 'FAQ'}</h2>${faqItems
-        .map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`)
-        .join('')}</section>`
-    : '';
-  return (sections || '<p class="post-empty">아직 본문이 없습니다. 글쓰기 단계에서 작성하세요.</p>') + faq;
-}
-
-// 발행 blog.mjs renderReferencesHtml 과 동일한 마크업 (아티클 단위·언어 독립).
-function buildReferences(references: BlogReference[], lang: string): string {
-  if (!Array.isArray(references) || references.length === 0) return '';
-  const heading = REF_HEADING[lang] ?? REF_HEADING.en;
-  const items = references
-    .map((r) => {
-      const cite = [esc(r.title), [esc(r.journal), r.year ? esc(String(r.year)) : ''].filter(Boolean).join('. ')]
-        .filter(Boolean)
-        .join(' ');
-      const links: string[] = [];
-      if (r.url) links.push(`<a href="${esc(r.url)}" target="_blank" rel="noopener nofollow">PubMed</a>`);
-      if (r.doi) links.push(`<a href="https://doi.org/${esc(r.doi)}" target="_blank" rel="noopener nofollow">DOI</a>`);
-      const tail = links.length ? ` <span class="ref-links">${links.join(' · ')}</span>` : '';
-      return `<li>${cite}.${tail}</li>`;
-    })
-    .join('');
-  return `<section class="post-references"><h2 class="post-references-title">${esc(heading)}</h2><ol class="post-references-list">${items}</ol></section>`;
-}
-
 function buildHtml(a: BlogSeoArticle, lang: string, references: BlogReference[]): string {
   const title = a.h1 || a.seoTitle || '(제목 없음)';
   return `<!DOCTYPE html><html lang="${esc(lang)}"><head>
@@ -86,8 +45,8 @@ function buildHtml(a: BlogSeoArticle, lang: string, references: BlogReference[])
 <style>${PREVIEW_CSS}</style></head>
 <body data-page="blog-post"><div class="post-container">
 <header class="post-header"><h1 class="post-title">${esc(title)}</h1><div class="post-meta">미리보기 · ${esc(lang.toUpperCase())}</div></header>
-<article class="post-body">${buildBody(a, lang)}</article>
-${buildReferences(references, lang)}
+<article class="post-body">${buildBlogBodyHtml(a, lang)}</article>
+${buildBlogReferencesHtml(references, lang)}
 </div></body></html>`;
 }
 
