@@ -67,7 +67,7 @@ test('SEO 경로: blog[ko] 섹션이 있으면 섹션 HTML 사용', () => {
   };
   const r = buildPublishedBlog(a, 'ko');
   assert.equal(r.seoTitle, 'SEO 제목');
-  assert.equal(r.slug, 'growth-guide-abcdef12');
+  assert.equal(r.slug, 'growth-guide'); // SEO 위저드 slug 그대로 (id 접두 없음)
   assert.ok(r.htmlBody.includes('<h2>섹션1</h2>'), 'htmlBody should include section h2');
   assert.ok(r.htmlBody.includes('<p>섹션 본문</p>'), 'htmlBody should include section html');
   assert.ok(!r.htmlBody.includes('plain ko'), 'should NOT use plain body');
@@ -125,4 +125,34 @@ test('SEO 경로: FAQ가 htmlBody에 포함', () => {
   assert.ok(r.htmlBody.includes('질문1'), 'htmlBody should include FAQ question');
   assert.ok(r.htmlBody.includes('답변1'), 'htmlBody should include FAQ answer');
   assert.ok(r.htmlBody.includes('자주 묻는 질문'), 'htmlBody should include ko FAQ heading');
+});
+
+test('SEO 경로: blogReferences 가 htmlBody 에 포함', () => {
+  const a = {
+    ...seoBase,
+    blogReferences: [{ pmid: '1', title: 'Sleep study', journal: 'Pediatrics', year: 2020, doi: null, url: 'https://pubmed/1', similarity: 0.8 }],
+    blog: {
+      ko: {
+        seoTitle: 'T', slug: 'ref-test', metaDescription: 'm', h1: 'H', primaryKeyword: '', secondaryKeywords: [],
+        sections: [{ heading: 's', html: '<p>b</p>', imagePrompt: '', imageUrl: null }], faq: [],
+      },
+    },
+  };
+  const r = buildPublishedBlog(a, 'ko');
+  assert.ok(r.htmlBody.includes('post-references'), 'htmlBody should include references section');
+  assert.ok(r.htmlBody.includes('Sleep study'), 'htmlBody should include reference title');
+});
+
+test('SEO 경로: slug 비면 seoTitle 기반 + id 접두 폴백', () => {
+  const a = {
+    ...seoBase,
+    blog: {
+      ko: {
+        seoTitle: 'Growth Guide', slug: '', metaDescription: 'm', h1: '', primaryKeyword: '', secondaryKeywords: [],
+        sections: [{ heading: 's', html: '<p>b</p>', imagePrompt: '', imageUrl: 'u' }], faq: [],
+      },
+    },
+  };
+  const r = buildPublishedBlog(a, 'ko');
+  assert.equal(r.slug, 'growth-guide-abcdef12');
 });
