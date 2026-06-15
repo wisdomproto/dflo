@@ -69,15 +69,26 @@ v4/src/features/marketing/utils/reelEditor.ts  # 수정 — 타임라인 순수 
 
 - **클릭 = 선택 + 시킹 + 인스펙터**: 어느 트랙이든 청크 i의 클립 클릭 → `onSelectChunk(i)`
   (EditorInner: `setSelected(i)`) + `playerRef.seekTo(starts[i])`. 인스펙터는 기존대로
-  선택 청크를 표시. 룰러/빈 영역 클릭 = 그 지점 프레임으로 시킹(선택 불변).
+  선택 청크를 표시.
+- **빈 영역 클릭 = 시킹만(선택 불변)**: 모든 트랙 공통 — 룰러·클립 사이 빈 칸 클릭은
+  포인터 px → 프레임(`laneXToFrame`)으로 `seekTo`만, 선택 변경 없음.
+- **클릭 vs 드래그 판별(스티커 칩)**: 스티커 칩만 클릭(선택)과 드래그(이동/트림)가 한
+  타깃에 겹침 → **데드존**: pointerdown 후 이동 거리 < 4px 이고 pointerup이면 클릭(=청크
+  선택), ≥ 4px이면 드래그 시작. 다른 4트랙은 클릭만이라 데드존 불필요.
 - **플레이헤드**: `ReelTimeline`이 `playerRef`를 받아 마운트 시 `addEventListener
   ('frameupdate', e => playhead.style.left = pxFor(e.detail.frame))`. 재생·시킹 모두
   frameupdate가 커버. 언마운트 시 `removeEventListener`. total=0 가드.
 - **스티커 시간 편집(`StickerClip`)**: `CanvasDragLayer` 포인터 패턴 차용 —
   drag 중 로컬 state만, `pointerup` 1회 `onCommitStickers(chunkIdx, nextStickers)`
-  (=setDoc 1회=undo 1스텝). 본체 드래그 = `fromFrac` 이동, 좌/우 끝 핸들 = 트림
-  (좌=fromFrac, 우=durFrac). **자기 청크 범위로 클램프**(v1, 경계 못 넘음). 미리보기는
+  (=setDoc 1회=undo 1스텝). **자기 청크 범위로 클램프**(v1, 경계 못 넘음). 미리보기는
   setDoc → Player inputProps 즉시 반영(StickerLayer가 fromFrac/durFrac 사용).
+- **`onCommitStickers(chunkIdx, stickers)` — 대상 청크 ≠ 선택 청크 가능**: 타임라인
+  칩은 어느 청크에든 속하므로 `StickerClip`은 **자기 칩의 chunkIdx**로 커밋
+  (`patchSelChunk`는 이미 idx 인자라 자명). EditorInner의 `CanvasDragLayer` 콜백도
+  같은 시그니처로 맞춤(현재 `(stickers)→patchSelChunk(sel,…)` → `(i,stickers)→
+  patchSelChunk(i,…)`, CanvasDragLayer는 `sel` 주입). **충돌-비발생 논거 강화**: 두
+  표면이 같은 청크를 편집할 때만 "다른 필드 spread"가 필요하고, 비선택 청크 칩은 애초에
+  다른 청크라 겹침 자체가 없음.
 
 ## 좌표 / 순수 함수 (utils/reelEditor.ts 추가)
 
@@ -89,10 +100,26 @@ v4/src/features/marketing/utils/reelEditor.ts  # 수정 — 타임라인 순수 
 - `stickerFracRange(sticker) → { fromFrac, durFrac }`(durFrac null=끝까지 정규화) +
   `stickerTimelineRange(sticker, chunkStart, chunkDur, total) → {leftFrac,widthFrac}`
   — 스티커를 전체 시간축에서 어디에 그릴지.
-- `resolveStickerTimeDrag(mode, pointerFracInChunk, orig{fromFrac,durFrac}, grabOffset)
-  → {fromFrac, durFrac}` — mode='move'|'trim-left'|'trim-right', 청크 내 0..1 클램프,
-  최소 길이 가드(예 durFrac ≥ 0.05). **순수·결정적**.
 - `pseudoWaveform(chunkId, bars) → number[]` — 결정적 막대 높이(0..1).
+
+### `resolveStickerTimeDrag` 계약 (드래그 수학 — 가장 정밀히 명세)
+
+```
+resolveStickerTimeDrag(
+  mode: 'move' | 'trim-left' | 'trim-right',
+  pointerFracInChunk: number,   // 포인터의 청크 내 위치 0..1 (laneX→청크분수, 클램프 전 원시)
+  orig: { fromFrac: number; durFrac: number },  // durFrac=null 은 호출 전 (1-fromFrac)로 정규화
+  grabOffset: number,           // move 전용: pointerdown 시점 (pointerFracInChunk - fromFrac), 청크분수 단위. trim 에선 무시
+) → { fromFrac: number; durFrac: number }
+```
+
+- **고정점 규칙**:
+  - `move`: 길이 유지, 시작만 이동. `from = clamp(pointerFracInChunk - grabOffset, 0, 1 - durFrac)`. durFrac 불변.
+  - `trim-left`(왼쪽 핸들, **오른쪽 끝 고정**): `end = from + durFrac`(고정). `from' = clamp(pointerFracInChunk, 0, end - MIN)`, `durFrac' = end - from'`. → from↑·durFrac↓ 동시.
+  - `trim-right`(오른쪽 핸들, **왼쪽 끝 고정**): `from` 불변. `durFrac' = clamp(pointerFracInChunk - from, MIN, 1 - from)`.
+- `MIN = 0.05`(최소 길이). 충돌 시 **MIN 우선**(trim-left 는 from 을 더 못 키워 end-MIN 에서 멈춤, trim-right 는 durFrac=MIN 에서 멈춤).
+- `durFrac=null` 입력: 호출 전 `stickerFracRange`로 `durFrac = 1 - fromFrac` 정규화 후 전달 → trim 시 구체값으로 저장.
+- **순수·결정적** → 입출력 예시로 단위 검증(아래 테스트 절). 다른 helper(≤수줄)와 달리 커플링 로직이라 이 함수만 예시 기반 검증 필수.
 
 > 주의: 프레임↔비율 변환은 위 helper로 일원화. remotion `StickerLayer.stickerFrames`
 > (비율→프레임, 렌더용)와 **방향이 반대**(타임라인은 px↔비율) — 중복 아님. 둘은 같은
@@ -120,7 +147,14 @@ v4/src/features/marketing/utils/reelEditor.ts  # 수정 — 타임라인 순수 
 
 - **타입 게이트**: `cd v4 && npx tsc -b --noEmit` 0(plain tsc는 no-op).
 - **FE 테스트 러너 없음**(프로젝트 컨벤션 — 기존 `reelEditor.ts` 좌표 함수도 러너
-  테스트 없이 tsc+수동): 타임라인 순수 helper는 각 함수 ≤수줄로 단순 유지 + tsc + 수동.
+  테스트 없이 tsc+수동): 단순 helper는 tsc+수동. 단 **`resolveStickerTimeDrag`는
+  드래그 커플링 로직이라 tsc로 안 잡힘** → 위 계약의 결정적 입출력 **4케이스를 검증
+  오라클로 명시**(move / trim-left 고정점 / trim-right / 최소길이 충돌). 플랜에서 이 4
+  케이스를 throwaway 스크립트(tsx 1회 실행) 또는 수동 대조로 확인:
+  - move: from=0.2,dur=0.5,grab=0.1,pointer=0.45 → from=0.35,dur=0.5
+  - trim-left: from=0.2,dur=0.5(end=0.7),pointer=0.4 → from=0.4,dur=0.3
+  - trim-right: from=0.2,dur=0.5,pointer=0.5 → from=0.2,dur=0.3
+  - 최소길이: from=0.2,dur=0.5(end=0.7),pointer=0.68 → from=0.65,dur=0.05(MIN 멈춤)
 - **수동 E2E**(Player 시킹 정상화 후 가능): ① 각 트랙 클립 클릭 → 선택 강조 + 인스펙터
   갱신 + Player 시킹 ② 재생 시 플레이헤드 이동, 룰러 클릭 시킹 ③ 스티커 칩 드래그=이동·
   양끝=트림 → Player 미리보기에서 스티커 등장 시점/길이 변화 일치, Ctrl+Z 1스텝 복원
