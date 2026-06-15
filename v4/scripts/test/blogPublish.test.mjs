@@ -39,3 +39,90 @@ test('본문 비어있으면 throw', () => {
   const a = { ...base, title: 't', body: '   ', translations: {} };
   assert.throws(() => buildPublishedBlog(a, 'ko'), /본문/);
 });
+
+// ── SEO blog path (blog[lang] 있을 때) ────────────────────────────────────────
+const seoBase = {
+  ...base,
+  title: '성장호르몬 가이드',
+  body: '<p>plain ko</p>',
+  translations: {},
+  blogReferences: [],
+};
+
+test('SEO 경로: blog[ko] 섹션이 있으면 섹션 HTML 사용', () => {
+  const a = {
+    ...seoBase,
+    blog: {
+      ko: {
+        seoTitle: 'SEO 제목',
+        slug: 'growth-guide',
+        metaDescription: 'SEO meta',
+        h1: 'H1 제목',
+        primaryKeyword: '성장호르몬',
+        secondaryKeywords: [],
+        sections: [{ heading: '섹션1', html: '<p>섹션 본문</p>', imagePrompt: '', imageUrl: null }],
+        faq: [],
+      },
+    },
+  };
+  const r = buildPublishedBlog(a, 'ko');
+  assert.equal(r.seoTitle, 'SEO 제목');
+  assert.equal(r.slug, 'growth-guide-abcdef12');
+  assert.ok(r.htmlBody.includes('<h2>섹션1</h2>'), 'htmlBody should include section h2');
+  assert.ok(r.htmlBody.includes('<p>섹션 본문</p>'), 'htmlBody should include section html');
+  assert.ok(!r.htmlBody.includes('plain ko'), 'should NOT use plain body');
+});
+
+test('SEO 경로: h1만 있어도 SEO path 진입', () => {
+  const a = {
+    ...seoBase,
+    blog: {
+      ko: {
+        seoTitle: 'SEO 제목2',
+        slug: 'guide2',
+        metaDescription: '',
+        h1: 'H1만 있음',
+        primaryKeyword: '',
+        secondaryKeywords: [],
+        sections: [],
+        faq: [],
+      },
+    },
+  };
+  const r = buildPublishedBlog(a, 'ko');
+  assert.equal(r.seoTitle, 'SEO 제목2');
+  // sections 없으면 post-empty placeholder 가 htmlBody 에 들어가야 함
+  assert.ok(r.htmlBody.includes('post-empty'), 'should include post-empty placeholder for empty sections');
+});
+
+test('SEO 경로: blog[lang]이 없으면 plain-body fallback', () => {
+  const a = {
+    ...seoBase,
+    body: '<p>plain ko fallback</p>',
+    blog: {},  // lang 키 없음
+  };
+  const r = buildPublishedBlog(a, 'ko');
+  assert.equal(r.htmlBody, '<p>plain ko fallback</p>');
+});
+
+test('SEO 경로: FAQ가 htmlBody에 포함', () => {
+  const a = {
+    ...seoBase,
+    blog: {
+      ko: {
+        seoTitle: 'FAQ 포함 제목',
+        slug: 'faq-test',
+        metaDescription: '',
+        h1: 'FAQ 테스트',
+        primaryKeyword: '',
+        secondaryKeywords: [],
+        sections: [{ heading: '본문', html: '<p>내용</p>', imagePrompt: '', imageUrl: null }],
+        faq: [{ q: '질문1', a: '답변1' }],
+      },
+    },
+  };
+  const r = buildPublishedBlog(a, 'ko');
+  assert.ok(r.htmlBody.includes('질문1'), 'htmlBody should include FAQ question');
+  assert.ok(r.htmlBody.includes('답변1'), 'htmlBody should include FAQ answer');
+  assert.ok(r.htmlBody.includes('자주 묻는 질문'), 'htmlBody should include ko FAQ heading');
+});
