@@ -27,7 +27,7 @@ export function buildPublishedBlog(article: MarketingArticle, language: string):
   // ── SEO blog path ──────────────────────────────────────────────────────────
   // article.blog 는 BlogSeoMap = Partial<Record<BlogSeoLangCode, BlogSeoArticle>>
   const seo = article.blog?.[language as BlogSeoLangCode];
-  if (seo && (seo.sections.length > 0 || seo.h1)) {
+  if (seo && ((seo.sections?.length ?? 0) > 0 || seo.h1)) {
     const refs = article.blogReferences ?? [];
     const htmlBody = buildBlogHtmlBody(seo, refs, language);
     // SEO 위저드 slug 는 키워드 기반 — 그대로 사용해 미리보기 URL(article.slug)·sitemap 과 일치.
