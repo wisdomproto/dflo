@@ -16,6 +16,8 @@ const stroke = "2px 2px 7px rgba(0,0,0,0.92), 0 0 16px rgba(0,0,0,0.7)";
 
 const PANEL_TOP = 300, PANEL_H = 1080;   // 정사각 영상 패널 (y300~1380)
 const CAP_TOP = 1404, CAP_H = 280;       // 자막 존 (패널 아래)
+const EMPH_TOP = 330, EMPH_H = 250;        // 강조 오버레이 (영상 상단, 헤더 아래)
+const CAP2_TOP = 1392, CAP2_H = 200;       // 이해 자막 밴드 (세이프존 상향, 2트랙)
 const PANEL_R = 44;                      // 패널 라운드
 const INTRO_F = 52;                      // 인트로 길이(프레임)
 const PURPLE_BG = "linear-gradient(145deg,#7C6BF0 0%,#6A46B5 52%,#8E4FA6 100%)";
@@ -25,6 +27,8 @@ const SITE: Record<string, string> = { ko: "www.dr187growup.com", en: "www.dr187
 const CTA_LOGO: Record<string, string> = { ko: "images/logo_en_wh.png", en: "images/logo_en_wh.png", th: "images/logo_en_wh.png", vi: "images/logo_en_wh.png" };
 
 type Timing = { id: string; durFrames: number; origStartF: number; rate: number };
+type Phrase = { text: string; fromFrame: number; durFrames: number };
+type Captions = Record<string, Phrase[]>;
 type Script = {
   header: Record<string, { top: string; mark: string }>;
   cta?: Record<string, string>;
@@ -53,6 +57,35 @@ const CaptionZone: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
       {lines.map((ln, k) => (
         <div key={k} style={{ fontSize: 62, fontWeight: 900, color: "#fff", lineHeight: 1.34, textShadow: stroke }}>{hlLine(ln, hl)}</div>
       ))}
+    </div>
+  );
+};
+
+// 강조 오버레이 (영상 상단) — 핵심 청크에만. 인서트 청크는 호출부에서 거른다.
+const EmphasisZone: React.FC<{ lines: string[]; hl: string; dur: number }> = ({ lines, hl, dur }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const pop = spring({ frame, fps, config: { damping: 12, mass: 0.6 } });
+  const op = interpolate(frame, [0, 5], [0, 1], clamp) * interpolate(frame, [dur - 8, dur], [1, 0], clamp);
+  return (
+    <div style={{ position: "absolute", top: EMPH_TOP, left: 0, width: 1080, height: EMPH_H, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", fontFamily: NOTO_SANS_KR, padding: "0 56px", opacity: op, transform: `scale(${interpolate(pop, [0, 1], [0.84, 1])})` }}>
+      {lines.map((ln, k) => (
+        <div key={k} style={{ fontSize: 72, fontWeight: 900, color: "#fff", lineHeight: 1.2, textShadow: stroke }}>{hlLine(ln, hl)}</div>
+      ))}
+    </div>
+  );
+};
+
+// 이해 자막 (하단 세이프존) — 청크 안에서 구절 단위로 카라오케 등장.
+const KaraokeCaptionZone: React.FC<{ phrases: Phrase[]; dur: number }> = ({ phrases, dur }) => {
+  const frame = useCurrentFrame();
+  if (!phrases.length) return null;
+  const active = phrases.find((p) => frame >= p.fromFrame && frame < p.fromFrame + p.durFrames) || phrases[phrases.length - 1];
+  const local = frame - active.fromFrame;
+  const op = interpolate(local, [0, 4], [0, 1], clamp) * interpolate(frame, [dur - 6, dur], [1, 0], clamp);
+  return (
+    <div style={{ position: "absolute", top: CAP2_TOP, left: 0, width: 1080, height: CAP2_H, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", fontFamily: NOTO_SANS_KR, padding: "0 64px", opacity: op }}>
+      <div style={{ fontSize: 54, fontWeight: 800, color: "#fff", lineHeight: 1.3, textShadow: stroke }}>{active.text}</div>
     </div>
   );
 };
@@ -138,11 +171,13 @@ export const presenterDuration = (timing: Timing[]) => timing.reduce((n, t) => n
 
 export const PresenterShort: React.FC<{
   script: Script; timing: Timing[]; lang: string; slug: string; videoSrc: string;
+  captions?: Captions;
   assets?: { videoSrc: string; audio: Record<string, string> };
-}> = ({ script, timing, lang, slug, videoSrc, assets }) => {
+}> = ({ script, timing, lang, slug, videoSrc, captions, assets }) => {
   ensureFonts(); // top-level 호출은 v4 import 시점 실행이라 환경 판정이 불안정 — 본문에서(idempotent)
   const frame = useCurrentFrame();
   const vsrc = assets?.videoSrc ?? videoSrc;
+  const twoTrack = !!captions;
   const chunks = timing.map((t) => ({ ...t, ...(script.chunks.find((c) => c.id === t.id) || {}) }));
   const FROM: number[] = [];
   chunks.forEach((_, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
@@ -195,10 +230,25 @@ export const PresenterShort: React.FC<{
         </div>
       </div>
 
-      {/* ── 자막 (영상 아래) — CTA 청크는 제외(카드가 덮음) ── */}
+      {/* ── 강조 오버레이 (2트랙 전용) — 핵심 청크·인서트 아닌 청크만 ── */}
+      {twoTrack && chunks.map((c, i) => {
+        if (i === ctaIdx) return null;
+        if (c.insert || c["insert_" + lang]) return null;
+        const eLines: string[] = c["emph_" + lang] ?? c["cap_" + lang] ?? [];
+        if (!eLines.length) return null;
+        return (
+          <Sequence key={"emph" + c.id} from={FROM[i]} durationInFrames={c.durFrames} layout="none">
+            <EmphasisZone lines={eLines} hl={c["hl_" + lang] || ""} dur={c.durFrames} />
+          </Sequence>
+        );
+      })}
+
+      {/* ── 자막 (영상 아래) — CTA 청크 제외. 2트랙=카라오케 / 레거시=단일블록 ── */}
       {chunks.map((c, i) => (i === ctaIdx ? null : (
         <Sequence key={"cap" + c.id} from={FROM[i]} durationInFrames={c.durFrames} layout="none">
-          <CaptionZone c={c} lang={lang} />
+          {twoTrack
+            ? <KaraokeCaptionZone phrases={(captions && captions[c.id]) || []} dur={c.durFrames} />
+            : <CaptionZone c={c} lang={lang} />}
         </Sequence>
       )))}
 
