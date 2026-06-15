@@ -1,0 +1,182 @@
+{
+  "c1": [
+    {
+      "text": "에이디에이치디 약을 먹으면 키가 안",
+      "fromFrame": 0,
+      "durFrames": 58
+    },
+    {
+      "text": "큰다?",
+      "fromFrame": 58,
+      "durFrames": 9
+    },
+    {
+      "text": "부모님들이 제일 걱정하시는 부분,",
+      "fromFrame": 67,
+      "durFrames": 55
+    },
+    {
+      "text": "오늘 정리해 드리겠습니다.",
+      "fromFrame": 122,
+      "durFrames": 44
+    }
+  ],
+  "c2": [
+    {
+      "text": "이 걱정은 약이 식욕을 떨어뜨려서",
+      "fromFrame": 0,
+      "durFrames": 63
+    },
+    {
+      "text": "생기는 것입니다.",
+      "fromFrame": 63,
+      "durFrames": 31
+    },
+    {
+      "text": "밥을 잘 안 먹게 되기 때문입니다.",
+      "fromFrame": 94,
+      "durFrames": 68
+    }
+  ],
+  "c3": [
+    {
+      "text": "에이디에이치디 약은 각성제라 집중력은",
+      "fromFrame": 0,
+      "durFrames": 74
+    },
+    {
+      "text": "올리지만 식욕을 누릅니다.",
+      "fromFrame": 74,
+      "durFrames": 51
+    },
+    {
+      "text": "그래서 초반엔 살짝 더디게 클 수",
+      "fromFrame": 125,
+      "durFrames": 66
+    },
+    {
+      "text": "있습니다.",
+      "fromFrame": 191,
+      "durFrames": 20
+    }
+  ],
+  "c4": [
+    {
+      "text": "그런데 여기서 중요한 것이 있습니다.",
+      "fromFrame": 0,
+      "durFrames": 62
+    },
+    {
+      "text": "이 지연은 '일시적'이라는 점입니다.",
+      "fromFrame": 62,
+      "durFrames": 63
+    }
+  ],
+  "c5": [
+    {
+      "text": "용량을 조절하거나 잘 관리하면,",
+      "fromFrame": 0,
+      "durFrames": 64
+    },
+    {
+      "text": "'따라잡기 성장'으로 다시 정상",
+      "fromFrame": 64,
+      "durFrames": 64
+    },
+    {
+      "text": "궤도로 돌아옵니다.",
+      "fromFrame": 128,
+      "durFrames": 38
+    }
+  ],
+  "c6": [
+    {
+      "text": "유명한 엠티에이 연구에서 10년을",
+      "fromFrame": 0,
+      "durFrames": 63
+    },
+    {
+      "text": "추적했는데, 최종 성인 키는 차이가",
+      "fromFrame": 63,
+      "durFrames": 67
+    },
+    {
+      "text": "없었습니다.",
+      "fromFrame": 130,
+      "durFrames": 21
+    },
+    {
+      "text": "있어봐야 1에서 2센티입니다.",
+      "fromFrame": 151,
+      "durFrames": 58
+    }
+  ],
+  "c7": [
+    {
+      "text": "그러니까 키 걱정 때문에 약을 끊는",
+      "fromFrame": 0,
+      "durFrames": 74
+    },
+    {
+      "text": "것은 오히려 손해입니다.",
+      "fromFrame": 74,
+      "durFrames": 50
+    },
+    {
+      "text": "끊지 말고 관리하는 것이 답입니다.",
+      "fromFrame": 124,
+      "durFrames": 75
+    }
+  ],
+  "c8": [
+    {
+      "text": "관리는 세 가지입니다.",
+      "fromFrame": 0,
+      "durFrames": 44
+    },
+    {
+      "text": "저녁에 고칼로리로 영양을 채우고,",
+      "fromFrame": 44,
+      "durFrames": 66
+    },
+    {
+      "text": "뼈나이로 성장을 추적하고, 주치의와",
+      "fromFrame": 110,
+      "durFrames": 69
+    },
+    {
+      "text": "복용 시간을 맞춥니다.",
+      "fromFrame": 179,
+      "durFrames": 45
+    }
+  ],
+  "c9": [
+    {
+      "text": "뼈나이와 예측키를 보면, 우리 아이가",
+      "fromFrame": 0,
+      "durFrames": 64
+    },
+    {
+      "text": "잘 크고 있는지 바로 알 수",
+      "fromFrame": 64,
+      "durFrames": 48
+    },
+    {
+      "text": "있습니다.",
+      "fromFrame": 112,
+      "durFrames": 17
+    }
+  ],
+  "c10": [
+    {
+      "text": "우리 아이 성장, 지금 바로",
+      "fromFrame": 0,
+      "durFrames": 45
+    },
+    {
+      "text": "뼈나이·예측키로 확인해 보십시오.",
+      "fromFrame": 45,
+      "durFrames": 54
+    }
+  ]
+}
