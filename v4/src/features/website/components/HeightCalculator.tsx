@@ -27,13 +27,18 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
     ? `${birthYear.padStart(4, '0')}-${birthMonth.padStart(2, '0')}-${birthDay.padStart(2, '0')}`
     : '';
   const [height, setHeight] = useState('');
-  const [weight, setWeight] = useState('');
   const [result, setResult] = useState<HeightResult | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const t = getCalcLabels(lang);
   // 태국어 계산기는 태국 성장도표(TSPE) 기준, 그 외(ko/vi/en)는 한국 기준
   const standard: GrowthStandard = lang === 'th' ? 'TH' : 'KR';
+
+  // 생년월일 드롭다운 — 연도는 아이 나이대(만 2~19세)만 노출(타이핑 대신 탭 선택, 모바일 친화).
+  const currentYear = new Date().getFullYear();
+  const yearOptions = Array.from({ length: 18 }, (_, i) => currentYear - 2 - i);
+  const monthOptions = Array.from({ length: 12 }, (_, i) => i + 1);
+  const dayOptions = Array.from({ length: 31 }, (_, i) => i + 1);
 
   // 패널 열람(calc_open) — 폼이 사용자에게 보이면 1회 발사(열람→완료 퍼널 측정).
   // embedded(=/calc-embed iframe)면 부모(_shell.js)로 postMessage, SPA 모달이면 직접 발사.
@@ -73,6 +78,7 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
 
   const inputCls = 'w-full rounded-xl border border-gray-200 px-3 py-2.5 md:py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
   const labelCls = 'text-xs md:text-sm font-medium text-gray-500 mb-1 block';
+  const selectCls = 'w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 md:py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
 
   const formContent = (
     <div className="space-y-5 md:space-y-6">
@@ -104,45 +110,46 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
         </div>
       </div>
 
-      {/* Birth date — 3 separate fields so labels localize across all browsers */}
+      {/* Birth date — 3 dropdowns (탭 선택, 키보드 불필요). 연도는 아이 나이대만. 옵션=숫자라 로케일 안전. */}
       <div>
         <label className={labelCls}>{t.fieldBirth}</label>
         <div className="grid grid-cols-3 gap-2">
-          <input type="number" inputMode="numeric" min={1900} max={2099}
-            placeholder={t.fieldBirthYear}
-            value={birthYear} onChange={(e) => setBirthYear(e.target.value)}
-            className={inputCls} />
-          <input type="number" inputMode="numeric" min={1} max={12}
-            placeholder={t.fieldBirthMonth}
-            value={birthMonth} onChange={(e) => setBirthMonth(e.target.value)}
-            className={inputCls} />
-          <input type="number" inputMode="numeric" min={1} max={31}
-            placeholder={t.fieldBirthDay}
-            value={birthDay} onChange={(e) => setBirthDay(e.target.value)}
-            className={inputCls} />
+          <select value={birthYear} onChange={(e) => setBirthYear(e.target.value)}
+            className={`${selectCls}${birthYear ? '' : ' text-gray-400'}`}>
+            <option value="" disabled>{t.fieldBirthYear}</option>
+            {yearOptions.map((y) => <option key={y} value={y} className="text-gray-900">{y}</option>)}
+          </select>
+          <select value={birthMonth} onChange={(e) => setBirthMonth(e.target.value)}
+            className={`${selectCls}${birthMonth ? '' : ' text-gray-400'}`}>
+            <option value="" disabled>{t.fieldBirthMonth}</option>
+            {monthOptions.map((m) => <option key={m} value={m} className="text-gray-900">{m}</option>)}
+          </select>
+          <select value={birthDay} onChange={(e) => setBirthDay(e.target.value)}
+            className={`${selectCls}${birthDay ? '' : ' text-gray-400'}`}>
+            <option value="" disabled>{t.fieldBirthDay}</option>
+            {dayOptions.map((d) => <option key={d} value={d} className="text-gray-900">{d}</option>)}
+          </select>
         </div>
       </div>
 
-      {/* Height / Weight */}
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className={labelCls}>{t.fieldHeight}</label>
-          <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
-            value={height} onChange={(e) => setHeight(e.target.value)} className={inputCls} />
-        </div>
-        <div>
-          <label className={labelCls}>{t.fieldWeight}</label>
-          <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
-            value={weight} onChange={(e) => setWeight(e.target.value)} className={inputCls} />
-        </div>
+      {/* Height — 체중 필드는 계산에 미사용이라 제거(입력 마찰↓). 키만 풀폭. */}
+      <div>
+        <label className={labelCls}>{t.fieldHeight}</label>
+        <input type="number" inputMode="decimal" step="0.1" placeholder="0.0"
+          value={height} onChange={(e) => setHeight(e.target.value)} className={inputCls} />
       </div>
 
-      {/* Calculate button */}
-      <button onClick={calculate} disabled={!birthDate || !height}
-        className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0F6E56] text-white py-3.5 md:py-4
-                   font-bold text-base md:text-lg disabled:opacity-40 hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
-        <span>📊</span> {t.submit}
-      </button>
+      {/* Calculate button + 비활성일 때 입력 안내 힌트 */}
+      <div>
+        <button onClick={calculate} disabled={!birthDate || !height}
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#0F6E56] text-white py-3.5 md:py-4
+                     font-bold text-base md:text-lg disabled:opacity-40 hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
+          <span>📊</span> {t.submit}
+        </button>
+        {(!birthDate || !height) && (
+          <p className="mt-2 text-center text-xs text-gray-400">{t.submitHint}</p>
+        )}
+      </div>
     </div>
   );
 

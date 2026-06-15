@@ -24,6 +24,7 @@ type Dict = {
   fieldHeight: string;
   fieldWeight: string;
   submit: string;
+  submitHint: string; // 비활성 버튼 안내 — 생년월일·키 입력 유도
   // Help modal
   helpTitle: string;
   helpPrincipleH: string;  helpPrincipleP: string;
@@ -75,6 +76,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldHeight: '현재 키 (cm)',
     fieldWeight: '현재 체중 (kg)',
     submit: '예상키 계산하기',
+    submitHint: '성별·생년월일·키만 입력하면 바로 결과가 나와요',
     helpTitle: '예상키 측정 방법 안내',
     helpPrincipleH: '📊 측정 원리',
     helpPrincipleP: '본 예상키 계산은 <strong>국가 표준 성장 데이터</strong>를 기반으로, 같은 나이·성별 아이들 사이에서 우리 아이의 키가 어디쯤 위치하는지를 분석합니다.',
@@ -121,6 +123,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldHeight: 'Current height (cm)',
     fieldWeight: 'Current weight (kg)',
     submit: 'Calculate predicted height',
+    submitHint: 'Just enter sex, date of birth and height to see the result',
     helpTitle: 'How the prediction works',
     helpPrincipleH: '📊 Method',
     helpPrincipleP: 'This prediction is based on <strong>national standard growth data</strong>, analyzing where your child stands among peers of the same age and sex.',
@@ -167,6 +170,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldHeight: 'ส่วนสูงปัจจุบัน (ซม.)',
     fieldWeight: 'น้ำหนักปัจจุบัน (กก.)',
     submit: 'คำนวณส่วนสูงที่คาดการณ์',
+    submitHint: 'แค่กรอกเพศ วันเกิด และส่วนสูง ก็เห็นผลได้ทันที',
     helpTitle: 'วิธีคำนวณส่วนสูงที่คาดการณ์',
     helpPrincipleH: '📊 หลักการคำนวณ',
     helpPrincipleP: 'การคำนวณนี้อ้างอิงจาก <strong>ข้อมูลมาตรฐานการเจริญเติบโตของเด็กไทย</strong> โดยวิเคราะห์ว่าส่วนสูงของลูกอยู่ตรงไหนเมื่อเทียบกับเด็กวัยและเพศเดียวกัน',
@@ -213,6 +217,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldHeight: 'Chiều cao hiện tại (cm)',
     fieldWeight: 'Cân nặng hiện tại (kg)',
     submit: 'Tính chiều cao dự đoán',
+    submitHint: 'Chỉ cần nhập giới tính, ngày sinh và chiều cao là có kết quả',
     helpTitle: 'Cách tính chiều cao dự đoán',
     helpPrincipleH: '📊 Nguyên lý',
     helpPrincipleP: 'Tính toán này dựa trên <strong>dữ liệu chuẩn tăng trưởng quốc gia</strong>, phân tích vị trí chiều cao của trẻ so với bạn cùng tuổi và giới tính.',
