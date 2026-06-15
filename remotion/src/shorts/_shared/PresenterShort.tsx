@@ -9,6 +9,7 @@ import { asset } from "../../lib/assets";
 import { ensureFonts, NOTO_SANS_KR } from "../../lib/fonts";
 import { ShortLogo } from "./ShortLogo";
 import { StickerLayer } from "./StickerLayer";
+import { buildCaptions } from "../../lib/captions.mjs";
 
 const YELLOW = "#FCE61A";
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -34,6 +35,7 @@ type Script = {
   cta?: Record<string, string>;
   chunks: any[];
   headerStyle?: { markBg?: string; markFg?: string };
+  twoTrack?: boolean;
 };
 
 function hlLine(ln: string, hl?: string) {
@@ -178,8 +180,9 @@ export const PresenterShort: React.FC<{
   ensureFonts(); // top-level 호출은 v4 import 시점 실행이라 환경 판정이 불안정 — 본문에서(idempotent)
   const frame = useCurrentFrame();
   const vsrc = assets?.videoSrc ?? videoSrc;
-  const twoTrack = !!captions;
   const chunks = timing.map((t) => ({ ...t, ...(script.chunks.find((c) => c.id === t.id) || {}) }));
+  const twoTrack = !!captions || !!script.twoTrack;
+  const caps = captions ?? (twoTrack ? buildCaptions(chunks, lang) : undefined);
   const FROM: number[] = [];
   chunks.forEach((_, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
   const total = chunks.reduce((n, c) => n + c.durFrames, 0);
@@ -248,7 +251,7 @@ export const PresenterShort: React.FC<{
       {chunks.map((c, i) => (i === ctaIdx ? null : (
         <Sequence key={"cap" + c.id} from={FROM[i]} durationInFrames={c.durFrames} layout="none">
           {twoTrack
-            ? <KaraokeCaptionZone phrases={(captions && captions[c.id]) || []} dur={c.durFrames} />
+            ? <KaraokeCaptionZone phrases={(caps && caps[c.id]) || []} dur={c.durFrames} />
             : <CaptionZone c={c} lang={lang} />}
         </Sequence>
       )))}
