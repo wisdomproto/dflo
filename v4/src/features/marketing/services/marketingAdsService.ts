@@ -209,6 +209,90 @@ export async function fetchMetaInsights(accountExternalId: string, preset = 'max
   return (body.rows ?? []) as MetaInsightRow[];
 }
 
+// ── Meta 타게팅 검색(지역·관심사 자동완성) ─────────────────────────
+export interface GeoResult {
+  type: 'country' | 'region' | 'city' | 'zip';
+  key: string;
+  name: string;
+  countryCode?: string;
+  countryName?: string;
+  region?: string;
+  supportsRadius?: boolean;
+}
+export interface InterestResult {
+  id: string;
+  name: string;
+  audienceLower?: number;
+  audienceUpper?: number;
+  path?: string[];
+}
+
+// 검색 실패(미연결 등)는 throw 대신 { results:[], error } — 타이핑마다 호출되므로.
+export async function searchAdGeo(q: string, country?: string): Promise<{ results: GeoResult[]; error?: string }> {
+  const url = new URL(`${BASE}/api/marketing/meta/targeting/geo`);
+  url.searchParams.set('q', q);
+  if (country) url.searchParams.set('country', country);
+  try {
+    const res = await fetch(url.toString(), { headers: marketingHeaders() });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.success) return { results: [], error: body.error || `검색 실패: ${res.status}` };
+    return { results: (body.results ?? []) as GeoResult[] };
+  } catch (e) {
+    return { results: [], error: e instanceof Error ? e.message : '검색 오류' };
+  }
+}
+
+export async function searchAdInterest(q: string): Promise<{ results: InterestResult[]; error?: string }> {
+  const url = new URL(`${BASE}/api/marketing/meta/targeting/interest`);
+  url.searchParams.set('q', q);
+  try {
+    const res = await fetch(url.toString(), { headers: marketingHeaders() });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.success) return { results: [], error: body.error || `검색 실패: ${res.status}` };
+    return { results: (body.results ?? []) as InterestResult[] };
+  } catch (e) {
+    return { results: [], error: e instanceof Error ? e.message : '검색 오류' };
+  }
+}
+
+// ── Meta 맞춤 타겟(리타게팅 풀) ────────────────────────────────────
+export interface AudienceResult {
+  id: string;
+  name: string;
+  subtype: string;
+  approxCount?: number;
+  ready?: boolean;
+}
+export async function listCustomAudiences(accountExternalId: string): Promise<{ audiences: AudienceResult[]; error?: string }> {
+  const id = accountExternalId.replace(/^act_/, '');
+  try {
+    const res = await fetch(`${BASE}/api/marketing/meta/audiences/act_${id}`, { headers: marketingHeaders() });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.success) return { audiences: [], error: body.error || `조회 실패: ${res.status}` };
+    return { audiences: (body.audiences ?? []) as AudienceResult[] };
+  } catch (e) {
+    return { audiences: [], error: e instanceof Error ? e.message : '조회 오류' };
+  }
+}
+export async function createLookalike(
+  accountExternalId: string,
+  input: { sourceAudienceId: string; country: string; ratio: number; name?: string },
+): Promise<{ ok: boolean; id?: string; error?: string }> {
+  const id = accountExternalId.replace(/^act_/, '');
+  try {
+    const res = await fetch(`${BASE}/api/marketing/meta/audiences/act_${id}/lookalike`, {
+      method: 'POST',
+      headers: marketingHeaders(true),
+      body: JSON.stringify(input),
+    });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.success) return { ok: false, error: body.error || `생성 실패: ${res.status}` };
+    return { ok: true, id: body.id };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : '생성 오류' };
+  }
+}
+
 // GATED: Gemini 키 의존. 키 만료 시 502 → 호출부에서 에러 표시.
 export async function requestAdsInsights(campaigns: AdCampaign[], kakaoClicks: number): Promise<string> {
   const payload = {

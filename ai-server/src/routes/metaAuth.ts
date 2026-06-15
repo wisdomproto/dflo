@@ -1,7 +1,8 @@
 // Meta OAuth 라우트(공개). SPA가 /api/auth/meta로 top-level redirect → FB → /callback → SPA 복귀.
-import { Router } from 'express';
+import express, { Router } from 'express';
 import { buildAuthUrl, exchangeCodeForToken, fetchAccounts } from '../services/metaOAuth.js';
-import { saveConnection, getRegisteredPageIds } from '../services/metaConnectionStore.js';
+import { saveConnection, getRegisteredPageIds, deleteConnection } from '../services/metaConnectionStore.js';
+import { parseSignedRequest, deletionConfirmationCode } from '../services/metaDataDeletion.js';
 
 export const metaAuthRouter = Router();
 
@@ -40,4 +41,22 @@ metaAuthRouter.get('/callback', async (req, res) => {
   } catch (e) {
     fail(e instanceof Error ? e.message : 'oauth_failed');
   }
+});
+
+// POST /data-deletion — Facebook 데이터 삭제 콜백(앱 검수/라이브 요건).
+// FB 가 form-urlencoded 로 signed_request 전송 → 검증 후 저장된 연동(토큰) 삭제 + 확인 URL/코드 반환.
+metaAuthRouter.post('/data-deletion', express.urlencoded({ extended: false }), async (req, res) => {
+  const signed = String((req.body ?? {}).signed_request || '');
+  const payload = parseSignedRequest(signed, process.env.META_APP_SECRET || '');
+  if (!payload) return res.status(400).json({ error: 'invalid signed_request' });
+  const userId = String(payload.user_id || 'unknown');
+  // 본 앱은 병원 자체 자산만 연결 — 저장된 연동(토큰)을 삭제(best-effort).
+  try {
+    await deleteConnection();
+  } catch {
+    /* noop — 이미 없거나 일시 오류여도 삭제 응답은 반환 */
+  }
+  const code = deletionConfirmationCode(userId, process.env.META_APP_SECRET || 'salt');
+  const siteBase = (process.env.CORS_ORIGIN || 'https://www.dr187growup.com').replace(/\/$/, '');
+  res.json({ url: `${siteBase}/data-deletion.html?code=${code}`, confirmation_code: code });
 });

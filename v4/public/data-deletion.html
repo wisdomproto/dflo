@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>데이터 삭제 안내 — 연세새봄의원 187 성장클리닉</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif; margin: 0; background: #fff; color: #1f2937; line-height: 1.7; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 22px 64px; }
+  h1 { font-size: 23px; font-weight: 800; margin: 0 0 4px; }
+  .meta { color: #6b7280; font-size: 13px; margin-bottom: 22px; }
+  h2 { font-size: 16px; font-weight: 700; margin: 26px 0 8px; color: #4338ca; }
+  p, li { font-size: 14px; color: #374151; }
+  ul, ol { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  a { color: #4338ca; }
+  code { background: #eef2ff; color: #4338ca; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+  .ok { display: none; background: #ecfdf5; border: 1px solid #6ee7b7; border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #065f46; margin-bottom: 18px; }
+  .en { color: #6b7280; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="ok" class="ok"></div>
+
+  <h1>데이터 삭제 안내</h1>
+  <div class="meta">연세새봄의원 187 성장클리닉 · Data Deletion</div>
+
+  <p>본 서비스는 연세새봄의원이 <b>자체 소유의 Facebook 페이지·Instagram·광고 계정</b>을 운영하기 위한 내부 도구입니다. Meta 연동으로 저장되는 데이터는 의원이 직접 연결한 운영 토큰·메타데이터에 한정됩니다.</p>
+
+  <h2>연동 데이터 삭제 방법</h2>
+  <ol>
+    <li><b>앱에서 연동 해제</b>: 마케팅 콘솔에서 Meta 연결을 해제하면 저장된 연동 토큰·정보가 즉시 삭제됩니다.</li>
+    <li><b>요청으로 삭제</b>: 아래 문의처로 삭제를 요청하시면 관련 데이터를 삭제하고 처리 결과를 안내드립니다.</li>
+  </ol>
+
+  <h2>문의처</h2>
+  <p>연세새봄의원 (대표 채용현) · 홈페이지 <a href="https://www.dr187growup.com">dr187growup.com</a> 내 상담 채널</p>
+
+  <p class="en">This page describes how to request deletion of data associated with our internal Meta-connected business tool. Data stored via Meta integration is limited to the clinic's own operating tokens/metadata and is deleted immediately upon disconnecting in the app, or upon request via the contact above.</p>
+</div>
+
+<script>
+  // 콜백에서 전달한 확인 코드가 있으면 접수 메시지 표시
+  (function () {
+    var p = new URLSearchParams(location.search);
+    var code = p.get('code');
+    if (code) {
+      var el = document.getElementById('ok');
+      el.textContent = '데이터 삭제 요청이 접수되었습니다. 확인 코드: ' + code;
+      el.style.display = 'block';
+    }
+  })();
+</script>
+</body>
+</html>

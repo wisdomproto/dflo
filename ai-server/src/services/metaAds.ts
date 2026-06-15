@@ -11,6 +11,7 @@
 //   발행한 post_id 를 ad.source_post_id 에 저장해 재푸시 시 중복 발행 안 함.
 // 토큰: ads 호출=userToken(ads_management), 페이지 발행=pageAccessToken. 둘 다 metaConnectionStore.
 import { getBundle, findPageToken } from './metaConnectionStore.js';
+import { buildTargetingSpec } from './metaTargeting.js';
 
 const GRAPH = 'https://graph.facebook.com/v21.0';
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -186,18 +187,11 @@ export async function pushCampaign(campaignId: string): Promise<PushResult> {
   const budgetType = (set.budget_type as string) === 'lifetime' ? 'lifetime' : 'daily';
   if (budget < 1499) warnings.push('일 예산이 Meta 최소(₩1,499)보다 낮을 수 있습니다 — Meta가 거절하면 예산을 올리세요.');
 
-  // 타겟
+  // 타겟 — 워크스페이스 모델(지역 spec·관심사 id·노출위치·연령·성별) → Meta targeting 객체.
+  // 해석된 지역(도시/지역/국가 key)이 없으면 시장 국가로 폴백(기존 동작 보존).
   const t = (set.targeting as Record<string, unknown>) ?? {};
-  const genders = Array.isArray(t.genders)
-    ? (t.genders as string[]).map((g) => (g === 'male' ? 1 : 2)).filter(Boolean)
-    : [];
-  const targeting: Record<string, unknown> = {
-    geo_locations: { countries },
-    age_min: typeof t.ageMin === 'number' ? t.ageMin : 25,
-    age_max: typeof t.ageMax === 'number' ? t.ageMax : 45,
-    targeting_automation: { advantage_audience: 0 },
-  };
-  if (genders.length === 1) targeting.genders = genders;
+  const placements = Array.isArray(set.placements) ? (set.placements as string[]) : [];
+  const targeting = buildTargetingSpec(t, { fallbackCountries: countries, placements });
 
   const plan = planFor((camp.objective as string) || 'engagement');
   const startTime = new Date(Date.now() + 10 * 60 * 1000).toISOString(); // 10분 뒤 시작(PAUSED라 실제 미집행)

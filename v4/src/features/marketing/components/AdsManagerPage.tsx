@@ -10,6 +10,8 @@ import type { AdAccount } from '../services/adWorkspaceService';
 import { fetchAdAccounts, saveAdAccount, deleteAdAccount } from '../services/adWorkspaceService';
 import { LOCALES } from '../services/marketingChannelService';
 import { AccountBar } from './ads/AccountBar';
+import { AdStrategyPanel } from './ads/AdStrategyPanel';
+import { AdDocPanel } from './ads/AdDocPanel';
 import { CampaignEditor } from './ads/CampaignEditor';
 import { STATUS_CONFIG, objectiveLabel, fmtNumber } from './ads/adConstants';
 
@@ -81,6 +83,20 @@ export function AdsManagerPage() {
               </button>
             ))}
           </div>
+
+          <AdStrategyPanel market={market} />
+
+          <AdDocPanel
+            title="📘 인스타 링크 광고 직접 만들기"
+            subtitle="— Meta 광고 관리자 단계별 가이드 (앱 검수 없이 지금 가능)"
+            src="/marketing/ads/ig-ads-manager-guide.html"
+          />
+
+          <AdDocPanel
+            title="🚀 앱 검수·라이브 준비"
+            subtitle="— 자동화 잠금 해제용 제출 자료·체크리스트"
+            src="/marketing/ads/app-review-guide.html"
+          />
 
           <AccountBar market={market} accounts={marketAccounts} onSave={onSaveAccount} onDelete={onDeleteAccount} />
 

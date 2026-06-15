@@ -17,6 +17,8 @@ import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt,
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
 import { fetchChannelFeed } from '../services/metaFeed.js';
+import { searchAdGeo, searchAdInterest } from '../services/metaTargeting.js';
+import { listCustomAudiences, createLookalike } from '../services/metaAudiences.js';
 import { pushCampaign, fetchAccountInsights } from '../services/metaAds.js';
 import { publishQueueItem, deleteChannelPost } from '../services/publishExecutor.js';
 import { triggerDeploy } from '../services/deployHook.js';
@@ -544,6 +546,48 @@ marketingRouter.get('/meta/feed/:channelId', async (req, res) => {
   try {
     const r = await fetchChannelFeed(req.params.channelId);
     res.json({ success: true, ...r });
+  } catch (e) {
+    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
+// GET /meta/targeting/geo?q=&country= — Meta 지역(국가/지역/도시) 검색(타게팅 자동완성).
+marketingRouter.get('/meta/targeting/geo', async (req, res) => {
+  try {
+    const results = await searchAdGeo(String(req.query.q || ''), req.query.country ? String(req.query.country) : undefined);
+    res.json({ success: true, results });
+  } catch (e) {
+    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
+// GET /meta/targeting/interest?q= — Meta 관심사 검색(타게팅 자동완성).
+marketingRouter.get('/meta/targeting/interest', async (req, res) => {
+  try {
+    const results = await searchAdInterest(String(req.query.q || ''));
+    res.json({ success: true, results });
+  } catch (e) {
+    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
+// GET /meta/audiences/:accountExternalId — 광고계정의 맞춤 타겟(리타게팅 풀) 목록.
+marketingRouter.get('/meta/audiences/:accountExternalId', async (req, res) => {
+  try {
+    const audiences = await listCustomAudiences(req.params.accountExternalId);
+    res.json({ success: true, audiences });
+  } catch (e) {
+    res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
+  }
+});
+
+// POST /meta/audiences/:accountExternalId/lookalike { sourceAudienceId, country, ratio, name } — 유사타겟 생성.
+marketingRouter.post('/meta/audiences/:accountExternalId/lookalike', async (req, res) => {
+  const { sourceAudienceId, country, ratio, name } = (req.body ?? {}) as { sourceAudienceId?: string; country?: string; ratio?: number; name?: string };
+  if (!sourceAudienceId || !country) return res.status(400).json({ success: false, error: 'sourceAudienceId·country 필요' });
+  try {
+    const r = await createLookalike(req.params.accountExternalId, { sourceAudienceId, country, ratio: ratio || 0.01, name });
+    res.json({ success: true, id: r.id });
   } catch (e) {
     res.status(400).json({ success: false, error: e instanceof Error ? e.message : 'error' });
   }

@@ -224,7 +224,7 @@ export function CampaignEditor({
       {/* 타겟 */}
       <div className={card}>
         <h3 className="mb-3 text-sm font-bold text-gray-800">🎯 타겟</h3>
-        <TargetingFields market={market} targeting={targeting} onChange={setTargeting} placements={placements} onPlacementsChange={setPlacements} />
+        <TargetingFields market={market} targeting={targeting} onChange={setTargeting} placements={placements} onPlacementsChange={setPlacements} accountExternalId={accounts.find((a) => a.id === accountId)?.externalId} />
       </div>
 
       {/* 콘텐츠 */}

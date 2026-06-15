@@ -23,17 +23,37 @@ export interface AdAccount {
 }
 
 export type Gender = 'male' | 'female';
+// 해석된 Meta 지역 — key 가 있어야 실제 타게팅에 반영(없으면 라벨 보존만, 재검색 필요).
+export interface GeoSpec {
+  type: 'country' | 'region' | 'city' | 'zip';
+  key: string; // Meta geo key (국가는 country_code)
+  name: string;
+  radius?: number; // city/zip 반경
+  distanceUnit?: 'kilometer' | 'mile';
+}
+// 해석된 Meta 관심사 — id 가 있어야 실제 타게팅에 반영.
+export interface InterestSpec {
+  id: string;
+  name: string;
+}
+// 맞춤 타겟(리타게팅 풀·유사타겟) — Meta custom audience id + 표시 이름.
+export interface AudienceSpec {
+  id: string;
+  name: string;
+}
 export interface AdTargeting {
-  geos: string[]; // 지역 라벨 (예: '미국', '방콕', '서울')
+  geos: GeoSpec[];
   ageMin: number;
   ageMax: number;
   genders: Gender[]; // 빈 배열 = 전체
-  interests: string[];
-  locales: string[]; // 사용 언어
+  interests: InterestSpec[];
+  locales: string[]; // 사용 언어(locale id)
+  customAudiences: AudienceSpec[]; // 포함(리타게팅)
+  excludedAudiences: AudienceSpec[]; // 제외
 }
 
 export function defaultTargeting(): AdTargeting {
-  return { geos: [], ageMin: 25, ageMax: 45, genders: [], interests: [], locales: [] };
+  return { geos: [], ageMin: 25, ageMax: 45, genders: [], interests: [], locales: [], customAudiences: [], excludedAudiences: [] };
 }
 
 export interface AdSet {
@@ -142,15 +162,68 @@ export async function deleteAdAccount(id: string): Promise<void> {
 }
 
 // ── 광고 세트 ─────────────────────────────────────────────────────
+// 레거시(문자열 라벨) ↔ 신형(해석된 spec) 모두 안전하게 읽는다.
+function migrateGeos(v: unknown): GeoSpec[] {
+  if (!Array.isArray(v)) return [];
+  const out: GeoSpec[] = [];
+  for (const g of v) {
+    if (typeof g === 'string') {
+      if (g.trim()) out.push({ type: 'city', key: '', name: g }); // 라벨만(미해석)
+    } else if (g && typeof g === 'object') {
+      const o = g as Record<string, unknown>;
+      const name = typeof o.name === 'string' ? o.name : '';
+      if (!name) continue;
+      const type = (['country', 'region', 'city', 'zip'] as const).find((x) => x === o.type) ?? 'city';
+      out.push({
+        type,
+        key: typeof o.key === 'string' ? o.key : '',
+        name,
+        radius: typeof o.radius === 'number' ? o.radius : undefined,
+        distanceUnit: o.distanceUnit === 'mile' ? 'mile' : o.distanceUnit === 'kilometer' ? 'kilometer' : undefined,
+      });
+    }
+  }
+  return out;
+}
+function migrateInterests(v: unknown): InterestSpec[] {
+  if (!Array.isArray(v)) return [];
+  const out: InterestSpec[] = [];
+  for (const i of v) {
+    if (typeof i === 'string') {
+      if (i.trim()) out.push({ id: '', name: i });
+    } else if (i && typeof i === 'object') {
+      const o = i as Record<string, unknown>;
+      const name = typeof o.name === 'string' ? o.name : '';
+      if (name) out.push({ id: typeof o.id === 'string' ? o.id : '', name });
+    }
+  }
+  return out;
+}
+
+function migrateAudiences(v: unknown): AudienceSpec[] {
+  if (!Array.isArray(v)) return [];
+  const out: AudienceSpec[] = [];
+  for (const a of v) {
+    if (a && typeof a === 'object') {
+      const o = a as Record<string, unknown>;
+      const id = typeof o.id === 'string' ? o.id : '';
+      if (id) out.push({ id, name: typeof o.name === 'string' ? o.name : id });
+    }
+  }
+  return out;
+}
+
 function rowToTargeting(v: unknown): AdTargeting {
-  const t = (v as Partial<AdTargeting>) ?? {};
+  const t = (v as Partial<Record<string, unknown>>) ?? {};
   return {
-    geos: Array.isArray(t.geos) ? t.geos : [],
+    geos: migrateGeos(t.geos),
     ageMin: typeof t.ageMin === 'number' ? t.ageMin : 25,
     ageMax: typeof t.ageMax === 'number' ? t.ageMax : 45,
-    genders: Array.isArray(t.genders) ? t.genders : [],
-    interests: Array.isArray(t.interests) ? t.interests : [],
-    locales: Array.isArray(t.locales) ? t.locales : [],
+    genders: Array.isArray(t.genders) ? (t.genders as Gender[]) : [],
+    interests: migrateInterests(t.interests),
+    locales: Array.isArray(t.locales) ? (t.locales as string[]) : [],
+    customAudiences: migrateAudiences(t.customAudiences),
+    excludedAudiences: migrateAudiences(t.excludedAudiences),
   };
 }
 

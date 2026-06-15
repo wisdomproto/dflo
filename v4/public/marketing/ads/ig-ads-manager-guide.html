@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인스타 링크 광고 직접 만들기 — Meta 광고 관리자</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif; margin: 0; background: #f8fafc; color: #0f172a; line-height: 1.55; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 22px 56px; }
+  h1 { font-size: 23px; font-weight: 800; margin: 0; color: #fff; }
+  h1 .sub { display: block; font-size: 12.5px; font-weight: 500; color: rgba(255,255,255,0.9); margin-top: 7px; }
+  h2 { font-size: 17px; font-weight: 700; margin: 30px 0 10px; padding-bottom: 7px; border-bottom: 2px solid #e2e8f0; scroll-margin-top: 14px; }
+  h3 { font-size: 13.5px; font-weight: 700; margin: 14px 0 5px; color: #4338ca; }
+  p, li, td { font-size: 12.5px; color: #334155; }
+  ul, ol { padding-left: 18px; margin: 6px 0; }
+  li { margin-bottom: 5px; }
+  b, strong { color: #1e293b; }
+  code { background: #eef2ff; color: #4338ca; padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 12px; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  th { background: #4c1d95; color: #fff; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 11px; }
+  td { padding: 7px 10px; border-top: 1px solid #ede9fe; vertical-align: top; }
+  .hero { background: linear-gradient(135deg, #667eea, #764ba2); padding: 26px 24px; border-radius: 13px; margin-bottom: 18px; box-shadow: 0 8px 24px rgba(118,75,162,0.22); }
+  .nav-jump { display: flex; gap: 7px; flex-wrap: wrap; margin: 0 0 20px; padding: 11px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; }
+  .nav-jump a { padding: 4px 10px; background: #f1f5f9; border-radius: 13px; font-size: 11.5px; color: #334155; text-decoration: none; font-weight: 600; }
+  .nav-jump a:hover { background: #667eea; color: #fff; }
+  .step { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; background: #fff; border: 1px solid #e2e8f0; border-radius: 11px; padding: 14px 16px; margin-bottom: 11px; }
+  .step .no { width: 34px; height: 34px; border-radius: 9px; background: linear-gradient(135deg,#667eea,#764ba2); color: #fff; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+  .step h3 { margin-top: 2px; }
+  .info-box { background: #eef2ff; border: 1px solid #c7d2fe; border-left: 5px solid #6366f1; border-radius: 10px; padding: 13px 16px; margin: 13px 0; }
+  .info-box strong.t { display: block; font-size: 12.5px; color: #4338ca; margin-bottom: 5px; }
+  .warn-box { background: #fef2f2; border: 1px solid #fca5a5; border-left: 5px solid #ef4444; border-radius: 10px; padding: 13px 16px; margin: 13px 0; }
+  .warn-box strong.t { display: block; font-size: 12.5px; color: #b91c1c; margin-bottom: 5px; }
+  .key { background: linear-gradient(135deg,#fffbeb,#fff); border: 1px solid #fbbf24; border-left: 5px solid #f59e0b; border-radius: 10px; padding: 13px 16px; margin: 13px 0; }
+  .key strong.t { display: block; font-size: 12.5px; color: #b45309; margin-bottom: 5px; }
+  .pill { display: inline-block; padding: 1px 7px; border-radius: 5px; font-size: 10.5px; font-weight: 700; }
+  .p-traffic { background: #e0e7ff; color: #3730a3; }
+  .p-conv { background: #ffe4e6; color: #9f1239; }
+  .chk { list-style: none; padding-left: 0; }
+  .chk li { padding-left: 22px; position: relative; }
+  .chk li::before { content: '✓'; position: absolute; left: 0; color: #16a34a; font-weight: 800; }
+  .footnote { font-size: 11px; color: #94a3b8; margin-top: 26px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <h1>인스타 링크 광고 직접 만들기
+      <span class="sub">Meta 광고 관리자에서 "더 알아보기 → 홈페이지" 트래픽·전환 광고 · 앱 검수 없이 지금 가능 · 187 성장클리닉</span>
+    </h1>
+  </div>
+
+  <div class="info-box">
+    <strong class="t">이 가이드는</strong>
+    인스타 피드에 <b>"더 알아보기" 버튼이 달려 홈페이지로 바로 가는 광고</b>를 <b>Meta 광고 관리자에서 직접</b> 만드는 법입니다.
+    이건 <b>앱 검수와 무관하게 지금 됩니다</b>(검수는 우리 dflo 앱에서 자동화할 때만 필요). 접속: <code>business.facebook.com/adsmanager</code> (master 계정 로그인).
+  </div>
+
+  <div class="nav-jump">
+    <a href="#prep">사전 준비</a>
+    <a href="#s1">1. 캠페인(목표)</a>
+    <a href="#s2">2. 광고세트(타겟·예산)</a>
+    <a href="#s3">3. 광고(버튼·링크)</a>
+    <a href="#s4">4. 검토·게시</a>
+    <a href="#funnel">운영 순서</a>
+    <a href="#rule">규정</a>
+  </div>
+
+  <h2 id="prep">사전 준비 (한 번만)</h2>
+  <ul class="chk">
+    <li>Meta 광고 관리자 접속 + <b>광고 계정 + 결제수단</b> 등록</li>
+    <li><b>페이스북 페이지 ↔ 인스타그램(프로페셔널 계정) 연결</b> (이미 연결됨 — 한국/태국)</li>
+    <li><b>Meta 픽셀 <code>999009859491958</code> 설치됨</b> — 홈페이지에서 <code>PageView</code> · <code>Lead</code>(메신저 클릭) · <code>HeightCalcComplete</code>(예측키 측정) 이벤트 발사 중. 이벤트 관리자에서 들어오는지 한 번 확인.</li>
+    <li>랜딩 페이지 정하기: 보통 <b>홈페이지</b> 또는 <b>예측키 계산기</b> (예: <code>dr187growup.com</code> · 태국 <code>/th</code> · 베트남 <code>/vi</code>)</li>
+  </ul>
+
+  <h2 id="s1">STEP 1 — 캠페인: 목표 고르기</h2>
+  <div class="step">
+    <div class="no">1</div>
+    <div>
+      <h3>+ 만들기 → 캠페인 목표 선택</h3>
+      <p>고가 진료라 <b>2단계로 나눠</b> 씁니다. 차가운 사람에게 바로 전환을 노리지 않습니다.</p>
+      <table>
+        <tr><th>단계</th><th>목표 선택</th><th>성과 목표(최적화)</th><th>언제</th></tr>
+        <tr><td><span class="pill p-traffic">데우기</span></td><td><b>트래픽(Traffic)</b></td><td>랜딩 페이지 조회 수 최대화</td><td>처음 — 콜드 유입 + 픽셀 모수 적립</td></tr>
+        <tr><td><span class="pill p-conv">전환</span></td><td><b>잠재 고객(Leads)</b></td><td>전환수 최대화 → 이벤트 <b>Lead</b></td><td>데워진 사람(리타게팅)에게</td></tr>
+      </table>
+      <p><b>특별 광고 카테고리</b>: <b>해당 없음(None)</b> 선택. (성장클리닉은 신용·고용·주택·사회이슈가 아님 — 단, 건강 광고 정책은 STEP 3·규정 참고.)</p>
+    </div>
+  </div>
+
+  <h2 id="s2">STEP 2 — 광고 세트: 전환 위치 · 타겟 · 노출 위치 · 예산</h2>
+  <div class="step">
+    <div class="no">2</div>
+    <div>
+      <h3>전환 위치 (전환 캠페인일 때)</h3>
+      <p><b>웹사이트</b> 선택 → <b>픽셀 <code>999009859491958</code></b> + 전환 이벤트 <b>Lead</b>. (트래픽 캠페인이면 이 단계 없이 다음으로.)</p>
+
+      <h3>예산 및 일정</h3>
+      <ul>
+        <li><b>일 예산</b>으로 소액부터 (테스트: 태국 ฿300~500 / 베트남 ₫15~30만 / 미국 $10~20 정도)</li>
+        <li>시작일 지정. <b>첫 3~7일은 학습 단계 — 예산·타겟 건드리지 말기</b>(건드리면 학습 리셋).</li>
+      </ul>
+
+      <h3>잠재 고객(타게팅) — 우리 앱 🎯 타겟에서 정한 값을 그대로 입력</h3>
+      <ul>
+        <li><b>위치</b>: 도시·반경 (예: Bangkok +20km / 미국은 한인 밀집지 핀포인트)</li>
+        <li><b>연령</b>: 부모 30~45 · <b>성별</b>: 여성 중심</li>
+        <li><b>상세 타게팅</b>: 관심사로 <b>소득 프록시</b>(국제·사립학교, 프리미엄 브랜드, 해외여행) + 육아·자녀교육·소아건강. <span style="color:#b45309">※ 특정 질환 등 민감 카테고리는 Meta가 없앴으니 일반 관심사로.</span></li>
+        <li><b>맞춤 타겟(리타게팅)</b>: 전환 캠페인은 여기서 <b>웹사이트 방문자·영상 시청자·계산기 완료자</b>를 포함 / 기존 고객은 제외. <b>유사타겟(1~3%)</b>도 여기.</li>
+        <li><b>Advantage+ 잠재고객</b>: 처음엔 끄거나 "제안"으로 두고 직접 타겟을 통제 → 데이터 쌓이면 켜기.</li>
+      </ul>
+
+      <h3>노출 위치 (Placements)</h3>
+      <p><b>수동 노출 위치</b> → <b>Instagram</b>의 <b>피드 · 릴스 · 스토리</b> 선택(인스타 집중). 넓게 가려면 Advantage+ 노출 위치(자동).</p>
+    </div>
+  </div>
+
+  <h2 id="s3">STEP 3 — 광고: 크리에이티브 + "더 알아보기" 버튼 + 링크</h2>
+  <div class="step">
+    <div class="no">3</div>
+    <div>
+      <h3>형식 & 미디어</h3>
+      <p>단일 이미지/동영상 또는 캐러셀. 우리 <b>카드뉴스·릴스</b>를 업로드하거나 <b>기존 인스타 게시물 사용</b>. (※ 기존 게시물을 그대로 쓰면 캡션 링크가 클릭 안 되니, 아래 "행동 유도 + URL"을 꼭 채워 광고용 링크를 답니다.)</p>
+
+      <h3 style="color:#9f1239">★ 여기가 핵심 — 직접 홈피로 보내는 부분</h3>
+      <ul>
+        <li><b>기본 문구(캡션)</b> · <b>제목</b> 입력 (예: "우리 아이 18세 예측키, 1분 무료 측정")</li>
+        <li><b>행동 유도(Call to Action)</b>: <b>"더 알아보기"</b> 선택</li>
+        <li><b>웹사이트 URL</b>: 랜딩(홈페이지 / 예측키 계산기) — 이게 있으면 <b>피드 광고에 클릭 버튼이 생겨 바로 직행</b>합니다.</li>
+      </ul>
+      <div class="key">
+        <strong class="t">이게 "프로필 bio 링크 경유"를 없애는 부분</strong>
+        링크 없는 일반 게시물은 인스타에서 캡션 링크가 안 눌려 → 프로필 가서 bio 링크로만 들어올 수 있어 대부분 이탈합니다. 광고에서 <b>행동 유도 버튼 + URL</b>을 채우면 <b>피드에서 버튼 한 번에 홈피 직행</b>이 됩니다.
+      </div>
+
+      <h3>추적</h3>
+      <ul>
+        <li><b>픽셀 켜기</b> (<code>999009859491958</code>) — 방문·전환 측정.</li>
+        <li>URL에 <b>UTM</b> 붙이기 권장: <code>?utm_source=instagram&utm_medium=paid&utm_campaign=...</code> → GA4·사이트 분석에서 광고 유입 구분.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="s4">STEP 4 — 검토 · 게시</h2>
+  <div class="step">
+    <div class="no">4</div>
+    <div>
+      <p>미리보기로 인스타 피드 모양 확인 → <b>게시</b>. Meta 심사(보통 수십 분~하루) 후 노출 시작. 게시 후 첫 며칠은 <b>학습 단계 — 손대지 말고</b> CTR·CPC·랜딩 조회·메신저 클릭(Lead)을 지켜봅니다.</p>
+    </div>
+  </div>
+
+  <h2 id="funnel">운영 순서 (고가 퍼널)</h2>
+  <ol>
+    <li><b>트래픽 캠페인</b>으로 소액 콜드 테스트 → 이긴 소재 선별 + <b>리타게팅 풀(방문자·영상 시청자·계산기 완료자) 적립</b></li>
+    <li>예산 <b>20~30%씩</b> 증액(2배 금지)</li>
+    <li>모수가 쌓이면 <b>잠재고객(Leads) 전환 캠페인</b> — 맞춤 타겟(데워진 사람)에게 메신저 상담(Lead) 유도</li>
+    <li>이긴 것 스케일 + <b>유사타겟(1~3%)</b> 확장 · 빈도 5+면 소재 교체</li>
+    <li>판단 기준: <b>리드(상담) 1건당 비용(CPA) ≤ 20~40만원이면 흑자</b> (치료 1건 ₩1,000만 기준)</li>
+  </ol>
+
+  <h2 id="rule">의료광고 규정 (게재 전 확인)</h2>
+  <div class="warn-box">
+    <strong class="t">반드시</strong>
+    <ul>
+      <li>효과 보장 · "최고/유일/100%" 단정 금지 · 셀럽 얼굴 + 치료효과 직결 금지 · 환자 동의(비식별)</li>
+      <li>Meta 정책: 개인 건강·신체 특성 단정("당신 아이는 키가 작습니다") 금지 → <b>"우리 아이 키 걱정되시나요?"</b> 보편 톤</li>
+      <li>각국 현지 의료광고 규제 보수적으로 (특히 태국)</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <strong class="t">우리 dflo 앱과의 관계</strong>
+    이 앱의 <b>🎯 타겟</b>에서 정한 지역·관심사·리타게팅/유사타겟을 여기 광고 관리자에 <b>그대로 옮겨</b> 입력하면 됩니다. <b>앱 검수가 끝나면</b> 이 과정을 앱에서 <b>버튼 한 번에 자동 생성</b>할 수 있게 됩니다(그땐 광고 관리자 안 거쳐도 됨).
+  </div>
+
+  <div class="footnote">187 마케팅 센터 · 내부 운영 가이드 · Meta 광고 관리자 UI 라벨은 수시로 바뀔 수 있음 · 의료광고는 게재 전 현지 규정 확인 · 2026-06-15</div>
+
+</div>
+</body>
+</html>

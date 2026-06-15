@@ -42,16 +42,18 @@ export const PLACEMENTS: { id: string; label: string }[] = [
   { id: 'audience_network', label: '오디언스 네트워크' },
 ];
 
-// 시장별 추천 타겟 지역 프리셋 (광고 지역 — 시장 언어와 직교)
+// 시장별 추천 타겟 지역 프리셋 (광고 지역 — 시장 언어와 직교).
+// 클릭 시 Meta 지역 검색 쿼리로 들어가므로 Meta가 인식하는 지명으로 둔다(영문 권장).
 export const GEO_PRESETS: Record<string, string[]> = {
-  ko: ['서울', '경기', '부산', '대한민국 전체'],
-  en: ['미국 한인', 'LA', '뉴욕/뉴저지', '애틀랜타', '시애틀'],
-  th: ['방콕', '치앙마이', '태국 전체'],
-  vi: ['호치민', '하노이', '베트남 전체'],
+  ko: ['서울', '경기', '부산'],
+  en: ['Los Angeles', 'New York', 'Atlanta', 'Seattle'],
+  th: ['Bangkok', 'Chiang Mai', 'Phuket'],
+  vi: ['Ho Chi Minh City', 'Hanoi', 'Da Nang'],
 };
 
+// Meta 관심사 검색 쿼리 시드(관심사 객체는 Meta가 영문으로 색인하므로 영문 시드).
 export const INTEREST_PRESETS = [
-  '자녀 양육', '소아 건강', '성장/키', '교육', '육아맘 커뮤니티', '건강검진', '한의원/의료',
+  'Parenting', 'Child health', 'Education', 'Motherhood', 'Nutrition', 'Pediatrics',
 ];
 
 export const CREATIVE_KIND_LABEL: Record<CreativeKind, string> = {
