@@ -25,7 +25,7 @@ export function buildPushDoc(localJson, reelAssets) {
     if (!url) throw new Error(`insert 매칭 실패: ${c.insert} (${m ? m[1] : "?"}) — InfographicAssetsPanel 에 먼저 업로드`);
     return { ...c, insert: url };
   });
-  return { slug, script: { ...rest, chunks } };
+  return { slug, script: { ...rest, chunks, twoTrack: rest.twoTrack ?? true } };
 }
 
 /** DB reel_script doc → 로컬 script.json(평탄, 기존 스크립트 호환). */

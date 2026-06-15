@@ -2,7 +2,7 @@ import script from "./script.json";
 import tKo from "./timing-ko.json";
 import { PresenterShort, presenterDuration } from "../_shared/PresenterShort";
 
-// ADHD 약과 키 성장의 진실 — PresenterShort(원장 정면 베이스 + 인포그래픽 인서트 + 인트로/CTA). 마케팅 콘텐츠 #18.
+// ADHD 약과 키 성장의 진실 — PresenterShort 2트랙 자막(script.twoTrack=true → 내부계산). 마케팅 콘텐츠 #18.
 // videoSrc = presenter-base 랜덤 cut 재립싱크. 비ko 언어 추가 시 timing-<lang>.json import + mkFinal 추가.
 const S = script as never;
 const SLUG = "adhd약키성장";

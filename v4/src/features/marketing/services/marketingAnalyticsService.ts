@@ -20,7 +20,8 @@ export interface CountryStats {
   summary: Summary;
   prevSummary: Summary;
   pageViews: PageViews;
-  events: { heightCalc: number; messenger: number };
+  events: { calcOpen: number; heightCalc: number; messenger: number };
+  calcCompletionRate: number; // 측정 완료 / 패널 열람 (열람→완료 퍼널)
   messengerChannel: 'kakao' | 'line' | 'mixed';
   conversionRate: number;
   channels: NamedCount[];

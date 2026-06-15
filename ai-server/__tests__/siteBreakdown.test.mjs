@@ -37,6 +37,7 @@ const INPUT = {
   ],
   events: [
     { pagePath: '/ko/index.html', eventName: 'consult_click', count: 10 },
+    { pagePath: '/th/calculator.html', eventName: 'calc_open', count: 20 },
     { pagePath: '/th/calculator.html', eventName: 'height_calc_complete', count: 8 },
   ],
   channels: [
@@ -91,7 +92,9 @@ test('aggregateSiteBreakdown: th + all 합산', () => {
   const r = aggregateSiteBreakdown(INPUT);
   const th = r.byCountry.th;
   assert.equal(th.summary.users, 30);
+  assert.equal(th.events.calcOpen, 20);
   assert.equal(th.events.heightCalc, 8);
+  assert.equal(th.calcCompletionRate, 40); // 8/20*100 (열람→완료 퍼널)
   assert.equal(th.events.messenger, 0);
   assert.equal(th.messengerChannel, 'line');
   assert.equal(th.pageViews.calculator, 80);
@@ -102,7 +105,9 @@ test('aggregateSiteBreakdown: th + all 합산', () => {
   assert.equal(all.summary.newUsers, 80); // 60 + 20
   assert.equal(all.pageViews.total, 330); // 250 + 80
   assert.equal(all.events.messenger, 10);
+  assert.equal(all.events.calcOpen, 20);
   assert.equal(all.events.heightCalc, 8);
+  assert.equal(all.calcCompletionRate, 40); // 8/20*100
   assert.equal(all.messengerChannel, 'mixed');
   assert.equal(all.summary.avgEngagementSec, 59.62); // (6000+1750)/130
   assert.equal(all.daily.length, 2);

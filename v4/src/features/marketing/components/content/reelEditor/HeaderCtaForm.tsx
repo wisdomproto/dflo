@@ -79,6 +79,16 @@ export function HeaderCtaForm({ doc, language, onPatchScript }: Props) {
             <label className="mb-0.5 block text-[11px] font-semibold text-gray-500">CTA 문구</label>
             <CommitInput value={cta} onCommit={commitCta} placeholder="지금 바로 확인하세요" />
           </div>
+          {/* 2트랙 자막 토글 — 전 언어 공통(언어 독립 플래그) */}
+          <label className="flex items-center gap-2 text-[11px] font-semibold text-gray-600">
+            <input
+              type="checkbox"
+              checked={!!script.twoTrack}
+              onChange={(e) => onPatchScript({ twoTrack: e.target.checked })}
+              className="h-3.5 w-3.5 cursor-pointer"
+            />
+            2트랙 자막 (강조 상단 + 카라오케 하단) · 전 언어 공통
+          </label>
           <p className="text-[11px]" style={{ color: ACCENT }}>
             편집은 입력 칸을 벗어날 때(blur) 저장됩니다.
           </p>

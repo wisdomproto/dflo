@@ -2,7 +2,7 @@
 // HeightCalculator - 예상키 측정 입력 폼 모달
 // ================================================
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { calculateHeightPercentileLMS, predictAdultHeightLMS, type GrowthStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
@@ -34,6 +34,23 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
   const t = getCalcLabels(lang);
   // 태국어 계산기는 태국 성장도표(TSPE) 기준, 그 외(ko/vi/en)는 한국 기준
   const standard: GrowthStandard = lang === 'th' ? 'TH' : 'KR';
+
+  // 패널 열람(calc_open) — 폼이 사용자에게 보이면 1회 발사(열람→완료 퍼널 측정).
+  // embedded(=/calc-embed iframe)면 부모(_shell.js)로 postMessage, SPA 모달이면 직접 발사.
+  const openedRef = useRef(false);
+  useEffect(() => {
+    const visible = embedded || isOpen;
+    if (!visible) { openedRef.current = false; return; }
+    if (openedRef.current) return;
+    openedRef.current = true;
+    try {
+      if (embedded && window.parent !== window) {
+        window.parent.postMessage({ type: 'calc_open', locale: lang }, '*');
+      } else {
+        import('@/shared/lib/analytics').then((m) => m.trackCalcOpen('calc_modal'));
+      }
+    } catch { /* tracking must never break UX */ }
+  }, [embedded, isOpen, lang]);
 
   const calculate = () => {
     const h = parseFloat(height);

@@ -48,7 +48,8 @@ export interface CountryStats {
   summary: Summary;
   prevSummary: Summary; // 직전 동일 기간 (증감 계산용)
   pageViews: PageViews; // pagePath 기준 페이지 분해
-  events: { heightCalc: number; messenger: number };
+  events: { calcOpen: number; heightCalc: number; messenger: number };
+  calcCompletionRate: number; // 예측키 측정 완료 / 패널 열람 (열람→완료 퍼널)
   messengerChannel: 'kakao' | 'line' | 'mixed';
   conversionRate: number; // 메신저 클릭 / 페이지뷰(pagePath total)
   channels: NamedCount[];
@@ -86,7 +87,8 @@ function blankStats(channel: 'kakao' | 'line' | 'mixed'): CountryStats {
     summary: blankSummary(),
     prevSummary: blankSummary(),
     pageViews: { main: 0, clinic: 0, cases: 0, calculator: 0, other: 0, total: 0 },
-    events: { heightCalc: 0, messenger: 0 },
+    events: { calcOpen: 0, heightCalc: 0, messenger: 0 },
+    calcCompletionRate: 0,
     messengerChannel: channel,
     conversionRate: 0,
     channels: [],
@@ -140,7 +142,8 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   // 3) 이벤트 (pagePath 기준)
   for (const r of input.events) {
     for (const k of countryKeys(classifyCountry(r.pagePath))) {
-      if (r.eventName === 'height_calc_complete') stats[k].events.heightCalc += r.count;
+      if (r.eventName === 'calc_open') stats[k].events.calcOpen += r.count;
+      else if (r.eventName === 'height_calc_complete') stats[k].events.heightCalc += r.count;
       else if (r.eventName === 'consult_click') stats[k].events.messenger += r.count;
     }
   }
@@ -177,6 +180,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
       s.avgEngagementSec = s.users > 0 ? round2(s.engagementSec / s.users) : 0;
     }
     st.conversionRate = st.pageViews.total > 0 ? round2((st.events.messenger / st.pageViews.total) * 100) : 0;
+    st.calcCompletionRate = st.events.calcOpen > 0 ? round2((st.events.heightCalc / st.events.calcOpen) * 100) : 0;
     st.channels = rollup(chanByKey[k]);
     st.devices = rollup(devByKey[k]);
     st.daily = [...dailyByKey[k].values()].sort((a, b) => a.date.localeCompare(b.date));

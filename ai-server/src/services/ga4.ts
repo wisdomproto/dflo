@@ -385,7 +385,7 @@ export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
       dateRanges: [cur],
       dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
       metrics: [{ name: 'eventCount' }],
-      dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: ['height_calc_complete', 'consult_click'] } } },
+      dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: ['calc_open', 'height_calc_complete', 'consult_click'] } } },
       limit: '1000',
     }),
     // 유입은 채널 그룹(Organic Search 등 5종) 대신 소스 → 플랫폼 정규화 (구글/인스타/페북/ChatGPT… 디테일)
