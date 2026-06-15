@@ -17,7 +17,7 @@ test("태국어: 구절-공백에서 끊고 단어 내부는 안 쪼갠다", () 
 test("중국어(공백 없음): 글자수 예산으로 쪼갠다", () => {
   const p = splitIntoPhrases("吃ADHD药孩子就长不高今天讲清楚这点很重要", "cn", { maxChars: 6 });
   assert.ok(p.length >= 2);
-  for (const ph of p) assert.ok(Array.from(ph).length <= 8);
+  for (const ph of p) assert.ok(Array.from(ph).length <= 6);
 });
 
 test("distributeFrames: durFrames 합이 정확히 일치", () => {
