@@ -1,0 +1,539 @@
+{
+  "slug": "스테로이드키",
+  "fps": 30,
+  "title": "스테로이드 약, 진짜 키를 멈출까? — 흡입·연고·경구",
+  "_note": "자동 생성(storyboard-to-reel 19). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "스테로이드 약",
+      "mark": "키를 멈춘다고?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "아이 스테로이드 약을 처방받고, 키가 안 클까 봐 걱정되셨습니까?",
+      "cap_ko": [
+        "스테로이드 약",
+        "키 멈출까?"
+      ],
+      "hl_ko": "키 멈출까?",
+      "th": "ลูกได้ยาสเตียรอยด์ กังวลว่าจะไม่สูงใช่ไหม?",
+      "cap_th": [
+        "ยาสเตียรอยด์",
+        "หยุดสูงไหม?"
+      ],
+      "hl_th": "หยุดสูงไหม?",
+      "vi": "Con được kê thuốc steroid, bạn lo sẽ không cao đúng không?",
+      "cap_vi": [
+        "Thuốc steroid",
+        "ngừng cao?"
+      ],
+      "hl_vi": "ngừng cao?",
+      "en": "Your child got a steroid prescription — worried it'll stunt their height?",
+      "cap_en": [
+        "Steroid meds",
+        "stop growth?"
+      ],
+      "hl_en": "stop growth?",
+      "cn": "孩子被开了类固醇药，担心会长不高吧？",
+      "cap_cn": [
+        "类固醇药",
+        "会停长吗？"
+      ],
+      "hl_cn": "会停长吗？",
+      "ch": "孩子被開了類固醇藥，擔心會長不高吧？",
+      "cap_ch": [
+        "類固醇藥",
+        "會停長嗎？"
+      ],
+      "hl_ch": "會停長嗎？"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "그런데 스테로이드라고 다 같은 게 아닙니다. 종류마다 완전히 다릅니다.",
+      "cap_ko": [
+        "다 같지 않다",
+        "종류마다 달라요"
+      ],
+      "hl_ko": "종류마다 달라요",
+      "th": "แต่สเตียรอยด์ไม่ได้เหมือนกันหมด แต่ละชนิดต่างกันมาก",
+      "cap_th": [
+        "ไม่เหมือนกัน",
+        "แต่ละชนิดต่างกัน"
+      ],
+      "hl_th": "แต่ละชนิดต่างกัน",
+      "vi": "Nhưng steroid không phải loại nào cũng giống nhau — mỗi loại rất khác.",
+      "cap_vi": [
+        "Không giống nhau",
+        "mỗi loại khác"
+      ],
+      "hl_vi": "mỗi loại khác",
+      "en": "But not all steroids are the same — each type is totally different.",
+      "cap_en": [
+        "Not all alike",
+        "type matters"
+      ],
+      "hl_en": "type matters",
+      "cn": "但类固醇不都一样，每种差别很大。",
+      "cap_cn": [
+        "并非都一样",
+        "种类不同"
+      ],
+      "hl_cn": "种类不同",
+      "ch": "但類固醇不都一樣，每種差別很大。",
+      "cap_ch": [
+        "並非都一樣",
+        "種類不同"
+      ],
+      "hl_ch": "種類不同"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 10.5,
+      "ko": "크게 세 가지입니다. 흡입, 연고, 그리고 먹는 약입니다.",
+      "cap_ko": [
+        "흡입·연고·경구",
+        "3가지 종류"
+      ],
+      "hl_ko": "3가지 종류",
+      "th": "หลักๆ มี 3 แบบ แบบสูดพ่น แบบทา และแบบกิน",
+      "cap_th": [
+        "สูด·ทา·กิน",
+        "3 แบบ"
+      ],
+      "hl_th": "3 แบบ",
+      "vi": "Có 3 loại chính: hít, bôi, và uống.",
+      "cap_vi": [
+        "Hít·bôi·uống",
+        "3 loại"
+      ],
+      "hl_vi": "3 loại",
+      "en": "There are three kinds: inhaled, topical, and oral.",
+      "cap_en": [
+        "Inhaled·cream·oral",
+        "3 types"
+      ],
+      "hl_en": "3 types",
+      "cn": "主要有三种：吸入、外用、口服。",
+      "cap_cn": [
+        "吸入·外用·口服",
+        "3种"
+      ],
+      "hl_cn": "3种",
+      "ch": "主要有三種：吸入、外用、口服。",
+      "cap_ch": [
+        "吸入·外用·口服",
+        "3種"
+      ],
+      "hl_ch": "3種",
+      "insert": "images/스테로이드키/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.9,
+          "size": 30,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "흡입",
+          "en": "Inhaled",
+          "th": "แบบสูดพ่น"
+        },
+        {
+          "x": 0.5,
+          "y": 0.9,
+          "size": 30,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "연고",
+          "en": "Topical",
+          "th": "แบบทา"
+        },
+        {
+          "x": 0.8,
+          "y": 0.9,
+          "size": 30,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "경구",
+          "en": "Oral",
+          "th": "แบบกิน"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 10.5,
+      "end": 14.5,
+      "ko": "천식·비염에 쓰는 흡입약은 전신 흡수가 아주 적습니다. 최종 키엔 거의 영향이 없습니다.",
+      "cap_ko": [
+        "흡입 = 국소작용",
+        "키 영향 거의 0"
+      ],
+      "hl_ko": "키 영향 거의 0",
+      "th": "ยาพ่นสำหรับหอบหืด·ภูมิแพ้ ดูดซึมเข้าร่างกายน้อยมาก แทบไม่กระทบความสูง",
+      "cap_th": [
+        "พ่น = เฉพาะที่",
+        "แทบไม่กระทบ"
+      ],
+      "hl_th": "แทบไม่กระทบ",
+      "vi": "Thuốc hít cho hen·viêm mũi hấp thu toàn thân rất ít — hầu như không ảnh hưởng chiều cao.",
+      "cap_vi": [
+        "Hít = tại chỗ",
+        "gần như 0"
+      ],
+      "hl_vi": "gần như 0",
+      "en": "Inhalers for asthma and rhinitis are barely absorbed — almost no effect on final height.",
+      "cap_en": [
+        "Inhaled = local",
+        "near-zero effect"
+      ],
+      "hl_en": "near-zero effect",
+      "cn": "哮喘·鼻炎用的吸入药全身吸收很少，对最终身高几乎没影响。",
+      "cap_cn": [
+        "吸入=局部",
+        "几乎不影响"
+      ],
+      "hl_cn": "几乎不影响",
+      "ch": "哮喘·鼻炎用的吸入藥全身吸收很少，對最終身高幾乎沒影響。",
+      "cap_ch": [
+        "吸入=局部",
+        "幾乎不影響"
+      ],
+      "hl_ch": "幾乎不影響",
+      "insert": "images/스테로이드키/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.46,
+          "y": 0.07,
+          "size": 30,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "국소작용",
+          "en": "Acts locally",
+          "th": "ออกฤทธิ์เฉพาะที่"
+        },
+        {
+          "x": 0.55,
+          "y": 0.93,
+          "size": 26,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "전신 흡수 ↓",
+          "en": "Low systemic",
+          "th": "ดูดซึมน้อย"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18,
+      "ko": "아토피에 바르는 연고도 마찬가지입니다. 피부에만 작용해서 흡수율이 아주 낮습니다.",
+      "cap_ko": [
+        "바르는 연고",
+        "흡수율 아주 낮음"
+      ],
+      "hl_ko": "흡수율 아주 낮음",
+      "th": "ยาทาสำหรับภูมิแพ้ผิวหนังก็เหมือนกัน ออกฤทธิ์เฉพาะผิว ดูดซึมต่ำมาก",
+      "cap_th": [
+        "ยาทา",
+        "ดูดซึมต่ำมาก"
+      ],
+      "hl_th": "ดูดซึมต่ำมาก",
+      "vi": "Kem bôi cho viêm da cũng vậy — chỉ tác dụng trên da, hấp thu rất thấp.",
+      "cap_vi": [
+        "Kem bôi",
+        "hấp thu rất thấp"
+      ],
+      "hl_vi": "hấp thu rất thấp",
+      "en": "Creams for eczema are the same — they act on skin only, with very low absorption.",
+      "cap_en": [
+        "Topical cream",
+        "very low uptake"
+      ],
+      "hl_en": "very low uptake",
+      "cn": "治湿疹的外用药膏也一样，只作用于皮肤，吸收率很低。",
+      "cap_cn": [
+        "外用药膏",
+        "吸收率很低"
+      ],
+      "hl_cn": "吸收率很低",
+      "ch": "治濕疹的外用藥膏也一樣，只作用於皮膚，吸收率很低。",
+      "cap_ch": [
+        "外用藥膏",
+        "吸收率很低"
+      ],
+      "hl_ch": "吸收率很低"
+    },
+    {
+      "id": "c6",
+      "start": 18,
+      "end": 21.5,
+      "ko": "오히려 천식·아토피를 방치해서 잠 못 자고 못 노는 게 성장엔 더 나쁩니다.",
+      "cap_ko": [
+        "방치가 더 위험",
+        "질환 관리가 우선"
+      ],
+      "hl_ko": "방치가 더 위험",
+      "th": "กลับกัน ปล่อยหอบหืด·ภูมิแพ้ไว้ จนนอนไม่หลับ แย่ต่อการสูงมากกว่า",
+      "cap_th": [
+        "ปล่อยไว้แย่กว่า",
+        "คุมโรคก่อน"
+      ],
+      "hl_th": "ปล่อยไว้แย่กว่า",
+      "vi": "Ngược lại, để mặc hen·viêm da khiến con mất ngủ mới hại chiều cao hơn.",
+      "cap_vi": [
+        "Bỏ mặc hại hơn",
+        "kiểm soát bệnh"
+      ],
+      "hl_vi": "Bỏ mặc hại hơn",
+      "en": "In fact, leaving asthma or eczema untreated — losing sleep — hurts growth more.",
+      "cap_en": [
+        "Untreated is worse",
+        "control the disease"
+      ],
+      "hl_en": "Untreated is worse",
+      "cn": "反而放任哮喘·湿疹让孩子睡不好，对长高更不利。",
+      "cap_cn": [
+        "放任更危险",
+        "先控制疾病"
+      ],
+      "hl_cn": "放任更危险",
+      "ch": "反而放任哮喘·濕疹讓孩子睡不好，對長高更不利。",
+      "cap_ch": [
+        "放任更危險",
+        "先控制疾病"
+      ],
+      "hl_ch": "放任更危險",
+      "insert": "images/스테로이드키/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.28,
+          "y": 0.05,
+          "size": 28,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "방치 시",
+          "en": "If untreated",
+          "th": "ถ้าปล่อยไว้",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.86,
+          "y": 0.5,
+          "size": 28,
+          "weight": 900,
+          "color": "#dc2626",
+          "ko": "성장 ↓",
+          "en": "Growth drops",
+          "th": "การโตช้าลง"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 21.5,
+      "end": 25,
+      "ko": "먹는 경구약은 어떨까요? 1주일 이내 단기 복용은 대부분 안전합니다. 몸이 회복하기 때문입니다.",
+      "cap_ko": [
+        "경구 단기복용",
+        "대부분 안전"
+      ],
+      "hl_ko": "대부분 안전",
+      "th": "แล้วยากินล่ะ? กินสั้นๆ ไม่เกิน 1 สัปดาห์ ส่วนใหญ่ปลอดภัย ร่างกายฟื้นได้",
+      "cap_th": [
+        "กินสั้นๆ",
+        "ส่วนใหญ่ปลอดภัย"
+      ],
+      "hl_th": "ส่วนใหญ่ปลอดภัย",
+      "vi": "Còn thuốc uống? Dùng ngắn dưới 1 tuần phần lớn an toàn — cơ thể hồi phục được.",
+      "cap_vi": [
+        "Uống ngắn ngày",
+        "phần lớn an toàn"
+      ],
+      "hl_vi": "phần lớn an toàn",
+      "en": "What about oral pills? Short courses under a week are mostly safe — the body recovers.",
+      "cap_en": [
+        "Short oral course",
+        "mostly safe"
+      ],
+      "hl_en": "mostly safe",
+      "cn": "那口服药呢？1周以内短期服用大多安全，身体能恢复。",
+      "cap_cn": [
+        "短期口服",
+        "大多安全"
+      ],
+      "hl_cn": "大多安全",
+      "ch": "那口服藥呢？1週以內短期服用大多安全，身體能恢復。",
+      "cap_ch": [
+        "短期口服",
+        "大多安全"
+      ],
+      "hl_ch": "大多安全"
+    },
+    {
+      "id": "c8",
+      "start": 25,
+      "end": 29,
+      "ko": "단, 수개월 이상 장기 복용은 성장호르몬을 억제할 수 있어 전문의 관리가 필요합니다.",
+      "cap_ko": [
+        "장기 복용만",
+        "전문의 관리 필요"
+      ],
+      "hl_ko": "전문의 관리 필요",
+      "th": "แต่ถ้ากินยาวหลายเดือน อาจกดฮอร์โมนการเจริญเติบโต ต้องให้หมอดูแล",
+      "cap_th": [
+        "เฉพาะระยะยาว",
+        "ต้องมีหมอดูแล"
+      ],
+      "hl_th": "ต้องมีหมอดูแล",
+      "vi": "Nhưng uống dài trên vài tháng có thể ức chế hormone tăng trưởng — cần bác sĩ theo dõi.",
+      "cap_vi": [
+        "Chỉ dùng dài",
+        "cần bác sĩ"
+      ],
+      "hl_vi": "cần bác sĩ",
+      "en": "But months-long use can suppress growth hormone — that needs a specialist's care.",
+      "cap_en": [
+        "Long-term only",
+        "needs specialist"
+      ],
+      "hl_en": "needs specialist",
+      "cn": "但连续数月以上长期服用可能抑制生长激素，需要专科医生管理。",
+      "cap_cn": [
+        "仅限长期",
+        "需专科管理"
+      ],
+      "hl_cn": "需专科管理",
+      "ch": "但連續數月以上長期服用可能抑制生長激素，需要專科醫師管理。",
+      "cap_ch": [
+        "僅限長期",
+        "需專科管理"
+      ],
+      "hl_ch": "需專科管理",
+      "insert": "images/스테로이드키/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.24,
+          "y": 0.42,
+          "size": 26,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "단기 · 안전",
+          "en": "Short · safe",
+          "th": "สั้น · ปลอดภัย"
+        },
+        {
+          "x": 0.75,
+          "y": 0.5,
+          "size": 26,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "장기 · 주의",
+          "en": "Long · caution",
+          "th": "ยาว · ระวัง"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 29,
+      "end": 32,
+      "ko": "약을 끊는 게 답이 아닙니다. 뼈나이를 보면 우리 아이 성장이 괜찮은지 알 수 있습니다.",
+      "cap_ko": [
+        "약 중단 X",
+        "뼈나이로 확인"
+      ],
+      "hl_ko": "뼈나이로 확인",
+      "th": "การหยุดยาไม่ใช่คำตอบ ดูอายุกระดูกจะรู้ว่าลูกโตปกติไหม",
+      "cap_th": [
+        "ไม่ใช่หยุดยา",
+        "ดูอายุกระดูก"
+      ],
+      "hl_th": "ดูอายุกระดูก",
+      "vi": "Ngừng thuốc không phải là cách. Xem tuổi xương sẽ biết con phát triển ổn không.",
+      "cap_vi": [
+        "Đừng ngừng thuốc",
+        "xem tuổi xương"
+      ],
+      "hl_vi": "xem tuổi xương",
+      "en": "Stopping the meds isn't the answer — bone age tells you if growth is on track.",
+      "cap_en": [
+        "Don't quit meds",
+        "check bone age"
+      ],
+      "hl_en": "check bone age",
+      "cn": "停药不是答案。看骨龄就知道孩子长得正不正常。",
+      "cap_cn": [
+        "别停药",
+        "看骨龄"
+      ],
+      "hl_cn": "看骨龄",
+      "ch": "停藥不是答案。看骨齡就知道孩子長得正不正常。",
+      "cap_ch": [
+        "別停藥",
+        "看骨齡"
+      ],
+      "hl_ch": "看骨齡"
+    },
+    {
+      "id": "c10",
+      "start": 32,
+      "end": 35,
+      "ko": "우리 아이 성장 상태, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "성장 상태",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กพัฒนาการการเติบโตของลูกวันนี้",
+      "cap_th": [
+        "พัฒนาการลูก",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tình trạng tăng trưởng của con ngay hôm nay.",
+      "cap_vi": [
+        "Tình trạng con",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's growth status today.",
+      "cap_en": [
+        "Growth status",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的成长状况吧。",
+      "cap_cn": [
+        "成长状况",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的成長狀況吧。",
+      "cap_ch": [
+        "成長狀況",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

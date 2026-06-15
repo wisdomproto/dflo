@@ -40,8 +40,15 @@ if (override !== undefined) {
 }
 offset = Math.max(0, Math.min(offset, +(baseDur - need).toFixed(1)));
 const footage = join(LS, "input", `${slug}_${lang}_footage.mp4`);
-execFileSync("ffmpeg", ["-y", "-ss", String(offset), "-i", base,
-  "-t", String(need), "-an", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-r", "30", footage], { stdio: "inherit" });
+if (need > baseDur) {
+  // 오디오가 베이스보다 김 → 베이스 루프로 채움 (이음점은 마지막 CTA 카드가 패널을 덮는 구간에 떨어짐)
+  console.log(`  (need ${need}s > base ${baseDur}s → base loop)`);
+  execFileSync("ffmpeg", ["-y", "-stream_loop", "-1", "-i", base,
+    "-t", String(need), "-an", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-r", "30", footage], { stdio: "inherit" });
+} else {
+  execFileSync("ffmpeg", ["-y", "-ss", String(offset), "-i", base,
+    "-t", String(need), "-an", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "18", "-r", "30", footage], { stdio: "inherit" });
+}
 
 console.log(`\n✓ footage(offset ${offset}s, ${need}s) + audio(${dur.toFixed(1)}s) → ${LS}/input/`);
 console.log(`▶ inference:\n  cd "${LS}" && .venv/Scripts/python.exe -m scripts.inference --unet_config_path configs/unet/stage2.yaml --inference_ckpt_path checkpoints/latentsync_unet.pt --inference_steps 20 --guidance_scale 1.5 --enable_deepcache --video_path "input/${slug}_${lang}_footage.mp4" --audio_path "input/${slug}_${lang}.wav" --video_out_path "output/${slug}_${lang}.mp4"`);

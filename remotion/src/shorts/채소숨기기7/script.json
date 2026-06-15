@@ -1,0 +1,560 @@
+{
+  "slug": "채소숨기기7",
+  "fps": 30,
+  "title": "채소 안 먹는 우리 아이 — 몰래 먹이는 기술 7가지",
+  "_note": "자동 생성(storyboard-to-reel 29). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "채소 안 먹는 아이",
+      "mark": "몰래 먹이는 법?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "채소 안 먹는 우리 아이, 억지로 먹이지 마십시오. '몰래 먹이는 기술'이 있습니다.",
+      "cap_ko": [
+        "억지로 NO",
+        "몰래 먹이는 기술"
+      ],
+      "hl_ko": "몰래 먹이는 기술",
+      "th": "ลูกไม่กินผัก? ไม่ต้องบังคับ มี 'เทคนิคแอบใส่' อยู่",
+      "cap_th": [
+        "ไม่ต้องบังคับ",
+        "เทคนิคแอบใส่"
+      ],
+      "hl_th": "เทคนิคแอบใส่",
+      "vi": "Con không chịu ăn rau? Đừng ép — có 'mẹo giấu rau' đấy.",
+      "cap_vi": [
+        "Đừng ép con",
+        "mẹo giấu rau"
+      ],
+      "hl_vi": "mẹo giấu rau",
+      "en": "Won't your child eat veggies? Don't force it — there's a trick to sneak them in.",
+      "cap_en": [
+        "Don't force it",
+        "sneak them in"
+      ],
+      "hl_en": "sneak them in",
+      "cn": "孩子不爱吃菜？别硬逼，有'偷偷藏菜'的技巧。",
+      "cap_cn": [
+        "别硬逼",
+        "偷偷藏菜"
+      ],
+      "hl_cn": "偷偷藏菜",
+      "ch": "孩子不愛吃菜？別硬逼，有'偷偷藏菜'的技巧。",
+      "cap_ch": [
+        "別硬逼",
+        "偷偷藏菜"
+      ],
+      "hl_ch": "偷偷藏菜"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "매일 식탁이 전쟁이시죠? 강요하면 거부감만 커집니다. 방법을 바꿔야 합니다.",
+      "cap_ko": [
+        "강요는 역효과",
+        "방법을 바꾸자"
+      ],
+      "hl_ko": "방법을 바꾸자",
+      "th": "มื้ออาหารเหมือนสงครามทุกวัน? ยิ่งบังคับยิ่งต่อต้าน ต้องเปลี่ยนวิธี",
+      "cap_th": [
+        "ยิ่งบังคับยิ่งต่อต้าน",
+        "เปลี่ยนวิธี"
+      ],
+      "hl_th": "เปลี่ยนวิธี",
+      "vi": "Bữa ăn nào cũng như đánh trận? Càng ép càng phản tác dụng — hãy đổi cách.",
+      "cap_vi": [
+        "Càng ép càng phản tác dụng",
+        "đổi cách"
+      ],
+      "hl_vi": "đổi cách",
+      "en": "Every meal a battle? Forcing only backfires. Change the approach.",
+      "cap_en": [
+        "Forcing backfires",
+        "change the approach"
+      ],
+      "hl_en": "change the approach",
+      "cn": "每顿饭都像打仗？越逼越抗拒，得换个方法。",
+      "cap_cn": [
+        "越逼越抗拒",
+        "换个方法"
+      ],
+      "hl_cn": "换个方法",
+      "ch": "每頓飯都像打仗？越逼越抗拒，得換個方法。",
+      "cap_ch": [
+        "越逼越抗拒",
+        "換個方法"
+      ],
+      "hl_ch": "換個方法"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "채소엔 비타민, 미네랄, 식이섬유가 가득합니다. 다 성장에 꼭 필요한 영양입니다.",
+      "cap_ko": [
+        "비타민·미네랄·식이섬유",
+        "성장 필수 영양"
+      ],
+      "hl_ko": "성장 필수 영양",
+      "th": "ผักเต็มไปด้วยวิตามิน แร่ธาตุ ใยอาหาร ล้วนจำเป็นต่อการเติบโต",
+      "cap_th": [
+        "วิตามิน·แร่ธาตุ·ใยอาหาร",
+        "สารอาหารเพื่อการเติบโต"
+      ],
+      "hl_th": "สารอาหารเพื่อการเติบโต",
+      "vi": "Rau đầy vitamin, khoáng chất, chất xơ — đều cần cho sự phát triển.",
+      "cap_vi": [
+        "Vitamin·khoáng·chất xơ",
+        "dưỡng chất tăng trưởng"
+      ],
+      "hl_vi": "dưỡng chất tăng trưởng",
+      "en": "Veggies are packed with vitamins, minerals, fiber — all key for growth.",
+      "cap_en": [
+        "Vitamins·minerals·fiber",
+        "growth nutrients"
+      ],
+      "hl_en": "growth nutrients",
+      "cn": "蔬菜富含维生素、矿物质、膳食纤维，都是成长必需的营养。",
+      "cap_cn": [
+        "维生素·矿物质·纤维",
+        "成长必需营养"
+      ],
+      "hl_cn": "成长必需营养",
+      "ch": "蔬菜富含維生素、礦物質、膳食纖維，都是成長必需的營養。",
+      "cap_ch": [
+        "維生素·礦物質·纖維",
+        "成長必需營養"
+      ],
+      "hl_ch": "成長必需營養",
+      "insert": "images/채소숨기기7/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.16,
+          "y": 0.4,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "비타민",
+          "en": "Vitamins",
+          "th": "วิตามิน"
+        },
+        {
+          "x": 0.5,
+          "y": 0.2,
+          "size": 24,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "미네랄",
+          "en": "Minerals",
+          "th": "แร่ธาตุ"
+        },
+        {
+          "x": 0.84,
+          "y": 0.4,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "식이섬유",
+          "en": "Fiber",
+          "th": "ใยอาหาร"
+        },
+        {
+          "x": 0.5,
+          "y": 0.82,
+          "size": 24,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "성장 영양",
+          "en": "Growth fuel",
+          "th": "เพื่อการเติบโต"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "뼈와 치아를 튼튼하게, 면역력은 쑥, 장 건강까지. 채소가 다 해줍니다.",
+      "cap_ko": [
+        "뼈·면역·장 건강",
+        "채소가 키운다"
+      ],
+      "hl_ko": "채소가 키운다",
+      "th": "กระดูกฟันแข็งแรง ภูมิคุ้มกันดี ลำไส้ดี ผักช่วยได้หมด",
+      "cap_th": [
+        "กระดูก·ภูมิ·ลำไส้",
+        "ผักช่วยให้โต"
+      ],
+      "hl_th": "ผักช่วยให้โต",
+      "vi": "Xương răng chắc, miễn dịch tốt, đường ruột khỏe — rau làm tất cả.",
+      "cap_vi": [
+        "Xương·miễn dịch·ruột",
+        "rau giúp con lớn"
+      ],
+      "hl_vi": "rau giúp con lớn",
+      "en": "Strong bones and teeth, better immunity, healthy gut — veggies do it all.",
+      "cap_en": [
+        "Bones·immunity·gut",
+        "veggies fuel growth"
+      ],
+      "hl_en": "veggies fuel growth",
+      "cn": "骨骼牙齿强壮、免疫力提升、肠道健康，蔬菜全包了。",
+      "cap_cn": [
+        "骨骼·免疫·肠道",
+        "蔬菜助成长"
+      ],
+      "hl_cn": "蔬菜助成长",
+      "ch": "骨骼牙齒強壯、免疫力提升、腸道健康，蔬菜全包了。",
+      "cap_ch": [
+        "骨骼·免疫·腸道",
+        "蔬菜助成長"
+      ],
+      "hl_ch": "蔬菜助成長",
+      "insert": "images/채소숨기기7/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.4,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "튼튼한 뼈",
+          "en": "Strong bones",
+          "th": "กระดูกแข็งแรง"
+        },
+        {
+          "x": 0.82,
+          "y": 0.4,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "면역력 ↑",
+          "en": "Immunity",
+          "th": "ภูมิคุ้มกัน"
+        },
+        {
+          "x": 0.5,
+          "y": 0.85,
+          "size": 24,
+          "weight": 800,
+          "color": "#db2777",
+          "ko": "장 건강",
+          "en": "Gut health",
+          "th": "สุขภาพลำไส้"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "첫째, 잘게 다져 숨기기입니다! 햄버거 패티나 카레에 채소를 갈아 넣으면 눈치 못 챕니다.",
+      "cap_ko": [
+        "잘게 다져",
+        "좋아하는 음식에 숨기기"
+      ],
+      "hl_ko": "좋아하는 음식에 숨기기",
+      "th": "หนึ่ง หั่นละเอียดแล้วซ่อน! ใส่ผักบดในแฮมเบอร์เกอร์หรือแกงกะหรี่ ลูกไม่รู้ตัว",
+      "cap_th": [
+        "หั่นละเอียด",
+        "ซ่อนในอาหารโปรด"
+      ],
+      "hl_th": "ซ่อนในอาหารโปรด",
+      "vi": "Một, băm nhỏ và giấu! Trộn rau xay vào burger hay cà ri, con chẳng nhận ra.",
+      "cap_vi": [
+        "Băm nhỏ",
+        "giấu vào món con thích"
+      ],
+      "hl_vi": "giấu vào món con thích",
+      "en": "One: chop fine and hide! Blend veggies into patties or curry — they'll never know.",
+      "cap_en": [
+        "Chop fine",
+        "hide in favorite foods"
+      ],
+      "hl_en": "hide in favorite foods",
+      "cn": "第一，剁碎藏起来！把菜打碎拌进汉堡肉或咖喱，孩子察觉不到。",
+      "cap_cn": [
+        "剁碎",
+        "藏进爱吃的食物"
+      ],
+      "hl_cn": "藏进爱吃的食物",
+      "ch": "第一，剁碎藏起來！把菜打碎拌進漢堡肉或咖哩，孩子察覺不到。",
+      "cap_ch": [
+        "剁碎",
+        "藏進愛吃的食物"
+      ],
+      "hl_ch": "藏進愛吃的食物"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "스무디에 잎채소 한 줌, 별·하트 모양으로 쏙쏙 넣습니다. 재미있으면 손이 갑니다.",
+      "cap_ko": [
+        "스무디·재미난 모양",
+        "재미있으면 먹는다"
+      ],
+      "hl_ko": "재미있으면 먹는다",
+      "th": "ใส่ผักใบในสมูทตี้ ตัดเป็นรูปดาวหัวใจ สนุกแล้วอยากกิน",
+      "cap_th": [
+        "สมูทตี้·รูปน่ารัก",
+        "สนุกแล้วอยากกิน"
+      ],
+      "hl_th": "สนุกแล้วอยากกิน",
+      "vi": "Một nắm rau xanh vào sinh tố, cắt hình sao tim — vui là con ăn ngay.",
+      "cap_vi": [
+        "Sinh tố·hình ngộ nghĩnh",
+        "vui thì con ăn"
+      ],
+      "hl_vi": "vui thì con ăn",
+      "en": "A handful of greens in a smoothie, cut into stars and hearts — fun makes them eat.",
+      "cap_en": [
+        "Smoothies·fun shapes",
+        "fun makes them eat"
+      ],
+      "hl_en": "fun makes them eat",
+      "cn": "一把叶菜打成奶昔，切成星星爱心，有趣孩子就愿意吃。",
+      "cap_cn": [
+        "奶昔·趣味造型",
+        "有趣就愿意吃"
+      ],
+      "hl_cn": "有趣就愿意吃",
+      "ch": "一把葉菜打成奶昔，切成星星愛心，有趣孩子就願意吃。",
+      "cap_ch": [
+        "奶昔·趣味造型",
+        "有趣就願意吃"
+      ],
+      "hl_ch": "有趣就願意吃",
+      "insert": "images/채소숨기기7/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.9,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "채소 스무디",
+          "en": "Veggie smoothie",
+          "th": "สมูทตี้ผัก"
+        },
+        {
+          "x": 0.72,
+          "y": 0.9,
+          "size": 26,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "재미난 모양",
+          "en": "Fun shapes",
+          "th": "รูปทรงน่ารัก"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "아이랑 같이 요리해 보십시오. 직접 만든 음식엔 애착이 생겨서 한 입 먹어봅니다.",
+      "cap_ko": [
+        "함께 요리하면",
+        "직접 만들면 먹어본다"
+      ],
+      "hl_ko": "직접 만들면 먹어본다",
+      "th": "ลองทำอาหารด้วยกัน ของที่ทำเองลูกผูกพันและอยากลองชิม",
+      "cap_th": [
+        "ทำด้วยกัน",
+        "ทำเองแล้วอยากชิม"
+      ],
+      "hl_th": "ทำเองแล้วอยากชิม",
+      "vi": "Hãy nấu ăn cùng con. Món tự tay làm khiến con gắn bó và chịu nếm thử.",
+      "cap_vi": [
+        "Nấu cùng con",
+        "tự làm thì con nếm"
+      ],
+      "hl_vi": "tự làm thì con nếm",
+      "en": "Cook together. Kids bond with food they made — and they'll take a bite.",
+      "cap_en": [
+        "Cook together",
+        "they made it, they try it"
+      ],
+      "hl_en": "they made it, they try it",
+      "cn": "和孩子一起做饭吧。亲手做的食物会有感情，就愿意尝一口。",
+      "cap_cn": [
+        "一起做饭",
+        "亲手做就愿尝"
+      ],
+      "hl_cn": "亲手做就愿尝",
+      "ch": "和孩子一起做飯吧。親手做的食物會有感情，就願意嘗一口。",
+      "cap_ch": [
+        "一起做飯",
+        "親手做就願嘗"
+      ],
+      "hl_ch": "親手做就願嘗"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "무엇보다, 한 입에도 듬뿍 칭찬입니다! 강요 대신 긍정 경험이 훨씬 오래갑니다.",
+      "cap_ko": [
+        "강요 말고",
+        "칭찬으로 동기 부여"
+      ],
+      "hl_ko": "칭찬으로 동기 부여",
+      "th": "ที่สำคัญ ชมเชยแม้กินคำเดียว! ประสบการณ์ดีอยู่ได้นานกว่าการบังคับ",
+      "cap_th": [
+        "ไม่บังคับ",
+        "ชมเชยสร้างแรงจูงใจ"
+      ],
+      "hl_th": "ชมเชยสร้างแรงจูงใจ",
+      "vi": "Quan trọng nhất, khen thật nhiều dù chỉ một miếng! Trải nghiệm tích cực bền hơn ép buộc.",
+      "cap_vi": [
+        "Đừng ép",
+        "khen để tạo động lực"
+      ],
+      "hl_vi": "khen để tạo động lực",
+      "en": "Most of all, praise every bite! Positive experiences last far longer than force.",
+      "cap_en": [
+        "Don't force",
+        "praise to motivate"
+      ],
+      "hl_en": "praise to motivate",
+      "cn": "最重要的是，吃一口也要大大夸奖！正向体验比强迫更持久。",
+      "cap_cn": [
+        "别强迫",
+        "用夸奖激励"
+      ],
+      "hl_cn": "用夸奖激励",
+      "ch": "最重要的是，吃一口也要大大誇獎！正向體驗比強迫更持久。",
+      "cap_ch": [
+        "別強迫",
+        "用誇獎激勵"
+      ],
+      "hl_ch": "用誇獎激勵",
+      "insert": "images/채소숨기기7/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.68,
+          "y": 0.12,
+          "size": 26,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "칭찬·보상",
+          "en": "Praise & reward",
+          "th": "คำชม·รางวัล",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.3,
+          "y": 0.5,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "한 입 성공!",
+          "en": "One bite, win!",
+          "th": "กินได้แล้ว!",
+          "pill": "rgba(255,255,255,0.92)"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "식습관과 함께 우리 아이 성장 상태도 점검해 보면 더 좋습니다.",
+      "cap_ko": [
+        "식습관 + 성장",
+        "상태 점검"
+      ],
+      "hl_ko": "상태 점검",
+      "th": "นอกจากนิสัยการกิน เช็กสถานะการเติบโตของลูกด้วยยิ่งดี",
+      "cap_th": [
+        "การกิน + การเติบโต",
+        "เช็กสถานะ"
+      ],
+      "hl_th": "เช็กสถานะ",
+      "vi": "Cùng với thói quen ăn, hãy kiểm tra cả tình trạng tăng trưởng của con.",
+      "cap_vi": [
+        "Ăn uống + tăng trưởng",
+        "kiểm tra tình trạng"
+      ],
+      "hl_vi": "kiểm tra tình trạng",
+      "en": "Alongside eating habits, it helps to check your child's growth status too.",
+      "cap_en": [
+        "Habits + growth",
+        "check the status"
+      ],
+      "hl_en": "check the status",
+      "cn": "除了饮食习惯，也检查一下孩子的成长状态更好。",
+      "cap_cn": [
+        "饮食 + 成长",
+        "检查状态"
+      ],
+      "hl_cn": "检查状态",
+      "ch": "除了飲食習慣，也檢查一下孩子的成長狀態更好。",
+      "cap_ch": [
+        "飲食 + 成長",
+        "檢查狀態"
+      ],
+      "hl_ch": "檢查狀態"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 예측키와 뼈나이, 지금 무료로 확인해 보십시오.",
+      "cap_ko": [
+        "예측키·뼈나이",
+        "지금 무료 확인"
+      ],
+      "hl_ko": "지금 무료 확인",
+      "th": "เช็กส่วนสูงที่คาดและอายุกระดูกของลูกฟรีวันนี้",
+      "cap_th": [
+        "ส่วนสูงที่คาด·อายุกระดูก",
+        "เช็กฟรีวันนี้"
+      ],
+      "hl_th": "เช็กฟรีวันนี้",
+      "vi": "Kiểm tra chiều cao dự đoán và tuổi xương của con miễn phí ngay.",
+      "cap_vi": [
+        "Chiều cao dự đoán·tuổi xương",
+        "kiểm tra miễn phí"
+      ],
+      "hl_vi": "kiểm tra miễn phí",
+      "en": "Check your child's predicted height and bone age — free, today.",
+      "cap_en": [
+        "Predicted height·bone age",
+        "check free today"
+      ],
+      "hl_en": "check free today",
+      "cn": "现在就免费查查孩子的预测身高和骨龄吧。",
+      "cap_cn": [
+        "预测身高·骨龄",
+        "现在免费查"
+      ],
+      "hl_cn": "现在免费查",
+      "ch": "現在就免費查查孩子的預測身高和骨齡吧。",
+      "cap_ch": [
+        "預測身高·骨齡",
+        "現在免費查"
+      ],
+      "hl_ch": "現在免費查"
+    }
+  ]
+}

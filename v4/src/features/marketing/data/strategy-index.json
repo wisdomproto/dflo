@@ -68,12 +68,5 @@
     "description": "고가진료(₩1,000만) 퍼널 · 오가닉+유료 · 치료사례 콘텐츠 · 계산기→LINE 전환",
     "group": "광고 전략",
     "order": 9
-  },
-  {
-    "file": "case-candidates.html",
-    "title": "치료사례 양산 후보 58명",
-    "description": "환자별 상세 프로필(이름 전부 가명, 식별은 차트번호) · 채택 체크 → 차트번호 복사 · 재생성: cases/gen_case_profiles.mjs",
-    "group": "치료사례",
-    "order": 10
   }
 ]

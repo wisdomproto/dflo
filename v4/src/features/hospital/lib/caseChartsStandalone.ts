@@ -51,28 +51,6 @@ function sortKey(m: CaseMeasurement): number {
   return m.ageDecimal != null ? m.ageDecimal : new Date(m.measured_date ?? '').getTime();
 }
 
-// AdminPatientGrowthChart 의 buildProjection 과 동일 — 선택점에서 18세까지 동일백분위 투영.
-function buildProjection(
-  startCA: number, startH: number, startReference: number,
-  gender: 'male' | 'female', nationality: Nationality,
-): { x: number; y: number }[] | null {
-  if (startReference >= 18) return null;
-  const points: { x: number; y: number }[] = [{ x: Number(startCA.toFixed(2)), y: startH }];
-  const firstInt = Math.ceil(startCA + 0.0001);
-  for (let yr = firstInt; yr <= X_MAX; yr++) {
-    const refAtYr = Math.min(18, startReference + (yr - startCA));
-    const y = heightAtSamePercentile(startH, startReference, refAtYr, gender, nationality);
-    if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
-  }
-  const adult = heightAtSamePercentile(startH, startReference, 18, gender, nationality);
-  if (adult > 0 && points.length) {
-    const last = points[points.length - 1];
-    if (last.x === X_MAX) last.y = Number(adult.toFixed(1));
-    else points.push({ x: X_MAX, y: Number(adult.toFixed(1)) });
-  }
-  return points.length >= 2 ? points : null;
-}
-
 function sortedHeights(d: CaseData) {
   return [...d.measurements]
     .filter((m) => typeof m.height === 'number' && m.height > 0)
@@ -101,42 +79,21 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
     pointBorderColor: '#ffffff', pointBorderWidth: 1.5, showLine: pts.length > 1, tension: 0, order: 0,
   };
 
-  // 마지막 BA 측정 시점에서 예측 투영(예측 성인키) — 케이스 결과를 보여주는 핵심
-  const refDs: Record<string, unknown>[] = [];
-  const lastBa = baMs[baMs.length - 1];
-  if (lastBa && lastBa.bone_age != null) {
-    const ca = ageOf(lastBa, d.birth_date).decimal;
-    const proj = buildProjection(ca, lastBa.height, lastBa.bone_age, d.gender, nat);
-    const adult = Number(heightAtSamePercentile(lastBa.height, lastBa.bone_age, 18, d.gender, nat).toFixed(1));
-    if (proj) {
-      refDs.push({
-        label: 'baProjection', data: proj, borderColor: COLORS.baProj, backgroundColor: COLORS.baProj,
-        borderWidth: 2, borderDash: [5, 4], pointRadius: proj.map((_, i) => (i === 0 ? 0 : 4)),
-        pointBorderColor: '#ffffff', pointBorderWidth: 1, tension: 0, order: 1,
-      });
-    }
-    if (adult > 0) {
-      refDs.push({
-        label: 'baAdultLine', data: [{ x: X_MIN, y: adult }, { x: X_MAX, y: adult }],
-        borderColor: COLORS.baProj, borderWidth: 1.25, pointRadius: 0, tension: 0, order: 5,
-      });
-    }
-  }
+  // 예측 투영·최종 예측키 모두 제거 — 성장곡선은 실측(백분위+다이아)만, 예측은 우측 '예측키 추세' 전담.
 
-  new Chart(canvas, {
+  (canvas as unknown as { _chart?: Chart })._chart = new Chart(canvas, {
     type: 'line',
-    data: { datasets: [...percentileDs, ...refDs, patientDs] as never },
+    data: { datasets: [...percentileDs, patientDs] as never },
     options: {
-      responsive: true, maintainAspectRatio: false, animation: false,
+      responsive: true, maintainAspectRatio: false, animation: false, devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
       plugins: {
         legend: { display: false },
         tooltip: {
-          filter: (ctx) => ['patient', 'baProjection'].includes(ctx.dataset.label as string),
+          filter: (ctx) => ctx.dataset.label === 'patient',
           callbacks: {
             label: (ctx) => {
               if (ctx.parsed.y == null) return '';
-              const tag = ctx.dataset.label === 'baProjection' ? '예측키' : '실측';
-              return `${tag} ${ctx.parsed.y}cm @ 만 ${Number(ctx.parsed.x).toFixed(1)}세`;
+              return `실측 ${ctx.parsed.y}cm @ 만 ${Number(ctx.parsed.x).toFixed(1)}세`;
             },
           },
         },
@@ -204,7 +161,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
     },
   };
 
-  new Chart(canvas, {
+  (canvas as unknown as { _chart?: Chart })._chart = new Chart(canvas, {
     type: 'line',
     data: {
       labels: rows.map((_, i) => `${i}`),
@@ -215,7 +172,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
       }],
     },
     options: {
-      responsive: true, maintainAspectRatio: false, animation: false,
+      responsive: true, maintainAspectRatio: false, animation: false, devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
       layout: { padding: { right: PAD_R, top: 18 } },
       plugins: { legend: { display: false }, tooltip: { enabled: false } },
       scales: {

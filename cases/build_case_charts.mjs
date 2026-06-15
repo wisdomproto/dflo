@@ -3,8 +3,10 @@
 // 실행: node cases/build_case_charts.mjs (어느 cwd 든 OK — esbuild 는 v4/node_modules 에서 resolve)
 import { createRequire } from 'node:module';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = 'C:/project/dflo/v4';
+// 스크립트 위치(cases/) 기준 v4 루트 — 하드코딩 절대경로 대신(머신 무관).
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'v4');
 const require = createRequire(path.join(ROOT, 'package.json'));
 const { build } = require('esbuild');
 

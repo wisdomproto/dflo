@@ -1,0 +1,568 @@
+{
+  "slug": "따라잡기성장",
+  "fps": 30,
+  "title": "작게 태어난 우리 아이 — '따라잡기 성장'의 비밀",
+  "_note": "자동 생성(storyboard-to-reel 20). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "작게 태어난 우리 아이",
+      "mark": "따라잡을 수 있을까?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "작게 태어난 우리 아이, 또래만큼 클 수 있을까 걱정되십니까?",
+      "cap_ko": [
+        "작게 태어난",
+        "우리 아이"
+      ],
+      "hl_ko": "작게 태어난",
+      "th": "ลูกที่คลอดออกมาตัวเล็ก จะโตทันเพื่อนได้ไหม กังวลใช่ไหมคะ",
+      "cap_th": [
+        "คลอดตัวเล็ก",
+        "จะโตทันไหม"
+      ],
+      "hl_th": "คลอดตัวเล็ก",
+      "vi": "Con sinh ra nhỏ bé, liệu có cao bằng bạn bè không? Mẹ lo lắm phải không?",
+      "cap_vi": [
+        "Con sinh ra",
+        "nhỏ bé"
+      ],
+      "hl_vi": "nhỏ bé",
+      "en": "Your baby was born small — will they catch up to their peers? You worry, right?",
+      "cap_en": [
+        "Born",
+        "small"
+      ],
+      "hl_en": "small",
+      "cn": "出生时个头小的宝宝，能长到和同龄人一样高吗？您一定很担心吧。",
+      "cap_cn": [
+        "出生个头小",
+        "能追上吗"
+      ],
+      "hl_cn": "出生个头小",
+      "ch": "出生時個頭小的寶寶，能長到和同齡人一樣高嗎？您一定很擔心吧。",
+      "cap_ch": [
+        "出生個頭小",
+        "能追上嗎"
+      ],
+      "hl_ch": "出生個頭小"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "걱정 마십시오. 작게 태어났다고 키까지 작게 크는 것은 아닙니다.",
+      "cap_ko": [
+        "작게 태어나도",
+        "키는 다르다"
+      ],
+      "hl_ko": "키는 다르다",
+      "th": "ไม่ต้องกังวลค่ะ คลอดตัวเล็กไม่ได้แปลว่าจะเตี้ยเสมอไป",
+      "cap_th": [
+        "ตัวเล็กแรกเกิด",
+        "ไม่ได้เตี้ยเสมอ"
+      ],
+      "hl_th": "ไม่ได้เตี้ยเสมอ",
+      "vi": "Đừng lo. Sinh ra nhỏ không có nghĩa là sẽ thấp.",
+      "cap_vi": [
+        "Sinh ra nhỏ",
+        "không hẳn sẽ thấp"
+      ],
+      "hl_vi": "không hẳn sẽ thấp",
+      "en": "Don't worry — born small doesn't mean staying short.",
+      "cap_en": [
+        "Born small",
+        "isn't always short"
+      ],
+      "hl_en": "isn't always short",
+      "cn": "别担心，出生个头小，并不代表身高就一定矮。",
+      "cap_cn": [
+        "出生小",
+        "不等于个矮"
+      ],
+      "hl_cn": "不等于个矮",
+      "ch": "別擔心，出生個頭小，並不代表身高就一定矮。",
+      "cap_ch": [
+        "出生小",
+        "不等於個矮"
+      ],
+      "hl_ch": "不等於個矮"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "'따라잡기 성장'이라고, 작게 태어난 아기의 80에서 90퍼센트가 또래를 따라잡습니다.",
+      "cap_ko": [
+        "따라잡기 성장",
+        "80~90%"
+      ],
+      "hl_ko": "80~90%",
+      "th": "'การเติบโตแบบตามทัน' ทารกตัวเล็ก 80–90% ตามทันเพื่อนได้",
+      "cap_th": [
+        "เติบโตตามทัน",
+        "80–90%"
+      ],
+      "hl_th": "80–90%",
+      "vi": "Gọi là 'tăng trưởng bù' — 80 đến 90% trẻ sinh nhỏ đuổi kịp bạn bè.",
+      "cap_vi": [
+        "Tăng trưởng bù",
+        "80–90%"
+      ],
+      "hl_vi": "80–90%",
+      "en": "It's called catch-up growth — 80 to 90% of small babies catch up.",
+      "cap_en": [
+        "Catch-up growth",
+        "80–90%"
+      ],
+      "hl_en": "80–90%",
+      "cn": "这叫'追赶生长'——出生个头小的宝宝，80到90%都能追上同龄人。",
+      "cap_cn": [
+        "追赶生长",
+        "80~90%"
+      ],
+      "hl_cn": "80~90%",
+      "ch": "這叫'追趕生長'——出生個頭小的寶寶，80到90%都能追上同齡人。",
+      "cap_ch": [
+        "追趕生長",
+        "80~90%"
+      ],
+      "hl_ch": "80~90%",
+      "insert": "images/따라잡기성장/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.17,
+          "y": 0.82,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "작게 출발",
+          "en": "Small start",
+          "th": "เริ่มตัวเล็ก"
+        },
+        {
+          "x": 0.5,
+          "y": 0.4,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "80~90% 따라잡음",
+          "en": "80–90% catch up",
+          "th": "ตามทัน 80–90%"
+        },
+        {
+          "x": 0.82,
+          "y": 0.12,
+          "size": 26,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "또래 평균",
+          "en": "Peer average",
+          "th": "ค่าเฉลี่ยเพื่อน"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "우리 몸은 타고난 성장 잠재력으로, 불리한 출발을 스스로 극복하려 합니다.",
+      "cap_ko": [
+        "타고난",
+        "성장 잠재력"
+      ],
+      "hl_ko": "성장 잠재력",
+      "th": "ร่างกายมีศักยภาพการเติบโตติดตัว พยายามเอาชนะจุดเริ่มต้นที่เสียเปรียบเอง",
+      "cap_th": [
+        "มีติดตัว",
+        "ศักยภาพเติบโต"
+      ],
+      "hl_th": "ศักยภาพเติบโต",
+      "vi": "Cơ thể có tiềm năng tăng trưởng bẩm sinh, tự vượt qua khởi đầu bất lợi.",
+      "cap_vi": [
+        "Bẩm sinh",
+        "tiềm năng tăng trưởng"
+      ],
+      "hl_vi": "tiềm năng tăng trưởng",
+      "en": "The body's built-in growth potential works to overcome a rough start.",
+      "cap_en": [
+        "Built-in",
+        "growth potential"
+      ],
+      "hl_en": "growth potential",
+      "cn": "身体天生就有成长潜力，会努力克服不利的起点。",
+      "cap_cn": [
+        "天生的",
+        "成长潜力"
+      ],
+      "hl_cn": "成长潜力",
+      "ch": "身體天生就有成長潛力，會努力克服不利的起點。",
+      "cap_ch": [
+        "天生的",
+        "成長潛力"
+      ],
+      "hl_ch": "成長潛力"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "이 따라잡기는 생후 6개월에서 2세 사이에 가장 활발하게 일어납니다.",
+      "cap_ko": [
+        "6개월~2세",
+        "가장 활발"
+      ],
+      "hl_ko": "6개월~2세",
+      "th": "การตามทันนี้เกิดมากที่สุดในช่วง 6 เดือนถึง 2 ขวบ",
+      "cap_th": [
+        "6 เดือน–2 ขวบ",
+        "ช่วงพีค"
+      ],
+      "hl_th": "6 เดือน–2 ขวบ",
+      "vi": "Tăng trưởng bù mạnh nhất từ 6 tháng đến 2 tuổi.",
+      "cap_vi": [
+        "6 tháng–2 tuổi",
+        "mạnh nhất"
+      ],
+      "hl_vi": "6 tháng–2 tuổi",
+      "en": "This catch-up peaks between 6 months and 2 years.",
+      "cap_en": [
+        "6 mo–2 yrs",
+        "peak window"
+      ],
+      "hl_en": "6 mo–2 yrs",
+      "cn": "这种追赶，在出生后6个月到2岁之间最为活跃。",
+      "cap_cn": [
+        "6个月~2岁",
+        "最活跃"
+      ],
+      "hl_cn": "6个月~2岁",
+      "ch": "這種追趕，在出生後6個月到2歲之間最為活躍。",
+      "cap_ch": [
+        "6個月~2歲",
+        "最活躍"
+      ],
+      "hl_ch": "6個月~2歲",
+      "insert": "images/따라잡기성장/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.42,
+          "y": 0.5,
+          "size": 30,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "6개월~2세",
+          "en": "6 mo–2 yrs",
+          "th": "6 เดือน–2 ขวบ"
+        },
+        {
+          "x": 0.42,
+          "y": 0.1,
+          "size": 28,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "가장 활발",
+          "en": "Peak window",
+          "th": "ช่วงพีค"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "이 시기 충분한 영양, 깊은 수면, 적절한 운동, 안정된 환경이 키를 만듭니다.",
+      "cap_ko": [
+        "영양·수면",
+        "운동·환경"
+      ],
+      "hl_ko": "영양·수면",
+      "th": "ช่วงนี้ สารอาหารพอ นอนลึก ออกกำลังพอดี สภาพแวดล้อมมั่นคง สร้างส่วนสูง",
+      "cap_th": [
+        "อาหาร·นอน",
+        "ออกกำลัง·สิ่งแวดล้อม"
+      ],
+      "hl_th": "อาหาร·นอน",
+      "vi": "Lúc này: dinh dưỡng đủ, ngủ sâu, vận động hợp lý, môi trường ổn định.",
+      "cap_vi": [
+        "Dinh dưỡng·ngủ",
+        "vận động·môi trường"
+      ],
+      "hl_vi": "Dinh dưỡng·ngủ",
+      "en": "Now, full nutrition, deep sleep, the right activity and a calm home build height.",
+      "cap_en": [
+        "Nutrition·sleep",
+        "activity·calm"
+      ],
+      "hl_en": "Nutrition·sleep",
+      "cn": "这阶段，充足营养、深度睡眠、适当运动、安稳环境造就身高。",
+      "cap_cn": [
+        "营养·睡眠",
+        "运动·环境"
+      ],
+      "hl_cn": "营养·睡眠",
+      "ch": "這階段，充足營養、深度睡眠、適當運動、安穩環境造就身高。",
+      "cap_ch": [
+        "營養·睡眠",
+        "運動·環境"
+      ],
+      "hl_ch": "營養·睡眠",
+      "insert": "images/따라잡기성장/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.2,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "충분한 영양",
+          "en": "Nutrition",
+          "th": "โภชนาการ"
+        },
+        {
+          "x": 0.8,
+          "y": 0.18,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "깊은 수면",
+          "en": "Sleep",
+          "th": "การนอน"
+        },
+        {
+          "x": 0.2,
+          "y": 0.8,
+          "size": 24,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "적절한 운동",
+          "en": "Activity",
+          "th": "ออกกำลังกาย"
+        },
+        {
+          "x": 0.8,
+          "y": 0.8,
+          "size": 24,
+          "weight": 800,
+          "color": "#db2777",
+          "ko": "안정된 환경",
+          "en": "Calm home",
+          "th": "สภาพแวดล้อม"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "그래도 10에서 20퍼센트는 충분히 못 따라잡는데, 이때는 일찍 도와주는 게 답입니다.",
+      "cap_ko": [
+        "10~20%는",
+        "일찍 도와주기"
+      ],
+      "hl_ko": "일찍 도와주기",
+      "th": "แต่ 10–20% ตามไม่ทันพอ กรณีนี้ช่วยตั้งแต่เนิ่นๆ คือคำตอบ",
+      "cap_th": [
+        "10–20%",
+        "ช่วยแต่เนิ่นๆ"
+      ],
+      "hl_th": "ช่วยแต่เนิ่นๆ",
+      "vi": "Nhưng 10 đến 20% chưa đuổi kịp đủ — khi đó, hỗ trợ sớm là lời giải.",
+      "cap_vi": [
+        "10–20%",
+        "hỗ trợ sớm"
+      ],
+      "hl_vi": "hỗ trợ sớm",
+      "en": "Still, 10 to 20% don't fully catch up — and early support is the answer.",
+      "cap_en": [
+        "10–20%",
+        "early support"
+      ],
+      "hl_en": "early support",
+      "cn": "不过有10到20%没能完全追上，这时尽早帮助就是答案。",
+      "cap_cn": [
+        "10~20%",
+        "尽早帮助"
+      ],
+      "hl_cn": "尽早帮助",
+      "ch": "不過有10到20%沒能完全追上，這時盡早幫助就是答案。",
+      "cap_ch": [
+        "10~20%",
+        "盡早幫助"
+      ],
+      "hl_ch": "盡早幫助"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "정확한 뼈나이 분석, 필요하면 성장호르몬, 생활습관 코칭으로 잠재력을 끌어냅니다.",
+      "cap_ko": [
+        "뼈나이 분석",
+        "맞춤 성장 전략"
+      ],
+      "hl_ko": "맞춤 성장 전략",
+      "th": "วิเคราะห์อายุกระดูก ฮอร์โมนเมื่อจำเป็น โค้ชพฤติกรรม ดึงศักยภาพออกมา",
+      "cap_th": [
+        "วิเคราะห์อายุกระดูก",
+        "แผนเฉพาะบุคคล"
+      ],
+      "hl_th": "แผนเฉพาะบุคคล",
+      "vi": "Phân tích tuổi xương, hormone khi cần, tư vấn lối sống — khơi dậy tiềm năng.",
+      "cap_vi": [
+        "Phân tích tuổi xương",
+        "chiến lược riêng"
+      ],
+      "hl_vi": "chiến lược riêng",
+      "en": "Precise bone age, growth hormone if needed, lifestyle coaching unlock potential.",
+      "cap_en": [
+        "Bone age analysis",
+        "tailored plan"
+      ],
+      "hl_en": "tailored plan",
+      "cn": "精准骨龄分析、必要时生长激素、生活习惯指导，释放潜力。",
+      "cap_cn": [
+        "骨龄分析",
+        "个性化方案"
+      ],
+      "hl_cn": "个性化方案",
+      "ch": "精準骨齡分析、必要時生長激素、生活習慣指導，釋放潛力。",
+      "cap_ch": [
+        "骨齡分析",
+        "個人化方案"
+      ],
+      "hl_ch": "個人化方案",
+      "insert": "images/따라잡기성장/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "뼈나이 분석",
+          "en": "Bone age",
+          "th": "อายุกระดูก"
+        },
+        {
+          "x": 0.5,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "성장호르몬",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมน"
+        },
+        {
+          "x": 0.8,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "생활습관 코칭",
+          "en": "Lifestyle",
+          "th": "พฤติกรรม"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이를 보면, 우리 아이가 잘 따라잡고 있는지 한눈에 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "따라잡기 확인"
+      ],
+      "hl_ko": "따라잡기 확인",
+      "th": "อายุกระดูกบอกได้ว่าลูกตามทันดีแค่ไหน เห็นชัดในครั้งเดียว",
+      "cap_th": [
+        "อายุกระดูก",
+        "เช็กการตามทัน"
+      ],
+      "hl_th": "เช็กการตามทัน",
+      "vi": "Tuổi xương cho thấy ngay con đang đuổi kịp tốt đến đâu.",
+      "cap_vi": [
+        "Tuổi xương",
+        "kiểm tra đà bù"
+      ],
+      "hl_vi": "kiểm tra đà bù",
+      "en": "Bone age shows at a glance how well your child is catching up.",
+      "cap_en": [
+        "Bone age",
+        "check catch-up"
+      ],
+      "hl_en": "check catch-up",
+      "cn": "看骨龄就能一眼知道，孩子追赶得好不好。",
+      "cap_cn": [
+        "骨龄",
+        "查看追赶"
+      ],
+      "hl_cn": "查看追赶",
+      "ch": "看骨齡就能一眼知道，孩子追趕得好不好。",
+      "cap_ch": [
+        "骨齡",
+        "查看追趕"
+      ],
+      "hl_ch": "查看追趕"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 따라잡기 성장, 지금 뼈나이·예측키로 확인해 보십시오.",
+      "cap_ko": [
+        "따라잡기 성장",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กการเติบโตตามทันของลูกด้วยอายุกระดูกวันนี้",
+      "cap_th": [
+        "เติบโตตามทัน",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra đà tăng trưởng bù của con bằng tuổi xương ngay hôm nay.",
+      "cap_vi": [
+        "Tăng trưởng bù",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's catch-up growth with bone age today.",
+      "cap_en": [
+        "Catch-up growth",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就用骨龄查查孩子的追赶生长吧。",
+      "cap_cn": [
+        "追赶生长",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就用骨齡查查孩子的追趕生長吧。",
+      "cap_ch": [
+        "追趕生長",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

@@ -1,0 +1,568 @@
+{
+  "slug": "자세교정숨은키",
+  "fps": 30,
+  "title": "구부정해서 작아 보이는 키 — 숨은 키 되찾기",
+  "_note": "자동 생성(storyboard-to-reel 31). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "숨은 키 있다?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이, 자세 때문에 키가 가려져 있다는 것 알고 계십니까?",
+      "cap_ko": [
+        "자세 때문에",
+        "가려진 키"
+      ],
+      "hl_ko": "가려진 키",
+      "th": "รู้ไหมว่าท่าทางที่ไม่ดีทำให้ความสูงของลูกหายไป?",
+      "cap_th": [
+        "ท่าทางไม่ดี",
+        "ความสูงหายไป"
+      ],
+      "hl_th": "ความสูงหายไป",
+      "vi": "Bạn có biết tư thế xấu đang giấu mất chiều cao của con?",
+      "cap_vi": [
+        "Tư thế xấu",
+        "giấu chiều cao"
+      ],
+      "hl_vi": "giấu chiều cao",
+      "en": "Did you know bad posture is hiding your child's height?",
+      "cap_en": [
+        "Bad posture",
+        "hidden height"
+      ],
+      "hl_en": "hidden height",
+      "cn": "你知道不良姿势正藏起孩子的身高吗？",
+      "cap_cn": [
+        "不良姿势",
+        "藏起身高"
+      ],
+      "hl_cn": "藏起身高",
+      "ch": "你知道不良姿勢正藏起孩子的身高嗎？",
+      "cap_ch": [
+        "不良姿勢",
+        "藏起身高"
+      ],
+      "hl_ch": "藏起身高"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "거북목에 등이 굽으면, 잴 때 본래 키보다 작게 나옵니다.",
+      "cap_ko": [
+        "거북목·굽은 등",
+        "재는 키 작아짐"
+      ],
+      "hl_ko": "재는 키 작아짐",
+      "th": "คอยื่นหลังค่อม วัดออกมาเตี้ยกว่าความสูงจริง",
+      "cap_th": [
+        "คอยื่น หลังค่อม",
+        "วัดได้เตี้ยลง"
+      ],
+      "hl_th": "วัดได้เตี้ยลง",
+      "vi": "Cổ rùa, lưng gù khiến số đo thấp hơn chiều cao thật.",
+      "cap_vi": [
+        "Cổ rùa, lưng gù",
+        "đo thấp hơn"
+      ],
+      "hl_vi": "đo thấp hơn",
+      "en": "Forward head and a rounded back measure shorter than you really are.",
+      "cap_en": [
+        "Slouch",
+        "measures shorter"
+      ],
+      "hl_en": "measures shorter",
+      "cn": "乌龟颈、驼背，量出来比真实身高还矮。",
+      "cap_cn": [
+        "乌龟颈 驼背",
+        "量得更矮"
+      ],
+      "hl_cn": "量得更矮",
+      "ch": "烏龜頸、駝背，量出來比真實身高還矮。",
+      "cap_ch": [
+        "烏龜頸 駝背",
+        "量得更矮"
+      ],
+      "hl_ch": "量得更矮"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "척추를 곧게 펴면, 가려졌던 키가 그대로 드러납니다.",
+      "cap_ko": [
+        "척추 펴면",
+        "숨은 키 드러남"
+      ],
+      "hl_ko": "숨은 키 드러남",
+      "th": "แค่ยืดกระดูกสันหลังให้ตรง ความสูงที่ซ่อนอยู่ก็กลับมา",
+      "cap_th": [
+        "ยืดหลังให้ตรง",
+        "ความสูงที่ซ่อน"
+      ],
+      "hl_th": "ความสูงที่ซ่อน",
+      "vi": "Chỉ cần thẳng cột sống, chiều cao bị giấu sẽ hiện ra.",
+      "cap_vi": [
+        "Thẳng cột sống",
+        "chiều cao ẩn"
+      ],
+      "hl_vi": "chiều cao ẩn",
+      "en": "Straighten the spine and the hidden height shows up.",
+      "cap_en": [
+        "Straight spine",
+        "hidden height"
+      ],
+      "hl_en": "hidden height",
+      "cn": "把脊柱挺直，被藏起的身高就显出来了。",
+      "cap_cn": [
+        "脊柱挺直",
+        "显出身高"
+      ],
+      "hl_cn": "显出身高",
+      "ch": "把脊柱挺直，被藏起的身高就顯出來了。",
+      "cap_ch": [
+        "脊柱挺直",
+        "顯出身高"
+      ],
+      "hl_ch": "顯出身高",
+      "insert": "images/자세교정숨은키/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.92,
+          "size": 26,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "구부정",
+          "en": "Slouch",
+          "th": "หลังค่อม"
+        },
+        {
+          "x": 0.8,
+          "y": 0.92,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "바른 자세",
+          "en": "Aligned",
+          "th": "หลังตรง"
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "size": 24,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "숨은 키",
+          "en": "Hidden height",
+          "th": "ความสูงที่ซ่อน"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 15,
+      "ko": "게다가 굽은 자세는 숙면을 방해해서, 성장호르몬까지 줄입니다.",
+      "cap_ko": [
+        "굽은 자세",
+        "성장호르몬 ↓"
+      ],
+      "hl_ko": "성장호르몬 ↓",
+      "th": "ท่าค่อมยังรบกวนการนอนลึก ทำฮอร์โมนโตลดลงด้วย",
+      "cap_th": [
+        "นอนไม่ลึก",
+        "ฮอร์โมนโต ↓"
+      ],
+      "hl_th": "ฮอร์โมนโต ↓",
+      "vi": "Tư thế gù còn phá giấc ngủ sâu, làm giảm hormone tăng trưởng.",
+      "cap_vi": [
+        "Mất ngủ sâu",
+        "hormone ↓"
+      ],
+      "hl_vi": "hormone ↓",
+      "en": "A slouch also breaks deep sleep — and lowers growth hormone.",
+      "cap_en": [
+        "Poor deep sleep",
+        "growth hormone ↓"
+      ],
+      "hl_en": "growth hormone ↓",
+      "cn": "驼背还会破坏深睡眠，连生长激素都变少。",
+      "cap_cn": [
+        "深睡变差",
+        "生长激素 ↓"
+      ],
+      "hl_cn": "生长激素 ↓",
+      "ch": "駝背還會破壞深睡眠，連生長激素都變少。",
+      "cap_ch": [
+        "深睡變差",
+        "生長激素 ↓"
+      ],
+      "hl_ch": "生長激素 ↓"
+    },
+    {
+      "id": "c5",
+      "start": 15,
+      "end": 19,
+      "ko": "목·어깨가 뭉치면 혈액순환이 막혀 쉽게 피로하고 활동량도 줄어듭니다.",
+      "cap_ko": [
+        "혈액순환 막힘",
+        "쉽게 피로"
+      ],
+      "hl_ko": "쉽게 피로",
+      "th": "คอบ่าตึง เลือดไหลเวียนไม่ดี เหนื่อยง่าย ขยับน้อยลง",
+      "cap_th": [
+        "เลือดไม่เดิน",
+        "เหนื่อยง่าย"
+      ],
+      "hl_th": "เหนื่อยง่าย",
+      "vi": "Cổ vai căng cứng, máu kém lưu thông, mau mệt, ít vận động.",
+      "cap_vi": [
+        "Máu kém lưu thông",
+        "mau mệt"
+      ],
+      "hl_vi": "mau mệt",
+      "en": "Tight neck and shoulders block circulation — easy fatigue, less activity.",
+      "cap_en": [
+        "Poor circulation",
+        "easy fatigue"
+      ],
+      "hl_en": "easy fatigue",
+      "cn": "颈肩僵硬、血流不畅，容易疲劳，活动也变少。",
+      "cap_cn": [
+        "血流不畅",
+        "容易疲劳"
+      ],
+      "hl_cn": "容易疲劳",
+      "ch": "頸肩僵硬、血流不暢，容易疲勞，活動也變少。",
+      "cap_ch": [
+        "血流不暢",
+        "容易疲勞"
+      ],
+      "hl_ch": "容易疲勞",
+      "insert": "images/자세교정숨은키/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.42,
+          "y": 0.5,
+          "size": 24,
+          "weight": 800,
+          "color": "#dc2626",
+          "ko": "근육 뭉침",
+          "en": "Tension",
+          "th": "กล้ามเนื้อตึง"
+        },
+        {
+          "x": 0.82,
+          "y": 0.62,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "순환 막힘",
+          "en": "Blocked flow",
+          "th": "เลือดติดขัด"
+        },
+        {
+          "x": 0.15,
+          "y": 0.2,
+          "size": 24,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "피로",
+          "en": "Fatigue",
+          "th": "เหนื่อยล้า"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 19,
+      "end": 23,
+      "ko": "옆에서 봤을 때 귀가 어깨보다 앞이면, 거북목 신호입니다.",
+      "cap_ko": [
+        "귀가 어깨보다",
+        "앞이면 신호"
+      ],
+      "hl_ko": "앞이면 신호",
+      "th": "มองด้านข้าง ถ้าหูล้ำหน้าไหล่ คือสัญญาณคอยื่น",
+      "cap_th": [
+        "หูล้ำหน้าไหล่",
+        "คือสัญญาณ"
+      ],
+      "hl_th": "คือสัญญาณ",
+      "vi": "Nhìn ngang, nếu tai nhô trước vai thì đó là dấu hiệu cổ rùa.",
+      "cap_vi": [
+        "Tai trước vai",
+        "là dấu hiệu"
+      ],
+      "hl_vi": "là dấu hiệu",
+      "en": "From the side, if the ear sits ahead of the shoulder — that's the sign.",
+      "cap_en": [
+        "Ear ahead of shoulder",
+        "that's the sign"
+      ],
+      "hl_en": "that's the sign",
+      "cn": "侧面看，耳朵比肩膀靠前，就是乌龟颈信号。",
+      "cap_cn": [
+        "耳在肩前",
+        "就是信号"
+      ],
+      "hl_cn": "就是信号",
+      "ch": "側面看，耳朵比肩膀靠前，就是烏龜頸信號。",
+      "cap_ch": [
+        "耳在肩前",
+        "就是信號"
+      ],
+      "hl_ch": "就是信號",
+      "insert": "images/자세교정숨은키/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.52,
+          "y": 0.2,
+          "size": 24,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "귀",
+          "en": "Ear",
+          "th": "หู"
+        },
+        {
+          "x": 0.42,
+          "y": 0.42,
+          "size": 24,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "어깨",
+          "en": "Shoulder",
+          "th": "ไหล่"
+        },
+        {
+          "x": 0.66,
+          "y": 0.1,
+          "size": 24,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "앞으로 나옴",
+          "en": "Forward head",
+          "th": "คอยื่น"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 23,
+      "end": 26.5,
+      "ko": "이런 신호가 세 가지 이상이면, 지금이 자세를 잡을 때입니다.",
+      "cap_ko": [
+        "3가지 이상이면",
+        "지금 시작"
+      ],
+      "hl_ko": "지금 시작",
+      "th": "ถ้าเข้าข่ายตั้งแต่ 3 ข้อขึ้นไป ถึงเวลาปรับท่าทางแล้ว",
+      "cap_th": [
+        "ตั้งแต่ 3 ข้อ",
+        "เริ่มเลย"
+      ],
+      "hl_th": "เริ่มเลย",
+      "vi": "Từ ba dấu hiệu trở lên, đây là lúc chỉnh tư thế cho con.",
+      "cap_vi": [
+        "Từ 3 dấu hiệu",
+        "bắt đầu ngay"
+      ],
+      "hl_vi": "bắt đầu ngay",
+      "en": "Three or more of these — now's the time to fix posture.",
+      "cap_en": [
+        "3 or more signs",
+        "start now"
+      ],
+      "hl_en": "start now",
+      "cn": "符合三项以上，现在就是矫正姿势的好时机。",
+      "cap_cn": [
+        "3 项以上",
+        "现在开始"
+      ],
+      "hl_cn": "现在开始",
+      "ch": "符合三項以上，現在就是矯正姿勢的好時機。",
+      "cap_ch": [
+        "3 項以上",
+        "現在開始"
+      ],
+      "hl_ch": "現在開始"
+    },
+    {
+      "id": "c8",
+      "start": 26.5,
+      "end": 30,
+      "ko": "벽에 뒤통수·어깨·엉덩이를 붙이고 섭니다. 하루 1분이면 충분합니다.",
+      "cap_ko": [
+        "벽 자세",
+        "하루 1분"
+      ],
+      "hl_ko": "하루 1분",
+      "th": "ยืนพิงผนังให้ท้ายทอย ไหล่ สะโพกแตะผนัง วันละ 1 นาทีก็พอ",
+      "cap_th": [
+        "ยืนพิงผนัง",
+        "วันละ 1 นาที"
+      ],
+      "hl_th": "วันละ 1 นาที",
+      "vi": "Đứng tựa tường: gáy, vai, hông chạm tường. Mỗi ngày 1 phút là đủ.",
+      "cap_vi": [
+        "Đứng tựa tường",
+        "1 phút mỗi ngày"
+      ],
+      "hl_vi": "1 phút mỗi ngày",
+      "en": "Stand to a wall — head, shoulders, hips touching. One minute a day.",
+      "cap_en": [
+        "Wall posture",
+        "1 min a day"
+      ],
+      "hl_en": "1 min a day",
+      "cn": "靠墙站，后脑、肩膀、臀部贴墙，每天一分钟就够。",
+      "cap_cn": [
+        "靠墙站",
+        "每天 1 分钟"
+      ],
+      "hl_cn": "每天 1 分钟",
+      "ch": "靠牆站，後腦、肩膀、臀部貼牆，每天一分鐘就夠。",
+      "cap_ch": [
+        "靠牆站",
+        "每天 1 分鐘"
+      ],
+      "hl_ch": "每天 1 分鐘",
+      "insert": "images/자세교정숨은키/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.58,
+          "y": 0.18,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "뒤통수",
+          "en": "Head",
+          "th": "ท้ายทอย"
+        },
+        {
+          "x": 0.58,
+          "y": 0.42,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "어깨",
+          "en": "Shoulders",
+          "th": "ไหล่"
+        },
+        {
+          "x": 0.58,
+          "y": 0.62,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "엉덩이",
+          "en": "Hips",
+          "th": "สะโพก"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "줄넘기·수영처럼 몸을 쭉 펴는 운동도 자세와 키에 같이 좋습니다.",
+      "cap_ko": [
+        "줄넘기·수영",
+        "자세+키 ↑"
+      ],
+      "hl_ko": "자세+키 ↑",
+      "th": "กระโดดเชือก ว่ายน้ำ ยืดตัวสุด ดีทั้งท่าทางและความสูง",
+      "cap_th": [
+        "กระโดดเชือก ว่ายน้ำ",
+        "ท่าทาง+สูง ↑"
+      ],
+      "hl_th": "ท่าทาง+สูง ↑",
+      "vi": "Nhảy dây, bơi lội kéo giãn cơ thể — tốt cho cả tư thế và chiều cao.",
+      "cap_vi": [
+        "Nhảy dây, bơi",
+        "tư thế+cao ↑"
+      ],
+      "hl_vi": "tư thế+cao ↑",
+      "en": "Jump rope and swimming stretch the body — great for posture and height.",
+      "cap_en": [
+        "Jump rope, swim",
+        "posture+height ↑"
+      ],
+      "hl_en": "posture+height ↑",
+      "cn": "跳绳、游泳能拉伸身体，对姿势和身高都好。",
+      "cap_cn": [
+        "跳绳 游泳",
+        "姿势+身高 ↑"
+      ],
+      "hl_cn": "姿势+身高 ↑",
+      "ch": "跳繩、游泳能拉伸身體，對姿勢和身高都好。",
+      "cap_ch": [
+        "跳繩 游泳",
+        "姿勢+身高 ↑"
+      ],
+      "hl_ch": "姿勢+身高 ↑"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 자세와 성장, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "자세 + 성장",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กท่าทางและการเติบโตของลูกวันนี้เลย",
+      "cap_th": [
+        "ท่าทาง + การเติบโต",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tư thế và sự phát triển của con ngay hôm nay.",
+      "cap_vi": [
+        "Tư thế + tăng trưởng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's posture and growth today.",
+      "cap_en": [
+        "Posture + growth",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的姿势和成长情况吧。",
+      "cap_cn": [
+        "姿势 + 成长",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的姿勢和成長情況吧。",
+      "cap_ch": [
+        "姿勢 + 成長",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

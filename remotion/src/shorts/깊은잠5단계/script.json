@@ -1,0 +1,568 @@
+{
+  "slug": "깊은잠5단계",
+  "fps": 30,
+  "title": "밤 10시? 진짜 키 크는 건 '깊은 잠' — 수면 루틴 5단계",
+  "_note": "자동 생성(storyboard-to-reel 23). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "10시면 끝?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "밤 10시 전에 재우면 키가 큰다? 사실 핵심은 '몇 시'가 아닙니다.",
+      "cap_ko": [
+        "10시면 키 큰다?",
+        "핵심은 시간 X"
+      ],
+      "hl_ko": "핵심은 시간 X",
+      "th": "นอนก่อน 4 ทุ่มแล้วจะสูง? จริงๆ หัวใจไม่ใช่ 'กี่โมง'",
+      "cap_th": [
+        "นอน 4 ทุ่ม = สูง?",
+        "ไม่ใช่เรื่องเวลา"
+      ],
+      "hl_th": "ไม่ใช่เรื่องเวลา",
+      "vi": "Ngủ trước 10 giờ là cao? Thật ra mấu chốt không phải 'mấy giờ'.",
+      "cap_vi": [
+        "Ngủ sớm là cao?",
+        "Không phải giờ giấc"
+      ],
+      "hl_vi": "Không phải giờ giấc",
+      "en": "Sleep by 10pm to grow tall? The key isn't actually the clock.",
+      "cap_en": [
+        "Bed by 10 = tall?",
+        "Not about the clock"
+      ],
+      "hl_en": "Not about the clock",
+      "cn": "10点前睡就能长高？其实关键不是'几点'。",
+      "cap_cn": [
+        "10点睡就长高？",
+        "关键不是时间"
+      ],
+      "hl_cn": "关键不是时间",
+      "ch": "10點前睡就能長高？其實關鍵不是'幾點'。",
+      "cap_ch": [
+        "10點睡就長高？",
+        "關鍵不是時間"
+      ],
+      "hl_ch": "關鍵不是時間"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "진짜 키를 만드는 건 '얼마나 깊이 자느냐'입니다. 깊은 잠이 핵심입니다.",
+      "cap_ko": [
+        "얼마나 깊이",
+        "깊은 잠이 핵심"
+      ],
+      "hl_ko": "깊은 잠이 핵심",
+      "th": "สิ่งที่สร้างความสูงคือ 'หลับลึกแค่ไหน' หลับลึกคือหัวใจ",
+      "cap_th": [
+        "หลับลึกแค่ไหน",
+        "หลับลึกคือหัวใจ"
+      ],
+      "hl_th": "หลับลึกคือหัวใจ",
+      "vi": "Cái tạo ra chiều cao là 'ngủ sâu đến đâu'. Giấc ngủ sâu mới là chìa khóa.",
+      "cap_vi": [
+        "Ngủ sâu đến đâu",
+        "ngủ sâu là chìa khóa"
+      ],
+      "hl_vi": "ngủ sâu là chìa khóa",
+      "en": "What builds height is how deeply they sleep. Deep sleep is the key.",
+      "cap_en": [
+        "How deep",
+        "deep sleep is key"
+      ],
+      "hl_en": "deep sleep is key",
+      "cn": "真正长高靠的是'睡得多深'。深睡才是关键。",
+      "cap_cn": [
+        "睡得多深",
+        "深睡才是关键"
+      ],
+      "hl_cn": "深睡才是关键",
+      "ch": "真正長高靠的是'睡得多深'。深睡才是關鍵。",
+      "cap_ch": [
+        "睡得多深",
+        "深睡才是關鍵"
+      ],
+      "hl_ch": "深睡才是關鍵"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "잠들고 1에서 2시간, 가장 깊은 잠에 들 때 성장호르몬이 쏟아져 나옵니다.",
+      "cap_ko": [
+        "잠든 뒤 1~2시간",
+        "성장호르몬 폭발"
+      ],
+      "hl_ko": "성장호르몬 폭발",
+      "th": "1–2 ชม.แรกหลังหลับ ช่วงหลับลึกสุด ฮอร์โมนเติบโตหลั่งพุ่ง",
+      "cap_th": [
+        "1–2 ชม.แรก",
+        "ฮอร์โมนพุ่ง"
+      ],
+      "hl_th": "ฮอร์โมนพุ่ง",
+      "vi": "1–2 giờ đầu sau khi ngủ, lúc ngủ sâu nhất, hormone tăng trưởng bùng nổ.",
+      "cap_vi": [
+        "1–2 giờ đầu",
+        "hormone bùng nổ"
+      ],
+      "hl_vi": "hormone bùng nổ",
+      "en": "In the first 1–2 hours, at the deepest sleep, growth hormone pours out.",
+      "cap_en": [
+        "First 1–2 hours",
+        "growth hormone surge"
+      ],
+      "hl_en": "growth hormone surge",
+      "cn": "入睡后1~2小时、睡得最深时，生长激素大量分泌。",
+      "cap_cn": [
+        "入睡后1~2小时",
+        "生长激素喷发"
+      ],
+      "hl_cn": "生长激素喷发",
+      "ch": "入睡後1~2小時、睡得最深時，生長激素大量分泌。",
+      "cap_ch": [
+        "入睡後1~2小時",
+        "生長激素噴發"
+      ],
+      "hl_ch": "生長激素噴發",
+      "insert": "images/깊은잠5단계/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.8,
+          "size": 26,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "가장 깊은 잠",
+          "en": "Deepest sleep",
+          "th": "หลับลึกที่สุด"
+        },
+        {
+          "x": 0.33,
+          "y": 0.1,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "성장호르몬 ↑",
+          "en": "Growth hormone ↑",
+          "th": "ฮอร์โมนเติบโต ↑"
+        },
+        {
+          "x": 0.12,
+          "y": 0.46,
+          "size": 22,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "잠든 직후 1~2시간",
+          "en": "first 1–2 hrs",
+          "th": "1–2 ชม.แรก"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "이때 뇌파가 느려지고 몸이 회복되면서, 키가 자라는 시간이 열립니다.",
+      "cap_ko": [
+        "몸이 회복되며",
+        "키 자라는 시간"
+      ],
+      "hl_ko": "키 자라는 시간",
+      "th": "ตอนนี้คลื่นสมองช้าลง ร่างกายฟื้นฟู เวลาที่ความสูงเติบโตเปิดขึ้น",
+      "cap_th": [
+        "ร่างกายฟื้นฟู",
+        "เวลาที่สูงขึ้น"
+      ],
+      "hl_th": "เวลาที่สูงขึ้น",
+      "vi": "Lúc này sóng não chậm lại, cơ thể phục hồi — thời gian để cao lên.",
+      "cap_vi": [
+        "Cơ thể phục hồi",
+        "thời gian cao lên"
+      ],
+      "hl_vi": "thời gian cao lên",
+      "en": "Brain waves slow, the body repairs — and the window to grow opens.",
+      "cap_en": [
+        "Body repairs",
+        "window to grow"
+      ],
+      "hl_en": "window to grow",
+      "cn": "这时脑波变慢、身体修复，长高的时间就打开了。",
+      "cap_cn": [
+        "身体修复",
+        "长高的时间"
+      ],
+      "hl_cn": "长高的时间",
+      "ch": "這時腦波變慢、身體修復，長高的時間就打開了。",
+      "cap_ch": [
+        "身體修復",
+        "長高的時間"
+      ],
+      "hl_ch": "長高的時間"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "그런데 자기 전 스마트폰 불빛이 멜라토닌을 막고 깊은 잠을 깨워버립니다.",
+      "cap_ko": [
+        "잘 때 화면 불빛",
+        "깊은 잠 방해"
+      ],
+      "hl_ko": "깊은 잠 방해",
+      "th": "แต่แสงมือถือก่อนนอนยับยั้งเมลาโทนิน ทำให้หลับไม่ลึก",
+      "cap_th": [
+        "แสงจอก่อนนอน",
+        "รบกวนหลับลึก"
+      ],
+      "hl_th": "รบกวนหลับลึก",
+      "vi": "Nhưng ánh sáng điện thoại trước khi ngủ chặn melatonin, phá giấc ngủ sâu.",
+      "cap_vi": [
+        "Ánh sáng màn hình",
+        "phá giấc ngủ sâu"
+      ],
+      "hl_vi": "phá giấc ngủ sâu",
+      "en": "But screen light before bed blocks melatonin and breaks deep sleep.",
+      "cap_en": [
+        "Screen light at night",
+        "breaks deep sleep"
+      ],
+      "hl_en": "breaks deep sleep",
+      "cn": "但睡前的手机蓝光会抑制褪黑素，打断深睡。",
+      "cap_cn": [
+        "睡前屏幕光",
+        "打断深睡"
+      ],
+      "hl_cn": "打断深睡",
+      "ch": "但睡前的手機藍光會抑制褪黑素，打斷深睡。",
+      "cap_ch": [
+        "睡前螢幕光",
+        "打斷深睡"
+      ],
+      "hl_ch": "打斷深睡",
+      "insert": "images/깊은잠5단계/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.92,
+          "size": 26,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "블루라이트",
+          "en": "Blue light",
+          "th": "แสงสีฟ้า"
+        },
+        {
+          "x": 0.32,
+          "y": 0.1,
+          "size": 24,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "멜라토닌 차단",
+          "en": "Melatonin ✕",
+          "th": "เมลาโทนิน ✕"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "불규칙한 시간, 밝고 더운 방, 늦은 카페인도 숙면을 막는 흔한 범인입니다.",
+      "cap_ko": [
+        "불규칙·밝은 방",
+        "숙면 방해 요인"
+      ],
+      "hl_ko": "숙면 방해 요인",
+      "th": "เวลานอนไม่สม่ำเสมอ ห้องสว่างร้อน คาเฟอีนดึก ก็ขัดขวางหลับลึก",
+      "cap_th": [
+        "เวลาไม่สม่ำเสมอ",
+        "ตัวการขัดขวาง"
+      ],
+      "hl_th": "ตัวการขัดขวาง",
+      "vi": "Giờ giấc thất thường, phòng sáng nóng, caffeine muộn cũng cản giấc ngủ sâu.",
+      "cap_vi": [
+        "Giờ giấc thất thường",
+        "thủ phạm phá giấc"
+      ],
+      "hl_vi": "thủ phạm phá giấc",
+      "en": "Irregular hours, a bright hot room, late caffeine — common sleep wreckers too.",
+      "cap_en": [
+        "Irregular, bright room",
+        "sleep wreckers"
+      ],
+      "hl_en": "sleep wreckers",
+      "cn": "作息不规律、又亮又热的房间、晚上咖啡因，也是常见元凶。",
+      "cap_cn": [
+        "不规律·亮房间",
+        "常见元凶"
+      ],
+      "hl_cn": "常见元凶",
+      "ch": "作息不規律、又亮又熱的房間、晚上咖啡因，也是常見元凶。",
+      "cap_ch": [
+        "不規律·亮房間",
+        "常見元凶"
+      ],
+      "hl_ch": "常見元凶"
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "방법은 간단합니다. 규칙적인 시간, 잘 1시간 전 화면 끄기, 어둡고 시원한 방입니다.",
+      "cap_ko": [
+        "규칙 시간·화면 OFF",
+        "어둡고 시원한 방"
+      ],
+      "hl_ko": "어둡고 시원한 방",
+      "th": "วิธีง่ายมาก เวลานอนสม่ำเสมอ ปิดจอ 1 ชม.ก่อนนอน ห้องมืดเย็นสบาย",
+      "cap_th": [
+        "เวลาคงที่·ปิดจอ",
+        "ห้องมืดเย็น"
+      ],
+      "hl_th": "ห้องมืดเย็น",
+      "vi": "Cách rất đơn giản: giờ cố định, tắt màn hình trước ngủ 1 giờ, phòng tối mát.",
+      "cap_vi": [
+        "Giờ cố định·tắt màn hình",
+        "phòng tối mát"
+      ],
+      "hl_vi": "phòng tối mát",
+      "en": "It's simple: fixed bedtime, screens off an hour before, a dark cool room.",
+      "cap_en": [
+        "Fixed time, screens off",
+        "dark cool room"
+      ],
+      "hl_en": "dark cool room",
+      "cn": "方法很简单：固定时间、睡前1小时关屏、又暗又凉的房间。",
+      "cap_cn": [
+        "固定时间·关屏",
+        "又暗又凉的房"
+      ],
+      "hl_cn": "又暗又凉的房",
+      "ch": "方法很簡單：固定時間、睡前1小時關螢幕、又暗又涼的房間。",
+      "cap_ch": [
+        "固定時間·關螢幕",
+        "又暗又涼的房"
+      ],
+      "hl_ch": "又暗又涼的房",
+      "insert": "images/깊은잠5단계/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.1,
+          "y": 0.82,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "규칙적 시간",
+          "en": "Fixed time",
+          "th": "เวลาคงที่"
+        },
+        {
+          "x": 0.3,
+          "y": 0.74,
+          "size": 22,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "화면 OFF",
+          "en": "Screens off",
+          "th": "ปิดจอ"
+        },
+        {
+          "x": 0.5,
+          "y": 0.7,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "어두운 방",
+          "en": "Dark room",
+          "th": "ห้องมืด"
+        },
+        {
+          "x": 0.9,
+          "y": 0.82,
+          "size": 22,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "낮에 햇볕",
+          "en": "Daytime sun",
+          "th": "แสงแดดกลางวัน"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "방은 20에서 22도, 자기 전 따뜻한 목욕과 책으로 몸을 이완하면 깊은 잠이 옵니다.",
+      "cap_ko": [
+        "20~22도 · 이완",
+        "오늘 밤 깊은 잠"
+      ],
+      "hl_ko": "오늘 밤 깊은 잠",
+      "th": "ห้อง 20–22 องศา อาบน้ำอุ่นอ่านหนังสือผ่อนคลาย หลับลึกได้คืนนี้",
+      "cap_th": [
+        "20–22°C · ผ่อนคลาย",
+        "คืนนี้หลับลึก"
+      ],
+      "hl_th": "คืนนี้หลับลึก",
+      "vi": "Phòng 20–22 độ, tắm ấm và đọc sách thư giãn — đêm nay sẽ ngủ sâu.",
+      "cap_vi": [
+        "20–22°C · thư giãn",
+        "đêm nay ngủ sâu"
+      ],
+      "hl_vi": "đêm nay ngủ sâu",
+      "en": "Keep it 20–22°C, wind down with a warm bath and a book — deep sleep tonight.",
+      "cap_en": [
+        "20–22°C · wind down",
+        "deep sleep tonight"
+      ],
+      "hl_en": "deep sleep tonight",
+      "cn": "房间20到22度，睡前温水澡加阅读放松，今晚就能深睡。",
+      "cap_cn": [
+        "20~22度 · 放松",
+        "今晚就深睡"
+      ],
+      "hl_cn": "今晚就深睡",
+      "ch": "房間20到22度，睡前溫水澡加閱讀放鬆，今晚就能深睡。",
+      "cap_ch": [
+        "20~22度 · 放鬆",
+        "今晚就深睡"
+      ],
+      "hl_ch": "今晚就深睡",
+      "insert": "images/깊은잠5단계/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.82,
+          "y": 0.5,
+          "size": 26,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "20~22°C",
+          "en": "20–22°C",
+          "th": "20–22°C"
+        },
+        {
+          "x": 0.22,
+          "y": 0.12,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "암막 · 어둡게",
+          "en": "Blackout dark",
+          "th": "ม่านทึบ มืด"
+        },
+        {
+          "x": 0.5,
+          "y": 0.95,
+          "size": 22,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "습도 50~60%",
+          "en": "humidity 50–60%",
+          "th": "ความชื้น 50–60%"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "수면과 함께 뼈나이를 보면, 우리 아이 성장 상태를 정확히 알 수 있습니다.",
+      "cap_ko": [
+        "수면 + 뼈나이로",
+        "성장 상태 확인"
+      ],
+      "hl_ko": "성장 상태 확인",
+      "th": "ดูการนอนคู่กับอายุกระดูก จะรู้สถานะการเติบโตของลูกชัดเจน",
+      "cap_th": [
+        "การนอน + อายุกระดูก",
+        "เช็กการเติบโต"
+      ],
+      "hl_th": "เช็กการเติบโต",
+      "vi": "Cùng với giấc ngủ, xem tuổi xương sẽ biết rõ tình trạng phát triển của con.",
+      "cap_vi": [
+        "Giấc ngủ + tuổi xương",
+        "biết rõ tăng trưởng"
+      ],
+      "hl_vi": "biết rõ tăng trưởng",
+      "en": "Along with sleep, bone age shows your child's growth status precisely.",
+      "cap_en": [
+        "Sleep + bone age",
+        "check growth status"
+      ],
+      "hl_en": "check growth status",
+      "cn": "结合睡眠看骨龄，就能准确了解孩子的成长状态。",
+      "cap_cn": [
+        "睡眠 + 骨龄",
+        "了解成长状态"
+      ],
+      "hl_cn": "了解成长状态",
+      "ch": "結合睡眠看骨齡，就能準確了解孩子的成長狀態。",
+      "cap_ch": [
+        "睡眠 + 骨齡",
+        "了解成長狀態"
+      ],
+      "hl_ch": "了解成長狀態"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 수면과 성장, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "수면 · 성장",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กการนอนและการเติบโตของลูกวันนี้",
+      "cap_th": [
+        "การนอน · การเติบโต",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra giấc ngủ và tăng trưởng của con ngay hôm nay.",
+      "cap_vi": [
+        "Giấc ngủ · tăng trưởng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's sleep and growth today.",
+      "cap_en": [
+        "Sleep · growth",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的睡眠和成长状态吧。",
+      "cap_cn": [
+        "睡眠 · 成长",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的睡眠和成長狀態吧。",
+      "cap_ch": [
+        "睡眠 · 成長",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

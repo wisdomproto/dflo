@@ -1,0 +1,558 @@
+{
+  "slug": "자기전폰수면",
+  "fps": 30,
+  "title": "자기 전 스마트폰이 키를 막는다 — 황금 수면 시간",
+  "_note": "자동 생성(storyboard-to-reel 25). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "자기 전 폰 때문에?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키, 혹시 자기 전 스마트폰 때문에 덜 크고 있는 건 아닐까요?",
+      "cap_ko": [
+        "자기 전 스마트폰",
+        "키를 막는다?"
+      ],
+      "hl_ko": "키를 막는다?",
+      "th": "ความสูงของลูก อาจถูกมือถือก่อนนอนขัดขวางอยู่หรือเปล่า?",
+      "cap_th": [
+        "มือถือก่อนนอน",
+        "ขวางความสูง?"
+      ],
+      "hl_th": "ขวางความสูง?",
+      "vi": "Chiều cao của con có đang bị điện thoại trước khi ngủ cản trở không?",
+      "cap_vi": [
+        "Điện thoại trước ngủ",
+        "cản chiều cao?"
+      ],
+      "hl_vi": "cản chiều cao?",
+      "en": "Could your child's height be held back by the phone right before bed?",
+      "cap_en": [
+        "Phone before bed",
+        "blocks height?"
+      ],
+      "hl_en": "blocks height?",
+      "cn": "孩子的身高，会不会正被睡前的手机悄悄拖住？",
+      "cap_cn": [
+        "睡前手机",
+        "拖住身高？"
+      ],
+      "hl_cn": "拖住身高？",
+      "ch": "孩子的身高，會不會正被睡前的手機悄悄拖住？",
+      "cap_ch": [
+        "睡前手機",
+        "拖住身高？"
+      ],
+      "hl_ch": "拖住身高？"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "걱정 마십시오. 원리만 알면 폰 하나로 키를 지킬 수 있습니다.",
+      "cap_ko": [
+        "걱정 마세요",
+        "지킬 수 있어요"
+      ],
+      "hl_ko": "지킬 수 있어요",
+      "th": "ไม่ต้องกังวล รู้หลักแล้ว แค่จัดการมือถือก็รักษาความสูงได้",
+      "cap_th": [
+        "ไม่ต้องกังวล",
+        "รักษาได้"
+      ],
+      "hl_th": "รักษาได้",
+      "vi": "Đừng lo. Hiểu nguyên lý rồi, chỉ cần điện thoại là giữ được chiều cao.",
+      "cap_vi": [
+        "Đừng lo",
+        "giữ được"
+      ],
+      "hl_vi": "giữ được",
+      "en": "Don't worry — once you get how it works, you can protect that height.",
+      "cap_en": [
+        "Don't worry",
+        "you can protect"
+      ],
+      "hl_en": "you can protect",
+      "cn": "别担心，懂了原理，一部手机也能守住身高。",
+      "cap_cn": [
+        "别担心",
+        "能守住"
+      ],
+      "hl_cn": "能守住",
+      "ch": "別擔心，懂了原理，一支手機也能守住身高。",
+      "cap_ch": [
+        "別擔心",
+        "能守住"
+      ],
+      "hl_ch": "能守住"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "성장호르몬은 잠든 후 1에서 2시간, 가장 깊은 잠에서 쏟아져 나옵니다.",
+      "cap_ko": [
+        "잠든 후 1~2시간",
+        "성장호르몬 폭발"
+      ],
+      "hl_ko": "성장호르몬 폭발",
+      "th": "ฮอร์โมนการเจริญเติบโตหลั่งมากที่สุดใน 1–2 ชั่วโมงแรกของการหลับลึก",
+      "cap_th": [
+        "1–2 ชม.แรก",
+        "ฮอร์โมนพุ่ง"
+      ],
+      "hl_th": "ฮอร์โมนพุ่ง",
+      "vi": "Hormone tăng trưởng tiết ra nhiều nhất trong 1–2 giờ đầu của giấc ngủ sâu.",
+      "cap_vi": [
+        "1–2 giờ đầu ngủ",
+        "hormone bùng nổ"
+      ],
+      "hl_vi": "hormone bùng nổ",
+      "en": "Growth hormone pours out in the first 1 to 2 hours of deep sleep.",
+      "cap_en": [
+        "First 1–2 hours",
+        "GH surges"
+      ],
+      "hl_en": "GH surges",
+      "cn": "生长激素在入睡后头1到2小时的深睡里大量分泌。",
+      "cap_cn": [
+        "入睡头1–2小时",
+        "生长激素爆发"
+      ],
+      "hl_cn": "生长激素爆发",
+      "ch": "生長激素在入睡後頭1到2小時的深睡裡大量分泌。",
+      "cap_ch": [
+        "入睡頭1–2小時",
+        "生長激素爆發"
+      ],
+      "hl_ch": "生長激素爆發",
+      "insert": "images/자기전폰수면/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.8,
+          "y": 0.12,
+          "size": 26,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "성장호르몬 폭발",
+          "en": "GH surge",
+          "th": "ฮอร์โมนพุ่ง"
+        },
+        {
+          "x": 0.5,
+          "y": 0.92,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "잠든 후 1~2시간",
+          "en": "1–2h after sleep",
+          "th": "1–2 ชม.หลังหลับ"
+        },
+        {
+          "x": 0.2,
+          "y": 0.12,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "깊은 잠",
+          "en": "deep sleep",
+          "th": "หลับลึก"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "그래서 얼마나 자느냐보다, 얼마나 깊이 자느냐가 키를 좌우합니다.",
+      "cap_ko": [
+        "깊은 잠이",
+        "키를 만든다"
+      ],
+      "hl_ko": "키를 만든다",
+      "th": "ดังนั้นหลับลึกแค่ไหน สำคัญต่อความสูงยิ่งกว่าหลับนานแค่ไหน",
+      "cap_th": [
+        "หลับลึก",
+        "สร้างความสูง"
+      ],
+      "hl_th": "สร้างความสูง",
+      "vi": "Nên ngủ sâu đến đâu, quyết định chiều cao hơn cả ngủ bao lâu.",
+      "cap_vi": [
+        "Ngủ sâu",
+        "tạo chiều cao"
+      ],
+      "hl_vi": "tạo chiều cao",
+      "en": "So how deeply they sleep matters for height even more than how long.",
+      "cap_en": [
+        "Deep sleep",
+        "builds height"
+      ],
+      "hl_en": "builds height",
+      "cn": "所以睡得多深，比睡得多久更决定身高。",
+      "cap_cn": [
+        "深睡",
+        "决定身高"
+      ],
+      "hl_cn": "决定身高",
+      "ch": "所以睡得多深，比睡得多久更決定身高。",
+      "cap_ch": [
+        "深睡",
+        "決定身高"
+      ],
+      "hl_ch": "決定身高"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "그런데 스마트폰 블루라이트가 잠을 부르는 멜라토닌을 딱 막아버립니다.",
+      "cap_ko": [
+        "블루라이트가",
+        "멜라토닌 차단"
+      ],
+      "hl_ko": "멜라토닌 차단",
+      "th": "แต่แสงสีฟ้าจากมือถือ ไปสกัดเมลาโทนินที่ช่วยให้หลับ",
+      "cap_th": [
+        "แสงสีฟ้า",
+        "สกัดเมลาโทนิน"
+      ],
+      "hl_th": "สกัดเมลาโทนิน",
+      "vi": "Nhưng ánh sáng xanh từ điện thoại chặn đứng melatonin gây buồn ngủ.",
+      "cap_vi": [
+        "Ánh sáng xanh",
+        "chặn melatonin"
+      ],
+      "hl_vi": "chặn melatonin",
+      "en": "But the phone's blue light blocks melatonin, the hormone that brings sleep.",
+      "cap_en": [
+        "Blue light",
+        "blocks melatonin"
+      ],
+      "hl_en": "blocks melatonin",
+      "cn": "可手机的蓝光，会挡住帮你入睡的褪黑素。",
+      "cap_cn": [
+        "蓝光",
+        "挡住褪黑素"
+      ],
+      "hl_cn": "挡住褪黑素",
+      "ch": "可手機的藍光，會擋住幫你入睡的褪黑激素。",
+      "cap_ch": [
+        "藍光",
+        "擋住褪黑激素"
+      ],
+      "hl_ch": "擋住褪黑激素",
+      "insert": "images/자기전폰수면/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.45,
+          "size": 26,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "블루라이트",
+          "en": "Blue light",
+          "th": "แสงสีฟ้า"
+        },
+        {
+          "x": 0.78,
+          "y": 0.4,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "멜라토닌 차단",
+          "en": "Melatonin blocked",
+          "th": "เมลาโทนินถูกสกัด"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "뇌는 아직 낮인 줄 착각하고, 깊은 잠도 성장호르몬도 같이 줄어듭니다.",
+      "cap_ko": [
+        "뇌는 낮으로 착각",
+        "성장호르몬 ↓"
+      ],
+      "hl_ko": "성장호르몬 ↓",
+      "th": "สมองเข้าใจผิดว่ายังกลางวัน หลับลึกและฮอร์โมนเลยลดลงตาม",
+      "cap_th": [
+        "สมองนึกว่ากลางวัน",
+        "ฮอร์โมนลดลง"
+      ],
+      "hl_th": "ฮอร์โมนลดลง",
+      "vi": "Não tưởng vẫn là ban ngày, nên ngủ sâu và hormone đều giảm theo.",
+      "cap_vi": [
+        "Não tưởng ban ngày",
+        "hormone giảm"
+      ],
+      "hl_vi": "hormone giảm",
+      "en": "The brain thinks it's still daytime, so deep sleep and GH both drop.",
+      "cap_en": [
+        "Brain thinks daytime",
+        "GH drops"
+      ],
+      "hl_en": "GH drops",
+      "cn": "大脑误以为还是白天，深睡和生长激素就一起变少。",
+      "cap_cn": [
+        "大脑误当白天",
+        "生长激素↓"
+      ],
+      "hl_cn": "生长激素↓",
+      "ch": "大腦誤以為還是白天，深睡和生長激素就一起變少。",
+      "cap_ch": [
+        "大腦誤當白天",
+        "生長激素↓"
+      ],
+      "hl_ch": "生長激素↓"
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "해법은 간단합니다. 자기 1에서 2시간 전, 스마트폰만 내려놓으면 됩니다.",
+      "cap_ko": [
+        "자기 1~2시간 전",
+        "폰 내려놓기"
+      ],
+      "hl_ko": "폰 내려놓기",
+      "th": "ทางแก้ง่ายมาก แค่วางมือถือ 1–2 ชั่วโมงก่อนนอน",
+      "cap_th": [
+        "1–2 ชม.ก่อนนอน",
+        "วางมือถือ"
+      ],
+      "hl_th": "วางมือถือ",
+      "vi": "Cách rất đơn giản: đặt điện thoại xuống 1–2 giờ trước khi ngủ.",
+      "cap_vi": [
+        "1–2 giờ trước ngủ",
+        "buông điện thoại"
+      ],
+      "hl_vi": "buông điện thoại",
+      "en": "The fix is simple: just put the phone down 1 to 2 hours before bed.",
+      "cap_en": [
+        "1–2 hours before bed",
+        "put phone down"
+      ],
+      "hl_en": "put phone down",
+      "cn": "办法很简单：睡前1到2小时，把手机放下就好。",
+      "cap_cn": [
+        "睡前1–2小时",
+        "放下手机"
+      ],
+      "hl_cn": "放下手机",
+      "ch": "辦法很簡單：睡前1到2小時，把手機放下就好。",
+      "cap_ch": [
+        "睡前1–2小時",
+        "放下手機"
+      ],
+      "hl_ch": "放下手機",
+      "insert": "images/자기전폰수면/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.88,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "1~2시간 전 OFF",
+          "en": "Off 1–2h before",
+          "th": "ปิด 1–2 ชม.ก่อน"
+        },
+        {
+          "x": 0.6,
+          "y": 0.5,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "깊은 잠 회복",
+          "en": "Deep sleep restored",
+          "th": "หลับลึกกลับมา"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "대신 독서나 대화, 어둡고 조용한 방입니다. 그것만으로 키가 자랍니다.",
+      "cap_ko": [
+        "어둡고 조용한 방",
+        "키가 자란다"
+      ],
+      "hl_ko": "키가 자란다",
+      "th": "แทนด้วยการอ่านหรือพูดคุย ห้องมืดเงียบ เท่านี้ความสูงก็มา",
+      "cap_th": [
+        "ห้องมืดเงียบ",
+        "ความสูงมาเอง"
+      ],
+      "hl_th": "ความสูงมาเอง",
+      "vi": "Thay bằng đọc sách, trò chuyện, phòng tối yên tĩnh — vậy là con cao lên.",
+      "cap_vi": [
+        "Phòng tối yên tĩnh",
+        "con cao lên"
+      ],
+      "hl_vi": "con cao lên",
+      "en": "Swap in reading or talking, a dark quiet room — that alone grows height.",
+      "cap_en": [
+        "Dark, quiet room",
+        "height grows"
+      ],
+      "hl_en": "height grows",
+      "cn": "换成阅读、聊天，昏暗安静的房间，光这样身高就长。",
+      "cap_cn": [
+        "昏暗安静房间",
+        "身高就长"
+      ],
+      "hl_cn": "身高就长",
+      "ch": "換成閱讀、聊天，昏暗安靜的房間，光這樣身高就長。",
+      "cap_ch": [
+        "昏暗安靜房間",
+        "身高就長"
+      ],
+      "hl_ch": "身高就長",
+      "insert": "images/자기전폰수면/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.12,
+          "y": 0.78,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "독서·대화",
+          "en": "Read & talk",
+          "th": "อ่าน·พูดคุย"
+        },
+        {
+          "x": 0.38,
+          "y": 0.7,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "어둡고 조용한 방",
+          "en": "Dark quiet room",
+          "th": "ห้องมืดเงียบ"
+        },
+        {
+          "x": 0.62,
+          "y": 0.7,
+          "size": 22,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "낮 신체활동",
+          "en": "Daytime activity",
+          "th": "ออกกำลังกลางวัน"
+        },
+        {
+          "x": 0.88,
+          "y": 0.78,
+          "size": 22,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "균형 식단",
+          "en": "Balanced diet",
+          "th": "อาหารสมดุล"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "우리 아이가 잘 자고 잘 크고 있는지는, 뼈나이로 정확히 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "성장 상태 확인"
+      ],
+      "hl_ko": "성장 상태 확인",
+      "th": "ลูกหลับดีและโตดีไหม ดูได้ชัดจากอายุกระดูก",
+      "cap_th": [
+        "อายุกระดูก",
+        "เช็กการเติบโต"
+      ],
+      "hl_th": "เช็กการเติบโต",
+      "vi": "Con ngủ tốt và lớn tốt chưa, tuổi xương cho biết chính xác.",
+      "cap_vi": [
+        "Tuổi xương",
+        "kiểm tra tăng trưởng"
+      ],
+      "hl_vi": "kiểm tra tăng trưởng",
+      "en": "Whether your child sleeps and grows well — bone age tells you precisely.",
+      "cap_en": [
+        "Bone age",
+        "check growth"
+      ],
+      "hl_en": "check growth",
+      "cn": "孩子睡得好不好、长得好不好，骨龄能精准告诉你。",
+      "cap_cn": [
+        "骨龄",
+        "查看成长"
+      ],
+      "hl_cn": "查看成长",
+      "ch": "孩子睡得好不好、長得好不好，骨齡能精準告訴你。",
+      "cap_ch": [
+        "骨齡",
+        "查看成長"
+      ],
+      "hl_ch": "查看成長"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 수면과 성장, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "수면·성장 상태",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กการนอนและการเติบโตของลูกวันนี้",
+      "cap_th": [
+        "การนอน·การโต",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra giấc ngủ và tăng trưởng của con ngay hôm nay.",
+      "cap_vi": [
+        "Giấc ngủ·tăng trưởng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's sleep and growth today.",
+      "cap_en": [
+        "Sleep & growth",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的睡眠和成长吧。",
+      "cap_cn": [
+        "睡眠和成长",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的睡眠和成長吧。",
+      "cap_ch": [
+        "睡眠和成長",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

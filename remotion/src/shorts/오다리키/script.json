@@ -1,0 +1,548 @@
+{
+  "slug": "오다리키",
+  "fps": 30,
+  "title": "O자 다리 교정하면 키 커질까? — 오해와 진짜 이야기",
+  "_note": "자동 생성(storyboard-to-reel 32). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "O자 다리 펴면 커질까?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "\"오다리를 교정하면 키가 더 큰다?\" 이것, 절반은 오해입니다.",
+      "cap_ko": [
+        "O자 다리 펴면",
+        "키 큰다?"
+      ],
+      "hl_ko": "키 큰다?",
+      "th": "\"แก้ขาโก่งแล้วลูกจะสูงขึ้น?\" เรื่องนี้ครึ่งหนึ่งเข้าใจผิดนะ",
+      "cap_th": [
+        "แก้ขาโก่ง",
+        "สูงขึ้นจริงไหม?"
+      ],
+      "hl_th": "สูงขึ้นจริงไหม?",
+      "vi": "\"Nắn thẳng chân vòng kiềng thì con cao hơn?\" Một nửa là hiểu lầm đấy.",
+      "cap_vi": [
+        "Chân vòng kiềng",
+        "thẳng là cao?"
+      ],
+      "hl_vi": "thẳng là cao?",
+      "en": "\"Fix bowlegs and your child grows taller?\" Half of that is a myth.",
+      "cap_en": [
+        "Straighten bowlegs",
+        "= taller?"
+      ],
+      "hl_en": "= taller?",
+      "cn": "\"矫正O型腿孩子就能长高？\"这话，一半是误解。",
+      "cap_cn": [
+        "矫正O型腿",
+        "就能长高？"
+      ],
+      "hl_cn": "就能长高？",
+      "ch": "\"矯正O型腿孩子就能長高？\"這話，一半是誤解。",
+      "cap_ch": [
+        "矯正O型腿",
+        "就能長高？"
+      ],
+      "hl_ch": "就能長高？"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "정말 많이 물어보십니다. 다리를 펴면 진짜 키가 클까요?",
+      "cap_ko": [
+        "부모님이 가장",
+        "많이 묻는 질문"
+      ],
+      "hl_ko": "많이 묻는 질문",
+      "th": "พ่อแม่ถามกันบ่อยมาก ขาตรงขึ้นแล้วสูงขึ้นจริงไหม?",
+      "cap_th": [
+        "คำถามยอดฮิต",
+        "ของพ่อแม่"
+      ],
+      "hl_th": "คำถามยอดฮิต",
+      "vi": "Rất nhiều phụ huynh hỏi. Chân thẳng ra thì cao thật không?",
+      "cap_vi": [
+        "Câu hỏi phụ huynh",
+        "hỏi nhiều nhất"
+      ],
+      "hl_vi": "hỏi nhiều nhất",
+      "en": "Parents ask this all the time. Do straighter legs really mean taller?",
+      "cap_en": [
+        "The question",
+        "parents ask most"
+      ],
+      "hl_en": "parents ask most",
+      "cn": "家长问得最多。腿直了真的就会长高吗？",
+      "cap_cn": [
+        "家长最常问",
+        "的问题"
+      ],
+      "hl_cn": "家长最常问",
+      "ch": "家長問得最多。腿直了真的就會長高嗎？",
+      "cap_ch": [
+        "家長最常問",
+        "的問題"
+      ],
+      "hl_ch": "家長最常問"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "결론부터 말씀드리겠습니다. 교정해도 뼈 길이가 늘어나는 것은 아닙니다.",
+      "cap_ko": [
+        "뼈 길이는",
+        "늘어나지 않아요"
+      ],
+      "hl_ko": "늘어나지 않아요",
+      "th": "สรุปก่อนเลย แก้ขาโก่งไม่ได้ทำให้กระดูกยาวขึ้น",
+      "cap_th": [
+        "กระดูก",
+        "ไม่ได้ยาวขึ้น"
+      ],
+      "hl_th": "ไม่ได้ยาวขึ้น",
+      "vi": "Nói luôn kết luận: nắn chân không làm xương dài thêm.",
+      "cap_vi": [
+        "Xương",
+        "không dài thêm"
+      ],
+      "hl_vi": "không dài thêm",
+      "en": "Bottom line: correction does not add bone length.",
+      "cap_en": [
+        "Bone length",
+        "does not grow"
+      ],
+      "hl_en": "does not grow",
+      "cn": "先说结论：矫正并不会让骨头变长。",
+      "cap_cn": [
+        "骨头长度",
+        "不会增加"
+      ],
+      "hl_cn": "不会增加",
+      "ch": "先說結論：矯正並不會讓骨頭變長。",
+      "cap_ch": [
+        "骨頭長度",
+        "不會增加"
+      ],
+      "hl_ch": "不會增加",
+      "insert": "images/오다리키/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.22,
+          "y": 0.5,
+          "size": 24,
+          "weight": 800,
+          "color": "#dc2626",
+          "ko": "휜 다리(O자)",
+          "en": "Bowlegs",
+          "th": "ขาโก่ง"
+        },
+        {
+          "x": 0.78,
+          "y": 0.5,
+          "size": 24,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "정렬됨",
+          "en": "Aligned",
+          "th": "ขาตรง"
+        },
+        {
+          "x": 0.5,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "길이는 그대로",
+          "en": "Same length",
+          "th": "ยาวเท่าเดิม"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "휜 다리가 펴지면, 원래 가진 길이가 온전히 보이는 것입니다.",
+      "cap_ko": [
+        "원래 길이가",
+        "온전히 보이는 것"
+      ],
+      "hl_ko": "온전히 보이는 것",
+      "th": "ขาที่งอตรงขึ้น คือเผยความยาวเดิมที่มีอยู่ออกมาเต็มที่",
+      "cap_th": [
+        "เผยความยาวเดิม",
+        "ที่มีอยู่"
+      ],
+      "hl_th": "ความยาวเดิม",
+      "vi": "Chân cong thẳng ra là để lộ trọn chiều dài vốn có.",
+      "cap_vi": [
+        "Lộ chiều dài",
+        "vốn có"
+      ],
+      "hl_vi": "vốn có",
+      "en": "A straightened leg just shows the length it already had.",
+      "cap_en": [
+        "Shows length",
+        "it already had"
+      ],
+      "hl_en": "already had",
+      "cn": "弯腿变直，只是把本来的长度完整显现出来。",
+      "cap_cn": [
+        "显现出",
+        "本来的长度"
+      ],
+      "hl_cn": "本来的长度",
+      "ch": "彎腿變直，只是把本來的長度完整顯現出來。",
+      "cap_ch": [
+        "顯現出",
+        "本來的長度"
+      ],
+      "hl_ch": "本來的長度",
+      "insert": "images/오다리키/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.84,
+          "y": 0.2,
+          "size": 24,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "원래 길이",
+          "en": "True length",
+          "th": "ความยาวเดิม"
+        },
+        {
+          "x": 0.4,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "온전히 표현",
+          "en": "Fully shown",
+          "th": "เผยเต็มที่"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "그런데 좋은 소식입니다! 다리가 바르면 성장판에 고른 자극이 갑니다.",
+      "cap_ko": [
+        "바른 자세 →",
+        "성장판 고른 자극"
+      ],
+      "hl_ko": "성장판 고른 자극",
+      "th": "แต่ข่าวดี! ขาตรงช่วยให้แผ่นกระดูกได้รับแรงกระตุ้นสม่ำเสมอ",
+      "cap_th": [
+        "ขาตรง →",
+        "กระตุ้นสม่ำเสมอ"
+      ],
+      "hl_th": "กระตุ้นสม่ำเสมอ",
+      "vi": "Nhưng tin vui! Chân thẳng giúp sụn tăng trưởng được kích thích đều.",
+      "cap_vi": [
+        "Chân thẳng →",
+        "kích thích đều"
+      ],
+      "hl_vi": "kích thích đều",
+      "en": "But good news! Aligned legs give the growth plates even stimulation.",
+      "cap_en": [
+        "Aligned legs →",
+        "even stimulation"
+      ],
+      "hl_en": "even stimulation",
+      "cn": "但好消息！腿正了，生长板能得到均匀刺激。",
+      "cap_cn": [
+        "腿正 →",
+        "生长板均匀刺激"
+      ],
+      "hl_cn": "均匀刺激",
+      "ch": "但好消息！腿正了，生長板能得到均勻刺激。",
+      "cap_ch": [
+        "腿正 →",
+        "生長板均勻刺激"
+      ],
+      "hl_ch": "均勻刺激"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "다리가 안 아프면 더 잘 뛰놀고, 성장호르몬도 더 잘 나옵니다.",
+      "cap_ko": [
+        "잘 뛰놀면",
+        "성장호르몬 ↑"
+      ],
+      "hl_ko": "성장호르몬 ↑",
+      "th": "ขาไม่ปวดก็วิ่งเล่นได้เต็มที่ ฮอร์โมนการเจริญเติบโตก็หลั่งดี",
+      "cap_th": [
+        "วิ่งเล่นได้",
+        "ฮอร์โมนโต ↑"
+      ],
+      "hl_th": "ฮอร์โมนโต ↑",
+      "vi": "Chân hết đau là chạy nhảy thoải mái, hoocmôn tăng trưởng tiết nhiều hơn.",
+      "cap_vi": [
+        "Chạy nhảy nhiều",
+        "hoocmôn tăng ↑"
+      ],
+      "hl_vi": "hoocmôn tăng ↑",
+      "en": "No leg pain means more play — and more growth hormone.",
+      "cap_en": [
+        "More active play",
+        "growth hormone ↑"
+      ],
+      "hl_en": "growth hormone ↑",
+      "cn": "腿不疼就更爱跑跳，生长激素也分泌得更多。",
+      "cap_cn": [
+        "多跑多跳",
+        "生长激素 ↑"
+      ],
+      "hl_cn": "生长激素 ↑",
+      "ch": "腿不疼就更愛跑跳，生長激素也分泌得更多。",
+      "cap_ch": [
+        "多跑多跳",
+        "生長激素 ↑"
+      ],
+      "hl_ch": "生長激素 ↑",
+      "insert": "images/오다리키/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.4,
+          "y": 0.6,
+          "size": 26,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "신나게 운동",
+          "en": "Active play",
+          "th": "วิ่งเล่นสนุก"
+        },
+        {
+          "x": 0.46,
+          "y": 0.1,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "성장호르몬 ↑",
+          "en": "Growth hormone ↑",
+          "th": "ฮอร์โมนโต ↑"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "마음이 편하고 자신감이 생기면, 스트레스가 줄어 더 잘 큽니다.",
+      "cap_ko": [
+        "자신감 ↑ 스트레스 ↓",
+        "더 잘 큼"
+      ],
+      "hl_ko": "더 잘 큼",
+      "th": "ใจสบาย มั่นใจขึ้น ความเครียดลด เด็กก็โตได้ดีขึ้น",
+      "cap_th": [
+        "มั่นใจ เครียดน้อย",
+        "โตได้ดี"
+      ],
+      "hl_th": "โตได้ดี",
+      "vi": "Tâm lý thoải mái, tự tin hơn, bớt căng thẳng — con lớn tốt hơn.",
+      "cap_vi": [
+        "Tự tin, bớt stress",
+        "lớn tốt hơn"
+      ],
+      "hl_vi": "lớn tốt hơn",
+      "en": "Comfort and confidence mean less stress — and better growth.",
+      "cap_en": [
+        "Confident, less stress",
+        "grows better"
+      ],
+      "hl_en": "grows better",
+      "cn": "心里舒坦、有自信，压力小了，孩子长得更好。",
+      "cap_cn": [
+        "有自信压力小",
+        "长得更好"
+      ],
+      "hl_cn": "长得更好",
+      "ch": "心裡舒坦、有自信，壓力小了，孩子長得更好。",
+      "cap_ch": [
+        "有自信壓力小",
+        "長得更好"
+      ],
+      "hl_ch": "長得更好"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "단, 2세가 넘어도 심하거나 한쪽만 휘거나 아프면 진료 신호입니다.",
+      "cap_ko": [
+        "2세 후 심함·통증",
+        "진료 신호"
+      ],
+      "hl_ko": "진료 신호",
+      "th": "แต่ถ้าเกิน 2 ขวบยังรุนแรง ข้างเดียว หรือปวด ควรพบแพทย์",
+      "cap_th": [
+        "เกิน 2 ขวบ·ปวด",
+        "ควรพบแพทย์"
+      ],
+      "hl_th": "ควรพบแพทย์",
+      "vi": "Nhưng quá 2 tuổi vẫn nặng, lệch một bên hay đau — nên đi khám.",
+      "cap_vi": [
+        "Quá 2 tuổi · đau",
+        "nên đi khám"
+      ],
+      "hl_vi": "nên đi khám",
+      "en": "But past age 2, if it's severe, one-sided, or painful — get it checked.",
+      "cap_en": [
+        "After 2 · pain",
+        "get it checked"
+      ],
+      "hl_en": "get it checked",
+      "cn": "但若过了2岁仍严重、只弯一侧或疼痛，就该就诊。",
+      "cap_cn": [
+        "2岁后·疼痛",
+        "需要就诊"
+      ],
+      "hl_cn": "需要就诊",
+      "ch": "但若過了2歲仍嚴重、只彎一側或疼痛，就該就診。",
+      "cap_ch": [
+        "2歲後·疼痛",
+        "需要就診"
+      ],
+      "hl_ch": "需要就診",
+      "insert": "images/오다리키/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.24,
+          "y": 0.28,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "2세 후에도 심함",
+          "en": "Severe after 2",
+          "th": "เกิน 2 ขวบ"
+        },
+        {
+          "x": 0.24,
+          "y": 0.46,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "한쪽만 휨",
+          "en": "One side only",
+          "th": "ข้างเดียว"
+        },
+        {
+          "x": 0.24,
+          "y": 0.63,
+          "size": 22,
+          "weight": 800,
+          "color": "#dc2626",
+          "ko": "통증 동반",
+          "en": "With pain",
+          "th": "มีอาการปวด"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "진짜 핵심은 영양·수면·운동, 그리고 정기적인 성장 검진입니다.",
+      "cap_ko": [
+        "진짜 핵심은",
+        "종합 성장 관리"
+      ],
+      "hl_ko": "종합 성장 관리",
+      "th": "หัวใจจริงๆ คือ โภชนาการ การนอน การออกกำลังกาย และตรวจการเติบโตประจำ",
+      "cap_th": [
+        "หัวใจจริง",
+        "ดูแลการเติบโตรอบด้าน"
+      ],
+      "hl_th": "ดูแลการเติบโตรอบด้าน",
+      "vi": "Cốt lõi thật sự là dinh dưỡng, giấc ngủ, vận động và khám tăng trưởng định kỳ.",
+      "cap_vi": [
+        "Cốt lõi thật sự",
+        "chăm sóc toàn diện"
+      ],
+      "hl_vi": "chăm sóc toàn diện",
+      "en": "The real keys: nutrition, sleep, exercise, and regular growth check-ups.",
+      "cap_en": [
+        "The real keys",
+        "full growth care"
+      ],
+      "hl_en": "full growth care",
+      "cn": "真正的关键是营养、睡眠、运动，还有定期成长检查。",
+      "cap_cn": [
+        "真正关键",
+        "全面成长管理"
+      ],
+      "hl_cn": "全面成长管理",
+      "ch": "真正的關鍵是營養、睡眠、運動，還有定期成長檢查。",
+      "cap_ch": [
+        "真正關鍵",
+        "全面成長管理"
+      ],
+      "hl_ch": "全面成長管理"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 다리와 성장, 뼈나이·예측키로 지금 확인해 보십시오.",
+      "cap_ko": [
+        "뼈나이·예측키",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กขาและการเติบโตของลูกด้วยอายุกระดูกวันนี้",
+      "cap_th": [
+        "อายุกระดูก·สูงสุด",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra chân và tăng trưởng của con qua tuổi xương ngay hôm nay.",
+      "cap_vi": [
+        "Tuổi xương·dự đoán",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's legs and growth with bone age today.",
+      "cap_en": [
+        "Bone age check",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "用骨龄和预测身高，现在就查查孩子的腿和成长吧。",
+      "cap_cn": [
+        "骨龄·预测身高",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "用骨齡和預測身高，現在就查查孩子的腿和成長吧。",
+      "cap_ch": [
+        "骨齡·預測身高",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

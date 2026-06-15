@@ -45,6 +45,10 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     label: '전략',
     items: [{ to: '/marketing/strategy', icon: '💡', label: '마케팅 전략' }],
   },
+  {
+    label: '치료사례',
+    items: [{ to: '/marketing/cases', icon: '🩺', label: '치료사례 후보' }],
+  },
 ];
 
 function Item({ item }: { item: NavItem }) {

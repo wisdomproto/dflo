@@ -1,72 +1,72 @@
 [
   {
     "id": "c1",
-    "durFrames": 123,
+    "durFrames": 112,
     "origStartF": 0,
-    "rate": 0.851,
-    "natSec": 4.11
+    "rate": 0.937,
+    "natSec": 3.74
   },
   {
     "id": "c2",
-    "durFrames": 120,
+    "durFrames": 117,
     "origStartF": 105,
-    "rate": 0.878,
-    "natSec": 3.99
+    "rate": 0.897,
+    "natSec": 3.9
   },
   {
     "id": "c3",
-    "durFrames": 111,
+    "durFrames": 118,
     "origStartF": 210,
-    "rate": 1.084,
-    "natSec": 3.69
+    "rate": 1.014,
+    "natSec": 3.95
   },
   {
     "id": "c4",
-    "durFrames": 148,
+    "durFrames": 119,
     "origStartF": 330,
-    "rate": 0.708,
-    "natSec": 4.95
+    "rate": 0.884,
+    "natSec": 3.96
   },
   {
     "id": "c5",
-    "durFrames": 110,
+    "durFrames": 113,
     "origStartF": 435,
-    "rate": 1.09,
-    "natSec": 3.67
+    "rate": 1.058,
+    "natSec": 3.78
   },
   {
     "id": "c6",
-    "durFrames": 77,
+    "durFrames": 82,
     "origStartF": 555,
-    "rate": 1.364,
-    "natSec": 2.57
+    "rate": 1.283,
+    "natSec": 2.73
   },
   {
     "id": "c7",
-    "durFrames": 85,
+    "durFrames": 89,
     "origStartF": 660,
-    "rate": 1.41,
-    "natSec": 2.84
+    "rate": 1.349,
+    "natSec": 2.97
   },
   {
     "id": "c8",
-    "durFrames": 102,
+    "durFrames": 100,
     "origStartF": 780,
-    "rate": 1.033,
-    "natSec": 3.39
+    "rate": 1.051,
+    "natSec": 3.33
   },
   {
     "id": "c9",
-    "durFrames": 93,
+    "durFrames": 92,
     "origStartF": 885,
-    "rate": 0.963,
-    "natSec": 3.12
+    "rate": 0.981,
+    "natSec": 3.06
   },
   {
     "id": "c10",
-    "durFrames": 84,
+    "durFrames": 91,
     "origStartF": 975,
-    "rate": 0.891,
-    "natSec": 2.8
+    "rate": 0.825,
+    "natSec": 3.03
   }
 ]

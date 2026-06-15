@@ -28,7 +28,7 @@ export interface StrategyDoc {
   file: string;
   title: string;
   description: string;
-  group: '종합 전략' | '국내' | '글로벌' | '국가별 작전' | '채널분석' | '광고 전략' | '치료사례';
+  group: '종합 전략' | '국내' | '글로벌' | '국가별 작전' | '채널분석' | '광고 전략';
   order: number;
 }
 

@@ -97,6 +97,8 @@ const IntroCard: React.FC<{ head: { top: string; mark: string }; logoSrc: string
   const { fps } = useVideoConfig();
   const slam = spring({ frame: frame - 4, fps, config: { damping: 13, stiffness: 200, mass: 0.7 } });
   const sc = interpolate(slam, [0, 1], [1.34, 1], clamp);
+  // 긴 mark 는 폰트 자동 축소(3줄 빽빽 방지). 짧으면 108 유지.
+  const markFont = Math.max(60, Math.min(108, Math.floor(920 / Math.max(head.mark.length, 1))));
   const out = interpolate(frame, [INTRO_F - 12, INTRO_F], [1, 0], clamp);
   const up = interpolate(frame, [INTRO_F - 12, INTRO_F], [0, -70], clamp);
   return (
@@ -108,7 +110,7 @@ const IntroCard: React.FC<{ head: { top: string; mark: string }; logoSrc: string
       <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", fontFamily: NOTO_SANS_KR, padding: "0 72px" }}>
         <div style={{ fontSize: 60, fontWeight: 800, color: "rgba(255,255,255,0.92)", marginBottom: 26, opacity: interpolate(frame, [6, 18], [0, 1], clamp) }}>{head.top}</div>
         <div style={{ transform: `scale(${sc})` }}>
-          <div style={{ fontSize: 108, fontWeight: 900, color: "#fff", lineHeight: 1.16, textShadow: "0 8px 34px rgba(0,0,0,0.32)" }}>{head.mark}</div>
+          <div style={{ fontSize: markFont, fontWeight: 900, color: "#fff", lineHeight: 1.16, textShadow: "0 8px 34px rgba(0,0,0,0.32)" }}>{head.mark}</div>
         </div>
       </div>
     </AbsoluteFill>

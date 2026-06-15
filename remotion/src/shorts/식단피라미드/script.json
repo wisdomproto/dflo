@@ -1,0 +1,540 @@
+{
+  "slug": "식단피라미드",
+  "fps": 30,
+  "title": "우리 아이 키 크는 식단 피라미드 — 먹을 것 vs 피할 것",
+  "_note": "자동 생성(storyboard-to-reel 22). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "밥상이 키를?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키, 사실 '밥상' 위에서 만들어지는 것 알고 계십니까?",
+      "cap_ko": [
+        "키는",
+        "밥상 위에서"
+      ],
+      "hl_ko": "밥상 위에서",
+      "th": "รู้ไหมว่าความสูงของลูกสร้างขึ้นบน 'โต๊ะอาหาร'",
+      "cap_th": [
+        "ความสูง",
+        "สร้างบนโต๊ะอาหาร"
+      ],
+      "hl_th": "โต๊ะอาหาร",
+      "vi": "Bạn có biết chiều cao của con thật ra được tạo nên từ bữa ăn không?",
+      "cap_vi": [
+        "Chiều cao",
+        "từ bữa ăn"
+      ],
+      "hl_vi": "bữa ăn",
+      "en": "Did you know your child's height is actually built on the dinner table?",
+      "cap_en": [
+        "Height is",
+        "built on meals"
+      ],
+      "hl_en": "built on meals",
+      "cn": "你知道吗，孩子的身高其实是在餐桌上长出来的。",
+      "cap_cn": [
+        "身高",
+        "长在餐桌上"
+      ],
+      "hl_cn": "餐桌上",
+      "ch": "你知道嗎，孩子的身高其實是在餐桌上長出來的。",
+      "cap_ch": [
+        "身高",
+        "長在餐桌上"
+      ],
+      "hl_ch": "餐桌上"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "키 성장 식단엔 피라미드가 있습니다. 아래는 든든히, 꼭대기는 멀리입니다.",
+      "cap_ko": [
+        "식단 피라미드",
+        "아래는 든든히"
+      ],
+      "hl_ko": "식단 피라미드",
+      "th": "อาหารเพิ่มความสูงมีพีระมิด ฐานกินให้พอ ยอดให้เลี่ยง",
+      "cap_th": [
+        "พีระมิดอาหาร",
+        "ฐานกินให้พอ"
+      ],
+      "hl_th": "พีระมิดอาหาร",
+      "vi": "Thực đơn tăng chiều cao có một kim tự tháp: đáy ăn nhiều, đỉnh tránh xa.",
+      "cap_vi": [
+        "Kim tự tháp",
+        "đáy ăn nhiều"
+      ],
+      "hl_vi": "Kim tự tháp",
+      "en": "A growth diet has a pyramid: load up the base, skip the top.",
+      "cap_en": [
+        "Food pyramid",
+        "load the base"
+      ],
+      "hl_en": "Food pyramid",
+      "cn": "长高饮食有座金字塔：底部吃够，顶部远离。",
+      "cap_cn": [
+        "饮食金字塔",
+        "底部吃够"
+      ],
+      "hl_cn": "饮食金字塔",
+      "ch": "長高飲食有座金字塔：底部吃夠，頂部遠離。",
+      "cap_ch": [
+        "飲食金字塔",
+        "底部吃夠"
+      ],
+      "hl_ch": "飲食金字塔",
+      "insert": "images/식단피라미드/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.85,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "먹어야 할 것",
+          "en": "Eat more",
+          "th": "ควรกิน",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.5,
+          "y": 0.13,
+          "size": 28,
+          "weight": 900,
+          "color": "#dc2626",
+          "ko": "피해야 할 것",
+          "en": "Avoid",
+          "th": "ควรเลี่ยง",
+          "pill": "rgba(255,255,255,0.92)"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 10.5,
+      "ko": "맨 아래 1층은 단백질입니다. 살코기·생선·콩·달걀이 성장호르몬을 깨웁니다.",
+      "cap_ko": [
+        "1층은",
+        "단백질"
+      ],
+      "hl_ko": "단백질",
+      "th": "ชั้นล่างสุดคือโปรตีน เนื้อ ปลา ถั่ว ไข่ ปลุกฮอร์โมนการเจริญเติบโต",
+      "cap_th": [
+        "ชั้นล่างสุด",
+        "โปรตีน"
+      ],
+      "hl_th": "โปรตีน",
+      "vi": "Tầng đáy là chất đạm: thịt, cá, đậu, trứng đánh thức hormone tăng trưởng.",
+      "cap_vi": [
+        "Tầng đáy",
+        "chất đạm"
+      ],
+      "hl_vi": "chất đạm",
+      "en": "The bottom floor is protein — meat, fish, beans, eggs wake up growth hormone.",
+      "cap_en": [
+        "Base floor",
+        "protein"
+      ],
+      "hl_en": "protein",
+      "cn": "最底层是蛋白质，瘦肉、鱼、豆、蛋唤醒生长激素。",
+      "cap_cn": [
+        "最底层",
+        "蛋白质"
+      ],
+      "hl_cn": "蛋白质",
+      "ch": "最底層是蛋白質，瘦肉、魚、豆、蛋喚醒生長激素。",
+      "cap_ch": [
+        "最底層",
+        "蛋白質"
+      ],
+      "hl_ch": "蛋白質"
+    },
+    {
+      "id": "c4",
+      "start": 10.5,
+      "end": 14.5,
+      "ko": "그 위엔 칼슘과 비타민 디입니다. 비타민 디가 칼슘을 뼈로 데려가 줍니다.",
+      "cap_ko": [
+        "칼슘 +",
+        "비타민 D"
+      ],
+      "hl_ko": "비타민 D",
+      "th": "ชั้นถัดมาคือแคลเซียมกับวิตามินดี วิตามินดีพาแคลเซียมเข้าสู่กระดูก",
+      "cap_th": [
+        "แคลเซียม +",
+        "วิตามินดี"
+      ],
+      "hl_th": "วิตามินดี",
+      "vi": "Tầng trên là canxi và vitamin D — vitamin D đưa canxi vào xương.",
+      "cap_vi": [
+        "Canxi +",
+        "vitamin D"
+      ],
+      "hl_vi": "vitamin D",
+      "en": "Above it: calcium and vitamin D — vitamin D carries calcium into the bone.",
+      "cap_en": [
+        "Calcium +",
+        "vitamin D"
+      ],
+      "hl_en": "vitamin D",
+      "cn": "上一层是钙和维生素D，维生素D把钙送进骨头。",
+      "cap_cn": [
+        "钙 +",
+        "维生素D"
+      ],
+      "hl_cn": "维生素D",
+      "ch": "上一層是鈣和維生素D，維生素D把鈣送進骨頭。",
+      "cap_ch": [
+        "鈣 +",
+        "維生素D"
+      ],
+      "hl_ch": "維生素D",
+      "insert": "images/식단피라미드/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.18,
+          "y": 0.86,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        },
+        {
+          "x": 0.32,
+          "y": 0.1,
+          "size": 26,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "비타민 D",
+          "en": "Vitamin D",
+          "th": "วิตามินดี"
+        },
+        {
+          "x": 0.78,
+          "y": 0.5,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "튼튼한 뼈",
+          "en": "Strong bone",
+          "th": "กระดูกแข็งแรง"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18,
+      "ko": "여기 숨은 주인공, 아연입니다. 굴·소고기·견과류가 성장호르몬을 밀어줍니다.",
+      "cap_ko": [
+        "숨은 주인공",
+        "아연"
+      ],
+      "hl_ko": "아연",
+      "th": "พระเอกที่ซ่อนอยู่คือสังกะสี หอยนางรม เนื้อวัว ถั่ว ดันฮอร์โมนการเจริญเติบโต",
+      "cap_th": [
+        "พระเอกที่ซ่อน",
+        "สังกะสี"
+      ],
+      "hl_th": "สังกะสี",
+      "vi": "Người hùng thầm lặng là kẽm — hàu, thịt bò, hạt thúc đẩy hormone tăng trưởng.",
+      "cap_vi": [
+        "Người hùng thầm lặng",
+        "kẽm"
+      ],
+      "hl_vi": "kẽm",
+      "en": "The hidden hero is zinc — oysters, beef, nuts push growth hormone.",
+      "cap_en": [
+        "Hidden hero",
+        "zinc"
+      ],
+      "hl_en": "zinc",
+      "cn": "隐藏主角是锌，生蚝、牛肉、坚果推动生长激素。",
+      "cap_cn": [
+        "隐藏主角",
+        "锌"
+      ],
+      "hl_cn": "锌",
+      "ch": "隱藏主角是鋅，生蠔、牛肉、堅果推動生長激素。",
+      "cap_ch": [
+        "隱藏主角",
+        "鋅"
+      ],
+      "hl_ch": "鋅"
+    },
+    {
+      "id": "c6",
+      "start": 18,
+      "end": 22,
+      "ko": "철분은 산소를 온몸에 나릅니다. 부족하면 빈혈로 성장이 처집니다.",
+      "cap_ko": [
+        "철분 =",
+        "성장 활력"
+      ],
+      "hl_ko": "성장 활력",
+      "th": "ธาตุเหล็กส่งออกซิเจนทั่วร่าง ขาดแล้วโลหิตจาง โตช้า",
+      "cap_th": [
+        "ธาตุเหล็ก =",
+        "พลังการเติบโต"
+      ],
+      "hl_th": "พลังการเติบโต",
+      "vi": "Sắt mang oxy đi khắp cơ thể; thiếu sắt gây thiếu máu, chậm lớn.",
+      "cap_vi": [
+        "Sắt =",
+        "sức tăng trưởng"
+      ],
+      "hl_vi": "sức tăng trưởng",
+      "en": "Iron carries oxygen everywhere; too little means anemia and slow growth.",
+      "cap_en": [
+        "Iron =",
+        "growth fuel"
+      ],
+      "hl_en": "growth fuel",
+      "cn": "铁把氧气送往全身，缺铁就贫血、长得慢。",
+      "cap_cn": [
+        "铁 =",
+        "成长动力"
+      ],
+      "hl_cn": "成长动力",
+      "ch": "鐵把氧氣送往全身，缺鐵就貧血、長得慢。",
+      "cap_ch": [
+        "鐵 =",
+        "成長動力"
+      ],
+      "hl_ch": "成長動力",
+      "insert": "images/식단피라미드/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.24,
+          "y": 0.18,
+          "size": 28,
+          "weight": 900,
+          "color": "#dc2626",
+          "ko": "철분",
+          "en": "Iron",
+          "th": "ธาตุเหล็ก"
+        },
+        {
+          "x": 0.78,
+          "y": 0.3,
+          "size": 28,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "활력 UP",
+          "en": "Energy up",
+          "th": "พลังเพิ่ม"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "꼭대기는 설탕·패스트푸드입니다. 인슐린을 올려서 성장호르몬을 막습니다.",
+      "cap_ko": [
+        "꼭대기는",
+        "설탕·패스트푸드"
+      ],
+      "hl_ko": "설탕·패스트푸드",
+      "th": "ยอดพีระมิดคือน้ำตาลกับฟาสต์ฟู้ด ดันอินซูลิน ขวางฮอร์โมนการเจริญเติบโต",
+      "cap_th": [
+        "ยอดคือ",
+        "น้ำตาล·ฟาสต์ฟู้ด"
+      ],
+      "hl_th": "น้ำตาล·ฟาสต์ฟู้ด",
+      "vi": "Đỉnh tháp là đường và đồ ăn nhanh — đẩy insulin, chặn hormone tăng trưởng.",
+      "cap_vi": [
+        "Đỉnh tháp",
+        "đường·đồ ăn nhanh"
+      ],
+      "hl_vi": "đường·đồ ăn nhanh",
+      "en": "The top is sugar and fast food — they spike insulin and block growth hormone.",
+      "cap_en": [
+        "The top",
+        "sugar·fast food"
+      ],
+      "hl_en": "sugar·fast food",
+      "cn": "顶部是糖和快餐，升高胰岛素、阻碍生长激素。",
+      "cap_cn": [
+        "顶部",
+        "糖·快餐"
+      ],
+      "hl_cn": "糖·快餐",
+      "ch": "頂部是糖和速食，升高胰島素、阻礙生長激素。",
+      "cap_ch": [
+        "頂部",
+        "糖·速食"
+      ],
+      "hl_ch": "糖·速食"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 29.5,
+      "ko": "대신 물은 든든하게 마십니다. 우리 몸의 70퍼센트, 하루 6에서 8잔이 좋습니다.",
+      "cap_ko": [
+        "물 하루",
+        "6~8잔"
+      ],
+      "hl_ko": "6~8잔",
+      "th": "แทนที่ด้วยน้ำให้พอ ร่างกาย 70% เป็นน้ำ วันละ 6 ถึง 8 แก้ว",
+      "cap_th": [
+        "น้ำวันละ",
+        "6–8 แก้ว"
+      ],
+      "hl_th": "6–8 แก้ว",
+      "vi": "Thay vào đó, uống đủ nước: cơ thể 70% là nước, 6 đến 8 ly mỗi ngày.",
+      "cap_vi": [
+        "Nước mỗi ngày",
+        "6–8 ly"
+      ],
+      "hl_vi": "6–8 ly",
+      "en": "Instead, fill up on water: the body is 70% water — 6 to 8 cups a day.",
+      "cap_en": [
+        "Water a day",
+        "6–8 cups"
+      ],
+      "hl_en": "6–8 cups",
+      "cn": "用水来填满：身体70%是水，每天6到8杯。",
+      "cap_cn": [
+        "每天喝水",
+        "6–8杯"
+      ],
+      "hl_cn": "6–8杯",
+      "ch": "用水來填滿：身體70%是水，每天6到8杯。",
+      "cap_ch": [
+        "每天喝水",
+        "6–8杯"
+      ],
+      "hl_ch": "6–8杯",
+      "insert": "images/식단피라미드/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.28,
+          "y": 0.18,
+          "size": 28,
+          "weight": 900,
+          "color": "#2563eb",
+          "ko": "6~8잔",
+          "en": "6–8 cups",
+          "th": "6–8 แก้ว"
+        },
+        {
+          "x": 0.8,
+          "y": 0.5,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "몸의 70%",
+          "en": "70% water",
+          "th": "70% ของร่างกาย"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 29.5,
+      "end": 32.5,
+      "ko": "밥상을 바꿔도 효과가 더딘 것 같다면, 뼈나이로 성장 상태를 봅니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "성장 상태 확인"
+      ],
+      "hl_ko": "성장 상태 확인",
+      "th": "ถ้าเปลี่ยนอาหารแล้วยังช้า ดูอายุกระดูกเช็กสภาพการเติบโต",
+      "cap_th": [
+        "อายุกระดูก",
+        "เช็กการเติบโต"
+      ],
+      "hl_th": "เช็กการเติบโต",
+      "vi": "Nếu đổi bữa ăn mà vẫn chậm, hãy xem tuổi xương để biết tình trạng tăng trưởng.",
+      "cap_vi": [
+        "Tuổi xương",
+        "kiểm tra tăng trưởng"
+      ],
+      "hl_vi": "kiểm tra tăng trưởng",
+      "en": "If meals change but growth lags, bone age shows your child's true status.",
+      "cap_en": [
+        "Bone age",
+        "shows status"
+      ],
+      "hl_en": "shows status",
+      "cn": "如果换了饮食还是慢，用骨龄看看孩子的成长状态。",
+      "cap_cn": [
+        "骨龄",
+        "看成长状态"
+      ],
+      "hl_cn": "看成长状态",
+      "ch": "如果換了飲食還是慢，用骨齡看看孩子的成長狀態。",
+      "cap_ch": [
+        "骨齡",
+        "看成長狀態"
+      ],
+      "hl_ch": "看成長狀態"
+    },
+    {
+      "id": "c10",
+      "start": 32.5,
+      "end": 35,
+      "ko": "우리 아이 성장 상태, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "성장 상태",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กสภาพการเติบโตของลูกวันนี้",
+      "cap_th": [
+        "สภาพการเติบโต",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tình trạng tăng trưởng của con ngay hôm nay.",
+      "cap_vi": [
+        "Tình trạng tăng trưởng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's growth status today.",
+      "cap_en": [
+        "Growth status",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的成长状态吧。",
+      "cap_cn": [
+        "成长状态",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的成長狀態吧。",
+      "cap_ch": [
+        "成長狀態",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "slug": "아침밥키성장",
+  "fps": 30,
+  "title": "아침밥 한 끼가 우리 아이 키를 바꾼다",
+  "_note": "자동 생성(storyboard-to-reel 21). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "아침밥이 키를?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "아침밥 한 끼가 우리 아이 키를 바꾼다는 것, 알고 계십니까?",
+      "cap_ko": [
+        "아침 한 끼가",
+        "키를 바꾼다"
+      ],
+      "hl_ko": "키를 바꾼다",
+      "th": "รู้ไหมว่ามื้อเช้ามื้อเดียวเปลี่ยนความสูงของลูกได้?",
+      "cap_th": [
+        "มื้อเช้ามื้อเดียว",
+        "เปลี่ยนความสูง"
+      ],
+      "hl_th": "เปลี่ยนความสูง",
+      "vi": "Bạn có biết một bữa sáng có thể thay đổi chiều cao của con?",
+      "cap_vi": [
+        "Một bữa sáng",
+        "đổi chiều cao"
+      ],
+      "hl_vi": "đổi chiều cao",
+      "en": "Did you know one breakfast can change your child's height?",
+      "cap_en": [
+        "One breakfast",
+        "changes height"
+      ],
+      "hl_en": "changes height",
+      "cn": "你知道一顿早餐就能改变孩子的身高吗？",
+      "cap_cn": [
+        "一顿早餐",
+        "改变身高"
+      ],
+      "hl_cn": "改变身高",
+      "ch": "你知道一頓早餐就能改變孩子的身高嗎？",
+      "cap_ch": [
+        "一頓早餐",
+        "改變身高"
+      ],
+      "hl_ch": "改變身高"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "바쁘다고 아침을 거르면, 성장호르몬 스위치를 끄는 셈입니다.",
+      "cap_ko": [
+        "아침 거르면",
+        "성장 스위치 OFF"
+      ],
+      "hl_ko": "성장 스위치 OFF",
+      "th": "ถ้างดมื้อเช้าเพราะรีบ ก็เหมือนปิดสวิตช์ฮอร์โมนการเจริญเติบโต",
+      "cap_th": [
+        "งดมื้อเช้า",
+        "ปิดสวิตช์"
+      ],
+      "hl_th": "ปิดสวิตช์",
+      "vi": "Bỏ bữa sáng vì bận chẳng khác nào tắt công tắc hormone tăng trưởng.",
+      "cap_vi": [
+        "Bỏ bữa sáng",
+        "tắt công tắc"
+      ],
+      "hl_vi": "tắt công tắc",
+      "en": "Skipping breakfast is like switching off the growth-hormone button.",
+      "cap_en": [
+        "Skip breakfast",
+        "switch OFF"
+      ],
+      "hl_en": "switch OFF",
+      "cn": "因为忙就不吃早餐，等于关掉了生长激素开关。",
+      "cap_cn": [
+        "不吃早餐",
+        "开关关掉"
+      ],
+      "hl_cn": "开关关掉",
+      "ch": "因為忙就不吃早餐，等於關掉了生長激素開關。",
+      "cap_ch": [
+        "不吃早餐",
+        "開關關掉"
+      ],
+      "hl_ch": "開關關掉"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "밤새 굶은 우리 아이 몸, 아침 한 끼로 에너지를 채워줘야 합니다.",
+      "cap_ko": [
+        "밤새 공복",
+        "아침이 채운다"
+      ],
+      "hl_ko": "아침이 채운다",
+      "th": "ร่างกายลูกอดมาทั้งคืน ต้องเติมพลังด้วยมื้อเช้า",
+      "cap_th": [
+        "อดทั้งคืน",
+        "มื้อเช้าเติมพลัง"
+      ],
+      "hl_th": "มื้อเช้าเติมพลัง",
+      "vi": "Cả đêm nhịn đói, cơ thể con cần bữa sáng nạp lại năng lượng.",
+      "cap_vi": [
+        "Nhịn cả đêm",
+        "bữa sáng nạp lại"
+      ],
+      "hl_vi": "bữa sáng nạp lại",
+      "en": "After fasting all night, your child's body needs breakfast to refuel.",
+      "cap_en": [
+        "Fasted all night",
+        "breakfast refuels"
+      ],
+      "hl_en": "breakfast refuels",
+      "cn": "整夜空腹的身体，需要一顿早餐来补充能量。",
+      "cap_cn": [
+        "整夜空腹",
+        "早餐补能量"
+      ],
+      "hl_cn": "早餐补能量",
+      "ch": "整夜空腹的身體，需要一頓早餐來補充能量。",
+      "cap_ch": [
+        "整夜空腹",
+        "早餐補能量"
+      ],
+      "hl_ch": "早餐補能量",
+      "insert": "images/아침밥키성장/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.17,
+          "y": 0.04,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "밤새 공복",
+          "en": "Fasted all night",
+          "th": "อดทั้งคืน"
+        },
+        {
+          "x": 0.72,
+          "y": 0.55,
+          "size": 28,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "아침 한 끼",
+          "en": "One breakfast",
+          "th": "มื้อเช้า"
+        },
+        {
+          "x": 0.6,
+          "y": 0.2,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "에너지 충전",
+          "en": "Refueled",
+          "th": "เติมพลัง"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 15,
+      "ko": "아침은 혈당을 안정시킵니다. 그래야 성장호르몬이 잘 나오고 뇌도 깨어납니다.",
+      "cap_ko": [
+        "혈당 안정 →",
+        "성장호르몬 ON"
+      ],
+      "hl_ko": "성장호르몬 ON",
+      "th": "มื้อเช้าทำให้น้ำตาลในเลือดนิ่ง ฮอร์โมนการเจริญเติบโตจึงหลั่งดี",
+      "cap_th": [
+        "น้ำตาลนิ่ง →",
+        "ฮอร์โมนหลั่งดี"
+      ],
+      "hl_th": "ฮอร์โมนหลั่งดี",
+      "vi": "Bữa sáng giữ đường huyết ổn định, hormone tăng trưởng mới tiết tốt.",
+      "cap_vi": [
+        "Đường huyết ổn →",
+        "hormone tiết tốt"
+      ],
+      "hl_vi": "hormone tiết tốt",
+      "en": "Breakfast steadies blood sugar, so growth hormone flows well.",
+      "cap_en": [
+        "Steady sugar →",
+        "GH flows"
+      ],
+      "hl_en": "GH flows",
+      "cn": "早餐让血糖平稳，生长激素才能顺畅分泌。",
+      "cap_cn": [
+        "血糖平稳 →",
+        "生长激素分泌"
+      ],
+      "hl_cn": "生长激素分泌",
+      "ch": "早餐讓血糖平穩，生長激素才能順暢分泌。",
+      "cap_ch": [
+        "血糖平穩 →",
+        "生長激素分泌"
+      ],
+      "hl_ch": "生長激素分泌",
+      "insert": "images/아침밥키성장/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.22,
+          "y": 0.6,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "안정된 혈당",
+          "en": "Steady sugar",
+          "th": "น้ำตาลนิ่ง"
+        },
+        {
+          "x": 0.78,
+          "y": 0.16,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "집중력 ↑",
+          "en": "Focus up",
+          "th": "สมาธิดี"
+        },
+        {
+          "x": 0.78,
+          "y": 0.56,
+          "size": 24,
+          "weight": 800,
+          "color": "#db2777",
+          "ko": "성장호르몬",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมนการเจริญเติบโต"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 15,
+      "end": 19,
+      "ko": "핵심은 단백질입니다. 달걀, 두부, 우유가 뼈와 근육을 만듭니다.",
+      "cap_ko": [
+        "핵심은",
+        "단백질"
+      ],
+      "hl_ko": "단백질",
+      "th": "หัวใจคือโปรตีน ไข่ เต้าหู้ นม สร้างกระดูกและกล้ามเนื้อ",
+      "cap_th": [
+        "หัวใจคือ",
+        "โปรตีน"
+      ],
+      "hl_th": "โปรตีน",
+      "vi": "Quan trọng nhất là đạm: trứng, đậu phụ, sữa xây xương và cơ.",
+      "cap_vi": [
+        "Quan trọng là",
+        "chất đạm"
+      ],
+      "hl_vi": "chất đạm",
+      "en": "Protein is key: eggs, tofu, milk build bone and muscle.",
+      "cap_en": [
+        "The key is",
+        "protein"
+      ],
+      "hl_en": "protein",
+      "cn": "关键是蛋白质：鸡蛋、豆腐、牛奶能造骨骼和肌肉。",
+      "cap_cn": [
+        "关键是",
+        "蛋白质"
+      ],
+      "hl_cn": "蛋白质",
+      "ch": "關鍵是蛋白質：雞蛋、豆腐、牛奶能造骨骼和肌肉。",
+      "cap_ch": [
+        "關鍵是",
+        "蛋白質"
+      ],
+      "hl_ch": "蛋白質"
+    },
+    {
+      "id": "c6",
+      "start": 19,
+      "end": 23,
+      "ko": "통곡물은 좋습니다. 하지만 단 시리얼이나 흰 빵은 혈당을 튀게 해 피하십시오.",
+      "cap_ko": [
+        "통곡물 OK",
+        "단 시리얼·흰빵 ✕"
+      ],
+      "hl_ko": "단 시리얼·흰빵 ✕",
+      "th": "ธัญพืชไม่ขัดสีดี แต่ซีเรียลหวานกับขนมปังขาวทำน้ำตาลพุ่ง เลี่ยงไว้",
+      "cap_th": [
+        "ธัญพืชดี",
+        "ซีเรียลหวาน·ขนมปังขาว ✕"
+      ],
+      "hl_th": "ซีเรียลหวาน·ขนมปังขาว ✕",
+      "vi": "Ngũ cốc nguyên cám thì tốt, nhưng ngũ cốc ngọt và bánh mì trắng làm đường tăng vọt — nên tránh.",
+      "cap_vi": [
+        "Ngũ cốc nguyên cám OK",
+        "đồ ngọt·bánh mì trắng ✕"
+      ],
+      "hl_vi": "đồ ngọt·bánh mì trắng ✕",
+      "en": "Whole grains are great, but sugary cereal and white bread spike sugar — skip them.",
+      "cap_en": [
+        "Whole grains OK",
+        "sugary cereal·white bread ✕"
+      ],
+      "hl_en": "sugary cereal·white bread ✕",
+      "cn": "全谷物很好，但甜麦片和白面包让血糖飙升——要避开。",
+      "cap_cn": [
+        "全谷物 OK",
+        "甜麦片·白面包 ✕"
+      ],
+      "hl_cn": "甜麦片·白面包 ✕",
+      "ch": "全穀物很好，但甜麥片和白麵包讓血糖飆升——要避開。",
+      "cap_ch": [
+        "全穀物 OK",
+        "甜麥片·白麵包 ✕"
+      ],
+      "hl_ch": "甜麥片·白麵包 ✕",
+      "insert": "images/아침밥키성장/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.08,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "통곡물 OK",
+          "en": "Whole grains",
+          "th": "ธัญพืชไม่ขัดสี"
+        },
+        {
+          "x": 0.75,
+          "y": 0.08,
+          "size": 26,
+          "weight": 900,
+          "color": "#dc2626",
+          "ko": "피하기",
+          "en": "Avoid",
+          "th": "ควรเลี่ยง"
+        },
+        {
+          "x": 0.75,
+          "y": 0.92,
+          "size": 24,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "혈당 급상승",
+          "en": "Sugar spike",
+          "th": "น้ำตาลพุ่ง"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 23,
+      "end": 27,
+      "ko": "이상적인 한 끼는 삶은 달걀 둘, 통곡물 빵, 과일 한 컵, 우유 한 잔입니다.",
+      "cap_ko": [
+        "달걀2+통곡물",
+        "과일+우유"
+      ],
+      "hl_ko": "달걀2+통곡물",
+      "th": "มื้อในฝัน ไข่ต้ม 2 ฟอง ขนมปังโฮลเกรน ผลไม้ 1 ถ้วย นม 1 แก้ว",
+      "cap_th": [
+        "ไข่ 2+โฮลเกรน",
+        "ผลไม้+นม"
+      ],
+      "hl_th": "ไข่ 2+โฮลเกรน",
+      "vi": "Bữa lý tưởng: 2 trứng luộc, bánh mì nguyên cám, 1 cốc trái cây, 1 ly sữa.",
+      "cap_vi": [
+        "2 trứng+nguyên cám",
+        "trái cây+sữa"
+      ],
+      "hl_vi": "2 trứng+nguyên cám",
+      "en": "An ideal plate: 2 boiled eggs, whole-grain bread, a cup of fruit, a glass of milk.",
+      "cap_en": [
+        "2 eggs+whole grain",
+        "fruit+milk"
+      ],
+      "hl_en": "2 eggs+whole grain",
+      "cn": "理想的一餐：两个水煮蛋、全谷面包、一杯水果、一杯牛奶。",
+      "cap_cn": [
+        "2蛋+全谷",
+        "水果+牛奶"
+      ],
+      "hl_cn": "2蛋+全谷",
+      "ch": "理想的一餐：兩顆水煮蛋、全穀麵包、一杯水果、一杯牛奶。",
+      "cap_ch": [
+        "2蛋+全穀",
+        "水果+牛奶"
+      ],
+      "hl_ch": "2蛋+全穀",
+      "insert": "images/아침밥키성장/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.42,
+          "y": 0.55,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "단백질",
+          "en": "Protein",
+          "th": "โปรตีน",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.6,
+          "y": 0.66,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "통곡물",
+          "en": "Whole grain",
+          "th": "โฮลเกรน",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.25,
+          "y": 0.18,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "비타민",
+          "en": "Vitamins",
+          "th": "วิตามิน",
+          "pill": "rgba(255,255,255,0.92)"
+        },
+        {
+          "x": 0.78,
+          "y": 0.16,
+          "size": 24,
+          "weight": 800,
+          "color": "#2563eb",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม",
+          "pill": "rgba(255,255,255,0.92)"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 27,
+      "end": 30.5,
+      "ko": "루틴도 중요합니다. 물 한 잔으로 시작하고, 천천히 씹고, 아침 햇볕을 쬐어 주십시오.",
+      "cap_ko": [
+        "물 한 잔·꼭꼭 씹기",
+        "아침 햇볕"
+      ],
+      "hl_ko": "아침 햇볕",
+      "th": "กิจวัตรก็สำคัญ เริ่มด้วยน้ำ 1 แก้ว เคี้ยวช้าๆ และรับแดดยามเช้า",
+      "cap_th": [
+        "น้ำ 1 แก้ว·เคี้ยวช้า",
+        "แดดยามเช้า"
+      ],
+      "hl_th": "แดดยามเช้า",
+      "vi": "Thói quen cũng quan trọng: bắt đầu bằng cốc nước, nhai chậm, và tắm nắng sáng.",
+      "cap_vi": [
+        "1 cốc nước·nhai chậm",
+        "nắng sáng"
+      ],
+      "hl_vi": "nắng sáng",
+      "en": "Routine matters too: start with water, chew slowly, and get morning sun.",
+      "cap_en": [
+        "Water·chew slowly",
+        "morning sun"
+      ],
+      "hl_en": "morning sun",
+      "cn": "习惯也重要：先喝一杯水、细嚼慢咽、晒晒晨光。",
+      "cap_cn": [
+        "一杯水·细嚼",
+        "早晨阳光"
+      ],
+      "hl_cn": "早晨阳光",
+      "ch": "習慣也重要：先喝一杯水、細嚼慢嚥、曬曬晨光。",
+      "cap_ch": [
+        "一杯水·細嚼",
+        "早晨陽光"
+      ],
+      "hl_ch": "早晨陽光"
+    },
+    {
+      "id": "c9",
+      "start": 30.5,
+      "end": 33,
+      "ko": "여기에 충분한 잠과 운동까지 더하면, 우리 아이 성장을 제대로 도울 수 있습니다.",
+      "cap_ko": [
+        "아침밥+잠+운동",
+        "성장의 기본"
+      ],
+      "hl_ko": "성장의 기본",
+      "th": "เพิ่มการนอนพอและออกกำลังกาย ก็ช่วยให้ลูกโตได้เต็มที่",
+      "cap_th": [
+        "มื้อเช้า+นอน+ออกกำลัง",
+        "พื้นฐานการโต"
+      ],
+      "hl_th": "พื้นฐานการโต",
+      "vi": "Thêm ngủ đủ và vận động nữa là hỗ trợ con phát triển trọn vẹn.",
+      "cap_vi": [
+        "Bữa sáng+ngủ+vận động",
+        "nền tảng tăng trưởng"
+      ],
+      "hl_vi": "nền tảng tăng trưởng",
+      "en": "Add enough sleep and exercise, and you truly support your child's growth.",
+      "cap_en": [
+        "Breakfast+sleep+exercise",
+        "growth basics"
+      ],
+      "hl_en": "growth basics",
+      "cn": "再加上充足睡眠和运动，就能真正助力孩子成长。",
+      "cap_cn": [
+        "早餐+睡眠+运动",
+        "成长的基础"
+      ],
+      "hl_cn": "成长的基础",
+      "ch": "再加上充足睡眠和運動，就能真正助力孩子成長。",
+      "cap_ch": [
+        "早餐+睡眠+運動",
+        "成長的基礎"
+      ],
+      "hl_ch": "成長的基礎"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 성장 상태, 지금 바로 홈페이지에서 확인해 보십시오.",
+      "cap_ko": [
+        "우리 아이 성장",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กพัฒนาการความสูงของลูกบนเว็บไซต์วันนี้เลย",
+      "cap_th": [
+        "พัฒนาการของลูก",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra tình trạng phát triển của con trên website ngay hôm nay.",
+      "cap_vi": [
+        "Phát triển của con",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's growth on our site today.",
+      "cap_en": [
+        "Your child's growth",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就在官网查查孩子的成长状况吧。",
+      "cap_cn": [
+        "孩子的成长",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就在官網查查孩子的成長狀況吧。",
+      "cap_ch": [
+        "孩子的成長",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

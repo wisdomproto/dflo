@@ -1,0 +1,528 @@
+{
+  "slug": "checkchu",
+  "fps": 30,
+  "title": "척추측만증이면 키 안 큰다? — 진짜 답",
+  "_note": "자동 생성(storyboard-to-reel 33). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "척추 휘면 안 큰다?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "척추측만증이면 키가 안 큰다? 이 말, 진짜일까요?",
+      "cap_ko": [
+        "척추 휘면",
+        "키 안 큰다?"
+      ],
+      "hl_ko": "키 안 큰다?",
+      "th": "กระดูกสันหลังคดแล้วลูกจะไม่สูง...จริงไหม?",
+      "cap_th": [
+        "หลังคด",
+        "ไม่สูงจริงไหม?"
+      ],
+      "hl_th": "ไม่สูงจริงไหม?",
+      "vi": "Cong vẹo cột sống thì con không cao được? Có thật không?",
+      "cap_vi": [
+        "Vẹo cột sống",
+        "không cao được?"
+      ],
+      "hl_vi": "không cao được?",
+      "en": "Scoliosis means your child won't grow tall? Is that really true?",
+      "cap_en": [
+        "Scoliosis =",
+        "no growth?"
+      ],
+      "hl_en": "no growth?",
+      "cn": "脊柱侧弯就长不高了？这话是真的吗？",
+      "cap_cn": [
+        "脊柱侧弯",
+        "长不高？"
+      ],
+      "hl_cn": "长不高？",
+      "ch": "脊柱側彎就長不高了？這話是真的嗎？",
+      "cap_ch": [
+        "脊柱側彎",
+        "長不高？"
+      ],
+      "hl_ch": "長不高？"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "결론부터 말씀드리겠습니다. 경미한 측만증은 키 크는 것을 막지 않습니다.",
+      "cap_ko": [
+        "경미한 측만증",
+        "막지 않아요"
+      ],
+      "hl_ko": "막지 않아요",
+      "th": "บอกเลย ความคดเล็กน้อยไม่ได้หยุดความสูง",
+      "cap_th": [
+        "คดเล็กน้อย",
+        "ไม่หยุดความสูง"
+      ],
+      "hl_th": "ไม่หยุดความสูง",
+      "vi": "Nói luôn: vẹo nhẹ không hề cản con cao lên.",
+      "cap_vi": [
+        "Vẹo nhẹ",
+        "không cản chiều cao"
+      ],
+      "hl_vi": "không cản chiều cao",
+      "en": "Straight answer: mild scoliosis does not block growth.",
+      "cap_en": [
+        "Mild curve",
+        "doesn't block growth"
+      ],
+      "hl_en": "doesn't block growth",
+      "cn": "先说结论：轻度侧弯不会挡住长高。",
+      "cap_cn": [
+        "轻度侧弯",
+        "不挡长高"
+      ],
+      "hl_cn": "不挡长高",
+      "ch": "先說結論：輕度側彎不會擋住長高。",
+      "cap_ch": [
+        "輕度側彎",
+        "不擋長高"
+      ],
+      "hl_ch": "不擋長高"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "뼈 길이가 짧아진 게 아닙니다. 옆으로 휘어서 작게 측정될 뿐입니다.",
+      "cap_ko": [
+        "뼈는 그대로",
+        "휘어서 작게 측정"
+      ],
+      "hl_ko": "휘어서 작게 측정",
+      "th": "กระดูกไม่ได้สั้นลง แค่คดเลยวัดได้น้อยกว่าจริง",
+      "cap_th": [
+        "กระดูกเท่าเดิม",
+        "คดเลยวัดสั้น"
+      ],
+      "hl_th": "คดเลยวัดสั้น",
+      "vi": "Xương không ngắn đi — chỉ cong nên đo ra thấp hơn thật.",
+      "cap_vi": [
+        "Xương vẫn vậy",
+        "cong nên đo thấp"
+      ],
+      "hl_vi": "cong nên đo thấp",
+      "en": "The bone isn't shorter — the spine just curves, so it measures shorter.",
+      "cap_en": [
+        "Bone unchanged",
+        "curve = looks shorter"
+      ],
+      "hl_en": "looks shorter",
+      "cn": "骨头没变短，只是脊柱侧弯，量出来显得矮。",
+      "cap_cn": [
+        "骨头没变短",
+        "侧弯显得矮"
+      ],
+      "hl_cn": "显得矮",
+      "ch": "骨頭沒變短，只是脊柱側彎，量出來顯得矮。",
+      "cap_ch": [
+        "骨頭沒變短",
+        "側彎顯得矮"
+      ],
+      "hl_ch": "顯得矮",
+      "insert": "images/checkchu/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.92,
+          "size": 24,
+          "weight": 800,
+          "color": "#6b7280",
+          "ko": "휘면 작게 측정",
+          "en": "Curve = shorter",
+          "th": "คดเลยวัดสั้น"
+        },
+        {
+          "x": 0.75,
+          "y": 0.92,
+          "size": 24,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "뼈 길이 그대로",
+          "en": "Same bone length",
+          "th": "กระดูกเท่าเดิม"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "그래서 성장판이 열린 지금, 일찍 발견하고 관리하면 됩니다.",
+      "cap_ko": [
+        "성장판 열렸을 때",
+        "조기 발견·관리"
+      ],
+      "hl_ko": "조기 발견·관리",
+      "th": "ตอนแผ่นกระดูกยังเปิด เจอเร็วดูแลเร็วก็พอ",
+      "cap_th": [
+        "แผ่นกระดูกยังเปิด",
+        "เจอเร็ว ดูแลเร็ว"
+      ],
+      "hl_th": "เจอเร็ว ดูแลเร็ว",
+      "vi": "Khi sụn tăng trưởng còn mở, phát hiện sớm và chăm đúng là được.",
+      "cap_vi": [
+        "Sụn còn mở",
+        "phát hiện sớm"
+      ],
+      "hl_vi": "phát hiện sớm",
+      "en": "While the growth plates are still open, catch it early and manage it.",
+      "cap_en": [
+        "Plates still open",
+        "catch it early"
+      ],
+      "hl_en": "catch it early",
+      "cn": "趁生长板还开着，早发现、早管理就行。",
+      "cap_cn": [
+        "生长板还开",
+        "早发现早管理"
+      ],
+      "hl_cn": "早发现早管理",
+      "ch": "趁生長板還開著，早發現、早管理就行。",
+      "cap_ch": [
+        "生長板還開",
+        "早發現早管理"
+      ],
+      "hl_ch": "早發現早管理"
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "첫째, 바른 자세입니다. 한쪽으로 치우친 자세가 측만을 악화시킵니다.",
+      "cap_ko": [
+        "바른 자세 유지",
+        "기울면 악화"
+      ],
+      "hl_ko": "바른 자세 유지",
+      "th": "หนึ่ง ท่านั่งที่ถูกต้อง เอียงข้างเดียวทำให้คดแย่ลง",
+      "cap_th": [
+        "นั่งให้ถูกท่า",
+        "เอียงแล้วแย่ลง"
+      ],
+      "hl_th": "นั่งให้ถูกท่า",
+      "vi": "Một, ngồi đúng tư thế. Lệch một bên sẽ làm vẹo nặng hơn.",
+      "cap_vi": [
+        "Ngồi đúng tư thế",
+        "lệch = nặng hơn"
+      ],
+      "hl_vi": "Ngồi đúng tư thế",
+      "en": "One: good posture. Leaning to one side makes the curve worse.",
+      "cap_en": [
+        "Good posture",
+        "leaning = worse"
+      ],
+      "hl_en": "Good posture",
+      "cn": "第一，坐姿端正。偏向一边会让侧弯更严重。",
+      "cap_cn": [
+        "坐姿端正",
+        "偏一边变严重"
+      ],
+      "hl_cn": "坐姿端正",
+      "ch": "第一，坐姿端正。偏向一邊會讓側彎更嚴重。",
+      "cap_ch": [
+        "坐姿端正",
+        "偏一邊變嚴重"
+      ],
+      "hl_ch": "坐姿端正",
+      "insert": "images/checkchu/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.3,
+          "y": 0.32,
+          "size": 24,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "등 기대기",
+          "en": "Back supported",
+          "th": "พิงพนัก"
+        },
+        {
+          "x": 0.62,
+          "y": 0.9,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "발바닥 바닥에",
+          "en": "Feet flat",
+          "th": "เท้าแตะพื้น"
+        }
+      ]
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "둘째, 깊은 잠입니다. 성장호르몬은 깊은 잠에 가장 많이 나옵니다. 하루 9에서 10시간입니다!",
+      "cap_ko": [
+        "깊은 잠에 성장호르몬",
+        "하루 9~10시간"
+      ],
+      "hl_ko": "9~10시간",
+      "th": "สอง นอนลึก ฮอร์โมนหลั่งตอนหลับลึก วันละ 9–10 ชม.!",
+      "cap_th": [
+        "หลับลึก = ฮอร์โมน",
+        "9–10 ชม./วัน"
+      ],
+      "hl_th": "9–10 ชม.",
+      "vi": "Hai, ngủ sâu. Hormone tăng trưởng tiết nhiều nhất khi ngủ sâu — 9–10 giờ!",
+      "cap_vi": [
+        "Ngủ sâu = hormone",
+        "9–10 giờ/ngày"
+      ],
+      "hl_vi": "9–10 giờ",
+      "en": "Two: deep sleep. Growth hormone peaks in deep sleep — 9 to 10 hours!",
+      "cap_en": [
+        "Deep sleep = hormone",
+        "9–10 hours"
+      ],
+      "hl_en": "9–10 hours",
+      "cn": "第二，深睡。生长激素在深睡时分泌最多——每天9到10小时！",
+      "cap_cn": [
+        "深睡分泌激素",
+        "每天9~10小时"
+      ],
+      "hl_cn": "9~10小时",
+      "ch": "第二，深睡。生長激素在深睡時分泌最多——每天9到10小時！",
+      "cap_ch": [
+        "深睡分泌激素",
+        "每天9~10小時"
+      ],
+      "hl_ch": "9~10小時",
+      "insert": "images/checkchu/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.56,
+          "y": 0.14,
+          "size": 24,
+          "weight": 900,
+          "color": "#ffffff",
+          "ko": "성장호르몬 분비",
+          "en": "Growth hormone",
+          "th": "ฮอร์โมนหลั่ง"
+        },
+        {
+          "x": 0.5,
+          "y": 0.92,
+          "size": 24,
+          "weight": 800,
+          "color": "#ffffff",
+          "ko": "하루 9~10시간",
+          "en": "9–10 hours",
+          "th": "9–10 ชม."
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "셋째, 영양과 운동입니다. 단백질·칼슘·비타민 디에, 수영·줄넘기로 척추도 키도 함께 잡습니다.",
+      "cap_ko": [
+        "단백질·칼슘·비타민D",
+        "수영·줄넘기"
+      ],
+      "hl_ko": "수영·줄넘기",
+      "th": "สาม โภชนาการกับการออกกำลัง โปรตีนแคลเซียมวิตามินดี ว่ายน้ำกระโดดเชือก",
+      "cap_th": [
+        "โปรตีน·แคลเซียม·วิตดี",
+        "ว่ายน้ำ·กระโดดเชือก"
+      ],
+      "hl_th": "ว่ายน้ำ·กระโดดเชือก",
+      "vi": "Ba, dinh dưỡng và vận động: đạm, canxi, vitamin D, bơi và nhảy dây.",
+      "cap_vi": [
+        "Đạm·canxi·vitamin D",
+        "bơi·nhảy dây"
+      ],
+      "hl_vi": "bơi·nhảy dây",
+      "en": "Three: nutrition and exercise — protein, calcium, vitamin D, swimming and jump rope.",
+      "cap_en": [
+        "Protein·calcium·vit D",
+        "swim·jump rope"
+      ],
+      "hl_en": "swim·jump rope",
+      "cn": "第三，营养和运动：蛋白质、钙、维生素D，游泳和跳绳。",
+      "cap_cn": [
+        "蛋白·钙·维D",
+        "游泳·跳绳"
+      ],
+      "hl_cn": "游泳·跳绳",
+      "ch": "第三，營養和運動：蛋白質、鈣、維生素D，游泳和跳繩。",
+      "cap_ch": [
+        "蛋白·鈣·維D",
+        "游泳·跳繩"
+      ],
+      "hl_ch": "游泳·跳繩"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "어깨 높이가 다르거나 허리선이 비대칭이면, 한 번 살펴봐 주십시오.",
+      "cap_ko": [
+        "어깨 높이 다름",
+        "허리선 비대칭"
+      ],
+      "hl_ko": "어깨 높이 다름",
+      "th": "ถ้าไหล่สองข้างสูงไม่เท่ากันหรือเอวเบี้ยว ลองสังเกตดู",
+      "cap_th": [
+        "ไหล่ไม่เท่ากัน",
+        "เอวเบี้ยว"
+      ],
+      "hl_th": "ไหล่ไม่เท่ากัน",
+      "vi": "Nếu hai vai cao thấp khác nhau hay eo lệch, hãy để ý nhé.",
+      "cap_vi": [
+        "Hai vai lệch",
+        "eo không cân"
+      ],
+      "hl_vi": "Hai vai lệch",
+      "en": "If shoulders sit at different heights or the waistline is uneven, take a look.",
+      "cap_en": [
+        "Uneven shoulders",
+        "uneven waist"
+      ],
+      "hl_en": "Uneven shoulders",
+      "cn": "如果两肩高低不一样或腰线不对称，就留意一下。",
+      "cap_cn": [
+        "两肩不一样高",
+        "腰线不对称"
+      ],
+      "hl_cn": "两肩不一样高",
+      "ch": "如果兩肩高低不一樣或腰線不對稱，就留意一下。",
+      "cap_ch": [
+        "兩肩不一樣高",
+        "腰線不對稱"
+      ],
+      "hl_ch": "兩肩不一樣高",
+      "insert": "images/checkchu/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.36,
+          "y": 0.3,
+          "size": 24,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "어깨 높이 차이",
+          "en": "Shoulder gap",
+          "th": "ไหล่ไม่เท่ากัน"
+        },
+        {
+          "x": 0.36,
+          "y": 0.55,
+          "size": 24,
+          "weight": 800,
+          "color": "#db2777",
+          "ko": "허리선 비대칭",
+          "en": "Uneven waist",
+          "th": "เอวเบี้ยว"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이를 보면, 우리 아이한테 남은 성장 기회가 얼마인지 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "남은 기회 확인"
+      ],
+      "hl_ko": "남은 기회 확인",
+      "th": "อายุกระดูกบอกได้ว่าลูกเหลือโอกาสโตอีกเท่าไร",
+      "cap_th": [
+        "อายุกระดูก",
+        "เหลือโอกาสเท่าไร"
+      ],
+      "hl_th": "เหลือโอกาสเท่าไร",
+      "vi": "Tuổi xương cho biết con còn lại bao nhiêu cơ hội phát triển.",
+      "cap_vi": [
+        "Tuổi xương",
+        "còn bao nhiêu cơ hội"
+      ],
+      "hl_vi": "còn bao nhiêu cơ hội",
+      "en": "Bone age shows exactly how much growth chance your child has left.",
+      "cap_en": [
+        "Bone age",
+        "chance left"
+      ],
+      "hl_en": "chance left",
+      "cn": "看骨龄就知道，孩子还剩多少长高的机会。",
+      "cap_cn": [
+        "看骨龄",
+        "剩多少机会"
+      ],
+      "hl_cn": "剩多少机会",
+      "ch": "看骨齡就知道，孩子還剩多少長高的機會。",
+      "cap_ch": [
+        "看骨齡",
+        "剩多少機會"
+      ],
+      "hl_ch": "剩多少機會"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 척추와 성장, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "척추·성장 상태",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กกระดูกสันหลังและการเติบโตของลูกวันนี้",
+      "cap_th": [
+        "หลังและการเติบโต",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra cột sống và sự phát triển của con ngay hôm nay.",
+      "cap_vi": [
+        "Cột sống & tăng trưởng",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's spine and growth today.",
+      "cap_en": [
+        "Spine & growth",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子的脊柱和成长情况吧。",
+      "cap_cn": [
+        "脊柱与成长",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子的脊柱和成長情況吧。",
+      "cap_ch": [
+        "脊柱與成長",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

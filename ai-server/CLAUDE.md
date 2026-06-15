@@ -31,6 +31,9 @@ middleware/
 - **Phase 2 ③ 클리니컬 RAG 심화** (migration 051): rx-recommend 프롬프트에 **초록+key_finding 주입**(`rxRecommend.buildRxPrompt`, 기존 제목만) + 논문 **한국어 요약 생성**(`services/evidenceSummary.ts` 순수 빌더+파서 + `scripts/backfill-summaries.mjs` resume·서킷브레이커, `korean_summary`/`key_finding`) + `match_evidence_papers` RPC 가 두 필드 반환(drop+recreate, 반환 시그니처 변경) + `knowledgeRetrieval` 타입 + `routes/knowledge.ts` references abstract strip. 요약 백필은 `generateText`(2.5-flash) 일일 쿼터(RPD) 소진으로 API 19편만 → 나머지 Claude 병렬 에이전트로 **281/281 완료**. 상세 memory `clinical_rag_deepening.md`.
 - **원장 저서 RAG** (migration 056, 원래 053→원격 마케팅 053~055 선점으로 renumber): 원장 저서 「우리 아이 키 성장 바이블」(264p)을 **3번째 지식소스(도서)**로 추가 — `knowledge_documents`(pgvector) + `match_knowledge_documents` RPC(chunk_index 반환). `searchKnowledge`가 papers/insights 옆에 `documents` 병렬 RPC(`kDocuments ?? 4`) 추가, `buildRxPrompt`가 "원장님 진료 철학·방침(1차 기준)" 섹션 주입(bookPassages 있을 때만·하위호환, 논문=보조). 적재 = `cases/extract_book.py`(PyMuPDF 청킹 227청크/5장, 무생성) → `scripts/ingest-book.mjs`(gemini-embedding-001, delete-by-source 재적재안전·preflight·빈입력가드). **책=1차 권위**, PDF·`book-chunks.json` 미커밋. 상세 memory `book_knowledge_rag.md`.
 
+## 치료사례 원장 스토리 저장 (로컬 내부 도구)
+- `routes/caseStory.ts` (`app.use('/api/case-story')`, marketingAuth 없이 자체 `x-admin-pin`=`WEBSITE_ADMIN_PIN`||8054): `GET /:chart`(조회) + `POST /`(저장) → `cases/case_stories.json`(src/routes 기준 `../../../cases`) read-merge-write. 치료사례 후보 페이지(`case-candidates.html`)의 🩺 원장 스토리 인라인 편집·저장용. PHI 내부 도구라 **dev(localhost) 전용**(prod Railway엔 cases 폴더 없음). gen 재생성 시 반영. 상세 memory `case_candidates_page.md`.
+
 ## Endpoints
 | Method | Path | Description | Status |
 |--------|------|-------------|--------|

@@ -7,7 +7,16 @@
 // 원장 화자 풀 스토리: cases/case_stories.json ({chart: {title, story}}) 이 있으면 카드에
 // "🩺 원장 스토리" 접힘 섹션으로 렌더. 스토리 생성용 입력은 cases/_story_inputs.json 으로
 // 덤프(가명 적용 후) — PATIENT_STORY_GUIDE.md 톤으로 Claude 가 작성한다.
-import { writeFileSync, readFileSync, existsSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync, statSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+// 스크립트 위치(cases/) 기준 프로젝트 루트 — 하드코딩 절대경로 대신(머신 무관).
+const PROJ = join(dirname(fileURLToPath(import.meta.url)), '..');
+// case-charts.js 캐시버스터 — 번들 mtime 기반(빌드 갱신 시 브라우저가 새로 로드).
+const ccVer = (() => {
+  try { return Math.floor(statSync(join(PROJ, 'v4/public/marketing/strategy/case-charts.js')).mtimeMs); }
+  catch { return Date.now(); }
+})();
 
 const URL = 'https://txirmofdvuljkrjkpzdg.supabase.co';
 const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR4aXJtb2ZkdnVsamtyamtwemRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNTE0MjMsImV4cCI6MjA5MTgyNzQyM30.yBEnRDrresPy-pexp8DLhRo-8MlXjxvEC3Wh3hIqqfQ';
@@ -150,7 +159,7 @@ const rxSignalsBy = new Map();
 }
 
 const yearsBetween = (a, b) => (new Date(b) - new Date(a)) / (365.25 * 86400e3);
-const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const CAUSE_LABELS = {
   parents_short: '부모 키가 작음', picky_eating: '편식', insufficient_sleep: '수면 부족',
@@ -338,7 +347,7 @@ const GIRL_POOL = ['서연', '지유', '하은', '서현', '하윤', '지아', '
 
 // ── 원장 스토리 입력 덤프 + 작성본 로드 ──
 // 입력 덤프는 가명 적용 후의 데이터만 담는다 (스토리 작성 에이전트가 실명을 볼 일 없게).
-writeFileSync('C:/project/dflo/cases/_story_inputs.json', JSON.stringify(list.map((r) => ({
+writeFileSync(join(PROJ, 'cases/_story_inputs.json'), JSON.stringify(list.map((r) => ({
   chart: String(r.chart), name: r.name, gender: r.gender, birth: r.birth,
   ageAtFirst: r.ageAtFirst, months: r.months, status: r.status,
   firstDate: r.mm[0]?.date, lastDate: r.mm[r.mm.length - 1]?.date,
@@ -354,8 +363,8 @@ writeFileSync('C:/project/dflo/cases/_story_inputs.json', JSON.stringify(list.ma
   intake: r.intake,
 })), null, 1), 'utf8');
 
-const STORIES = existsSync('C:/project/dflo/cases/case_stories.json')
-  ? JSON.parse(readFileSync('C:/project/dflo/cases/case_stories.json', 'utf8'))
+const STORIES = existsSync(join(PROJ, 'cases/case_stories.json'))
+  ? JSON.parse(readFileSync(join(PROJ, 'cases/case_stories.json'), 'utf8'))
   : {};
 
 const girls = list.filter((r) => r.gender === '여').length;
@@ -455,12 +464,10 @@ function card(r, i) {
   </div>
   <div class="tags">${tagHtml}${r.xray ? `<span class="asset">X-ray ${r.xray}장</span>` : ''}${r.desired ? `<span class="asset">희망 ${esc(r.desired)}</span>` : ''}</div>
   <div class="chart">
-    <div class="ctabs">
-      <button class="ctab on" data-t="g">성장 곡선</button>
-      <button class="ctab" data-t="t">예측키 추세</button>
+    <div class="charts2">
+      <div class="c2"><div class="clbl">📈 성장 곡선</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
+      <div class="c2"><div class="clbl">🎯 예측키 추세</div><div class="cwrap cpane-t"><canvas></canvas></div><div class="tgrid"></div></div>
     </div>
-    <div class="cpane cpane-g"><div class="cwrap"><canvas></canvas></div></div>
-    <div class="cpane cpane-t" hidden><div class="cwrap"><canvas></canvas></div><div class="tgrid"></div></div>
     <script type="application/json" class="cdata">${JSON.stringify(chartData).replace(/</g, '\\u003c')}</script>
   </div>
   <div class="cols">
@@ -481,9 +488,21 @@ function card(r, i) {
       ${r.notes.length ? `<h4>📝 진료 메모 발췌</h4><ul class="pts dim">${r.notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}
     </div>
   </div>
-  ${STORIES[String(r.chart)] ? `<details class="story">
-    <summary>🩺 원장 스토리 — 「${esc(STORIES[String(r.chart)].title)}」 <span class="story-hint">펼쳐 읽기</span></summary>
-    <div class="story-body">${STORIES[String(r.chart)].story.split(/\n{2,}/).map((p) => `<p>${esc(p.trim())}</p>`).join('')}</div>
+  ${STORIES[String(r.chart)] ? `<details class="story" data-chart="${esc(r.chart ?? '')}">
+    <summary>🩺 원장 스토리 — 「<span class="st-title">${esc(STORIES[String(r.chart)].title)}</span>」 <span class="story-hint">펼쳐 읽기 · 편집 가능</span></summary>
+    <div class="st-view">
+      <div class="story-body">${STORIES[String(r.chart)].story.split(/\n{2,}/).map((p) => `<p>${esc(p.trim())}</p>`).join('')}</div>
+      <button class="st-edit" type="button">✏️ 편집</button>
+    </div>
+    <div class="st-form" hidden>
+      <input class="st-title-i" value="${esc(STORIES[String(r.chart)].title)}" placeholder="스토리 제목">
+      <textarea class="st-text" rows="16">${esc(STORIES[String(r.chart)].story)}</textarea>
+      <div class="st-actions">
+        <button class="st-save" type="button">💾 저장</button>
+        <button class="st-cancel" type="button">취소</button>
+        <span class="st-msg"></span>
+      </div>
+    </div>
   </details>` : ''}
 </article>`;
 }
@@ -517,7 +536,9 @@ const html = `<!DOCTYPE html>
   .copybtn { border:none; background:#10a572; color:#fff; border-radius:999px; padding:7px 15px;
              font-size:12.5px; font-weight:800; cursor:pointer; }
   .card { background:#fff; border-radius:18px; box-shadow:0 2px 12px rgba(58,42,104,.07);
-          padding:18px 20px 20px; margin-top:18px; }
+          padding:18px 20px 20px; margin-top:18px;
+          /* 화면 밖 카드는 렌더(레이아웃·페인트) 스킵 — 58장 긴 목록 스크롤 성능 */
+          content-visibility:auto; contain-intrinsic-size:auto 1100px; }
   .card.checked { outline:3px solid #10a572; }
   .card header { display:flex; align-items:center; gap:12px; }
   .pick { display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:800; color:#10a572;
@@ -545,10 +566,10 @@ const html = `<!DOCTYPE html>
   .tag.t-warn { background:#ffe8e8; color:#c92a2a; }
   .asset { background:#f4f3f8; color:#777; }
   .chart { margin-top:12px; background:#fcfbfe; border:1px solid #f0edf6; border-radius:12px; padding:10px; }
-  .ctabs { display:flex; gap:6px; margin-bottom:8px; }
-  .ctab { border:1.5px solid #e3def0; background:#fff; color:#777; border-radius:999px; padding:4px 13px; font-size:12px; font-weight:700; cursor:pointer; }
-  .ctab.on { background:#4A2D6B; border-color:#4A2D6B; color:#fff; }
-  .cwrap { position:relative; height:230px; }
+  .charts2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:720px) { .charts2 { grid-template-columns:1fr; } }
+  .clbl { font-size:12px; font-weight:800; color:#4A2D6B; margin-bottom:6px; }
+  .cwrap { position:relative; height:280px; }
   .tgrid { margin-top:2px; }
   .cols { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:14px; }
   @media (max-width:720px) { .cols { grid-template-columns:1fr; } }
@@ -572,6 +593,14 @@ const html = `<!DOCTYPE html>
   .story-hint { font-size:11px; font-weight:600; color:#c2ab6e; margin-left:4px; }
   .story-body { margin-top:8px; }
   .story-body p { font-size:13.5px; color:#4a4438; line-height:1.85; margin:0 0 10px; }
+  .st-edit, .st-save, .st-cancel { font-size:12px; font-weight:700; border-radius:8px; padding:6px 14px; cursor:pointer; border:1.5px solid #e3d9b8; background:#fff; color:#8a6d1d; }
+  .st-edit { margin-top:4px; }
+  .st-save { background:#8a6d1d; color:#fff; border-color:#8a6d1d; }
+  .st-form { margin-top:8px; }
+  .st-form .st-title-i { width:100%; font-size:13.5px; font-weight:700; padding:8px 11px; border:1.5px solid #e3d9b8; border-radius:8px; margin-bottom:7px; box-sizing:border-box; }
+  .st-form .st-text { width:100%; font-size:13.5px; line-height:1.85; color:#4a4438; padding:10px 12px; border:1.5px solid #e3d9b8; border-radius:8px; box-sizing:border-box; resize:vertical; font-family:inherit; }
+  .st-actions { display:flex; align-items:center; gap:8px; margin-top:7px; }
+  .st-msg { font-size:12px; font-weight:600; color:#8a6d1d; }
   .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#3a2a68; color:#fff;
            border-radius:999px; padding:10px 22px; font-size:13px; font-weight:700; opacity:0;
            transition:opacity .25s; pointer-events:none; max-width:90vw; }
@@ -585,7 +614,7 @@ const html = `<!DOCTYPE html>
   <h1>치료사례 후보 ${list.length}명 — 상세 프로필</h1>
   <p class="sub">생성 2026-06-12 · 점수순 · 카드의 <b style="color:#10a572">채택</b> 체크 → 하단 "선택 차트번호 복사" · 체크는 브라우저에 자동 저장</p>
   <div class="note"><b>읽는 법</b> : <b>환자 이름은 전부 가명</b>입니다 — 식별은 차트번호로 해주세요. 헤드라인·스토리 포인트는 데이터 기반 자동 초안입니다(최종 카피 아님).
-  그래프 — <b>환자 진료 화면과 동일한 2탭</b>: [성장 곡선] 백분위 곡선+실측 다이아+예측 투영 / [예측키 추세] 회차별 예측키 라인+또래 백분위. 뼈나이 "격차"=뼈나이−실제나이(<b style="color:#d6336c">+빨강=조숙</b>, <b style="color:#0b8a5e">−초록=여유</b>). 문진·내원사유는 원본 발췌라 표현 그대로입니다.</div>
+  그래프 — <b>좌우 2개</b>: [성장 곡선] 백분위 곡선+실측 다이아+예측 투영 / [예측키 추세] 회차별 예측키 라인+또래 백분위. 뼈나이 "격차"=뼈나이−실제나이(<b style="color:#d6336c">+빨강=조숙</b>, <b style="color:#0b8a5e">−초록=여유</b>). 문진·내원사유는 원본 발췌라 표현 그대로입니다.</div>
 
   <div class="controls">
     <button class="chip on" data-g="all">전체 ${list.length}</button>
@@ -607,7 +636,7 @@ const html = `<!DOCTYPE html>
   ${cardsHtml}
 </div>
 <div class="toast" id="toast"></div>
-<script src="case-charts.js"></script>
+<script src="case-charts.js?v=${ccVer}"></script>
 <script>
 const store = {
   get() { try { return JSON.parse(localStorage.getItem('caseCandidates2026') || '[]'); } catch { return []; } },
@@ -672,28 +701,56 @@ function renderTrend(card) {
   if (!d || !cv) return;
   try { CC.renderTrend(cv, grid, d); card._t = true; } catch (e) { console.error('trend', e); }
 }
+// 좌우 배치 — 카드가 뷰포트(±600px)에 들어오면 두 차트 렌더, 벗어나면 destroy.
+// 58×2=116개 Chart.js 캔버스가 동시에 살아있으면 스크롤이 느려지므로, 화면 근처만 유지한다.
+function destroyCard(card) {
+  card.querySelectorAll('canvas').forEach(cv => {
+    try { if (cv._chart) { cv._chart.destroy(); cv._chart = null; } } catch (e) {}
+  });
+  card._g = false; card._t = false;
+}
 const io = new IntersectionObserver((es) => {
-  es.forEach(e => { if (e.isIntersecting) renderGrowth(e.target); });
-}, { rootMargin: '300px' });
+  es.forEach(e => {
+    if (e.isIntersecting) { renderGrowth(e.target); renderTrend(e.target); }
+    else destroyCard(e.target);
+  });
+}, { rootMargin: '600px' });
 cards.forEach(c => io.observe(c));
-document.querySelectorAll('.ctabs').forEach(tabs => {
-  const card = tabs.closest('.card');
-  tabs.querySelectorAll('.ctab').forEach(btn => btn.addEventListener('click', () => {
-    tabs.querySelectorAll('.ctab').forEach(b => b.classList.remove('on'));
-    btn.classList.add('on');
-    const t = btn.dataset.t;
-    card.querySelector('.cpane-g').hidden = t !== 'g';
-    card.querySelector('.cpane-t').hidden = t !== 't';
-    if (t === 'g') renderGrowth(card); else renderTrend(card);
-  }));
+
+// ── 원장 스토리 편집·저장 (로컬 ai-server 경유 → cases/case_stories.json) ──
+const STORY_API = 'http://localhost:4000/api/case-story';
+const escP = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+document.querySelectorAll('.story').forEach(d => {
+  const view = d.querySelector('.st-view'), form = d.querySelector('.st-form');
+  if (!view || !form) return;
+  const titleI = d.querySelector('.st-title-i'), textI = d.querySelector('.st-text'), msg = d.querySelector('.st-msg');
+  d.querySelector('.st-edit').addEventListener('click', () => { view.hidden = true; form.hidden = false; msg.textContent = ''; });
+  d.querySelector('.st-cancel').addEventListener('click', () => { form.hidden = true; view.hidden = false; });
+  d.querySelector('.st-save').addEventListener('click', async () => {
+    const chart = d.dataset.chart, title = titleI.value.trim(), story = textI.value;
+    msg.textContent = '저장 중…';
+    try {
+      const r = await fetch(STORY_API, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
+        body: JSON.stringify({ chart, title, story }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      d.querySelector('.st-title').textContent = title;
+      d.querySelector('.story-body').innerHTML = story.split(/\n{2,}/).filter(p => p.trim()).map(p => '<p>' + escP(p.trim()) + '</p>').join('');
+      form.hidden = true; view.hidden = false;
+      msg.textContent = '✅ 저장됨';
+    } catch (err) {
+      msg.textContent = '❌ 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인';
+    }
+  });
 });
 </script>
 </body>
 </html>`;
 
-writeFileSync('C:/project/dflo/cases/케이스후보_상세프로필.html', html, 'utf8');
+writeFileSync(join(PROJ, 'cases/케이스후보_상세프로필.html'), html, 'utf8');
 // 마케팅 페이지 전략 폴더 사본 — PHI 포함이라 v4/.gitignore 로 배포 차단(로컬 전용)
-writeFileSync('C:/project/dflo/v4/public/marketing/strategy/case-candidates.html', html, 'utf8');
+writeFileSync(join(PROJ, 'v4/public/marketing/strategy/case-candidates.html'), html, 'utf8');
 console.log(`done: ${list.length}명 (여 ${girls}) → 케이스후보_상세프로필.html + marketing/strategy/case-candidates.html (${Math.round(html.length / 1024)}KB)`);
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -858,7 +915,7 @@ const extHtml = `<!DOCTYPE html>
     <div id="cards">${extCards}</div>
   </div>
 </div>
-<script src="/marketing/strategy/case-charts.js"></script>
+<script src="/marketing/strategy/case-charts.js?v=${ccVer}"></script>
 <script>
 (function(){
   var PIN='8054', gate=document.getElementById('gate'), content=document.getElementById('content');
@@ -904,5 +961,5 @@ const extHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-writeFileSync('C:/project/dflo/v4/public/치료사례_외부.html', extHtml, 'utf8');
+writeFileSync(join(PROJ, 'v4/public/치료사례_외부.html'), extHtml, 'utf8');
 console.log(`done: 치료사례_외부.html (비식별, ${Math.round(extHtml.length / 1024)}KB) → /치료사례_외부.html [PIN 8054]`);

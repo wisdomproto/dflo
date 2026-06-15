@@ -1,0 +1,548 @@
+{
+  "slug": "나이별운동",
+  "fps": 30,
+  "title": "우리 아이 키 크는 운동, 나이마다 다르다",
+  "_note": "자동 생성(storyboard-to-reel 26). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "운동, 나이마다 다르다?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "우리 아이 키 크는 운동, 나이마다 다르다는 것 알고 계십니까?",
+      "cap_ko": [
+        "키 크는 운동",
+        "나이마다 달라요"
+      ],
+      "hl_ko": "나이마다 달라요",
+      "th": "รู้ไหมว่ากีฬาเพิ่มความสูงของลูก เปลี่ยนตามวัย?",
+      "cap_th": [
+        "กีฬาเพิ่มความสูง",
+        "ต่างกันตามวัย"
+      ],
+      "hl_th": "ต่างกันตามวัย",
+      "vi": "Bạn có biết bài tập tăng chiều cao thay đổi theo từng độ tuổi không?",
+      "cap_vi": [
+        "Bài tập tăng chiều cao",
+        "khác theo tuổi"
+      ],
+      "hl_vi": "khác theo tuổi",
+      "en": "Did you know the best height exercise changes with your child's age?",
+      "cap_en": [
+        "Height exercise",
+        "changes by age"
+      ],
+      "hl_en": "changes by age",
+      "cn": "你知道长高运动，会随孩子年龄而不同吗？",
+      "cap_cn": [
+        "长高运动",
+        "因年龄而异"
+      ],
+      "hl_cn": "因年龄而异",
+      "ch": "你知道長高運動，會隨孩子年齡而不同嗎？",
+      "cap_ch": [
+        "長高運動",
+        "因年齡而異"
+      ],
+      "hl_ch": "因年齡而異"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "운동은 성장판을 자극하고 성장호르몬 분비를 깨우는 핵심 열쇠입니다.",
+      "cap_ko": [
+        "운동 = 성장판 자극",
+        "성장호르몬 ↑"
+      ],
+      "hl_ko": "성장호르몬 ↑",
+      "th": "การออกกำลังกระตุ้นแผ่นกระดูก และปลุกฮอร์โมนการเจริญเติบโต",
+      "cap_th": [
+        "กระตุ้นแผ่นกระดูก",
+        "ฮอร์โมน ↑"
+      ],
+      "hl_th": "ฮอร์โมน ↑",
+      "vi": "Vận động kích thích sụn tăng trưởng và đánh thức hormone tăng trưởng.",
+      "cap_vi": [
+        "Kích thích sụn",
+        "hormone ↑"
+      ],
+      "hl_vi": "hormone ↑",
+      "en": "Exercise stimulates the growth plates and wakes up growth hormone.",
+      "cap_en": [
+        "Stimulates plates",
+        "growth hormone ↑"
+      ],
+      "hl_en": "growth hormone ↑",
+      "cn": "运动能刺激生长板，唤醒生长激素的分泌。",
+      "cap_cn": [
+        "刺激生长板",
+        "生长激素 ↑"
+      ],
+      "hl_cn": "生长激素 ↑",
+      "ch": "運動能刺激生長板，喚醒生長激素的分泌。",
+      "cap_ch": [
+        "刺激生長板",
+        "生長激素 ↑"
+      ],
+      "hl_ch": "生長激素 ↑"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "특히 점프나 달리기처럼 중력을 거스르는 운동이 뼈를 자극합니다.",
+      "cap_ko": [
+        "점프·달리기",
+        "중력 저항 자극"
+      ],
+      "hl_ko": "중력 저항 자극",
+      "th": "โดยเฉพาะการกระโดดและวิ่ง ที่ต้านแรงโน้มถ่วง กระตุ้นกระดูก",
+      "cap_th": [
+        "กระโดด·วิ่ง",
+        "ต้านแรงโน้มถ่วง"
+      ],
+      "hl_th": "ต้านแรงโน้มถ่วง",
+      "vi": "Đặc biệt là nhảy và chạy — các bài chống trọng lực kích thích xương.",
+      "cap_vi": [
+        "Nhảy·chạy",
+        "chống trọng lực"
+      ],
+      "hl_vi": "chống trọng lực",
+      "en": "Especially jumping and running — gravity-resisting moves stimulate bone.",
+      "cap_en": [
+        "Jump·run",
+        "anti-gravity load"
+      ],
+      "hl_en": "anti-gravity load",
+      "cn": "尤其是跳跃和跑步，这类抗重力运动能刺激骨骼。",
+      "cap_cn": [
+        "跳跃·跑步",
+        "抗重力刺激"
+      ],
+      "hl_cn": "抗重力刺激",
+      "ch": "尤其是跳躍和跑步，這類抗重力運動能刺激骨骼。",
+      "cap_ch": [
+        "跳躍·跑步",
+        "抗重力刺激"
+      ],
+      "hl_ch": "抗重力刺激",
+      "insert": "images/나이별운동/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.95,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "착지 자극",
+          "en": "impact load",
+          "th": "แรงกระแทก"
+        },
+        {
+          "x": 0.66,
+          "y": 0.6,
+          "size": 26,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "성장판 활성",
+          "en": "growth plate",
+          "th": "แผ่นกระดูก"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "그래서 운동도 유아기, 초저, 초고, 청소년기 네 단계로 나눕니다.",
+      "cap_ko": [
+        "나이별 4단계",
+        "맞춤 운동"
+      ],
+      "hl_ko": "맞춤 운동",
+      "th": "ดังนั้นแบ่งการออกกำลังเป็น 4 ช่วงวัย ให้เหมาะกับลูก",
+      "cap_th": [
+        "4 ช่วงวัย",
+        "ออกกำลังเหมาะวัย"
+      ],
+      "hl_th": "ออกกำลังเหมาะวัย",
+      "vi": "Vì vậy chia bài tập theo 4 giai đoạn tuổi cho phù hợp với con.",
+      "cap_vi": [
+        "4 giai đoạn",
+        "tập đúng tuổi"
+      ],
+      "hl_vi": "tập đúng tuổi",
+      "en": "So we split exercise into four age stages, each one tailored.",
+      "cap_en": [
+        "4 age stages",
+        "tailored exercise"
+      ],
+      "hl_en": "tailored exercise",
+      "cn": "所以把运动分成幼儿、低年级、高年级、青少年四个阶段。",
+      "cap_cn": [
+        "四个阶段",
+        "年龄定制运动"
+      ],
+      "hl_cn": "年龄定制运动",
+      "ch": "所以把運動分成幼兒、低年級、高年級、青少年四個階段。",
+      "cap_ch": [
+        "四個階段",
+        "年齡定制運動"
+      ],
+      "hl_ch": "年齡定制運動",
+      "insert": "images/나이별운동/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.12,
+          "y": 0.42,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "유아 놀이",
+          "en": "Play",
+          "th": "วัยเล่น"
+        },
+        {
+          "x": 0.37,
+          "y": 0.32,
+          "size": 22,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "줄넘기",
+          "en": "Jump rope",
+          "th": "กระโดดเชือก"
+        },
+        {
+          "x": 0.62,
+          "y": 0.22,
+          "size": 22,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "점프·구기",
+          "en": "Ball sports",
+          "th": "กีฬาลูกบอล"
+        },
+        {
+          "x": 0.87,
+          "y": 0.12,
+          "size": 22,
+          "weight": 800,
+          "color": "#db2777",
+          "ko": "자세교정",
+          "en": "Posture",
+          "th": "จัดท่าทาง"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "유아기 0에서 6세는 술래잡기, 미끄럼틀처럼 즐거운 놀이가 최고입니다.",
+      "cap_ko": [
+        "유아 0~6세",
+        "즐거운 놀이"
+      ],
+      "hl_ko": "즐거운 놀이",
+      "th": "วัยทารก 0–6 ปี เน้นเล่นสนุก วิ่งไล่ เล่นสไลเดอร์",
+      "cap_th": [
+        "0–6 ปี",
+        "เล่นสนุก"
+      ],
+      "hl_th": "เล่นสนุก",
+      "vi": "Trẻ 0–6 tuổi: chơi vui là tốt nhất — rượt bắt, cầu trượt.",
+      "cap_vi": [
+        "0–6 tuổi",
+        "chơi vui"
+      ],
+      "hl_vi": "chơi vui",
+      "en": "Ages 0–6: joyful free play is best — tag, slides, swings.",
+      "cap_en": [
+        "Ages 0–6",
+        "free play"
+      ],
+      "hl_en": "free play",
+      "cn": "0到6岁，最好是开心地玩——捉迷藏、滑滑梯。",
+      "cap_cn": [
+        "0–6岁",
+        "开心玩耍"
+      ],
+      "hl_cn": "开心玩耍",
+      "ch": "0到6歲，最好是開心地玩——捉迷藏、溜滑梯。",
+      "cap_ch": [
+        "0–6歲",
+        "開心玩耍"
+      ],
+      "hl_ch": "開心玩耍"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "초등 저학년은 줄넘기와 달리기로 주 3회, 30분 이상 기초 체력을 길러줍니다!",
+      "cap_ko": [
+        "초저 줄넘기",
+        "주 3회·30분+"
+      ],
+      "hl_ko": "주 3회·30분+",
+      "th": "ประถมต้น กระโดดเชือกและวิ่ง สัปดาห์ละ 3 ครั้ง อย่างน้อย 30 นาที",
+      "cap_th": [
+        "กระโดดเชือก",
+        "3 ครั้ง·30 นาที"
+      ],
+      "hl_th": "3 ครั้ง·30 นาที",
+      "vi": "Tiểu học nhỏ: nhảy dây và chạy, 3 buổi mỗi tuần, 30 phút trở lên.",
+      "cap_vi": [
+        "Nhảy dây",
+        "3 buổi·30 phút"
+      ],
+      "hl_vi": "3 buổi·30 phút",
+      "en": "Early grades: jump rope and running, 3 times a week, 30 minutes plus.",
+      "cap_en": [
+        "Jump rope",
+        "3×/wk · 30 min"
+      ],
+      "hl_en": "3×/wk · 30 min",
+      "cn": "小学低年级：跳绳和跑步，每周3次，30分钟以上。",
+      "cap_cn": [
+        "跳绳·跑步",
+        "每周3次·30分"
+      ],
+      "hl_cn": "每周3次·30分",
+      "ch": "小學低年級：跳繩和跑步，每週3次，30分鐘以上。",
+      "cap_ch": [
+        "跳繩·跑步",
+        "每週3次·30分"
+      ],
+      "hl_ch": "每週3次·30分",
+      "insert": "images/나이별운동/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.25,
+          "y": 0.5,
+          "size": 28,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "줄넘기",
+          "en": "Jump rope",
+          "th": "กระโดดเชือก"
+        },
+        {
+          "x": 0.75,
+          "y": 0.28,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "주 3회 · 30분+",
+          "en": "3×/wk · 30min",
+          "th": "3 ครั้ง · 30 นาที"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "초등 고학년은 성장판이 가장 활발할 때입니다! 농구, 배구 같은 점프 운동이 효과적입니다.",
+      "cap_ko": [
+        "초고 점프 운동",
+        "농구·배구"
+      ],
+      "hl_ko": "농구·배구",
+      "th": "ประถมปลาย แผ่นกระดูกเปิดมากที่สุด! บาส วอลเลย์ ที่มีกระโดดดีมาก",
+      "cap_th": [
+        "กระโดด·ทั้งตัว",
+        "บาส·วอลเลย์"
+      ],
+      "hl_th": "บาส·วอลเลย์",
+      "vi": "Tiểu học lớn: sụn mở mạnh nhất! Bóng rổ, bóng chuyền có nhảy rất tốt.",
+      "cap_vi": [
+        "Bài nhảy toàn thân",
+        "bóng rổ·chuyền"
+      ],
+      "hl_vi": "bóng rổ·chuyền",
+      "en": "Upper grades: plates are wide open! Jumping sports like basketball shine.",
+      "cap_en": [
+        "Jump · full body",
+        "basketball·volley"
+      ],
+      "hl_en": "basketball·volley",
+      "cn": "小学高年级，生长板最活跃！篮球、排球这类跳跃运动最有效。",
+      "cap_cn": [
+        "跳跃·全身",
+        "篮球·排球"
+      ],
+      "hl_cn": "篮球·排球",
+      "ch": "小學高年級，生長板最活躍！籃球、排球這類跳躍運動最有效。",
+      "cap_ch": [
+        "跳躍·全身",
+        "籃球·排球"
+      ],
+      "hl_ch": "籃球·排球",
+      "insert": "images/나이별운동/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.38,
+          "y": 0.1,
+          "size": 28,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "점프 운동",
+          "en": "Jump sports",
+          "th": "กีฬากระโดด"
+        },
+        {
+          "x": 0.85,
+          "y": 0.5,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "성장판 활발",
+          "en": "plates active",
+          "th": "แผ่นกระดูกเปิด"
+        }
+      ]
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "청소년기는 꾸준함과 자세 교정입니다! 그리고 8시간 숙면이 성장호르몬을 채워줍니다.",
+      "cap_ko": [
+        "청소년 자세 교정",
+        "8시간 숙면"
+      ],
+      "hl_ko": "8시간 숙면",
+      "th": "วัยรุ่นเน้นสม่ำเสมอและจัดท่าทาง บวกนอนลึก 8 ชม.",
+      "cap_th": [
+        "จัดท่าทาง",
+        "นอน 8 ชม."
+      ],
+      "hl_th": "นอน 8 ชม.",
+      "vi": "Tuổi teen: đều đặn và chỉnh tư thế, cộng ngủ sâu 8 tiếng.",
+      "cap_vi": [
+        "Chỉnh tư thế",
+        "ngủ 8 tiếng"
+      ],
+      "hl_vi": "ngủ 8 tiếng",
+      "en": "Teens: consistency and posture — plus 8 hours of deep sleep.",
+      "cap_en": [
+        "Posture care",
+        "8 hrs sleep"
+      ],
+      "hl_en": "8 hrs sleep",
+      "cn": "青少年要坚持加上姿势矫正，再配合8小时深睡。",
+      "cap_cn": [
+        "姿势矫正",
+        "8小时睡眠"
+      ],
+      "hl_cn": "8小时睡眠",
+      "ch": "青少年要堅持加上姿勢矯正，再配合8小時深睡。",
+      "cap_ch": [
+        "姿勢矯正",
+        "8小時睡眠"
+      ],
+      "hl_ch": "8小時睡眠"
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "뼈나이를 보면 우리 아이에게 지금 딱 맞는 운동 타이밍을 알 수 있습니다.",
+      "cap_ko": [
+        "뼈나이로",
+        "운동 타이밍 확인"
+      ],
+      "hl_ko": "운동 타이밍 확인",
+      "th": "อายุกระดูกบอกได้ว่า ตอนนี้ลูกควรออกกำลังแบบไหน",
+      "cap_th": [
+        "อายุกระดูก",
+        "จังหวะที่ใช่"
+      ],
+      "hl_th": "จังหวะที่ใช่",
+      "vi": "Tuổi xương cho biết thời điểm tập luyện phù hợp nhất với con ngay bây giờ.",
+      "cap_vi": [
+        "Tuổi xương",
+        "đúng thời điểm tập"
+      ],
+      "hl_vi": "đúng thời điểm tập",
+      "en": "Bone age shows the exercise timing that fits your child right now.",
+      "cap_en": [
+        "Bone age",
+        "right timing"
+      ],
+      "hl_en": "right timing",
+      "cn": "骨龄能告诉你，孩子现在最适合哪种运动。",
+      "cap_cn": [
+        "骨龄",
+        "运动好时机"
+      ],
+      "hl_cn": "运动好时机",
+      "ch": "骨齡能告訴你，孩子現在最適合哪種運動。",
+      "cap_ch": [
+        "骨齡",
+        "運動好時機"
+      ],
+      "hl_ch": "運動好時機"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이 맞춤 운동 타이밍, 지금 바로 확인해 보십시오.",
+      "cap_ko": [
+        "맞춤 운동 타이밍",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กจังหวะออกกำลังที่เหมาะกับลูกวันนี้",
+      "cap_th": [
+        "จังหวะที่เหมาะ",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra thời điểm tập phù hợp cho con ngay hôm nay.",
+      "cap_vi": [
+        "Thời điểm phù hợp",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check your child's perfect exercise timing today.",
+      "cap_en": [
+        "Exercise timing",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查最适合孩子的运动时机吧。",
+      "cap_cn": [
+        "运动时机",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查最適合孩子的運動時機吧。",
+      "cap_ch": [
+        "運動時機",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}

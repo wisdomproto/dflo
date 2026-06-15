@@ -17,4 +17,7 @@ public/videos/*-panel.mp4
 /shorts/
 /public/footage/
 /public/audio/narration/
+# 쇼츠 TTS 클론음성 wav (gen-tts-short 재생성 가능) + 다운로드/생성 이미지(인포그래픽 등, R2 원본)
+/public/audio/shorts/
+/public/images/*/
 scripts/_tmp-*.txt

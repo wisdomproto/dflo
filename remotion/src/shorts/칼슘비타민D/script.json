@@ -1,0 +1,538 @@
+{
+  "slug": "칼슘비타민D",
+  "fps": 30,
+  "title": "칼슘만 먹이면 새는 이유 — 비타민D가 열쇠",
+  "_note": "자동 생성(storyboard-to-reel 28). insertLabels x/y 는 실제 이미지 보고 보정 필요.",
+  "headerStyle": {
+    "markBg": "#E0568A",
+    "markFg": "#ffffff"
+  },
+  "header": {
+    "ko": {
+      "top": "우리 아이 키",
+      "mark": "칼슘만으론 부족?"
+    }
+  },
+  "cta": {
+    "ko": "지금 바로 확인하세요",
+    "th": "เช็กเลยวันนี้",
+    "vi": "Kiểm tra ngay hôm nay",
+    "en": "Check it today",
+    "cn": "现在就来查查吧",
+    "ch": "現在就來查查吧"
+  },
+  "chunks": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.5,
+      "ko": "칼슘 열심히 먹이는데 왜 안 크냐고요? 칼슘은 혼자선 절반도 일을 못 합니다.",
+      "cap_ko": [
+        "칼슘만 열심히?",
+        "혼자선 절반"
+      ],
+      "hl_ko": "혼자선 절반",
+      "th": "ให้ลูกกินแคลเซียมตลอด แต่ทำไมไม่สูง? แคลเซียมลำพังทำงานไม่ถึงครึ่ง",
+      "cap_th": [
+        "กินแคลเซียมอย่างเดียว?",
+        "ลำพังไม่พอ"
+      ],
+      "hl_th": "ลำพังไม่พอ",
+      "vi": "Cho con uống canxi đều mà sao không cao? Canxi một mình làm chưa được nửa việc.",
+      "cap_vi": [
+        "Chỉ uống canxi?",
+        "Một mình chưa đủ"
+      ],
+      "hl_vi": "Một mình chưa đủ",
+      "en": "Loading up on calcium but still not growing? Calcium alone does half the job.",
+      "cap_en": [
+        "Calcium alone?",
+        "Only half"
+      ],
+      "hl_en": "Only half",
+      "cn": "一直给孩子补钙怎么还不长高？钙单打独斗连一半都做不到。",
+      "cap_cn": [
+        "只补钙？",
+        "单独不够"
+      ],
+      "hl_cn": "单独不够",
+      "ch": "一直給孩子補鈣怎麼還不長高？鈣單打獨鬥連一半都做不到。",
+      "cap_ch": [
+        "只補鈣？",
+        "單獨不夠"
+      ],
+      "hl_ch": "單獨不夠"
+    },
+    {
+      "id": "c2",
+      "start": 3.5,
+      "end": 7,
+      "ko": "비타민 디가 없으면, 먹은 칼슘이 그냥 몸 밖으로 빠져나갑니다.",
+      "cap_ko": [
+        "비타민D 없으면",
+        "칼슘이 샌다"
+      ],
+      "hl_ko": "칼슘이 샌다",
+      "th": "ถ้าไม่มีวิตามินดี แคลเซียมที่กินเข้าไปก็แค่ถูกขับออก",
+      "cap_th": [
+        "ไม่มีวิตามินดี",
+        "แคลเซียมรั่ว"
+      ],
+      "hl_th": "แคลเซียมรั่ว",
+      "vi": "Thiếu vitamin D, canxi ăn vào chỉ bị thải ra ngoài.",
+      "cap_vi": [
+        "Thiếu vitamin D",
+        "canxi thất thoát"
+      ],
+      "hl_vi": "canxi thất thoát",
+      "en": "Without vitamin D, the calcium you eat just washes back out.",
+      "cap_en": [
+        "No vitamin D",
+        "calcium leaks out"
+      ],
+      "hl_en": "calcium leaks out",
+      "cn": "没有维生素D，吃进去的钙就只是被排出去。",
+      "cap_cn": [
+        "没有维D",
+        "钙就流走"
+      ],
+      "hl_cn": "钙就流走",
+      "ch": "沒有維生素D，吃進去的鈣就只是被排出去。",
+      "cap_ch": [
+        "沒有維D",
+        "鈣就流走"
+      ],
+      "hl_ch": "鈣就流走"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 11,
+      "ko": "칼슘은 뼈와 치아의 주재료입니다. 골밀도를 높여 키 클 토대를 만듭니다.",
+      "cap_ko": [
+        "칼슘은",
+        "뼈의 재료"
+      ],
+      "hl_ko": "뼈의 재료",
+      "th": "แคลเซียมเป็นวัตถุดิบหลักของกระดูกและฟัน สร้างรากฐานให้สูง",
+      "cap_th": [
+        "แคลเซียมคือ",
+        "วัตถุดิบกระดูก"
+      ],
+      "hl_th": "วัตถุดิบกระดูก",
+      "vi": "Canxi là vật liệu chính của xương và răng, tạo nền để cao lên.",
+      "cap_vi": [
+        "Canxi là",
+        "vật liệu xương"
+      ],
+      "hl_vi": "vật liệu xương",
+      "en": "Calcium is the main material for bone and teeth — the base to grow on.",
+      "cap_en": [
+        "Calcium is",
+        "bone material"
+      ],
+      "hl_en": "bone material",
+      "cn": "钙是骨骼和牙齿的主要材料，打下长高的根基。",
+      "cap_cn": [
+        "钙是",
+        "造骨材料"
+      ],
+      "hl_cn": "造骨材料",
+      "ch": "鈣是骨骼和牙齒的主要材料，打下長高的根基。",
+      "cap_ch": [
+        "鈣是",
+        "造骨材料"
+      ],
+      "hl_ch": "造骨材料",
+      "insert": "images/칼슘비타민D/ig1.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.45,
+          "size": 26,
+          "weight": 900,
+          "color": "#0d9488",
+          "ko": "칼슘 블록",
+          "en": "Calcium blocks",
+          "th": "บล็อกแคลเซียม"
+        },
+        {
+          "x": 0.5,
+          "y": 0.92,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "튼튼한 토대",
+          "en": "Strong base",
+          "th": "รากฐานแข็งแรง"
+        }
+      ]
+    },
+    {
+      "id": "c4",
+      "start": 11,
+      "end": 14.5,
+      "ko": "문제는 흡수입니다. 아무리 많이 먹어도 장에서 못 들어가면 소용없습니다.",
+      "cap_ko": [
+        "많이 먹어도",
+        "흡수가 문제"
+      ],
+      "hl_ko": "흡수가 문제",
+      "th": "ปัญหาคือการดูดซึม กินมากแค่ไหนถ้าลำไส้ไม่รับก็ไร้ผล",
+      "cap_th": [
+        "กินมากเท่าไร",
+        "อยู่ที่ดูดซึม"
+      ],
+      "hl_th": "อยู่ที่ดูดซึม",
+      "vi": "Vấn đề là hấp thu. Ăn nhiều mà ruột không nhận thì vô ích.",
+      "cap_vi": [
+        "Ăn nhiều mấy",
+        "vẫn kẹt hấp thu"
+      ],
+      "hl_vi": "kẹt hấp thu",
+      "en": "The catch is absorption. Eat all you want — if the gut can't take it in, it's wasted.",
+      "cap_en": [
+        "No matter how much",
+        "absorption is key"
+      ],
+      "hl_en": "absorption is key",
+      "cn": "问题在吸收。吃再多，肠道进不去也是白费。",
+      "cap_cn": [
+        "吃再多",
+        "关键在吸收"
+      ],
+      "hl_cn": "关键在吸收",
+      "ch": "問題在吸收。吃再多，腸道進不去也是白費。",
+      "cap_ch": [
+        "吃再多",
+        "關鍵在吸收"
+      ],
+      "hl_ch": "關鍵在吸收",
+      "insert": "images/칼슘비타민D/ig2.png",
+      "insertLabels": [
+        {
+          "x": 0.5,
+          "y": 0.4,
+          "size": 26,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "흡수 차단",
+          "en": "Blocked",
+          "th": "ถูกปิดกั้น"
+        },
+        {
+          "x": 0.25,
+          "y": 0.82,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "칼슘 배출 ↓",
+          "en": "Calcium out ↓",
+          "th": "แคลเซียมหลุด ↓"
+        }
+      ]
+    },
+    {
+      "id": "c5",
+      "start": 14.5,
+      "end": 18.5,
+      "ko": "여기서 비타민 디가 열쇠입니다. 장에서 칼슘 흡수를 열고, 뼈에 쌓이게 도와줍니다.",
+      "cap_ko": [
+        "비타민D가",
+        "칼슘의 열쇠"
+      ],
+      "hl_ko": "칼슘의 열쇠",
+      "th": "ตรงนี้วิตามินดีคือกุญแจ เปิดการดูดซึมในลำไส้ และพาแคลเซียมเข้ากระดูก",
+      "cap_th": [
+        "วิตามินดีคือ",
+        "กุญแจแคลเซียม"
+      ],
+      "hl_th": "กุญแจแคลเซียม",
+      "vi": "Đây là lúc vitamin D vào cuộc: mở hấp thu ở ruột, đưa canxi vào xương.",
+      "cap_vi": [
+        "Vitamin D là",
+        "chìa khóa canxi"
+      ],
+      "hl_vi": "chìa khóa canxi",
+      "en": "Here's the key: vitamin D. It opens absorption in the gut and locks calcium into bone.",
+      "cap_en": [
+        "Vitamin D is",
+        "the calcium key"
+      ],
+      "hl_en": "the calcium key",
+      "cn": "这里维生素D就是钥匙：打开肠道吸收，把钙送进骨头。",
+      "cap_cn": [
+        "维生素D是",
+        "钙的钥匙"
+      ],
+      "hl_cn": "钙的钥匙",
+      "ch": "這裡維生素D就是鑰匙：打開腸道吸收，把鈣送進骨頭。",
+      "cap_ch": [
+        "維生素D是",
+        "鈣的鑰匙"
+      ],
+      "hl_ch": "鈣的鑰匙"
+    },
+    {
+      "id": "c6",
+      "start": 18.5,
+      "end": 22,
+      "ko": "그래서 칼슘과 비타민 디는 짝꿍입니다. 둘이 함께여야 뼈가 진짜 단단해집니다.",
+      "cap_ko": [
+        "칼슘＋비타민D",
+        "함께라야 흡수"
+      ],
+      "hl_ko": "함께라야 흡수",
+      "th": "แคลเซียมกับวิตามินดีจึงเป็นคู่หู ต้องอยู่ด้วยกันกระดูกถึงแข็งจริง",
+      "cap_th": [
+        "แคลเซียม＋วิตามินดี",
+        "คู่หูดูดซึม"
+      ],
+      "hl_th": "คู่หูดูดซึม",
+      "vi": "Nên canxi và vitamin D là cặp đôi — có nhau xương mới chắc thật sự.",
+      "cap_vi": [
+        "Canxi＋vitamin D",
+        "cặp đôi hấp thu"
+      ],
+      "hl_vi": "cặp đôi hấp thu",
+      "en": "So calcium and vitamin D are partners — together they make bone truly strong.",
+      "cap_en": [
+        "Calcium＋vitamin D",
+        "a team for absorption"
+      ],
+      "hl_en": "a team for absorption",
+      "cn": "所以钙和维生素D是搭档，在一起骨头才真正结实。",
+      "cap_cn": [
+        "钙＋维生素D",
+        "搭档才吸收"
+      ],
+      "hl_cn": "搭档才吸收",
+      "ch": "所以鈣和維生素D是搭檔，在一起骨頭才真正結實。",
+      "cap_ch": [
+        "鈣＋維生素D",
+        "搭檔才吸收"
+      ],
+      "hl_ch": "搭檔才吸收",
+      "insert": "images/칼슘비타민D/ig3.png",
+      "insertLabels": [
+        {
+          "x": 0.2,
+          "y": 0.78,
+          "size": 26,
+          "weight": 900,
+          "color": "#5b3fa6",
+          "ko": "칼슘",
+          "en": "Calcium",
+          "th": "แคลเซียม"
+        },
+        {
+          "x": 0.8,
+          "y": 0.78,
+          "size": 26,
+          "weight": 900,
+          "color": "#d97706",
+          "ko": "비타민D",
+          "en": "Vitamin D",
+          "th": "วิตามินดี"
+        },
+        {
+          "x": 0.5,
+          "y": 0.12,
+          "size": 24,
+          "weight": 800,
+          "color": "#0d9488",
+          "ko": "뼈로 흡수 ↑",
+          "en": "Into bone ↑",
+          "th": "เข้ากระดูก ↑"
+        }
+      ]
+    },
+    {
+      "id": "c7",
+      "start": 22,
+      "end": 26,
+      "ko": "비타민 디는 햇볕이 최고입니다. 하루 15분에서 20분만 쬐어도 충분히 만들어집니다.",
+      "cap_ko": [
+        "햇볕 15~20분",
+        "비타민D 충전"
+      ],
+      "hl_ko": "햇볕 15~20분",
+      "th": "วิตามินดีได้ดีที่สุดจากแสงแดด แค่วันละ 15–20 นาทีก็พอ",
+      "cap_th": [
+        "แดด 15–20 นาที",
+        "เติมวิตามินดี"
+      ],
+      "hl_th": "แดด 15–20 นาที",
+      "vi": "Vitamin D tốt nhất từ nắng — chỉ 15 đến 20 phút mỗi ngày là đủ.",
+      "cap_vi": [
+        "Nắng 15–20 phút",
+        "nạp vitamin D"
+      ],
+      "hl_vi": "Nắng 15–20 phút",
+      "en": "Sunlight makes vitamin D best — just 15 to 20 minutes a day is enough.",
+      "cap_en": [
+        "Sun 15–20 min",
+        "tops up vitamin D"
+      ],
+      "hl_en": "Sun 15–20 min",
+      "cn": "维生素D靠晒太阳最好，每天15到20分钟就够了。",
+      "cap_cn": [
+        "晒太阳15~20分",
+        "补足维生素D"
+      ],
+      "hl_cn": "晒太阳15~20分",
+      "ch": "維生素D靠曬太陽最好，每天15到20分鐘就夠了。",
+      "cap_ch": [
+        "曬太陽15~20分",
+        "補足維生素D"
+      ],
+      "hl_ch": "曬太陽15~20分"
+    },
+    {
+      "id": "c8",
+      "start": 26,
+      "end": 30,
+      "ko": "식단으론 우유·멸치에, 비타민 디 많은 연어·버섯·달걀노른자를 함께 챙겨주십시오.",
+      "cap_ko": [
+        "우유·멸치 ＋",
+        "연어·버섯·노른자"
+      ],
+      "hl_ko": "연어·버섯·노른자",
+      "th": "มื้ออาหารใส่นม ปลาเล็ก คู่กับแซลมอน เห็ด ไข่แดงที่มีวิตามินดีสูง",
+      "cap_th": [
+        "นม·ปลาเล็ก ＋",
+        "แซลมอน·เห็ด·ไข่แดง"
+      ],
+      "hl_th": "แซลมอน·เห็ด·ไข่แดง",
+      "vi": "Bữa ăn thêm sữa, cá nhỏ cùng cá hồi, nấm, lòng đỏ trứng giàu vitamin D.",
+      "cap_vi": [
+        "Sữa·cá nhỏ ＋",
+        "cá hồi·nấm·lòng đỏ"
+      ],
+      "hl_vi": "cá hồi·nấm·lòng đỏ",
+      "en": "On the plate: milk and small fish plus vitamin-D-rich salmon, mushrooms, egg yolk.",
+      "cap_en": [
+        "Milk·fish ＋",
+        "salmon·mushroom·yolk"
+      ],
+      "hl_en": "salmon·mushroom·yolk",
+      "cn": "饮食上牛奶、小鱼，再配富含维D的三文鱼、蘑菇、蛋黄。",
+      "cap_cn": [
+        "牛奶·小鱼 ＋",
+        "三文鱼·蘑菇·蛋黄"
+      ],
+      "hl_cn": "三文鱼·蘑菇·蛋黄",
+      "ch": "飲食上牛奶、小魚，再配富含維D的鮭魚、蘑菇、蛋黃。",
+      "cap_ch": [
+        "牛奶·小魚 ＋",
+        "鮭魚·蘑菇·蛋黃"
+      ],
+      "hl_ch": "鮭魚·蘑菇·蛋黃",
+      "insert": "images/칼슘비타민D/ig4.png",
+      "insertLabels": [
+        {
+          "x": 0.27,
+          "y": 0.92,
+          "size": 26,
+          "weight": 800,
+          "color": "#5b3fa6",
+          "ko": "칼슘 식품",
+          "en": "Calcium foods",
+          "th": "อาหารแคลเซียม"
+        },
+        {
+          "x": 0.72,
+          "y": 0.92,
+          "size": 26,
+          "weight": 800,
+          "color": "#d97706",
+          "ko": "비타민D 식품",
+          "en": "Vitamin D foods",
+          "th": "อาหารวิตามินดี"
+        }
+      ]
+    },
+    {
+      "id": "c9",
+      "start": 30,
+      "end": 33,
+      "ko": "영양만으론 부족합니다. 충분한 수면, 운동, 그리고 우리 아이 맞춤 관리가 함께 가야 합니다.",
+      "cap_ko": [
+        "영양 ＋ 수면·운동",
+        "맞춤 관리"
+      ],
+      "hl_ko": "맞춤 관리",
+      "th": "แค่สารอาหารไม่พอ ต้องมีนอนพอ ออกกำลังกาย และดูแลเฉพาะลูกด้วย",
+      "cap_th": [
+        "โภชนาการ ＋ นอน·ออกกำลัง",
+        "ดูแลเฉพาะคน"
+      ],
+      "hl_th": "ดูแลเฉพาะคน",
+      "vi": "Dinh dưỡng thôi chưa đủ — cần ngủ đủ, vận động, và chăm sóc riêng cho con.",
+      "cap_vi": [
+        "Dinh dưỡng ＋ ngủ·vận động",
+        "chăm sóc riêng"
+      ],
+      "hl_vi": "chăm sóc riêng",
+      "en": "Nutrition alone isn't enough — add good sleep, exercise, and care tailored to your child.",
+      "cap_en": [
+        "Nutrition ＋ sleep·move",
+        "tailored care"
+      ],
+      "hl_en": "tailored care",
+      "cn": "光靠营养还不够，要加上充足睡眠、运动和适合孩子的个性化管理。",
+      "cap_cn": [
+        "营养 ＋ 睡眠·运动",
+        "个性化管理"
+      ],
+      "hl_cn": "个性化管理",
+      "ch": "光靠營養還不夠，要加上充足睡眠、運動和適合孩子的個人化管理。",
+      "cap_ch": [
+        "營養 ＋ 睡眠·運動",
+        "個人化管理"
+      ],
+      "hl_ch": "個人化管理"
+    },
+    {
+      "id": "c10",
+      "start": 33,
+      "end": 35,
+      "ko": "우리 아이에게 뭐가 부족한지, 성장 골든타임이 얼마나 남았는지 지금 확인해 보십시오.",
+      "cap_ko": [
+        "뭐가 부족한지",
+        "지금 확인"
+      ],
+      "hl_ko": "지금 확인",
+      "th": "เช็กวันนี้ว่าลูกขาดอะไร และเหลือช่วงเวลาทองอีกเท่าไร",
+      "cap_th": [
+        "ลูกขาดอะไร",
+        "เช็กวันนี้"
+      ],
+      "hl_th": "เช็กวันนี้",
+      "vi": "Kiểm tra ngay hôm nay con đang thiếu gì và còn bao nhiêu thời điểm vàng.",
+      "cap_vi": [
+        "Con thiếu gì",
+        "kiểm tra ngay"
+      ],
+      "hl_vi": "kiểm tra ngay",
+      "en": "Check today what your child is missing and how much golden time is left.",
+      "cap_en": [
+        "What's missing",
+        "check today"
+      ],
+      "hl_en": "check today",
+      "cn": "现在就查查孩子缺什么，还剩多少成长黄金期。",
+      "cap_cn": [
+        "缺什么",
+        "现在就查"
+      ],
+      "hl_cn": "现在就查",
+      "ch": "現在就查查孩子缺什麼，還剩多少成長黃金期。",
+      "cap_ch": [
+        "缺什麼",
+        "現在就查"
+      ],
+      "hl_ch": "現在就查"
+    }
+  ]
+}
