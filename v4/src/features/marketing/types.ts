@@ -182,6 +182,7 @@ export interface ReelScriptDoc {
     header: Record<string, { top: string; mark: string }>;
     headerStyle?: { markBg?: string; markFg?: string };
     cta?: Record<string, string>;
+    twoTrack?: boolean;
     chunks: ReelChunk[];
   } & Record<string, unknown>; // title/_note/fps 등 미편집 필드 보존
 }
