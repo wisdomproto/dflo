@@ -5,7 +5,8 @@ import { useEffect, useRef } from 'react';
 import type { RefObject } from 'react';
 import type { PlayerRef } from '@remotion/player';
 import type { ReelChunk, ReelLang, ReelRuntimeDoc, ReelStickerItem } from '../../../types';
-import { chunkFracRange, laneXToFrame, stickerTimelineRange, pseudoWaveform, chunkTtsDirty } from '../../../utils/reelEditor';
+import { chunkFracRange, laneXToFrame, pseudoWaveform, chunkTtsDirty } from '../../../utils/reelEditor';
+import { StickerClip } from './StickerClip';
 
 const ACCENT = '#4A2D6B';
 const GUTTER = 64;
@@ -21,12 +22,15 @@ interface Props {
   language: ReelLang;
   runtime: ReelRuntimeDoc | null;
   hasPreview: boolean; // 오디오 레인: 파형 vs "음성 미생성"
+  onCommitStickers: (chunkIdx: number, stickers: ReelStickerItem[]) => void; // 스티커 시간 드래그/트림 커밋(공간은 CanvasDragLayer 별도)
 }
 
 const pct = (f: number) => `${f * 100}%`;
 
-export function ReelTimeline({ playerRef, chunks, durs, starts, total, selected, onSelectChunk, language, runtime, hasPreview }: Props) {
+export function ReelTimeline({ playerRef, chunks, durs, starts, total, selected, onSelectChunk, language, runtime, hasPreview, onCommitStickers }: Props) {
   const playheadRef = useRef<HTMLDivElement>(null);
+  const stickerLaneRef = useRef<HTMLDivElement>(null);
+  const laneWidthPx = () => stickerLaneRef.current?.getBoundingClientRect().width ?? 0;
 
   // 플레이헤드 — frameupdate(재생/시킹 모두 발화)로 left% 만 imperative 갱신.
   useEffect(() => {
@@ -108,22 +112,25 @@ export function ReelTimeline({ playerRef, chunks, durs, starts, total, selected,
         })}
       </Row>
 
-      {/* ✨ 스티커 — 청크별 stickers, fromFrac/durFrac 위치. P1: 읽기전용(클릭=선택), 드래그는 P2 */}
-      <Row icon="ti-mood-smile" label="스티커">
-        {chunks.flatMap((c, i) => {
-          const list = Array.isArray(c.stickers) ? (c.stickers as ReelStickerItem[]) : [];
-          return list.map((s) => {
-            const { leftFrac, widthFrac } = stickerTimelineRange(s, starts[i], durs[i], total);
-            return (
-              <button key={s.id} type="button" onClick={onClipClick(i)}
-                className="absolute top-0 h-full overflow-hidden rounded border border-pink-400 bg-pink-50 text-[9px] text-pink-700"
-                style={{ left: pct(leftFrac), width: pct(widthFrac) }} title={`스티커 (${c.id})`}>
-                <span className="flex h-full items-center justify-center truncate">✨</span>
-              </button>
-            );
-          });
-        })}
-      </Row>
+      {/* ✨ 스티커 — 청크별 stickers, fromFrac/durFrac 위치. 본체 드래그=이동·양끝=트림(StickerClip). 레인 셀에 data-lane+ref(포인터 px 환산) */}
+      <div className="grid h-[30px] items-center" style={{ gridTemplateColumns: `${GUTTER}px 1fr` }}>
+        <div className="flex items-center gap-1 pl-2 text-[11px] text-gray-500"><i className="ti ti-mood-smile text-[15px]" aria-hidden />스티커</div>
+        <div ref={stickerLaneRef} data-lane className="relative h-[22px] cursor-pointer" onClick={seekToPointer}>
+          {chunks.flatMap((c, i) => {
+            const list = Array.isArray(c.stickers) ? (c.stickers as ReelStickerItem[]) : [];
+            const { leftFrac, widthFrac } = chunkFracRange(i, starts, durs, total);
+            return list.map((s, sIdx) => (
+              <StickerClip key={s.id} sticker={s}
+                chunkLeftFrac={leftFrac} chunkWidthFrac={widthFrac} laneWidthPx={laneWidthPx}
+                onSelect={() => onSelectChunk(i)}
+                onCommit={(next) => {
+                  const cur = (Array.isArray(c.stickers) ? c.stickers : []) as ReelStickerItem[];
+                  onCommitStickers(i, cur.map((x, k) => (k === sIdx ? { ...x, fromFrac: next.fromFrac, durFrac: next.durFrac } : x)));
+                }} />
+            ));
+          })}
+        </div>
+      </div>
 
       {/* 🔊 오디오 — 청크당 파형(or placeholder) + BGM 전체폭 */}
       <Row icon="ti-volume" label="오디오">

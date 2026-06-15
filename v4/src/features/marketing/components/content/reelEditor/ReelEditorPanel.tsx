@@ -179,6 +179,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
         language={lang}
         runtime={runtime}
         hasPreview={!!preview}
+        onCommitStickers={(i, stickers) => patchSelChunk(i, { stickers })}
       />
     </div>
   );
