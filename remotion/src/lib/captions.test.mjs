@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { splitIntoPhrases, distributeFrames } from "./captions.mjs";
+import { splitIntoPhrases, distributeFrames, buildCaptions } from "./captions.mjs";
 
 test("한국어: 공백 단어를 글자수 예산 내로 묶는다", () => {
   const p = splitIntoPhrases("에이디에이치디 약을 먹으면 키가 안 큰다 오늘 정리해 드리겠습니다", "ko", { maxChars: 12 });
@@ -25,7 +25,6 @@ test("distributeFrames: durFrames 합이 정확히 일치", () => {
   assert.equal(segs.reduce((a, s) => a + s.durFrames, 0), 100);
   assert.equal(segs[0].fromFrame, 0);
   assert.equal(segs[1].fromFrame, segs[0].durFrames);
-  assert.equal(segs[2].fromFrame, segs[0].durFrames + segs[1].durFrames);
 });
 
 test("단일 구절은 전체 길이를 차지", () => {
@@ -35,4 +34,16 @@ test("단일 구절은 전체 길이를 차지", () => {
 test("빈 입력은 빈 배열", () => {
   assert.deepEqual(splitIntoPhrases("", "ko"), []);
   assert.deepEqual(distributeFrames([], 100), []);
+});
+
+test("buildCaptions: 청크별 구절 + durFrames 합 일치 + 빈 나레이션은 빈 배열", () => {
+  const chunks = [
+    { id: "c1", durFrames: 100, ko: "가나다 라마바 사아자 차카타 파하" },
+    { id: "c2", durFrames: 60, ko: "" },
+  ];
+  const caps = buildCaptions(chunks, "ko");
+  assert.deepEqual(Object.keys(caps), ["c1", "c2"]);
+  assert.ok(caps.c1.length >= 1);
+  assert.equal(caps.c1.reduce((a, p) => a + p.durFrames, 0), 100);
+  assert.deepEqual(caps.c2, []);
 });

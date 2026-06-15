@@ -1,4 +1,4 @@
-// 청크 나레이션 → 카라오케 자막 구절. 순수 함수(렌더러·CLI 공용).
+// 청크 나레이션 → 카라오케 자막 구절. 순수 함수(컴포지션 내부계산 공용).
 // 한국어/태국어/영어/베트남어 = 공백 토큰화, 중국어(cn/ch) = 글자 토큰화.
 const CJK = new Set(["cn", "ch"]);
 const SENT_END = /[。！？!?．.…]$/;
@@ -49,6 +49,16 @@ export function distributeFrames(phrases, durFrames) {
       : Math.max(1, Math.floor((weights[i] / total) * durFrames));
     out.push({ text: phrases[i], fromFrame: acc, durFrames: Math.max(1, d) });
     acc += out[i].durFrames;
+  }
+  return out;
+}
+
+// 청크 배열(=timing 병합본, durFrames + 언어별 나레이션 보유) → { [id]: 구절[] }.
+// 나레이션 없는 청크는 빈 배열. 컴포지션이 렌더 시점에 호출(워커·프리뷰·standalone 공용).
+export function buildCaptions(chunks, lang) {
+  const out = {};
+  for (const c of chunks) {
+    out[c.id] = distributeFrames(splitIntoPhrases(c[lang] ?? "", lang), c.durFrames);
   }
   return out;
 }
