@@ -1,5 +1,7 @@
 # 릴 에디터 멀티트랙 타임라인 UI 구현 플랜
 
+> **상태: ✅ 구현 완료 (2026-06-14)** — P1(ReelTimeline·플레이헤드)·P2(StickerClip 시간 드래그/트림) 전부. 4커밋(9eb004f·9c03f3f·4534378·67dddfb), v4 tsc -b 0·드래그 4케이스 PASS·ChunkStrip 삭제. 브라우저 수동 검증만 사용자 몫.
+
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 릴 라이트 에디터 하단의 단순 `ChunkStrip`을 캡컷류 **멀티트랙 타임라인**(영상/자막/인서트/스티커/오디오 5트랙 + 공유 시간축 + 플레이헤드)으로 교체하고, 스티커의 시간(등장/길이)을 타임라인에서 직접 편집한다.
