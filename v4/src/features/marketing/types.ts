@@ -168,6 +168,7 @@ export interface ReelStickerItem {
 export type ReelInsertLabel = {
   x: number; y: number;        // 인서트 패널 존 내 분수 (캔버스 분수와 다른 좌표계!)
   size?: number; weight?: number; color?: string; pill?: string;
+  font?: 'kr' | 'thai' | 'inter' | 'sc' | 'tc'; stroke?: string; shadow?: boolean;
 } & Partial<Record<ReelLang, string>>;
 // 청크: 언어 필드(ko, cap_ko, hl_ko, …)가 동적 키라 Record 합성. start/end 등 기존 필드 라운드트립 보존.
 export type ReelChunk = {
