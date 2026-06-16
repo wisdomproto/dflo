@@ -20,6 +20,13 @@ export function chunkStarts(durs: number[]): number[] {
   return out;
 }
 export const totalFrames = (durs: number[]): number => durs.reduce((a, b) => a + b, 0);
+/** 플레이헤드 프레임이 속한 청크 인덱스 — starts[i] ≤ frame 인 마지막 i (재생 중 선택 추종용). */
+export function chunkIndexAtFrame(starts: number[], frame: number): number {
+  for (let i = starts.length - 1; i >= 0; i--) {
+    if (frame >= starts[i]) return i;
+  }
+  return 0;
+}
 
 export interface RectLike { left: number; top: number; width: number; height: number }
 /** 포인터 px → 전체 캔버스 분수 (스티커 좌표계). 래퍼는 aspect-ratio 9/16 고정 전제. */

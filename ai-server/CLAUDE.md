@@ -34,6 +34,9 @@ middleware/
 ## 치료사례 원장 스토리 저장 (로컬 내부 도구)
 - `routes/caseStory.ts` (`app.use('/api/case-story')`, marketingAuth 없이 자체 `x-admin-pin`=`WEBSITE_ADMIN_PIN`||8054): `GET /:chart`(조회) + `POST /`(저장) → `cases/case_stories.json`(src/routes 기준 `../../../cases`) read-merge-write. 치료사례 후보 페이지(`case-candidates.html`)의 🩺 원장 스토리 인라인 편집·저장용. PHI 내부 도구라 **dev(localhost) 전용**(prod Railway엔 cases 폴더 없음). gen 재생성 시 반영. 상세 memory `case_candidates_page.md`.
 
+## 치료사례 후보 전체 상세(PHI) — prod admin (2026-06-16)
+- gen 산출 `case-candidates.html`(gitignore)을 `case_candidates_doc` 테이블(migration 058+059)에 `gen_case_profiles.mjs uploadCaseDoc`(service_role REST upsert)로 적재 → **v4 `/admin/cases` 가 anon Supabase 클라이언트로 직접 읽음**(기존 admin 환자 페이지와 동일 모델). **ai-server 경유 안 함** — 처음엔 `routes/caseCandidates.ts` 엔드포인트로 짰다가 prod service_role 미설정 401 → 폐기. ai-server 는 write(gen, 로컬 service_role)만 관여. 상세 memory `case_candidates_page.md`.
+
 ## Endpoints
 | Method | Path | Description | Status |
 |--------|------|-------------|--------|

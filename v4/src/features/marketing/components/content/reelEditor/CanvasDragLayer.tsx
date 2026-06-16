@@ -105,7 +105,9 @@ export function CanvasDragLayer({ chunk, language, selectedIdx, onSelectLabel, o
   return (
     // 레이어는 클릭 투과(Player 컨트롤 보존), 핸들만 pointer-events:auto.
     <div ref={layerRef} className="pointer-events-none absolute inset-0">
-      {/* 라벨 — 인서트 패널 존 좌표계 */}
+      {/* 라벨 — 인서트 패널 존 좌표계.
+          실제 라벨 텍스트는 Player(PresenterShort)가 이미 같은 좌표에 WYSIWYG 렌더 → 핸들은 드래그 외곽선만(텍스트 투명)
+          으로 이중 표시 방지. 빈 라벨(렌더 안 됨)만 '라벨' 플레이스홀더를 보여 잡을 수 있게 함. */}
       {insert && labels.map((l, i) => {
         const txt = (typeof l[language] === 'string' ? (l[language] as string) : '') || (l.ko ?? '');
         return (
@@ -117,13 +119,14 @@ export function CanvasDragLayer({ chunk, language, selectedIdx, onSelectLabel, o
             className={
               'pointer-events-auto absolute flex max-w-[60%] cursor-move select-none items-center justify-center rounded px-1.5 py-0.5 text-center text-[10px] font-semibold leading-tight ' +
               (i === selectedIdx
-                ? 'border-2 border-cyan-400 bg-cyan-400/20 text-cyan-800'
-                : 'border border-dashed border-fuchsia-400/90 bg-fuchsia-500/10 text-fuchsia-700')
+                ? 'border-2 border-cyan-400 bg-cyan-400/20'
+                : 'border border-dashed border-fuchsia-400/90 bg-fuchsia-500/5')
             }
             style={{
               left: `${l.x * 100}%`,
               top: `${(PANEL_TOP_FRAC + l.y * PANEL_H_FRAC) * 100}%`,
               transform: 'translate(-50%,-50%)',
+              color: txt ? 'transparent' : '#a21caf', // 실제 라벨 있으면 핸들 텍스트 숨김(이중 방지), 빈 라벨만 표시
               touchAction: 'none', // 모바일 스크롤 제스처가 드래그 가로채지 않게
             }}
           >

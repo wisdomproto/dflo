@@ -22,9 +22,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      // 1순위 remotion 실소스(로컬), 부재 시 reel-stubs 폴백 — Railway 빌드 컨텍스트(root dir=v4)
-      // 에는 ../remotion 이 없어 폴백이 없으면 TS2307 로 배포 빌드가 깨진다.
-      "@reel/*": ["../remotion/src/*", "./src/reel-stubs/*"]
+      // 1순위 remotion 실소스(로컬), 부재 시 커밋된 reel-vendor(실제 컴포지션) → 최종 reel-stubs(안내).
+      // Railway 빌드 컨텍스트(root dir=v4)엔 ../remotion 이 없어 vendor 가 실 프리뷰를 살린다(폐쇄 동일 내용 = 타입 동등).
+      "@reel/*": ["../remotion/src/*", "./reel-vendor/*", "./src/reel-stubs/*"]
     }
   },
   "include": ["src", "../remotion/src/lib", "../remotion/src/shorts/_shared"]

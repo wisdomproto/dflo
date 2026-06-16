@@ -61,6 +61,7 @@ const AdminBoneAgePage = lazy(() => import('@/pages/admin/AdminBoneAgePage'));
 const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
 const AdminDiagramPreviewPage = lazy(() => import('@/pages/admin/AdminDiagramPreviewPage'));
 const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
+const CaseCandidatesAdminPage = lazy(() => import('@/pages/admin/CaseCandidatesAdminPage'));
 const AdminIntakePage = lazy(() => import('@/pages/admin/AdminIntakePage'));
 const AdminConsultingPage = lazy(() => import('@/pages/admin/AdminConsultingPage'));
 const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
@@ -624,6 +625,14 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <AdminDiagramPreviewPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/cases',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <CaseCandidatesAdminPage />
               </Suspense>
             ),
           },

@@ -33,7 +33,9 @@ const Comp: React.FC<{ doc: ReelScriptDoc; timing: ReelTimingEntry[]; lang: stri
 
 const PresenterBridge = forwardRef<PlayerRef, Props>(function PresenterBridge({ doc, timing, lang, assets, durationInFrames }, ref) {
   return (
-    <div className="w-full" style={{ aspectRatio: '9 / 16' }}> {/* 레터박스 방지 — 좌표 환산 전제 */}
+    // 9:16 박스는 부모가 소유(normal=폭기준 / fullscreen=높이기준) → Player 는 부모를 100% 채움.
+    // CanvasDragLayer 가 같은 부모 박스를 inset-0 으로 덮어 좌표 환산 일치(레터박스 0 전제).
+    <div style={{ width: '100%', height: '100%' }}>
       <Player
         ref={ref}
         component={Comp}

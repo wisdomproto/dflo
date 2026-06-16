@@ -2,9 +2,8 @@
 // 데이터는 doc.script.chunks + durs/starts/total + runtime 파생(읽기). 클릭=선택+시킹.
 // 플레이헤드는 PlayerRef frameupdate 를 imperative 로 갱신(리렌더 0). P1: 스티커 칩 읽기전용(드래그는 P2).
 import { useEffect, useRef } from 'react';
-import type { RefObject } from 'react';
 import type { PlayerRef } from '@remotion/player';
-import type { ReelChunk, ReelLang, ReelRuntimeDoc, ReelStickerItem } from '../../../types';
+import type { ReelChunk, ReelInsertLabel, ReelLang, ReelRuntimeDoc, ReelStickerItem } from '../../../types';
 import { chunkFracRange, laneXToFrame, pseudoWaveform, chunkTtsDirty } from '../../../utils/reelEditor';
 import { StickerClip } from './StickerClip';
 
@@ -12,7 +11,7 @@ const ACCENT = '#4A2D6B';
 const GUTTER = 64;
 
 interface Props {
-  playerRef: RefObject<PlayerRef | null>;
+  player: PlayerRef | null; // 인스턴스(ref 아님) — 포털 재마운트 시 effect 재구독 가능하게
   chunks: ReelChunk[];
   durs: number[];
   starts: number[];
@@ -27,32 +26,31 @@ interface Props {
 
 const pct = (f: number) => `${f * 100}%`;
 
-export function ReelTimeline({ playerRef, chunks, durs, starts, total, selected, onSelectChunk, language, runtime, hasPreview, onCommitStickers }: Props) {
+export function ReelTimeline({ player, chunks, durs, starts, total, selected, onSelectChunk, language, runtime, hasPreview, onCommitStickers }: Props) {
   const playheadRef = useRef<HTMLDivElement>(null);
   const stickerLaneRef = useRef<HTMLDivElement>(null);
   const laneWidthPx = () => stickerLaneRef.current?.getBoundingClientRect().width ?? 0;
 
-  // 플레이헤드 — frameupdate(재생/시킹 모두 발화)로 left% 만 imperative 갱신.
+  // 플레이헤드 — frameupdate(재생/시킹 모두 발화)로 left% 만 imperative 갱신. player 바뀌면 재구독.
   useEffect(() => {
-    const p = playerRef.current;
     const head = playheadRef.current;
-    if (!p || !head) return;
+    if (!player || !head) return;
     const onFrame = (e: { detail: { frame: number } }) => {
       head.style.left = total > 0 ? `${Math.min(100, (e.detail.frame / total) * 100)}%` : '0%';
     };
-    p.addEventListener('frameupdate', onFrame);
-    return () => p.removeEventListener('frameupdate', onFrame);
-  }, [playerRef, total]);
+    player.addEventListener('frameupdate', onFrame);
+    return () => player.removeEventListener('frameupdate', onFrame);
+  }, [player, total]);
 
   // 빈 레인 클릭 = 포인터 프레임 시킹(선택 불변). 클립 클릭 = 선택 + 청크 시작 시킹.
   const seekToPointer = (e: React.MouseEvent) => {
     const r = e.currentTarget.getBoundingClientRect();
-    playerRef.current?.seekTo(laneXToFrame(e.clientX - r.left, r.width, total));
+    player?.seekTo(laneXToFrame(e.clientX - r.left, r.width, total));
   };
   const onClipClick = (i: number) => (e: React.MouseEvent) => {
     e.stopPropagation();
     onSelectChunk(i);
-    playerRef.current?.seekTo(starts[i]);
+    player?.seekTo(starts[i]);
   };
 
   // 한 행 = [거터(아이콘+라벨) | 레인]. children 은 레인 안 절대배치 클립들.
@@ -107,6 +105,24 @@ export function ReelTimeline({ playerRef, chunks, durs, starts, total, selected,
               className="absolute top-0 h-full overflow-hidden rounded border border-gray-300 bg-white text-[10px] text-gray-500 hover:border-gray-400"
               style={{ left: pct(leftFrac), width: pct(widthFrac) }} title={`${c.id} 인서트`}>
               <span className="flex h-full items-center justify-center">🖼</span>
+            </button>
+          );
+        })}
+      </Row>
+
+      {/* 🏷 라벨 — insertLabels 있는 청크만. 인서트 패널 위 오버레이라 인서트와 시간 공유(독립 범위 없음) → 읽기전용, 클릭=청크 선택 후 인스펙터/캔버스에서 편집 */}
+      <Row icon="ti-tag" label="라벨">
+        {chunks.map((c, i) => {
+          const labels = Array.isArray(c.insertLabels) ? (c.insertLabels as ReelInsertLabel[]) : [];
+          if (labels.length === 0) return null;
+          const { leftFrac, widthFrac } = chunkFracRange(i, starts, durs, total);
+          const first = labels[0];
+          const txt = (typeof first[language] === 'string' ? (first[language] as string) : '') || (first.ko ?? '') || '라벨';
+          return (
+            <button key={c.id} type="button" onClick={onClipClick(i)}
+              className="absolute top-0 h-full overflow-hidden rounded border border-fuchsia-300 bg-fuchsia-50 text-[10px] text-fuchsia-700 hover:border-fuchsia-400"
+              style={{ left: pct(leftFrac), width: pct(widthFrac) }} title={`${c.id} · 라벨 ${labels.length}개`}>
+              <span className="block truncate px-1">🏷 {labels.length > 1 ? `${labels.length}개` : txt}</span>
             </button>
           );
         })}

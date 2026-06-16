@@ -19,6 +19,8 @@ export interface User {
   name: string;
   phone?: string;
   role: UserRole;
+  /** legacy plaintext password (users 테이블 컬럼). admin 로그인 시 select('*')로 적재 — 서버 재검증용. */
+  password?: string;
   memo?: string;
   created_at: string;
   updated_at: string;

@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { to: '/admin', icon: '📊', label: '대시보드', end: true },
   { to: '/admin/patients', icon: '👥', label: '환자 관리', end: false },
   { to: '/admin/medications', icon: '💊', label: '약품 관리', end: false },
+  { to: '/admin/cases', icon: '🩺', label: '치료사례 후보', end: false },
 ];
 
 // 마케팅 센터 — 사이드바 하단 별도 항목.
