@@ -736,7 +736,7 @@ document.querySelectorAll('.story').forEach(d => {
       });
       if (!r.ok) throw new Error('HTTP ' + r.status);
       d.querySelector('.st-title').textContent = title;
-      d.querySelector('.story-body').innerHTML = story.split(/\n{2,}/).filter(p => p.trim()).map(p => '<p>' + escP(p.trim()) + '</p>').join('');
+      d.querySelector('.story-body').innerHTML = story.split(/\\n{2,}/).filter(p => p.trim()).map(p => '<p>' + escP(p.trim()) + '</p>').join('');
       form.hidden = true; view.hidden = false;
       msg.textContent = '✅ 저장됨';
     } catch (err) {
