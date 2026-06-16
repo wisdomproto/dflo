@@ -753,6 +753,28 @@ writeFileSync(join(PROJ, 'cases/케이스후보_상세프로필.html'), html, 'u
 writeFileSync(join(PROJ, 'v4/public/marketing/strategy/case-candidates.html'), html, 'utf8');
 console.log(`done: ${list.length}명 (여 ${girls}) → 케이스후보_상세프로필.html + marketing/strategy/case-candidates.html (${Math.round(html.length / 1024)}KB)`);
 
+// ── case_candidates_doc 적재 (prod admin 동적 조회용) — PHI 라 service_role 키 필요(RLS 전면 차단 테이블) ──
+async function uploadCaseDoc(htmlStr) {
+  const env = {};
+  try {
+    for (const l of readFileSync(join(PROJ, 'ai-server', '.env'), 'utf8').split(/\r?\n/)) {
+      const m = l.match(/^([A-Z0-9_]+)=(.*)$/); if (m) env[m[1]] = m[2];
+    }
+  } catch { /* .env 없으면 skip */ }
+  const url = env.SUPABASE_URL, key = env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) { console.log('⚠️ ai-server/.env 의 SUPABASE_URL/SERVICE_ROLE_KEY 없음 — DB 적재 skip (파일만 생성됨)'); return; }
+  try {
+    const r = await fetch(`${url}/rest/v1/case_candidates_doc?on_conflict=id`, {
+      method: 'POST',
+      headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
+      body: JSON.stringify({ id: 1, html: htmlStr, updated_at: new Date().toISOString() }),
+    });
+    if (r.ok) console.log('✓ case_candidates_doc DB 적재 완료 (prod admin /admin/cases 동적 조회용)');
+    else console.log(`⚠️ DB 적재 실패 ${r.status}: ${(await r.text()).slice(0, 200)} — service_role 키(진짜)인지 확인`);
+  } catch (e) { console.log(`⚠️ DB 적재 오류: ${String(e.message).slice(0, 150)}`); }
+}
+await uploadCaseDoc(html);
+
 // ════════════════════════════════════════════════════════════════════════════
 // 비식별 외부 쇼케이스 — 치료사례_외부.html (웹 주소로 접근, PIN 8054)
 // 공개 범위: 가명 + 고민태그 + 헤드라인 + KPI(키·예상키·치료기간·유전예상) + 2그래프(나이기준, 좌우 배치).

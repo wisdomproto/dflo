@@ -34,6 +34,11 @@ middleware/
 ## 치료사례 원장 스토리 저장 (로컬 내부 도구)
 - `routes/caseStory.ts` (`app.use('/api/case-story')`, marketingAuth 없이 자체 `x-admin-pin`=`WEBSITE_ADMIN_PIN`||8054): `GET /:chart`(조회) + `POST /`(저장) → `cases/case_stories.json`(src/routes 기준 `../../../cases`) read-merge-write. 치료사례 후보 페이지(`case-candidates.html`)의 🩺 원장 스토리 인라인 편집·저장용. PHI 내부 도구라 **dev(localhost) 전용**(prod Railway엔 cases 폴더 없음). gen 재생성 시 반영. 상세 memory `case_candidates_page.md`.
 
+## 치료사례 후보 전체 상세(PHI) 동적 조회 — prod admin (2026-06-16)
+- `routes/caseCandidates.ts` (`app.use('/api/case-candidates')`, **JWT authMiddleware 밖·자체 admin 게이트**): `GET /` — 헤더 `x-admin-email`/`x-admin-password` → `users` 테이블 `email+password` 조회 → role admin/doctor 재검증(`isAdmin`) → `case_candidates_doc`(id=1) 의 html 반환(없으면 404). **prod 에서 PHI 케이스 페이지를 admin 로그인으로** 볼 수 있게 함(case-candidates.html 은 gitignore라 정적 서빙 불가 → DB 동적).
+- 데이터 적재 = 로컬 `gen_case_profiles.mjs uploadCaseDoc`(service_role REST upsert). `case_candidates_doc` = **migration 058**(RLS 전면 차단=service_role 만). lazy `createClient`(import-time throw 회피).
+- ⚠️ `SUPABASE_SERVICE_ROLE_KEY`(진짜 service_role) 필수 — RLS 차단 테이블 + users 조회. prod Railway ai-server env 에도 있어야 동작. v4 `/admin/cases`(`CaseCandidatesAdminPage`)가 소비. 상세 memory `case_candidates_page.md`.
+
 ## Endpoints
 | Method | Path | Description | Status |
 |--------|------|-------------|--------|
