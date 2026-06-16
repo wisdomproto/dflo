@@ -7,7 +7,10 @@
     "node": ">=20"
   },
   "scripts": {
+    "predev": "node scripts/sync-reel-vendor.mjs",
     "dev": "vite",
+    "sync:reel-vendor": "node scripts/sync-reel-vendor.mjs",
+    "prebuild": "node scripts/sync-reel-vendor.mjs",
     "build": "tsc -b && npm run build:i18n && vite build",
     "build:i18n": "node scripts/build-i18n.mjs",
     "extract:marketing": "node scripts/extract-marketing-data.mjs",
