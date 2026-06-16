@@ -6,9 +6,9 @@ import type { PlayerRef } from '@remotion/player';
 import type { MarketingArticle, ReelLang, ReelScriptDoc } from '../../../types';
 import { saveReelScript } from '../../../services/marketingArticleService';
 import {
-  FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, totalFrames, updateChunk,
+  FALLBACK_CHUNK_FRAMES, chunkDurations, chunkStarts, totalFrames, updateChunk, nudgeLabel,
 } from '../../../utils/reelEditor';
-import type { ReelChunk } from '../../../types';
+import type { ReelChunk, ReelInsertLabel } from '../../../types';
 import PresenterBridge from './PresenterBridge';
 import { CanvasDragLayer } from './CanvasDragLayer';
 import { ReelTimeline } from './ReelTimeline';
@@ -47,6 +47,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
   onPatch?: (partial: Partial<MarketingArticle>) => void;
 }) {
   const [selected, setSelected] = useState(0);
+  const [selectedLabelIdx, setSelectedLabelIdx] = useState<number | null>(null);
   const playerRef = useRef<PlayerRef>(null);
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -85,6 +86,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [article.id]);
   useEffect(() => { setSelected(0); }, [language]);
+  useEffect(() => { setSelectedLabelIdx(null); }, [selected, language, article.id]);
 
   const lang = language as ReelLang;
   const chunks = doc.script.chunks;
@@ -103,6 +105,27 @@ function EditorInner({ article, doc0, language, onPatch }: {
 
   const sel = Math.min(selected, chunks.length - 1); // 전환 직후 effect 전 1렌더 out-of-range 가드
   const selChunk = chunks[sel];
+
+  useEffect(() => {
+    const NUDGE: Record<string, [number, number]> = {
+      ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1],
+    };
+    const h = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable) return;
+      if (e.key === 'Escape') { setSelectedLabelIdx(null); return; }
+      if (selectedLabelIdx == null) return;
+      const d = NUDGE[e.key];
+      if (!d) return;
+      const labels = Array.isArray(selChunk.insertLabels) ? (selChunk.insertLabels as ReelInsertLabel[]) : [];
+      if (selectedLabelIdx >= labels.length) return;
+      e.preventDefault();
+      const next = labels.map((l, i) => (i === selectedLabelIdx ? nudgeLabel(l, d[0], d[1]) : l));
+      patchSelChunk(sel, { insertLabels: next });
+    };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, [selectedLabelIdx, selChunk, sel, patchSelChunk]);
 
   return (
     <div className="space-y-3">
@@ -137,6 +160,8 @@ function EditorInner({ article, doc0, language, onPatch }: {
           <CanvasDragLayer
             chunk={selChunk}
             language={lang}
+            selectedIdx={selectedLabelIdx}
+            onSelectLabel={setSelectedLabelIdx}
             onCommit={(insertLabels) => patchSelChunk(sel, { insertLabels })}
             onCommitStickers={(stickers) => patchSelChunk(sel, { stickers })}
           />
@@ -152,6 +177,8 @@ function EditorInner({ article, doc0, language, onPatch }: {
             language={lang}
             reelAssets={article.reelAssets ?? {}}
             runtime={runtime}
+            selectedLabelIdx={selectedLabelIdx}
+            onSelectLabel={setSelectedLabelIdx}
             onPatch={(patch) => patchSelChunk(sel, patch)}
           />
           <RenderJobWidget
