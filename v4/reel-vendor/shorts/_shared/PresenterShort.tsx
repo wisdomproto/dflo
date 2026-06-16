@@ -10,6 +10,7 @@ import { ensureFonts, NOTO_SANS_KR } from "../../lib/fonts";
 import { ShortLogo } from "./ShortLogo";
 import { StickerLayer } from "./StickerLayer";
 import { buildCaptions } from "../../lib/captions.mjs";
+import { labelBoxStyle } from "../../lib/labelStyle.mjs";
 
 const YELLOW = "#FCE61A";
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -116,10 +117,8 @@ const InsertPanel: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
           <div key={k} style={{
             position: "absolute", left: `${L.x * 100}%`, top: `${L.y * 100}%`,
             transform: `translate(-50%,-50%) scale(${interpolate(lpop, [0, 1], [0.7, 1], clamp)})`,
-            fontFamily: NOTO_SANS_KR, fontSize: L.size ?? 40, fontWeight: L.weight ?? 800,
-            color: L.color ?? "#1f2430", whiteSpace: "pre", textAlign: "center", lineHeight: 1.15, opacity: lop,
-            textShadow: L.pill ? "none" : "0 2px 10px rgba(0,0,0,0.18)",
-            ...(L.pill ? { background: L.pill, padding: "6px 18px", borderRadius: 14, boxShadow: "0 6px 18px rgba(0,0,0,0.12)" } : {}),
+            opacity: lop,
+            ...labelBoxStyle(L),
           }}>{txt}</div>
         );
       })}

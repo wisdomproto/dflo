@@ -24,6 +24,8 @@ const CLOSURE = [
   'lib/fonts.ts',
   'lib/captions.mjs',
   'lib/captions.d.mts',
+  'lib/labelStyle.mjs',
+  'lib/labelStyle.d.mts',
 ];
 
 if (!existsSync(SRC)) {
