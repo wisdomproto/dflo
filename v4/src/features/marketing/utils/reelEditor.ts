@@ -32,6 +32,14 @@ export function pxToPanelFrac(px: number, py: number, rect: RectLike): { x: numb
   const y = clamp01((py - rect.top - rect.height * PANEL_TOP_FRAC) / (rect.height * PANEL_H_FRAC));
   return { x, y };
 }
+/** 분수 좌표를 step(기본 0.05=5%) 격자에 스냅 + 0..1 clamp. */
+export function snapFrac(v: number, step = 0.05): number {
+  return clamp01(Math.round(v / step) * step);
+}
+/** 라벨을 dx·dy(격자 칸 수)만큼 이동 — step 격자, x·y clamp 0..1, 나머지 필드 보존. */
+export function nudgeLabel<T extends { x: number; y: number }>(label: T, dx: number, dy: number, step = 0.05): T {
+  return { ...label, x: clamp01(label.x + dx * step), y: clamp01(label.y + dy * step) };
+}
 // 주의: stickerFrames(비율→프레임 클램프)는 여기 두지 않는다 — 단일 소스는 P4 의
 // `@reel/shorts/_shared/StickerLayer`(remotion) export. v4 에서 필요하면 그것을 import(드리프트 차단).
 /** 렌더 kind 판정 — 나레이션 vs 마지막 TTS 텍스트 비교. full 강제: timing/lipsync 부재 또는 forceFull. */
