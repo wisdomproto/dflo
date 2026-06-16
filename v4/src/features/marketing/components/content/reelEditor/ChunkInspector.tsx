@@ -13,6 +13,8 @@ interface Props {
   language: ReelLang;
   reelAssets: ReelAssets;
   runtime: ReelRuntimeDoc | null; // 🎙 dirty 배지(나레이션이 마지막 TTS와 다름) 판정용 — 스트립과 동일 소스
+  selectedLabelIdx?: number | null;
+  onSelectLabel?: (idx: number) => void;
   onPatch: (patch: Partial<ReelChunk>) => void;
 }
 
@@ -20,7 +22,7 @@ const sectionCls = 'rounded-lg border border-gray-200 bg-white p-3';
 const labelCls = 'mb-0.5 block text-[11px] font-semibold text-gray-500';
 const STICKER_ANIMS: ReelStickerAnim[] = ['none', 'pop', 'float', 'pulse', 'shake'];
 
-export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAssets, runtime, onPatch }: Props) {
+export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAssets, runtime, selectedLabelIdx, onSelectLabel, onPatch }: Props) {
   // 나레이션: chunk[lang] = 음성 대본(TTS·립싱크 소스). cap_{lang}(자막)과 별개 필드.
   const narration = typeof chunk[language] === 'string' ? (chunk[language] as string) : '';
   const ttsDirty = chunkTtsDirty(chunk, language, runtime); // 마지막 TTS와 달라 음성 재생성 필요
@@ -46,7 +48,7 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
   const onSelectInsert = (url: string) => onPatch({ insert: url || undefined });
 
   // 라벨 불변 패치 — 현재 언어 텍스트/스타일 한 필드만 갱신.
-  const patchLabel = (idx: number, field: keyof ReelInsertLabel | ReelLang, value: string | number | undefined) => {
+  const patchLabel = (idx: number, field: keyof ReelInsertLabel | ReelLang, value: string | number | boolean | undefined) => {
     const next = labels.map((l, i) => (i === idx ? { ...l, [field]: value } : l));
     onPatch({ insertLabels: next });
   };
@@ -144,7 +146,16 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
           ) : (
             <div className="space-y-2">
               {labels.map((l, i) => (
-                <div key={i} className="rounded border border-gray-100 bg-gray-50/60 p-2">
+                <div
+                  key={i}
+                  onClick={() => onSelectLabel?.(i)}
+                  className={
+                    'cursor-pointer rounded p-2 ' +
+                    (i === selectedLabelIdx
+                      ? 'border-2 border-cyan-400 bg-cyan-50'
+                      : 'border border-gray-100 bg-gray-50/60')
+                  }
+                >
                   <div className="mb-1 flex items-center gap-2">
                     <CommitInput
                       value={typeof l[language] === 'string' ? (l[language] as string) : ''}
@@ -155,7 +166,7 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
                       삭제
                     </button>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
                     <label className="flex items-center gap-1 text-[11px] text-gray-500">
                       크기
                       <input
@@ -166,6 +177,32 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
                       />
                     </label>
                     <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      폰트
+                      <select
+                        value={l.font ?? 'kr'}
+                        onChange={(e) => patchLabel(i, 'font', e.target.value)}
+                        className="rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
+                      >
+                        <option value="kr">한국어</option>
+                        <option value="thai">태국어</option>
+                        <option value="inter">Inter</option>
+                        <option value="sc">간체</option>
+                        <option value="tc">번체</option>
+                      </select>
+                    </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      굵기
+                      <select
+                        value={l.weight ?? 800}
+                        onChange={(e) => patchLabel(i, 'weight', Number(e.target.value))}
+                        className="rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
+                      >
+                        <option value={400}>보통</option>
+                        <option value={800}>굵게</option>
+                        <option value={900}>매우굵게</option>
+                      </select>
+                    </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
                       색
                       <input
                         type="color"
@@ -173,6 +210,31 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
                         onChange={(e) => patchLabel(i, 'color', e.target.value)}
                         className="h-5 w-7 cursor-pointer rounded border border-gray-200"
                       />
+                    </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      외각
+                      <input
+                        type="color"
+                        value={l.stroke ?? '#000000'}
+                        onChange={(e) => patchLabel(i, 'stroke', e.target.value)}
+                        className="h-5 w-7 cursor-pointer rounded border border-gray-200"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => patchLabel(i, 'stroke', undefined)}
+                        className="rounded border border-gray-200 px-1 text-[10px] text-gray-400 hover:text-gray-600"
+                      >
+                        없음
+                      </button>
+                    </label>
+                    <label className="flex items-center gap-1 text-[11px] text-gray-500">
+                      <input
+                        type="checkbox"
+                        checked={l.shadow ?? !l.pill}
+                        onChange={(e) => patchLabel(i, 'shadow', e.target.checked)}
+                        className="accent-[#4A2D6B]"
+                      />
+                      그림자
                     </label>
                     <label className="flex items-center gap-1 text-[11px] text-gray-500">
                       pill 배경
