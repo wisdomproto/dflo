@@ -162,7 +162,7 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
                       onCommit={(v) => patchLabel(i, language, v)}
                       placeholder="라벨 텍스트"
                     />
-                    <button type="button" onClick={() => removeLabel(i)} className="shrink-0 rounded border border-gray-200 px-2 py-1 text-[11px] text-gray-400 hover:text-red-600">
+                    <button type="button" onClick={(e) => { e.stopPropagation(); removeLabel(i); }} className="shrink-0 rounded border border-gray-200 px-2 py-1 text-[11px] text-gray-400 hover:text-red-600">
                       삭제
                     </button>
                   </div>
@@ -180,7 +180,7 @@ export function ChunkInspector({ chunk, chunkIdx, chunkCount, language, reelAsse
                       폰트
                       <select
                         value={l.font ?? 'kr'}
-                        onChange={(e) => patchLabel(i, 'font', e.target.value)}
+                        onChange={(e) => patchLabel(i, 'font', e.target.value as ReelInsertLabel['font'])}
                         className="rounded border border-gray-200 px-1 py-0.5 text-[11px] focus:border-[#4A2D6B] focus:outline-none"
                       >
                         <option value="kr">한국어</option>
