@@ -5,7 +5,7 @@
 // 드래그 중엔 로컬 state 만 갱신, pointerup 1회만 commit(=setDoc 1회=undo 1스텝). 회전은 인스펙터 숫자 input.
 import { useRef, useState } from 'react';
 import type { ReelChunk, ReelInsertLabel, ReelLang, ReelStickerItem } from '../../../types';
-import { PANEL_H_FRAC, PANEL_TOP_FRAC, pxToCanvasFrac, pxToPanelFrac, type RectLike } from '../../../utils/reelEditor';
+import { PANEL_H_FRAC, PANEL_TOP_FRAC, pxToCanvasFrac, pxToPanelFrac, snapFrac, type RectLike } from '../../../utils/reelEditor';
 
 const STICKER_W_MIN = 0.04;
 const STICKER_W_MAX = 0.9;
@@ -14,6 +14,8 @@ const clampW = (w: number) => Math.min(STICKER_W_MAX, Math.max(STICKER_W_MIN, w)
 interface Props {
   chunk: ReelChunk;
   language: ReelLang;
+  selectedIdx: number | null;
+  onSelectLabel: (idx: number) => void;
   onCommit: (labels: ReelInsertLabel[]) => void;           // 라벨 위치 커밋
   onCommitStickers: (stickers: ReelStickerItem[]) => void; // 스티커 위치/크기 커밋
 }
@@ -23,7 +25,7 @@ type DragState =
   | { type: 'label'; idx: number; labels: ReelInsertLabel[]; rect: RectLike }
   | { type: 'sticker-move' | 'sticker-resize'; idx: number; stickers: ReelStickerItem[]; rect: RectLike };
 
-export function CanvasDragLayer({ chunk, language, onCommit, onCommitStickers }: Props) {
+export function CanvasDragLayer({ chunk, language, selectedIdx, onSelectLabel, onCommit, onCommitStickers }: Props) {
   const layerRef = useRef<HTMLDivElement>(null);
   const [drag, setDrag] = useState<DragState | null>(null);
 
@@ -47,6 +49,7 @@ export function CanvasDragLayer({ chunk, language, onCommit, onCommitStickers }:
 
   // ── 라벨 ──────────────────────────────────────────────────────────────────
   const onLabelDown = (idx: number) => (e: React.PointerEvent) => {
+    onSelectLabel(idx);
     const rect = startRect(e);
     if (rect) setDrag({ type: 'label', idx, labels: committedLabels, rect });
   };
@@ -64,7 +67,8 @@ export function CanvasDragLayer({ chunk, language, onCommit, onCommitStickers }:
   const onPointerMove = (e: React.PointerEvent) => {
     if (!drag) return;
     if (drag.type === 'label') {
-      const { x, y } = pxToPanelFrac(e.clientX, e.clientY, drag.rect);
+      const raw = pxToPanelFrac(e.clientX, e.clientY, drag.rect);
+      const x = snapFrac(raw.x), y = snapFrac(raw.y);
       setDrag((d) => (d && d.type === 'label'
         ? { ...d, labels: d.labels.map((l, i) => (i === d.idx ? { ...l, x, y } : l)) }
         : d));
@@ -110,7 +114,12 @@ export function CanvasDragLayer({ chunk, language, onCommit, onCommitStickers }:
             onPointerDown={onLabelDown(i)}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
-            className="pointer-events-auto absolute flex max-w-[60%] cursor-move select-none items-center justify-center rounded border border-dashed border-fuchsia-400/90 bg-fuchsia-500/10 px-1.5 py-0.5 text-center text-[10px] font-semibold leading-tight text-fuchsia-700"
+            className={
+              'pointer-events-auto absolute flex max-w-[60%] cursor-move select-none items-center justify-center rounded px-1.5 py-0.5 text-center text-[10px] font-semibold leading-tight ' +
+              (i === selectedIdx
+                ? 'border-2 border-cyan-400 bg-cyan-400/20 text-cyan-800'
+                : 'border border-dashed border-fuchsia-400/90 bg-fuchsia-500/10 text-fuchsia-700')
+            }
             style={{
               left: `${l.x * 100}%`,
               top: `${(PANEL_TOP_FRAC + l.y * PANEL_H_FRAC) * 100}%`,
