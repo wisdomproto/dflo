@@ -20,7 +20,11 @@
 
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
 // Meta Pixel — 광고 전환 추적/리타게팅. 없으면 모든 픽셀 호출 no-op (GA4와 동일 패턴).
-const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID as string | undefined;
+// 콤마로 여러 픽셀 ID 지원 (예: "111,222") — 전부 init, track 은 init된 모든 픽셀에 자동 발사.
+const META_PIXEL_IDS = ((import.meta.env.VITE_META_PIXEL_ID as string | undefined) ?? '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 const PRIVATE_PREFIXES = [
   '/app',
@@ -70,7 +74,7 @@ function injectScriptOnce(): boolean {
 /** Meta Pixel base code 동적 로드 + init (1회). 측정ID 없으면 false. */
 function injectPixelOnce(): boolean {
   if (pixelInjected) return true;
-  if (!META_PIXEL_ID || typeof window === 'undefined') return false;
+  if (!META_PIXEL_IDS.length || typeof window === 'undefined') return false;
   if (!window.fbq) {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const n: any = function (...args: unknown[]) {
@@ -87,7 +91,7 @@ function injectPixelOnce(): boolean {
     s.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(s);
   }
-  window.fbq!('init', META_PIXEL_ID);
+  META_PIXEL_IDS.forEach((id) => window.fbq!('init', id));
   pixelInjected = true;
   return true;
 }

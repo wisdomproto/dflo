@@ -56,12 +56,14 @@ export function gaSnippet() {
 }
 
 // Meta Pixel base code — 빌드 env 의 픽셀ID(없으면 빈 문자열, graceful).
-// React 와 같은 VITE_META_PIXEL_ID 를 재사용해 단일 픽셀에 모인다. init + PageView 자동.
+// React 와 같은 VITE_META_PIXEL_ID 를 재사용. 콤마로 여러 픽셀 ID 지원 ("111,222") — 전부 init + PageView.
 export function pixelSnippet() {
-  const id = process.env.META_PIXEL_ID || process.env.VITE_META_PIXEL_ID;
+  const raw = process.env.META_PIXEL_ID || process.env.VITE_META_PIXEL_ID || '';
   // 픽셀 ID = 숫자만 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
-  if (!id || !/^\d{5,20}$/.test(id)) return '';
-  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${id}');fbq('track','PageView');</script>`;
+  const ids = raw.split(',').map((s) => s.trim()).filter((s) => /^\d{5,20}$/.test(s));
+  if (!ids.length) return '';
+  const inits = ids.map((id) => `fbq('init','${id}');`).join('');
+  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');</script>`;
 }
 
 export function buildBlogPostHead({ post, lang }) {
