@@ -259,11 +259,12 @@ const SHELL_HTML = `
   });
 
   // Auto-open policy (2026-06-17 완화 — 즉시 전면 팝업이 첫인상 방해 → 이탈↑·체류↓ 원인)
+  // 유입 대부분이 광고라 광고도 동일하게 이탈 보호(2026-06-17b).
   // - calc 전용 페이지에선 skip (이미 같은 폼이 페이지 자체).
   // - 30일 이내 본 적 있으면 skip.
-  // - 광고(UTM cpc/paid/paid_social) = 측정 의도 → 2.5초 지연 오픈(기존 0.6초).
-  // - 그 외(조직/직접) = '관심' 신호일 때만: 스크롤 깊이 50%↑ / 데스크톱 exit-intent / 20초 폴백.
-  //   (기존 1.5초·스크롤 200px 즉시 오픈 제거 — 읽기도 전에 차단해 이탈 유발)
+  // - 광고/조직 공통: '관심' 신호일 때만 — 스크롤 깊이 50%↑ / 데스크톱 exit-intent / 시간 폴백.
+  //   시간 폴백만 차등: 광고 12초(측정 의도↑) · 조직 20초. 둘 다 GA4 참여세션(~10초) 이후라 이탈 유발 X.
+  //   (옛 광고 0.6초·조직 1.5초/200px 즉시 오픈 제거 — 읽기 전 차단이 이탈 유발)
   const isCalcPage = document.body.dataset.page === 'calc';
   let alreadySeen = false;
   try {
@@ -277,31 +278,27 @@ const SHELL_HTML = `
   if (!isCalcPage && !alreadySeen) {
     const params = new URLSearchParams(window.location.search);
     const fromAd = ['cpc', 'paid', 'paid_social'].includes(params.get('utm_medium') || '');
-    if (fromAd) {
-      // 광고 = 측정 의도 유입 → 유지하되 첫인상 방해 줄이려 2.5초 지연.
-      setTimeout(openCalcModal, 2500);
-    } else {
-      // 조직/직접 = 콜드 → 강제 전면 팝업 제거. '관심' 신호일 때만 노출.
-      let opened = false;
-      const trigger = () => {
-        if (opened) return;
-        opened = true;
-        window.removeEventListener('scroll', onScroll);
-        document.removeEventListener('mouseout', onExit);
-        clearTimeout(fallbackTimer);
-        openCalcModal();
-      };
-      // ① 스크롤 깊이 50%↑ = 콘텐츠를 읽는 중(모바일 포함 동작).
-      const onScroll = () => {
-        const sh = document.documentElement.scrollHeight - window.innerHeight;
-        if (sh > 0 && window.scrollY / sh >= 0.5) trigger();
-      };
-      // ② exit-intent = 마우스가 뷰포트 상단 밖으로 이탈(떠나려는 순간, 데스크톱).
-      const onExit = (e) => { if (e.clientY <= 0 && !e.relatedTarget) trigger(); };
-      // ③ 20초 폴백 = 스크롤·exit 둘 다 없는 경우(참여 세션 10초 기준 이후라 이탈 유발 X).
-      window.addEventListener('scroll', onScroll, { passive: true });
-      document.addEventListener('mouseout', onExit);
-      const fallbackTimer = setTimeout(trigger, 20000);
-    }
+    // 광고/조직 공통 — '관심' 신호일 때만 노출(즉시 전면팝업은 이탈 유발). fromAd 는 시간 폴백만 짧게.
+    let opened = false;
+    const fallbackMs = fromAd ? 12000 : 20000;
+    const trigger = () => {
+      if (opened) return;
+      opened = true;
+      window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('mouseout', onExit);
+      clearTimeout(fallbackTimer);
+      openCalcModal();
+    };
+    // ① 스크롤 깊이 50%↑ = 콘텐츠를 읽는 중(모바일 포함 동작).
+    const onScroll = () => {
+      const sh = document.documentElement.scrollHeight - window.innerHeight;
+      if (sh > 0 && window.scrollY / sh >= 0.5) trigger();
+    };
+    // ② exit-intent = 마우스가 뷰포트 상단 밖으로 이탈(떠나려는 순간, 데스크톱).
+    const onExit = (e) => { if (e.clientY <= 0 && !e.relatedTarget) trigger(); };
+    // ③ 시간 폴백 = 스크롤·exit 둘 다 없는 경우(광고 12초·조직 20초, GA4 참여세션 ~10초 이후).
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('mouseout', onExit);
+    const fallbackTimer = setTimeout(trigger, fallbackMs);
   }
 })();
