@@ -40,6 +40,15 @@ const seoRedirects = (): Plugin => ({
         res.end();
         return;
       }
+      // `/{lang}` (트레일링 슬래시 없음) → `/{lang}/` 301.
+      // 슬래시 없는 주소는 정적 다국어 페이지가 아니라 한국어 SPA 셸로 떨어져, 공유/광고 미리보기(OG)·
+      // SEO 가 한글로 노출된다. 슬래시를 붙여 정적 페이지로 보낸다. 쿼리(fbclid·utm) 보존.
+      if (/^\/(ko|th|vi|en)$/.test(pathname)) {
+        res.statusCode = 301;
+        res.setHeader('Location', query ? `${pathname}/?${query}` : `${pathname}/`);
+        res.end();
+        return;
+      }
       next();
     });
   },
