@@ -95,7 +95,7 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 
 ### SEO 하드닝 (2026-06-12, 라이브 감사 후)
 실사이트 구글 SEO 감사(점수 ~50/100, 골격은 모범·운영 구멍 발견) 후 코드 측 보강 완료:
-- **`/` 루트 301** → `/ko/`(쿼리 보존) + **apex→www 301** — Railway 가 `vite preview` 로 서빙하므로 `vite.config.ts` `seoRedirects` preview 미들웨어로 처리. 루트가 title "v4" 빈 SPA 셸로 노출되던 문제 제거(SPA 셸 `index.html` 도 브랜드 메타로 교체)
+- **`/` 루트 301** → `/ko/`(쿼리 보존) + **`/{lang}`(슬래시 없음) → `/{lang}/` 301**(2026-06-17 — 슬래시 없는 `/th`·`/vi`·`/en` 이 한국어 SPA 셸로 떨어져 공유·광고 OG·크롤러가 한글 제목 긁던 버그. `/th/`=태국어 정적·`/th`=한글 셸 확인) + **apex→www 301** — Railway 가 `vite preview` 로 서빙하므로 `vite.config.ts` `seoRedirects` preview 미들웨어로 처리. 루트가 title "v4" 빈 SPA 셸로 노출되던 문제 제거(SPA 셸 `index.html` 도 브랜드 메타로 교체)
 - **sitemap 블로그 가드**(`lib/sitemap.mjs`): `blogSlugs[lang]` 빈 배열(truthy) 버그 — 포스트 0개 언어는 블로그 URL·hreflang 미등재(이전엔 빈 SPA 셸 4 URL 이 sitemap 에 등재돼 있었음)
 - **이미지 lazy 후처리**(`lib/img-attrs.mjs` 신규, build-i18n 연결): 첫 2장(로고+히어로)=eager+`fetchpriority=high`, 나머지 `loading="lazy"`, `<script>` 블록 보호
 - **OG 4종 실물 제작**(`public/og/`, 207B placeholder → 1200×630 ~60KB. PIL raqm 부재로 **Windows GDI+ 렌더** — 태국어 성조부호 정확) · **logo_en.png 881KB→11.6KB**(800w+256색 quantize) · **favicon.ico 신규**(보라 #703080 + "187")
