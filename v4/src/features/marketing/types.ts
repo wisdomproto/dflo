@@ -166,7 +166,8 @@ export interface ReelStickerItem {
   loop?: boolean;
 }
 export type ReelInsertLabel = {
-  x: number; y: number;        // 인서트 패널 존 내 분수 (캔버스 분수와 다른 좌표계!)
+  x: number; y: number;        // 인서트 패널 존 내 분수 (캔버스 분수와 다른 좌표계!). base = pos 미설정 언어 공통 시드.
+  pos?: Partial<Record<ReelLang, { x: number; y: number }>>; // 언어별 위치 오버라이드. 있으면 그 언어만 이 좌표 사용(언어 간 위치 연동 차단), 없으면 base x/y.
   size?: number; weight?: number; color?: string; pill?: string;
   font?: 'kr' | 'thai' | 'inter' | 'sc' | 'tc'; stroke?: string; shadow?: boolean;
 } & Partial<Record<ReelLang, string>>;

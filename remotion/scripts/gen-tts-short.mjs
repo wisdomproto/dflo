@@ -19,8 +19,16 @@ const lang = process.argv[3];
 if (!slug || !lang) { console.error("usage: node scripts/gen-tts-short.mjs <slug> <lang>"); process.exit(1); }
 if (!API_KEY || !VOICE_ID) { console.error("❌ ELEVEN_API_KEY + ELEVEN_VOICE_ID 필요 (.env)"); process.exit(1); }
 
-// th 는 turbo_v2_5(태국어 지원), 그 외(ko/en/vi/zh)는 multilingual_v2
-const MODEL = process.env.ELEVEN_MODEL || (lang === "th" ? "eleven_turbo_v2_5" : "eleven_multilingual_v2");
+// 언어별 보이스/모델/세팅 — ko=원장 클론(ELEVEN_VOICE_ID·multilingual_v2·높은 similarity로 음색 추종),
+// 비ko=네이티브 보이스(ELEVEN_VOICE_ID_<LANG>·eleven_v3·낮은 similarity로 자연스럽게). 전부 언어별 env 오버라이드 가능.
+const LANG = lang.toUpperCase();
+const isKo = lang === "ko";
+const VOICE = process.env["ELEVEN_VOICE_ID_" + LANG] || VOICE_ID;
+const MODEL = process.env["ELEVEN_MODEL_" + LANG] || process.env.ELEVEN_MODEL || (isKo ? "eleven_multilingual_v2" : "eleven_v3");
+const STAB = +(process.env["STABILITY_" + LANG] ?? process.env.STABILITY ?? (isKo ? 0.8 : 0.4));
+const SIM = +(process.env["SIMILARITY_" + LANG] ?? process.env.SIMILARITY ?? (isKo ? 0.8 : 0.2));
+const STYLE_V = +(process.env["STYLE_" + LANG] ?? process.env.STYLE ?? 0);
+if (!isKo && VOICE === VOICE_ID) console.warn(`⚠️  ${lang}: ELEVEN_VOICE_ID_${LANG} 미설정 — 원장 클론으로 폴백(외국어는 네이티브 보이스 권장)`);
 const SHORT_DIR = join(ROOT, "src", "shorts", slug);
 const script = JSON.parse(readFileSync(join(SHORT_DIR, "script.json"), "utf8"));
 const OUT_DIR = join(ROOT, "public", "audio", "shorts", slug, lang);
@@ -28,13 +36,13 @@ const OUT_DIR = join(ROOT, "public", "audio", "shorts", slug, lang);
 const wavDur = (p) => (readFileSync(p).length - 44) / (44100 * 2);
 
 async function tts(text, outRaw) {
-  const url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}?output_format=mp3_44100_128`;
+  const url = `https://api.elevenlabs.io/v1/text-to-speech/${VOICE}?output_format=mp3_44100_128`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "xi-api-key": API_KEY, "Content-Type": "application/json" },
     body: JSON.stringify({
       text, model_id: MODEL,
-      voice_settings: { stability: +(process.env.STABILITY ?? 0.8), similarity_boost: +(process.env.SIMILARITY ?? 0.8), style: +(process.env.STYLE ?? 0), use_speaker_boost: true },
+      voice_settings: { stability: STAB, similarity_boost: SIM, style: STYLE_V, use_speaker_boost: true },
     }),
   });
   if (!res.ok) throw new Error(`tts ${res.status}: ${(await res.text()).slice(0, 300)}`);
@@ -47,7 +55,7 @@ async function tts(text, outRaw) {
 
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
-  console.log(`🎙️  ${slug}/${lang}  voice=${VOICE_ID} model=${MODEL} chunks=${script.chunks.length}`);
+  console.log(`🎙️  ${slug}/${lang}  voice=${VOICE} model=${MODEL} stab=${STAB} sim=${SIM} chunks=${script.chunks.length}`);
   const manifest = [];
   for (const c of script.chunks) {
     const text = c[lang];

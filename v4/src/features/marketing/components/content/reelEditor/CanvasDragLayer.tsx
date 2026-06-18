@@ -5,7 +5,7 @@
 // 드래그 중엔 로컬 state 만 갱신, pointerup 1회만 commit(=setDoc 1회=undo 1스텝). 회전은 인스펙터 숫자 input.
 import { useRef, useState } from 'react';
 import type { ReelChunk, ReelInsertLabel, ReelLang, ReelStickerItem } from '../../../types';
-import { PANEL_H_FRAC, PANEL_TOP_FRAC, pxToCanvasFrac, pxToPanelFrac, snapFrac, type RectLike } from '../../../utils/reelEditor';
+import { PANEL_H_FRAC, PANEL_TOP_FRAC, labelPos, pxToCanvasFrac, pxToPanelFrac, setLabelPos, snapFrac, type RectLike } from '../../../utils/reelEditor';
 
 const STICKER_W_MIN = 0.04;
 const STICKER_W_MAX = 0.9;
@@ -69,8 +69,9 @@ export function CanvasDragLayer({ chunk, language, selectedIdx, onSelectLabel, o
     if (drag.type === 'label') {
       const raw = pxToPanelFrac(e.clientX, e.clientY, drag.rect);
       const x = snapFrac(raw.x), y = snapFrac(raw.y);
+      // 현재 언어 위치(pos[lang])만 갱신 — 다른 언어 라벨 위치는 건드리지 않음.
       setDrag((d) => (d && d.type === 'label'
-        ? { ...d, labels: d.labels.map((l, i) => (i === d.idx ? { ...l, x, y } : l)) }
+        ? { ...d, labels: d.labels.map((l, i) => (i === d.idx ? setLabelPos(l, language, x, y) : l)) }
         : d));
       return;
     }
@@ -110,6 +111,7 @@ export function CanvasDragLayer({ chunk, language, selectedIdx, onSelectLabel, o
           으로 이중 표시 방지. 빈 라벨(렌더 안 됨)만 '라벨' 플레이스홀더를 보여 잡을 수 있게 함. */}
       {insert && labels.map((l, i) => {
         const txt = (typeof l[language] === 'string' ? (l[language] as string) : '') || (l.ko ?? '');
+        const p = labelPos(l, language); // 현재 언어 위치(pos[lang] ?? base) — Player 의 WYSIWYG 렌더와 동일 해석
         return (
           <div
             key={'l' + i}
@@ -123,8 +125,8 @@ export function CanvasDragLayer({ chunk, language, selectedIdx, onSelectLabel, o
                 : 'border border-dashed border-fuchsia-400/90 bg-fuchsia-500/5')
             }
             style={{
-              left: `${l.x * 100}%`,
-              top: `${(PANEL_TOP_FRAC + l.y * PANEL_H_FRAC) * 100}%`,
+              left: `${p.x * 100}%`,
+              top: `${(PANEL_TOP_FRAC + p.y * PANEL_H_FRAC) * 100}%`,
               transform: 'translate(-50%,-50%)',
               color: txt ? 'transparent' : '#a21caf', // 실제 라벨 있으면 핸들 텍스트 숨김(이중 방지), 빈 라벨만 표시
               touchAction: 'none', // 모바일 스크롤 제스처가 드래그 가로채지 않게

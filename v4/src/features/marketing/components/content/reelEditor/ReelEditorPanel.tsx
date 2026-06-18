@@ -151,12 +151,12 @@ function EditorInner({ article, doc0, language, onPatch }: {
       const labels = Array.isArray(selChunk.insertLabels) ? (selChunk.insertLabels as ReelInsertLabel[]) : [];
       if (selectedLabelIdx >= labels.length) return;
       e.preventDefault();
-      const next = labels.map((l, i) => (i === selectedLabelIdx ? nudgeLabel(l, d[0], d[1]) : l));
+      const next = labels.map((l, i) => (i === selectedLabelIdx ? nudgeLabel(l, lang, d[0], d[1]) : l));
       patchSelChunk(sel, { insertLabels: next });
     };
     window.addEventListener('keydown', h);
     return () => window.removeEventListener('keydown', h);
-  }, [selectedLabelIdx, selChunk, sel, patchSelChunk]);
+  }, [selectedLabelIdx, selChunk, sel, lang, patchSelChunk]);
 
   // 저장 상태 한 줄 (normal=상단 우측 / fullscreen=헤더)
   const saveStatus = (

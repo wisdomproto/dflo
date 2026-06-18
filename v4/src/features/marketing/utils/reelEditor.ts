@@ -43,9 +43,21 @@ export function pxToPanelFrac(px: number, py: number, rect: RectLike): { x: numb
 export function snapFrac(v: number, step = 0.01): number {
   return clamp01(Math.round(v / step) * step);
 }
-/** 라벨을 dx·dy(격자 칸 수)만큼 이동 — step 격자, x·y clamp 0..1, 나머지 필드 보존. */
-export function nudgeLabel<T extends { x: number; y: number }>(label: T, dx: number, dy: number, step = 0.01): T {
-  return { ...label, x: clamp01(label.x + dx * step), y: clamp01(label.y + dy * step) };
+export interface LabelXY { x: number; y: number }
+type PosHolder = { x: number; y: number; pos?: Partial<Record<string, LabelXY>> };
+/** 라벨의 현재 언어 위치 — pos[lang] 오버라이드 우선, 없으면 base x/y(전 언어 공통 시드). */
+export function labelPos(label: PosHolder, lang: string): LabelXY {
+  const p = label.pos?.[lang];
+  return p ? { x: clamp01(p.x), y: clamp01(p.y) } : { x: clamp01(label.x), y: clamp01(label.y) };
+}
+/** 위치를 현재 언어에만 기록 — pos[lang]만 갱신, base·다른 언어 위치 보존(언어 간 연동 차단). */
+export function setLabelPos<T extends PosHolder>(label: T, lang: string, x: number, y: number): T {
+  return { ...label, pos: { ...label.pos, [lang]: { x: clamp01(x), y: clamp01(y) } } };
+}
+/** 현재 언어 라벨을 dx·dy(격자 칸 수)만큼 이동 — step 격자, pos[lang]만 갱신(타 언어 불변). */
+export function nudgeLabel<T extends PosHolder>(label: T, lang: string, dx: number, dy: number, step = 0.01): T {
+  const { x, y } = labelPos(label, lang);
+  return setLabelPos(label, lang, x + dx * step, y + dy * step);
 }
 // 주의: stickerFrames(비율→프레임 클램프)는 여기 두지 않는다 — 단일 소스는 P4 의
 // `@reel/shorts/_shared/StickerLayer`(remotion) export. v4 에서 필요하면 그것을 import(드리프트 차단).

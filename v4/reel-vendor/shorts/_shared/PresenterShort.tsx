@@ -110,12 +110,13 @@ const InsertPanel: React.FC<{ c: any; lang: string }> = ({ c, lang }) => {
       {labels.map((L, k) => {
         const txt: string = L[lang] ?? L.ko ?? "";
         if (!txt) return null;
+        const p = (L.pos && L.pos[lang]) || { x: L.x, y: L.y }; // 언어별 위치 오버라이드(pos[lang]) 우선, 없으면 base
         const d = 4 + k * 3; // 살짝 스태거 등장
         const lop = interpolate(frame, [d, d + 7], [0, 1], clamp) * interpolate(frame, [c.durFrames - 6, c.durFrames], [1, 0], clamp);
         const lpop = spring({ frame: frame - d, fps, config: { damping: 13, mass: 0.6 } });
         return (
           <div key={k} style={{
-            position: "absolute", left: `${L.x * 100}%`, top: `${L.y * 100}%`,
+            position: "absolute", left: `${p.x * 100}%`, top: `${p.y * 100}%`,
             transform: `translate(-50%,-50%) scale(${interpolate(lpop, [0, 1], [0.7, 1], clamp)})`,
             opacity: lop,
             ...labelBoxStyle(L),
