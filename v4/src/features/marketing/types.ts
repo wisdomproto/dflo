@@ -185,6 +185,7 @@ export interface ReelScriptDoc {
     headerStyle?: { markBg?: string; markFg?: string };
     cta?: Record<string, string>;
     twoTrack?: boolean;
+    bgmVolume?: number; // 배경음악 볼륨 0~1 (기본 0.15) — 에디터 슬라이더, 전 언어 공통
     chunks: ReelChunk[];
   } & Record<string, unknown>; // title/_note/fps 등 미편집 필드 보존
 }

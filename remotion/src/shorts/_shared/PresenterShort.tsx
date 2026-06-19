@@ -37,6 +37,7 @@ type Script = {
   chunks: any[];
   headerStyle?: { markBg?: string; markFg?: string };
   twoTrack?: boolean;
+  bgmVolume?: number; // 배경음악 볼륨 0~1 (기본 0.15). 에디터 슬라이더로 조절.
 };
 
 function hlLine(ln: string, hl?: string) {
@@ -183,6 +184,7 @@ export const PresenterShort: React.FC<{
   const chunks = timing.map((t) => ({ ...t, ...(script.chunks.find((c) => c.id === t.id) || {}) }));
   const twoTrack = !!captions || !!script.twoTrack;
   const caps = captions ?? (twoTrack ? buildCaptions(chunks, lang) : undefined);
+  const bgmV = script.bgmVolume ?? 0.15; // 배경음악 볼륨 (에디터 조절, 기본 0.15)
   const FROM: number[] = [];
   chunks.forEach((_, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
   const total = chunks.reduce((n, c) => n + c.durFrames, 0);
@@ -277,7 +279,7 @@ export const PresenterShort: React.FC<{
 
       {/* ── 오디오 — 청크 오디오는 assets 있으면 명시 URL(없는 id는 스킵 — 404 <Audio> 방지) ── */}
       {/* durationInFrames 로 청크 구간만 mount: 없으면 시작한 오디오가 끝까지 안 닫혀 Player 동시 audio 태그 한도(기본 5) 초과 → 시킹 시 throw. 자막·인서트 시퀀스와 동일하게 닫는다. */}
-      <Audio src={asset("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, 0.06, 0.06, 0], clamp)} />
+      <Audio src={asset("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, bgmV, bgmV, 0], clamp)} />
       {chunks.map((c, i) => {
         const aSrc = assets ? assets.audio[c.id] : asset(`audio/shorts/${slug}/${lang}/${c.id}.wav`);
         return aSrc ? (

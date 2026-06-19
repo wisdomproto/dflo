@@ -89,6 +89,19 @@ export function HeaderCtaForm({ doc, language, onPatchScript }: Props) {
             />
             2트랙 자막 (강조 상단 + 카라오케 하단) · 전 언어 공통
           </label>
+          {/* 배경음악 볼륨 — 전 언어 공통 */}
+          <label className="block text-[11px] font-semibold text-gray-600">
+            <span className="mb-0.5 flex items-center justify-between">
+              <span>🎵 배경음악 볼륨 · 전 언어 공통</span>
+              <span style={{ color: ACCENT }}>{Math.round((script.bgmVolume ?? 0.15) * 100)}%</span>
+            </span>
+            <input
+              type="range" min={0} max={0.4} step={0.01}
+              value={script.bgmVolume ?? 0.15}
+              onChange={(e) => onPatchScript({ bgmVolume: parseFloat(e.target.value) })}
+              className="w-full cursor-pointer"
+            />
+          </label>
           <p className="text-[11px]" style={{ color: ACCENT }}>
             편집은 입력 칸을 벗어날 때(blur) 저장됩니다.
           </p>
