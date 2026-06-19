@@ -30,7 +30,10 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
   },
   {
     label: '유료 마케팅',
-    items: [{ to: '/marketing/ads', icon: '📢', label: '광고 관리' }],
+    items: [
+      { to: '/marketing/ads', icon: '📢', label: '광고 관리' },
+      { to: '/marketing/advisor', icon: '🤖', label: '광고 어드바이저' },
+    ],
   },
   {
     label: '분석',

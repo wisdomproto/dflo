@@ -110,6 +110,7 @@ const MentionsPage = lazy(() =>
 const AdsManagerPage = lazy(() =>
   import('@/features/marketing/components/AdsManagerPage').then((m) => ({ default: m.AdsManagerPage })),
 );
+const AdAdvisorPage = lazy(() => import('@/features/marketing/components/AdAdvisorPage'));
 const BlogPreviewPage = lazy(() =>
   import('@/features/marketing/components/BlogPreviewPage').then((m) => ({ default: m.BlogPreviewPage })),
 );
@@ -339,6 +340,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <AdsManagerPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'advisor',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <AdAdvisorPage />
           </Suspense>
         ),
       },
