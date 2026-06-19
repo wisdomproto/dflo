@@ -8,7 +8,7 @@ export type PresenterGenericProps = {
   timing: { id: string; durFrames: number; origStartF: number; rate: number }[];
   lang: string;
   slug: string;
-  assets: { videoSrc: string; audio: Record<string, string> };
+  assets: { videoSrc: string; audio: Record<string, string>; videoFrames?: number };
 };
 
 export const PresenterGeneric: React.FC<PresenterGenericProps> = (p) => (

@@ -107,7 +107,7 @@ function EditorInner({ article, doc0, language, onPatch }: {
     ? timing
     : chunks.map((c) => ({ id: c.id, durFrames: FALLBACK_CHUNK_FRAMES, origStartF: 0, rate: 1 }))), [timing, chunks]);
   const preview = runtime?.preview?.[lang];
-  const assets = useMemo(() => ({ videoSrc: preview?.lipsyncUrl ?? '', audio: preview?.audio ?? {} }), [preview]);
+  const assets = useMemo(() => ({ videoSrc: preview?.lipsyncUrl ?? '', audio: preview?.audio ?? {}, videoFrames: preview?.videoFrames }), [preview]);
 
   // 재생/시킹 중 플레이헤드가 청크 경계를 넘으면 선택을 그 청크로 — 캔버스 핸들·인스펙터가 현재 씬을 따라감(캡컷식).
   // starts 는 매 렌더 새 배열이라 ref 로 최신값만 읽고, 구독은 player 인스턴스당 1회(포털 재마운트 시 재구독).

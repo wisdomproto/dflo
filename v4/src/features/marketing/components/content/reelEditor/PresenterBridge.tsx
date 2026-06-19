@@ -21,7 +21,7 @@ function PlayerError({ error }: { error: Error }) {
   );
 }
 
-export interface BridgeAssets { videoSrc: string; audio: Record<string, string> }
+export interface BridgeAssets { videoSrc: string; audio: Record<string, string>; videoFrames?: number }
 interface Props {
   doc: ReelScriptDoc; timing: ReelTimingEntry[]; lang: string;
   assets: BridgeAssets; durationInFrames: number;

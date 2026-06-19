@@ -192,7 +192,7 @@ export interface ReelScriptDoc {
 export interface ReelTimingEntry { id: string; durFrames: number; origStartF: number; rate: number; natSec?: number }
 export interface ReelRuntimeDoc {
   timing?: Partial<Record<ReelLang, ReelTimingEntry[]>>;
-  preview?: Partial<Record<ReelLang, { lipsyncUrl: string; audio: Record<string, string> }>>;
+  preview?: Partial<Record<ReelLang, { lipsyncUrl: string; audio: Record<string, string>; videoFrames?: number }>>;
   tts_text?: Partial<Record<ReelLang, Record<string, string>>>;
 }
 export type ReelJobStatus = 'queued' | 'claimed' | 'tts' | 'lipsync' | 'upload_preview' | 'render' | 'upload' | 'done' | 'failed';

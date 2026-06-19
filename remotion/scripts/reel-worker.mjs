@@ -30,12 +30,26 @@ async function recoverStale() {
     await updateJob(j.id, { status: "queued", claimed_by: null, progress_note: "stale 회수 → 재대기" });
 }
 
+// 원장 영상 자연 길이(프레임) — 합성 길이와 다르면 PresenterShort 가 playbackRate 로 맞춤.
+// 다국어 릴은 한국어 립싱크 영상을 재사용하는 경우가 있어(길이 불일치 → 멈춤) 실제 영상 길이를 측정해 넘긴다.
+function probeVideoFrames(url) {
+  try {
+    const sec = parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", url]).toString().trim());
+    return sec > 0 ? Math.round(sec * 30) : undefined;
+  } catch (e) { console.warn("  ffprobe videoFrames 실패(속도맞춤 생략, 1배):", e?.message); return undefined; }
+}
+
 async function renderStage(job, scriptDoc, runtime) {
   await updateJob(job.id, { status: "render", progress_note: "렌더 중" });
   const pv = runtime.preview[job.lang];
+  const videoFrames = probeVideoFrames(pv.lipsyncUrl);
+  // 에디터 프리뷰도 동일 속도로 맞추게 preview[lang].videoFrames 보존(립싱크URL/오디오 유지).
+  if (videoFrames && pv.videoFrames !== videoFrames) {
+    runtime = await mergeRuntime(job.article_id, job.lang, { preview: { ...pv, videoFrames } });
+  }
   const inputProps = {
     script: scriptDoc.script, timing: runtime.timing[job.lang], lang: job.lang, slug: job.slug,
-    assets: { videoSrc: pv.lipsyncUrl, audio: pv.audio },
+    assets: { videoSrc: pv.lipsyncUrl, audio: pv.audio, videoFrames },
   };
   const url = await getServeUrl();
   const composition = await selectComposition({ serveUrl: url, id: "PresenterGeneric", inputProps });
