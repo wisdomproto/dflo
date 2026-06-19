@@ -22,6 +22,12 @@ import { listCustomAudiences, createLookalike } from '../services/metaAudiences.
 import { pushCampaign, fetchAccountInsights } from '../services/metaAds.js';
 import { publishQueueItem, deleteChannelPost } from '../services/publishExecutor.js';
 import { triggerDeploy } from '../services/deployHook.js';
+import { collectStats } from '../services/advisor/advisorData.js';
+import { evaluateGate } from '../services/advisor/advisorGate.js';
+import { buildBudget } from '../services/advisor/advisorBudget.js';
+import { judgeRunning, pickNewCandidates } from '../services/advisor/advisorCreative.js';
+import { buildStoryPrompt } from '../services/advisor/advisorStory.js';
+import type { WeeklyGoals } from '../services/advisor/types.js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '';
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
@@ -37,6 +43,44 @@ async function readMarketingConfig(): Promise<ArticleConfig> {
 }
 
 export const marketingRouter = Router();
+
+// POST /api/marketing/advisor/recommend
+// body: { goals: WeeklyGoals, accountExternalId?: string }
+// 데이터 충분하면(게이트 통과) 예산·소재·신규 스토리 추천, 부족하면 ready:false + 안내.
+marketingRouter.post('/advisor/recommend', async (req: Request, res: Response) => {
+  try {
+    const goals = (req.body?.goals ?? {}) as WeeklyGoals;
+    const accountExternalId = req.body?.accountExternalId as string | undefined;
+    const stats = await collectStats({ accountExternalId });
+    const gate = evaluateGate(stats, goals);
+
+    if (!gate.anyReady) {
+      return res.json({ ready: false, gate });
+    }
+
+    const budget = buildBudget(stats, goals);
+    const running = judgeRunning(stats.runningCreatives);
+    const candidates = pickNewCandidates(stats.organicReels, stats.topicLibrary, 3);
+
+    // 훅 스토리: 교체 대상 + 태국어 미보유 후보 (Gemini 없으면 graceful skip)
+    const storySeeds = [
+      ...running.filter((r) => r.verdict === 'refresh').map((r) => ({ reelId: r.reelId, title: r.title, track: 'engagement' as const })),
+      ...candidates.filter((c) => c.needsThaiReel).map((c) => ({ reelId: c.reelId, title: c.title, track: 'homepage' as const })),
+    ];
+    const stories: Array<{ reelId: number; title: string; story: string }> = [];
+    for (const seed of storySeeds.slice(0, 3)) {
+      try {
+        const story = await generateText(buildStoryPrompt(seed));
+        stories.push({ reelId: seed.reelId, title: seed.title, story });
+      } catch { /* Gemini 키 없거나 실패 → skip */ }
+    }
+
+    return res.json({ ready: true, gate, budget, creatives: { running, candidates }, stories });
+  } catch (e: any) {
+    console.error('[advisor] recommend failed:', e?.message);
+    return res.status(500).json({ error: 'advisor_failed', message: e?.message });
+  }
+});
 
 marketingRouter.post('/generate-article', async (req: Request, res: Response) => {
   const body = (req.body ?? {}) as ArticleRequest;
