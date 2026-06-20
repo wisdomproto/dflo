@@ -96,7 +96,7 @@ function BreakdownBars({ items, labels }: { items: NamedCount[]; labels?: Record
   );
 }
 
-export function CountrySiteBreakdownPanel({ days }: { days: number }) {
+export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: string | null }) {
   const [country, setCountry] = useState<CountryKey>('all');
   const [data, setData] = useState<SiteBreakdown | null>(null);
   const [loading, setLoading] = useState(false);
@@ -108,7 +108,7 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
       setLoading(true);
       setErr(null);
       try {
-        const d = await fetchSiteBreakdown(days);
+        const d = await fetchSiteBreakdown(date ? { date } : days);
         if (alive) setData(d);
       } catch (e) {
         if (alive) setErr(e instanceof Error ? e.message : '사이트 분석 불러오기 실패');
@@ -117,7 +117,7 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
       }
     })();
     return () => { alive = false; };
-  }, [days]);
+  }, [days, date]);
 
   return (
     <div className="space-y-4">
@@ -163,14 +163,18 @@ export function CountrySiteBreakdownPanel({ days }: { days: number }) {
                 <ScoreCard label="페이지뷰" value={su.pageViews.toLocaleString()} cur={su.pageViews} prev={pu.pageViews} />
                 <ScoreCard label="평균 참여시간" value={fmtDuration(su.avgEngagementSec)} cur={su.avgEngagementSec} prev={pu.avgEngagementSec} />
               </div>
-              <p className="mt-1.5 text-[11px] text-gray-400">▲▼ 는 직전 동일 기간 대비 증감</p>
+              <p className="mt-1.5 text-[11px] text-gray-400">
+                {date ? `📅 ${date} 하루 · ▲▼ 는 전일 대비 증감` : '▲▼ 는 직전 동일 기간 대비 증감'}
+              </p>
             </div>
 
-            {/* 일자별 추세 */}
-            <div>
-              <h4 className="mb-2 text-xs font-semibold text-gray-500">일자별 추세 (사용자 / 세션 / 페이지뷰)</h4>
-              <SiteTrendChart daily={s.daily} />
-            </div>
+            {/* 일자별 추세 — 단일 하루(date)면 1포인트라 숨김 */}
+            {!date && (
+              <div>
+                <h4 className="mb-2 text-xs font-semibold text-gray-500">일자별 추세 (사용자 / 세션 / 페이지뷰)</h4>
+                <SiteTrendChart daily={s.daily} />
+              </div>
+            )}
 
             {/* 페이지별 */}
             <div>

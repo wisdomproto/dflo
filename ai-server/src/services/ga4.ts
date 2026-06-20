@@ -360,7 +360,16 @@ export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
   const cur = { startDate: `${days}daysAgo`, endDate: 'today' };
   // 직전 동일 기간 (예: 30일이면 그 앞 30일) — 요약 증감 비교용.
   const prev = { startDate: `${days * 2}daysAgo`, endDate: `${days + 1}daysAgo` };
+  return fetchSiteBreakdownRanges(cur, prev);
+}
 
+// 명시 날짜 범위로 사이트 분석. start=end 면 그 하루(일별 보기).
+// 날짜는 절대 'YYYY-MM-DD' 또는 상대('NdaysAgo'/'today') 둘 다 GA4 가 받는다.
+// prev(직전 동일 길이 창)는 호출부가 계산해 넘긴다(요약 증감 비교용).
+export async function fetchSiteBreakdownRanges(
+  cur: { startDate: string; endDate: string },
+  prev: { startDate: string; endDate: string },
+): Promise<SiteBreakdown> {
   // 요약은 landingPage(세션 진입) 기준 — 한 세션 1랜딩이라 국가 귀속에 중복 없음.
   const landingDims = [{ name: 'landingPage' }];
   const landingMetrics = [

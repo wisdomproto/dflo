@@ -131,6 +131,7 @@ scripts/
 - 콘텐츠 정규/커스텀(ad-hoc 릴스) 구분: `055_marketing_articles_kind.sql` — marketing_articles.kind 'regular'|'custom' (적용 완료)
 - 원장 저서 RAG: `056_knowledge_documents.sql` — `knowledge_documents`(pgvector 768d) + `match_knowledge_documents` RPC. 원장 저서 청크를 처방추천 1차 권위 지식소스로(상세 memory `book_knowledge_rag.md`). (적용 완료)
 - 릴스 라이트 에디터: `057_reels_editor.sql` — 릴스 라이트 에디터: reel_script/reel_runtime + 잡 큐 + 워커 heartbeat + 스티커 (수동 적용 필요)
+- 익명 예측키 적재: `060_anonymous_predictions.sql` — `anonymous_predictions`(홈페이지 익명 계산기 결과 = 랜덤 현지 이름·성별·생년월일·현재키·예측키·백분위·국적(언어 기반)·UTM). 실환자 테이블과 분리, **anon INSERT만**(SELECT 차단, 조회는 추후 service_role). (수동 적용 필요)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail

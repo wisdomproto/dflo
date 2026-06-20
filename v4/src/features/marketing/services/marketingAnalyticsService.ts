@@ -33,8 +33,12 @@ export interface SiteBreakdown {
   byCountry: Record<CountryKey, CountryStats>;
 }
 
-export async function fetchSiteBreakdown(days: number): Promise<SiteBreakdown> {
-  const res = await fetch(`${BASE}/api/analytics/site-breakdown?days=${days}`);
+// 기간(number=지난 N일) 또는 특정 하루({ date: 'YYYY-MM-DD' }) 로 조회.
+export async function fetchSiteBreakdown(arg: number | { date: string }): Promise<SiteBreakdown> {
+  const qs = typeof arg === 'number'
+    ? `days=${arg}`
+    : `start=${encodeURIComponent(arg.date)}&end=${encodeURIComponent(arg.date)}`;
+  const res = await fetch(`${BASE}/api/analytics/site-breakdown?${qs}`);
   const body = await res.json().catch(() => ({}));
   if (!res.ok || !body.success) throw new Error(body.error || `사이트 분석 실패: ${res.status}`);
   return body.data as SiteBreakdown;

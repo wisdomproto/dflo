@@ -74,6 +74,16 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
         import('@/shared/lib/analytics').then((m) => m.trackHeightCalcComplete('calc_modal'));
       }
     } catch { /* tracking must never break UX */ }
+
+    // 익명 예측 적재 (공개 iframe 사용분만 — 어드민 미리보기·테스트 호출 제외). fire-and-forget.
+    if (embedded) {
+      import('../services/anonymousPredictionService')
+        .then((m) => m.saveAnonymousPrediction({
+          locale: lang, gender, birthDate, ageYears: age.decimal,
+          currentHeight: h, predictedHeight: pred, percentile: pct, growthStandard: standard,
+        }))
+        .catch(() => { /* never break UX */ });
+    }
   };
 
   const inputCls = 'w-full rounded-xl border border-gray-200 px-3 py-2.5 md:py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#0F6E56]/30 focus:border-[#0F6E56]';
