@@ -58,6 +58,7 @@ import { Thumb } from "./shorts/_thumbs/Thumb";
 import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
 import { OneCmTH, ONECM_TH_DURATION } from "./shorts/1cm/OneCmTH";
 import { PresenterGeneric, calcPresenterMetadata } from "./shorts/_shared/PresenterGeneric";
+import { CalcDemoTH, CALC_DEMO_TH_DURATION } from "./ads/CalcDemoTH";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -234,6 +235,9 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="thumb" component={Thumb} durationInFrames={1} fps={30} width={1080} height={1920} defaultProps={{ n: 1, lang: "ko" }} />
       <Composition id="MainClipTH" component={MainClipTH} durationInFrames={MAINCLIP_DURATION} fps={30} width={1920} height={1080} />
       <Composition id="onecm-th" component={OneCmTH} durationInFrames={ONECM_TH_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calc-demo-th" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "th" as const }} />
+      <Composition id="calc-demo-vi" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "vi" as const }} />
+      <Composition id="calc-demo-en" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "en" as const }} />
       <Composition
         id="PresenterGeneric"
         component={PresenterGeneric}
