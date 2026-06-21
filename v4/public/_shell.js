@@ -263,7 +263,7 @@ const SHELL_HTML = `
   // - calc 전용 페이지에선 skip (이미 같은 폼이 페이지 자체).
   // - 30일 이내 본 적 있으면 skip.
   // - 광고/조직 공통: '관심' 신호일 때만 — 스크롤 깊이 50%↑ / 데스크톱 exit-intent / 시간 폴백.
-  //   시간 폴백만 차등: 광고 12초(측정 의도↑) · 조직 20초. 둘 다 GA4 참여세션(~10초) 이후라 이탈 유발 X.
+  //   시간 폴백만 차등: 광고 7초(빠른 이탈 ~4.6초 대응) · 조직 20초.
   //   (옛 광고 0.6초·조직 1.5초/200px 즉시 오픈 제거 — 읽기 전 차단이 이탈 유발)
   const isCalcPage = document.body.dataset.page === 'calc';
   let alreadySeen = false;
@@ -275,15 +275,15 @@ const SHELL_HTML = `
       alreadySeen = !isNaN(ts) && ts > 0 && Date.now() - ts < SEEN_TTL_MS;
     }
   } catch (e) { /* ignore */ }
-  // 자동오픈 OFF (2026-06-21) — 광고 유입이 평균 2.6초에 이탈해 대부분 팝업 노출 전 나감(효과↓) +
-  // 전면 팝업이 첫인상 방해. 수동 버튼(window.t.openCalcModal)·calc 임베드는 그대로 유지.
-  const AUTO_OPEN = false;
+  // 자동오픈 ON (2026-06-21 재활성) — 측정 완료 0% 의 진짜 원인은 팝업이 아니라 페북 인앱 select 버그였음(수정 완료).
+  // intent 기반(스크롤/exit/폴백)이라 즉시 전면팝업 아님. 광고 폴백은 평균 이탈(~4.6초) 직후·참여세션(~10초) 직전인 7초.
+  const AUTO_OPEN = true;
   if (AUTO_OPEN && !isCalcPage && !alreadySeen) {
     const params = new URLSearchParams(window.location.search);
     const fromAd = ['cpc', 'paid', 'paid_social'].includes(params.get('utm_medium') || '');
     // 광고/조직 공통 — '관심' 신호일 때만 노출(즉시 전면팝업은 이탈 유발). fromAd 는 시간 폴백만 짧게.
     let opened = false;
-    const fallbackMs = fromAd ? 12000 : 20000;
+    const fallbackMs = fromAd ? 7000 : 20000;
     const trigger = () => {
       if (opened) return;
       opened = true;
@@ -299,7 +299,7 @@ const SHELL_HTML = `
     };
     // ② exit-intent = 마우스가 뷰포트 상단 밖으로 이탈(떠나려는 순간, 데스크톱).
     const onExit = (e) => { if (e.clientY <= 0 && !e.relatedTarget) trigger(); };
-    // ③ 시간 폴백 = 스크롤·exit 둘 다 없는 경우(광고 12초·조직 20초, GA4 참여세션 ~10초 이후).
+    // ③ 시간 폴백 = 스크롤·exit 둘 다 없는 경우(광고 7초·조직 20초).
     window.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('mouseout', onExit);
     const fallbackTimer = setTimeout(trigger, fallbackMs);
