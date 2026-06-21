@@ -103,3 +103,15 @@ export async function fetchAnonymousPredictions(opts?: { limit?: number; country
   if (error) throw error;
   return (data ?? []) as PredictionRow[];
 }
+
+// 측정 로그 1건 삭제 (admin 정리용). migration 062(anon DELETE) 필요.
+export async function deleteAnonymousPrediction(id: string): Promise<void> {
+  const { error } = await supabase.from('anonymous_predictions').delete().eq('id', id);
+  if (error) throw error;
+}
+
+// 측정 로그 전체 삭제 (테스트 데이터 일괄 정리). delete 는 filter 필수라 불가능 조건(neq 더미 id)으로 전체 매칭.
+export async function deleteAllAnonymousPredictions(): Promise<void> {
+  const { error } = await supabase.from('anonymous_predictions').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+  if (error) throw error;
+}
