@@ -11,6 +11,7 @@ import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
 import { loadPublishedBlogAll } from './lib/blog-supabase.mjs';
 import { localizeProgramImages } from './lib/program-img.mjs';
 import { lazifyImages } from './lib/img-attrs.mjs';
+import { swapToWebp } from './lib/webp-swap.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -110,6 +111,7 @@ async function main() {
         out = out.replaceAll('/images/saebom-logo.png', '/images/saebom-logo-en.png');
         out = out.replaceAll('/images/logo-187-inline.png', '/images/logo-187-inline-en.png');
       }
+      out = swapToWebp(out, join(ROOT, 'public')); // jpg/png → webp(존재 시) — 모바일 LCP/전송량 개선
       return out;
     };
 
