@@ -275,7 +275,10 @@ const SHELL_HTML = `
       alreadySeen = !isNaN(ts) && ts > 0 && Date.now() - ts < SEEN_TTL_MS;
     }
   } catch (e) { /* ignore */ }
-  if (!isCalcPage && !alreadySeen) {
+  // 자동오픈 OFF (2026-06-21) — 광고 유입이 평균 2.6초에 이탈해 대부분 팝업 노출 전 나감(효과↓) +
+  // 전면 팝업이 첫인상 방해. 수동 버튼(window.t.openCalcModal)·calc 임베드는 그대로 유지.
+  const AUTO_OPEN = false;
+  if (AUTO_OPEN && !isCalcPage && !alreadySeen) {
     const params = new URLSearchParams(window.location.search);
     const fromAd = ['cpc', 'paid', 'paid_social'].includes(params.get('utm_medium') || '');
     // 광고/조직 공통 — '관심' 신호일 때만 노출(즉시 전면팝업은 이탈 유발). fromAd 는 시간 폴백만 짧게.
