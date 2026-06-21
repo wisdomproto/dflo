@@ -56,6 +56,17 @@ const seoRedirects = (): Plugin => ({
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), seoRedirects()],
+  // 멀티 엔트리: SPA(index.html) + 경량 calc 페이지(calc.html).
+  // calc.html 은 HeightCalculator 폼만 마운트(calc-main.tsx) → Supabase/router/admin 부팅 번들 미포함.
+  // iframe(calculator.html)·팝업(_shell.js)이 /calc.html 을 로드. /calc-embed React 라우트는 하위호환으로 유지.
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        calc: path.resolve(__dirname, 'calc.html'),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

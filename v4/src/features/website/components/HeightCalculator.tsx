@@ -2,12 +2,18 @@
 // HeightCalculator - 예상키 측정 입력 폼 모달
 // ================================================
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { calculateAgeAtDate } from '@/shared/utils/age';
 import { calculateHeightPercentileLMS, predictAdultHeightLMS, type GrowthStandard } from '@/shared/data/growthStandard';
 import { InfoModal } from './InfoModal';
-import { HeightCalculatorResult, type HeightResult } from './HeightCalculatorResult';
+import type { HeightResult } from './HeightCalculatorResult';
 import { CalcLangContext, getCalcLabels, type CalcLang } from './calcLabels';
+
+// 결과 화면(Chart.js + react-chartjs-2 ~50KB gzip)은 "계산" 버튼을 누른 뒤에만 보인다.
+// 입력 폼(=LCP)과 같은 청크에 묶이면 폼이 Chart.js 파싱을 기다리느라 늦게 뜬다 → lazy 로 분리.
+const HeightCalculatorResult = lazy(() =>
+  import('./HeightCalculatorResult').then((m) => ({ default: m.HeightCalculatorResult })),
+);
 
 interface Props {
   isOpen: boolean;
@@ -189,13 +195,15 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
     return (
       <CalcLangContext.Provider value={lang}>
         {showResult && result ? (
-          <HeightCalculatorResult
-            result={result}
-            isOpen={true}
-            onClose={() => setShowResult(false)}
-            embedded
-            lang={lang}
-          />
+          <Suspense fallback={<div className="max-w-lg md:max-w-xl mx-auto p-5 md:p-8 text-center text-sm text-gray-400">···</div>}>
+            <HeightCalculatorResult
+              result={result}
+              isOpen={true}
+              onClose={() => setShowResult(false)}
+              embedded
+              lang={lang}
+            />
+          </Suspense>
         ) : (
           <div className="max-w-lg md:max-w-xl mx-auto p-5 md:p-8 bg-white">{formContent}</div>
         )}
@@ -213,7 +221,9 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
       <InfoModal isOpen={isOpen} onClose={onClose} title="">{formContent}</InfoModal>
 
       {result && (
-        <HeightCalculatorResult result={result} isOpen={showResult} onClose={() => setShowResult(false)} lang={lang} />
+        <Suspense fallback={null}>
+          <HeightCalculatorResult result={result} isOpen={showResult} onClose={() => setShowResult(false)} lang={lang} />
+        </Suspense>
       )}
 
       <InfoModal isOpen={showHelp} onClose={() => setShowHelp(false)} title={t.helpTitle}>

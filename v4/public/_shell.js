@@ -233,9 +233,9 @@ const SHELL_HTML = `
 
   function openCalcModal() {
     if (!modal) return;
-    // Lazy-load the iframe only on first open — locale 그대로 /calc-embed 로 위임.
+    // Lazy-load the iframe only on first open — 경량 calc 엔트리(/calc.html)로 위임.
     if (calcFrame && !calcFrame.src) {
-      calcFrame.src = '/calc-embed?lang=' + encodeURIComponent(__I18N_LOCALE);
+      calcFrame.src = '/calc.html?lang=' + encodeURIComponent(__I18N_LOCALE);
     }
     modal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
