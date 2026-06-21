@@ -49,9 +49,11 @@ export function gaSnippet() {
   const id = process.env.GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID;
   // 측정ID 형식(G-XXXX)만 허용 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
   if (!id || !/^G-[A-Z0-9]+$/.test(id)) return '';
-  // 지연 로드: gtag() 큐 스텁 + config 는 즉시(이벤트 누락 0), gtag.js 라이브러리(메인스레드 ~320ms)는
-  // 첫 페인트(LCP) 후 idle 에 삽입 → LCP 직전 메인스레드 점유 제거. dataLayer 큐는 로드 후 자동 처리(page_view 발사).
-  return `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');(function(){function l(){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=${id}';document.head.appendChild(s);}if('requestIdleCallback'in window){requestIdleCallback(l,{timeout:2000});}else{setTimeout(l,1500);}})();</script>`;
+  // ★ 표준 async 즉시 로드. requestIdleCallback 지연 로드(옛 3b3c029)는 gtag.js 가 page_view 후 한참 뒤
+  // (모바일 메인스레드 busy → idle 안 옴 → 2초 timeout)에야 떠서 engagement_time 측정 윈도우가 ~0 이 됨
+  // → userEngagementDuration·engagedSessions 전부 0 으로 깨졌음(빠른 이탈자는 gtag.js 로드 전 unload 라 page_view 도 누락).
+  // async 라 HTML 파싱 비차단 + LCP 진짜 레버는 폰트 제거(d027b9c)였어서 LCP 영향 미미 → 측정 정확성 ≫ ~320ms.
+  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');</script>`;
 }
 
 // Meta Pixel base code — 빌드 env 의 픽셀ID(없으면 빈 문자열, graceful).
@@ -62,9 +64,8 @@ export function pixelSnippet() {
   const ids = raw.split(',').map((s) => s.trim()).filter((s) => /^\d{5,20}$/.test(s));
   if (!ids.length) return '';
   const inits = ids.map((id) => `fbq('init','${id}');`).join('');
-  // 지연 로드: fbq() 큐 스텁 + init/PageView 는 즉시 큐잉(추적 누락 0), fbevents.js(메인스레드 ~300ms)는
-  // 첫 페인트(LCP) 후 idle 에 삽입 → LCP 직전 점유 제거. 로드되면 큐가 자동 발사된다(PageView 보존).
-  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];function l(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}if('requestIdleCallback'in window){requestIdleCallback(l,{timeout:2000})}else{setTimeout(l,1500)}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');</script>`;
+  // ★ 표준 즉시 로드 — gaSnippet 과 동일 이유. requestIdleCallback 지연 로드는 빠른 이탈자가 fbevents.js 로드 전 unload 시 PageView 누락 위험.
+  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');</script>`;
 }
 
 export function buildBlogPostHead({ post, lang }) {

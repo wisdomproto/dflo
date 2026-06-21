@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { buildHead, buildHreflang, buildSeo, gaSnippet, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP } from '../lib/seo.mjs';
+import { buildHead, buildHreflang, buildSeo, gaSnippet, pixelSnippet, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP } from '../lib/seo.mjs';
 
 test('buildSeo returns ko-specific title/description', () => {
   const seo = buildSeo('ko');
@@ -82,4 +82,28 @@ test('gaSnippet: 잘못된 형식 ID 는 무시(주입 방어)', () => {
   assert.equal(gaSnippet(), '');
   delete process.env.GA_MEASUREMENT_ID;
   if (prev !== undefined) process.env.GA_MEASUREMENT_ID = prev;
+});
+
+// 2026-06-22 회귀 방지: gtag.js 를 requestIdleCallback/setTimeout 으로 지연 로드하면
+// gtag.js 가 page_view 후 한참 뒤(모바일 idle/2초 timeout)에야 떠서 engagement_time 측정 윈도우가 ~0 이 됨
+// → userEngagementDuration·engagedSessions 전부 0 으로 깨졌었음. 반드시 표준 async 즉시 로드 유지.
+test('gaSnippet: 표준 async 즉시 로드 — 지연 로드 금지(engagement 측정 회귀 방지)', () => {
+  process.env.GA_MEASUREMENT_ID = 'G-TEST123';
+  const s = gaSnippet();
+  assert.match(s, /<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-TEST123">/);
+  assert.doesNotMatch(s, /requestIdleCallback/);
+  assert.doesNotMatch(s, /setTimeout/);
+  delete process.env.GA_MEASUREMENT_ID;
+});
+
+test('pixelSnippet: 표준 즉시 로드 — 지연 로드 금지(빠른 이탈 PageView 누락 방지)', () => {
+  const prev = process.env.META_PIXEL_ID;
+  process.env.META_PIXEL_ID = '12345678';
+  const s = pixelSnippet();
+  assert.match(s, /fbq\('init', ?'12345678'\)/);
+  assert.match(s, /fbq\('track', ?'PageView'\)/);
+  assert.doesNotMatch(s, /requestIdleCallback/);
+  assert.doesNotMatch(s, /setTimeout/);
+  delete process.env.META_PIXEL_ID;
+  if (prev !== undefined) process.env.META_PIXEL_ID = prev;
 });
