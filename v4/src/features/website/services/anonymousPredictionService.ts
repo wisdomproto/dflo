@@ -68,3 +68,38 @@ export async function saveAnonymousPrediction(core: PredictionCore): Promise<voi
     /* tracking must never break UX */
   }
 }
+
+// 측정 로그 1행 (DB row). admin 조회용 — anon SELECT 정책(migration 061) 필요.
+export interface PredictionRow {
+  id: string;
+  created_at: string;
+  display_name: string | null;
+  locale: string | null;
+  country: string | null;
+  gender: string | null;
+  birth_date: string | null;
+  age_years: number | null;
+  current_height: number | null;
+  predicted_height: number | null;
+  percentile: number | null;
+  growth_standard: string | null;
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
+  utm_content: string | null;
+  referrer: string | null;
+  session_id: string | null;
+}
+
+// admin 측정 로그 조회 (최근순). migration 061(anon SELECT) 미적용이면 error throw → 페이지가 안내.
+export async function fetchAnonymousPredictions(opts?: { limit?: number; country?: string }): Promise<PredictionRow[]> {
+  let q = supabase
+    .from('anonymous_predictions')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(opts?.limit ?? 500);
+  if (opts?.country) q = q.eq('country', opts.country);
+  const { data, error } = await q;
+  if (error) throw error;
+  return (data ?? []) as PredictionRow[];
+}
