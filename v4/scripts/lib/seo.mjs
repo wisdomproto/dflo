@@ -49,10 +49,9 @@ export function gaSnippet() {
   const id = process.env.GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID;
   // 측정ID 형식(G-XXXX)만 허용 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
   if (!id || !/^G-[A-Z0-9]+$/.test(id)) return '';
-  return [
-    `<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>`,
-    `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${id}');</script>`,
-  ].join('\n  ');
+  // 지연 로드: gtag() 큐 스텁 + config 는 즉시(이벤트 누락 0), gtag.js 라이브러리(메인스레드 ~320ms)는
+  // 첫 페인트(LCP) 후 idle 에 삽입 → LCP 직전 메인스레드 점유 제거. dataLayer 큐는 로드 후 자동 처리(page_view 발사).
+  return `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');(function(){function l(){var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=${id}';document.head.appendChild(s);}if('requestIdleCallback'in window){requestIdleCallback(l,{timeout:2000});}else{setTimeout(l,1500);}})();</script>`;
 }
 
 // Meta Pixel base code — 빌드 env 의 픽셀ID(없으면 빈 문자열, graceful).
@@ -63,7 +62,9 @@ export function pixelSnippet() {
   const ids = raw.split(',').map((s) => s.trim()).filter((s) => /^\d{5,20}$/.test(s));
   if (!ids.length) return '';
   const inits = ids.map((id) => `fbq('init','${id}');`).join('');
-  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');</script>`;
+  // 지연 로드: fbq() 큐 스텁 + init/PageView 는 즉시 큐잉(추적 누락 0), fbevents.js(메인스레드 ~300ms)는
+  // 첫 페인트(LCP) 후 idle 에 삽입 → LCP 직전 점유 제거. 로드되면 큐가 자동 발사된다(PageView 보존).
+  return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];function l(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}if('requestIdleCallback'in window){requestIdleCallback(l,{timeout:2000})}else{setTimeout(l,1500)}}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');</script>`;
 }
 
 export function buildBlogPostHead({ post, lang }) {
