@@ -80,18 +80,29 @@ export async function uploadR2(localPath, folder) {
   if (!existsSync(localPath)) throw new Error(`업로드 파일 없음: ${localPath}`);
   const name = basename(localPath);
   const type = MIME[extname(localPath).toLowerCase()] || "application/octet-stream";
-  const fd = new FormData();
-  fd.append("file", new Blob([readFileSync(localPath)], { type }), name);
-  fd.append("folder", folder);
-  let ur;
-  try {
-    ur = await fetch(`${AI_BASE}/api/r2/upload`, { method: "POST", headers: { "x-admin-pin": PIN }, body: fd });
-  } catch (e) {
-    if (e?.cause?.code === "ECONNREFUSED" || /ECONNREFUSED|fetch failed/.test(String(e?.message)))
-      throw new Error(`ai-server(localhost:${PORT}) 미응답 — 로컬 ai-server 실행 필요`);
-    throw e;
+  const buf = readFileSync(localPath);
+  // 재시도: idle(예: TTS 30초) 뒤 첫 업로드에서 keep-alive 연결이 stale 해 "fetch failed"가 나는 경우가 있다.
+  // connection:close 로 매번 새 연결 + transient 오류는 백오프 후 재시도(최대 4회).
+  let lastErr;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      const fd = new FormData();
+      fd.append("file", new Blob([buf], { type }), name);
+      fd.append("folder", folder);
+      const ur = await fetch(`${AI_BASE}/api/r2/upload`, { method: "POST", headers: { "x-admin-pin": PIN, connection: "close" }, body: fd });
+      const b = await ur.json();
+      if (!ur.ok || !b.success) throw new Error(b.error || `R2 업로드 실패 ${ur.status}`);
+      return b.url;
+    } catch (e) {
+      lastErr = e;
+      const transient = e?.cause?.code === "ECONNREFUSED" || /ECONNREFUSED|fetch failed|ECONNRESET|socket|other side closed|terminated/i.test(String(e?.message));
+      if (!transient || attempt === 4) {
+        if (e?.cause?.code === "ECONNREFUSED" || /ECONNREFUSED|fetch failed/.test(String(e?.message)))
+          throw new Error(`ai-server(localhost:${PORT}) 미응답 — 로컬 ai-server 실행 필요`);
+        throw e;
+      }
+      await new Promise((r) => setTimeout(r, 600 * attempt)); // 백오프 후 새 연결 재시도
+    }
   }
-  const b = await ur.json();
-  if (!ur.ok || !b.success) throw new Error(b.error || `R2 업로드 실패 ${ur.status}`);
-  return b.url;
+  throw lastErr;
 }

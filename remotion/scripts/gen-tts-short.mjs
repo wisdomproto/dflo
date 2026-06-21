@@ -28,11 +28,21 @@ const MODEL = process.env["ELEVEN_MODEL_" + LANG] || process.env.ELEVEN_MODEL ||
 const STAB = +(process.env["STABILITY_" + LANG] ?? process.env.STABILITY ?? (isKo ? 0.8 : 0.4));
 const SIM = +(process.env["SIMILARITY_" + LANG] ?? process.env.SIMILARITY ?? (isKo ? 0.8 : 0.2));
 const STYLE_V = +(process.env["STYLE_" + LANG] ?? process.env.STYLE ?? 0);
+const SPEED = +(process.env["SPEED_" + LANG] ?? process.env.SPEED ?? 1); // ElevenLabs speed 0.7~1.2 (1=기본). 더빙 톤 조절용.
 if (!isKo && VOICE === VOICE_ID) console.warn(`⚠️  ${lang}: ELEVEN_VOICE_ID_${LANG} 미설정 — 원장 클론으로 폴백(외국어는 네이티브 보이스 권장)`);
 const SHORT_DIR = join(ROOT, "src", "shorts", slug);
 const script = JSON.parse(readFileSync(join(SHORT_DIR, "script.json"), "utf8"));
 const OUT_DIR = join(ROOT, "public", "audio", "shorts", slug, lang);
 
+// TTS 직전 텍스트 정규화 — 따옴표/대시는 ElevenLabs 가 들숨("쓰읍")·이상 pause 를 넣게 해서 제거.
+// 자막(cap_*)에는 영향 없음(나레이션 텍스트만 거친다). 아포스트로피(')는 영어 축약 위해 보존.
+function cleanForTTS(s) {
+  return String(s)
+    .replace(/[“”‘’"]/g, "")  // 큰따옴표류(곱슬+일반) 제거
+    .replace(/\s*[—–]\s*/g, " ")              // em/en 대시 → 공백
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
 const wavDur = (p) => (readFileSync(p).length - 44) / (44100 * 2);
 
 async function tts(text, outRaw) {
@@ -42,7 +52,7 @@ async function tts(text, outRaw) {
     headers: { "xi-api-key": API_KEY, "Content-Type": "application/json" },
     body: JSON.stringify({
       text, model_id: MODEL,
-      voice_settings: { stability: STAB, similarity_boost: SIM, style: STYLE_V, use_speaker_boost: true },
+      voice_settings: { stability: STAB, similarity_boost: SIM, style: STYLE_V, use_speaker_boost: true, speed: SPEED },
     }),
   });
   if (!res.ok) throw new Error(`tts ${res.status}: ${(await res.text()).slice(0, 300)}`);
@@ -55,11 +65,12 @@ async function tts(text, outRaw) {
 
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
-  console.log(`🎙️  ${slug}/${lang}  voice=${VOICE} model=${MODEL} stab=${STAB} sim=${SIM} chunks=${script.chunks.length}`);
+  console.log(`🎙️  ${slug}/${lang}  voice=${VOICE} model=${MODEL} stab=${STAB} sim=${SIM} speed=${SPEED} chunks=${script.chunks.length}`);
   const manifest = [];
   for (const c of script.chunks) {
-    const text = c[lang];
-    if (!text) { console.log(`  ${c.id} — no ${lang} text, skip`); continue; }
+    const rawText = c[lang];
+    if (!rawText) { console.log(`  ${c.id} — no ${lang} text, skip`); continue; }
+    const text = cleanForTTS(rawText); // 따옴표·대시 제거 → 들숨 아티팩트 방지
     process.stdout.write(`  ${c.id} … `);
     const raw = join(OUT_DIR, `${c.id}.raw.wav`), out = join(OUT_DIR, `${c.id}.wav`);
     try {
