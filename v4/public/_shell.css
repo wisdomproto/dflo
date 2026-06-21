@@ -3,7 +3,7 @@
    kakao floater, calculator modal
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap');
+/* (폰트 @import 제거 2026-06-21 — Noto Serif KR 가 실제 미사용인데 render-blocking 1.8초 유발했음. body 는 시스템 폰트 상속) */
 
 :root {
   /* 강남 럭셔리 K-medical 팔레트 — purple signature + Kakao yellow + warm neutrals */
