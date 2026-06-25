@@ -10,6 +10,7 @@ import { IntakeFamilySection } from './IntakeFamilySection';
 import { IntakeMedicalSection } from './IntakeMedicalSection';
 import { IntakeCausesSection } from './IntakeCausesSection';
 import { IntakeClinicalSection } from './IntakeClinicalSection';
+import { IntakeScannedSection } from './IntakeScannedSection';
 
 interface Props {
   child: Child;
@@ -53,6 +54,8 @@ export function IntakeSurveyPanel({ child, onChildUpdated }: Props) {
         </div>
         <SaveIndicator status={status} updatedAt={survey.updated_at} />
       </div>
+
+      {survey.scanned_intake && <IntakeScannedSection scanned={survey.scanned_intake} />}
 
       <IntakeBasicInfoSection child={child} onSaved={onChildUpdated} />
       <IntakeGrowthHistoryTable survey={survey} onSave={handleSurveyPatch} />

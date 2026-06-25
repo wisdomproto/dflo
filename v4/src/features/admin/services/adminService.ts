@@ -185,17 +185,25 @@ async function fetchAllRows<T>(
 export async function fetchPatients(search?: string): Promise<PatientWithParent[]> {
   // 1) Fetch children with any search filter applied — paginated so the full
   //    roster is available to client-side category filters.
+  // is_favorite 는 migration 063 미적용 환경에서도 깨지지 않도록 graceful 조회:
+  // 컬럼 없음(42703) 이면 그 컬럼 빼고 재시도(별표 전부 off 로 동작).
+  let favSel = ', is_favorite';
   const patients = await fetchAllRows<Child>(async (from, to) => {
-    let q = supabase
-      .from('children')
-      .select(LIST_CHILD_COLUMNS)
-      .order('created_at', { ascending: false })
-      .range(from, to);
-    if (search) {
-      q = q.or(`name.ilike.%${search}%,chart_number.ilike.%${search}%`);
+    const build = (extra: string) => {
+      let q = supabase
+        .from('children')
+        .select(LIST_CHILD_COLUMNS + extra)
+        .order('created_at', { ascending: false })
+        .range(from, to);
+      if (search) q = q.or(`name.ilike.%${search}%,chart_number.ilike.%${search}%`);
+      return q;
+    };
+    let { data, error } = await build(favSel);
+    if (error && favSel && (error as { code?: string }).code === '42703') {
+      favSel = '';
+      ({ data, error } = await build(''));
     }
-    const { data, error } = await q;
-    return { data: (data ?? []) as Child[], error };
+    return { data: (data ?? []) as unknown as Child[], error };
   });
   if (!patients.length) return [];
 

@@ -119,3 +119,11 @@ v4/public/images/랜딩페이지*.zip
 
 # 일회용 작업 폴더
 /tmp/
+cases/intake_pdf_extracted.json
+cases/intake_surveys_consolidated.json
+# 매칭 산출물(환자 이름·차트·생일 = PHI)
+cases/intake_birthdate_matches.json
+cases/intake_candidate_matches.json
+cases/intake_link_backup.json
+# 검토 툴 디렉토리 전체(스캔 이미지·매칭 데이터 = PHI, 로컬 전용·재생성 가능)
+v4/public/intake-review/

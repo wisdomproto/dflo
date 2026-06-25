@@ -51,6 +51,8 @@ export interface Child {
   country?: string;
   intake_survey?: IntakeSurvey | null;
   is_patient?: boolean;
+  /** 환자관리 즐겨찾기(별표). DB children.is_favorite (migration 063). */
+  is_favorite?: boolean;
   /** 의사가 수동으로 토글하는 환자 단계.
    *  - 'consultation' (기본) — 상담만 한 환자, 치료 시작 유도 대상
    *  - 'treatment'           — 실제 진료 중인 환자
@@ -111,6 +113,23 @@ export interface IntakeSurvey {
   acquisition_channel: string | null;
   /** ISO timestamp, 마지막 저장 시각 */
   updated_at: string;
+  /** 스캔 초진기록지(손글씨)에서 추출 → 후보 매칭으로 연결된 미검증 데이터 */
+  scanned_intake?: ScannedIntake;
+}
+
+/** 스캔 초진기록지에서 OCR 추출해 후보 환자에 연결한 미검증 데이터(검증 전 참고용) */
+export interface ScannedIntake {
+  scanned: boolean;
+  match_type: string;
+  source: string[];
+  page_refs: string[];
+  name_read: string | null;
+  birth_read: string | null;
+  fields: Record<string, unknown>;
+  low_confidence: string[];
+  needs_review: string[];
+  verified: boolean;
+  linked_at: string;
 }
 
 export type LabTestType = 'allergy' | 'organic_acid' | 'blood' | 'attachment';

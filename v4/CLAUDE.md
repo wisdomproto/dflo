@@ -132,6 +132,7 @@ scripts/
 - 원장 저서 RAG: `056_knowledge_documents.sql` — `knowledge_documents`(pgvector 768d) + `match_knowledge_documents` RPC. 원장 저서 청크를 처방추천 1차 권위 지식소스로(상세 memory `book_knowledge_rag.md`). (적용 완료)
 - 릴스 라이트 에디터: `057_reels_editor.sql` — 릴스 라이트 에디터: reel_script/reel_runtime + 잡 큐 + 워커 heartbeat + 스티커 (수동 적용 필요)
 - 익명 예측키 적재: `060_anonymous_predictions.sql` — `anonymous_predictions`(홈페이지 익명 계산기 결과 = 랜덤 현지 이름·성별·생년월일·현재키·예측키·백분위·국적(언어 기반)·UTM). 실환자 테이블과 분리, **anon INSERT만**(SELECT 차단, 조회는 추후 service_role). (수동 적용 필요)
+- 환자관리 즐겨찾기 DB화: `063_children_is_favorite.sql` — `children.is_favorite` boolean + 치료사례 후보 58명 별표 시드. 옛 localStorage 즐겨찾기 폐기. (**수동 적용 필요** — 미적용이어도 `adminService.fetchPatients` 가 42703 폴백으로 graceful)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
@@ -142,6 +143,7 @@ scripts/
   - Family/interest (Q9/Q10/Q12/Q13 yes-no + sports event)
   - Medical/development (Q14 chronic conditions, Q15 Tanner 1-5)
   - Short stature causes (Q16 multi-select chips + free-text)
+  - **스캔 초진기록지** (`IntakeScannedSection`): `intake_survey.scanned_intake` 있으면 표시 — 손글씨 초진기록지 OCR을 생년월일+이름 매칭 검토 툴(`/intake-review/match-review.html`, 루트 CLAUDE.md 데이터 파이프라인 참조)에서 연결한 미검증 데이터. 접힘 `<details>` + 앞/뒤 스캔 이미지 + 추출 필드(저신뢰/검토필요 강조). 정식 문진과 별도(검증 후 수기 반영 전제)
 - **진료 기록 tab — 3-Column Layout**
   - **Left**: Visit list — inline height/weight inputs, collapsible rail, CA/BA/PAH display, lab file upload (drag/paste/pick)
   - **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick

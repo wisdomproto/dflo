@@ -23,7 +23,6 @@ import { regionSortKey } from '@/features/admin/utils/region';
 import { countryFlag, countryLabel } from '@/shared/data/countries';
 import { fetchStoryChildIds } from '@/features/admin/services/patientStoryService';
 import PatientStoryModal from '@/features/admin/components/PatientStoryModal';
-import { useFavoritePatients } from '@/features/admin/hooks/useFavoritePatients';
 import { updateChildField } from '@/features/hospital/services/intakeSurveyService';
 import { TREATMENT_STAGES, type TreatmentStatus } from '@/shared/utils/treatmentStage';
 
@@ -50,7 +49,12 @@ export default function AdminPatientsPage() {
   const [storyChildIds, setStoryChildIds] = useState<Set<string>>(new Set());
   const [storyOpenFor, setStoryOpenFor] = useState<PatientWithParent | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout>>(null);
-  const { favorites, isFavorite, toggle: toggleFavorite } = useFavoritePatients();
+  // 즐겨찾기 = DB children.is_favorite (migration 063). patients state 에서 파생.
+  const favoriteIds = useMemo(
+    () => new Set(patients.filter((p) => p.is_favorite).map((p) => p.id)),
+    [patients],
+  );
+  const isFavorite = (id: string) => favoriteIds.has(id);
 
   // Precompute categories per patient once per list load.
   const categoriesById = useMemo(() => {
@@ -76,7 +80,7 @@ export default function AdminPatientsPage() {
   // 카테고리 칩과 조합 시 AND 의미.
   const filteredPatients = useMemo(() => {
     let list = patients;
-    if (favoritesOnly) list = list.filter((p) => favorites.has(p.id));
+    if (favoritesOnly) list = list.filter((p) => favoriteIds.has(p.id));
     if (countryFilter) {
       // 한국 탭은 국적 미설정 환자(기존 244명 다수)도 포함 — 한국 클리닉 기본값.
       list = list.filter((p) => {
@@ -95,7 +99,7 @@ export default function AdminPatientsPage() {
       });
     }
     return list;
-  }, [patients, categoriesById, activeCategories, favoritesOnly, favorites, countryFilter, stageFilter]);
+  }, [patients, categoriesById, activeCategories, favoritesOnly, favoriteIds, countryFilter, stageFilter]);
 
   // 단계별 건수 (필터칩 배지) — 미설정은 상담으로 집계.
   const stageCounts = useMemo(() => {
@@ -113,6 +117,20 @@ export default function AdminPatientsPage() {
     } catch {
       setPatients((list) => list.map((x) => (x.id === p.id ? { ...x, treatment_status: prev } : x)));
       addToast('error', '단계 변경에 실패했습니다');
+    }
+  }
+
+  // 즐겨찾기 토글 — 낙관적 업데이트 후 실패 시 롤백 (DB: children.is_favorite).
+  async function toggleFavorite(id: string) {
+    const p = patients.find((x) => x.id === id);
+    if (!p) return;
+    const next = !p.is_favorite;
+    setPatients((list) => list.map((x) => (x.id === id ? { ...x, is_favorite: next } : x)));
+    try {
+      await updateChildField(id, { is_favorite: next });
+    } catch {
+      setPatients((list) => list.map((x) => (x.id === id ? { ...x, is_favorite: !next } : x)));
+      addToast('error', '즐겨찾기 변경에 실패했습니다');
     }
   }
 
@@ -425,7 +443,7 @@ export default function AdminPatientsPage() {
           <span>{favoritesOnly ? '⭐' : '☆'}</span>
           <span>즐겨찾기</span>
           <span className="ml-0.5 rounded-full bg-white/70 px-1.5 text-[10px] font-semibold">
-            {favorites.size}
+            {favoriteIds.size}
           </span>
         </button>
         {/* 치료 단계 필터 */}

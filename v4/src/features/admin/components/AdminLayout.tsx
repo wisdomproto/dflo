@@ -144,6 +144,23 @@ export default function AdminLayout() {
         )}
         {NAV_ITEMS.map(renderNavLink)}
 
+        {/* 초진 매칭 검토 — 정적 HTML 로컬 PHI 도구(gitignore). NavLink 아닌 새 탭 외부 링크, dev 전용 */}
+        {import.meta.env.DEV && (
+          <a
+            href="/intake-review/match-review.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`relative flex items-center gap-3 rounded-lg text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 ${
+              collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
+            }`}
+            onClick={() => setSidebarOpen(false)}
+            title={collapsed ? '초진 매칭 검토' : '초진기록지 ↔ 환자 매칭 검토 (개발 전용)'}
+          >
+            <span className="text-lg">🔗</span>
+            {!collapsed && <span>초진 매칭 검토</span>}
+          </a>
+        )}
+
         {/* 상담 직원용 그룹 — 구분선 + 라벨 */}
         {collapsed ? (
           <div className="my-2 border-t border-gray-200" />
