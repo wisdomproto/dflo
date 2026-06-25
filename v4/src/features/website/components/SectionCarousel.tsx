@@ -643,7 +643,7 @@ function VideoContent({ slide: s }: { slide: VideoSlide }) {
 function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide; isActive: boolean; embed?: boolean }) {
   const ms = s.measurements || [];
   const isMale = s.gender === 'male';
-  const KAKAO_URL = 'https://pf.kakao.com/_ZxneSb';
+  const KAKAO_URL = 'https://pf.kakao.com/_qxnKxfX';
   const t = useCasesLang();
   const lang = useCasesLangCode();
 
