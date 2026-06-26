@@ -107,3 +107,29 @@ test('pixelSnippet: 표준 즉시 로드 — 지연 로드 금지(빠른 이탈 
   delete process.env.META_PIXEL_ID;
   if (prev !== undefined) process.env.META_PIXEL_ID = prev;
 });
+
+test('pixelSnippet: 시장별 분리 — ko 는 _KO 픽셀만, 그 외는 기본 픽셀만', () => {
+  const prevDef = process.env.META_PIXEL_ID;
+  const prevKo = process.env.META_PIXEL_ID_KO;
+  process.env.META_PIXEL_ID = '999009859491958,1581604220084208';
+  process.env.META_PIXEL_ID_KO = '1475807327924387';
+
+  const ko = pixelSnippet('ko');
+  assert.match(ko, /fbq\('init', ?'1475807327924387'\)/);
+  assert.doesNotMatch(ko, /999009859491958/);
+  assert.doesNotMatch(ko, /1581604220084208/);
+
+  const th = pixelSnippet('th');
+  assert.match(th, /fbq\('init', ?'999009859491958'\)/);
+  assert.match(th, /fbq\('init', ?'1581604220084208'\)/);
+  assert.doesNotMatch(th, /1475807327924387/);
+
+  // _KO 미설정 시 ko 도 기본으로 폴백(graceful)
+  delete process.env.META_PIXEL_ID_KO;
+  const koFallback = pixelSnippet('ko');
+  assert.match(koFallback, /fbq\('init', ?'999009859491958'\)/);
+
+  delete process.env.META_PIXEL_ID;
+  if (prevDef !== undefined) process.env.META_PIXEL_ID = prevDef;
+  if (prevKo !== undefined) process.env.META_PIXEL_ID_KO = prevKo;
+});

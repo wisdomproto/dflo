@@ -57,11 +57,20 @@ export function gaSnippet() {
 }
 
 // Meta Pixel base code — 빌드 env 의 픽셀ID(없으면 빈 문자열, graceful).
-// React 와 같은 VITE_META_PIXEL_ID 를 재사용. 콤마로 여러 픽셀 ID 지원 ("111,222") — 전부 init + PageView.
-export function pixelSnippet() {
-  const raw = process.env.META_PIXEL_ID || process.env.VITE_META_PIXEL_ID || '';
+// 시장별 분리: 한국어(ko)는 VITE_META_PIXEL_ID_KO(한국 광고 전용 픽셀), 그 외 언어는 VITE_META_PIXEL_ID.
+//   → ko 페이지엔 한국 픽셀만, th/vi/en 엔 기본 픽셀만 발사(전환 귀속 시장별 분리).
+//   ko 전용 값이 없으면 기본 픽셀로 폴백(graceful). 콤마로 여러 픽셀 ID 지원 ("111,222").
+//   React(analytics.ts)도 동일 로직(공개 SPA 는 한국어라 ko 픽셀).
+function metaPixelIds(lang) {
+  const koRaw = process.env.META_PIXEL_ID_KO || process.env.VITE_META_PIXEL_ID_KO || '';
+  const defRaw = process.env.META_PIXEL_ID || process.env.VITE_META_PIXEL_ID || '';
+  const raw = lang === 'ko' && koRaw.trim() ? koRaw : defRaw;
   // 픽셀 ID = 숫자만 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
-  const ids = raw.split(',').map((s) => s.trim()).filter((s) => /^\d{5,20}$/.test(s));
+  return raw.split(',').map((s) => s.trim()).filter((s) => /^\d{5,20}$/.test(s));
+}
+
+export function pixelSnippet(lang) {
+  const ids = metaPixelIds(lang);
   if (!ids.length) return '';
   const inits = ids.map((id) => `fbq('init','${id}');`).join('');
   // ★ 표준 즉시 로드 — gaSnippet 과 동일 이유. requestIdleCallback 지연 로드는 빠른 이탈자가 fbevents.js 로드 전 unload 시 PageView 누락 위험.
@@ -87,7 +96,7 @@ export function buildBlogPostHead({ post, lang }) {
     `<meta name="twitter:description" content="${escapeAttr(description)}">`,
     renderJsonLd(blogPostingJsonLd({ post, lang })),
   ];
-  return [ga, pixelSnippet(), ...head].filter(Boolean).join('\n  ');
+  return [ga, pixelSnippet(lang), ...head].filter(Boolean).join('\n  ');
 }
 
 export function buildBlogIndexHead(lang) {
@@ -98,7 +107,7 @@ export function buildBlogIndexHead(lang) {
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     buildHreflang(path),
   ];
-  return [ga, pixelSnippet(), ...head].filter(Boolean).join('\n  ');
+  return [ga, pixelSnippet(lang), ...head].filter(Boolean).join('\n  ');
 }
 
 export function buildHead(lang, opts = {}) {
@@ -134,5 +143,5 @@ export function buildHead(lang, opts = {}) {
     );
   }
   const ga = gaSnippet();
-  return [ga, pixelSnippet(), ...head].filter(Boolean).join('\n  ');
+  return [ga, pixelSnippet(lang), ...head].filter(Boolean).join('\n  ');
 }

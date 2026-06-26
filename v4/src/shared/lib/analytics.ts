@@ -21,10 +21,17 @@
 const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
 // Meta Pixel — 광고 전환 추적/리타게팅. 없으면 모든 픽셀 호출 no-op (GA4와 동일 패턴).
 // 콤마로 여러 픽셀 ID 지원 (예: "111,222") — 전부 init, track 은 init된 모든 픽셀에 자동 발사.
-const META_PIXEL_IDS = ((import.meta.env.VITE_META_PIXEL_ID as string | undefined) ?? '')
-  .split(',')
-  .map((s) => s.trim())
-  .filter(Boolean);
+// 시장별 분리: 한국어(ko)는 VITE_META_PIXEL_ID_KO(한국 광고 전용), 그 외는 VITE_META_PIXEL_ID.
+//   정적 빌드(seo.mjs pixelSnippet)와 동일 규칙. 공개 React SPA 는 사실상 전부 한국어
+//   (th/vi/en 은 정적으로 리다이렉트) 라 ko 픽셀이 발사된다. ko 전용 값 없으면 기본으로 폴백.
+function parsePixelIds(raw: string | undefined): string[] {
+  return (raw ?? '').split(',').map((s) => s.trim()).filter(Boolean);
+}
+const META_PIXEL_IDS_KO = parsePixelIds(import.meta.env.VITE_META_PIXEL_ID_KO as string | undefined);
+const META_PIXEL_IDS_DEFAULT = parsePixelIds(import.meta.env.VITE_META_PIXEL_ID as string | undefined);
+function pixelIdsForLocale(locale: Locale): string[] {
+  return locale === 'ko' && META_PIXEL_IDS_KO.length ? META_PIXEL_IDS_KO : META_PIXEL_IDS_DEFAULT;
+}
 
 const PRIVATE_PREFIXES = [
   '/app',
@@ -71,10 +78,13 @@ function injectScriptOnce(): boolean {
   return true;
 }
 
-/** Meta Pixel base code 동적 로드 + init (1회). 측정ID 없으면 false. */
+/** Meta Pixel base code 동적 로드 + init (1회). 측정ID 없으면 false.
+ *  현재 URL 의 locale 로 픽셀 선택(ko=한국 전용, 그 외=기본). 정적 빌드와 동일 시장 분리. */
 function injectPixelOnce(): boolean {
   if (pixelInjected) return true;
-  if (!META_PIXEL_IDS.length || typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') return false;
+  const ids = pixelIdsForLocale(getLocale(window.location.pathname));
+  if (!ids.length) return false;
   if (!window.fbq) {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const n: any = function (...args: unknown[]) {
@@ -91,7 +101,7 @@ function injectPixelOnce(): boolean {
     s.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(s);
   }
-  META_PIXEL_IDS.forEach((id) => window.fbq!('init', id));
+  ids.forEach((id) => window.fbq!('init', id));
   pixelInjected = true;
   return true;
 }
