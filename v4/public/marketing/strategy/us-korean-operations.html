@@ -104,6 +104,49 @@
   </div>
 </div>
 
+<!-- ━━━━━━━━ 2026-06-28 업데이트 — 현지 파트너 병원 확보 ━━━━━━━━ -->
+<div class="key-box" style="border-width:2px; background:#eef2ff;">
+  <strong style="font-size:13.5px;">🆕 2026-06-28 업데이트 — 현지 파트너 병원 확보 → 전략 판이 바뀜</strong>
+  <p style="margin:4px 0 8px;"><b>LA·어바인에 현지 파트너 병원 확보.</b> 문의가 들어오면 거기서 <b>대면 1차 상담</b>을 받는다. 이 한 가지가 본 작전 페이지(2026-06-01)의 <b>가장 큰 미지수(1차 상담·치료의 물리적 경로 부재, ②"한국까지 가야 함" 마찰)를 통째로 해소</b>한다. 아래는 그에 따른 확정 결정(델타). 기존 작전(페르소나·경쟁·채널 논리)은 유효, KPI·예산·퍼널만 교정한다.</p>
+  <table style="margin-top:6px;">
+    <thead><tr><th>항목</th><th>전 (2026-06-01)</th><th>후 (확정)</th></tr></thead>
+    <tbody>
+      <tr><td><b>가치제안 (1차)</b></td><td>"방학 때 한국 방문 진료" (계절·비용 장벽)</td><td><span class="b-green badge">"동네 LA/어바인에서, 한국 성장 전문의 기준으로 우리 아이 키 평가"</span> — 첫 행동 마찰 급감. 본격 치료가 필요하면 그때 한국 본원 연계(하이브리드 동선)</td></tr>
+      <tr><td><b>북극성 KPI</b></td><td>상담 DB 건수</td><td><span class="b-navy badge">현지 파트너 1차 상담 예약 수 / CPL</span> — 가깝고 측정 가능한 전환이라 Meta 최적화도 잘 학습</td></tr>
+      <tr><td><b>퍼널</b></td><td>광고 → 리드폼 → 카톡 → (먼) 방한</td><td>메타 광고 → <b>예측키 계산기 / 리드폼</b> → <b>카톡 상담</b> → <b>파트너 1차 상담 예약</b> → (필요시) 한국 본원 치료</td></tr>
+      <tr><td><b>채널</b></td><td>Meta 85% + 구글 방어 10% + PR 5%</td><td><span class="b-amber badge">검증단계 = Meta 단독</span>. 카톡=클로징 도구(광고 아님), 그 외 채널은 메타 검증 후 증폭. 소액 분산 금지</td></tr>
+      <tr><td><b>검증 예산</b></td><td>월 $1~3k</td><td><span class="b-green badge">월 $600~900 ($20~30/day)</span> — 어바인+코타운 한인 학부모는 모수 작은 니치라 큰 예산은 피로도만 쌓임. (※ "월 $5k"는 <b>태국+미국 동시 합산</b> 숫자였음, 미국 단독 아님)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="warn-box">
+  <strong>⚠️ 광고 켜기 전 선행조건 — 규제보다 "운영(파트너 계약)"이 먼저</strong>
+  <ul style="margin-top:4px;">
+    <li><b>파트너 역할 범위 확정</b> — 1차 상담만? 검사(키·뼈나이·혈액)까지? 치료(GH 처방·자가주사·모니터링)까지? <b>이게 카피와 LTV를 가른다.</b> "1차 상담만"이면 GH 지속치료는 여전히 한국행이 필요 → 광고는 "치료" 약속 금지, "평가 후 한국 진료"까지만.</li>
+    <li><b>리드 핸드오프 · 수익 배분 · 예약 추적 루프</b> — 우리가 광고비로 만든 리드를 파트너에 넘김. 상담료·치료전환 수익 배분이 안 정해지면 파트너 환자 모집을 공짜 대행하는 꼴. + 실제 예약·내원은 우리 픽셀 밖이라 깜깜이 → 리드폼 "희망지점" 태그 / 주간 예약수 공유 / 전환 API 되먹임 중 하나는 필수.</li>
+    <li><b>브랜드 표기</b> — 광고는 "187"인데 상담은 파트너에서 받음 → "187 × [파트너] 협력"으로 명확히. 파트너의 미국 면허·동네 위치는 캘리 corporate-practice-of-medicine 리스크를 오히려 줄여줌.</li>
+  </ul>
+</div>
+
+<div class="warn-box" style="background:#fef2f2; border-color:#ef4444;">
+  <strong style="color:#991b1b;">🔴 코드 선행작업 — 픽셀 귀속 충돌 (2026-06-25 픽셀 분리 이후 생긴 구멍)</strong>
+  현재 <code>analytics.ts pixelIdsForLocale</code> + <code>seo.mjs pixelSnippet</code> 규칙상 <b>ko 페이지는 한국 국내 전용 픽셀(<code>VITE_META_PIXEL_ID_KO=1475807327924387</code>, 187growup korea)에만 발사</b>한다. 미국 한인 랜딩은 한국어(ko) 페이지라 <b>미국 한인의 <code>Lead</code>·<code>height_calc_complete</code>가 전부 한국 국내 광고 픽셀에 귀속</b>돼 미국 캠페인 최적화·CPL·유사타겟 시드가 오염된다.
+  <ul style="margin-top:4px;">
+    <li>해결: <code>/us/</code> 또는 <code>?market=us</code> 별도 경로로 한국어 콘텐츠 서빙 + <b>미국 한인 전용 신규 픽셀/데이터셋</b>에 분리. <code>pixelIdsForLocale</code>/<code>pixelSnippet</code>을 locale뿐 아니라 <b>market 신호로 분기</b>하도록 확장 + BM 픽셀 신규 발급. 187growup korea와 절대 섞지 말 것.</li>
+  </ul>
+</div>
+
+<div class="info-box">
+  <strong>그 외 확정 사항</strong>
+  <ul style="margin-top:4px;">
+    <li><b>성장표준 = KR LMS 유지 + "한국인 기준 평가"를 차별화 카피로 격상</b> — 미국 거주 한인 아동도 유전적으로 한국인이라 KR 표준이 의학적으로 더 타당(CDC 다인종 표준은 한인 과소/과대평가). 카피: <i>"미국 소아과 차트로는 정상이라지만, 한국인 기준으로 보면 다릅니다."</i> 코드 변경 0, 메시지만.</li>
+    <li><b>타게팅 정밀화 — 어바인(Irvine) ZIP 명시</b>: 92602/92603/92620 + 부에나파크 90621 + LA 코타운 + 글렌데일. 어바인은 OC 내 교육열·소득 최상위 학군(Irvine Unified)이라 한인 성장상품의 황금 핀. 언어=한국어가 인종 우회 프록시의 80%.</li>
+    <li><b>0원 추천 루프 먼저</b> — ko 본진 환자·콘텐츠가 미국 친지에게 자연 확산("한국 사는 이모가 알려줌")되는 경로. ko 페이지에 "해외 거주 자녀도 LA/어바인에서 1차 상담 가능" 한 줄. 유료 전에 이걸로 첫 문의 몇 건 들어오는지 보고 증폭.</li>
+    <li><b>진입 순번</b> = 태국 다음. 위 선행조건(파트너 역할범위·픽셀분기·카톡채널 분리·수익배분·리드→예약 추적) 클리어 후 월 $600~900 4주 검증. 동시 가동하려면 합산 월 $4~5k 있어야 양쪽 Meta 학습 안 깨짐.</li>
+  </ul>
+</div>
+
 <div class="nav-jump">
   <a class="layer-s" href="#thesis">핵심 명제</a>
   <a class="layer-s" href="#persona">페르소나</a>
@@ -382,7 +425,7 @@
 </div>
 
 <p class="note" style="margin-top:24px; text-align:center; padding:14px; background:#fff; border:1px solid #e2e8f0; border-radius:8px;">
-  🇺🇸🇰🇷 <b>미국 한인(US-Korean) 작전 페이지</b> · 2026-06-01 작성 · Meta 리드젠 메인 + 미주중앙 PR + LA 집중 · 본사 직접 한국어 클로징(현지 에이전시 不要) · 1차 목표 = 상담 DB
+  🇺🇸🇰🇷 <b>미국 한인(US-Korean) 작전 페이지</b> · 2026-06-01 작성 · <b>2026-06-28 개정(현지 파트너 병원 확보 → 상단 업데이트 블록)</b> · Meta 단독 검증 · 1차 목표 = <b>현지 파트너 1차 상담 예약</b>
 </p>
 
 </div>
