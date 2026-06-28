@@ -59,6 +59,7 @@ import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
 import { OneCmTH, ONECM_TH_DURATION } from "./shorts/1cm/OneCmTH";
 import { PresenterGeneric, calcPresenterMetadata } from "./shorts/_shared/PresenterGeneric";
 import { CalcDemoTH, CALC_DEMO_TH_DURATION } from "./ads/CalcDemoTH";
+import { ShortRepurpose, repurposeDuration, repurposeMetadata } from "./repurpose/ShortRepurpose";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -66,6 +67,17 @@ const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="ShortRepurpose"
+        component={ShortRepurpose}
+        durationInFrames={repurposeDuration(48.501, 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ videoSrc: "videos/repurpose-src.mp4", videoSec: 48.501, url: "dr187growup.com", outroLine: "우리 아이 예측키\n지금 무료로 측정" }}
+        // 영상별 길이 자동: 배치 렌더가 --props 로 넘긴 videoSec 에서 본편+아웃트로 프레임 산출
+        calculateMetadata={repurposeMetadata}
+      />
       <Composition
         id="HeightReels"
         component={HeightReels}
