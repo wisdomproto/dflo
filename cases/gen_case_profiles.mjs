@@ -177,7 +177,9 @@ for (const c of children) {
   if (withPah.length < 2) continue;
   const first = withPah[0], last = withPah[withPah.length - 1];
   const pahDelta = +(last.pah - first.pah).toFixed(1);
-  if (pahDelta < 5) continue;
+  // 여성은 사춘기가 빨라 PAH 상승폭이 평균 ~1cm 작아 기준 완화(2026-06-29): 남 5cm / 여 4cm
+  const pahMin = c.gender === 'male' ? 5 : 4;
+  if (pahDelta < pahMin) continue;
   const months = Math.round(yearsBetween(mm[0].measured_date, mm[mm.length - 1].measured_date) * 12);
   if (months < 18) continue;
 

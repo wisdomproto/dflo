@@ -1,5 +1,5 @@
 // 치료사례 양산 후보 선별 — read-only.
-// 기준: 측정 ≥6회 · PAH(예상키) 전후쌍 보유 · PAH 개선 ≥5cm · 치료기간 ≥18개월 · 이상치 제외.
+// 기준: 측정 ≥6회 · PAH(예상키) 전후쌍 보유 · PAH 개선 ≥5cm(남)/≥4cm(여) · 치료기간 ≥18개월 · 이상치 제외.
 // 출력: 고민 카테고리(근사)별로 묶은 원장 검토용 마크다운.
 import { writeFileSync } from 'node:fs';
 
@@ -56,7 +56,9 @@ for (const c of children) {
   if (withPah.length < 2) continue;
   const first = withPah[0], last = withPah[withPah.length - 1];
   const pahDelta = +(last.pah - first.pah).toFixed(1);
-  if (pahDelta < 5) continue;
+  // 여성은 사춘기가 빨라 PAH 상승폭이 평균 ~1cm 작아 기준 완화(2026-06-29): 남 5cm / 여 4cm
+  const pahMin = c.gender === 'male' ? 5 : 4;
+  if (pahDelta < pahMin) continue;
   const months = Math.round(yearsBetween(mm[0].measured_date, mm[mm.length - 1].measured_date) * 12);
   if (months < 18) continue;
 
@@ -124,7 +126,7 @@ const girls = rows.filter((r) => r.gender === '여');
 const boys = rows.filter((r) => r.gender === '남');
 
 let md = `# 치료사례 양산 후보 ${rows.length}명 — 원장 검토용\n\n`;
-md += `> 선별 기준: 측정 6회 이상 · 예상키(PAH) 전후 기록 보유 · 예상키 개선 +5cm 이상 · 치료기간 18개월 이상. 입력오류(PAH>230) 제외, 기존 공개 케이스 7건 제외.\n>\n> "고민 신호"는 데이터로 추정한 자동 태그입니다(뼈나이 격차·MPH·BMI·초진 나이·검사 보유). **원장님이 케이스 채택 여부와 고민 카테고리를 확정해주시면 됩니다.**\n>\n> 생성: 2026-06-12, 점수순(예상키 개선 + 실측 성장 + 기간 + 자료 풍부도)\n>\n> ⚠️ 기존 공개 4케이스는 가명이라 원본 환자가 이 목록에 남아 있을 수 있습니다(수치 패턴 일치 건은 태그 표시). 채택 전 중복 확인 필요.\n\n`;
+md += `> 선별 기준: 측정 6회 이상 · 예상키(PAH) 전후 기록 보유 · 예상키 개선 +5cm(남)/+4cm(여) 이상 · 치료기간 18개월 이상. 입력오류(PAH>230) 제외, 기존 공개 케이스 7건 제외.\n>\n> "고민 신호"는 데이터로 추정한 자동 태그입니다(뼈나이 격차·MPH·BMI·초진 나이·검사 보유). **원장님이 케이스 채택 여부와 고민 카테고리를 확정해주시면 됩니다.**\n>\n> 생성: 2026-06-12, 점수순(예상키 개선 + 실측 성장 + 기간 + 자료 풍부도)\n>\n> ⚠️ 기존 공개 4케이스는 가명이라 원본 환자가 이 목록에 남아 있을 수 있습니다(수치 패턴 일치 건은 태그 표시). 채택 전 중복 확인 필요.\n\n`;
 md += `## 👧 여아 후보 (${girls.length}명) — 현재 공개 케이스에 여아가 1건뿐이라 우선 채택 권장\n\n${header}\n${girls.map(line).join('\n')}\n\n`;
 md += `## 👦 남아 후보 (${boys.length}명)\n\n${header}\n${boys.map(line).join('\n')}\n\n`;
 
@@ -252,7 +254,7 @@ const html = `<!DOCTYPE html>
   <h1>치료사례 양산 후보 <span id="totalN">${rows.length}</span>명 — 원장 검토용</h1>
   <p class="sub">생성 2026-06-12 · 점수순(예상키 개선 + 실측 성장 + 기간 + 자료 풍부도) · 체크 상태는 이 브라우저에 자동 저장됩니다</p>
   <div class="criteria">
-    <b>선별 기준</b> : 측정 6회 이상 · 예상키(PAH) 전후 기록 보유 · 예상키 개선 +5cm 이상 · 치료기간 18개월 이상 · 입력오류/중복 레코드/기존 공개 케이스 제외.<br>
+    <b>선별 기준</b> : 측정 6회 이상 · 예상키(PAH) 전후 기록 보유 · 예상키 개선 +5cm(남)/+4cm(여) 이상 · 치료기간 18개월 이상 · 입력오류/중복 레코드/기존 공개 케이스 제외.<br>
     "고민 신호"는 데이터 기반 자동 태그(뼈나이 격차·MPH·BMI·초진 나이·검사 보유) — <b>채택 여부와 카테고리는 원장님이 확정</b>해주세요.
     기존 공개 4케이스는 가명이라 원본 환자가 남아 있을 수 있습니다(⚠️ 태그 확인).
   </div>
