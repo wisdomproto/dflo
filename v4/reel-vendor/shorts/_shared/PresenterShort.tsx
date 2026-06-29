@@ -37,6 +37,7 @@ type Script = {
   chunks: any[];
   headerStyle?: { markBg?: string; markFg?: string };
   twoTrack?: boolean;
+  bgmVolume?: number; // 배경음악 볼륨 0~1 (기본 0.15). 에디터 슬라이더로 조절.
 };
 
 function hlLine(ln: string, hl?: string) {
@@ -175,17 +176,23 @@ export const presenterDuration = (timing: Timing[]) => timing.reduce((n, t) => n
 export const PresenterShort: React.FC<{
   script: Script; timing: Timing[]; lang: string; slug: string; videoSrc: string;
   captions?: Captions;
-  assets?: { videoSrc: string; audio: Record<string, string> };
-}> = ({ script, timing, lang, slug, videoSrc, captions, assets }) => {
+  videoFrames?: number; // 원장 영상의 자연 길이(프레임). 합성 길이와 다르면 속도로 맞춤(없으면 1배 = 기존 동작).
+  assets?: { videoSrc: string; audio: Record<string, string>; videoFrames?: number };
+}> = ({ script, timing, lang, slug, videoSrc, captions, assets, videoFrames }) => {
   ensureFonts(); // top-level 호출은 v4 import 시점 실행이라 환경 판정이 불안정 — 본문에서(idempotent)
   const frame = useCurrentFrame();
   const vsrc = assets?.videoSrc ?? videoSrc;
   const chunks = timing.map((t) => ({ ...t, ...(script.chunks.find((c) => c.id === t.id) || {}) }));
   const twoTrack = !!captions || !!script.twoTrack;
   const caps = captions ?? (twoTrack ? buildCaptions(chunks, lang) : undefined);
+  const bgmV = script.bgmVolume ?? 0.15; // 배경음악 볼륨 (에디터 조절, 기본 0.15)
   const FROM: number[] = [];
   chunks.forEach((_, i) => { FROM[i] = i === 0 ? 0 : FROM[i - 1] + chunks[i - 1].durFrames; });
   const total = chunks.reduce((n, c) => n + c.durFrames, 0);
+  // 원장 영상 속도 맞춤: 영상 자연 길이(vFrames)와 합성 길이(total)가 다르면 playbackRate 로 정확히 채움.
+  // 짧으면 rate<1(느리게 늘림 → 끝까지 안 멈춤), 길면 rate>1(빠르게 줄임 → 조기 소진 안 함). 미지정 시 1배(기존 동작).
+  const vFrames = assets?.videoFrames ?? videoFrames;
+  const vidRate = vFrames && vFrames > 0 && total > 0 ? vFrames / total : 1;
   const head = script.header[lang] || { top: "", mark: "" };
   const hs = script.headerStyle || {};
   const markBg = hs.markBg || YELLOW;
@@ -206,9 +213,9 @@ export const PresenterShort: React.FC<{
       <div style={{ position: "absolute", left: 0, top: PANEL_TOP, width: 1080, height: PANEL_H, borderRadius: PANEL_R, overflow: "hidden", background: "#000" }}>
         {vsrc ? (
           getRemotionEnvironment().isPlayer ? (
-            <Video src={asset(vsrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+            <Video src={asset(vsrc)} playbackRate={vidRate} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
           ) : (
-            <OffthreadVideo src={asset(vsrc)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+            <OffthreadVideo src={asset(vsrc)} playbackRate={vidRate} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
           )
         ) : (
           <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#666", fontFamily: NOTO_SANS_KR, fontSize: 38, background: "#15161a" }}>
@@ -277,7 +284,7 @@ export const PresenterShort: React.FC<{
 
       {/* ── 오디오 — 청크 오디오는 assets 있으면 명시 URL(없는 id는 스킵 — 404 <Audio> 방지) ── */}
       {/* durationInFrames 로 청크 구간만 mount: 없으면 시작한 오디오가 끝까지 안 닫혀 Player 동시 audio 태그 한도(기본 5) 초과 → 시킹 시 throw. 자막·인서트 시퀀스와 동일하게 닫는다. */}
-      <Audio src={asset("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, 0.06, 0.06, 0], clamp)} />
+      <Audio src={asset("audio/bg1.mp3")} volume={(f) => interpolate(f, [0, 20, total - 30, total], [0, bgmV, bgmV, 0], clamp)} />
       {chunks.map((c, i) => {
         const aSrc = assets ? assets.audio[c.id] : asset(`audio/shorts/${slug}/${lang}/${c.id}.wav`);
         return aSrc ? (

@@ -127,3 +127,6 @@ cases/intake_candidate_matches.json
 cases/intake_link_backup.json
 # 검토 툴 디렉토리 전체(스캔 이미지·매칭 데이터 = PHI, 로컬 전용·재생성 가능)
 v4/public/intake-review/
+
+# Remotion Studio/CLI cache
+.remotion/
