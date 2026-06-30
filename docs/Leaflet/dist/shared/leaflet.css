@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans:wght@400;500;700&display=swap');
+* { margin:0; box-sizing:border-box; }
+body { background:#555; }
+.leaflet { display:flex; flex-direction:column; align-items:center; gap:16px; padding:16px 0; }
+.page { position:relative; background:#fff; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.4); }
+.blk { white-space:pre-wrap; overflow:hidden; word-break:keep-all; overflow-wrap:break-word; }
+img { display:block; }

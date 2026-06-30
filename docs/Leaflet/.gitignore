@@ -1,0 +1,20 @@
+# 루트 .gitignore 의 `dist/` 전역 무시를 무효화 — 리플렛 dist 는 배포 자산
+!dist/
+
+# 소스 PDF (42M) — 원본, 재배포 불필요
+(EN)187Leaflet_2026.pdf
+
+# 중간 빌드물 / 디버그 렌더
+build/
+dist/_debug/
+
+# 배경 PNG 원본 (편집용 로컬 소스) — 배포는 webp 사용
+dist/shared/img/*.png
+dist/shared/img/_orig/
+
+# 파이썬 캐시
+**/__pycache__/
+
+# 검토 도구 작업 파일 (세션별)
+revisions.json
+revisions.md
