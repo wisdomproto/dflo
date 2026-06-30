@@ -89,10 +89,10 @@ intro2:
 casenav:
   aria_label: "Điều hướng các loại chăm sóc tăng trưởng"
   links:
-    - href: "#obesity"
-      label: "Tăng trưởng do béo phì"
     - href: "#precocious"
       label: "Dậy thì sớm"
+    - href: "#obesity"
+      label: "Tăng trưởng do béo phì"
     - href: "#proportion"
       label: "Tỷ lệ cơ thể"
     - href: "#bodywork"
@@ -101,7 +101,7 @@ casenav:
       label: "Cuối dậy thì"
 
 obesity:
-  eyebrow: "01 / Chăm sóc tăng trưởng cho trẻ béo phì"
+  eyebrow: "02 / Chăm sóc tăng trưởng cho trẻ béo phì"
   heading_line1: "Tăng cân có khiến con cao lên không?"
   heading_line2: ""
   heading_accent: "Tăng trưởng do béo phì"
@@ -173,7 +173,7 @@ obesity:
   cta_label: "Lo lắng về cân nặng·tăng trưởng của con? &nbsp;Tư vấn chuyên gia 1:1"
 
 precocious:
-  eyebrow: "02 / Chăm sóc dậy thì sớm"
+  eyebrow: "01 / Chăm sóc dậy thì sớm"
   heading_line1: "Trẻ dậy thì sớm,"
   heading_accent: "tốc độ sụn tăng trưởng"
   heading_line2: " cũng cần được theo dõi"

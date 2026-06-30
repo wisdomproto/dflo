@@ -89,10 +89,10 @@ intro2:
 casenav:
   aria_label: "เมนูประเภทการดูแลการเจริญเติบโต"
   links:
-    - href: "#obesity"
-      label: "เด็กอ้วน"
     - href: "#precocious"
       label: "วัยรุ่นเร็ว"
+    - href: "#obesity"
+      label: "เด็กอ้วน"
     - href: "#proportion"
       label: "สัดส่วนร่างกาย"
     - href: "#bodywork"
@@ -101,7 +101,7 @@ casenav:
       label: "ปลายวัยรุ่น"
 
 obesity:
-  eyebrow: "01 / ดูแลการเติบโตในเด็กอ้วน"
+  eyebrow: "02 / ดูแลการเติบโตในเด็กอ้วน"
   heading_line1: "น้ำหนักเพิ่ม ส่วนสูงจะเพิ่มไหม?"
   heading_line2: ""
   heading_accent: "การเติบโตในเด็กอ้วน"
@@ -172,7 +172,7 @@ obesity:
   cta_label: "กังวลเรื่องน้ำหนักและการเติบโตของลูก? &nbsp;ปรึกษาผู้เชี่ยวชาญ 1:1"
 
 precocious:
-  eyebrow: "02 / ดูแลวัยรุ่นเร็ว"
+  eyebrow: "01 / ดูแลวัยรุ่นเร็ว"
   heading_line1: "เด็กที่เข้าสู่วัยรุ่นเร็ว"
   heading_accent: "ความเร็วของแผ่นกระดูกอ่อน"
   heading_line2: " ก็ต้องดูพร้อมกัน"

@@ -51,7 +51,7 @@ check:
       caption_line2: "의심되는 경우"
 
 golden:
-  eyebrow: "성장 치료의 골든타임"
+  eyebrow: "성장 확인, 언제가 좋을까요?"
   heading_part1: "키 성장 "
   heading_accent: "확인 시기"
   heading_part2: "는 언제일까요?"
@@ -89,10 +89,10 @@ intro2:
 casenav:
   aria_label: "성장 관리 유형 네비게이션"
   links:
-    - href: "#obesity"
-      label: "비만형 성장"
     - href: "#precocious"
       label: "빠른 사춘기"
+    - href: "#obesity"
+      label: "비만형 성장"
     - href: "#proportion"
       label: "체형·비율"
     - href: "#bodywork"
@@ -101,7 +101,7 @@ casenav:
       label: "사춘기 후반"
 
 obesity:
-  eyebrow: "01 / 비만형 성장 관리"
+  eyebrow: "02 / 비만형 성장 관리"
   heading_line1: "체중이 늘면 키도 클까요?"
   heading_line2: ""
   heading_accent: "비만형 성장"
@@ -173,16 +173,16 @@ obesity:
   cta_label: "우리 아이 비만 · 성장이 걱정되신다면 &nbsp;1:1 전문 상담"
 
 precocious:
-  eyebrow: "02 / 빠른 사춘기 관리"
+  eyebrow: "01 / 빠른 사춘기 관리"
   heading_line1: "사춘기가 빠른 아이,"
   heading_accent: "성장판 속도"
   heading_line2: "를 함께 봐야 합니다"
   lead: "성조숙증은 여아 만 8세 이전, 남아 만 9세 이전에 2차 성징이 나타나는 경우를 말합니다. 사춘기 진행이 빠르면 성장판 변화도 빨라질 수 있어 현재 상태 확인이 중요합니다."
   chart_panel:
-    - ctitle: "2016~2020년 국내 성조숙증 환자 수"
-      csrc: "출처: 건강보험심사평가원"
-      cunit: "단위: 명"
-      img_alt: "2016년부터 2020년까지 국내 성조숙증 환자 수 그래프"
+    - ctitle: ""
+      csrc: ""
+      cunit: ""
+      img_alt: "성조숙증 환자 수 2019년 약 11만 명에서 2023년 약 19만 명으로 5년 새 1.7배 증가"
   subsection1_eyebrow: "성조숙증과 키의 관계"
   subsection1_heading_accent: "빠른 사춘기"
   subsection1_heading_part2: "가 키 성장에 주는 영향"
@@ -358,7 +358,7 @@ realcases:
       unit: "cm"
       stat_to_label: "최종 예상키"
       desc: "일본에서 방학마다 — 현재 175.6cm, 유전키 돌파"
-  line_text: "더 많은 치료 사례는 1:1 상담으로 받아보실 수 있어요"
+  line_text: "더 많은 치료 사례는 1:1 상담으로 받아보실 수 있어요 · 개인별 사례로 효과는 차이가 있을 수 있어요"
   back_label: "다른 사례 보기"
 
 process:
@@ -379,8 +379,8 @@ process:
       desc: ""
     - num: "03"
       badge: ""
-      icon_alt: "골연령·전신 체형 X-ray 검사"
-      title: "골연령 · 전신 체형 X-ray 검사"
+      icon_alt: "뼈나이·전신 체형 X-ray 검사"
+      title: "뼈나이(골연령) · 전신 체형 X-ray 검사"
       desc: ""
     - num: "04"
       badge: "추가검사"
@@ -445,10 +445,10 @@ clinic:
     h2: "187 성장클리닉 — 연세새봄의원"
     stat_cases_num: "3,000+"
     stat_cases_label: "성장 치료 케이스"
-    stat_success_num: "97%+"
-    stat_success_label: "성공률"
+    stat_success_num: "10년+"
+    stat_success_label: "소아 성장 진료 경력"
     p1: "소아 키 성장은 성장호르몬 하나로 결정되지 않습니다. 갑상선·성호르몬·영양·수면·스트레스가 함께 작용해야 하기 때문에, <strong>호르몬을 통합적으로 보는 관점</strong>이 필요합니다."
-    p2: "<strong class='b187'>187 성장클리닉</strong>은 골연령 정밀 진단부터 호르몬 종합 검사, 생활습관 코칭까지 아이마다 맞춤 관리합니다. 해외 거주 가족은 화상 상담으로 한국에 오지 않아도 진료가 가능합니다."
+    p2: "<strong class='b187'>187 성장클리닉</strong>은 뼈나이 정밀 진단부터 호르몬 종합 검사, 생활습관 코칭까지 아이마다 맞춤 관리합니다. 해외 거주 가족은 화상 상담으로 한국에 오지 않아도 진료가 가능합니다."
   video:
     h3: "병원 소개 영상"
     iframe_title: "연세새봄의원 소개"
@@ -496,7 +496,7 @@ shell:
   calc:
     badge: "성장 진단 · 무료"
     title: "우리 아이 예상 키"
-    subtitle_line1: "성장판이 닫히기 전 골든타임 진단."
+    subtitle_line1: "우리 아이 키, 또래 중 어디쯤일까요?"
     subtitle_line2: "30초 안에 18세 예상 성인 키를 확인하세요."
     field_gender: "성별"
     gender_male: "👦 남아"
@@ -510,13 +510,13 @@ shell:
     result_label: "예상 성인 키"
     percentile_top: "상위"
     note_label: "참고:"
-    note_body: "WHO/KDCA 표준 성장도표 기반 통계 추정치입니다. 실제 성장은 영양·수면·운동 등 환경 요인에 따라 달라질 수 있습니다."
+    note_body: "질병관리청 등 국가 성장 표준 자료를 바탕으로 한 통계적 추정치예요. 실제 성장은 영양·수면·운동 등 환경에 따라 달라질 수 있어요."
     kakao_cta: "💬 카톡 1:1 상담받기"
     reset: "다시 측정하기"
     interpret_high: "✅ 또래 평균 이상으로 성장할 가능성이 높아요. 지금 페이스를 유지하는 것이 중요합니다."
     interpret_mid: "🔍 또래 평균 수준이에요. 환경 요인을 잘 관리하면 더 좋은 결과를 기대할 수 있어요."
-    interpret_low: "⚠️ 또래보다 약간 작을 수 있어요. 성장판이 닫히기 전 골든타임 진단을 권해드려요."
-    interpret_critical: "🔎 또래 대비 차이가 클 수 있어요. 골연령·호르몬 정밀 진단으로 원인을 빨리 확인하는 것이 좋습니다."
+    interpret_low: "⚠️ 또래보다 약간 작을 수 있어요. 지금 성장 상태를 한번 확인해보는 걸 권해드려요."
+    interpret_critical: "🔎 또래 대비 차이가 클 수 있어요. 뼈나이·호르몬 검사로 원인을 빨리 확인해보는 게 좋아요."
   toast:
     copied: "링크가 복사되었습니다"
     failed: "공유 실패"

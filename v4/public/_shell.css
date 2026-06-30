@@ -324,3 +324,26 @@ body { background: var(--shell-page-bg) !important; }
   .t-bottom-nav a, .t-bottom-nav button { font-size: 13px; gap: 5px; }
   .t-bottom-nav .icon { width: 22px; height: 22px; }
 }
+
+/* 홈 신뢰 티저 (로비: 원장 + 실적 + 측정 버튼) */
+.home-trust{margin:20px 0 6px;display:flex;flex-direction:column;gap:12px}
+.home-trust .ht-doc{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;background:#f7f5fb;border:1px solid #ece8f5;border-radius:16px;padding:12px 16px}
+.home-trust .ht-doc img{width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:center 12%;flex:0 0 auto;background:#fff}
+.home-trust .ht-doc-info{display:flex;flex-direction:column;gap:1px;line-height:1.42;min-width:0}
+.home-trust .ht-doc-name{font-weight:800;font-size:16px;color:#241d4a}
+.home-trust .ht-doc-cred{font-size:13px;color:#7a7a86}
+.home-trust .ht-doc-more{font-size:13px;font-weight:700;color:#5a3da6;margin-top:2px}
+.home-trust .ht-stats{display:flex;gap:10px}
+.home-trust .ht-stats>div{flex:1;text-align:center;background:#fff;border:1px solid #ece8f5;border-radius:14px;padding:11px 6px;font-size:13px;color:#7a7a86;line-height:1.5}
+.home-trust .ht-stats strong{display:block;font-size:23px;font-weight:900;color:#5a3da6;letter-spacing:-0.02em;margin-bottom:1px}
+
+/* 티저 측정 버튼 + 페이지 하단 행동 CTA (병원소개 등) — index 인라인 스타일과 독립 */
+.home-trust .cta-measure{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:16px;border-radius:14px;padding:15px 20px;background:#5a3da6;color:#fff;box-shadow:0 8px 22px rgba(90,61,166,.28)}
+.home-trust .cta-measure:active{transform:scale(0.98)}
+.page-cta{margin:28px 0 8px;text-align:center;background:#f7f5fb;border:1px solid #ece8f5;border-radius:18px;padding:24px 18px}
+.page-cta h4{font-size:21px;font-weight:800;color:#241d4a;margin:0 0 6px;line-height:1.4}
+.page-cta p{font-size:14px;color:#7a7a86;margin:0 0 16px}
+.page-cta a{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:16px;border-radius:14px;padding:15px 20px}
+.page-cta .cta-measure{background:#5a3da6;color:#fff;margin-bottom:10px;box-shadow:0 8px 22px rgba(90,61,166,.28)}
+.page-cta .cta-consult{background:#fff;color:#5a3da6;border:1.5px solid #d9cdf0}
+.page-cta a:active{transform:scale(0.98)}

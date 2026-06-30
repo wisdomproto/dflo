@@ -89,10 +89,10 @@ intro2:
 casenav:
   aria_label: "Growth-care case navigation"
   links:
-    - href: "#obesity"
-      label: "Obesity-driven"
     - href: "#precocious"
       label: "Early puberty"
+    - href: "#obesity"
+      label: "Obesity-driven"
     - href: "#proportion"
       label: "Body proportion"
     - href: "#bodywork"
@@ -101,7 +101,7 @@ casenav:
       label: "Late puberty"
 
 obesity:
-  eyebrow: "01 / Obesity-driven growth care"
+  eyebrow: "02 / Obesity-driven growth care"
   heading_line1: "Does weight gain mean more height?"
   heading_line2: ""
   heading_accent: "Obesity-driven growth"
@@ -173,7 +173,7 @@ obesity:
   cta_label: "Worried about your child's weight or growth? &nbsp;1:1 expert consultation"
 
 precocious:
-  eyebrow: "02 / Early puberty care"
+  eyebrow: "01 / Early puberty care"
   heading_line1: "When puberty starts early,"
   heading_accent: "growth-plate pace"
   heading_line2: " also needs a check"
