@@ -60,6 +60,7 @@ import { OneCmTH, ONECM_TH_DURATION } from "./shorts/1cm/OneCmTH";
 import { PresenterGeneric, calcPresenterMetadata } from "./shorts/_shared/PresenterGeneric";
 import { CalcDemoTH, CALC_DEMO_TH_DURATION } from "./ads/CalcDemoTH";
 import { CalcDemoKR, CALC_DEMO_KR_DURATION } from "./ads/CalcDemoKR";
+import { CaseStoryReel, CASE_STORY_DURATION } from "./casestory/CaseStoryReel";
 import { ShortRepurpose, repurposeDuration, repurposeMetadata } from "./repurpose/ShortRepurpose";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
@@ -252,6 +253,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="calc-demo-vi" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "vi" as const }} />
       <Composition id="calc-demo-en" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "en" as const }} />
       <Composition id="calc-demo-ko" component={CalcDemoKR} durationInFrames={CALC_DEMO_KR_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="case-story-siyun" component={CaseStoryReel} durationInFrames={CASE_STORY_DURATION} fps={30} width={1080} height={1920} />
       <Composition
         id="PresenterGeneric"
         component={PresenterGeneric}

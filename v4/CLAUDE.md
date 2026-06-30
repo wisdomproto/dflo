@@ -133,6 +133,7 @@ scripts/
 - 릴스 라이트 에디터: `057_reels_editor.sql` — 릴스 라이트 에디터: reel_script/reel_runtime + 잡 큐 + 워커 heartbeat + 스티커 (수동 적용 필요)
 - 익명 예측키 적재: `060_anonymous_predictions.sql` — `anonymous_predictions`(홈페이지 익명 계산기 결과 = 랜덤 현지 이름·성별·생년월일·현재키·예측키·백분위·국적(언어 기반)·UTM). 실환자 테이블과 분리, **anon INSERT만**(SELECT 차단, 조회는 추후 service_role). (수동 적용 필요)
 - 환자관리 즐겨찾기 DB화: `063_children_is_favorite.sql` — `children.is_favorite` boolean + 치료사례 후보 58명 별표 시드. 옛 localStorage 즐겨찾기 폐기. (**수동 적용 필요** — 미적용이어도 `adminService.fetchPatients` 가 42703 폴백으로 graceful)
+- 발행 큐 자동 재시도: `064_publish_queue_retry_count.sql` — `marketing_publish_queue.retry_count`. 발행 실패 시 `publishExecutor.fail()` 이 백오프 재예약(상세 ai-server/CLAUDE.md). (**수동 적용 필요** — 미적용이어도 graceful 하드실패)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail

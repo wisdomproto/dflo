@@ -22,11 +22,42 @@ export interface ExecResult {
   error?: string;
 }
 
-async function fail(queueId: string, kind: 'meta' | 'website', error: string): Promise<ExecResult> {
+// 자동 재시도 정책: 실패 시 백오프 재예약. retry_count 0→1: 15분 후, 1→2: 1시간, 2→3: 3시간. 소진 시 최종 failed.
+const MAX_RETRIES = 3;
+const RETRY_BACKOFF_MIN = [15, 60, 180];
+
+async function hardFail(queueId: string, kind: 'meta' | 'website', error: string): Promise<ExecResult> {
   await sb.from('marketing_publish_queue').update({
     status: 'failed', error_message: error, updated_at: new Date().toISOString(),
   }).eq('id', queueId);
   return { ok: false, kind, error };
+}
+
+// 실패 처리: 미발행 + 재시도 여력 있으면 scheduled 로 백오프 재예약, 아니면 최종 failed.
+// - 스케줄러가 scheduled 만 집으므로 '기존 failed' 행은 절대 재시도 안 됨(미래 실패만).
+// - 이미 발행됨(published_url/platform_post_id) 이면 재시도 금지 → 중복 발행 방지.
+// - retry_count 컬럼 미적용(migration 064 전)이면 select/update 가 실패 → graceful 하드 실패(현행 동작).
+async function fail(queueId: string, kind: 'meta' | 'website', error: string): Promise<ExecResult> {
+  try {
+    const { data: row } = await sb.from('marketing_publish_queue')
+      .select('retry_count, published_url, platform_post_id').eq('id', queueId).single();
+    const alreadyPosted = !!(row?.published_url || row?.platform_post_id);
+    const rc = (row?.retry_count as number | null | undefined) ?? 0;
+    if (!alreadyPosted && rc < MAX_RETRIES) {
+      const delayMin = RETRY_BACKOFF_MIN[rc] ?? 180;
+      const nextAt = new Date(Date.now() + delayMin * 60_000).toISOString();
+      const { error: upErr } = await sb.from('marketing_publish_queue').update({
+        status: 'scheduled', retry_count: rc + 1, scheduled_at: nextAt,
+        error_message: `[자동 재시도 ${rc + 1}/${MAX_RETRIES} · ${delayMin}분 후] ${error}`,
+        updated_at: new Date().toISOString(),
+      }).eq('id', queueId);
+      if (!upErr) return { ok: false, kind, error };
+      // upErr (예: retry_count 컬럼 없음) → 하드 실패 폴백
+    }
+  } catch {
+    // 조회/업데이트 예외 → 하드 실패 폴백
+  }
+  return hardFail(queueId, kind, error);
 }
 
 export async function publishQueueItem(queueId: string): Promise<ExecResult> {
@@ -108,7 +139,9 @@ export async function publishQueueItem(queueId: string): Promise<ExecResult> {
     } else if (platform === 'facebook') postId = await publishFacebook(targetId, token, caption, imageUrls);
     else if (platform === 'instagram') postId = await publishInstagram(targetId, token, caption, imageUrls);
     else postId = await publishThreads(targetId, token, caption, imageUrls);
-    const publishedUrl = await fetchPermalink(platform, postId, token);
+    // post 생성 성공 = 발행 성공. permalink 는 부가 — 실패해도 published 처리(재시도→중복 발행 방지).
+    let publishedUrl: string | null = null;
+    try { publishedUrl = await fetchPermalink(platform, postId, token); } catch { /* permalink 실패 무시 */ }
     await sb.from('marketing_publish_queue').update({
       status: 'published', platform_post_id: postId, published_url: publishedUrl,
       published_at: new Date().toISOString(), error_message: null, updated_at: new Date().toISOString(),

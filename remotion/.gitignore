@@ -25,3 +25,7 @@ scripts/_tmp-*.txt
 # calc 광고 입력 이미지(s1)·나레이션 TTS/믹스 (재생성 가능, CalcDemoTH 선례) — 영상은 ffmpeg mux 후처리라 컴포넌트 미참조
 /public/ads/
 /public/audio/ads/
+
+# 치료사례 스토리 릴스 일러스트(AI-gen, 매트3D 재생성 예정)·TTS/믹스 — 재생성 가능, CaseStoryReel.tsx 코드는 tracked
+/public/casestory/
+/public/audio/casestory/
