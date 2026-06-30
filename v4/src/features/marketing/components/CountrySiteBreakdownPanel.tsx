@@ -7,13 +7,17 @@ import {
   type CountryStats,
   type CountryKey,
   type NamedCount,
+  type GeoCountry,
 } from '../services/marketingAnalyticsService';
 import { SiteTrendChart } from './SiteTrendChart';
 
+// 탭 = 언어(사이트) 단위 ko/th/vi/en. (방문자 실제 위치는 아래 '유입 지역' 패널)
 const COUNTRY_TABS: { code: CountryKey; label: string; flag: string }[] = [
   { code: 'all', label: '전체', flag: '🌏' },
-  { code: 'ko', label: '한국', flag: '🇰🇷' },
-  { code: 'th', label: '태국', flag: '🇹🇭' },
+  { code: 'ko', label: '한국어', flag: '🇰🇷' },
+  { code: 'th', label: '태국어', flag: '🇹🇭' },
+  { code: 'vi', label: '베트남어', flag: '🇻🇳' },
+  { code: 'en', label: '영어', flag: '🇺🇸' },
 ];
 
 const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
@@ -90,6 +94,40 @@ function BreakdownBars({ items, labels }: { items: NamedCount[]; labels?: Record
           <div className="mt-0.5 h-1.5 overflow-hidden rounded bg-gray-100">
             <div className="h-full rounded bg-[#7C5BA6]" style={{ width: `${(it.sessions / max) * 100}%` }} />
           </div>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// 유입 지역 — 나라(막대) → 클릭 시 도시 펼침
+function GeoBreakdown({ items }: { items: GeoCountry[] }) {
+  const [open, setOpen] = useState<string | null>(null);
+  if (!items.length) return <p className="rounded-lg bg-gray-50 px-3 py-2 text-[11px] text-gray-400">데이터 없음</p>;
+  const max = Math.max(...items.map((i) => i.sessions), 1);
+  return (
+    <ul className="space-y-1.5">
+      {items.slice(0, 10).map((c) => (
+        <li key={c.label} className="text-xs">
+          <button type="button" onClick={() => setOpen(open === c.label ? null : c.label)} className="w-full text-left">
+            <div className="flex justify-between">
+              <span className="text-gray-700">{c.cities.length > 0 ? (open === c.label ? '▾ ' : '▸ ') : ''}{c.label}</span>
+              <span className="tabular-nums text-gray-500">{c.sessions.toLocaleString()} · {c.pct}%</span>
+            </div>
+            <div className="mt-0.5 h-1.5 overflow-hidden rounded bg-gray-100">
+              <div className="h-full rounded bg-[#4A2D6B]" style={{ width: `${(c.sessions / max) * 100}%` }} />
+            </div>
+          </button>
+          {open === c.label && (
+            <ul className="mb-1 mt-1 space-y-0.5 pl-4">
+              {c.cities.slice(0, 10).map((ci) => (
+                <li key={ci.label} className="flex justify-between text-[11px] text-gray-500">
+                  <span>{ci.label}</span>
+                  <span className="tabular-nums">{ci.sessions.toLocaleString()}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
       ))}
     </ul>
@@ -240,6 +278,15 @@ export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: 
                 <h4 className="mb-2 text-xs font-semibold text-gray-500">디바이스</h4>
                 <BreakdownBars items={s.devices} labels={DEVICE_LABELS} />
               </div>
+            </div>
+
+            {/* 유입 지역 — 방문자의 실제 지리적 위치 (언어 탭과 별개) */}
+            <div>
+              <h4 className="mb-2 text-xs font-semibold text-gray-500">유입 지역 — 실제 접속 위치 (나라 ▸ 도시)</h4>
+              <GeoBreakdown key={country} items={s.geo} />
+              <p className="mt-1.5 text-[11px] text-gray-400">
+                {COUNTRY_TABS.find((t) => t.code === country)?.label} 사이트 방문자가 <b>실제로 어느 나라·도시</b>에서 접속했는지 (GA4 위치). 나라를 누르면 도시별로 펼쳐집니다.
+              </p>
             </div>
           </div>
         );

@@ -1,16 +1,18 @@
-// 국가/페이지 분류 + GA4 site-breakdown 집계 (googleapis 무관, 순수 → 단위 테스트 대상).
-// 국가 = 경로 prefix. 요약 지표(사용자/세션/참여시간)는 landingPage(세션 진입 페이지)
-// 기준으로 국가에 귀속(한 세션은 1 랜딩이라 중복 없음), 페이지뷰·이벤트는 pagePath 기준.
-// 'all' = 한국+태국 합산. vi/en 등은 'other' 로 제외.
+// 언어(경로)/페이지 분류 + GA4 site-breakdown 집계 (googleapis 무관, 순수 → 단위 테스트 대상).
+// 언어 = 경로 prefix(/ko /th /vi /en). 요약 지표(사용자/세션/참여시간)는 landingPage(세션 진입 페이지)
+// 기준으로 언어에 귀속(한 세션은 1 랜딩이라 중복 없음), 페이지뷰·이벤트는 pagePath 기준.
+// 'all' = ko+th+vi+en 합산. 유입 '지역'(geo)은 GA4 country/city = 방문자의 실제 지리적 위치(언어 경로와 별개).
 
-export type Country = 'ko' | 'th' | 'other';
+export type Country = 'ko' | 'th' | 'vi' | 'en' | 'other';
 export type PageBucket = 'main' | 'clinic' | 'cases' | 'calculator' | 'other';
-export type CountryKey = 'all' | 'ko' | 'th';
+export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en';
+
+const LANG_KEYS: CountryKey[] = ['all', 'ko', 'th', 'vi', 'en'];
 
 export function classifyCountry(path: string): Country {
   if (path.startsWith('/th/') || path === '/th') return 'th';
-  if (path.startsWith('/vi/') || path === '/vi') return 'other';
-  if (path.startsWith('/en/') || path === '/en') return 'other';
+  if (path.startsWith('/vi/') || path === '/vi') return 'vi';
+  if (path.startsWith('/en/') || path === '/en') return 'en';
   // /ko/*, 루트 '/', 그 외(/calc-embed 등) → ko (루트는 ko 리다이렉트)
   return 'ko';
 }
@@ -23,10 +25,12 @@ export function classifyPage(pagePath: string): PageBucket {
   return 'other';
 }
 
-// 국가 → 누적 대상 키. ko/th 는 자기 + all, other 는 어디에도 안 들어감.
+// 언어 → 누적 대상 키. 각 언어는 자기 + all.
 function countryKeys(c: Country): CountryKey[] {
   if (c === 'ko') return ['ko', 'all'];
   if (c === 'th') return ['th', 'all'];
+  if (c === 'vi') return ['vi', 'all'];
+  if (c === 'en') return ['en', 'all'];
   return [];
 }
 
@@ -40,6 +44,9 @@ export interface Summary {
   avgEngagementSec: number; // 1인당 평균 참여시간(초)
 }
 export interface NamedCount { label: string; sessions: number; pct: number }
+// 유입 지역(geo) — 방문자의 실제 지리적 위치 (GA4 country/city). 언어 경로와 별개.
+export interface GeoCity { label: string; sessions: number; users: number }
+export interface GeoCountry { label: string; sessions: number; users: number; pct: number; cities: GeoCity[] }
 export interface DailyPoint { date: string; users: number; sessions: number; views: number }
 export interface PageViews {
   main: number; clinic: number; cases: number; calculator: number; other: number; total: number;
@@ -54,6 +61,7 @@ export interface CountryStats {
   conversionRate: number; // 메신저 클릭 / 페이지뷰(pagePath total)
   channels: NamedCount[];
   devices: NamedCount[];
+  geo: GeoCountry[]; // 유입 지역 (나라 → 도시, sessions 내림차순)
   daily: DailyPoint[];
 }
 export interface SiteBreakdown { byCountry: Record<CountryKey, CountryStats> }
@@ -66,6 +74,7 @@ export interface PvRow { pagePath: string; views: number }
 export interface EventRow { pagePath: string; eventName: string; count: number }
 export interface ChannelRow { landingPage: string; channel: string; sessions: number }
 export interface DeviceRow { landingPage: string; device: string; sessions: number }
+export interface GeoRow { landingPage: string; country: string; city: string; sessions: number; users: number }
 export interface DailyRow { date: string; landingPage: string; users: number; sessions: number; views: number }
 export interface BreakdownInput {
   landing: LandingRow[];
@@ -74,6 +83,7 @@ export interface BreakdownInput {
   events: EventRow[];
   channels: ChannelRow[];
   devices: DeviceRow[];
+  geo: GeoRow[];
   daily: DailyRow[];
 }
 
@@ -93,6 +103,7 @@ function blankStats(channel: 'kakao' | 'line' | 'mixed'): CountryStats {
     conversionRate: 0,
     channels: [],
     devices: [],
+    geo: [],
     daily: [],
   };
 }
@@ -112,6 +123,8 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
     all: blankStats('mixed'),
     ko: blankStats('kakao'),
     th: blankStats('line'),
+    vi: blankStats('kakao'),
+    en: blankStats('kakao'),
   };
 
   // 1) 요약 (landingPage 기준) — current + previous
@@ -149,17 +162,37 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   }
 
   // 4) 채널 / 디바이스 (landingPage 기준)
-  const chanByKey: Record<CountryKey, { label: string; sessions: number }[]> = { all: [], ko: [], th: [] };
+  const blankRows = (): Record<CountryKey, { label: string; sessions: number }[]> => ({ all: [], ko: [], th: [], vi: [], en: [] });
+  const chanByKey = blankRows();
   for (const r of input.channels) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) chanByKey[k].push({ label: r.channel || '(other)', sessions: r.sessions });
   }
-  const devByKey: Record<CountryKey, { label: string; sessions: number }[]> = { all: [], ko: [], th: [] };
+  const devByKey = blankRows();
   for (const r of input.devices) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) devByKey[k].push({ label: r.device || '(other)', sessions: r.sessions });
   }
 
-  // 5) 일자별 (landingPage 기준, date 합산)
-  const dailyByKey: Record<CountryKey, Map<string, DailyPoint>> = { all: new Map(), ko: new Map(), th: new Map() };
+  // 5) 유입 지역 (landingPage → 언어 귀속, GA4 country + city = 실제 지리적 위치)
+  type GeoAcc = { sessions: number; users: number; cities: Map<string, GeoCity> };
+  const geoByKey: Record<CountryKey, Map<string, GeoAcc>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map() };
+  for (const r of input.geo) {
+    const country = r.country || '(미상)';
+    const city = r.city || '(미상)';
+    for (const k of countryKeys(classifyCountry(r.landingPage))) {
+      const m = geoByKey[k];
+      const c = m.get(country) ?? { sessions: 0, users: 0, cities: new Map() };
+      c.sessions += r.sessions;
+      c.users += r.users;
+      const ci = c.cities.get(city) ?? { label: city, sessions: 0, users: 0 };
+      ci.sessions += r.sessions;
+      ci.users += r.users;
+      c.cities.set(city, ci);
+      m.set(country, c);
+    }
+  }
+
+  // 6) 일자별 (landingPage 기준, date 합산)
+  const dailyByKey: Record<CountryKey, Map<string, DailyPoint>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map() };
   for (const r of input.daily) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) {
       const m = dailyByKey[k];
@@ -172,7 +205,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   }
 
   // finalize
-  for (const k of ['all', 'ko', 'th'] as CountryKey[]) {
+  for (const k of LANG_KEYS) {
     const st = stats[k];
     for (const field of ['summary', 'prevSummary'] as const) {
       const s = st[field];
@@ -183,6 +216,16 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
     st.calcCompletionRate = st.events.calcOpen > 0 ? round2((st.events.heightCalc / st.events.calcOpen) * 100) : 0;
     st.channels = rollup(chanByKey[k]);
     st.devices = rollup(devByKey[k]);
+    const geoTotal = [...geoByKey[k].values()].reduce((s, v) => s + v.sessions, 0);
+    st.geo = [...geoByKey[k].entries()]
+      .map(([label, v]) => ({
+        label,
+        sessions: v.sessions,
+        users: v.users,
+        pct: geoTotal > 0 ? round2((v.sessions / geoTotal) * 100) : 0,
+        cities: [...v.cities.values()].sort((a, b) => b.sessions - a.sessions),
+      }))
+      .sort((a, b) => b.sessions - a.sessions);
     st.daily = [...dailyByKey[k].values()].sort((a, b) => a.date.localeCompare(b.date));
   }
 

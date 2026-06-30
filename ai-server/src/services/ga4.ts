@@ -386,7 +386,7 @@ export async function fetchSiteBreakdownRanges(
       engagementSec: Number(r.metricValues?.[4]?.value ?? 0),
     }));
 
-  const [landResp, landPrevResp, pvResp, evResp, chResp, dvResp, dailyResp] = await Promise.all([
+  const [landResp, landPrevResp, pvResp, evResp, chResp, dvResp, geoResp, dailyResp] = await Promise.all([
     runReport({ dateRanges: [cur], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
     runReport({ dateRanges: [prev], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
     runReport({ dateRanges: [cur], dimensions: [{ name: 'pagePath' }], metrics: [{ name: 'screenPageViews' }], limit: '1000' }),
@@ -400,6 +400,8 @@ export async function fetchSiteBreakdownRanges(
     // 유입은 채널 그룹(Organic Search 등 5종) 대신 소스 → 플랫폼 정규화 (구글/인스타/페북/ChatGPT… 디테일)
     runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'sessionSource' }, { name: 'sessionMedium' }], metrics: [{ name: 'sessions' }], limit: '5000' }),
     runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'deviceCategory' }], metrics: [{ name: 'sessions' }], limit: '1000' }),
+    // 유입 지역 — landingPage(언어) × 실제 지리(country/city). 방문자가 어느 나라/도시에서 접속했나.
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'landingPage' }, { name: 'country' }, { name: 'city' }], metrics: [{ name: 'sessions' }, { name: 'totalUsers' }], limit: '10000' }),
     runReport({
       dateRanges: [cur],
       dimensions: [{ name: 'date' }, { name: 'landingPage' }],
@@ -420,6 +422,7 @@ export async function fetchSiteBreakdownRanges(
       sessions: Number(r.metricValues?.[0]?.value ?? 0),
     })),
     devices: (dvResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', device: r.dimensionValues?.[1]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
+    geo: (geoResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', country: r.dimensionValues?.[1]?.value ?? '', city: r.dimensionValues?.[2]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0), users: Number(r.metricValues?.[1]?.value ?? 0) })),
     daily: (dailyResp.rows ?? []).map((r) => ({ date: r.dimensionValues?.[0]?.value ?? '', landingPage: r.dimensionValues?.[1]?.value ?? '', users: Number(r.metricValues?.[0]?.value ?? 0), sessions: Number(r.metricValues?.[1]?.value ?? 0), views: Number(r.metricValues?.[2]?.value ?? 0) })),
   });
 }

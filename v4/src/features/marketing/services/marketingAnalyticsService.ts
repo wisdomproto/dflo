@@ -12,6 +12,8 @@ export interface Summary {
   avgEngagementSec: number;
 }
 export interface NamedCount { label: string; sessions: number; pct: number }
+export interface GeoCity { label: string; sessions: number; users: number }
+export interface GeoCountry { label: string; sessions: number; users: number; pct: number; cities: GeoCity[] }
 export interface DailyPoint { date: string; users: number; sessions: number; views: number }
 export interface PageViews {
   main: number; clinic: number; cases: number; calculator: number; other: number; total: number;
@@ -26,9 +28,10 @@ export interface CountryStats {
   conversionRate: number;
   channels: NamedCount[];
   devices: NamedCount[];
+  geo: GeoCountry[];
   daily: DailyPoint[];
 }
-export type CountryKey = 'all' | 'ko' | 'th';
+export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en';
 export interface SiteBreakdown {
   byCountry: Record<CountryKey, CountryStats>;
 }
