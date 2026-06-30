@@ -5,7 +5,7 @@ HERE=os.path.dirname(os.path.abspath(__file__)); ROOT=os.path.dirname(HERE)
 KO=open(os.path.join(ROOT,"dist","ko","index.html"),encoding="utf-8").read()
 
 FIT_SCRIPT = ("<script>(function(){function fit(el){var fs=parseFloat(getComputedStyle(el).fontSize);"
-  "var min=fs*0.55,g=60;while(el.scrollHeight>el.clientHeight+1&&fs>min&&g-->0){fs-=0.5;el.style.fontSize=fs+'px';}}"
+  "var min=fs*0.5,g=80;while((el.scrollHeight>el.clientHeight+1||el.scrollWidth>el.clientWidth+1)&&fs>min&&g-->0){fs-=0.5;el.style.fontSize=fs+'px';}}"
   "function run(){var ls=document.querySelectorAll('.blk');for(var i=0;i<ls.length;i++)fit(ls[i]);}"
   "if(document.readyState!=='loading')run();else document.addEventListener('DOMContentLoaded',run);"
   "if(document.fonts&&document.fonts.ready)document.fonts.ready.then(run);"
@@ -62,7 +62,11 @@ def gen(lang):
     html=KO.replace('<html lang="ko">', f'<html lang="{lang}">')
     def repl(m):
         bid=m.group("id"); style=m.group("style"); inner=m.group("inner")
-        if bid in trans: ninner=esc(str(trans[bid]))
+        if bid in trans:
+            ninner=esc(str(trans[bid]))
+            if bid=="p06_b01":
+                for nm in ("Yong-Hyun Chae","ยงฮยอน"):
+                    ninner=ninner.replace(nm, f'<span style="white-space:nowrap">{nm}</span>')
         elif bid in SPECIAL_IDS: ninner=rebuild_special(bid, inner, sm)
         else: ninner=inner
         return f'<div class="blk" data-id="{bid}" style="{style}">{ninner}</div>'

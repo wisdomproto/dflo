@@ -3,7 +3,7 @@
 body { background:#555; }
 .leaflet { display:flex; flex-direction:column; align-items:center; gap:16px; padding:16px 0; }
 .page { position:relative; background:#fff; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.4); }
-.blk { white-space:pre-wrap; overflow:hidden; word-break:keep-all; overflow-wrap:break-word; }
+.blk { white-space:pre-wrap; overflow:hidden; word-break:keep-all; overflow-wrap:break-word; text-wrap:balance; }
 img { display:block; }
 
 html[lang="cn"] .blk, html[lang="tw"] .blk, html[lang="th"] .blk { word-break: normal; overflow-wrap: anywhere; }
