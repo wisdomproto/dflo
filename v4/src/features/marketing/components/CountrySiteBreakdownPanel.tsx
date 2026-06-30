@@ -135,7 +135,7 @@ function GeoBreakdown({ items }: { items: GeoCountry[] }) {
 }
 
 export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: string | null }) {
-  const [country, setCountry] = useState<CountryKey>('all');
+  const [country, setCountry] = useState<CountryKey>('ko'); // 기본 = 한국(ko 사이트)
   const [data, setData] = useState<SiteBreakdown | null>(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);

@@ -18,7 +18,8 @@ function shiftStr(s: string, delta: number): string {
 export function SiteAnalysisPage() {
   const [days, setDays] = useState<number>(30);
   // date 가 set 이면 그 하루(일별 보기), null 이면 기간(지난 N일) 모드.
-  const [date, setDate] = useState<string | null>(null);
+  // 기본 진입 = 오늘(일별 보기) — 사이트 분석 누르면 한국/오늘부터.
+  const [date, setDate] = useState<string | null>(() => todayStr());
   const today = todayStr();
 
   const pickDays = (d: number) => { setDays(d); setDate(null); };
