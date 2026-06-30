@@ -9,7 +9,7 @@ const ROOT = join(__dirname, '..', '..');
 const ORIGIN = 'https://www.dr187growup.com';
 const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 const CLINIC_NAME = '연세새봄의원 187 성장클리닉';
-const CLINIC_PHONE = '+82-2-3395-0999';
+const CLINIC_PHONE = '+82-10-6693-2838';
 const CLINIC_ADDRESS = {
   '@type': 'PostalAddress',
   streetAddress: '2F, Hwiseon Building, 328 Dosan-daero',

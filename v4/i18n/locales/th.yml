@@ -466,7 +466,7 @@ clinic:
       - "GYM ชั้น 3"
   contact:
     label: "สอบถาม·จองคิวปรึกษา"
-    phone: "+82-2-3395-0999"
+    phone: "+82-10-6693-2838"
     addr: "ชั้น 2 อาคาร Hwiseon เลขที่ 328 ถ.โดซาน-แดโร เขตคังนัม กรุงโซล เกาหลีใต้"
   # 원격 진료 안내 — th 전용. 비한국어 ko/vi/en 은 remote_consult: [] (렌더 안 됨)
   # office_addr = 방콕 현지 사무소 실주소 (SJ Infinite One Business Complex, Chatuchak)

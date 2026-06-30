@@ -472,7 +472,7 @@ clinic:
       - "3F GYM"
   contact:
     label: "Consultation & Booking"
-    phone: "+82-2-3395-0999"
+    phone: "+82-10-6693-2838"
     addr: "2F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
   # 원격 진료 안내는 th 전용 — 빈 배열이면 섹션 자체가 렌더되지 않음
   remote_consult: []
