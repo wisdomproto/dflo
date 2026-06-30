@@ -48,6 +48,10 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     label: '전략',
     items: [{ to: '/marketing/strategy', icon: '💡', label: '마케팅 전략' }],
   },
+  {
+    label: '자료',
+    items: [{ to: '/marketing/leaflets', icon: '📄', label: '리플렛' }],
+  },
   // 치료사례 후보(case-candidates.html)는 PHI 포함 로컬 전용 도구 → dev 에서만 노출(배포본엔 파일 없음)
   ...(import.meta.env.DEV
     ? [{ label: '치료사례', items: [{ to: '/marketing/cases', icon: '🩺', label: '치료사례 후보' }] as NavItem[] }]

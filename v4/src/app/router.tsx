@@ -75,6 +75,9 @@ const StrategyViewer = lazy(() =>
 const CasesViewer = lazy(() =>
   import('@/features/marketing/components/CasesViewer').then((m) => ({ default: m.CasesViewer })),
 );
+const LeafletViewer = lazy(() =>
+  import('@/features/marketing/components/LeafletViewer').then((m) => ({ default: m.LeafletViewer })),
+);
 const IdeasPage = lazy(() =>
   import('@/features/marketing/components/IdeasPage').then((m) => ({ default: m.IdeasPage })),
 );
@@ -276,6 +279,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<SuspenseFallback />}>
             <StrategyViewer />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'leaflets',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <LeafletViewer />
           </Suspense>
         ),
       },

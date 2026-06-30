@@ -51,6 +51,13 @@
 - **회전 라벨 깨짐**(`rotate(90deg)` + 좁은 폭 + line-height 0.07): 박스 치수를 **회전 전 기준으로 스왑** + `white-space:nowrap` + line-height 1 (중심좌표 유지).
 - **사진 위 캡션 겹침**: 사진은 배경 baked라 못 옮김 → 캡션을 사진 사이 여백으로 이동(높이 작게+상단정렬).
 
+## 마케팅 앱 연동 (`/marketing/leaflets`)
+- 마케팅 사이드바 **"자료 > 📄 리플렛"** (`MarketingSidebar.tsx` GROUPS) → `LeafletViewer.tsx` (언어 탭 6종: ko·en·cn·tw·th·vi, **ko/en `ready:true`** 나머지 "준비 중") → iframe `/leaflet/{lang}/index.html`. 라우트 `/marketing/leaflets` (`router.tsx` lazy).
+- 서빙 자산은 **`v4/public/leaflet/{lang}/index.html` + `shared/`(webp)**. 편집은 여기 `docs/Leaflet/dist/`, 배포는 **`python docs/Leaflet/sync-to-public.py`** 로 복사(언어 index.html + leaflet.css + webp).
+- **새 언어 추가 절차**: ① `dist/{lang}/index.html` 생성(en 복사+번역) ② `sync-to-public.py` 실행 ③ `LeafletViewer.tsx` 의 `LANGS` 에서 그 언어 `ready:true` ④ **Vite dev 서버 재시작** (★중요 — Vite는 기동 후 추가된 새 `public/leaflet/{lang}/` 폴더를 못 잡아 SPA 폴백→react-router 404. 재시작해야 정적 서빙됨).
+- **다국어 번역 파이프라인** (이미 ko·en·cn·tw·th·vi 6개 완성): KO 마스터 → `i18n_work/`(`ko_source.json` 추출 251블록 + 언어별 `{lang}.json` 번역 + `generate.py`). `generate.py` 가 번역 주입 + 폰트 스왑(SC/TC/Thai) + 특수블록(p05 라벨:값·전후캡션·p06 경력리스트) 재조립 + **auto-fit 스크립트**(박스 넘침 시 폰트 자동 축소, 폰트 로드 후 재실행) 주입. 화자=남성 의사 격식체([[feedback_i18n_speaker_register]]). 번역은 AI 초안 → 원어민/원장 감수 권장.
+- **공유**: 각 언어 `/leaflet/view.html?lang={lang}` (비밀번호 8054 클라 게이트 + 언어탭 + iframe, noindex). 내부는 `?pin=8054` 바이패스. LeafletViewer 의 🔗공유 버튼이 링크 복사.
+
 ## 빌드 드라이버
 - `scripts/__pycache__/leaflet_extract.cpython-313.pyc` 는 **텍스트 처리 헬퍼 모듈만**(block_id·normalize_encoding·정렬·줄높이·블록병합). **PDF 렌더·배경생성·HTML빌드 메인 드라이버는 분실**(.pyc도 없음). → 전체 재빌드 불가. **현재 `dist/{ko,en}/index.html` + `shared/` 가 단일 소스**.
 

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>187 리플렛 · 187 Medical Consulting</title>
+<style>
+  *{margin:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:'Noto Sans KR',system-ui,sans-serif;background:#555;display:flex;flex-direction:column;height:100vh}
+  /* 상단 언어 바 */
+  .bar{flex:0 0 auto;background:#084b46;color:#fff;display:flex;align-items:center;gap:8px;padding:8px 14px;box-shadow:0 2px 8px rgba(0,0,0,.25);z-index:3}
+  .bar .brand{font-size:13px;font-weight:700;letter-spacing:.3px}
+  .bar .tabs{display:flex;flex-wrap:wrap;gap:4px;margin-left:auto}
+  .bar button{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#cfe6df;border-radius:999px;padding:4px 11px;font-size:12px;cursor:pointer;font-family:inherit}
+  .bar button.on{background:#dcc074;border-color:#dcc074;color:#3a2c00;font-weight:700}
+  .bar button:hover{background:rgba(255,255,255,.18)}
+  .frameWrap{flex:1;position:relative;min-height:0}
+  iframe{width:100%;height:100%;border:0;display:block;background:#555}
+  /* 비밀번호 게이트 */
+  .gate{position:fixed;inset:0;background:#0d2a26;display:flex;align-items:center;justify-content:center;z-index:10}
+  .gate.hide{display:none}
+  .card{background:#fff;border-radius:16px;padding:34px 30px;width:300px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .card .lock{font-size:34px}
+  .card h1{font-size:16px;color:#084b46;margin:10px 0 4px;font-weight:700}
+  .card p{font-size:12px;color:#888;margin-bottom:16px}
+  .card input{width:100%;border:1px solid #d8dce0;border-radius:10px;padding:11px 12px;font-size:16px;text-align:center;letter-spacing:4px;font-family:inherit}
+  .card input:focus{outline:none;border-color:#084b46}
+  .card button{width:100%;margin-top:10px;border:0;border-radius:10px;background:#084b46;color:#fff;padding:11px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
+  .card .err{color:#c0392b;font-size:12px;min-height:16px;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="bar">
+  <span class="brand">187 Medical Consulting</span>
+  <div class="tabs" id="tabs"></div>
+</div>
+<div class="frameWrap"><iframe id="frame" title="leaflet"></iframe></div>
+
+<div class="gate" id="gate">
+  <div class="card">
+    <div class="lock">🔒</div>
+    <h1>비밀번호 입력 / Enter password</h1>
+    <p>This material is shared privately.</p>
+    <input id="pin" type="password" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="••••">
+    <button id="go">확인 / Enter</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<script>
+  var PIN="8054", KEY="leaflet_share_ok";
+  var LANGS=[
+    {code:"ko",label:"🇰🇷 한글"},{code:"en",label:"🇺🇸 EN"},
+    {code:"cn",label:"🇨🇳 简体"},{code:"tw",label:"🇹🇼 繁體"},
+    {code:"th",label:"🇹🇭 ไทย"},{code:"vi",label:"🇻🇳 VI"}
+  ];
+  function q(n){return new URLSearchParams(location.search).get(n)}
+  var active = (LANGS.some(function(l){return l.code===q("lang")}) ? q("lang") : "ko");
+  var frame=document.getElementById("frame"), tabs=document.getElementById("tabs");
+  function load(code){
+    active=code;
+    frame.src="/leaflet/"+code+"/index.html";
+    Array.prototype.forEach.call(tabs.children,function(b){b.className=(b.dataset.code===code?"on":"")});
+  }
+  LANGS.forEach(function(l){
+    var b=document.createElement("button"); b.textContent=l.label; b.dataset.code=l.code;
+    b.onclick=function(){ load(l.code); history.replaceState(null,"","?lang="+l.code); };
+    tabs.appendChild(b);
+  });
+  // 게이트
+  var gate=document.getElementById("gate"), pin=document.getElementById("pin"), err=document.getElementById("err");
+  function pass(){ gate.classList.add("hide"); load(active); }
+  function tryPin(){
+    if(pin.value===PIN){ try{sessionStorage.setItem(KEY,"1")}catch(e){} pass(); }
+    else { err.textContent="비밀번호가 올바르지 않습니다."; pin.value=""; pin.focus(); }
+  }
+  document.getElementById("go").onclick=tryPin;
+  pin.addEventListener("keydown",function(e){ if(e.key==="Enter") tryPin(); });
+  // 내부(마케팅) 바이패스: ?pin=8054 또는 세션 통과
+  try{
+    if(q("pin")===PIN || sessionStorage.getItem(KEY)==="1"){ pass(); }
+    else { pin.focus(); }
+  }catch(e){ pin.focus(); }
+</script>
+</body>
+</html>
