@@ -420,6 +420,7 @@ cta_global:
   bottom_heading: "Comprehensive care that starts with the cause — begin today"
   bottom_sub: "Start by checking your child's predicted height — free"
   bottom_measure_label: "Get a free height prediction"
+  clinic_more: "About our clinic"
   bottom_label: "Start a 1:1 chat"
 
 clinic:

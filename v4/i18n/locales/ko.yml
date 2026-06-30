@@ -420,6 +420,7 @@ cta_global:
   bottom_heading: "원인부터 찾는 통합 관리, 지금 시작하세요"
   bottom_sub: "우리 아이 예상키, 무료로 먼저 확인해보세요"
   bottom_measure_label: "예상키 무료 측정하기"
+  clinic_more: "병원 소개 보러 가기"
   bottom_label: "1:1 상담받기"
 
 clinic:
