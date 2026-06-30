@@ -98,81 +98,36 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    text-align: center;
+    gap: 7px;
     border-radius: 20px;
-    padding: 16px 14px 14px;
+    padding: 18px 12px 16px;
     text-decoration: none;
     box-shadow: 0 4px 10px rgba(58,42,104,0.10), 0 14px 30px rgba(58,42,104,0.16);
     transition: transform 0.15s ease, box-shadow 0.2s ease;
   }
   .rc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(58,42,104,0.14), 0 22px 44px rgba(58,42,104,0.22); }
   .rc-card:active { transform: scale(0.98); }
-  .rc-top { display: flex; align-items: center; gap: 8px; }
-  .rc-avatar {
-    flex: none;
-    width: 44px; height: 44px; border-radius: 50%;
-    background: #fff;
-    display: grid; place-items: center;
-    font-size: 23px;
-    box-shadow: 0 4px 12px rgba(58,42,104,0.13);
-  }
+  .rc-avatar { font-size: 46px; line-height: 1; }
   .rc-tag {
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.01em;
     color: var(--cc);
     background: #fff;
     border-radius: 999px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     box-shadow: inset 0 0 0 1px var(--cc), 0 1px 4px rgba(0,0,0,0.04);
     line-height: 1.3;
   }
-  .rc-stat { display: flex; flex-direction: column; gap: 1px; }
-  .rc-from {
-    font-size: 14.5px;
-    font-weight: 800;
-    color: #2b2b33;
-    letter-spacing: -0.3px;
-  }
-  .rc-to {
-    font-size: 27px;
-    font-weight: 900;
-    letter-spacing: -0.8px;
-    line-height: 1.15;
-    color: var(--cc);
-  }
-  .rc-to .u { font-size: 14px; font-weight: 800; letter-spacing: 0; }
-  /* 큰 숫자가 '최종 예상키'임을 명시 — 초진 예상키와 혼동(=현재 키로 오독) 방지 캡션 */
-  .rc-tolbl {
-    font-size: 10px;
-    font-weight: 800;
-    color: var(--cc);
-    opacity: 0.85;
-    letter-spacing: 0.01em;
-  }
-  .rc-div {
-    height: 1px;
-    background: rgba(43,43,51,0.08);
-    margin: 2px 0;
-  }
-  .rc-desc {
-    font-size: 12px;
-    line-height: 1.55;
-    color: #7a7a85;
-    word-break: keep-all;
-    flex: 1;
-    padding-right: 28px; /* 모서리 화살표와 겹침 방지 */
-  }
-  .rc-arrow {
-    position: absolute;
-    right: 11px; bottom: 11px;
-    width: 31px; height: 31px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--cc), var(--cc2, var(--cc)));
-    color: #fff;
-    display: grid; place-items: center;
-    font-size: 14px; font-weight: 700;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.18);
-  }
+  .rc-block { display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
+  .rc-lbl { font-size: 12.5px; font-weight: 700; color: #6b6b74; }
+  .rc-num { font-size: 29px; font-weight: 900; letter-spacing: -1.2px; line-height: 1.18; }
+  .rc-num .u { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; }
+  .rc-num-from { color: #3a3a44; }
+  .rc-num-to { color: var(--cc); }
+  .rc-hr { width: 76%; height: 1px; background: rgba(0,0,0,0.07); margin: 3px 0; }
   /* 메신저 게이트 — 박스 없이 안내 한 줄 + 순수 상담 버튼(라벨은 messenger.yml 공식 라벨) */
   .rc-line {
     max-width: 560px;
@@ -212,11 +167,7 @@
     .rc-avatar { width: 35px; height: 35px; font-size: 18px; }
     .rc-head .lead-m { font-size: 11.5px; margin-top: 5px; }
     .rc-from { font-size: 13px; }
-    .rc-to { font-size: 21px; }
-    .rc-to .u { font-size: 12px; }
-    .rc-tolbl { font-size: 9px; }
-    .rc-desc { font-size: 11px; line-height: 1.45; }
-    .rc-arrow { width: 24px; height: 24px; font-size: 12px; right: 8px; bottom: 8px; }
+    .rc-to { font-size: 13px; }
     .rc-line { margin-top: 14px; }
     .rc-line-btn { font-size: 13px; padding: 11px 22px; }
   }
@@ -259,25 +210,22 @@
     <div class="rc-head">
       <h1>{{realcases.heading_line1}} <span class="accent">{{realcases.heading_accent}}</span></h1>
       <div class="rc-deco"><span class="ln"></span>&bull;&nbsp; {{realcases.eyebrow}} &nbsp;&bull;<span class="ln"></span></div>
-      <p class="lead">{{realcases.lead}}</p>
-      <p class="lead-m">{{realcases.lead_mobile}}</p>
     </div>
 
     <div class="rc-grid">
       {{#each realcases.cards}}
       <a class="rc-card" href="?case={{case}}" style="--cc:{{color}}; --cc2:{{color2}}; background:{{bg}}">
-        <span class="rc-top">
-          <span class="rc-avatar">{{emoji}}</span>
-          <span class="rc-tag">{{tag}}</span>
+        <span class="rc-avatar">{{emoji}}</span>
+        <span class="rc-tag">{{tag}}</span>
+        <span class="rc-block">
+          <span class="rc-lbl">{{stat_from_label}}</span>
+          <span class="rc-num rc-num-from">{{stat_from}}<span class="u">{{unit}}</span></span>
         </span>
-        <span class="rc-stat">
-          <span class="rc-from">{{stat_from}}</span>
-          <span class="rc-to">&rarr; {{stat_to}}<span class="u">{{unit}}</span></span>
-          <span class="rc-tolbl">{{stat_to_label}}</span>
+        <span class="rc-hr"></span>
+        <span class="rc-block">
+          <span class="rc-lbl">{{stat_to_label}}</span>
+          <span class="rc-num rc-num-to">{{stat_to}}<span class="u">{{unit}}</span></span>
         </span>
-        <span class="rc-div"></span>
-        <span class="rc-desc">{{desc}}</span>
-        <span class="rc-arrow">&rarr;</span>
       </a>
       {{/each}}
     </div>
