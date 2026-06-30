@@ -434,6 +434,7 @@ clinic:
     tag: "Phòng khám hormone"
     body: "<strong>Yonsei Saebom Medical Clinic</strong> là phòng khám chuyên điều trị bằng hormone. <strong class='b187'>187growup</strong> là thương hiệu tăng trưởng nhi khoa của Yonsei Saebom, tập trung chuyên môn điều trị hormone vào việc tăng chiều cao cho trẻ."
   doctor:
+    intro_label: "Giới thiệu bác sĩ"
     h1_sr: "Giới thiệu Giám đốc Chae Yong-hyun"
     portrait_alt: "Giám đốc Chae Yong-hyun"
     name: "Chae Yong-hyun"

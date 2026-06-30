@@ -428,6 +428,7 @@ clinic:
     tag: "คลินิกฮอร์โมน"
     body: "<strong>Yonsei Saebom Medical Clinic</strong> คือคลินิกเฉพาะทางการรักษาด้วยฮอร์โมน <strong class='b187'>187growup</strong> คือแบรนด์เฉพาะทางด้านการเติบโตในเด็กของ Yonsei Saebom ที่นำความเชี่ยวชาญด้านการรักษาด้วยฮอร์โมนมาเน้นที่การเพิ่มความสูงของเด็ก"
   doctor:
+    intro_label: "แนะนำแพทย์"
     h1_sr: "เกี่ยวกับผู้อำนวยการ แชยงฮยอน"
     portrait_alt: "ผู้อำนวยการแชยงฮยอน"
     name: "แชยงฮยอน (Chae Yong-hyun)"

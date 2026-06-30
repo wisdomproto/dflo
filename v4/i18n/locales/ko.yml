@@ -434,6 +434,7 @@ clinic:
     tag: "호르몬 클리닉"
     body: "<strong>연세새봄의원</strong>은 호르몬 치료 전문 클리닉입니다. <strong class='b187'>187 성장클리닉</strong>은 연세새봄의원의 호르몬 치료 전문 노하우를 아이의 키 성장에 집중한 소아 성장 전문 브랜드입니다."
   doctor:
+    intro_label: "원장 소개"
     h1_sr: "채용현 원장 소개"
     portrait_alt: "채용현 원장"
     name: "채용현"

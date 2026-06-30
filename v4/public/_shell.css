@@ -326,16 +326,23 @@ body { background: var(--shell-page-bg) !important; }
 }
 
 /* 홈 신뢰 티저 (로비: 원장 + 실적 + 측정 버튼) */
-.home-trust{margin:20px 0 6px;display:flex;flex-direction:column;gap:12px}
-.home-trust .ht-doc{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;background:#f7f5fb;border:1px solid #ece8f5;border-radius:16px;padding:12px 16px}
-.home-trust .ht-doc img{width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:center 12%;flex:0 0 auto;background:#fff}
-.home-trust .ht-doc-info{display:flex;flex-direction:column;gap:1px;line-height:1.42;min-width:0}
-.home-trust .ht-doc-name{font-weight:800;font-size:16px;color:#241d4a}
-.home-trust .ht-doc-cred{font-size:13px;color:#7a7a86}
-.home-trust .ht-doc-more{font-size:13px;font-weight:700;color:#5a3da6;margin-top:2px}
-.home-trust .ht-stats{display:flex;gap:10px}
-.home-trust .ht-stats>div{flex:1;text-align:center;background:#fff;border:1px solid #ece8f5;border-radius:14px;padding:11px 6px;font-size:13px;color:#7a7a86;line-height:1.5}
-.home-trust .ht-stats strong{display:block;font-size:23px;font-weight:900;color:#5a3da6;letter-spacing:-0.02em;margin-bottom:1px}
+.home-trust{margin:22px 0 10px}
+.home-trust .ht-panel{background:linear-gradient(165deg,#efe9fb,#f6f2fd);border:1px solid #e4dcf3;border-radius:24px;padding:22px 20px;box-shadow:0 10px 30px rgba(90,61,166,.10)}
+.home-trust .ht-top{display:flex;align-items:center;gap:16px}
+.home-trust .ht-photo{width:108px;height:108px;border-radius:50%;object-fit:cover;object-position:center 15%;flex:0 0 auto;background:#fff;border:3px solid #fff;box-shadow:0 6px 18px rgba(90,61,166,.20)}
+.home-trust .ht-info{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:0}
+.home-trust .ht-eyebrow{font-size:12px;font-weight:800;color:#fff;background:#7c5fd0;border-radius:999px;padding:4px 12px;letter-spacing:.01em}
+.home-trust .ht-name{font-size:28px;font-weight:900;color:#221c47;letter-spacing:-1px;line-height:1.05}
+.home-trust .ht-name .suf{font-size:17px;font-weight:800;color:#3a3266;letter-spacing:-0.3px}
+.home-trust .ht-cred{font-size:13px;color:#7a7a86;line-height:1.4;word-break:keep-all}
+.home-trust .ht-link{font-size:14px;font-weight:800;color:#5a3da6;text-decoration:none;margin-top:1px}
+.home-trust .ht-stats{display:flex;border-top:1px solid #e3dcf2;border-bottom:1px solid #e3dcf2;margin:18px 0;padding:16px 0}
+.home-trust .ht-stats>div{flex:1;text-align:center;padding:0 6px;font-size:13px;color:#7a7a86;line-height:1.5}
+.home-trust .ht-stats>div:first-child{border-right:1px solid #e3dcf2}
+.home-trust .ht-stats strong{display:block;font-size:32px;font-weight:900;color:#5a3da6;letter-spacing:-1.5px;line-height:1;margin-bottom:5px}
+.home-trust .ht-cta{display:flex;align-items:center;justify-content:center;gap:12px;text-decoration:none;font-weight:800;font-size:17px;border-radius:15px;padding:17px 20px;background:#4a39c0;color:#fff;box-shadow:0 8px 22px rgba(74,57,192,.30)}
+.home-trust .ht-cta .arr{font-weight:700}
+.home-trust .ht-cta:active{transform:scale(0.98)}
 
 /* 티저 측정 버튼 + 페이지 하단 행동 CTA (병원소개 등) — index 인라인 스타일과 독립 */
 .home-trust .cta-measure{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:16px;border-radius:14px;padding:15px 20px;background:#5a3da6;color:#fff;box-shadow:0 8px 22px rgba(90,61,166,.28)}

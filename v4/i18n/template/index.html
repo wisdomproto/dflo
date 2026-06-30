@@ -611,19 +611,22 @@
 
   <!-- ================= TRUST TEASER (lobby: 원장 + 실적 + 측정 버튼, 첫 화면 신뢰·행동) ================= -->
   <section class="home-trust">
-    <a class="ht-doc" href="/{{meta.lang}}/clinic.html">
-      <img src="/programs/images/growth-hormone-balance/director.jpg" alt="{{clinic.doctor.portrait_alt}}">
-      <span class="ht-doc-info">
-        <span class="ht-doc-name">{{clinic.doctor.name}} 원장</span>
-        <span class="ht-doc-cred">{{clinic.doctor.profile.0}}</span>
-        <span class="ht-doc-more">{{shell.nav.clinic}} →</span>
-      </span>
-    </a>
-    <div class="ht-stats">
-      <div><strong>{{clinic.intro.stat_cases_num}}</strong>{{clinic.intro.stat_cases_label}}</div>
-      <div><strong>{{clinic.intro.stat_success_num}}</strong>{{clinic.intro.stat_success_label}}</div>
+    <div class="ht-panel">
+      <div class="ht-top">
+        <img class="ht-photo" src="/programs/images/growth-hormone-balance/director.jpg" alt="{{clinic.doctor.portrait_alt}}">
+        <div class="ht-info">
+          <span class="ht-eyebrow">{{clinic.doctor.intro_label}}</span>
+          <span class="ht-name">{{clinic.doctor.name}}<span class="suf"> 원장</span></span>
+          <span class="ht-cred">{{clinic.doctor.profile.0}}</span>
+          <a class="ht-link" href="/{{meta.lang}}/clinic.html">{{shell.nav.clinic}} →</a>
+        </div>
+      </div>
+      <div class="ht-stats">
+        <div><strong>{{clinic.intro.stat_cases_num}}</strong>{{clinic.intro.stat_cases_label}}</div>
+        <div><strong>{{clinic.intro.stat_success_num}}</strong>{{clinic.intro.stat_success_label}}</div>
+      </div>
+      <a class="ht-cta" href="/{{meta.lang}}/clinic.html">{{cta_global.clinic_more}} <span class="arr">→</span></a>
     </div>
-    <a class="cta-measure" href="/{{meta.lang}}/clinic.html">{{cta_global.clinic_more}}</a>
   </section>
 
   <!-- hero image — visual payoff right after the hope message -->
