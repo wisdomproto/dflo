@@ -1,0 +1,88 @@
+{
+  "sortOrder": null,
+  "title": "부모 키가 작으면 아이도 작을까 — 유전 예상 170cm, 아빠 키를 넘다",
+  "category": "치료사례",
+  "sourceCase": "홈페이지 공개 case 4 (📏 부모 키가 작은 경우)",
+  "caption_ko": "\"우리 부부가 작아서 아이도 작을까 봐요.\"\n\n유전 예상키가 170cm였던 아이가 있었습니다. 부모 키는 아이 키의 '한계'가 아니라 '출발선'이에요. 타고난 키에서 얼마나 채우느냐가 남아 있으니까요.\n\n수면·영양·성장 리듬을 함께 관리하자, 예상키가 171.2cm에서 182.2cm로 바뀌었고 지금은 이미 아빠 키를 넘어 자라는 중입니다.\n\n출발선이 낮아도 더 오를 수 있습니다. 우리 아이 예상키, 무료로 먼저 확인해보세요.\n※ 예상키는 개인차가 있으며 결과는 사례별로 다를 수 있습니다.",
+  "caption_en": "",
+  "caption_th": "",
+  "caption_vi": "",
+  "caption_ch": "",
+  "hashtags_ko": "#부모키 #유전키 #키성장 #예상키 #아이키 #키크는법 #성장클리닉 #성장판 #187성장클리닉 #연세새봄의원 #성장치료 #키크는방법",
+  "hashtags_en": "",
+  "hashtags_th": "",
+  "hashtags_vi": "",
+  "hashtags_ch": "",
+  "slides": [
+    {
+      "n": 1,
+      "role": "표지",
+      "illustration": "[레이아웃] 상단 30% 헤드라인 비움, 중앙~하단 인물. [주체] 키 작은 아빠와 아이가 나란히 서고, 아이가 손바닥을 자기 머리에 얹어 이미 아빠와 비슷한 높이임을 비교. [디테일] 둘 키 차이가 거의 없고 아이 표정 밝음, 바닥에 옅은 그림자. [배경] 아주 옅은 키 눈금 1줄. [색] 비교선만 민트.",
+      "headline_ko": "부모 키가 작으면, 아이도 작을까요?",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "유전 예상 170cm였던 아이의 기록",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": false
+    },
+    {
+      "n": 2,
+      "role": "본문",
+      "illustration": "[레이아웃] 중앙~상단 큰 산, 하단 왼쪽에 작게 선 아이. [주체] 아이가 산 아래에서 한 손으로 햇빛 가리며 정상을 올려다봄, 기대에 찬 3/4 뒷모습. [디테일] 둥근 보라 계열 산봉우리, 정상에 민트 깃발, 아래에서 정상으로 향한 점선 화살표. [배경] 단순한 하늘. [색] 깃발·화살표 민트.",
+      "headline_ko": "유전은 '한계'가 아니라 '출발선'",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "타고난 키에서 얼마나 채우느냐가 남아요",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": false
+    },
+    {
+      "n": 3,
+      "role": "본문",
+      "illustration": "[레이아웃] 산 중턱을 오르는 구도, 상단 헤드라인. [주체] 2번과 같은 아이가 산길을 씩씩하게 오름, 작은 배낭을 멤. [디테일] 아이 주변에 수면(달)·영양(균형 접시)·성장 관리 아이콘 3개, 위쪽에 민트 깃발. [배경] 2번과 같은 산(연속성). [색] 아이콘·깃발 민트.",
+      "headline_ko": "타고난 키에 '환경'을 더합니다",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "수면·영양·성장 관리로 남은 여지를 채워요",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": false
+    },
+    {
+      "n": 4,
+      "role": "본문",
+      "illustration": "[레이아웃] 중앙에 큰 숫자 두 개를 상승 화살표로 연결. [주체] '171.2'에서 '182.2'로 올라가는 화살표, 옆에서 아이가 아빠 키를 나타내는 가로 점선을 넘어 서 있음. [디테일] 아빠 키 선 위로 아이 머리가 올라옴. [색] 최종 숫자·화살표 민트.",
+      "headline_ko": "예상키 171.2cm → 182.2cm",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "이미 아빠 키를 넘어 자라는 중입니다",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": false
+    },
+    {
+      "n": 5,
+      "role": "본문",
+      "illustration": "[레이아웃] 아빠와 아이가 어깨를 나란히, 상단 헤드라인. [주체] 아이가 아빠보다 조금 더 크게 서 있고 둘 다 웃음. [배경] 따뜻한 톤. [색] 포인트 민트.",
+      "headline_ko": "'우리가 작아서'라는 걱정 앞에서",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "출발선이 낮아도 더 오를 수 있어요",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": false
+    },
+    {
+      "n": 6,
+      "role": "본문",
+      "illustration": "[레이아웃] 부모와 아이가 함께 예상키 그래프를 보는 장면. [주체] 태블릿/차트 속 위로 향하는 성장 곡선을 셋이 바라봄. [디테일] 곡선 끝에 목표 지점 표시. [색] 곡선 민트.",
+      "headline_ko": "지금 예상키를 알면, 계획이 생깁니다",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "남은 성장 여지를 숫자로 확인해보세요",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": false
+    },
+    {
+      "n": 7,
+      "role": "마무리",
+      "illustration": "[레이아웃] 중앙 인물, 상단 헤드라인 영역. [주체] 아이가 키 재는 자 앞에 서서 위를 향해 손을 뻗음, 자신감 있는 표정. [디테일] 주변에 위로 향한 점선 화살표와 작은 반짝임. [배경] 보라 그라데이션. [색] 화살표·반짝임 민트.",
+      "headline_ko": "우리 아이 예상키, 무료로 확인해보세요",
+      "headline_en": "", "headline_th": "", "headline_vi": "", "headline_ch": "",
+      "subtext_ko": "부모 키를 넘는 계획, 지금 시작할 수 있어요",
+      "subtext_en": "", "subtext_th": "", "subtext_vi": "", "subtext_ch": "",
+      "isCTA": true
+    }
+  ]
+}
