@@ -62,7 +62,7 @@ const AdminImportPage = lazy(() => import('@/pages/admin/AdminImportPage'));
 const AdminDiagramPreviewPage = lazy(() => import('@/pages/admin/AdminDiagramPreviewPage'));
 const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPage'));
 const CaseCandidatesAdminPage = lazy(() => import('@/pages/admin/CaseCandidatesAdminPage'));
-const AdminPredictionsLogPage = lazy(() => import('@/pages/admin/AdminPredictionsLogPage'));
+const PredictionsLogPage = lazy(() => import('@/features/marketing/components/PredictionsLogPage'));
 const AdminIntakePage = lazy(() => import('@/pages/admin/AdminIntakePage'));
 const AdminConsultingPage = lazy(() => import('@/pages/admin/AdminConsultingPage'));
 const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
@@ -372,6 +372,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: 'predictions',
+        element: (
+          <Suspense fallback={<SuspenseFallback />}>
+            <PredictionsLogPage />
+          </Suspense>
+        ),
+      },
+      {
         path: 'seo-audit',
         element: (
           <Suspense fallback={<SuspenseFallback />}>
@@ -654,14 +662,6 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <CaseCandidatesAdminPage />
-              </Suspense>
-            ),
-          },
-          {
-            path: '/admin/predictions',
-            element: (
-              <Suspense fallback={<SuspenseFallback />}>
-                <AdminPredictionsLogPage />
               </Suspense>
             ),
           },

@@ -25,7 +25,7 @@ function srcOf(r: PredictionRow): string {
   return '직접';
 }
 
-export default function AdminPredictionsLogPage() {
+export default function PredictionsLogPage() {
   const [rows, setRows] = useState<PredictionRow[] | null>(null);
   const [err, setErr] = useState('');
   const [country, setCountry] = useState('');
