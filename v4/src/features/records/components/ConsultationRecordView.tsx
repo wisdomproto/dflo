@@ -491,7 +491,7 @@ export function ConsultationRecordView({ child, measurements }: Props) {
           이 기록은 가족·지인과 자유롭게 공유하셔도 됩니다.
         </p>
         <a
-          href="https://pf.kakao.com/_ZxneSb"
+          href="https://pf.kakao.com/_mxbWxfX"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 rounded-full bg-yellow-300 px-6 py-2.5 text-sm font-bold text-gray-900 active:opacity-90"

@@ -24,7 +24,7 @@ import type { HeightCalcSlide } from '../types/websiteSection';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip);
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_qxnKxfX';
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_mxbWxfX';
 
 interface Props {
   slide: HeightCalcSlide;

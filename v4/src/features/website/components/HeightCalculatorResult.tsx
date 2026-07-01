@@ -20,7 +20,7 @@ import { Line } from 'react-chartjs-2';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_qxnKxfX';
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_mxbWxfX';
 
 // 언어별 메신저 CTA (i18n/messenger.yml 과 동일). th 는 LINE OA, 나머지는 KakaoTalk.
 const MESSENGER: Record<CalcLang, { url: string; bgClass: string; fgClass: string; hoverClass: string }> = {

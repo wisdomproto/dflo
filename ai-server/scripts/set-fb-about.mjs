@@ -49,7 +49,7 @@ const PAGES = [
       '187growup은 연세새봄의원의 소아 키 성장 전문 브랜드입니다. ' +
       '서울의 호르몬 치료 전문 클리닉으로, 정밀한 뼈나이 평가부터 성장 단계별 맞춤 관리까지 아이의 키 성장을 체계적으로 돕습니다.\n\n' +
       '우리 아이 키 성장이 궁금하다면 카카오톡으로 편하게 무료 상담하세요.\n' +
-      '카카오톡 상담: https://pf.kakao.com/_ZxneSb\n' +
+      '카카오톡 상담: https://pf.kakao.com/_mxbWxfX\n' +
       '웹사이트: https://dr187growup.com',
     website: 'https://dr187growup.com',
   },

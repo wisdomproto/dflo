@@ -5,7 +5,7 @@ import { fetchGrowthCases } from '@/features/content/services/contentService';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
 import type { GrowthCase } from '@/shared/types';
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_qxnKxfX';
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_mxbWxfX';
 
 export function CaseSlider() {
   const [cases, setCases] = useState<GrowthCase[]>([]);

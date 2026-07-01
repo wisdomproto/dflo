@@ -93,7 +93,7 @@ export default function BottomNav() {
 
           {/* 카카오톡 1:1 상담 — 양 단계 공통 */}
           <a
-            href="https://pf.kakao.com/_ZxneSb"
+            href="https://pf.kakao.com/_mxbWxfX"
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex flex-col items-center justify-center w-full h-full transition-all duration-200 active:scale-95"

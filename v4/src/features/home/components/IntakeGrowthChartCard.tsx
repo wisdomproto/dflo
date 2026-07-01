@@ -131,7 +131,7 @@ export function IntakeGrowthChartCard({ child }: Props) {
 
       <div className="flex gap-2">
         <a
-          href="https://pf.kakao.com/_ZxneSb"
+          href="https://pf.kakao.com/_mxbWxfX"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 rounded-xl bg-yellow-300 py-2.5 text-center text-sm font-bold text-gray-900 active:opacity-90 shadow-sm"

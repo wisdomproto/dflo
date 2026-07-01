@@ -142,7 +142,7 @@ export function FaqSlideEditor({ slide, onUpdate }: FaqSlideEditorProps) {
         <Field label="버튼 클릭 시 이동 URL (언어 공통)"
           value={s.ctaButtonUrl || ''}
           onChange={(v) => onUpdate({ ctaButtonUrl: v })}
-          placeholder="https://pf.kakao.com/_ZxneSb" />
+          placeholder="https://pf.kakao.com/_mxbWxfX" />
       </div>
     </div>
   );

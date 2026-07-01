@@ -1,6 +1,6 @@
 ko:
   channel: kakao
-  url: "https://pf.kakao.com/_qxnKxfX"
+  url: "https://pf.kakao.com/_mxbWxfX"
   label: "1:1 카카오톡 상담"
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"
@@ -12,13 +12,13 @@ th:
   color_fg: "#FFFFFF"
 vi:
   channel: kakao
-  url: "https://pf.kakao.com/_ZxneSb"
+  url: "https://pf.kakao.com/_mxbWxfX"
   label: "Tư vấn qua KakaoTalk"
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"
 en:
   channel: kakao
-  url: "https://pf.kakao.com/_ZxneSb"
+  url: "https://pf.kakao.com/_mxbWxfX"
   label: "Consult via KakaoTalk"
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"

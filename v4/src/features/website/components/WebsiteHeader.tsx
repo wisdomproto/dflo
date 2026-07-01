@@ -4,7 +4,7 @@ import { AboutModal } from './AboutModal';
 import { ShareSheet } from './ShareSheet';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_qxnKxfX';
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_mxbWxfX';
 
 
 interface NavAction {

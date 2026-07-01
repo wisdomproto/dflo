@@ -97,7 +97,7 @@ const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.
 // Messenger CTA — injected per-locale by build-i18n. Falls back to Kakao defaults
 // so this file remains readable as ko source-of-truth even if __I18N__ is missing.
 const __MESSENGER = (window.__I18N__ && window.__I18N__.messenger) || {
-  url: 'https://pf.kakao.com/_ZxneSb',
+  url: 'https://pf.kakao.com/_mxbWxfX',
   label: '1:1 카톡 상담',
   channel: 'kakao',
   color_bg: '#FAE100',

@@ -90,7 +90,7 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 
 ### 1차 활성화 스코프 (Phase 6 완료)
 - 시장 4개: 🇰🇷 ko / 🇹🇭 th / 🇻🇳 vi / 🇺🇸 en
-- 메신저: **ko 는 KakaoTalk `pf.kakao.com/_qxnKxfX`** (2026-06-25 채널 교체), vi/en 은 KakaoTalk `pf.kakao.com/_ZxneSb`, **th 는 LINE OA `@894qhqtu`** (2026-05-18 전환). `messenger.yml` 만 교체 → `_shell.js` 가 `window.__I18N__.messenger` 에서 읽어 헤더 pill·계산기 결과 CTA·5개 케이스 인라인 CTA 동적 렌더 (인라인 색상 + filter:brightness hover). 빌드가 `messenger_json` 으로 JSON-encode 해 안전 주입
+- 메신저: **ko/vi/en 은 KakaoTalk `pf.kakao.com/_mxbWxfX`** (2026-07-01 전 카카오 채널 통일 — 옛 ko `_qxnKxfX`·vi/en `_ZxneSb` 폐기, messenger.yml + 웹 컴포넌트 fallback + 환자앱 1:1상담 + _shell.js + set-fb-about 전부 교체), **th 는 LINE OA `@894qhqtu`** (2026-05-18 전환). `messenger.yml` 만 교체 → `_shell.js` 가 `window.__I18N__.messenger` 에서 읽어 헤더 pill·계산기 결과 CTA·5개 케이스 인라인 CTA 동적 렌더 (인라인 색상 + filter:brightness hover). 빌드가 `messenger_json` 으로 JSON-encode 해 안전 주입
 - 프로그램 이미지: `_common`(한국어 기본본 + index 아이콘 세트 `need-1~6`·`pstep-1~7`) + **th 번역 오버라이드 6개**(`director`,`golden-time`,`fat-cell`,`arrow-illust`,`ratio`,`comparison`). vi/en 은 미번역 → `_common` fallback. 추후 번역 시 `{lang}/{slug}/`에 파일만 추가
 - 남은 작업: vi/en 프로그램 이미지 + Railway 프로덕션 배포 검증
 

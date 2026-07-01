@@ -279,7 +279,7 @@ function CtaBlock({ section, accent, delay }: { section: any; accent: string; de
       </h3>
       <p className="text-sm text-gray-600 mb-4 leading-relaxed">{section.description}</p>
       <a
-        href="https://pf.kakao.com/_ZxneSb"
+        href="https://pf.kakao.com/_mxbWxfX"
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackKakaoConsult('guide_section')}

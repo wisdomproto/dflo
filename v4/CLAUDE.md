@@ -174,7 +174,7 @@ scripts/
 | `/app/routine` | RoutinePage (생활 다이어리, 입력 전용 — 통계 분리됨) | treatment |
 | `/app/stats` | StatsPage (월별 통계, 6 카테고리 + 일별/주별 토글) | treatment |
 | `/app/info[/*]` | 성장가이드 / 레시피 / 케이스 (탭 없음, 홈에서 진입) | consultation |
-| 1:1상담 | (외부) 카카오톡 https://pf.kakao.com/_ZxneSb | both |
+| 1:1상담 | (외부) 카카오톡 https://pf.kakao.com/_mxbWxfX | both |
 
 **`treatment_status` 의사 수동 토글 (3단계)** — `consultation`(상담) / `treatment`(치료 중) / `completed`(완료). AdminPatientDetailPage 헤더 좌측 `[상담][치료 중][완료]` 버튼 + AdminPatientsPage(환자 관리) 목록의 "단계" 컬럼 인라인 셀렉트(표시+변경) + 단계 필터칩(완료 환자는 행 opacity 흐림). 라벨/색상은 `shared/utils/treatmentStage.ts` 단일 소스. **`completed`는 환자앱에선 `treatment`와 동일 취급**(BottomNav·HomePage가 `consultation`만 별도 분기 → 완료해도 진료기록 뷰 유지). `migration 014` 의 자동 백필 (visits 1건 이상 → treatment) 결과 244명 전원 `treatment` 로 시작, `completed`는 `migration 043` 으로 CHECK 확장.
 

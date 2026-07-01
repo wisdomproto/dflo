@@ -82,7 +82,7 @@ export function HeightCalcSlideEditor({ slide, onUpdate }: HeightCalcSlideEditor
         <Field label="CTA URL (비우면 카카오톡 채널)"
           value={s.resultCtaUrl || ''}
           onChange={(v) => onUpdate({ resultCtaUrl: v })}
-          placeholder="https://pf.kakao.com/_ZxneSb" />
+          placeholder="https://pf.kakao.com/_mxbWxfX" />
       </div>
     </div>
   );

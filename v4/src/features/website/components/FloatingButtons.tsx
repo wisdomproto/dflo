@@ -4,7 +4,7 @@ import { AboutModal } from './AboutModal';
 import { CommunityBottomSheet } from './CommunityBottomSheet';
 import { trackKakaoConsult } from '@/shared/lib/analytics';
 
-const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_qxnKxfX';
+const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.com/_mxbWxfX';
 
 export function FloatingButtons() {
   const [showCalc, setShowCalc] = useState(false);
