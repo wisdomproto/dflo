@@ -229,7 +229,7 @@ export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: 
               <h4 className="mb-2 text-xs font-semibold text-gray-500">전환 퍼널 — 어디서 이탈하나</h4>
               {(() => {
                 const stages = [
-                  { label: '홈 방문', value: s.pageViews.main },
+                  { label: '계산기 페이지 방문', value: s.pageViews.calculator },
                   { label: '예측키 패널 열람', value: s.events.calcOpen },
                   { label: '측정 완료', value: s.events.heightCalc },
                   { label: `${messengerLabel} 클릭`, value: s.events.messenger },
@@ -264,7 +264,7 @@ export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: 
               })()}
               <p className="mt-2 text-[11px] text-gray-400">
                 치료사례 페이지 열람 {s.pageViews.cases.toLocaleString()}회 · 전체 전환율 {s.conversionRate.toFixed(2)}%({messengerLabel} 클릭 / 총 PV)
-                <br />광고(cpc) 유입은 홈에서 예측키 패널이 자동으로 떠 <b>홈 방문 ≈ 열람</b>. 큰 이탈은 보통 <b>열람→측정 완료</b> 구간.
+                <br />광고는 계산기 페이지(/calculator.html)로 직행 → 방문 시 예측키 패널이 자동 표시돼 <b>계산기 방문 ≈ 열람</b>(홈 자동팝업은 2026-07-01 종료). 큰 이탈은 보통 <b>열람→측정 완료</b> 구간.
               </p>
             </div>
 
