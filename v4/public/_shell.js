@@ -275,9 +275,10 @@ const SHELL_HTML = `
       alreadySeen = !isNaN(ts) && ts > 0 && Date.now() - ts < SEEN_TTL_MS;
     }
   } catch (e) { /* ignore */ }
-  // 자동오픈 ON (2026-06-21 재활성) — 측정 완료 0% 의 진짜 원인은 팝업이 아니라 페북 인앱 select 버그였음(수정 완료).
-  // intent 기반(스크롤/exit/폴백)이라 즉시 전면팝업 아님. 광고 폴백은 평균 이탈(~4.6초) 직후·참여세션(~10초) 직전인 7초.
-  const AUTO_OPEN = true;
+  // 자동오픈 OFF (2026-07-01) — GA4 실측: 팝업이 calc_open 만 부풀리고(사람들이 반사적으로 닫음) 완료로 안 이어짐
+  // + 전면 오버레이(fixed) iframe 이 모바일 키보드/스크롤 마찰. 측정 유도는 **광고를 계산 페이지
+  // (`/{lang}/calculator.html`)로 직행**시키는 게 정답(메시지 매치·팝업 무). 트리거 코드는 보존(되살리기 쉽게).
+  const AUTO_OPEN = false;
   if (AUTO_OPEN && !isCalcPage && !alreadySeen) {
     const params = new URLSearchParams(window.location.search);
     const fromAd = ['cpc', 'paid', 'paid_social'].includes(params.get('utm_medium') || '');
