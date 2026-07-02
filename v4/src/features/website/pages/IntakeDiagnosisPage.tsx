@@ -6,62 +6,13 @@
 
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import type { IntakeForm } from '../report/types';
 
 interface CalcState {
   gender: 'male' | 'female';
   currentHeight: number;
   age: number;
   predictedHeight: number;
-}
-
-interface IntakeForm {
-  // 기본 정보 (calculator에서 전달)
-  childName: string;
-  birthDate: string;
-
-  // 출생 정보
-  gestationalWeeks: string;
-  birthWeight: string;
-  birthNote: string;
-
-  // 현재 상태
-  currentWeight: string;
-  yearlyGrowth: string;
-  grade: string;
-  heightRank: string;
-
-  // 가족 정보
-  fatherHeight: string;
-  motherHeight: string;
-  desiredHeight: string;
-
-  // 생활 습관
-  sleepTime: string;
-  wakeTime: string;
-  exerciseFrequency: string;
-  milkDaily: string;
-  mealRegularity: string;
-
-  // 사춘기 (남)
-  voiceChange: string;
-  facialHair: string;
-
-  // 사춘기 (여)
-  menarche: string;
-  breastDevelopment: string;
-
-  // 공통 사춘기
-  pubertyStage: string;
-  growthPattern: string;
-
-  // 의료 이력
-  pastConditions: string;
-  pastClinicExperience: boolean;
-  currentMedications: string;
-
-  // 보호자 의견
-  growthConcerns: string;
-  additionalNotes: string;
 }
 
 const emptyForm: IntakeForm = {
