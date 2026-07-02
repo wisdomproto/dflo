@@ -42,6 +42,7 @@ const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomePage'));
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
+const ReportPage = lazy(() => import('@/features/website/report/ReportPage'));
 const PublicIntakePage = lazy(() => import('@/features/intake/pages/PublicIntakePage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
@@ -227,6 +228,14 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <IntakeDiagnosisPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/report',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <ReportPage />
       </Suspense>
     ),
   },
