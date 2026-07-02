@@ -108,6 +108,23 @@
   .cta .tel{font-size:13px;color:var(--ink);font-weight:700;margin-top:10px}
   .cta .tel a{color:var(--ink);text-decoration:none}
 
+  /* 원장 소개 */
+  .doc{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#f0ecfb,#faf7ff);border:1px solid #e6ddf7;border-radius:16px;padding:16px;margin:10px 18px 8px}
+  .doc-photo{width:82px;height:82px;border-radius:14px;object-fit:cover;object-position:center 18%;flex-shrink:0;box-shadow:0 4px 12px rgba(90,70,150,.15)}
+  .doc-badge{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--p2);border-radius:20px;padding:2px 9px}
+  .doc-name{font-size:19px;font-weight:900;color:var(--ink);margin-top:6px}
+  .doc-name span{font-size:13px;font-weight:700;color:var(--muted)}
+  .doc-quote{font-size:12.5px;color:var(--p2);font-style:italic;margin-top:4px}
+  .doc-cv{background:var(--card);border-radius:14px;padding:13px 16px;margin:0 18px 10px;box-shadow:0 3px 12px rgba(90,70,150,.05);font-size:12.5px;color:#3a3446;line-height:1.75}
+  .doc-cv .cv-row{border-bottom:1px dashed var(--line);padding:6px 0}
+  .doc-cv .cv-row:last-of-type{border-bottom:0}
+  .doc-cv b{color:var(--p2)}
+  .cv-chips{margin-top:9px;display:flex;flex-wrap:wrap;gap:6px}
+  .cv-chips span{font-size:10.5px;background:var(--soft);color:#5a4a8a;border-radius:20px;padding:4px 9px}
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 18px}
+  .gallery img{width:100%;height:112px;object-fit:cover;border-radius:12px;display:block}
+
   footer{text-align:center;font-size:10.5px;color:var(--muted);padding:18px;line-height:1.6}
 </style>
 </head>
@@ -115,7 +132,7 @@
 <div class="wrap">
 
   <div class="hd">
-    <img src="/images/logo.jpg" alt="187 성장클리닉">
+    <img src="/images/logo.webp" alt="187 성장클리닉">
     <div class="kick">GROWTH REPORT</div>
     <h1>서연이 성장 리포트</h1>
     <div class="who">만 12세 7개월 · 여아 · 2026.07.02</div>
@@ -128,6 +145,28 @@
     <div class="stat hl"><div class="lbl">예측 성인키</div><div class="val">162.1<span class="u">cm</span></div></div>
     <div class="stat"><div class="lbl">또래 백분위</div><div class="val">61<span class="u">%</span></div></div>
   </div>
+
+  <!-- 원장 소개 -->
+  <section>
+    <div class="doc">
+      <img class="doc-photo" src="/images/doctor.webp" alt="채용현 대표원장">
+      <div>
+        <span class="doc-badge">원장 소개</span>
+        <div class="doc-name">채용현 <span>대표원장</span></div>
+        <div class="doc-quote">"고객의 건강과 웰빙을 위해 헌신합니다."</div>
+      </div>
+    </div>
+    <div class="doc-cv">
+      <div class="cv-row"><b>연세대 의과대학·의학대학원 졸업</b> · 강남세브란스 인턴·레지던트 수료</div>
+      <div class="cv-row"><b>호르몬 치료 전문</b> · 연세새봄의원 대표원장 (한국 본원·태국 지점)</div>
+      <div class="cv-row">프로 스포츠팀 전담의 (SSG 랜더스·넥센 히어로즈)</div>
+      <div class="cv-chips">
+        <span>📺 알토란·황금알·만물상 출연</span>
+        <span>📰 Vogue·중앙일보 칼럼</span>
+        <span>▶ YouTube @187growup</span>
+      </div>
+    </div>
+  </section>
 
   <!-- 3 methods -->
   <section>
@@ -287,6 +326,17 @@
       <p>만성적인 스트레스는 <b>성장호르몬 분비를 방해</b>합니다. 과도한 학업 부담·수면 부족·정서적 긴장이 이어지면 성장에 불리할 수 있어, 충분한 대화와 정서적 안정이 성장에도 도움이 됩니다.</p>
       <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/8709732/">[13]</a> Lancet 1996 · 심리사회적 저신장</div>
       <div class="help"><span class="h">🏥 병원에서는</span>성장에 영향을 줄 수 있는 스트레스·수면 요인을 함께 점검하고 생활 관리 방향을 안내합니다.</div>
+    </div>
+  </section>
+
+  <!-- 병원 둘러보기 -->
+  <section>
+    <div class="sec-t">🏥 병원 둘러보기</div>
+    <div class="gallery">
+      <img src="/images/consult-1.webp" alt="원장 진료 상담" loading="lazy">
+      <img src="/images/consult-2.webp" alt="성장 진료 상담" loading="lazy">
+      <img src="/images/clinic-interior.webp" alt="병원 내부" loading="lazy">
+      <img src="/images/facility-2.webp" alt="병원 시설" loading="lazy">
     </div>
   </section>
 
