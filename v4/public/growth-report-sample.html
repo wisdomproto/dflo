@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>서연이 성장 리포트 · 187 성장클리닉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --p1:#667eea; --p2:#764ba2; --ink:#2c2540; --muted:#6b6478;
+    --line:#ece9f2; --bg:#f6f4fb; --card:#fff;
+    --kakao:#FEE500; --warn:#fff8e6; --warnln:#f0dfa8;
+    --cc:#667eea; --good:#12b886; --soft:#f2eefb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:480px;margin:0 auto;background:var(--bg);min-height:100vh}
+  .pad{padding:0 18px}
+
+  /* Header */
+  .hd{background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;padding:22px 18px 26px;text-align:center;position:relative;overflow:hidden}
+  .hd::after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;background:rgba(255,255,255,.08);border-radius:50%}
+  .hd img{height:26px;filter:brightness(0) invert(1);opacity:.95;margin-bottom:14px}
+  .hd .kick{font-size:12px;letter-spacing:2px;opacity:.85;font-weight:500}
+  .hd h1{font-size:23px;font-weight:900;margin-top:4px}
+  .hd .who{font-size:13px;opacity:.9;margin-top:8px}
+
+  /* Disclaimer */
+  .disc{background:var(--warn);border-bottom:1px solid var(--warnln);color:#8a6d1a;font-size:11.5px;padding:9px 18px;text-align:center;line-height:1.5}
+
+  /* Hero numbers */
+  .hero{display:flex;gap:8px;padding:18px;margin-top:-14px}
+  .stat{flex:1;background:var(--card);border-radius:16px;padding:14px 8px;text-align:center;box-shadow:0 6px 20px rgba(90,70,150,.08)}
+  .stat .lbl{font-size:11px;color:var(--muted);font-weight:500}
+  .stat .val{font-size:26px;font-weight:900;color:var(--ink);line-height:1.15;margin-top:3px}
+  .stat .val .u{font-size:13px;font-weight:700;color:var(--muted)}
+  .stat.hl .val{color:var(--cc)}
+
+  section{margin:10px 0}
+  .sec-t{font-size:16px;font-weight:900;padding:14px 18px 6px;display:flex;align-items:center;gap:7px}
+  .sec-s{font-size:12.5px;color:var(--muted);padding:0 18px 10px}
+
+  .card{background:var(--card);border-radius:16px;padding:16px;margin:10px 18px;box-shadow:0 4px 16px rgba(90,70,150,.06)}
+  .card h3{font-size:15px;font-weight:800;display:flex;align-items:center;gap:6px}
+  .card .badge{font-size:10.5px;font-weight:700;color:#fff;background:var(--cc);border-radius:20px;padding:2px 9px;margin-left:auto}
+  .card p{font-size:13.5px;color:#3a3446;margin-top:8px}
+  .card .src{font-size:11px;color:var(--muted);margin-top:9px;border-top:1px dashed var(--line);padding-top:8px}
+  .card .src a{color:var(--p1);text-decoration:none}
+  .method-n{font-size:11px;font-weight:700;color:var(--cc);letter-spacing:.5px}
+
+  /* svg holder */
+  .chartbox{background:var(--soft);border-radius:12px;padding:10px 6px 6px;margin-top:12px}
+  .chartbox svg{width:100%;height:auto;display:block}
+  .cap{font-size:11px;color:var(--muted);text-align:center;margin-top:4px}
+
+  /* MPH formula */
+  .formula{background:var(--soft);border-radius:12px;padding:13px 14px;margin-top:12px;text-align:center}
+  .formula .pk{font-size:12.5px;color:var(--muted)}
+  .formula .pk b{color:var(--ink);font-weight:800}
+  .formula .eq{font-size:13.5px;color:#3a3446;margin-top:7px;font-weight:600}
+  .formula .eq .r{font-weight:900;color:var(--cc);font-size:18px}
+  .formula .eq .sm{font-size:11px;color:var(--muted);font-weight:500}
+  .formula .rng{font-size:11.5px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:7px}
+
+  /* bone-age xray */
+  .xray{background:#0d1322;border-radius:14px;margin-top:12px;overflow:hidden}
+  .xray img{display:block;width:100%}
+  .xray.noimg img{display:none}
+  .xray-ph{display:none;color:#8ea0c8;text-align:center;font-size:12.5px;padding:46px 16px;line-height:1.8}
+  .xray.noimg .xray-ph{display:block}
+  .xray-ph span{font-size:10.5px;opacity:.65}
+  .legend{background:rgba(255,255,255,.05);color:#cdd7ee;padding:11px 14px;font-size:11.5px;line-height:1.8}
+  .legend b{color:#fff}
+
+  /* hospital hook */
+  .hook{background:linear-gradient(135deg,#f0ecfb,#faf7ff);border:1.5px solid #ddd3f5}
+  .hook h3{color:var(--p2)}
+  .hook .big{font-weight:800;color:var(--p2)}
+
+  /* signal block */
+  .sig{background:var(--card);border-radius:14px;padding:14px 16px;margin:9px 18px;box-shadow:0 3px 12px rgba(90,70,150,.05);border-left:4px solid var(--cc)}
+  .sig h4{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
+  .sig h4 .hosp{font-size:10px;font-weight:700;color:#fff;background:var(--p2);border-radius:20px;padding:2px 8px;margin-left:auto}
+  .sig p{font-size:13px;color:#3a3446;margin-top:6px}
+  .sig .src{font-size:10.5px;color:var(--muted);margin-top:7px}
+  .sig .src a{color:var(--p1);text-decoration:none}
+  .sig .help{margin-top:10px;background:linear-gradient(135deg,#f1ecfb,#faf7ff);border:1px solid #e6ddf7;border-radius:10px;padding:10px 12px;font-size:12px;color:#4a2d6b;line-height:1.65}
+  .sig .help b{color:var(--p2);font-weight:800}
+  .sig .help .h{font-weight:800;color:var(--p2);display:block;margin-bottom:2px;font-size:11.5px}
+  .ytbtn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:#ff2d2d;color:#fff;font-weight:700;font-size:12.5px;border-radius:10px;padding:10px 14px;text-decoration:none}
+  .ytwrap{margin-top:11px}
+  .ytwrap .yl{font-size:11px;color:var(--muted);margin-bottom:7px;font-weight:600}
+  .ytchip{display:inline-block;background:#fff;border:1px solid #ffd2d2;color:#d92d2d;font-size:11.5px;font-weight:600;border-radius:20px;padding:6px 11px;margin:0 6px 6px 0;text-decoration:none}
+  .ytchip::before{content:"▶";font-size:8px;margin-right:5px;vertical-align:1px}
+
+  /* refs */
+  .refs{margin:10px 18px;font-size:11px;color:var(--muted);line-height:1.8}
+  .refs a{color:var(--p1);text-decoration:none}
+  .refs .n{font-weight:700;color:var(--ink)}
+
+  /* CTA */
+  .cta{margin:16px 18px 8px;background:#fff;border-radius:18px;padding:20px 16px;text-align:center;box-shadow:0 6px 22px rgba(90,70,150,.1)}
+  .cta h3{font-size:16px;font-weight:900}
+  .cta p{font-size:12.5px;color:var(--muted);margin-top:6px}
+  .cta a.kk{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--kakao);color:#3C1E1E;font-weight:800;font-size:15px;border-radius:14px;padding:15px;margin-top:14px;text-decoration:none}
+  .cta .tel{font-size:13px;color:var(--ink);font-weight:700;margin-top:10px}
+  .cta .tel a{color:var(--ink);text-decoration:none}
+
+  footer{text-align:center;font-size:10.5px;color:var(--muted);padding:18px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hd">
+    <img src="/images/logo.jpg" alt="187 성장클리닉">
+    <div class="kick">GROWTH REPORT</div>
+    <h1>서연이 성장 리포트</h1>
+    <div class="who">만 12세 7개월 · 여아 · 2026.07.02</div>
+  </div>
+
+  <div class="disc">본 리포트는 <b>설문 기반 참고용 예측</b>이며 의료 진단이 아닙니다 · 개인에 따라 결과가 다를 수 있습니다</div>
+
+  <div class="hero">
+    <div class="stat"><div class="lbl">현재 키</div><div class="val">156.0<span class="u">cm</span></div></div>
+    <div class="stat hl"><div class="lbl">예측 성인키</div><div class="val">162.1<span class="u">cm</span></div></div>
+    <div class="stat"><div class="lbl">또래 백분위</div><div class="val">61<span class="u">%</span></div></div>
+  </div>
+
+  <!-- 3 methods -->
+  <section>
+    <div class="sec-t">📏 성인키를 보는 3가지 방법</div>
+    <div class="sec-s">성인키는 측정하는 것이 아니라 여러 방법으로 추정합니다. 방법마다 정확도가 다릅니다.</div>
+
+    <!-- MPH -->
+    <div class="card">
+      <div class="method-n">방법 ①</div>
+      <h3>🧬 부모 키로 보는 유전 잠재 범위 (MPH)</h3>
+      <p>키는 부모로부터 물려받는 유전의 영향이 매우 큽니다. 쌍둥이 연구에 따르면 아이 키의 <b>약 70~80%가 유전</b>으로 설명됩니다. 부모님 키로 계산한 MPH는 서연이가 유전적으로 도달 가능한 <b>'잠재 키 범위'</b>를 나타내는 참고값입니다. 유전은 하나의 점이 아니라 <b>범위</b>를 정하며, 그 범위 안에서 위·아래는 수면·영양·사춘기 관리가 좌우합니다.</p>
+      <div class="formula">
+        <div class="pk">부모님 키 &nbsp;·&nbsp; 아빠 <b>172cm</b> &nbsp; 엄마 <b>160cm</b></div>
+        <div class="eq">( 172 + 160 ) ÷ 2 − 6.5 <span class="sm">(여아 보정)</span> = <span class="r">159.5cm</span></div>
+        <div class="rng">유전 잠재 범위 (±5cm): <b>154.5 ~ 164.5cm</b></div>
+      </div>
+      <div class="chartbox">
+        <svg viewBox="0 0 300 118" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="bell" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#764ba2" stop-opacity=".28"/><stop offset="1" stop-color="#764ba2" stop-opacity=".02"/></linearGradient></defs>
+          <line x1="20" y1="95" x2="285" y2="95" stroke="#d9d2ea" stroke-width="1"/>
+          <rect x="78" y="24" width="130" height="71" fill="#667eea" opacity=".07"/>
+          <path d="M28,95 C85,95 110,32 143,28 C176,32 201,95 258,95 Z" fill="url(#bell)" stroke="#764ba2" stroke-width="1.6"/>
+          <line x1="177" y1="24" x2="177" y2="95" stroke="#12b886" stroke-width="2" stroke-dasharray="4 3"/>
+          <circle cx="177" cy="28" r="4" fill="#12b886"/>
+          <text x="177" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#0e9e75">예측 162.1</text>
+          <text x="78" y="110" text-anchor="middle" font-size="9.5" fill="#8a83a0">154.5</text>
+          <text x="143" y="110" text-anchor="middle" font-size="9.5" font-weight="700" fill="#5a4a8a">159.5 (MPH)</text>
+          <text x="208" y="110" text-anchor="middle" font-size="9.5" fill="#8a83a0">164.5</text>
+        </svg>
+        <div class="cap">유전 잠재 범위 154.5 ~ 164.5cm · 예측키는 범위 상단에 위치합니다</div>
+      </div>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/36224396/">[1]</a> Nature 2022 · 인간 키 유전변이 지도</div>
+    </div>
+
+    <!-- 표준성장도표 -->
+    <div class="card">
+      <div class="method-n">방법 ②</div>
+      <h3>📊 표준성장도표에서 현재 위치</h3>
+      <p>키·몸무게를 성장도표에 표시하면 <b>같은 나이·성별 100명 중 몇 번째</b>인지 백분위로 확인됩니다. 서연이는 <b>61%</b>로 또래보다 큰 편입니다. 이 곡선을 유지하면 예측 성인키에 도달하며, 곡선이 아래로 꺾일 경우 성장 지연의 신호일 수 있습니다.</p>
+      <div class="chartbox">
+        <svg viewBox="0 0 300 165" xmlns="http://www.w3.org/2000/svg">
+          <line x1="34" y1="14" x2="34" y2="140" stroke="#d9d2ea" stroke-width="1"/>
+          <line x1="34" y1="140" x2="288" y2="140" stroke="#d9d2ea" stroke-width="1"/>
+          <polyline points="40,66 140,40 285,20" fill="none" stroke="#c9bef0" stroke-width="1.4"/>
+          <text x="288" y="20" font-size="9" fill="#a99ede">97</text>
+          <polyline points="40,92 140,74 285,52" fill="none" stroke="#8f7ed6" stroke-width="1.6"/>
+          <text x="288" y="54" font-size="9" fill="#8f7ed6">50</text>
+          <polyline points="40,120 140,104 285,84" fill="none" stroke="#c9bef0" stroke-width="1.4"/>
+          <text x="288" y="86" font-size="9" fill="#a99ede">3</text>
+          <circle cx="140" cy="60" r="5" fill="#12b886" stroke="#fff" stroke-width="2"/>
+          <text x="140" y="52" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0e9e75">서연 · 61%</text>
+          <text x="40" y="152" text-anchor="middle" font-size="9" fill="#8a83a0">10세</text>
+          <text x="140" y="152" text-anchor="middle" font-size="9" fill="#5a4a8a" font-weight="700">현재</text>
+          <text x="278" y="152" text-anchor="middle" font-size="9" fill="#8a83a0">16세</text>
+          <text x="10" y="24" font-size="9" fill="#8a83a0">키</text>
+        </svg>
+        <div class="cap">또래 100명 중 상위 39번째 · 곡선 유지가 목표입니다</div>
+      </div>
+      <div class="src">근거: 질병관리청 2017 소아·청소년 성장도표 <a href="#refs">[3]</a></div>
+    </div>
+
+    <!-- 뼈나이 -->
+    <div class="card hook">
+      <div class="method-n">방법 ③ · 가장 정확</div>
+      <h3>🦴 뼈나이 <span class="badge">병원 측정</span></h3>
+      <p>왼손 X-ray로 뼈의 성숙도(골연령)를 판독합니다. <b class="big">실제 나이와 뼈나이의 차이가 '성장판이 얼마나 남았는지'를 보여주기 때문에</b> 성인키 예측의 핵심입니다. 뼈나이가 실제 나이보다 앞서 있으면 남은 성장 여력이 적고, 늦으면 더 클 여지가 있습니다.</p>
+      <div class="xray" id="xrayBox">
+        <img src="/images/bone-age-xray.webp" alt="뼈나이 측정 손 X-ray 예시" onerror="document.getElementById('xrayBox').classList.add('noimg')">
+        <div class="xray-ph">🖐️ 손 X-ray 예시 이미지 자리<br><span>/images/bone-age-xray.webp 없음</span></div>
+        <div class="legend"><span>좌측 수완부(손·손목) X-ray로 <b style="color:#fff">골성숙도</b>를 판독해, 성장판 잔여 정도와 <b style="color:#fff">성인 예측키(PAH)</b>를 정밀 평가합니다</span></div>
+      </div>
+      <p>위 두 방법은 설문으로 추정한 값입니다. <b class="big">가장 정확한 예측은 뼈나이 판독이 필요하며, 이는 병원 촬영을 통해서만 확인할 수 있습니다.</b></p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/164838/">[2]</a> Arch Dis Child 1975 · 뼈나이 기반 성인키 예측</div>
+    </div>
+  </section>
+
+  <!-- signals -->
+  <section>
+    <div class="sec-t">🔎 서연이 설문 분석</div>
+    <div class="sec-s">설문에서 확인된 항목만 표시했습니다. 각 설명은 국제 논문 근거에 기반하며, 병원에서 도울 수 있는 부분도 함께 안내합니다.</div>
+
+    <div class="sig">
+      <h4>😴 수면 부족</h4>
+      <p>성장호르몬은 하루 분비량의 상당 부분이 <b>깊은 잠(서파수면) 중 박동성으로</b> 분비됩니다. 취침이 늦거나 수면이 부족하면 이 분비 기회가 줄어들어, 오래 자는 것보다 <b>질 높은 숙면</b>이 중요합니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/4575024/">[4]</a> NEJM 1973 · 성장호르몬 분비 조절</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>수면 습관을 문진으로 점검하고, 필요 시 <b>성장호르몬 축(IGF-1) 혈액검사</b>로 분비 상태를 확인합니다. 숙면을 방해하는 원인(비염·아데노이드 등)을 찾아 교정 방향을 제시하고, 아이에 맞는 수면 습관 관리도 함께 진행합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>🤧 만성 비염·알러지</h4>
+      <p>염증이 오래 지속되면 <b>성장에 쓸 에너지가 염증 대응에 소모</b>되어 키 성장으로 갈 에너지가 부족해질 수 있습니다. 코막힘은 밤잠을 방해해 성장호르몬 분비도 저하시킵니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/41305596/">[12]</a> Nutrients 2025 · 만성 염증과 성장</div>
+      <div class="help"><span class="h">🏥 병원에서는</span><b>정밀 혈액검사(알러지·염증 지표)로 원인을 파악</b>하고, 염증을 관리해 성장으로 갈 에너지를 회복하도록 돕습니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>🥩 영양 불균형</h4>
+      <p>키와 근육이 자라려면 <b>단백질·칼슘·아연·비타민D</b>가 충분해야 하며, 이 영양소가 IGF-1 분비와 성장판 연골 형성을 돕습니다. 칼로리만 높은 '속 빈 강정' 식사는 성장에 불리합니다. 또한 <b>특정 음식 알러지</b>가 있으면 소화·흡수 저하와 만성 염증을 통해 성장을 방해할 수 있습니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/15277169/">[7]</a> AJCN 2004 · <a href="https://pubmed.ncbi.nlm.nih.gov/16848703/">[8]</a> Annu Rev Nutr 2006</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>혈액검사로 <b>결핍 영양소와 음식 알러지(IgE/IgG)</b>를 확인하고, 아이에게 맞는 <b>맞춤형 식단을 설계·관리</b>합니다. 세부 식습관까지 함께 점검합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>🏃 운동 부족</h4>
+      <p><b>줄넘기·농구·배구처럼 점프 동작이 많은 운동</b>은 성장판을 효과적으로 자극합니다. 오래 앉아 생기는 자세 불균형도 함께 교정하는 것이 좋습니다.</p>
+      <div class="ytwrap">
+        <div class="yl">🎬 병원 추천 성장 운동 영상</div>
+        <a class="ytchip" href="https://www.youtube.com/watch?v=-DULXNYk3Sg" target="_blank" rel="noopener">목·등 스트레칭</a>
+        <a class="ytchip" href="https://www.youtube.com/watch?v=RzuXWJJf7bY" target="_blank" rel="noopener">복부·허벅지 스트레칭</a>
+        <a class="ytchip" href="https://www.youtube.com/watch?v=cBYdbmVwB0E" target="_blank" rel="noopener">옆구리·허벅지 스트레칭</a>
+        <a class="ytchip" href="https://www.youtube.com/watch?v=kcgO4-ifJqE" target="_blank" rel="noopener">엉덩이 스트레칭</a>
+        <a class="ytchip" href="https://www.youtube.com/watch?v=U62yLjlBSE8" target="_blank" rel="noopener">등 근육운동</a>
+        <a class="ytchip" href="https://www.youtube.com/watch?v=bqjB7pRbIfw" target="_blank" rel="noopener">엉덩이 근육운동</a>
+      </div>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/11874228/">[9]</a> JBMR 2002 · 점프 운동과 뼈 성장</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>자세를 평가하고 아이 상태에 맞는 <b>성장 운동·자세 교정 가이드</b>를 제시합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>⏳ 사춘기 진행 중</h4>
+      <p>여아는 사춘기가 시작되면 성장 속도가 빨라졌다가 <b>성장판이 닫히며 성장이 마무리</b>됩니다. 현재 어느 단계인지, 성장판이 얼마나 남았는지 파악하는 것이 이 시기 관리의 핵심입니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/15073143/">[5]</a> Hum Reprod Update 2004 · 사춘기와 성인키</div>
+      <div class="help"><span class="h">🏥 병원에서는</span><b>뼈나이 X-ray와 성호르몬 검사</b>로 사춘기 단계와 성장판 잔여 시간을 정확히 평가해, 현재 필요한 관리를 안내합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>🧬 유전 잠재 범위</h4>
+      <p>키는 유전 영향이 크지만(약 70~80%), 유전은 <b>'하나의 점'이 아니라 '범위'</b>를 정합니다. 그 범위 안에서 위·아래는 수면·영양·운동·사춘기 관리가 좌우합니다. 서연이는 예측이 <b>유전 범위 상단</b>에 위치하므로, 현재의 관리를 유지하는 것이 중요합니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/36224396/">[1]</a> Nature 2022 · 키 유전</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>뼈나이로 남은 성장 시간을 확인하고 수면·영양·운동을 최적화해 <b>유전 범위 상단을 목표로 관리</b>합니다. 필요 시 의학적 개입의 도움 여부도 함께 상담합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>⚖️ 과체중·비만</h4>
+      <p>지방조직은 렙틴·에스트로겐을 높여 <b>사춘기를 앞당기는 경향</b>이 있으며, 이른 사춘기는 성장판을 일찍 닫아 최종키에 불리하게 작용할 수 있습니다. 또한 비만은 만성 염증과 호르몬 교란을 통해 성장호르몬 작용을 방해합니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/22290357/">[6]</a> Nat Rev Endocrinol 2012 · 비만과 성발달</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>뼈나이와 대사·호르몬 검사로 사춘기 진행과 비만의 영향을 평가하고, 체중·식이 관리 방향을 제시합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>📉 성장 속도 저하</h4>
+      <p>학령기의 정상 성장 속도는 대략 <b>연 5~6cm</b>입니다. 지속적으로 연 4cm 미만으로 자란다면 성장호르몬 결핍·갑상선 기능 저하·만성 질환 등 원인을 확인하는 것이 필요합니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/18782877/">[11]</a> JCEM 2008 · 저신장 평가 합의안</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>성장 곡선 추적과 함께 <b>성장호르몬·갑상선 혈액검사와 뼈나이</b>로 성장 지연의 원인을 감별합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>👶 저출생·조산 (SGA)</h4>
+      <p>작게 태어난 아이의 일부는 <b>만 2~4세까지 또래 평균을 따라잡지 못하고</b> 저신장이 이어질 수 있습니다. 이 경우 영양·수면 관리와 함께 성장 속도를 정기적으로 확인하는 것이 중요합니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/7949620/">[10]</a> Acta Paediatr 1994 · SGA 성장</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>성장 속도를 정기적으로 추적하고, 따라잡기 성장이 지연될 경우 원인 평가와 관리 방향을 안내합니다.</div>
+    </div>
+
+    <div class="sig">
+      <h4>😔 스트레스</h4>
+      <p>만성적인 스트레스는 <b>성장호르몬 분비를 방해</b>합니다. 과도한 학업 부담·수면 부족·정서적 긴장이 이어지면 성장에 불리할 수 있어, 충분한 대화와 정서적 안정이 성장에도 도움이 됩니다.</p>
+      <div class="src">근거: <a href="https://pubmed.ncbi.nlm.nih.gov/8709732/">[13]</a> Lancet 1996 · 심리사회적 저신장</div>
+      <div class="help"><span class="h">🏥 병원에서는</span>성장에 영향을 줄 수 있는 스트레스·수면 요인을 함께 점검하고 생활 관리 방향을 안내합니다.</div>
+    </div>
+  </section>
+
+  <!-- closing hook -->
+  <section>
+    <div class="card hook" style="margin-top:14px">
+      <h3>🏥 더 정확한 평가가 필요하다면</h3>
+      <p>설문으로는 여기까지가 최선입니다. 병원에서는 <b class="big">뼈나이(X-ray)</b>로 남은 성장 시간을 정확히 측정하고, <b class="big">혈액검사</b>로 성장호르몬·갑상선·철분·비타민D·성호르몬을 확인해 <b>성장을 저해하는 숨은 원인</b>을 찾아냅니다. 정확한 평가는 내원 진료를 통해 도와드리겠습니다.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h3>서연이 맞춤 성장 상담</h3>
+    <p>이 리포트를 바탕으로 원장이 직접<br>정확한 성장 계획을 안내해 드립니다</p>
+    <a class="kk" href="https://pf.kakao.com/_mxbWxfX" target="_blank" rel="noopener">💬 카카오톡 1:1 상담</a>
+    <div class="tel">📞 <a href="tel:010-6693-2838">010-6693-2838</a></div>
+  </div>
+
+  <!-- refs -->
+  <section id="refs">
+    <div class="sec-t" style="font-size:14px">📚 참고문헌</div>
+    <div class="refs">
+      <span class="n">1.</span> Common genetic variants and human height. <i>Nature</i> 2022. <a href="https://pubmed.ncbi.nlm.nih.gov/36224396/">36224396</a><br>
+      <span class="n">2.</span> Prediction of adult height from bone age. <i>Arch Dis Child</i> 1975. <a href="https://pubmed.ncbi.nlm.nih.gov/164838/">164838</a><br>
+      <span class="n">3.</span> 질병관리청 2017 소아·청소년 성장도표<br>
+      <span class="n">4.</span> Neural regulation of GH secretion. <i>NEJM</i> 1973. <a href="https://pubmed.ncbi.nlm.nih.gov/4575024/">4575024</a><br>
+      <span class="n">5.</span> Precocious puberty and statural growth. <i>Hum Reprod Update</i> 2004. <a href="https://pubmed.ncbi.nlm.nih.gov/15073143/">15073143</a><br>
+      <span class="n">6.</span> Effects of obesity on human sexual development. <i>Nat Rev Endocrinol</i> 2012. <a href="https://pubmed.ncbi.nlm.nih.gov/22290357/">22290357</a><br>
+      <span class="n">7.</span> Animal protein intake, IGF-1, and growth. <i>AJCN</i> 2004. <a href="https://pubmed.ncbi.nlm.nih.gov/15277169/">15277169</a><br>
+      <span class="n">8.</span> Cow's milk and linear growth. <i>Annu Rev Nutr</i> 2006. <a href="https://pubmed.ncbi.nlm.nih.gov/16848703/">16848703</a><br>
+      <span class="n">9.</span> Jumping exercise and bone. <i>JBMR</i> 2002. <a href="https://pubmed.ncbi.nlm.nih.gov/11874228/">11874228</a><br>
+      <span class="n">10.</span> Natural growth in children born SGA. <i>Acta Paediatr</i> 1994. <a href="https://pubmed.ncbi.nlm.nih.gov/7949620/">7949620</a><br>
+      <span class="n">11.</span> Consensus on idiopathic short stature. <i>JCEM</i> 2008. <a href="https://pubmed.ncbi.nlm.nih.gov/18782877/">18782877</a><br>
+      <span class="n">12.</span> Chronic inflammation &amp; growth (IBD). <i>Nutrients</i> 2025. <a href="https://pubmed.ncbi.nlm.nih.gov/41305596/">41305596</a><br>
+      <span class="n">13.</span> Stress-related growth failure (psychosocial). <i>Lancet</i> 1996. <a href="https://pubmed.ncbi.nlm.nih.gov/8709732/">8709732</a>
+    </div>
+  </section>
+
+  <footer>
+    본 리포트는 설문 기반 참고용 예측이며 의료 진단이 아닙니다.<br>정확한 평가는 의료진의 진료가 필요합니다.<br>
+    연세새봄의원 187 성장클리닉 · dr187growup.com
+  </footer>
+
+</div>
+</body>
+</html>

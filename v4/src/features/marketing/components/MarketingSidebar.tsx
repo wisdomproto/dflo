@@ -6,6 +6,7 @@ interface NavItem {
   icon: string;
   label: string;
   soon?: boolean;
+  external?: boolean; // static HTML (public/*.html) — 새 탭으로 열기 (React 라우트 아님)
 }
 
 const GROUPS: { label: string; items: NavItem[] }[] = [
@@ -51,7 +52,10 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
   },
   {
     label: '자료',
-    items: [{ to: '/marketing/leaflets', icon: '📄', label: '리플렛' }],
+    items: [
+      { to: '/marketing/leaflets', icon: '📄', label: '리플렛' },
+      { to: '/growth-report-sample.html', icon: '🧾', label: '성장 리포트 (샘플)', external: true },
+    ],
   },
   // 치료사례 후보(case-candidates.html)는 PHI 포함 로컬 전용 도구 → dev 에서만 노출(배포본엔 파일 없음)
   ...(import.meta.env.DEV
@@ -60,6 +64,20 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
 ];
 
 function Item({ item }: { item: NavItem }) {
+  if (item.external) {
+    return (
+      <a
+        href={item.to}
+        target="_blank"
+        rel="noopener"
+        className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-600 hover:bg-gray-100"
+      >
+        <span>{item.icon}</span>
+        <span className="flex-1">{item.label}</span>
+        <span className="text-[10px] text-gray-400">↗</span>
+      </a>
+    );
+  }
   return (
     <NavLink
       to={item.to}
