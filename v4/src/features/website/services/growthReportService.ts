@@ -19,8 +19,9 @@ export async function saveGrowthReport(
   measurement: ReportMeasurement, survey: ReportSurvey, lang = 'ko',
 ): Promise<void> {
   try {
-    await supabase.from('growth_reports').insert({
+    const { error } = await supabase.from('growth_reports').insert({
       lang, measurement, survey, utm: attribution(),
     });
+    if (error) { /* 적재 실패는 무시 — 분석용 tracking, UX 영향 없음 */ }
   } catch { /* tracking must never break UX */ }
 }

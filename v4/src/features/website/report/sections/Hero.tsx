@@ -9,9 +9,10 @@ function formatToday(): string {
 }
 
 export function Hero({ m, name }: { m: ReportMeasurement; name: string }) {
-  const ay = Math.floor(m.age);
+  let ay = Math.floor(m.age);
   let am = Math.round((m.age % 1) * 12);
   if (am === 12) {
+    ay += 1;
     am = 0;
   }
   const genderLabel = m.gender === 'male' ? '남아' : '여아';

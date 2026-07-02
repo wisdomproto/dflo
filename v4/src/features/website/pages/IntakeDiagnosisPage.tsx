@@ -52,15 +52,20 @@ export default function IntakeDiagnosisPage() {
   const navigate = useNavigate();
   const [sp] = useSearchParams();
 
-  // calc 결과는 location.state(SPA 내부 이동) 우선, 없으면 URL 파라미터(iframe target=_top 풀페이지 이동)에서 복원
+  // calc 결과는 location.state(SPA 내부 이동) 우선, 없으면 URL 파라미터(iframe target=_top 풀페이지 이동)에서 복원.
+  // URL 진입은 광고·공유로 변형될 수 있어 필수 숫자(h/age/ph)가 전부 유효할 때만 복원(NaN 오염 방지).
+  const urlH = Number(sp.get('h'));
+  const urlAge = Number(sp.get('age'));
+  const urlPh = Number(sp.get('ph'));
+  // Number(null)===0 (누락)·Number('abc')===NaN (변형) 모두 걸러내려고 > 0 로 검증
   const calcState: CalcState | null =
     (location.state as CalcState) ??
-    (sp.get('h')
+    ([urlH, urlAge, urlPh].every((n) => n > 0)
       ? {
           gender: sp.get('g') === 'female' ? 'female' : 'male',
-          currentHeight: Number(sp.get('h')),
-          age: Number(sp.get('age')),
-          predictedHeight: Number(sp.get('ph')),
+          currentHeight: urlH,
+          age: urlAge,
+          predictedHeight: urlPh,
         }
       : null);
   const percentile = Number(sp.get('pct') ?? 50);

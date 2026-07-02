@@ -19,7 +19,7 @@ export default function ReportPage() {
   const navigate = useNavigate();
 
   let data = (location.state as ReportData | null) ?? null;
-  if (!data) {
+  if (!data?.measurement) {
     try {
       const s = sessionStorage.getItem('growth_report_data');
       if (s) data = JSON.parse(s) as ReportData;
