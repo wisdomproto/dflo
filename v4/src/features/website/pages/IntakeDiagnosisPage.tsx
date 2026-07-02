@@ -5,8 +5,9 @@
 // ================================================
 
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import type { IntakeForm } from '../report/types';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import type { IntakeForm, ReportMeasurement } from '../report/types';
+import { saveGrowthReport } from '../services/growthReportService';
 
 interface CalcState {
   gender: 'male' | 'female';
@@ -49,7 +50,21 @@ const emptyForm: IntakeForm = {
 export default function IntakeDiagnosisPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const calcState = location.state as CalcState | null;
+  const [sp] = useSearchParams();
+
+  // calc 결과는 location.state(SPA 내부 이동) 우선, 없으면 URL 파라미터(iframe target=_top 풀페이지 이동)에서 복원
+  const calcState: CalcState | null =
+    (location.state as CalcState) ??
+    (sp.get('h')
+      ? {
+          gender: sp.get('g') === 'female' ? 'female' : 'male',
+          currentHeight: Number(sp.get('h')),
+          age: Number(sp.get('age')),
+          predictedHeight: Number(sp.get('ph')),
+        }
+      : null);
+  const percentile = Number(sp.get('pct') ?? 50);
+  const standard: 'KR' | 'TH' = sp.get('std') === 'TH' ? 'TH' : 'KR';
 
   const gender = calcState?.gender || 'male';
   const isMale = gender === 'male';
@@ -75,17 +90,18 @@ export default function IntakeDiagnosisPage() {
   const prev = () => setStep((s) => Math.max(s - 1, 0));
 
   const handleSubmit = () => {
-    // TODO: AI 진단 연동 (RAG)
-    // 지금은 데이터 수집까지만
-    const data = {
-      ...form,
-      gender,
-      currentHeight: calcState?.currentHeight,
-      age: calcState?.age,
-      predictedHeight: calcState?.predictedHeight,
+    if (!calcState) return;
+    const measurement: ReportMeasurement = {
+      gender, age: calcState.age, currentHeight: calcState.currentHeight,
+      predicted: calcState.predictedHeight, percentile, standard,
+      fatherHeight: form.fatherHeight ? Number(form.fatherHeight) : undefined,
+      motherHeight: form.motherHeight ? Number(form.motherHeight) : undefined,
     };
-    console.log('Intake data:', data);
-    next(); // go to completion step
+    void saveGrowthReport(measurement, form, 'ko');
+    try {
+      sessionStorage.setItem('growth_report_data', JSON.stringify({ measurement, survey: form }));
+    } catch { /* noop */ }
+    navigate('/report', { state: { measurement, survey: form } });
   };
 
   return (
@@ -96,7 +112,7 @@ export default function IntakeDiagnosisPage() {
           <button onClick={() => navigate('/')} className="text-white/80 hover:text-white text-sm">
             ← 돌아가기
           </button>
-          <h1 className="text-base font-bold">🔬 AI 성장 진단</h1>
+          <h1 className="text-base font-bold">📋 성장 리포트 설문</h1>
           <div className="w-16" />
         </div>
       </div>
@@ -261,30 +277,15 @@ export default function IntakeDiagnosisPage() {
 
         {step === steps.length - 1 && (
           <div className="text-center py-12 space-y-4">
-            <span className="text-5xl">✅</span>
-            <h2 className="text-xl font-bold text-gray-800">정보 입력 완료!</h2>
+            <span className="text-5xl">📋</span>
+            <h2 className="text-xl font-bold text-gray-800">리포트를 준비하고 있어요</h2>
             <p className="text-sm text-gray-500">
               입력하신 정보를 바탕으로<br />
-              AI 성장 분석 리포트를 준비하겠습니다.
+              맞춤 성장 리포트를 확인해보세요.
             </p>
-            <div className="bg-amber-50 rounded-xl p-4 text-left">
-              <p className="text-xs font-bold text-amber-800 mb-1">📋 입력된 정보 요약</p>
-              <p className="text-xs text-amber-700">
-                {form.childName || '이름 미입력'} · {isMale ? '남아' : '여아'} · 만 {calcState?.age.toFixed(1)}세
-              </p>
-              <p className="text-xs text-amber-700">
-                현재 {calcState?.currentHeight}cm · 예상키 {calcState?.predictedHeight.toFixed(1)}cm
-              </p>
-              <p className="text-xs text-amber-700">
-                아버지 {form.fatherHeight || '-'}cm · 어머니 {form.motherHeight || '-'}cm
-              </p>
-            </div>
-            <p className="text-xs text-gray-400 mt-2">
-              🔬 AI 진단 기능은 곧 추가됩니다
-            </p>
-            <button onClick={() => navigate('/')}
+            <button onClick={handleSubmit}
               className="mt-4 px-8 py-3 bg-[#0F6E56] text-white rounded-xl font-bold hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
-              홈으로 돌아가기
+              📋 내 리포트 보기
             </button>
           </div>
         )}
@@ -306,7 +307,7 @@ export default function IntakeDiagnosisPage() {
             ) : (
               <button onClick={handleSubmit}
                 className="flex-1 py-3 rounded-xl bg-[#0F6E56] text-white font-semibold text-sm hover:bg-[#0D5A47] active:scale-[0.98] transition-all">
-                🔬 진단 요청하기
+                📋 리포트 만들기
               </button>
             )}
           </div>
