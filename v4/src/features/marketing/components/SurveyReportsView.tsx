@@ -129,11 +129,11 @@ export function SurveyReportsView() {
           </div>
 
           <div className="overflow-x-auto rounded-lg border border-gray-200">
-            <table className="w-full min-w-[900px] text-sm">
+            <table className="w-full min-w-[980px] text-sm">
               <thead className="bg-gray-50 text-xs text-gray-500">
                 <tr>
                   <Th>시간</Th><Th>이름</Th><Th>성별</Th><Th>만나이</Th><Th>현재키</Th><Th>예측키</Th>
-                  <Th>백분위</Th><Th>부모키(부/모)</Th><Th>신호</Th><Th>유입</Th><Th>{''}</Th>
+                  <Th>백분위</Th><Th>부모키(부/모)</Th><Th>신호</Th><Th>유입</Th><Th>리포트</Th><Th>{''}</Th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -154,6 +154,12 @@ export function SurveyReportsView() {
                         {sig.length ? sig.join(' ') : <span className="text-gray-300">-</span>}
                       </Td>
                       <Td className="max-w-[160px] truncate text-xs text-gray-400" title={srcOf(r)}>{srcOf(r)}</Td>
+                      <Td>
+                        <a href={`/report/r/${r.id}`} target="_blank" rel="noopener noreferrer" title="이 사람이 받은 성장 리포트 보기"
+                          className="rounded-md px-2 py-1 text-xs font-semibold text-[#0F6E56] hover:bg-[#0F6E56]/10 whitespace-nowrap">
+                          📋 보기
+                        </a>
+                      </Td>
                       <Td>
                         <button onClick={() => handleDelete(r.id)} disabled={busy != null} title="삭제"
                           className="rounded-md px-2 py-1 text-gray-400 hover:bg-red-50 hover:text-red-600 disabled:opacity-40">
