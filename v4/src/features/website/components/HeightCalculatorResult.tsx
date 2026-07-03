@@ -289,6 +289,17 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             {t.ctaContext}
           </p>
 
+          {/* 성장 리포트 진입 — ko 전용(Phase 1). iframe 안이라 target=_top 으로 탈출 + 계산값을 URL 파라미터로 전달 */}
+          {lang === 'ko' && (
+            <a
+              href={`/diagnosis?g=${result.gender}&h=${result.currentHeight}&age=${result.age.toFixed(2)}&ph=${result.predicted.toFixed(1)}&pct=${result.percentile.toFixed(1)}&std=${result.standard ?? 'KR'}&lang=${lang}`}
+              target="_top"
+              className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5 md:py-4 text-white font-bold text-base md:text-lg hover:bg-[#0D5A47] active:scale-[0.98] transition-all"
+            >
+              📋 더 자세한 성장 리포트 받기
+            </a>
+          )}
+
           {/* 상담 CTA — th 는 LINE, 나머지는 KakaoTalk */}
           <a href={messenger.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackKakaoConsult('height_calc_result')}

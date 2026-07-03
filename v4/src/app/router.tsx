@@ -42,6 +42,7 @@ const CasesListPage = lazy(() => import('@/pages/CasesListPage'));
 const WebsiteHomePage = lazy(() => import('@/features/website/pages/WebsiteHomePage'));
 const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDetailPage'));
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
+const ReportPage = lazy(() => import('@/features/website/report/ReportPage'));
 const PublicIntakePage = lazy(() => import('@/features/intake/pages/PublicIntakePage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
@@ -227,6 +228,23 @@ export const router = createBrowserRouter([
     element: (
       <Suspense fallback={<SuspenseFallback />}>
         <IntakeDiagnosisPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/report',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <ReportPage />
+      </Suspense>
+    ),
+  },
+  {
+    // 영구 리포트 링크 (저장·공유용) — 토큰으로 저장된 리포트 조회
+    path: '/report/r/:token',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <ReportPage />
       </Suspense>
     ),
   },
