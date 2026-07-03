@@ -1,5 +1,7 @@
 # 성장 리포트 퍼널 1단계 Implementation Plan
 
+> **✅ 구현 완료 (2026-07-03)** — 브랜치 `feat/growth-report-phase1`, 전 청크 subagent-driven-development로 구현. tsc 0 · 신호테스트 8/8 · 전체 코드리뷰 통과(나이 롤오버·URL NaN 가드·폴백 게이트 픽스). **+Phase 1.5**(원안 밖 추가): 영구 리포트 링크 `/report/r/{token}` + Web Share(카톡) 공유 + security-definer RPC(migration 066) + `/report?demo=1` 감수용 데모. 검사 톤 다듬기(수면=문진/비만=BMI/사춘기=진찰). ⚠️ main 머지·배포 전 **원장 감수 + migration 065/066 수동적용**.
+
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 예측키 계산기 결과 → 설문(저장) → 실제 측정·설문값으로 동적 렌더되는 맞춤 성장 리포트를 화면에 무료로 노출한다.
