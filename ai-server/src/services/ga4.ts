@@ -386,7 +386,7 @@ export async function fetchSiteBreakdownRanges(
       engagementSec: Number(r.metricValues?.[4]?.value ?? 0),
     }));
 
-  const [landResp, landPrevResp, pvResp, evResp, chResp, dvResp, geoResp, dailyResp] = await Promise.all([
+  const [landResp, landPrevResp, pvResp, evResp, chResp, dvResp, geoResp, dailyResp, campSessResp, campEvResp] = await Promise.all([
     runReport({ dateRanges: [cur], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
     runReport({ dateRanges: [prev], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
     runReport({ dateRanges: [cur], dimensions: [{ name: 'pagePath' }], metrics: [{ name: 'screenPageViews' }], limit: '1000' }),
@@ -409,6 +409,16 @@ export async function fetchSiteBreakdownRanges(
       orderBys: [{ dimension: { dimensionName: 'date' } }],
       limit: '10000',
     }),
+    // 캠페인(utm_campaign) — sessionCampaignName 단독, 세션 수. 크로스 언어(사이트 전체).
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'sessionCampaignName' }], metrics: [{ name: 'sessions' }], limit: '200' }),
+    // 캠페인 × 이벤트(calc_open/height_calc_complete/consult_click) — 캠페인별 퍼널 비교용.
+    runReport({
+      dateRanges: [cur],
+      dimensions: [{ name: 'sessionCampaignName' }, { name: 'eventName' }],
+      metrics: [{ name: 'eventCount' }],
+      dimensionFilter: { filter: { fieldName: 'eventName', inListFilter: { values: ['calc_open', 'height_calc_complete', 'consult_click'] } } },
+      limit: '600',
+    }),
   ]);
 
   return aggregateSiteBreakdown({
@@ -424,5 +434,9 @@ export async function fetchSiteBreakdownRanges(
     devices: (dvResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', device: r.dimensionValues?.[1]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
     geo: (geoResp.rows ?? []).map((r) => ({ landingPage: r.dimensionValues?.[0]?.value ?? '', country: r.dimensionValues?.[1]?.value ?? '', city: r.dimensionValues?.[2]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0), users: Number(r.metricValues?.[1]?.value ?? 0) })),
     daily: (dailyResp.rows ?? []).map((r) => ({ date: r.dimensionValues?.[0]?.value ?? '', landingPage: r.dimensionValues?.[1]?.value ?? '', users: Number(r.metricValues?.[0]?.value ?? 0), sessions: Number(r.metricValues?.[1]?.value ?? 0), views: Number(r.metricValues?.[2]?.value ?? 0) })),
+    campaigns: [
+      ...(campSessResp.rows ?? []).map((r) => ({ campaign: r.dimensionValues?.[0]?.value ?? '', sessions: Number(r.metricValues?.[0]?.value ?? 0) })),
+      ...(campEvResp.rows ?? []).map((r) => ({ campaign: r.dimensionValues?.[0]?.value ?? '', eventName: r.dimensionValues?.[1]?.value ?? '', count: Number(r.metricValues?.[0]?.value ?? 0) })),
+    ],
   });
 }

@@ -64,7 +64,22 @@ export interface CountryStats {
   geo: GeoCountry[]; // 유입 지역 (나라 → 도시, sessions 내림차순)
   daily: DailyPoint[];
 }
-export interface SiteBreakdown { byCountry: Record<CountryKey, CountryStats> }
+// 캠페인(utm_campaign) 비교 — 크로스 언어(전 사이트 공통), 광고 성과 비교용.
+// GA4 sessionCampaignName 이 태그 안 된 트래픽은 '(not set)'/'(direct)'/'(organic)'/'(referral)' 로
+// 나오므로 실제 태그된 캠페인만 남긴다.
+const UNTAGGED_CAMPAIGNS = new Set(['(not set)', '(direct)', '(organic)', '(referral)', '']);
+export interface CampaignStats {
+  name: string;
+  sessions: number;
+  calcOpen: number;
+  heightCalc: number;
+  consult: number;
+  completionRate: number; // heightCalc / calcOpen (열람→완료 퍼널, div-by-zero 가드)
+}
+export interface SiteBreakdown {
+  byCountry: Record<CountryKey, CountryStats>;
+  campaigns: CampaignStats[]; // TOP-LEVEL — 캠페인은 언어를 가로지르는 광고 단위라 국가별이 아님
+}
 
 // ── 입력 행 (ga4.ts 가 GA4 응답을 이 형태로 매핑해 넘김) ──
 export interface LandingRow {
@@ -76,6 +91,14 @@ export interface ChannelRow { landingPage: string; channel: string; sessions: nu
 export interface DeviceRow { landingPage: string; device: string; sessions: number }
 export interface GeoRow { landingPage: string; country: string; city: string; sessions: number; users: number }
 export interface DailyRow { date: string; landingPage: string; users: number; sessions: number; views: number }
+// 캠페인 세션 행(sessionCampaignName 단독) + 캠페인×이벤트 행(calc_open/height_calc_complete/consult_click) 을
+// 하나의 union 배열로 받는다 — sessions 가 있으면 세션행, count+eventName 이 있으면 이벤트행.
+export interface CampaignRow {
+  campaign: string;
+  sessions?: number; // sessionCampaignName 단독 리포트
+  eventName?: string; // sessionCampaignName × eventName 리포트
+  count?: number;
+}
 export interface BreakdownInput {
   landing: LandingRow[];
   landingPrev: LandingRow[];
@@ -85,6 +108,7 @@ export interface BreakdownInput {
   devices: DeviceRow[];
   geo: GeoRow[];
   daily: DailyRow[];
+  campaigns: CampaignRow[];
 }
 
 function round2(n: number): number { return Math.round(n * 100) / 100; }
@@ -115,6 +139,38 @@ function rollup(rows: { label: string; sessions: number }[]): NamedCount[] {
   const total = [...map.values()].reduce((s, v) => s + v, 0);
   return [...map.entries()]
     .map(([label, sessions]) => ({ label, sessions, pct: total > 0 ? round2((sessions / total) * 100) : 0 }))
+    .sort((a, b) => b.sessions - a.sessions);
+}
+
+// 캠페인 이름별 세션 + 3개 이벤트 카운트 합산 → completionRate 계산.
+// (not set)/(direct)/(organic)/(referral)/빈 문자열(태그 안 된 트래픽) 제외, sessions 내림차순.
+function rollupCampaigns(rows: CampaignRow[]): CampaignStats[] {
+  interface Acc { sessions: number; calcOpen: number; heightCalc: number; consult: number }
+  const map = new Map<string, Acc>();
+  const get = (name: string): Acc => {
+    const cur = map.get(name) ?? { sessions: 0, calcOpen: 0, heightCalc: 0, consult: 0 };
+    map.set(name, cur);
+    return cur;
+  };
+  for (const r of rows) {
+    if (UNTAGGED_CAMPAIGNS.has(r.campaign)) continue;
+    const acc = get(r.campaign);
+    if (typeof r.sessions === 'number') acc.sessions += r.sessions;
+    if (typeof r.count === 'number' && r.eventName) {
+      if (r.eventName === 'calc_open') acc.calcOpen += r.count;
+      else if (r.eventName === 'height_calc_complete') acc.heightCalc += r.count;
+      else if (r.eventName === 'consult_click') acc.consult += r.count;
+    }
+  }
+  return [...map.entries()]
+    .map(([name, acc]) => ({
+      name,
+      sessions: acc.sessions,
+      calcOpen: acc.calcOpen,
+      heightCalc: acc.heightCalc,
+      consult: acc.consult,
+      completionRate: acc.calcOpen > 0 ? round2((acc.heightCalc / acc.calcOpen) * 100) : 0,
+    }))
     .sort((a, b) => b.sessions - a.sessions);
 }
 
@@ -229,5 +285,8 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
     st.daily = [...dailyByKey[k].values()].sort((a, b) => a.date.localeCompare(b.date));
   }
 
-  return { byCountry: stats };
+  // 7) 캠페인(utm_campaign) — 크로스 언어, 국가별 아님(TOP-LEVEL)
+  const campaigns = rollupCampaigns(input.campaigns);
+
+  return { byCountry: stats, campaigns };
 }

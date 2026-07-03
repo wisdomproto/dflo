@@ -3,6 +3,7 @@
 // (SEO / 온페이지 감사는 /marketing/seo-audit 로 분리됨)
 import { useState } from 'react';
 import { CountrySiteBreakdownPanel } from './CountrySiteBreakdownPanel';
+import { CampaignBreakdownPanel } from './CampaignBreakdownPanel';
 
 const DAY_OPTIONS = [7, 14, 30, 90] as const;
 
@@ -74,7 +75,9 @@ export function SiteAnalysisPage() {
         </div>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto p-6">
+      <div className="min-h-0 flex-1 space-y-6 overflow-y-auto p-6">
+        {/* 캠페인은 언어 탭과 무관한 크로스 언어 지표(광고 단위)라 국가 탭 위에 독립 배치 */}
+        <CampaignBreakdownPanel days={days} date={date} />
         <CountrySiteBreakdownPanel days={days} date={date} />
       </div>
     </div>

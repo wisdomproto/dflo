@@ -32,8 +32,18 @@ export interface CountryStats {
   daily: DailyPoint[];
 }
 export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en';
+// 캠페인(utm_campaign) 비교 — 크로스 언어(광고 전체 비교용), 국가별이 아니라 TOP-LEVEL.
+export interface CampaignStats {
+  name: string;
+  sessions: number;
+  calcOpen: number;
+  heightCalc: number;
+  consult: number;
+  completionRate: number; // heightCalc / calcOpen (%, div-by-zero 가드)
+}
 export interface SiteBreakdown {
   byCountry: Record<CountryKey, CountryStats>;
+  campaigns: CampaignStats[];
 }
 
 // 기간(number=지난 N일) 또는 특정 하루({ date: 'YYYY-MM-DD' }) 로 조회.
