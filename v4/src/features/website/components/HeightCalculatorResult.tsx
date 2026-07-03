@@ -78,6 +78,8 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
   const chartRef = useRef<ChartJS<'line'>>(null);
   const t = getCalcLabels(lang);
   const messenger = MESSENGER[lang] || MESSENGER.ko;
+  // 표준별 차트 출처 — en 계산기는 국적(KR/TH/CN)에 따라 다름. natFooter 없으면 기본 chartFooter.
+  const chartFooter = t.natFooter?.[result.standard ?? 'KR'] ?? t.chartFooter;
 
   const allPathPoints = useMemo(() => {
     const startAge = Math.ceil(result.age * 2) / 2;
@@ -265,7 +267,7 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             <Line ref={chartRef} data={chartData} options={options} />
           </div>
           <p className="text-[10px] md:text-xs text-gray-400 text-center mt-1">
-            {t.chartFooter}
+            {chartFooter}
           </p>
         </div>
 

@@ -17,6 +17,13 @@ type Dict = {
   fieldGender: string;
   genderMale: string;
   genderFemale: string;
+  // Nationality selector (growth standard) — EN calculator only
+  fieldNationality: string;
+  natKR: string;
+  natTH: string;
+  natCN: string;
+  // Per-standard chart source footer (EN only, keyed by GrowthStandard)
+  natFooter?: Partial<Record<'KR' | 'TH' | 'CN', string>>;
   fieldBirth: string;
   fieldBirthYear: string;
   fieldBirthMonth: string;
@@ -71,6 +78,8 @@ const DICT: Record<CalcLang, Dict> = {
     helpButtonAria: '도움말',
     fieldGender: '성별',
     genderMale: '👦 남아', genderFemale: '👧 여아',
+    fieldNationality: '국적',
+    natKR: '🇰🇷 한국', natTH: '🇹🇭 태국', natCN: '🇨🇳 중국',
     fieldBirth: '생년월일',
     fieldBirthYear: '연도', fieldBirthMonth: '월', fieldBirthDay: '일',
     fieldHeight: '현재 키 (cm)',
@@ -118,6 +127,13 @@ const DICT: Record<CalcLang, Dict> = {
     helpButtonAria: 'Help',
     fieldGender: 'Gender',
     genderMale: '👦 Boy', genderFemale: '👧 Girl',
+    fieldNationality: 'Nationality',
+    natKR: '🇰🇷 Korea', natTH: '🇹🇭 Thailand', natCN: '🇨🇳 China',
+    natFooter: {
+      KR: 'Korean pediatric growth standard (KDCA 2017) · 5th / 50th / 95th percentile',
+      TH: 'Thai pediatric growth standard (TSPE 2022) · 5th / 50th / 95th percentile',
+      CN: 'Chinese pediatric growth reference (approx.) · 5th / 50th / 95th percentile',
+    },
     fieldBirth: 'Date of birth',
     fieldBirthYear: 'Year', fieldBirthMonth: 'Month', fieldBirthDay: 'Day',
     fieldHeight: 'Current height (cm)',
@@ -165,6 +181,8 @@ const DICT: Record<CalcLang, Dict> = {
     helpButtonAria: 'ช่วยเหลือ',
     fieldGender: 'เพศ',
     genderMale: '👦 เด็กชาย', genderFemale: '👧 เด็กหญิง',
+    fieldNationality: 'สัญชาติ',
+    natKR: '🇰🇷 เกาหลี', natTH: '🇹🇭 ไทย', natCN: '🇨🇳 จีน',
     fieldBirth: 'วันเกิด',
     fieldBirthYear: 'ปี', fieldBirthMonth: 'เดือน', fieldBirthDay: 'วัน',
     fieldHeight: 'ส่วนสูงปัจจุบัน (ซม.)',
@@ -212,6 +230,8 @@ const DICT: Record<CalcLang, Dict> = {
     helpButtonAria: 'Trợ giúp',
     fieldGender: 'Giới tính',
     genderMale: '👦 Bé trai', genderFemale: '👧 Bé gái',
+    fieldNationality: 'Quốc tịch',
+    natKR: '🇰🇷 Hàn Quốc', natTH: '🇹🇭 Thái Lan', natCN: '🇨🇳 Trung Quốc',
     fieldBirth: 'Ngày sinh',
     fieldBirthYear: 'Năm', fieldBirthMonth: 'Tháng', fieldBirthDay: 'Ngày',
     fieldHeight: 'Chiều cao hiện tại (cm)',

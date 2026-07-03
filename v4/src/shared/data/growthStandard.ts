@@ -43,16 +43,21 @@ function buildPercentiles(table: LMSRow[]): HeightPercentile[] {
 
 /**
  * 성장 표준 선택자.
- * - 'KR': 한국 2017 질병관리청 (기본값) — ko/vi/en 사용
+ * - 'KR': 한국 2017 질병관리청 (기본값) — ko/vi 계산기
  * - 'TH': 태국 TSPE 2022 차트 (2-5세 WHO 2006 + 5-19세 Thai National Growth Reference 2020)
- *         디지타이즈 → P3/P50/P97 → LMS(L=1) 변환. 태국어(th) 계산기 전용.
+ *         디지타이즈 → P3/P50/P97 → LMS(L=1) 변환. 태국어(th) 계산기.
+ * - 'CN': 중국 소아 신장 표준 (근사 LMS — P5/P50/P95 육안추출 → L=0 로그정규 근사, ±1cm).
+ *         영어(en) 계산기의 국적 선택(화교 타겟)용. ⚠️ 공식 LMS 아님 — 정밀 필요 시 2005 중국 표준 디지타이즈로 교체.
  */
-export type GrowthStandard = 'KR' | 'TH';
+export type GrowthStandard = 'KR' | 'TH' | 'CN';
 
 /** standard + gender 에 맞는 키 LMS 테이블 반환 */
 function heightTable(gender: 'male' | 'female', standard: GrowthStandard = 'KR'): LMSRow[] {
   if (standard === 'TH') {
     return gender === 'male' ? MALE_HEIGHT_LMS_TH : FEMALE_HEIGHT_LMS_TH;
+  }
+  if (standard === 'CN') {
+    return gender === 'male' ? MALE_HEIGHT_LMS_CN : FEMALE_HEIGHT_LMS_CN;
   }
   return gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
 }
@@ -190,6 +195,55 @@ const FEMALE_HEIGHT_LMS_TH: LMSRow[] = [
   { age: 16, L: 1, M: 158, S: 0.0303 },
   { age: 17, L: 1, M: 159, S: 0.0284 },
   { age: 18, L: 1, M: 159, S: 0.0301 },
+];
+
+// ================================================
+// 중국 소아 신장(키) 표준 LMS — 공식 데이터
+// 출처: Zong XN & Li H, PLoS ONE 2013 (PMC3602372) Table 3 — 2005 중국 9개 도시 아동
+//       발육조사(首都儿科研究所/Capital Institute of Pediatrics) 기반 도시 아동 표준.
+//       height-for-age L/M/S, 만 3~18세 (Box-Cox L, 로그정규 근사 아님).
+// 검증: 남4세 M104.1·남15세 M169.8(L1.09,S0.0384)·여10세 M140.1(L0.81) = 공개 앵커 정확 일치.
+// 영어(en) 계산기 국적=CN 에서 사용. (bone-age/lib/growthStandardCN.ts 와 동일 값 — co-locate)
+// ================================================
+
+// 중국 남아 키 LMS (만 3~18세, Zong&Li 2013)
+const MALE_HEIGHT_LMS_CN: LMSRow[] = [
+  { age: 3,  L: 0.45, M: 96.8,  S: 0.0397 },
+  { age: 4,  L: 0.46, M: 104.1, S: 0.0385 },
+  { age: 5,  L: 0.47, M: 111.3, S: 0.0390 },
+  { age: 6,  L: 0.50, M: 117.7, S: 0.0396 },
+  { age: 7,  L: 0.53, M: 124.0, S: 0.0409 },
+  { age: 8,  L: 0.57, M: 130.0, S: 0.0420 },
+  { age: 9,  L: 0.62, M: 135.4, S: 0.0431 },
+  { age: 10, L: 0.67, M: 140.2, S: 0.0442 },
+  { age: 11, L: 0.73, M: 145.3, S: 0.0460 },
+  { age: 12, L: 0.83, M: 151.9, S: 0.0488 },
+  { age: 13, L: 0.94, M: 159.5, S: 0.0487 },
+  { age: 14, L: 1.03, M: 165.9, S: 0.0433 },
+  { age: 15, L: 1.09, M: 169.8, S: 0.0384 },
+  { age: 16, L: 1.11, M: 171.6, S: 0.0362 },
+  { age: 17, L: 1.12, M: 172.3, S: 0.0353 },
+  { age: 18, L: 1.13, M: 172.7, S: 0.0349 },
+];
+
+// 중국 여아 키 LMS (만 3~18세, Zong&Li 2013)
+const FEMALE_HEIGHT_LMS_CN: LMSRow[] = [
+  { age: 3,  L: 0.31, M: 95.6,  S: 0.0397 },
+  { age: 4,  L: 0.36, M: 103.1, S: 0.0382 },
+  { age: 5,  L: 0.42, M: 110.2, S: 0.0387 },
+  { age: 6,  L: 0.48, M: 116.6, S: 0.0394 },
+  { age: 7,  L: 0.55, M: 122.5, S: 0.0407 },
+  { age: 8,  L: 0.63, M: 128.5, S: 0.0418 },
+  { age: 9,  L: 0.71, M: 134.1, S: 0.0432 },
+  { age: 10, L: 0.81, M: 140.1, S: 0.0450 },
+  { age: 11, L: 0.91, M: 146.6, S: 0.0452 },
+  { age: 12, L: 1.00, M: 152.4, S: 0.0424 },
+  { age: 13, L: 1.06, M: 156.3, S: 0.0385 },
+  { age: 14, L: 1.09, M: 158.6, S: 0.0357 },
+  { age: 15, L: 1.11, M: 159.8, S: 0.0343 },
+  { age: 16, L: 1.11, M: 160.1, S: 0.0340 },
+  { age: 17, L: 1.12, M: 160.3, S: 0.0337 },
+  { age: 18, L: 1.12, M: 160.6, S: 0.0335 },
 ];
 
 // ── 체중 LMS 데이터 (표준체중.CSV, 6개월 단위, 0~18세) ──

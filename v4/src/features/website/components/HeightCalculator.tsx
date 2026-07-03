@@ -26,6 +26,8 @@ interface Props {
 
 export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko' }: Props) {
   const [gender, setGender] = useState<'male' | 'female'>('male');
+  // 국적(성장표준) — 영어 계산기에서만 선택 노출. 화교 타겟이라 기본 중국(CN).
+  const [nationality, setNationality] = useState<GrowthStandard>('CN');
   const [birthYear, setBirthYear] = useState('');
   const [birthMonth, setBirthMonth] = useState('');
   const [birthDay, setBirthDay] = useState('');
@@ -37,8 +39,8 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
   const [showResult, setShowResult] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const t = getCalcLabels(lang);
-  // 태국어 계산기는 태국 성장도표(TSPE) 기준, 그 외(ko/vi/en)는 한국 기준
-  const standard: GrowthStandard = lang === 'th' ? 'TH' : 'KR';
+  // 성장표준: 영어(en)는 국적 선택(KR/TH/CN), 태국어(th)는 태국(TSPE), 그 외(ko/vi)는 한국.
+  const standard: GrowthStandard = lang === 'en' ? nationality : lang === 'th' ? 'TH' : 'KR';
 
   // 생년월일 = 숫자 입력칸(input). select 드롭다운은 페북 인앱(Android Webview)에서 안 열려
   // 측정 완료 0 회귀를 냈어서(광고 유입 36명 전원 0%) input 으로 되돌림. inputMode=numeric 으로 모바일 숫자 키패드.
@@ -106,6 +108,24 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
         </button>
       </div>
       <p className="text-sm md:text-base text-gray-500 -mt-2 break-keep">{t.subtitle}</p>
+
+      {/* Nationality (growth standard) — English calculator only (화교 타겟).
+          select 드롭다운은 페북 인앱 webview 에서 안 열려 측정 0 회귀가 있어 버튼으로 구현(성별과 동일). */}
+      {lang === 'en' && (
+        <div>
+          <span className={labelCls}>{t.fieldNationality}</span>
+          <div className="grid grid-cols-3 gap-2">
+            {([['CN', t.natCN], ['KR', t.natKR], ['TH', t.natTH]] as const).map(([nat, label]) => (
+              <button key={nat} onClick={() => setNationality(nat)}
+                className={`rounded-xl py-2.5 md:py-3 text-sm md:text-base font-semibold transition-colors ${
+                  nationality === nat ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'
+                }`}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Gender */}
       <div>
