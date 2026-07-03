@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import './report.css';
 import type { ReportMeasurement, ReportSurvey } from './types';
+import { DEMO_REPORT } from './reportDemo';
 import { Hero } from './sections/Hero';
 import { DoctorIntro } from './sections/DoctorIntro';
 import { Methods } from './sections/Methods';
@@ -17,6 +18,7 @@ interface ReportData {
 export default function ReportPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [sp] = useSearchParams();
 
   let data = (location.state as ReportData | null) ?? null;
   if (!data?.measurement) {
@@ -26,6 +28,10 @@ export default function ReportPage() {
     } catch {
       /* noop */
     }
+  }
+  // 감수/공유용 데모 링크 (`/report?demo=1`) — 실데이터 없을 때만 대표 샘플 렌더
+  if (!data?.measurement && sp.get('demo') != null) {
+    data = DEMO_REPORT;
   }
 
   const name = data?.survey?.childName || '우리 아이';
