@@ -102,11 +102,15 @@ export default function IntakeDiagnosisPage() {
       fatherHeight: form.fatherHeight ? Number(form.fatherHeight) : undefined,
       motherHeight: form.motherHeight ? Number(form.motherHeight) : undefined,
     };
-    void saveGrowthReport(measurement, form, 'ko');
+    // 클라에서 리포트 id 생성 → fire-and-forget 저장 + 영구 링크(/report/r/{id})에 사용
+    const reportId =
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : undefined;
+    void saveGrowthReport(measurement, form, 'ko', reportId);
+    const payload = { measurement, survey: form, reportId };
     try {
-      sessionStorage.setItem('growth_report_data', JSON.stringify({ measurement, survey: form }));
+      sessionStorage.setItem('growth_report_data', JSON.stringify(payload));
     } catch { /* noop */ }
-    navigate('/report', { state: { measurement, survey: form } });
+    navigate('/report', { state: payload });
   };
 
   return (

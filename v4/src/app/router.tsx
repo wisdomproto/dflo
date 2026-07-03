@@ -239,6 +239,15 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
   },
+  {
+    // 영구 리포트 링크 (저장·공유용) — 토큰으로 저장된 리포트 조회
+    path: '/report/r/:token',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <ReportPage />
+      </Suspense>
+    ),
+  },
   // Public patient self-service intake survey (login-free, per language)
   { path: '/intake', element: <Navigate to="/intake/ko" replace /> },
   {
