@@ -26,7 +26,7 @@ const KAKAO_URL = import.meta.env.VITE_KAKAO_CHANNEL_URL || 'https://pf.kakao.co
 const MESSENGER: Record<CalcLang, { url: string; bgClass: string; fgClass: string; hoverClass: string }> = {
   ko: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
   vi: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
-  en: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
+  en: { url: 'https://wa.me/821041464889?text=Hi%2C%20I%20would%20like%20a%20growth%20consultation%20for%20my%20child.', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
   th: { url: 'https://line.me/R/ti/p/%40894qhqtu', bgClass: 'bg-[#06C755]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
 };
 

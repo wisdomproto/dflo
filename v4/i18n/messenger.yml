@@ -17,11 +17,11 @@ vi:
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"
 en:
-  channel: kakao
-  url: "https://pf.kakao.com/_mxbWxfX"
-  label: "Consult via KakaoTalk"
-  color_bg: "#FAE100"
-  color_fg: "#3C1E1E"
+  channel: whatsapp
+  url: "https://wa.me/821041464889?text=Hi%2C%20I%20would%20like%20a%20growth%20consultation%20for%20my%20child."
+  label: "Consult on WhatsApp"
+  color_bg: "#25D366"
+  color_fg: "#FFFFFF"
 ja:
   channel: line
   url: "TBD"
