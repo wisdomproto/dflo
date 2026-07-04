@@ -64,7 +64,10 @@ type Dict = {
   noteBoxCautionLabel: string;
   noteBoxCautionBody: string;
   kakaoCta: string;
-  ctaContext: string; // 결과 직후 상담 유도 맥락 문구 (비슷한 사례는 상담에서 보내주는 약속)
+  // 결과 직후 상담 유도 맥락 — 백분위로 분기(하위 50% 미만=걱정 / 이상=최적화). 둘 다 "숫자만으론 부족→상담" 갈증 유발.
+  ctaContextConcern: string;
+  ctaContextOptimize: string;
+  reportSecondary: string; // ko 전용 보조 CTA — 상담이 부담되는 사람에게 리포트를 부드러운 대안으로
   casesLink: string; // 공개 치료사례 페이지 링크 (유사성 주장 없이 담백하게)
   reset: string;
 };
@@ -114,8 +117,10 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxPredictedBody: '현재 키의 백분위를 유지한다는 가정 하에 18세 시점의 동일 백분위 키를 역산',
     noteBoxCautionLabel: '⚠️ 참고:',
     noteBoxCautionBody: '골연령, 성장호르몬, 영양 상태 등은 반영되지 않은 통계적 추정치입니다. 정확한 진단은 전문의 상담이 필요합니다.',
-    kakaoCta: '💬 전문 상담 받아보세요',
-    ctaContext: '이 결과가 걱정되시나요? 1:1 상담으로 정밀 분석과 우리 아이와 비슷한 실제 치료 사례를 받아보실 수 있어요.',
+    kakaoCta: '💬 1:1 상담 받아보기',
+    ctaContextConcern: '지금 또래보다 작은 편이에요. 성장판이 열려 있는 지금 살펴보는 게 좋아요 — 숫자만으로는 알 수 없는 부분을 1:1 상담에서 확인하세요.',
+    ctaContextOptimize: '지금은 또래 평균 이상이에요. 잠재력을 끝까지 끌어올리려면, 숫자만으로는 알 수 없는 부분을 1:1 상담에서 확인해보세요.',
+    reportSecondary: '📋 아직 상담이 부담되면 · 성장 리포트 먼저 받기',
     casesLink: '실제 치료 사례 보기 →',
     reset: '다시 측정하기',
   },
@@ -168,8 +173,10 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxPredictedBody: 'Assuming the same percentile is maintained, the height at age 18 is back-calculated on the same percentile.',
     noteBoxCautionLabel: '⚠️ Note:',
     noteBoxCautionBody: 'A statistical estimate not reflecting bone age, growth-hormone levels, or nutrition. Accurate diagnosis requires a specialist consultation.',
-    kakaoCta: '💬 Get a specialist consultation',
-    ctaContext: 'Worried about this result? A 1:1 consultation gets you a detailed analysis plus real treatment cases similar to your child.',
+    kakaoCta: '💬 Get a 1:1 consultation',
+    ctaContextConcern: 'Your child is currently shorter than peers. While the growth plates are still open, a closer look is worthwhile — a 1:1 consultation shows what the number alone can\'t.',
+    ctaContextOptimize: 'Your child is currently above peer average. To make the most of that potential, a 1:1 consultation shows what the number alone can\'t.',
+    reportSecondary: '📋 Not ready to talk yet? Get a detailed report first',
     casesLink: 'See real treatment cases →',
     reset: 'Measure again',
   },
@@ -217,8 +224,10 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxPredictedBody: 'สมมุติเปอร์เซ็นไทล์คงที่ คำนวณย้อนหาส่วนสูงที่อายุ 18 ปีในเปอร์เซ็นไทล์เดียวกัน',
     noteBoxCautionLabel: '⚠️ หมายเหตุ:',
     noteBoxCautionBody: 'เป็นการประมาณทางสถิติที่ไม่ได้รวมอายุกระดูก โกรทฮอร์โมน หรือโภชนาการ การวินิจฉัยที่แม่นยำต้องปรึกษาแพทย์',
-    kakaoCta: '💬 ปรึกษาผู้เชี่ยวชาญ',
-    ctaContext: 'กังวลกับผลลัพธ์นี้ไหม? ปรึกษา 1:1 เพื่อรับการวิเคราะห์เชิงลึก พร้อมเคสรักษาจริงที่ใกล้เคียงกับลูกของคุณ',
+    kakaoCta: '💬 ปรึกษาแบบ 1:1',
+    ctaContextConcern: 'ตอนนี้ลูกตัวเล็กกว่าเพื่อนวัยเดียวกัน ขณะที่แผ่นกระดูกยังเปิดอยู่ ควรตรวจดูให้ละเอียด — ปรึกษา 1:1 เพื่อดูสิ่งที่ตัวเลขบอกไม่ได้',
+    ctaContextOptimize: 'ตอนนี้ลูกสูงกว่าค่าเฉลี่ยของวัยเดียวกัน หากต้องการใช้ศักยภาพให้เต็มที่ ปรึกษา 1:1 เพื่อดูสิ่งที่ตัวเลขบอกไม่ได้',
+    reportSecondary: '📋 ยังไม่พร้อมปรึกษา? รับรายงานโดยละเอียดก่อน',
     casesLink: 'ดูเคสรักษาจริง →',
     reset: 'วัดอีกครั้ง',
   },
@@ -266,8 +275,10 @@ const DICT: Record<CalcLang, Dict> = {
     noteBoxPredictedBody: 'Giả định cùng phân vị, tính ngược chiều cao ở tuổi 18 trên cùng phân vị.',
     noteBoxCautionLabel: '⚠️ Lưu ý:',
     noteBoxCautionBody: 'Là ước tính thống kê chưa tính tuổi xương, hormone tăng trưởng, hay dinh dưỡng. Chẩn đoán chính xác cần tư vấn bác sĩ.',
-    kakaoCta: '💬 Nhận tư vấn chuyên gia',
-    ctaContext: 'Lo lắng về kết quả này? Tư vấn 1:1 để nhận phân tích chuyên sâu cùng các ca điều trị thực tế giống con bạn.',
+    kakaoCta: '💬 Nhận tư vấn 1:1',
+    ctaContextConcern: 'Con hiện thấp hơn bạn cùng tuổi. Khi sụn tăng trưởng còn mở, nên xem xét kỹ hơn — tư vấn 1:1 cho thấy điều mà con số không nói lên được.',
+    ctaContextOptimize: 'Con hiện cao hơn mức trung bình. Để phát huy tối đa tiềm năng, tư vấn 1:1 cho thấy điều mà con số không nói lên được.',
+    reportSecondary: '📋 Chưa sẵn sàng tư vấn? Nhận báo cáo chi tiết trước',
     casesLink: 'Xem ca điều trị thực tế →',
     reset: 'Đo lại',
   },

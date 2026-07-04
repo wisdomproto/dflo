@@ -285,35 +285,36 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             <p><strong>{t.noteBoxCautionLabel}</strong> {t.noteBoxCautionBody}</p>
           </div>
 
-          {/* 상담 유도 맥락 — 결과 직후의 궁금증/걱정을 받아주는 문구.
-              "비슷한 사례"는 상담에서 병원이 전체 케이스에서 골라 보내주는 약속(공개 4개와 무관). */}
-          <p className="text-xs md:text-sm text-gray-600 text-center leading-relaxed break-keep px-2">
-            {t.ctaContext}
+          {/* 걱정→행동 맥락 — 백분위로 분기(하위 50% 미만=걱정 / 이상=최적화).
+              둘 다 "숫자만으론 부족 → 상담" 갈증을 만들고, 바로 아래 hero CTA(카톡)로 흐르게 배치. */}
+          <p className="text-sm md:text-base text-gray-700 text-center leading-relaxed break-keep px-2 font-medium">
+            {result.percentile < 50 ? t.ctaContextConcern : t.ctaContextOptimize}
           </p>
 
-          {/* 성장 리포트 진입 — ko 전용(Phase 1). iframe 안이라 target=_top 으로 탈출 + 계산값을 URL 파라미터로 전달 */}
+          {/* ① Hero CTA — 카톡/메신저 상담 (전 언어 primary). th=LINE, en=WhatsApp, ko/vi=KakaoTalk */}
+          <a href={messenger.url} target="_blank" rel="noopener noreferrer"
+            onClick={() => trackKakaoConsult('height_calc_result')}
+            className={`flex items-center justify-center gap-2 w-full rounded-xl ${messenger.bgClass} py-4 md:py-5
+                       ${messenger.fgClass} font-bold text-lg md:text-xl shadow-sm ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
+            {t.kakaoCta}
+          </a>
+
+          {/* ② 보조 CTA — 성장 리포트 (ko 전용, Phase 1). 상담이 부담되는 사람에게 부드러운 대안.
+              아웃라인·작게 = hero(카톡)보다 낮은 위계. iframe 탈출 target=_top + 계산값 URL 전달 */}
           {lang === 'ko' && (
             <a
               href={`/diagnosis?g=${result.gender}&h=${result.currentHeight}&age=${result.age.toFixed(2)}&ph=${result.predicted.toFixed(1)}&pct=${result.percentile.toFixed(1)}&std=${result.standard ?? 'KR'}&lang=${lang}`}
               target="_top"
-              className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5 md:py-4 text-white font-bold text-base md:text-lg hover:bg-[#0D5A47] active:scale-[0.98] transition-all"
+              className="flex items-center justify-center gap-2 w-full rounded-xl border border-[#0F6E56]/40 py-2.5 md:py-3 text-[#0F6E56] font-semibold text-sm md:text-base hover:bg-[#0F6E56]/5 active:scale-[0.98] transition-all"
             >
-              📋 더 자세한 성장 리포트 받기
+              {t.reportSecondary}
             </a>
           )}
 
-          {/* 상담 CTA — th 는 LINE, 나머지는 KakaoTalk */}
-          <a href={messenger.url} target="_blank" rel="noopener noreferrer"
-            onClick={() => trackKakaoConsult('height_calc_result')}
-            className={`flex items-center justify-center gap-2 w-full rounded-xl ${messenger.bgClass} py-3.5 md:py-4
-                       ${messenger.fgClass} font-bold text-base md:text-lg ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
-            {t.kakaoCta}
-          </a>
-
-          {/* 공개 치료사례 페이지 링크 — iframe 임베드라 target=_top 으로 부모 프레임 이동 */}
+          {/* ③ 3차 — 공개 치료사례 텍스트 링크(제일 작게). iframe 임베드라 target=_top 으로 부모 프레임 이동 */}
           <a href={`/${lang}/cases.html`} target="_top"
-            className="flex items-center justify-center w-full rounded-xl border border-[#4A2D6B]/30 py-3 md:py-3.5
-                       text-[#4A2D6B] font-bold text-sm md:text-base hover:bg-[#4A2D6B]/5 active:scale-[0.98] transition-all">
+            className="flex items-center justify-center w-full text-center text-xs md:text-sm
+                       text-[#4A2D6B] font-semibold underline underline-offset-4 py-2 hover:text-[#3A2255] transition-colors">
             {t.casesLink}
           </a>
 
