@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>인스타 리드 양식 상담 세팅 — 187 성장클리닉</title>
+<style>
+  :root{
+    --pur:#4A2D6B; --pur2:#6b46a3; --bg:#F3F1F7; --card:#fff; --ink:#241b33; --muted:#6b6478;
+    --meta:#0866FF; --line:#e7e3ef; --ph-bg:#FEF3C7; --ph:#92600a; --danger:#DC2626; --good:#0f7a54;
+    --kr:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--kr);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:28px 18px 80px}
+
+  .head{background:linear-gradient(135deg,var(--pur),var(--pur2));color:#fff;border-radius:18px;padding:26px 24px;margin-bottom:20px}
+  .head .k{display:inline-block;background:var(--meta);color:#fff;font-size:12px;font-weight:800;padding:3px 10px;border-radius:99px;letter-spacing:.02em}
+  .head h1{font-size:23px;font-weight:800;margin-top:12px;letter-spacing:-.01em}
+  .head p{font-size:13.5px;opacity:.92;margin-top:8px}
+
+  .steps{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .step{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;color:var(--muted)}
+  .step b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+
+  .sec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:16px}
+  .sec > h2{font-size:16px;font-weight:800;color:var(--pur);display:flex;align-items:center;gap:8px}
+  .sec > .desc{font-size:13px;color:var(--muted);margin:6px 0 14px}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--pur);color:#fff;font-size:13px;font-weight:800;flex:none}
+  .sub{font-size:13px;font-weight:800;color:var(--pur2);margin:16px 0 6px}
+
+  .msg{position:relative;border:1px solid var(--line);border-left:4px solid var(--pur2);border-radius:10px;background:#faf9fd;margin-top:8px}
+  .msg .lbl{font-size:12px;font-weight:700;color:var(--pur2);padding:10px 14px 0}
+  .msg-body{white-space:pre-wrap;font-size:14px;color:#2c2440;padding:8px 14px 44px;word-break:break-word}
+  .ph{background:var(--ph-bg);color:var(--ph);font-weight:700;border-radius:4px;padding:0 4px}
+  .copy-btn{position:absolute;right:10px;bottom:10px;background:var(--pur);color:#fff;border:0;border-radius:8px;font-size:12px;font-weight:700;padding:6px 12px;cursor:pointer;font-family:inherit}
+  .copy-btn:hover{background:var(--pur2)}
+
+  ol.q{margin:4px 0 0 18px;font-size:14px}
+  ol.q li{padding:5px 0}
+  ol.q .t{font-size:11px;font-weight:800;color:#fff;background:var(--muted);border-radius:5px;padding:1px 7px;margin-left:6px}
+  ol.q .req{background:var(--danger)} ol.q .opt{background:#94a3b8}
+
+  table.spec{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+  table.spec th,table.spec td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  table.spec th{background:#f5f2fb;color:var(--pur);width:34%;font-weight:700}
+
+  .guard{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.guard{grid-template-columns:1fr}}
+  .guard div{border-radius:10px;padding:12px 14px;font-size:13px}
+  .no{background:#fef2f2;border:1px solid #fecaca}.no b{color:var(--danger)}
+  .ok{background:#f0fdf8;border:1px solid #bbf7d9}.ok b{color:var(--good)}
+  .guard ul{margin:6px 0 0 16px}.guard li{margin:3px 0}
+
+  ul.fill{list-style:none;margin-top:6px}
+  ul.fill li{font-size:13.5px;padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px}
+  ul.fill li:last-child{border-bottom:0}
+  ul.fill li b{color:var(--ph)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#1c1428;color:#fff;font-size:13px;font-weight:600;padding:10px 18px;border-radius:99px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <span class="k">Meta 인스턴트 양식 (Lead)</span>
+    <h1>인스타 리드 양식 상담 세팅</h1>
+    <p>카톡 hop·외부앱 경고 없이 <b>IG 안에서 연락처 수집 → 병원이 5분 내 콜백 → 카톡/전화 상담.</b><br>
+       연락처가 남으니 부모가 조용해도 재접촉 가능 + 전환이 측정됨. 전부 의료광고법 검토本.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step"><b>① 양식 제출</b>IG 안에서 native 작성 (경고·이탈 없음)</div>
+    <div class="step"><b>② 연락처 확보</b>이름·전화 수집 (조용해도 재접촉 가능)</div>
+    <div class="step"><b>③ 5분 콜백</b>실장이 즉시 전화 → 카톡/예약 (병원이 먼저 연락=경고 없음)</div>
+  </div>
+
+  <!-- 1 -->
+  <div class="sec">
+    <h2><span class="num">1</span> 인스턴트 양식 구성 (Meta 양식)</h2>
+    <div class="desc">Ads Manager → 즉시 양식 → 아래대로 구성. 문항은 <b>적게(마찰↓) + 자격 판별</b>이 핵심.</div>
+
+    <div class="sub">▸ 시작 화면 (인트로)</div>
+    <div class="msg">
+      <div class="msg-body">우리 아이 예상 키, 1:1로 확인하세요
+간단히 남겨주시면 성장상담팀이 직접 연락드려 안내해드립니다.
+(참고용 상담이며, 정확한 예측은 내원 후 검사로 확인합니다.)</div>
+      <button class="copy-btn">📋 복사</button>
+    </div>
+
+    <div class="sub">▸ 질문 문항</div>
+    <ol class="q">
+      <li>아이 생년월일 (또는 나이)<span class="t req">필수</span></li>
+      <li>아이 성별 — 남 / 여<span class="t req">필수</span></li>
+      <li>아이 현재 키 (cm)<span class="t opt">선택</span></li>
+      <li>거주 지역 (시/구)<span class="t opt">선택</span></li>
+      <li>가장 궁금한 점 — 예상 키 / 키가 작은 것 같아요 / 성장 속도·사춘기 / 뼈나이 검사 / 비용·기간<span class="t opt">선택(객관식)</span></li>
+      <li>연락처 (전화) <span style="color:var(--muted);font-size:12px">— 이름·전화는 Meta 프로필에서 자동 채움</span><span class="t req">필수</span></li>
+    </ol>
+
+    <div class="sub">▸ 개인정보 동의</div>
+    <div class="note">• 병원 <b>개인정보처리방침 URL</b> 연결(필수) &nbsp; • 맞춤 동의 문구: "상담 목적의 연락에 동의합니다"</div>
+
+    <div class="sub">▸ 완료 화면 (Thank You)</div>
+    <div class="msg">
+      <div class="msg-body">접수됐어요! 곧 연락드릴게요 📞
+성장상담팀이 순차적으로 연락드립니다. (상담시간 내 접수 시 더 빠르게 안내)
+
+기다리시는 동안, 우리 아이 예상 키가 궁금하시면 👇
+· 예측키 1분 계산: <span class="ph">[홈페이지 계산기 링크]</span>
+· 급하시면 전화 <span class="ph">02-3395-0999</span></div>
+      <button class="copy-btn">📋 복사</button>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="sec">
+    <h2><span class="num">2</span> 리드 캠페인 세팅 (Ads Manager)</h2>
+    <table class="spec">
+      <tr><th>캠페인 목적</th><td>잠재 고객(Leads) · <b>즉시 양식(Instant Form)</b></td></tr>
+      <tr><th>위치</th><td>대한민국 (또는 병원 광역권)</td></tr>
+      <tr><th>연령 / 성별</th><td>35~46 / 여성(엄마)</td></tr>
+      <tr><th>오디언스</th><td>① <b>웹사이트 방문자 30~60일 리타게팅</b>(맞춤 타겟) → ② 준비되면 <b>환자 Lookalike 1%</b></td></tr>
+      <tr><th>상세타게팅</th><td>Lookalike 쓸 땐 <b>비우기</b> (broad 관심사 얹으면 정밀도 희석) / 초기엔 관심사 Parenting</td></tr>
+      <tr><th>소재</th><td>BOF 릴 — 예측키 락인 / 공감·저격 / 비식별 사례</td></tr>
+      <tr><th>최적화</th><td>리드(양식 제출) 기준</td></tr>
+      <tr><th>CTA 버튼</th><td>"지금 신청하기" 또는 "더 알아보기"</td></tr>
+    </table>
+    <div class="note">⚠️ 어드밴티지+ 켜면 오디언스는 "제안"이라 넓게 확장됨. 정밀하게 가려면 웹방문자/Lookalike 코어로.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="sec">
+    <h2><span class="num">3</span> 콜백 스크립트 (5분 내 첫 연락)</h2>
+    <div class="desc">폼 리드는 온도가 낮아서 <b>속도가 전환의 90%</b>. 낯선 번호 안 받을까봐 → 첫 멘트에서 바로 병원임을 밝히기.</div>
+
+    <div class="sub">① 오프닝 (신뢰 확보)</div>
+    <div class="msg">
+      <div class="msg-body">안녕하세요, <span class="ph">○○○</span> 어머님 되실까요?
+연세새봄의원 187 성장클리닉 성장상담팀입니다.
+방금 우리 아이 성장 상담 신청 주셔서 안내드리려 연락드렸어요. 잠깐 통화 괜찮으실까요?</div>
+      <button class="copy-btn">📋 복사</button>
+    </div>
+
+    <div class="sub">② 정보 확인</div>
+    <div class="msg">
+      <div class="msg-body">아이가 지금 만 <span class="ph">○</span>세 <span class="ph">남아/여아</span> 맞으실까요?
+가장 궁금하신 게 <span class="ph">[예상 키 / 성장 속도 / 뼈나이 …]</span> 이신 거죠?</div>
+      <button class="copy-btn">📋 복사</button>
+    </div>
+
+    <div class="sub">③ 상담 안내 (내원 권유 · 보장/진단 금지)</div>
+    <div class="msg">
+      <div class="msg-body">예상 키는 지금 키와 성장 속도로 참고해볼 수 있는데,
+정확한 건 뼈나이 검사를 해봐야 알 수 있어요.
+원장님 상담·검사 한번 받아보시길 권해드려요.
+검사는 내원해서 진행되고, 대략 <span class="ph">[기간/비용]</span> 정도예요.</div>
+      <button class="copy-btn">📋 복사</button>
+    </div>
+
+    <div class="sub">④ 마무리 (예약 or 너처링)</div>
+    <div class="msg">
+      <div class="msg-body">[예약 의향 있으면] 그럼 편하신 날짜로 상담 잡아드릴게요.
+[아직 고민이면] 성장 리포트랑 사례를 카톡으로 보내드릴게요. 천천히 보시고 편하실 때 연락 주세요.</div>
+      <button class="copy-btn">📋 복사</button>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="sec">
+    <h2><span class="num">4</span> 운영 세팅 — "5분 콜백"이 성패</h2>
+    <ul class="fill">
+      <li><b>즉시</b> 실장 폰에 <b>Meta Business Suite 앱</b> + 리드 알림 ON → 제출되면 푸시 → 바로 전화</li>
+      <li><b>업그레이드</b> 자동화(Zapier/Make)로 실장 문자 + 부모에게 <b>카톡 알림톡 자동 발송</b>("접수됐어요, 곧 연락")</li>
+      <li><b>개인정보</b> 수집한 연락처는 상담 목적만 사용·안전 보관(PIPA)</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="sec">
+    <h2>⚠️ 커스터마이즈할 때 (의료광고법)</h2>
+    <div class="guard" style="margin-top:12px">
+      <div class="no">
+        <b>❌ 쓰면 안 되는 말</b>
+        <ul>
+          <li>"무조건 큰다 / 몇 cm 보장"</li>
+          <li>"지금 안 하면 늦어요" 류 공포</li>
+          <li>"전화로 진단해드려요"</li>
+          <li>환자 전후 사진 · 치료 후기</li>
+          <li>"무료 진료 / 무료 검사"</li>
+        </ul>
+      </div>
+      <div class="ok">
+        <b>✅ 써도 되는 말</b>
+        <ul>
+          <li>정보 안내 · 상담 안내</li>
+          <li>비용 · 기간 안내</li>
+          <li>"참고용 예측" · "내원 후 검사로 확인"</li>
+          <li>진료시간 · 위치 · 원장 이력</li>
+          <li>온라인 예측키 계산기(무료 도구)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">이것만 지키면 심의 안전. 공개 전 원장 감수 권장.</div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">✓ 복사됐어요</div>
+
+<script>
+  var toast = document.getElementById('toast'), t;
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var body = btn.closest('.msg').querySelector('.msg-body');
+      navigator.clipboard.writeText(body.innerText).then(function(){
+        var old = btn.textContent; btn.textContent = '✓ 복사됨';
+        setTimeout(function(){ btn.textContent = old; }, 1200);
+        toast.classList.add('on'); clearTimeout(t);
+        t = setTimeout(function(){ toast.classList.remove('on'); }, 1400);
+      });
+    });
+  });
+</script>
+</body>
+</html>
