@@ -55,6 +55,7 @@ const GROUPS: { label: string; items: NavItem[] }[] = [
     items: [
       { to: '/marketing/leaflets', icon: '📄', label: '리플렛' },
       { to: '/growth-report-sample.html', icon: '🧾', label: '성장 리포트 (샘플)', external: true },
+      { to: '/kakao-channel-setup.html', icon: '💬', label: '카톡 채널 상담 준비', external: true },
     ],
   },
   // 치료사례 후보(case-candidates.html)는 PHI 포함 로컬 전용 도구 → dev 에서만 노출(배포본엔 파일 없음)
