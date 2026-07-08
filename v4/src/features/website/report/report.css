@@ -453,6 +453,23 @@
   margin-top: 14px;
   text-decoration: none;
 }
+.growth-report .cta button.rv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #0F6E56;
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  border: 0;
+  border-radius: 14px;
+  padding: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.growth-report .cta button.rv:active { transform: scale(0.98); }
 .growth-report .cta .tel {
   font-size: 13px;
   color: var(--ink);

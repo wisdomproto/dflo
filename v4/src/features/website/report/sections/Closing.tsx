@@ -1,4 +1,8 @@
+import { useState } from 'react';
+import { ReservationModal } from '../../components/ReservationModal';
+
 export function Closing({ name }: { name: string }) {
+  const [rvOpen, setRvOpen] = useState(false);
   return (
     <>
       {/* closing hook */}
@@ -25,10 +29,15 @@ export function Closing({ name }: { name: string }) {
         <a className="kk" href="https://pf.kakao.com/_mxbWxfX" target="_blank" rel="noopener noreferrer">
           💬 카카오톡 1:1 상담
         </a>
+        <button type="button" className="rv" onClick={() => setRvOpen(true)}>
+          📞 번호 남기고 예약하기
+        </button>
         <div className="tel">
-          📞 <a href="tel:010-6693-2838">010-6693-2838</a>
+          📞 <a href="tel:1599-0741">1599-0741</a>
         </div>
       </div>
+
+      <ReservationModal open={rvOpen} onClose={() => setRvOpen(false)} source="report" />
 
       {/* refs */}
       <section id="refs">
