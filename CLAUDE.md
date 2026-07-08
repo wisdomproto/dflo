@@ -67,7 +67,7 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 
 ### 예약(콜백) 신청 — 저마찰 리드 캡처 (2026-07-08, 한글 전용)
 카톡 채팅을 여는 마찰 없이 **이름·전화만 남기면 병원이 연락**하는 콜백 동선(카톡 상담과 병행). **한글(ko) 전용** — `_shell.js` 가 `__I18N__.locale==='ko'` 일 때만 렌더(`__I18N__` 없는 blog-index 등엔 미노출).
-- **하단 바**: ko 는 `.t-bottom-nav--full`(엣지투엣지 플랫 5칸·safe-area) + `예상키 측정` 오른쪽에 `예약하기` 버튼(카톡 노랑 톤). th/vi/en 은 기존 4칸 pill 무회귀.
+- **진입점 2곳**: ① 하단 바 `예약하기`(`.t-bottom-nav--full` 엣지투엣지 플랫 5칸·safe-area, `예상키 측정` 오른쪽·카톡 노랑 톤. th/vi/en 은 기존 4칸 pill 무회귀) ② **예측키 결과 화면**(`HeightCalculatorResult.tsx`) 카톡 hero 바로 아래 `📞 번호 남기고 예약하기`(ko 전용 솔리드 버튼) — 결과는 iframe(`/calc.html`)이라 부모로 `postMessage({type:'open_reservation'})` → `_shell.js` 가 계산기 모달 닫고 오버레이 오픈 + GA4 `reservation_open`. 측정 직후 고관심 순간의 저마찰 전환(측정→상담 병목 대응).
 - **예약 전체화면 뷰**(`_shell.js` 오버레이): 성명·휴대전화(필수) + **상담 방식**(전화/문자 라디오, 기본 전화) + **상담 내용**(선택) + 약관동의(서비스 이용약관·개인정보 수집·이용, 각 [보기]) + 허니팟 + 풀폭 "예약 신청하기" + **📞 바로 전화하기·1599-0741**(통화 선호자용 tel, `data-source=reservation_call`). 성공 시 완료 화면 + GA4 `reservation_submit`·Pixel `Lead`.
 - **백엔드**(ai-server 공개 `POST /api/reservations`): 검증(허니팟+rate limit)→**service_role insert**→`notifyReservation` **이메일+텔레그램** 팬아웃(각 env 있을 때만·실패해도 접수 성공). 조회/삭제 `GET|DELETE /api/reservations`(`x-admin-pin` 게이트, 기본 8054). `services/reservationNotify.ts`·`routes/reservation.ts`. env `RESERVATION_EMAIL_TO`·`SMTP_*`·`TELEGRAM_BOT_TOKEN`·`TELEGRAM_CHAT_ID`(nodemailer 추가).
 - **DB**(`migration 068_reservations`): `reservations`(name·phone·contact_method·message·locale·status·consent·referrer·utm). **RLS on·anon 정책 없음** = anon 키 접근 불가(실명+전화 PII) → 전부 service_role 경유.

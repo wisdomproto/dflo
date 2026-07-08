@@ -240,6 +240,14 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
   const ageYears = Math.floor(result.age);
   const ageMonths = Math.round((result.age % 1) * 12);
 
+  // 예약하기(콜백) — 결과는 iframe(/calc.html) 이라 부모 페이지 _shell.js 의 예약 오버레이를
+  // postMessage 로 연다(measurement 이벤트와 동일 채널). ko 전용.
+  const openReservation = () => {
+    try {
+      (window.parent || window).postMessage({ type: 'open_reservation', source: 'height_calc_result' }, '*');
+    } catch { /* iframe 밖이면 무시 */ }
+  };
+
   const body = (
     <>
       <div className="space-y-5 md:space-y-6">
@@ -298,6 +306,17 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
                        ${messenger.fgClass} font-bold text-lg md:text-xl shadow-sm ${messenger.hoverClass} active:scale-[0.98] transition-all`}>
             {t.kakaoCta}
           </a>
+
+          {/* ①-b 예약하기 — 카톡이 부담스러운 사람용 콜백(번호 남기면 병원이 연락). ko 전용.
+              카톡(hero, 노랑)과 나란한 상담 동선이라 바로 아래·솔리드 버튼. 결과는 iframe 이라
+              부모 _shell.js 예약 오버레이를 postMessage 로 오픈. */}
+          {lang === 'ko' && (
+            <button type="button" onClick={openReservation}
+              className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5 md:py-4
+                         text-white font-bold text-base md:text-lg shadow-sm hover:brightness-105 active:scale-[0.98] transition-all">
+              📞 번호 남기고 예약하기
+            </button>
+          )}
 
           {/* ② 보조 CTA — 성장 리포트 (ko 전용, Phase 1). 상담이 부담되는 사람에게 부드러운 대안.
               아웃라인·작게 = hero(카톡)보다 낮은 위계. iframe 탈출 target=_top + 계산값 URL 전달 */}

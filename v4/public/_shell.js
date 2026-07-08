@@ -445,6 +445,16 @@ ${__IS_KO ? `
       if (e.key === 'Escape' && resv && resv.classList.contains('is-open')) closeResv();
     });
 
+    // 예측키 결과(iframe /calc.html)에서 "예약하기" 클릭 → 부모로 postMessage → 여기서 오버레이 오픈.
+    // 계산기 모달이 떠 있으면 먼저 닫고(겹침 방지) 예약 폼을 연다.
+    window.addEventListener('message', function (e) {
+      var d = e && e.data;
+      if (!d || d.type !== 'open_reservation') return;
+      if (modal && modal.classList.contains('is-open')) closeCalcModal();
+      openResv();
+      if (typeof gtag !== 'undefined') gtag('event', 'reservation_open', { locale: 'ko', source: d.source || 'calc' });
+    });
+
     // 전체동의 ↔ 개별 필수 동기화
     if (allChk) {
       allChk.addEventListener('change', () => { reqChks.forEach((c) => { c.checked = allChk.checked; }); });
