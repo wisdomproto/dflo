@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { ReservationModal } from '../../components/ReservationModal';
 
-export function Closing({ name }: { name: string }) {
+export function Closing({ name, desiredHeight }: { name: string; desiredHeight?: string }) {
   const [rvOpen, setRvOpen] = useState(false);
+  const dh = desiredHeight && Number(desiredHeight) > 0 ? Number(desiredHeight) : null;
   return (
     <>
       {/* closing hook */}
       <section>
         <div className="card hook" style={{ marginTop: '14px' }}>
-          <h3>🏥 더 정확한 평가가 필요하다면</h3>
+          <h3>🏥 {dh ? `희망키 ${dh}cm까지, 가능할까요?` : '더 정확한 평가가 필요하다면'}</h3>
           <p>
-            설문으로는 여기까지가 최선입니다. 병원에서는 <b className="big">뼈나이(X-ray)</b>로 남은
-            성장 시간을 정확히 측정하고, <b className="big">혈액검사</b>로 성장호르몬·갑상선·철분·비타민D·성호르몬을
-            확인해 <b>성장을 저해하는 숨은 원인</b>을 찾아냅니다. 정확한 평가는 내원 진료를 통해
-            도와드리겠습니다.
+            {dh
+              ? <>희망하시는 <b className="big">{dh}cm</b> 도달 가능성은 설문·예측만으로는 확정할 수 없습니다. </>
+              : '설문으로는 여기까지가 최선입니다. '}
+            병원에서는 <b className="big">뼈나이(X-ray)</b>로 남은 성장 시간을 정확히 측정하고,{' '}
+            <b className="big">혈액검사</b>로 성장호르몬·갑상선·철분·비타민D·성호르몬을 확인해{' '}
+            <b>성장을 저해하는 숨은 원인</b>을 찾아냅니다. {dh ? '희망키까지 갈 수 있는지는' : '정확한 평가는'}{' '}
+            <b>내원 정밀 검사(진단)</b>를 통해서만 정확히 알 수 있습니다.
           </p>
         </div>
       </section>

@@ -30,6 +30,22 @@ const MESSENGER: Record<CalcLang, { url: string; bgClass: string; fgClass: strin
   th: { url: 'https://line.me/R/ti/p/%40894qhqtu', bgClass: 'bg-[#06C755]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
 };
 
+// 성장 골든타임 — 원장 저서(1장) 기준. 나이를 딱 박지 않고 range 로(여 9~11 / 남 11~14),
+// 위치 문구는 "늦었다" 뉘앙스 없이 항상 "지금 할 수 있는 게 있다"로 끝나게.
+function goldenTimeInfo(gender: 'male' | 'female', age: number) {
+  const female = gender === 'female';
+  const lo = female ? 9 : 11;
+  const hi = female ? 11 : 14;
+  const who = female ? '여자아이' : '남자아이';
+  let position: string;
+  if (age < lo) position = '아직 골든타임 전이에요 — 지금부터 준비하면 가장 좋습니다.';
+  else if (age <= hi) position = '지금이 바로 그 골든타임 시기예요.';
+  else position = female
+    ? '골든타임 후반이라, 남은 성장 시간을 잘 활용하는 게 중요해요.'
+    : '남아는 만 17세까지 자랄 수 있어요 — 남은 시간을 잘 쓰는 게 중요합니다.';
+  return { lo, hi, who, position };
+}
+
 export interface HeightResult {
   predicted: number;
   percentile: number;
@@ -75,6 +91,7 @@ function useCountUp(target: number, duration: number, active: boolean) {
 export function HeightCalculatorResult({ result, isOpen, onClose, embedded = false, lang = 'ko' }: Props) {
   const [phase, setPhase] = useState(0); // 0=init, 1=countUp, 2=chart, 3=done
   const [drawnPoints, setDrawnPoints] = useState(0); // how many path points are visible
+  const [desired, setDesired] = useState(''); // 희망 키(선택) — 설문으로 넘겨 프리필
   const chartRef = useRef<ChartJS<'line'>>(null);
   const t = getCalcLabels(lang);
   const messenger = MESSENGER[lang] || MESSENGER.ko;
@@ -285,6 +302,23 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
           <p className="text-xs md:text-sm text-amber-700 leading-relaxed break-keep">{interpretation}</p>
         </div>
 
+        {/* 성장 골든타임 — ko 전용. 예측키(추세)만으론 부족 → "언제 관리해야 하나"로 동기 부여.
+            나이를 딱 박지 않고 range + "중고등 기다리면 늦다" 오해 반박(원장 저서 근거). */}
+        {lang === 'ko' && phase >= 3 && (() => {
+          const g = goldenTimeInfo(result.gender, result.age);
+          return (
+            <div className="rounded-xl border border-[#0F6E56]/20 bg-[#F2FBF8] p-4 md:p-5 space-y-2">
+              <p className="text-sm md:text-base font-bold text-[#0F6E56]">⏳ 성장 골든타임, 지금 어디쯤일까요?</p>
+              <p className="text-xs md:text-sm text-gray-700 leading-relaxed break-keep">
+                {g.who} 성장 골든타임은 대략 <b>만 {g.lo}~{g.hi}세</b> — 사춘기 급성장 전후로 최종 키의 상당 부분이 이 시기에 결정됩니다. {g.position}
+              </p>
+              <p className="text-xs md:text-sm text-gray-500 leading-relaxed break-keep">
+                “중학교·고등학교 가서 크겠지”는 골든타임을 놓치는 가장 흔한 오해예요. 관리는 그 <b>전에</b> 시작해야 합니다.
+              </p>
+            </div>
+          );
+        })()}
+
         {/* Methodology note + Kakao CTA — fade in at end */}
         <div className={`space-y-2.5 md:space-y-3 transition-all duration-700 ${phase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <div className="bg-gray-50 rounded-xl p-4 md:p-5 space-y-2 text-xs md:text-sm text-gray-600 leading-relaxed break-keep">
@@ -299,6 +333,28 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
             {result.percentile < 50 ? t.ctaContextConcern : t.ctaContextOptimize}
           </p>
 
+          {/* 🎯 희망키 → 설문 유도 (ko 전용). 골든타임에 이어 "목표까지 갈 수 있나?" 갈증 → 설문/리포트.
+              입력한 희망키는 dh 파라미터로 설문(step3 desiredHeight)에 프리필. iframe 탈출 target=_top. */}
+          {lang === 'ko' && (
+            <div className="rounded-xl border border-[#0F6E56]/30 bg-[#F2FBF8] p-4 space-y-3">
+              <label htmlFor="desiredHeight" className="block text-sm md:text-base font-bold text-[#0F6E56]">
+                🎯 목표(희망) 키가 있으세요? <span className="font-medium text-gray-400">(선택)</span>
+              </label>
+              <div className="flex items-center gap-2">
+                <input id="desiredHeight" type="number" inputMode="numeric" value={desired}
+                  onChange={(e) => setDesired(e.target.value)} placeholder="예: 175"
+                  className="flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-base focus:outline-none focus:border-[#0F6E56]" />
+                <span className="text-sm text-gray-500 shrink-0">cm</span>
+              </div>
+              <a
+                href={`/diagnosis?g=${result.gender}&h=${result.currentHeight}&age=${result.age.toFixed(2)}&ph=${result.predicted.toFixed(1)}&pct=${result.percentile.toFixed(1)}&std=${result.standard ?? 'KR'}&lang=${lang}${desired ? `&dh=${encodeURIComponent(desired)}` : ''}`}
+                target="_top"
+                className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5 md:py-4 text-white font-bold text-base md:text-lg hover:brightness-105 active:scale-[0.98] transition-all">
+                🎯 희망키까지 갈 수 있을까요? 정밀 리포트
+              </a>
+            </div>
+          )}
+
           {/* ① Hero CTA — 카톡/메신저 상담 (전 언어 primary). th=LINE, en=WhatsApp, ko/vi=KakaoTalk */}
           <a href={messenger.url} target="_blank" rel="noopener noreferrer"
             onClick={() => trackKakaoConsult('height_calc_result')}
@@ -312,22 +368,10 @@ export function HeightCalculatorResult({ result, isOpen, onClose, embedded = fal
               부모 _shell.js 예약 오버레이를 postMessage 로 오픈. */}
           {lang === 'ko' && (
             <button type="button" onClick={openReservation}
-              className="flex items-center justify-center gap-2 w-full rounded-xl bg-[#0F6E56] py-3.5 md:py-4
-                         text-white font-bold text-base md:text-lg shadow-sm hover:brightness-105 active:scale-[0.98] transition-all">
-              📞 번호 남기고 예약하기
+              className="flex items-center justify-center gap-2 w-full rounded-xl border border-[#0F6E56]/40 py-2.5 md:py-3
+                         text-[#0F6E56] font-semibold text-sm md:text-base hover:bg-[#0F6E56]/5 active:scale-[0.98] transition-all">
+              📞 번호 남기고 예약 (전화·문자로 연락드려요)
             </button>
-          )}
-
-          {/* ② 보조 CTA — 성장 리포트 (ko 전용, Phase 1). 상담이 부담되는 사람에게 부드러운 대안.
-              아웃라인·작게 = hero(카톡)보다 낮은 위계. iframe 탈출 target=_top + 계산값 URL 전달 */}
-          {lang === 'ko' && (
-            <a
-              href={`/diagnosis?g=${result.gender}&h=${result.currentHeight}&age=${result.age.toFixed(2)}&ph=${result.predicted.toFixed(1)}&pct=${result.percentile.toFixed(1)}&std=${result.standard ?? 'KR'}&lang=${lang}`}
-              target="_top"
-              className="flex items-center justify-center gap-2 w-full rounded-xl border border-[#0F6E56]/40 py-2.5 md:py-3 text-[#0F6E56] font-semibold text-sm md:text-base hover:bg-[#0F6E56]/5 active:scale-[0.98] transition-all"
-            >
-              {t.reportSecondary}
-            </a>
           )}
 
           {/* ③ 3차 — 공개 치료사례 텍스트 링크(제일 작게). iframe 임베드라 target=_top 으로 부모 프레임 이동 */}

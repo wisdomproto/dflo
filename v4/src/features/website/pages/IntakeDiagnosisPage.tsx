@@ -70,10 +70,15 @@ export default function IntakeDiagnosisPage() {
       : null);
   const percentile = Number(sp.get('pct') ?? 50);
   const standard: 'KR' | 'TH' = sp.get('std') === 'TH' ? 'TH' : 'KR';
+  // 결과 화면에서 넘어온 희망 키(dh) → step3 희망 키 필드에 프리필 (유효 숫자일 때만).
+  const urlDesired = Number(sp.get('dh'));
 
   const gender = calcState?.gender || 'male';
   const isMale = gender === 'male';
-  const [form, setForm] = useState<IntakeForm>(emptyForm);
+  const [form, setForm] = useState<IntakeForm>(() => ({
+    ...emptyForm,
+    desiredHeight: urlDesired > 0 ? String(urlDesired) : '',
+  }));
   const [step, setStep] = useState(0); // 0: 기본, 1: 출생, 2: 현재, 3: 가족, 4: 생활습관, 5: 사춘기, 6: 의료, 7: 완료
 
   const update = (key: keyof IntakeForm, value: string | boolean) => {

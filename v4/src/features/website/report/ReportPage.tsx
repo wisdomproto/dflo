@@ -132,7 +132,7 @@ export default function ReportPage() {
         <Methods m={m} name={name} />
         <SignalSection m={m} survey={s} />
         <HospitalGallery />
-        <Closing name={name} />
+        <Closing name={name} desiredHeight={s.desiredHeight} />
       </div>
     </div>
   );
