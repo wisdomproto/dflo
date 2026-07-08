@@ -415,12 +415,20 @@ ${__IS_KO ? `
       if (foot) foot.hidden = false;
       if (errEl) errEl.hidden = true;
     }
-    function openResv() {
+    // 예약 폼은 오버레이라 자동 page_view 가 없다 → 가상 페이지(/reservation)로 GA4 Pages 리포트에
+    // 잡히게 하고, 퍼널용 reservation_open 이벤트(source 구분)도 함께 발사. 3개 진입점 공통.
+    function trackResvOpen(source) {
+      if (typeof gtag === 'undefined') return;
+      gtag('event', 'page_view', { page_title: '예약 신청', page_location: location.origin + '/reservation', page_path: '/reservation' });
+      gtag('event', 'reservation_open', { locale: 'ko', source: source || 'unknown' });
+    }
+    function openResv(source) {
       if (!resv) return;
       resetResvView();
       resv.hidden = false;
       requestAnimationFrame(() => resv.classList.add('is-open'));
       document.body.style.overflow = 'hidden';
+      trackResvOpen(source);
     }
     function closeResv() {
       if (!resv) return;
@@ -429,7 +437,7 @@ ${__IS_KO ? `
       setTimeout(() => { resv.hidden = true; }, 200);
     }
 
-    document.querySelectorAll('[data-open-reservation]').forEach((b) => b.addEventListener('click', openResv));
+    document.querySelectorAll('[data-open-reservation]').forEach((b) => b.addEventListener('click', () => openResv('bottom_nav')));
     if (resv) {
       resv.querySelectorAll('[data-resv-close]').forEach((b) => b.addEventListener('click', closeResv));
       // 약관 [보기] 토글
@@ -451,8 +459,7 @@ ${__IS_KO ? `
       var d = e && e.data;
       if (!d || d.type !== 'open_reservation') return;
       if (modal && modal.classList.contains('is-open')) closeCalcModal();
-      openResv();
-      if (typeof gtag !== 'undefined') gtag('event', 'reservation_open', { locale: 'ko', source: d.source || 'calc' });
+      openResv(d.source || 'calc'); // openResv 가 page_view + reservation_open 발사
     });
 
     // 전체동의 ↔ 개별 필수 동기화

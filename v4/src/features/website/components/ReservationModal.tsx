@@ -38,9 +38,18 @@ export function ReservationModal({ open, onClose, source = 'report' }: { open: b
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
-    if (open) { setDone(false); setErr(''); }
+    if (open) {
+      setDone(false);
+      setErr('');
+      // 오버레이라 자동 page_view 가 없음 → 가상 페이지(/reservation) + 퍼널 이벤트. 정적 _shell.js 와 동일 규칙.
+      const w = window as unknown as { gtag?: (...a: unknown[]) => void };
+      if (typeof w.gtag === 'function') {
+        w.gtag('event', 'page_view', { page_title: '예약 신청', page_location: window.location.origin + '/reservation', page_path: '/reservation' });
+        w.gtag('event', 'reservation_open', { locale: 'ko', source });
+      }
+    }
     return () => { document.body.style.overflow = ''; };
-  }, [open]);
+  }, [open, source]);
 
   if (!open) return null;
 
