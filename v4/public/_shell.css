@@ -354,3 +354,220 @@ body { background: var(--shell-page-bg) !important; }
 .page-cta .cta-measure{background:#5a3da6;color:#fff;margin-bottom:10px;box-shadow:0 8px 22px rgba(90,61,166,.28)}
 .page-cta .cta-consult{background:#fff;color:#5a3da6;border:1.5px solid #d9cdf0}
 .page-cta a:active{transform:scale(0.98)}
+
+/* ============================================
+   RESERVATION (콜백 예약, 한글 전용)
+   - 하단 바를 화면 꽉 찬 플랫 탭바로(--full, 5칸)
+   - 예약 전체화면 시트
+   파일 맨 끝에 둬서 위 미디어쿼리보다 뒤 → 오버라이드 확실.
+   ============================================ */
+
+/* 한글 전용 — 하단 바 엣지투엣지 플랫(측정 오른쪽에 예약하기 5번째 칸) */
+.t-bottom-nav--full {
+  left: 0; right: 0; bottom: 0;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  border-left: 0; border-right: 0; border-bottom: 0;
+  height: 60px;
+  grid-template-columns: repeat(5, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -2px 14px rgba(26,23,20,0.08);
+}
+@media (min-width: 768px) {
+  /* 데스크톱에서도 꽉 채운 플랫 유지 (위 768 미디어쿼리의 max-width:560 무력화) */
+  .t-bottom-nav--full { max-width: none; height: 66px; bottom: 0; border-radius: 0; }
+}
+/* 예약하기 탭 — 카톡 톤 강조(측정=보라와 구분). 우측 끝 자식이라 모서리 자동 처리 */
+.t-nav-reserve {
+  color: #3C1E1E !important;
+  background: var(--shell-kakao);
+  font-weight: 700;
+}
+.t-nav-reserve .icon { opacity: 1 !important; }
+
+/* ===== 예약 전체화면 시트 ===== */
+.t-resv {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: #fff;
+  display: flex;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.t-resv[hidden] { display: none; }
+.t-resv.is-open { opacity: 1; transform: none; }
+.t-resv-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  height: 100dvh;
+}
+.t-resv-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  height: 52px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--shell-hairline);
+  background: #fff;
+}
+.t-resv-icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border: 0; background: transparent; cursor: pointer;
+  color: var(--shell-ink); text-decoration: none;
+  border-radius: 50%;
+}
+.t-resv-icon:active { transform: scale(0.92); }
+.t-resv-title { text-align: center; font-size: 17px; font-weight: 800; color: var(--shell-ink); letter-spacing: -0.3px; }
+
+.t-resv-body { flex: 1; min-height: 0; overflow-y: auto; padding: 22px 20px 24px; }
+.t-resv-lead { font-size: 22px; font-weight: 800; color: var(--shell-ink); line-height: 1.4; letter-spacing: -0.5px; margin: 4px 0 26px; }
+
+.t-resv-field { margin-bottom: 20px; }
+.t-resv-flabel { display: block; font-size: 15px; font-weight: 700; color: var(--shell-ink); margin-bottom: 9px; }
+.t-resv-flabel i { color: #e5484d; font-style: normal; }
+.t-resv-flabel em { color: var(--shell-muted); font-size: 13px; font-weight: 500; font-style: normal; }
+.t-resv-field input,
+.t-resv-field select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 52px;
+  padding: 0 14px;
+  font-size: 16px;              /* 16px = iOS 자동 확대 방지 */
+  font-family: inherit;
+  color: var(--shell-ink);
+  background: #fff;
+  border: 1px solid var(--shell-hairline);
+  border-radius: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.t-resv-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238a8580' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+.t-resv-field input:focus,
+.t-resv-field select:focus,
+.t-resv-field textarea:focus { outline: none; border-color: var(--shell-brand); box-shadow: 0 0 0 3px var(--shell-brand-soft); }
+.t-resv-field input::placeholder,
+.t-resv-field textarea::placeholder { color: #b8b2a9; }
+.t-resv-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* 상담 내용 (선택 textarea) */
+.t-resv-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 84px;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.5;
+  color: var(--shell-ink);
+  background: #fff;
+  border: 1px solid var(--shell-hairline);
+  border-radius: 12px;
+  resize: vertical;
+}
+
+/* 상담 방식 라디오 (전화상담 / 문자상담) */
+.t-resv-radio { display: flex; gap: 10px; }
+.t-resv-radio label {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  height: 52px;
+  border: 1px solid var(--shell-hairline);
+  border-radius: 12px;
+  font-size: 15px; font-weight: 600;
+  color: var(--shell-body);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.t-resv-radio input { accent-color: var(--shell-brand); width: 18px; height: 18px; }
+.t-resv-radio label:has(input:checked) {
+  border-color: var(--shell-brand);
+  background: var(--shell-brand-soft);
+  color: var(--shell-brand);
+}
+
+.t-resv-terms { margin-top: 6px; padding-top: 20px; border-top: 1px solid var(--shell-hairline); }
+.t-resv-terms-title { font-size: 15px; font-weight: 800; color: var(--shell-ink); }
+.t-resv-terms-sub { font-size: 13px; color: var(--shell-muted); margin: 4px 0 12px; }
+.t-resv-check { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: var(--shell-body); cursor: pointer; }
+.t-resv-check input { width: 20px; height: 20px; accent-color: var(--shell-brand); flex-shrink: 0; }
+.t-resv-check b { font-weight: 700; color: var(--shell-brand); }
+.t-resv-all { padding: 6px 0 12px; font-size: 15px; }
+.t-resv-all b { color: var(--shell-ink); }
+.t-resv-crow { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 0; border-top: 1px solid var(--shell-hairline); }
+.t-resv-crow .t-resv-check b { color: var(--shell-brand); }
+.t-resv-viewbtn { flex-shrink: 0; border: 0; background: transparent; color: var(--shell-muted); font-size: 13px; font-family: inherit; text-decoration: underline; cursor: pointer; padding: 4px; }
+.t-resv-doc { font-size: 13px; line-height: 1.6; color: var(--shell-body); background: var(--shell-soft); border-radius: 10px; padding: 12px 14px; margin: 2px 0 4px; }
+
+.t-resv-err { margin-top: 16px; padding: 12px 14px; background: #fdecec; color: #c0392b; font-size: 14px; border-radius: 10px; }
+
+.t-resv-foot { flex-shrink: 0; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--shell-hairline); background: #fff; }
+.t-resv-foot[hidden] { display: none; }
+.t-resv-submit {
+  width: 100%;
+  height: 54px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--shell-brand);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.12s;
+}
+.t-resv-submit:hover { filter: brightness(1.06); }
+.t-resv-submit:active { transform: scale(0.98); }
+.t-resv-submit:disabled { opacity: 0.55; cursor: default; }
+/* 직접 전화 상담 — 통화를 선호하는 부모용 대표번호 (예약 폼 하단 보조 동선) */
+.t-resv-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 12px;
+  height: 48px;
+  border: 1px solid var(--shell-hairline);
+  border-radius: 14px;
+  color: var(--shell-brand);
+  background: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.t-resv-call:active { transform: scale(0.98); }
+
+.t-resv-done { text-align: center; padding: 64px 20px; }
+.t-resv-done-ic {
+  width: 68px; height: 68px; margin: 0 auto 22px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--shell-brand-soft);
+  color: var(--shell-brand);
+  font-size: 34px; font-weight: 800;
+}
+.t-resv-done h2 { font-size: 23px; font-weight: 800; color: var(--shell-ink); margin: 0 0 12px; letter-spacing: -0.5px; }
+.t-resv-done p { font-size: 15px; color: var(--shell-body); line-height: 1.6; margin: 0 0 28px; }
+.t-resv-done-btn {
+  min-width: 160px; height: 50px; padding: 0 28px;
+  border: 0; border-radius: 14px;
+  background: var(--shell-brand); color: #fff;
+  font-size: 16px; font-weight: 800; font-family: inherit; cursor: pointer;
+}
+.t-resv-done-btn:active { transform: scale(0.97); }

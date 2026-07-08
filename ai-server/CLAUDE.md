@@ -3,6 +3,13 @@
 ## Overview
 Express server providing AI analysis endpoints via Google Gemini 2.5 Flash.
 
+## 예약(콜백) 신청 (2026-07-08)
+한글 홈페이지 하단 바 "예약하기" 리드를 받는 공개 엔드포인트. `routes/reservation.ts`(`app.use('/api/reservations')`, marketingAuth 밖 — 공개 접수 + PIN 게이트 조회):
+- `POST /api/reservations` (공개·무인증): 허니팟(`hp`)+rate limit(IP/분 8회)+검증(name·phone·consent 필수, phone 9~11자리, contact_method=phone/text·기본 phone, message 1000자 컷) → **service_role insert** into `reservations`(migration 068) → `services/reservationNotify.ts notifyReservation` **이메일+텔레그램** 팬아웃(각 env 있을 때만·`Promise.allSettled`로 실패 삼킴, 접수는 항상 성공).
+- `GET /api/reservations` / `DELETE /api/reservations/:id`: `x-admin-pin`(=`WEBSITE_ADMIN_PIN`||8054) 게이트. 마케팅 예약 로그(`/marketing/predictions` 드롭다운)가 호출.
+- **PII 보호**: `reservations` 는 anon 정책 없음(RLS on) → anon 키로 접근 불가, service_role 전용. 예측키/설문 로그(anon SELECT)와 다른 선택.
+- env: `RESERVATION_EMAIL_TO`·`SMTP_HOST/PORT/USER/PASS/FROM`(nodemailer, 465=secure) · `TELEGRAM_BOT_TOKEN`·`TELEGRAM_CHAT_ID`(콤마 다중). 미설정 채널은 조용히 스킵.
+
 ## Commands
 ```bash
 npm run dev   # Dev server (port 3001)

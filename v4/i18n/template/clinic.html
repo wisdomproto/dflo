@@ -473,7 +473,7 @@
   <!-- Contact -->
   <section class="contact-card">
     <div class="label">{{clinic.contact.label}}</div>
-    <a class="phone" href="tel:+82-10-6693-2838">{{clinic.contact.phone}}</a>
+    <a class="phone" href="tel:{{clinic.contact.phone}}">{{clinic.contact.phone}}</a>
     <div class="addr">{{clinic.contact.addr}}</div>
   </section>
 
@@ -541,6 +541,7 @@
     channel: "{{messenger.channel}}",
     messenger: {{messenger_json}},
     page_type: "clinic",
+    aiServer: "{{ai_server}}",
     shell: {{shell_json}}
   };
 </script>

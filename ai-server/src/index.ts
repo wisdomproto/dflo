@@ -17,6 +17,7 @@ import { marketingRouter } from './routes/marketing.js';
 import { knowledgeRouter } from './routes/knowledge.js';
 import { metaAuthRouter } from './routes/metaAuth.js';
 import { caseStoryRouter } from './routes/caseStory.js';
+import { reservationRouter } from './routes/reservation.js';
 import { startScheduler } from './services/scheduler.js';
 
 const app = express();
@@ -90,6 +91,8 @@ app.use('/api/knowledge', knowledgeRouter);
 app.use('/api/auth/meta', metaAuthRouter);
 // 치료사례 후보 원장 스토리 편집·저장 (로컬 내부 도구, 자체 x-admin-pin 보호)
 app.use('/api/case-story', caseStoryRouter);
+// 예약(콜백) 접수(공개) + 조회/삭제(x-admin-pin 게이트). PII라 service_role 전용 접근.
+app.use('/api/reservations', reservationRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });

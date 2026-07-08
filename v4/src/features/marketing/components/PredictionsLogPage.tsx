@@ -6,6 +6,7 @@ import {
   type PredictionRow,
 } from '@/features/website/services/anonymousPredictionService';
 import { SurveyReportsView } from './SurveyReportsView';
+import { ReservationsView } from './ReservationsView';
 
 // 홈페이지 익명 예측키 측정 로그 + 설문 완료 로그를 드롭다운으로 전환.
 // 둘 다 v4 anon 클라로 직접 읽음 (PIN 게이트 뷰). 측정=anonymous_predictions(061), 설문=growth_reports(067).
@@ -26,7 +27,7 @@ function srcOf(r: PredictionRow): string {
 }
 
 export default function PredictionsLogPage() {
-  const [dataset, setDataset] = useState<'predictions' | 'surveys'>('predictions');
+  const [dataset, setDataset] = useState<'predictions' | 'surveys' | 'reservations'>('predictions');
   const [rows, setRows] = useState<PredictionRow[] | null>(null);
   const [err, setErr] = useState('');
   const [country, setCountry] = useState('');
@@ -82,20 +83,25 @@ export default function PredictionsLogPage() {
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
           <h1 className="text-lg font-bold text-gray-900">
-            {dataset === 'surveys' ? '📋 설문 완료 로그' : '📈 예측키 측정 로그'}
+            {dataset === 'reservations' ? '📞 예약 신청 로그'
+              : dataset === 'surveys' ? '📋 설문 완료 로그'
+              : '📈 예측키 측정 로그'}
           </h1>
           <p className="mt-0.5 text-xs text-gray-400">
-            {dataset === 'surveys'
+            {dataset === 'reservations'
+              ? '홈페이지 하단 "예약하기" 콜백 신청 · 최신순 (최대 500건)'
+              : dataset === 'surveys'
               ? '측정 후 설문까지 완료한 맞춤 리포트 · 최신순 (최대 500건)'
               : '홈페이지 익명 계산기 측정 결과 · 최신순 (최대 500건)'}
           </p>
         </div>
         <div className="flex items-center gap-2">
           {/* 데이터셋 드롭다운 — 예측키 측정 / 설문 완료 전환 */}
-          <select value={dataset} onChange={(e) => setDataset(e.target.value as 'predictions' | 'surveys')}
+          <select value={dataset} onChange={(e) => setDataset(e.target.value as 'predictions' | 'surveys' | 'reservations')}
             className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium">
             <option value="predictions">📈 예측키 측정</option>
             <option value="surveys">📋 설문 완료 (리포트)</option>
+            <option value="reservations">📞 예약 신청</option>
           </select>
           {dataset === 'predictions' && (
             <>
@@ -120,6 +126,8 @@ export default function PredictionsLogPage() {
 
       {dataset === 'surveys' ? (
         <SurveyReportsView />
+      ) : dataset === 'reservations' ? (
+        <ReservationsView />
       ) : (
         <>
           {err && (

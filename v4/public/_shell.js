@@ -94,6 +94,11 @@ const __CLINIC_HREF = `${__NAV_BASE}/clinic.html`;
 const __CASES_HREF = `${__NAV_BASE}/cases.html`;
 const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
 const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.png' : '/images/logo.jpg';
+// 예약(콜백) 기능은 한글 페이지 전용. __I18N__ 이 있고 locale 이 ko 일 때만(blog-index 처럼
+// __I18N__ 없는 페이지는 폴백 ko 로 잡히지 않도록 명시적으로 __I18N__ 존재를 확인).
+const __IS_KO = !!(window.__I18N__ && window.__I18N__.locale === 'ko');
+// 예약 접수를 보낼 ai-server. build-i18n 이 window.__I18N__.aiServer 로 주입(로컬 폴백 :4000).
+const __AI_SERVER__ = ((window.__I18N__ && window.__I18N__.aiServer) || 'http://localhost:4000').replace(/\/$/, '');
 // Messenger CTA — injected per-locale by build-i18n. Falls back to Kakao defaults
 // so this file remains readable as ko source-of-truth even if __I18N__ is missing.
 const __MESSENGER = (window.__I18N__ && window.__I18N__.messenger) || {
@@ -136,7 +141,7 @@ const SHELL_HTML = `
     </div>
   </header>
 
-  <nav class="t-bottom-nav" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
+  <nav class="t-bottom-nav${__IS_KO ? ' t-bottom-nav--full' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
     <a href="${__HOME_HREF}" data-nav="programs">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4h12a4 4 0 014 4v12" />
@@ -165,7 +170,13 @@ const SHELL_HTML = `
         <path d="M4 4l16 16" /><path d="M4 4v16h16" /><path d="M9 14l3-3 3 3" /><path d="M12 11V4" />
       </svg>
       <span>${tEsc('nav.calc', '예상키 측정')}</span>
-    </a>
+    </a>${__IS_KO ? `
+    <button type="button" class="t-nav-reserve" data-open-reservation aria-haspopup="dialog">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="M9 15l2 2 4-4"/>
+      </svg>
+      <span>예약하기</span>
+    </button>` : ''}
   </nav>
 
   <div class="t-modal" id="tCalcModal" role="dialog" aria-modal="true" aria-label="${tEsc('calc.title', '우리 아이 예상 키')}">
@@ -176,6 +187,83 @@ const SHELL_HTML = `
       <iframe id="tCalcFrame" class="t-calc-iframe" title="${tEsc('calc.title', '우리 아이 예상 키')}" loading="lazy"></iframe>
     </div>
   </div>
+${__IS_KO ? `
+  <div class="t-resv" id="tResv" role="dialog" aria-modal="true" aria-label="예약 신청" hidden>
+    <div class="t-resv-sheet">
+      <header class="t-resv-head">
+        <button type="button" class="t-resv-icon" data-resv-close aria-label="뒤로">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="t-resv-title">예약 신청</span>
+        <a class="t-resv-icon" href="${__HOME_HREF}" aria-label="홈">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        </a>
+      </header>
+
+      <div class="t-resv-body">
+        <div class="t-resv-view" data-resv-view="form">
+          <h2 class="t-resv-lead">원활한 예약을 위해<br>고객님의 정보를 먼저 입력해 주세요.</h2>
+          <form id="tResvForm" novalidate>
+            <div class="t-resv-field">
+              <label class="t-resv-flabel" for="tResvName">성명 <i>*</i></label>
+              <input id="tResvName" name="name" type="text" required autocomplete="name" placeholder="이름을 입력해 주세요.">
+            </div>
+            <div class="t-resv-field">
+              <label class="t-resv-flabel" for="tResvPhone">휴대전화번호 <i>*</i></label>
+              <input id="tResvPhone" name="phone" type="tel" inputmode="numeric" required autocomplete="tel" placeholder="휴대전화번호를 입력해 주세요.">
+            </div>
+            <div class="t-resv-field">
+              <span class="t-resv-flabel">상담 방식 <i>*</i></span>
+              <div class="t-resv-radio">
+                <label><input type="radio" name="contactMethod" value="phone" checked><span>전화상담</span></label>
+                <label><input type="radio" name="contactMethod" value="text"><span>문자상담</span></label>
+              </div>
+            </div>
+            <div class="t-resv-field">
+              <label class="t-resv-flabel" for="tResvMsg">상담 내용 <em>(선택)</em></label>
+              <textarea id="tResvMsg" name="message" rows="3" placeholder="아이 나이·키 고민을 간단히 적어주세요."></textarea>
+            </div>
+            <input class="t-resv-hp" type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="t-resv-terms">
+              <div class="t-resv-terms-title">약관동의</div>
+              <p class="t-resv-terms-sub">필수 항목 약관에 동의해 주세요.</p>
+              <label class="t-resv-check t-resv-all"><input type="checkbox" data-resv-all><b>전체동의</b></label>
+              <div class="t-resv-crow">
+                <label class="t-resv-check"><input type="checkbox" data-resv-req name="agreeService"><span><b>(필수)</b> 서비스 이용약관</span></label>
+                <button type="button" class="t-resv-viewbtn" data-resv-terms="service">보기</button>
+              </div>
+              <div class="t-resv-doc" data-resv-doc="service" hidden>본 예약 신청은 연세새봄의원(187 성장클리닉)의 상담 예약을 위한 것입니다. 남겨주신 정보는 예약 상담 연락 목적으로만 사용되며, 진료·처방을 보장하거나 특정 치료 효과를 약속하지 않습니다. 신청자는 언제든 연락 거부 및 정보 삭제를 요청할 수 있습니다.</div>
+              <div class="t-resv-crow">
+                <label class="t-resv-check"><input type="checkbox" data-resv-req name="agreePrivacy"><span><b>(필수)</b> 개인정보 수집·이용</span></label>
+                <button type="button" class="t-resv-viewbtn" data-resv-terms="privacy">보기</button>
+              </div>
+              <div class="t-resv-doc" data-resv-doc="privacy" hidden>• 수집 항목: 성명, 휴대전화번호, 상담 방식 (선택: 상담 내용)<br>• 수집·이용 목적: 상담 예약 확인 및 연락<br>• 보유·이용 기간: 상담 종료 후 1년 또는 삭제 요청 시까지<br>• 동의를 거부할 권리가 있으나, 미동의 시 예약 연락이 어렵습니다.</div>
+            </div>
+
+            <p class="t-resv-err" id="tResvErr" hidden></p>
+          </form>
+        </div>
+
+        <div class="t-resv-view" data-resv-view="done" hidden>
+          <div class="t-resv-done">
+            <div class="t-resv-done-ic">✓</div>
+            <h2>예약이 접수됐어요.</h2>
+            <p>담당자가 확인 후 남겨주신 번호로<br>빠르게 연락드리겠습니다.</p>
+            <button type="button" class="t-resv-done-btn" data-resv-close>확인</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-resv-foot" data-resv-foot="form">
+        <button type="submit" form="tResvForm" class="t-resv-submit" id="tResvSubmit">예약 신청하기</button>
+        <a class="t-resv-call" href="tel:1599-0741" data-source="reservation_call">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          바로 전화하기 · 1599-0741
+        </a>
+      </div>
+    </div>
+  </div>` : ''}
 `;
 
 (function() {
@@ -304,5 +392,122 @@ const SHELL_HTML = `
     window.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('mouseout', onExit);
     const fallbackTimer = setTimeout(trigger, fallbackMs);
+  }
+
+  // ============= RESERVATION (콜백 예약, 한글 전용) =============
+  // 이름·전화만 남기면 병원이 연락하는 저마찰 리드 캡처. 접수는 ai-server 로 POST
+  // (service_role insert + 이메일/텔레그램 알림). 카톡 상담과 병행하는 별도 동선.
+  if (__IS_KO) {
+    const resv = document.getElementById('tResv');
+    const form = document.getElementById('tResvForm');
+    const submitBtn = document.getElementById('tResvSubmit');
+    const errEl = document.getElementById('tResvErr');
+    const allChk = resv && resv.querySelector('[data-resv-all]');
+    const reqChks = resv ? Array.from(resv.querySelectorAll('[data-resv-req]')) : [];
+
+    function resetResvView() {
+      if (!resv) return;
+      const formView = resv.querySelector('[data-resv-view="form"]');
+      const doneView = resv.querySelector('[data-resv-view="done"]');
+      const foot = resv.querySelector('[data-resv-foot="form"]');
+      if (formView) formView.hidden = false;
+      if (doneView) doneView.hidden = true;
+      if (foot) foot.hidden = false;
+      if (errEl) errEl.hidden = true;
+    }
+    function openResv() {
+      if (!resv) return;
+      resetResvView();
+      resv.hidden = false;
+      requestAnimationFrame(() => resv.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+    }
+    function closeResv() {
+      if (!resv) return;
+      resv.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => { resv.hidden = true; }, 200);
+    }
+
+    document.querySelectorAll('[data-open-reservation]').forEach((b) => b.addEventListener('click', openResv));
+    if (resv) {
+      resv.querySelectorAll('[data-resv-close]').forEach((b) => b.addEventListener('click', closeResv));
+      // 약관 [보기] 토글
+      resv.querySelectorAll('[data-resv-terms]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const key = btn.getAttribute('data-resv-terms');
+          const doc = resv.querySelector('[data-resv-doc="' + key + '"]');
+          if (doc) { doc.hidden = !doc.hidden; btn.textContent = doc.hidden ? '보기' : '닫기'; }
+        });
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && resv && resv.classList.contains('is-open')) closeResv();
+    });
+
+    // 전체동의 ↔ 개별 필수 동기화
+    if (allChk) {
+      allChk.addEventListener('change', () => { reqChks.forEach((c) => { c.checked = allChk.checked; }); });
+    }
+    reqChks.forEach((c) => c.addEventListener('change', () => {
+      if (allChk) allChk.checked = reqChks.length > 0 && reqChks.every((x) => x.checked);
+    }));
+
+    function showResvErr(msg) {
+      if (!errEl) return;
+      errEl.textContent = msg;
+      errEl.hidden = false;
+    }
+    function resvAttribution() {
+      const here = new URLSearchParams(window.location.search);
+      const utm = {};
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach((k) => {
+        const v = here.get(k);
+        if (v) utm[k] = v;
+      });
+      return { referrer: document.referrer || null, utm: Object.keys(utm).length ? utm : null };
+    }
+
+    if (form) form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (errEl) errEl.hidden = true;
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const phone = String(fd.get('phone') || '').trim();
+      const contactMethod = String(fd.get('contactMethod') || 'phone');
+      const message = String(fd.get('message') || '').trim();
+      const hp = String(fd.get('hp') || '');
+      const digits = phone.replace(/[^0-9]/g, '');
+      const consent = reqChks.length > 0 && reqChks.every((c) => c.checked);
+
+      if (!name) return showResvErr('성명을 입력해 주세요.');
+      if (digits.length < 9 || digits.length > 11) return showResvErr('휴대전화번호를 정확히 입력해 주세요.');
+      if (!consent) return showResvErr('필수 약관에 동의해 주세요.');
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '신청 중…'; }
+      try {
+        const att = resvAttribution();
+        const resp = await fetch(__AI_SERVER__ + '/api/reservations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, contactMethod, message, consent: true, hp, locale: 'ko', referrer: att.referrer, utm: att.utm }),
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok || !data.ok) throw new Error((data && data.error) || '접수에 실패했습니다.');
+        // 성공 → done 뷰 전환 + 계측
+        const formView = resv.querySelector('[data-resv-view="form"]');
+        const doneView = resv.querySelector('[data-resv-view="done"]');
+        const foot = resv.querySelector('[data-resv-foot="form"]');
+        if (formView) formView.hidden = true;
+        if (doneView) doneView.hidden = false;
+        if (foot) foot.hidden = true;
+        if (typeof gtag !== 'undefined') gtag('event', 'reservation_submit', { locale: 'ko', source: 'bottom_nav' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { source: 'reservation', locale: 'ko' });
+      } catch (err) {
+        showResvErr((err && err.message) || '접수 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+      } finally {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '예약 신청하기'; }
+      }
+    });
   }
 })();

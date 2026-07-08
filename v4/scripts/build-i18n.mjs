@@ -100,6 +100,10 @@ async function main() {
     locale.messenger = messenger;
     locale.messenger_json = JSON.stringify(messenger);
     locale.shell_json = JSON.stringify(locale.shell || {});
+    // 예약(콜백) 폼이 접수를 보낼 ai-server URL. Railway v4 서비스엔 VITE_AI_SERVER_URL 이 이미
+    // 있으므로 그걸 재사용(SITE_AI_SERVER_URL 로 오버라이드 가능). 로컬/미설정이면 빈 문자열 →
+    // _shell.js 가 http://localhost:4000 폴백. 정적 페이지에 window.__I18N__.aiServer 로 주입.
+    locale.ai_server = process.env.SITE_AI_SERVER_URL || process.env.VITE_AI_SERVER_URL || '';
 
     // 프로그램 이미지: 언어 폴더 우선 → _common(한국어 기본본) 1단계 fallback (lib/program-img.mjs).
     // 로고: 비한국어는 영문 워드마크로 swap.
