@@ -25,6 +25,7 @@ const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
   { key: 'clinic', label: '병원 소개' },
   { key: 'cases', label: '치료 사례' },
   { key: 'calculator', label: '예상키 측정(페이지)' },
+  { key: 'reservation', label: '예약 페이지' },
 ];
 
 // 유입채널 라벨은 ai-server 가 소스를 플랫폼 단위(🔍 구글/📸 인스타그램/🤖 ChatGPT…)로
@@ -203,6 +204,35 @@ export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: 
               </div>
               <p className="mt-1.5 text-[11px] text-gray-400">
                 {date ? `📅 ${date} 하루 · ▲▼ 는 전일 대비 증감` : '▲▼ 는 직전 동일 기간 대비 증감'}
+              </p>
+            </div>
+
+            {/* 핵심 액션 — 퍼널과 별개로 버튼 실제 클릭수를 그대로 표시 (측정 여부 무관) */}
+            <div>
+              <h4 className="mb-2 text-xs font-semibold text-gray-500">핵심 액션 (버튼 실제 클릭수)</h4>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                <div className="rounded-xl border border-[#FEE500]/70 bg-[#FFFCEA] px-4 py-3">
+                  <div className="text-xs text-gray-500">💬 {messengerLabel} 상담 클릭</div>
+                  <div className="mt-1 text-2xl font-bold tabular-nums text-[#4A2D6B]">
+                    {s.events.messenger.toLocaleString()}<span className="ml-0.5 text-sm font-medium text-gray-400">회</span>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
+                  <div className="text-xs text-gray-500">✅ 예측키 측정 완료</div>
+                  <div className="mt-1 text-2xl font-bold tabular-nums text-gray-800">
+                    {s.events.heightCalc.toLocaleString()}<span className="ml-0.5 text-sm font-medium text-gray-400">회</span>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-gray-200 bg-white px-4 py-3">
+                  <div className="text-xs text-gray-500">📅 예약 페이지 열람</div>
+                  <div className="mt-1 text-2xl font-bold tabular-nums text-gray-800">
+                    {s.pageViews.reservation.toLocaleString()}<span className="ml-0.5 text-sm font-medium text-gray-400">회</span>
+                  </div>
+                </div>
+              </div>
+              <p className="mt-1.5 text-[11px] text-gray-400">
+                {messengerLabel} 상담 클릭 = 페이지 어디서든 상담 버튼을 누른 <b>순수 총 클릭수</b>(예측키 측정 여부와 무관).
+                {' '}⚠️ 페이스북 광고 관리자 수치와 다를 수 있음 — GA4는 전체(직접·검색 포함) 클릭을, 광고 관리자는 <b>광고에 기여된 전환</b>만 세기 때문.
               </p>
             </div>
 

@@ -4,7 +4,7 @@
 // 'all' = ko+th+vi+en 합산. 유입 '지역'(geo)은 GA4 country/city = 방문자의 실제 지리적 위치(언어 경로와 별개).
 
 export type Country = 'ko' | 'th' | 'vi' | 'en' | 'other';
-export type PageBucket = 'main' | 'clinic' | 'cases' | 'calculator' | 'other';
+export type PageBucket = 'main' | 'clinic' | 'cases' | 'calculator' | 'reservation' | 'other';
 export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en';
 
 const LANG_KEYS: CountryKey[] = ['all', 'ko', 'th', 'vi', 'en'];
@@ -21,6 +21,7 @@ export function classifyPage(pagePath: string): PageBucket {
   if (/\/calculator\.html|\/calc-embed/.test(pagePath)) return 'calculator';
   if (/\/clinic\.html/.test(pagePath)) return 'clinic';
   if (/\/cases\.html/.test(pagePath)) return 'cases';
+  if (/\/reservation/.test(pagePath)) return 'reservation'; // 예약 폼 가상 page_view (/reservation)
   if (pagePath === '/' || /^\/[a-z]{2}\/?(index\.html)?$/.test(pagePath)) return 'main';
   return 'other';
 }
@@ -49,7 +50,7 @@ export interface GeoCity { label: string; sessions: number; users: number }
 export interface GeoCountry { label: string; sessions: number; users: number; pct: number; cities: GeoCity[] }
 export interface DailyPoint { date: string; users: number; sessions: number; views: number }
 export interface PageViews {
-  main: number; clinic: number; cases: number; calculator: number; other: number; total: number;
+  main: number; clinic: number; cases: number; calculator: number; reservation: number; other: number; total: number;
 }
 export interface CountryStats {
   summary: Summary;
@@ -120,7 +121,7 @@ function blankStats(channel: 'kakao' | 'line' | 'mixed'): CountryStats {
   return {
     summary: blankSummary(),
     prevSummary: blankSummary(),
-    pageViews: { main: 0, clinic: 0, cases: 0, calculator: 0, other: 0, total: 0 },
+    pageViews: { main: 0, clinic: 0, cases: 0, calculator: 0, reservation: 0, other: 0, total: 0 },
     events: { calcOpen: 0, heightCalc: 0, messenger: 0 },
     calcCompletionRate: 0,
     messengerChannel: channel,

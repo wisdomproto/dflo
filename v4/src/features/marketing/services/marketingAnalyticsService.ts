@@ -16,7 +16,7 @@ export interface GeoCity { label: string; sessions: number; users: number }
 export interface GeoCountry { label: string; sessions: number; users: number; pct: number; cities: GeoCity[] }
 export interface DailyPoint { date: string; users: number; sessions: number; views: number }
 export interface PageViews {
-  main: number; clinic: number; cases: number; calculator: number; other: number; total: number;
+  main: number; clinic: number; cases: number; calculator: number; reservation: number; other: number; total: number;
 }
 export interface CountryStats {
   summary: Summary;
