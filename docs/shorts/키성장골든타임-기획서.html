@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>쇼츠 기획서 — 키 성장 골든타임</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#667eea; --purple2:#764ba2; --mint:#2dd4bf; --pink:#E0568A;
+    --dark:#0c0d0f; --ink:#1f2430; --muted:#6b7280; --line:#e7e9f2; --bg:#f6f7fb;
+    --yellow:#ffe36e; --gold:#ffc83d; --red:#ff5a5a; --green:#0F6E56;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Noto Sans KR',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  .hero{background:linear-gradient(135deg,var(--purple),var(--purple2));color:#fff;padding:44px 36px;border-radius:0 0 28px 28px;margin-bottom:30px;box-shadow:0 18px 50px -22px rgba(102,126,234,.6)}
+  .hero .kept{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;margin-bottom:14px}
+  .hero h1{margin:0 0 6px;font-size:33px;font-weight:900;letter-spacing:-.5px}
+  .hero .sub{font-size:16px;opacity:.92;margin-bottom:20px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:13px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:10px}
+  .chip b{font-weight:700}
+  section{margin:32px 0}
+  h2{font-size:21px;font-weight:900;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .no{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--purple);color:#fff;font-size:15px;font-weight:800}
+  .lead{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 8px 26px -20px rgba(31,36,48,.4)}
+  .concept{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .cc .t{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+  .cc.hookbox{grid-column:1/-1;background:linear-gradient(135deg,#fff,#f3f0fc);border-color:#e3dcf7}
+  .cc .big{font-size:19px;font-weight:800}
+  .hl{background:linear-gradient(transparent 55%,var(--yellow) 55%);font-weight:800;padding:0 2px}
+  /* arc */
+  .arc{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+  .act{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 10px;text-align:center;position:relative}
+  .act .n{font-size:11px;font-weight:800;color:#fff;background:var(--purple);display:inline-block;padding:2px 8px;border-radius:99px;margin-bottom:7px}
+  .act h4{margin:0 0 3px;font-size:12.5px;font-weight:800}
+  .act p{margin:0;font-size:11px;color:var(--muted)}
+  .act:not(:last-child)::after{content:"→";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--purple);font-weight:900;z-index:2}
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  th,td{padding:11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  th{background:#f0f2fb;font-size:12px;font-weight:800;color:#43485a}
+  tr:last-child td{border-bottom:none}
+  .c-id{font-weight:800;color:var(--purple);white-space:nowrap}
+  .c-time{color:var(--muted);font-size:11px;white-space:nowrap}
+  .scr{font-size:11px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap}
+  .scr.doc{background:#eef1fe;color:var(--purple)}
+  .scr.mo{background:#e7faf6;color:#0d9488}
+  .scr.cta{background:#fff3d6;color:#a9761b}
+  .narr{font-weight:600}
+  .cap2{font-size:11.5px;color:#33384a;background:#fafbff;border:1px dashed #d8dcee;border-radius:8px;padding:4px 7px;display:inline-block}
+  .cap2 .y{background:var(--yellow);padding:0 3px;border-radius:3px;font-weight:800}
+  /* motion guide */
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .mg{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+  .mg .h{font-weight:800;font-size:14px;margin-bottom:4px;display:flex;align-items:center;gap:7px}
+  .mg .h b{font-size:20px}
+  .mg p{margin:0;font-size:12.5px;color:#3a3f50}
+  /* gauge sketch */
+  .gauge{height:80px;border:1px solid #e3dcf7;border-radius:10px;background:linear-gradient(160deg,#fff,#f3f0fc);position:relative;margin:10px 0 4px;overflow:hidden}
+  .gauge svg{position:absolute;inset:0;width:100%;height:100%}
+  /* pipeline / compliance */
+  .pipe{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .pi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .pi .t{font-size:13px;font-weight:800;margin-bottom:4px;display:flex;gap:7px;align-items:center}
+  .pi p{margin:0;font-size:12.5px;color:#3a3f50}
+  .warn{background:#fff6f6;border:1px solid #ffd9d9;border-radius:14px;padding:16px 20px}
+  .warn h3{margin:0 0 8px;font-size:15px;color:#c0392b}
+  .warn ul{margin:0;padding-left:18px}
+  .warn li{font-size:13px;margin:5px 0}
+  .warn .ok{color:#0d9488;font-weight:700}
+  .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  /* thumbnail */
+  .thumbwrap{display:grid;grid-template-columns:280px 1fr;gap:26px;align-items:start}
+  .thumb{width:280px;aspect-ratio:9/16;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 22px 54px -16px rgba(0,0,0,.5);background:linear-gradient(160deg,#3b2a78,#1a1340 60%,#2a1d55)}
+  .thumb .kicker{position:absolute;top:7%;left:0;right:0;text-align:center;color:#fff;font-size:15px;font-weight:800}
+  .thumb .kicker b{background:var(--red);padding:3px 10px;border-radius:7px}
+  .thumb .q{position:absolute;top:20%;left:6%;right:6%;text-align:center;color:#fff;font-size:26px;font-weight:900;line-height:1.15;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+  .thumb .q .x{color:var(--red)}
+  .thumb .sub{position:absolute;top:56%;left:8%;right:8%;text-align:center;color:var(--gold);font-size:17px;font-weight:900}
+  .thumb .logo{position:absolute;bottom:6.5%;left:0;right:0;text-align:center;color:#fff;font-size:26px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .thumbwrap ul{margin:0;padding-left:18px}
+  .thumbwrap li{margin:7px 0;font-size:14px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="wrap" style="padding-bottom:0">
+    <span class="kept">쇼츠 기획서 · 전환형</span>
+    <h1>"중학교 가면 크겠지?" — 키 성장 골든타임</h1>
+    <div class="sub">부모의 가장 흔한 착각을 깨고 → 골든타임은 그 전이라는 걸 각성 → 예측키 측정으로 유도</div>
+    <div class="chips">
+      <span class="chip"><b>포맷</b> 하이브리드(모션+원장)</span>
+      <span class="chip"><b>길이</b> ~35초</span>
+      <span class="chip"><b>비율</b> 9:16</span>
+      <span class="chip"><b>언어</b> 한국어(우선)</span>
+      <span class="chip"><b>타겟</b> 8~13세 부모</span>
+      <span class="chip"><b>화자</b> 원장(합니다체)</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. 컨셉 -->
+  <section>
+    <h2><span class="no">1</span> 컨셉 & 훅</h2>
+    <div class="concept">
+      <div class="cc hookbox">
+        <div class="t">한 줄 컨셉</div>
+        <div class="big">"중학교 가면 크겠지"는 착각 — 키의 <span class="hl">골든타임은 그 전</span>이다.</div>
+      </div>
+      <div class="cc">
+        <div class="t">왜 이 영상인가</div>
+        예측키 측정은 급증하는데 상담 전환이 안 되는 병목 대응. 부모는 "중고등 때 크겠지" 하고 기다리다 골든타임을 놓친다 — 그걸 각성시켜 "지금 확인"으로 민다. (교육형 <b>성장타이밍4</b>와 별개, 설득·전환형)
+      </div>
+      <div class="cc">
+        <div class="t">근거 (원장 저서)</div>
+        전 문장이 원장 저서 팩트에 정렬. 보장·공포·특정효과 표현은 배제(의료광고법 안전). 사춘기 전 성인 키의 40% 결정 · 골든타임 range · 성장판 약 18세 폐쇄.
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 논리 체인 -->
+  <section>
+    <h2><span class="no">2</span> 논리 체인 (스크롤 정지 → 행동)</h2>
+    <div class="arc">
+      <div class="act"><span class="n">착각</span><h4>중고등 크겠지</h4><p>그 생각, 흔하죠</p></div>
+      <div class="act"><span class="n">팩트①</span><h4>40%는 사춘기 前</h4><p>사춘기=마지막 스퍼트</p></div>
+      <div class="act"><span class="n">팩트②</span><h4>골든타임 range</h4><p>여 9~11 · 남 11~14</p></div>
+      <div class="act"><span class="n">팩트③</span><h4>성장판 시계</h4><p>사춘기 後 빠르게·18세 닫힘</p></div>
+      <div class="act"><span class="n">권위</span><h4>원장 한마디</h4><p>닫히기 전 시작해야</p></div>
+      <div class="act"><span class="n">행동</span><h4>지금 확인</h4><p>예측키 측정</p></div>
+    </div>
+  </section>
+
+  <!-- 3. 씬 구성 -->
+  <section>
+    <h2><span class="no">3</span> 씬 구성 (~35초 · 5씬)</h2>
+    <p class="lead">모션(S1·S2·S3·S5) + 원장 토킹헤드(S4) 하이브리드. 나레이션은 원장 클론 음성 통일(합니다체).</p>
+    <table>
+      <thead><tr><th style="width:44px">씬</th><th style="width:52px">초</th><th style="width:64px">모드</th><th>자막 / 화면</th><th>나레이션</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="c-id">S1<br><span style="font-weight:600;color:#43485a">훅</span></td>
+          <td class="c-time">0–4</td>
+          <td><span class="scr mo">모션</span></td>
+          <td><span class="cap2">"중학교 가면 크겠지?"</span> → <span class="cap2"><span class="y">키의 골든타임은 그 전입니다</span></span><br><small style="color:#6b7280">엄마 말풍선 → 부드럽게 반전(공포 X)</small></td>
+          <td class="narr">중학교 가면 크겠지— 흔한 생각이죠. 그런데 키의 골든타임은 생각보다 빠릅니다.</td>
+        </tr>
+        <tr>
+          <td class="c-id">S2<br><span style="font-weight:600;color:#43485a">골든타임</span></td>
+          <td class="c-time">4–12</td>
+          <td><span class="scr mo">데이터</span></td>
+          <td><b>성장 골든타임</b><br>👧 여아 <span class="cap2"><span class="y">약 9~11세</span></span><br>👦 남아 <span class="cap2"><span class="y">약 11~14세</span></span><br><small style="color:#6b7280">"사춘기 급성장 前~초기" · range 강조</small></td>
+          <td class="narr">키의 40%는 사춘기 전에 결정됩니다. 골든타임은 여자아이 약 9~11세, 남자아이 약 11~14세입니다.</td>
+        </tr>
+        <tr>
+          <td class="c-id">S3<br><span style="font-weight:600;color:#43485a">성장판</span></td>
+          <td class="c-time">12–20</td>
+          <td><span class="scr mo">데이터</span></td>
+          <td>성장판 <b>게이지</b>: 열림 → 사춘기 後 하강 → 닫힘<br><span class="cap2">성장판, 약 18세에 닫힘</span><br><small style="color:#6b7280">절벽형 급강하 X → 분명하지만 완만한 하강</small></td>
+          <td class="narr">사춘기가 지나면 성장판이 빠르게 닫히고, 18세 무렵에는 완전히 닫힙니다. 남은 시간이 빠르게 줄죠.</td>
+        </tr>
+        <tr>
+          <td class="c-id">S4<br><span style="font-weight:600;color:#43485a">원장</span></td>
+          <td class="c-time">20–30</td>
+          <td><span class="scr doc">원장</span></td>
+          <td>원장 정면 토킹헤드 + 187 로고<br>자막 <span class="cap2">시기가 결과를 좌우합니다</span></td>
+          <td class="narr">성장 치료는 보통 3년 정도 꾸준히 필요합니다. 성장판이 닫히기 전에 시작해야 그 시간을 확보할 수 있습니다. 나이보다 중요한 건, 지금 정확히 확인하는 것입니다.</td>
+        </tr>
+        <tr>
+          <td class="c-id">S5<br><span style="font-weight:600;color:#43485a">CTA</span></td>
+          <td class="c-time">30–35</td>
+          <td><span class="scr cta">카드</span></td>
+          <td>187growup 로고 + <span class="cap2">우리 아이 예측키, 지금 확인</span> + dr187growup.com<br><small style="color:#6b7280">하단 상시 고지: ※예측키는 통계 추정치·의학적 진단 아님</small></td>
+          <td class="narr">우리 아이에게 남은 시간, 예측키부터 확인해 보세요.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 4. 핵심 시각장치 -->
+  <section>
+    <h2><span class="no">4</span> 핵심 시각장치 (데이터 3종)</h2>
+    <div class="mgrid">
+      <div class="mg">
+        <div class="h"><b>📊</b> 40% 바 (S2 앞)</div>
+        <div class="gauge"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><rect x="6" y="22" width="120" height="16" rx="4" fill="#667eea"/><rect x="126" y="22" width="60" height="16" rx="4" fill="#cbd5e1"/><text x="66" y="18" font-size="9" fill="#667eea" text-anchor="middle" font-weight="800">사춘기 前 · 40%</text><text x="156" y="18" font-size="8" fill="#94a3b8" text-anchor="middle">사춘기 15~20%</text></svg></div>
+        <p>성인 키의 대부분은 사춘기 전에 만들어짐 — 사춘기는 마지막 조각.</p>
+      </div>
+      <div class="mg">
+        <div class="h"><b>🎯</b> 골든타임 range 카드 (S2)</div>
+        <p style="margin:6px 0"><b>👧 여아 약 9~11세</b> · <b>👦 남아 약 11~14세</b></p>
+        <p>나이를 딱 안 박고 <b>range</b>로 — 부모가 "우리 앤 지났네" 좌절 방지. "약" 표기 필수.</p>
+      </div>
+      <div class="mg">
+        <div class="h"><b>⏳</b> 성장판 게이지 (S3, 시그니처)</div>
+        <div class="gauge"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><polyline points="6,20 90,22 120,30 150,46 186,54" fill="none" stroke="#E0568A" stroke-width="4" stroke-linecap="round"/><line x1="120" y1="8" x2="120" y2="58" stroke="#94a3b8" stroke-dasharray="3 3"/><text x="120" y="7" font-size="8" fill="#6b7280" text-anchor="middle">사춘기</text><circle cx="186" cy="54" r="4" fill="#E0568A"/><text x="176" y="50" font-size="8" fill="#6b7280" text-anchor="end">약 18세 닫힘</text></svg></div>
+        <p>18세까지 열림 → 사춘기 후 <b>빠르게</b> 하강 → 닫힘. 이 영상의 시그니처 그래픽.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 썸네일 -->
+  <section>
+    <h2><span class="no">5</span> 썸네일</h2>
+    <div class="thumbwrap">
+      <div class="thumb">
+        <div class="kicker"><b>부모 착각 TOP1</b></div>
+        <div class="q">중학교 가면<br>크겠지<span class="x">?</span></div>
+        <div class="sub">성장판은 18세에 닫힙니다</div>
+        <div class="logo">187 GROWUP</div>
+      </div>
+      <ul>
+        <li>얼굴 없음(기존 썸네일 규칙) — 아이 실루엣/성장 그래프 배경.</li>
+        <li>거대 텍스트 "중학교 가면 크겠지<span style="color:#c0392b">?</span>" (물음표 빨강) = 스크롤 정지 훅.</li>
+        <li>서브 "성장판은 18세에 닫힙니다" (골드) = 호기심/사실 충격.</li>
+        <li>하단 187 GROWUP 로고 고정.</li>
+        <li><b>대안 훅</b>(A/B 테스트용): "우리 아이 키의 <b>40%</b>가 언제 정해질까요?" (숫자+질문형).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 의료광고법 -->
+  <section>
+    <h2><span class="no">6</span> 의료광고법(M02) 체크</h2>
+    <div class="warn">
+      <h3>발행 전 필수 확인</h3>
+      <ul>
+        <li><span class="ok">✔ 반영</span> 공포·단정 문구 제거 — "이미 늦었다"·"기다림이 가장 위험" → "골든타임은 그 전"·"시기가 결과를 좌우".</li>
+        <li><span class="ok">✔ 반영</span> "무료" 삭제 — "예측키 <s>무료</s> 지금 확인".</li>
+        <li><span class="ok">✔ 반영</span> "약/무렵" 표기 — 여 <b>약</b> 9~11 · 남 <b>약</b> 11~14 · 성장판 <b>약</b> 18세.</li>
+        <li><span class="ok">✔ 반영</span> 하단 상시 고지 — "※예측키는 통계 기반 추정치이며 의학적 진단이 아닙니다".</li>
+        <li><b style="color:#c0392b">⚠ 잔여 리스크</b> — S4 "성장 치료 보통 3년"은 효과 암시로 심의에서 걸릴 수 있음(리뷰어 지적). <b>원안 유지 결정</b> — 발행 전 M02 스킬 재검 + 하단 고지로 방어. 걸리면 "관리에 충분한 시간이 필요합니다"로 완곡화.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. 제작 매핑 -->
+  <section>
+    <h2><span class="no">7</span> 제작 매핑 (기존 파이프라인)</h2>
+    <div class="pipe">
+      <div class="pi"><div class="t">🎬 S4 원장 컷</div><p><code>PresenterShort</code> — MainClip clean.mp4 정면 토킹 구간 베이스 + 원장 클론 TTS 재립싱크. RVM 매팅 X(라운드 카드).</p></div>
+      <div class="pi"><div class="t">✨ S1·S2·S3·S5 모션</div><p>Remotion 모션 컴포지션(신규). 성장판 게이지가 시그니처 — SVG 애니. 40% 바 · range 카드.</p></div>
+      <div class="pi"><div class="t">🔊 나레이션</div><p>원장 클론 음성 통일(합니다체·"-입니다"). ElevenLabs → 무음 트림.</p></div>
+      <div class="pi"><div class="t">🎞 렌더</div><p>이 머신 <code>renderMedia</code> 버그 → <code>renderFrames</code>+ffmpeg mux 우회(오디오도 이 단계). BGM bg1.mp3 덕킹.</p></div>
+      <div class="pi"><div class="t">🌐 언어</div><p>ko 먼저. 6언어 확장은 자막·TTS 교체(다른 릴과 동일).</p></div>
+      <div class="pi"><div class="t">📦 온보딩</div><p>신규 토픽 — 스토리보드 spec(JSON)으로 확정 후 제작. 마케팅 콘텐츠 번호 or 커스텀 배정.</p></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    187 성장클리닉 · 쇼츠 기획서 · 키 성장 골든타임(전환형) · 2026-07-09 확정 · 근거=원장 저서 RAG · 리뷰어 검토 반영본
+  </div>
+</div>
+</body>
+</html>
