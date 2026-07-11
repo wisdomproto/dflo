@@ -53,18 +53,29 @@ export function renderPost({ post, template, locale, messenger, seoHead }) {
   return render(template, data);
 }
 
+// 조립된 본문에서 첫 이미지 src 추출(카드 썸네일용). 없으면 '' → 템플릿이 브랜드 그라데이션 fallback.
+function firstImageSrc(html) {
+  const m = /<img[^>]+src=["']([^"']+)["']/i.exec(html || '');
+  return m ? m[1] : '';
+}
+
 export function renderIndex({ posts, template, locale, seoHead }) {
   const data = {
     ...locale,
     seo_head: seoHead,
     lang: locale.meta.lang,
-    posts: posts.map((p) => ({
-      lang: locale.meta.lang,
-      slug: p.slug,
-      title: p.title,
-      meta_description: p.meta_description || '',
-      published_at_display: formatDate(p.published_at, locale.meta.lang),
-    })),
+    posts: posts.map((p) => {
+      const thumb = firstImageSrc(p.body_html);
+      return {
+        lang: locale.meta.lang,
+        slug: p.slug,
+        title: p.title,
+        meta_description: p.meta_description || '',
+        published_at_display: formatDate(p.published_at, locale.meta.lang),
+        // {{#if}} 미지원 미니 렌더러 → 인라인 style 문자열로 분기. 있으면 이미지가 그라데이션을 덮음.
+        thumb_style: thumb ? `background-image:url('${thumb}')` : '',
+      };
+    }),
   };
   return render(template, data);
 }
