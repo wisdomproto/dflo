@@ -63,7 +63,7 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 ```
 
 ### CTA 라우팅 + GA4
-모든 메신저 버튼은 `messenger.yml`만 참조 (URL/라벨/색상). 5개 인라인 CTA(`case-cta-inline` × obesity/precocious/proportion/bodywork/late)는 `data-source="case_{section}"`. `_shell.js`의 `trackConsultClick`이 `data-source` 가진 모든 `<a>` 클릭 시 GA4 `consult_click` 이벤트 발사 (channel/locale/source/page_type 디멘션).
+모든 메신저 버튼은 `messenger.yml`만 참조 (URL/라벨/색상). `_shell.js`의 `trackConsultClick`이 `data-source` 가진 모든 `<a>` 클릭 시 GA4 `consult_click` 이벤트 발사 (channel/locale/source/page_type 디멘션). **(2026-07-11) 메인(index) 섹션 사이 인라인 CTA 7개 전부 제거** — 예상키측정(check) + hormone_consult + 5개 케이스 상담(`case-cta-inline` × precocious/obesity/proportion/bodywork/late, `data-source="case_{section}"`)이 섹션마다 반복돼 "정신없다" 피드백 → 삭제(콘텐츠 흐름 정리). `.case-cta-inline` CSS 정의만 dead 로 잔존(롤백 용이). 전 언어 공통(템플릿 편집). **유지**: 신뢰 티저 '병원 소개 →', 페이지 하단 종결 CTA(`cta-bottom` 측정+상담 `data-source=cta_bottom`), 하단 네비 바(측정·예약). 측정·상담 진입은 이 셋으로 커버. GA4 는 case_* 인라인 소스가 빠지고 `cta_bottom`·네비바만 잡힘.
 
 ### 예약(콜백) 신청 — 저마찰 리드 캡처 (2026-07-08, 한글 전용)
 카톡 채팅을 여는 마찰 없이 **이름·전화만 남기면 병원이 연락**하는 콜백 동선(카톡 상담과 병행). **한글(ko) 전용** — `_shell.js` 가 `__I18N__.locale==='ko'` 일 때만 렌더(`__I18N__` 없는 blog-index 등엔 미노출).
