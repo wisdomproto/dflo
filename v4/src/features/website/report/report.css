@@ -364,6 +364,41 @@
   margin-bottom: 2px;
   font-size: 11.5px;
 }
+.growth-report .sig-blog {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.growth-report .sig-blog:hover {
+  border-color: var(--p1);
+  background: var(--soft);
+  box-shadow: 0 3px 10px rgba(90, 70, 150, .08);
+}
+.growth-report .sig-blog .ico { font-size: 15px; flex-shrink: 0; }
+.growth-report .sig-blog .txt {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.42;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.growth-report .sig-blog .arr {
+  flex-shrink: 0;
+  color: var(--p1);
+  font-weight: 800;
+  font-size: 13px;
+}
 .growth-report .ytbtn {
   display: inline-flex;
   align-items: center;

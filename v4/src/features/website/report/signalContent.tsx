@@ -7,11 +7,13 @@ export interface SignalBlock {
   src: ReactNode; // 근거 line inner (contains pmid <a>)
   help: ReactNode; // 🏥 병원에서는 … inner (may contain <b>)
   youtube?: { label: string; url: string }[];
+  blog?: { slug: string; title: string }; // 관련 블로그 글(ko, /ko/blog/{slug}/)
 }
 
 export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
   sleep: {
     title: '😴 수면 부족',
+    blog: { slug: 'growth-hormone-secretion-time-sleep-myth', title: '성장호르몬 분비 시간의 진실 — 밤 10시 신화 해부' },
     body: (
       <>
         성장호르몬은 하루 분비량의 상당 부분이 <b>깊은 잠(서파수면) 중 박동성으로</b> 분비됩니다.
@@ -42,6 +44,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   inflammation: {
     title: '🤧 만성 비염·알러지',
+    blog: { slug: 'allergy-chronic-inflammation-growth-obstruction', title: '알레르기·만성염증이 키 성장을 막는 숨은 이유' },
     body: (
       <>
         염증이 오래 지속되면 <b>성장에 쓸 에너지가 염증 대응에 소모</b>되어 키 성장으로 갈 에너지가
@@ -71,6 +74,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   nutrition: {
     title: '🥩 영양 불균형',
+    blog: { slug: 'height-growth-diet-nutrients-guide', title: '키 성장 식단 영양소 완벽 가이드 — 먹어야 vs 피해야' },
     body: (
       <>
         키와 근육이 자라려면 <b>단백질·칼슘·아연·비타민D</b>가 충분해야 하며, 이 영양소가 IGF-1
@@ -110,6 +114,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   exercise: {
     title: '🏃 운동 부족',
+    blog: { slug: 'age-specific-height-growth-exercises-guide', title: '나이별 키 크는 운동 완벽 가이드' },
     body: (
       <>
         <b>줄넘기·농구·배구처럼 점프 동작이 많은 운동</b>은 성장판을 효과적으로 자극합니다. 오래
@@ -142,6 +147,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   puberty: {
     title: '⏳ 사춘기 진행 중',
+    blog: { slug: 'precocious-puberty-height-growth-plate-early-closure', title: '성조숙증이 최종 키를 줄이는 이유 — 성장판 조기폐쇄' },
     body: (
       <>
         사춘기가 시작되면 성장 속도가 빨라졌다가{' '}
@@ -172,6 +178,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   genetics: {
     title: '🧬 유전 잠재 범위',
+    blog: { slug: 'height-growth-genetics-environment-ratio', title: '키 성장 유전 vs 환경 — 80대 20의 진짜 의미' },
     body: (
       <>
         키는 유전 영향이 크지만(약 70~80%), 유전은 <b>&apos;하나의 점&apos;이 아니라 &apos;범위&apos;</b>를
@@ -202,6 +209,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   obesity: {
     title: '⚖️ 과체중·비만',
+    blog: { slug: 'childhood-obesity-precocious-puberty-growth', title: '소아비만과 성조숙증 — 일찍 크고 일찍 멈추는 역설' },
     body: (
       <>
         지방조직은 렙틴·에스트로겐을 높여 <b>사춘기를 앞당기는 경향</b>이 있으며, 이른 사춘기는
@@ -232,6 +240,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   growthVelocity: {
     title: '📉 성장 속도 저하',
+    blog: { slug: 'thyroid-disorder-child-growth-effects', title: '갑상선 이상 성장 영향 — 부모가 놓치기 쉬운 신호' },
     body: (
       <>
         학령기의 정상 성장 속도는 대략 <b>연 5~6cm</b>입니다. 지속적으로 연 4cm 미만으로 자란다면
@@ -261,6 +270,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   sga: {
     title: '👶 저출생·조산 (SGA)',
+    blog: { slug: 'low-birth-weight-catch-up-growth-guide', title: '저체중 출생아 따라잡기 성장 — 시기·조건 완전 정리' },
     body: (
       <>
         작게 태어난 아이의 일부는 <b>만 2~4세까지 또래 평균을 따라잡지 못하고</b> 저신장이 이어질 수
@@ -290,6 +300,7 @@ export const SIGNAL_CONTENT: Record<BlockId, SignalBlock> = {
 
   stress: {
     title: '😔 스트레스',
+    blog: { slug: 'stress-growth-inhibition-cortisol-growth-hormone', title: '스트레스가 키를 막는 과학 — 코르티솔의 작용' },
     body: (
       <>
         만성적인 스트레스는 <b>성장호르몬 분비를 방해</b>합니다. 과도한 학업 부담·수면 부족·정서적

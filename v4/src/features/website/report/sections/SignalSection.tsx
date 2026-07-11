@@ -41,6 +41,18 @@ export function SignalSection({ m, survey }: { m: ReportMeasurement; survey: Rep
               <span className="h">🏥 병원에서는</span>
               {c.help}
             </div>
+            {c.blog && (
+              <a
+                className="sig-blog"
+                href={`/ko/blog/${c.blog.slug}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="ico">📖</span>
+                <span className="txt">{c.blog.title}</span>
+                <span className="arr">→</span>
+              </a>
+            )}
           </div>
         );
       })}
