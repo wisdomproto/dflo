@@ -190,15 +190,11 @@ const SHELL_HTML = `
 ${__IS_KO ? `
   <div class="t-resv" id="tResv" role="dialog" aria-modal="true" aria-label="예약 신청" hidden>
     <div class="t-resv-sheet">
-      <header class="t-resv-head">
-        <button type="button" class="t-resv-icon" data-resv-close aria-label="뒤로">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      <div class="t-resv-bar">
+        <button type="button" class="t-resv-close" data-resv-close aria-label="닫기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
         </button>
-        <span class="t-resv-title">예약 신청</span>
-        <a class="t-resv-icon" href="${__HOME_HREF}" aria-label="홈">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
-        </a>
-      </header>
+      </div>
 
       <div class="t-resv-body">
         <div class="t-resv-view" data-resv-view="form">
@@ -422,18 +418,23 @@ ${__IS_KO ? `
       gtag('event', 'page_view', { page_title: '예약 신청', page_location: location.origin + '/reservation', page_path: '/reservation' });
       gtag('event', 'reservation_open', { locale: 'ko', source: source || 'unknown' });
     }
+    function setResvNavActive(on) {
+      document.querySelectorAll('[data-open-reservation]').forEach((b) => b.classList.toggle('active', on));
+    }
     function openResv(source) {
       if (!resv) return;
       resetResvView();
       resv.hidden = false;
       requestAnimationFrame(() => resv.classList.add('is-open'));
       document.body.style.overflow = 'hidden';
+      setResvNavActive(true);
       trackResvOpen(source);
     }
     function closeResv() {
       if (!resv) return;
       resv.classList.remove('is-open');
       document.body.style.overflow = '';
+      setResvNavActive(false);
       setTimeout(() => { resv.hidden = true; }, 200);
     }
 
