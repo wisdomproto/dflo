@@ -188,19 +188,8 @@ body { background: var(--shell-page-bg) !important; }
   opacity: 1;
 }
 
-/* 예상키 측정 탭 — 항상 보라 강조 (CTA 역할). 마지막 자식이라 우측 모서리 자동 둥글림. */
-.t-bottom-nav a.t-nav-highlight {
-  color: #fff;
-  background: var(--shell-brand);
-  font-weight: 700;
-}
-.t-bottom-nav a.t-nav-highlight .icon {
-  opacity: 1;
-}
-.t-bottom-nav a.t-nav-highlight.active {
-  background: var(--shell-brand-deep);
-  color: #fff;
-}
+/* 예상키 측정 탭 — 강조 제거, 다른 탭과 동일한 기본 스타일 사용
+   (하단 바 강조는 예약하기 노랑 하나로 위계 단순화). */
 
 /* ============= HEADER KAKAO PILL ============= */
 .t-header-actions {
@@ -377,19 +366,19 @@ body { background: var(--shell-page-bg) !important; }
 @media (min-width: 768px) {
   /* 데스크톱에서도 꽉 채운 플랫 유지 (위 768 미디어쿼리의 max-width:560 무력화) */
   .t-bottom-nav--full { max-width: none; height: 66px; bottom: 0; border-radius: 0; }
+  /* 데스크톱 하단 바 높이(66px)에 맞춰 예약 시트 하단 여백도 조정 */
+  .t-resv { bottom: 66px; }
 }
-/* 예약하기 탭 — 카톡 톤 강조(측정=보라와 구분). 우측 끝 자식이라 모서리 자동 처리 */
-.t-nav-reserve {
-  color: #3C1E1E !important;
-  background: var(--shell-kakao);
-  font-weight: 700;
-}
-.t-nav-reserve .icon { opacity: 1 !important; }
+/* 예약하기 탭 — 강조 없이 다른 탭과 동일한 차분한 기본 톤 사용
+   (노랑 배경 제거, 하단 바 5칸 색 통일). */
 
 /* ===== 예약 전체화면 시트 ===== */
 .t-resv {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: calc(60px + env(safe-area-inset-bottom)); /* 하단 네비 바 자리를 비워 계속 보이게 */
   z-index: 120;
   background: #fff;
   display: flex;
@@ -407,7 +396,7 @@ body { background: var(--shell-page-bg) !important; }
   display: flex;
   flex-direction: column;
   background: #fff;
-  height: 100dvh;
+  height: 100%;
 }
 .t-resv-head {
   position: sticky;
