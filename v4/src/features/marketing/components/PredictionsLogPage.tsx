@@ -70,12 +70,29 @@ export default function PredictionsLogPage() {
     if (!rows) return null;
     const byCountry: Record<string, number> = {};
     let male = 0, female = 0, sumPred = 0, nPred = 0;
+    // 남/녀 따로 — 만나이·예측키 합계와 표본수
+    const g = {
+      male: { sumAge: 0, nAge: 0, sumPred: 0, nPred: 0 },
+      female: { sumAge: 0, nAge: 0, sumPred: 0, nPred: 0 },
+    };
     for (const r of rows) {
       if (r.country) byCountry[r.country] = (byCountry[r.country] ?? 0) + 1;
       if (r.gender === 'male') male++; else if (r.gender === 'female') female++;
       if (r.predicted_height != null) { sumPred += Number(r.predicted_height); nPred++; }
+      const gb = r.gender === 'male' ? g.male : r.gender === 'female' ? g.female : null;
+      if (gb) {
+        if (r.age_years != null) { gb.sumAge += Number(r.age_years); gb.nAge++; }
+        if (r.predicted_height != null) { gb.sumPred += Number(r.predicted_height); gb.nPred++; }
+      }
     }
-    return { total: rows.length, byCountry, male, female, avgPred: nPred ? sumPred / nPred : 0 };
+    const avg = (sum: number, n: number) => (n ? sum / n : null);
+    return {
+      total: rows.length, byCountry, male, female, avgPred: nPred ? sumPred / nPred : 0,
+      maleAvgAge: avg(g.male.sumAge, g.male.nAge),
+      femaleAvgAge: avg(g.female.sumAge, g.female.nAge),
+      maleAvgPred: avg(g.male.sumPred, g.male.nPred),
+      femaleAvgPred: avg(g.female.sumPred, g.female.nPred),
+    };
   }, [rows]);
 
   return (
@@ -158,6 +175,10 @@ export default function PredictionsLogPage() {
                 <Stat label="남 / 여" value={`${stats.male} / ${stats.female}`} />
                 <Stat label="평균 예측키" value={stats.avgPred ? `${stats.avgPred.toFixed(1)}cm` : '-'} />
                 <Stat label="국가 분포" value={Object.entries(stats.byCountry).map(([k, v]) => `${k} ${v}`).join(' · ') || '-'} />
+                <Stat label="평균 만나이 (남)" value={stats.maleAvgAge != null ? `${stats.maleAvgAge.toFixed(1)}세` : '-'} />
+                <Stat label="평균 만나이 (여)" value={stats.femaleAvgAge != null ? `${stats.femaleAvgAge.toFixed(1)}세` : '-'} />
+                <Stat label="평균 예측키 (남)" value={stats.maleAvgPred != null ? `${stats.maleAvgPred.toFixed(1)}cm` : '-'} />
+                <Stat label="평균 예측키 (여)" value={stats.femaleAvgPred != null ? `${stats.femaleAvgPred.toFixed(1)}cm` : '-'} />
               </div>
 
               <div className="overflow-x-auto rounded-lg border border-gray-200">
