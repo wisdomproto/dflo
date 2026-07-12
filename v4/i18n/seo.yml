@@ -48,7 +48,7 @@ vi:
 
 en:
   title: "187 Growth Clinic | Free Adult-Height Prediction"
-  description: "Integrated growth care covering puberty, sleep, weight, and posture. Free adult-height prediction + 1:1 KakaoTalk consultation at Yonsei Saebom 187 Growth Clinic."
+  description: "Integrated growth care covering puberty, sleep, weight, and posture. Free adult-height prediction + 1:1 WhatsApp consultation at Yonsei Saebom 187 Growth Clinic."
   og_image: "/og/og-en.jpg"
   faq:
     - q: "From what age can a child get a growth assessment?"
@@ -60,4 +60,4 @@ en:
     - q: "Why does precocious puberty need to be managed?"
       a: "Puberty more than a year ahead of peers can close the growth plates early and lead to a shorter final adult height."
     - q: "Is a remote consultation available?"
-      a: "First-touch consultations are available on KakaoTalk. Detailed assessment and treatment require an in-person visit."
+      a: "First-touch consultations are available on WhatsApp. Detailed assessment and treatment require an in-person visit."

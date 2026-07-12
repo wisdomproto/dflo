@@ -438,6 +438,7 @@ clinic:
     h1_sr: "About Director Chae Yong-hyun"
     portrait_alt: "Director Chae Yong-hyun"
     name: "Chae Yong-hyun"
+    name_suffix: ""
     title: "Director"
     quote_line1: "We see your child's height growth through an integrated hormonal lens."
     quote_line2: "We'll be with you, drawing on 10 years of clinical experience."
@@ -488,12 +489,12 @@ calculator:
 shell:
   aria:
     home: "Home"
-    kakao: "1:1 KakaoTalk consultation"
+    kakao: "1:1 WhatsApp consultation"
     share: "Share"
     menu: "Main menu"
     close: "Close"
   header:
-    kakao_label: "1:1 KakaoTalk"
+    kakao_label: "1:1 WhatsApp"
   nav:
     programs: "Programs"
     clinic: "Clinic"
@@ -517,7 +518,7 @@ shell:
     percentile_top: "Top"
     note_label: "Note:"
     note_body: "A statistical estimate based on WHO/KDCA standard growth charts. Actual growth depends on nutrition, sleep, exercise, and other environmental factors."
-    kakao_cta: "💬 Get a 1:1 KakaoTalk consultation"
+    kakao_cta: "💬 Get a 1:1 WhatsApp consultation"
     reset: "Measure again"
     interpret_high: "✅ Likely to grow above the peer average — keep up the current pace."
     interpret_mid: "🔍 Around the peer average. Better lifestyle care can lift the outcome further."
