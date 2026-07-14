@@ -62,6 +62,8 @@ import { CalcDemoTH, CALC_DEMO_TH_DURATION } from "./ads/CalcDemoTH";
 import { CalcDemoKR, CALC_DEMO_KR_DURATION } from "./ads/CalcDemoKR";
 import { CaseStoryReel, CASE_STORY_DURATION } from "./casestory/CaseStoryReel";
 import { ShortRepurpose, repurposeDuration, repurposeMetadata } from "./repurpose/ShortRepurpose";
+import { PurpleRepurpose, purpleMetadata } from "./repurpose/PurpleRepurpose";
+import { PurpleRepurposeEN, purpleEnMetadata } from "./repurpose/PurpleRepurposeEN";
 
 // Total: 90 + 150 + 390 + 150 - (3 * 15) = 735 frames ≈ 24.5 seconds
 const TOTAL_DURATION = 90 + 150 + 390 + 150 - 3 * 15;
@@ -79,6 +81,26 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{ videoSrc: "videos/repurpose-src.mp4", videoSec: 48.501, url: "dr187growup.com", outroLine: "우리 아이 예측키\n지금 무료로 측정" }}
         // 영상별 길이 자동: 배치 렌더가 --props 로 넘긴 videoSec 에서 본편+아웃트로 프레임 산출
         calculateMetadata={repurposeMetadata}
+      />
+      <Composition
+        id="purple-repurpose"
+        component={PurpleRepurpose}
+        durationInFrames={Math.round(46 * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ videoSrc: "videos/repurpose-src.mp4", videoSec: 46, kicker: "이 시기를 놓치면", title: "7cm가 사라집니다", url: "dr187growup.com" }}
+        calculateMetadata={purpleMetadata}
+      />
+      <Composition
+        id="purple-repurpose-en"
+        component={PurpleRepurposeEN}
+        durationInFrames={Math.round(46 * 30)}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ videoSrc: "videos/repurpose-src.mp4", videoSec: 46, kicker: "Miss this window", title: "and lose 7cm", audioSrc: "", subs: [] as { start: number; end: number; en: string; zh: string }[] }}
+        calculateMetadata={purpleEnMetadata}
       />
       <Composition
         id="HeightReels"
