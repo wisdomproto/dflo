@@ -12,6 +12,13 @@
 
 **⚠️ 이 작업의 성질:** 틀리면 시끄럽게 죽지 않는다. 계산기는 조용히 한국어가 되고, 픽셀은 조용히 한국 광고 픽셀을 쏘고, 분석은 조용히 한국어 수치에 합산되고, hreflang 은 조용히 `undefined` 가 된다. **"에러 없음"을 통과 신호로 쓰지 말 것.** 매 task 의 검증은 "값이 맞나"를 본다.
 
+## 🚧 시작 전 필요한 사용자 결정 (Task 14 가 여기서 막힌다)
+
+**간체(`zh-hans`) 사용자의 국적을 무엇으로 기록할 것인가?** `anonymousName.ts` 가 익명 예측을 DB 에 쓸 때
+국가 코드를 하나 박는데(`insert 시점에 굳어 영구`), **간체 타겟이 본토가 아니라서**(동남아·미국 화교)
+`CN` 이 맞지 않는다. 후보: ① `CN` 으로 두고 언어 컬럼으로 구분 ② `TW`/`CN` 대신 중립 코드 ③ 번체만 `TW`,
+간체는 미지정. **실행 시작 전에 답이 필요하다** — 안 정하면 Task 14 에서 멈춘다.
+
 ---
 
 ## Chunk 1: 안전망 먼저 (중복 제거 + 커버리지 테스트)
@@ -23,8 +30,11 @@
 `sitemap.mjs:1-3` 이 `ORIGIN`·`PATH_PREFIX`·`HREFLANG_MAP` 을 `seo.mjs:10,11,17` 에서 **복사**해 갖고 있다. 값은 지금 동일하지만 대조하는 장치가 없다. 언어를 추가하면 여기가 먼저 터진다.
 
 **Files:**
-- Modify: `v4/scripts/lib/sitemap.mjs:1-3`
+- Modify: `v4/scripts/lib/sitemap.mjs:1-3` · `v4/scripts/lib/jsonld.mjs:9-10`
 - Test: `v4/scripts/test/sitemap.test.mjs` (기존)
+
+★`jsonld.mjs:9-10` 도 `ORIGIN`·`PATH_PREFIX` 를 복제한 **세 번째 사본**이다(`HREFLANG_MAP` 은 없어서
+언어 추가엔 안 걸리지만, `SITE_PATH_PREFIX` 드리프트 논리는 똑같이 적용된다). 같은 줄을 건드리는 김에 끝낸다.
 
 - [ ] **Step 1: 현재 테스트가 통과하는지 먼저 확인 (기준선)**
 
@@ -338,8 +348,11 @@ ls zh-hant zh-hans
 ```
 ★리졸버(`program-img.mjs:8`)가 `{lang}/{slug}/{file}` 를 먼저 보고 없으면 `_common`(한국어 원본)으로 폴백한다 → **복사만으로 한글 원본을 덮는다. 코드 변경 0.** 하이픈 언어코드도 안전(슬러그 정규식 `[a-z0-9-]+` 는 slug 만 잡는다).
 
-- [ ] **Step 2: OG 이미지 2종** — 기존 `og/en.jpg` 제작 방식 재사용(1200×630).
-- [ ] **Step 3: 로고 — 작업 없음.** `build-i18n.mjs:145`·`_shell.js:101` 이 `lang !== 'ko'` 분기라 중국어도 자동으로 `-en` 자산을 쓴다(`logo_en.png`·`saebom-logo-en.png`·`logo-187-inline-en.png` 셋 다 존재).
+- [ ] **Step 2: OG 이미지 2종** — 기존 `og/en.jpg` 제작 방식 재사용(1200×630). ★`buildHead`(`seo.mjs:155`)가
+  존재 확인 없이 참조하므로 **파일이 없으면 깨진 OG 로 배포된다**(빌드는 통과). Task 9 에서 존재 확인.
+- [ ] **Step 3: 로고 — 작업 없음.** 두 곳 다 `lang !== 'ko'` 분기라 중국어가 자동으로 `-en` 자산을 쓴다:
+  `_shell.js:101` 은 `logo.jpg → logo_en.png` 만, `build-i18n.mjs:146-148` 은 거기에
+  `saebom-logo-en.png`·`logo-187-inline-en.png` 까지. 셋 다 이미 존재(th/vi/en 이 쓰고 있다).
 - [ ] **Step 4:** 커밋 `feat(i18n): Chinese program images (reuse en) and OG cards`
 
 ---
@@ -359,43 +372,78 @@ cd v4 && npm run build:i18n
 ```
 Expected: 경고 없이 완료. `public/zh-hant/`, `public/zh-hans/` 생성.
 
-- [ ] **Step 3: ★hreflang 전수 검사 — 값과 타겟 둘 다**
+- [ ] **Step 3: ★hreflang·sitemap 전수 검사 — 값과 타겟 둘 다**
+
+★**bash 로 실행할 것**(이 저장소 기본 셸은 PowerShell 인데 `\"`·`\$` 처리가 달라 깨진다).
+이 스크립트는 `v4/scripts/audit-hreflang.mjs` 로 **파일로 만들어 커밋**한다 — Task 19 에서 또 쓰고, 앞으로 언어를 추가할 때마다 쓴다.
+
+```js
+// v4/scripts/audit-hreflang.mjs
+// 빌드 산출물의 hreflang(HTML) + sitemap alternate 를 전수 검사한다.
+// ★우리 호스팅은 없는 경로를 404 가 아니라 200 + 한국어 SPA 셸로 준다(soft-404) →
+//   브라우저로 열어 "되네" 하면 절대 못 잡는다. 파일 존재로만 판정한다.
+import fs from 'node:fs';
+import path from 'node:path';
+import { ACTIVE_LANGS, ORIGIN, PATH_PREFIX } from './lib/seo.mjs';
+
+const PUB = 'public';
+const walk = (d) => fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true })
+  .flatMap((e) => e.isDirectory() ? walk(path.join(d, e.name)) : (e.name.endsWith('.html') ? [path.join(d, e.name)] : [])) : [];
+
+const toFile = (urlPath) => {
+  const p = path.join(PUB, urlPath.replace(PATH_PREFIX, ''));
+  return p.endsWith('/') ? p + 'index.html' : p;
+};
+
+let total = 0, undef = 0, dangling = 0;
+const check = (src, hreflang, href) => {
+  total++;
+  if (!hreflang || hreflang === 'undefined') { undef++; console.log('undefined:', src); return; }
+  const target = toFile(href.replace(ORIGIN, ''));
+  if (!fs.existsSync(target)) { dangling++; if (dangling < 5) console.log('허공:', src, '->', href); }
+};
+
+// 1) HTML 의 <link rel="alternate">
+for (const f of ACTIVE_LANGS.flatMap((l) => walk(path.join(PUB, l)))) {
+  const html = fs.readFileSync(f, 'utf8');
+  for (const m of html.matchAll(/hreflang="([^"]*)"\s+href="([^"]+)"/g)) check(f, m[1], m[2]);
+}
+// 2) sitemap.xml 의 <xhtml:link rel="alternate"> — 여기가 ~1300개다. HTML 만 보면 통째로 놓친다.
+const sm = fs.readFileSync(path.join(PUB, 'sitemap.xml'), 'utf8');
+for (const m of sm.matchAll(/hreflang="([^"]*)"\s+href="([^"]+)"/g)) check('sitemap.xml', m[1], m[2]);
+
+const locs = (sm.match(/<loc>/g) || []).length;
+console.log(`hreflang 총 ${total} | undefined ${undef} | 허공 ${dangling} | sitemap <loc> ${locs}`);
+
+// ★검사가 아무것도 못 찾고 "0 0 0" 으로 통과하는 게 최악이다 — 바닥을 깐다.
+if (total < 1000) throw new Error(`검사 대상이 ${total}개뿐 — 정규식이나 경로가 깨졌다(정상은 1300+)`);
+if (undef || dangling) throw new Error(`undefined ${undef} · 허공 ${dangling}`);
+console.log('OK');
+```
 
 ```bash
-cd v4 && node -e "
-const fs=require('fs'), path=require('path');
-const walk=(d)=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(d,e.name)):(e.name.endsWith('.html')?[path.join(d,e.name)]:[]));
-const files=['ko','th','vi','en','zh-hant','zh-hans'].flatMap(l=>walk('public/'+l));
-let bad=0, undef=0, total=0;
-for(const f of files){
-  const html=fs.readFileSync(f,'utf8');
-  for(const m of html.matchAll(/hreflang=\"([^\"]+)\" href=\"https:\/\/www\.dr187growup\.com([^\"]+)\"/g)){
-    total++;
-    if(m[1]==='undefined'||!m[1]){ undef++; continue; }
-    const p='public'+m[2].replace(/\/\$/,'/index.html');
-    const target=p.endsWith('/')?p+'index.html':p;
-    if(!fs.existsSync(target)){ bad++; if(bad<4) console.log('허공:',f,'->',m[2]); }
-  }
-}
-console.log('hreflang 총',total,'| undefined',undef,'| 허공(파일없음)',bad);
-"
+cd v4 && node scripts/audit-hreflang.mjs
 ```
-Expected: **`undefined 0` · `허공 0`** — 둘 중 하나라도 0 이 아니면 멈추고 원인부터 찾는다.
-★우리 호스팅은 없는 경로를 404 가 아니라 **200 + 한국어 SPA 셸**로 준다(soft-404) → 브라우저로 열어서 "되네" 하면 못 잡는다. **파일 존재로만 판정.**
+Expected: `undefined 0 | 허공 0`, `OK`. **하나라도 0 이 아니면 멈추고 원인부터 찾는다.**
+★현재(중국어 전) 기준선은 **총 1309개**다. 이 숫자가 급감하면 검사가 깨진 것이지 좋아진 게 아니다.
 
 - [ ] **Step 4: sitemap 수 확인**
 
-```bash
-cd v4 && node -e "
-const s=require('fs').readFileSync('public/sitemap.xml','utf8');
-console.log('URL', (s.match(/<loc>/g)||[]).length, '| alternate undefined', (s.match(/hreflang=\"undefined\"/g)||[]).length);
-"
-```
-Expected: 블로그 발행 전이므로 `URL 275`(홈6+서브18+상담5+블로그인덱스4+글240+... 실제값 확인) · `undefined 0`.
-★블로그 120편 발행(Chunk 5) 후 **395** 가 된다.
+위 스크립트가 `sitemap <loc>` 를 같이 찍는다.
+Expected: 블로그 발행 전 **`273`** = 홈 6 + 서브페이지 18(3종×6) + 상담 5(th/vi/en/zh-hant/zh-hans) + 블로그인덱스 **4**(중국어는 글 0이라 `sitemap.mjs:45` 의 `blogSlugs[l]?.length` 조건에서 빠진다) + 글 240.
+★블로그 120편 발행(Chunk 5) 후 **395** 가 된다(홈6+서브18+상담5+인덱스6+글360).
 
-- [ ] **Step 5:** `cd v4 && npm test` → 통과 (테스트 수가 늘어난 ACTIVE_LANGS 를 자동 반영)
-- [ ] **Step 6:** 커밋 `feat(i18n): activate zh-hant/zh-hans`
+⚠️ **Step 2~4 사이에 `npm test` 를 돌리지 말 것** — `build-i18n.test.mjs:7` 이 **실제 빌드를 실행**하므로, Task 5~8 중 하나라도 빠졌으면 여기서 혼란스러운 실패가 난다. Step 5 에서 한 번에 돌린다.
+
+- [ ] **Step 5: OG 파일 존재 확인** (buildHead 가 무가드 참조라 빌드로는 안 잡힌다)
+
+```bash
+cd v4 && ls public/og/zh-hant.jpg public/og/zh-hans.jpg
+```
+
+- [ ] **Step 6:** `cd v4 && npm test` → 통과 (`seo.test.mjs` 가 늘어난 `ACTIVE_LANGS` 를 자동 반영)
+- [ ] **Step 7:** `git add` + 커밋 `feat(i18n): activate zh-hant/zh-hans`
+  ★이 커밋부터 `npm test` 가 중국어 자산 전부에 의존한다(`build-i18n.test.mjs:7` 이 실제 빌드를 돌린다).
 
 ---
 
@@ -472,30 +520,63 @@ const standard: GrowthStandard =
 
 ### Task 15: 🔴 `classifyCountry` — 한국어 수치 오염 차단
 
-**Files:** Modify `ai-server/src/services/ga4SiteBreakdown.ts:6,12-18,25` · `__tests__/siteBreakdown.test.mjs`
+**Files:** Modify `ai-server/src/services/ga4SiteBreakdown.ts:6,10,12-18,25,30-36,180-185` · `__tests__/siteBreakdown.test.mjs`
 
-- [ ] **Step 1: 실패 테스트** — `classifyCountry('/zh-hant/index.html')` 이 지금 `'ko'` 를 반환하는 것 고정
-- [ ] **Step 2:** `Country` 유니온에 2언어 추가 + 분기 추가. ★`return 'ko'` 폴백은 **루트(`/`)가 `/ko/` 301 이라 의도된 것**이니 유지하되, 중국어는 그 앞에서 잡는다.
-- [ ] **Step 3:** `:25` 의 메인페이지 정규식 `/^\/[a-z]{2}\/?(index\.html)?$/` → 하이픈 7글자를 받도록. **안 고치면 메인 카드가 과소집계**된다.
-- [ ] **Step 4:** `Record<CountryKey,…>` 리터럴(`:179,222,234,252`)은 **TS 컴파일 에러로 시끄럽게 잡힌다** — 유일하게 친절한 곳.
+🚨 **이 파일에서 TS 가 잡아주는 건 `Record<CountryKey,…>` 리터럴 4개(`:179,222,234,252`)뿐이다.**
+나머지 셋은 **컴파일 통과 + 조용히 오작동**한다. 넷 다 고쳐야 한다:
+
+| 위치 | 정체 | 안 고치면 |
+|---|---|---|
+| `:6` `Country` 유니온 | 타입 | (TS 가 잡음) |
+| **`:10` `LANG_KEYS`** | **평범한 배열** — 유니온 넓혀도 **강제 안 됨** | finalize 루프(`:265-287`)가 중국어 버킷을 건너뜀 → `returningUsers`·`avgEngagementSec`·`conversionRate`·`calcCompletionRate` 가 **0**, `channels`·`devices`·`geo`·`daily` 가 **빈 배열**. 에러 없음 |
+| `:12-18` `classifyCountry` | 분기 | 중국어가 **ko 에 합산** |
+| **`:30-36` `countryKeys()`** | `return []` 로 끝남 | 중국어 행이 **6개 rollup 전부에서 조용히 증발** |
+| `:25` 메인페이지 정규식 | 경로 매칭 | 메인 카드 과소집계 |
+
+- [ ] **Step 1: 실패 테스트 4개** — `classifyCountry('/zh-hant/index.html')` === `'zh-hant'` · `LANG_KEYS` 가 `Country` 를 전부 덮는지 · `countryKeys('zh-hant')` 가 빈 배열이 아닌지 · 중국어 행이 있는 픽스처로 `aggregateSiteBreakdown` 이 zh 버킷을 채우는지.
+- [ ] **Step 2:** `Country` 유니온 + `LANG_KEYS` + `countryKeys` + `classifyCountry` 분기 추가.
+  ★`return 'ko'` 폴백은 **루트(`/`)가 `/ko/` 301 이라 의도된 것**이니 유지하되, 중국어는 그 앞에서 잡는다.
+- [ ] **Step 3: `:25` 정규식은 명시 열거로 바꾼다**
+
+```ts
+// ❌ 하지 말 것: /^\/[a-z-]{2,7}\/?(index\.html)?$/ — /report, /blog, /guide 가 main 으로 오분류된다.
+if (pagePath === '/' || /^\/(ko|th|vi|en|zh-hant|zh-hans)\/?(index\.html)?$/.test(pagePath)) return 'main';
+```
+
+- [ ] **Step 4: `messengerChannel` 값 결정** — `:61` 이 `'kakao' | 'line' | 'mixed'` 라 **WhatsApp 이 없다**.
+  중국어 두 버킷의 `blankStats`(`:180-185`)에 넣을 값이 필요하다. ★`en` 도 2026-07-03 에 WhatsApp 으로
+  바뀌었는데 `:184` 는 아직 `blankStats('kakao')` 다(기존 드리프트). **유니온에 `'whatsapp'` 추가**하고
+  en·중국어를 함께 교정한다(범위 살짝 넘지만 같은 줄을 건드리므로 여기서 끝내는 게 맞다).
 - [ ] **Step 5:** `cd ai-server && npm run build && npm test` ★**build 먼저**(테스트가 `dist/` 를 잰다)
 - [ ] **Step 6:** 커밋
 
-### Task 16: GSC 언어 필터
+### Task 16: 마케팅 `CountryKey` + 탭 (★Task 17 보다 먼저)
+
+**순서 주의:** GSC 패널의 `TABS`(`SearchQueryPanel.tsx:10`)가 `CountryKey` 로 타입돼 있는데 그 타입의
+주인은 `marketingAnalyticsService.ts:34` 다. **이걸 먼저 넓히지 않으면 Task 17 의 `tsc` 가 실패한다.**
+
+**Files:** `v4/.../marketingAnalyticsService.ts:34` · `CountrySiteBreakdownPanel.tsx:15`
+
+- [ ] **Step 1:** `CountryKey` 에 `'zh-hant' | 'zh-hans'` 추가 + 국가 탭 2개(`繁體中文`/`简体中文`)
+- [ ] **Step 2:** `cd v4 && npx tsc -b --noEmit` → v4 오류 0
+- [ ] **Step 3:** 커밋
+
+### Task 17: GSC 언어 필터
 
 **Files:** Modify `ai-server/src/services/searchConsole.ts:41` · `routes/analytics.ts:10` · `v4/.../SearchQueryPanel.tsx:10`
 
 - [ ] **Step 1:** `SearchLang` 유니온 + `LANGS` 화이트리스트에 2언어. ★지금은 `zh-hant` 가 `'all'` 로 강등되고 **응답이 그 값을 echo** 해서 **전체 사이트 수치가 중국어로 라벨링**된다(200·success:true 라 티가 안 난다).
 - [ ] **Step 2:** `langFilter`(`:89`)는 문자열 보간이라 union 만 넓히면 동작 — 수정 불필요.
-- [ ] **Step 3:** UI 탭 2개 추가
+- [ ] **Step 3:** UI 탭 2개 추가(Task 16 에서 `CountryKey` 가 이미 넓어져 있어야 컴파일된다)
 - [ ] **Step 4:** 커밋
 
-### Task 17: 마케팅 탭
+### Task 17b: 치료사례 이름 음역
 
-**Files:** `marketingAnalyticsService.ts:34` `CountryKey` · `CountrySiteBreakdownPanel.tsx:15`
+**Files:** `v4/src/features/website/components/casesLabels.ts` `NAME_TRANSLIT`
 
-- [ ] **Step 1~2:** 탭 추가 + `npx tsc -b --noEmit`
-- [ ] **Step 3:** 커밋
+- [ ] **Step 1:** 환자 이름 중국어 음역 추가(예 성재 → 成宰). 미등록은 원본 폴백이라 graceful — 안 해도
+  안 깨지지만 한글 이름이 중국어 페이지에 그대로 노출된다.
+- [ ] **Step 2:** 커밋
 
 ---
 
@@ -519,11 +600,14 @@ const standard: GrowthStandard =
 ### Task 19: 최종 빌드 + 전수 검증
 
 - [ ] **Step 1:** `cd v4 && npm run build:i18n -- --refetch`
-- [ ] **Step 2: hreflang 전수 재검사** (Task 9 Step 3 스크립트 재사용) → **undefined 0 · 허공 0**
-  ★블로그는 **`article_id` 클러스터**로 hreflang 을 만든다(slug 가 언어마다 달라서). 중국어가 자동 편입되며 기존 240편의 hreflang 도 6언어로 넓어진다 — **그래서 이 검사는 240편까지 다시 본다.**
-- [ ] **Step 3: sitemap** → **URL 395** · undefined 0
-- [ ] **Step 4:** `cd v4 && npm test` · `cd ai-server && npm run build && npm test`
-- [ ] **Step 5:** 커밋 → main 머지·푸시
+- [ ] **Step 2: 전수 재검사** — `node scripts/audit-hreflang.mjs` (Task 9 에서 만든 것)
+  Expected: **undefined 0 · 허공 0 · `sitemap <loc> 395`**, 총 검사 대상이 1309 → **~2600 으로 늘어남**.
+  ★블로그는 **`article_id` 클러스터**로 hreflang 을 만든다(slug 가 언어마다 달라서). 중국어가 자동
+  편입되며 **기존 240편의 hreflang 도 6언어로 넓어진다** — 그래서 이 검사는 240편까지 다시 본다.
+  ★중국어 slug 는 한국어 slug 와 **같다**(설계 §4). 경로 프리픽스가 달라 정상이지만, 검사에서
+  `/ko/blog/x/` 와 `/zh-hans/blog/x/` 가 **서로 다른 파일**로 잡히는지 눈으로 한 번 확인할 것.
+- [ ] **Step 3:** `cd v4 && npm test` · `cd ai-server && npm run build && npm test`
+- [ ] **Step 4:** 커밋 → main 머지·푸시
 
 ---
 
@@ -539,5 +623,6 @@ const standard: GrowthStandard =
 
 ## 사용자 확인 필요
 
-- **원격 상담 카피 원장 감수** (vi/en 판과 같은 성격 — 화상상담 실제 제공 범위)
-- **Task 14 익명 예측의 간체 국적 매핑** — 간체 타겟이 본토가 아니라 단일 국가 코드가 애매함
+- **🚧 시작 전**: 간체 국적 매핑(맨 위 참조) — 안 정하면 Task 14 에서 멈춘다
+- **원격 상담 카피 원장 감수** (vi/en 판과 같은 성격 — 화상상담 실제 제공 범위). 배포는 가능하나
+  감수 전제([[consult_page]] 의 vi/en 과 동일한 상태)
