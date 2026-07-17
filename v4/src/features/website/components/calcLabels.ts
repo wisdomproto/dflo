@@ -411,5 +411,6 @@ export function getCalcLabels(lang: CalcLang): Dict {
 }
 
 export function isCalcLang(value: string | null | undefined): value is CalcLang {
-  return value === 'ko' || value === 'en' || value === 'th' || value === 'vi';
+  return value === 'ko' || value === 'en' || value === 'th' || value === 'vi'
+    || value === 'zh-hant' || value === 'zh-hans';
 }
