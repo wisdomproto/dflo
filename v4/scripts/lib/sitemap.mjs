@@ -51,7 +51,11 @@ export function buildSitemap({ activeLangs, blogSlugs = {} }) {
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap-0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    // ★ 네임스페이스는 슬래시 — sitemaps.org 스펙 값은 `schemas/sitemap/0.9` 다.
+    // `sitemap-0.9`(하이픈)은 XSD 파일명(.../sitemap/0.9/sitemap.xsd)에서 온 흔한 오기이고,
+    // 이걸 쓰면 GSC 가 "네임스페이스가 잘못되었습니다"(인스턴스 1개 = 이 줄)로 오류를 낸다.
+    // (구글은 관대해서 URL 260개는 읽어내지만 사이트맵이 오류 상태로 남는다.)
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ...entries,
     '</urlset>',
   ].join('\n');
