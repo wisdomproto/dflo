@@ -83,6 +83,7 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - **빌드**: `SUBPAGES` 에 `langs` 술어 추가(`consult` = `consult_channels.length > 1` 인 언어만). ★**`buildHead(lang, {altPaths})` 신설** — 언어 한정 페이지는 그 언어만 hreflang(`/ko/consult.html` 을 넣으면 [[블로그 hreflang]] 과 똑같이 **200 + 한국어 SPA 셸 = soft-404**). sitemap 도 `consultLangs` 로만 등재. `locale.consult_channels_list` = 템플릿 `{{#each}}` 용.
 - ★미니 렌더러 제약: `{{#if}}` 없음 → `remote.more` **배열 길이(0/1)로 분기**, `{{#each}}` 안에서 **바깥 스코프 접근 불가** → `href` 를 항목에 함께 둠. 누락 키는 **throw** 라 렌더되는 언어엔 모든 키가 있어야 함.
 - **검증**: 좌표 히트테스트(하단 바·pill → `/en/consult.html`), 전 페이지 hreflang **1289개 중 허공 0**, sitemap 263 URL(ko/consult 0), ko 무회귀(카톡 직행·예약 폼), th 화자 규칙(ค่ะ/คะ 0·ครับ 사용). 테스트 116/116(`buildHead altPaths`·`consultLangs` 회귀 포함).
+- **(2026-07-17) 병원 소개에도 원격 안내 확장** — `clinic.remote_consult` 가 th 전용이던 걸 **vi/en 에도 추가**(ko 는 국내라 `[]` 유지 = 섹션 미렌더). 템플릿·CSS 무변경: 미니 렌더러가 `{{#if}}`·중첩 `{{#each}}` 를 못 해 **사무소 박스가 고정 슬롯**인데, vi/en 은 방콕 같은 현지 사무소가 없으므로 **그 박스를 서울 클리닉 주소로**(= 실제 내원할 곳) 채워 빈 박스 없이 자연스럽게 해결. th=방콕 4단계 유지 / vi·en=온라인 상담 4단계(메신저 문의 → 현지 뼈나이·혈액 검사 → 화상 상담 → 서울 내원해 치료 시작) + 면책 문구.
 
 ### (폐기) 1:1 상담 채널 시트 (2026-07-17, 비한국어 th/vi/en 전용)
 > 아래는 위 상담 페이지로 대체된 옛 구현 기록. `messenger.yml consult_channels`·GA4 `consult_click(channel)` 규칙은 그대로 유효.

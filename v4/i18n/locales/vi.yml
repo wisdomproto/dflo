@@ -475,8 +475,21 @@ clinic:
     label: "Tư vấn & Đặt lịch"
     phone: "+82-10-6693-2838"
     addr: "Tầng 2, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
-  # 원격 진료 안내는 th 전용 — 빈 배열이면 섹션 자체가 렌더되지 않음
-  remote_consult: []
+  # 원격 상담 안내 — vi/en 은 방콕 같은 현지 사무소가 없어 온라인 상담 중심(사무소 박스는 서울 클리닉 주소).
+  remote_consult:
+    - title: "Tư vấn từ nước ngoài"
+      intro: "Bạn chưa cần sang Seoul để bắt đầu. Hãy gửi thông tin tăng trưởng của con cho bác sĩ chuyên khoa Hàn Quốc trước, và chỉ sang khi đã có kế hoạch rõ ràng."
+      step1_label: "Nhắn tin cho chúng tôi"
+      step1_desc: "Gửi tuổi, chiều cao hiện tại của con và chiều cao của bố mẹ qua KakaoTalk, WhatsApp hoặc LINE."
+      step2_label: "Làm xét nghiệm tại địa phương nếu có thể"
+      step2_desc: "Chụp X-quang bàn tay để đo tuổi xương và xét nghiệm máu tại cơ sở gần nhà, rồi gửi kết quả cho chúng tôi."
+      step3_label: "Tư vấn video với giám đốc phòng khám"
+      step3_desc: "Theo lịch hẹn. Chúng tôi cùng xem kết quả và ý nghĩa của chúng đối với sự tăng trưởng của con bạn."
+      step4_label: "Đến Seoul để bắt đầu điều trị"
+      step4_desc: "Việc thăm khám và kế hoạch điều trị được xác nhận trực tiếp tại phòng khám."
+      office_label: "Phòng khám (Seoul)"
+      office_addr: "Tầng 2, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
+      footnote: "Tư vấn trực tuyến chỉ mang tính tham khảo. Chẩn đoán và điều trị được xác nhận sau khi thăm khám thực tế."
 
 cases:
   page_title: "Ca điều trị | 187 Growth Clinic"

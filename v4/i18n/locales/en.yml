@@ -475,8 +475,21 @@ clinic:
     label: "Consultation & Booking"
     phone: "+82-10-6693-2838"
     addr: "2F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
-  # 원격 진료 안내는 th 전용 — 빈 배열이면 섹션 자체가 렌더되지 않음
-  remote_consult: []
+  # 원격 상담 안내 — vi/en 은 방콕 같은 현지 사무소가 없어 온라인 상담 중심(사무소 박스는 서울 클리닉 주소).
+  remote_consult:
+    - title: "Consulting from outside Korea"
+      intro: "You don't need to fly to Seoul to get started. Share your child's growth details with our Korean specialist first, and travel only once there's a plan worth traveling for."
+      step1_label: "Message us"
+      step1_desc: "Send your child's age, current height, and both parents' heights on WhatsApp, LINE, or KakaoTalk."
+      step2_label: "Get local tests if you can"
+      step2_desc: "A hand X-ray for bone age and a blood panel at a clinic near you — send us the results."
+      step3_label: "Video consultation with the director"
+      step3_desc: "By appointment. We go through the readings and what they mean for your child's growth."
+      step4_label: "Visit Seoul to start treatment"
+      step4_desc: "The examination and the treatment plan are confirmed in person at the clinic."
+      office_label: "Clinic (Seoul)"
+      office_addr: "2F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
+      footnote: "Online consultation is for general guidance. Diagnosis and treatment are confirmed after an in-person examination."
 
 cases:
   page_title: "Treatment Cases | 187 Growth Clinic"
