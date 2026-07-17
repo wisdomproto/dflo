@@ -80,11 +80,19 @@ ScienceDirect·학회지 양쪽에서 CAPTCHA/403 이고, HPA 공개 파일은 0
 | `ai-server/.../ga4SiteBreakdown.ts:12` `classifyCountry` | 분석 언어 귀속 | 아래 §9 |
 | `ai-server/.../searchConsole.ts:41` · `routes/analytics.ts:10` | GSC 언어 필터 | 아래 §9 |
 | `v4/.../marketingAnalyticsService.ts:34` `CountryKey` · `CountrySiteBreakdownPanel.tsx:15` · `SearchQueryPanel.tsx:10` · `PredictionsLogPage.tsx:14,133` | 마케팅 탭 | 탭 없음 |
-| `v4/.../anonymousName.ts:4,22,24` | **DB 기록** | 아래 §9 |
+| `v4/.../anonymousName.ts:4,23,25` | **DB 기록** | 아래 §9 |
 | `v4/src/shared/lib/analytics.ts:32,50,122` | **Meta 픽셀** | 아래 §9 |
 
-★**`sitemap.mjs` 의 `HREFLANG_MAP` 이 `seo.mjs` 것과 별개 복제본**이라는 게 이 작업의 최대 지뢰다.
-둘을 대조하는 장치가 없다. **구현 시 `seo.mjs` 에서 import 하도록 합치는 것을 포함한다**(중복 제거).
+★**`sitemap.mjs` 가 `seo.mjs` 의 상수를 통째로 복제**하고 있는 게 이 작업의 최대 지뢰다 —
+`HREFLANG_MAP`(`:3`)뿐 아니라 **`ORIGIN`(`:1`)·`PATH_PREFIX`(`:2`)까지** 별개 사본이고, 둘을 대조하는
+장치가 없다. 지금은 값이 같아 잠복 중이나, `SITE_PATH_PREFIX`(스테이징 `/test`)가 어긋나면 sitemap 과
+hreflang 이 갈려 **이 설계가 방어하려는 soft-404 클러스터 붕괴가 그대로 난다**.
+→ **구현 시 셋 다 `seo.mjs` 에서 import 하도록 합친다.** 안전함 검증됨: sitemap 의 사본은 export 되지
+않는 private const 라 import 하는 곳이 없고, `seo.mjs` 는 seo.yml 을 지연 로드해 import-time 부작용이
+없으며(`sitemap.test.mjs` 가 env 없이 단독 import 해도 무사), 순환 참조도 없다.
+
+또한 **`ALL_LANGS`·`HREFLANG_MAP`·`OG_LOCALE_MAP` 에서 `'zh-tw'` 를 뺀다** — `zh-tw.yml` 을 지우면
+zh-tw 는 "locale 파일 없는 유일한 `ALL_LANGS` 멤버"가 돼 지저분하다(ja/id 는 파일이 있다).
 
 - **마케팅 DB 코드(`ch`=번체 / `cn`=간체) ↔ 사이트 코드 매핑은 블로그를 읽는 지점 한 곳에만.**
   DB 코드는 건드리지 않는다(굳어 있고, 바꾸면 blog/cardnews/reels 전 테이블 마이그레이션).
@@ -110,7 +118,9 @@ ScienceDirect·학회지 양쪽에서 CAPTCHA/403 이고, HPA 공개 파일은 0
 `i18n/messenger.yml` 에 2언어 추가. 대표 = `whatsapp`, `consult_channels: [*whatsapp, *line]`.
 
 - `consult_channels.length > 1` 이면 **`consult.html` 이 자동 생성**된다(`SUBPAGES` 의 `langs` 술어) →
-  빌드 코드 변경 없음.
+  빌드 코드 변경 없음(2채널도 `> 1` 이라 통과).
+- ★중국어는 **채널 2개** — th/vi/en 의 3채널 관행에 대한 첫 예외다. **"카카오를 뺐다"는 의도를
+  `messenger.test.mjs` 에 케이스로 박는다**(안 그러면 다음 사람이 일관성이라며 카카오를 되돌려 놓는다).
 - `buildHead(lang, {altPaths})` 가 상담 페이지 hreflang 을 **그 언어들만** 내보낸다(ko 는 상담 페이지가
   없으므로 넣으면 soft-404).
 - 원격 상담 안내 카피는 vi/en 판(온라인 상담 중심 + 면책)을 기준으로 삼는다. 방콕 같은 현지 인프라가
@@ -120,8 +130,10 @@ ScienceDirect·학회지 양쪽에서 CAPTCHA/403 이고, HPA 공개 파일은 0
 
 - `marketing_articles.blog.cn` → `blog_published(language='zh-hans')`, `.ch` → `'zh-hant'`.
 - 기존 240편 전량 발행 때 쓴 패턴대로 스크립트 1개.
-- **검증 완료(2026-07-17)**: `blog_published.slug` 에 **전역 유니크 제약 없음** — 같은 slug + 다른 언어
-  insert 성공(테스트 행 삭제 완료). 경로도 `/zh-hans/…` vs `/ko/…` 로 갈려 파일 충돌 없음.
+- **충돌 없음 — 스키마가 보증한다**(`v4/scripts/migrations/039_blog_published.sql:9,18`):
+  유니크 제약이 **`unique (article_id, language)`** 이고 `slug` 에는 전역 유니크가 없다. `language` 에
+  **CHECK 도 없어** `'zh-hans'`/`'zh-hant'` 가 그대로 들어간다. 라이브 insert 테스트로도 재확인함
+  (테스트 행 삭제 완료). 경로도 `/zh-hans/…` vs `/ko/…` 로 갈려 파일 충돌 없음.
 - `article_id` 클러스터가 hreflang 을 만들므로 **중국어가 자동 편입**되고, 덤으로 기존 240편의 hreflang 도
   6언어로 넓어진다.
 
@@ -133,12 +145,17 @@ cn↔ch 도 서로 동일). 동작·색인엔 문제없지만 URL 에 중국어 
 
 - 프로그램 이미지: `public/programs/images/en/{slug}/` 9종 → `zh-hant/{slug}/`, `zh-hans/{slug}/` 복사.
   리졸버가 `{lang}/` → `_common/` 1단계 폴백이라 **복사만으로 한글 원본을 덮는다**(코드 변경 0).
-- 로고: 비한국어는 `logo_en.png` — 기존 분기가 `!== 'ko'` 인지 확인 필요(하드코딩된 언어 목록이면 추가).
+- 로고: **작업 없음** — `build-i18n.mjs:145` · `_shell.js:101` 이 `lang !== 'ko'` 분기라(하드코딩 목록 아님)
+  중국어도 자동으로 `-en` 자산을 쓴다. 같은 분기가 `saebom-logo-en.png`·`logo-187-inline-en.png` 도
+  바꾸는데 셋 다 이미 존재한다.
 - OG 이미지 2종 추가(`public/og/`).
 
 ### 6. 계산기
 
 - `CalcLang` 에 `zh-hant`/`zh-hans` 추가, `calcLabels.ts` 에 2 로케일.
+  ★안 하면 **에러 없이 한국어 계산기가 뜬다** — `calc-main.tsx:11` 이 `isCalcLang(x) ? x : 'ko'` 로
+  조용히 폴백한다(`_shell.js:387` 은 `calc.html?lang=zh-hant` 를 정상 전달). 이 작업의 반복 주제:
+  **틀리면 시끄럽게 죽는 게 아니라 조용히 한국어가 된다.**
 - **성장표준 CN 고정** — `standard` 분기에 추가(국적 버튼은 en 전용 유지).
 - 결과 CTA 메신저 = WhatsApp(`HeightCalculatorResult` 의 `MESSENGER` 맵).
 - `casesLabels.NAME_TRANSLIT` 에 환자 이름 중국어 음역 추가(미등록은 원본 폴백이라 graceful).
@@ -180,7 +197,9 @@ cn↔ch 도 서로 동일). 동작·색인엔 문제없지만 URL 에 중국어 
   응답한다(soft-404) → 없는 URL 을 hreflang 으로 내보내면 클러스터가 통째로 무효가 된다.
   빌드 산출물의 모든 hreflang·sitemap alternate 가 **실제 파일로 존재**하는지 전수 확인([[seo_hreflang_sitemap]]).
   ★**href 존재만 보지 말고 `hreflang` **속성값**도 검사**할 것 — 위 함정이 정확히 여기로 샌다.
-- sitemap URL 수: 263 → **393**(정적 4×2 + 블로그 120 + 상담 2). blog-index 는 posts>0 조건부.
+- sitemap URL 수: 263 → **395**. 내역: 홈 4→6 · 서브페이지(3종) 12→18 · 상담 3→5 ·
+  **블로그 인덱스 4→6** · 블로그 글 240→360. (+132) ★블로그 인덱스 2개를 빠뜨리기 쉽다 —
+  `sitemap.mjs:45` 가 `blogSlugs[l]?.length` 조건부라 글 120편이 있으면 두 언어 다 나온다.
 - 화자 톤 grep(중국어 격식체).
 
 ## 범위 밖
