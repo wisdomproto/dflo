@@ -63,7 +63,7 @@ const INPUT = {
     { date: '20260602', landingPage: '/ko/index.html', users: 50, sessions: 60, views: 150 },
   ],
   // geo(유입 지역)·campaigns(utm_campaign) 는 BreakdownInput 필수 — 집계가 그대로 순회한다.
-  // 여기선 빈 배열(이 파일은 언어 귀속만 검증). 두 리포트의 rollup 은 아직 커버리지 없음.
+  // 이 fixture 는 언어 귀속만 검증하므로 빈 배열. 두 rollup 은 아래 GEO_INPUT/CAMPAIGN_INPUT 에서 검증.
   geo: [],
   campaigns: [],
 };
@@ -136,4 +136,149 @@ test('aggregateSiteBreakdown: th + all 합산', () => {
   assert.equal(all.summary.avgEngagementSec, 57.81); // (6000+1750+1000+500)/160
   assert.equal(all.daily.length, 2);
   assert.equal(all.daily[0].users, 80); // 20260601: 50 + 30 (daily 는 ko/th 행만)
+});
+
+// geo/campaigns 전용 fixture — 위 INPUT 의 all 합산(users 160·sessions 192 등)을 건드리지 않으려고 분리.
+// 나머지 리포트는 빈 배열이라 이 fixture 로는 geo·campaigns 만 검증된다.
+function inputWith(overrides) {
+  return {
+    landing: [], landingPrev: [], pv: [], events: [], channels: [], devices: [],
+    geo: [], daily: [], campaigns: [],
+    ...overrides,
+  };
+}
+
+// ── 유입 지역(geo) — GA4 country/city = 방문자의 실제 위치. 언어는 landingPage 로 귀속. ──
+const GEO_INPUT = inputWith({
+  geo: [
+    // 같은 나라·도시가 여러 랜딩으로 나뉘어 와도 한 도시로 합산된다 (Bangkok 40+10=50)
+    { landingPage: '/th/index.html', country: 'Thailand', city: 'Bangkok', sessions: 40, users: 35 },
+    { landingPage: '/th/calculator.html', country: 'Thailand', city: 'Bangkok', sessions: 10, users: 8 },
+    { landingPage: '/th/index.html', country: 'Thailand', city: 'Chiang Mai', sessions: 12, users: 10 },
+    // 태국어 사이트를 한국에서 본 방문자 (언어탭 × 유입지역 교차의 핵심 케이스)
+    { landingPage: '/th/index.html', country: 'South Korea', city: 'Seoul', sessions: 8, users: 6 },
+    { landingPage: '/ko/index.html', country: 'South Korea', city: 'Seoul', sessions: 100, users: 90 },
+    // country/city 가 빈 문자열이면 (미상) 폴백
+    { landingPage: '/th/index.html', country: '', city: '', sessions: 5, users: 4 },
+  ],
+});
+
+test('aggregateSiteBreakdown: geo 는 나라▸도시 중첩 + 언어 귀속 + sessions 내림차순', () => {
+  const th = aggregateSiteBreakdown(GEO_INPUT).byCountry.th;
+  // th 사이트 유입 지역 총 75세션 (62 + 8 + 5) → 내림차순
+  assert.deepEqual(th.geo.map((g) => g.label), ['Thailand', 'South Korea', '(미상)']);
+
+  const [thailand, korea, unknown] = th.geo;
+  assert.equal(thailand.sessions, 62); // 40 + 10 + 12
+  assert.equal(thailand.users, 53); // 35 + 8 + 10
+  assert.equal(thailand.pct, 82.67); // 62/75*100
+  // 도시 중첩 (sessions 내림차순)
+  assert.deepEqual(thailand.cities, [
+    { label: 'Bangkok', sessions: 50, users: 43 }, // 두 랜딩 행이 한 도시로 합산
+    { label: 'Chiang Mai', sessions: 12, users: 10 },
+  ]);
+  // 태국어 사이트인데 한국에서 접속한 방문자
+  assert.equal(korea.sessions, 8);
+  assert.deepEqual(korea.cities, [{ label: 'Seoul', sessions: 8, users: 6 }]);
+  // 빈 country/city → (미상)
+  assert.equal(unknown.sessions, 5);
+  assert.deepEqual(unknown.cities, [{ label: '(미상)', sessions: 5, users: 4 }]);
+
+  // ko 버킷엔 ko 랜딩 행만 (th 랜딩의 Seoul 8세션이 섞이지 않는다)
+  const ko = aggregateSiteBreakdown(GEO_INPUT).byCountry.ko;
+  assert.deepEqual(ko.geo, [
+    { label: 'South Korea', sessions: 100, users: 90, pct: 100, cities: [{ label: 'Seoul', sessions: 100, users: 90 }] },
+  ]);
+});
+
+test('aggregateSiteBreakdown: geo all = 전 언어 합산 (같은 나라는 언어 넘어 합쳐짐)', () => {
+  const all = aggregateSiteBreakdown(GEO_INPUT).byCountry.all;
+  // South Korea = ko 랜딩 100 + th 랜딩 8 = 108 → Thailand(62) 를 제치고 1위
+  assert.deepEqual(all.geo.map((g) => g.label), ['South Korea', 'Thailand', '(미상)']);
+  assert.equal(all.geo[0].sessions, 108);
+  assert.equal(all.geo[0].pct, 61.71); // 108/175*100
+  assert.deepEqual(all.geo[0].cities, [{ label: 'Seoul', sessions: 108, users: 96 }]);
+});
+
+test('aggregateSiteBreakdown: geo 행이 없으면 빈 배열', () => {
+  const r = aggregateSiteBreakdown(inputWith({}));
+  assert.deepEqual(r.byCountry.all.geo, []);
+  assert.deepEqual(r.byCountry.th.geo, []);
+});
+
+test('aggregateSiteBreakdown: geo 세션이 전부 0 이면 pct 는 NaN 이 아니라 0', () => {
+  // 세션 0·사용자만 있는 행(GA4 가 이런 행을 내보낼 수 있음) → geoTotal 0 = pct 가드 유일 도달 경로.
+  // (행 자체가 없으면 map 이 비어 나눗셈에 도달하지 못하므로 가드가 안 걸린다)
+  const th = aggregateSiteBreakdown(inputWith({
+    geo: [{ landingPage: '/th/index.html', country: 'Thailand', city: 'Bangkok', sessions: 0, users: 2 }],
+  })).byCountry.th;
+  assert.equal(th.geo.length, 1);
+  assert.equal(th.geo[0].pct, 0);
+  assert.equal(th.geo[0].users, 2);
+});
+
+// ── 캠페인(utm_campaign) — TOP-LEVEL(언어를 가로지르는 광고 단위라 byCountry 아님) ──
+// union 행: sessions 있으면 세션행 / eventName+count 있으면 이벤트행.
+const CAMPAIGN_INPUT = inputWith({
+  campaigns: [
+    { campaign: 'th_calc_jul', sessions: 80 },
+    { campaign: 'th_calc_jul', sessions: 40 }, // 같은 캠페인 세션행 누적 → 120
+    { campaign: 'th_calc_jul', eventName: 'calc_open', count: 40 },
+    { campaign: 'th_calc_jul', eventName: 'height_calc_complete', count: 10 },
+    { campaign: 'th_calc_jul', eventName: 'consult_click', count: 5 },
+    { campaign: 'th_calc_jul', eventName: 'page_view', count: 999 }, // 3개 이벤트 외엔 무시
+    { campaign: 'ko_brand', sessions: 200 },
+    { campaign: 'ko_brand', eventName: 'consult_click', count: 3 },
+    // calc_open 0 인데 height_calc_complete 만 있는 캠페인 → completionRate div-by-zero 가드
+    { campaign: 'en_awareness', sessions: 30 },
+    { campaign: 'en_awareness', eventName: 'height_calc_complete', count: 4 },
+    // 태그 안 된 트래픽 — 전부 제외
+    { campaign: '(not set)', sessions: 500 },
+    { campaign: '(direct)', sessions: 300 },
+    { campaign: '(organic)', sessions: 100 },
+    { campaign: '(referral)', sessions: 50 },
+    { campaign: '', sessions: 20 },
+    { campaign: '(not set)', eventName: 'calc_open', count: 70 }, // 이벤트행도 제외
+  ],
+});
+
+test('aggregateSiteBreakdown: campaigns 는 태그된 캠페인만 sessions 내림차순으로', () => {
+  const { campaigns } = aggregateSiteBreakdown(CAMPAIGN_INPUT);
+  // (not set)/(direct)/(organic)/(referral)/빈 문자열 전부 탈락 → 3개만
+  assert.deepEqual(campaigns.map((c) => c.name), ['ko_brand', 'th_calc_jul', 'en_awareness']);
+  assert.deepEqual(campaigns.map((c) => c.sessions), [200, 120, 30]); // th 는 80+40 누적
+});
+
+test('aggregateSiteBreakdown: campaigns 이벤트 누적 + completionRate(div-by-zero 가드)', () => {
+  const { campaigns } = aggregateSiteBreakdown(CAMPAIGN_INPUT);
+  const byName = Object.fromEntries(campaigns.map((c) => [c.name, c]));
+
+  assert.deepEqual(byName.th_calc_jul, {
+    name: 'th_calc_jul', sessions: 120, calcOpen: 40, heightCalc: 10, consult: 5,
+    completionRate: 25, // 10/40*100 (page_view 999 는 안 섞임)
+  });
+  // 이벤트행이 일부만 있는 캠페인 = 나머지 0
+  assert.deepEqual(byName.ko_brand, {
+    name: 'ko_brand', sessions: 200, calcOpen: 0, heightCalc: 0, consult: 3, completionRate: 0,
+  });
+  // calcOpen 0 → 0/0 이 아니라 0 (NaN·Infinity 아님)
+  assert.equal(byName.en_awareness.calcOpen, 0);
+  assert.equal(byName.en_awareness.heightCalc, 4);
+  assert.equal(byName.en_awareness.completionRate, 0);
+});
+
+test('aggregateSiteBreakdown: campaigns 는 이벤트행만 있어도(세션 0) 집계된다', () => {
+  const { campaigns } = aggregateSiteBreakdown(inputWith({
+    campaigns: [{ campaign: 'vi_test', eventName: 'calc_open', count: 12 }],
+  }));
+  assert.deepEqual(campaigns, [
+    { name: 'vi_test', sessions: 0, calcOpen: 12, heightCalc: 0, consult: 0, completionRate: 0 },
+  ]);
+});
+
+test('aggregateSiteBreakdown: 태그된 캠페인이 없으면 빈 배열', () => {
+  const { campaigns } = aggregateSiteBreakdown(inputWith({
+    campaigns: [{ campaign: '(not set)', sessions: 500 }, { campaign: '(direct)', sessions: 300 }],
+  }));
+  assert.deepEqual(campaigns, []);
 });
