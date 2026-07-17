@@ -1,6 +1,7 @@
-// seo.mjs 가 빌드 상수의 단일 소스 — 여기 사본을 두면 언어 추가 시 조용히 어긋난다
-// (PATH_PREFIX 가 갈리면 sitemap 과 hreflang 이 서로 다른 URL 을 가리켜 클러스터가 무효화된다).
-import { ORIGIN, PATH_PREFIX, HREFLANG_MAP } from './seo.mjs';
+// constants.mjs 가 빌드 상수의 단일 소스 — 여기 사본을 두면 언어 추가 시 조용히 어긋난다
+// (HREFLANG_MAP 이 갈리면 sitemap 과 hreflang 이 서로 다른 언어 집합을 내보내고,
+//  PATH_PREFIX 가 갈리면 서로 다른 URL 을 가리켜 클러스터가 무효화된다).
+import { ORIGIN, PATH_PREFIX, HREFLANG_MAP } from './constants.mjs';
 
 function urlEntry(loc, allPaths) {
   const alternates = Object.entries(allPaths).map(([lang, path]) =>

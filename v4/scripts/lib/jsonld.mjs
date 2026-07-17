@@ -2,8 +2,12 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
-// seo.mjs 가 빌드 상수의 단일 소스 — 여기 사본을 두면 언어 추가 시 조용히 어긋난다.
-import { ORIGIN, PATH_PREFIX } from './seo.mjs';
+// constants.mjs 가 빌드 상수의 단일 소스 — 여기 사본을 두면 `SITE_PATH_PREFIX` 가 조용히 어긋난다
+// (staging 은 /test 로 오버라이드하므로, 사본이 남으면 JSON-LD 의 @id·url 만 옛 프리픽스를 가리켜
+//  같은 페이지의 canonical/hreflang 과 다른 URL 을 주장하게 된다).
+// ★seo.mjs 가 아니라 constants.mjs 에서 가져오는 이유: seo.mjs 는 이 파일을 import 하므로
+//  여기서 seo.mjs 를 되짚으면 순환 참조가 된다.
+import { ORIGIN, PATH_PREFIX } from './constants.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');

@@ -3,19 +3,14 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { medicalClinicJsonLd, physicianJsonLd, faqPageJsonLd, blogPostingJsonLd, renderJsonLd } from './jsonld.mjs';
+import { ORIGIN, PATH_PREFIX, ACTIVE_LANGS, HREFLANG_MAP, OG_LOCALE_MAP } from './constants.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
-export const ORIGIN = 'https://www.dr187growup.com';
-export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
-// Languages we actually BUILD pages for. hreflang/sitemap must only point at these —
-// emitting ja/zh-tw/id (planned but not yet built) creates 404 hreflang targets that
-// invalidate the whole cluster in Search Console. Add a lang here only once its pages ship.
-export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en'];
-export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'ja', 'zh-tw', 'id'];
-export const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', ja: 'ja', 'zh-tw': 'zh-TW', id: 'id' };
-export const OG_LOCALE_MAP = { ko: 'ko_KR', th: 'th_TH', vi: 'vi_VN', en: 'en_US', ja: 'ja_JP', 'zh-tw': 'zh_TW', id: 'id_ID' };
+// 상수 정의는 constants.mjs(리프 모듈)에 있고 여기서 re-export 한다 — 기존 소비자·테스트가
+// 전부 `from './seo.mjs'` 로 가져가므로 공개 표면은 그대로 유지.
+export { ORIGIN, PATH_PREFIX, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP, OG_LOCALE_MAP } from './constants.mjs';
 
 let cached = null;
 function loadSeo() {
