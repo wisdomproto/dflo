@@ -18,6 +18,8 @@ const PAGE_TITLES: Record<CasesLang, string> = {
   en: 'Treatment Cases',
   th: 'เคสรักษา',
   vi: 'Ca điều trị',
+  'zh-hant': '治療案例',
+  'zh-hans': '治疗案例',
 };
 
 const EMPTY_STATES: Record<CasesLang, { loading: string; empty: string }> = {
@@ -25,6 +27,8 @@ const EMPTY_STATES: Record<CasesLang, { loading: string; empty: string }> = {
   en: { loading: 'Loading cases…', empty: 'No treatment cases yet.' },
   th: { loading: 'กำลังโหลดเคส…', empty: 'ยังไม่มีเคสรักษา' },
   vi: { loading: 'Đang tải ca điều trị…', empty: 'Chưa có ca điều trị.' },
+  'zh-hant': { loading: '正在載入案例…', empty: '目前沒有治療案例。' },
+  'zh-hans': { loading: '正在加载案例…', empty: '目前没有治疗案例。' },
 };
 
 export default function CasesEmbedPage() {

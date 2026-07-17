@@ -4,7 +4,7 @@
 
 import { createContext, useContext } from 'react';
 
-export type CasesLang = 'ko' | 'en' | 'th' | 'vi';
+export type CasesLang = 'ko' | 'en' | 'th' | 'vi' | 'zh-hant' | 'zh-hans';
 
 type LabelDict = {
   emptyState: string;
@@ -213,6 +213,80 @@ const DICT: Record<CasesLang, LabelDict> = {
     prevSlide: 'Slide trước', nextSlide: 'Slide sau',
     slideNumber: (n) => `Slide ${n}`,
   },
+  'zh-hant': {
+    emptyState: '請新增生長案例',
+    boy: '男孩', girl: '女孩',
+    initialMemo: '🏥 初診記錄',
+    heightChange: '📊 身高變化',
+    youtubeTitle: '治療心得影片',
+    allergyTitle: (n) => `🍽️ 食物過敏檢測結果 (${n})`,
+    allergyDanger: (n) => `🚫 危險 (${n})`,
+    allergyCaution: (n) => `⚠️ 注意 (${n})`,
+    growthChart: '📈 標準生長曲線',
+    loading: '載入中…',
+    chartActualHeight: '實際身高', chartInitialGrowth: '初診預估生長', chartCurrentGrowth: '目前預估生長',
+    chartAxisAge: '年齡（歲）', chartAxisHeight: '身高（公分）',
+    tableTitle: (n) => `📋 各次測量記錄 (${n})`,
+    tableNum: '#',
+    tableDate: '日期', tableHeight: '身高', tableWeight: '體重',
+    tableAge: '年齡', tableBoneAge: '骨齡', tablePredicted: '預估身高',
+    finalMemo: '🩺 院長意見',
+    cta: '💬 也為我的孩子諮詢',
+    barInitial: '初診預估身高', barFinal: '最終預估身高',
+    treatmentLabel: '治療', treatmentSuffix: '期間',
+    actualHeight: '實際身高', predictedHeight: '預估身高',
+    monthSuffix: ' 個月', yearSuffix: ' 年',
+    intakeInfoTitle: '📋 初診資訊',
+    intake: {
+      gestationalWeeks: '懷孕週數', birthWeight: '出生體重', birthNote: '出生特殊情況',
+      currentHeight: '就診時身高', currentWeight: '就診時體重', yearlyGrowth: '年生長量',
+      grade: '年級', heightRank: '班上身高排名', desiredHeight: '期望身高',
+      fatherHeight: '父親身高', motherHeight: '母親身高', growthPattern: '生長型態',
+      pubertyStage: '青春期評估', growthConcerns: '家長意見', pastConditions: '過去疾病',
+    },
+    unitWeeks: ' 週', unitRank: ' 名',
+    photosTitle: (n) => `📷 第 ${n} 次照片`,
+    photoFront: '正面', photoSide: '側面', xrayFront: 'X 光正面', xraySide: 'X 光側面',
+    prevSlide: '上一張', nextSlide: '下一張',
+    slideNumber: (n) => `第 ${n} 張`,
+  },
+  'zh-hans': {
+    emptyState: '请添加生长案例',
+    boy: '男孩', girl: '女孩',
+    initialMemo: '🏥 初诊记录',
+    heightChange: '📊 身高变化',
+    youtubeTitle: '治疗心得视频',
+    allergyTitle: (n) => `🍽️ 食物过敏检测结果 (${n})`,
+    allergyDanger: (n) => `🚫 危险 (${n})`,
+    allergyCaution: (n) => `⚠️ 注意 (${n})`,
+    growthChart: '📈 标准生长曲线',
+    loading: '加载中…',
+    chartActualHeight: '实际身高', chartInitialGrowth: '初诊预估生长', chartCurrentGrowth: '目前预估生长',
+    chartAxisAge: '年龄（岁）', chartAxisHeight: '身高（厘米）',
+    tableTitle: (n) => `📋 各次测量记录 (${n})`,
+    tableNum: '#',
+    tableDate: '日期', tableHeight: '身高', tableWeight: '体重',
+    tableAge: '年龄', tableBoneAge: '骨龄', tablePredicted: '预估身高',
+    finalMemo: '🩺 院长意见',
+    cta: '💬 也为我的孩子咨询',
+    barInitial: '初诊预估身高', barFinal: '最终预估身高',
+    treatmentLabel: '治疗', treatmentSuffix: '期间',
+    actualHeight: '实际身高', predictedHeight: '预估身高',
+    monthSuffix: ' 个月', yearSuffix: ' 年',
+    intakeInfoTitle: '📋 初诊信息',
+    intake: {
+      gestationalWeeks: '怀孕周数', birthWeight: '出生体重', birthNote: '出生特殊情况',
+      currentHeight: '就诊时身高', currentWeight: '就诊时体重', yearlyGrowth: '年生长量',
+      grade: '年级', heightRank: '班上身高排名', desiredHeight: '期望身高',
+      fatherHeight: '父亲身高', motherHeight: '母亲身高', growthPattern: '生长形态',
+      pubertyStage: '青春期评估', growthConcerns: '家长意见', pastConditions: '过去疾病',
+    },
+    unitWeeks: ' 周', unitRank: ' 名',
+    photosTitle: (n) => `📷 第 ${n} 次照片`,
+    photoFront: '正面', photoSide: '侧面', xrayFront: 'X 光正面', xraySide: 'X 光侧面',
+    prevSlide: '上一张', nextSlide: '下一张',
+    slideNumber: (n) => `第 ${n} 张`,
+  },
 };
 
 export const CasesLangContext = createContext<CasesLang>('ko');
@@ -230,20 +304,21 @@ export function getCasesLabels(lang: CasesLang): LabelDict {
 }
 
 export function isCasesLang(value: string | null | undefined): value is CasesLang {
-  return value === 'ko' || value === 'en' || value === 'th' || value === 'vi';
+  return value === 'ko' || value === 'en' || value === 'th' || value === 'vi'
+    || value === 'zh-hant' || value === 'zh-hans';
 }
 
 // ── 환자 이름 음역 ───────────────────────────────────────────────────────────
 // 케이스 환자 데이터(website.json)의 이름은 한국어 원본 — 뷰어 언어로 소리나는 대로 표기.
 // 등록된 이름만 매핑(현재 공개 케이스 7명), 미등록 이름은 원본 그대로(graceful).
 const NAME_TRANSLIT: Record<string, Partial<Record<Exclude<CasesLang, 'ko'>, string>>> = {
-  도훈: { en: 'Dohun', th: 'โดฮุน', vi: 'Do-hun' },
-  민준: { en: 'Minjun', th: 'มินจุน', vi: 'Min-jun' },
-  성재: { en: 'Seongjae', th: 'ซองแจ', vi: 'Seong-jae' },
-  은우: { en: 'Eunwoo', th: 'อึนอู', vi: 'Eun-woo' },
-  민수: { en: 'Minsu', th: 'มินซู', vi: 'Min-su' },
-  민희: { en: 'Minhee', th: 'มินฮี', vi: 'Min-hee' },
-  제임스: { en: 'James', th: 'เจมส์', vi: 'James' },
+  도훈: { en: 'Dohun', th: 'โดฮุน', vi: 'Do-hun', 'zh-hant': '道勳', 'zh-hans': '道勋' },
+  민준: { en: 'Minjun', th: 'มินจุน', vi: 'Min-jun', 'zh-hant': '敏俊', 'zh-hans': '敏俊' },
+  성재: { en: 'Seongjae', th: 'ซองแจ', vi: 'Seong-jae', 'zh-hant': '成宰', 'zh-hans': '成宰' },
+  은우: { en: 'Eunwoo', th: 'อึนอู', vi: 'Eun-woo', 'zh-hant': '恩宇', 'zh-hans': '恩宇' },
+  민수: { en: 'Minsu', th: 'มินซู', vi: 'Min-su', 'zh-hant': '敏秀', 'zh-hans': '敏秀' },
+  민희: { en: 'Minhee', th: 'มินฮี', vi: 'Min-hee', 'zh-hant': '敏姬', 'zh-hans': '敏姬' },
+  제임스: { en: 'James', th: 'เจมส์', vi: 'James', 'zh-hant': '詹姆斯', 'zh-hans': '詹姆斯' },
 };
 
 export function transliterateName(name: string | undefined, lang: CasesLang): string {
