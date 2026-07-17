@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { CountrySiteBreakdownPanel } from './CountrySiteBreakdownPanel';
 import { CampaignBreakdownPanel } from './CampaignBreakdownPanel';
+import { SearchQueryPanel } from './SearchQueryPanel';
 
 const DAY_OPTIONS = [7, 14, 30, 90] as const;
 
@@ -78,6 +79,8 @@ export function SiteAnalysisPage() {
       <div className="min-h-0 flex-1 space-y-6 overflow-y-auto p-6">
         {/* 캠페인은 언어 탭과 무관한 크로스 언어 지표(광고 단위)라 국가 탭 위에 독립 배치 */}
         <CampaignBreakdownPanel days={days} date={date} />
+        {/* 검색어는 GA4 가 아니라 GSC 소스라 자체 언어 탭을 가진 독립 패널 */}
+        <SearchQueryPanel days={days} date={date} />
         <CountrySiteBreakdownPanel days={days} date={date} />
       </div>
     </div>

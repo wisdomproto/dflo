@@ -19,7 +19,13 @@ import open from 'open';
 
 const PORT = 53682;
 const REDIRECT_URI = `http://localhost:${PORT}/callback`;
-const SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
+// GA4(Data API) + Search Console(검색어 = GA4 로는 못 가져옴, "not provided") 둘 다.
+// ★스코프를 늘리면 **기존 refresh_token 엔 새 스코프가 없다** → 이 스크립트를 다시 돌려 재발급해야
+//   Search Console 호출이 403 이 아니라 정상 동작한다.
+const SCOPE = [
+  'https://www.googleapis.com/auth/analytics.readonly',
+  'https://www.googleapis.com/auth/webmasters.readonly',
+].join(' ');
 
 const CLIENT_ID = process.env.GA4_OAUTH_CLIENT_ID;
 const CLIENT_SECRET = process.env.GA4_OAUTH_CLIENT_SECRET;

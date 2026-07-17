@@ -56,3 +56,34 @@ export async function fetchSiteBreakdown(arg: number | { date: string }): Promis
   if (!res.ok || !body.success) throw new Error(body.error || `사이트 분석 실패: ${res.status}`);
   return body.data as SiteBreakdown;
 }
+
+// ── 구글 검색어 (Search Console) ──
+// GA4 엔 오가닉 검색어가 없다("not provided") → 이 데이터만 GSC 에서 온다.
+export interface SearchRow {
+  label: string;
+  clicks: number;
+  impressions: number;
+  ctr: number;      // %
+  position: number; // 평균 게재순위
+}
+export interface SearchConsoleData {
+  range: { startDate: string; endDate: string };
+  siteUrl: string;
+  totals: { clicks: number; impressions: number; ctr: number; position: number };
+  queries: SearchRow[];
+  countries: SearchRow[];
+  pages: SearchRow[];
+}
+
+export async function fetchSearchConsole(
+  arg: number | { date: string },
+  lang: CountryKey = 'all',
+): Promise<SearchConsoleData> {
+  const qs = typeof arg === 'number'
+    ? `days=${arg}`
+    : `start=${encodeURIComponent(arg.date)}&end=${encodeURIComponent(arg.date)}`;
+  const res = await fetch(`${BASE}/api/analytics/search-console?${qs}&lang=${lang}`);
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) throw new Error(body.error || `검색어 분석 실패: ${res.status}`);
+  return body.data as SearchConsoleData;
+}

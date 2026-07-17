@@ -3,8 +3,19 @@
 
 import { Router } from 'express';
 import { fetchOverview, fetchChannels, fetchSiteBreakdown, fetchSiteBreakdownRanges } from '../services/ga4.js';
+import { fetchSearchConsole, type SearchLang } from '../services/searchConsole.js';
 
 export const analyticsRouter = Router();
+
+const LANGS: SearchLang[] = ['all', 'ko', 'th', 'vi', 'en'];
+
+/** days 전 ~ 오늘의 절대 날짜. GSC 는 GA4 와 달리 'NdaysAgo' 상대표기를 안 받는다. */
+function daysAgoRange(days: number): { startDate: string; endDate: string } {
+  const DAY = 86_400_000;
+  const now = Date.now();
+  const fmt = (ms: number) => new Date(ms).toISOString().slice(0, 10);
+  return { startDate: fmt(now - days * DAY), endDate: fmt(now) };
+}
 
 // 직전 동일 길이 창(절대 날짜). 단일일(start=end)이면 그 전날. 요약 증감 비교용.
 function prevWindow(start: string, end: string): { startDate: string; endDate: string } {
@@ -70,6 +81,33 @@ analyticsRouter.get('/site-breakdown', async (req, res) => {
   } catch (e) {
     const msg = (e as Error).message;
     console.error('[analytics] /site-breakdown failed:', msg);
+    res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// /api/analytics/search-console?days=N&lang=en → 구글 검색어·국가·페이지 (GA4 엔 없는 데이터)
+// /api/analytics/search-console?start=YYYY-MM-DD&end=YYYY-MM-DD&lang=all
+analyticsRouter.get('/search-console', async (req, res) => {
+  const start = typeof req.query.start === 'string' ? req.query.start : '';
+  const end = typeof req.query.end === 'string' ? req.query.end : '';
+  const dateRe = /^\d{4}-\d{2}-\d{2}$/;
+  const langRaw = typeof req.query.lang === 'string' ? req.query.lang : 'all';
+  const lang: SearchLang = (LANGS as string[]).includes(langRaw) ? (langRaw as SearchLang) : 'all';
+
+  try {
+    let range: { startDate: string; endDate: string };
+    if (dateRe.test(start) && dateRe.test(end)) {
+      range = { startDate: start, endDate: end };
+    } else {
+      const daysRaw = Number(req.query.days ?? 30);
+      const days = Number.isFinite(daysRaw) ? Math.min(365, Math.max(1, Math.round(daysRaw))) : 30;
+      range = daysAgoRange(days);
+    }
+    const data = await fetchSearchConsole(range.startDate, range.endDate, lang);
+    res.json({ success: true, lang, data });
+  } catch (e) {
+    const msg = (e as Error).message;
+    console.error('[analytics] /search-console failed:', msg);
     res.status(500).json({ success: false, error: msg });
   }
 });
