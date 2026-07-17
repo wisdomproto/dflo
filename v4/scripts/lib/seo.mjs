@@ -125,6 +125,9 @@ export function buildBlogIndexHead(lang) {
   return [ga, pixelSnippet(lang), ...head].filter(Boolean).join('\n  ');
 }
 
+// opts.altPaths — 일부 언어에만 있는 페이지(consult = th/vi/en)용. 주면 그 언어들만 hreflang 으로
+// 나간다. 안 주면 전 언어가 같은 경로를 갖는다고 보고 기존 동작(홈·clinic/cases/calculator).
+// ★없는 언어를 넣으면 그 URL 은 404 가 아니라 200 + 한국어 SPA 셸(soft-404)이라 클러스터가 무효화된다.
 export function buildHead(lang, opts = {}) {
   const path = opts.path || '/';
   const seo = buildSeo(lang);
@@ -138,7 +141,7 @@ export function buildHead(lang, opts = {}) {
     `<title>${title}</title>`,
     `<meta name="description" content="${escapeAttr(description)}">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
-    buildHreflang(path),
+    opts.altPaths ? buildHreflangPaths(opts.altPaths) : buildHreflang(path),
     `<meta property="og:type" content="website">`,
     `<meta property="og:locale" content="${ogLocale}">`,
     `<meta property="og:title" content="${escapeAttr(title)}">`,

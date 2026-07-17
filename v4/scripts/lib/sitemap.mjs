@@ -16,7 +16,9 @@ function urlEntry(loc, allPaths) {
 // indexable content (clinic = remote-consult, calculator = tool) so they belong in the sitemap.
 const SUBPAGE_FILES = ['clinic.html', 'cases.html', 'calculator.html'];
 
-export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {} }) {
+// consult.html 은 상담 채널이 여러 개인 언어(th/vi/en)에만 존재 — ko 는 빌드되지 않으므로
+// 등재하면 sitemap 이 없는 URL 을 가리킨다. 실제 빌드 대상은 build-i18n 이 넘겨준다.
+export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {}, consultLangs = [] }) {
   const entries = [];
   const homePaths = Object.fromEntries(activeLangs.map((l) => [l, '/']));
   for (const lang of activeLangs) {
@@ -27,6 +29,13 @@ export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {} }) {
     const subPaths = Object.fromEntries(activeLangs.map((l) => [l, `/${file}`]));
     for (const lang of activeLangs) {
       entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/${file}`, subPaths));
+    }
+  }
+
+  if (consultLangs.length) {
+    const consultPaths = Object.fromEntries(consultLangs.map((l) => [l, '/consult.html']));
+    for (const lang of consultLangs) {
+      entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/consult.html`, consultPaths));
     }
   }
 

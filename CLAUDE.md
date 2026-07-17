@@ -76,7 +76,16 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 ### CTA 라우팅 + GA4
 모든 메신저 버튼은 `messenger.yml`만 참조 (URL/라벨/색상). `_shell.js`의 `trackConsultClick`이 `data-source` 가진 모든 `<a>` 클릭 시 GA4 `consult_click` 이벤트 발사 (channel/locale/source/page_type 디멘션). **(2026-07-11) 메인(index) 섹션 사이 인라인 CTA 7개 전부 제거** — 예상키측정(check) + hormone_consult + 5개 케이스 상담(`case-cta-inline` × precocious/obesity/proportion/bodywork/late, `data-source="case_{section}"`)이 섹션마다 반복돼 "정신없다" 피드백 → 삭제(콘텐츠 흐름 정리). `.case-cta-inline` CSS 정의만 dead 로 잔존(롤백 용이). 전 언어 공통(템플릿 편집). **유지**: 신뢰 티저 '병원 소개 →', 페이지 하단 종결 CTA(`cta-bottom` 측정+상담 `data-source=cta_bottom`), 하단 네비 바(측정·예약). 측정·상담 진입은 이 셋으로 커버. GA4 는 case_* 인라인 소스가 빠지고 `cta_bottom`·네비바만 잡힘.
 
-### 1:1 상담 채널 시트 (2026-07-17, 비한국어 th/vi/en 전용)
+### 1:1 상담 페이지 `/{lang}/consult.html` (2026-07-17, th/vi/en 전용 — 옛 팝업 시트 대체)
+**팝업 시트 → 실제 페이지**로 전환(사용자 요청). 헤더 pill·하단 바 '1:1 상담' 이 `data-consult-open`(버튼) → **`<a href="/{lang}/consult.html">`**. 페이지 = 히어로 + **원격 상담 안내** + **채널 3개**(messenger.yml `consult_channels` 순서 그대로, `data-source="consult_page"`). 시트 마크업·JS·CSS(`.t-consult*`)·`consult_open` 이벤트는 전부 제거 — 페이지라 **page_view 가 자동으로 잡혀** 별도 열람 이벤트가 불필요.
+- **원격 안내 카피**(사용자 확인): **th** = 방콕 사무소 기반이라 4단계 요약 + `clinic.html` 전체 절차로 링크(`consult.remote.more`, 중복 콘텐츠 회피). **vi/en** = 방콕 같은 현지 인프라가 없어 **온라인 상담 중심**("서울에 오지 않아도 시작 가능 / 현지 뼈나이·혈액 결과 보내면 원장이 분석 / 화상 상담 예약 가능 / **검사·치료 계획은 내원 시 확정**") + 하단 면책 문구. 의료광고법상 안전 범위(단정·보장 없음)이나 **원장 감수 권장**.
+- **ko 는 페이지 없음** — 카톡 직행 + 예약 폼 동선 유지(`consult_channels` 미정의 → `__HAS_CONSULT_PAGE=false` → 기존 마크업).
+- **빌드**: `SUBPAGES` 에 `langs` 술어 추가(`consult` = `consult_channels.length > 1` 인 언어만). ★**`buildHead(lang, {altPaths})` 신설** — 언어 한정 페이지는 그 언어만 hreflang(`/ko/consult.html` 을 넣으면 [[블로그 hreflang]] 과 똑같이 **200 + 한국어 SPA 셸 = soft-404**). sitemap 도 `consultLangs` 로만 등재. `locale.consult_channels_list` = 템플릿 `{{#each}}` 용.
+- ★미니 렌더러 제약: `{{#if}}` 없음 → `remote.more` **배열 길이(0/1)로 분기**, `{{#each}}` 안에서 **바깥 스코프 접근 불가** → `href` 를 항목에 함께 둠. 누락 키는 **throw** 라 렌더되는 언어엔 모든 키가 있어야 함.
+- **검증**: 좌표 히트테스트(하단 바·pill → `/en/consult.html`), 전 페이지 hreflang **1289개 중 허공 0**, sitemap 263 URL(ko/consult 0), ko 무회귀(카톡 직행·예약 폼), th 화자 규칙(ค่ะ/คะ 0·ครับ 사용). 테스트 116/116(`buildHead altPaths`·`consultLangs` 회귀 포함).
+
+### (폐기) 1:1 상담 채널 시트 (2026-07-17, 비한국어 th/vi/en 전용)
+> 아래는 위 상담 페이지로 대체된 옛 구현 기록. `messenger.yml consult_channels`·GA4 `consult_click(channel)` 규칙은 그대로 유효.
 해외 방문자는 쓰는 메신저가 갈려(태국 LINE·베트남 카톡·화교 WhatsApp) **단일 채널 강제 = 그 앱 안 쓰는 사람은 이탈** → th/vi/en 은 **WhatsApp/LINE/카카오 3채널 시트**로 열어준다. **ko 무회귀**(카카오 단일 + 예약 폼이라 시트 없음 — `consult_channels` 미정의 → 빈 배열 → 기존 직행 `<a>` 유지).
 - **진입점 2곳**(둘 다 같은 시트): ① **헤더 pill** — th/vi/en 은 `<a>`(직행) → **`<button data-consult-open="header_cta">`**(시트), 라벨도 채널명(`header.kakao_label` = "LINE"/"1:1 WhatsApp")이 아닌 **`header.consult_label`**(중립 "1:1 Consulting"/"ปรึกษา 1:1"). pill 배경색은 그 시장 대표 채널색 유지 ② **하단 바 5번째 칸** `nav.consult`(`data-consult-open="bottom_nav"`) — ko `--full`(엣지투엣지)과 달리 **`.t-bottom-nav--5`** 로 기존 플로팅 pill 모양 유지한 채 칸만 5개(폰트 11→10.5px, 375px 에서 라벨 전부 1줄 확인).
 - **데이터 단일 소스** = `messenger.yml` — **YAML 앵커**(`&whatsapp/&line/&kakao`)로 채널 3개를 한 번만 정의하고 각 언어가 `consult_channels: [*line, *whatsapp, *kakao]` 로 **그 시장 대표 채널을 맨 앞**에 두고 참조(계정 URL 은 전 언어 공통). `build-i18n` 이 `consult_json` → `window.__I18N__.consultChannels` 주입(ko=`[]`), `_shell.js` `__HAS_CONSULT_SHEET = length > 1`.

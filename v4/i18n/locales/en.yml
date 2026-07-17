@@ -486,6 +486,24 @@ calculator:
   page_title: "Free Height Check | 187 Growth Clinic"
   iframe_title: "Free height prediction"
 
+consult:
+  page_title: "1:1 Consulting | 187 Growth Clinic"
+  h1: "1:1 Consulting"
+  lead: "Message us on whichever app you already use."
+  remote:
+    h2: "Living outside Korea? You can still consult us."
+    body: "You don't need to fly to Seoul to get started. Send us your child's growth details and our Korean growth specialist will review them with you directly."
+    points:
+      - "Send your child's age, current height, and both parents' heights"
+      - "If you already have local bone-age X-ray or blood test results, share them"
+      - "A video consultation with the director can be arranged by appointment"
+      - "Examination and the treatment plan are confirmed when you visit the clinic in Seoul"
+    more: []
+  channels:
+    h2: "Choose a channel"
+    sub: "Any channel works — we'll get back to you shortly."
+    note: "Online consultation is for general guidance. Diagnosis and treatment are confirmed after an in-person examination."
+
 shell:
   logo_alt: "187 Growth Clinic"
   aria:

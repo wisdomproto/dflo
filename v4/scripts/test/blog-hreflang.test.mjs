@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildHreflangPaths, buildHreflang, buildBlogPostHead } from '../lib/seo.mjs';
+import { buildHreflangPaths, buildHreflang, buildBlogPostHead, buildHead } from '../lib/seo.mjs';
 import { buildSitemap } from '../lib/sitemap.mjs';
 
 // 배경: 블로그 slug 는 언어마다 다르다(en "adhd-medication-effect-on-height-children"
@@ -78,4 +78,40 @@ test('sitemap — 네임스페이스는 스펙 값(슬래시)', () => {
   const xml = buildSitemap({ activeLangs: ['ko'], blogSlugs: {} });
   assert.match(xml, /xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9"/);
   assert.doesNotMatch(xml, /sitemap-0\.9/);
+});
+
+// consult.html 은 th/vi/en 만 빌드된다(ko 는 카톡 직행 + 예약 동선) — ko 를 hreflang·sitemap 에
+// 넣으면 /ko/consult.html 은 404 가 아니라 200 + 한국어 SPA 셸이라 soft-404 가 된다.
+test('buildHead — 언어 한정 페이지는 altPaths 로 그 언어만 hreflang', () => {
+  const head = buildHead('en', {
+    path: '/consult.html',
+    skipJsonLd: true,
+    altPaths: { th: '/consult.html', vi: '/consult.html', en: '/consult.html' },
+  });
+  assert.match(head, /hreflang="th" href="[^"]*\/th\/consult\.html"/);
+  assert.match(head, /hreflang="en" href="[^"]*\/en\/consult\.html"/);
+  assert.doesNotMatch(head, /\/ko\/consult\.html/);   // ★ ko 판은 없다
+  assert.doesNotMatch(head, /x-default/);             // ko 없으면 x-default 도 없음
+});
+
+test('buildHead — altPaths 없으면 전 언어(기존 페이지 무회귀)', () => {
+  const head = buildHead('en', { path: '/clinic.html', skipJsonLd: true });
+  for (const lang of ['ko', 'th', 'vi', 'en']) {
+    assert.match(head, new RegExp(`hreflang="${lang}" href="[^"]*/${lang}/clinic\\.html"`));
+  }
+});
+
+test('sitemap — consultLangs 만 consult.html 등재', () => {
+  const xml = buildSitemap({
+    activeLangs: ['ko', 'th', 'vi', 'en'],
+    blogSlugs: {},
+    consultLangs: ['th', 'vi', 'en'],
+  });
+  assert.match(xml, /<loc>[^<]*\/en\/consult\.html<\/loc>/);
+  assert.doesNotMatch(xml, /\/ko\/consult\.html/);
+});
+
+test('sitemap — consultLangs 없으면 consult 미등재(기본값)', () => {
+  const xml = buildSitemap({ activeLangs: ['ko', 'th'], blogSlugs: {} });
+  assert.doesNotMatch(xml, /consult\.html/);
 });

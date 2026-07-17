@@ -486,6 +486,24 @@ calculator:
   page_title: "Đo chiều cao miễn phí | 187 Growth Clinic"
   iframe_title: "Dự đoán chiều cao miễn phí"
 
+consult:
+  page_title: "Tư vấn 1:1 | 187 Growth Clinic"
+  h1: "Tư vấn 1:1"
+  lead: "Chọn ứng dụng bạn thuận tiện và bắt đầu ngay."
+  remote:
+    h2: "Ở nước ngoài vẫn tư vấn được"
+    body: "Bạn chưa cần sang Hàn Quốc để bắt đầu. Hãy nhắn cho chúng tôi thông tin tăng trưởng của con, bác sĩ chuyên khoa tại Hàn Quốc sẽ xem và trao đổi trực tiếp với bạn."
+    points:
+      - "Nhắn tuổi, chiều cao hiện tại của con và chiều cao của bố mẹ"
+      - "Nếu đã có kết quả X-quang tuổi xương hoặc xét nghiệm máu tại địa phương, hãy gửi kèm"
+      - "Có thể hẹn lịch tư vấn qua video với giám đốc phòng khám"
+      - "Khám và kế hoạch điều trị được xác nhận khi bạn đến phòng khám tại Seoul"
+    more: []
+  channels:
+    h2: "Chọn kênh"
+    sub: "Nhắn qua kênh nào cũng được, chúng tôi sẽ phản hồi sớm."
+    note: "Tư vấn trực tuyến chỉ mang tính tham khảo. Chẩn đoán và điều trị được xác nhận sau khi thăm khám thực tế."
+
 shell:
   logo_alt: "187 Growth Clinic"
   aria:

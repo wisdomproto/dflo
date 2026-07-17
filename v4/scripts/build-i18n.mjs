@@ -105,15 +105,19 @@ async function main() {
   const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
   const casesTemplate = readFileSync(join(ROOT, 'i18n/template/cases.html'), 'utf8');
   const calculatorTemplate = readFileSync(join(ROOT, 'i18n/template/calculator.html'), 'utf8');
+  const consultTemplate = readFileSync(join(ROOT, 'i18n/template/consult.html'), 'utf8');
   const postTemplate = readFileSync(join(ROOT, 'i18n/template/blog-post.html'), 'utf8');
   const indexTemplate = readFileSync(join(ROOT, 'i18n/template/blog-index.html'), 'utf8');
 
   // Subpages share the brand SEO entry (description, OG image) but get their own title
   // from the locale yml so Google snippets and the browser tab read correctly.
+  // consult 는 상담 채널이 여러 개인 언어(th/vi/en)만 — ko 는 카톡 직행 + 예약 폼 동선이라 페이지가 없다.
   const SUBPAGES = [
     { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title' },
     { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
     { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title' },
+    { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',
+      langs: (l) => (getMessengerCTA(l).consult_channels?.length ?? 0) > 1 },
   ];
 
   for (const lang of ACTIVE_LANGS) {
@@ -126,6 +130,8 @@ async function main() {
     // 1:1 상담 채널 시트(비한국어 = th/vi/en). ko 는 카카오 단일 채널이라 messenger.yml 에
     // consult_channels 가 없고 → 빈 배열 → _shell.js 가 기존 단일 링크 동작 유지(graceful).
     locale.consult_json = JSON.stringify(messenger.consult_channels || []);
+    // consult.html 이 {{#each}} 로 도는 채널 목록(같은 데이터의 렌더용 뷰).
+    locale.consult_channels_list = messenger.consult_channels || [];
     // 예약(콜백) 폼이 접수를 보낼 ai-server URL. Railway v4 서비스엔 VITE_AI_SERVER_URL 이 이미
     // 있으므로 그걸 재사용(SITE_AI_SERVER_URL 로 오버라이드 가능). 로컬/미설정이면 빈 문자열 →
     // _shell.js 가 http://localhost:4000 폴백. 정적 페이지에 window.__I18N__.aiServer 로 주입.
@@ -151,10 +157,15 @@ async function main() {
 
     // Subpages — re-bind seo_head per page so canonical/hreflang/title are correct
     for (const sub of SUBPAGES) {
+      if (sub.langs && !sub.langs(lang)) continue;   // 언어 한정 서브페이지(consult = th/vi/en)
       const titleParts = sub.titlePath.split('.');
       let title = locale;
       for (const p of titleParts) title = title?.[p];
-      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, skipJsonLd: true });
+      // 언어 한정 페이지는 hreflang 도 그 언어들만 — 없는 언어를 가리키면 soft-404 클러스터가 된다.
+      const altPaths = sub.langs
+        ? Object.fromEntries(ACTIVE_LANGS.filter(sub.langs).map((l) => [l, `/${sub.file}`]))
+        : undefined;
+      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, skipJsonLd: true, altPaths });
       writeFile(join(ROOT, 'public', lang, sub.file), lazifyImages(localizeProgramImg(render(sub.template, locale))));
     }
 
@@ -172,7 +183,11 @@ async function main() {
     }
   }
 
-  const sitemap = buildSitemap({ activeLangs: ACTIVE_LANGS, blogSlugs, blogAlts });
+  const consultSub = SUBPAGES.find((s) => s.name === 'consult');
+  const sitemap = buildSitemap({
+    activeLangs: ACTIVE_LANGS, blogSlugs, blogAlts,
+    consultLangs: ACTIVE_LANGS.filter(consultSub.langs),
+  });
   writeFile(join(ROOT, 'public/sitemap.xml'), sitemap);
   console.log(`[i18n] done — ${ACTIVE_LANGS.length} locale(s)`);
 }
