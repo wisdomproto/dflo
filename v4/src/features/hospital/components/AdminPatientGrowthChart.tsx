@@ -21,6 +21,7 @@ import {
   type Nationality,
 } from '@/features/bone-age/lib/growthStandard';
 import { calculateAgeAtDate } from '@/shared/utils/age';
+import { calculateMidParentalHeight } from '@/shared/utils/growth';
 import { ZoomModal } from '@/shared/components/ZoomModal';
 import type { Child, HospitalMeasurement } from '@/shared/types';
 
@@ -44,6 +45,7 @@ const COLORS = {
   baProj: '#6366f1', // indigo — bone-age projection
   caProj: '#0d9488', // teal — chronologic-age projection
   desired: '#9333ea',
+  mph: '#d97706', // amber — 부모키 기반 기대치(MPH). 보라(desired)·인디고(baProj)와 구분
 };
 
 const PERCENTILE_LEGEND = [
@@ -54,7 +56,7 @@ const PERCENTILE_LEGEND = [
   { key: 'p97', label: '97th', color: COLORS.p97 },
 ];
 
-type ToggleKey = 'boneAge' | 'baProj' | 'caProj' | 'desired';
+type ToggleKey = 'boneAge' | 'baProj' | 'caProj' | 'desired' | 'mph';
 
 interface Props {
   child: Child;
@@ -132,6 +134,7 @@ export function AdminPatientGrowthChart({
     baProj: !defaultHidePrediction,
     caProj: false,
     desired: true,
+    mph: true,
   });
   // When true, patient data points are limited to visits that also had a BA
   // reading — useful when the clinic sees the child monthly and the chart gets
@@ -171,6 +174,12 @@ export function AdminPatientGrowthChart({
   const latest = sortedMeasurements.at(-1) ?? null;
   const boneAge = latest?.bone_age ?? null;
   const desired = child.desired_height ?? null;
+  // MPH(부모키 기반 기대 성인키) — 첫 상담 11페이지에서 예측키와 나란히 보려고 추가.
+  // 공식은 8페이지(MPH 분포 슬라이드)와 같다: (부 + 모 ± 13) / 2.
+  const mph =
+    child.father_height && child.mother_height
+      ? calculateMidParentalHeight(child.father_height, child.mother_height, child.gender)
+      : null;
 
   const selectedMeas = useMemo(
     () => sortedMeasurements.find((m) => m.visit_id === selectedVisitId) ?? null,
@@ -235,6 +244,12 @@ export function AdminPatientGrowthChart({
       label: '희망',
       color: COLORS.desired,
       value: desired != null ? `${desired}` : null,
+    },
+    {
+      key: 'mph',
+      label: 'MPH',
+      color: COLORS.mph,
+      value: mph != null ? `${mph}` : null,
     },
   ];
 
@@ -402,6 +417,24 @@ export function AdminPatientGrowthChart({
       });
     }
 
+    // MPH(부모키 기반 기대 성인키) — 예측키(baProj)와 나란히 놓고 "유전 기대치 대비
+    // 지금 어디쯤인가"를 보려는 용도. desired 와 같은 이유로 simplified(환자용)에서는 숨긴다.
+    if (!simplified && visible.mph && typeof mph === 'number' && mph > 0) {
+      refDatasets.push({
+        label: 'mph',
+        data: [
+          { x: X_MIN, y: mph },
+          { x: X_MAX, y: mph },
+        ],
+        borderColor: COLORS.mph,
+        borderWidth: 1.5,
+        borderDash: [6, 3],
+        pointRadius: 0,
+        tension: 0,
+        order: 4,
+      });
+    }
+
     // Optionally trim to BA-measured visits only (checkbox below the chart).
     const chartMeasurements = effectiveBaOnly
       ? sortedMeasurements.filter((m) => m.bone_age != null)
@@ -443,7 +476,7 @@ export function AdminPatientGrowthChart({
     };
 
     return { datasets: [...percentileDatasets, ...refDatasets, patientDataset] };
-  }, [child, sortedMeasurements, visible, effectiveBaOnly, baProjection, caProjection, baAdult, caAdult, desired, selectedVisitId, nationality, simplified]);
+  }, [child, sortedMeasurements, visible, effectiveBaOnly, baProjection, caProjection, baAdult, caAdult, desired, mph, selectedVisitId, nationality, simplified]);
 
   const options: Parameters<typeof Line>[0]['options'] = {
     responsive: true,
