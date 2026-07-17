@@ -11,11 +11,15 @@
 
 // ============== GA4 Consult Tracking ==============
 // Locale + channel injected by build-i18n via window.__I18N__.
-window.trackConsultClick = function (source) {
+// channel 인자는 옵션 — 넘기면 그 채널로, 없으면 그 언어의 대표 채널(i18n.channel).
+// 상담 채널 시트(th/vi/en)는 한 페이지에서 WhatsApp/LINE/카카오가 모두 클릭 가능하므로
+// 대표 채널로 뭉뚱그리면 어느 채널이 먹히는지 알 수 없다 → 클릭된 채널을 그대로 보낸다.
+window.trackConsultClick = function (source, channel) {
   var i18n = window.__I18N__ || {};
+  var ch = channel || i18n.channel || 'unknown';
   if (typeof gtag !== 'undefined') {
     gtag('event', 'consult_click', {
-      channel: i18n.channel || 'unknown',
+      channel: ch,
       locale: i18n.locale || 'unknown',
       source: source || 'unspecified',
       page_type: i18n.page_type || 'home',
@@ -25,7 +29,7 @@ window.trackConsultClick = function (source) {
   if (typeof fbq !== 'undefined') {
     fbq('track', 'Lead', {
       source: source || 'unspecified',
-      channel: i18n.channel || 'unknown',
+      channel: ch,
       locale: i18n.locale || 'unknown',
     });
   }
@@ -35,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var anchors = document.querySelectorAll('a[data-source]');
   anchors.forEach(function (a) {
     a.addEventListener('click', function () {
-      window.trackConsultClick(a.getAttribute('data-source'));
+      // data-channel 은 이전엔 장식이었고(대표 채널과 같은 값) 이제 시트가 채널별로 채운다.
+      window.trackConsultClick(a.getAttribute('data-source'), a.getAttribute('data-channel'));
     });
   });
 });
@@ -117,6 +122,26 @@ const __M_CH = escAttr(__MESSENGER.channel);
 const __M_BG = escAttr(__MESSENGER.color_bg);
 const __M_FG = escAttr(__MESSENGER.color_fg);
 
+// ============= 1:1 상담 채널 시트 (비한국어 전용) =============
+// 해외(th/vi/en) 방문자는 쓰는 메신저가 갈려서(태국 LINE·베트남 카톡/잘로·화교 WhatsApp)
+// 단일 채널 강제 = 그 앱 안 쓰는 사람은 이탈 → 헤더 pill·하단 바에서 3채널 시트를 연다.
+// ko 는 카카오 단일 채널이라 consult_channels 가 없고(빈 배열) → 기존 직행 링크 유지.
+const __CONSULT = (window.__I18N__ && window.__I18N__.consultChannels) || [];
+const __HAS_CONSULT_SHEET = __CONSULT.length > 1;
+// 채널 브랜드 글리프 — 브랜드 로고 자산 없이 알아볼 수 있는 최소 단서(말풍선 + 채널색).
+const __CONSULT_ITEMS = __CONSULT.map((c) => `
+          <a class="t-consult-item" href="${escAttr(c.url)}" target="_blank" rel="noopener"
+             data-source="consult_sheet" data-channel="${escAttr(c.channel)}"
+             style="background:${escAttr(c.color_bg)};color:${escAttr(c.color_fg)}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+            </svg>
+            <span>${escAttr(c.label)}</span>
+            <svg class="t-consult-go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </a>`).join('');
+
 // ============= LANGUAGE SWITCHER =============
 // 활성 언어(build-i18n 의 ACTIVE_LANGS 와 동일). 라벨은 각 언어 자국어 표기 —
 // 어느 언어 페이지에 있든 자기 언어를 알아볼 수 있어야 하므로 번역하지 않는다.
@@ -156,12 +181,14 @@ const SHELL_HTML = `
       <img class="logo" src="${__LOGO_SRC}" alt="187 성장클리닉">
     </a>
     <div class="t-header-actions">
-      <a class="t-header-kakao" data-channel="${__M_CH}" data-source="header_cta" href="${__M_URL}" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}" style="background:${__M_BG};color:${__M_FG}">
+      ${__HAS_CONSULT_SHEET ? `
+      <button type="button" class="t-header-kakao" data-consult-open="header_cta" aria-haspopup="dialog" aria-label="${tEsc('aria.consult', '1:1 상담')}" style="background:${__M_BG};color:${__M_FG}">` : `
+      <a class="t-header-kakao" data-channel="${__M_CH}" data-source="header_cta" href="${__M_URL}" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}" style="background:${__M_BG};color:${__M_FG}">`}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
         </svg>
-        <span>${tEsc('header.kakao_label', '1:1 카톡 상담')}</span>
-      </a>
+        <span>${__HAS_CONSULT_SHEET ? tEsc('header.consult_label', '1:1 상담') : tEsc('header.kakao_label', '1:1 카톡 상담')}</span>
+      ${__HAS_CONSULT_SHEET ? '</button>' : '</a>'}
       <div class="t-lang" data-lang-switch>
         <button type="button" class="t-lang-btn" aria-label="${tEsc('aria.lang', '언어 선택')}" aria-haspopup="true" aria-expanded="false" data-lang-toggle>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -180,7 +207,7 @@ const SHELL_HTML = `
     </div>
   </header>
 
-  <nav class="t-bottom-nav${__IS_KO ? ' t-bottom-nav--full' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
+  <nav class="t-bottom-nav${__IS_KO ? ' t-bottom-nav--full' : ''}${__HAS_CONSULT_SHEET ? ' t-bottom-nav--5' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
     <a href="${__HOME_HREF}" data-nav="programs">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4h12a4 4 0 014 4v12" />
@@ -209,7 +236,13 @@ const SHELL_HTML = `
         <path d="M4 4l16 16" /><path d="M4 4v16h16" /><path d="M9 14l3-3 3 3" /><path d="M12 11V4" />
       </svg>
       <span>${tEsc('nav.calc', '예상키 측정')}</span>
-    </a>${__IS_KO ? `
+    </a>${__HAS_CONSULT_SHEET ? `
+    <button type="button" data-consult-open="bottom_nav" aria-haspopup="dialog">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+      </svg>
+      <span>${tEsc('nav.consult', '1:1 상담')}</span>
+    </button>` : ''}${__IS_KO ? `
     <button type="button" class="t-nav-reserve" data-open-reservation aria-haspopup="dialog">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="M9 15l2 2 4-4"/>
@@ -217,6 +250,23 @@ const SHELL_HTML = `
       <span>예약하기</span>
     </button>` : ''}
   </nav>
+
+${__HAS_CONSULT_SHEET ? `
+  <div class="t-consult" id="tConsult" role="dialog" aria-modal="true" aria-label="${tEsc('consult.title', '1:1 상담')}" hidden>
+    <div class="t-consult-sheet" role="document">
+      <div class="t-consult-head">
+        <div>
+          <h2>${tEsc('consult.title', '1:1 상담')}</h2>
+          <p>${tEsc('consult.desc', '편하신 메신저를 선택하세요.')}</p>
+        </div>
+        <button type="button" class="t-consult-close" data-consult-close aria-label="${tEsc('aria.close', '닫기')}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="t-consult-list">${__CONSULT_ITEMS}
+      </div>
+    </div>
+  </div>` : ''}
 
   <div class="t-modal" id="tCalcModal" role="dialog" aria-modal="true" aria-label="${tEsc('calc.title', '우리 아이 예상 키')}">
     <div class="t-calc-frame">
@@ -312,6 +362,50 @@ ${__IS_KO ? `
   document.querySelectorAll('.t-bottom-nav a').forEach(a => {
     if (a.dataset.nav === currentPage) a.classList.add('active');
   });
+
+  // ============= 1:1 상담 채널 시트 (th/vi/en) =============
+  // 채널 링크는 마크업에 이미 박혀 있고(=__CONSULT_ITEMS, 클릭 추적은 a[data-source] 공통 바인딩이
+  // 담당) 여기선 열고/닫기 + 열람 이벤트만 담당. 진입점 2곳(헤더 pill / 하단 바)이 같은 시트를 쓴다.
+  const consult = document.getElementById('tConsult');
+  if (consult) {
+    // 시트는 오버레이라 자동 page_view 가 없다 → 예약 폼과 같은 규칙으로 열람 이벤트를 발사해
+    // "열었지만 아무 채널도 안 누른" 이탈을 퍼널에서 볼 수 있게 한다.
+    const trackConsultOpen = (source) => {
+      if (typeof gtag === 'undefined') return;
+      gtag('event', 'consult_open', {
+        locale: (window.__I18N__ && window.__I18N__.locale) || 'unknown',
+        source: source || 'unknown',
+      });
+    };
+    const setConsultNavActive = (on) => {
+      document.querySelectorAll('.t-bottom-nav [data-consult-open]').forEach((b) => b.classList.toggle('active', on));
+    };
+    const openConsult = (source) => {
+      consult.hidden = false;
+      requestAnimationFrame(() => consult.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+      setConsultNavActive(true);
+      trackConsultOpen(source);
+    };
+    const closeConsult = () => {
+      consult.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setConsultNavActive(false);
+      setTimeout(() => { consult.hidden = true; }, 200);
+    };
+
+    document.querySelectorAll('[data-consult-open]').forEach((b) => {
+      b.addEventListener('click', () => openConsult(b.getAttribute('data-consult-open')));
+    });
+    consult.querySelectorAll('[data-consult-close]').forEach((b) => b.addEventListener('click', closeConsult));
+    // 배경(딤) 클릭 = 닫기. 시트 내부 클릭은 통과시킨다.
+    consult.addEventListener('click', (e) => { if (e.target === consult) closeConsult(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && consult.classList.contains('is-open')) closeConsult();
+    });
+    // 채널을 골라 나가면(새 탭) 시트는 닫아둔다 — 돌아왔을 때 열린 채로 남지 않게.
+    consult.querySelectorAll('.t-consult-item').forEach((a) => a.addEventListener('click', closeConsult));
+  }
 
   // Language switcher dropdown — 항목 href 는 마크업에서 이미 현재 페이지의 대응 URL 로
   // 계산돼 있으므로(=__langHref) 여기선 열고/닫기만 담당한다.

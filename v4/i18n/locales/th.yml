@@ -499,15 +499,21 @@ shell:
     home: "หน้าแรก"
     kakao: "ปรึกษาผ่าน LINE"
     lang: "เลือกภาษา"
+    consult: "ปรึกษา 1:1"
     menu: "เมนูหลัก"
     close: "ปิด"
   header:
     kakao_label: "LINE"
+    consult_label: "ปรึกษา 1:1"
   nav:
     programs: "โปรแกรม"
     clinic: "คลินิก"
     cases: "เคสรักษา"
     calc: "วัดส่วนสูง"
+    consult: "ปรึกษา 1:1"
+  consult:
+    title: "ปรึกษา 1:1"
+    desc: "เลือกช่องทางที่สะดวก"
   calc:
     badge: "ตรวจการเจริญเติบโต · ฟรี"
     title: "ส่วนสูงผู้ใหญ่ที่คาดการณ์"

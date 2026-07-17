@@ -491,15 +491,21 @@ shell:
     home: "Trang chủ"
     kakao: "Tư vấn KakaoTalk 1:1"
     lang: "Chọn ngôn ngữ"
+    consult: "Tư vấn 1:1"
     menu: "Menu chính"
     close: "Đóng"
   header:
     kakao_label: "KakaoTalk 1:1"
+    consult_label: "Tư vấn 1:1"
   nav:
     programs: "Chương trình"
     clinic: "Phòng khám"
     cases: "Ca điều trị"
     calc: "Đo miễn phí"
+    consult: "Tư vấn 1:1"
+  consult:
+    title: "Tư vấn 1:1"
+    desc: "Chọn ứng dụng bạn thuận tiện."
   calc:
     badge: "Kiểm tra tăng trưởng · Miễn phí"
     title: "Chiều cao trưởng thành dự đoán"

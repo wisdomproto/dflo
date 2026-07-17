@@ -491,15 +491,21 @@ shell:
     home: "Home"
     kakao: "1:1 WhatsApp consultation"
     lang: "Select language"
+    consult: "1:1 Consulting"
     menu: "Main menu"
     close: "Close"
   header:
     kakao_label: "1:1 WhatsApp"
+    consult_label: "1:1 Consulting"
   nav:
     programs: "Programs"
     clinic: "Clinic"
     cases: "Cases"
     calc: "Free check"
+    consult: "1:1 Consulting"
+  consult:
+    title: "1:1 Consulting"
+    desc: "Choose the messenger you prefer."
   calc:
     badge: "Growth check · Free"
     title: "Predicted Adult Height"

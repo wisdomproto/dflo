@@ -1,27 +1,54 @@
+# 상담 채널 정의(앵커) — 아래 각 언어의 consult_channels 가 이걸 참조한다.
+# 계정은 전 언어 공통(같은 WhatsApp/LINE/카카오 채널) 이라 URL 은 여기 한 곳에만 둔다.
+_channels:
+  whatsapp: &whatsapp
+    channel: whatsapp
+    url: "https://wa.me/821066932838?text=Hi%2C%20I%20would%20like%20a%20growth%20consultation%20for%20my%20child."
+    label: "WhatsApp"
+    color_bg: "#25D366"
+    color_fg: "#FFFFFF"
+  line: &line
+    channel: line
+    url: "https://line.me/R/ti/p/%40894qhqtu"
+    label: "LINE"
+    color_bg: "#06C755"
+    color_fg: "#FFFFFF"
+  kakao: &kakao
+    channel: kakao
+    url: "https://pf.kakao.com/_mxbWxfX"
+    label: "KakaoTalk"
+    color_bg: "#FAE100"
+    color_fg: "#3C1E1E"
+
 ko:
   channel: kakao
   url: "https://pf.kakao.com/_mxbWxfX"
   label: "1:1 카카오톡 상담"
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"
+  # ko 는 카카오 단일 채널 직행(+ 예약 폼) — 채널 시트 없음.
 th:
   channel: line
   url: "https://line.me/R/ti/p/%40894qhqtu"
   label: "ปรึกษาผ่าน LINE"
   color_bg: "#06C755"
   color_fg: "#FFFFFF"
+  # 시트 노출 순서 = 그 시장 대표 채널 먼저.
+  consult_channels: [*line, *whatsapp, *kakao]
 vi:
   channel: kakao
   url: "https://pf.kakao.com/_mxbWxfX"
   label: "Tư vấn qua KakaoTalk"
   color_bg: "#FAE100"
   color_fg: "#3C1E1E"
+  consult_channels: [*kakao, *whatsapp, *line]
 en:
   channel: whatsapp
   url: "https://wa.me/821066932838?text=Hi%2C%20I%20would%20like%20a%20growth%20consultation%20for%20my%20child."
   label: "Consult on WhatsApp"
   color_bg: "#25D366"
   color_fg: "#FFFFFF"
+  consult_channels: [*whatsapp, *line, *kakao]
 ja:
   channel: line
   url: "TBD"

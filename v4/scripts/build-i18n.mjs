@@ -100,6 +100,9 @@ async function main() {
     locale.messenger = messenger;
     locale.messenger_json = JSON.stringify(messenger);
     locale.shell_json = JSON.stringify(locale.shell || {});
+    // 1:1 상담 채널 시트(비한국어 = th/vi/en). ko 는 카카오 단일 채널이라 messenger.yml 에
+    // consult_channels 가 없고 → 빈 배열 → _shell.js 가 기존 단일 링크 동작 유지(graceful).
+    locale.consult_json = JSON.stringify(messenger.consult_channels || []);
     // 예약(콜백) 폼이 접수를 보낼 ai-server URL. Railway v4 서비스엔 VITE_AI_SERVER_URL 이 이미
     // 있으므로 그걸 재사용(SITE_AI_SERVER_URL 로 오버라이드 가능). 로컬/미설정이면 빈 문자열 →
     // _shell.js 가 http://localhost:4000 폴백. 정적 페이지에 window.__I18N__.aiServer 로 주입.
