@@ -358,7 +358,13 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
 }
 
 // ============= Iframe slide content (info-stack: 정적 HTML 임베드) =============
+const FULLSCREEN_LABEL: Record<CasesLang, string> = {
+  ko: '전체화면 ↗', en: 'Fullscreen ↗', th: 'เต็มจอ ↗', vi: 'Toàn màn hình ↗',
+  'zh-hant': '全螢幕 ↗', 'zh-hans': '全屏 ↗',
+};
+
 function IframeContent({ slide: s }: { slide: IframeSlide }) {
+  const fullscreenLabel = FULLSCREEN_LABEL[useCasesLangCode()] ?? FULLSCREEN_LABEL.ko;
   const zoom = (s.zoom ?? 100) / 100;
   const bg = s.bgColor || '#ffffff';
 
@@ -439,7 +445,7 @@ function IframeContent({ slide: s }: { slide: IframeSlide }) {
         {frame && (
           <div className="flex items-center justify-end px-2 py-1 border-b border-gray-100 bg-white/80">
             <a href={s.src} target="_blank" rel="noopener noreferrer"
-              className="text-[10px] text-gray-500 hover:text-[#0F6E56]">전체화면 ↗</a>
+              className="text-[10px] text-gray-500 hover:text-[#0F6E56]">{fullscreenLabel}</a>
           </div>
         )}
         {iframeEl}
@@ -456,7 +462,7 @@ function IframeContent({ slide: s }: { slide: IframeSlide }) {
       {frame && (
         <div className="flex items-center justify-end px-2 py-1 border-b border-gray-100 bg-white/80">
           <a href={s.src} target="_blank" rel="noopener noreferrer"
-            className="text-[10px] text-gray-500 hover:text-[#0F6E56]">전체화면 ↗</a>
+            className="text-[10px] text-gray-500 hover:text-[#0F6E56]">{fullscreenLabel}</a>
         </div>
       )}
       {iframeEl}
