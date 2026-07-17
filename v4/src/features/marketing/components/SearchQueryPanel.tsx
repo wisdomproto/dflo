@@ -13,6 +13,8 @@ const TABS: { key: CountryKey; label: string }[] = [
   { key: 'th', label: '🇹🇭 태국어' },
   { key: 'vi', label: '🇻🇳 베트남어' },
   { key: 'en', label: '🇺🇸 영어' },
+  { key: 'zh-hant', label: '🇹🇼 번체' },
+  { key: 'zh-hans', label: '🀄 간체' },
 ];
 
 type View = 'queries' | 'countries' | 'pages';
