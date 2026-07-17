@@ -28,6 +28,9 @@ const MESSENGER: Record<CalcLang, { url: string; bgClass: string; fgClass: strin
   vi: { url: KAKAO_URL, bgClass: 'bg-[#FEE500]', fgClass: 'text-[#3C1E1E]', hoverClass: 'hover:bg-[#FDD800]' },
   en: { url: 'https://wa.me/821066932838?text=Hi%2C%20I%20would%20like%20a%20growth%20consultation%20for%20my%20child.', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
   th: { url: 'https://line.me/R/ti/p/%40894qhqtu', bgClass: 'bg-[#06C755]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
+  // 중국어(대만·화교) = WhatsApp, messenger.yml 과 동일한 중국어 프리필.
+  'zh-hant': { url: 'https://wa.me/821066932838?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E7%82%BA%E5%AD%A9%E5%AD%90%E8%AB%AE%E8%A9%A2%E7%94%9F%E9%95%B7%E5%95%8F%E9%A1%8C%E3%80%82', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
+  'zh-hans': { url: 'https://wa.me/821066932838?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%B8%BA%E5%AD%A9%E5%AD%90%E5%92%A8%E8%AF%A2%E7%94%9F%E9%95%BF%E9%97%AE%E9%A2%98%E3%80%82', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
 };
 
 // 성장 골든타임 — 원장 저서(1장) 기준. 나이를 딱 박지 않고 range 로(여 9~11 / 남 11~14),

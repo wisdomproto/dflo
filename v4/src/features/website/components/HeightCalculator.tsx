@@ -45,7 +45,11 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
   const [showHelp, setShowHelp] = useState(false);
   const t = getCalcLabels(lang);
   // 성장표준: 영어(en)는 국적 선택(KR/TH/CN), 태국어(th)는 태국(TSPE), 그 외(ko/vi)는 한국.
-  const standard: GrowthStandard = lang === 'en' ? nationality : lang === 'th' ? 'TH' : 'KR';
+  const standard: GrowthStandard =
+    lang === 'en' ? nationality
+    : lang === 'th' ? 'TH'
+    : lang === 'zh-hant' || lang === 'zh-hans' ? 'CN'
+    : 'KR';
 
   // 생년월일 = 숫자 입력칸(input). select 드롭다운은 페북 인앱(Android Webview)에서 안 열려
   // 측정 완료 0 회귀를 냈어서(광고 유입 36명 전원 0%) input 으로 되돌림. inputMode=numeric 으로 모바일 숫자 키패드.
