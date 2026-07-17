@@ -61,6 +61,14 @@ v4/public/sitemap.xml         ← hreflang = ACTIVE_LANGS(4) + x-default 자동 
 ### 테스트 러너 (2026-07-17 정리)
 **`cd v4 && npm test` 하나뿐**(`node --import tsx --test scripts/test/*.mjs`, 112 케이스 전부 통과). 옛 **`test:i18n` 은 제거** — `test` 와 **같은 glob 을 돌면서 tsx 로더만 빠져** `.ts` 를 import 하는 테스트 6개가 항상 `ERR_UNKNOWN_FILE_EXTENSION` 로 죽었다(코드는 멀쩡한데 러너가 거짓 실패 → "원래 깨져 있는 테스트" 로 방치되며 진짜 회귀를 가리는 함정). 문서·습관이 test:i18n 을 가리키고 있어 오래 안 보였음.
 - 같이 갱신: `messenger.test.mjs` 의 `vi/en → kakao` 기대는 **en 이 WhatsApp 으로 바뀐(2026-07-03) 뒤 방치된 실패** → vi=kakao / en=whatsapp 로 분리하고, `consult_channels`(3채널·시장별 대표 채널 우선·ko 는 없음) 커버리지 추가.
+
+**ai-server 테스트 = `cd ai-server && npm run build && npm test`** (2026-07-17 정리, 128/128 통과). ★**컴파일 산출물(`dist/`)을 테스트**하므로 `npm test` 전에 **반드시 `npm run build`** — 안 하면 옛 dist 를 재는 유령 실패/통과.
+- **`siteBreakdown.test.mjs` 3건이 상시 실패**하던 걸 수정(v4 `test:i18n` 과 **같은 함정** — "원래 깨져 있는 테스트"로 방치되면 진짜 회귀를 가린다). 원인이 **두 개**였음:
+  - ① `classifyCountry` 기대가 **vi/en 언어탭 신설(2026-06-30) 전 스펙**에 멈춰 있었음(`/vi/`→`'other'` 기대). ★**`classifyCountry` 는 `'other'` 를 반환하는 경로가 아예 없다** — 미분류는 전부 **ko 폴백**(루트가 `/ko/` 301 이라 의도된 동작). `Country` 유니온의 `'other'` 와 `countryKeys` 의 `return []` 는 **도달 불가 = dead**(정리 후보, 미착수).
+  - ② 51·52 는 vi/en 과 **무관하게** `TypeError: input.geo is not iterable` 로 **크래시**하고 있었음 — 픽스처가 `BreakdownInput` 에 나중에 추가된 **`geo`·`campaigns` 필드를 안 넣어서**. 하나의 증상(3 fail)에 원인이 둘이라 vi/en 만 고치면 여전히 빨간불.
+- 픽스처의 `/vi/` **999 센티넬**("other → 제외" 표시용)은 이제 vi 가 실버킷이라 **`all` 합산을 오염**시킴 → 현실값으로 교체 + `/en/` 행 추가(신규 버킷 실제 커버). `all` = ko+th+vi+en(users 160·sessions 192).
+- **검증**: `classifyCountry` 의 vi 반환을 `'other'` 로 되돌리는 **뮤테이션 시 2건 실패** 확인(테스트가 공허하지 않음 = 회귀를 실제로 잡음).
+- ⚠️ **미해결 2건**: (a) `geo`·`campaigns` rollup(`rollupCampaigns` 의 `UNTAGGED_CAMPAIGNS` 필터·div-by-zero 가드, geo 나라▸도시 중첩)은 **커버리지 0**(빈 배열 스텁). (b) `npm test`(=`node --test`, glob 없음)가 **`scripts/test-telegram.mjs` 를 테스트로 오인해 매 실행마다 실제 텔레그램 발송** — 러너 스코프 문제(같은 계열). `node --test __tests__/` 로 좁히거나 스크립트 개명 필요.
 - `lib/fetch-contentflow-posts.mjs`: ContentFlow API에서 블로그 fetch → `i18n/blog-cache/` JSON 캐시
 - `lib/blog.mjs`: `renderPost` + `renderIndex` + `loadCachedPosts`
 
