@@ -1,5 +1,6 @@
 import type { StepProps } from './StepBasic';
 import type { GrowthHistoryEntry } from '@/shared/types';
+import { NumberField } from './fields';
 
 const AGES = [8, 9, 10, 11, 12, 13, 14, 15, 16];
 
@@ -64,6 +65,12 @@ export function StepGrowth({ state, set, L }: StepProps) {
           </tbody>
         </table>
       </div>
+
+      <NumberField
+        label={L.yearlyGrowth}
+        value={state.survey.yearly_growth ?? ''}
+        onChange={(v) => set({ survey: { ...state.survey, yearly_growth: v } })}
+      />
 
       <div className="flex flex-col gap-3">
         {flagRows.map(({ key, label }) => (

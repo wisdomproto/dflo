@@ -25,6 +25,9 @@ function fmtDate(iso: string): string {
 }
 
 function srcOf(r: GrowthReportRow): string {
+  // 설문에서 직접 답한 유입 경로("어디서 보고 오셨나요?")가 있으면 그게 1순위, 없으면 UTM/리퍼러 추정.
+  const answered = r.survey?.acquisitionChannel;
+  if (answered) return `📋 ${answered}`;
   const u = r.utm;
   if (u?.utm_source) return [u.utm_source, u.utm_medium, u.utm_campaign].filter(Boolean).join(' / ');
   if (u?.referrer) { try { return new URL(u.referrer).hostname; } catch { return u.referrer; } }

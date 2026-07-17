@@ -90,6 +90,24 @@ export function StepBasic({ state, set, L, errors }: StepProps) {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <NumberField
+          label={L.gestWeeks}
+          value={state.survey.gestational_weeks ?? ''}
+          onChange={(v) => set({ survey: { ...state.survey, gestational_weeks: v } })}
+        />
+        <NumberField
+          label={L.birthWeight}
+          value={state.survey.birth_weight ?? ''}
+          onChange={(v) => set({ survey: { ...state.survey, birth_weight: v } })}
+        />
+      </div>
+      <TextField
+        label={L.birthNote}
+        value={state.survey.birth_note ?? ''}
+        onChange={(v) => set({ survey: { ...state.survey, birth_note: v } })}
+      />
+
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <NumberField
           label={L.currentH}
           value={state.current_height}
           onChange={(v) => set({ current_height: v })}

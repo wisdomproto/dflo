@@ -16,11 +16,21 @@ export interface IntakeForm {
   yearlyGrowth: string;
   grade: string;
   heightRank: string;
+  /** 과거 성장 기록 — 나이(8~16) → 키(cm) 문자열. 아는 나이만. (구버전 저장분엔 없음) */
+  growthHistory?: Record<string, string>;
 
   // 가족 정보
   fatherHeight: string;
   motherHeight: string;
   desiredHeight: string;
+  /** 양측 부모 모두 성장 클리닉에 관심 — '예'|'아니오'|'' (구버전 저장분엔 없음) */
+  parentsInterested?: string;
+  /** 아이 본인도 키에 관심 — '예'|'아니오'|'' */
+  childInterested?: string;
+  /** 체육 특기생 여부 — '예'|'아니오'|'' */
+  sportsAthlete?: string;
+  /** 체육 특기생 종목 */
+  sportsEvent?: string;
 
   // 생활 습관
   sleepTime: string;
@@ -47,8 +57,13 @@ export interface IntakeForm {
   currentMedications: string;
 
   // 보호자 의견
+  /** 키 작은 원인 다중선택 (한국어 라벨 그대로, 구버전 저장분엔 없음) */
+  shortStatureCauses?: string[];
   growthConcerns: string;
   additionalNotes: string;
+
+  /** 유입 경로 ("어디서 보고 오셨나요?", 한국어 라벨 그대로 저장. 구버전 저장분엔 없음) */
+  acquisitionChannel?: string;
 }
 
 export interface ReportMeasurement {

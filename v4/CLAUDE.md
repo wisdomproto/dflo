@@ -206,7 +206,7 @@ scripts/
 | `/program/:slug` | ProgramDetailPage (7개 프로그램) |
 | `/guide`, `/guide/:cardId` | GrowthGuidePage / Detail |
 | `/diagnosis` | IntakeDiagnosisPage (AI 진단 intake) |
-| `/intake/:lang` | PublicIntakePage (환자 셀프 설문, 공개 6스텝 마법사, ko/th/vi/en). 어드민 검토는 `/admin/intake` |
+| `/intake/:lang` | PublicIntakePage (환자 셀프 설문, 공개 **7스텝** 마법사, ko/th/vi/en). 어드민 검토는 `/admin/intake`. **(2026-07-17 설문 통일)** 구글 폼 초진 설문지·`/diagnosis` 와 문항 세트 동일화 — 출생 정보(임신 주수·출생 몸무게·특이사항, StepBasic)·최근 1년 성장(StepGrowth)·**생활 습관 스텝 신설**(StepLifestyle — 취침/기상·운동 빈도·우유·식사 규칙성)·사춘기 상세 성별 분기(StepMedical — 남: 변성기·수염/체모, 여: 초경·유방 발달)·복용 약/영양제·추가 메모(StepCauses). 전부 `intake_survey` JSONB optional 필드(마이그레이션 X, 구접수 하위호환). 유입 경로에 `ai`(ChatGPT 등 AI) 옵션 4언어 추가. 셀렉트는 코드값 저장 + `intakeLabels.optLabelKo` 로 어드민 한국어 표시 |
 | `/banner-admin` | AdminWebsitePage (PIN 보호) |
 | `/consulting.html` | 해외 환자 상담 매뉴얼 Q&A 편집기 (정적 HTML, noindex). **시장 4탭(🇰🇷한글/🇺🇸영어/🇹🇭태국어/🇻🇳베트남어)** + 비한국 탭은 **한글↔현지어 토글**. 카테고리/질문/답변 + 질문별 공개토글, Supabase `consulting_qa` 싱글톤에 저장, supabase-js CDN 직접 연동. **🌐 현지어 번역 버튼**(ai-server `/api/marketing/translate`, dev-only) 로 한글→현지어 일괄 번역. admin 사이드바 "상담 매뉴얼"(`/admin/consulting`)이 iframe 으로 임베드 |
 

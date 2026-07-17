@@ -49,10 +49,15 @@ export interface IntakeLabelSet {
   phone: string;
   email: string;
   address: string;
+  // step1 birth info
+  gestWeeks: string;
+  birthWeight: string;
+  birthNote: string;
   // step2 growth history
   growthHint: string;
   ageCol: string;
   heightCol: string;
+  yearlyGrowth: string;
   flagRapid: string;
   flagSlowed: string;
   flagPuberty: string;
@@ -64,14 +69,35 @@ export interface IntakeLabelSet {
   sportsAthlete: string;
   sportsEvent: string;
   childInterested: string;
+  // lifestyle step
+  sLifeTitle: string;
+  sleepTime: string;
+  wakeTime: string;
+  exerciseFreq: string;
+  exerciseOpts: { value: string; label: string }[];
+  milkDaily: string;
+  milkOpts: { value: string; label: string }[];
+  mealReg: string;
+  mealOpts: { value: string; label: string }[];
   // step4 medical
   chronic: string;
   tanner: string;
   tannerOpts: string[]; // EXACTLY 5 entries, Tanner stage 1..5 lay-friendly descriptions
+  currentMeds: string;
+  // step4 puberty detail (gender-branched)
+  voiceChange: string;
+  voiceOpts: { value: string; label: string }[];
+  facialHair: string;
+  facialOpts: { value: string; label: string }[];
+  menarche: string;
+  menarcheOpts: { value: string; label: string }[];
+  breastDev: string;
+  breastOpts: { value: string; label: string }[];
   // step5 short-stature causes
   causes: string;
   causeOpts: { value: string; label: string }[];
   causesOther: string;
+  additionalNotes: string;
   // step3 acquisition channel
   acquisitionChannel: string;
   acquisitionChannelOpts: { value: string; label: string }[];
@@ -119,9 +145,13 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     phone: '연락처',
     email: '이메일',
     address: '거주지',
+    gestWeeks: '출생 시 임신 주수 (주)',
+    birthWeight: '출생 시 몸무게 (kg)',
+    birthNote: '출생 시 특이사항',
     growthHint: '생활기록부 또는 소아과 기록을 참고해 입력해 주세요.',
     ageCol: '나이 (학년)',
     heightCol: '키 (cm)',
+    yearlyGrowth: '최근 1년간 자란 키 (cm)',
     flagRapid: '최근 키가 부쩍 많이 자란다',
     flagSlowed: '최근 크는 속도가 급격히 줄었다',
     flagPuberty: '성조숙증이 걱정된다',
@@ -140,7 +170,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'facebook', label: '페이스북' },
       { value: 'youtube', label: '유튜브' },
       { value: 'referral', label: '지인 소개' },
+      { value: 'ai', label: 'ChatGPT 등 AI' },
       { value: 'other', label: '기타' },
+    ],
+    sLifeTitle: '생활 습관',
+    sleepTime: '취침 시간',
+    wakeTime: '기상 시간',
+    exerciseFreq: '운동 빈도',
+    exerciseOpts: [
+      { value: 'none', label: '거의 안 함' },
+      { value: 'week1_2', label: '주 1~2회' },
+      { value: 'week3_4', label: '주 3~4회' },
+      { value: 'daily', label: '매일' },
+    ],
+    milkDaily: '우유/유제품 섭취',
+    milkOpts: [
+      { value: 'none', label: '거의 안 먹음' },
+      { value: 'sometimes', label: '가끔 (주 2~3회)' },
+      { value: 'daily1', label: '매일 1잔' },
+      { value: 'daily2plus', label: '매일 2잔 이상' },
+    ],
+    mealReg: '식사 규칙성',
+    mealOpts: [
+      { value: 'irregular', label: '불규칙' },
+      { value: 'mostly_regular', label: '대체로 규칙적' },
+      { value: 'very_regular', label: '매우 규칙적' },
     ],
     chronic: '과거 또는 현재 치료 중인 질환이 있다면 적어 주세요.',
     tanner: '사춘기 단계 (Tanner 단계)',
@@ -150,6 +204,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       '3단계 — 사춘기 변화가 눈에 띄게 진행 중',
       '4단계 — 사춘기가 거의 완성됨',
       '5단계 — 사춘기 완료, 성인 체형',
+    ],
+    currentMeds: '현재 복용 중인 약/영양제',
+    voiceChange: '변성기 (목소리 변화)',
+    voiceOpts: [
+      { value: 'none', label: '아직 없음' },
+      { value: 'started', label: '시작됨' },
+      { value: 'done', label: '완료됨' },
+    ],
+    facialHair: '수염/체모',
+    facialOpts: [
+      { value: 'none', label: '없음' },
+      { value: 'fuzz', label: '솜털 정도' },
+      { value: 'clear', label: '뚜렷하게 있음' },
+    ],
+    menarche: '초경 여부',
+    menarcheOpts: [
+      { value: 'none', label: '아직 없음' },
+      { value: 'recent6m', label: '시작됨 (최근 6개월 내)' },
+      { value: 'over1y', label: '1년 이상 됨' },
+    ],
+    breastDev: '유방 발달',
+    breastOpts: [
+      { value: 'none', label: '발달 전' },
+      { value: 'budding', label: '봉우리 시작' },
+      { value: 'clear', label: '뚜렷한 발달' },
     ],
     causes: '키가 작은 원인 (해당하는 것 모두 선택)',
     causeOpts: [
@@ -161,6 +240,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'chronic_illness', label: '지속 치료 중인 질환이 있다' },
     ],
     causesOther: '기타 원인',
+    additionalNotes: '추가 메모 (궁금한 점, 참고사항)',
     xrayUpload: 'X-ray 파일 첨부',
     labUpload: '검사 결과지 첨부',
     uploadHint: '이미지 또는 PDF 파일을 첨부해 주세요. (선택 사항)',
@@ -173,7 +253,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     prev: 'ย้อนกลับ',
     submit: 'ส่งแบบฟอร์ม',
     submitting: 'กำลังส่ง...',
-    doneTitle: 'ขอบคุณค่ะ',
+    doneTitle: 'ขอบคุณครับ',
     doneBody: 'ได้รับแบบสอบถามของคุณแล้ว ทางคลินิกจะติดต่อกลับในเร็ว ๆ นี้',
     retry: 'ลองอีกครั้ง',
     required: 'กรุณากรอกข้อมูลนี้',
@@ -203,9 +283,13 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     phone: 'เบอร์โทรศัพท์',
     email: 'อีเมล',
     address: 'ที่อยู่',
+    gestWeeks: 'อายุครรภ์ตอนคลอด (สัปดาห์)',
+    birthWeight: 'น้ำหนักแรกเกิด (กก.)',
+    birthNote: 'ภาวะพิเศษตอนแรกเกิด (ถ้ามี)',
     growthHint: 'กรุณากรอกข้อมูลจากสมุดพัฒนาการหรือเวชระเบียนกุมารแพทย์',
     ageCol: 'อายุ (ชั้นเรียน)',
     heightCol: 'ส่วนสูง (ซม.)',
+    yearlyGrowth: 'ส่วนสูงที่เพิ่มขึ้นใน 1 ปีที่ผ่านมา (ซม.)',
     flagRapid: 'ช่วงนี้สูงขึ้นเร็วผิดปกติ',
     flagSlowed: 'การเจริญเติบโตชะลอลงอย่างเห็นได้ชัด',
     flagPuberty: 'กังวลเรื่องวัยรุ่นก่อนกำหนด',
@@ -223,7 +307,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'facebook', label: 'Facebook' },
       { value: 'youtube', label: 'YouTube' },
       { value: 'referral', label: 'แนะนำจากคนรู้จัก' },
+      { value: 'ai', label: 'AI (เช่น ChatGPT)' },
       { value: 'other', label: 'อื่นๆ' },
+    ],
+    sLifeTitle: 'พฤติกรรมการใช้ชีวิต',
+    sleepTime: 'เวลาเข้านอน',
+    wakeTime: 'เวลาตื่นนอน',
+    exerciseFreq: 'ความถี่ในการออกกำลังกาย',
+    exerciseOpts: [
+      { value: 'none', label: 'แทบไม่ออกกำลังกาย' },
+      { value: 'week1_2', label: '1–2 ครั้ง/สัปดาห์' },
+      { value: 'week3_4', label: '3–4 ครั้ง/สัปดาห์' },
+      { value: 'daily', label: 'ทุกวัน' },
+    ],
+    milkDaily: 'การดื่มนม / ผลิตภัณฑ์จากนม',
+    milkOpts: [
+      { value: 'none', label: 'แทบไม่ดื่ม' },
+      { value: 'sometimes', label: 'บางครั้ง (2–3 ครั้ง/สัปดาห์)' },
+      { value: 'daily1', label: 'วันละ 1 แก้ว' },
+      { value: 'daily2plus', label: 'วันละ 2 แก้วขึ้นไป' },
+    ],
+    mealReg: 'ความสม่ำเสมอของมื้ออาหาร',
+    mealOpts: [
+      { value: 'irregular', label: 'ไม่สม่ำเสมอ' },
+      { value: 'mostly_regular', label: 'ค่อนข้างสม่ำเสมอ' },
+      { value: 'very_regular', label: 'สม่ำเสมอมาก' },
     ],
     chronic: 'กรุณาระบุโรคประจำตัวหรือโรคที่กำลังรักษาอยู่ (ถ้ามี)',
     tanner: 'ระยะวัยรุ่น (Tanner Stage)',
@@ -233,6 +341,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       'ระยะที่ 3 — มีการเปลี่ยนแปลงอย่างชัดเจน',
       'ระยะที่ 4 — ใกล้เสร็จสิ้นวัยรุ่นแล้ว',
       'ระยะที่ 5 — วัยรุ่นสมบูรณ์, ร่างกายผู้ใหญ่',
+    ],
+    currentMeds: 'ยาหรืออาหารเสริมที่รับประทานอยู่',
+    voiceChange: 'เสียงแตกหนุ่ม (เสียงเปลี่ยน)',
+    voiceOpts: [
+      { value: 'none', label: 'ยังไม่มี' },
+      { value: 'started', label: 'เริ่มแล้ว' },
+      { value: 'done', label: 'เสียงเปลี่ยนสมบูรณ์แล้ว' },
+    ],
+    facialHair: 'หนวด / ขนตามร่างกาย',
+    facialOpts: [
+      { value: 'none', label: 'ไม่มี' },
+      { value: 'fuzz', label: 'มีขนอ่อนเล็กน้อย' },
+      { value: 'clear', label: 'เห็นได้ชัดเจน' },
+    ],
+    menarche: 'ประจำเดือนครั้งแรก',
+    menarcheOpts: [
+      { value: 'none', label: 'ยังไม่มี' },
+      { value: 'recent6m', label: 'เริ่มแล้ว (ภายใน 6 เดือนที่ผ่านมา)' },
+      { value: 'over1y', label: 'มามากกว่า 1 ปีแล้ว' },
+    ],
+    breastDev: 'พัฒนาการของเต้านม',
+    breastOpts: [
+      { value: 'none', label: 'ยังไม่เริ่ม' },
+      { value: 'budding', label: 'เริ่มเป็นตุ่มเล็ก' },
+      { value: 'clear', label: 'พัฒนาชัดเจน' },
     ],
     causes: 'สาเหตุที่ทำให้ส่วนสูงน้อย (เลือกได้หลายข้อ)',
     causeOpts: [
@@ -244,6 +377,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'chronic_illness', label: 'มีโรคประจำตัว' },
     ],
     causesOther: 'สาเหตุอื่น ๆ',
+    additionalNotes: 'หมายเหตุเพิ่มเติม (ข้อสงสัยหรือข้อมูลอ้างอิง)',
     xrayUpload: 'แนบไฟล์ X-ray',
     labUpload: 'แนบผลตรวจเลือดหรือผลแล็บ',
     uploadHint: 'แนบรูปภาพหรือไฟล์ PDF (ไม่บังคับ)',
@@ -286,9 +420,13 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     phone: 'Số điện thoại',
     email: 'Email',
     address: 'Địa chỉ',
+    gestWeeks: 'Tuần thai khi sinh (tuần)',
+    birthWeight: 'Cân nặng khi sinh (kg)',
+    birthNote: 'Điểm đặc biệt khi sinh (nếu có)',
     growthHint: 'Vui lòng điền dựa trên học bạ hoặc hồ sơ y tế nhi khoa.',
     ageCol: 'Tuổi (lớp)',
     heightCol: 'Chiều cao (cm)',
+    yearlyGrowth: 'Chiều cao tăng trong 1 năm qua (cm)',
     flagRapid: 'Gần đây tăng chiều cao rất nhanh',
     flagSlowed: 'Tốc độ tăng trưởng giảm rõ rệt gần đây',
     flagPuberty: 'Lo lắng về dậy thì sớm',
@@ -306,7 +444,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'facebook', label: 'Facebook' },
       { value: 'youtube', label: 'YouTube' },
       { value: 'referral', label: 'Người quen giới thiệu' },
+      { value: 'ai', label: 'AI (ChatGPT, v.v.)' },
       { value: 'other', label: 'Khác' },
+    ],
+    sLifeTitle: 'Thói quen sinh hoạt',
+    sleepTime: 'Giờ đi ngủ',
+    wakeTime: 'Giờ thức dậy',
+    exerciseFreq: 'Tần suất vận động',
+    exerciseOpts: [
+      { value: 'none', label: 'Hầu như không' },
+      { value: 'week1_2', label: '1–2 lần/tuần' },
+      { value: 'week3_4', label: '3–4 lần/tuần' },
+      { value: 'daily', label: 'Hằng ngày' },
+    ],
+    milkDaily: 'Uống sữa / chế phẩm từ sữa',
+    milkOpts: [
+      { value: 'none', label: 'Hầu như không' },
+      { value: 'sometimes', label: 'Thỉnh thoảng (2–3 lần/tuần)' },
+      { value: 'daily1', label: 'Mỗi ngày 1 ly' },
+      { value: 'daily2plus', label: 'Mỗi ngày từ 2 ly trở lên' },
+    ],
+    mealReg: 'Mức độ đều đặn của bữa ăn',
+    mealOpts: [
+      { value: 'irregular', label: 'Không đều đặn' },
+      { value: 'mostly_regular', label: 'Khá đều đặn' },
+      { value: 'very_regular', label: 'Rất đều đặn' },
     ],
     chronic: 'Vui lòng ghi lại bệnh lý đang điều trị hoặc bệnh mãn tính (nếu có).',
     tanner: 'Giai đoạn dậy thì (Tanner Stage)',
@@ -316,6 +478,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       'Giai đoạn 3 — Thay đổi rõ ràng đang diễn ra',
       'Giai đoạn 4 — Gần hoàn tất dậy thì',
       'Giai đoạn 5 — Dậy thì hoàn toàn, cơ thể người lớn',
+    ],
+    currentMeds: 'Thuốc / thực phẩm chức năng đang dùng',
+    voiceChange: 'Vỡ giọng (thay đổi giọng nói)',
+    voiceOpts: [
+      { value: 'none', label: 'Chưa có' },
+      { value: 'started', label: 'Đã bắt đầu' },
+      { value: 'done', label: 'Đã hoàn tất' },
+    ],
+    facialHair: 'Râu / lông trên cơ thể',
+    facialOpts: [
+      { value: 'none', label: 'Không có' },
+      { value: 'fuzz', label: 'Lông tơ nhẹ' },
+      { value: 'clear', label: 'Rõ rệt' },
+    ],
+    menarche: 'Kinh nguyệt lần đầu',
+    menarcheOpts: [
+      { value: 'none', label: 'Chưa có' },
+      { value: 'recent6m', label: 'Đã bắt đầu (trong 6 tháng gần đây)' },
+      { value: 'over1y', label: 'Đã hơn 1 năm' },
+    ],
+    breastDev: 'Phát triển ngực',
+    breastOpts: [
+      { value: 'none', label: 'Chưa phát triển' },
+      { value: 'budding', label: 'Bắt đầu nhú' },
+      { value: 'clear', label: 'Phát triển rõ' },
     ],
     causes: 'Nguyên nhân thấp còi (có thể chọn nhiều)',
     causeOpts: [
@@ -327,6 +514,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'chronic_illness', label: 'Có bệnh mãn tính' },
     ],
     causesOther: 'Nguyên nhân khác',
+    additionalNotes: 'Ghi chú thêm (thắc mắc hoặc thông tin tham khảo)',
     xrayUpload: 'Đính kèm file X-quang',
     labUpload: 'Đính kèm kết quả xét nghiệm',
     uploadHint: 'Vui lòng đính kèm ảnh hoặc file PDF (không bắt buộc).',
@@ -369,9 +557,13 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
     phone: 'Phone number',
     email: 'Email',
     address: 'Address',
+    gestWeeks: 'Gestational age at birth (weeks)',
+    birthWeight: 'Birth weight (kg)',
+    birthNote: 'Anything notable at birth',
     growthHint: 'Please fill in from school health records or pediatric medical records.',
     ageCol: 'Age (grade)',
     heightCol: 'Height (cm)',
+    yearlyGrowth: 'Height gained in the past year (cm)',
     flagRapid: 'Has grown unusually fast recently',
     flagSlowed: 'Growth rate has slowed significantly recently',
     flagPuberty: 'Concerned about early puberty',
@@ -389,7 +581,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'facebook', label: 'Facebook' },
       { value: 'youtube', label: 'YouTube' },
       { value: 'referral', label: 'Friend/family referral' },
+      { value: 'ai', label: 'AI (ChatGPT, etc.)' },
       { value: 'other', label: 'Other' },
+    ],
+    sLifeTitle: 'Lifestyle',
+    sleepTime: 'Bedtime',
+    wakeTime: 'Wake-up time',
+    exerciseFreq: 'Exercise frequency',
+    exerciseOpts: [
+      { value: 'none', label: 'Rarely' },
+      { value: 'week1_2', label: '1–2 times a week' },
+      { value: 'week3_4', label: '3–4 times a week' },
+      { value: 'daily', label: 'Every day' },
+    ],
+    milkDaily: 'Milk / dairy intake',
+    milkOpts: [
+      { value: 'none', label: 'Rarely' },
+      { value: 'sometimes', label: 'Sometimes (2–3 times a week)' },
+      { value: 'daily1', label: '1 glass daily' },
+      { value: 'daily2plus', label: '2+ glasses daily' },
+    ],
+    mealReg: 'Meal regularity',
+    mealOpts: [
+      { value: 'irregular', label: 'Irregular' },
+      { value: 'mostly_regular', label: 'Mostly regular' },
+      { value: 'very_regular', label: 'Very regular' },
     ],
     chronic: 'Please list any ongoing or past medical conditions being treated.',
     tanner: 'Puberty stage (Tanner Stage)',
@@ -399,6 +615,31 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       'Stage 3 — Noticeable changes underway',
       'Stage 4 — Puberty nearly complete',
       'Stage 5 — Puberty complete, adult body',
+    ],
+    currentMeds: 'Current medications / supplements',
+    voiceChange: 'Voice change (voice breaking)',
+    voiceOpts: [
+      { value: 'none', label: 'Not yet' },
+      { value: 'started', label: 'Started' },
+      { value: 'done', label: 'Complete' },
+    ],
+    facialHair: 'Facial / body hair',
+    facialOpts: [
+      { value: 'none', label: 'None' },
+      { value: 'fuzz', label: 'Light fuzz' },
+      { value: 'clear', label: 'Clearly visible' },
+    ],
+    menarche: 'First menstruation',
+    menarcheOpts: [
+      { value: 'none', label: 'Not yet' },
+      { value: 'recent6m', label: 'Started (within the last 6 months)' },
+      { value: 'over1y', label: 'More than 1 year ago' },
+    ],
+    breastDev: 'Breast development',
+    breastOpts: [
+      { value: 'none', label: 'Not started' },
+      { value: 'budding', label: 'Budding' },
+      { value: 'clear', label: 'Clearly developed' },
     ],
     causes: 'Possible causes of short stature (select all that apply)',
     causeOpts: [
@@ -410,6 +651,7 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'chronic_illness', label: 'Chronic illness' },
     ],
     causesOther: 'Other causes',
+    additionalNotes: 'Additional notes (questions or anything else)',
     xrayUpload: 'Attach X-ray file',
     labUpload: 'Attach lab results',
     uploadHint: 'Please attach an image or PDF file (optional).',
@@ -423,8 +665,18 @@ export const ACQUISITION_KO: Record<string, string> = {
   facebook: '페이스북',
   youtube: '유튜브',
   referral: '지인 소개',
+  ai: 'ChatGPT 등 AI',
   other: '기타',
 };
+
+/** 어드민 표시용: 셀렉트 코드값 → 한국어 라벨 (미등록 코드는 원문 그대로) */
+export function optLabelKo(
+  opts: { value: string; label: string }[],
+  value: string | null | undefined,
+): string {
+  if (!value) return '—';
+  return opts.find((o) => o.value === value)?.label ?? value;
+}
 
 export function getLabels(lang: IntakeLang): IntakeLabelSet {
   return INTAKE_LABELS[lang];

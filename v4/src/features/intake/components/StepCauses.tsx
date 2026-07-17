@@ -25,6 +25,13 @@ export function StepCauses({ state, set, L }: StepProps) {
         value={s.short_stature_other}
         onChange={(v) => set({ survey: { ...s, short_stature_other: v } })}
       />
+
+      <TextField
+        label={L.additionalNotes}
+        value={s.additional_notes ?? ''}
+        onChange={(v) => set({ survey: { ...s, additional_notes: v } })}
+        multiline
+      />
     </div>
   );
 }

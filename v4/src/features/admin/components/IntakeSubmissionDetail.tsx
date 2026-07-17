@@ -7,7 +7,7 @@ import {
   suggestChartNumber,
 } from '@/features/admin/services/intakeSubmissionService';
 import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
-import { ACQUISITION_KO } from '@/features/intake/intakeLabels';
+import { ACQUISITION_KO, INTAKE_LABELS, optLabelKo } from '@/features/intake/intakeLabels';
 
 // ================================================
 // IntakeSubmissionDetail
@@ -111,6 +111,13 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
         <Row label="주소" value={str(sub.address)} />
       </Section>
 
+      {/* 출생 정보 */}
+      <Section title="출생 정보">
+        <Row label="임신 주수" value={str(survey?.gestational_weeks)} />
+        <Row label="출생 몸무게" value={str(survey?.birth_weight)} />
+        <Row label="출생 특이사항" value={str(survey?.birth_note)} />
+      </Section>
+
       {/* 과거 성장기록 */}
       <Section title="과거 성장기록">
         {survey && survey.growth_history.length > 0 ? (
@@ -137,11 +144,30 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
         )}
         {survey && (
           <div className="mt-2 border-t border-slate-50 pt-2">
+            <Row label="최근 1년 성장" value={str(survey.yearly_growth)} />
             <Row label="급성장" value={yesNo(survey.growth_flags.rapid_growth)} />
             <Row label="성장 둔화" value={yesNo(survey.growth_flags.slowed)} />
             <Row label="사춘기 우려" value={yesNo(survey.growth_flags.puberty_concern)} />
           </div>
         )}
+      </Section>
+
+      {/* 생활 습관 */}
+      <Section title="생활 습관">
+        <Row label="취침 시간" value={str(survey?.sleep_time)} />
+        <Row label="기상 시간" value={str(survey?.wake_time)} />
+        <Row
+          label="운동 빈도"
+          value={optLabelKo(INTAKE_LABELS.ko.exerciseOpts, survey?.exercise_frequency)}
+        />
+        <Row
+          label="우유/유제품"
+          value={optLabelKo(INTAKE_LABELS.ko.milkOpts, survey?.milk_daily)}
+        />
+        <Row
+          label="식사 규칙성"
+          value={optLabelKo(INTAKE_LABELS.ko.mealOpts, survey?.meal_regularity)}
+        />
       </Section>
 
       {/* 가족·관심 */}
@@ -164,6 +190,31 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
       {/* 의료문진 */}
       <Section title="의료문진">
         <Row label="만성 질환" value={str(survey?.chronic_conditions)} />
+        <Row label="복용 약/영양제" value={str(survey?.current_medications)} />
+        {sub.gender === 'male' && (
+          <>
+            <Row
+              label="변성기"
+              value={optLabelKo(INTAKE_LABELS.ko.voiceOpts, survey?.voice_change)}
+            />
+            <Row
+              label="수염/체모"
+              value={optLabelKo(INTAKE_LABELS.ko.facialOpts, survey?.facial_hair)}
+            />
+          </>
+        )}
+        {sub.gender === 'female' && (
+          <>
+            <Row
+              label="초경"
+              value={optLabelKo(INTAKE_LABELS.ko.menarcheOpts, survey?.menarche)}
+            />
+            <Row
+              label="유방 발달"
+              value={optLabelKo(INTAKE_LABELS.ko.breastOpts, survey?.breast_development)}
+            />
+          </>
+        )}
         <Row
           label="Tanner 단계"
           value={survey?.tanner_stage ? `${survey.tanner_stage}단계` : '—'}
@@ -181,6 +232,7 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
           }
         />
         <Row label="기타" value={str(survey?.short_stature_other)} />
+        <Row label="추가 메모" value={str(survey?.additional_notes)} />
       </Section>
 
       {/* 업로드 */}

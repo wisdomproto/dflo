@@ -111,6 +111,36 @@ export interface IntakeSurvey {
   short_stature_other: string;
   /** 유입 경로 */
   acquisition_channel: string | null;
+  /** 출생: 임신 주수 (주) */
+  gestational_weeks?: string;
+  /** 출생: 몸무게 (kg) */
+  birth_weight?: string;
+  /** 출생: 특이사항 */
+  birth_note?: string;
+  /** 최근 1년간 자란 키 (cm) */
+  yearly_growth?: string;
+  /** 생활: 취침 시간 (HH:mm) */
+  sleep_time?: string;
+  /** 생활: 기상 시간 (HH:mm) */
+  wake_time?: string;
+  /** 생활: 운동 빈도 — none | week1_2 | week3_4 | daily */
+  exercise_frequency?: string;
+  /** 생활: 우유/유제품 섭취 — none | sometimes | daily1 | daily2plus */
+  milk_daily?: string;
+  /** 생활: 식사 규칙성 — irregular | mostly_regular | very_regular */
+  meal_regularity?: string;
+  /** 사춘기(남): 변성기 — none | started | done */
+  voice_change?: string;
+  /** 사춘기(남): 수염/체모 — none | fuzz | clear */
+  facial_hair?: string;
+  /** 사춘기(여): 초경 — none | recent6m | over1y */
+  menarche?: string;
+  /** 사춘기(여): 유방 발달 — none | budding | clear */
+  breast_development?: string;
+  /** 현재 복용 중인 약/영양제 */
+  current_medications?: string;
+  /** 추가 메모 */
+  additional_notes?: string;
   /** ISO timestamp, 마지막 저장 시각 */
   updated_at: string;
   /** 스캔 초진기록지(손글씨)에서 추출 → 후보 매칭으로 연결된 미검증 데이터 */

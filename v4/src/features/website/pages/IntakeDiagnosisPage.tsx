@@ -45,7 +45,25 @@ const emptyForm: IntakeForm = {
   currentMedications: '',
   growthConcerns: '',
   additionalNotes: '',
+  acquisitionChannel: '',
+  growthHistory: {},
+  parentsInterested: '',
+  childInterested: '',
+  sportsAthlete: '',
+  sportsEvent: '',
+  shortStatureCauses: [],
 };
+
+const GROWTH_AGES = [8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+const CAUSE_OPTIONS = [
+  '부모님의 키가 작다',
+  '부모님의 키 차이가 크다',
+  '편식 · 식사 부족',
+  '부모님이 어렸을 때 일찍 성장이 멈췄다',
+  '수면 시간이 부족하다',
+  '지속 치료 중인 질환이 있다',
+];
 
 export default function IntakeDiagnosisPage() {
   const location = useLocation();
@@ -81,7 +99,7 @@ export default function IntakeDiagnosisPage() {
   }));
   const [step, setStep] = useState(0); // 0: 기본, 1: 출생, 2: 현재, 3: 가족, 4: 생활습관, 5: 사춘기, 6: 의료, 7: 완료
 
-  const update = (key: keyof IntakeForm, value: string | boolean) => {
+  const update = <K extends keyof IntakeForm>(key: K, value: IntakeForm[K]) => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -194,6 +212,24 @@ export default function IntakeDiagnosisPage() {
               onChange={(v) => update('grade', v)} placeholder="초4" />
             <Field label="반에서 키 순서 (앞에서)" value={form.heightRank}
               onChange={(v) => update('heightRank', v)} placeholder="3번째" />
+            <div>
+              <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                과거 성장 기록 — 나이별 키 (cm, 아는 나이만 입력)
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {GROWTH_AGES.map((age) => (
+                  <div key={age} className="flex items-center gap-1.5">
+                    <span className="text-xs text-gray-500 shrink-0 w-7">{age}세</span>
+                    <input type="number" step="any" inputMode="decimal"
+                      value={form.growthHistory?.[age] ?? ''}
+                      onChange={(e) => update('growthHistory', {
+                        ...form.growthHistory, [age]: e.target.value,
+                      })}
+                      className="w-full min-w-0 rounded-lg border border-gray-200 px-2 py-2 text-sm focus:outline-none focus:border-[#0F6E56]" />
+                  </div>
+                ))}
+              </div>
+            </div>
           </FormSection>
         )}
 
@@ -205,6 +241,22 @@ export default function IntakeDiagnosisPage() {
               onChange={(v) => update('motherHeight', v)} placeholder="160" suffix="cm" />
             <Field label="희망 키" value={form.desiredHeight}
               onChange={(v) => update('desiredHeight', v)} placeholder="180" suffix="cm" />
+            <SelectField label="양측 부모님 모두 성장 관리에 관심이 있으신가요?"
+              value={form.parentsInterested ?? ''}
+              onChange={(v) => update('parentsInterested', v)}
+              options={['예', '아니오']} />
+            <SelectField label="아이도 키 크는 것에 관심이 있나요?"
+              value={form.childInterested ?? ''}
+              onChange={(v) => update('childInterested', v)}
+              options={['예', '아니오']} />
+            <SelectField label="체육 특기생인가요?"
+              value={form.sportsAthlete ?? ''}
+              onChange={(v) => update('sportsAthlete', v)}
+              options={['예', '아니오']} />
+            {form.sportsAthlete === '예' && (
+              <Field label="종목" value={form.sportsEvent ?? ''}
+                onChange={(v) => update('sportsEvent', v)} placeholder="축구, 수영 등" />
+            )}
           </FormSection>
         )}
 
@@ -272,13 +324,39 @@ export default function IntakeDiagnosisPage() {
               onChange={(v) => update('currentMedications', v)} placeholder="비타민D, 칼슘 등" />
             <div>
               <label className="text-xs font-semibold text-gray-500 mb-1 block">
-                키가 잘 안 크는 원인 (보호자 생각)
+                키가 작은 원인 (해당하는 것 모두 선택)
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {CAUSE_OPTIONS.map((opt) => {
+                  const selected = form.shortStatureCauses ?? [];
+                  const active = selected.includes(opt);
+                  return (
+                    <button key={opt} type="button"
+                      onClick={() => update('shortStatureCauses',
+                        active ? selected.filter((c) => c !== opt) : [...selected, opt])}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                        active
+                          ? 'border-[#0F6E56] bg-[#0F6E56]/10 text-[#0F6E56]'
+                          : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
+                      }`}>
+                      {opt}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div>
+              <label className="text-xs font-semibold text-gray-500 mb-1 block">
+                키가 잘 안 크는 원인 (기타 보호자 생각)
               </label>
               <textarea value={form.growthConcerns}
                 onChange={(e) => update('growthConcerns', e.target.value)}
                 rows={2} placeholder="수면 부족, 편식, 운동 부족 등"
                 className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:border-[#0F6E56] resize-none" />
             </div>
+            <SelectField label="어디서 보고 오셨나요?" value={form.acquisitionChannel ?? ''}
+              onChange={(v) => update('acquisitionChannel', v)}
+              options={['구글 검색', '네이버 검색', '인스타그램', '페이스북', '유튜브', '지인 소개', 'ChatGPT 등 AI', '기타']} />
             <div>
               <label className="text-xs font-semibold text-gray-500 mb-1 block">추가 메모</label>
               <textarea value={form.additionalNotes}

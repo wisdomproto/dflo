@@ -9,6 +9,7 @@ import { StepBasic } from '../components/StepBasic';
 import type { StepProps } from '../components/StepBasic';
 import { StepGrowth } from '../components/StepGrowth';
 import { StepFamily } from '../components/StepFamily';
+import { StepLifestyle } from '../components/StepLifestyle';
 import { StepMedical } from '../components/StepMedical';
 import { StepCauses } from '../components/StepCauses';
 import { StepUploads } from '../components/StepUploads';
@@ -27,6 +28,14 @@ function emptySurvey(): IntakeSurvey {
     short_stature_causes: [],
     short_stature_other: '',
     acquisition_channel: null,
+    gestational_weeks: '',
+    birth_weight: '',
+    birth_note: '',
+    yearly_growth: '',
+    sleep_time: '',
+    wake_time: '',
+    current_medications: '',
+    additional_notes: '',
     updated_at: '',
   };
 }
@@ -60,6 +69,7 @@ const STEPS: ((p: StepProps) => ReactElement)[] = [
   StepBasic,
   StepGrowth,
   StepFamily,
+  StepLifestyle,
   StepMedical,
   StepCauses,
   StepUploads,
