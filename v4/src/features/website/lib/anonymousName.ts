@@ -1,7 +1,7 @@
 // 익명 예측 프로필용 로케일별 아이 이름 풀 + 국적 맵 (순수 함수, IO 없음).
 // 이름은 가짜(식별 아님) — 익명 데이터가 리스트에서 사람처럼 보이게 하는 용도.
 
-export type PredLocale = 'ko' | 'th' | 'vi' | 'en';
+export type PredLocale = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans';
 
 // 로케일별 아이 given-name 풀(현지 표기). surname 없이 이름만으로 충분(익명).
 const NAMES: Record<PredLocale, string[]> = {
@@ -17,12 +17,25 @@ const NAMES: Record<PredLocale, string[]> = {
   en: ['Emma', 'Liam', 'Olivia', 'Noah', 'Ava', 'Ethan', 'Sophia', 'Lucas', 'Mia', 'James',
     'Isabella', 'Mason', 'Amelia', 'Logan', 'Harper', 'Oliver', 'Ella', 'Aiden', 'Chloe', 'Jack',
     'Grace', 'Henry', 'Lily', 'Leo', 'Zoe', 'Daniel', 'Nora', 'Ryan', 'Hannah', 'Ben'],
+  // 글자체를 지킨다 — 번체 詩涵 ↔ 간체 诗涵.
+  'zh-hant': ['詩涵', '子睿', '宇軒', '欣妍', '佳穎', '冠廷', '品妍', '承恩', '語彤', '家豪',
+    '沛璇', '柏睿', '若曦', '詠晴', '宥辰', '思妤', '冠宇', '心妍', '睿哲', '雨潔',
+    '芷晴', '昱丞', '語柔', '宸瑜', '靖恩', '妍希', '皓宇', '恩晴', '又睿', '沛恩'],
+  'zh-hans': ['诗涵', '子睿', '宇轩', '欣妍', '佳颖', '冠廷', '品妍', '承恩', '语彤', '家豪',
+    '沛璇', '柏睿', '若曦', '咏晴', '宥辰', '思妤', '冠宇', '心妍', '睿哲', '雨洁',
+    '芷晴', '昱丞', '语柔', '宸瑜', '靖恩', '妍希', '皓宇', '恩晴', '又睿', '沛恩'],
 };
 
-const COUNTRY: Record<PredLocale, string> = { ko: 'KR', th: 'TH', vi: 'VN', en: 'EN' };
+// 번체=TW(대만 단일 시장), 간체=ZH(중국어권/기타 — 간체 타겟이 본토가 아니라 동남아·미국
+// 화교라 CN 은 사실과 다르다). 이 코드는 ISO 국가코드가 아니라 en='EN'(영어권/기타) 관행을 잇는
+// 언어권 버킷이다.
+const COUNTRY: Record<PredLocale, string> = {
+  ko: 'KR', th: 'TH', vi: 'VN', en: 'EN', 'zh-hant': 'TW', 'zh-hans': 'ZH',
+};
 
 function asLocale(locale: string): PredLocale {
-  return (['ko', 'th', 'vi', 'en'] as const).includes(locale as PredLocale) ? (locale as PredLocale) : 'en';
+  return (['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'] as const).includes(locale as PredLocale)
+    ? (locale as PredLocale) : 'en';
 }
 
 /** 로케일에 맞는 랜덤 아이 이름. 미지원 로케일은 영어 풀로 폴백. */
