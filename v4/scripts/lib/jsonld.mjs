@@ -2,12 +2,12 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
+// seo.mjs 가 빌드 상수의 단일 소스 — 여기 사본을 두면 언어 추가 시 조용히 어긋난다.
+import { ORIGIN, PATH_PREFIX } from './seo.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
-const ORIGIN = 'https://www.dr187growup.com';
-const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 const CLINIC_NAME = '연세새봄의원 187 성장클리닉';
 const CLINIC_PHONE = '+82-10-6693-2838'; // 해외 페이지 — 국제 발신 가능한 휴대폰(1599 는 국제 착신 불가)
 const CLINIC_PHONE_KR = '1599-0741';     // 한국어 페이지 대표번호(전국대표번호)

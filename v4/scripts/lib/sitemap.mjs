@@ -1,6 +1,6 @@
-const ORIGIN = 'https://www.dr187growup.com';
-const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
-const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', ja: 'ja', 'zh-tw': 'zh-TW', id: 'id' };
+// seo.mjs 가 빌드 상수의 단일 소스 — 여기 사본을 두면 언어 추가 시 조용히 어긋난다
+// (PATH_PREFIX 가 갈리면 sitemap 과 hreflang 이 서로 다른 URL 을 가리켜 클러스터가 무효화된다).
+import { ORIGIN, PATH_PREFIX, HREFLANG_MAP } from './seo.mjs';
 
 function urlEntry(loc, allPaths) {
   const alternates = Object.entries(allPaths).map(([lang, path]) =>
