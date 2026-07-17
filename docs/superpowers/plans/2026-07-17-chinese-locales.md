@@ -1,5 +1,7 @@
 # 중국어(zh-hant/zh-hans) 로케일 추가 — 구현 계획
 
+> ✅ **완료 (2026-07-18, main 배포 `b56e042`)** — Task 1~19 전부 실행. 검증: audit-hreflang `undefined 0·허공 0·sitemap 395`, 테스트 v4 125·ai-server 136 통과. blog_published zh-hant/zh-hans 각 60 published. 상세 memory [[chinese_homepage_locale]]. **남은 사용자 액션: 원격 상담 카피 원장 감수**(배포는 완료).
+
 > **For agentic workers:** REQUIRED: Use superpowers:subagent-driven-development (if subagents available) or superpowers:executing-plans to implement this plan. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 홈 4p + 상담페이지 + 블로그 120편을 번체(`zh-hant`)·간체(`zh-hans`)로 en 과 동급 배포한다.
