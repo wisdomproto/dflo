@@ -13,6 +13,11 @@ test('classifyCountry: 경로 prefix 로 국가', () => {
   // 루트·미분류 경로는 ko 폴백 (루트는 /ko/ 로 301) — 'other' 로 떨어지지 않는다
   assert.equal(classifyCountry('/'), 'ko');
   assert.equal(classifyCountry('/calc-embed'), 'ko');
+  // 중국어(번체·간체) — 하이픈 prefix. 안 잡히면 ko 에 조용히 합산된다.
+  assert.equal(classifyCountry('/zh-hant/index.html'), 'zh-hant');
+  assert.equal(classifyCountry('/zh-hans/calculator.html'), 'zh-hans');
+  assert.equal(classifyCountry('/zh-hant'), 'zh-hant');
+  assert.equal(classifyCountry('/zh-hans'), 'zh-hans');
 });
 
 test('classifyPage: 경로 → 4분류', () => {
@@ -120,7 +125,7 @@ test('aggregateSiteBreakdown: th + all 합산', () => {
   const en = r.byCountry.en;
   assert.equal(en.summary.users, 10);
   assert.equal(en.pageViews.main, 30);
-  assert.equal(en.messengerChannel, 'kakao');
+  assert.equal(en.messengerChannel, 'whatsapp'); // en 은 2026-07-03 WhatsApp (옛 kakao 는 드리프트였음)
 
   // all = ko+th+vi+en (vi/en 도 합산 대상)
   const all = r.byCountry.all;
@@ -281,4 +286,46 @@ test('aggregateSiteBreakdown: 태그된 캠페인이 없으면 빈 배열', () =
     campaigns: [{ campaign: '(not set)', sessions: 500 }, { campaign: '(direct)', sessions: 300 }],
   }));
   assert.deepEqual(campaigns, []);
+});
+
+// ── 중국어(zh-hant/zh-hans) 버킷 — LANG_KEYS(finalize)·countryKeys(rollup)·classifyCountry·
+//    messengerChannel 을 한꺼번에 검증. 전용 fixture 라 위 INPUT 의 all 합산과 무관. ──
+const ZH_INPUT = inputWith({
+  landing: [
+    { landingPage: '/zh-hant/index.html', users: 40, newUsers: 30, sessions: 48, pageViews: 120, engagementSec: 2400 },
+    { landingPage: '/zh-hans/index.html', users: 20, newUsers: 15, sessions: 24, pageViews: 60, engagementSec: 1200 },
+  ],
+  pv: [
+    { pagePath: '/zh-hant/index.html', views: 100 },
+    { pagePath: '/zh-hans/calculator.html', views: 30 },
+  ],
+  events: [
+    { pagePath: '/zh-hant/index.html', eventName: 'consult_click', count: 5 },
+    { pagePath: '/zh-hans/calculator.html', eventName: 'calc_open', count: 12 },
+    { pagePath: '/zh-hans/calculator.html', eventName: 'height_calc_complete', count: 6 },
+  ],
+  channels: [
+    { landingPage: '/zh-hant/index.html', channel: 'Direct', sessions: 48 },
+  ],
+});
+
+test('aggregateSiteBreakdown: 중국어 버킷이 채워진다 (ko 에 합산되지 않음)', () => {
+  const r = aggregateSiteBreakdown(ZH_INPUT);
+  // 언어 귀속 — zh 행이 있는데 ko 는 비어 있어야 한다(오합산 회귀 방지)
+  assert.equal(r.byCountry.ko.summary.users, 0, 'ko 에 중국어가 새면 안 됨');
+  // finalize 루프(LANG_KEYS)가 zh 버킷을 돌아야 지표가 0 이 아니다
+  assert.equal(r.byCountry['zh-hant'].summary.users, 40);
+  assert.equal(r.byCountry['zh-hant'].summary.sessions, 48);
+  assert.equal(r.byCountry['zh-hans'].summary.users, 20);
+  // 이벤트 라우팅 + calcCompletionRate(6/12)
+  assert.equal(r.byCountry['zh-hans'].events.calcOpen, 12);
+  assert.equal(r.byCountry['zh-hans'].events.heightCalc, 6);
+  assert.equal(r.byCountry['zh-hans'].calcCompletionRate, 50);
+  // 채널·페이지뷰가 빈 배열/0 이 아니다 (countryKeys 가 zh 를 rollup 대상에 넣어야 함)
+  assert.ok(r.byCountry['zh-hant'].channels.length > 0, 'zh-hant 채널 비어 있음');
+  assert.equal(r.byCountry['zh-hant'].pageViews.total, 100);
+  // 대표 채널 = WhatsApp
+  assert.equal(r.byCountry['zh-hant'].messengerChannel, 'whatsapp');
+  // all = 언어 넘어 합산 (users 40+20=60)
+  assert.equal(r.byCountry.all.summary.users, 60);
 });
