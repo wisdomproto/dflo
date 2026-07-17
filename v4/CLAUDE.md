@@ -166,6 +166,7 @@ scripts/
   - **Center**: X-ray panel — younger/patient/older atlas, ↑↓ step, editable bone age, predicted adult height, drag&drop/paste/file-pick
   - **Right**: Growth chart — `[성장 곡선][예측키 추세]` 2-tab (`chartTab` state)
     - **성장 곡선** (`AdminPatientGrowthChart`): KDCA 2017 percentiles (40% alpha), BA + CA dual projection curves, per-visit highlight, toggle chips. `baOnly`(뼈나이 측정만) 기본 ON, Y축 90~190(`Y_MAX`). 예측키(baProj) 곡선 기본 off — `defaultHidePrediction` prop, 상단 `BA 예측` 칩으로 켜기 (simplified/첫상담 미영향)
+      - **수평 기준선 2개**(`ToggleKey`= boneAge/baProj/caProj/**desired**/**mph**): 희망키 보라 `#9333ea` 점선 `[2,3]` + **MPH 주황 `#d97706` 점선 `[6,3]`**(2026-07-17 추가, 기본 ON). 둘 다 **`!simplified` 조건 = 어드민 전용**. MPH 는 `child.father_height`·`mother_height` 로 공용 `calculateMidParentalHeight`(shared/utils/growth) 호출 — **첫 상담 8페이지 gaussian 슬라이드와 같은 공식**(`(부+모±13)/2`, 슬라이드는 `(부+모)/2±6.5` 로 표기하나 수학적으로 동일). 부모키 없으면 `mph>0` 가드로 미표시. ★새 기준선 추가 시 **`chartData` useMemo 의존성 배열에 값을 넣을 것**(빠뜨리면 조용히 stale)
     - **예측키 추세** (`PredictedHeightTrend`, 신규): 예측키(키+뼈나이 18세 예측) 라인 한 줄 + 각 포인트 위에 백분위 라벨(`30%ile`, `pctLabels` Chart.js 플러그인, 예측키가 백분위 유지 투영이라 또래 18세 백분위와 동일) + X축 아래 측정날짜/만나이/뼈나이/Δ(뼈−만, 조숙 +빨강·지연 −초록), 호버 툴팁 없음, Y축 폭 `afterFit` 고정으로 HTML 행 정렬
   - Grid: visits `minmax(220px, 1fr)` | X-ray `360px/44px` | chart `60%`
   - Chart: BA 예측 (indigo dashed) + CA 예측 (teal dashed) + solid horizontal lines at predicted adult heights
