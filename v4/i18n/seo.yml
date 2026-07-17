@@ -61,3 +61,35 @@ en:
       a: "Puberty more than a year ahead of peers can close the growth plates early and lead to a shorter final adult height."
     - q: "Is a remote consultation available?"
       a: "First-touch consultations are available on WhatsApp. Detailed assessment and treatment require an in-person visit."
+
+zh-hant:
+  title: "187 生長診所 | 兒童成人身高免費預測"
+  description: "整合式生長照護，涵蓋青春期、睡眠、體重與姿勢。延世Saebom 187 生長診所——免費預測成人身高＋WhatsApp 1 對 1 諮詢。"
+  og_image: "/og/og-zh-hant.jpg"
+  faq:
+    - q: "孩子從幾歲可以做生長評估？"
+      a: "從 3 歲開始。若孩子明顯比同齡矮，或生長速度較慢，建議及早評估。"
+    - q: "生長激素治療對每個孩子都有效嗎？"
+      a: "在生長板仍開放、荷爾蒙分泌不足時效果最佳。我們會先透過評估確認是否適合。"
+    - q: "治療費用是多少？"
+      a: "依評估與治療的種類而定。我們會透過 1 對 1 諮詢提供個別說明。"
+    - q: "為什麼需要管理性早熟？"
+      a: "青春期比同齡提早超過一年，可能使生長板提早閉合，導致最終成人身高偏矮。"
+    - q: "可以進行遠端諮詢嗎？"
+      a: "初次諮詢可透過 WhatsApp 進行。詳細評估與治療需親自到診。"
+
+zh-hans:
+  title: "187 生长诊所 | 儿童成人身高免费预测"
+  description: "整合式生长护理，涵盖青春期、睡眠、体重与姿势。延世Saebom 187 生长诊所——免费预测成人身高＋WhatsApp 1 对 1 咨询。"
+  og_image: "/og/og-zh-hans.jpg"
+  faq:
+    - q: "孩子从几岁可以做生长评估？"
+      a: "从 3 岁开始。若孩子明显比同龄矮，或生长速度较慢，建议及早评估。"
+    - q: "生长激素治疗对每个孩子都有效吗？"
+      a: "在生长板仍开放、激素分泌不足时效果最佳。我们会先通过评估确认是否适合。"
+    - q: "治疗费用是多少？"
+      a: "依评估与治疗的种类而定。我们会通过 1 对 1 咨询提供个别说明。"
+    - q: "为什么需要管理性早熟？"
+      a: "青春期比同龄提早超过一年，可能使生长板提早闭合，导致最终成人身高偏矮。"
+    - q: "可以进行远程咨询吗？"
+      a: "初次咨询可通过 WhatsApp 进行。详细评估与治疗需亲自到诊。"
