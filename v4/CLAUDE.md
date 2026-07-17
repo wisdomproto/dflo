@@ -112,29 +112,44 @@ scripts/
 - `recipes`, `growth_guides`, `growth_cases`: use `is_published`
 
 ## Schema & Migrations
+
+> 🚨 **"수동 적용 필요" 주석을 믿지 말 것 — DB 에 직접 물어볼 것.** 2026-07-17 전수 실측 결과
+> 대기로 적혀 있던 것(017·018·019·043·050·057·060·063·064·065·068 등)이 **전부 이미 적용돼 있었고**,
+> 정작 진짜 미적용이던 **009 는 이 목록에 아예 없었다**(그래서 설문 승인 → 환자 등록이
+> `42703 column children.phone does not exist` 로 죽었는데 원인이 안 보였다).
+> 주석은 "적용했다"를 아무도 안 고쳐서 썩는다. **확인은 실측으로**:
+> ```bash
+> cd ai-server && node -e "require('dotenv/config');const u=process.env.SUPABASE_URL,k=process.env.SUPABASE_SERVICE_ROLE_KEY;
+> fetch(u+'/rest/v1/children?select=phone&limit=1',{headers:{apikey:k,Authorization:'Bearer '+k}}).then(r=>console.log(r.ok?'적용됨':'미적용'))"
+> ```
+> ★**CHECK 제약 확장(008·043)은 컬럼 조회로 판정 불가** — 그 값을 실제로 insert 해봐야 안다
+> (거부 코드가 `23514`=CHECK 위반이어야 미적용. `23502`=NOT NULL 은 딴 이유니 오판 금지).
+
 - Fresh-project setup SQL: `v4/scripts/migrations/000_initial_schema.sql`
 - Permissive writes for anon: `001_permissive_clinical_writes.sql`
 - Desired height column: `002_add_desired_height.sql`
 - Intake survey columns: `003_children_intake_survey.sql`
-- 범용 국적: `017_children_country.sql` (수동 적용 필요)
-- 환자 셀프 설문 대기함 + 채번 함수 + intake-uploads 버킷: `018_intake_submissions.sql` (수동 적용 필요)
-- 설문 현재 키·몸무게: `019_intake_current_height.sql` (수동 적용 필요)
+- **⚠️ 유일한 미적용: `008_lab_tests_panel_types.sql`** — lab_tests.test_type CHECK 를 `attachment`/`food_intolerance`/`mast_allergy`/`nk_activity`/`hair_mineral` 까지 확장. **2026-07-17 실측 확인(`attachment` insert → 23514 거부)**. 현재 쓰이는 값은 blood·allergy·organic_acid 셋뿐이라 당장 지장 없음
+- 환자 연락처/주소: `009_children_contact_fields.sql` — children 에 address·zipcode·phone·email·rrn (**2026-07-17 적용** — 이게 빠져서 설문 승인 환자 등록이 계속 실패했음)
+- 범용 국적: `017_children_country.sql` (적용 완료)
+- 환자 셀프 설문 대기함 + 채번 함수 + intake-uploads 버킷: `018_intake_submissions.sql` (적용 완료)
+- 설문 현재 키·몸무게: `019_intake_current_height.sql` (적용 완료)
 - 마케팅 도구: `020_marketing_config.sql` ~ `028_marketing_ad_campaigns.sql`
 - 상담 매뉴얼 Q&A 싱글톤: `029_consulting_qa.sql` (적용 완료)
 - 마케팅 확장: `030_marketing_articles_confirmed.sql` ~ `033_marketing_article_translations.sql`
 - 클리니컬 RAG: `034_medication_legend.sql` ~ `036_clinical_insights.sql`
 - 마케팅/발행 확장: `037_marketing_channel_active.sql` ~ `042_channels_meta_target_and_queue_result.sql`
-- 치료완료 단계: `043_children_treatment_completed.sql` — treatment_status CHECK 에 `completed` 추가 (**MCP 권한 차단으로 Dashboard 수동 적용 필요**)
+- 치료완료 단계: `043_children_treatment_completed.sql` — treatment_status CHECK 에 `completed` 추가 (적용 완료 — `completed` 행이 실재해 확인됨)
 - 광고 소재 기존게시물(boosting): `052_marketing_ads_source_post.sql` — marketing_ads 에 source_post_id/source_channel/source_url (적용 완료)
 - 광고 Meta 푸시 id 매핑: `053_marketing_ad_meta_ids.sql` — campaigns/sets/ads 에 meta_*_id + pushed_at/push_error (적용 완료)
 - 광고 전용 소재 라이브러리(다크 포스트): `054_marketing_ad_creatives.sql` — marketing_ad_creatives 테이블 (적용 완료)
 - 콘텐츠 정규/커스텀(ad-hoc 릴스) 구분: `055_marketing_articles_kind.sql` — marketing_articles.kind 'regular'|'custom' (적용 완료)
 - 원장 저서 RAG: `056_knowledge_documents.sql` — `knowledge_documents`(pgvector 768d) + `match_knowledge_documents` RPC. 원장 저서 청크를 처방추천 1차 권위 지식소스로(상세 memory `book_knowledge_rag.md`). (적용 완료)
-- 릴스 라이트 에디터: `057_reels_editor.sql` — 릴스 라이트 에디터: reel_script/reel_runtime + 잡 큐 + 워커 heartbeat + 스티커 (수동 적용 필요)
-- 익명 예측키 적재: `060_anonymous_predictions.sql` — `anonymous_predictions`(홈페이지 익명 계산기 결과 = 랜덤 현지 이름·성별·생년월일·현재키·예측키·백분위·국적(언어 기반)·UTM). 실환자 테이블과 분리, **anon INSERT만**(SELECT 차단, 조회는 추후 service_role). (수동 적용 필요)
-- 환자관리 즐겨찾기 DB화: `063_children_is_favorite.sql` — `children.is_favorite` boolean + 치료사례 후보 58명 별표 시드. 옛 localStorage 즐겨찾기 폐기. (**수동 적용 필요** — 미적용이어도 `adminService.fetchPatients` 가 42703 폴백으로 graceful)
-- 발행 큐 자동 재시도: `064_publish_queue_retry_count.sql` — `marketing_publish_queue.retry_count`. 발행 실패 시 `publishExecutor.fail()` 이 백오프 재예약(상세 ai-server/CLAUDE.md). (**수동 적용 필요** — 미적용이어도 graceful 하드실패)
-- 예약(콜백) 신청: `068_reservations.sql` — `reservations`(name·phone·contact_method·message·locale·status·consent·referrer·utm). 한글 하단 바 "예약하기" 리드. **RLS on·anon 정책 없음**(실명+전화 PII) → ai-server service_role 로만 접근. 조회는 `/marketing/predictions` 드롭다운 📞 예약 신청(ai-server PIN 경유). (**수동 적용 필요** — 미적용이어도 폼 graceful 에러)
+- 릴스 라이트 에디터: `057_reels_editor.sql` — 릴스 라이트 에디터: reel_script/reel_runtime + 잡 큐 + 워커 heartbeat + 스티커 (적용 완료)
+- 익명 예측키 적재: `060_anonymous_predictions.sql` — `anonymous_predictions`(홈페이지 익명 계산기 결과 = 랜덤 현지 이름·성별·생년월일·현재키·예측키·백분위·국적(언어 기반)·UTM). 실환자 테이블과 분리, **anon INSERT만**(SELECT 차단, 조회는 추후 service_role). (적용 완료)
+- 환자관리 즐겨찾기 DB화: `063_children_is_favorite.sql` — `children.is_favorite` boolean + 치료사례 후보 58명 별표 시드. 옛 localStorage 즐겨찾기 폐기. (적용 완료 — 코드의 42703 폴백은 안전망으로 잔존)
+- 발행 큐 자동 재시도: `064_publish_queue_retry_count.sql` — `marketing_publish_queue.retry_count`. 발행 실패 시 `publishExecutor.fail()` 이 백오프 재예약(상세 ai-server/CLAUDE.md). (적용 완료)
+- 예약(콜백) 신청: `068_reservations.sql` — `reservations`(name·phone·contact_method·message·locale·status·consent·referrer·utm). 한글 하단 바 "예약하기" 리드. **RLS on·anon 정책 없음**(실명+전화 PII) → ai-server service_role 로만 접근. 조회는 `/marketing/predictions` 드롭다운 📞 예약 신청(ai-server PIN 경유). (적용 완료)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
