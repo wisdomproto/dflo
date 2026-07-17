@@ -7,9 +7,9 @@
 export const ORIGIN = 'https://www.dr187growup.com';
 export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 // Languages we actually BUILD pages for. hreflang/sitemap must only point at these —
-// emitting ja/zh-tw/id (planned but not yet built) creates 404 hreflang targets that
+// emitting ja/id (planned but not yet built) creates 404 hreflang targets that
 // invalidate the whole cluster in Search Console. Add a lang here only once its pages ship.
 export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en'];
-export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'ja', 'zh-tw', 'id'];
-export const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', ja: 'ja', 'zh-tw': 'zh-TW', id: 'id' };
-export const OG_LOCALE_MAP = { ko: 'ko_KR', th: 'th_TH', vi: 'vi_VN', en: 'en_US', ja: 'ja_JP', 'zh-tw': 'zh_TW', id: 'id_ID' };
+export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'ja', 'id'];
+export const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', ja: 'ja', id: 'id' };
+export const OG_LOCALE_MAP = { ko: 'ko_KR', th: 'th_TH', vi: 'vi_VN', en: 'en_US', ja: 'ja_JP', id: 'id_ID' };

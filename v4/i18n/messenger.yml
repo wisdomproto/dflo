@@ -55,12 +55,6 @@ ja:
   label: "LINEで相談"
   color_bg: "#06C755"
   color_fg: "#FFFFFF"
-zh-tw:
-  channel: line
-  url: "TBD"
-  label: "LINE 諮詢"
-  color_bg: "#06C755"
-  color_fg: "#FFFFFF"
 id:
   channel: whatsapp
   url: "TBD"
