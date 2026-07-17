@@ -12,8 +12,12 @@ Express server providing AI analysis endpoints via Google Gemini 2.5 Flash.
 
 ## Commands
 ```bash
-npm run dev   # Dev server (port 3001)
+npm run dev                # Dev server (port 3001)
+npm run build && npm test  # 테스트 (127/127) — ★build 먼저(dist/ 를 테스트하므로)
+npm run diagnose-meta      # Meta 토큰 진단 (로컬 전용)
+npm run diagnose-telegram  # 텔레그램 예약알림 연결 확인 — ⚠️ 실제 메시지를 발송함
 ```
+**테스트 스코프**: `npm test` = `node --test "__tests__/*.test.mjs" "dist/**/*.test.js"`. 테스트가 **두 군데**(루트 `__tests__` 52 + `src/**/__tests__/*.test.ts` 컴파일본 `dist/**/*.test.js` 75)라 **두 글롭 모두 필요**. 옛 `node --test`(glob 없음)는 프로젝트 전체를 훑어 `scripts/test-telegram.mjs` 를 테스트로 오인·**매 실행 텔레그램 발송**했다(2026-07-17 수정 → `diagnose-telegram.mjs` 개명). ★`scripts/` 에 `test-*` 이름을 쓰지 말 것(이제 스코프 밖이라 안전하지만, 관례는 `diagnose-*`).
 
 ## Structure (src/)
 ```
