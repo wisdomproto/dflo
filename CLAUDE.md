@@ -19,7 +19,7 @@ cd v4 && npm run build        # Production build (tsc → build:i18n → vite bu
 cd v4 && npx tsc --noEmit     # Type check
 cd v4 && npm run build:i18n   # 다국어 정적 HTML 빌드 (4개 언어)
 cd v4 && npm run build:i18n -- --refetch  # ContentFlow에서 블로그 글 새로 fetch + 빌드
-cd v4 && npm run test:i18n    # i18n 빌드 시스템 테스트
+cd v4 && npm test             # 전체 테스트 (i18n 빌드 + 마케팅/리포트 유틸, node --test + tsx)
 cd ai-server && npm run dev   # AI server (port 3001)
 ```
 
@@ -57,6 +57,10 @@ v4/public/sitemap.xml         ← hreflang = ACTIVE_LANGS(4) + x-default 자동 
 - **`seo.mjs buildHreflangPaths(pathsByLang)` 신설** — 언어별 경로가 다른 클러스터용. 주어진 언어만 내보내고(번역 없는 언어는 아예 생략), **x-default 는 ko 판이 있을 때만**. 기존 `buildHreflang(path)`(홈·clinic/cases/calculator = 파일명 언어 공통)는 이걸 감싸는 래퍼로 유지 → 무회귀.
 - `article_id` 없는 글(ContentFlow 캐시)은 자기 자신만 = 번역 없음 취급(graceful).
 - **검증**: 빌드 산출물 전수 검사 — 글 240편의 hreflang 1200개·sitemap alternate 1300개 **전부 실제 파일 존재**(수정 전 164개가 허공). 회귀 테스트 `scripts/test/blog-hreflang.test.mjs`(8케이스: 언어별 경로·x-default 조건·"남의 slug 를 다른 언어에 붙이지 않는다"·sitemap 클러스터·네임스페이스).
+
+### 테스트 러너 (2026-07-17 정리)
+**`cd v4 && npm test` 하나뿐**(`node --import tsx --test scripts/test/*.mjs`, 112 케이스 전부 통과). 옛 **`test:i18n` 은 제거** — `test` 와 **같은 glob 을 돌면서 tsx 로더만 빠져** `.ts` 를 import 하는 테스트 6개가 항상 `ERR_UNKNOWN_FILE_EXTENSION` 로 죽었다(코드는 멀쩡한데 러너가 거짓 실패 → "원래 깨져 있는 테스트" 로 방치되며 진짜 회귀를 가리는 함정). 문서·습관이 test:i18n 을 가리키고 있어 오래 안 보였음.
+- 같이 갱신: `messenger.test.mjs` 의 `vi/en → kakao` 기대는 **en 이 WhatsApp 으로 바뀐(2026-07-03) 뒤 방치된 실패** → vi=kakao / en=whatsapp 로 분리하고, `consult_channels`(3채널·시장별 대표 채널 우선·ko 는 없음) 커버리지 추가.
 - `lib/fetch-contentflow-posts.mjs`: ContentFlow API에서 블로그 fetch → `i18n/blog-cache/` JSON 캐시
 - `lib/blog.mjs`: `renderPost` + `renderIndex` + `loadCachedPosts`
 

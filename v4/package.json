@@ -15,7 +15,6 @@
     "build:i18n": "node scripts/build-i18n.mjs",
     "extract:marketing": "node scripts/extract-marketing-data.mjs",
     "test": "node --import tsx --test scripts/test/*.mjs",
-    "test:i18n": "node --test scripts/test/*.mjs",
     "start": "vite preview --port ${PORT:-3000} --host 0.0.0.0",
     "lint": "eslint .",
     "preview": "vite preview"
