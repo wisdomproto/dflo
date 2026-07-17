@@ -319,7 +319,7 @@ Phase 0~34 상세 작업 이력은 **[`docs/PROGRESS.md`](docs/PROGRESS.md)** �
 - **prod OAuth 요건**: Railway **ai-server** 에 `META_REDIRECT_BASE=https://ai-server-production-6aa2.up.railway.app` (없으면 `redirect_uri` 가 도메인 없는 상대경로 → FB "URL을 읽어들일 수 없습니다") + Meta 앱(`999009859491958`) **앱 도메인** + **유효한 OAuth 리디렉션 URI**(`…/api/auth/meta/callback`) 등록. 진단은 `curl -i {ai-server}/api/auth/meta` 로 **Location 의 redirect_uri 를 직접 확인**.
 - ⚠️**재연결은 단일 연결을 덮어쓴다** — 권한 화면에서 **세 페이지 모두 체크**(하나 빠지면 그 채널 발행 중단). 완료 후 채널 화면 상단 `페이지 N개` 가 판정 기준.
 - **IG 비즈니스 ID 는 수동 입력 불필요** — `fetchAccounts` 가 `/me/accounts?fields=…instagram_business_account{id,username}` 로 같이 받아오고, **채널 설정 페이지를 열면 `ChannelRegistryTab` 이 연결된 페이지로 없는 채널을 자동 생성**(metaIgId 포함). ★단 **이미 있는 행은 갱신하지 않는다** → ig id 가 틀렸으면 **행을 지우고 페이지를 다시 열어야** 자동으로 다시 채워진다.
-- **픽셀**: 영어 전용 픽셀 미설정 → 현재 th/vi 와 공유(`VITE_META_PIXEL_ID`). `.env.production` 에 `VITE_META_PIXEL_ID_EN=` 주석 대기(ID 넣으면 즉시 분리).
+- **픽셀 = 분리하지 않는다(2026-07-17 결정)**. Meta 가 **비즈니스 포트폴리오당 데이터 세트 1개**로 통합해 영어 전용 픽셀 신설이 막히고, 애초에 **사이트 하나당 픽셀 하나**가 Meta 권장(쪼개면 학습 데이터가 분산돼 최적화 악화). 시장 구분은 **맞춤 전환(Custom Conversion)** 으로 한다 — `_shell.js` 가 이미 `fbq('track','Lead',{source,channel,locale})` · `fbq('trackCustom','HeightCalcComplete',{locale})` 로 **locale 을 실어 보내고** 영어는 URL 이 전부 `/en/` 이라 필터가 자명하다. Events Manager → 맞춤 전환에 `EN – Lead`(Lead + URL `/en/`)·`EN – Height Check`·`EN – PageView` 를 만들어 광고 전환 이벤트로 지정. ★ko 가 `VITE_META_PIXEL_ID_KO` 로 분리된 건 **비즈니스 소유가 달라서**(187growup korea)라 성격이 다른 케이스. `VITE_META_PIXEL_ID_EN` 배선은 **휴면 유지**(빈 값=기본 픽셀 폴백, 무해) — 영어권 비즈니스를 따로 팔 때 ID 만 넣으면 됨.
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`
