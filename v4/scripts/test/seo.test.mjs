@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
-import { buildHead, buildHreflang, buildSeo, gaSnippet, pixelSnippet, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP } from '../lib/seo.mjs';
+import { buildHead, buildHreflang, buildSeo, gaSnippet, pixelSnippet, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP, OG_LOCALE_MAP, ORIGIN, PATH_PREFIX } from '../lib/seo.mjs';
 
 test('buildSeo returns ko-specific title/description', () => {
   const seo = buildSeo('ko');
@@ -27,6 +27,43 @@ test('buildHreflang emits one alternate per ACTIVE_LANG + x-default, never an un
   // Exactly ACTIVE_LANGS + x-default alternate links, and nothing more.
   const count = (tags.match(/rel="alternate"/g) || []).length;
   assert.equal(count, ACTIVE_LANGS.length + 1);
+});
+
+// ★ 이 두 테스트를 "중복"으로 보고 지우거나 위 테스트에 합치지 말 것.
+//
+// 위 테스트(`buildHreflang emits one alternate per ACTIVE_LANG…`)는 **기대값을 검사 대상과 같은 맵에서
+// 만들어 쓴다**(`hreflang="${HREFLANG_MAP[lang]}"`). 즉 언어를 ACTIVE_LANGS 에만 추가하고 HREFLANG_MAP 을
+// 빠뜨리면, 기대 문자열이 `hreflang="undefined"` 가 되고 산출물에도 진짜로 `hreflang="undefined"` 가 찍혀
+// **양쪽이 일치해 통과한다**. 개수 단언(`ACTIVE_LANGS.length + 1`)도 링크 수는 맞으니 통과.
+// → 테스트 전부 초록인데 **전 언어 전 페이지의 hreflang 클러스터가 무효**가 된다(Search Console).
+//
+// 아래 두 테스트가 그 자기참조 함정의 바깥에 서 있는 유일한 방어선이다:
+//  ① 맵 커버리지를 맵 자신이 아니라 ACTIVE_LANGS 기준으로 직접 검사
+//  ② 산출물에 리터럴 'undefined'/빈 값이 없는지 + 실제 href 가 나오는지 (맵에 빈 문자열이 들어와도 잡힘)
+
+// ① 언어 활성화 = ACTIVE_LANGS 에 추가. 그런데 hreflang 값·og:locale 은 별도 맵에서 온다.
+// 맵을 빠뜨리면 undefined 가 그대로 렌더되므로, 활성 언어는 두 맵에 반드시 항목이 있어야 한다.
+test('hreflang/og-locale 맵이 ACTIVE_LANGS 를 전부 커버한다(맵 누락 = 전 페이지 hreflang 무효)', () => {
+  for (const lang of ACTIVE_LANGS) {
+    assert.ok(HREFLANG_MAP[lang], `HREFLANG_MAP 에 '${lang}' 항목이 없다 — ACTIVE_LANGS 에 추가하면 이 맵에도 추가할 것`);
+    assert.ok(OG_LOCALE_MAP[lang], `OG_LOCALE_MAP 에 '${lang}' 항목이 없다 — ACTIVE_LANGS 에 추가하면 이 맵에도 추가할 것`);
+  }
+});
+
+// ② 최종 백스톱: 맵이 아니라 **렌더된 문자열**을 본다. 맵에 빈 문자열('')이 들어와
+// ①을 통과하더라도 여기서 hreflang="" 로 잡힌다.
+test('buildHreflang 산출물에 hreflang="undefined"/빈 값이 없고 언어별 실제 href 가 나온다', () => {
+  const tags = buildHreflang();
+
+  assert.ok(!tags.includes('hreflang="undefined"'), `hreflang="undefined" 가 렌더됐다 — HREFLANG_MAP 누락:\n${tags}`);
+  assert.ok(!tags.includes('hreflang=""'), `hreflang="" 가 렌더됐다 — HREFLANG_MAP 값이 비었다:\n${tags}`);
+
+  for (const lang of ACTIVE_LANGS) {
+    assert.ok(
+      tags.includes(`href="${ORIGIN}${PATH_PREFIX}/${lang}/"`),
+      `'${lang}' 의 실제 href 가 산출물에 없다:\n${tags}`
+    );
+  }
 });
 
 test('buildHead includes canonical for the given lang', () => {
