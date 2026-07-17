@@ -114,8 +114,8 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
       {lang === 'en' && (
         <div>
           <span className={labelCls}>{t.fieldNationality}</span>
-          <div className="grid grid-cols-3 gap-2">
-            {([['CN', t.natCN], ['KR', t.natKR], ['TH', t.natTH]] as const).map(([nat, label]) => (
+          <div className="grid grid-cols-2 gap-2">
+            {([['CN', t.natCN], ['US', t.natUS], ['KR', t.natKR], ['TH', t.natTH]] as const).map(([nat, label]) => (
               <button key={nat} onClick={() => setNationality(nat)}
                 className={`rounded-xl py-2.5 md:py-3 text-sm md:text-base font-semibold transition-colors ${
                   nationality === nat ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'

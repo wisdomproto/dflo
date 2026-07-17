@@ -22,8 +22,10 @@ type Dict = {
   natKR: string;
   natTH: string;
   natCN: string;
+
+  natUS: string;
   // Per-standard chart source footer (EN only, keyed by GrowthStandard)
-  natFooter?: Partial<Record<'KR' | 'TH' | 'CN', string>>;
+  natFooter?: Partial<Record<'KR' | 'TH' | 'CN' | 'US', string>>;
   fieldBirth: string;
   fieldBirthYear: string;
   fieldBirthMonth: string;
@@ -82,7 +84,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: '성별',
     genderMale: '👦 남아', genderFemale: '👧 여아',
     fieldNationality: '국적',
-    natKR: '🇰🇷 한국', natTH: '🇹🇭 태국', natCN: '🇨🇳 중국',
+    natKR: '🇰🇷 한국', natTH: '🇹🇭 태국', natCN: '🇨🇳 중국', natUS: '🇺🇸 미국·호주',
     fieldBirth: '생년월일',
     fieldBirthYear: '연도', fieldBirthMonth: '월', fieldBirthDay: '일',
     fieldHeight: '현재 키 (cm)',
@@ -133,11 +135,13 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: 'Gender',
     genderMale: '👦 Boy', genderFemale: '👧 Girl',
     fieldNationality: 'Nationality',
-    natKR: '🇰🇷 Korea', natTH: '🇹🇭 Thailand', natCN: '🇨🇳 China',
+    natKR: '🇰🇷 Korea', natTH: '🇹🇭 Thailand', natCN: '🇨🇳 China', natUS: '🇺🇸 US · AU',
     natFooter: {
       KR: 'Korean pediatric growth standard (KDCA 2017) · 5th / 50th / 95th percentile',
       TH: 'Thai pediatric growth standard (TSPE 2022) · 5th / 50th / 95th percentile',
       CN: 'Chinese pediatric growth reference (approx.) · 5th / 50th / 95th percentile',
+
+      US: 'US CDC 2000 growth charts · also the national reference for Australia (ages 2-18) · 5th / 50th / 95th percentile',
     },
     fieldBirth: 'Date of birth',
     fieldBirthYear: 'Year', fieldBirthMonth: 'Month', fieldBirthDay: 'Day',
@@ -189,7 +193,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: 'เพศ',
     genderMale: '👦 เด็กชาย', genderFemale: '👧 เด็กหญิง',
     fieldNationality: 'สัญชาติ',
-    natKR: '🇰🇷 เกาหลี', natTH: '🇹🇭 ไทย', natCN: '🇨🇳 จีน',
+    natKR: '🇰🇷 เกาหลี', natTH: '🇹🇭 ไทย', natCN: '🇨🇳 จีน', natUS: '🇺🇸 สหรัฐฯ · ออสเตรเลีย',
     fieldBirth: 'วันเกิด',
     fieldBirthYear: 'ปี', fieldBirthMonth: 'เดือน', fieldBirthDay: 'วัน',
     fieldHeight: 'ส่วนสูงปัจจุบัน (ซม.)',
@@ -240,7 +244,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldGender: 'Giới tính',
     genderMale: '👦 Bé trai', genderFemale: '👧 Bé gái',
     fieldNationality: 'Quốc tịch',
-    natKR: '🇰🇷 Hàn Quốc', natTH: '🇹🇭 Thái Lan', natCN: '🇨🇳 Trung Quốc',
+    natKR: '🇰🇷 Hàn Quốc', natTH: '🇹🇭 Thái Lan', natCN: '🇨🇳 Trung Quốc', natUS: '🇺🇸 Mỹ · Úc',
     fieldBirth: 'Ngày sinh',
     fieldBirthYear: 'Năm', fieldBirthMonth: 'Tháng', fieldBirthDay: 'Ngày',
     fieldHeight: 'Chiều cao hiện tại (cm)',
