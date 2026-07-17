@@ -47,10 +47,16 @@ function buildPercentiles(table: LMSRow[]): HeightPercentile[] {
  * - 'TH': 태국 TSPE 2022 차트 (2-5세 WHO 2006 + 5-19세 Thai National Growth Reference 2020)
  *         디지타이즈 → P3/P50/P97 → LMS(L=1) 변환. 태국어(th) 계산기.
  * - 'US': 미국 CDC 2000 (statage.csv 공식 LMS). 미국 + 호주(NHMRC 가 2~18세에 CDC 채택) 커버.
+ * - 'ID': 인도네시아 INGRC (National Synthetic Growth Reference, 2013 국가기초보건조사 30만+ 명).
+ *         원본이 키를 mean+SD 로 공표 → L=1(정규), S=SD/M. TH 와 동일한 구성.
  * - 'CN': 중국 소아 신장 표준 (근사 LMS — P5/P50/P95 육안추출 → L=0 로그정규 근사, ±1cm).
  *         영어(en) 계산기의 국적 선택(화교 타겟)용. ⚠️ 공식 LMS 아님 — 정밀 필요 시 2005 중국 표준 디지타이즈로 교체.
+ *
+ * ⚠️ 말레이시아(MyGC)는 넣지 않았다. 국가 차트는 존재하나(NHMS III 2006) MOH 기술보고서라 LMS 미공개이고,
+ *    공개된 대체본(Bong & Shariff 2012, 서말레이시아 학생 14,360명)은 중앙값이 단조증가하지 않는다
+ *    (남아 8.0세 122.7 → 8.5세 128.7 → 9.0세 129.2cm) → 백분위가 뒤집혀 못 쓴다.
  */
-export type GrowthStandard = 'KR' | 'TH' | 'CN' | 'US';
+export type GrowthStandard = 'KR' | 'TH' | 'CN' | 'US' | 'ID';
 
 /** standard + gender 에 맞는 키 LMS 테이블 반환 */
 function heightTable(gender: 'male' | 'female', standard: GrowthStandard = 'KR'): LMSRow[] {
@@ -62,6 +68,9 @@ function heightTable(gender: 'male' | 'female', standard: GrowthStandard = 'KR')
   }
   if (standard === 'US') {
     return gender === 'male' ? MALE_HEIGHT_LMS_US : FEMALE_HEIGHT_LMS_US;
+  }
+  if (standard === 'ID') {
+    return gender === 'male' ? MALE_HEIGHT_LMS_ID : FEMALE_HEIGHT_LMS_ID;
   }
   return gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
 }
@@ -199,6 +208,62 @@ const FEMALE_HEIGHT_LMS_TH: LMSRow[] = [
   { age: 16, L: 1, M: 158, S: 0.0303 },
   { age: 17, L: 1, M: 159, S: 0.0284 },
   { age: 18, L: 1, M: 159, S: 0.0301 },
+];
+
+// ================================================
+// 인도네시아 INGRC — National Synthetic Growth Reference (키)
+// 출처: Pulungan AB, Julia M, Batubara JRL, Hermanussen M.
+//       "Indonesian National Synthetic Growth Charts", Acta Scientific Paediatrics 1.1 (2018): 20-34.
+//       Table 3(남아)·Table 4(여아) Height. 원자료 = 2013 국가기초보건조사(NHBS/Riskesdas,
+//       33개 주·가구원 100만+ 중 소아청소년 30만+ 명) — 인도네시아 소아내분비학회가 채택한 국가 기준.
+// 변환: 원본이 키를 **mean + SD** 로 공표(키는 정규분포) → L=1, M=mean, S=SD/M. TH 와 동일한 구성.
+//       검증: 전 23행에서 원본 P3 == M − 1.8808·SD (오차 <0.15cm) → L=1 확인. 중앙값 역전 0.
+// ⚠️ 원본은 0~18세지만 계산기 규격에 맞춰 **만 2~18세**만 싣는다(predictAdultHeightLMS 가
+//    마지막 행을 성인 기준으로 쓰므로 18세에서 끊는 것도 다른 표준과 동일).
+// 왜 필요한가: 인도네시아인은 WHO/CDC 기준으론 상당수가 '저신장'으로 잡힌다
+//    (성인 남성이 WHO 기준보다 ~12cm 작음) → 자국 기준이 없으면 예측·백분위가 과소평가된다.
+// ================================================
+
+// 인도네시아 남아 키 LMS (만 2~18세)
+const MALE_HEIGHT_LMS_ID: LMSRow[] = [
+  { age: 2, L: 1, M: 83.97, S: 0.0429 },
+  { age: 3, L: 1, M: 92.03, S: 0.0447 },
+  { age: 4, L: 1, M: 98.47, S: 0.0457 },
+  { age: 5, L: 1, M: 104.72, S: 0.0453 },
+  { age: 6, L: 1, M: 110.56, S: 0.046 },
+  { age: 7, L: 1, M: 115.49, S: 0.0464 },
+  { age: 8, L: 1, M: 120.29, S: 0.0469 },
+  { age: 9, L: 1, M: 125.22, S: 0.0471 },
+  { age: 10, L: 1, M: 129.85, S: 0.0477 },
+  { age: 11, L: 1, M: 134.71, S: 0.0486 },
+  { age: 12, L: 1, M: 139.56, S: 0.0513 },
+  { age: 13, L: 1, M: 145.27, S: 0.0552 },
+  { age: 14, L: 1, M: 151.41, S: 0.055 },
+  { age: 15, L: 1, M: 156.53, S: 0.0502 },
+  { age: 16, L: 1, M: 160.36, S: 0.044 },
+  { age: 17, L: 1, M: 162.56, S: 0.0408 },
+  { age: 18, L: 1, M: 164.03, S: 0.0396 },
+];
+
+// 인도네시아 여아 키 LMS (만 2~18세)
+const FEMALE_HEIGHT_LMS_ID: LMSRow[] = [
+  { age: 2, L: 1, M: 82.12, S: 0.043 },
+  { age: 3, L: 1, M: 90.41, S: 0.0442 },
+  { age: 4, L: 1, M: 97.35, S: 0.0459 },
+  { age: 5, L: 1, M: 103.46, S: 0.0461 },
+  { age: 6, L: 1, M: 109.63, S: 0.046 },
+  { age: 7, L: 1, M: 114.94, S: 0.0465 },
+  { age: 8, L: 1, M: 120.07, S: 0.0474 },
+  { age: 9, L: 1, M: 125.01, S: 0.048 },
+  { age: 10, L: 1, M: 130.46, S: 0.0498 },
+  { age: 11, L: 1, M: 135.76, S: 0.0513 },
+  { age: 12, L: 1, M: 140.96, S: 0.0504 },
+  { age: 13, L: 1, M: 145.48, S: 0.046 },
+  { age: 14, L: 1, M: 149.13, S: 0.0413 },
+  { age: 15, L: 1, M: 151.38, S: 0.0393 },
+  { age: 16, L: 1, M: 152.75, S: 0.0382 },
+  { age: 17, L: 1, M: 153.42, S: 0.0378 },
+  { age: 18, L: 1, M: 154.05, S: 0.0375 },
 ];
 
 // ================================================

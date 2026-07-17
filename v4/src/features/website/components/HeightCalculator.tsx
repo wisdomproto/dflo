@@ -15,6 +15,11 @@ const HeightCalculatorResult = lazy(() =>
   import('./HeightCalculatorResult').then((m) => ({ default: m.HeightCalculatorResult })),
 );
 
+// 영어 계산기 국적 버튼. 기본 CN(화교 타겟) 을 맨 앞에, 나머지는 문의가 들어오는 시장 순.
+const NATIONALITIES = [
+  ['CN', 'natCN'], ['US', 'natUS'], ['ID', 'natID'], ['KR', 'natKR'], ['TH', 'natTH'],
+] as const satisfies readonly (readonly [GrowthStandard, keyof ReturnType<typeof getCalcLabels>])[];
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -115,12 +120,13 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
         <div>
           <span className={labelCls}>{t.fieldNationality}</span>
           <div className="grid grid-cols-2 gap-2">
-            {([['CN', t.natCN], ['US', t.natUS], ['KR', t.natKR], ['TH', t.natTH]] as const).map(([nat, label]) => (
+            {NATIONALITIES.map(([nat, key], i, arr) => (
               <button key={nat} onClick={() => setNationality(nat)}
+                // 홀수 개면 마지막 칸이 반쪽으로 남아 어색하다 → 두 칸 폭으로 채운다.
                 className={`rounded-xl py-2.5 md:py-3 text-sm md:text-base font-semibold transition-colors ${
-                  nationality === nat ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'
-                }`}>
-                {label}
+                  i === arr.length - 1 && arr.length % 2 === 1 ? 'col-span-2' : ''
+                } ${nationality === nat ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'}`}>
+                {t[key]}
               </button>
             ))}
           </div>
