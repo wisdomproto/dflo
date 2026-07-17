@@ -18,6 +18,8 @@ const COUNTRY_TABS: { code: CountryKey; label: string; flag: string }[] = [
   { code: 'th', label: '태국어', flag: '🇹🇭' },
   { code: 'vi', label: '베트남어', flag: '🇻🇳' },
   { code: 'en', label: '영어', flag: '🇺🇸' },
+  { code: 'zh-hant', label: '번체', flag: '🇹🇼' },
+  { code: 'zh-hans', label: '간체', flag: '🀄' },
 ];
 
 const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
