@@ -49,7 +49,14 @@ v4/public/sitemap.xml         ← hreflang = ACTIVE_LANGS(4) + x-default 자동 
 - `lib/messenger.mjs`: `getMessengerCTA(lang, {requireLiveUrl})` — TBD URL이 활성 언어에 있으면 빌드 실패
 - `lib/seo.mjs`: meta/canonical/hreflang/OG/Twitter Card + `PATH_PREFIX` env-var (기본 `''`, staging에서 `/test` 오버라이드 가능). **`ACTIVE_LANGS`(ko/th/vi/en) 단일 소스** — `build-i18n.mjs`가 여기서 import. hreflang·sitemap·빌드 루프가 절대 어긋나지 않게(미빌드 ja/zh-tw/id 를 hreflang 으로 내보내면 404 타겟이라 클러스터 무효화). 언어 활성화 = 이 배열에만 추가
 - `lib/jsonld.mjs`: MedicalClinic + Physician + FAQPage + BlogPosting. `areaServed` 는 th 만 `[KR,TH]`(방콕 원격상담 신호), 그 외 `KR`. Physician 에 image(`/images/doctor.jpg`)·url·jobTitle 포함
-- `lib/sitemap.mjs`: `<xhtml:link rel="alternate">` 자동 삽입 + 홈·블로그 외 서브페이지(clinic/cases/calculator) × ACTIVE_LANGS 도 등재
+- `lib/sitemap.mjs`: `<xhtml:link rel="alternate">` 자동 삽입 + 홈·블로그 외 서브페이지(clinic/cases/calculator) × ACTIVE_LANGS 도 등재. **네임스페이스 = `http://www.sitemaps.org/schemas/sitemap/0.9`(슬래시)** — `sitemap-0.9`(하이픈, XSD 파일명에서 온 오기)를 쓰면 GSC 가 "네임스페이스가 잘못되었습니다"(2026-07-17 수정)
+
+### 블로그 hreflang = article_id 클러스터 (2026-07-17)
+**블로그 slug 는 언어마다 다르다**(en `adhd-medication-effect-on-height-children` ↔ ko `adhd-medication-growth-height-effect` ↔ th `adhd-med-child-height-growth`). 그런데 `buildBlogPostHead` 가 `buildHreflang(path)`(= 전 언어 같은 경로)를 써서 **글 240편 × 3언어 = 720개의 없는 URL 을 hreflang 으로 가리키고 있었다**. 게다가 Railway 는 없는 정적 경로를 404 가 아니라 **200 + 한국어 SPA 셸**로 응답 → **soft-404**라 클러스터 무효 + 중복 크롤 유발(GSC 제출 직전에 발견).
+- **해결**: `blog_published.article_id`(같은 토픽의 언어별 글을 묶는 키)로 클러스터 구성 — `blog-supabase.mjs` 가 `article_id` 를 select/전달 → `build-i18n.buildBlogClusters()` 가 `altsByLang[lang][slug] = {ko:'a', th:'b', …}` 역인덱스 생성 → `buildBlogPostHead({post, lang, altSlugs})` + `buildSitemap({blogAlts})` 가 그걸로 언어별 실제 경로 생성.
+- **`seo.mjs buildHreflangPaths(pathsByLang)` 신설** — 언어별 경로가 다른 클러스터용. 주어진 언어만 내보내고(번역 없는 언어는 아예 생략), **x-default 는 ko 판이 있을 때만**. 기존 `buildHreflang(path)`(홈·clinic/cases/calculator = 파일명 언어 공통)는 이걸 감싸는 래퍼로 유지 → 무회귀.
+- `article_id` 없는 글(ContentFlow 캐시)은 자기 자신만 = 번역 없음 취급(graceful).
+- **검증**: 빌드 산출물 전수 검사 — 글 240편의 hreflang 1200개·sitemap alternate 1300개 **전부 실제 파일 존재**(수정 전 164개가 허공). 회귀 테스트 `scripts/test/blog-hreflang.test.mjs`(8케이스: 언어별 경로·x-default 조건·"남의 slug 를 다른 언어에 붙이지 않는다"·sitemap 클러스터·네임스페이스).
 - `lib/fetch-contentflow-posts.mjs`: ContentFlow API에서 블로그 fetch → `i18n/blog-cache/` JSON 캐시
 - `lib/blog.mjs`: `renderPost` + `renderIndex` + `loadCachedPosts`
 

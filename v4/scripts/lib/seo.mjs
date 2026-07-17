@@ -30,13 +30,24 @@ export function buildSeo(lang) {
   return entry;
 }
 
+// 언어마다 경로가 다른 클러스터용(블로그: slug 가 언어별로 다름). pathsByLang = { ko: '/blog/x/', th: '/blog/y/' }.
+// 여기 없는 언어는 그 번역이 존재하지 않는다는 뜻이라 아예 내보내지 않는다 — 없는 URL 을 hreflang 으로
+// 가리키면(우리 호스팅은 404 도 아니고 200 + 한국어 SPA 셸이라 soft-404) 클러스터 자체가 무효가 된다.
+export function buildHreflangPaths(pathsByLang) {
+  const langs = ACTIVE_LANGS.filter((lang) => pathsByLang[lang]);
+  const links = langs.map((lang) =>
+    `<link rel="alternate" hreflang="${HREFLANG_MAP[lang]}" href="${ORIGIN}${PATH_PREFIX}/${lang}${pathsByLang[lang]}">`
+  );
+  // x-default 는 한국어판이 있을 때만 — 없는 글에 ko 를 가리키면 그것도 soft-404.
+  if (pathsByLang.ko) {
+    links.push(`<link rel="alternate" hreflang="x-default" href="${ORIGIN}${PATH_PREFIX}/ko${pathsByLang.ko}">`);
+  }
+  return links.join('\n  ');
+}
+
+// 전 언어가 같은 경로를 쓰는 페이지용(홈·clinic/cases/calculator 는 파일명이 언어 공통).
 export function buildHreflang(path = '/') {
-  return ACTIVE_LANGS.map((lang) => {
-    const hrefLang = HREFLANG_MAP[lang];
-    return `<link rel="alternate" hreflang="${hrefLang}" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`;
-  }).concat([
-    `<link rel="alternate" hreflang="x-default" href="${ORIGIN}${PATH_PREFIX}/ko${path}">`,
-  ]).join('\n  ');
+  return buildHreflangPaths(Object.fromEntries(ACTIVE_LANGS.map((lang) => [lang, path])));
 }
 
 export function escapeAttr(s) {
@@ -77,15 +88,19 @@ export function pixelSnippet(lang) {
   return `<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');${inits}fbq('track','PageView');</script>`;
 }
 
-export function buildBlogPostHead({ post, lang }) {
+// altSlugs = 같은 글의 언어별 slug ({ ko: 'a', th: 'b' }). build-i18n 이 blog_published.article_id 로 묶어 넘긴다.
+// 없으면(ContentFlow 캐시 글 등 article_id 미보유) 자기 자신만 = 번역 없음으로 취급.
+export function buildBlogPostHead({ post, lang, altSlugs }) {
   const path = `/blog/${post.slug}/`;
+  const slugs = altSlugs && Object.keys(altSlugs).length ? altSlugs : { [lang]: post.slug };
+  const altPaths = Object.fromEntries(Object.entries(slugs).map(([l, s]) => [l, `/blog/${s}/`]));
   const description = post.meta_description || '';
   const ga = gaSnippet();
   const head = [
     `<title>${post.title}</title>`,
     `<meta name="description" content="${escapeAttr(description)}">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
-    buildHreflang(path),
+    buildHreflangPaths(altPaths),
     `<meta property="og:type" content="article">`,
     `<meta property="og:locale" content="${OG_LOCALE_MAP[lang]}">`,
     `<meta property="og:title" content="${escapeAttr(post.title)}">`,

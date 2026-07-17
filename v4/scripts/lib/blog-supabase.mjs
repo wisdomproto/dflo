@@ -3,6 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 // blog_published row → 기존 블로그 템플릿이 기대하는 포스트 shape.
 export function publishedRowToPost(r) {
   return {
+    // article_id = 같은 토픽의 언어별 글을 묶는 키. hreflang 클러스터(언어마다 slug 가 다름) 구성에 쓴다.
+    article_id: r.article_id ?? null,
     slug: r.slug,
     title: r.seo_title ?? '',
     meta_description: r.meta_description ?? '',
@@ -25,7 +27,7 @@ export async function loadPublishedBlogAll(langs) {
   for (const lang of langs) {
     const { data, error } = await supabase
       .from('blog_published')
-      .select('slug, seo_title, meta_description, html_body, published_at')
+      .select('article_id, slug, seo_title, meta_description, html_body, published_at')
       .eq('language', lang)
       .eq('status', 'published');
     if (error) {

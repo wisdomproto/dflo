@@ -16,7 +16,7 @@ function urlEntry(loc, allPaths) {
 // indexable content (clinic = remote-consult, calculator = tool) so they belong in the sitemap.
 const SUBPAGE_FILES = ['clinic.html', 'cases.html', 'calculator.html'];
 
-export function buildSitemap({ activeLangs, blogSlugs = {} }) {
+export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {} }) {
   const entries = [];
   const homePaths = Object.fromEntries(activeLangs.map((l) => [l, '/']));
   for (const lang of activeLangs) {
@@ -39,11 +39,16 @@ export function buildSitemap({ activeLangs, blogSlugs = {} }) {
     entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/blog/`, blogListPaths));
   }
 
+  // 언어별 번역은 article_id 로 묶인 클러스터(blogAlts)가 정본 — slug 가 언어마다 다르므로
+  // "같은 slug 가 있으면 번역" 이라고 보면 안 된다(옛 방식은 그래서 자기 자신만 잡히거나
+  // 우연히 같은 slug 를 오인했다). 클러스터가 없는 글(캐시 글 등)은 번역 없음 = 자기 자신만.
   for (const [lang, slugs] of Object.entries(blogSlugs)) {
     for (const slug of slugs) {
+      const cluster = blogAlts[lang]?.[slug] ?? { [lang]: slug };
       const altPaths = {};
-      for (const [otherLang, otherSlugs] of Object.entries(blogSlugs)) {
-        if (otherSlugs.includes(slug)) altPaths[otherLang] = `/blog/${slug}/`;
+      for (const [otherLang, otherSlug] of Object.entries(cluster)) {
+        // 실제로 빌드된 글만 — 미발행 언어를 넣으면 sitemap 이 없는 URL 을 가리킨다.
+        if (blogSlugs[otherLang]?.includes(otherSlug)) altPaths[otherLang] = `/blog/${otherSlug}/`;
       }
       entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/blog/${slug}/`, altPaths));
     }

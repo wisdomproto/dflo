@@ -38,7 +38,29 @@ function writeFile(path, contents) {
   console.log(`  wrote ${path}`);
 }
 
-async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts }) {
+// 같은 글의 언어별 slug 묶음 — blog_published.article_id 기준.
+// slug 는 언어마다 다르므로(en "adhd-medication-effect-on-height-children" ↔ th "adhd-med-child-height-growth")
+// 이 매핑 없이 hreflang 을 만들면 "모든 언어가 같은 slug" 라고 잘못 가정하게 된다.
+// 반환: altsByLang[lang][slug] = { ko: 'a', th: 'b', ... } (그 글이 실제로 존재하는 언어만)
+function buildBlogClusters(publishedByLang) {
+  const byArticle = new Map();
+  for (const [lang, posts] of Object.entries(publishedByLang)) {
+    for (const p of posts) {
+      if (!p.article_id) continue;   // ContentFlow 캐시 글은 article_id 없음 → 번역 없음 취급
+      if (!byArticle.has(p.article_id)) byArticle.set(p.article_id, {});
+      byArticle.get(p.article_id)[lang] = p.slug;
+    }
+  }
+  const altsByLang = {};
+  for (const slugsByLang of byArticle.values()) {
+    for (const [lang, slug] of Object.entries(slugsByLang)) {
+      (altsByLang[lang] ??= {})[slug] = slugsByLang;
+    }
+  }
+  return altsByLang;
+}
+
+async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts }) {
   const indexHtml = renderIndex({
     posts, template: indexTemplate, locale,
     seoHead: buildBlogIndexHead(lang),
@@ -48,7 +70,7 @@ async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate,
   for (const post of posts) {
     const html = renderPost({
       post, template: postTemplate, locale, messenger,
-      seoHead: buildBlogPostHead({ post, lang }),
+      seoHead: buildBlogPostHead({ post, lang, altSlugs: blogAlts?.[lang]?.[post.slug] }),
     });
     writeFile(join(ROOT, 'public', lang, 'blog', post.slug, 'index.html'), lazifyImages(html));
   }
@@ -77,6 +99,7 @@ async function main() {
 
   // 자체 사이트 published 블로그 (Supabase) — ContentFlow 캐시와 병합. published 우선.
   const publishedByLang = await loadPublishedBlogAll(ACTIVE_LANGS);
+  const blogAlts = buildBlogClusters(publishedByLang);
 
   const homeTemplate = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
   const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
@@ -144,12 +167,12 @@ async function main() {
     const posts = [...bySlug.values()];
     blogSlugs[lang] = posts.map((p) => p.slug);
     if (posts.length > 0) {
-      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts });
+      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts });
       console.log(`  [blog] ${n} posts rendered for ${lang} (cached ${cached.length} + published ${published.length})`);
     }
   }
 
-  const sitemap = buildSitemap({ activeLangs: ACTIVE_LANGS, blogSlugs });
+  const sitemap = buildSitemap({ activeLangs: ACTIVE_LANGS, blogSlugs, blogAlts });
   writeFile(join(ROOT, 'public/sitemap.xml'), sitemap);
   console.log(`[i18n] done — ${ACTIVE_LANGS.length} locale(s)`);
 }
