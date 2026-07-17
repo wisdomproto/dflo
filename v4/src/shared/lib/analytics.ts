@@ -47,8 +47,9 @@ const PRIVATE_PREFIXES = [
   '/login',
 ];
 
-const SUPPORTED_LOCALES = ['ko', 'vn', 'th', 'en', 'zh', 'ja'] as const;
-export type Locale = (typeof SUPPORTED_LOCALES)[number];
+// 로케일 판정은 순수 모듈로 분리(node --test 가능). import 로 로컬 사용 + 재-export 로 기존 API 유지.
+import { getLocale, type Locale } from './analyticsLocale';
+export { getLocale, type Locale };
 
 declare global {
   interface Window {
@@ -116,15 +117,6 @@ function isPrivatePath(pathname: string): boolean {
   return PRIVATE_PREFIXES.some(
     (p) => pathname === p || pathname.startsWith(`${p}/`),
   );
-}
-
-/** URL pathname 에서 locale 추출. `/vn/...` → 'vn', `/th/...` → 'th', 기본 'ko'. */
-export function getLocale(pathname: string): Locale {
-  const m = pathname.match(/^\/([a-z]{2})(?:\/|$)/);
-  if (m && (SUPPORTED_LOCALES as readonly string[]).includes(m[1])) {
-    return m[1] as Locale;
-  }
-  return 'ko';
 }
 
 /** 라우트 변경 시 호출 — page_view 이벤트 발사. */
