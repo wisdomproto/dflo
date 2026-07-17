@@ -50,6 +50,20 @@ test('ko has no consult sheet (single Kakao channel)', () => {
   assert.equal(getMessengerCTA('ko').consult_channels, undefined);
 });
 
+// 중국어(번체·간체)는 카카오를 뺀 2채널 — 의도된 예외다.
+// 대만·동남아/미국 화교에게 카카오는 쓸 이유가 없다. 3채널 관행에 맞춘다며
+// 되돌려 놓지 말 것. consult.html 은 채널 2개(>1)로도 정상 생성된다.
+test('Chinese locales drop Kakao — 2 channels, WhatsApp then LINE', () => {
+  for (const lang of ['zh-hant', 'zh-hans']) {
+    const chans = getMessengerCTA(lang).consult_channels;
+    assert.ok(Array.isArray(chans), `${lang} should have consult_channels`);
+    assert.equal(chans.length, 2, `${lang} channel count`);
+    assert.deepEqual(chans.map((c) => c.channel), ['whatsapp', 'line']);
+    assert.ok(!chans.some((c) => c.channel === 'kakao'), `${lang} 에 카카오가 되돌아왔다`);
+    assert.equal(getMessengerCTA(lang).channel, 'whatsapp', `${lang} lead pill = WhatsApp`);
+  }
+});
+
 test('th/vi/en expose all 3 channels with the market lead first', () => {
   const expected = { th: 'line', vi: 'kakao', en: 'whatsapp' };
   for (const [lang, lead] of Object.entries(expected)) {
