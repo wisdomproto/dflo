@@ -77,9 +77,15 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - `blog-index.html`: `__I18N__` **자체가 없음** → 전부 ko 폴백. 표기뿐 아니라 **하단 네비 링크가 `/ko/…` 로 나가 영어 독자를 한국어 사이트로 보내던 것**이 실질 피해(로고도 `logo.jpg` 한글본). → 다른 템플릿과 동일한 `__I18N__` 블록 주입(`page_type: "blog_index"`).
 - `blog-post.html`: `__I18N__` 은 있는데 **`shell: {{shell_json}}` 만 빠짐** → 링크는 맞고 **라벨만** 한글(t() 가 ko 기본값 폴백). → `shell` 추가.
 - `_shell.js` 로고 `alt="187 성장클리닉"` **하드코딩** → `tEsc('logo_alt')` + locale `shell.logo_alt`(ko=187 성장클리닉 / th·vi·en=187 Growth Clinic). 비한국어 **전 페이지**에 있던 잔재(화면 비노출·스크린리더/SEO 노출).
-- ★**ko blog-index 는 `__I18N__` 이 생기며 `__IS_KO`=true → 예약 폼·하단 바 '예약하기'가 새로 노출**(의도된 부수효과 — 예약은 ko 전 페이지 기능인데 blog-index 만 `__I18N__` 부재로 빠져 있었음).
+- ~~ko blog-index 에 예약 폼·'예약하기' 신규 노출~~ → **아래 §블로그 하단 네비 제거로 무의미**(블로그엔 바 자체가 없음).
 - 같은 김에 `blog-post.html` CSS 의 **미정의 변수**(`--ink`/`--body`/`--muted`/`--hairline`, shell 은 `--shell-*` 네임스페이스) → `--shell-*` 로 교정. 제목·본문·날짜가 순수 검정(`rgb(0,0,0)`)·구분선도 검정으로 렌더되던 것(전 언어 240편). blog-index 는 [[blog_publish_pipeline]] 때 이미 같은 교정을 받았고 blog-post 만 남아 있었음.
 - ★교훈: **템플릿을 새로 만들 때 `__I18N__` 블록(locale·messenger·consultChannels·shell·ai_server)을 통째로 복사**할 것. 일부만 넣으면 "링크는 맞는데 라벨만 한글" 처럼 **부분 폴백**이라 발견이 늦다.
+
+### 블로그 하단 네비 제거 (2026-07-17)
+블로그(목록·글)는 **읽기 화면**이라 하단 네비 바를 안 그린다(사용자 요청, 전 언어). `_shell.js` **`__IS_BLOG`**(= `__I18N__.page_type` `blog`/`blog_index` 우선, `body[data-page]` `blog-index`/`blog-post` 폴백)가 true 면 `<nav class="t-bottom-nav">` 자체를 미출력.
+- **동선 유지**: 상단 헤더(로고=홈, 상담 pill, 언어 스위처) + 글 하단 `post-cta` 는 그대로 → 블로그에서도 상담·홈·언어 전환 가능. th/vi/en 은 헤더 pill 이 상담 시트의 **유일 진입점**이 됨(GA4 `consult_open` source 는 header_cta 만 잡힘).
+- **`__HAS_RESV = __IS_KO && !__IS_BLOG`** 신설 — 예약 폼의 유일한 진입점이 하단 바 '예약하기' 였어서 블로그에선 **도달 불가 = 죽은 마크업** → 시트 마크업·초기화(`if (__HAS_RESV)`) 둘 다 제외. ko 일반 페이지는 무회귀.
+- `blog-index.html` 하단 여백 88/64 → **40/32px** 축소(그 여백이 하단 바 자리였음).
 
 ### 헤더 언어 스위처 (2026-07-17, 공유 버튼 대체)
 헤더 우측 **공유 버튼(Web Share+클립보드)을 언어 드롭다운으로 교체** — 다국어 사이트인데 언어 전환 동선이 아예 없었음(공유는 모바일 브라우저 기본 공유로 대체 가능). `_shell.js` `.t-lang` — `🌐 {KO|EN|TH|VI} ▾` pill → 드롭다운(한국어/English/ไทย/Tiếng Việt, **라벨은 각 언어 자국어 표기라 미번역**, 현재 언어 `aria-current` 보라 강조). 전 언어 공통(ko 전용 아님).

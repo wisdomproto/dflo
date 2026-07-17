@@ -102,6 +102,11 @@ const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.
 // 예약(콜백) 기능은 한글 페이지 전용. __I18N__ 이 있고 locale 이 ko 일 때만(blog-index 처럼
 // __I18N__ 없는 페이지는 폴백 ko 로 잡히지 않도록 명시적으로 __I18N__ 존재를 확인).
 const __IS_KO = !!(window.__I18N__ && window.__I18N__.locale === 'ko');
+// 블로그(목록·글)는 읽기 화면이라 하단 네비 바를 띄우지 않는다. 상담·홈 동선은 상단 헤더가 담당.
+// page_type 우선, body[data-page]("blog-index"/"blog-post") 폴백 — __I18N__ 없이도 판정되게.
+const __IS_BLOG = /^blog/.test((window.__I18N__ && window.__I18N__.page_type) || document.body.dataset.page || '');
+// 예약 폼의 유일한 진입점이 하단 바 '예약하기' 라 블로그(바 없음)에선 열 방법이 없다 → 마크업도 싣지 않는다.
+const __HAS_RESV = __IS_KO && !__IS_BLOG;
 // 예약 접수를 보낼 ai-server. build-i18n 이 window.__I18N__.aiServer 로 주입(로컬 폴백 :4000).
 const __AI_SERVER__ = ((window.__I18N__ && window.__I18N__.aiServer) || 'http://localhost:4000').replace(/\/$/, '');
 // Messenger CTA — injected per-locale by build-i18n. Falls back to Kakao defaults
@@ -207,6 +212,7 @@ const SHELL_HTML = `
     </div>
   </header>
 
+${__IS_BLOG ? '' : `
   <nav class="t-bottom-nav${__IS_KO ? ' t-bottom-nav--full' : ''}${__HAS_CONSULT_SHEET ? ' t-bottom-nav--5' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
     <a href="${__HOME_HREF}" data-nav="programs">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -249,7 +255,7 @@ const SHELL_HTML = `
       </svg>
       <span>예약하기</span>
     </button>` : ''}
-  </nav>
+  </nav>`}
 
 ${__HAS_CONSULT_SHEET ? `
   <div class="t-consult" id="tConsult" role="dialog" aria-modal="true" aria-label="${tEsc('consult.title', '1:1 상담')}" hidden>
@@ -276,7 +282,7 @@ ${__HAS_CONSULT_SHEET ? `
       <iframe id="tCalcFrame" class="t-calc-iframe" title="${tEsc('calc.title', '우리 아이 예상 키')}" loading="lazy"></iframe>
     </div>
   </div>
-${__IS_KO ? `
+${__HAS_RESV ? `
   <div class="t-resv" id="tResv" role="dialog" aria-modal="true" aria-label="예약 신청" hidden>
     <div class="t-resv-sheet">
       <div class="t-resv-bar">
@@ -521,7 +527,7 @@ ${__IS_KO ? `
   // ============= RESERVATION (콜백 예약, 한글 전용) =============
   // 이름·전화만 남기면 병원이 연락하는 저마찰 리드 캡처. 접수는 ai-server 로 POST
   // (service_role insert + 이메일/텔레그램 알림). 카톡 상담과 병행하는 별도 동선.
-  if (__IS_KO) {
+  if (__HAS_RESV) {
     const resv = document.getElementById('tResv');
     const form = document.getElementById('tResvForm');
     const submitBtn = document.getElementById('tResvSubmit');
