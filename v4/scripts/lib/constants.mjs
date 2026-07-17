@@ -9,7 +9,7 @@ export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to r
 // Languages we actually BUILD pages for. hreflang/sitemap must only point at these —
 // emitting ja/id (planned but not yet built) creates 404 hreflang targets that
 // invalidate the whole cluster in Search Console. Add a lang here only once its pages ship.
-export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en'];
+export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'];
 export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ja', 'id'];
 // hreflang 은 지역 중립(간체 타겟이 본토가 아니라 동남아·미국 화교라 zh-CN 이 아니다) →
 // zh-Hant/zh-Hans. og:locale 은 페이스북이 `언어_지역` 코드만 받아 스크립트 코드를 못 써서

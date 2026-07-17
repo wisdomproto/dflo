@@ -60,10 +60,11 @@ function buildBlogClusters(publishedByLang) {
   return altsByLang;
 }
 
-async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts }) {
+async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs }) {
   const indexHtml = renderIndex({
     posts, template: indexTemplate, locale,
-    seoHead: buildBlogIndexHead(lang),
+    // hreflang 은 블로그 인덱스가 실제로 존재하는 언어만 — 글 0인 언어(중국어)를 가리키면 soft-404.
+    seoHead: buildBlogIndexHead(lang, blogLangs),
   });
   writeFile(join(ROOT, 'public', lang, 'blog/index.html'), lazifyImages(indexHtml));
 
@@ -100,6 +101,11 @@ async function main() {
   // 자체 사이트 published 블로그 (Supabase) — ContentFlow 캐시와 병합. published 우선.
   const publishedByLang = await loadPublishedBlogAll(ACTIVE_LANGS);
   const blogAlts = buildBlogClusters(publishedByLang);
+
+  // 블로그 인덱스가 실제로 빌드되는 언어(글 1편 이상). 블로그 인덱스 hreflang 클러스터는
+  // 이 집합으로만 만든다 — 글 0인 언어(중국어 등)를 넣으면 /{lang}/blog/ 가 없어 soft-404.
+  const blogLangs = ACTIVE_LANGS.filter((l) =>
+    loadCachedPosts(CACHE_DIR, l).length > 0 || (publishedByLang[l]?.length ?? 0) > 0);
 
   const homeTemplate = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
   const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
@@ -178,7 +184,7 @@ async function main() {
     const posts = [...bySlug.values()];
     blogSlugs[lang] = posts.map((p) => p.slug);
     if (posts.length > 0) {
-      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts });
+      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs });
       console.log(`  [blog] ${n} posts rendered for ${lang} (cached ${cached.length} + published ${published.length})`);
     }
   }

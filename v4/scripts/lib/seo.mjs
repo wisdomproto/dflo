@@ -115,13 +115,17 @@ export function buildBlogPostHead({ post, lang, altSlugs }) {
   return [ga, pixelSnippet(lang), ...head].filter(Boolean).join('\n  ');
 }
 
-export function buildBlogIndexHead(lang) {
+// blogLangs = 블로그 인덱스가 실제로 빌드되는 언어(글이 1편 이상 있는 언어)만.
+// 안 주면 전 ACTIVE_LANGS(하위호환). ★중국어처럼 글 0인 언어를 넣으면 /zh-hant/blog/ 가
+// 존재하지 않아 hreflang 이 허공(soft-404)을 가리켜 클러스터가 무효화된다 — sitemap 은
+// blogSlugs[l]?.length 로 이미 제외하는데 이 HTML 헤드만 안 걸러져 audit 이 잡았다.
+export function buildBlogIndexHead(lang, blogLangs = ACTIVE_LANGS) {
   const path = '/blog/';
   const ga = gaSnippet();
   const head = [
     `<title>Blog | ${buildSeo(lang).title}</title>`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
-    buildHreflang(path),
+    buildHreflangPaths(Object.fromEntries(blogLangs.map((l) => [l, path]))),
   ];
   return [ga, pixelSnippet(lang), ...head].filter(Boolean).join('\n  ');
 }
