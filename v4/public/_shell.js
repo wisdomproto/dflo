@@ -133,6 +133,9 @@ const __M_FG = escAttr(__MESSENGER.color_fg);
 // ko 는 카카오 단일 채널이라 consult_channels 가 없고(빈 배열) → 기존 직행 링크 유지.
 const __CONSULT = (window.__I18N__ && window.__I18N__.consultChannels) || [];
 const __HAS_CONSULT_SHEET = __CONSULT.length > 1;
+// 5칸(4탭 + 예약 or 상담)은 460px 플로팅 pill 에 넣으면 칸당 ~70px 라 라벨이 눌린다 →
+// ko 처럼 엣지투엣지 플랫 바로. 지금은 ko(예약)·th/vi/en(상담) 둘 다 5칸이라 사실상 전 페이지.
+const __IS_FULL_NAV = __IS_KO || __HAS_CONSULT_SHEET;
 // 채널 브랜드 글리프 — 브랜드 로고 자산 없이 알아볼 수 있는 최소 단서(말풍선 + 채널색).
 const __CONSULT_ITEMS = __CONSULT.map((c) => `
           <a class="t-consult-item" href="${escAttr(c.url)}" target="_blank" rel="noopener"
@@ -213,7 +216,7 @@ const SHELL_HTML = `
   </header>
 
 ${__IS_BLOG ? '' : `
-  <nav class="t-bottom-nav${__IS_KO ? ' t-bottom-nav--full' : ''}${__HAS_CONSULT_SHEET ? ' t-bottom-nav--5' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
+  <nav class="t-bottom-nav${__IS_FULL_NAV ? ' t-bottom-nav--full' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
     <a href="${__HOME_HREF}" data-nav="programs">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4h12a4 4 0 014 4v12" />

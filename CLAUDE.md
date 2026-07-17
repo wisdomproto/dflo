@@ -71,6 +71,11 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - **데이터 단일 소스** = `messenger.yml` — **YAML 앵커**(`&whatsapp/&line/&kakao`)로 채널 3개를 한 번만 정의하고 각 언어가 `consult_channels: [*line, *whatsapp, *kakao]` 로 **그 시장 대표 채널을 맨 앞**에 두고 참조(계정 URL 은 전 언어 공통). `build-i18n` 이 `consult_json` → `window.__I18N__.consultChannels` 주입(ko=`[]`), `_shell.js` `__HAS_CONSULT_SHEET = length > 1`.
 - **GA4**: 시트는 오버레이라 자동 page_view 가 없음 → 열 때 **`consult_open`**(source=header_cta/bottom_nav, 예약 폼 `reservation_open` 과 같은 규칙) + 채널 클릭 시 기존 `consult_click`. ★**`trackConsultClick(source, channel)` 에 channel 인자 추가** — 종전엔 `__I18N__.channel`(언어별 대표 채널) 로 뭉뚱그려서 시트에선 "en 인데 카톡 선택"이 whatsapp 으로 잡혔을 것. 이제 `a[data-channel]` 을 그대로 발사(기존 CTA 들은 data-channel == 대표 채널이라 값 불변 = 무회귀). Pixel `Lead` 도 동일.
 - **(2026-07-17 후속)** blog-index/blog-post 의 `__I18N__` 누락은 **아래 §블로그 셸 i18n 누락에서 해결** — 이제 블로그에도 시트·언어 스위처가 정상 노출.
+- 🚨 **`.t-consult[hidden] { display: none }` 은 필수**(2026-07-17 프로덕션 장애로 학습). `.t-consult{display:flex}`(author) 가 브라우저 기본 `[hidden]{display:none}`(UA) 를 **cascade origin 우선순위로 이겨서**, 닫힌 시트가 `inset:0`·z-index 80 으로 **th/vi/en 전 페이지를 투명하게 덮고 있었다** → 화면 어디를 눌러도 클릭이 시트에 먹히고(사이트 사실상 먹통), 하단 바 자리에 겹친 **마지막 채널(카카오) 링크가 눌려 "1:1 Consulting 누르면 카톡으로" 증상**. `.t-resv[hidden]` 이 같은 이유로 이미 있었는데 시트 추가 때 이 짝 규칙을 빠뜨린 것. **fixed 오버레이를 새로 만들 때 `[hidden]` 규칙을 반드시 같이 쓸 것.**
+  - ★검증 교훈: **`el.click()`(JS 디스패치)은 히트테스트를 건너뛰어 이 버그를 통과시킨다.** 오버레이/레이어 작업은 반드시 **`document.elementFromPoint(x,y)` 로 "그 좌표를 누르면 실제로 뭐가 눌리는가"** 를 확인할 것.
+
+### 하단 네비 = 엣지투엣지 5칸 (2026-07-17)
+`__IS_FULL_NAV = __IS_KO || __HAS_CONSULT_SHEET` → 지금은 전 언어가 5칸(ko=예약 / th·vi·en=상담)이라 **`--full`(엣지투엣지 플랫 60px)** 로 통일. 460px 플로팅 pill 에 5칸을 넣으면 칸당 ~70px 라 "공간 부족"(사용자 지적) → 375px 기준 칸당 75px 확보. 임시로 뒀던 `--bottom-nav--5`(pill 유지 + 5칸)는 `--full` 과 중복이라 폐기. 라벨은 `--full` 에서 **10.5px + `white-space:nowrap`** — "1:1 Consulting"(가장 김)이 2줄로 접히면 60px 바를 넘쳐서.
 
 ### 블로그 셸 i18n 누락 수정 (2026-07-17)
 `/en/blog/` 에 한글 메뉴가 뜨던 버그. **`_shell.js` 는 `window.__I18N__` 하나로 로고·헤더 CTA·하단 네비(라벨 + `/{lang}/` 링크)·상담 시트를 전부 그리는데, 블로그 두 템플릿만 그 주입이 불완전**했음:

@@ -220,15 +220,14 @@ body { background: var(--shell-page-bg) !important; }
 /* 예상키 측정 탭 — 강조 제거, 다른 탭과 동일한 기본 스타일 사용
    (하단 바 강조는 예약하기 노랑 하나로 위계 단순화). */
 
-/* 비한국어(th/vi/en) = 4탭 + 1:1 상담 = 5칸. ko 의 --full(엣지투엣지 플랫)과 달리
-   기존 플로팅 pill 모양은 그대로 두고 칸 수만 늘린다(무회귀). 칸이 좁아지므로
-   라벨은 2줄까지 허용 + 자간을 살짝 좁힌다. */
-.t-bottom-nav--5 { grid-template-columns: repeat(5, 1fr); }
-.t-bottom-nav--5 a, .t-bottom-nav--5 button {
+/* 5칸 배치는 --full(엣지투엣지)이 담당. 375px 기준 칸당 75px 라 여유가 없다 —
+   "1:1 Consulting" 같은 긴 라벨이 2줄로 접히면 60px 바 높이를 넘치므로 nowrap + 축소. */
+.t-bottom-nav--full a, .t-bottom-nav--full button {
   padding: 8px 2px;
   font-size: 10.5px;
   letter-spacing: -0.01em;
   line-height: 1.15;
+  white-space: nowrap;
 }
 
 /* ============= HEADER KAKAO PILL ============= */
@@ -275,6 +274,11 @@ body { background: var(--shell-page-bg) !important; }
   background: rgba(26,23,20,0);
   transition: background 0.2s;
 }
+/* ★필수 — 이 줄이 없으면 위 display:flex 가 브라우저 기본 [hidden]{display:none} 을 이겨서
+   닫힌 시트가 inset:0 으로 화면 전체를 계속 덮는다(투명해서 안 보일 뿐). 그러면 페이지 클릭이
+   전부 시트에 먹히고, 하단 바 자리에 겹친 마지막 채널 링크가 눌려 엉뚱한 메신저로 간다.
+   .t-resv[hidden] 도 같은 이유로 존재. */
+.t-consult[hidden] { display: none; }
 .t-consult.is-open { background: rgba(26,23,20,0.45); }
 .t-consult-sheet {
   width: 100%;
