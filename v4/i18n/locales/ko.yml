@@ -490,7 +490,7 @@ shell:
   aria:
     home: "홈으로"
     kakao: "카카오톡 1:1 상담"
-    share: "공유하기"
+    lang: "언어 선택"
     menu: "메인 메뉴"
     close: "닫기"
   header:
@@ -524,9 +524,6 @@ shell:
     interpret_mid: "🔍 또래 평균 수준이에요. 환경 요인을 잘 관리하면 더 좋은 결과를 기대할 수 있어요."
     interpret_low: "⚠️ 또래보다 약간 작을 수 있어요. 지금 성장 상태를 한번 확인해보는 걸 권해드려요."
     interpret_critical: "🔎 또래 대비 차이가 클 수 있어요. 뼈나이·호르몬 검사로 원인을 빨리 확인해보는 게 좋아요."
-  toast:
-    copied: "링크가 복사되었습니다"
-    failed: "공유 실패"
   chart:
     now_prefix: "현재"
     age_suffix: "세"

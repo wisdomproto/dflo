@@ -490,7 +490,7 @@ shell:
   aria:
     home: "Home"
     kakao: "1:1 WhatsApp consultation"
-    share: "Share"
+    lang: "Select language"
     menu: "Main menu"
     close: "Close"
   header:
@@ -524,9 +524,6 @@ shell:
     interpret_mid: "🔍 Around the peer average. Better lifestyle care can lift the outcome further."
     interpret_low: "⚠️ May end up slightly shorter than peers. A golden-window check before the growth plates close is recommended."
     interpret_critical: "🔎 May end up notably shorter than peers. Detailed bone-age and hormone testing is recommended to find the cause early."
-  toast:
-    copied: "Link copied"
-    failed: "Share failed"
   chart:
     now_prefix: "Now"
     age_suffix: "y"

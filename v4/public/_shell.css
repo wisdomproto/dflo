@@ -50,41 +50,68 @@ body { background: var(--shell-page-bg) !important; }
   width: auto;
   display: block;
 }
-.t-header .share-btn {
+/* ============= LANGUAGE SWITCHER (헤더 우측, 옛 공유 버튼 자리) ============= */
+.t-lang { position: relative; }
+.t-lang-btn {
   appearance: none;
   background: transparent;
   border: 1px solid var(--shell-hairline);
   color: var(--shell-ink);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  height: 32px;
+  padding: 0 9px;
+  border-radius: 999px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
   transition: transform 0.12s, background 0.15s;
 }
-.t-header .share-btn:active { transform: scale(0.92); }
-.t-header .share-btn:hover { background: var(--shell-soft); }
+.t-lang-btn:active { transform: scale(0.95); }
+.t-lang-btn:hover { background: var(--shell-soft); }
+.t-lang-caret { transition: transform 0.18s; }
+.t-lang.open .t-lang-caret { transform: rotate(180deg); }
 
-.t-share-toast {
-  position: fixed;
-  top: 64px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 999px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s;
+.t-lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 70;
+  min-width: 148px;
+  padding: 5px;
+  margin: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--shell-hairline);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
-.t-share-toast.show { opacity: 1; }
+.t-lang-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--shell-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.t-lang-menu a:hover { background: var(--shell-soft); }
+.t-lang-menu a[aria-current="true"] {
+  color: var(--shell-brand);
+  background: var(--shell-brand-soft);
+}
+.t-lang-code {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--shell-muted);
+  letter-spacing: 0.3px;
+}
+.t-lang-menu a[aria-current="true"] .t-lang-code { color: var(--shell-brand); }
 
 /* ============= MASTHEAD (legacy, used only on index.html for big logo+title hero) ============= */
 .t-masthead {

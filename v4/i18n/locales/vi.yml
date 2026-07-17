@@ -490,7 +490,7 @@ shell:
   aria:
     home: "Trang chủ"
     kakao: "Tư vấn KakaoTalk 1:1"
-    share: "Chia sẻ"
+    lang: "Chọn ngôn ngữ"
     menu: "Menu chính"
     close: "Đóng"
   header:
@@ -524,9 +524,6 @@ shell:
     interpret_mid: "🔍 Quanh mức trung bình của bạn cùng tuổi. Chăm sóc sinh hoạt tốt hơn có thể nâng cao kết quả."
     interpret_low: "⚠️ Có thể thấp hơn một chút so với bạn cùng tuổi. Khuyến nghị kiểm tra trong thời điểm vàng trước khi sụn tăng trưởng đóng."
     interpret_critical: "🚨 Có thể thấp hơn nhiều so với bạn cùng tuổi. Cần kiểm tra tuổi xương·hormone chi tiết để tìm nguyên nhân sớm."
-  toast:
-    copied: "Đã sao chép link"
-    failed: "Chia sẻ thất bại"
   chart:
     now_prefix: "Hiện tại"
     age_suffix: " tuổi"

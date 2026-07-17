@@ -117,6 +117,39 @@ const __M_CH = escAttr(__MESSENGER.channel);
 const __M_BG = escAttr(__MESSENGER.color_bg);
 const __M_FG = escAttr(__MESSENGER.color_fg);
 
+// ============= LANGUAGE SWITCHER =============
+// 활성 언어(build-i18n 의 ACTIVE_LANGS 와 동일). 라벨은 각 언어 자국어 표기 —
+// 어느 언어 페이지에 있든 자기 언어를 알아볼 수 있어야 하므로 번역하지 않는다.
+const __LANGS = [
+  { code: 'ko', label: '한국어', short: 'KO' },
+  { code: 'en', label: 'English', short: 'EN' },
+  { code: 'th', label: 'ไทย', short: 'TH' },
+  { code: 'vi', label: 'Tiếng Việt', short: 'VI' },
+];
+// 현재 언어는 경로에서 먼저 읽는다 — blog-index 처럼 __I18N__ 이 없는 페이지도
+// /{lang}/ 아래 있어서 폴백 'ko' 로 잘못 잡히는 걸 막는다.
+const __PATH_LANG_RE = /^\/(ko|th|vi|en)(\/.*)?$/;
+const __CUR_LANG = (function () {
+  const m = window.location.pathname.match(__PATH_LANG_RE);
+  return (m && m[1]) || __I18N_LOCALE;
+})();
+// 같은 페이지의 다른 언어 URL. index/clinic/cases/calculator 는 파일명이 전 언어 공통이라
+// 프리픽스만 갈아끼우면 되고, 블로그 글은 slug 가 언어마다 달라(1:1 대응 없음) 해당 언어 블로그 목록으로 보낸다.
+function __langHref(code) {
+  const m = window.location.pathname.match(__PATH_LANG_RE);
+  let rest = (m && m[2]) || '/';
+  if (/^\/blog\/.+/.test(rest) && !/^\/blog\/index\.html$/.test(rest)) rest = '/blog/';
+  return `/${code}${rest}${window.location.search}${window.location.hash}`;
+}
+const __CUR_LANG_SHORT = escAttr((__LANGS.find((l) => l.code === __CUR_LANG) || __LANGS[0]).short);
+const __LANG_ITEMS = __LANGS.map((l) => `
+        <li role="none">
+          <a role="menuitem" href="${escAttr(__langHref(l.code))}" lang="${l.code}" data-lang-to="${l.code}"${l.code === __CUR_LANG ? ' aria-current="true"' : ''}>
+            <span>${l.label}</span>
+            <span class="t-lang-code">${l.short}</span>
+          </a>
+        </li>`).join('');
+
 const SHELL_HTML = `
   <header class="t-header" role="banner">
     <a href="${__HOME_HREF}" class="logo-wrap" aria-label="${tEsc('aria.home', '홈으로')}">
@@ -129,15 +162,21 @@ const SHELL_HTML = `
         </svg>
         <span>${tEsc('header.kakao_label', '1:1 카톡 상담')}</span>
       </a>
-      <button type="button" class="share-btn" aria-label="${tEsc('aria.share', '공유하기')}" data-share>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="18" cy="5" r="3"/>
-          <circle cx="6" cy="12" r="3"/>
-          <circle cx="18" cy="19" r="3"/>
-          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-        </svg>
-      </button>
+      <div class="t-lang" data-lang-switch>
+        <button type="button" class="t-lang-btn" aria-label="${tEsc('aria.lang', '언어 선택')}" aria-haspopup="true" aria-expanded="false" data-lang-toggle>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18"/>
+            <path d="M12 3a15 15 0 010 18 15 15 0 010-18z"/>
+          </svg>
+          <span>${__CUR_LANG_SHORT}</span>
+          <svg class="t-lang-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <ul class="t-lang-menu" role="menu" hidden>${__LANG_ITEMS}
+        </ul>
+      </div>
     </div>
   </header>
 
@@ -274,37 +313,32 @@ ${__IS_KO ? `
     if (a.dataset.nav === currentPage) a.classList.add('active');
   });
 
-  // Share button — Web Share API + clipboard fallback
-  const shareBtn = document.querySelector('[data-share]');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async () => {
-      const url = window.location.href;
-      const title = document.title || '187 성장클리닉';
-      try {
-        if (navigator.share) {
-          await navigator.share({ title, url });
-          return;
-        }
-      } catch (e) { /* user cancelled or share failed — fall through to clipboard */ }
-      try {
-        await navigator.clipboard.writeText(url);
-        showToast(t('toast.copied', '링크가 복사되었습니다'));
-      } catch (e) {
-        showToast(t('toast.failed', '공유 실패'));
+  // Language switcher dropdown — 항목 href 는 마크업에서 이미 현재 페이지의 대응 URL 로
+  // 계산돼 있으므로(=__langHref) 여기선 열고/닫기만 담당한다.
+  const langWrap = document.querySelector('[data-lang-switch]');
+  if (langWrap) {
+    const langBtn = langWrap.querySelector('[data-lang-toggle]');
+    const langMenu = langWrap.querySelector('.t-lang-menu');
+
+    const setLangOpen = (open) => {
+      langMenu.hidden = !open;
+      langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      langWrap.classList.toggle('open', open);
+    };
+
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setLangOpen(langMenu.hidden);
+    });
+    document.addEventListener('click', (e) => {
+      if (!langMenu.hidden && !langWrap.contains(e.target)) setLangOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !langMenu.hidden) {
+        setLangOpen(false);
+        langBtn.focus();
       }
     });
-  }
-
-  function showToast(msg) {
-    let t = document.querySelector('.t-share-toast');
-    if (!t) {
-      t = document.createElement('div');
-      t.className = 't-share-toast';
-      document.body.appendChild(t);
-    }
-    t.textContent = msg;
-    requestAnimationFrame(() => t.classList.add('show'));
-    setTimeout(() => t.classList.remove('show'), 2000);
   }
 
   // ============= CALCULATOR MODAL (iframe → React /calc-embed) =============
