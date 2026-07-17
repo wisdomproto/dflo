@@ -178,7 +178,7 @@ const __LANG_ITEMS = __LANGS.map((l) => `
 const SHELL_HTML = `
   <header class="t-header" role="banner">
     <a href="${__HOME_HREF}" class="logo-wrap" aria-label="${tEsc('aria.home', '홈으로')}">
-      <img class="logo" src="${__LOGO_SRC}" alt="187 성장클리닉">
+      <img class="logo" src="${__LOGO_SRC}" alt="${tEsc('logo_alt', '187 성장클리닉')}">
     </a>
     <div class="t-header-actions">
       ${__HAS_CONSULT_SHEET ? `

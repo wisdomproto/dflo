@@ -70,7 +70,16 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - **진입점 2곳**(둘 다 같은 시트): ① **헤더 pill** — th/vi/en 은 `<a>`(직행) → **`<button data-consult-open="header_cta">`**(시트), 라벨도 채널명(`header.kakao_label` = "LINE"/"1:1 WhatsApp")이 아닌 **`header.consult_label`**(중립 "1:1 Consulting"/"ปรึกษา 1:1"). pill 배경색은 그 시장 대표 채널색 유지 ② **하단 바 5번째 칸** `nav.consult`(`data-consult-open="bottom_nav"`) — ko `--full`(엣지투엣지)과 달리 **`.t-bottom-nav--5`** 로 기존 플로팅 pill 모양 유지한 채 칸만 5개(폰트 11→10.5px, 375px 에서 라벨 전부 1줄 확인).
 - **데이터 단일 소스** = `messenger.yml` — **YAML 앵커**(`&whatsapp/&line/&kakao`)로 채널 3개를 한 번만 정의하고 각 언어가 `consult_channels: [*line, *whatsapp, *kakao]` 로 **그 시장 대표 채널을 맨 앞**에 두고 참조(계정 URL 은 전 언어 공통). `build-i18n` 이 `consult_json` → `window.__I18N__.consultChannels` 주입(ko=`[]`), `_shell.js` `__HAS_CONSULT_SHEET = length > 1`.
 - **GA4**: 시트는 오버레이라 자동 page_view 가 없음 → 열 때 **`consult_open`**(source=header_cta/bottom_nav, 예약 폼 `reservation_open` 과 같은 규칙) + 채널 클릭 시 기존 `consult_click`. ★**`trackConsultClick(source, channel)` 에 channel 인자 추가** — 종전엔 `__I18N__.channel`(언어별 대표 채널) 로 뭉뚱그려서 시트에선 "en 인데 카톡 선택"이 whatsapp 으로 잡혔을 것. 이제 `a[data-channel]` 을 그대로 발사(기존 CTA 들은 data-channel == 대표 채널이라 값 불변 = 무회귀). Pixel `Lead` 도 동일.
-- ⚠️ blog-index 는 `__I18N__` 자체가 없어 시트 미노출 + 헤더 pill 이 ko 카톡 폴백(기존부터 있던 문제, 이번 변경과 무관).
+- **(2026-07-17 후속)** blog-index/blog-post 의 `__I18N__` 누락은 **아래 §블로그 셸 i18n 누락에서 해결** — 이제 블로그에도 시트·언어 스위처가 정상 노출.
+
+### 블로그 셸 i18n 누락 수정 (2026-07-17)
+`/en/blog/` 에 한글 메뉴가 뜨던 버그. **`_shell.js` 는 `window.__I18N__` 하나로 로고·헤더 CTA·하단 네비(라벨 + `/{lang}/` 링크)·상담 시트를 전부 그리는데, 블로그 두 템플릿만 그 주입이 불완전**했음:
+- `blog-index.html`: `__I18N__` **자체가 없음** → 전부 ko 폴백. 표기뿐 아니라 **하단 네비 링크가 `/ko/…` 로 나가 영어 독자를 한국어 사이트로 보내던 것**이 실질 피해(로고도 `logo.jpg` 한글본). → 다른 템플릿과 동일한 `__I18N__` 블록 주입(`page_type: "blog_index"`).
+- `blog-post.html`: `__I18N__` 은 있는데 **`shell: {{shell_json}}` 만 빠짐** → 링크는 맞고 **라벨만** 한글(t() 가 ko 기본값 폴백). → `shell` 추가.
+- `_shell.js` 로고 `alt="187 성장클리닉"` **하드코딩** → `tEsc('logo_alt')` + locale `shell.logo_alt`(ko=187 성장클리닉 / th·vi·en=187 Growth Clinic). 비한국어 **전 페이지**에 있던 잔재(화면 비노출·스크린리더/SEO 노출).
+- ★**ko blog-index 는 `__I18N__` 이 생기며 `__IS_KO`=true → 예약 폼·하단 바 '예약하기'가 새로 노출**(의도된 부수효과 — 예약은 ko 전 페이지 기능인데 blog-index 만 `__I18N__` 부재로 빠져 있었음).
+- 같은 김에 `blog-post.html` CSS 의 **미정의 변수**(`--ink`/`--body`/`--muted`/`--hairline`, shell 은 `--shell-*` 네임스페이스) → `--shell-*` 로 교정. 제목·본문·날짜가 순수 검정(`rgb(0,0,0)`)·구분선도 검정으로 렌더되던 것(전 언어 240편). blog-index 는 [[blog_publish_pipeline]] 때 이미 같은 교정을 받았고 blog-post 만 남아 있었음.
+- ★교훈: **템플릿을 새로 만들 때 `__I18N__` 블록(locale·messenger·consultChannels·shell·ai_server)을 통째로 복사**할 것. 일부만 넣으면 "링크는 맞는데 라벨만 한글" 처럼 **부분 폴백**이라 발견이 늦다.
 
 ### 헤더 언어 스위처 (2026-07-17, 공유 버튼 대체)
 헤더 우측 **공유 버튼(Web Share+클립보드)을 언어 드롭다운으로 교체** — 다국어 사이트인데 언어 전환 동선이 아예 없었음(공유는 모바일 브라우저 기본 공유로 대체 가능). `_shell.js` `.t-lang` — `🌐 {KO|EN|TH|VI} ▾` pill → 드롭다운(한국어/English/ไทย/Tiếng Việt, **라벨은 각 언어 자국어 표기라 미번역**, 현재 언어 `aria-current` 보라 강조). 전 언어 공통(ko 전용 아님).

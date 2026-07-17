@@ -79,6 +79,19 @@
     {{/each}}
   </div>
 </div>
+<script>
+  // _shell.js 는 이 값으로 로고·헤더 CTA·하단 네비(라벨 + /{lang}/ 링크)를 그린다. 없으면 전부
+  // ko 로 폴백해 영어 블로그에 한글 메뉴가 뜨고 링크가 /ko/ 로 새어나간다 → 다른 템플릿과 동일하게 주입.
+  window.__I18N__ = {
+    locale: "{{meta.lang}}",
+    channel: "{{messenger.channel}}",
+    messenger: {{messenger_json}},
+    consultChannels: {{consult_json}},
+    page_type: "blog_index",
+    aiServer: "{{ai_server}}",
+    shell: {{shell_json}}
+  };
+</script>
 <script src="/_shell.js"></script>
 </body>
 </html>

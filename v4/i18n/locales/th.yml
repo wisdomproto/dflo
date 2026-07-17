@@ -495,6 +495,7 @@ calculator:
   iframe_title: "คาดการณ์ส่วนสูงฟรี"
 
 shell:
+  logo_alt: "187 Growth Clinic"
   aria:
     home: "หน้าแรก"
     kakao: "ปรึกษาผ่าน LINE"

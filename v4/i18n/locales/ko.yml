@@ -487,6 +487,7 @@ calculator:
   iframe_title: "예상키 측정"
 
 shell:
+  logo_alt: "187 성장클리닉"
   aria:
     home: "홈으로"
     kakao: "카카오톡 1:1 상담"

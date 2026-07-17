@@ -7,20 +7,20 @@
 <link rel="stylesheet" href="/_shell.css">
 <style>
   .post-container { max-width: 740px; margin: 0 auto; padding: 24px; }
-  .post-header { padding: 32px 0 24px; border-bottom: 1px solid var(--hairline); }
-  .post-title { font-size: 28px; font-weight: 900; color: var(--ink); letter-spacing: -0.6px; line-height: 1.3; }
-  .post-meta { font-size: 13px; color: var(--muted); margin-top: 12px; }
-  .post-body { padding: 28px 0; font-size: 16px; line-height: 1.85; color: var(--body); }
+  .post-header { padding: 32px 0 24px; border-bottom: 1px solid var(--shell-hairline); }
+  .post-title { font-size: 28px; font-weight: 900; color: var(--shell-ink); letter-spacing: -0.6px; line-height: 1.3; }
+  .post-meta { font-size: 13px; color: var(--shell-muted); margin-top: 12px; }
+  .post-body { padding: 28px 0; font-size: 16px; line-height: 1.85; color: var(--shell-body); }
   .post-body img { max-width: 100%; height: auto; display: block; margin: 24px 0; border-radius: 8px; }
   .post-cta { margin: 40px 0; padding: 24px; background: var(--shell-page-bg); text-align: center; border-radius: 12px; }
   .post-cta a {
     display: inline-flex; padding: 14px 28px; background: {{messenger.color_bg}}; color: {{messenger.color_fg}};
     text-decoration: none; font-weight: 700; border-radius: 2px;
   }
-  .post-references { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--hairline); }
-  .post-references-title { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 10px; }
-  .post-references-list { font-size: 13px; line-height: 1.7; color: var(--muted); padding-left: 20px; }
-  .post-references-list a { color: var(--ink); text-decoration: underline; }
+  .post-references { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--shell-hairline); }
+  .post-references-title { font-size: 18px; font-weight: 800; color: var(--shell-ink); margin-bottom: 10px; }
+  .post-references-list { font-size: 13px; line-height: 1.7; color: var(--shell-muted); padding-left: 20px; }
+  .post-references-list a { color: var(--shell-ink); text-decoration: underline; }
   @media (min-width: 640px) { .post-title { font-size: 36px; } }
 </style>
 </head>
@@ -42,7 +42,9 @@
   </div>
 </div>
 <script>
-  window.__I18N__ = { locale: "{{meta.lang}}", channel: "{{messenger.channel}}", messenger: {{messenger_json}}, consultChannels: {{consult_json}}, page_type: "blog", aiServer: "{{ai_server}}" };
+  // shell 누락 시 _shell.js 의 t() 가 전부 한국어 기본값으로 폴백해(로고 alt·하단 네비 라벨·상담 시트
+  // 문구) 영어 글에 한글 메뉴가 뜬다 — 링크는 locale 로 맞는데 라벨만 한글이라 더 눈에 띈다.
+  window.__I18N__ = { locale: "{{meta.lang}}", channel: "{{messenger.channel}}", messenger: {{messenger_json}}, consultChannels: {{consult_json}}, page_type: "blog", aiServer: "{{ai_server}}", shell: {{shell_json}} };
 </script>
 <script src="/_shell.js"></script>
 </body>

@@ -487,6 +487,7 @@ calculator:
   iframe_title: "Free height prediction"
 
 shell:
+  logo_alt: "187 Growth Clinic"
   aria:
     home: "Home"
     kakao: "1:1 WhatsApp consultation"

@@ -487,6 +487,7 @@ calculator:
   iframe_title: "Dự đoán chiều cao miễn phí"
 
 shell:
+  logo_alt: "187 Growth Clinic"
   aria:
     home: "Trang chủ"
     kakao: "Tư vấn KakaoTalk 1:1"
