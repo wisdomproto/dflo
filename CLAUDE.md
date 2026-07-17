@@ -74,8 +74,10 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - 🚨 **`.t-consult[hidden] { display: none }` 은 필수**(2026-07-17 프로덕션 장애로 학습). `.t-consult{display:flex}`(author) 가 브라우저 기본 `[hidden]{display:none}`(UA) 를 **cascade origin 우선순위로 이겨서**, 닫힌 시트가 `inset:0`·z-index 80 으로 **th/vi/en 전 페이지를 투명하게 덮고 있었다** → 화면 어디를 눌러도 클릭이 시트에 먹히고(사이트 사실상 먹통), 하단 바 자리에 겹친 **마지막 채널(카카오) 링크가 눌려 "1:1 Consulting 누르면 카톡으로" 증상**. `.t-resv[hidden]` 이 같은 이유로 이미 있었는데 시트 추가 때 이 짝 규칙을 빠뜨린 것. **fixed 오버레이를 새로 만들 때 `[hidden]` 규칙을 반드시 같이 쓸 것.**
   - ★검증 교훈: **`el.click()`(JS 디스패치)은 히트테스트를 건너뛰어 이 버그를 통과시킨다.** 오버레이/레이어 작업은 반드시 **`document.elementFromPoint(x,y)` 로 "그 좌표를 누르면 실제로 뭐가 눌리는가"** 를 확인할 것.
 
-### 하단 네비 = 엣지투엣지 5칸 (2026-07-17)
-`__IS_FULL_NAV = __IS_KO || __HAS_CONSULT_SHEET` → 지금은 전 언어가 5칸(ko=예약 / th·vi·en=상담)이라 **`--full`(엣지투엣지 플랫 60px)** 로 통일. 460px 플로팅 pill 에 5칸을 넣으면 칸당 ~70px 라 "공간 부족"(사용자 지적) → 375px 기준 칸당 75px 확보. 임시로 뒀던 `--bottom-nav--5`(pill 유지 + 5칸)는 `--full` 과 중복이라 폐기. 라벨은 `--full` 에서 **10.5px + `white-space:nowrap`** — "1:1 Consulting"(가장 김)이 2줄로 접히면 60px 바를 넘쳐서.
+### 하단 네비 = 5칸 (모바일 엣지투엣지 / 데스크톱 카드폭) (2026-07-17)
+`__IS_FULL_NAV = __IS_KO || __HAS_CONSULT_SHEET` → 지금은 전 언어가 5칸(ko=예약 / th·vi·en=상담)이라 **`--full`** 로 통일. 460px 플로팅 pill 에 5칸은 칸당 ~70px 라 "공간 부족"(사용자 지적) → **모바일 엣지투엣지**(375px 기준 칸당 75px·높이 60·라벨 10.5px + `white-space:nowrap`[「1:1 Consulting」이 2줄로 접히면 바 높이 초과]). 임시 `--bottom-nav--5`(pill 유지 + 5칸)는 `--full` 과 중복이라 폐기.
+- ★**데스크톱(≥768)은 `max-width:680px` + 중앙정렬 + 상단만 라운드**(`16px 16px 0 0`) — 옛 `--full` 은 데스크톱에서도 `max-width:none`(ko 전용 시절 결정)이라 th/vi/en 에 확대 적용하자 **콘텐츠는 680 카드인데 바만 화면 전체를 가로질러 따로 놀았다**(사용자 지적). 이제 `.t-header`(680)와 좌우가 정확히 일치. 라벨은 데스크톱 13px(`.t-bottom-nav a` 768 미디어 규칙이 뒤에 와서 승리, 칸당 136px 여유).
+- 🐛 **같이 고친 기존 버그**: `.t-resv { bottom: 66px }`(데스크톱) 가 **base `.t-resv`(bottom `calc(60px + safe-area)`) 보다 앞에** 있어 같은 명시도에서 덮여 **한 번도 적용된 적 없었음** → 예약 시트가 데스크톱 하단 바를 6px 덮고 있었다. base 뒤로 이동. **CSS 미디어 오버라이드는 base 규칙 뒤에 둘 것**(이 파일은 명시도가 아니라 순서로 이긴다).
 
 ### 블로그 셸 i18n 누락 수정 (2026-07-17)
 `/en/blog/` 에 한글 메뉴가 뜨던 버그. **`_shell.js` 는 `window.__I18N__` 하나로 로고·헤더 CTA·하단 네비(라벨 + `/{lang}/` 링크)·상담 시트를 전부 그리는데, 블로그 두 템플릿만 그 주입이 불완전**했음:

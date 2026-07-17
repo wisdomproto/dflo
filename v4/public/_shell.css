@@ -487,10 +487,17 @@ body { background: var(--shell-page-bg) !important; }
   box-shadow: 0 -2px 14px rgba(26,23,20,0.08);
 }
 @media (min-width: 768px) {
-  /* 데스크톱에서도 꽉 채운 플랫 유지 (위 768 미디어쿼리의 max-width:560 무력화) */
-  .t-bottom-nav--full { max-width: none; height: 66px; bottom: 0; border-radius: 0; }
-  /* 데스크톱 하단 바 높이(66px)에 맞춰 예약 시트 하단 여백도 조정 */
-  .t-resv { bottom: 66px; }
+  /* 데스크톱은 콘텐츠가 680 중앙 카드(.t-header 와 동일)라 바만 화면 전체를 가로지르면 따로 논다
+     → 카드 폭에 맞춰 중앙 정렬 + 상단만 라운드해 카드 하단에 붙은 탭바처럼. 모바일은 엣지투엣지 유지. */
+  .t-bottom-nav--full {
+    max-width: 680px;
+    margin: 0 auto;
+    height: 66px;
+    bottom: 0;
+    border-radius: 16px 16px 0 0;
+    border-left: 1px solid var(--shell-hairline);
+    border-right: 1px solid var(--shell-hairline);
+  }
 }
 /* 예약하기 탭 — 강조 없이 다른 탭과 동일한 차분한 기본 톤 사용
    (노랑 배경 제거, 하단 바 5칸 색 통일). */
@@ -508,6 +515,12 @@ body { background: var(--shell-page-bg) !important; }
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+/* 데스크톱 하단 바는 66px → 시트 하단도 그만큼 비운다. ★이 규칙은 반드시 위 base .t-resv 뒤에
+   와야 한다 — 같은 명시도라 앞에 두면(옛 위치: --full 미디어 블록 안) base 의 60px 에 덮여
+   한 번도 적용되지 않았고, 시트가 데스크톱 바를 6px 덮고 있었다. */
+@media (min-width: 768px) {
+  .t-resv { bottom: 66px; }
 }
 .t-resv[hidden] { display: none; }
 .t-resv.is-open { opacity: 1; transform: none; }
