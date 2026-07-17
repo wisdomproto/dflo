@@ -27,10 +27,16 @@ const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
 function parsePixelIds(raw: string | undefined): string[] {
   return (raw ?? '').split(',').map((s) => s.trim()).filter(Boolean);
 }
-const META_PIXEL_IDS_KO = parsePixelIds(import.meta.env.VITE_META_PIXEL_ID_KO as string | undefined);
+// ⚠️ import.meta.env 는 Vite 가 빌드 때 정적 치환하므로 동적 키 접근(env[`..._${lang}`])이 프로덕션에서
+// 깨진다 → 언어별 전용 픽셀은 여기에 명시적으로 나열한다(seo.mjs 는 node 라 동적 접근 가능).
+const META_PIXEL_IDS_BY_LOCALE: Partial<Record<Locale, string[]>> = {
+  ko: parsePixelIds(import.meta.env.VITE_META_PIXEL_ID_KO as string | undefined),
+  en: parsePixelIds(import.meta.env.VITE_META_PIXEL_ID_EN as string | undefined),
+};
 const META_PIXEL_IDS_DEFAULT = parsePixelIds(import.meta.env.VITE_META_PIXEL_ID as string | undefined);
 function pixelIdsForLocale(locale: Locale): string[] {
-  return locale === 'ko' && META_PIXEL_IDS_KO.length ? META_PIXEL_IDS_KO : META_PIXEL_IDS_DEFAULT;
+  const own = META_PIXEL_IDS_BY_LOCALE[locale];
+  return own?.length ? own : META_PIXEL_IDS_DEFAULT;   // 전용 값 없으면 기본 픽셀
 }
 
 const PRIVATE_PREFIXES = [

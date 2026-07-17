@@ -72,10 +72,16 @@ export function gaSnippet() {
 //   → ko 페이지엔 한국 픽셀만, th/vi/en 엔 기본 픽셀만 발사(전환 귀속 시장별 분리).
 //   ko 전용 값이 없으면 기본 픽셀로 폴백(graceful). 콤마로 여러 픽셀 ID 지원 ("111,222").
 //   React(analytics.ts)도 동일 로직(공개 SPA 는 한국어라 ko 픽셀).
+// 언어별 전용 픽셀은 `VITE_META_PIXEL_ID_<LANG>` 하나만 채우면 켜진다(ko·en 사용 중, vi/th 는 미설정=기본).
+// 전용 값이 없으면 기본 픽셀로 폴백하므로, 환경변수 없이도 항상 동작(graceful).
 function metaPixelIds(lang) {
-  const koRaw = process.env.META_PIXEL_ID_KO || process.env.VITE_META_PIXEL_ID_KO || '';
+  // lang 은 옵션 — 없으면 기본 픽셀(호출부가 인자 없이 쓰는 경우가 있어 방어).
+  const suffix = (lang || '').toUpperCase().replace(/-/g, '_');   // zh-tw → ZH_TW
+  const langRaw = suffix
+    ? (process.env[`META_PIXEL_ID_${suffix}`] || process.env[`VITE_META_PIXEL_ID_${suffix}`] || '')
+    : '';
   const defRaw = process.env.META_PIXEL_ID || process.env.VITE_META_PIXEL_ID || '';
-  const raw = lang === 'ko' && koRaw.trim() ? koRaw : defRaw;
+  const raw = langRaw.trim() || defRaw;
   // 픽셀 ID = 숫자만 — 잘못된 값이 <script> 에 주입돼 HTML 깨지는 것 방지.
   return raw.split(',').map((s) => s.trim()).filter((s) => /^\d{5,20}$/.test(s));
 }

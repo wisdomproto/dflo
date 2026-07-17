@@ -133,3 +133,25 @@ test('pixelSnippet: 시장별 분리 — ko 는 _KO 픽셀만, 그 외는 기본
   if (prevDef !== undefined) process.env.META_PIXEL_ID = prevDef;
   if (prevKo !== undefined) process.env.META_PIXEL_ID_KO = prevKo;
 });
+
+// 시장별 픽셀 분리 — `VITE_META_PIXEL_ID_<LANG>` 하나만 채우면 그 언어만 갈린다.
+// ko(한국 광고)·en(영어권) 사용 중. 전용 값이 없는 언어는 기본 픽셀로 폴백해야 한다(무회귀).
+test('pixelSnippet: 언어 전용 픽셀은 그 언어만, 나머지는 기본으로 폴백', () => {
+  process.env.META_PIXEL_ID = '11111111';
+  process.env.META_PIXEL_ID_EN = '22222222';
+  process.env.META_PIXEL_ID_KO = '33333333';
+
+  assert.match(pixelSnippet('en'), /fbq\('init', ?'22222222'\)/);
+  assert.doesNotMatch(pixelSnippet('en'), /11111111/);      // 기본 픽셀이 섞이면 귀속이 흐려짐
+  assert.match(pixelSnippet('ko'), /fbq\('init', ?'33333333'\)/);
+  // 전용 값 없는 언어(th/vi) → 기본
+  assert.match(pixelSnippet('th'), /fbq\('init', ?'11111111'\)/);
+  assert.match(pixelSnippet('vi'), /fbq\('init', ?'11111111'\)/);
+
+  delete process.env.META_PIXEL_ID_EN;
+  // 전용 값을 지우면 그 언어도 기본으로 (env 하나로 켜고 끈다)
+  assert.match(pixelSnippet('en'), /fbq\('init', ?'11111111'\)/);
+
+  delete process.env.META_PIXEL_ID;
+  delete process.env.META_PIXEL_ID_KO;
+});
