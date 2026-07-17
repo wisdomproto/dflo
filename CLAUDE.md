@@ -310,6 +310,16 @@ Phase 0~34 상세 작업 이력은 **[`docs/PROGRESS.md`](docs/PROGRESS.md)** �
 - **한국어 40개**: `scripts/repurpose-batch.mjs`(최신순 idx 01~41 중 #25 일본워크샵 제외, 번들1회+영상별 renderMedia, ffprobe 길이) → `out/shorts/repurpose-ko/`.
 - **태국어 40개**: ① `scripts/stt-ko-batch.py`(faster-whisper large-v3 GPU, 음성→ko 세그먼트) ② opus 에이전트 번역(ko→th, 의사 남성 격식체 ครับ/ผม, 인물 이름나열 세그 제외) → `out/_work/stt-th/{id}.th.json` ③ `scripts/repurpose-th-batch.mjs`(thai 모드). ⚠️ 부분 실행 시 `_manifest.json` 덮어씀 → register-th 는 ko manifest 기준.
 - **마케팅 등록+발행**: `scripts/register-custom-reels{,-th}.mjs`(R2 업로드[ai-server `:4000` `/api/r2/upload` 경유]+`marketing_articles` kind=custom `reels.ko`/`reels.th`) → `scripts/schedule-repurpose-publish.mjs`(`marketing_publish_queue` scheduled 160건, ko→한국계정·th→태국계정 IG/FB, 하루 2영상 분산). 상세 memory `shorts_repurpose_ig_fb.md`
+- **영어(en) 41개**(2026-07-17): `scripts/schedule-repurpose-publish-en.mjs` — ko/th 판과 달리 **하루 1영상·슬롯 1개(ICT 19시=UTC 12:00, 동남아 저녁)** + **신규 계정 시딩**(첫 10영상을 `SEED_GAP_MIN`=4분 간격으로 즉시 발행 — ★`scheduler.selectDue` 는 due 를 한 틱에 **전부** 집어가므로 동시 due 로 두면 20건이 한꺼번에 나가 레이트리밋). 총 81건(41영상 × IG·FB), ~2026-08-17.
+  - ★**콘텐츠 순서 = 의학·교육 21 먼저 → 연예인 20 뒤로**. sort_order(등록순) 그대로면 첫 10개가 K-pop·한국 연예인·**히틀러**로 채워져 새 계정 첫인상이 "한국 국내 계정"으로 굳는다(글로벌 선별 필터 위반). 분류는 **영어 캡션 + 한국어 원제목 둘 다** 봐야 함 — 캡션만 보면 영상엔 인물이 나오는데 캡션엔 이름이 없는 케이스(#1014 고경표 "Straighten bowlegs…")를 놓친다.
+
+### 영어 Meta 채널 (2026-07-17 연동 완료)
+`187growup` FB(page **`1120433834497292`**) + `@dr187growup` IG(**`17841412233477082`**) — `marketing_channels` en 2건(`미국 페이스북`/`미국 인스타그램`). 한국·태국과 동일 구조(시장별 포트폴리오 1개).
+- 🚨**페이지 ID 함정**: 새 페이지 경험(New Pages)은 `facebook.com/profile.php?id=61591754492697` 의 숫자가 **Graph 페이지 ID 가 아니다**(그걸로 등록하면 보강 조회·발행 전부 실패). 진짜 ID 는 **Business Suite 주소창 `asset_id=…`** 또는 **OAuth 권한 화면의 페이지 목록**에 뜬다. ★ID 는 추측 말고 원본에서 확인할 것([[feedback_verify_dont_speculate]]).
+- **prod OAuth 요건**: Railway **ai-server** 에 `META_REDIRECT_BASE=https://ai-server-production-6aa2.up.railway.app` (없으면 `redirect_uri` 가 도메인 없는 상대경로 → FB "URL을 읽어들일 수 없습니다") + Meta 앱(`999009859491958`) **앱 도메인** + **유효한 OAuth 리디렉션 URI**(`…/api/auth/meta/callback`) 등록. 진단은 `curl -i {ai-server}/api/auth/meta` 로 **Location 의 redirect_uri 를 직접 확인**.
+- ⚠️**재연결은 단일 연결을 덮어쓴다** — 권한 화면에서 **세 페이지 모두 체크**(하나 빠지면 그 채널 발행 중단). 완료 후 채널 화면 상단 `페이지 N개` 가 판정 기준.
+- **IG 비즈니스 ID 는 수동 입력 불필요** — `fetchAccounts` 가 `/me/accounts?fields=…instagram_business_account{id,username}` 로 같이 받아오고, **채널 설정 페이지를 열면 `ChannelRegistryTab` 이 연결된 페이지로 없는 채널을 자동 생성**(metaIgId 포함). ★단 **이미 있는 행은 갱신하지 않는다** → ig id 가 틀렸으면 **행을 지우고 페이지를 다시 열어야** 자동으로 다시 채워진다.
+- **픽셀**: 영어 전용 픽셀 미설정 → 현재 th/vi 와 공유(`VITE_META_PIXEL_ID`). `.env.production` 에 `VITE_META_PIXEL_ID_EN=` 주석 대기(ID 넣으면 즉시 분리).
 
 ## Detailed Docs
 - Frontend details: see `v4/CLAUDE.md`
