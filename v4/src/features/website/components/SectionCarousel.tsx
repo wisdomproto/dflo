@@ -695,8 +695,10 @@ function CasesContent({ slide: s, isActive, embed = false }: { slide: CasesSlide
   // embed(/cases-embed) + PC 폭이면 카드 전체를 확대(pcZoom)해 가독성 확보.
   const pcZoom = usePcEmbedZoom(embed);
   const fontZoom = ((s.fontScale ?? 100) / 100) * pcZoom;
+  // PC embed 에서 zoom + width 축소를 쓰면 줄어든 폭이 무대 왼쪽(RTL 은 오른쪽)에 붙어 off-center
+  // 로 보인다 → marginInline:auto 로 중앙 정렬. fontZoom===1(모바일)이면 undefined 라 무영향.
   const fontZoomStyle: React.CSSProperties | undefined =
-    fontZoom === 1 ? undefined : { zoom: fontZoom, width: `${100 / fontZoom}%` };
+    fontZoom === 1 ? undefined : { zoom: fontZoom, width: `${100 / fontZoom}%`, marginInline: 'auto' };
   return (
     <div className="w-full h-full bg-white overflow-y-auto">
       <div className="py-5 space-y-4" style={fontZoomStyle}>
