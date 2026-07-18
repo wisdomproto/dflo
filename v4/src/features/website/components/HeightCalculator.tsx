@@ -15,10 +15,16 @@ const HeightCalculatorResult = lazy(() =>
   import('./HeightCalculatorResult').then((m) => ({ default: m.HeightCalculatorResult })),
 );
 
-// 영어 계산기 국적 버튼. 기본 CN(화교 타겟) 을 맨 앞에, 나머지는 문의가 들어오는 시장 순.
+// 국적(성장표준) 선택 목록 — 전 로케일 공통. WHO(세계 표준)를 맨 앞에, 나머지는 문의 순.
 const NATIONALITIES = [
-  ['CN', 'natCN'], ['US', 'natUS'], ['ID', 'natID'], ['KR', 'natKR'], ['TH', 'natTH'],
+  ['WHO', 'natWHO'], ['CN', 'natCN'], ['US', 'natUS'], ['ID', 'natID'], ['KR', 'natKR'], ['TH', 'natTH'],
 ] as const satisfies readonly (readonly [GrowthStandard, keyof ReturnType<typeof getCalcLabels>])[];
+
+// 로케일별 기본 성장표준 — 각 시장에 맞는 값에서 시작(사용자가 드롭다운으로 변경 가능).
+// vi 는 자국 표준이 목록에 없어 KR, ar 은 WHO(아랍권 보건부 다수 채택), 화교(en/zh)는 CN.
+const DEFAULT_STANDARD: Record<CalcLang, GrowthStandard> = {
+  ko: 'KR', th: 'TH', vi: 'KR', en: 'CN', ar: 'WHO', 'zh-hant': 'CN', 'zh-hans': 'CN',
+};
 
 interface Props {
   isOpen: boolean;
@@ -31,8 +37,9 @@ interface Props {
 
 export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko' }: Props) {
   const [gender, setGender] = useState<'male' | 'female'>('male');
-  // 국적(성장표준) — 영어 계산기에서만 선택 노출. 화교 타겟이라 기본 중국(CN).
-  const [nationality, setNationality] = useState<GrowthStandard>('CN');
+  // 국적(성장표준) — 전 로케일 드롭다운 노출. 초기값은 로케일 기본(계산기는 lang 고정 마운트라 1회 init 로 충분).
+  const [nationality, setNationality] = useState<GrowthStandard>(DEFAULT_STANDARD[lang] ?? 'KR');
+  const [natOpen, setNatOpen] = useState(false); // 국적 커스텀 드롭다운 열림
   const [birthYear, setBirthYear] = useState('');
   const [birthMonth, setBirthMonth] = useState('');
   const [birthDay, setBirthDay] = useState('');
@@ -44,13 +51,8 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
   const [showResult, setShowResult] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const t = getCalcLabels(lang);
-  // 성장표준: 영어(en)·아랍어(ar)는 국적 선택(KR/TH/CN/US/ID), 태국어(th)는 태국(TSPE), 그 외(ko/vi)는 한국.
-  // ar 은 자국 표준이 목록에 없어 사용자가 고르게 둔다(WHO 추가 시 기본값 후보). en 과 동일 동선.
-  const standard: GrowthStandard =
-    lang === 'en' || lang === 'ar' ? nationality
-    : lang === 'th' ? 'TH'
-    : lang === 'zh-hant' || lang === 'zh-hans' ? 'CN'
-    : 'KR';
+  // 성장표준 = 사용자가 드롭다운에서 고른 국적. 초기값만 로케일별 기본(DEFAULT_STANDARD).
+  const standard: GrowthStandard = nationality;
 
   // 생년월일 = 숫자 입력칸(input). select 드롭다운은 페북 인앱(Android Webview)에서 안 열려
   // 측정 완료 0 회귀를 냈어서(광고 유입 36명 전원 0%) input 으로 되돌림. inputMode=numeric 으로 모바일 숫자 키패드.
@@ -119,24 +121,34 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
       </div>
       <p className="text-sm md:text-base text-gray-500 -mt-2 break-keep">{t.subtitle}</p>
 
-      {/* Nationality (growth standard) — English calculator only (화교 타겟).
-          select 드롭다운은 페북 인앱 webview 에서 안 열려 측정 0 회귀가 있어 버튼으로 구현(성별과 동일). */}
-      {(lang === 'en' || lang === 'ar') && (
-        <div>
-          <span className={labelCls}>{t.fieldNationality}</span>
-          <div className="grid grid-cols-2 gap-2">
-            {NATIONALITIES.map(([nat, key], i, arr) => (
-              <button key={nat} onClick={() => setNationality(nat)}
-                // 홀수 개면 마지막 칸이 반쪽으로 남아 어색하다 → 두 칸 폭으로 채운다.
-                className={`rounded-xl py-2.5 md:py-3 text-sm md:text-base font-semibold transition-colors ${
-                  i === arr.length - 1 && arr.length % 2 === 1 ? 'col-span-2' : ''
-                } ${nationality === nat ? 'bg-[#0F6E56] text-white' : 'bg-gray-100 text-gray-600'}`}>
-                {t[key]}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Nationality (growth standard) — 전 로케일 노출, 로케일별 기본값에서 시작.
+          ★네이티브 <select> 는 페북·인스타 인앱 webview(Android Webview)에서 안 열려 측정 0 회귀가
+          있었어서, div/button 으로 만든 커스텀 드롭다운으로 구현(webview 안전). */}
+      <div className="relative">
+        <span className={labelCls}>{t.fieldNationality}</span>
+        <button type="button" onClick={() => setNatOpen((o) => !o)} aria-expanded={natOpen}
+          className="w-full flex items-center justify-between rounded-xl py-2.5 md:py-3 px-3.5 text-sm md:text-base font-semibold bg-gray-100 text-gray-700">
+          <span>{t[NATIONALITIES.find(([n]) => n === nationality)?.[1] ?? 'natKR']}</span>
+          <span className={`text-gray-400 text-xs transition-transform ${natOpen ? 'rotate-180' : ''}`}>▾</span>
+        </button>
+        {natOpen && (
+          <>
+            {/* 바깥 클릭 시 닫기(백드롭) — z 는 메뉴보다 낮게 */}
+            <div className="fixed inset-0 z-10" onClick={() => setNatOpen(false)} />
+            <div className="absolute z-20 left-0 right-0 mt-1 rounded-xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+              {NATIONALITIES.map(([nat, key]) => (
+                <button key={nat} type="button"
+                  onClick={() => { setNationality(nat); setNatOpen(false); }}
+                  className={`w-full text-start px-3.5 py-2.5 text-sm md:text-base font-medium transition-colors ${
+                    nationality === nat ? 'bg-[#0F6E56] text-white' : 'text-gray-700 hover:bg-gray-50'
+                  }`}>
+                  {t[key]}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
 
       {/* Gender */}
       <div>

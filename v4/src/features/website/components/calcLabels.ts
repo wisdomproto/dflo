@@ -25,6 +25,7 @@ type Dict = {
 
   natUS: string;
   natID: string;
+  natWHO: string;
   // Per-standard chart source footer (EN only, keyed by GrowthStandard)
   natFooter?: Partial<Record<'KR' | 'TH' | 'CN' | 'US' | 'ID' | 'WHO', string>>;
   fieldBirth: string;
@@ -87,6 +88,15 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: '국적',
     natKR: '🇰🇷 한국', natTH: '🇹🇭 태국', natCN: '🇨🇳 중국', natUS: '🇺🇸 미국·호주',
     natID: '🇮🇩 인도네시아',
+    natWHO: '🌐 WHO (세계 표준)',
+    natFooter: {
+      KR: '한국 소아 성장 표준 (2017 질병관리청) · 5th / 50th / 95th 백분위',
+      TH: '태국 소아 성장 표준 (TSPE 2022) · 5th / 50th / 95th 백분위',
+      CN: '중국 소아 성장 참고치 (근사) · 5th / 50th / 95th 백분위',
+      ID: '인도네시아 국가 성장 참고치 (INGRC) · 5th / 50th / 95th 백분위',
+      US: '미국 CDC 2000 성장도표 (호주 국가 기준 겸용, 2–18세) · 5th / 50th / 95th 백분위',
+      WHO: 'WHO 아동 성장 표준 (2006) + 성장 참고치 (2007) · 5th / 50th / 95th 백분위',
+    },
     fieldBirth: '생년월일',
     fieldBirthYear: '연도', fieldBirthMonth: '월', fieldBirthDay: '일',
     fieldHeight: '현재 키 (cm)',
@@ -139,6 +149,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: 'Nationality',
     natKR: '🇰🇷 Korea', natTH: '🇹🇭 Thailand', natCN: '🇨🇳 China', natUS: '🇺🇸 US · AU',
     natID: '🇮🇩 Indonesia',
+    natWHO: '🌐 WHO (international)',
     natFooter: {
       KR: 'Korean pediatric growth standard (KDCA 2017) · 5th / 50th / 95th percentile',
       TH: 'Thai pediatric growth standard (TSPE 2022) · 5th / 50th / 95th percentile',
@@ -200,6 +211,7 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: 'الجنسية',
     natKR: '🇰🇷 كوريا', natTH: '🇹🇭 تايلاند', natCN: '🇨🇳 الصين', natUS: '🇺🇸 أمريكا · أستراليا',
     natID: '🇮🇩 إندونيسيا',
+    natWHO: '🌐 منظمة الصحة العالمية',
     natFooter: {
       KR: 'المعيار الكوري لنمو الأطفال (KDCA 2017) · النسب المئوية 5 / 50 / 95',
       TH: 'المعيار التايلاندي لنمو الأطفال (TSPE 2022) · النسب المئوية 5 / 50 / 95',
@@ -262,6 +274,15 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: '國籍',
     natKR: '🇰🇷 韓國', natTH: '🇹🇭 泰國', natCN: '🇨🇳 中國', natUS: '🇺🇸 美國·澳洲',
     natID: '🇮🇩 印尼',
+    natWHO: '🌐 WHO（世界標準）',
+    natFooter: {
+      KR: '韓國兒童生長標準（KDCA 2017）· 第 5 / 50 / 95 百分位',
+      TH: '泰國兒童生長標準（TSPE 2022）· 第 5 / 50 / 95 百分位',
+      CN: '中國兒童生長參考（近似）· 第 5 / 50 / 95 百分位',
+      ID: '印尼國家生長參考（INGRC）· 第 5 / 50 / 95 百分位',
+      US: '美國 CDC 2000 生長曲線（亦為澳洲國家標準，2–18 歲）· 第 5 / 50 / 95 百分位',
+      WHO: 'WHO 兒童生長標準（2006）＋生長參考（2007）· 第 5 / 50 / 95 百分位',
+    },
     fieldBirth: '出生日期',
     fieldBirthYear: '年', fieldBirthMonth: '月', fieldBirthDay: '日',
     fieldHeight: '目前身高（公分）',
@@ -314,6 +335,15 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: '国籍',
     natKR: '🇰🇷 韩国', natTH: '🇹🇭 泰国', natCN: '🇨🇳 中国', natUS: '🇺🇸 美国·澳洲',
     natID: '🇮🇩 印尼',
+    natWHO: '🌐 WHO（世界标准）',
+    natFooter: {
+      KR: '韩国儿童生长标准（KDCA 2017）· 第 5 / 50 / 95 百分位',
+      TH: '泰国儿童生长标准（TSPE 2022）· 第 5 / 50 / 95 百分位',
+      CN: '中国儿童生长参考（近似）· 第 5 / 50 / 95 百分位',
+      ID: '印尼国家生长参考（INGRC）· 第 5 / 50 / 95 百分位',
+      US: '美国 CDC 2000 生长曲线（也是澳大利亚国家标准，2–18 岁）· 第 5 / 50 / 95 百分位',
+      WHO: 'WHO 儿童生长标准（2006）＋生长参考（2007）· 第 5 / 50 / 95 百分位',
+    },
     fieldBirth: '出生日期',
     fieldBirthYear: '年', fieldBirthMonth: '月', fieldBirthDay: '日',
     fieldHeight: '目前身高（厘米）',
@@ -366,6 +396,15 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: 'สัญชาติ',
     natKR: '🇰🇷 เกาหลี', natTH: '🇹🇭 ไทย', natCN: '🇨🇳 จีน', natUS: '🇺🇸 สหรัฐฯ · ออสเตรเลีย',
     natID: '🇮🇩 อินโดนีเซีย',
+    natWHO: '🌐 WHO (มาตรฐานสากล)',
+    natFooter: {
+      KR: 'มาตรฐานการเจริญเติบโตเด็กเกาหลี (KDCA 2017) · เปอร์เซ็นไทล์ที่ 5 / 50 / 95',
+      TH: 'มาตรฐานการเจริญเติบโตเด็กไทย (TSPE 2022) · เปอร์เซ็นไทล์ที่ 5 / 50 / 95',
+      CN: 'ค่าอ้างอิงการเจริญเติบโตเด็กจีน (โดยประมาณ) · เปอร์เซ็นไทล์ที่ 5 / 50 / 95',
+      ID: 'ค่าอ้างอิงการเจริญเติบโตแห่งชาติอินโดนีเซีย (INGRC) · เปอร์เซ็นไทล์ที่ 5 / 50 / 95',
+      US: 'แผนภูมิการเจริญเติบโต CDC สหรัฐฯ 2000 (เป็นมาตรฐานของออสเตรเลียด้วย อายุ 2–18 ปี) · เปอร์เซ็นไทล์ที่ 5 / 50 / 95',
+      WHO: 'มาตรฐานการเจริญเติบโตเด็ก WHO (2006) + ค่าอ้างอิง (2007) · เปอร์เซ็นไทล์ที่ 5 / 50 / 95',
+    },
     fieldBirth: 'วันเกิด',
     fieldBirthYear: 'ปี', fieldBirthMonth: 'เดือน', fieldBirthDay: 'วัน',
     fieldHeight: 'ส่วนสูงปัจจุบัน (ซม.)',
@@ -418,6 +457,15 @@ const DICT: Record<CalcLang, Dict> = {
     fieldNationality: 'Quốc tịch',
     natKR: '🇰🇷 Hàn Quốc', natTH: '🇹🇭 Thái Lan', natCN: '🇨🇳 Trung Quốc', natUS: '🇺🇸 Mỹ · Úc',
     natID: '🇮🇩 Indonesia',
+    natWHO: '🌐 WHO (chuẩn quốc tế)',
+    natFooter: {
+      KR: 'Chuẩn tăng trưởng nhi Hàn Quốc (KDCA 2017) · phân vị 5 / 50 / 95',
+      TH: 'Chuẩn tăng trưởng nhi Thái Lan (TSPE 2022) · phân vị 5 / 50 / 95',
+      CN: 'Tham chiếu tăng trưởng nhi Trung Quốc (gần đúng) · phân vị 5 / 50 / 95',
+      ID: 'Tham chiếu tăng trưởng quốc gia Indonesia (INGRC) · phân vị 5 / 50 / 95',
+      US: 'Biểu đồ tăng trưởng CDC Hoa Kỳ 2000 (cũng là chuẩn quốc gia của Úc, 2–18 tuổi) · phân vị 5 / 50 / 95',
+      WHO: 'Chuẩn tăng trưởng trẻ em WHO (2006) + Tham chiếu (2007) · phân vị 5 / 50 / 95',
+    },
     fieldBirth: 'Ngày sinh',
     fieldBirthYear: 'Năm', fieldBirthMonth: 'Tháng', fieldBirthDay: 'Ngày',
     fieldHeight: 'Chiều cao hiện tại (cm)',
