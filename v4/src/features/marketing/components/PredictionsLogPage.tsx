@@ -11,7 +11,7 @@ import { ReservationsView } from './ReservationsView';
 // 홈페이지 익명 예측키 측정 로그 + 설문 완료 로그를 드롭다운으로 전환.
 // 둘 다 v4 anon 클라로 직접 읽음 (PIN 게이트 뷰). 측정=anonymous_predictions(061), 설문=growth_reports(067).
 
-const COUNTRY_LABEL: Record<string, string> = { KR: '🇰🇷 한국', TH: '🇹🇭 태국', VN: '🇻🇳 베트남', EN: '🇺🇸 영어권', TW: '🇹🇼 대만(번체)', ZH: '🀄 중국어권(간체)' };
+const COUNTRY_LABEL: Record<string, string> = { KR: '🇰🇷 한국', TH: '🇹🇭 태국', VN: '🇻🇳 베트남', EN: '🇺🇸 영어권', TW: '🇹🇼 대만(번체)', ZH: '🀄 중국어권(간체)', AR: '🇸🇦 아랍어권' };
 const GENDER_LABEL: Record<string, string> = { male: '남', female: '여' };
 
 function fmtDate(iso: string): string {
@@ -137,6 +137,7 @@ export default function PredictionsLogPage() {
                 <option value="EN">🇺🇸 영어권</option>
                 <option value="TW">🇹🇼 대만(번체)</option>
                 <option value="ZH">🀄 중국어권(간체)</option>
+                <option value="AR">🇸🇦 아랍어권</option>
               </select>
             </>
           )}

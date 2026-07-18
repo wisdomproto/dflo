@@ -1,7 +1,7 @@
 // 익명 예측 프로필용 로케일별 아이 이름 풀 + 국적 맵 (순수 함수, IO 없음).
 // 이름은 가짜(식별 아님) — 익명 데이터가 리스트에서 사람처럼 보이게 하는 용도.
 
-export type PredLocale = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans';
+export type PredLocale = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
 
 // 로케일별 아이 given-name 풀(현지 표기). surname 없이 이름만으로 충분(익명).
 const NAMES: Record<PredLocale, string[]> = {
@@ -24,17 +24,20 @@ const NAMES: Record<PredLocale, string[]> = {
   'zh-hans': ['诗涵', '子睿', '宇轩', '欣妍', '佳颖', '冠廷', '品妍', '承恩', '语彤', '家豪',
     '沛璇', '柏睿', '若曦', '咏晴', '宥辰', '思妤', '冠宇', '心妍', '睿哲', '雨洁',
     '芷晴', '昱丞', '语柔', '宸瑜', '靖恩', '妍希', '皓宇', '恩晴', '又睿', '沛恩'],
+  ar: ['أحمد', 'محمد', 'يوسف', 'عمر', 'خالد', 'علي', 'حمزة', 'إبراهيم', 'عبد الله', 'زياد',
+    'كريم', 'آدم', 'سيف', 'ياسين', 'فارس', 'مريم', 'سارة', 'ليلى', 'نور', 'فاطمة',
+    'جنى', 'رنا', 'لينا', 'هنا', 'ملك', 'جود', 'رهف', 'سلمى', 'ياسمين', 'ريم'],
 };
 
 // 번체=TW(대만 단일 시장), 간체=ZH(중국어권/기타 — 간체 타겟이 본토가 아니라 동남아·미국
 // 화교라 CN 은 사실과 다르다). 이 코드는 ISO 국가코드가 아니라 en='EN'(영어권/기타) 관행을 잇는
 // 언어권 버킷이다.
 const COUNTRY: Record<PredLocale, string> = {
-  ko: 'KR', th: 'TH', vi: 'VN', en: 'EN', 'zh-hant': 'TW', 'zh-hans': 'ZH',
+  ko: 'KR', th: 'TH', vi: 'VN', en: 'EN', 'zh-hant': 'TW', 'zh-hans': 'ZH', ar: 'AR',
 };
 
 function asLocale(locale: string): PredLocale {
-  return (['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'] as const).includes(locale as PredLocale)
+  return (['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'] as const).includes(locale as PredLocale)
     ? (locale as PredLocale) : 'en';
 }
 

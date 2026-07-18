@@ -14,6 +14,9 @@ test('getLocale still resolves the existing locales', () => {
   assert.equal(getLocale('/ko/'), 'ko');
   assert.equal(getLocale('/th/blog/'), 'th');
   assert.equal(getLocale('/en/'), 'en');
+  // ar 이 'ko' 로 떨어지면 한국 광고 픽셀이 아랍어 페이지에서 발사된다.
+  assert.equal(getLocale('/ar/index.html'), 'ar');
+  assert.equal(getLocale('/ar/'), 'ar');
   assert.equal(getLocale('/'), 'ko'); // root → ko fallback (/ → /ko/ 301 이라 의도된 것)
   assert.equal(getLocale('/app/home'), 'ko'); // 비로케일 경로 → ko
 });

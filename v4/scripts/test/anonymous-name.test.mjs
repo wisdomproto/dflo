@@ -17,6 +17,15 @@ test('existing locale country codes unchanged', () => {
   assert.equal(localeToCountry('xx'), 'EN'); // 미지원 → en 폴백(기존 동작)
 });
 
+// ar 이 'en'/'EN'/영어 이름으로 떨어지면 아랍어 측정이 영어권으로 오염된다.
+test('Arabic maps to AR with an Arabic-script name pool', () => {
+  assert.equal(localeToCountry('ar'), 'AR');
+  const arabic = /[؀-ۿ]/;
+  for (let i = 0; i < 20; i++) {
+    assert.match(randomLocaleName('ar'), arabic, 'ar name should be Arabic script');
+  }
+});
+
 test('randomLocaleName draws from the matching Chinese pool (Han script)', () => {
   const han = /[一-鿿]/;
   for (let i = 0; i < 20; i++) {
