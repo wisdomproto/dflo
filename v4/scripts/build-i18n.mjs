@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
-import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS } from './lib/seo.mjs';
+import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS, RTL_LANGS } from './lib/seo.mjs';
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
@@ -152,6 +152,11 @@ async function main() {
         out = out.replaceAll('/images/logo.jpg', '/images/logo_en.png');
         out = out.replaceAll('/images/saebom-logo.png', '/images/saebom-logo-en.png');
         out = out.replaceAll('/images/logo-187-inline.png', '/images/logo-187-inline-en.png');
+      }
+      // RTL 언어(아랍어)는 <html> 에 dir="rtl" 을 baked → 정적 렌더부터 우측 정렬(크롤러·공유 프리뷰도 RTL).
+      // _shell.css 의 html[dir="rtl"] 규칙이 셸 크롬을 미러링한다.
+      if (RTL_LANGS.includes(lang)) {
+        out = out.replace(`<html lang="${lang}">`, `<html lang="${lang}" dir="rtl">`);
       }
       out = swapToWebp(out, join(ROOT, 'public')); // jpg/png → webp(존재 시) — 모바일 LCP/전송량 개선
       return out;

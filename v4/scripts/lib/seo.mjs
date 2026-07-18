@@ -10,7 +10,7 @@ const ROOT = join(__dirname, '..', '..');
 
 // 상수 정의는 constants.mjs(리프 모듈)에 있고 여기서 re-export 한다 — 기존 소비자·테스트가
 // 전부 `from './seo.mjs'` 로 가져가므로 공개 표면은 그대로 유지.
-export { ORIGIN, PATH_PREFIX, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP, OG_LOCALE_MAP } from './constants.mjs';
+export { ORIGIN, PATH_PREFIX, ACTIVE_LANGS, ALL_LANGS, HREFLANG_MAP, OG_LOCALE_MAP, RTL_LANGS } from './constants.mjs';
 
 let cached = null;
 function loadSeo() {

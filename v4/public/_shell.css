@@ -618,3 +618,27 @@ body { background: var(--shell-page-bg) !important; }
    중국어만 normal 로 되돌려 글자 사이에서 정상 줄바꿈되게 한다. 명시도 (0,1,1) 로 인라인 body{keep-all}
    (0,0,1)을 이긴다. 한국어/영어/베트남어는 공백이 있어 keep-all 로도 정상, 태국어는 line-break 사전 처리라 무관. */
 html[lang="zh-hant"] *, html[lang="zh-hans"] * { word-break: normal; }
+
+/* ===== RTL (아랍어 ar) — build-i18n 이 <html dir="rtl"> 을 baked 한다 =====
+   dir=rtl 이 텍스트 방향·flex 주축·기본 text-align(start) 를 자동 미러링하므로,
+   여기서는 dir 로 안 뒤집히는 '물리' 속성(left/right offset·padding-*·background-position)만
+   보정한다. 헤더·하단 네비·언어 스위처·상담 시트는 flexbox 라 자동 미러됨.
+   ⚠️ 페이지 본문(index/clinic/... 인라인 CSS)의 물리 속성은 시각 검토로 세부 조정 필요. */
+html[dir="rtl"] { direction: rtl; }
+
+/* 모달·시트 닫기(✕) 버튼: 오른쪽 고정 → 왼쪽 */
+html[dir="rtl"] .t-modal-close { right: auto; left: 12px; }
+html[dir="rtl"] .t-calc-frame .t-modal-close { right: auto; left: 6px; }
+
+/* select 화살표: 오른쪽 → 왼쪽 (예약 폼은 ko 전용이나 무해하게 보정) */
+html[dir="rtl"] .t-resv-field select {
+  background-position: left 14px center;
+  padding-right: 12px;
+  padding-left: 40px;
+}
+
+/* stat 구분선: 첫 항목의 오른쪽 경계 → 왼쪽 (RTL 에선 첫 항목이 오른쪽) */
+html[dir="rtl"] .home-trust .ht-stats > div:first-child {
+  border-right: 0;
+  border-left: 1px solid #e3dcf2;
+}
