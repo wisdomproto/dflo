@@ -26,7 +26,7 @@ type Dict = {
   natUS: string;
   natID: string;
   // Per-standard chart source footer (EN only, keyed by GrowthStandard)
-  natFooter?: Partial<Record<'KR' | 'TH' | 'CN' | 'US' | 'ID', string>>;
+  natFooter?: Partial<Record<'KR' | 'TH' | 'CN' | 'US' | 'ID' | 'WHO', string>>;
   fieldBirth: string;
   fieldBirthYear: string;
   fieldBirthMonth: string;
@@ -145,6 +145,7 @@ const DICT: Record<CalcLang, Dict> = {
       CN: 'Chinese pediatric growth reference (approx.) · 5th / 50th / 95th percentile',
       ID: 'Indonesian national growth reference (INGRC) · 5th / 50th / 95th percentile',
       US: 'US CDC 2000 growth charts · also the national reference for Australia (ages 2-18) · 5th / 50th / 95th percentile',
+      WHO: 'WHO Child Growth Standards (2006) + Growth Reference (2007) · 5th / 50th / 95th percentile',
     },
     fieldBirth: 'Date of birth',
     fieldBirthYear: 'Year', fieldBirthMonth: 'Month', fieldBirthDay: 'Day',
@@ -205,6 +206,7 @@ const DICT: Record<CalcLang, Dict> = {
       CN: 'المرجع الصيني لنمو الأطفال (تقريبي) · النسب المئوية 5 / 50 / 95',
       ID: 'المرجع الوطني الإندونيسي للنمو (INGRC) · النسب المئوية 5 / 50 / 95',
       US: 'مخططات نمو CDC الأمريكية 2000 · المرجع الوطني لأستراليا أيضًا (2–18 سنة) · النسب المئوية 5 / 50 / 95',
+      WHO: 'معايير منظمة الصحة العالمية للنمو (2006) + المرجع (2007) · النسب المئوية 5 / 50 / 95',
     },
     fieldBirth: 'تاريخ الميلاد',
     fieldBirthYear: 'السنة', fieldBirthMonth: 'الشهر', fieldBirthDay: 'اليوم',

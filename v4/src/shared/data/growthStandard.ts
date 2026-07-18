@@ -56,7 +56,7 @@ function buildPercentiles(table: LMSRow[]): HeightPercentile[] {
  *    공개된 대체본(Bong & Shariff 2012, 서말레이시아 학생 14,360명)은 중앙값이 단조증가하지 않는다
  *    (남아 8.0세 122.7 → 8.5세 128.7 → 9.0세 129.2cm) → 백분위가 뒤집혀 못 쓴다.
  */
-export type GrowthStandard = 'KR' | 'TH' | 'CN' | 'US' | 'ID';
+export type GrowthStandard = 'KR' | 'TH' | 'CN' | 'US' | 'ID' | 'WHO';
 
 /** standard + gender 에 맞는 키 LMS 테이블 반환 */
 function heightTable(gender: 'male' | 'female', standard: GrowthStandard = 'KR'): LMSRow[] {
@@ -72,8 +72,87 @@ function heightTable(gender: 'male' | 'female', standard: GrowthStandard = 'KR')
   if (standard === 'ID') {
     return gender === 'male' ? MALE_HEIGHT_LMS_ID : FEMALE_HEIGHT_LMS_ID;
   }
+  if (standard === 'WHO') {
+    return gender === 'male' ? MALE_HEIGHT_LMS_WHO : FEMALE_HEIGHT_LMS_WHO;
+  }
   return gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
 }
+
+// ── WHO 성장 표준 (계산기 전용, 아랍어 등 국제 기본값) ─────────────────────────
+// height-for-age LMS. 2~5세 = WHO 2006 Child Growth Standards(length/height-for-age,
+// 만 2세부터 standing-height 세그먼트) + 5.5~18세 = WHO 2007 Growth Reference(5-19y).
+// 원본 = WHO CDN 공식 expandable z-score xlsx (lhfa 2006 / hfa 2007, 남녀 각). L=1(height-for-age 규격).
+// 검증: M 앵커 남 2y87.1/5y110.0/10y137.8/18y176.1 · 여 2y85.7/5y109.4/10y138.6/18y163.1 (WHO P50 일치) · M 단조증가.
+const MALE_HEIGHT_LMS_WHO: LMSRow[] = [
+  { age: 2.0, L: 1, M: 87.1303, S: 0.03508 },
+  { age: 2.5, L: 1, M: 91.9297, S: 0.03704 },
+  { age: 3.0, L: 1, M: 96.0889, S: 0.03858 },
+  { age: 3.5, L: 1, M: 99.8441, S: 0.0397 },
+  { age: 4.0, L: 1, M: 103.3273, S: 0.04059 },
+  { age: 4.5, L: 1, M: 106.6736, S: 0.04139 },
+  { age: 5.0, L: 1, M: 109.9593, S: 0.04214 },
+  { age: 5.5, L: 1, M: 112.911, S: 0.04203 },
+  { age: 6.0, L: 1, M: 115.9509, S: 0.04249 },
+  { age: 6.5, L: 1, M: 118.87, S: 0.04295 },
+  { age: 7.0, L: 1, M: 121.7338, S: 0.04342 },
+  { age: 7.5, L: 1, M: 124.5361, S: 0.0439 },
+  { age: 8.0, L: 1, M: 127.2651, S: 0.04438 },
+  { age: 8.5, L: 1, M: 129.93, S: 0.04487 },
+  { age: 9.0, L: 1, M: 132.5652, S: 0.04535 },
+  { age: 9.5, L: 1, M: 135.1829, S: 0.04582 },
+  { age: 10.0, L: 1, M: 137.7795, S: 0.04626 },
+  { age: 10.5, L: 1, M: 140.3948, S: 0.04667 },
+  { age: 11.0, L: 1, M: 143.1126, S: 0.04703 },
+  { age: 11.5, L: 1, M: 145.9891, S: 0.04732 },
+  { age: 12.0, L: 1, M: 149.0807, S: 0.04753 },
+  { age: 12.5, L: 1, M: 152.4425, S: 0.04763 },
+  { age: 13.0, L: 1, M: 156.0426, S: 0.0476 },
+  { age: 13.5, L: 1, M: 159.6962, S: 0.04744 },
+  { age: 14.0, L: 1, M: 163.1816, S: 0.04714 },
+  { age: 14.5, L: 1, M: 166.305, S: 0.04671 },
+  { age: 15.0, L: 1, M: 168.958, S: 0.04619 },
+  { age: 15.5, L: 1, M: 171.1468, S: 0.04559 },
+  { age: 16.0, L: 1, M: 172.8967, S: 0.04495 },
+  { age: 16.5, L: 1, M: 174.2251, S: 0.04429 },
+  { age: 17.0, L: 1, M: 175.1609, S: 0.04364 },
+  { age: 17.5, L: 1, M: 175.7672, S: 0.04301 },
+  { age: 18.0, L: 1, M: 176.1449, S: 0.04241 },
+];
+const FEMALE_HEIGHT_LMS_WHO: LMSRow[] = [
+  { age: 2.0, L: 1, M: 85.7299, S: 0.03764 },
+  { age: 2.5, L: 1, M: 90.6765, S: 0.03893 },
+  { age: 3.0, L: 1, M: 95.0572, S: 0.04007 },
+  { age: 3.5, L: 1, M: 99.0369, S: 0.04105 },
+  { age: 4.0, L: 1, M: 102.7312, S: 0.04193 },
+  { age: 4.5, L: 1, M: 106.1817, S: 0.04272 },
+  { age: 5.0, L: 1, M: 109.4189, S: 0.04346 },
+  { age: 5.5, L: 1, M: 112.1753, S: 0.04399 },
+  { age: 6.0, L: 1, M: 115.1244, S: 0.04447 },
+  { age: 6.5, L: 1, M: 117.9769, S: 0.04489 },
+  { age: 7.0, L: 1, M: 120.8105, S: 0.04525 },
+  { age: 7.5, L: 1, M: 123.6646, S: 0.04556 },
+  { age: 8.0, L: 1, M: 126.5558, S: 0.04581 },
+  { age: 8.5, L: 1, M: 129.4975, S: 0.046 },
+  { age: 9.0, L: 1, M: 132.4944, S: 0.04612 },
+  { age: 9.5, L: 1, M: 135.541, S: 0.04617 },
+  { age: 10.0, L: 1, M: 138.6363, S: 0.04614 },
+  { age: 10.5, L: 1, M: 141.7892, S: 0.04603 },
+  { age: 11.0, L: 1, M: 144.9929, S: 0.04584 },
+  { age: 11.5, L: 1, M: 148.1804, S: 0.04557 },
+  { age: 12.0, L: 1, M: 151.2327, S: 0.04523 },
+  { age: 12.5, L: 1, M: 154.0041, S: 0.04483 },
+  { age: 13.0, L: 1, M: 156.3748, S: 0.04439 },
+  { age: 13.5, L: 1, M: 158.2997, S: 0.04392 },
+  { age: 14.0, L: 1, M: 159.789, S: 0.04345 },
+  { age: 14.5, L: 1, M: 160.8927, S: 0.04299 },
+  { age: 15.0, L: 1, M: 161.6692, S: 0.04255 },
+  { age: 15.5, L: 1, M: 162.188, S: 0.04214 },
+  { age: 16.0, L: 1, M: 162.5156, S: 0.04176 },
+  { age: 16.5, L: 1, M: 162.7165, S: 0.04141 },
+  { age: 17.0, L: 1, M: 162.8545, S: 0.04109 },
+  { age: 17.5, L: 1, M: 162.9649, S: 0.0408 },
+  { age: 18.0, L: 1, M: 163.0595, S: 0.04053 },
+];
 
 export function getHeightStandard(
   gender: 'male' | 'female',
