@@ -64,6 +64,19 @@ test('Chinese locales drop Kakao — 2 channels, WhatsApp then LINE', () => {
   }
 });
 
+// 아랍어(MENA)는 WhatsApp 지배 채널 → 대표 WhatsApp. 카카오/라인 무의미하나
+// 상담 페이지 생성(채널>1) 위해 LINE 을 보조로 둔다(zh 선례). 되돌려 카카오 넣지 말 것.
+test('Arabic leads with WhatsApp — 2 channels, no Kakao', () => {
+  const cta = getMessengerCTA('ar');
+  assert.equal(cta.channel, 'whatsapp');
+  assert.match(cta.url, /wa\.me\//);
+  const chans = cta.consult_channels;
+  assert.ok(Array.isArray(chans), 'ar should have consult_channels');
+  assert.equal(chans.length, 2, 'ar channel count');
+  assert.deepEqual(chans.map((c) => c.channel), ['whatsapp', 'line']);
+  assert.ok(!chans.some((c) => c.channel === 'kakao'), 'ar 에 카카오가 되돌아왔다');
+});
+
 test('th/vi/en expose all 3 channels with the market lead first', () => {
   const expected = { th: 'line', vi: 'kakao', en: 'whatsapp' };
   for (const [lang, lead] of Object.entries(expected)) {
