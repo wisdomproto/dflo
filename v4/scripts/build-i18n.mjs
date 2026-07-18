@@ -61,19 +61,26 @@ function buildBlogClusters(publishedByLang) {
 }
 
 async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs }) {
+  // RTL 언어(아랍어)는 블로그 템플릿의 <html> 에도 dir="rtl" 을 baked — 메인 페이지 루프와 동일.
+  // (블로그는 별도 렌더 경로라 이 처리를 빠뜨리면 /ar/blog/ 만 LTR 로 나온다.)
+  const rtlize = (html) =>
+    RTL_LANGS.includes(lang)
+      ? html.replace(`<html lang="${lang}">`, `<html lang="${lang}" dir="rtl">`)
+      : html;
+
   const indexHtml = renderIndex({
     posts, template: indexTemplate, locale,
     // hreflang 은 블로그 인덱스가 실제로 존재하는 언어만 — 글 0인 언어(중국어)를 가리키면 soft-404.
     seoHead: buildBlogIndexHead(lang, blogLangs),
   });
-  writeFile(join(ROOT, 'public', lang, 'blog/index.html'), lazifyImages(indexHtml));
+  writeFile(join(ROOT, 'public', lang, 'blog/index.html'), rtlize(lazifyImages(indexHtml)));
 
   for (const post of posts) {
     const html = renderPost({
       post, template: postTemplate, locale, messenger,
       seoHead: buildBlogPostHead({ post, lang, altSlugs: blogAlts?.[lang]?.[post.slug] }),
     });
-    writeFile(join(ROOT, 'public', lang, 'blog', post.slug, 'index.html'), lazifyImages(html));
+    writeFile(join(ROOT, 'public', lang, 'blog', post.slug, 'index.html'), rtlize(lazifyImages(html)));
   }
   return posts.length;
 }

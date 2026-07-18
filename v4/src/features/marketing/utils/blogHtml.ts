@@ -4,11 +4,11 @@
 import type { BlogSeoArticle, BlogReference } from '../types';
 
 const FAQ_HEADING: Record<string, string> = {
-  ko: '자주 묻는 질문', en: 'FAQ', th: 'คำถามที่พบบ่อย', vi: 'Câu hỏi thường gặp', ch: '常見問題', cn: '常见问题',
+  ko: '자주 묻는 질문', en: 'FAQ', th: 'คำถามที่พบบ่อย', vi: 'Câu hỏi thường gặp', ch: '常見問題', cn: '常见问题', ar: 'الأسئلة الشائعة',
 };
 // 발행 blog.mjs renderReferencesHtml 의 REF_HEADINGS 와 동일(6언어).
 const REF_HEADING: Record<string, string> = {
-  ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง', vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献',
+  ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง', vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献', ar: 'المراجع',
 };
 
 // 정적 빌드 blog.mjs 와 동일한 이스케이프(작은따옴표 포함) — 미리보기·발행·정적 렌더 마크업 일치.

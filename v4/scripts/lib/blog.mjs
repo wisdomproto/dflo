@@ -13,7 +13,7 @@ function formatDate(iso, lang) {
 
 const REF_HEADINGS = {
   ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง',
-  vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献',
+  vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献', ar: 'المراجع',
 };
 
 function escapeHtml(s) {
