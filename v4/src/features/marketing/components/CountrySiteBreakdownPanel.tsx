@@ -20,6 +20,7 @@ const COUNTRY_TABS: { code: CountryKey; label: string; flag: string }[] = [
   { code: 'en', label: '영어', flag: '🇺🇸' },
   { code: 'zh-hant', label: '번체', flag: '🇹🇼' },
   { code: 'zh-hans', label: '간체', flag: '🀄' },
+  { code: 'ar', label: '아랍어', flag: '🇸🇦' },
 ];
 
 const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [

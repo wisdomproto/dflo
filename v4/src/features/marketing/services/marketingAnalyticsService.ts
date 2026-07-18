@@ -31,7 +31,7 @@ export interface CountryStats {
   geo: GeoCountry[];
   daily: DailyPoint[];
 }
-export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans';
+export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
 // 캠페인(utm_campaign) 비교 — 크로스 언어(광고 전체 비교용), 국가별이 아니라 TOP-LEVEL.
 export interface CampaignStats {
   name: string;

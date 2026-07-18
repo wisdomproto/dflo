@@ -18,6 +18,9 @@ test('classifyCountry: 경로 prefix 로 국가', () => {
   assert.equal(classifyCountry('/zh-hans/calculator.html'), 'zh-hans');
   assert.equal(classifyCountry('/zh-hant'), 'zh-hant');
   assert.equal(classifyCountry('/zh-hans'), 'zh-hans');
+  // 아랍어 — 안 잡히면 ko 에 조용히 합산되고 countryKeys 에서 증발한다.
+  assert.equal(classifyCountry('/ar/index.html'), 'ar');
+  assert.equal(classifyCountry('/ar'), 'ar');
 });
 
 test('classifyPage: 경로 → 4분류', () => {

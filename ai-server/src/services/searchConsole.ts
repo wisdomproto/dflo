@@ -38,7 +38,7 @@ function init(): { client: searchconsole_v1.Searchconsole | null; error: string 
   return { client, error: null };
 }
 
-export type SearchLang = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans';
+export type SearchLang = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
 
 export interface SearchRow {
   label: string;

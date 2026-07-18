@@ -15,6 +15,7 @@ const TABS: { key: CountryKey; label: string }[] = [
   { key: 'en', label: '🇺🇸 영어' },
   { key: 'zh-hant', label: '🇹🇼 번체' },
   { key: 'zh-hans', label: '🀄 간체' },
+  { key: 'ar', label: '🇸🇦 아랍어' },
 ];
 
 type View = 'queries' | 'countries' | 'pages';

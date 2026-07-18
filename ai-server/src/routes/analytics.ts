@@ -7,7 +7,7 @@ import { fetchSearchConsole, type SearchLang } from '../services/searchConsole.j
 
 export const analyticsRouter = Router();
 
-const LANGS: SearchLang[] = ['all', 'ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'];
+const LANGS: SearchLang[] = ['all', 'ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'];
 
 /** days 전 ~ 오늘의 절대 날짜. GSC 는 GA4 와 달리 'NdaysAgo' 상대표기를 안 받는다. */
 function daysAgoRange(days: number): { startDate: string; endDate: string } {

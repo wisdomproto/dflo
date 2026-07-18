@@ -3,13 +3,13 @@
 // 기준으로 언어에 귀속(한 세션은 1 랜딩이라 중복 없음), 페이지뷰·이벤트는 pagePath 기준.
 // 'all' = ko+th+vi+en 합산. 유입 '지역'(geo)은 GA4 country/city = 방문자의 실제 지리적 위치(언어 경로와 별개).
 
-export type Country = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'other';
+export type Country = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar' | 'other';
 export type PageBucket = 'main' | 'clinic' | 'cases' | 'calculator' | 'reservation' | 'other';
-export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans';
+export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
 
 // ★평범한 배열이라 Country/CountryKey 유니온을 넓혀도 자동으로 강제되지 않는다 — 여기에 안 넣으면
 //   finalize 루프가 중국어 버킷을 건너뛰어 지표가 조용히 0/빈 배열이 된다(에러 없음).
-const LANG_KEYS: CountryKey[] = ['all', 'ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'];
+const LANG_KEYS: CountryKey[] = ['all', 'ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'];
 
 export function classifyCountry(path: string): Country {
   if (path.startsWith('/th/') || path === '/th') return 'th';
@@ -17,6 +17,7 @@ export function classifyCountry(path: string): Country {
   if (path.startsWith('/en/') || path === '/en') return 'en';
   if (path.startsWith('/zh-hant/') || path === '/zh-hant') return 'zh-hant';
   if (path.startsWith('/zh-hans/') || path === '/zh-hans') return 'zh-hans';
+  if (path.startsWith('/ar/') || path === '/ar') return 'ar';
   // /ko/*, 루트 '/', 그 외(/calc-embed 등) → ko (루트는 ko 리다이렉트)
   return 'ko';
 }
@@ -27,7 +28,7 @@ export function classifyPage(pagePath: string): PageBucket {
   if (/\/cases\.html/.test(pagePath)) return 'cases';
   if (/\/reservation/.test(pagePath)) return 'reservation'; // 예약 폼 가상 page_view (/reservation)
   // ★명시 열거 — /^\/[a-z-]{2,7}\/?$/ 류로 넓히면 /report·/blog·/guide 가 main 으로 오분류된다.
-  if (pagePath === '/' || /^\/(ko|th|vi|en|zh-hant|zh-hans)\/?(index\.html)?$/.test(pagePath)) return 'main';
+  if (pagePath === '/' || /^\/(ko|th|vi|en|zh-hant|zh-hans|ar)\/?(index\.html)?$/.test(pagePath)) return 'main';
   return 'other';
 }
 
@@ -39,6 +40,7 @@ function countryKeys(c: Country): CountryKey[] {
   if (c === 'en') return ['en', 'all'];
   if (c === 'zh-hant') return ['zh-hant', 'all'];
   if (c === 'zh-hans') return ['zh-hans', 'all'];
+  if (c === 'ar') return ['ar', 'all'];
   return [];
 }
 
@@ -191,6 +193,8 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
     en: blankStats('whatsapp'),          // en 은 2026-07-03 WhatsApp 전환(여기 kakao 는 방치된 드리프트)
     'zh-hant': blankStats('whatsapp'),   // 대만·화교 = WhatsApp
     'zh-hans': blankStats('whatsapp'),
+    ar: blankStats('whatsapp'),          // MENA = WhatsApp
+
   };
 
   // 1) 요약 (landingPage 기준) — current + previous
@@ -228,7 +232,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   }
 
   // 4) 채널 / 디바이스 (landingPage 기준)
-  const blankRows = (): Record<CountryKey, { label: string; sessions: number }[]> => ({ all: [], ko: [], th: [], vi: [], en: [], 'zh-hant': [], 'zh-hans': [] });
+  const blankRows = (): Record<CountryKey, { label: string; sessions: number }[]> => ({ all: [], ko: [], th: [], vi: [], en: [], 'zh-hant': [], 'zh-hans': [], ar: [] });
   const chanByKey = blankRows();
   for (const r of input.channels) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) chanByKey[k].push({ label: r.channel || '(other)', sessions: r.sessions });
@@ -240,7 +244,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
 
   // 5) 유입 지역 (landingPage → 언어 귀속, GA4 country + city = 실제 지리적 위치)
   type GeoAcc = { sessions: number; users: number; cities: Map<string, GeoCity> };
-  const geoByKey: Record<CountryKey, Map<string, GeoAcc>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map(), 'zh-hant': new Map(), 'zh-hans': new Map() };
+  const geoByKey: Record<CountryKey, Map<string, GeoAcc>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map(), 'zh-hant': new Map(), 'zh-hans': new Map(), ar: new Map() };
   for (const r of input.geo) {
     const country = r.country || '(미상)';
     const city = r.city || '(미상)';
@@ -258,7 +262,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   }
 
   // 6) 일자별 (landingPage 기준, date 합산)
-  const dailyByKey: Record<CountryKey, Map<string, DailyPoint>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map(), 'zh-hant': new Map(), 'zh-hans': new Map() };
+  const dailyByKey: Record<CountryKey, Map<string, DailyPoint>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map(), 'zh-hant': new Map(), 'zh-hans': new Map(), ar: new Map() };
   for (const r of input.daily) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) {
       const m = dailyByKey[k];
