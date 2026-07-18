@@ -139,7 +139,7 @@ function HardRedirect({ to }: { to: string }) {
   return null;
 }
 
-const I18N_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'] as const;
+const I18N_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'] as const;
 type I18nLang = (typeof I18N_LANGS)[number];
 const isI18nLang = (v: string | undefined): v is I18nLang =>
   !!v && (I18N_LANGS as readonly string[]).includes(v);

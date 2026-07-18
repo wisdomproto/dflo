@@ -44,9 +44,10 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
   const [showResult, setShowResult] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const t = getCalcLabels(lang);
-  // 성장표준: 영어(en)는 국적 선택(KR/TH/CN), 태국어(th)는 태국(TSPE), 그 외(ko/vi)는 한국.
+  // 성장표준: 영어(en)·아랍어(ar)는 국적 선택(KR/TH/CN/US/ID), 태국어(th)는 태국(TSPE), 그 외(ko/vi)는 한국.
+  // ar 은 자국 표준이 목록에 없어 사용자가 고르게 둔다(WHO 추가 시 기본값 후보). en 과 동일 동선.
   const standard: GrowthStandard =
-    lang === 'en' ? nationality
+    lang === 'en' || lang === 'ar' ? nationality
     : lang === 'th' ? 'TH'
     : lang === 'zh-hant' || lang === 'zh-hans' ? 'CN'
     : 'KR';
@@ -120,7 +121,7 @@ export function HeightCalculator({ isOpen, onClose, embedded = false, lang = 'ko
 
       {/* Nationality (growth standard) — English calculator only (화교 타겟).
           select 드롭다운은 페북 인앱 webview 에서 안 열려 측정 0 회귀가 있어 버튼으로 구현(성별과 동일). */}
-      {lang === 'en' && (
+      {(lang === 'en' || lang === 'ar') && (
         <div>
           <span className={labelCls}>{t.fieldNationality}</span>
           <div className="grid grid-cols-2 gap-2">

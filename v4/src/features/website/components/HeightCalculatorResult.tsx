@@ -31,6 +31,8 @@ const MESSENGER: Record<CalcLang, { url: string; bgClass: string; fgClass: strin
   // 중국어(대만·화교) = WhatsApp, messenger.yml 과 동일한 중국어 프리필.
   'zh-hant': { url: 'https://wa.me/821066932838?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E7%82%BA%E5%AD%A9%E5%AD%90%E8%AB%AE%E8%A9%A2%E7%94%9F%E9%95%B7%E5%95%8F%E9%A1%8C%E3%80%82', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
   'zh-hans': { url: 'https://wa.me/821066932838?text=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%B8%BA%E5%AD%A9%E5%AD%90%E5%92%A8%E8%AF%A2%E7%94%9F%E9%95%BF%E9%97%AE%E9%A2%98%E3%80%82', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
+  // 아랍어(MENA) = WhatsApp, messenger.yml 과 동일한 아랍어 프리필.
+  ar: { url: 'https://wa.me/821066932838?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A8%D8%B4%D8%A3%D9%86%20%D9%86%D9%85%D9%88%20%D8%B7%D9%81%D9%84%D9%8A.', bgClass: 'bg-[#25D366]', fgClass: 'text-white', hoverClass: 'hover:brightness-95' },
 };
 
 // 성장 골든타임 — 원장 저서(1장) 기준. 나이를 딱 박지 않고 range 로(여 9~11 / 남 11~14),

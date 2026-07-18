@@ -10,6 +10,7 @@ import { isCalcLang, type CalcLang } from '@/features/website/components/calcLab
 const langParam = new URLSearchParams(window.location.search).get('lang');
 const lang: CalcLang = isCalcLang(langParam) ? langParam : 'ko';
 document.documentElement.lang = lang;
+document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
 createRoot(document.getElementById('calc-root')!).render(
   <StrictMode>

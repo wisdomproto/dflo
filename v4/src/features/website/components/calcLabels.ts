@@ -5,7 +5,7 @@
 
 import { createContext, useContext } from 'react';
 
-export type CalcLang = 'ko' | 'en' | 'th' | 'vi' | 'zh-hant' | 'zh-hans';
+export type CalcLang = 'ko' | 'en' | 'th' | 'vi' | 'zh-hant' | 'zh-hans' | 'ar';
 
 type Dict = {
   // Form
@@ -186,6 +186,66 @@ const DICT: Record<CalcLang, Dict> = {
     reportSecondary: '📋 Not ready to talk yet? Get a detailed report first',
     casesLink: 'See real treatment cases →',
     reset: 'Measure again',
+  },
+  // 아랍어 계산기 = 영어처럼 국적 선택자(KR/TH/CN/US/ID). WHO 표준은 추후 목록에 추가.
+  ar: {
+    pageTitle: 'فحص مجاني للطول',
+    badge: 'فحص النمو',
+    title: 'توقّع طول طفلك عند البلوغ',
+    subtitle: 'أدخل بضع بيانات وشاهد الطول المتوقّع عند البلوغ خلال 30 ثانية',
+    helpButtonAria: 'مساعدة',
+    fieldGender: 'الجنس',
+    genderMale: '👦 ولد', genderFemale: '👧 بنت',
+    fieldNationality: 'الجنسية',
+    natKR: '🇰🇷 كوريا', natTH: '🇹🇭 تايلاند', natCN: '🇨🇳 الصين', natUS: '🇺🇸 أمريكا · أستراليا',
+    natID: '🇮🇩 إندونيسيا',
+    natFooter: {
+      KR: 'المعيار الكوري لنمو الأطفال (KDCA 2017) · النسب المئوية 5 / 50 / 95',
+      TH: 'المعيار التايلاندي لنمو الأطفال (TSPE 2022) · النسب المئوية 5 / 50 / 95',
+      CN: 'المرجع الصيني لنمو الأطفال (تقريبي) · النسب المئوية 5 / 50 / 95',
+      ID: 'المرجع الوطني الإندونيسي للنمو (INGRC) · النسب المئوية 5 / 50 / 95',
+      US: 'مخططات نمو CDC الأمريكية 2000 · المرجع الوطني لأستراليا أيضًا (2–18 سنة) · النسب المئوية 5 / 50 / 95',
+    },
+    fieldBirth: 'تاريخ الميلاد',
+    fieldBirthYear: 'السنة', fieldBirthMonth: 'الشهر', fieldBirthDay: 'اليوم',
+    fieldHeight: 'الطول الحالي (سم)',
+    fieldWeight: 'الوزن الحالي (كجم)',
+    submit: 'احسب الطول المتوقّع',
+    submitHint: 'أدخل الجنس وتاريخ الميلاد والطول فقط لرؤية النتيجة',
+    helpTitle: 'كيف يعمل التوقّع',
+    helpPrincipleH: '📊 الطريقة',
+    helpPrincipleP: 'يعتمد هذا التوقّع على <strong>بيانات النمو المعيارية الوطنية</strong>، ويحلّل موقع طفلك بين أقرانه من العمر والجنس نفسيهما.',
+    helpAdultH: '🎯 الطول المتوقّع عند البلوغ',
+    helpAdultP: 'بافتراض بقاء الطفل على النسبة المئوية نفسها، نحسب عكسيًّا الطول عند عمر 18 على النسبة نفسها لتقدير الطول عند البلوغ.',
+    helpNoteH: '⚠️ ملاحظات',
+    helpNote1: 'تقدير إحصائي لا يعكس عمر العظم أو مستوى هرمون النمو أو الحالة الغذائية.',
+    helpNote2: 'يتطلب التشخيص الدقيق فحص عمر العظم واستشارة أخصائي.',
+    helpNote3: 'قد تختلف النتائج في حالات البلوغ المبكر أو الأمراض المزمنة.',
+    resultTitle: 'نتيجة الطول المتوقّع',
+    resultLabel: 'الطول المتوقّع عند البلوغ',
+    resultGenderMale: 'ولد', resultGenderFemale: 'بنت',
+    pillAge: (y, m) => `${y} سنة ${m} شهر`,
+    pillCurrent: (h, p) => `الآن ${h} سم · النسبة المئوية ${p.toFixed(1)}`,
+    chartFooter: 'المعيار الكوري لنمو الأطفال (KDCA 2017) · النسب المئوية 5 / 50 / 95',
+    chartXAxis: 'العمر (سنوات)', chartYAxis: 'الطول (سم)',
+    chartPathLegend: 'مسار النمو المتوقّع',
+    interpretH: '📋 التفسير',
+    interpretHigh: 'حاليًّا فوق متوسط الأقران. رعاية نمو منتظمة تساعد طفلك على بلوغ كامل إمكاناته.',
+    interpretMid: 'حاليًّا حول متوسط الأقران. بالتغذية والتمارين والنوم السليم يمكن دعم النمو أكثر.',
+    interpretLow: 'أقصر قليلًا من متوسط الأقران. استشارة أخصائي توضّح إمكانات النمو.',
+    interpretCritical: 'أقصر من الأقران — وما دامت صفائح النمو مفتوحة، فهذه هي النافذة الذهبية لرعاية النمو.',
+    noteBoxPrincipleLabel: '📊 الطريقة:',
+    noteBoxPrincipleBody: 'مبني على بيانات النمو المعيارية الوطنية، ويحلّل موقع طفلك بين أقرانه.',
+    noteBoxPredictedLabel: '🎯 الطول المتوقّع:',
+    noteBoxPredictedBody: 'بافتراض الحفاظ على النسبة المئوية نفسها، يُحسب الطول عند عمر 18 عكسيًّا على النسبة نفسها.',
+    noteBoxCautionLabel: '⚠️ ملاحظة:',
+    noteBoxCautionBody: 'تقدير إحصائي لا يعكس عمر العظم أو هرمون النمو أو التغذية. يتطلب التشخيص الدقيق استشارة أخصائي.',
+    kakaoCta: '💬 احصل على استشارة فردية',
+    ctaContextConcern: 'طفلك حاليًّا أقصر من أقرانه. وما دامت صفائح النمو مفتوحة، فالفحص عن قرب مفيد — الاستشارة الفردية تكشف ما لا يظهره الرقم وحده.',
+    ctaContextOptimize: 'طفلك حاليًّا فوق متوسط الأقران. للاستفادة القصوى من هذه الإمكانات، تكشف الاستشارة الفردية ما لا يظهره الرقم وحده.',
+    reportSecondary: '📋 لست مستعدًّا للتحدث بعد؟ احصل على تقرير مفصّل أولًا',
+    casesLink: 'شاهد حالات علاج حقيقية ←',
+    reset: 'قياس مرة أخرى',
   },
   // 중국어 계산기는 국적 선택을 띄우지 않고 CN 성장 표준 고정(HeightCalculator 삼항 분기).
   // nat* 라벨은 타입 만족용(미표시)이고, 출처는 chartFooter 가 CN 을 가리킨다.
@@ -412,5 +472,5 @@ export function getCalcLabels(lang: CalcLang): Dict {
 
 export function isCalcLang(value: string | null | undefined): value is CalcLang {
   return value === 'ko' || value === 'en' || value === 'th' || value === 'vi'
-    || value === 'zh-hant' || value === 'zh-hans';
+    || value === 'zh-hant' || value === 'zh-hans' || value === 'ar';
 }
