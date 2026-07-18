@@ -72,13 +72,11 @@
 - [ ] 로고 = 작업 없음(`lang!=='ko'` 분기라 자동 `-en` 자산).
 - [ ] 커밋
 
-### Task A6: 🆕 WHO 성장표준 (아랍어 고유)
-**Files:** `v4/src/shared/data/growthStandard.ts` · 테스트
-- [ ] `GrowthStandard` 유니온에 `'WHO'` 추가.
-- [ ] **WHO 2006(2–5세)+2007(5–19세) 공식 LMS** 소싱 → 만 2~18세 6개월 단위(33행) 남/녀 `MALE/FEMALE_HEIGHT_LMS_WHO`. ★**LMS 값 날조 절대 금지** — WHO 공개 테이블(hfa boys/girls z/percentile expanded)에서 해당 월령(24,30,…216) 값을 가져온다. WebFetch/agent-reach 로 소싱.
-- [ ] `heightTable` 에 WHO 분기.
-- [ ] **검증(공허성 방지)**: WHO 원본 M 입력 시 50.0%ile · 곡선 단조증가(역전 0) · P3==heightFromLMS(-1.881) 가 원본 P3 와 <0.15cm 일치.
-- [ ] 커밋
+### Task A6: 🆕 WHO 성장표준 — ⏸️ 보류 (2026-07-18 사용자 결정: "예측키는 일단 제외하고 개발")
+**계산기(예측키) 전체를 이번 스코프에서 제외한다.** 아랍어 홈/상담/RTL 은 계속 개발하되 계산기는 나중에.
+- 레포에 **깨끗한 WHO 2007 LMS 데이터셋이 없음**(전수 확인 — `growthStandard.ts` 는 KR 2017 KDCA 기본 + TH/CN/US/ID뿐, WHO 언급은 주석만. TH 2-5세는 WHO 2006 **육안 근사치**라 원본 아님). ⚠️`v4/CLAUDE.md` 의 `growthStandard.ts (WHO LMS data)` 라벨은 **부정확**.
+- 재개 시: `GrowthStandard` 에 `'WHO'` 추가 + **WHO 2006(2–5세)+2007(5–19세) 공식 LMS 소싱**(hfa boys/girls z-exp, 월령 24,30,…216) → 33행 남/녀. ★값 날조 금지, 원본 M→50%ile·역전0·P3 일치로 검증.
+- **활성화(B1) 시 계산기 처리**: ar 를 `SUBPAGES` 의 `calculator` 에서 제외하거나(권장 — WHO 전엔 페이지 미생성), 임시로 KR 폴백 표기. `isCalcLang` 에 ar 를 **넣지 않으면** calc.html iframe 이 한국어로 폴백하므로, 계산기 페이지 자체를 ar 에서 빼는 편이 깔끔.
 
 ---
 
@@ -105,11 +103,9 @@
 - [ ] `router.tsx I18N_LANGS` +`ar` · `vite.config.ts seoRedirects` 정규식 +`ar`(슬래시 없는 `/ar`→`/ar/` 301)
 - [ ] `cd v4 && npx tsc -b --noEmit` → v4 오류 0
 
-### Task C3: 계산기 — WHO 고정
-- [ ] `calcLabels.ts CalcLang` +`ar` + ar 로케일 라벨 · **`isCalcLang` 게이트에 `ar` 추가**(★세트로: isCalcLang·isCasesLang·getLocale)
-- [ ] `HeightCalculator.tsx` 삼항에 `lang==='ar' ? 'WHO'` 분기
-- [ ] `HeightCalculatorResult MESSENGER` 맵에 ar → WhatsApp
-- [ ] `/calc.html?lang=ar` 열어 아랍어 + WHO 출처 문구 + RTL 확인
+### Task C3: 계산기 — ⏸️ 보류 (예측키 제외, A6 와 함께)
+WHO 표준(A6)이 준비되면 재개: `calcLabels.ts CalcLang` +`ar` + ar 라벨 · **`isCalcLang` 게이트에 `ar`**(★세트로 isCalcLang·isCasesLang·getLocale) · `HeightCalculator.tsx` 삼항 `lang==='ar' ? 'WHO'` · `HeightCalculatorResult MESSENGER` ar→WhatsApp · `calc-main.tsx` RTL 루트 · `/calc.html?lang=ar` 검증.
+- 그전까지 **`isCasesLang`·`getLocale` 게이트에는 ar 를 추가**(치료사례·분석은 계산기와 무관하게 필요).
 
 ### Task C4: 🔴 Meta 픽셀 — 한국 픽셀 오발사 차단
 - [ ] `analyticsLocale.ts`/`analytics.ts SUPPORTED_LOCALES` 에 `ar`. 정규식 `[a-z]{2}(?:-[a-z]+)?` 는 `ar` 이미 매칭(2글자)이나 `getLocale('/ar/')`==='ar' 테스트로 고정.
@@ -135,16 +131,32 @@
 
 ---
 
-## 완료 기준 (홈-우선 스코프)
-- [ ] `/ar/` 4페이지 + 상담 페이지 렌더, **완전 RTL**(우측정렬·레이아웃 미러)
-- [ ] hreflang undefined 0 · 허공 0 (audit-hreflang)
-- [ ] 계산기가 아랍어 + **WHO 표준**, RTL
-- [ ] 아랍어 페이지에서 **한국 광고 픽셀 미발사**
-- [ ] GA4 언어 탭에 `ar` **독립 버킷**
-- [ ] `npm test` v4 · ai-server 통과
+## 진행 상태 (2026-07-18 세션1 종료 — 다른 세션에서 재개)
+
+**✅ 완료·커밋** (브랜치 `claude/arabic-language-addition-47df55`, main 미머지):
+- `dca5ed4` A1 맵 등록(constants.mjs ALL_LANGS·HREFLANG_MAP·OG_LOCALE_MAP + 계획서)
+- `30ede38` A2 `ar.yml`(en 기반 MSA 전량 번역, 누락0·여분0·한글0 검증)
+- `661b8d1` A4 seo.yml ar + messenger.yml ar(WhatsApp·consult [whatsapp,line]) + 회귀 테스트
+- `0dde3c4` A5 자산(programs/images/ar = en 복사, og-ar.jpg/webp = en 복사)
+- `2cdc964` A3 RTL 인프라(RTL_LANGS in constants·seo re-export·build-i18n dir 주입·_shell.css html[dir=rtl] 블록)
+- 테스트 v4 **126 pass**(ar 메신저 테스트 포함). ar 은 **아직 ACTIVE_LANGS 밖 = 비활성**(사이트 무변화, 안전).
+
+**⏳ 남음** (재개 시):
+- **B1 활성화** — `constants.mjs ACTIVE_LANGS` 에 `'ar'` → `npm run build:i18n` → `node scripts/audit-hreflang.mjs`(undefined0·허공0) → 테스트. ★계산기는 예측키 제외라 **ar 를 SUBPAGES calculator 에서 빼거나 페이지 미생성**(위 A6 참조).
+- **C1** `_shell.js`(`__LANGS` ar·`__PATH_LANG_RE`·GA4 `allowed`) — 라벨 `العربية`
+- **C2** `router.tsx I18N_LANGS` + `vite.config.ts seoRedirects` 정규식 ar
+- **C4** Meta 픽셀 `analyticsLocale.ts/analytics.ts` ar → getLocale('/ar/')==='ar', 기본 픽셀(KO 아님)
+- **C5** 익명 예측 `anonymousName.ts`(PredLocale·asLocale·COUNTRY ar:'AR'·NAMES 아랍어풀) + PredictionsLogPage 필터 AR
+- **D1** ai-server `ga4SiteBreakdown.ts`(Country·LANG_KEYS·classifyCountry·countryKeys·정규식·Record4개) ar 버킷 — build 먼저 후 test
+- **D2** 마케팅 CountryKey+탭 · GSC SearchLang+LANGS+탭
+- **isCasesLang·getLocale 게이트에 ar** (치료사례·분석용, 계산기와 무관)
+- **RTL 시각 검토** — 페이지 본문 인라인 CSS 물리 속성 미세 조정(사용자 시각 확인 [[preview_verification_preference]])
+
+**⏸️ 보류 (예측키 제외, 사용자 결정)**: A6 WHO 표준 · C3 계산기 배선. 재개는 WHO LMS 소싱부터.
 
 ## 다음 단계 (이번 스코프 밖)
 - 아랍어 블로그(마케팅 `ar` 콘텐츠 생성 → `blog_published`)
 - 아랍어 텍스트 인포그래픽 재생성(`programs/images/ar/`)
 - 치료사례 per-case 콘텐츠 아랍어(CASES_I18N)
-- 아랍어 카피 원장/전문 감수
+- 아랍어 카피 **원장/전문 감수**(특히 원격 상담)
+- OG 아랍어 텍스트판 재생성(현재 en 복사)
