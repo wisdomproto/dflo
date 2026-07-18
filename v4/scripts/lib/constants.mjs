@@ -10,9 +10,11 @@ export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to r
 // emitting ja/id (planned but not yet built) creates 404 hreflang targets that
 // invalidate the whole cluster in Search Console. Add a lang here only once its pages ship.
 export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'];
-export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ja', 'id'];
+export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar', 'ja', 'id'];
 // hreflang 은 지역 중립(간체 타겟이 본토가 아니라 동남아·미국 화교라 zh-CN 이 아니다) →
 // zh-Hant/zh-Hans. og:locale 은 페이스북이 `언어_지역` 코드만 받아 스크립트 코드를 못 써서
 // 번체=zh_TW(대만)·간체=zh_CN 으로 매핑한다(hreflang 과 다른 게 정상).
-export const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', 'zh-hant': 'zh-Hant', 'zh-hans': 'zh-Hans', ja: 'ja', id: 'id' };
-export const OG_LOCALE_MAP = { ko: 'ko_KR', th: 'th_TH', vi: 'vi_VN', en: 'en_US', 'zh-hant': 'zh_TW', 'zh-hans': 'zh_CN', ja: 'ja_JP', id: 'id_ID' };
+export const HREFLANG_MAP = { ko: 'ko', th: 'th', vi: 'vi', en: 'en', 'zh-hant': 'zh-Hant', 'zh-hans': 'zh-Hans', ar: 'ar', ja: 'ja', id: 'id' };
+// 아랍어는 범아랍(사우디/UAE/이집트…) 대상이라 지역 중립 hreflang=`ar`. og:locale 은 지역 코드가 필요한데
+// 페이스북이 스크립트 코드를 못 받아 일반 아랍어를 `ar_AR` 로 준다(hreflang 과 다른 건 정상).
+export const OG_LOCALE_MAP = { ko: 'ko_KR', th: 'th_TH', vi: 'vi_VN', en: 'en_US', 'zh-hant': 'zh_TW', 'zh-hans': 'zh_CN', ar: 'ar_AR', ja: 'ja_JP', id: 'id_ID' };
