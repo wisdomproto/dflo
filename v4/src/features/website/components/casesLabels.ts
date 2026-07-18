@@ -4,7 +4,7 @@
 
 import { createContext, useContext } from 'react';
 
-export type CasesLang = 'ko' | 'en' | 'th' | 'vi' | 'zh-hant' | 'zh-hans';
+export type CasesLang = 'ko' | 'en' | 'th' | 'vi' | 'zh-hant' | 'zh-hans' | 'ar';
 
 type LabelDict = {
   emptyState: string;
@@ -287,6 +287,43 @@ const DICT: Record<CasesLang, LabelDict> = {
     prevSlide: '上一张', nextSlide: '下一张',
     slideNumber: (n) => `第 ${n} 张`,
   },
+  ar: {
+    emptyState: 'الرجاء إضافة حالة نمو',
+    boy: 'ولد', girl: 'بنت',
+    initialMemo: '🏥 ملاحظات أول زيارة',
+    heightChange: '📊 تغيّر الطول',
+    youtubeTitle: 'فيديو مراجعة العلاج',
+    allergyTitle: (n) => `🍽️ نتائج حساسية الطعام (${n})`,
+    allergyDanger: (n) => `🚫 خطر (${n})`,
+    allergyCaution: (n) => `⚠️ تحذير (${n})`,
+    growthChart: '📈 مخطط النمو المعياري',
+    loading: 'جارٍ التحميل…',
+    chartActualHeight: 'الطول الفعلي', chartInitialGrowth: 'التوقّع الأولي', chartCurrentGrowth: 'التوقّع الحالي',
+    chartAxisAge: 'العمر (سنوات)', chartAxisHeight: 'الطول (سم)',
+    tableTitle: (n) => `📋 سجلات كل زيارة (${n})`,
+    tableNum: '#',
+    tableDate: 'التاريخ', tableHeight: 'الطول', tableWeight: 'الوزن',
+    tableAge: 'العمر', tableBoneAge: 'عمر العظم', tablePredicted: 'المتوقّع',
+    finalMemo: '🩺 ملاحظة الطبيب',
+    cta: '💬 احصل على استشارة لطفلي',
+    barInitial: 'التوقّع الأولي', barFinal: 'التوقّع النهائي',
+    treatmentLabel: 'على مدى', treatmentSuffix: 'من العلاج',
+    actualHeight: 'الفعلي', predictedHeight: 'المتوقّع',
+    monthSuffix: 'شهر', yearSuffix: 'سنة',
+    intakeInfoTitle: '📋 معلومات الزيارة الأولى',
+    intake: {
+      gestationalWeeks: 'أسابيع الحمل', birthWeight: 'وزن الولادة', birthNote: 'ملاحظات الولادة',
+      currentHeight: 'الطول عند الزيارة', currentWeight: 'الوزن عند الزيارة', yearlyGrowth: 'النمو السنوي',
+      grade: 'الصف الدراسي', heightRank: 'ترتيب الطول في الصف', desiredHeight: 'الطول المرغوب',
+      fatherHeight: 'طول الأب', motherHeight: 'طول الأم', growthPattern: 'نمط النمو',
+      pubertyStage: 'مرحلة البلوغ', growthConcerns: 'ملاحظات الوالدين', pastConditions: 'حالات سابقة',
+    },
+    unitWeeks: 'أسبوع', unitRank: '',
+    photosTitle: (n) => `📷 صور الزيارة رقم ${n}`,
+    photoFront: 'أمامي', photoSide: 'جانبي', xrayFront: 'أشعة أمامية', xraySide: 'أشعة جانبية',
+    prevSlide: 'الشريحة السابقة', nextSlide: 'الشريحة التالية',
+    slideNumber: (n) => `شريحة ${n}`,
+  },
 };
 
 export const CasesLangContext = createContext<CasesLang>('ko');
@@ -305,7 +342,7 @@ export function getCasesLabels(lang: CasesLang): LabelDict {
 
 export function isCasesLang(value: string | null | undefined): value is CasesLang {
   return value === 'ko' || value === 'en' || value === 'th' || value === 'vi'
-    || value === 'zh-hant' || value === 'zh-hans';
+    || value === 'zh-hant' || value === 'zh-hans' || value === 'ar';
 }
 
 // ── 환자 이름 음역 ───────────────────────────────────────────────────────────

@@ -360,7 +360,7 @@ function BannerContent({ slide: s }: { slide: BannerSlide }) {
 // ============= Iframe slide content (info-stack: 정적 HTML 임베드) =============
 const FULLSCREEN_LABEL: Record<CasesLang, string> = {
   ko: '전체화면 ↗', en: 'Fullscreen ↗', th: 'เต็มจอ ↗', vi: 'Toàn màn hình ↗',
-  'zh-hant': '全螢幕 ↗', 'zh-hans': '全屏 ↗',
+  'zh-hant': '全螢幕 ↗', 'zh-hans': '全屏 ↗', ar: 'ملء الشاشة ↗',
 };
 
 function IframeContent({ slide: s }: { slide: IframeSlide }) {

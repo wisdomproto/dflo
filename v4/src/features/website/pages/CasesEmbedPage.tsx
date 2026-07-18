@@ -20,6 +20,7 @@ const PAGE_TITLES: Record<CasesLang, string> = {
   vi: 'Ca điều trị',
   'zh-hant': '治療案例',
   'zh-hans': '治疗案例',
+  ar: 'حالات العلاج',
 };
 
 const EMPTY_STATES: Record<CasesLang, { loading: string; empty: string }> = {
@@ -29,6 +30,7 @@ const EMPTY_STATES: Record<CasesLang, { loading: string; empty: string }> = {
   vi: { loading: 'Đang tải ca điều trị…', empty: 'Chưa có ca điều trị.' },
   'zh-hant': { loading: '正在載入案例…', empty: '目前沒有治療案例。' },
   'zh-hans': { loading: '正在加载案例…', empty: '目前没有治疗案例。' },
+  ar: { loading: 'جارٍ تحميل الحالات…', empty: 'لا توجد حالات علاج بعد.' },
 };
 
 export default function CasesEmbedPage() {
@@ -47,6 +49,8 @@ export default function CasesEmbedPage() {
 
   useEffect(() => {
     document.title = PAGE_TITLES[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     fetchSections()
       .then((sections) => {
         // cases 슬라이드를 포함한 첫 섹션 = "키 성장 관리 사례"
