@@ -1,6 +1,6 @@
 # 아랍어(ar) 로케일 추가 — 구현 계획
 
-> ✅ **A~D 전부 완료 (2026-07-18, 브랜치 미머지)** — 홈 5페이지(index/clinic/cases/calculator/consult) 아랍어 RTL 렌더 + 셸/라우터/계산기(국적선택, en 방식)/케이스/픽셀/익명예측/GA4·GSC 분석 배선. 검증: hreflang undefined0·허공0 · v4 127 pass · ai-server 136 pass · tsc 클린. **남음**: RTL 페이지본문 시각검토 · 아랍어 카피 원장감수 · main 머지·배포. **계산기 예측키는 제외 아님** — 사용자 정정("기존 계산기 국적선택 방식으로, WHO 는 나중에 목록 추가"). WHO 표준만 `growthStandard.ts`+`NATIONALITIES` 에 추후 추가.
+> ✅ **A~D 완료 + main 머지·푸시 (2026-07-18, 2cbc224)** — 홈 5페이지(index/clinic/cases/calculator/consult) 아랍어 RTL 렌더 + 셸/라우터/계산기(국적선택, en 방식)/케이스/픽셀/익명예측/GA4·GSC 분석 배선. 검증: hreflang undefined0·허공0 · v4 127 pass · ai-server 136 pass · tsc 클린. **남음**: RTL 페이지본문 시각검토 · 아랍어 카피 원장감수 · main 머지·배포. **계산기 예측키는 제외 아님** — 사용자 정정("기존 계산기 국적선택 방식으로, WHO 는 나중에 목록 추가"). WHO 표준만 `growthStandard.ts`+`NATIONALITIES` 에 추후 추가.
 
 > 🚧 **진행 중** (2026-07-18 시작, 브랜치 `claude/arabic-language-addition-47df55`). 직전 세션은 브랜치/워크트리만 만들고 코드는 0 이었음(전수 확인). 이 계획은 **중국어 로케일 추가**(`docs/superpowers/plans/2026-07-17-chinese-locales.md`, 완료)를 **아랍어로 적응**한 것.
 
