@@ -626,6 +626,14 @@ html[lang="zh-hant"] *, html[lang="zh-hans"] * { word-break: normal; }
    ⚠️ 페이지 본문(index/clinic/... 인라인 CSS)의 물리 속성은 시각 검토로 세부 조정 필요. */
 html[dir="rtl"] { direction: rtl; }
 
+/* 아랍어 폰트 — 웹폰트 없이 각 플랫폼의 네이티브 아랍어 폰트를 명시 스택으로 지정한다
+   (Pretendard 는 아랍 글리프가 없어 통제 안 된 폴백으로 렌더되던 것 보정). 렌더블로킹·외부
+   의존 0 (LCP 위해 웹폰트를 뺀 이 사이트 정책 유지). 브랜드 통일 웹폰트는 추후 self-host 여지.
+   명시도(0,1,2)로 템플릿 인라인 body{font-family:Pretendard…}(0,0,1)를 이긴다. */
+html[dir="rtl"] body, html[lang="ar"] body {
+  font-family: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, 'Tajawal', sans-serif;
+}
+
 /* 모달·시트 닫기(✕) 버튼: 오른쪽 고정 → 왼쪽 */
 html[dir="rtl"] .t-modal-close { right: auto; left: 12px; }
 html[dir="rtl"] .t-calc-frame .t-modal-close { right: auto; left: 6px; }
