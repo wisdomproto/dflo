@@ -1,6 +1,8 @@
 # 아랍어(ar) 로케일 추가 — 구현 계획
 
-> ✅ **A~D 완료 + main 머지·푸시 (2026-07-18, 2cbc224)** — 홈 5페이지(index/clinic/cases/calculator/consult) 아랍어 RTL 렌더 + 셸/라우터/계산기(국적선택, en 방식)/케이스/픽셀/익명예측/GA4·GSC 분석 배선. 검증: hreflang undefined0·허공0 · v4 127 pass · ai-server 136 pass · tsc 클린. **남음**: RTL 페이지본문 시각검토 · 아랍어 카피 원장감수 · main 머지·배포. **계산기 예측키는 제외 아님** — 사용자 정정("기존 계산기 국적선택 방식으로, WHO 는 나중에 목록 추가"). WHO 표준만 `growthStandard.ts`+`NATIONALITIES` 에 추후 추가.
+> ✅ **완료 + main 배포·리뷰 (2026-07-18, base `2cbc224` + 후속수정 `68c9a40`)** — 홈 5페이지(index/clinic/cases/calculator/consult) 아랍어 RTL 렌더 + 셸/라우터/계산기(국적선택, en 방식)/케이스/픽셀/익명예측/GA4·GSC 분석 배선. 검증: hreflang undefined0·허공0·sitemap400 · v4 127 · ai-server 136 · tsc 클린. **계산기 예측키는 제외 아님** — 국적선택 방식(WHO 는 `growthStandard.ts`+`NATIONALITIES` 에 추후 옵션추가).
+>
+> **★배포 후 전수리뷰에서 2갭 수정(`68c9a40`)**: ① `CASES_I18N` per-case 콘텐츠 아랍어 0(크롬만 아랍어·데이터 한국어 폴백, 중국어 때와 동일 반쪽) → `CaseLocale`+ar + 39슬롯 MSA 번역(부모인용 정규식 7/7). **케이스는 chrome(casesLabels.ts)·data(casesI18nData.ts) 별 파일 둘 다** 해야 함. ② 아랍어 전용 폰트 0(Pretendard=아랍글리프 없음) → `_shell.css` 네이티브 아랍어 스택(웹폰트 없이). ✅화살표 `←` 이미 처리. **남음**: RTL 페이지본문 인라인CSS 시각검수 · OG/인포그래픽 텍스트(en 재사용) · 아랍어 카피 원장감수.
 
 > 🚧 **진행 중** (2026-07-18 시작, 브랜치 `claude/arabic-language-addition-47df55`). 직전 세션은 브랜치/워크트리만 만들고 코드는 0 이었음(전수 확인). 이 계획은 **중국어 로케일 추가**(`docs/superpowers/plans/2026-07-17-chinese-locales.md`, 완료)를 **아랍어로 적응**한 것.
 
