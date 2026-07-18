@@ -176,8 +176,15 @@ en 과 동급으로 **번체 `zh-hant`·간체 `zh-hans`** 추가(홈 4p + 상�
 - **계산기 CN 표준 고정**(`HeightCalculator` 삼항), 메신저=**WhatsApp+LINE**(카카오 제외, 테스트로 고정), 픽셀=기본(한국 `_KO` 픽셀 오발사 차단 — `analyticsLocale.ts` 하이픈 로케일 정규식). 치료사례 캐러셀도 중국어화(`CasesLang` 확장, per-case 자유텍스트는 한국어 폴백=미룬 콘텐츠).
 - **검증 베이스라인**: audit-hreflang `undefined 0·허공 0·sitemap 395`·hreflang 5510 전부 실재, 테스트 v4 125·ai-server 136. ⚠️**원격 상담 카피 원장 감수 대기**(배포는 됨).
 
+### 아랍어 로케일 (ar, RTL) 추가 (2026-07-18, 브랜치 `arabic-language-addition-47df55` 미머지)
+en 동급 + **완전 RTL**(홈 5p: index/clinic/cases/calculator/consult). 중국어 플레이북 상속. 상세 memory [[arabic_locale_addition]].
+- **RTL 인프라(아랍어 고유·신설)**: `RTL_LANGS`(=`['ar']`) 단일 소스 = `v4/scripts/lib/constants.mjs`(seo.mjs re-export). `build-i18n` 이 RTL 언어에 `<html dir="rtl">` baked(`localizeProgramImg` 후처리, meta.dir 불요). `_shell.css` `html[dir="rtl"]` 블록이 셸 크롬(모달닫기·select화살표·stat구분선) 미러링 — 헤더/하단바/스위처는 flexbox 라 자동. React 계산기·케이스 iframe 은 `calc-main.tsx`·`CasesEmbedPage` 가 `document.documentElement.dir` 세팅. ⚠️**페이지 본문 인라인 CSS 물리속성은 dir=rtl 자동 적용만 — 시각 검토 미완**.
+- **코드 매핑**: 사이트=`ar`(hreflang `ar` 지역중립·og:locale `ar_AR`). 익명예측 국적=`AR`(언어권 버킷). 메신저=**WhatsApp**(MENA 지배, consult 페이지 생성 위해 `[whatsapp,line]`). 픽셀=기본(한국 `_KO` 오발사 차단, `SUPPORTED_LOCALES`+ar).
+- **계산기 = en 방식 국적 선택자**(KR/TH/CN/US/ID, `HeightCalculator` 삼항 `en||ar ? nationality`). ★**WHO 표준은 미탑재** — 레포에 깨끗한 WHO 2007 LMS 없음(`v4/CLAUDE.md` 의 "WHO LMS data" 라벨은 부정확, 실제 KR 기본). 추후 `growthStandard.ts GrowthStandard`+`NATIONALITIES` 에 옵션만 추가하면 됨(계산기는 이미 국적선택으로 동작). 화자=남성 의사 격식체 MSA, **아랍어 카피 원장/전문 감수 대기**.
+- **검증**: hreflang undefined0·허공0, 한글누출0 · v4 **127**·ai-server **136** pass · tsc 클린. 회귀 4종(메신저·getLocale·익명예측·classifyCountry). per-case CASES_I18N·OG·인포그래픽은 미룬 콘텐츠(한국어/en 폴백).
+
 ### 1차 활성화 스코프 (Phase 6 완료)
-- 시장 6개(1차 4 + 2026-07-18 중국어 2): 🇰🇷 ko / 🇹🇭 th / 🇻🇳 vi / 🇺🇸 en / 🇹🇼 zh-hant / 🀄 zh-hans
+- 시장 7개(1차 4 + 2026-07-18 중국어 2 + 아랍어 1): 🇰🇷 ko / 🇹🇭 th / 🇻🇳 vi / 🇺🇸 en / 🇹🇼 zh-hant / 🀄 zh-hans / 🇸🇦 ar(RTL, 브랜치 미머지)
 - 메신저: **ko/vi 는 KakaoTalk `pf.kakao.com/_mxbWxfX`** (2026-07-01 카카오 채널 통일), **en 은 WhatsApp `wa.me/821066932838`** (2026-07-03 — 화교[미·동남아] 타겟이라 카톡→WhatsApp 전환, 프리필 메시지 `?text=`, `messenger.yml`+`HeightCalculatorResult.tsx` MESSENGER 맵 둘 다 교체, channel=whatsapp), **th 는 LINE OA `@894qhqtu`** (2026-05-18 전환). `messenger.yml` 만 교체 → `_shell.js` 가 `window.__I18N__.messenger` 에서 읽어 헤더 pill·계산기 결과 CTA·5개 케이스 인라인 CTA 동적 렌더 (인라인 색상 + filter:brightness hover). 빌드가 `messenger_json` 으로 JSON-encode 해 안전 주입
 - 프로그램 이미지: `_common`(한국어 기본본 + index 아이콘 세트 `need-1~6`·`pstep-1~7`) + **th 번역 오버라이드 6개**(`director`,`golden-time`,`fat-cell`,`arrow-illust`,`ratio`,`comparison`). vi/en 은 미번역 → `_common` fallback. 추후 번역 시 `{lang}/{slug}/`에 파일만 추가
 - 남은 작업: vi/en 프로그램 이미지 + Railway 프로덕션 배포 검증
