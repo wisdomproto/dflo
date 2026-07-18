@@ -634,6 +634,11 @@ html[dir="rtl"] body, html[lang="ar"] body {
   font-family: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, 'Tajawal', sans-serif;
 }
 
+/* 전화번호·tel 링크: 선행 '+' 는 방향 중립 문자라 RTL 문맥에서 오른쪽 끝으로 밀린다
+   (+82-10-… → 82-10-…+ 로 잘못 보임). LTR 로 격리해 항상 +82-10-… 순서로 렌더한다.
+   숫자·대시는 원래 LTR 이라 이 격리로 전체가 올바르게 정렬됨. text-align 은 상속(중앙) 유지. */
+html[dir="rtl"] .phone, html[dir="rtl"] a[href^="tel:"] { direction: ltr; unicode-bidi: isolate; }
+
 /* 모달·시트 닫기(✕) 버튼: 오른쪽 고정 → 왼쪽 */
 html[dir="rtl"] .t-modal-close { right: auto; left: 12px; }
 html[dir="rtl"] .t-calc-frame .t-modal-close { right: auto; left: 6px; }
