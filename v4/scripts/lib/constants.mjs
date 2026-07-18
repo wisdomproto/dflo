@@ -9,7 +9,7 @@ export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to r
 // Languages we actually BUILD pages for. hreflang/sitemap must only point at these —
 // emitting ja/id (planned but not yet built) creates 404 hreflang targets that
 // invalidate the whole cluster in Search Console. Add a lang here only once its pages ship.
-export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans'];
+export const ACTIVE_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'];
 export const ALL_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar', 'ja', 'id'];
 // 오른쪽→왼쪽 언어. build-i18n 이 이 목록의 언어에 <html dir="rtl"> 을 주입하고,
 // _shell.css 의 html[dir="rtl"] 규칙이 셸 크롬을 미러링한다. 런타임(_shell.js·React)도 참조.
