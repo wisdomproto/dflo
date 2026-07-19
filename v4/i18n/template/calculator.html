@@ -31,6 +31,17 @@
     border: 0;
     display: block;
   }
+
+  /* SEO content — server-rendered so Google/AI can read the page (the tool itself is an iframe). */
+  .calc-seo { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+  .calc-seo h1 { font-size: 24px; font-weight: 800; color: #2b2822; letter-spacing: -0.3px; line-height: 1.35; }
+  .calc-seo-intro { margin-top: 12px; color: #5a5560; font-size: 15px; }
+  .calc-seo h2 { font-size: 18px; font-weight: 700; color: #2b2822; margin-top: 32px; }
+  .calc-seo-how { margin-top: 12px; padding-inline-start: 20px; color: #5a5560; }
+  .calc-seo-how li { margin: 6px 0; }
+  .calc-seo-qa { margin-top: 16px; }
+  .calc-seo-qa h3 { font-size: 15px; font-weight: 700; color: #2b2822; }
+  .calc-seo-qa p { margin-top: 4px; color: #5a5560; font-size: 14.5px; }
 </style>
 </head>
 
@@ -41,6 +52,15 @@
   <div class="calc-iframe-wrap">
     <iframe src="/calc.html?lang={{meta.lang}}" title="{{calculator.iframe_title}}" loading="eager"></iframe>
   </div>
+
+  <section class="calc-seo">
+    <h1>{{calculator.h1}}</h1>
+    <p class="calc-seo-intro">{{calculator.intro}}</p>
+    <h2>{{calculator.how_title}}</h2>
+    <ol class="calc-seo-how">{{#each calculator.how}}<li>{{.}}</li>{{/each}}</ol>
+    <h2>{{calculator.faq_title}}</h2>
+    <div class="calc-seo-faq">{{#each calculator.faq}}<div class="calc-seo-qa"><h3>{{q}}</h3><p>{{a}}</p></div>{{/each}}</div>
+  </section>
 
 </div>
 </div><!-- /.t-page -->

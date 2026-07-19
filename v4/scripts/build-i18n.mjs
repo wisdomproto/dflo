@@ -128,7 +128,7 @@ async function main() {
   const SUBPAGES = [
     { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title' },
     { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
-    { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title' },
+    { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title', descPath: 'calculator.meta_description' },
     { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',
       langs: (l) => (getMessengerCTA(l).consult_channels?.length ?? 0) > 1 },
   ];
@@ -179,11 +179,18 @@ async function main() {
       const titleParts = sub.titlePath.split('.');
       let title = locale;
       for (const p of titleParts) title = title?.[p];
+      // 페이지 전용 메타 설명(있으면). 없으면 buildHead 가 브랜드 기본 설명으로 폴백.
+      let description;
+      if (sub.descPath) {
+        let d = locale;
+        for (const p of sub.descPath.split('.')) d = d?.[p];
+        description = d;
+      }
       // 언어 한정 페이지는 hreflang 도 그 언어들만 — 없는 언어를 가리키면 soft-404 클러스터가 된다.
       const altPaths = sub.langs
         ? Object.fromEntries(ACTIVE_LANGS.filter(sub.langs).map((l) => [l, `/${sub.file}`]))
         : undefined;
-      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, skipJsonLd: true, altPaths });
+      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, description, skipJsonLd: true, altPaths });
       writeFile(join(ROOT, 'public', lang, sub.file), lazifyImages(localizeProgramImg(render(sub.template, locale))));
     }
 

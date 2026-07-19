@@ -496,8 +496,24 @@ cases:
   iframe_title: "Ca điều trị"
 
 calculator:
-  page_title: "Đo chiều cao miễn phí | 187 Growth Clinic"
-  iframe_title: "Dự đoán chiều cao miễn phí"
+  page_title: "Công cụ tính chiều cao miễn phí — Dự đoán chiều cao khi trưởng thành của con | 187 Growth Clinic"
+  meta_description: "Công cụ tính và dự đoán chiều cao khi trưởng thành miễn phí. Nhập tuổi, giới tính và chiều cao hiện tại của con để ước tính chiều cao trưởng thành theo chuẩn tăng trưởng quốc gia, trong khoảng 30 giây."
+  iframe_title: "Công cụ tính chiều cao miễn phí"
+  h1: "Công cụ tính chiều cao & dự đoán chiều cao trưởng thành miễn phí"
+  intro: "Dùng công cụ tính chiều cao miễn phí để dự đoán chiều cao khi trưởng thành của con trong khoảng 30 giây. Nhập tuổi, giới tính và chiều cao hiện tại; công cụ ước tính theo dữ liệu chuẩn tăng trưởng quốc gia. Để đánh giá chính xác cần chụp X-quang tuổi xương và xét nghiệm máu tại phòng khám."
+  how_title: "Công cụ tính chiều cao hoạt động thế nào"
+  how:
+    - "Nhập ngày sinh, giới tính và chiều cao hiện tại của con."
+    - "Công cụ so chiều cao hiện tại với phân vị của chuẩn tăng trưởng."
+    - "Rồi chiếu phân vị đó thành chiều cao trưởng thành ước tính."
+  faq_title: "Câu hỏi thường gặp về công cụ tính chiều cao"
+  faq:
+    - q: "Dự đoán chiều cao chính xác đến đâu?"
+      a: "Đây là ước tính thống kê từ dữ liệu dân số. Dự đoán chính xác cần chụp X-quang tuổi xương và bác sĩ đánh giá tại phòng khám."
+    - q: "Công cụ có miễn phí không?"
+      a: "Hoàn toàn miễn phí và không cần đăng ký."
+    - q: "Dùng chuẩn tăng trưởng nào?"
+      a: "Dùng dữ liệu chuẩn tăng trưởng quốc gia (Hàn Quốc, Mỹ, Trung Quốc, Thái Lan, Indonesia), chọn theo quốc tịch."
 
 consult:
   page_title: "Tư vấn 1:1 | 187 Growth Clinic"

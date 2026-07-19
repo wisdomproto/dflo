@@ -496,8 +496,24 @@ cases:
   iframe_title: "Treatment cases"
 
 calculator:
-  page_title: "Free Height Check | 187 Growth Clinic"
-  iframe_title: "Free height prediction"
+  page_title: "Free Height Calculator — Predict Your Child's Adult Height | 187 Growth Clinic"
+  meta_description: "Free height calculator and adult-height predictor. Enter your child's age, sex, and current height to estimate their predicted adult height from national growth-standard data — in about 30 seconds."
+  iframe_title: "Free height calculator"
+  h1: "Free Height Calculator & Adult Height Predictor"
+  intro: "Use our free height calculator to predict your child's adult height in about 30 seconds. Enter age, sex, and current height, and the predictor estimates adult height from national growth-standard data. For a precise assessment, a bone-age X-ray and blood test at the clinic are needed."
+  how_title: "How the height calculator works"
+  how:
+    - "Enter your child's date of birth, sex, and current height."
+    - "The calculator maps the current height to a growth-standard percentile."
+    - "It then projects that percentile to an estimated adult height."
+  faq_title: "Height calculator — FAQ"
+  faq:
+    - q: "How accurate is this height predictor?"
+      a: "It gives a statistical estimate from population growth data. A precise prediction requires a bone-age X-ray and a doctor's review, which we do at the clinic."
+    - q: "Is the height calculator free?"
+      a: "Yes — the calculator is completely free and requires no sign-up."
+    - q: "Which growth standard does it use?"
+      a: "It uses national growth-standard data (Korea, US/CDC, China, Thailand, Indonesia), selectable by nationality."
 
 consult:
   page_title: "1:1 Consulting | 187 Growth Clinic"
