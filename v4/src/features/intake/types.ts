@@ -37,6 +37,7 @@ export interface IntakeSubmission {
   child_id?: string | null;
   reviewed_at?: string | null;
   reject_reason?: string | null;
+  admin_note?: string | null; // 어드민 내부 메모 (migration 069)
 }
 
 /** Local form state in the public wizard (before submit). Converted to a DB insert payload. */

@@ -121,6 +121,19 @@ export async function approveSubmission(
   return child.id;
 }
 
+/** 어드민 내부 메모 저장 (migration 069). 컬럼 미적용 시 42703 을 안내 메시지로. */
+export async function updateSubmissionNote(id: string, note: string): Promise<void> {
+  const { error } = await supabase
+    .from('intake_submissions')
+    .update({ admin_note: note || null })
+    .eq('id', id);
+  if (error) {
+    logger.error('updateSubmissionNote failed', error);
+    if (error.code === '42703') throw new Error('메모 컬럼이 아직 없습니다 (migration 069 적용 필요).');
+    throw new Error('메모 저장에 실패했습니다.');
+  }
+}
+
 export async function rejectSubmission(id: string, reason: string): Promise<void> {
   const { error } = await supabase
     .from('intake_submissions')

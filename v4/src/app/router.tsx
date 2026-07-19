@@ -44,6 +44,7 @@ const ProgramDetailPage = lazy(() => import('@/features/website/pages/ProgramDet
 const IntakeDiagnosisPage = lazy(() => import('@/features/website/pages/IntakeDiagnosisPage'));
 const ReportPage = lazy(() => import('@/features/website/report/ReportPage'));
 const PublicIntakePage = lazy(() => import('@/features/intake/pages/PublicIntakePage'));
+const GlobalIntakePage = lazy(() => import('@/features/intake/pages/GlobalIntakePage'));
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
 const CasesEmbedPage = lazy(() => import('@/features/website/pages/CasesEmbedPage'));
@@ -248,8 +249,16 @@ export const router = createBrowserRouter([
       </Suspense>
     ),
   },
-  // Public patient self-service intake survey (login-free, per language)
-  { path: '/intake', element: <Navigate to="/intake/ko" replace /> },
+  // Public patient self-service intake survey (login-free)
+  // /intake = language picker first (GlobalIntakePage); /intake/:lang = direct per-language link
+  {
+    path: '/intake',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <GlobalIntakePage />
+      </Suspense>
+    ),
+  },
   {
     path: '/intake/:lang',
     element: (

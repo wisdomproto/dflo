@@ -30,10 +30,10 @@ const SHARE_LANGS: { lang: IntakeLang; flag: string; label: string }[] = [
 ];
 
 function ShareLinkBar() {
-  const [copied, setCopied] = useState<IntakeLang | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
 
-  async function copy(lang: IntakeLang) {
-    const url = `${window.location.origin}/intake/${lang}`;
+  async function copy(key: string, path: string) {
+    const url = `${window.location.origin}/${path}`;
     try {
       await navigator.clipboard.writeText(url);
     } catch {
@@ -47,18 +47,37 @@ function ShareLinkBar() {
       document.execCommand('copy');
       document.body.removeChild(ta);
     }
-    setCopied(lang);
-    setTimeout(() => setCopied((c) => (c === lang ? null : c)), 1500);
+    setCopied(key);
+    setTimeout(() => setCopied((c) => (c === key ? null : c)), 1500);
   }
 
   return (
     <div className="flex flex-wrap items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2.5">
       <span className="text-xs font-semibold text-slate-500">설문 링크 복사</span>
+      {/* 언어 선택 팝업이 있는 통합 링크 (권장) */}
+      <button
+        type="button"
+        onClick={() => copy('__global__', 'intake')}
+        title={`${window.location.origin}/intake`}
+        className={
+          'flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold transition ' +
+          (copied === '__global__'
+            ? 'bg-emerald-500 text-white'
+            : 'border border-indigo-200 bg-indigo-50 text-indigo-700 hover:bg-indigo-100')
+        }
+      >
+        <span>🌐</span>
+        <span>언어 선택</span>
+        <span className="text-[10px] opacity-70">
+          {copied === '__global__' ? '복사됨 ✓' : '📋'}
+        </span>
+      </button>
+      <span className="text-[10px] text-slate-300">|</span>
       {SHARE_LANGS.map((s) => (
         <button
           key={s.lang}
           type="button"
-          onClick={() => copy(s.lang)}
+          onClick={() => copy(s.lang, `intake/${s.lang}`)}
           title={`${window.location.origin}/intake/${s.lang}`}
           className={
             'flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium transition ' +
