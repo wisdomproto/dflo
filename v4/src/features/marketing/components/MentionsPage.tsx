@@ -4,8 +4,10 @@ import {
   fetchMentions,
   saveMention,
   deleteMention,
+  discoverReddit,
   type Mention,
   type MentionSentiment,
+  type RedditThread,
 } from '../services/marketingMentionService';
 import { MentionCard } from './MentionCard';
 
@@ -57,11 +59,73 @@ export function MentionsPage() {
   const [err, setErr] = useState<string | null>(null);
   const [sentFilter, setSentFilter] = useState<'all' | MentionSentiment>('all');
   const [platFilter, setPlatFilter] = useState<'all' | string>('all');
+  // Reddit 발굴
+  const [candidates, setCandidates] = useState<RedditThread[]>([]);
+  const [discovering, setDiscovering] = useState(false);
+  const [discoverErr, setDiscoverErr] = useState<string | null>(null);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [addingSel, setAddingSel] = useState(false);
 
   const reload = () => {
     fetchMentions().then(setMentions);
   };
   useEffect(reload, []);
+
+  const existingUrls = useMemo(
+    () => new Set(mentions.map((m) => m.url).filter(Boolean)),
+    [mentions],
+  );
+
+  const discover = async () => {
+    setDiscovering(true);
+    setDiscoverErr(null);
+    try {
+      const items = await discoverReddit();
+      setCandidates(items);
+      setSelected(new Set());
+      if (items.length === 0) setDiscoverErr('결과가 없습니다. 잠시 후 다시 시도해보세요.');
+    } catch (e) {
+      setDiscoverErr(e instanceof Error ? e.message : 'Reddit 발굴 실패');
+    } finally {
+      setDiscovering(false);
+    }
+  };
+
+  const toggleSel = (url: string) =>
+    setSelected((s) => {
+      const n = new Set(s);
+      if (n.has(url)) n.delete(url);
+      else n.add(url);
+      return n;
+    });
+
+  const addSelected = async () => {
+    const picks = candidates.filter((c) => selected.has(c.url) && !existingUrls.has(c.url));
+    if (picks.length === 0) return;
+    setAddingSel(true);
+    try {
+      for (const c of picks) {
+        await saveMention({
+          platform: 'reddit',
+          url: c.url,
+          author: c.author,
+          title: c.title,
+          body: c.body,
+          sentiment: 'neutral',
+          language: 'en',
+          status: 'new',
+          replyDraft: '',
+        });
+      }
+      setCandidates((list) => list.filter((c) => !selected.has(c.url)));
+      setSelected(new Set());
+      reload();
+    } catch (e) {
+      setDiscoverErr(e instanceof Error ? e.message : '추가 실패');
+    } finally {
+      setAddingSel(false);
+    }
+  };
 
   const sentCounts = useMemo(() => {
     const c: Record<string, number> = { all: mentions.length, positive: 0, neutral: 0, negative: 0 };
@@ -114,11 +178,91 @@ export function MentionsPage() {
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-gray-200 px-6 pt-4 pb-3">
-        <h1 className="text-lg font-bold text-gray-800">모니터링 / 댓글</h1>
+        <div className="flex items-center justify-between gap-2">
+          <h1 className="text-lg font-bold text-gray-800">모니터링 / 댓글</h1>
+          <button
+            type="button"
+            onClick={discover}
+            disabled={discovering}
+            className="rounded-lg bg-[#4A2D6B] px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-40"
+            title="답할 만한 Reddit 스레드를 자동으로 찾아옵니다 (읽기 전용)"
+          >
+            {discovering ? '발굴 중…' : '🔍 Reddit 발굴'}
+          </button>
+        </div>
         <p className="mt-0.5 text-xs text-gray-400">
           외부에서 발견한 브랜드 언급을 기록하고 AI 답글 초안을 받아보세요.
         </p>
+        {discoverErr && <p className="mt-1 text-xs text-red-500">{discoverErr}</p>}
       </div>
+
+      {candidates.length > 0 && (
+        <div className="border-b border-gray-200 bg-[#4A2D6B]/5 px-6 py-3">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <span className="text-sm font-semibold text-gray-700">
+              🔍 Reddit 후보 {candidates.length}개 — 답할 스레드 선택
+            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={addSelected}
+                disabled={addingSel || selected.size === 0}
+                className="rounded-lg bg-emerald-600 px-3 py-1 text-xs font-semibold text-white disabled:opacity-40"
+              >
+                {addingSel ? '추가 중…' : `선택 ${selected.size}개 추가`}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setCandidates([]);
+                  setSelected(new Set());
+                }}
+                className="text-xs text-gray-400 hover:text-gray-600"
+              >
+                닫기
+              </button>
+            </div>
+          </div>
+          <div className="max-h-72 space-y-2 overflow-y-auto">
+            {candidates.map((c) => {
+              const dup = existingUrls.has(c.url);
+              return (
+                <label
+                  key={c.url}
+                  className={`flex gap-2 rounded-lg border p-2 text-sm ${
+                    dup ? 'border-gray-200 bg-gray-50 opacity-60' : 'border-gray-200 bg-white'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    disabled={dup}
+                    checked={selected.has(c.url)}
+                    onChange={() => toggleSel(c.url)}
+                    className="mt-1 flex-shrink-0"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <a
+                        href={c.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="truncate font-semibold text-[#4A2D6B] hover:underline"
+                      >
+                        {c.title || c.url}
+                      </a>
+                      <span className="text-[10px] text-gray-400">
+                        {c.subreddit} · 💬 {c.numComments}
+                        {dup ? ' · 이미 추가됨' : ''}
+                      </span>
+                    </div>
+                    {c.body && <p className="mt-0.5 line-clamp-2 text-xs text-gray-500">{c.body}</p>}
+                  </div>
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 overflow-y-auto p-6 lg:grid-cols-[320px_1fr]">
         {/* 좌: 멘션 추가 폼 */}

@@ -11,6 +11,7 @@ import { fetchYoutubeChannelStats } from '../services/youtubeChannel.js';
 import { buildCompetitorPrompt, type CompetitorConfig } from '../services/competitorAnalyzer.js';
 import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
+import { discoverThreads, redditConfigured } from '../services/redditSearch.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
 import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildPlainTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt, buildBlogSeoOutlinePrompt, buildBlogSeoBodyPrompt } from '../services/contentPrompts.js';
@@ -305,6 +306,35 @@ marketingRouter.post('/translate-text', async (req: Request, res: Response) => {
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] translate-text failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// ── monitoring: Reddit 발굴 (읽기 전용) ─────────────────────────────────────
+// 답할 가치 있는 공개 스레드 후보 수집. 게시는 안 함(사람이 번역 워크플로우로 정직하게).
+const REDDIT_DEFAULT_SUBS = ['ScienceBasedParenting', 'Parenting', 'Mommit', 'daddit', 'tall', 'Height', 'AskDocs'];
+const REDDIT_DEFAULT_QUERIES = [
+  'child height percentile', 'son short for age', 'growth hormone worth it',
+  'bone age test', 'will my kid catch up', 'worried about height',
+];
+
+// POST /reddit-discover { queries?, subreddits?, limit? } — 키 없으면 501 안내.
+marketingRouter.post('/reddit-discover', async (req: Request, res: Response) => {
+  if (!redditConfigured()) {
+    return res.status(501).json({
+      success: false,
+      error: 'Reddit 미설정 — ai-server/.env 에 REDDIT_CLIENT_ID·REDDIT_CLIENT_SECRET 추가 후 서버 재시작.',
+    });
+  }
+  const b = (req.body ?? {}) as { queries?: string[]; subreddits?: string[]; limit?: number };
+  const queries = Array.isArray(b.queries) && b.queries.length ? b.queries : REDDIT_DEFAULT_QUERIES;
+  const subreddits = Array.isArray(b.subreddits) && b.subreddits.length ? b.subreddits : REDDIT_DEFAULT_SUBS;
+  try {
+    const items = await discoverThreads({ queries, subreddits, limit: b.limit });
+    res.json({ success: true, items });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] reddit-discover failed', e);
     res.status(502).json({ success: false, error: msg });
   }
 });

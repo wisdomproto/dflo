@@ -118,6 +118,35 @@ export async function generateReplyDraft(req: GenerateReplyReq): Promise<string>
   return body.draft as string;
 }
 
+// Reddit 발굴 결과 스레드 (ai-server RedditThread 와 동일 shape).
+export interface RedditThread {
+  id: string;
+  title: string;
+  url: string;
+  body: string;
+  author: string;
+  subreddit: string;
+  score: number;
+  numComments: number;
+  createdUtc: number;
+}
+
+// 읽기 전용 Reddit 스레드 후보 수집 (ai-server 앱전용 OAuth). 키 미설정이면 501 에러 메시지 그대로.
+export async function discoverReddit(params?: {
+  queries?: string[];
+  subreddits?: string[];
+  limit?: number;
+}): Promise<RedditThread[]> {
+  const res = await fetch(`${BASE}/api/marketing/reddit-discover`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(params ?? {}),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) throw new Error(body.error || `Reddit 발굴 실패: ${res.status}`);
+  return (body.items ?? []) as RedditThread[];
+}
+
 // 소스 자동감지 범용 번역 (Gemini 게이트). 외국 커뮤니티 글 → 한글 읽기 / 한글 답글 → 현지어 게시 양방향.
 export async function translateText(text: string, targetLang: string): Promise<string> {
   const res = await fetch(`${BASE}/api/marketing/translate-text`, {
