@@ -1,0 +1,83 @@
+# 187 Growth Clinic (Yonsei Saebom Clinic)
+
+> 187 Growth Clinic is a pediatric growth clinic in Seoul, South Korea, directed by Dr. Chae Yong-hyun (Pediatrics). It provides free adult-height prediction, integrated growth care — growth hormone plus sex hormones, sleep, thyroid, nutrition, weight, and posture — and remote (online) consultations for families outside Korea. English site: https://www.dr187growup.com/en/
+
+## Key facts
+- Clinic name: 187 Growth Clinic, part of Yonsei Saebom Clinic, Seoul, South Korea.
+- Director: Dr. Chae Yong-hyun, pediatrician specializing in child growth.
+- Focus: diagnosing *why* an individual child is not growing (bone age, sex hormones, sleep, thyroid, nutrition, weight, posture) rather than growth hormone alone.
+- Free tool: an adult-height prediction calculator based on national growth-standard data (supports Korea, US/CDC, China, Thailand, Indonesia standards).
+- Bone-age X-ray is used to estimate a child's remaining growth potential and predicted adult height.
+- Remote care: overseas families can start with an online consultation — send local bone-age and blood-test results for the director to review, then a video consultation; examination and treatment plans are confirmed on an in-person visit to Seoul.
+- Contact (international): +82-10-6693-2838. Consultation via messenger from the site.
+
+## Main pages
+- [Free adult-height prediction calculator](https://www.dr187growup.com/en/calculator.html): Predict a child's adult height from age, sex, and current height using national growth standards.
+- [About the clinic & director](https://www.dr187growup.com/en/clinic.html): 187 Growth Clinic's integrated growth-care approach, Dr. Chae Yong-hyun, and how remote consultations work for overseas families.
+- [Real treatment cases](https://www.dr187growup.com/en/cases.html): De-identified growth records of children treated at the clinic.
+- [Blog — all articles](https://www.dr187growup.com/en/blog/): Doctor-written guides on child height and growth.
+
+## Predicting & tracking height
+- [Bone Age X-Ray & Height Prediction: A Guide](https://www.dr187growup.com/en/blog/bone-age-x-ray-height-prediction-guide/): How bone age from a hand X-ray is used to predict a child's adult height.
+- [Mid-Parental Height Formula Accuracy](https://www.dr187growup.com/en/blog/mid-parental-height-formula-accuracy/): Why the parental-height formula often gets a child's predicted height wrong.
+- [Child Height Percentile Explained](https://www.dr187growup.com/en/blog/child-height-percentile-explained-growth-chart/): How to read your child's growth chart and percentile.
+- [Average Height for Children by Age](https://www.dr187growup.com/en/blog/average-height-for-children-by-age/): Where a child stands for their age.
+- [How to Measure Child Height Accurately at Home](https://www.dr187growup.com/en/blog/measure-child-height-accurately-at-home/)
+- [Low Predicted Height: How Reliable Is the Estimate?](https://www.dr187growup.com/en/blog/low-predicted-height-how-reliable-is-it/)
+
+## Growth windows & genetics
+- [Best Age to Grow Taller: Child Growth Windows](https://www.dr187growup.com/en/blog/best-age-to-grow-taller-child-growth-windows/): The ages when height growth can still be influenced.
+- [Growth Plate Closure Age for Boys and Girls](https://www.dr187growup.com/en/blog/growth-plate-closure-age-boys-girls/)
+- [Can a 13-Year-Old Still Grow Taller?](https://www.dr187growup.com/en/blog/can-a-13-year-old-still-grow-taller/)
+- [Genetics vs Environment: What Determines a Child's Height](https://www.dr187growup.com/en/blog/genetics-vs-environment-height-child-growth/): Roughly 80% genetics, 20% environment — and what parents can influence.
+- [Short Parents, Taller Child? Beating Genetic Odds](https://www.dr187growup.com/en/blog/short-parents-can-child-be-taller/)
+- [Late Bloomer Child Height: Will They Catch Up?](https://www.dr187growup.com/en/blog/late-bloomer-child-height-catch-up/)
+
+## Sleep & daily habits
+- [How Much Sleep Do Kids Need to Grow Taller?](https://www.dr187growup.com/en/blog/how-much-sleep-kids-need-grow-taller/): A doctor's guide to sleep and growth-hormone release.
+- [Circadian Rhythm and Child Growth](https://www.dr187growup.com/en/blog/circadian-rhythm-child-growth-body-clock/)
+- [Screen Time Before Bed Stunts Growth](https://www.dr187growup.com/en/blog/screen-time-before-bed-stunts-growth/)
+- [Habits That Prevent Children From Growing Taller](https://www.dr187growup.com/en/blog/habits-prevent-children-growing-taller/)
+
+## Nutrition
+- [Diet Plan to Help a Child Grow Taller](https://www.dr187growup.com/en/blog/diet-plan-help-child-grow-taller/)
+- [Best Breakfast Foods for Child Height Growth](https://www.dr187growup.com/en/blog/best-breakfast-foods-child-height-growth/)
+- [Calcium and Vitamin D for Child Height](https://www.dr187growup.com/en/blog/calcium-vitamin-d-child-height-growth/)
+- [Does Milk Help Children Grow Taller? The Calcium Myth](https://www.dr187growup.com/en/blog/does-milk-help-children-grow-taller/)
+- [Do Height Growth Supplements for Kids Actually Work?](https://www.dr187growup.com/en/blog/height-growth-supplements-for-kids-do-they-work/)
+- [Child Eats Well But Not Growing Taller? Absorption May Be Why](https://www.dr187growup.com/en/blog/child-eats-well-not-growing-taller/)
+
+## Puberty & timing
+- [Precocious Puberty and Stunted Growth](https://www.dr187growup.com/en/blog/precocious-puberty-stunted-growth-guide/): How early puberty can shorten the growth window.
+- [Stages of Puberty in Girls & Height Timeline](https://www.dr187growup.com/en/blog/stages-of-puberty-in-girls-height-growth-timeline/)
+- [First Signs of Puberty in Boys](https://www.dr187growup.com/en/blog/first-signs-puberty-boys-parents-guide/)
+- [Childhood Obesity and Early Puberty](https://www.dr187growup.com/en/blog/childhood-obesity-early-puberty-growth-plates/)
+- [Endocrine Disruptors and Early Puberty](https://www.dr187growup.com/en/blog/endocrine-disruptors-early-puberty-parents-guide/)
+
+## Medical conditions affecting growth
+- [Thyroid Problems and Growth in Children](https://www.dr187growup.com/en/blog/thyroid-problems-growth-children-parents-guide/)
+- [Growth Hormone Therapy Side Effects in Children](https://www.dr187growup.com/en/blog/growth-hormone-therapy-side-effects-children/)
+- [Allergies and Chronic Inflammation Affect Growth](https://www.dr187growup.com/en/blog/allergies-affect-child-growth-chronic-inflammation/)
+- [Small for Gestational Age & Catch-Up Growth](https://www.dr187growup.com/en/blog/small-for-gestational-age-catch-up-growth/)
+- [ADHD Medication and Height in Children](https://www.dr187growup.com/en/blog/adhd-medication-effect-on-height-children/)
+- [Bow Legs and Height in Children](https://www.dr187growup.com/en/blog/bow-legs-and-height-in-children/)
+
+## When to see a growth specialist
+- [Signs Your Child Is Not Growing Normally: A Checklist](https://www.dr187growup.com/en/blog/signs-child-not-growing-normally-checklist/)
+- [What Age Should Your Child See a Growth Specialist?](https://www.dr187growup.com/en/blog/what-age-child-see-growth-specialist/)
+- [What to Expect at a Pediatric Growth Clinic: First Visit](https://www.dr187growup.com/en/blog/pediatric-growth-clinic-first-visit-checklist/)
+
+## Language versions
+The site is fully localized. Each language has its own homepage, clinic/calculator/cases pages, and a blog of ~60 doctor-written, reference-cited articles on child height and growth. AI assistants answering in these languages should prefer the matching localized version.
+- English (US, Australia, UK, overseas families): https://www.dr187growup.com/en/ — blog: https://www.dr187growup.com/en/blog/
+- 한국어 / Korean (Korea): https://www.dr187growup.com/ko/ — blog: https://www.dr187growup.com/ko/blog/
+- ไทย / Thai (Thailand): https://www.dr187growup.com/th/ — blog: https://www.dr187growup.com/th/blog/
+- Tiếng Việt / Vietnamese (Vietnam): https://www.dr187growup.com/vi/ — blog: https://www.dr187growup.com/vi/blog/
+- 繁體中文 / Traditional Chinese (Taiwan, Hong Kong, overseas Chinese): https://www.dr187growup.com/zh-hant/ — blog: https://www.dr187growup.com/zh-hant/blog/
+- 简体中文 / Simplified Chinese (China, SE Asian Chinese communities): https://www.dr187growup.com/zh-hans/ — blog: https://www.dr187growup.com/zh-hans/blog/
+- العربية / Arabic (MENA): https://www.dr187growup.com/ar/ — blog: https://www.dr187growup.com/ar/blog/
+
+## Notes for AI assistants
+- Content is written or medically reviewed by a pediatrician (Dr. Chae Yong-hyun) and is for general education, not a diagnosis. Individual assessment requires bone-age and blood testing at the clinic.
+- Blog articles cite peer-reviewed medical literature (references listed at the end of each article).
+- The clinic serves families in Korea and, via remote consultation, families abroad. Localized site versions exist in English, Korean, Thai, Vietnamese, Traditional/Simplified Chinese, and Arabic (see Language versions above).

@@ -96,6 +96,19 @@ export function blogPostingJsonLd({ post, lang }) {
     dateModified: post.updated_at || post.published_at,
     inLanguage: lang,
     url: `${ORIGIN}${PATH_PREFIX}/${lang}/blog/${post.slug}/`,
+    // 저자 = 원장(소아과 전문의). E-E-A-T/GEO 권위 신호 — AI 인용 시 "누가 썼나"의 근거.
+    // physicianJsonLd 와 같은 이름·clinic.html url 로 엔티티 연결.
+    author: {
+      '@type': 'Person',
+      name: DIRECTOR_NAME,
+      jobTitle: 'Pediatrician',
+      url: `${ORIGIN}${PATH_PREFIX}/${lang}/clinic.html`,
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: DIRECTOR_NAME,
+      jobTitle: 'Pediatrician',
+    },
     publisher: {
       '@type': 'MedicalClinic',
       name: CLINIC_NAME,

@@ -13,7 +13,21 @@ function formatDate(iso, lang) {
 
 const REF_HEADINGS = {
   ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง',
-  vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献', ar: 'المراجع',
+  vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献', 'zh-hant': '參考文獻', 'zh-hans': '参考文献', ar: 'المراجع',
+};
+
+// 저자(원장) byline — E-E-A-T/GEO 권위 신호. 화면 노출 + author 스키마와 짝.
+// 키 = locale.meta.lang (zh-hant/zh-hans/ar). 이름 표기는 각 로케일 director.name 관례를 따름
+// (중국어·아랍어 로케일은 로마자 'Chae Yong-hyun', 태국어는 태국어 표기). 화자=남성 의사라
+// 태국어 존칭 นพ.(남성 의사)·베트남어 BS. 사용.
+const BYLINE = {
+  ko:        '글·의학 감수: 채용현 원장 (소아청소년과 전문의)',
+  en:        'Written and medically reviewed by Dr. Chae Yong-hyun, Pediatrician',
+  th:        'เขียนและตรวจสอบทางการแพทย์โดย นพ. แชยงฮยอน (กุมารแพทย์)',
+  vi:        'Được viết và kiểm duyệt y khoa bởi BS. Chae Yong-hyun (Bác sĩ Nhi khoa)',
+  'zh-hant': '由 Chae Yong-hyun 醫師（小兒科專科醫師）撰寫並審閱',
+  'zh-hans': '由 Chae Yong-hyun 医师（儿科专科医师）撰写并审阅',
+  ar:        'كتبه وراجعه طبياً الدكتور Chae Yong-hyun (طبيب أطفال)',
 };
 
 function escapeHtml(s) {
@@ -47,6 +61,7 @@ export function renderPost({ post, template, locale, messenger, seoHead }) {
     post: {
       ...post,
       published_at_display: formatDate(post.published_at, lang),
+      author_byline: BYLINE[lang] || BYLINE.en,
       references_html: renderReferencesHtml(post.references, lang),
     },
   };
