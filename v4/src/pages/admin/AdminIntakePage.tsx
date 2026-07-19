@@ -13,10 +13,10 @@ import type { IntakeSubmission, IntakeLang } from '@/features/intake/types';
 type StatusFilter = 'pending' | 'approved' | 'rejected' | 'all';
 
 const FILTERS: { key: StatusFilter; label: string }[] = [
+  { key: 'all', label: '전체' },
   { key: 'pending', label: '대기' },
   { key: 'approved', label: '승인' },
   { key: 'rejected', label: '반려' },
-  { key: 'all', label: '전체' },
 ];
 
 const SHARE_LANGS: { lang: IntakeLang; flag: string; label: string }[] = [
@@ -67,7 +67,7 @@ function ShareLinkBar() {
         }
       >
         <span>🌐</span>
-        <span>언어 선택</span>
+        <span>글로벌 설문</span>
         <span className="text-[10px] opacity-70">
           {copied === '__global__' ? '복사됨 ✓' : '📋'}
         </span>
@@ -121,7 +121,7 @@ function StatusBadge({ status }: { status: IntakeSubmission['status'] }) {
 
 export default function AdminIntakePage() {
   const navigate = useNavigate();
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('pending');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [countryFilter, setCountryFilter] = useState<string>('all');
   const [subs, setSubs] = useState<IntakeSubmission[]>([]);
   const [loading, setLoading] = useState(true);
