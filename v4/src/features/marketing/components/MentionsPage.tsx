@@ -18,6 +18,10 @@ const PLATFORMS = [
   { id: 'youtube', label: '유튜브' },
   { id: 'facebook', label: '페이스북' },
   { id: 'threads', label: '스레드' },
+  { id: 'reddit', label: 'Reddit' },
+  { id: 'quora', label: 'Quora' },
+  { id: 'pantip', label: 'Pantip (태국)' },
+  { id: 'xiaohongshu', label: '샤오홍슈 (小红书)' },
   { id: 'community', label: '커뮤니티' },
 ] as const;
 
@@ -34,7 +38,7 @@ const SENT_FILTERS: { id: 'all' | MentionSentiment; label: string }[] = [
   { id: 'negative', label: '부정' },
 ];
 
-const LANGS = ['ko', 'th', 'vi', 'en'] as const;
+const LANGS = ['ko', 'en', 'th', 'vi', 'zh'] as const;
 
 const EMPTY_FORM = {
   platform: 'naver_kin' as string,

@@ -117,3 +117,15 @@ export async function generateReplyDraft(req: GenerateReplyReq): Promise<string>
   if (!res.ok || !body.success) throw new Error(body.error || `초안 생성 실패: ${res.status}`);
   return body.draft as string;
 }
+
+// 소스 자동감지 범용 번역 (Gemini 게이트). 외국 커뮤니티 글 → 한글 읽기 / 한글 답글 → 현지어 게시 양방향.
+export async function translateText(text: string, targetLang: string): Promise<string> {
+  const res = await fetch(`${BASE}/api/marketing/translate-text`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, targetLang }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) throw new Error(body.error || `번역 실패: ${res.status}`);
+  return body.text as string;
+}

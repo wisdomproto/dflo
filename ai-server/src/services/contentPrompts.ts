@@ -187,6 +187,26 @@ ${r.title}
 ${r.body}`;
 }
 
+// 소스 언어 자동감지 범용 순수텍스트 번역 (커뮤니티 글 → 한글 읽기 / 한글 답글 → 현지어 게시).
+// buildTranslatePrompt 와 달리 "한국어 소스" 를 가정하지 않는다. JSON 아닌 순수 번역문만 반환.
+const PLAIN_TRANSLATE_NAMES: Record<string, string> = {
+  ko: '한국어', en: '영어', th: '태국어', vi: '베트남어',
+  'zh-hant': '번체 중국어', 'zh-hans': '간체 중국어', zh: '중국어', 'zh-tw': '번체 중국어',
+  ja: '일본어', id: '인도네시아어', ms: '말레이어', ar: '아랍어',
+};
+
+export function buildPlainTranslatePrompt(r: { text: string; targetLang: string }): string {
+  const lang = PLAIN_TRANSLATE_NAMES[r.targetLang] || r.targetLang;
+  return `다음 텍스트를 ${lang}로 번역하세요.
+- 원문 언어는 자동으로 감지하세요.
+- 온라인 커뮤니티의 글/댓글 번역입니다. 구어체 뉘앙스와 어감을 살리되 의미를 정확히 전달하세요.
+- 의료 관련 표현은 정확하게 옮기세요.
+- **번역문만** 출력하세요. 따옴표·설명·머리말·코드펜스·원문 병기 없이 순수 번역 결과만.
+
+## 원문
+${r.text}`;
+}
+
 /** blog channel code → 한국어 채널 이름 */
 function channelLabel(code?: string): string {
   if (code === 'wordpress') return '워드프레스';

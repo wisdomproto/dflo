@@ -3,6 +3,7 @@ import { useState } from 'react';
 import {
   generateReplyDraft,
   saveMention,
+  translateText,
   type Mention,
   type MentionSentiment,
   type MentionStatus,
@@ -17,6 +18,10 @@ const PLATFORM_ICON: Record<string, string> = {
   youtube: '▶️',
   facebook: '👤',
   threads: '🧵',
+  reddit: '👽',
+  quora: '❓',
+  pantip: '🇹🇭',
+  xiaohongshu: '📕',
   community: '💬',
 };
 
@@ -29,7 +34,16 @@ const PLATFORM_LABEL: Record<string, string> = {
   youtube: '유튜브',
   facebook: '페이스북',
   threads: '스레드',
+  reddit: 'Reddit',
+  quora: 'Quora',
+  pantip: 'Pantip',
+  xiaohongshu: '샤오홍슈',
   community: '커뮤니티',
+};
+
+// 답글 번역 대상 언어 라벨 (mention.language → 표시명)
+const LANG_LABEL: Record<string, string> = {
+  ko: '한국어', en: '영어', th: '태국어', vi: '베트남어', zh: '중국어',
 };
 
 const SENTIMENT_BADGE: Record<MentionSentiment, { label: string; cls: string }> = {
@@ -81,9 +95,21 @@ export function MentionCard({
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  // 원문 → 한글 번역 (외국 커뮤니티 글 읽기용)
+  const [koBody, setKoBody] = useState('');
+  const [koLoading, setKoLoading] = useState(false);
+  const [koErr, setKoErr] = useState<string | null>(null);
+  const [showKo, setShowKo] = useState(false);
+  // 한글 답글 → 현지어 번역 (게시용)
+  const [replyOut, setReplyOut] = useState('');
+  const [replyOutLoading, setReplyOutLoading] = useState(false);
+  const [replyCopied, setReplyCopied] = useState(false);
 
   const sentiment = SENTIMENT_BADGE[mention.sentiment];
+  const isForeign = !!mention.language && mention.language !== 'ko';
+  const targetLabel = LANG_LABEL[mention.language] || mention.language;
 
+  // AI 답글 초안은 **한글로** 받는다(운영자가 읽고 수정 → 게시 시 현지어로 번역).
   const generate = async () => {
     setOpen(true);
     setLoading(true);
@@ -94,15 +120,60 @@ export function MentionCard({
         platform: mention.platform,
         sentiment: mention.sentiment,
         tone,
-        language: mention.language,
+        language: 'ko',
       });
       setDraft(text);
+      setReplyOut('');
       const saved = await saveMention({ ...mention, replyDraft: text });
       onChanged(saved);
     } catch (e) {
       setErr(e instanceof Error ? e.message : '초안 생성 실패 (Gemini 키 확인)');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // 원문(제목+본문) → 한글. 한 번 번역하면 캐시하고 토글만.
+  const translateBodyKo = async () => {
+    if (koBody) {
+      setShowKo((v) => !v);
+      return;
+    }
+    setKoLoading(true);
+    setKoErr(null);
+    try {
+      const src = [mention.title, mention.body].filter(Boolean).join('\n\n');
+      const ko = await translateText(src, 'ko');
+      setKoBody(ko);
+      setShowKo(true);
+    } catch (e) {
+      setKoErr(e instanceof Error ? e.message : '번역 실패');
+    } finally {
+      setKoLoading(false);
+    }
+  };
+
+  // 한글 답글 초안 → 멘션 언어(게시용). 초안 수정 시 replyOut 은 비워져 재번역 유도.
+  const translateReply = async () => {
+    setReplyOutLoading(true);
+    setErr(null);
+    try {
+      const out = await translateText(draft, mention.language);
+      setReplyOut(out);
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : '번역 실패');
+    } finally {
+      setReplyOutLoading(false);
+    }
+  };
+
+  const copyReplyOut = async () => {
+    try {
+      await navigator.clipboard.writeText(replyOut);
+      setReplyCopied(true);
+      setTimeout(() => setReplyCopied(false), 1500);
+    } catch {
+      setErr('복사 실패');
     }
   };
 
@@ -175,7 +246,27 @@ export function MentionCard({
       </div>
 
       {mention.body && (
-        <p className="mb-3 whitespace-pre-wrap break-words text-sm text-gray-600">{mention.body}</p>
+        <div className="mb-3">
+          <p className="whitespace-pre-wrap break-words text-sm text-gray-600">{mention.body}</p>
+          {isForeign && (
+            <div className="mt-1.5">
+              <button
+                type="button"
+                onClick={translateBodyKo}
+                disabled={koLoading}
+                className="text-xs font-medium text-[#4A2D6B] hover:underline disabled:opacity-40"
+              >
+                {koLoading ? '번역 중…' : showKo ? '한글 번역 접기' : '🇰🇷 한글로 보기'}
+              </button>
+              {koErr && <span className="ml-2 text-xs text-red-500">{koErr}</span>}
+              {showKo && koBody && (
+                <div className="mt-1.5 whitespace-pre-wrap break-words rounded-lg border border-[#4A2D6B]/20 bg-[#4A2D6B]/5 p-2.5 text-sm text-gray-700">
+                  {koBody}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       )}
 
       <div className="flex flex-wrap items-center gap-2">
@@ -208,22 +299,38 @@ export function MentionCard({
 
       {open && (
         <div className="mt-3 rounded-lg border border-gray-200 bg-gray-50 p-3">
+          <label className="mb-1 block text-[11px] font-medium text-gray-400">
+            답글 초안 {isForeign && '(한글로 작성 → 아래에서 현지어로 번역해 게시)'}
+          </label>
           <textarea
             value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+            onChange={(e) => {
+              setDraft(e.target.value);
+              setReplyOut(''); // 초안이 바뀌면 이전 번역은 무효
+            }}
             rows={4}
             placeholder="AI 답글 초안이 여기에 표시됩니다. 직접 수정할 수도 있어요."
             className="w-full resize-y rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-[#4A2D6B] focus:outline-none"
           />
-          <div className="mt-2 flex items-center gap-2">
+          <div className="mt-2 flex flex-wrap items-center gap-2">
             <button
               type="button"
               onClick={copy}
               disabled={!draft.trim()}
               className="rounded-lg bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700 disabled:opacity-40"
             >
-              {copied ? '✓ 복사됨' : '📋 복사'}
+              {copied ? '✓ 복사됨' : isForeign ? '📋 한글 복사' : '📋 복사'}
             </button>
+            {isForeign && (
+              <button
+                type="button"
+                onClick={translateReply}
+                disabled={!draft.trim() || replyOutLoading}
+                className="rounded-lg bg-emerald-600 px-3 py-1 text-xs font-semibold text-white disabled:opacity-40"
+              >
+                {replyOutLoading ? '번역 중…' : `🌐 ${targetLabel}로 번역`}
+              </button>
+            )}
             <button
               type="button"
               onClick={async () => {
@@ -239,6 +346,22 @@ export function MentionCard({
               💾 초안 저장
             </button>
           </div>
+
+          {isForeign && replyOut && (
+            <div className="mt-2 rounded-lg border border-emerald-200 bg-emerald-50 p-2.5">
+              <div className="mb-1 flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-emerald-700">{targetLabel} (게시용)</span>
+                <button
+                  type="button"
+                  onClick={copyReplyOut}
+                  className="text-[11px] font-semibold text-emerald-700 hover:underline"
+                >
+                  {replyCopied ? '✓ 복사됨' : '📋 복사'}
+                </button>
+              </div>
+              <p className="whitespace-pre-wrap break-words text-sm text-gray-700">{replyOut}</p>
+            </div>
+          )}
         </div>
       )}
     </div>

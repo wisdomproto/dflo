@@ -13,7 +13,7 @@ import { pushToChannel } from '../services/publishPush.js';
 import { buildCommentPrompt, type CommentConfig, type CommentDraftRequest } from '../services/commentDraft.js';
 import { buildAdsInsightPrompt, type AdsInsightRequest } from '../services/adsInsights.js';
 import { buildKeywordIdeasPrompt, parseIdeas, type IdeasConfig, type IdeasRequest } from '../services/keywordIdeas.js';
-import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt, buildBlogSeoOutlinePrompt, buildBlogSeoBodyPrompt } from '../services/contentPrompts.js';
+import { buildBasePrompt, buildTopicPrompt, buildRewritePrompt, buildBlogPrompt, buildCardNewsPrompt, buildTranslatePrompt, buildPlainTranslatePrompt, buildCardnewsI18nPrompt, buildCaptionHashtagPrompt, buildBlogSeoOutlinePrompt, buildBlogSeoBodyPrompt } from '../services/contentPrompts.js';
 import { createImageGenerator, DEFAULT_IMAGE_MODEL, type AspectRatio } from '../services/imageGenerator.js';
 import { getConnectionPublic, deleteConnection } from '../services/metaConnectionStore.js';
 import { fetchChannelFeed } from '../services/metaFeed.js';
@@ -288,6 +288,23 @@ marketingRouter.post('/comment-draft', async (req: Request, res: Response) => {
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[marketing] comment-draft failed', e);
+    res.status(502).json({ success: false, error: msg });
+  }
+});
+
+// POST /translate-text : 소스 자동감지 → 대상 언어 순수 텍스트 번역 (커뮤니티 글/답글용, Gemini 게이트).
+marketingRouter.post('/translate-text', async (req: Request, res: Response) => {
+  const body = (req.body ?? {}) as { text?: string; targetLang?: string };
+  if (!body.text || !String(body.text).trim()) return res.status(400).json({ success: false, error: 'text required' });
+  if (!body.targetLang || !String(body.targetLang).trim()) return res.status(400).json({ success: false, error: 'targetLang required' });
+  try {
+    const out = await generateText(buildPlainTranslatePrompt({ text: String(body.text), targetLang: String(body.targetLang) }));
+    const clean = (out ?? '').trim();
+    if (!clean) return res.status(502).json({ success: false, error: '번역 결과가 비어 있습니다. 다시 시도해주세요.' });
+    res.json({ success: true, text: clean });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[marketing] translate-text failed', e);
     res.status(502).json({ success: false, error: msg });
   }
 });
