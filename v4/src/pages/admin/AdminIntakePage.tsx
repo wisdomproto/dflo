@@ -24,6 +24,9 @@ const SHARE_LANGS: { lang: IntakeLang; flag: string; label: string }[] = [
   { lang: 'th', flag: '🇹🇭', label: 'ไทย' },
   { lang: 'vi', flag: '🇻🇳', label: 'Tiếng Việt' },
   { lang: 'en', flag: '🇺🇸', label: 'English' },
+  { lang: 'zh-hans', flag: '🇨🇳', label: '简体中文' },
+  { lang: 'zh-hant', flag: '🇹🇼', label: '繁體中文' },
+  { lang: 'ja', flag: '🇯🇵', label: '日本語' },
 ];
 
 function ShareLinkBar() {

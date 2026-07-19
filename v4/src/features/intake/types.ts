@@ -1,7 +1,7 @@
 import type { IntakeSurvey } from '@/shared/types';
 
-export type IntakeLang = 'ko' | 'th' | 'vi' | 'en';
-export const INTAKE_LANGS: IntakeLang[] = ['ko', 'th', 'vi', 'en'];
+export type IntakeLang = 'ko' | 'th' | 'vi' | 'en' | 'zh-hans' | 'zh-hant' | 'ja';
+export const INTAKE_LANGS: IntakeLang[] = ['ko', 'th', 'vi', 'en', 'zh-hans', 'zh-hant', 'ja'];
 
 export interface UploadMeta {
   kind: 'xray' | 'lab';
