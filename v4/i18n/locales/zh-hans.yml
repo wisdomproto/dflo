@@ -441,7 +441,7 @@ clinic:
     name_suffix: ""
     title: "院长"
     quote_line1: "我们以整合式的激素视角看待孩子的身高生长。"
-    quote_line2: "我们将以 10 年的临床经验与您同行。"
+    quote_line2: "我们将以 15 年的临床经验与您同行。"
     profile:
       - "10 年儿童生长护理·整合式激素专科"
       - "延世大学医学院／研究生院"
@@ -507,6 +507,7 @@ calculator:
     - "系统将当前身高对应到生长标准的百分位。"
     - "再将该百分位推算为成年身高。"
   faq_title: "身高计算器常见问题"
+  related_title: "延伸阅读 — 身高预测"
   faq:
     - q: "身高预测有多准确？"
       a: "这是依据人口生长数据的统计估算。精确预测需在诊所进行骨龄 X 光和医师评估。"
@@ -532,6 +533,48 @@ consult:
     h2: "选择咨询渠道"
     sub: "任一渠道皆可——我们会尽快回复您。"
     note: "线上咨询仅供一般指引。诊断与治疗需经当面检查后确认。"
+
+# 저자(원장) 소개 — GEO/E-E-A-T. 간체. 자격 단정 금지.
+author:
+  page_title: "Chae Yong-hyun 医师介绍 — 187 成长诊所（延世赛博）"
+  meta_description: "187 成长诊所院长 Chae Yong-hyun 医师。15年以上儿童生长与荷尔蒙诊疗经验，并著有儿童身高成长专书。学经历、媒体与著作介绍。"
+  kicker: "187 GROWUP"
+  name: "Chae Yong-hyun 医师"
+  name_suffix: ""
+  title: "院长 · 荷尔蒙与儿童生长诊疗专家"
+  years: "15年以上"
+  portrait_alt: "Chae Yong-hyun 医师"
+  quote: "我以整体荷尔蒙的角度看待孩子的身高成长。"
+  intro_h2: "介绍"
+  intro: "Chae Yong-hyun 医师毕业于延世大学医学院与医学研究生院，并于江南世福兰斯医院完成实习与住院医师培训。15年以上专注于儿童生长与荷尔蒙诊疗，以<strong>整合生长激素、甲状腺与性荷尔蒙的观点</strong>为每位孩子提供量身照护。现任 187 成长诊所（延世赛博）院长，并著有儿童身高成长专书。"
+  focus_h2: "专长领域"
+  focus:
+    - "儿童生长诊疗 — 精准骨龄评估 · 生长激素"
+    - "整合荷尔蒙诊疗 — 生长激素 · 甲状腺 · 性荷尔蒙"
+    - "15年以上临床经验 · 3,000+ 生长治疗案例"
+  career_h2: "学经历"
+  career:
+    - "延世大学医学院"
+    - "延世大学医学研究生院"
+    - "江南世福兰斯医院 实习·住院医师"
+    - "大韩医学会 优秀论文奖（2008）"
+    - "延世赛博诊所院长 · 创立韩国本院（2010）"
+    - "设立泰国曼谷分院（2023）"
+    - "前 SSG Landers 与 Nexen Heroes 棒球队队医（KBO）"
+  book_h2: "著作"
+  book_title: "我们孩子的身高成长圣经"
+  book_desc: "Chae 医师的著作（韩文），谈儿童成长的原理与父母在家能做的事。"
+  book_link_label: "查看书籍信息 →"
+  book_link: "https://search.shopping.naver.com/book/catalog/57313068716"
+  media_h2: "媒体 · 专栏 · 演讲"
+  media:
+    - "电视：登上韩国主要电视台 — SBS、MBN、Channel A — 及 Sebasi 讲座"
+    - "专栏：中央日报、Vogue、InStyle 等多家媒体连载"
+    - "演讲：Hana 银行江南 PB · Collab Summit Korea · 淑明女子大学"
+  cta_h2: "与 Chae 医师咨询"
+  cta_sub: "若对孩子的成长有疑问，欢迎随时联系。"
+  cta_label: "1:1 咨询"
+  disclaimer: "本页为院长介绍信息；诊断与治疗需经门诊确认。"
 
 shell:
   logo_alt: "187 生长诊所"

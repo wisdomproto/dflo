@@ -13,17 +13,17 @@ test('sitemap contains exactly one <url> per active lang home', () => {
   }
 });
 
-test('sitemap lists clinic/cases/calculator subpages for each active lang', () => {
+test('sitemap lists clinic/cases/calculator/author subpages for each active lang', () => {
   const activeLangs = ['ko', 'th', 'vi', 'en'];
   const xml = buildSitemap({ activeLangs, blogSlugs: {} });
   for (const lang of activeLangs) {
-    for (const file of ['clinic.html', 'cases.html', 'calculator.html']) {
+    for (const file of ['clinic.html', 'cases.html', 'calculator.html', 'author.html']) {
       assert.ok(xml.includes(`<loc>https://www.dr187growup.com/${lang}/${file}</loc>`), `missing ${lang}/${file}`);
     }
   }
-  // 4 homes + (3 subpages × 4 langs) = 16 indexable <loc> entries when no blog posts are present.
+  // 4 homes + (4 subpages × 4 langs) = 20 indexable <loc> entries when no blog posts are present.
   const totalLocs = (xml.match(/<loc>/g) || []).length;
-  assert.equal(totalLocs, 16);
+  assert.equal(totalLocs, 20);
 });
 
 test('sitemap embeds xhtml:link rel=alternate for each lang', () => {
@@ -51,7 +51,7 @@ test('sitemap omits blog index when a lang has zero built posts', () => {
     blogSlugs: { ko: [], th: [], vi: [], en: [] },
   });
   assert.ok(!xml.includes('/blog/'), 'no blog URLs expected when all langs are empty');
-  assert.equal((xml.match(/<loc>/g) || []).length, 16);
+  assert.equal((xml.match(/<loc>/g) || []).length, 20);
 });
 
 test('blog index hreflang alternates only reference langs that have posts', () => {

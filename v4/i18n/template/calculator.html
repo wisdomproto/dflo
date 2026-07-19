@@ -42,6 +42,10 @@
   .calc-seo-qa { margin-top: 16px; }
   .calc-seo-qa h3 { font-size: 15px; font-weight: 700; color: #2b2822; }
   .calc-seo-qa p { margin-top: 4px; color: #5a5560; font-size: 14.5px; }
+  .calc-seo-related { margin-top: 12px; padding-inline-start: 20px; }
+  .calc-seo-related li { margin: 7px 0; }
+  .calc-seo-related a { color: #703080; font-weight: 600; text-decoration: none; }
+  .calc-seo-related a:hover { text-decoration: underline; }
 </style>
 </head>
 
@@ -60,6 +64,8 @@
     <ol class="calc-seo-how">{{#each calculator.how}}<li>{{.}}</li>{{/each}}</ol>
     <h2>{{calculator.faq_title}}</h2>
     <div class="calc-seo-faq">{{#each calculator.faq}}<div class="calc-seo-qa"><h3>{{q}}</h3><p>{{a}}</p></div>{{/each}}</div>
+    <h2>{{calculator.related_title}}</h2>
+    <ul class="calc-seo-related">{{#each calculator.related_list}}<li><a href="{{href}}">{{title}}</a></li>{{/each}}</ul>
   </section>
 
 </div>

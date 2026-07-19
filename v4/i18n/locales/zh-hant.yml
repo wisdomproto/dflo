@@ -441,7 +441,7 @@ clinic:
     name_suffix: ""
     title: "院長"
     quote_line1: "我們以整合式的荷爾蒙視角看待孩子的身高生長。"
-    quote_line2: "我們將以 10 年的臨床經驗與您同行。"
+    quote_line2: "我們將以 15 年的臨床經驗與您同行。"
     profile:
       - "10 年兒童生長照護·整合式荷爾蒙專科"
       - "延世大學醫學院／醫學研究所"
@@ -507,6 +507,7 @@ calculator:
     - "系統將目前身高對應到生長標準的百分位。"
     - "再將該百分位推算為成年身高。"
   faq_title: "身高計算器常見問題"
+  related_title: "延伸閱讀 — 身高預測"
   faq:
     - q: "身高預測有多準確？"
       a: "這是依人口生長資料的統計估算。精確預測需在診所進行骨齡 X 光與醫師評估。"
@@ -532,6 +533,48 @@ consult:
     h2: "選擇諮詢管道"
     sub: "任一管道皆可——我們會盡快回覆您。"
     note: "線上諮詢僅供一般指引。診斷與治療需經當面檢查後確認。"
+
+# 저자(원장) 소개 — GEO/E-E-A-T. 번체. 자격 단정 금지.
+author:
+  page_title: "Chae Yong-hyun 醫師介紹 — 187 成長診所（延世賽博）"
+  meta_description: "187 成長診所院長 Chae Yong-hyun 醫師。15年以上兒童生長與荷爾蒙診療經驗，並著有兒童身高成長專書。學經歷、媒體與著作介紹。"
+  kicker: "187 GROWUP"
+  name: "Chae Yong-hyun 醫師"
+  name_suffix: ""
+  title: "院長 · 荷爾蒙與兒童生長診療專家"
+  years: "15年以上"
+  portrait_alt: "Chae Yong-hyun 醫師"
+  quote: "我以整體荷爾蒙的角度看待孩子的身高成長。"
+  intro_h2: "介紹"
+  intro: "Chae Yong-hyun 醫師畢業於延世大學醫學院與醫學研究所，並於江南世福蘭斯醫院完成實習與住院醫師訓練。15年以上專注於兒童生長與荷爾蒙診療，以<strong>整合生長激素、甲狀腺與性荷爾蒙的觀點</strong>為每位孩子提供量身照護。現任 187 成長診所（延世賽博）院長，並著有兒童身高成長專書。"
+  focus_h2: "專長領域"
+  focus:
+    - "兒童生長診療 — 精準骨齡評估 · 生長激素"
+    - "整合荷爾蒙診療 — 生長激素 · 甲狀腺 · 性荷爾蒙"
+    - "15年以上臨床經驗 · 3,000+ 生長治療案例"
+  career_h2: "學經歷"
+  career:
+    - "延世大學醫學院"
+    - "延世大學醫學研究所"
+    - "江南世福蘭斯醫院 實習·住院醫師"
+    - "大韓醫學會 優秀論文獎（2008）"
+    - "延世賽博診所院長 · 創立韓國本院（2010）"
+    - "設立泰國曼谷分院（2023）"
+    - "前 SSG Landers 與 Nexen Heroes 棒球隊隊醫（KBO）"
+  book_h2: "著作"
+  book_title: "我們孩子的身高成長聖經"
+  book_desc: "Chae 醫師的著作（韓文），談兒童成長的原理與父母在家能做的事。"
+  book_link_label: "查看書籍資訊 →"
+  book_link: "https://search.shopping.naver.com/book/catalog/57313068716"
+  media_h2: "媒體 · 專欄 · 演講"
+  media:
+    - "電視：登上韓國主要電視台 — SBS、MBN、Channel A — 及 Sebasi 講座"
+    - "專欄：中央日報、Vogue、InStyle 等多家媒體連載"
+    - "演講：Hana 銀行江南 PB · Collab Summit Korea · 淑明女子大學"
+  cta_h2: "與 Chae 醫師諮詢"
+  cta_sub: "若對孩子的成長有疑問，歡迎隨時聯繫。"
+  cta_label: "1:1 諮詢"
+  disclaimer: "本頁為院長介紹資訊；診斷與治療需經門診確認。"
 
 shell:
   logo_alt: "187 生長診所"

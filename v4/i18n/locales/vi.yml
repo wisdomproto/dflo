@@ -441,9 +441,9 @@ clinic:
     name_suffix: ""
     title: "Giám đốc"
     quote_line1: "Chúng tôi nhìn sự tăng trưởng chiều cao của con qua góc độ hormone tích hợp."
-    quote_line2: "Chúng tôi đồng hành cùng bạn với 10 năm kinh nghiệm khám chữa bệnh."
+    quote_line2: "Chúng tôi đồng hành cùng bạn với 15 năm kinh nghiệm khám chữa bệnh."
     profile:
-      - "10 năm khám chữa tăng trưởng nhi · chuyên gia hormone tích hợp"
+      - "15 năm khám chữa tăng trưởng nhi · chuyên gia hormone tích hợp"
       - "Trường Y Đại học Yonsei / Khoa sau đại học Y khoa"
       - "Giám đốc hiện tại của Phòng khám Yonsei Saebom"
       - "Chuyên gia điều trị hormone (tăng trưởng · tuyến giáp · giới tính)"
@@ -507,6 +507,7 @@ calculator:
     - "Công cụ so chiều cao hiện tại với phân vị của chuẩn tăng trưởng."
     - "Rồi chiếu phân vị đó thành chiều cao trưởng thành ước tính."
   faq_title: "Câu hỏi thường gặp về công cụ tính chiều cao"
+  related_title: "Tìm hiểu thêm về dự đoán chiều cao"
   faq:
     - q: "Dự đoán chiều cao chính xác đến đâu?"
       a: "Đây là ước tính thống kê từ dữ liệu dân số. Dự đoán chính xác cần chụp X-quang tuổi xương và bác sĩ đánh giá tại phòng khám."
@@ -532,6 +533,48 @@ consult:
     h2: "Chọn kênh"
     sub: "Nhắn qua kênh nào cũng được, chúng tôi sẽ phản hồi sớm."
     note: "Tư vấn trực tuyến chỉ mang tính tham khảo. Chẩn đoán và điều trị được xác nhận sau khi thăm khám thực tế."
+
+# 저자(원장) 소개 — GEO/E-E-A-T. 격식체 tôi. 자격 단정 금지.
+author:
+  page_title: "Giới thiệu BS. Chae Yong-hyun — 187 Growth Clinic (Yonsei Saebom)"
+  meta_description: "BS. Chae Yong-hyun, giám đốc 187 Growth Clinic. Hơn 15 năm điều trị tăng trưởng & nội tiết ở trẻ và là tác giả sách về tăng chiều cao cho trẻ."
+  kicker: "187 GROWUP"
+  name: "BS. Chae Yong-hyun"
+  name_suffix: ""
+  title: "Giám đốc · chuyên gia nội tiết & tăng trưởng ở trẻ"
+  years: "hơn 15 năm"
+  portrait_alt: "BS. Chae Yong-hyun"
+  quote: "Tôi nhìn chiều cao của trẻ qua bức tranh nội tiết tổng thể."
+  intro_h2: "Giới thiệu"
+  intro: "BS. Chae Yong-hyun tốt nghiệp Trường Y và Sau đại học Y, Đại học Yonsei, và hoàn thành thời gian thực tập cùng nội trú tại Bệnh viện Gangnam Severance. Hơn 15 năm qua, ông tập trung vào tăng trưởng và nội tiết ở trẻ, quản lý sự tăng trưởng của từng em bằng <strong>góc nhìn tích hợp về hormone tăng trưởng, tuyến giáp và hormone sinh dục</strong>. Ông là giám đốc 187 Growth Clinic (Yonsei Saebom) và là tác giả một cuốn sách về tăng chiều cao cho trẻ."
+  focus_h2: "Lĩnh vực chuyên môn"
+  focus:
+    - "Điều trị tăng trưởng ở trẻ — đánh giá tuổi xương chính xác · hormone tăng trưởng"
+    - "Điều trị nội tiết tích hợp — hormone tăng trưởng · tuyến giáp · hormone sinh dục"
+    - "Hơn 15 năm hành nghề · 3.000+ ca điều trị tăng trưởng"
+  career_h2: "Học vấn & sự nghiệp"
+  career:
+    - "Trường Y, Đại học Yonsei"
+    - "Sau đại học Y, Đại học Yonsei"
+    - "Thực tập & nội trú, Bệnh viện Gangnam Severance"
+    - "Giải thưởng nghiên cứu của Hiệp hội Y khoa Hàn Quốc (2008)"
+    - "Giám đốc Phòng khám Yonsei Saebom · thành lập cơ sở chính tại Hàn Quốc (2010)"
+    - "Mở chi nhánh Bangkok, Thái Lan (2023)"
+    - "Nguyên bác sĩ đội bóng chày SSG Landers & Nexen Heroes (KBO)"
+  book_h2: "Sách"
+  book_title: "Cẩm nang tăng chiều cao cho con"
+  book_desc: "Cuốn sách của BS. Chae (tiếng Hàn) về nguyên lý tăng trưởng của trẻ và những gì cha mẹ có thể làm tại nhà."
+  book_link_label: "Xem thông tin sách →"
+  book_link: "https://search.shopping.naver.com/book/catalog/57313068716"
+  media_h2: "Truyền thông · chuyên mục · diễn thuyết"
+  media:
+    - "Truyền hình: xuất hiện trên các đài lớn của Hàn Quốc — SBS, MBN, Channel A — và diễn đàn Sebasi"
+    - "Chuyên mục: JoongAng Ilbo, Vogue, InStyle và nhiều nơi khác"
+    - "Diễn thuyết: Hana Bank Gangnam PB · Collab Summit Korea · Đại học Nữ sinh Sookmyung"
+  cta_h2: "Tư vấn với BS. Chae"
+  cta_sub: "Nếu có thắc mắc về sự phát triển chiều cao của con, hãy liên hệ bất cứ lúc nào."
+  cta_label: "Tư vấn 1:1"
+  disclaimer: "Trang này là thông tin giới thiệu về giám đốc; chẩn đoán và điều trị được xác nhận khi khám trực tiếp."
 
 shell:
   logo_alt: "187 Growth Clinic"

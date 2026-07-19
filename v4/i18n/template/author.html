@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{seo_head}}
+<link rel="stylesheet" href="/_shell.css">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--shell-body); background: var(--shell-page-bg); font-size: 15px; line-height: 1.7;
+    word-break: keep-all; -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; background: #fff; }
+
+  /* ===== Hero ===== */
+  .au-hero { padding: 32px 24px 26px; text-align: center; border-bottom: 1px solid var(--shell-hairline); }
+  .au-hero .kicker {
+    display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--shell-brand); background: var(--shell-brand-soft);
+    padding: 5px 13px; border-radius: 999px; margin-bottom: 16px;
+  }
+  .au-portrait {
+    width: 116px; height: 116px; border-radius: 50%; object-fit: cover; object-position: center 15%;
+    margin: 0 auto 14px; display: block; box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .au-hero h1 { font-size: 26px; font-weight: 900; color: var(--shell-ink); letter-spacing: -0.03em; }
+  .au-hero .role { margin-top: 6px; font-size: 14px; font-weight: 700; color: var(--shell-brand); }
+  .au-hero .quote { margin-top: 12px; font-size: 14.5px; color: var(--shell-body); font-style: italic; }
+
+  /* ===== Sections ===== */
+  .au-sec { padding: 24px 24px; border-bottom: 1px solid var(--shell-hairline); }
+  .au-sec h2 {
+    font-size: 16px; font-weight: 900; color: var(--shell-ink);
+    letter-spacing: -0.03em; margin-bottom: 12px;
+  }
+  .au-sec p { font-size: 14.5px; line-height: 1.78; }
+  .au-sec ul { list-style: none; display: grid; gap: 9px; }
+  .au-sec li { position: relative; padding-left: 20px; font-size: 14px; line-height: 1.6; color: var(--shell-body); }
+  .au-sec li::before {
+    content: ''; position: absolute; left: 2px; top: 8px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--shell-brand);
+  }
+
+  /* ===== Book card ===== */
+  .au-book {
+    display: block; margin-top: 4px; padding: 16px 18px; border-radius: 14px;
+    background: var(--shell-brand-soft); text-decoration: none; color: inherit;
+    transition: transform 0.12s, box-shadow 0.18s;
+  }
+  .au-book:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.10); }
+  .au-book .bt { font-size: 15.5px; font-weight: 900; color: var(--shell-ink); letter-spacing: -0.02em; }
+  .au-book .bd { margin-top: 5px; font-size: 13px; color: var(--shell-body); line-height: 1.6; }
+  .au-book .bl { margin-top: 9px; font-size: 13px; font-weight: 800; color: var(--shell-brand); }
+
+  /* ===== CTA ===== */
+  .au-cta { padding: 26px 24px 32px; text-align: center; }
+  .au-cta h2 { font-size: 17px; font-weight: 900; color: var(--shell-ink); letter-spacing: -0.03em; }
+  .au-cta p { margin-top: 6px; font-size: 13.5px; color: var(--shell-muted); }
+  .au-cta a {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 16px; width: 100%; max-width: 320px; height: 54px; border-radius: 13px;
+    text-decoration: none; font-size: 15.5px; font-weight: 800; letter-spacing: -0.01em;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.10); transition: filter 0.15s, transform 0.12s;
+  }
+  .au-cta a:hover { filter: brightness(1.05); }
+  .au-cta a:active { transform: scale(0.985); }
+  .au-note { margin-top: 16px; font-size: 12px; line-height: 1.6; color: var(--shell-muted); }
+</style>
+</head>
+
+<body data-page="author">
+<div class="t-page">
+<div class="container">
+
+  <header class="au-hero">
+    <span class="kicker">{{author.kicker}}</span>
+    <img class="au-portrait" src="/images/doctor.jpg" alt="{{author.portrait_alt}}" width="116" height="116">
+    <h1>{{author.name}}{{author.name_suffix}}</h1>
+    <p class="role">{{author.title}} · {{author.years}}</p>
+    <p class="quote">"{{author.quote}}"</p>
+  </header>
+
+  <section class="au-sec">
+    <h2>{{author.intro_h2}}</h2>
+    <p>{{author.intro}}</p>
+  </section>
+
+  <section class="au-sec">
+    <h2>{{author.focus_h2}}</h2>
+    <ul>
+      {{#each author.focus}}
+      <li>{{.}}</li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="au-sec">
+    <h2>{{author.career_h2}}</h2>
+    <ul>
+      {{#each author.career}}
+      <li>{{.}}</li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="au-sec">
+    <h2>{{author.book_h2}}</h2>
+    <a class="au-book" href="{{author.book_link}}" target="_blank" rel="noopener">
+      <div class="bt">《{{author.book_title}}》</div>
+      <div class="bd">{{author.book_desc}}</div>
+      <div class="bl">{{author.book_link_label}}</div>
+    </a>
+  </section>
+
+  <section class="au-sec">
+    <h2>{{author.media_h2}}</h2>
+    <ul>
+      {{#each author.media}}
+      <li>{{.}}</li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="au-cta">
+    <h2>{{author.cta_h2}}</h2>
+    <p>{{author.cta_sub}}</p>
+    <a href="{{messenger.url}}" target="_blank" rel="noopener"
+       data-source="author_cta" data-channel="{{messenger.channel}}"
+       style="background:var(--shell-brand);color:#fff">{{author.cta_label}}</a>
+    <p class="au-note">{{author.disclaimer}}</p>
+  </section>
+
+</div>
+</div><!-- /.t-page -->
+
+<script>
+  window.__I18N__ = {
+    locale: "{{meta.lang}}",
+    channel: "{{messenger.channel}}",
+    messenger: {{messenger_json}},
+    consultChannels: {{consult_json}},
+    page_type: "author",
+    aiServer: "{{ai_server}}",
+    shell: {{shell_json}}
+  };
+</script>
+<script src="/_shell.js"></script>
+</body>
+</html>

@@ -158,7 +158,11 @@ export function buildHead(lang, opts = {}) {
     `<meta name="twitter:description" content="${escapeAttr(description)}">`,
     `<meta name="twitter:image" content="${ORIGIN}${seo.og_image}">`,
   ];
-  if (!opts.skipJsonLd) {
+  // opts.jsonLd — 페이지 전용 JSON-LD 배열(저자 페이지 = authorPageJsonLd). 주면 그것만,
+  // 안 주고 skipJsonLd 도 아니면 홈 기본(clinic/physician/FAQ).
+  if (opts.jsonLd && opts.jsonLd.length) {
+    for (const obj of opts.jsonLd) head.push(renderJsonLd(obj));
+  } else if (!opts.skipJsonLd) {
     head.push(
       renderJsonLd(medicalClinicJsonLd(lang)),
       renderJsonLd(physicianJsonLd(lang)),

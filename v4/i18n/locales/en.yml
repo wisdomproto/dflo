@@ -441,9 +441,9 @@ clinic:
     name_suffix: ""
     title: "Director"
     quote_line1: "We see your child's height growth through an integrated hormonal lens."
-    quote_line2: "We'll be with you, drawing on 10 years of clinical experience."
+    quote_line2: "We'll be with you, drawing on 15 years of clinical experience."
     profile:
-      - "10 years in pediatric growth care · integrated hormone specialist"
+      - "15 years in pediatric growth care · integrated hormone specialist"
       - "Yonsei University School of Medicine / Graduate School of Medicine"
       - "Current Director, Yonsei Saebom Clinic"
       - "Hormone therapy specialist (growth · thyroid · sex hormones)"
@@ -507,6 +507,7 @@ calculator:
     - "The calculator maps the current height to a growth-standard percentile."
     - "It then projects that percentile to an estimated adult height."
   faq_title: "Height calculator — FAQ"
+  related_title: "Understand predicted height — related reading"
   faq:
     - q: "How accurate is this height predictor?"
       a: "It gives a statistical estimate from population growth data. A precise prediction requires a bone-age X-ray and a doctor's review, which we do at the clinic."
@@ -532,6 +533,48 @@ consult:
     h2: "Choose a channel"
     sub: "Any channel works — we'll get back to you shortly."
     note: "Online consultation is for general guidance. Diagnosis and treatment are confirmed after an in-person examination."
+
+# 저자(원장) 소개 — GEO/E-E-A-T. 자격 단정 금지(Physician, 호르몬·성장 15년+).
+author:
+  page_title: "About Dr. Chae Yong-hyun — 187 Growth Clinic (Yonsei Saebom)"
+  meta_description: "Dr. Chae Yong-hyun, director of 187 Growth Clinic. 15+ years in child growth & hormone care and author of a book on children's height growth — education, career, media and book."
+  kicker: "187 GROWUP"
+  name: "Dr. Chae Yong-hyun"
+  name_suffix: ""
+  title: "Director · hormone & child-growth specialist"
+  years: "15+ years"
+  portrait_alt: "Dr. Chae Yong-hyun"
+  quote: "I look at a child's height through the whole hormonal picture."
+  intro_h2: "About"
+  intro: "Dr. Chae Yong-hyun graduated from Yonsei University College of Medicine and its graduate school of medicine, and completed his internship and residency at Gangnam Severance Hospital. For more than 15 years he has focused on child growth and hormone care, managing each child's growth with an <strong>integrated view of growth hormone, thyroid and sex hormones</strong>. He is the director of 187 Growth Clinic (Yonsei Saebom) and the author of a book on children's height growth."
+  focus_h2: "Areas of focus"
+  focus:
+    - "Child growth care — precise bone-age assessment · growth hormone"
+    - "Integrated hormone care — growth hormone · thyroid · sex hormones"
+    - "15+ years of practice · 3,000+ growth-treatment cases"
+  career_h2: "Education & career"
+  career:
+    - "Yonsei University College of Medicine"
+    - "Yonsei University Graduate School of Medicine"
+    - "Internship & residency, Gangnam Severance Hospital"
+    - "Korean Medical Association research award (2008)"
+    - "Director, Yonsei Saebom Clinic · founded the Korea head clinic (2010)"
+    - "Opened the Bangkok (Thailand) branch (2023)"
+    - "Former team doctor, SSG Landers & Nexen Heroes (KBO baseball)"
+  book_h2: "Book"
+  book_title: "Our Child's Height-Growth Bible"
+  book_desc: "Dr. Chae's book (in Korean) on how children grow and what parents can do at home."
+  book_link_label: "View the book →"
+  book_link: "https://search.shopping.naver.com/book/catalog/57313068716"
+  media_h2: "Media · columns · lectures"
+  media:
+    - "TV: featured on major Korean networks — SBS, MBN, Channel A — and on Sebasi talks"
+    - "Columns: JoongAng Ilbo, Vogue, InStyle and more"
+    - "Lectures: Hana Bank Gangnam PB · Collab Summit Korea · Sookmyung Women's University"
+  cta_h2: "Consult with Dr. Chae"
+  cta_sub: "If you have questions about your child's growth, reach out anytime."
+  cta_label: "1:1 Chat consultation"
+  disclaimer: "This page is introductory information about the director; diagnosis and treatment are confirmed at an in-person visit."
 
 shell:
   logo_alt: "187 Growth Clinic"

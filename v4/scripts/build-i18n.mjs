@@ -5,6 +5,7 @@ import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
 import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS, RTL_LANGS } from './lib/seo.mjs';
+import { authorPageJsonLd } from './lib/jsonld.mjs';
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
@@ -60,6 +61,27 @@ function buildBlogClusters(publishedByLang) {
   return altsByLang;
 }
 
+// 계산기(도구) 페이지 → 예측 클러스터 블로그 내부링크. 도구 페이지(height calculator 110K)의
+// 랭킹 레버 = 관련 글로 링크를 몰아 허브화. 앵커는 en slug, 언어별 실제 slug/제목은 클러스터로 자동 해석
+// (언어마다 slug 가 다르므로 하드코딩하면 어긋난다 — [[블로그 hreflang]] 과 같은 함정).
+const CALC_RELATED_EN = [
+  'bone-age-x-ray-height-prediction-guide',
+  'mid-parental-height-formula-accuracy',
+  'child-height-percentile-explained-growth-chart',
+  'low-predicted-height-how-reliable-is-it',
+];
+function relatedBlogLinks(lang, blogAlts, titleByLangSlug) {
+  const enMap = blogAlts.en || {};
+  const out = [];
+  for (const enSlug of CALC_RELATED_EN) {
+    const cluster = enMap[enSlug];        // { ko:'…', en:'…', th:'…', … } — 그 토픽이 있는 언어만
+    const slug = cluster?.[lang];
+    const title = slug && titleByLangSlug[lang]?.[slug];
+    if (slug && title) out.push({ href: `/${lang}/blog/${slug}/`, title });
+  }
+  return out;
+}
+
 async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs }) {
   // RTL 언어(아랍어)는 블로그 템플릿의 <html> 에도 dir="rtl" 을 baked — 메인 페이지 루프와 동일.
   // (블로그는 별도 렌더 경로라 이 처리를 빠뜨리면 /ar/blog/ 만 LTR 로 나온다.)
@@ -108,6 +130,13 @@ async function main() {
   // 자체 사이트 published 블로그 (Supabase) — ContentFlow 캐시와 병합. published 우선.
   const publishedByLang = await loadPublishedBlogAll(ACTIVE_LANGS);
   const blogAlts = buildBlogClusters(publishedByLang);
+  // 계산기 관련글 링크용 slug→제목 조회맵(언어별)
+  const blogTitleByLangSlug = {};
+  for (const [lang, posts] of Object.entries(publishedByLang)) {
+    const m = {};
+    for (const p of posts) m[p.slug] = p.title;
+    blogTitleByLangSlug[lang] = m;
+  }
 
   // 블로그 인덱스가 실제로 빌드되는 언어(글 1편 이상). 블로그 인덱스 hreflang 클러스터는
   // 이 집합으로만 만든다 — 글 0인 언어(중국어 등)를 넣으면 /{lang}/blog/ 가 없어 soft-404.
@@ -119,6 +148,7 @@ async function main() {
   const casesTemplate = readFileSync(join(ROOT, 'i18n/template/cases.html'), 'utf8');
   const calculatorTemplate = readFileSync(join(ROOT, 'i18n/template/calculator.html'), 'utf8');
   const consultTemplate = readFileSync(join(ROOT, 'i18n/template/consult.html'), 'utf8');
+  const authorTemplate = readFileSync(join(ROOT, 'i18n/template/author.html'), 'utf8');
   const postTemplate = readFileSync(join(ROOT, 'i18n/template/blog-post.html'), 'utf8');
   const indexTemplate = readFileSync(join(ROOT, 'i18n/template/blog-index.html'), 'utf8');
 
@@ -131,6 +161,9 @@ async function main() {
     { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title', descPath: 'calculator.meta_description' },
     { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',
       langs: (l) => (getMessengerCTA(l).consult_channels?.length ?? 0) > 1 },
+    // 저자(원장) 소개 — GEO/E-E-A-T 권위 페이지. 전 7언어(author: 블록 전부 존재). byline 이 이 페이지로 링크.
+    { name: 'author',     file: 'author.html',     template: authorTemplate,     titlePath: 'author.page_title', descPath: 'author.meta_description',
+      authorSchema: true },
   ];
 
   for (const lang of ACTIVE_LANGS) {
@@ -176,6 +209,8 @@ async function main() {
     // Subpages — re-bind seo_head per page so canonical/hreflang/title are correct
     for (const sub of SUBPAGES) {
       if (sub.langs && !sub.langs(lang)) continue;   // 언어 한정 서브페이지(consult = th/vi/en)
+      // 계산기 도구 페이지 → 예측 클러스터 블로그 관련글(언어별 실제 slug/제목, 빌드 시점 해석)
+      if (sub.name === 'calculator') locale.calculator.related_list = relatedBlogLinks(lang, blogAlts, blogTitleByLangSlug);
       const titleParts = sub.titlePath.split('.');
       let title = locale;
       for (const p of titleParts) title = title?.[p];
@@ -190,7 +225,9 @@ async function main() {
       const altPaths = sub.langs
         ? Object.fromEntries(ACTIVE_LANGS.filter(sub.langs).map((l) => [l, `/${sub.file}`]))
         : undefined;
-      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, description, skipJsonLd: true, altPaths });
+      // 저자 페이지만 전용 Person(Physician) JSON-LD, 나머지 서브페이지는 홈 기본 스키마와 경쟁 안 하게 skip
+      const jsonLd = sub.authorSchema ? [authorPageJsonLd(lang)] : undefined;
+      locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, description, skipJsonLd: !jsonLd, jsonLd, altPaths });
       writeFile(join(ROOT, 'public', lang, sub.file), lazifyImages(localizeProgramImg(render(sub.template, locale))));
     }
 
