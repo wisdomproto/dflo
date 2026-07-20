@@ -145,10 +145,10 @@ const __CONSULT_HREF = `${__NAV_BASE}/consult.html`;
 const __LANGS = [
   { code: 'ko', label: '한국어', short: 'KO' },
   { code: 'en', label: 'English', short: 'EN' },
+  { code: 'zh-hans', label: '简体中文', short: '简' },
+  { code: 'zh-hant', label: '繁體中文', short: '繁' },
   { code: 'th', label: 'ไทย', short: 'TH' },
   { code: 'vi', label: 'Tiếng Việt', short: 'VI' },
-  { code: 'zh-hant', label: '繁體中文', short: '繁' },
-  { code: 'zh-hans', label: '简体中文', short: '简' },
   { code: 'ar', label: 'العربية', short: 'ع' },
 ];
 // 현재 언어는 경로에서 먼저 읽는다 — blog-index 처럼 __I18N__ 이 없는 페이지도
