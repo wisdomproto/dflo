@@ -66,6 +66,7 @@ const AdminMedicationsPage = lazy(() => import('@/pages/admin/AdminMedicationsPa
 const CaseCandidatesAdminPage = lazy(() => import('@/pages/admin/CaseCandidatesAdminPage'));
 const PredictionsLogPage = lazy(() => import('@/features/marketing/components/PredictionsLogPage'));
 const AdminIntakePage = lazy(() => import('@/pages/admin/AdminIntakePage'));
+const AdminReferralPage = lazy(() => import('@/pages/admin/AdminReferralPage'));
 const AdminConsultingPage = lazy(() => import('@/pages/admin/AdminConsultingPage'));
 const AdminAppHomePage = lazy(() => import('@/pages/admin/AdminAppHomePage'));
 
@@ -657,6 +658,14 @@ export const router = createBrowserRouter([
             element: (
               <Suspense fallback={<SuspenseFallback />}>
                 <AdminIntakePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/admin/referral',
+            element: (
+              <Suspense fallback={<SuspenseFallback />}>
+                <AdminReferralPage />
               </Suspense>
             ),
           },

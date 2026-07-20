@@ -22,6 +22,7 @@ const MARKETING_ITEM = { to: '/marketing', icon: '📣', label: '마케팅', end
 // 상담 직원용 그룹 (설문 접수 + 상담 매뉴얼).
 const CONSULT_ITEMS = [
   { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
+  { to: '/admin/referral', icon: '📝', label: '소견서 작성', end: false },
   { to: '/admin/consulting', icon: '💬', label: '상담 매뉴얼', end: false },
 ];
 

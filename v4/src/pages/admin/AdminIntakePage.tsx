@@ -124,7 +124,7 @@ function StatusBadge({ status }: { status: IntakeSubmission['status'] }) {
 
 export default function AdminIntakePage() {
   const navigate = useNavigate();
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('pending');
   const [countryFilter, setCountryFilter] = useState<string>('all');
   const [subs, setSubs] = useState<IntakeSubmission[]>([]);
   const [loading, setLoading] = useState(true);
