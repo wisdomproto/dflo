@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchSubmissions } from '@/features/admin/services/intakeSubmissionService';
+import {
+  fetchSubmissions,
+  updateSubmissionNote,
+} from '@/features/admin/services/intakeSubmissionService';
 import IntakeSubmissionDetail from '@/features/admin/components/IntakeSubmissionDetail';
 import { countryFlag, countryLabel } from '@/shared/data/countries';
 import type { IntakeSubmission, IntakeLang } from '@/features/intake/types';
@@ -126,6 +129,7 @@ export default function AdminIntakePage() {
   const [subs, setSubs] = useState<IntakeSubmission[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [memoTarget, setMemoTarget] = useState<IntakeSubmission | null>(null);
 
   // 전체를 한 번 fetch → 국가/상태는 클라에서 필터링(국가별 미처리 배지 계산 위해).
   async function load() {
@@ -252,14 +256,14 @@ export default function AdminIntakePage() {
               {filtered.map((s) => {
                 const active = s.id === selectedId;
                 return (
-                  <li key={s.id}>
+                  <li
+                    key={s.id}
+                    className={active ? 'bg-blue-50' : 'hover:bg-gray-50'}
+                  >
                     <button
                       type="button"
                       onClick={() => setSelectedId(s.id)}
-                      className={
-                        'flex w-full flex-col gap-1 px-4 py-3 text-left transition-colors ' +
-                        (active ? 'bg-blue-50' : 'hover:bg-gray-50')
-                      }
+                      className="flex w-full flex-col gap-1 px-4 pb-1.5 pt-3 text-left"
                     >
                       <div className="flex items-center gap-2">
                         {countryFlag(s.country) && (
@@ -280,6 +284,23 @@ export default function AdminIntakePage() {
                         <span>·</span>
                         <span>{s.uploads.length}개 첨부</span>
                       </div>
+                    </button>
+                    {/* 메모 미리보기 — 클릭 시 편집 팝업 */}
+                    <button
+                      type="button"
+                      onClick={() => setMemoTarget(s)}
+                      title="메모 편집"
+                      className="block w-full px-4 pb-3 text-left"
+                    >
+                      {s.admin_note ? (
+                        <span className="line-clamp-2 block whitespace-pre-wrap rounded bg-amber-50 px-2 py-1 text-[11px] text-amber-800 hover:bg-amber-100">
+                          📝 {s.admin_note}
+                        </span>
+                      ) : (
+                        <span className="inline-block rounded border border-dashed border-slate-200 px-2 py-1 text-[11px] text-slate-400 hover:border-slate-300 hover:text-slate-500">
+                          📝 메모 추가
+                        </span>
+                      )}
                     </button>
                   </li>
                 );
@@ -308,6 +329,91 @@ export default function AdminIntakePage() {
               왼쪽 목록에서 설문을 선택하세요
             </div>
           )}
+        </div>
+      </div>
+
+      {memoTarget && (
+        <MemoModal
+          sub={memoTarget}
+          onClose={() => setMemoTarget(null)}
+          onSaved={(note) => {
+            setSubs((prev) =>
+              prev.map((s) => (s.id === memoTarget.id ? { ...s, admin_note: note } : s)),
+            );
+            setMemoTarget(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function MemoModal({
+  sub,
+  onClose,
+  onSaved,
+}: {
+  sub: IntakeSubmission;
+  onClose: () => void;
+  onSaved: (note: string) => void;
+}) {
+  const [note, setNote] = useState(sub.admin_note ?? '');
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const save = async () => {
+    if (saving) return;
+    setSaving(true);
+    setError(null);
+    try {
+      const trimmed = note.trim();
+      await updateSubmissionNote(sub.id, trimmed);
+      onSaved(trimmed);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : '메모 저장에 실패했습니다.');
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md rounded-2xl bg-white shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="border-b border-slate-200 px-5 py-3 text-sm font-semibold text-slate-900">
+          메모 — {sub.name || '(미입력)'}
+        </div>
+        <div className="px-5 py-4">
+          <textarea
+            autoFocus
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            rows={5}
+            placeholder="이 접수에 대한 내부 메모를 입력하세요 (환자에게 보이지 않음)"
+            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-100"
+          />
+          {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
+        </div>
+        <div className="flex justify-end gap-2 border-t border-slate-200 bg-slate-50 px-5 py-3">
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+          >
+            취소
+          </button>
+          <button
+            type="button"
+            onClick={save}
+            disabled={saving}
+            className="rounded bg-slate-800 px-4 py-1.5 text-xs font-semibold text-white hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {saving ? '저장 중…' : '저장'}
+          </button>
         </div>
       </div>
     </div>

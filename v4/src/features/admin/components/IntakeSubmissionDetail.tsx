@@ -5,7 +5,6 @@ import {
   approveSubmission,
   rejectSubmission,
   suggestChartNumber,
-  updateSubmissionNote,
 } from '@/features/admin/services/intakeSubmissionService';
 import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
 import { ACQUISITION_KO, INTAKE_LABELS, optLabelKo } from '@/features/intake/intakeLabels';
@@ -249,9 +248,6 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
         )}
       </Section>
 
-      {/* 어드민 메모 (내부용) */}
-      <AdminNote sub={sub} />
-
       {/* Footer actions */}
       <div className="flex gap-2 pt-1">
         <button
@@ -285,54 +281,6 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
         />
       )}
     </div>
-  );
-}
-
-function AdminNote({ sub }: { sub: IntakeSubmission }) {
-  const [note, setNote] = useState(sub.admin_note ?? '');
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const dirty = note !== (sub.admin_note ?? '');
-
-  const save = async () => {
-    if (saving) return;
-    setSaving(true);
-    setError(null);
-    try {
-      await updateSubmissionNote(sub.id, note.trim());
-      sub.admin_note = note.trim(); // keep in-memory copy in sync (list not refetched)
-      setSaved(true);
-      setTimeout(() => setSaved(false), 1500);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : '메모 저장에 실패했습니다.');
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  return (
-    <Section title="메모 (내부용)">
-      <textarea
-        value={note}
-        onChange={(e) => setNote(e.target.value)}
-        rows={3}
-        placeholder="이 접수에 대한 내부 메모를 입력하세요 (환자에게 보이지 않음)"
-        className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-100"
-      />
-      <div className="mt-2 flex items-center gap-3">
-        <button
-          type="button"
-          onClick={save}
-          disabled={!dirty || saving}
-          className="rounded-lg bg-slate-800 px-4 py-1.5 text-xs font-semibold text-white hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          {saving ? '저장 중…' : '메모 저장'}
-        </button>
-        {saved && <span className="text-xs font-medium text-emerald-600">저장됨 ✓</span>}
-        {error && <span className="text-xs text-red-600">{error}</span>}
-      </div>
-    </Section>
   );
 }
 

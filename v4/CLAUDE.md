@@ -150,6 +150,7 @@ scripts/
 - 환자관리 즐겨찾기 DB화: `063_children_is_favorite.sql` — `children.is_favorite` boolean + 치료사례 후보 58명 별표 시드. 옛 localStorage 즐겨찾기 폐기. (적용 완료 — 코드의 42703 폴백은 안전망으로 잔존)
 - 발행 큐 자동 재시도: `064_publish_queue_retry_count.sql` — `marketing_publish_queue.retry_count`. 발행 실패 시 `publishExecutor.fail()` 이 백오프 재예약(상세 ai-server/CLAUDE.md). (적용 완료)
 - 예약(콜백) 신청: `068_reservations.sql` — `reservations`(name·phone·contact_method·message·locale·status·consent·referrer·utm). 한글 하단 바 "예약하기" 리드. **RLS on·anon 정책 없음**(실명+전화 PII) → ai-server service_role 로만 접근. 조회는 `/marketing/predictions` 드롭다운 📞 예약 신청(ai-server PIN 경유). (적용 완료)
+- 설문 어드민 메모: `069_intake_admin_note.sql` — `intake_submissions.admin_note text`. `/admin/intake` 접수함 = 리스트 각 행에 메모 미리보기(📝 앰버, 없으면 "메모 추가") → 클릭 시 편집 팝업(`AdminIntakePage.MemoModal`, `updateSubmissionNote`), 저장 시 리스트 즉시 갱신. 우측 상세엔 설문 내용만(메모 편집칸은 팝업으로 이관). ⚠️ **수동 적용 필요**(미적용 시 읽기는 graceful·저장은 42703 안내). 어드민 전용(anon 불필요)
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail
@@ -206,7 +207,7 @@ scripts/
 | `/program/:slug` | ProgramDetailPage (7개 프로그램) |
 | `/guide`, `/guide/:cardId` | GrowthGuidePage / Detail |
 | `/diagnosis` | IntakeDiagnosisPage (AI 진단 intake) |
-| `/intake/:lang` | PublicIntakePage (환자 셀프 설문, 공개 **7스텝** 마법사, ko/th/vi/en/**zh-hans/zh-hant/ja**(2026-07-19 간체·번체·일본어 추가 — `IntakeLang`+`INTAKE_LABELS`+`LANG_DEFAULT_COUNTRY`(CN/TW/JP)+`AdminIntakePage.SHARE_LANGS`, 전 문항 번역. `lang` 컬럼 CHECK 없어 마이그레이션 X. ⚠️중/일 원어민 감수 대기)). 어드민 검토는 `/admin/intake`. **(2026-07-17 설문 통일)** 구글 폼 초진 설문지·`/diagnosis` 와 문항 세트 동일화 — 출생 정보(임신 주수·출생 몸무게·특이사항, StepBasic)·최근 1년 성장(StepGrowth)·**생활 습관 스텝 신설**(StepLifestyle — 취침/기상·운동 빈도·우유·식사 규칙성)·사춘기 상세 성별 분기(StepMedical — 남: 변성기·수염/체모, 여: 초경·유방 발달)·복용 약/영양제·추가 메모(StepCauses). 전부 `intake_survey` JSONB optional 필드(마이그레이션 X, 구접수 하위호환). 유입 경로에 `ai`(ChatGPT 등 AI) 옵션 4언어 추가. 셀렉트는 코드값 저장 + `intakeLabels.optLabelKo` 로 어드민 한국어 표시 |
+| `/intake` · `/intake/:lang` | 환자 셀프 설문(공개 **7스텝** 마법사). **(2026-07-19 구조)** 위저드 본체 = 공유 컴포넌트 `components/IntakeWizard.tsx`(lang prop). **`/intake` = `GlobalIntakePage`** — 진입 시 **언어 선택 팝업**(en 맨 위·7언어) → 선택 언어로 위저드, 우상단 `🌐 언어 변경`. **`/intake/:lang` = `PublicIntakePage`**(어드민 공유용 직링크, 위저드에 위임) — 없는/잘못된 코드는 **en 폴백(default=영어)**. 언어 = ko/th/vi/en/**zh-hans/zh-hant/ja**(2026-07-19 간체·번체·일본어 추가 — `IntakeLang`+`INTAKE_LABELS`+`LANG_DEFAULT_COUNTRY`(CN/TW/JP)+`AdminIntakePage.SHARE_LANGS`, 전 문항 번역. `lang` 컬럼 CHECK 없어 마이그레이션 X. ⚠️중/일 원어민 감수 대기). 어드민 검토는 `/admin/intake`. **(2026-07-17 설문 통일)** 구글 폼 초진 설문지·`/diagnosis` 와 문항 세트 동일화 — 출생 정보(임신 주수·출생 몸무게·특이사항, StepBasic)·최근 1년 성장(StepGrowth)·**생활 습관 스텝 신설**(StepLifestyle — 취침/기상·운동 빈도·우유·식사 규칙성)·사춘기 상세 성별 분기(StepMedical — 남: 변성기·수염/체모, 여: 초경·유방 발달)·복용 약/영양제·추가 메모(StepCauses). 전부 `intake_survey` JSONB optional 필드(마이그레이션 X, 구접수 하위호환). 유입 경로에 `ai`(ChatGPT 등 AI) 옵션 4언어 추가. 셀렉트는 코드값 저장 + `intakeLabels.optLabelKo` 로 어드민 한국어 표시 |
 | `/banner-admin` | AdminWebsitePage (PIN 보호) |
 | `/consulting.html` | 해외 환자 상담 매뉴얼 Q&A 편집기 (정적 HTML, noindex). **시장 4탭(🇰🇷한글/🇺🇸영어/🇹🇭태국어/🇻🇳베트남어)** + 비한국 탭은 **한글↔현지어 토글**. 카테고리/질문/답변 + 질문별 공개토글, Supabase `consulting_qa` 싱글톤에 저장, supabase-js CDN 직접 연동. **🌐 현지어 번역 버튼**(ai-server `/api/marketing/translate`, dev-only) 로 한글→현지어 일괄 번역. admin 사이드바 "상담 매뉴얼"(`/admin/consulting`)이 iframe 으로 임베드 |
 
