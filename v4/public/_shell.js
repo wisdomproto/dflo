@@ -190,7 +190,7 @@ const SHELL_HTML = `
         </svg>
         <span>${__HAS_CONSULT_PAGE ? tEsc('header.consult_label', '1:1 상담') : tEsc('header.kakao_label', '1:1 카톡 상담')}</span>
       </a>
-      <div class="t-lang" data-lang-switch>
+      <div class="t-lang" data-lang-switch translate="no">
         <button type="button" class="t-lang-btn" aria-label="${tEsc('aria.lang', '언어 선택')}" aria-haspopup="true" aria-expanded="false" data-lang-toggle>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9"/>

@@ -99,6 +99,8 @@ export function buildBlogPostHead({ post, lang, altSlugs }) {
   const ga = gaSnippet();
   const head = [
     `<title>${post.title}</title>`,
+    // 각 페이지가 이미 완역돼 있으므로 브라우저 자동번역을 차단(재번역은 라벨·용어를 오염).
+    `<meta name="google" content="notranslate">`,
     `<meta name="description" content="${escapeAttr(description)}">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     buildHreflangPaths(altPaths),
@@ -124,6 +126,7 @@ export function buildBlogIndexHead(lang, blogLangs = ACTIVE_LANGS) {
   const ga = gaSnippet();
   const head = [
     `<title>Blog | ${buildSeo(lang).title}</title>`,
+    `<meta name="google" content="notranslate">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     buildHreflangPaths(Object.fromEntries(blogLangs.map((l) => [l, path]))),
   ];
@@ -144,6 +147,7 @@ export function buildHead(lang, opts = {}) {
   const description = opts.description || seo.description;
   const head = [
     `<title>${title}</title>`,
+    `<meta name="google" content="notranslate">`,
     `<meta name="description" content="${escapeAttr(description)}">`,
     `<link rel="canonical" href="${ORIGIN}${PATH_PREFIX}/${lang}${path}">`,
     opts.altPaths ? buildHreflangPaths(opts.altPaths) : buildHreflang(path),

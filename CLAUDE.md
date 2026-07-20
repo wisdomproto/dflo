@@ -132,6 +132,7 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - **경로 매핑**(`__langHref`): 지금 보는 페이지의 대응 언어 URL로 직행 — `/{lang}/` 프리픽스만 교체(index/clinic/cases/calculator 는 파일명 전 언어 공통) + `search`·`hash` 보존(`?case=N`·utm 유지). **블로그 글만 예외** — slug 가 언어마다 달라 1:1 대응이 없으므로 `/{target}/blog/`(목록)으로. 언어별 slug 매핑 테이블 생기면 글 단위 대응 가능.
 - 현재 언어는 **경로에서 먼저 판정**(`/^\/(ko|th|vi|en)\//`) 후 `__I18N__.locale` 폴백 — blog-index 처럼 `__I18N__` 없는 페이지가 ko 로 오판되는 것 방지.
 - locale `aria.share`→`aria.lang`(4언어), 죽은 `toast.copied/failed` + `.t-share-toast` CSS 제거.
+- **브라우저 자동번역 차단 (2026-07-20)**: `/zh-hans/calculator.html` 에서 스위처 라벨이 "简体中文→간체 중국어·简→단순한"처럼 **한국어로 나오던 건 우리 버그가 아니라 크롬 자동번역**(한국 로케일 브라우저가 zh 페이지를 ko 로 재번역, "한국어로 번역했습니다" 배너). ★유인 = 스위처 `<a lang="zh-hant">繁體中文</a>` 의 **per-element `lang` 속성**(a11y용) → 크롬이 그 스니펫만 UI언어로 번역. **2중 방어**: ① `.t-lang` 컨테이너 `translate="no"`(스위처는 무조건 자국어 유지, `lang` 은 스크린리더용 존치) ② **`<meta name="google" content="notranslate">` 를 전 진입점에 주입** — `seo.mjs` head 빌더 3종(`buildHead`/`buildBlogPostHead`/`buildBlogIndexHead` = 정적 전 언어) + `v4/index.html`(SPA) + `v4/calc.html`(계산기 iframe). 각 페이지가 이미 완역돼 있어 재번역은 항상 오작동 → 페이지 통째 차단이 맞음(언어 전환은 스위처가 정본 경로). 검증: `build-i18n` 산출 14개 index/calculator 에 meta 확인.
 
 ### 예약(콜백) 신청 — 저마찰 리드 캡처 (2026-07-08, 한글 전용)
 카톡 채팅을 여는 마찰 없이 **이름·전화만 남기면 병원이 연락**하는 콜백 동선(카톡 상담과 병행). **한글(ko) 전용** — `_shell.js` 가 `__I18N__.locale==='ko'` 일 때만 렌더(`__I18N__` 없는 blog-index 등엔 미노출).
