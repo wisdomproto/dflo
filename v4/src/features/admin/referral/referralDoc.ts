@@ -15,6 +15,15 @@ export interface ReferralPatient {
   address: string;
 }
 
+/**
+ * 소견서 페이지 프리필 payload — react-router `navigate(state)` 로 전달.
+ * 설문 접수함(IntakeSubmissionDetail)의 "소견서 작성" 버튼이 환자 정보를 담아 보낸다.
+ */
+export interface ReferralPrefill extends ReferralPatient {
+  lang?: ReferralLang;
+  kinds?: DocKind[];
+}
+
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December',

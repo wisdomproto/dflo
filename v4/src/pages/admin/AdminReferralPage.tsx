@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   REFERRAL_LANGS,
   type DocKind,
@@ -8,6 +9,7 @@ import {
   buildReferralHtml,
   REFERRAL_DOC_CSS,
   type ReferralPatient,
+  type ReferralPrefill,
 } from '@/features/admin/referral/referralDoc';
 
 // ================================================
@@ -25,12 +27,29 @@ const inputCls =
   'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-100';
 
 export default function AdminReferralPage() {
-  const [name, setName] = useState('');
-  const [dob, setDob] = useState('');
-  const [gender, setGender] = useState<'male' | 'female'>('male');
-  const [address, setAddress] = useState('');
-  const [kinds, setKinds] = useState<DocKind[]>(['xray', 'lab']);
-  const [lang, setLang] = useState<ReferralLang>('en');
+  // 설문 접수함 "소견서 작성" 버튼이 navigate(state) 로 넘긴 환자 프리필.
+  const location = useLocation();
+  const prefill = (location.state as ReferralPrefill | null) ?? null;
+
+  const [name, setName] = useState(prefill?.name ?? '');
+  const [dob, setDob] = useState(prefill?.dob ?? '');
+  const [gender, setGender] = useState<'male' | 'female'>(prefill?.gender ?? 'male');
+  const [address, setAddress] = useState(prefill?.address ?? '');
+  const [kinds, setKinds] = useState<DocKind[]>(prefill?.kinds ?? ['xray', 'lab']);
+  const [lang, setLang] = useState<ReferralLang>(prefill?.lang ?? 'en');
+
+  // 이미 이 페이지에 머문 상태에서 다른 환자로 다시 진입하면(같은 라우트라 remount 안 됨)
+  // location.key 변경을 감지해 프리필을 다시 적용한다. state 없는 진입(사이드바 등)은 무시.
+  useEffect(() => {
+    if (!prefill) return;
+    setName(prefill.name ?? '');
+    setDob(prefill.dob ?? '');
+    setGender(prefill.gender ?? 'male');
+    setAddress(prefill.address ?? '');
+    if (prefill.kinds) setKinds(prefill.kinds);
+    if (prefill.lang) setLang(prefill.lang);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.key]);
 
   const patient: ReferralPatient = { name, dob, gender, address };
   const html = useMemo(

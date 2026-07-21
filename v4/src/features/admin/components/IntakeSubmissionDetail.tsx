@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/shared/lib/supabase';
 import { countryLabel } from '@/shared/data/countries';
 import {
@@ -6,6 +7,7 @@ import {
   rejectSubmission,
   suggestChartNumber,
 } from '@/features/admin/services/intakeSubmissionService';
+import type { ReferralPrefill } from '@/features/admin/referral/referralDoc';
 import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
 import { ACQUISITION_KO, INTAKE_LABELS, optLabelKo } from '@/features/intake/intakeLabels';
 
@@ -62,9 +64,24 @@ interface Props {
 }
 
 export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: Props) {
+  const navigate = useNavigate();
   const [urls, setUrls] = useState<Record<string, string>>({});
   const [approveOpen, setApproveOpen] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
+
+  // 소견서 작성 페이지로 환자 정보를 자동 채워 이동.
+  // 소견서는 환자 언어(sub.lang)로 현지화되므로 이름은 전체 이름인 name 우선(현지 병원이 읽음),
+  // name 이 비었을 때만 영문 이름으로 폴백. 언어는 설문 언어를 기본값으로.
+  const goReferral = () => {
+    const prefill: ReferralPrefill = {
+      name: sub.name?.trim() || sub.name_en?.trim() || '',
+      dob: sub.birth_date ?? '',
+      gender: sub.gender ?? 'male',
+      address: sub.address?.trim() ?? '',
+      lang: sub.lang,
+    };
+    navigate('/admin/referral', { state: prefill });
+  };
 
   // Load signed URLs for each upload.
   useEffect(() => {
@@ -247,6 +264,15 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
           </div>
         )}
       </Section>
+
+      {/* 소견서 작성 — 환자 정보를 소견서 페이지에 자동 채워 이동 (X-ray·피검사 의뢰서) */}
+      <button
+        type="button"
+        onClick={goReferral}
+        className="w-full rounded-lg border border-indigo-300 bg-indigo-50 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-100"
+      >
+        📝 소견서 작성 (X-ray·피검사 의뢰서)
+      </button>
 
       {/* Footer actions */}
       <div className="flex gap-2 pt-1">
