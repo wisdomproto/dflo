@@ -5,6 +5,7 @@ import { countryLabel } from '@/shared/data/countries';
 import {
   approveSubmission,
   rejectSubmission,
+  reopenSubmission,
   suggestChartNumber,
 } from '@/features/admin/services/intakeSubmissionService';
 import type { ReferralPrefill } from '@/features/admin/referral/referralDoc';
@@ -70,13 +71,35 @@ interface Props {
   sub: IntakeSubmission;
   onApproved: (childId: string) => void;
   onRejected: () => void;
+  onReopened: () => void;
 }
 
-export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: Props) {
+export default function IntakeSubmissionDetail({
+  sub,
+  onApproved,
+  onRejected,
+  onReopened,
+}: Props) {
   const navigate = useNavigate();
   const [urls, setUrls] = useState<Record<string, string>>({});
   const [approveOpen, setApproveOpen] = useState(false);
   const [rejectOpen, setRejectOpen] = useState(false);
+  const [reopening, setReopening] = useState(false);
+  const [reopenError, setReopenError] = useState<string | null>(null);
+
+  // 반려된 제출을 다시 대기로. 되돌리기 쉬운 저위험 액션이라 별도 확인 모달 없이 바로 처리.
+  const reopen = async () => {
+    if (reopening) return;
+    setReopening(true);
+    setReopenError(null);
+    try {
+      await reopenSubmission(sub.id);
+      onReopened();
+    } catch (e) {
+      setReopenError(e instanceof Error ? e.message : '대기로 되돌리지 못했습니다.');
+      setReopening(false);
+    }
+  };
 
   // 소견서 작성 페이지로 환자 정보를 자동 채워 이동.
   // 소견서는 환자 언어(sub.lang)로 현지화되므로 이름은 전체 이름인 name 우선(현지 병원이 읽음),
@@ -285,23 +308,51 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
         )}
       </Section>
 
-      {/* Footer actions */}
-      <div className="flex gap-2 pt-1">
-        <button
-          type="button"
-          onClick={() => setApproveOpen(true)}
-          className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700"
-        >
-          승인
-        </button>
-        <button
-          type="button"
-          onClick={() => setRejectOpen(true)}
-          className="flex-1 rounded-lg border border-red-200 bg-white py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50"
-        >
-          반려
-        </button>
-      </div>
+      {/* Footer actions — 반려된 제출은 사유 표시 + [승인]/[다시 대기로], 그 외는 [승인]/[반려] */}
+      {sub.status === 'rejected' ? (
+        <div className="space-y-2 pt-1">
+          {sub.reject_reason && (
+            <p className="rounded-lg bg-red-50 px-3 py-2 text-xs text-red-600">
+              반려 사유: {sub.reject_reason}
+            </p>
+          )}
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setApproveOpen(true)}
+              className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700"
+            >
+              승인
+            </button>
+            <button
+              type="button"
+              onClick={reopen}
+              disabled={reopening}
+              className="flex-1 rounded-lg border border-amber-300 bg-amber-50 py-2.5 text-sm font-semibold text-amber-700 hover:bg-amber-100 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {reopening ? '처리 중…' : '🔄 다시 대기로'}
+            </button>
+          </div>
+          {reopenError && <p className="text-xs text-red-600">{reopenError}</p>}
+        </div>
+      ) : (
+        <div className="flex gap-2 pt-1">
+          <button
+            type="button"
+            onClick={() => setApproveOpen(true)}
+            className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-sm font-semibold text-white hover:bg-emerald-700"
+          >
+            승인
+          </button>
+          <button
+            type="button"
+            onClick={() => setRejectOpen(true)}
+            className="flex-1 rounded-lg border border-red-200 bg-white py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50"
+          >
+            반려
+          </button>
+        </div>
+      )}
 
       {approveOpen && (
         <ApproveModal

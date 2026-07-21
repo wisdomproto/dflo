@@ -150,7 +150,7 @@ scripts/
 - 환자관리 즐겨찾기 DB화: `063_children_is_favorite.sql` — `children.is_favorite` boolean + 치료사례 후보 58명 별표 시드. 옛 localStorage 즐겨찾기 폐기. (적용 완료 — 코드의 42703 폴백은 안전망으로 잔존)
 - 발행 큐 자동 재시도: `064_publish_queue_retry_count.sql` — `marketing_publish_queue.retry_count`. 발행 실패 시 `publishExecutor.fail()` 이 백오프 재예약(상세 ai-server/CLAUDE.md). (적용 완료)
 - 예약(콜백) 신청: `068_reservations.sql` — `reservations`(name·phone·contact_method·message·locale·status·consent·referrer·utm). 한글 하단 바 "예약하기" 리드. **RLS on·anon 정책 없음**(실명+전화 PII) → ai-server service_role 로만 접근. 조회는 `/marketing/predictions` 드롭다운 📞 예약 신청(ai-server PIN 경유). (적용 완료)
-- 설문 어드민 메모: `069_intake_admin_note.sql` — `intake_submissions.admin_note text`. `/admin/intake` 접수함 = 리스트 각 행에 메모 미리보기(📝 앰버, 없으면 "메모 추가") → 클릭 시 편집 팝업(`AdminIntakePage.MemoModal`, `updateSubmissionNote`), 저장 시 리스트 즉시 갱신. 우측 상세엔 설문 내용만(메모 편집칸은 팝업으로 이관). ⚠️ **수동 적용 필요**(미적용 시 읽기는 graceful·저장은 42703 안내). 어드민 전용(anon 불필요)
+- 설문 어드민 메모: `069_intake_admin_note.sql` — `intake_submissions.admin_note text`. `/admin/intake` 접수함 = 리스트 각 행에 메모 미리보기(📝 앰버, 없으면 "메모 추가") → 클릭 시 편집 팝업(`AdminIntakePage.MemoModal`, `updateSubmissionNote`), 저장 시 리스트 즉시 갱신. 우측 상세엔 설문 내용만(메모 편집칸은 팝업으로 이관). ⚠️ **수동 적용 필요**(미적용 시 읽기는 graceful·저장은 42703 안내). 어드민 전용(anon 불필요). **(2026-07-21) 반려→대기 되돌리기**: 상세 푸터가 상태별 분기 — 반려된 제출은 반려 사유 배너(있을 때)+`[승인]`/`[🔄 다시 대기로]`(`reopenSubmission` = status→pending·reject_reason·reviewed_at 초기화, `onReopened` 은 선택 유지 리로드), 그 외는 `[승인]`/`[반려]`
 - Seeds: `v4/scripts/seeds/seed_treatment_cases.sql`, `seed_xray_atlas_matches.sql`
 
 ## Admin Patient Detail

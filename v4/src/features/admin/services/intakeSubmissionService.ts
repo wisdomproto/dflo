@@ -148,3 +148,19 @@ export async function rejectSubmission(id: string, reason: string): Promise<void
     throw new Error('반려 처리에 실패했습니다.');
   }
 }
+
+/** 반려된 제출을 다시 대기(pending)로 되돌린다. 반려 사유·검토 시각도 초기화. */
+export async function reopenSubmission(id: string): Promise<void> {
+  const { error } = await supabase
+    .from('intake_submissions')
+    .update({
+      status: 'pending',
+      reject_reason: null,
+      reviewed_at: null,
+    })
+    .eq('id', id);
+  if (error) {
+    logger.error('reopen failed', error);
+    throw new Error('대기로 되돌리지 못했습니다.');
+  }
+}

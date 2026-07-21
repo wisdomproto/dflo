@@ -323,6 +323,10 @@ export default function AdminIntakePage() {
                 setSelectedId(null);
                 load();
               }}
+              onReopened={() => {
+                // 대기로 되돌린 뒤 선택 유지 — load() 가 기존 selectedId 를 보존한다.
+                load();
+              }}
             />
           ) : (
             <div className="flex items-center justify-center rounded-xl border border-dashed border-slate-200 bg-white py-20 text-sm text-gray-400">
