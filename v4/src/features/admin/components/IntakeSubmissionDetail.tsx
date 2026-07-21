@@ -37,11 +37,20 @@ function yesNo(v: boolean | null | undefined): string {
   return '미응답';
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  action,
+  children,
+}: {
+  title: string;
+  action?: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white">
-      <div className="border-b border-slate-100 px-4 py-2.5 text-sm font-semibold text-slate-800">
-        {title}
+      <div className="flex items-center justify-between gap-2 border-b border-slate-100 px-4 py-2.5">
+        <span className="text-sm font-semibold text-slate-800">{title}</span>
+        {action}
       </div>
       <div className="px-4 py-3">{children}</div>
     </div>
@@ -107,7 +116,18 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
   return (
     <div className="space-y-3">
       {/* 기본정보 */}
-      <Section title="기본정보">
+      <Section
+        title="기본정보"
+        action={
+          <button
+            type="button"
+            onClick={goReferral}
+            className="shrink-0 rounded-lg border border-indigo-300 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-100"
+          >
+            📝 소견서 작성
+          </button>
+        }
+      >
         <Row label="이름" value={str(sub.name)} />
         <Row label="영문 이름" value={str(sub.name_en)} />
         <Row
@@ -264,15 +284,6 @@ export default function IntakeSubmissionDetail({ sub, onApproved, onRejected }: 
           </div>
         )}
       </Section>
-
-      {/* 소견서 작성 — 환자 정보를 소견서 페이지에 자동 채워 이동 (X-ray·피검사 의뢰서) */}
-      <button
-        type="button"
-        onClick={goReferral}
-        className="w-full rounded-lg border border-indigo-300 bg-indigo-50 py-2.5 text-sm font-semibold text-indigo-700 hover:bg-indigo-100"
-      >
-        📝 소견서 작성 (X-ray·피검사 의뢰서)
-      </button>
 
       {/* Footer actions */}
       <div className="flex gap-2 pt-1">
