@@ -119,13 +119,16 @@ export async function fetchSearchConsole(
   endDate: string,
   lang: SearchLang = 'all',
   limit = 50,
+  // 검색어는 롱테일이 많고 GSC 가 클릭 순으로 주므로, 클릭된 검색어가 절대 컷되지 않도록
+  // 국가/페이지(limit)보다 넉넉하게 가져온다.
+  queryLimit = 200,
 ): Promise<SearchConsoleData> {
-  const base = { startDate, endDate, dimensionFilterGroups: langFilter(lang), rowLimit: limit };
+  const base = { startDate, endDate, dimensionFilterGroups: langFilter(lang) };
 
   const [qRows, cRows, pRows] = await Promise.all([
-    query({ ...base, dimensions: ['query'] }),
-    query({ ...base, dimensions: ['country'] }),
-    query({ ...base, dimensions: ['page'] }),
+    query({ ...base, dimensions: ['query'], rowLimit: queryLimit }),
+    query({ ...base, dimensions: ['country'], rowLimit: limit }),
+    query({ ...base, dimensions: ['page'], rowLimit: limit }),
   ]);
 
   const queries = mapRows(qRows);

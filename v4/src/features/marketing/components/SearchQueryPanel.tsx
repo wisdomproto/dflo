@@ -63,7 +63,9 @@ export function SearchQueryPanel({ days, date }: { days: number; date: string | 
     return () => { alive = false; };
   }, [days, date, lang]);
 
-  const rows: SearchRow[] = data ? data[view] : [];
+  // 클릭된 검색어를 무조건 맨 위에. GSC 응답 순서에 의존하지 않고 명시적으로 클릭 내림차순 정렬.
+  // JS sort 는 안정 정렬이라 0클릭 동률 행은 GSC 원래 순서(노출 순)를 유지한다.
+  const rows: SearchRow[] = data ? [...data[view]].sort((a, b) => b.clicks - a.clicks) : [];
 
   return (
     <div>
@@ -149,8 +151,8 @@ export function SearchQueryPanel({ days, date }: { days: number; date: string | 
       )}
 
       <p className="mt-1.5 text-[11px] text-gray-400">
-        {date ? `📅 ${date} 하루` : '지난 기간'} · 클릭 내림차순 상위 50.
-        총계는 국가 기준 합산이며, <strong>검색어 행의 합과 다를 수 있습니다</strong> — GSC 가 개인정보 보호를 위해 희소한 검색어를 숨깁니다.
+        {date ? `📅 ${date} 하루` : '지난 기간'} · <strong>클릭된 검색어 우선</strong>(클릭 내림차순). 검색어 상위 200 · 국가·페이지 상위 50.
+        총계는 국가 기준 합산이며, <strong>검색어 행의 합과 다를 수 있습니다</strong> — GSC 가 개인정보 보호를 위해 희소한 검색어를 숨깁니다(총계에만 잡히고 검색어로는 안 나옴).
       </p>
     </div>
   );
