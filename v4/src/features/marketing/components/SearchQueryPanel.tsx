@@ -39,12 +39,18 @@ function shortLabel(view: View, label: string): string {
   }
 }
 
+const COLLAPSED_ROWS = 12; // 접힘 상태에서 보여줄 행 수.
+
 export function SearchQueryPanel({ days, date }: { days: number; date: string | null }) {
   const [lang, setLang] = useState<CountryKey>('all');
   const [view, setView] = useState<View>('queries');
   const [data, setData] = useState<SearchConsoleData | null>(null);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  // 탭/기간/언어가 바뀌면 목록이 달라지므로 다시 접는다.
+  useEffect(() => setExpanded(false), [view, lang, days, date]);
 
   useEffect(() => {
     let alive = true;
@@ -66,6 +72,8 @@ export function SearchQueryPanel({ days, date }: { days: number; date: string | 
   // 클릭된 검색어를 무조건 맨 위에. GSC 응답 순서에 의존하지 않고 명시적으로 클릭 내림차순 정렬.
   // JS sort 는 안정 정렬이라 0클릭 동률 행은 GSC 원래 순서(노출 순)를 유지한다.
   const rows: SearchRow[] = data ? [...data[view]].sort((a, b) => b.clicks - a.clicks) : [];
+  const visibleRows = expanded ? rows : rows.slice(0, COLLAPSED_ROWS);
+  const hiddenCount = rows.length - visibleRows.length;
 
   return (
     <div>
@@ -132,7 +140,7 @@ export function SearchQueryPanel({ days, date }: { days: number; date: string | 
                   </tr>
                 </thead>
                 <tbody>
-                  {rows.map((r) => (
+                  {visibleRows.map((r) => (
                     <tr key={r.label} className="border-b border-gray-50 last:border-0">
                       <td className="max-w-[260px] truncate px-3 py-2 font-medium text-gray-700" title={r.label}>
                         {shortLabel(view, r.label)}
@@ -145,6 +153,15 @@ export function SearchQueryPanel({ days, date }: { days: number; date: string | 
                   ))}
                 </tbody>
               </table>
+              {rows.length > COLLAPSED_ROWS && (
+                <button
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  className="flex w-full items-center justify-center gap-1 border-t border-gray-100 bg-gray-50 py-2 text-[11px] font-semibold text-[#4A2D6B] hover:bg-gray-100"
+                >
+                  {expanded ? '▲ 접기' : `▼ 더 보기 (${hiddenCount}개)`}
+                </button>
+              )}
             </div>
           )}
         </>
