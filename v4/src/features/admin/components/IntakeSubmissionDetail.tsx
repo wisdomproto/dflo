@@ -11,6 +11,7 @@ import {
 import type { ReferralPrefill } from '@/features/admin/referral/referralDoc';
 import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
 import { ACQUISITION_KO, INTAKE_LABELS, optLabelKo } from '@/features/intake/intakeLabels';
+import IntakeSubmissionEditForm from './IntakeSubmissionEditForm';
 
 // ================================================
 // IntakeSubmissionDetail
@@ -72,6 +73,7 @@ interface Props {
   onApproved: (childId: string) => void;
   onRejected: () => void;
   onReopened: () => void;
+  onUpdated: () => void;
 }
 
 export default function IntakeSubmissionDetail({
@@ -79,6 +81,7 @@ export default function IntakeSubmissionDetail({
   onApproved,
   onRejected,
   onReopened,
+  onUpdated,
 }: Props) {
   const navigate = useNavigate();
   const [urls, setUrls] = useState<Record<string, string>>({});
@@ -86,6 +89,7 @@ export default function IntakeSubmissionDetail({
   const [rejectOpen, setRejectOpen] = useState(false);
   const [reopening, setReopening] = useState(false);
   const [reopenError, setReopenError] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
 
   // 반려된 제출을 다시 대기로. 되돌리기 쉬운 저위험 액션이라 별도 확인 모달 없이 바로 처리.
   const reopen = async () => {
@@ -136,8 +140,32 @@ export default function IntakeSubmissionDetail({
   const survey = sub.intake_survey ?? null;
   const causes = survey?.short_stature_causes ?? [];
 
+  if (editing) {
+    return (
+      <IntakeSubmissionEditForm
+        sub={sub}
+        onCancel={() => setEditing(false)}
+        onSaved={() => {
+          setEditing(false);
+          onUpdated();
+        }}
+      />
+    );
+  }
+
   return (
     <div className="space-y-3">
+      {/* 수정 버튼 */}
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={() => setEditing(true)}
+          className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+        >
+          ✏️ 설문 수정
+        </button>
+      </div>
+
       {/* 기본정보 */}
       <Section
         title="기본정보"

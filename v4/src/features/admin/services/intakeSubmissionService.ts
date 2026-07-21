@@ -121,6 +121,18 @@ export async function approveSubmission(
   return child.id;
 }
 
+/** 설문 내용 수정 저장 — intake_submissions 컬럼 + intake_survey JSONB 통째 교체. */
+export async function updateSubmission(
+  id: string,
+  patch: Partial<IntakeSubmission>,
+): Promise<void> {
+  const { error } = await supabase.from('intake_submissions').update(patch).eq('id', id);
+  if (error) {
+    logger.error('updateSubmission failed', error);
+    throw new Error('설문 수정 저장에 실패했습니다.');
+  }
+}
+
 /** 어드민 내부 메모 저장 (migration 069). 컬럼 미적용 시 42703 을 안내 메시지로. */
 export async function updateSubmissionNote(id: string, note: string): Promise<void> {
   const { error } = await supabase
