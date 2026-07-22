@@ -57,7 +57,29 @@ function sortedHeights(d: CaseData) {
     .sort((a, b) => sortKey(a) - sortKey(b));
 }
 
-// ── 성장 곡선 (KDCA 백분위 + BA 측정점 + 마지막 BA 시점 예측 투영 + 예측 성인키 라인) ──
+// 마지막 회차에서 예측 성인키(18세)까지 나이별 투영 — 환자 성장곡선(AdminPatientGrowthChart)과 동일 로직.
+// startReference=BA 면 그 아이의 뼈나이 백분위를 따라 성장, ref 가 18 되면 예측 성인키에서 평탄화.
+function buildProjection(
+  startCA: number, startH: number, startRef: number,
+  gender: 'male' | 'female', nat: Nationality,
+): { x: number; y: number }[] | null {
+  if (startRef >= 18 || !(startH > 0)) return null;
+  const points: { x: number; y: number }[] = [{ x: Number(startCA.toFixed(2)), y: startH }];
+  for (let yr = Math.ceil(startCA + 0.0001); yr <= X_MAX; yr++) {
+    const refAtYr = Math.min(18, startRef + (yr - startCA));
+    const y = heightAtSamePercentile(startH, startRef, refAtYr, gender, nat);
+    if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
+  }
+  const adult = heightAtSamePercentile(startH, startRef, 18, gender, nat);
+  if (adult > 0) {
+    const last = points[points.length - 1];
+    if (last.x === X_MAX) last.y = Number(adult.toFixed(1));
+    else points.push({ x: X_MAX, y: Number(adult.toFixed(1)) });
+  }
+  return points.length >= 2 ? points : null;
+}
+
+// ── 성장 곡선 (KDCA 백분위 + BA 측정점 + 마지막 BA 시점 예측 투영 점선) ──
 function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
   const nat: Nationality = d.nationality ?? 'KR';
   const std = getHeightStandard(d.gender, nat).filter((s) => s.age >= X_MIN && s.age <= X_MAX);
@@ -79,11 +101,20 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
     pointBorderColor: '#ffffff', pointBorderWidth: 1.5, showLine: pts.length > 1, tension: 0, order: 0,
   };
 
-  // 예측 투영·최종 예측키 모두 제거 — 성장곡선은 실측(백분위+다이아)만, 예측은 우측 '예측키 추세' 전담.
+  // 마지막 BA 회차 → 예측 성인키(18세)까지 나이별 점선 투영. 뼈나이 백분위 기준.
+  const projDs: object[] = [];
+  const lastBa = baMs[baMs.length - 1];
+  if (lastBa && lastBa.bone_age != null) {
+    const proj = buildProjection(ageOf(lastBa, d.birth_date).decimal, lastBa.height, lastBa.bone_age as number, d.gender, nat);
+    if (proj) projDs.push({
+      label: 'proj', data: proj, borderColor: COLORS.baProj, backgroundColor: 'transparent',
+      borderWidth: 2, borderDash: [5, 4], pointRadius: 0, pointHoverRadius: 0, fill: false, tension: 0.2, order: 1,
+    });
+  }
 
   (canvas as unknown as { _chart?: Chart })._chart = new Chart(canvas, {
     type: 'line',
-    data: { datasets: [...percentileDs, patientDs] as never },
+    data: { datasets: [...percentileDs, ...projDs, patientDs] as never },
     options: {
       responsive: true, maintainAspectRatio: false, animation: false, devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
       plugins: {

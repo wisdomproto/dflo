@@ -107,6 +107,21 @@ function heightFromLMS(lms, z) {
   return Math.round(lms.M * Math.pow(inside, 1 / lms.L) * 10) / 10;
 }
 
+/** 표준성장도표 백분위 — 만 나이(chronological) 기준 키의 KR LMS percentile (0.0~100.0). 스토리·리포트 표기용. */
+export function heightPercentile(height, ageYears, gender) {
+  if (!height || !ageYears || height <= 0 || ageYears <= 0) return null;
+  const table = gender === 'male' ? MALE_HEIGHT_LMS : FEMALE_HEIGHT_LMS;
+  const lms = interpolateLMS(ageYears, table);
+  if (!lms) return null;
+  const z = zScoreFromLMS(height, lms);
+  // 표준정규 CDF 근사(Zelen & Severo) → 백분위
+  const t = 1 / (1 + 0.2316419 * Math.abs(z));
+  const d = 0.3989423 * Math.exp((-z * z) / 2);
+  let p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+  p = z > 0 ? 1 - p : p;
+  return Math.round(p * 1000) / 10;
+}
+
 /** XrayPanel 의 predictAdultHeightByBonePercentile 과 같은 알고리즘. */
 export function predictAdultHeightByBonePercentile(currentHeight, boneAge, gender) {
   if (!currentHeight || !boneAge || currentHeight <= 0 || boneAge <= 0) return null;

@@ -17,6 +17,8 @@ import { marketingRouter } from './routes/marketing.js';
 import { knowledgeRouter } from './routes/knowledge.js';
 import { metaAuthRouter } from './routes/metaAuth.js';
 import { caseStoryRouter } from './routes/caseStory.js';
+import { caseRoundsRouter } from './routes/caseRounds.js';
+import { treatmentCasesRouter } from './routes/treatmentCases.js';
 import { reservationRouter } from './routes/reservation.js';
 import { startScheduler } from './services/scheduler.js';
 
@@ -91,6 +93,10 @@ app.use('/api/knowledge', knowledgeRouter);
 app.use('/api/auth/meta', metaAuthRouter);
 // 치료사례 후보 원장 스토리 편집·저장 (로컬 내부 도구, 자체 x-admin-pin 보호)
 app.use('/api/case-story', caseStoryRouter);
+// 치료사례 카드의 뼈나이 회차 삭제 → treatment_cases.excluded_dates (dev 내부 도구, x-admin-pin)
+app.use('/api/case-rounds', caseRoundsRouter);
+// 치료사례 환자용 공개 목록(PIN 게이트) + 원장 승인 토글(x-admin-pin)
+app.use('/api/treatment-cases', treatmentCasesRouter);
 // 예약(콜백) 접수(공개) + 조회/삭제(x-admin-pin 게이트). PII라 service_role 전용 접근.
 app.use('/api/reservations', reservationRouter);
 

@@ -38,6 +38,26 @@ async function rest(path) {
   return out;
 }
 
+// treatment_cases 는 PHI(chart·측정일)라 anon 정책 없음(070) → service_role 로만 read/write.
+// ai-server/.env 에서 service_role 키를 읽어 쓴다(uploadCaseDoc·snapshot 시드·제외회차 로드 공용).
+function adminEnv() {
+  const env = {};
+  try {
+    for (const l of readFileSync(join(PROJ, 'ai-server', '.env'), 'utf8').split(/\r?\n/)) {
+      const m = l.match(/^([A-Z0-9_]+)=(.*)$/); if (m) env[m[1]] = m[2];
+    }
+  } catch { /* .env 없으면 skip */ }
+  return { url: env.SUPABASE_URL, key: env.SUPABASE_SERVICE_ROLE_KEY };
+}
+async function adminRest(path, init) {
+  const { url, key } = adminEnv();
+  if (!url || !key) return null; // 키 없으면 null → 호출부에서 graceful
+  return fetch(`${url}/rest/v1/${path}`, {
+    ...init,
+    headers: { apikey: key, Authorization: `Bearer ${key}`, ...(init?.headers || {}) },
+  });
+}
+
 const children = await rest('children?select=id,name,chart_number,gender,birth_date,father_height,mother_height,desired_height,grade,class_height_rank,parent_id,treatment_status,intake_survey');
 const ms = await rest('hospital_measurements?select=child_id,measured_date,height,weight,bone_age,pah');
 const labs = await rest('lab_tests?select=child_id,test_type,result_data,visit_id');
@@ -167,11 +187,32 @@ const CAUSE_LABELS = {
   digestive_issues: '소화 문제', allergy: '알러지', premature_birth: '미숙아', late_bloomer: '늦게 크는 체질',
 };
 
+// ── 관리자 편집: 제외한 뼈나이 회차 로드 (chart → Set<measured_date>) ──
+// 카드의 ✕ 버튼이 treatment_cases.excluded_dates 에 저장한 것. 재실행 시 그 회차를 빼고 계산·렌더.
+const excludedByChart = new Map();
+const publishedCharts = new Set();
+const overridesByChart = new Map();
+{
+  const r = await adminRest('treatment_cases?select=chart_number,excluded_dates,published,overrides').catch(() => null);
+  if (r && r.ok) {
+    for (const row of await r.json()) {
+      const arr = Array.isArray(row.excluded_dates) ? row.excluded_dates : [];
+      if (arr.length) excludedByChart.set(String(row.chart_number), new Set(arr.map(String)));
+      if (row.published) publishedCharts.add(String(row.chart_number));
+      if (row.overrides && typeof row.overrides === 'object') overridesByChart.set(String(row.chart_number), row.overrides);
+    }
+  } else if (!r) {
+    console.log('⚠️ ai-server/.env service_role 없음 — 제외 회차·공개상태·보정값 미적용(원본으로 렌더)');
+  } else {
+    console.log(`⚠️ treatment_cases 조회 실패 ${r.status}: ${(await r.text()).slice(0, 120)} — 마이그레이션 070/071/072 적용됐는지 확인(미적용이면 제외 회차도 미반영)`);
+  }
+}
+
 // ── 선별 + 상세 빌드 ──
 const rows = [];
 for (const c of children) {
   if (excludedIds.has(c.id)) continue;
-  const mm = (msBy.get(c.id) || []).slice().sort((a, b) => (a.measured_date < b.measured_date ? -1 : 1));
+  let mm = (msBy.get(c.id) || []).slice().sort((a, b) => (a.measured_date < b.measured_date ? -1 : 1));
   if (mm.length < 6) continue;
   const withPah = mm.filter((m) => m.pah > 0 && m.pah < 230);
   if (withPah.length < 2) continue;
@@ -180,20 +221,41 @@ for (const c of children) {
   // 여성은 사춘기가 빨라 PAH 상승폭이 평균 ~1cm 작아 기준 완화(2026-06-29): 남 5cm / 여 4cm
   const pahMin = c.gender === 'male' ? 5 : 4;
   if (pahDelta < pahMin) continue;
-  const months = Math.round(yearsBetween(mm[0].measured_date, mm[mm.length - 1].measured_date) * 12);
-  if (months < 18) continue;
+  const gateMonths = Math.round(yearsBetween(mm[0].measured_date, mm[mm.length - 1].measured_date) * 12);
+  if (gateMonths < 18) continue;
 
-  const firstH = mm.find((m) => m.height > 0);
-  const lastH = [...mm].reverse().find((m) => m.height > 0);
-  const ageAtFirst = c.birth_date ? +yearsBetween(c.birth_date, mm[0].measured_date).toFixed(1) : null;
+  // 관리자가 지운 뼈나이 회차 제외 → 그 측정을 케이스에서 통째로 뺀다(표·차트·계산 전부). 선별 게이트는 위(gateMonths)로 고정.
+  const excluded = excludedByChart.get(String(c.chart_number));
+  if (excluded && excluded.size) mm = mm.filter((m) => !excluded.has(m.measured_date));
+
+  // 관리자 보정값(부모키·희망키·뼈나이 오타 교정). 뼈나이 교정은 baRows 전에 적용해 격차·차트까지 반영.
+  const ov = overridesByChart.get(String(c.chart_number)) || {};
+  const baOv = ov.boneAges || {};
+  if (Object.keys(baOv).length) mm = mm.map((m) => (baOv[m.measured_date] != null ? { ...m, bone_age: Number(baOv[m.measured_date]) } : m));
+
   const isMale = c.gender === 'male';
-
   const baRows = mm.filter((m) => m.bone_age > 0).map((m) => {
     const age = c.birth_date ? +yearsBetween(c.birth_date, m.measured_date).toFixed(1) : null;
     return { ...m, age, gap: age != null ? +(m.bone_age - age).toFixed(1) : null };
   });
   const firstBA = baRows[0], lastBA = baRows[baRows.length - 1];
-  const mph = c.father_height && c.mother_height ? +(((c.father_height + c.mother_height) / 2 + (isMale ? 6.5 : -6.5))).toFixed(1) : null;
+
+  // 치료 window = 남긴 뼈나이 회차. 예상키(PAH)는 BA 유도값이라 초진/최종 예상키 = 첫/마지막 BA 회차.
+  // 키·나이도 BA window 기준(BA 회차에 값 없으면 측정 폴백). BA 2회 미만이면 측정 span 폴백.
+  const vpah = (p) => (p > 0 && p < 230 ? p : null);
+  const months = (firstBA && lastBA && firstBA !== lastBA)
+    ? Math.round(yearsBetween(firstBA.measured_date, lastBA.measured_date) * 12) : gateMonths;
+  const firstH = (firstBA && firstBA.height > 0) ? firstBA : mm.find((m) => m.height > 0);
+  const lastH = (lastBA && lastBA.height > 0) ? lastBA : [...mm].reverse().find((m) => m.height > 0);
+  const ageAtFirst = firstBA?.age ?? (c.birth_date && mm[0] ? +yearsBetween(c.birth_date, mm[0].measured_date).toFixed(1) : null);
+  const pahFirst = vpah(firstBA?.pah) ?? first.pah;
+  const pahLast = vpah(lastBA?.pah) ?? last.pah;
+  const pahDeltaDisp = +(pahLast - pahFirst).toFixed(1);
+  // 부모 키·희망키 = 관리자 보정값(override) 우선, 없으면 진료기록(children). MPH 는 부모키로 계산.
+  const faH = Number(ov.father) > 0 ? Number(ov.father) : c.father_height;
+  const moH = Number(ov.mother) > 0 ? Number(ov.mother) : c.mother_height;
+  const desired = Number(ov.desired) > 0 ? Number(ov.desired) : c.desired_height;
+  const mph = faH && moH ? +(((faH + moH) / 2 + (isMale ? 6.5 : -6.5))).toFixed(1) : null;
   const bmi = firstH?.weight && firstH?.height ? +(firstH.weight / ((firstH.height / 100) ** 2)).toFixed(1) : null;
   const bmiLast = lastH?.weight && lastH?.height ? +(lastH.weight / ((lastH.height / 100) ** 2)).toFixed(1) : null;
 
@@ -273,11 +335,11 @@ for (const c of children) {
   // 헤드라인 초안 (엄마 언어, rule-based)
   let headline;
   const aFirst = ageAtFirst != null ? Math.round(ageAtFirst) : null;
-  if (firstBA?.gap >= 1.5) headline = `${aFirst}살인데 뼈나이는 ${Math.round(firstBA.bone_age)}살이었습니다 — 예상키 +${pahDelta}cm`;
-  else if (tags.some((t) => t.startsWith('유전키'))) headline = `유전 기대키 ${mph}cm의 한계 — 예상키 ${last.pah}cm까지`;
-  else if (tags.includes('늦은 시작')) headline = `${aFirst}세, 늦었다고 생각했지만 — 예상키 +${pahDelta}cm`;
-  else if (firstBA?.gap <= -1.0) headline = `또래보다 ${Math.abs(firstBA.gap)}년 어린 뼈나이 — 천천히, 그러나 ${last.pah}cm까지`;
-  else headline = `치료 ${months < 12 ? months + '개월' : Math.floor(months / 12) + '년'} — 예상키 ${first.pah}cm → ${last.pah}cm`;
+  if (firstBA?.gap >= 1.5) headline = `${aFirst}살인데 뼈나이는 ${Math.round(firstBA.bone_age)}살이었습니다 — 예상키 +${pahDeltaDisp}cm`;
+  else if (tags.some((t) => t.startsWith('유전키'))) headline = `유전 기대키 ${mph}cm의 한계 — 예상키 ${pahLast}cm까지`;
+  else if (tags.includes('늦은 시작')) headline = `${aFirst}세, 늦었다고 생각했지만 — 예상키 +${pahDeltaDisp}cm`;
+  else if (firstBA?.gap <= -1.0) headline = `또래보다 ${Math.abs(firstBA.gap)}년 어린 뼈나이 — 천천히, 그러나 ${pahLast}cm까지`;
+  else headline = `치료 ${months < 12 ? months + '개월' : Math.floor(months / 12) + '년'} — 예상키 ${pahFirst}cm → ${pahLast}cm`;
 
   // 스토리 포인트 (rule-based bullets)
   const points = [];
@@ -285,7 +347,7 @@ for (const c of children) {
     const d1 = firstBA.gap, d2 = lastBA.gap;
     if (d1 != null && d2 != null && d1 - d2 >= 0.5) points.push(`뼈나이 격차 ${d1 >= 0 ? '+' : ''}${d1}년 → ${d2 >= 0 ? '+' : ''}${d2}년으로 억제 (사춘기 관리 효과)`);
   }
-  if (mph != null && last.pah - mph >= 3) points.push(`유전 기대키(MPH ${mph}cm)보다 +${(last.pah - mph).toFixed(1)}cm — "유전 한계 돌파" 서사 가능`);
+  if (mph != null && pahLast - mph >= 3) points.push(`유전 기대키(MPH ${mph}cm)보다 +${(pahLast - mph).toFixed(1)}cm — "유전 한계 돌파" 서사 가능`);
   const yearsTotal = months / 12;
   if (yearsTotal >= 1) points.push(`연평균 성장 ${(hDelta / yearsTotal).toFixed(1)}cm/년 (총 +${hDelta}cm)`);
   if (danger.length) points.push(`알러지 강반응: ${danger.slice(0, 4).join('·')} — "매일 먹이던 음식이 문제였다" 식단 교정 서사 가능`);
@@ -296,16 +358,16 @@ for (const c of children) {
   if (noteSnippets.length) points.push(`진료 메모 단서: ${noteSnippets.slice(0, 2).join(' / ')}`);
   if (xrayBy.get(c.id)) points.push(`X-ray ${xrayBy.get(c.id)}장 보유 — 성장판 전후 비교 슬롯 가능`);
   if (intake.athlete || /운동선수|연습생|배우|모델/.test(chief)) points.push(`꿈/직업 서사: ${chief || '운동선수'}`);
-  if (c.desired_height) points.push(`희망 키 ${c.desired_height} — 목표 대비 진행 표현 가능`);
+  if (desired) points.push(`희망 키 ${desired} — 목표 대비 진행 표현 가능`);
 
   rows.push({
     id: c.id, chart: c.chart_number, name: c.name, gender: isMale ? '남' : '여',
     birth: (c.birth_date || '').slice(0, 4), birthDate: c.birth_date, ageAtFirst, months,
-    fa: c.father_height, mo: c.mother_height, mph, bmi, bmiLast, desired: c.desired_height,
+    fa: faH, mo: moH, mph, bmi, bmiLast, desired,
     grade: c.grade, rank: c.class_height_rank,
     nMs: mm.length, nBA: baRows.length,
     hFirst: firstH?.height, hLast: lastH?.height, hDelta,
-    pahFirst: first.pah, pahLast: last.pah, pahDelta,
+    pahFirst, pahLast, pahDelta: pahDeltaDisp,
     xray: xrayBy.get(c.id) || 0, danger, caution, bloodSignals, rxSignals, noteSnippets,
     bloodTimeline: bloodTimelineBy.get(c.id) || [], growthRhythm,
     chief, notes, intake, status: c.treatment_status, tags, score, headline, points,
@@ -428,11 +490,12 @@ function card(r, i) {
       : t.startsWith('알러지') ? 't-alle' : t.startsWith('유전') ? 't-gene' : t.startsWith('성장지연') ? 't-slow' : 't-warn';
     return `<span class="tag ${cls}">${esc(t)}</span>`;
   }).join('');
-  const baTable = r.baRows.map((b) => `<tr>
+  const baTable = r.baRows.map((b) => `<tr data-date="${b.measured_date}" data-age="${b.age ?? ''}" data-pah="${(b.pah > 0 && b.pah < 230) ? b.pah : ''}" data-h="${b.height || ''}">
       <td>${fmtD(b.measured_date)}</td><td class="num">${b.age ?? '-'}</td>
-      <td class="num ba">${b.bone_age.toFixed(1)}</td>
-      <td class="num ${b.gap >= 1 ? 'bad' : b.gap <= -1 ? 'good2' : ''}">${b.gap >= 0 ? '+' : ''}${b.gap ?? '-'}</td>
+      <td class="num ba"><input class="ba-in" type="number" step="0.1" inputmode="decimal" value="${b.bone_age.toFixed(1)}" title="뼈나이 오타 수정"></td>
+      <td class="num gapcell ${b.gap >= 1 ? 'bad' : b.gap <= -1 ? 'good2' : ''}">${b.gap >= 0 ? '+' : ''}${b.gap ?? '-'}</td>
       <td class="num">${b.height || '-'}</td><td class="num pah">${(b.pah > 0 && b.pah < 230) ? b.pah : '-'}</td>
+      <td class="num"><button type="button" class="ba-x" title="이 뼈나이 회차 삭제 (치료기간·예상키에서 제외)">✕</button></td>
     </tr>`).join('');
   const allTable = r.mm.map((m, j) => `<tr>
       <td>${j + 1}</td><td>${fmtD(m.date)}</td><td class="num">${m.age ?? '-'}</td>
@@ -446,9 +509,10 @@ function card(r, i) {
   if (r.intake.chronic) intakeBits.push(`만성: ${esc(r.intake.chronic)}`);
   if (r.intake.athlete) intakeBits.push(`운동선수 준비${r.intake.sportsEvent ? `(${esc(r.intake.sportsEvent)})` : ''}`);
 
-  return `<article class="card" data-key="${esc(key)}" data-g="${r.gender}" data-tags="${esc(r.tags.map((t) => t.split('(')[0]).join('|'))}" data-name="${esc(r.name)}" data-chart="${esc(r.chart ?? '')}">
+  return `<article class="card" data-key="${esc(key)}" data-g="${r.gender}" data-tags="${esc(r.tags.map((t) => t.split('(')[0]).join('|'))}" data-name="${esc(r.name)}" data-chart="${esc(r.chart ?? '')}" data-excluded="${esc([...(excludedByChart.get(String(r.chart)) || [])].join(','))}">
   <header style="--cc:${cc};--ccbg:${ccBg}">
     <label class="pick"><input type="checkbox"> 채택</label>
+    <button type="button" class="pub-toggle${publishedCharts.has(String(r.chart)) ? ' on' : ''}" data-chart="${esc(r.chart ?? '')}">${publishedCharts.has(String(r.chart)) ? '🟢 환자공개 ON' : '⚪ 환자공개'}</button>
     <div class="rank">#${i + 1}</div>
     <div class="who">
       <span class="nm">${isF ? '👧' : '👦'} ${esc(r.name)}</span>
@@ -458,13 +522,13 @@ function card(r, i) {
   <p class="headline">"${esc(r.headline)}"</p>
   ${r.chief ? `<p class="chief">📌 내원 사유: ${esc(r.chief)}</p>` : ''}
   <div class="kpis">
-    <div class="kpi"><span>치료기간</span><b>${fmtDur(r.months)}</b></div>
-    <div class="kpi"><span>실제 키</span><b>${r.hFirst}→${r.hLast}<i>+${r.hDelta}cm</i></b></div>
-    <div class="kpi hl"><span>예상키</span><b>${r.pahFirst}→${r.pahLast}<i>+${r.pahDelta}cm</i></b></div>
-    <div class="kpi"><span>부모 키(MPH)</span><b>${r.fa ?? '-'}/${r.mo ?? '-'}<i>${r.mph ? 'MPH ' + r.mph : ''}</i></b></div>
-    <div class="kpi"><span>측정</span><b>${r.nMs}회<i>BA ${r.nBA}회</i></b></div>
+    <div class="kpi"><span>치료기간</span><b class="k-dur">${fmtDur(r.months)}</b></div>
+    <div class="kpi"><span>실제 키</span><b class="k-h">${r.hFirst}→${r.hLast}<i>+${r.hDelta}cm</i></b></div>
+    <div class="kpi hl"><span>예상키</span><b class="k-pah">${r.pahFirst}→${r.pahLast}<i>+${r.pahDelta}cm</i></b></div>
+    <div class="kpi"><span>부모 키(MPH)</span><b class="k-parent"><input class="pk-fa" type="number" inputmode="numeric" value="${r.fa ?? ''}" placeholder="부"><span class="pk-sep">/</span><input class="pk-mo" type="number" inputmode="numeric" value="${r.mo ?? ''}" placeholder="모"><button type="button" class="pk-save" title="부모 키 저장">저장</button><i class="pk-mphv">${r.mph ? 'MPH ' + r.mph : ''}</i></b></div>
+    <div class="kpi"><span>측정</span><b>${r.nMs}회<i class="k-bacnt">BA ${r.nBA}회</i></b></div>
   </div>
-  <div class="tags">${tagHtml}${r.xray ? `<span class="asset">X-ray ${r.xray}장</span>` : ''}${r.desired ? `<span class="asset">희망 ${esc(r.desired)}</span>` : ''}</div>
+  <div class="tags">${tagHtml}${r.xray ? `<span class="asset">X-ray ${r.xray}장</span>` : ''}<span class="asset dh-edit">희망키 <input class="dh-in" type="number" inputmode="numeric" value="${r.desired ?? ''}" placeholder="-"><button type="button" class="dh-save">저장</button></span></div>
   <div class="chart">
     <div class="charts2">
       <div class="c2"><div class="clbl">📈 성장 곡선</div><div class="cwrap cpane-g"><canvas></canvas></div></div>
@@ -474,8 +538,9 @@ function card(r, i) {
   </div>
   <div class="cols">
     <div class="col">
-      <h4>🦴 뼈나이 회차 (${r.nBA}회)</h4>
-      <table class="t"><thead><tr><th>날짜</th><th>나이</th><th>뼈나이</th><th>격차</th><th>키</th><th>예상키</th></tr></thead><tbody>${baTable}</tbody></table>
+      <h4>🦴 뼈나이 회차 (<span class="ba-count">${r.nBA}</span>회) <span class="ba-hint">✕로 follow-up 회차 삭제 → 치료기간·예상키에서 제외</span></h4>
+      <table class="t"><thead><tr><th>날짜</th><th>나이</th><th>뼈나이</th><th>격차</th><th>키</th><th>예상키</th><th></th></tr></thead><tbody>${baTable}</tbody></table>
+      <div class="ba-msg"></div>
       <details><summary>전체 측정 ${r.nMs}회 보기</summary>
         <table class="t"><thead><tr><th>#</th><th>날짜</th><th>나이</th><th>키</th><th>체중</th><th>뼈나이</th><th>예상키</th></tr></thead><tbody>${allTable}</tbody></table>
       </details>
@@ -603,6 +668,25 @@ const html = `<!DOCTYPE html>
   .st-form .st-text { width:100%; font-size:13.5px; line-height:1.85; color:#4a4438; padding:10px 12px; border:1.5px solid #e3d9b8; border-radius:8px; box-sizing:border-box; resize:vertical; font-family:inherit; }
   .st-actions { display:flex; align-items:center; gap:8px; margin-top:7px; }
   .st-msg { font-size:12px; font-weight:600; color:#8a6d1d; }
+  .ba-x { font-size:12px; font-weight:800; line-height:1; padding:2px 6px; border-radius:6px; cursor:pointer; border:1px solid #f0c9c9; background:#fff; color:#d6336c; }
+  .ba-x:hover { background:#fdeef4; }
+  tr.ba-removed { opacity:.4; text-decoration:line-through; }
+  tr.ba-removed .ba-x { color:#0b8a5e; border-color:#bfe6d5; text-decoration:none; }
+  .ba-hint { font-size:11px; font-weight:500; color:#a99; }
+  .ba-msg { font-size:11.5px; font-weight:600; color:#8a6d1d; margin-top:4px; min-height:15px; }
+  .pub-toggle { font-size:11.5px; font-weight:800; border-radius:8px; padding:4px 10px; cursor:pointer; border:1.5px solid #d9d3ea; background:#fff; color:#6b6677; }
+  .pub-toggle.on { background:#e6f7ee; border-color:#7bd6a7; color:#0b8a5e; }
+  .pub-toggle:disabled { opacity:.5; }
+  .k-parent { display:flex; align-items:center; gap:3px; flex-wrap:wrap; }
+  .pk-fa, .pk-mo { width:42px; font-size:13px; font-weight:800; padding:2px 4px; border:1px solid #d9d3ea; border-radius:5px; text-align:center; }
+  .pk-sep { color:#aaa; }
+  .pk-save { font-size:10.5px; font-weight:800; padding:2px 7px; border-radius:6px; cursor:pointer; border:1px solid #cbb9ee; background:#fff; color:#6b46c1; }
+  .pk-save:disabled { opacity:.5; }
+  .ba-in { width:48px; font-size:13px; font-weight:800; padding:1px 3px; border:1px solid #e3d9b8; border-radius:5px; text-align:center; color:#8a6d1d; background:#fffdf6; }
+  .dh-edit { display:inline-flex; align-items:center; gap:4px; }
+  .dh-in { width:52px; font-size:11.5px; font-weight:800; padding:1px 4px; border:1px solid #d9d3ea; border-radius:5px; text-align:center; }
+  .dh-save { font-size:10px; font-weight:800; padding:1px 6px; border-radius:5px; cursor:pointer; border:1px solid #cbb9ee; background:#fff; color:#6b46c1; }
+  .dh-save:disabled { opacity:.5; }
   .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#3a2a68; color:#fff;
            border-radius:999px; padding:10px 22px; font-size:13px; font-weight:700; opacity:0;
            transition:opacity .25s; pointer-events:none; max-width:90vw; }
@@ -685,11 +769,30 @@ apply();
 
 // ── 차트 (환자 진료 모듈 재사용) — 58×2개라 뷰포트 진입 시 지연 렌더 ──
 const CC = window.CaseCharts;
+// 세션 내 편집(✕ 삭제·뼈나이 수정)을 차트에도 즉시 반영 — 표 DOM 이 단일 소스, 매 렌더마다 반영(캐시 X).
+function excludedSet(card) {
+  const s = new Set();
+  card.querySelectorAll('tr.ba-removed[data-date]').forEach(tr => s.add(tr.dataset.date));
+  return s;
+}
+function boneAgeMap(card) {
+  const m = {};
+  card.querySelectorAll('tr[data-date] .ba-in').forEach(inp => {
+    const d = inp.closest('tr').dataset.date, v = parseFloat(inp.value);
+    if (d && v > 0) m[d] = v;
+  });
+  return m;
+}
 function cardData(card) {
-  if (card._data !== undefined) return card._data;
   const el = card.querySelector('.cdata');
-  try { card._data = el ? JSON.parse(el.textContent) : null; } catch { card._data = null; }
-  return card._data;
+  let base = null;
+  try { base = el ? JSON.parse(el.textContent) : null; } catch { base = null; }
+  if (!base || !Array.isArray(base.measurements)) return base;
+  const ex = excludedSet(card), bam = boneAgeMap(card);
+  const measurements = base.measurements
+    .filter(m => !ex.has(m.measured_date))
+    .map(m => (bam[m.measured_date] != null ? { ...m, bone_age: bam[m.measured_date] } : m));
+  return { ...base, measurements };
 }
 function renderGrowth(card) {
   if (card._g || !CC) return;
@@ -746,6 +849,134 @@ document.querySelectorAll('.story').forEach(d => {
     }
   });
 });
+
+// ── 뼈나이 회차 삭제(제외) → treatment_cases.excluded_dates (로컬 ai-server) ──
+// 치료기간·예상키는 BA window 로 계산되므로 회차를 빼면 즉시 재계산해 보여준다(정본은 gen 재실행 → 차트까지 반영).
+// ✕↔↩ 토글이라 세션 내 오클릭 복구 가능. gen 재실행하면 제외 회차는 표에서 아예 사라짐(= 커밋).
+const ROUNDS_API = 'http://localhost:4000/api/case-rounds';
+const yrs = (a, b) => (new Date(b) - new Date(a)) / (365.25 * 86400e3);
+const durTxt = (m) => (m < 12 ? m + '개월' : Math.floor(m / 12) + '년' + (m % 12 ? ' ' + (m % 12) + '개월' : ''));
+document.querySelectorAll('.card').forEach(card => {
+  if (!card.dataset.chart) return;
+  const rows = [...card.querySelectorAll('.ba-x')].map(b => b.closest('tr')).filter(Boolean);
+  if (!rows.length) return;
+  const excl = new Set((card.dataset.excluded || '').split(',').map(s => s.trim()).filter(Boolean));
+  const msg = card.querySelector('.ba-msg');
+  const setHtml = (sel, html) => { const el = card.querySelector(sel); if (el) el.innerHTML = html; };
+  const recompute = () => {
+    const kept = rows.filter(tr => !tr.classList.contains('ba-removed'));
+    const dts = kept.map(tr => tr.dataset.date).filter(Boolean).sort();
+    const pahs = kept.map(tr => +tr.dataset.pah).filter(v => v > 0);
+    const hs = kept.map(tr => +tr.dataset.h).filter(v => v > 0);
+    if (dts.length >= 2) { const d = card.querySelector('.k-dur'); if (d) d.textContent = durTxt(Math.round(yrs(dts[0], dts[dts.length - 1]) * 12)); }
+    if (pahs.length >= 2) setHtml('.k-pah', pahs[0] + '→' + pahs[pahs.length - 1] + '<i>+' + (pahs[pahs.length - 1] - pahs[0]).toFixed(1) + 'cm</i>');
+    if (hs.length >= 2) setHtml('.k-h', hs[0] + '→' + hs[hs.length - 1] + '<i>+' + (hs[hs.length - 1] - hs[0]).toFixed(1) + 'cm</i>');
+    const cnt = card.querySelector('.ba-count'); if (cnt) cnt.textContent = kept.length;
+    const bc = card.querySelector('.k-bacnt'); if (bc) bc.textContent = 'BA ' + kept.length + '회';
+  };
+  const save = async () => {
+    if (msg) msg.textContent = '저장 중…';
+    try {
+      const r = await fetch(ROUNDS_API, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
+        body: JSON.stringify({ chart: card.dataset.chart, excludedDates: [...excl] }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      if (msg) msg.textContent = '✅ 저장됨 (' + excl.size + '개 제외) · gen 재실행 시 차트에도 반영';
+    } catch (err) {
+      if (msg) msg.textContent = '❌ 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인';
+    }
+  };
+  rows.forEach(tr => {
+    const btn = tr.querySelector('.ba-x');
+    btn.addEventListener('click', () => {
+      const removed = tr.classList.toggle('ba-removed');
+      btn.textContent = removed ? '↩' : '✕';
+      if (removed) excl.add(tr.dataset.date); else excl.delete(tr.dataset.date);
+      recompute();
+      destroyCard(card); renderGrowth(card); renderTrend(card); // 차트도 즉시 반영
+      save();
+    });
+  });
+});
+
+// ── 환자용 공개 토글(원장 승인) → treatment_cases.published (로컬 ai-server) ──
+const PUBLISH_API = 'http://localhost:4000/api/treatment-cases/publish';
+document.querySelectorAll('.pub-toggle').forEach(btn => {
+  if (!btn.dataset.chart) return;
+  btn.addEventListener('click', async () => {
+    const want = !btn.classList.contains('on');
+    btn.disabled = true;
+    try {
+      const r = await fetch(PUBLISH_API, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
+        body: JSON.stringify({ chart: btn.dataset.chart, published: want }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      btn.classList.toggle('on', want);
+      btn.textContent = want ? '🟢 환자공개 ON' : '⚪ 환자공개';
+    } catch (err) {
+      alert('공개 토글 실패: ' + err.message + ' — ai-server(:4000) 실행 확인');
+    } finally { btn.disabled = false; }
+  });
+});
+
+// ── 부모 키 수정(override) → treatment_cases.overrides (로컬 ai-server). children 은 안 건드림 ──
+const OVERRIDE_API = 'http://localhost:4000/api/treatment-cases/override';
+document.querySelectorAll('.card').forEach(card => {
+  const chart = card.dataset.chart; if (!chart) return;
+  const fa = card.querySelector('.pk-fa'), mo = card.querySelector('.pk-mo'), btn = card.querySelector('.pk-save'), mphv = card.querySelector('.pk-mphv');
+  if (!fa || !mo || !btn) return;
+  const male = card.dataset.g === '남';
+  btn.addEventListener('click', async () => {
+    const f = parseFloat(fa.value), m = parseFloat(mo.value);
+    if (mphv) mphv.textContent = (f > 0 && m > 0) ? 'MPH ' + ((f + m) / 2 + (male ? 6.5 : -6.5)).toFixed(1) : '';
+    btn.disabled = true;
+    try {
+      const r = await fetch(OVERRIDE_API, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
+        body: JSON.stringify({ chart, overrides: { father: f > 0 ? f : null, mother: m > 0 ? m : null } }),
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      btn.textContent = '✓'; setTimeout(() => { btn.textContent = '저장'; }, 1200);
+    } catch (err) {
+      alert('부모 키 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인');
+    } finally { btn.disabled = false; }
+  });
+});
+
+// ── 뼈나이 값 수정(OCR 오타) + 희망키 → treatment_cases.overrides (로컬 ai-server). 진료기록 안 건드림 ──
+async function saveOverride(chart, patch) {
+  const r = await fetch(OVERRIDE_API, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
+    body: JSON.stringify({ chart, overrides: patch }),
+  });
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+}
+document.querySelectorAll('.card').forEach(card => {
+  const chart = card.dataset.chart; if (!chart) return;
+  // 뼈나이 셀 편집 — change(blur/enter) 시 격차 재계산 + 차트 재렌더 + 저장
+  card.querySelectorAll('.ba-in').forEach(inp => {
+    const tr = inp.closest('tr');
+    inp.addEventListener('change', async () => {
+      const v = parseFloat(inp.value), age = parseFloat(tr.dataset.age);
+      const gc = tr.querySelector('.gapcell');
+      if (gc && v > 0 && age > 0) { const g = +(v - age).toFixed(1); gc.textContent = (g >= 0 ? '+' : '') + g; gc.className = 'num gapcell ' + (g >= 1 ? 'bad' : g <= -1 ? 'good2' : ''); }
+      destroyCard(card); renderGrowth(card); renderTrend(card);
+      try { await saveOverride(chart, { boneAges: { [tr.dataset.date]: v > 0 ? v : null } }); }
+      catch (err) { alert('뼈나이 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
+    });
+  });
+  // 희망키 저장
+  const dh = card.querySelector('.dh-in'), dhb = card.querySelector('.dh-save');
+  if (dh && dhb) dhb.addEventListener('click', async () => {
+    const v = parseFloat(dh.value);
+    dhb.disabled = true;
+    try { await saveOverride(chart, { desired: v > 0 ? v : null }); dhb.textContent = '✓'; setTimeout(() => { dhb.textContent = '저장'; }, 1200); }
+    catch (err) { alert('희망키 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
+    finally { dhb.disabled = false; }
+  });
+});
 </script>
 </body>
 </html>`;
@@ -757,23 +988,14 @@ console.log(`done: ${list.length}명 (여 ${girls}) → 케이스후보_상세�
 
 // ── case_candidates_doc 적재 (prod admin 동적 조회용) — PHI 라 service_role 키 필요(RLS 전면 차단 테이블) ──
 async function uploadCaseDoc(htmlStr) {
-  const env = {};
-  try {
-    for (const l of readFileSync(join(PROJ, 'ai-server', '.env'), 'utf8').split(/\r?\n/)) {
-      const m = l.match(/^([A-Z0-9_]+)=(.*)$/); if (m) env[m[1]] = m[2];
-    }
-  } catch { /* .env 없으면 skip */ }
-  const url = env.SUPABASE_URL, key = env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) { console.log('⚠️ ai-server/.env 의 SUPABASE_URL/SERVICE_ROLE_KEY 없음 — DB 적재 skip (파일만 생성됨)'); return; }
-  try {
-    const r = await fetch(`${url}/rest/v1/case_candidates_doc?on_conflict=id`, {
-      method: 'POST',
-      headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
-      body: JSON.stringify({ id: 1, html: htmlStr, updated_at: new Date().toISOString() }),
-    });
-    if (r.ok) console.log('✓ case_candidates_doc DB 적재 완료 (prod admin /admin/cases 동적 조회용)');
-    else console.log(`⚠️ DB 적재 실패 ${r.status}: ${(await r.text()).slice(0, 200)} — service_role 키(진짜)인지 확인`);
-  } catch (e) { console.log(`⚠️ DB 적재 오류: ${String(e.message).slice(0, 150)}`); }
+  const r = await adminRest('case_candidates_doc?on_conflict=id', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
+    body: JSON.stringify({ id: 1, html: htmlStr, updated_at: new Date().toISOString() }),
+  }).catch((e) => { console.log(`⚠️ DB 적재 오류: ${String(e.message).slice(0, 150)}`); return null; });
+  if (!r) { console.log('⚠️ ai-server/.env 의 SUPABASE_URL/SERVICE_ROLE_KEY 없음 — DB 적재 skip (파일만 생성됨)'); return; }
+  if (r.ok) console.log('✓ case_candidates_doc DB 적재 완료 (prod admin /admin/cases 동적 조회용)');
+  else console.log(`⚠️ DB 적재 실패 ${r.status}: ${(await r.text()).slice(0, 200)} — service_role 키(진짜)인지 확인`);
 }
 await uploadCaseDoc(html);
 
@@ -987,3 +1209,36 @@ const extHtml = `<!DOCTYPE html>
 
 writeFileSync(join(PROJ, 'v4/public/치료사례_외부.html'), extHtml, 'utf8');
 console.log(`done: 치료사례_외부.html (비식별, ${Math.round(extHtml.length / 1024)}KB) → /치료사례_외부.html [PIN 8054]`);
+
+// ── 환자용 케이스 DB(treatment_cases) 시드 — 비식별 snapshot 만 upsert(excluded_dates 는 admin 소유라 보존) ──
+// 환자용 페이지가 읽을 소스. 회차 제외는 이미 위에서 mm 필터로 반영됐으므로 snapshot 도 "남긴 회차" 기준.
+async function seedTreatmentCases() {
+  const payload = list.map((r) => ({
+    chart_number: String(r.chart),
+    snapshot: {
+      name: r.name, gender: r.gender,
+      ageAtFirst: r.ageAtFirst, ageAtLast: r.baRows[r.baRows.length - 1]?.age ?? null, // 최초/최종 내원 나이(BA window)
+      months: r.months,
+      tags: r.tags.filter((t) => !t.startsWith('⚠️')).map((t) => t.split('(')[0].trim()),
+      headline: r.headline,
+      hFirst: r.hFirst, hLast: r.hLast, hDelta: r.hDelta,
+      pahFirst: r.pahFirst, pahLast: r.pahLast, pahDelta: r.pahDelta,
+      mph: r.mph, fa: r.fa, mo: r.mo, desired: r.desired, // 부모 키(보정값 반영됨)
+      // 뼈나이 격차(뼈−실제) 변화 — 페이지·요약·스토리에서 핵심(초진→최종)
+      baGapFirst: r.baRows[0]?.gap ?? null, baGapLast: r.baRows[r.baRows.length - 1]?.gap ?? null,
+      highlights: extHighlights(r),
+      chart: extChartData(r), // 비식별(ageDecimal/caY/caM, 측정일 없음) — 성장곡선·예측키·뼈나이회차 파생
+      story: STORIES[String(r.chart)] || null,
+    },
+    updated_at: new Date().toISOString(),
+  }));
+  const r = await adminRest('treatment_cases?on_conflict=chart_number', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates' },
+    body: JSON.stringify(payload),
+  }).catch((e) => { console.log(`⚠️ treatment_cases 시드 오류: ${String(e.message).slice(0, 150)}`); return null; });
+  if (!r) { console.log('⚠️ service_role 없음 또는 오류 — treatment_cases 시드 skip(마이그레이션 070 미적용이면 여기서 실패)'); return; }
+  if (r.ok) console.log(`✓ treatment_cases ${payload.length}건 시드 (환자용 케이스 DB · excluded_dates 보존)`);
+  else console.log(`⚠️ treatment_cases 시드 실패 ${r.status}: ${(await r.text()).slice(0, 200)} — 마이그레이션 070 적용됐는지 확인`);
+}
+await seedTreatmentCases();
