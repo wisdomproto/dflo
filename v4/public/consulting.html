@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>해외 환자 상담 매뉴얼 (Q&A 편집기)</title>
+<title>상담 매뉴얼 (Q&A 편집기)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
@@ -43,25 +43,6 @@
   header.app .inner { max-width: 880px; margin: 0 auto; }
   header.app h1 { font-size: 19px; font-weight: 900; letter-spacing: -0.3px; }
   header.app p { font-size: 12.5px; opacity: 0.85; margin-top: 3px; }
-
-  /* ---------- market tabs ---------- */
-  .tabs {
-    max-width: 880px;
-    margin: 14px auto 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .tab {
-    border: none; cursor: pointer; font-family: inherit;
-    font-size: 13px; font-weight: 700;
-    padding: 8px 16px; border-radius: 999px;
-    background: rgba(255,255,255,0.16); color: #fff; opacity: 0.85;
-    transition: background 0.12s, opacity 0.12s, transform 0.1s;
-  }
-  .tab:hover { background: rgba(255,255,255,0.28); opacity: 1; }
-  .tab.active { background: #fff; color: var(--secondary); opacity: 1; }
-  .tab:active { transform: scale(0.96); }
 
   .toolbar {
     max-width: 880px;
@@ -332,13 +313,12 @@
 <header class="app">
   <div class="inner">
     <h1 id="manualTitle">상담 매뉴얼 — Q&A 편집기</h1>
-    <p>원장님과 함께 답변을 채워주세요 · 변경사항은 자동 저장됩니다</p>
+    <p>한글로 작성하시면 됩니다 · 다른 언어는 🌐 번역으로 채웁니다 · 변경사항은 자동 저장</p>
   </div>
-  <div class="tabs" id="marketTabs"></div>
   <div class="toolbar">
     <div class="tb-group" id="langGroup">
       <div class="langseg" id="langSeg"></div>
-      <button class="btn btn-solid" id="btnTranslate">🌐 현지어 번역</button>
+      <button class="btn btn-solid" id="btnTranslate">🌐 번역</button>
     </div>
     <span class="tb-divider" id="langDivider"></span>
     <div class="tb-group">
@@ -361,7 +341,7 @@
 <button class="add-cat editor-only" id="btnAddCat" style="max-width:880px;margin:0 auto 24px;display:block;">＋ 카테고리 추가</button>
 
 <footer class="note">
-  입력 내용은 자동으로 DB에 저장됩니다(☁️ 표시). 시장(국가) 탭마다 별도 매뉴얼이며, 각 탭에서 <b>한글/현지어</b>를 전환해 작성·확인할 수 있습니다.
+  입력 내용은 자동으로 DB에 저장됩니다(☁️ 표시). <b>한글로 작성</b>하시면 되고, 다른 언어 탭은 🌐 번역으로 채우거나 직접 손볼 수 있습니다.
 </footer>
 
 <script>
@@ -369,21 +349,26 @@
   'use strict';
   const STORAGE_KEY = 'dflo_consulting_qa_v1';
 
-  // ---------- markets (시장별 매뉴얼) ----------
-  // bilingual=true 인 시장은 [한글 / 현지어] 전환 가능. kr 은 한국어 단일.
-  const MARKETS = [
-    { key: 'th', tab: '🇹🇭 태국어', title: '🇹🇭 태국 환자 상담 매뉴얼',   locName: 'ภาษาไทย',     bilingual: true },
-    { key: 'kr', tab: '🇰🇷 한글',   title: '🇰🇷 한국 환자 상담 매뉴얼',   locName: '한국어',      bilingual: false },
-    { key: 'en', tab: '🇺🇸 영어',   title: '🇺🇸 영어권 환자 상담 매뉴얼', locName: 'English',     bilingual: true },
-    { key: 'vn', tab: '🇻🇳 베트남어', title: '🇻🇳 베트남 환자 상담 매뉴얼', locName: 'Tiếng Việt', bilingual: true },
+  // ---------- 언어 (매뉴얼은 하나, 언어별 번역본) ----------
+  // ko = 원본(작성 기준). 나머지는 🌐 번역으로 채우거나 직접 손볼 수 있다.
+  // key 를 그대로 ai-server /api/marketing/translate 의 targetLang 으로 쓴다.
+  const MASTER = 'ko';
+  const LANGS = [
+    { key: 'ko', label: '한글' },
+    { key: 'en', label: 'English' },
+    { key: 'th', label: 'ไทย' },
+    { key: 'vi', label: 'Tiếng Việt' },
+    { key: 'zh', label: '中文' },
   ];
-  const MARKET_KEYS = MARKETS.map(function (m) { return m.key; });
-
-  // 번역 대상 언어 키 (ai-server /api/marketing/translate 가 받는 코드). 베트남어는 'vi'.
-  const TRANSLATE_LANG = { en: 'en', th: 'th', vn: 'vi' };
+  const LANG_KEYS = LANGS.map(function (l) { return l.key; });
+  function langLabel(k) {
+    const hit = LANGS.filter(function (l) { return l.key === k; })[0];
+    return hit ? hit.label : k;
+  }
   // AI 서버 URL — dev(localhost)에서만 동작. prod 는 marketing 라우터 auth 게이트라 미동작.
+  // ★포트는 4000(로컬 ai-server 실제 포트). 3001 로 박혀 있어 번역이 한 번도 안 됐었다.
   const AI_SERVER = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-    ? 'http://localhost:3001' : '';
+    ? 'http://localhost:4000' : '';
 
   // ---------- Supabase ----------
   const SUPABASE_URL = 'https://txirmofdvuljkrjkpzdg.supabase.co';
@@ -391,59 +376,73 @@
   const sb = (window.supabase && window.supabase.createClient)
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     : null;
-  let online = false; // DB 사용 가능 여부
+  let online = false;      // DB 사용 가능 여부
+  let lastSynced = null;   // 마지막으로 확인한 DB updated_at (충돌 감지용)
 
   // ---------- seed data (브레인스토밍에서 뽑은 예상 질문) ----------
   const SEED = [
     { title: '신뢰 · 효과', qs: [
       '진짜 키가 크는 게 맞나요? 과학적 근거가 있나요?',
       '우리 아이도 효과를 볼 수 있나요? (성장판이 닫혔다면?)',
-      '치료 사례나 전후 데이터가 있나요? 외국 아이도 받은 적 있나요?',
+      '치료 사례나 전후 데이터가 있나요?',
       '부작용은 없나요? 호르몬 치료는 위험하지 않나요?',
       '얼마 만에 몇 cm 정도 자라나요?',
     ]},
     { title: '상담 · 진료 프로세스', qs: [
-      '상담은 어떻게 진행되나요? (메신저 / 화상 / 대면)',
-      '해외에 있는데 어떻게 진료받나요? 한국에 꼭 가야 하나요?',
+      '상담은 어떻게 진행되나요? 예약이 필요한가요?',
       '첫 상담 → 검사 → 치료까지 단계가 어떻게 되나요?',
-      '한국 방문 시 며칠 머물러야 하나요? 몇 번 방문해야 하나요?',
-      '검사(엑스레이·혈액·뼈나이)를 현지에서 받아 보내도 되나요?',
-      '치료 시작 후 약·주사는 현지에서 어떻게 이어받나요?',
-    ]},
-    { title: '언어 · 소통', qs: [
-      '현지어/영어 상담이 가능한가요? 통역 지원이 되나요?',
-      '한국 방문 시 의사소통은 어떻게 하나요?',
-      '검사 결과지·처방전을 현지어/영어로 받을 수 있나요?',
+      '얼마나 자주 병원에 와야 하나요? 치료 기간은요?',
+      '다른 병원에서 받은 검사 결과를 가져가도 되나요?',
+      '약·주사는 어떻게 받나요? 집에서 직접 주사하나요?',
     ]},
     { title: '비용', qs: [
       '상담 비용은 얼마인가요? (무료 / 유료)',
       '진료·검사 비용은? 치료 전체 예상 비용은?',
-      '현지 통화로 얼마인가요? 결제는 어떻게 하나요?',
-      '현지 보험이 적용되나요? 영수증·서류 발급이 되나요?',
+      '건강보험이 적용되나요?',
+      '결제는 어떻게 하나요? 분할 결제가 되나요?',
       '약값·재방문 비용은 별도인가요?',
     ]},
-    { title: '체류 · 실무 (방한)', qs: [
-      '비자가 필요한가요? 의료 목적 입국 절차는?',
-      '병원 근처 숙소·교통 안내가 되나요?',
-      '아이가 학교를 다니는데 최소 며칠이면 되나요?',
+    { title: '내원 안내', qs: [
+      '병원 위치와 진료 시간은 어떻게 되나요?',
+      '아이가 학교를 다니는데 언제 오는 게 좋을까요?',
+      '부모님이 함께 가야 하나요?',
     ]},
     { title: '적합성 · 대상', qs: [
       '몇 살부터 몇 살까지 치료가 가능한가요?',
       '우리 아이 키가 OOcm인데 치료 대상인가요?',
       '사춘기가 빠른 아이 / 저신장 / 비만도 모두 가능한가요?',
     ]},
+    { title: 'Grow Up 교육 (치료 프로그램)', qs: [
+      '187 Grow Up 성장 치료는 무엇을 관리하나요? (5가지 서비스)',
+      '처음에는 어떤 검사를 진행하나요?',
+      '① 수면 관리 — 왜 중요한가요?',
+      '② 음식 관리(면역 관리) — 어떻게 하나요?',
+      '③ 약(영양제) 관리 — 어떻게 처방되나요?',
+      '④ 자세 관리 — 어떻게 하나요?',
+      '⑤ 호르몬 관리 — Growth 호르몬 · Sex 호르몬 · 루프린이란?',
+      '치료는 언제까지 하나요? 어떻게 추적 관리하나요?',
+    ]},
   ];
 
   function uid() { return 'q' + Math.random().toString(36).slice(2, 9); }
 
-  // ---------- 데이터 형태 헬퍼 (이중언어 {ko, loc}) ----------
+  // ---------- 데이터 형태 헬퍼 (언어 맵 {ko, en, th, vi, zh}) ----------
+  // v3 = { version:3, cats:[…], markets:{…} }  ← 매뉴얼 하나 + 언어별 번역. cats 가 본문.
+  // v2 = { version:2, markets:{th,kr,en,vn} }  ← 옛 시장별 매뉴얼 (kr 을 본문으로 승격)
+  // ★`markets` 는 v3 에서도 그대로 들고 간다 = 옛 시장별 원본 보관 + 하위호환.
+  //   옛 버전 페이지의 normalize 는 `markets` 가 없으면 "DB 비어있음" 으로 보고 자기 상태를
+  //   업로드해 v3 를 통째로 날린다(실제로 겪음). 키를 남겨두면 그 자동 업로드가 안 일어난다.
   function coerceText(v) {
+    const out = {};
     if (v && typeof v === 'object') {
-      return { ko: v.ko || '', loc: (v.loc != null ? v.loc : (v.ko || '')) };
+      LANG_KEYS.forEach(function (k) { out[k] = v[k] || ''; });
+      // 옛 {ko, loc}: loc 이 어느 언어인지 여기서는 알 수 없으므로 버린다(보관본에 남아 있음).
+    } else {
+      LANG_KEYS.forEach(function (k) { out[k] = ''; });
+      out[MASTER] = v || '';
     }
-    return { ko: v || '', loc: v || '' };
+    return out;
   }
-  // 카테고리 배열을 {ko,loc} 이중언어 형태로 정규화 (id 보존).
   function coerceCats(arr) {
     return (arr || []).map(function (c) {
       return {
@@ -460,78 +459,47 @@
       };
     });
   }
-  // id 를 새로 부여한 깊은 복사 (시장 간 독립성 보장).
-  function regenCats(cats) {
-    return cats.map(function (c) {
-      return {
-        id: uid(),
-        title: { ko: c.title.ko, loc: c.title.loc },
-        questions: c.questions.map(function (q) {
-          return {
-            id: uid(),
-            q: { ko: q.q.ko, loc: q.q.loc },
-            a: { ko: q.a.ko, loc: q.a.loc },
-            isPublic: q.isPublic,
-          };
-        }),
-      };
-    });
-  }
-  // 시드(한국어) → 한 시장의 카테고리 배열.
+  // 시드(한국어) → 카테고리 배열.
   function freshSeedCats() {
     return SEED.map(function (c) {
       return {
         id: uid(),
-        title: { ko: c.title, loc: c.title },
+        title: coerceText(c.title),
         questions: c.qs.map(function (q) {
-          return { id: uid(), q: { ko: q, loc: q }, a: { ko: '', loc: '' }, isPublic: false };
+          return { id: uid(), q: coerceText(q), a: coerceText(''), isPublic: false };
         }),
       };
     });
   }
-  // 레거시 단일 배열 → 4개 시장(전부 동일 복사).
-  function marketsFromLegacy(legacyArr) {
-    const base = coerceCats(legacyArr);
-    const markets = {};
-    MARKET_KEYS.forEach(function (k) { markets[k] = regenCats(base); });
-    return markets;
-  }
-  function buildFromSeed() {
-    const markets = {};
-    MARKET_KEYS.forEach(function (k) { markets[k] = freshSeedCats(); });
-    return { version: 2, markets: markets };
-  }
-  // 저장된 객체 형태({markets}) 정규화 + 누락 시장 보강.
-  function ensureShape(stored) {
-    const mk = (stored && stored.markets) || {};
-    const krCats = coerceCats(mk.kr || []);
-    const out = { version: 2, markets: {} };
-    MARKET_KEYS.forEach(function (k) {
-      let cats = coerceCats(mk[k] || []);
-      if (cats.length === 0 && krCats.length > 0) cats = regenCats(krCats); // 새 시장은 kr 복사
-      out.markets[k] = cats;
-    });
-    return out;
-  }
-  // 임의 입력(레거시 배열 / 신규 객체) → 표준 state. 비면 null.
+  function buildFromSeed() { return { version: 3, cats: freshSeedCats() }; }
+  // 임의 입력(레거시 배열 / v2 시장 객체 / v3) → 표준 state. 비면 null.
   function normalize(stored) {
     if (!stored) return null;
     if (Array.isArray(stored)) {
-      if (stored.length === 0) return null;
-      return { version: 2, markets: marketsFromLegacy(stored) };
+      return stored.length ? { version: 3, cats: coerceCats(stored) } : null;
     }
-    if (stored.markets) return ensureShape(stored);
+    if (stored.cats) {
+      return stored.cats.length
+        ? { version: 3, cats: coerceCats(stored.cats), markets: stored.markets }
+        : null;
+    }
+    if (stored.markets) {
+      // 옛 시장별 구조 → 일반 매뉴얼(kr)을 본문으로, 시장별 원본은 통째로 보관.
+      const mk = stored.markets;
+      const base = mk.kr && mk.kr.length ? mk.kr
+        : (['th', 'en', 'vn'].map(function (k) { return mk[k]; })
+            .filter(function (a) { return a && a.length; })[0] || []);
+      return base.length ? { version: 3, cats: coerceCats(base), markets: mk } : null;
+    }
     return null;
   }
 
   // ---------- state ----------
   let state = loadCache() || buildFromSeed();
-  let currentMarket = 'th';
-  const langByMarket = { kr: 'ko', en: 'ko', th: 'ko', vn: 'ko' };
+  let lang = MASTER;
 
-  function market() { return MARKETS.filter(function (m) { return m.key === currentMarket; })[0]; }
-  function curLang() { return market().bilingual ? (langByMarket[currentMarket] || 'ko') : 'ko'; }
-  function cats() { return state.markets[currentMarket]; }
+  function curLang() { return lang; }
+  function cats() { return state.cats; }
 
   function loadCache() {
     try {
@@ -556,9 +524,20 @@
   async function save() {
     writeCache();
     if (online && sb) {
-      const { error } = await sb.from('consulting_qa')
-        .upsert({ id: 1, categories: state, updated_at: new Date().toISOString() });
+      // 이 편집기는 싱글톤 행 전체를 덮어쓴다 → 오래 열어둔 탭이 남의 저장을 지울 수 있음.
+      // 마지막으로 본 updated_at 과 다르면 쓰지 않고 새로고침을 요구한다.
+      const chk = await sb.from('consulting_qa').select('updated_at').eq('id', 1).maybeSingle();
+      if (!chk.error && chk.data && lastSynced && chk.data.updated_at !== lastSynced) {
+        flash('⚠️ 다른 곳에서 수정됨 — 🔄 를 눌러 새로고침 후 다시 입력해 주세요');
+        return;
+      }
+      // ★저장된 값을 되받아 lastSynced 로 쓴다 — 클라이언트 ISO 문자열과 Postgres
+      //   timestamptz 표기가 달라(‥Z vs ‥+00:00) 그대로 비교하면 매번 충돌로 오탐.
+      const { data: saved, error } = await sb.from('consulting_qa')
+        .upsert({ id: 1, categories: state, updated_at: new Date().toISOString() })
+        .select('updated_at').maybeSingle();
       if (error) { online = false; flash('⚠️ DB 저장 실패 — 로컬에만 저장됨'); return; }
+      lastSynced = (saved && saved.updated_at) || null;
       flash('☁️ 저장됨 ✓');
     } else {
       flash('💾 로컬 저장됨 (DB 미연결)');
@@ -571,13 +550,14 @@
     if (!sb) { online = false; flash('💾 로컬 모드 (supabase-js 로드 실패)'); return; }
     flash('동기화 중…');
     const { data, error } = await sb.from('consulting_qa')
-      .select('categories').eq('id', 1).maybeSingle();
+      .select('categories, updated_at').eq('id', 1).maybeSingle();
     if (error) {
       online = false;
       flash('💾 로컬 모드 (DB 미연결 — 마이그레이션 029 적용 필요)');
       return;
     }
     online = true;
+    lastSynced = (data && data.updated_at) || null;
     const remote = normalize(data && data.categories);
     if (remote) {
       state = remote; writeCache(); renderAll();
@@ -591,55 +571,33 @@
 
   // ---------- render ----------
   const appEl = document.getElementById('app');
-  const tabsEl = document.getElementById('marketTabs');
   const langSegEl = document.getElementById('langSeg');
-  const langGroupEl = document.getElementById('langGroup');
-  const langDividerEl = document.getElementById('langDivider');
   const titleEl = document.getElementById('manualTitle');
   // UI 전용 상태(DB 비저장): 펼침 여부
   const collapsedCat = new Set();          // 접힌 카테고리 id
   const openQ = new Set();                  // 답변 펼친 질문 id (기본: 접힘)
 
-  function renderTabs() {
-    tabsEl.innerHTML = '';
-    MARKETS.forEach(function (m) {
-      const b = el('button', 'tab' + (m.key === currentMarket ? ' active' : ''));
-      b.textContent = m.tab;
-      b.addEventListener('click', function () {
-        if (currentMarket === m.key) return;
-        currentMarket = m.key;
-        collapsedCat.clear(); openQ.clear();
-        renderAll();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      tabsEl.appendChild(b);
-    });
-  }
-
   function renderLangSeg() {
-    const m = market();
     langSegEl.innerHTML = '';
-    if (!m.bilingual) { langSegEl.style.display = 'none'; return; }
-    langSegEl.style.display = 'inline-flex';
-    [['ko', '한글'], ['loc', m.locName]].forEach(function (pair) {
-      const b = el('button', 'langbtn' + (curLang() === pair[0] ? ' active' : ''));
-      b.textContent = pair[1];
+    LANGS.forEach(function (l) {
+      const b = el('button', 'langbtn' + (lang === l.key ? ' active' : ''));
+      b.textContent = l.label;
       b.addEventListener('click', function () {
-        langByMarket[currentMarket] = pair[0];
-        render(); renderLangSeg();
+        if (lang === l.key) return;
+        lang = l.key;
+        renderAll();
       });
       langSegEl.appendChild(b);
     });
   }
 
   function renderAll() {
-    const m = market();
-    titleEl.textContent = m.title + ' — Q&A 편집기';
-    renderTabs();
+    titleEl.textContent = '상담 매뉴얼 — Q&A 편집기'
+      + (lang === MASTER ? '' : ' · ' + langLabel(lang));
     renderLangSeg();
-    // 언어 도구(한글/현지어 토글 + 번역) 묶음은 다국어 시장에서만.
-    langGroupEl.style.display = m.bilingual ? '' : 'none';
-    langDividerEl.style.display = m.bilingual ? '' : 'none';
+    // 원본(한글) 탭에서는 번역할 대상이 없다.
+    btnTranslate.style.display = lang === MASTER ? 'none' : '';
+    btnTranslate.textContent = '🌐 한글 → ' + langLabel(lang) + ' 번역';
     render();
   }
 
@@ -661,7 +619,7 @@
     const title = document.createElement('input');
     title.className = 'cat-title';
     title.value = cat.title[lang];
-    title.placeholder = lang === 'ko' ? '카테고리 이름' : '현지어 카테고리 이름';
+    title.placeholder = lang === MASTER ? '카테고리 이름' : langLabel(lang) + ' 카테고리 이름';
     title.addEventListener('input', function () { cat.title[lang] = title.value; queueSave(); });
     title.addEventListener('click', function (e) { e.stopPropagation(); });
     const count = el('span', 'cat-count'); count.textContent = cat.questions.length + '문항';
@@ -693,7 +651,7 @@
 
     const addQ = el('button', 'add-q editor-only'); addQ.textContent = '＋ 질문 추가';
     addQ.addEventListener('click', function () {
-      cat.questions.push({ id: uid(), q: { ko: '', loc: '' }, a: { ko: '', loc: '' }, isPublic: false });
+      cat.questions.push({ id: uid(), q: coerceText(''), a: coerceText(''), isPublic: false });
       save(); render();
     });
     body.appendChild(addQ);
@@ -731,7 +689,7 @@
 
     const qText = document.createElement('input');
     qText.className = 'q-text'; qText.value = q.q[lang];
-    qText.placeholder = lang === 'ko' ? '질문을 입력하세요' : '현지어 질문을 입력하세요';
+    qText.placeholder = lang === MASTER ? '질문을 입력하세요' : langLabel(lang) + ' 질문을 입력하세요';
     qText.addEventListener('input', function () { q.q[lang] = qText.value; queueSave(); });
 
     const ansBtn = el('button', 'ans-btn');
@@ -742,7 +700,7 @@
 
     const ans = document.createElement('textarea');
     ans.className = 'q-ans'; ans.value = q.a[lang];
-    ans.placeholder = lang === 'ko' ? '답변을 입력하세요 (원장님과 함께 작성)' : '현지어 답변을 입력하세요';
+    ans.placeholder = lang === MASTER ? '답변을 입력하세요 (원장님과 함께 작성)' : langLabel(lang) + ' 답변을 입력하세요';
     ans.addEventListener('input', function () {
       q.a[lang] = ans.value; updateBadge(); queueSave();
       ans.style.height = 'auto'; ans.style.height = ans.scrollHeight + 'px';
@@ -776,55 +734,66 @@
 
   function el(tag, cls) { const e = document.createElement(tag); if (cls) e.className = cls; return e; }
 
-  // ---------- 번역 (한국어 → 현지어) ----------
+  // ---------- 번역 (한글 원본 → 선택 언어) ----------
   const btnTranslate = document.getElementById('btnTranslate');
 
-  // 한 항목(질문+답변 또는 카테고리 제목) 번역. 실패 시 throw.
-  async function translateText(title, bodyText, langKey) {
-    const res = await fetch(AI_SERVER + '/api/marketing/translate', {
+  // 순수 텍스트 한 덩이 번역. 빈 문자열은 호출하지 않고 그대로 반환. 실패 시 throw.
+  // `/translate`(블로그용: HTML 본문 + {title,body} JSON)가 아니라 `/translate-text` 를 쓴다.
+  // 매뉴얼은 평문이고 ①②·같은 목록 기호와 줄바꿈을 그대로 살려야 하기 때문.
+  // style:'formal' = 존댓말 + 남성 의사 화자(태국어 ครับ/ผม) + 목록 구조 보존.
+  async function translateText(src, langKey) {
+    if (!src || !src.trim()) return '';
+    const res = await fetch(AI_SERVER + '/api/marketing/translate-text', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: title || '', body: bodyText || '', targetLang: langKey }),
+      body: JSON.stringify({ text: src, targetLang: langKey, style: 'formal' }),
     });
     const data = await res.json().catch(function () { return {}; });
     if (!res.ok || !data.success) throw new Error(data.error || ('HTTP ' + res.status));
-    return { title: data.title || '', body: data.body || '' };
+    return data.text || '';
   }
 
   async function runTranslate() {
-    const m = market();
-    if (!m.bilingual) return;
+    const target = lang;
+    if (target === MASTER) return;
     if (!AI_SERVER) { flash('⚠️ AI 서버 URL 미설정 — dev(localhost)에서만 번역됩니다'); return; }
-    const langKey = TRANSLATE_LANG[m.key];
-    if (!confirm('“한글” 내용을 ' + m.locName + '(으)로 번역해 현지어 필드를 채웁니다.\n비어있지 않은 기존 현지어 입력은 덮어쓰여집니다. 계속할까요?')) return;
+    const name = langLabel(target);
+    if (!confirm('“한글” 내용을 ' + name + '(으)로 번역해 채웁니다.\n비어있지 않은 기존 ' + name + ' 입력은 덮어쓰여집니다. 계속할까요?')) return;
 
     const list = cats();
     const total = list.reduce(function (n, c) { return n + 1 + c.questions.length; }, 0);
     let done = 0, fails = 0, lastErr = '';
     btnTranslate.disabled = true;
     try {
+      // 연달아 실패하면 멈춘다 — Gemini 쿼터(429)가 걸리면 남은 수십 건이 전부 같은 이유로
+      // 실패하므로 계속 두드릴 이유가 없다.
+      let streak = 0;
+      const STOP_AFTER = 3;
+      outer:
       for (const c of list) {
-        if (c.title.ko && c.title.ko.trim()) {
-          try { c.title.loc = (await translateText(c.title.ko, '', langKey)).title || c.title.loc; }
-          catch (e) { fails++; lastErr = e.message; }
-        }
+        try {
+          const t = await translateText(c.title[MASTER], target);
+          if (t) c.title[target] = t;
+          streak = 0;
+        } catch (e) { fails++; lastErr = e.message; if (++streak >= STOP_AFTER) break outer; }
         done++; flash('번역 중… ' + done + '/' + total);
         for (const q of c.questions) {
-          if ((q.q.ko && q.q.ko.trim()) || (q.a.ko && q.a.ko.trim())) {
-            try {
-              const r = await translateText(q.q.ko, q.a.ko, langKey);
-              if (r.title) q.q.loc = r.title;
-              if (r.body) q.a.loc = r.body;
-            } catch (e) { fails++; lastErr = e.message; }
-          }
+          try {
+            const tq = await translateText(q.q[MASTER], target);
+            if (tq) q.q[target] = tq;
+            const ta = await translateText(q.a[MASTER], target);
+            if (ta) q.a[target] = ta;
+            streak = 0;
+          } catch (e) { fails++; lastErr = e.message; if (++streak >= STOP_AFTER) break outer; }
           done++; flash('번역 중… ' + done + '/' + total);
         }
       }
-      langByMarket[currentMarket] = 'loc';
       renderAll();
-      save();
-      if (fails === 0) flash('🌐 ' + m.locName + ' 번역 완료 ✓');
-      else flash('🌐 번역 일부 실패(' + fails + '건) — ' + lastErr);
+      // ★save() 를 await 하지 않으면 그 안의 '저장됨' flash 가 아래 결과 메시지를 덮어써서
+      //   실패가 성공처럼 보인다(쿼터로 중단됐는데 "☁️ 저장됨 ✓" 으로 끝났었음).
+      await save();
+      if (fails === 0) flash('🌐 ' + name + ' 번역 완료 ✓');
+      else flash('🌐 번역 ' + (total - done) + '건 남기고 중단 — ' + lastErr.slice(0, 80));
     } finally {
       btnTranslate.disabled = false;
     }
@@ -833,7 +802,7 @@
 
   // ---------- toolbar ----------
   document.getElementById('btnAddCat').addEventListener('click', function () {
-    cats().push({ id: uid(), title: { ko: '새 카테고리', loc: '새 카테고리' }, questions: [] });
+    cats().push({ id: uid(), title: coerceText('새 카테고리'), questions: [] });
     save(); render();
   });
 
@@ -850,8 +819,8 @@
   });
 
   document.getElementById('btnReset').addEventListener('click', function () {
-    if (confirm('“' + market().tab + '” 매뉴얼을 초기 질문 세트로 되돌릴까요? (이 탭의 입력 내용이 사라집니다)')) {
-      state.markets[currentMarket] = freshSeedCats(); save(); render();
+    if (confirm('매뉴얼을 초기 질문 세트로 되돌릴까요? (전 언어의 입력 내용이 사라집니다)')) {
+      state.cats = freshSeedCats(); save(); render();
     }
   });
 
@@ -871,9 +840,9 @@
     pullRemote({ force: true });
   });
   function hasContent() {
-    return MARKET_KEYS.some(function (k) {
-      return state.markets[k].some(function (c) {
-        return c.questions.some(function (q) { return q.a.ko || q.a.loc || q.q.ko || q.q.loc; });
+    return cats().some(function (c) {
+      return c.questions.some(function (q) {
+        return LANG_KEYS.some(function (k) { return q.a[k] || q.q[k]; });
       });
     });
   }

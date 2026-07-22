@@ -293,13 +293,15 @@ marketingRouter.post('/comment-draft', async (req: Request, res: Response) => {
   }
 });
 
-// POST /translate-text : 소스 자동감지 → 대상 언어 순수 텍스트 번역 (커뮤니티 글/답글용, Gemini 게이트).
+// POST /translate-text : 소스 자동감지 → 대상 언어 순수 텍스트 번역 (Gemini 게이트).
+// style 기본 'community'(커뮤니티 글/답글). 상담 매뉴얼 등 격식 문서는 'formal'.
 marketingRouter.post('/translate-text', async (req: Request, res: Response) => {
-  const body = (req.body ?? {}) as { text?: string; targetLang?: string };
+  const body = (req.body ?? {}) as { text?: string; targetLang?: string; style?: string };
   if (!body.text || !String(body.text).trim()) return res.status(400).json({ success: false, error: 'text required' });
   if (!body.targetLang || !String(body.targetLang).trim()) return res.status(400).json({ success: false, error: 'targetLang required' });
+  const style = body.style === 'formal' ? 'formal' : 'community';
   try {
-    const out = await generateText(buildPlainTranslatePrompt({ text: String(body.text), targetLang: String(body.targetLang) }));
+    const out = await generateText(buildPlainTranslatePrompt({ text: String(body.text), targetLang: String(body.targetLang), style }));
     const clean = (out ?? '').trim();
     if (!clean) return res.status(502).json({ success: false, error: '번역 결과가 비어 있습니다. 다시 시도해주세요.' });
     res.json({ success: true, text: clean });
