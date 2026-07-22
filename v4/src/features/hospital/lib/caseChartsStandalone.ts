@@ -57,24 +57,22 @@ function sortedHeights(d: CaseData) {
     .sort((a, b) => sortKey(a) - sortKey(b));
 }
 
-// 마지막 회차에서 예측 성인키(18세)까지 나이별 투영 — 환자 성장곡선(AdminPatientGrowthChart)과 동일 로직.
-// startReference=BA 면 그 아이의 뼈나이 백분위를 따라 성장, ref 가 18 되면 예측 성인키에서 평탄화.
+// 마지막 회차 → 예측 성인키(18세)까지 매끄러운 투영. 남은 성장(뼈나이 startRef→18)을 차트의
+// 만나이 구간 [startCA, 18] 에 선형 매핑해, 시작점(현재 키)에서 끝점(예측 성인키)까지 꺾임 없이 잇는다.
+// (원본은 뼈나이를 달력처럼 진행시키다 마지막만 clamp 해 꺾임이 생겼음.)
 function buildProjection(
   startCA: number, startH: number, startRef: number,
   gender: 'male' | 'female', nat: Nationality,
 ): { x: number; y: number }[] | null {
-  if (startRef >= 18 || !(startH > 0)) return null;
-  const points: { x: number; y: number }[] = [{ x: Number(startCA.toFixed(2)), y: startH }];
-  for (let yr = Math.ceil(startCA + 0.0001); yr <= X_MAX; yr++) {
-    const refAtYr = Math.min(18, startRef + (yr - startCA));
-    const y = heightAtSamePercentile(startH, startRef, refAtYr, gender, nat);
-    if (y > 0) points.push({ x: yr, y: Number(y.toFixed(1)) });
-  }
-  const adult = heightAtSamePercentile(startH, startRef, 18, gender, nat);
-  if (adult > 0) {
-    const last = points[points.length - 1];
-    if (last.x === X_MAX) last.y = Number(adult.toFixed(1));
-    else points.push({ x: X_MAX, y: Number(adult.toFixed(1)) });
+  if (startRef >= 18 || !(startH > 0) || startCA >= X_MAX) return null;
+  const span = X_MAX - startCA;
+  const points: { x: number; y: number }[] = [];
+  const STEPS = 12;
+  for (let i = 0; i <= STEPS; i++) {
+    const a = startCA + span * (i / STEPS);
+    const ref = startRef + (18 - startRef) * ((a - startCA) / span); // a=18 일 때 ref=18 → 예측 성인키
+    const y = i === 0 ? startH : heightAtSamePercentile(startH, startRef, ref, gender, nat);
+    if (y > 0) points.push({ x: Number(a.toFixed(2)), y: Number(y.toFixed(1)) });
   }
   return points.length >= 2 ? points : null;
 }
@@ -101,20 +99,44 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
     pointBorderColor: '#ffffff', pointBorderWidth: 1.5, showLine: pts.length > 1, tension: 0, order: 0,
   };
 
-  // 마지막 BA 회차 → 예측 성인키(18세)까지 나이별 점선 투영. 뼈나이 백분위 기준.
+  // 마지막 BA 회차 → 예측 성인키(18세)까지 점선 투영 + 예측 성인키 가로선.
   const projDs: object[] = [];
+  let pah = 0;
   const lastBa = baMs[baMs.length - 1];
   if (lastBa && lastBa.bone_age != null) {
+    pah = Number(heightAtSamePercentile(lastBa.height, lastBa.bone_age as number, 18, d.gender, nat).toFixed(1));
     const proj = buildProjection(ageOf(lastBa, d.birth_date).decimal, lastBa.height, lastBa.bone_age as number, d.gender, nat);
     if (proj) projDs.push({
       label: 'proj', data: proj, borderColor: COLORS.baProj, backgroundColor: 'transparent',
-      borderWidth: 2, borderDash: [5, 4], pointRadius: 0, pointHoverRadius: 0, fill: false, tension: 0.2, order: 1,
+      borderWidth: 2, borderDash: [5, 4], pointRadius: 0, pointHoverRadius: 0, fill: false, tension: 0.3, order: 1,
+    });
+    if (pah > 0) projDs.push({ // 예측 성인키 가로선
+      label: 'pahline', data: [{ x: X_MIN, y: pah }, { x: X_MAX, y: pah }],
+      borderColor: 'rgba(99,102,241,0.5)', backgroundColor: 'transparent',
+      borderWidth: 1.5, borderDash: [2, 3], pointRadius: 0, pointHoverRadius: 0, fill: false, order: 2,
     });
   }
+
+  // 가로선 위에 "예상키 Ncm" 라벨.
+  const pahLabelPlugin = {
+    id: 'pahLabel',
+    afterDatasetsDraw(chart: Chart) {
+      if (!(pah > 0)) return;
+      const y = chart.scales.y.getPixelForValue(pah);
+      const x = chart.scales.x.getPixelForValue(X_MAX);
+      const ctx = chart.ctx;
+      ctx.save();
+      ctx.font = '700 11px sans-serif'; ctx.fillStyle = COLORS.pah;
+      ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
+      ctx.fillText(`예상키 ${pah}cm`, x - 3, y - 3);
+      ctx.restore();
+    },
+  };
 
   (canvas as unknown as { _chart?: Chart })._chart = new Chart(canvas, {
     type: 'line',
     data: { datasets: [...percentileDs, ...projDs, patientDs] as never },
+    plugins: [pahLabelPlugin],
     options: {
       responsive: true, maintainAspectRatio: false, animation: false, devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
       plugins: {
