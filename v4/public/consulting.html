@@ -230,7 +230,7 @@
     font-size: 13.5px;
     color: var(--text);
     padding: 9px 11px;
-    min-height: 64px;
+    min-height: 200px;
     resize: vertical;
     line-height: 1.55;
   }
@@ -601,11 +601,18 @@
     render();
   }
 
+  // 답변칸을 내용 높이에 맞춘다. DOM 에 붙은 뒤에 불러야 scrollHeight 가 잡힌다.
+  function autosize(ta) { ta.style.height = 'auto'; ta.style.height = ta.scrollHeight + 'px'; }
+  function autosizeOpen() {
+    document.querySelectorAll('.q:not(.collapsed) textarea.q-ans').forEach(autosize);
+  }
+
   function render() {
     appEl.innerHTML = '';
     cats().forEach(function (cat, ci) {
       appEl.appendChild(renderCat(cat, ci));
     });
+    autosizeOpen(); // '모두 펼치기'·언어 전환 후에도 답변이 잘리지 않도록
   }
 
   function renderCat(cat, ci) {
@@ -703,12 +710,12 @@
     ans.placeholder = lang === MASTER ? '답변을 입력하세요 (원장님과 함께 작성)' : langLabel(lang) + ' 답변을 입력하세요';
     ans.addEventListener('input', function () {
       q.a[lang] = ans.value; updateBadge(); queueSave();
-      ans.style.height = 'auto'; ans.style.height = ans.scrollHeight + 'px';
+      autosize(ans);
     });
 
     function toggleAns() {
       const opening = wrap.classList.contains('collapsed');
-      if (opening) { openQ.add(q.id); wrap.classList.remove('collapsed'); ans.style.height = 'auto'; ans.style.height = ans.scrollHeight + 'px'; }
+      if (opening) { openQ.add(q.id); wrap.classList.remove('collapsed'); autosize(ans); }
       else { openQ.delete(q.id); wrap.classList.add('collapsed'); }
       setAnsBtnText();
     }
