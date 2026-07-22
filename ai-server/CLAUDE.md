@@ -49,6 +49,13 @@ middleware/
 |--------|------|-------------|--------|
 | POST | `/api/analyze/meal` | Meal photo → nutrition analysis | WORKING |
 | POST | `/api/analyze/body` | Body posture analysis | MOCK |
+| POST | `/api/marketing/translate-text` | 소스 자동감지 → 대상 언어 **순수 텍스트** 번역 (Gemini) | WORKING |
+
+**`/translate-text` 의 `style`** (2026-07-22): `'community'`(기본 — 커뮤니티 글/댓글, 구어체) · `'formal'`(상담 매뉴얼 등 격식 문서 — 존댓말 + **남성 의사 화자**[태국어 `ครับ/ผม`] + 목록기호·줄바꿈 보존). `buildPlainTranslatePrompt` 한 곳에서 분기. 상담 매뉴얼 편집기(`/consulting.html`)가 `formal` 로 호출. 블로그용 `/api/marketing/translate`(HTML + `{title,body}` JSON)와는 별개 — 평문에는 `/translate-text` 를 쓸 것.
+
+⚠️ **로컬 dev 포트는 `4000`**(`npm run dev` = `tsx watch src/index.ts`, src 실행이라 `dist` 무관). 문서 곳곳의 3001 은 오기 — `consulting.html` 이 3001 로 호출해 번역이 한 번도 동작하지 않았다.
+
+🚨 **curl 로 한글 본문을 보내면 깨진다** (git-bash `-d '{"text":"한글…"}'`). 깨진 텍스트를 받은 모델이 엉뚱한 문장을 지어내서 **"프롬프트/엔드포인트가 고장 난 것처럼"** 보인다(실제로 한참 오진). 한글 페이로드 테스트는 **node 로 UTF-8 파일을 써서 `--data-binary @file`** 로 보낼 것.
 
 ## Environment
 ```
