@@ -391,7 +391,8 @@
   const sb = (window.supabase && window.supabase.createClient)
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     : null;
-  let online = false; // DB 사용 가능 여부
+  let online = false;      // DB 사용 가능 여부
+  let lastSynced = null;   // 마지막으로 확인한 DB updated_at (충돌 감지용)
 
   // ---------- seed data (브레인스토밍에서 뽑은 예상 질문) ----------
   const SEED = [
@@ -556,9 +557,20 @@
   async function save() {
     writeCache();
     if (online && sb) {
-      const { error } = await sb.from('consulting_qa')
-        .upsert({ id: 1, categories: state, updated_at: new Date().toISOString() });
+      // 이 편집기는 싱글톤 행 전체를 덮어쓴다 → 오래 열어둔 탭이 남의 저장을 지울 수 있음.
+      // 마지막으로 본 updated_at 과 다르면 쓰지 않고 새로고침을 요구한다.
+      const chk = await sb.from('consulting_qa').select('updated_at').eq('id', 1).maybeSingle();
+      if (!chk.error && chk.data && lastSynced && chk.data.updated_at !== lastSynced) {
+        flash('⚠️ 다른 곳에서 수정됨 — 🔄 를 눌러 새로고침 후 다시 입력해 주세요');
+        return;
+      }
+      // ★저장된 값을 되받아 lastSynced 로 쓴다 — 클라이언트 ISO 문자열과 Postgres
+      //   timestamptz 표기가 달라(‥Z vs ‥+00:00) 그대로 비교하면 매번 충돌로 오탐.
+      const { data: saved, error } = await sb.from('consulting_qa')
+        .upsert({ id: 1, categories: state, updated_at: new Date().toISOString() })
+        .select('updated_at').maybeSingle();
       if (error) { online = false; flash('⚠️ DB 저장 실패 — 로컬에만 저장됨'); return; }
+      lastSynced = (saved && saved.updated_at) || null;
       flash('☁️ 저장됨 ✓');
     } else {
       flash('💾 로컬 저장됨 (DB 미연결)');
@@ -571,13 +583,14 @@
     if (!sb) { online = false; flash('💾 로컬 모드 (supabase-js 로드 실패)'); return; }
     flash('동기화 중…');
     const { data, error } = await sb.from('consulting_qa')
-      .select('categories').eq('id', 1).maybeSingle();
+      .select('categories, updated_at').eq('id', 1).maybeSingle();
     if (error) {
       online = false;
       flash('💾 로컬 모드 (DB 미연결 — 마이그레이션 029 적용 필요)');
       return;
     }
     online = true;
+    lastSynced = (data && data.updated_at) || null;
     const remote = normalize(data && data.categories);
     if (remote) {
       state = remote; writeCache(); renderAll();
