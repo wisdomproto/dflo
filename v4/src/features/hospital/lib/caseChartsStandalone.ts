@@ -212,7 +212,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
         ctx.fillStyle = COLORS.pah; ctx.textAlign = 'center';
         meta.data.forEach((pt, i) => {
           const r = rows[i];
-          if (r) ctx.fillText(`${Math.round(r.pct)}%ile`, pt.x, pt.y - 8);
+          if (r) ctx.fillText(`${r.pah}cm`, pt.x, pt.y - 8); // 예측키(cm) — 백분위 대신
         });
       }
       if (desired > 0) { // 희망키 가로선 라벨

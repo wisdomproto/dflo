@@ -193,14 +193,23 @@ const CAUSE_LABELS = {
 const excludedByChart = new Map();
 const publishedCharts = new Set();
 const overridesByChart = new Map();
+const orderByChart = new Map();   // 사이드바 드래그 순서
+const hiddenCharts = new Set();   // 목록에서 "삭제"(숨김)
 {
-  const r = await adminRest('treatment_cases?select=chart_number,excluded_dates,published,overrides').catch(() => null);
+  // 073(sort_order/hidden) 미적용이면 그 컬럼 없이 재시도 — 안 그러면 select 가 통째로 실패해 편집이 전부 무시된다.
+  let r = await adminRest('treatment_cases?select=chart_number,excluded_dates,published,overrides,sort_order,hidden').catch(() => null);
+  if (r && !r.ok) {
+    console.log('⚠️ sort_order/hidden 컬럼 없음(073 미적용) — 순서·숨김 없이 진행');
+    r = await adminRest('treatment_cases?select=chart_number,excluded_dates,published,overrides').catch(() => null);
+  }
   if (r && r.ok) {
     for (const row of await r.json()) {
       const arr = Array.isArray(row.excluded_dates) ? row.excluded_dates : [];
       if (arr.length) excludedByChart.set(String(row.chart_number), new Set(arr.map(String)));
       if (row.published) publishedCharts.add(String(row.chart_number));
       if (row.overrides && typeof row.overrides === 'object') overridesByChart.set(String(row.chart_number), row.overrides);
+      if (row.sort_order != null) orderByChart.set(String(row.chart_number), Number(row.sort_order));
+      if (row.hidden) hiddenCharts.add(String(row.chart_number));
     }
   } else if (!r) {
     console.log('⚠️ ai-server/.env service_role 없음 — 제외 회차·공개상태·보정값 미적용(원본으로 렌더)');
@@ -397,9 +406,16 @@ for (const r of rows) {
   const prev = seen.get(k);
   if (!prev || r.nMs > prev.nMs) seen.set(k, r);
 }
-const list = [...seen.values()];
+// "삭제"(숨김) 처리된 케이스는 목록에서 제외 — 진료기록은 그대로, 이 큐레이션 목록에서만 뺀다.
+const list = [...seen.values()].filter((r) => !hiddenCharts.has(String(r.chart)));
 for (const r of list) if (r.name === '다나카고키') r.tags.push('⚠️ 공개 케이스(제임스) 원본 추정');
-list.sort((a, b) => b.score - a.score);
+// 사이드바에서 지정한 순서 우선(작을수록 위), 없으면 기존 점수순으로 뒤에.
+list.sort((a, b) => {
+  const oa = orderByChart.has(String(a.chart)) ? orderByChart.get(String(a.chart)) : Infinity;
+  const ob = orderByChart.has(String(b.chart)) ? orderByChart.get(String(b.chart)) : Infinity;
+  if (oa !== ob) return oa - ob;
+  return b.score - a.score;
+});
 
 // ── 가명 처리 ──
 // 차트번호 오름차순으로 성별 이름 풀에서 결정적 배정(같은 후보 셋이면 재실행해도 동일 가명).
@@ -524,14 +540,17 @@ function card(r, i) {
 
   return `<article class="card" data-key="${esc(key)}" data-g="${r.gender}" data-tags="${esc(r.tags.map((t) => t.split('(')[0]).join('|'))}" data-name="${esc(r.name)}" data-chart="${esc(r.chart ?? '')}" data-excluded="${esc([...(excludedByChart.get(String(r.chart)) || [])].join(','))}">
   <header style="--cc:${cc};--ccbg:${ccBg}">
+    <button type="button" class="card-fold" title="접기/펴기">▾</button>
     <label class="pick"><input type="checkbox"> 채택</label>
     <button type="button" class="pub-toggle${publishedCharts.has(String(r.chart)) ? ' on' : ''}" data-chart="${esc(r.chart ?? '')}">${publishedCharts.has(String(r.chart)) ? '🟢 환자공개 ON' : '⚪ 환자공개'}</button>
+    <button type="button" class="card-del" title="목록에서 삭제(숨김) — 진료기록은 그대로">🗑</button>
     <div class="rank">#${i + 1}</div>
     <div class="who">
       <span class="nm">${isF ? '👧' : '👦'} ${esc(r.name)}</span>
       <span class="meta">차트 ${esc(r.chart ?? '-')} · ${r.birth}년생 · 초진 ${r.ageAtFirst}세 · ${r.status === 'completed' ? '치료 완료' : '치료 중'} · 점수 ${r.score}</span>
     </div>
   </header>
+  <div class="card-body">
   <p class="headline">"${esc(r.headline)}"</p>
   ${r.chief ? `<p class="chief">📌 내원 사유: ${esc(r.chief)}</p>` : ''}
   <div class="kpis">
@@ -584,6 +603,7 @@ function card(r, i) {
       </div>
     </div>
   </details>` : ''}
+  </div>
 </article>`;
 }
 
@@ -691,6 +711,27 @@ const html = `<!DOCTYPE html>
   .fu-badge { font-size:9px; font-weight:800; color:#9333ea; background:#f3e8ff; padding:1px 5px; border-radius:6px; vertical-align:middle; }
   .fu-check { cursor:pointer; display:inline-flex; }
   .fu-cb { accent-color:#9333ea; cursor:pointer; }
+  /* 좌측 환자 사이드바 + 카드 접기/삭제 */
+  .layout { display:flex; align-items:flex-start; }
+  .side { position:sticky; top:0; align-self:flex-start; width:210px; flex:0 0 210px; max-height:100vh; overflow:auto;
+          background:#fff; border-right:1px solid #e5e1ee; padding:12px 10px 20px; }
+  .side-head { display:flex; align-items:center; justify-content:space-between; gap:6px; font-size:12px; color:#666; margin-bottom:8px; }
+  .side-all { font-size:11px; font-weight:800; border-radius:7px; padding:3px 8px; cursor:pointer; border:1.5px solid #d9d3ea; background:#fff; color:#6b46c1; }
+  .side-all.on { background:#4A2D6B; border-color:#4A2D6B; color:#fff; }
+  .side-list { list-style:none; margin:0; padding:0; }
+  .side-item { display:flex; align-items:center; gap:5px; padding:5px 6px; border-radius:8px; cursor:pointer; font-size:12px; user-select:none; }
+  .side-item:hover { background:#f3f1f7; }
+  .side-item.active { background:#ece5f8; font-weight:800; }
+  .side-item.dragging { opacity:.4; }
+  .side-item.drop-over { box-shadow:inset 0 -2px 0 #6b46c1; }
+  .si-grip { color:#bbb; cursor:grab; font-size:11px; }
+  .si-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .si-chart { font-size:10px; color:#aaa; }
+  .side-hint { font-size:10.5px; color:#aaa; margin-top:10px; line-height:1.5; }
+  .card-fold { font-size:12px; font-weight:800; border-radius:7px; padding:2px 7px; cursor:pointer; border:1.5px solid #d9d3ea; background:#fff; color:#6b6677; }
+  .card-del { font-size:12px; border-radius:7px; padding:2px 7px; cursor:pointer; border:1.5px solid #f0c9c9; background:#fff; color:#d6336c; }
+  .card.folded .card-body { display:none; }
+  .layout .wrap { flex:1; min-width:0; }
   .ba-msg { font-size:11.5px; font-weight:600; color:#8a6d1d; margin-top:4px; min-height:15px; }
   .pub-toggle { font-size:11.5px; font-weight:800; border-radius:8px; padding:4px 10px; cursor:pointer; border:1.5px solid #d9d3ea; background:#fff; color:#6b6677; }
   .pub-toggle.on { background:#e6f7ee; border-color:#7bd6a7; color:#0b8a5e; }
@@ -719,6 +760,19 @@ const html = `<!DOCTYPE html>
 </style>
 </head>
 <body>
+<div class="layout">
+<aside class="side">
+  <div class="side-head">
+    <span>환자 <b id="sideCount">${list.length}</b>명</span>
+    <button id="sideAll" class="side-all on">전체 보기</button>
+  </div>
+  <ul class="side-list" id="sideList">${list.map((r) => `<li class="side-item" draggable="true" data-chart="${esc(r.chart ?? '')}">
+    <span class="si-grip">⠿</span>
+    <span class="si-name">${r.gender === '여' ? '👧' : '👦'} ${esc(r.name)}</span>
+    <span class="si-chart">${esc(r.chart ?? '')}</span>
+  </li>`).join('')}</ul>
+  <div class="side-hint">드래그로 순서 변경 · 클릭하면 그 환자만 표시</div>
+</aside>
 <div class="wrap">
   <h1>치료사례 후보 ${list.length}명 — 상세 프로필</h1>
   <p class="sub">생성 2026-06-12 · 점수순 · 카드의 <b style="color:#10a572">채택</b> 체크 → 하단 "선택 차트번호 복사" · 체크는 브라우저에 자동 저장</p>
@@ -744,6 +798,7 @@ const html = `<!DOCTYPE html>
 
   ${cardsHtml}
 </div>
+</div>
 <div class="toast" id="toast"></div>
 <script src="case-charts.js?v=${ccVer}"></script>
 <script>
@@ -752,15 +807,16 @@ const store = {
   set(v) { try { localStorage.setItem('caseCandidates2026', JSON.stringify(v)); } catch {} },
 };
 const saved = new Set(store.get());
-let genderF = 'all', tagF = '', q = '', onlySel = false;
+let genderF = 'all', tagF = '', q = '', onlySel = false, pickedChart = '';
 const cards = [...document.querySelectorAll('.card')];
 function apply() {
   cards.forEach(c => {
+    const okP = !pickedChart || c.dataset.chart === pickedChart; // 사이드바에서 고른 환자만
     const okG = genderF === 'all' || c.dataset.g === genderF;
     const okT = !tagF || c.dataset.tags.split('|').includes(tagF);
     const okQ = !q || c.dataset.name.includes(q) || c.dataset.chart.includes(q);
     const okS = !onlySel || saved.has(c.dataset.key);
-    c.style.display = okG && okT && okQ && okS ? '' : 'none';
+    c.style.display = okP && okG && okT && okQ && okS ? '' : 'none';
   });
   document.getElementById('selCount').textContent = '선택 ' + saved.size + '명';
 }
@@ -1040,6 +1096,82 @@ document.querySelectorAll('.card').forEach(card => {
     try { await saveOverride(chart, { desired: v > 0 ? v : null }); dhb.textContent = '✓'; setTimeout(() => { dhb.textContent = '저장'; }, 1200); }
     catch (err) { alert('희망키 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
     finally { dhb.disabled = false; }
+  });
+});
+
+// ── 사이드바: 환자 클릭 → 그 환자만 / 드래그 → 순서 저장 ──
+const HIDE_API = 'http://localhost:4000/api/treatment-cases/hide';
+const ORDER_API = 'http://localhost:4000/api/treatment-cases/order';
+const sideList = document.getElementById('sideList');
+const sideAllBtn = document.getElementById('sideAll');
+function setPicked(chart) {
+  pickedChart = chart;
+  sideList.querySelectorAll('.side-item').forEach(li => li.classList.toggle('active', !!chart && li.dataset.chart === chart));
+  sideAllBtn.classList.toggle('on', !chart);
+  apply();
+  if (chart) { const c = cards.find(x => x.dataset.chart === chart); if (c) c.scrollIntoView({ block: 'start' }); }
+}
+sideAllBtn.addEventListener('click', () => setPicked(''));
+sideList.addEventListener('click', e => {
+  const li = e.target.closest('.side-item'); if (!li) return;
+  setPicked(li.dataset.chart === pickedChart ? '' : li.dataset.chart); // 같은 환자 다시 클릭 = 전체
+});
+// 드래그앤드롭 순서 변경
+let dragEl = null;
+sideList.addEventListener('dragstart', e => {
+  const li = e.target.closest('.side-item'); if (!li) return;
+  dragEl = li; li.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move';
+});
+sideList.addEventListener('dragover', e => {
+  e.preventDefault();
+  const li = e.target.closest('.side-item');
+  sideList.querySelectorAll('.drop-over').forEach(x => x.classList.remove('drop-over'));
+  if (li && li !== dragEl) li.classList.add('drop-over');
+});
+sideList.addEventListener('drop', async e => {
+  e.preventDefault();
+  const li = e.target.closest('.side-item');
+  sideList.querySelectorAll('.drop-over').forEach(x => x.classList.remove('drop-over'));
+  if (!dragEl || !li || li === dragEl) return;
+  const items = [...sideList.querySelectorAll('.side-item')];
+  li.parentNode.insertBefore(dragEl, items.indexOf(dragEl) < items.indexOf(li) ? li.nextSibling : li);
+  await saveOrder();
+});
+sideList.addEventListener('dragend', () => {
+  if (dragEl) dragEl.classList.remove('dragging');
+  dragEl = null;
+  sideList.querySelectorAll('.drop-over').forEach(x => x.classList.remove('drop-over'));
+});
+async function saveOrder() {
+  const orders = [...sideList.querySelectorAll('.side-item')].map((li, i) => ({ chart: li.dataset.chart, sortOrder: i }));
+  // 카드도 사이드바 순서대로 재배치(화면 즉시 반영)
+  const wrap = cards[0] ? cards[0].parentNode : null;
+  if (wrap) orders.forEach(o => { const c = cards.find(x => x.dataset.chart === o.chart); if (c) wrap.appendChild(c); });
+  try {
+    const r = await fetch(ORDER_API, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' }, body: JSON.stringify({ orders }) });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+  } catch (err) { alert('순서 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
+}
+
+// ── 카드 접기/펴기 + 삭제(목록에서 숨김) ──
+cards.forEach(card => {
+  const fold = card.querySelector('.card-fold');
+  if (fold) fold.addEventListener('click', () => {
+    const folded = card.classList.toggle('folded');
+    fold.textContent = folded ? '▸' : '▾';
+  });
+  const del = card.querySelector('.card-del');
+  if (del) del.addEventListener('click', async () => {
+    const nm = card.dataset.name, ch = card.dataset.chart;
+    if (!confirm(nm + '(' + ch + ') 를 목록에서 삭제할까요?\\n진료기록은 그대로이고, 이 치료사례 목록에서만 감춥니다.')) return;
+    try {
+      const r = await fetch(HIDE_API, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' }, body: JSON.stringify({ chart: ch, hidden: true }) });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      card.remove();
+      const li = sideList.querySelector('.side-item[data-chart="' + ch + '"]'); if (li) li.remove();
+      const cnt = document.getElementById('sideCount'); if (cnt) cnt.textContent = sideList.querySelectorAll('.side-item').length;
+      if (pickedChart === ch) setPicked('');
+    } catch (err) { alert('삭제 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
   });
 });
 

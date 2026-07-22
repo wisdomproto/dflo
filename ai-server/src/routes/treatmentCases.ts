@@ -26,9 +26,12 @@ treatmentCasesRouter.get('/', async (req, res) => {
 treatmentCasesRouter.get('/edits', async (req, res) => {
   const pin = (req.query.pin as string) || (req.headers['x-admin-pin'] as string) || '';
   if (String(pin) !== ADMIN_PIN) return res.status(401).json({ error: 'unauthorized' });
-  const { data, error } = await sb.from('treatment_cases').select('chart_number, excluded_dates, overrides, published');
-  if (error) return res.status(500).json({ error: error.message });
-  res.json({ edits: data ?? [] });
+  // 073(sort_order/hidden) 미적용 환경에서도 hydrate 가 죽지 않도록 축소 select 로 폴백.
+  const full = await sb.from('treatment_cases').select('chart_number, excluded_dates, overrides, published, sort_order, hidden');
+  if (!full.error) return res.json({ edits: full.data ?? [] });
+  const base = await sb.from('treatment_cases').select('chart_number, excluded_dates, overrides, published');
+  if (base.error) return res.status(500).json({ error: base.error.message });
+  res.json({ edits: base.data ?? [] });
 });
 
 // 데이터 보정(부모 키 등) — overrides jsonb 에 read-merge-write. children(진료기록)은 안 건드림.
@@ -53,6 +56,31 @@ treatmentCasesRouter.post('/override', async (req, res) => {
     .upsert({ chart_number: String(chart), overrides: merged, updated_at: new Date().toISOString() }, { onConflict: 'chart_number' });
   if (error) return res.status(500).json({ error: error.message });
   res.json({ ok: true, overrides: merged });
+});
+
+// 목록에서 숨김("삭제") — hidden 만 write. 진료기록은 그대로, 이 큐레이션 DB 에서만 감춘다.
+treatmentCasesRouter.post('/hide', async (req, res) => {
+  if ((req.headers['x-admin-pin'] || '') !== ADMIN_PIN) return res.status(401).json({ error: 'unauthorized' });
+  const { chart, hidden } = (req.body ?? {}) as { chart?: string; hidden?: boolean };
+  if (!chart) return res.status(400).json({ error: 'chart required' });
+  const { error } = await sb
+    .from('treatment_cases')
+    .upsert({ chart_number: String(chart), hidden: !!hidden, updated_at: new Date().toISOString() }, { onConflict: 'chart_number' });
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ ok: true, hidden: !!hidden });
+});
+
+// 사이드바 드래그 순서 저장 — [{chart, sortOrder}] 일괄. sort_order 만 write.
+treatmentCasesRouter.post('/order', async (req, res) => {
+  if ((req.headers['x-admin-pin'] || '') !== ADMIN_PIN) return res.status(401).json({ error: 'unauthorized' });
+  const { orders } = (req.body ?? {}) as { orders?: { chart?: string; sortOrder?: number }[] };
+  if (!Array.isArray(orders) || orders.length === 0) return res.status(400).json({ error: 'orders required' });
+  const rows = orders
+    .filter((o) => o && o.chart)
+    .map((o) => ({ chart_number: String(o.chart), sort_order: Number(o.sortOrder), updated_at: new Date().toISOString() }));
+  const { error } = await sb.from('treatment_cases').upsert(rows, { onConflict: 'chart_number' });
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ ok: true, saved: rows.length });
 });
 
 // 원장 승인 토글 — published 만 write(snapshot·excluded_dates 는 안 건드림).
