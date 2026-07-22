@@ -5,7 +5,6 @@
 // 빌드: node cases/build_case_charts.mjs → v4/public/marketing/strategy/case-charts.js
 import { Chart, registerables } from 'chart.js';
 import {
-  getHeightStandard,
   heightAtSamePercentile,
   calculateHeightPercentileLMS,
   type Nationality,
@@ -19,9 +18,8 @@ const X_MIN = 5, X_MAX = 18, Y_MIN = 90, Y_MAX = 190;
 const COLORS = {
   p3: 'rgba(59,130,246,0.4)', p15: 'rgba(245,158,11,0.4)', p50: 'rgba(34,197,94,0.4)',
   p85: 'rgba(239,68,68,0.4)', p97: 'rgba(168,85,247,0.4)',
-  patient: '#0f172a', baProj: '#6366f1', pah: '#6366f1',
+  patient: '#0f172a', baProj: '#6366f1', pah: '#6366f1', desired: '#9333ea',
 };
-const PERCENTILE_KEYS = ['p3', 'p15', 'p50', 'p85', 'p97'] as const;
 
 // 두 데이터 모드:
 //  내부(식별)  — measured_date + 상위 birth_date 로 나이 계산
@@ -38,6 +36,7 @@ interface CaseData {
   gender: 'male' | 'female';
   birth_date?: string;
   nationality?: Nationality;
+  desired?: number | null; // 희망키(cm) — 가로선
   measurements: CaseMeasurement[];
 }
 
@@ -80,16 +79,7 @@ function buildProjection(
 // ── 성장 곡선 (KDCA 백분위 + BA 측정점 + 마지막 BA 시점 예측 투영 점선) ──
 function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
   const nat: Nationality = d.nationality ?? 'KR';
-  const std = getHeightStandard(d.gender, nat).filter((s) => s.age >= X_MIN && s.age <= X_MAX);
-  const toXY = (pick: (s: typeof std[number]) => number) => std.map((s) => ({ x: s.age, y: pick(s) }));
-
-  const percentileDs = PERCENTILE_KEYS.map((key) => ({
-    label: key, data: toXY((s) => (s as unknown as Record<string, number>)[key]),
-    borderColor: COLORS[key], backgroundColor: COLORS[key],
-    borderWidth: 1.5, pointRadius: 0, fill: false, tension: 0.35, order: 3,
-  }));
-
-  // BA 측정 회차만 — 환자 화면 기본(baOnly) 과 동일
+  // 배경 백분위 곡선은 제거(사용자 요청) — 환자 궤적 + 예측키 투영/가로선 + 희망키 가로선만.
   const ms = sortedHeights(d);
   const baMs = ms.filter((m) => m.bone_age != null);
   const pts = baMs.map((m) => ({ x: ageOf(m, d.birth_date).decimal, y: m.height }));
@@ -99,44 +89,52 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
     pointBorderColor: '#ffffff', pointBorderWidth: 1.5, showLine: pts.length > 1, tension: 0, order: 0,
   };
 
-  // 마지막 BA 회차 → 예측 성인키(18세)까지 점선 투영 + 예측 성인키 가로선.
-  const projDs: object[] = [];
+  // 마지막 BA 회차 → 예측 성인키(18세)까지 점선 투영 + 예측 성인키 가로선 + 희망키 가로선.
+  const guideDs: object[] = [];
   let pah = 0;
   const lastBa = baMs[baMs.length - 1];
   if (lastBa && lastBa.bone_age != null) {
     pah = Number(heightAtSamePercentile(lastBa.height, lastBa.bone_age as number, 18, d.gender, nat).toFixed(1));
     const proj = buildProjection(ageOf(lastBa, d.birth_date).decimal, lastBa.height, lastBa.bone_age as number, d.gender, nat);
-    if (proj) projDs.push({
+    if (proj) guideDs.push({
       label: 'proj', data: proj, borderColor: COLORS.baProj, backgroundColor: 'transparent',
       borderWidth: 2, borderDash: [5, 4], pointRadius: 0, pointHoverRadius: 0, fill: false, tension: 0.3, order: 1,
     });
-    if (pah > 0) projDs.push({ // 예측 성인키 가로선
+    if (pah > 0) guideDs.push({ // 예측 성인키 가로선
       label: 'pahline', data: [{ x: X_MIN, y: pah }, { x: X_MAX, y: pah }],
       borderColor: 'rgba(99,102,241,0.5)', backgroundColor: 'transparent',
       borderWidth: 1.5, borderDash: [2, 3], pointRadius: 0, pointHoverRadius: 0, fill: false, order: 2,
     });
   }
+  const desired = Number(d.desired) > 0 ? Number(d.desired) : 0;
+  if (desired > 0) guideDs.push({ // 희망키 가로선
+    label: 'desiredline', data: [{ x: X_MIN, y: desired }, { x: X_MAX, y: desired }],
+    borderColor: 'rgba(147,51,234,0.6)', backgroundColor: 'transparent',
+    borderWidth: 1.5, borderDash: [6, 3], pointRadius: 0, pointHoverRadius: 0, fill: false, order: 2,
+  });
+  const yMax = Math.max(Y_MAX, Math.ceil((Math.max(pah, desired) + 4) / 5) * 5);
 
-  // 가로선 위에 "예상키 Ncm" 라벨.
-  const pahLabelPlugin = {
-    id: 'pahLabel',
+  // 예측키·희망키 가로선 라벨(겹침 피해 예상키=우측 / 희망키=좌측).
+  const guideLabels = {
+    id: 'guideLabels',
     afterDatasetsDraw(chart: Chart) {
-      if (!(pah > 0)) return;
-      const y = chart.scales.y.getPixelForValue(pah);
-      const x = chart.scales.x.getPixelForValue(X_MAX);
-      const ctx = chart.ctx;
-      ctx.save();
-      ctx.font = '700 11px sans-serif'; ctx.fillStyle = COLORS.pah;
-      ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
-      ctx.fillText(`예상키 ${pah}cm`, x - 3, y - 3);
+      const ctx = chart.ctx; ctx.save(); ctx.font = '700 11px sans-serif'; ctx.textBaseline = 'bottom';
+      if (pah > 0) {
+        ctx.fillStyle = COLORS.pah; ctx.textAlign = 'right';
+        ctx.fillText(`예상키 ${pah}cm`, chart.scales.x.getPixelForValue(X_MAX) - 3, chart.scales.y.getPixelForValue(pah) - 3);
+      }
+      if (desired > 0) {
+        ctx.fillStyle = COLORS.desired; ctx.textAlign = 'left';
+        ctx.fillText(`희망키 ${desired}cm`, chart.scales.x.getPixelForValue(X_MIN) + 3, chart.scales.y.getPixelForValue(desired) - 3);
+      }
       ctx.restore();
     },
   };
 
   (canvas as unknown as { _chart?: Chart })._chart = new Chart(canvas, {
     type: 'line',
-    data: { datasets: [...percentileDs, ...projDs, patientDs] as never },
-    plugins: [pahLabelPlugin],
+    data: { datasets: [...guideDs, patientDs] as never },
+    plugins: [guideLabels],
     options: {
       responsive: true, maintainAspectRatio: false, animation: false, devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
       plugins: {
@@ -160,7 +158,7 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
         },
         y: {
           title: { display: true, text: 'Height (cm)', font: { size: 12 } },
-          min: Y_MIN, max: Y_MAX, ticks: { stepSize: 5, font: { size: 11 } },
+          min: Y_MIN, max: yMax, ticks: { stepSize: 5, font: { size: 11 } },
           grid: { color: 'rgba(0,0,0,0.04)' },
         },
       },
@@ -197,19 +195,26 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
     return;
   }
 
+  const desired = Number(d.desired) > 0 ? Number(d.desired) : 0;
+
   const pctLabelPlugin = {
     id: 'pctLabels',
     afterDatasetsDraw(chart: Chart) {
       const ctx = chart.ctx;
-      const meta = chart.getDatasetMeta(0);
-      if (!meta?.data) return;
       ctx.save();
-      ctx.font = '700 10px sans-serif'; ctx.fillStyle = COLORS.pah;
-      ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
-      meta.data.forEach((pt, i) => {
-        const r = rows[i];
-        if (r) ctx.fillText(`${Math.round(r.pct)}%ile`, pt.x, pt.y - 8);
-      });
+      ctx.font = '700 10px sans-serif'; ctx.textBaseline = 'bottom';
+      const meta = chart.getDatasetMeta(0);
+      if (meta?.data) {
+        ctx.fillStyle = COLORS.pah; ctx.textAlign = 'center';
+        meta.data.forEach((pt, i) => {
+          const r = rows[i];
+          if (r) ctx.fillText(`${Math.round(r.pct)}%ile`, pt.x, pt.y - 8);
+        });
+      }
+      if (desired > 0) { // 희망키 가로선 라벨
+        ctx.fillStyle = COLORS.desired; ctx.textAlign = 'right';
+        ctx.fillText(`희망키 ${desired}cm`, chart.chartArea.right - 2, chart.scales.y.getPixelForValue(desired) - 3);
+      }
       ctx.restore();
     },
   };
@@ -218,11 +223,18 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
     type: 'line',
     data: {
       labels: rows.map((_, i) => `${i}`),
-      datasets: [{
-        label: '예측키', data: rows.map((r) => r.pah),
-        borderColor: COLORS.pah, backgroundColor: COLORS.pah,
-        tension: 0.3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6,
-      }],
+      datasets: [
+        {
+          label: '예측키', data: rows.map((r) => r.pah),
+          borderColor: COLORS.pah, backgroundColor: COLORS.pah,
+          tension: 0.3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6,
+        },
+        ...(desired > 0 ? [{
+          label: '희망키', data: rows.map(() => desired),
+          borderColor: COLORS.desired, backgroundColor: 'transparent',
+          borderDash: [6, 3], borderWidth: 1.5, pointRadius: 0, pointHoverRadius: 0, tension: 0, fill: false,
+        }] : []),
+      ] as never,
     },
     options: {
       responsive: true, maintainAspectRatio: false, animation: false, devicePixelRatio: Math.min(window.devicePixelRatio || 1, 1.5),
@@ -253,4 +265,9 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
   }).join('');
 }
 
-(window as unknown as { CaseCharts: unknown }).CaseCharts = { renderGrowth, renderTrend };
+// 예상키(pah) = 뼈나이 백분위를 18세로 투영. 표/KPI 라이브 갱신용(gen 의 predict.mjs 와 동일 알고리즘).
+function predictPah(height: number, boneAge: number, gender: 'male' | 'female'): number {
+  return Number(heightAtSamePercentile(height, boneAge, 18, gender, 'KR').toFixed(1));
+}
+
+(window as unknown as { CaseCharts: unknown }).CaseCharts = { renderGrowth, renderTrend, predictPah };

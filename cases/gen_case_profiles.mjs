@@ -10,6 +10,7 @@
 import { writeFileSync, readFileSync, existsSync, statSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { predictAdultHeightByBonePercentile } from './lib/predict.mjs';
 // 스크립트 위치(cases/) 기준 프로젝트 루트 — 하드코딩 절대경로 대신(머신 무관).
 const PROJ = join(dirname(fileURLToPath(import.meta.url)), '..');
 // case-charts.js 캐시버스터 — 번들 mtime 기반(빌드 갱신 시 브라우저가 새로 로드).
@@ -232,13 +233,20 @@ for (const c of children) {
   const ov = overridesByChart.get(String(c.chart_number)) || {};
   const baOv = ov.boneAges || {};
   if (Object.keys(baOv).length) mm = mm.map((m) => (baOv[m.measured_date] != null ? { ...m, bone_age: Number(baOv[m.measured_date]) } : m));
+  // 예상키(pah)는 뼈나이 유도값 → 뼈나이(보정 포함) 기준으로 재계산해 표·KPI·차트를 일치시킨다(저장 pah 대신).
+  mm = mm.map((m) => (m.bone_age > 0 && m.height > 0
+    ? { ...m, pah: predictAdultHeightByBonePercentile(m.height, m.bone_age, c.gender) ?? m.pah }
+    : m));
 
   const isMale = c.gender === 'male';
+  // 팔로우업 회차 = 치료 후 추적. 표엔 보여주되(라벨) 치료기간·KPI·차트 계산에선 제외(soft 제외).
+  const followupSet = new Set(Array.isArray(ov.followups) ? ov.followups.map(String) : []);
   const baRows = mm.filter((m) => m.bone_age > 0).map((m) => {
     const age = c.birth_date ? +yearsBetween(c.birth_date, m.measured_date).toFixed(1) : null;
-    return { ...m, age, gap: age != null ? +(m.bone_age - age).toFixed(1) : null };
+    return { ...m, age, gap: age != null ? +(m.bone_age - age).toFixed(1) : null, followup: followupSet.has(m.measured_date) };
   });
-  const firstBA = baRows[0], lastBA = baRows[baRows.length - 1];
+  const baTreat = baRows.filter((b) => !b.followup); // 치료 window = 팔로우업 뺀 회차
+  const firstBA = baTreat[0] || baRows[0], lastBA = baTreat[baTreat.length - 1] || baRows[baRows.length - 1];
 
   // 치료 window = 남긴 뼈나이 회차. 예상키(PAH)는 BA 유도값이라 초진/최종 예상키 = 첫/마지막 BA 회차.
   // 키·나이도 BA window 기준(BA 회차에 값 없으면 측정 폴백). BA 2회 미만이면 측정 span 폴백.
@@ -375,7 +383,8 @@ for (const c of children) {
       date: m.measured_date, h: m.height, w: m.weight, ba: m.bone_age, pah: (m.pah > 0 && m.pah < 230) ? m.pah : null,
       age: c.birth_date ? +yearsBetween(c.birth_date, m.measured_date).toFixed(1) : null,
     })),
-    baRows,
+    baRows, followups: [...followupSet],
+    ageAtLast: lastBA?.age ?? null, baGapFirst: firstBA?.gap ?? null, baGapLast: lastBA?.gap ?? null,
   });
 }
 
@@ -481,7 +490,8 @@ function card(r, i) {
     gender: isF ? 'female' : 'male',
     birth_date: r.birthDate,
     nationality: 'KR',
-    measurements: r.mm.filter((m) => m.h > 0).map((m) => ({ measured_date: m.date, height: m.h, bone_age: m.ba ?? null })),
+    desired: parseFloat(String(r.desired)) > 0 ? parseFloat(String(r.desired)) : null,
+    measurements: r.mm.filter((m) => m.h > 0 && !r.followups.includes(m.date)).map((m) => ({ measured_date: m.date, height: m.h, bone_age: m.ba ?? null })),
   };
   const cc = isF ? '#d6336c' : '#2563EB';
   const ccBg = isF ? '#fdeef4' : '#eef3ff';
@@ -490,12 +500,13 @@ function card(r, i) {
       : t.startsWith('알러지') ? 't-alle' : t.startsWith('유전') ? 't-gene' : t.startsWith('성장지연') ? 't-slow' : 't-warn';
     return `<span class="tag ${cls}">${esc(t)}</span>`;
   }).join('');
-  const baTable = r.baRows.map((b) => `<tr data-date="${b.measured_date}" data-age="${b.age ?? ''}" data-pah="${(b.pah > 0 && b.pah < 230) ? b.pah : ''}" data-h="${b.height || ''}">
-      <td>${fmtD(b.measured_date)}</td><td class="num">${b.age ?? '-'}</td>
+  const baTable = r.baRows.map((b) => `<tr data-date="${b.measured_date}" data-age="${b.age ?? ''}" data-pah="${(b.pah > 0 && b.pah < 230) ? b.pah : ''}" data-h="${b.height || ''}"${b.followup ? ' class="ba-followup"' : ''}>
+      <td>${fmtD(b.measured_date)}${b.followup ? ' <span class="fu-badge">팔로우업</span>' : ''}</td><td class="num">${b.age ?? '-'}</td>
       <td class="num ba"><input class="ba-in" type="number" step="0.1" inputmode="decimal" value="${b.bone_age.toFixed(1)}" title="뼈나이 오타 수정"></td>
       <td class="num gapcell ${b.gap >= 1 ? 'bad' : b.gap <= -1 ? 'good2' : ''}">${b.gap >= 0 ? '+' : ''}${b.gap ?? '-'}</td>
       <td class="num">${b.height || '-'}</td><td class="num pah">${(b.pah > 0 && b.pah < 230) ? b.pah : '-'}</td>
-      <td class="num"><button type="button" class="ba-x" title="이 뼈나이 회차 삭제 (치료기간·예상키에서 제외)">✕</button></td>
+      <td class="num"><label class="fu-check" title="팔로우업 — 치료기간·예상키·차트에서 제외(표엔 표시)"><input type="checkbox" class="fu-cb"${b.followup ? ' checked' : ''}></label></td>
+      <td class="num"><button type="button" class="ba-x" title="이 뼈나이 회차 삭제 (표에서도 제거)">✕</button></td>
     </tr>`).join('');
   const allTable = r.mm.map((m, j) => `<tr>
       <td>${j + 1}</td><td>${fmtD(m.date)}</td><td class="num">${m.age ?? '-'}</td>
@@ -538,8 +549,8 @@ function card(r, i) {
   </div>
   <div class="cols">
     <div class="col">
-      <h4>🦴 뼈나이 회차 (<span class="ba-count">${r.nBA}</span>회) <span class="ba-hint">✕로 follow-up 회차 삭제 → 치료기간·예상키에서 제외</span></h4>
-      <table class="t"><thead><tr><th>날짜</th><th>나이</th><th>뼈나이</th><th>격차</th><th>키</th><th>예상키</th><th></th></tr></thead><tbody>${baTable}</tbody></table>
+      <h4>🦴 뼈나이 회차 (<span class="ba-count">${r.nBA}</span>회) <span class="ba-hint">추적☑=팔로우업(표엔 표시·치료기간/예상키/차트 제외) · ✕=회차 삭제(표에서도 제거)</span></h4>
+      <table class="t"><thead><tr><th>날짜</th><th>나이</th><th>뼈나이</th><th>격차</th><th>키</th><th>예상키</th><th>추적</th><th></th></tr></thead><tbody>${baTable}</tbody></table>
       <div class="ba-msg"></div>
       <details><summary>전체 측정 ${r.nMs}회 보기</summary>
         <table class="t"><thead><tr><th>#</th><th>날짜</th><th>나이</th><th>키</th><th>체중</th><th>뼈나이</th><th>예상키</th></tr></thead><tbody>${allTable}</tbody></table>
@@ -673,6 +684,11 @@ const html = `<!DOCTYPE html>
   tr.ba-removed { opacity:.4; text-decoration:line-through; }
   tr.ba-removed .ba-x { color:#0b8a5e; border-color:#bfe6d5; text-decoration:none; }
   .ba-hint { font-size:11px; font-weight:500; color:#a99; }
+  tr.ba-followup { background:#faf5ff; }
+  tr.ba-followup .ba-in, tr.ba-followup td.num { color:#9333ea; }
+  .fu-badge { font-size:9px; font-weight:800; color:#9333ea; background:#f3e8ff; padding:1px 5px; border-radius:6px; vertical-align:middle; }
+  .fu-check { cursor:pointer; display:inline-flex; }
+  .fu-cb { accent-color:#9333ea; cursor:pointer; }
   .ba-msg { font-size:11.5px; font-weight:600; color:#8a6d1d; margin-top:4px; min-height:15px; }
   .pub-toggle { font-size:11.5px; font-weight:800; border-radius:8px; padding:4px 10px; cursor:pointer; border:1.5px solid #d9d3ea; background:#fff; color:#6b6677; }
   .pub-toggle.on { background:#e6f7ee; border-color:#7bd6a7; color:#0b8a5e; }
@@ -777,7 +793,7 @@ const CC = window.CaseCharts;
 // 세션 내 편집(✕ 삭제·뼈나이 수정)을 차트에도 즉시 반영 — 표 DOM 이 단일 소스, 매 렌더마다 반영(캐시 X).
 function excludedSet(card) {
   const s = new Set();
-  card.querySelectorAll('tr.ba-removed[data-date]').forEach(tr => s.add(tr.dataset.date));
+  card.querySelectorAll('tr.ba-removed[data-date], tr.ba-followup[data-date]').forEach(tr => s.add(tr.dataset.date));
   return s;
 }
 function boneAgeMap(card) {
@@ -869,7 +885,7 @@ document.querySelectorAll('.card').forEach(card => {
   const msg = card.querySelector('.ba-msg');
   const setHtml = (sel, html) => { const el = card.querySelector(sel); if (el) el.innerHTML = html; };
   const recompute = () => {
-    const kept = rows.filter(tr => !tr.classList.contains('ba-removed'));
+    const kept = rows.filter(tr => !tr.classList.contains('ba-removed') && !tr.classList.contains('ba-followup'));
     const dts = kept.map(tr => tr.dataset.date).filter(Boolean).sort();
     const pahs = kept.map(tr => +tr.dataset.pah).filter(v => v > 0);
     const hs = kept.map(tr => +tr.dataset.h).filter(v => v > 0);
@@ -958,18 +974,51 @@ async function saveOverride(chart, patch) {
   });
   if (!r.ok) throw new Error('HTTP ' + r.status);
 }
+// KPI(치료기간·초진/최종 실제키·예상키) 를 남긴 뼈나이 회차 기준으로 재계산 — 뼈나이 수정 시 즉시 반영.
+function recalcKpi(card) {
+  const rows = [...card.querySelectorAll('tr[data-date]')].filter(tr => tr.querySelector('.ba-in') && !tr.classList.contains('ba-removed') && !tr.classList.contains('ba-followup'));
+  const dts = rows.map(tr => tr.dataset.date).filter(Boolean).sort();
+  const pahs = rows.map(tr => +tr.dataset.pah).filter(v => v > 0);
+  const hs = rows.map(tr => +tr.dataset.h).filter(v => v > 0);
+  const set = (sel, html) => { const el = card.querySelector(sel); if (el) el.innerHTML = html; };
+  if (dts.length >= 2) { const d = card.querySelector('.k-dur'); if (d) d.textContent = durTxt(Math.round(yrs(dts[0], dts[dts.length - 1]) * 12)); }
+  if (pahs.length >= 2) set('.k-pah', pahs[0] + '→' + pahs[pahs.length - 1] + '<i>+' + (pahs[pahs.length - 1] - pahs[0]).toFixed(1) + 'cm</i>');
+  if (hs.length >= 2) set('.k-h', hs[0] + '→' + hs[hs.length - 1] + '<i>+' + (hs[hs.length - 1] - hs[0]).toFixed(1) + 'cm</i>');
+}
 document.querySelectorAll('.card').forEach(card => {
   const chart = card.dataset.chart; if (!chart) return;
-  // 뼈나이 셀 편집 — change(blur/enter) 시 격차 재계산 + 차트 재렌더 + 저장
+  // 뼈나이 셀 편집 — 격차 + 예상키(뼈나이 유도) 재계산 + KPI + 차트 재렌더 + 저장
   card.querySelectorAll('.ba-in').forEach(inp => {
     const tr = inp.closest('tr');
     inp.addEventListener('change', async () => {
-      const v = parseFloat(inp.value), age = parseFloat(tr.dataset.age);
+      const v = parseFloat(inp.value), age = parseFloat(tr.dataset.age), h = parseFloat(tr.dataset.h);
       const gc = tr.querySelector('.gapcell');
       if (gc && v > 0 && age > 0) { const g = +(v - age).toFixed(1); gc.textContent = (g >= 0 ? '+' : '') + g; gc.className = 'num gapcell ' + (g >= 1 ? 'bad' : g <= -1 ? 'good2' : ''); }
+      const CC = window.CaseCharts;
+      if (v > 0 && h > 0 && CC && CC.predictPah) { // 예상키 = 뼈나이 백분위 18세 투영
+        const p = CC.predictPah(h, v, card.dataset.g === '남' ? 'male' : 'female');
+        tr.dataset.pah = p;
+        const pc = tr.querySelector('td.pah'); if (pc) pc.textContent = p;
+      }
+      recalcKpi(card);
       destroyCard(card); renderGrowth(card); renderTrend(card);
       try { await saveOverride(chart, { boneAges: { [tr.dataset.date]: v > 0 ? v : null } }); }
       catch (err) { alert('뼈나이 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
+    });
+  });
+  // 팔로우업 체크 — 표엔 표시, 치료기간·예상키·차트에서 제외
+  card.querySelectorAll('.fu-cb').forEach(cb => {
+    const tr = cb.closest('tr');
+    cb.addEventListener('change', async () => {
+      tr.classList.toggle('ba-followup', cb.checked);
+      const dateCell = tr.querySelector('td'), badge = dateCell.querySelector('.fu-badge');
+      if (cb.checked && !badge) dateCell.insertAdjacentHTML('beforeend', ' <span class="fu-badge">팔로우업</span>');
+      else if (!cb.checked && badge) badge.remove();
+      recalcKpi(card);
+      destroyCard(card); renderGrowth(card); renderTrend(card);
+      const fus = [...card.querySelectorAll('.fu-cb')].filter(x => x.checked).map(x => x.closest('tr').dataset.date);
+      try { await saveOverride(chart, { followups: fus }); }
+      catch (err) { alert('팔로우업 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
     });
   });
   // 희망키 저장
@@ -1023,7 +1072,8 @@ function ageYM(birth, date) {
 function extChartData(r) {
   return {
     gender: r.gender === '여' ? 'female' : 'male',
-    measurements: r.mm.filter((m) => m.h > 0).map((m) => {
+    desired: parseFloat(String(r.desired)) > 0 ? parseFloat(String(r.desired)) : null,
+    measurements: r.mm.filter((m) => m.h > 0 && !r.followups.includes(m.date)).map((m) => {
       const a = r.birthDate ? ageYM(r.birthDate, m.date) : { years: 0, months: 0, decimal: m.age ?? 0 };
       return { ageDecimal: a.decimal, caY: a.years, caM: a.months, height: m.h, bone_age: m.ba ?? null };
     }),
@@ -1222,7 +1272,7 @@ async function seedTreatmentCases() {
     chart_number: String(r.chart),
     snapshot: {
       name: r.name, gender: r.gender,
-      ageAtFirst: r.ageAtFirst, ageAtLast: r.baRows[r.baRows.length - 1]?.age ?? null, // 최초/최종 내원 나이(BA window)
+      ageAtFirst: r.ageAtFirst, ageAtLast: r.ageAtLast, // 최초/최종 내원 나이(치료 BA window, 팔로우업 제외)
       months: r.months,
       tags: r.tags.filter((t) => !t.startsWith('⚠️')).map((t) => t.split('(')[0].trim()),
       headline: r.headline,
@@ -1230,7 +1280,7 @@ async function seedTreatmentCases() {
       pahFirst: r.pahFirst, pahLast: r.pahLast, pahDelta: r.pahDelta,
       mph: r.mph, fa: r.fa, mo: r.mo, desired: r.desired, // 부모 키(보정값 반영됨)
       // 뼈나이 격차(뼈−실제) 변화 — 페이지·요약·스토리에서 핵심(초진→최종)
-      baGapFirst: r.baRows[0]?.gap ?? null, baGapLast: r.baRows[r.baRows.length - 1]?.gap ?? null,
+      baGapFirst: r.baGapFirst, baGapLast: r.baGapLast,
       highlights: extHighlights(r),
       chart: extChartData(r), // 비식별(ageDecimal/caY/caM, 측정일 없음) — 성장곡선·예측키·뼈나이회차 파생
       story: STORIES[String(r.chart)] || null,
