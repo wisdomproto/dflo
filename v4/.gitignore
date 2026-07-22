@@ -34,6 +34,8 @@ dist-ssr
 /public/zh-hant/
 /public/zh-hans/
 /public/ar/
+/public/ja/
+/public/es/
 /public/sitemap.xml
 /i18n/blog-cache/
 
