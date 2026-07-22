@@ -682,7 +682,12 @@ const html = `<!DOCTYPE html>
   .pk-sep { color:#aaa; }
   .pk-save { font-size:10.5px; font-weight:800; padding:2px 7px; border-radius:6px; cursor:pointer; border:1px solid #cbb9ee; background:#fff; color:#6b46c1; }
   .pk-save:disabled { opacity:.5; }
-  .ba-in { width:48px; font-size:13px; font-weight:800; padding:1px 3px; border:1px solid #e3d9b8; border-radius:5px; text-align:center; color:#8a6d1d; background:#fffdf6; }
+  .ba-in { width:56px; font-size:13px; font-weight:800; padding:1px 3px; border:1px solid #e3d9b8; border-radius:5px; text-align:center; color:#8a6d1d; background:#fffdf6; }
+  .ba-in, .pk-fa, .pk-mo, .dh-in { -moz-appearance:textfield; }
+  .ba-in::-webkit-outer-spin-button, .ba-in::-webkit-inner-spin-button,
+  .pk-fa::-webkit-outer-spin-button, .pk-fa::-webkit-inner-spin-button,
+  .pk-mo::-webkit-outer-spin-button, .pk-mo::-webkit-inner-spin-button,
+  .dh-in::-webkit-outer-spin-button, .dh-in::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
   .dh-edit { display:inline-flex; align-items:center; gap:4px; }
   .dh-in { width:52px; font-size:11.5px; font-weight:800; padding:1px 4px; border:1px solid #d9d3ea; border-radius:5px; text-align:center; }
   .dh-save { font-size:10px; font-weight:800; padding:1px 6px; border-radius:5px; cursor:pointer; border:1px solid #cbb9ee; background:#fff; color:#6b46c1; }
