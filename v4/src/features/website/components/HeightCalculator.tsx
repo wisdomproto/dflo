@@ -24,6 +24,7 @@ const NATIONALITIES = [
 // vi 는 자국 표준이 목록에 없어 KR, ar 은 WHO(아랍권 보건부 다수 채택), 화교(en/zh)는 CN.
 const DEFAULT_STANDARD: Record<CalcLang, GrowthStandard> = {
   ko: 'KR', th: 'TH', vi: 'KR', en: 'CN', ar: 'WHO', 'zh-hant': 'CN', 'zh-hans': 'CN',
+  ja: 'KR', es: 'US',
 };
 
 interface Props {

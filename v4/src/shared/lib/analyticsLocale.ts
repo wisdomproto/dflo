@@ -2,7 +2,7 @@
 // 의존해 node --test 로 못 불러오므로(모듈 로드 시점에 undefined 접근 크래시), 이 순수 부분만
 // 분리해 회귀 테스트가 가능하게 한다. analytics.ts 가 여기서 import 해 재-export 한다.
 
-export const SUPPORTED_LOCALES = ['ko', 'vn', 'th', 'en', 'zh', 'ja', 'zh-hant', 'zh-hans', 'ar'] as const;
+export const SUPPORTED_LOCALES = ['ko', 'vn', 'th', 'en', 'zh', 'ja', 'zh-hant', 'zh-hans', 'ar', 'es'] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 /** URL pathname 에서 locale 추출. `/vn/...` → 'vn', `/zh-hant/...` → 'zh-hant', 기본 'ko'.

@@ -30,16 +30,17 @@ test('returns LINE OA for th', () => {
   assert.equal(cta.color_bg, '#06C755');
 });
 
-test('throws if active lang has TBD url', () => {
+test('throws if lang has TBD url', () => {
+  // id is the remaining stub locale (not active) whose url is still TBD.
   assert.throws(
-    () => getMessengerCTA('ja', { requireLiveUrl: true }),
+    () => getMessengerCTA('id', { requireLiveUrl: true }),
     /TBD/,
   );
 });
 
 test('returns stub data without requireLiveUrl', () => {
-  const cta = getMessengerCTA('ja');
-  assert.equal(cta.channel, 'line');
+  const cta = getMessengerCTA('id');
+  assert.equal(cta.channel, 'whatsapp');
   assert.equal(cta.url, 'TBD');
 });
 

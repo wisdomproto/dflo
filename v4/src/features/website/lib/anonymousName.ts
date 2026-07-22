@@ -1,7 +1,7 @@
 // 익명 예측 프로필용 로케일별 아이 이름 풀 + 국적 맵 (순수 함수, IO 없음).
 // 이름은 가짜(식별 아님) — 익명 데이터가 리스트에서 사람처럼 보이게 하는 용도.
 
-export type PredLocale = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
+export type PredLocale = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar' | 'ja' | 'es';
 
 // 로케일별 아이 given-name 풀(현지 표기). surname 없이 이름만으로 충분(익명).
 const NAMES: Record<PredLocale, string[]> = {
@@ -27,17 +27,23 @@ const NAMES: Record<PredLocale, string[]> = {
   ar: ['أحمد', 'محمد', 'يوسف', 'عمر', 'خالد', 'علي', 'حمزة', 'إبراهيم', 'عبد الله', 'زياد',
     'كريم', 'آدم', 'سيف', 'ياسين', 'فارس', 'مريم', 'سارة', 'ليلى', 'نور', 'فاطمة',
     'جنى', 'رنا', 'لينا', 'هنا', 'ملك', 'جود', 'رهف', 'سلمى', 'ياسمين', 'ريم'],
+  ja: ['はると', 'ゆうと', 'そうた', 'ひなた', 'あおい', 'いつき', 'りく', 'みなと', 'ゆうき', 'そら',
+    'ゆい', 'めい', 'さくら', 'ひまり', 'つむぎ', 'あかり', 'ことは', 'ひなの', 'りん', 'はな',
+    'かえで', 'ゆあ', 'あおと', 'はるき', 'こはる', 'ももか', 'ゆづき', 'あさひ', 'なぎ', 'いおり'],
+  es: ['Mateo', 'Sofía', 'Santiago', 'Valentina', 'Sebastián', 'Isabella', 'Martín', 'Camila', 'Diego', 'Luciana',
+    'Nicolás', 'Emma', 'Samuel', 'Valeria', 'Benjamín', 'Mía', 'Tomás', 'Antonella', 'Gael', 'Regina',
+    'Alejandro', 'Julieta', 'Emiliano', 'Renata', 'Daniel', 'Victoria', 'Lucas', 'Ximena', 'Adrián', 'Salomé'],
 };
 
 // 번체=TW(대만 단일 시장), 간체=ZH(중국어권/기타 — 간체 타겟이 본토가 아니라 동남아·미국
 // 화교라 CN 은 사실과 다르다). 이 코드는 ISO 국가코드가 아니라 en='EN'(영어권/기타) 관행을 잇는
 // 언어권 버킷이다.
 const COUNTRY: Record<PredLocale, string> = {
-  ko: 'KR', th: 'TH', vi: 'VN', en: 'EN', 'zh-hant': 'TW', 'zh-hans': 'ZH', ar: 'AR',
+  ko: 'KR', th: 'TH', vi: 'VN', en: 'EN', 'zh-hant': 'TW', 'zh-hans': 'ZH', ar: 'AR', ja: 'JP', es: 'ES',
 };
 
 function asLocale(locale: string): PredLocale {
-  return (['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'] as const).includes(locale as PredLocale)
+  return (['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar', 'ja', 'es'] as const).includes(locale as PredLocale)
     ? (locale as PredLocale) : 'en';
 }
 

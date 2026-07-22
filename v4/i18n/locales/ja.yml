@@ -1,301 +1,624 @@
 meta:
   lang: ja
   og_locale: ja_JP
-  title: '[NEEDS TRANSLATION]'
+  title: "187 Growth Clinic | お子さまの成人身長を無料予測"
+
+blog:
+  index_heading: "成長のヒント"
+
 hero:
-  logo_alt: '[NEEDS TRANSLATION]'
-  title_line1: '[NEEDS TRANSLATION]'
-  title_line2: '[NEEDS TRANSLATION]'
-  hero_img_alt: '[NEEDS TRANSLATION]'
+  logo_alt: "187 Growth Clinic"
+  title_line1: "お子さまの身長、"
+  title_line2: "心配ではありませんか？"
+  hero_img_alt: "延世セボム医院 187 Growth Clinic メインビジュアル"
+
 intro:
-  h2_line1: '[NEEDS TRANSLATION]'
-  h2_accent: '[NEEDS TRANSLATION]'
-  h2_line2: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  h2_line1: "適切なケアで、"
+  h2_accent: "まだ背は伸ばせます"
+  h2_line2: ""
+  body: |
+    187 Growth Clinic は、お子さま一人ひとりが伸び悩む理由を見つけ、
+    その子に合わせたケアで成長をサポートします。
+
+compare:
+  - img_alt: "成長ホルモン単独治療と 187 Growth Clinic の統合的成長ケアの比較"
+
 medal:
-  panel_alt: '[NEEDS TRANSLATION]'
+  panel_alt: "モデル事務所・アスリートモデル成長プログラムの指定クリニック"
+
 check:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "うちの子に成長のチェックは必要？"
+  heading_part1: "一つでも当てはまれば、"
+  heading_accent: "一度チェックを"
   cards:
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
-    - alt: '[NEEDS TRANSLATION]'
-      caption_line1: '[NEEDS TRANSLATION]'
-      caption_line2: '[NEEDS TRANSLATION]'
+    - alt: "同年代より明らかに背が低い"
+      caption_line1: "同年代より"
+      caption_line2: "明らかに低い"
+    - alt: "この1年の成長スピードが遅い"
+      caption_line1: "この1年で"
+      caption_line2: "伸びが遅い"
+    - alt: "成長ペースの急な変化"
+      caption_line1: "成長ペースが"
+      caption_line2: "急に変わった"
+    - alt: "平均身長より10cm以上低い"
+      caption_line1: "平均身長より"
+      caption_line2: "10cm以上低い"
+    - alt: "姿勢や体のバランス"
+      caption_line1: "姿勢や体の"
+      caption_line2: "バランスが気になる"
+    - alt: "ホルモン異常の疑い"
+      caption_line1: "ホルモン異常の"
+      caption_line2: "疑いがある"
+
 golden:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_part1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_part2: '[NEEDS TRANSLATION]'
-  img_alt: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "成長治療のゴールデンタイム"
+  heading_part1: "身長の伸びは"
+  heading_accent: "いつチェックすべき？"
+  heading_part2: ""
+  img_alt: "男の子・女の子の最適な治療時期"
+  lead: "成長治療の効果は<strong>成長板の状態と思春期の進み方</strong>によって変わります。評価は治療とは別に行えます。成長ペースが気になるなら、まず現在の状態を確認することが大切です。"
+
 hormone:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  solution_img_alt: '[NEEDS TRANSLATION]'
-  features_heading_line1: '[NEEDS TRANSLATION]'
-  features_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "統合的な成長ケア"
+  heading_line1: "成長ケアは成長ホルモンだけではありません"
+  heading_line2: "私たちは成長を"
+  heading_accent: "あらゆる角度から管理します"
+  lead: "187 Growth Clinic は成長ホルモンだけでなく、<strong>性ホルモン・睡眠・甲状腺・ストレス・体重・姿勢など多くの要因</strong>を管理します。お子さまの成長を妨げているものを見つけ、その子だけの成長プランを設計します。"
+  solution_img_alt: "延世セボム 6本柱の統合的成長ソリューション"
+  features_heading_line1: "ホルモンバランスのための"
+  features_heading_accent: "3つの核となる柱"
   features:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
+    - img_alt: "ホルモン管理"
+      num: "01 / ホルモンケア"
+      title: "バランスの乱れの診断と体系的なケア"
+      desc: "成長ホルモンにとどまらず、性・睡眠・甲状腺・ストレスホルモンの全体のバランスを確認します。"
+    - img_alt: "思春期管理"
+      num: "02 / 思春期ケア"
+      title: "思春期早発症と二次性徴"
+      desc: "思春期の進み方と成長板の状態を合わせて追い、成長を健やかな軌道に保ちます。"
+    - img_alt: "小児肥満と成長ケア"
+      num: "03 / 体重ケア"
+      title: "成長を見据えた体重管理"
+      desc: "成長期の子どもに必要な栄養を整えながら、体重と身長の両方を管理します。"
+
 intro2:
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
+  heading_line1: "お子さまに合った"
+  heading_accent: "成長ケアの道を見つける"
+  body: "子どもによって伸び悩む要因は異なります。下からお子さまに近い事例を選ぶと、必要になりうるケアの方向性がわかります。"
+
 casenav:
-  aria_label: '[NEEDS TRANSLATION]'
+  aria_label: "成長ケア事例ナビゲーション"
   links:
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
-    - href: '[NEEDS TRANSLATION]'
-      label: '[NEEDS TRANSLATION]'
+    - href: "#precocious"
+      label: "思春期早発"
+    - href: "#obesity"
+      label: "肥満由来"
+    - href: "#proportion"
+      label: "体のバランス"
+    - href: "#bodywork"
+      label: "姿勢・体づくり"
+    - href: "#late"
+      label: "思春期後半"
+
 obesity:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line3: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  bmi_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  waffle_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  fatcell_img_alt: '[NEEDS TRANSLATION]'
-  risks_eyebrow: '[NEEDS TRANSLATION]'
-  risks_heading_part1: '[NEEDS TRANSLATION]'
-  risks_heading_accent: '[NEEDS TRANSLATION]'
+  eyebrow: "02 / 肥満由来の成長ケア"
+  heading_line1: "体重が増えれば背も伸びる？"
+  heading_line2: ""
+  heading_accent: "肥満由来の成長には"
+  heading_line3: "別のアプローチが必要です"
+  lead: "小児肥満は体重だけの問題ではなく、性ホルモンの分泌や思春期の進み方にも影響します。体重・成長スピード・生活習慣を合わせて見直すことが大切です。"
+  bmi_panel:
+    - img_alt: "小児肥満の診断基準"
+  subsection1_eyebrow: "小児肥満と身長"
+  subsection1_heading_line1: "成長期の体脂肪は"
+  subsection1_heading_accent: "必ずしも身長にはなりません"
+  subsection1_lead: "過剰な体脂肪は成長ホルモンの働きや思春期の進行を妨げることがあります。成長期の体重管理はダイエットではなく、<strong>健やかに伸びる環境づくり</strong>です。"
+  waffle_img_alt: "高カロリー食と小児肥満"
+  subsection2_heading_line1: "小児肥満は"
+  subsection2_heading_accent: "大人の肥満とは異なります"
+  subsection2_lead: "成長期には脂肪細胞の大きさと数、そして代謝環境が変わりうるため、早めの管理が重要です。"
+  fatcell_img_alt: "脂肪細胞の数と大きさの増加"
+  risks_eyebrow: "小児肥満が重要な理由"
+  risks_heading_part1: "なぜ"
+  risks_heading_accent: "注意が必要なのか"
   risks:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+    - img_alt: "成人肥満のリスク"
+      title: "成人肥満"
+      desc: "小児肥満はしばしば大人の体重問題へと続きます。"
+    - img_alt: "代謝疾患のリスク"
+      title: "代謝の健康"
+      desc: "血糖・血圧・皮膚の問題と関連します。"
+    - img_alt: "身長の伸びへの影響"
+      title: "成長への影響"
+      desc: "体脂肪と思春期のペースが成長板の発達に影響しえます。"
+    - img_alt: "心理的影響"
+      title: "心理面への影響"
+      desc: "体型の悩みが自信や友人関係に影響することがあります。"
+  causes_eyebrow: "なぜ増えているのか"
+  causes_heading_accent: "小児肥満の原因"
+  causes_heading_part2: " を一緒に確認"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  lifestyle_heading_line1: '[NEEDS TRANSLATION]'
-  lifestyle_heading_accent: '[NEEDS TRANSLATION]'
-  lifestyle_lead: '[NEEDS TRANSLATION]'
+    - img_alt: "エネルギーの不均衡"
+      title: "エネルギーの不均衡"
+      desc: "夜遅い食事、高カロリーの間食、不規則な食生活"
+    - img_alt: "遺伝的要因"
+      title: "遺伝的要因"
+      desc: "家族歴を環境とあわせて考慮"
+    - img_alt: "内分泌的要因"
+      title: "内分泌的要因"
+      desc: "食欲・代謝・ホルモンバランスを確認"
+    - img_alt: "生活習慣の要因"
+      title: "生活習慣"
+      desc: "活動量の低下と欧米化した食習慣"
+  lifestyle_heading_line1: "小児肥満をやわらげる"
+  lifestyle_heading_accent: "生活習慣"
+  lifestyle_lead: "成長期に必要な栄養と活動を考え、体重と成長の両方のバランスをとります。"
   lifestyle_cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      num: '[NEEDS TRANSLATION]'
-      title: '[NEEDS TRANSLATION]'
-      desc: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "食事ケア"
+      num: "01 / 食事"
+      title: "バランスのよい食事"
+      desc: "高カロリーの間食を減らし、たんぱく質・野菜・食物繊維を整えます。"
+    - img_alt: "スクリーンタイムを減らす"
+      num: "02 / 生活習慣"
+      title: "スクリーンタイムの管理"
+      desc: "テレビ・ゲーム・スマホの時間を減らし、日々の活動量を上げます。"
+    - img_alt: "身体活動"
+      num: "03 / 活動"
+      title: "毎日の運動"
+      desc: "歩く・階段・軽い運動で成長期の活動量を保ちます。"
+    - img_alt: "睡眠ケア"
+      num: "04 / 睡眠"
+      title: "規則正しい睡眠"
+      desc: "睡眠リズムは体重管理にも成長環境にも大切です。"
+  cta_label: "お子さまの体重や成長が気になりますか？ &nbsp;専門家による1:1相談"
+
 precocious:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  chart_ctitle: '[NEEDS TRANSLATION]'
-  chart_csrc: '[NEEDS TRANSLATION]'
-  chart_cunit: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_eyebrow: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_heading_part2: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  height_img_alt: '[NEEDS TRANSLATION]'
-  subsection2_heading_line1: '[NEEDS TRANSLATION]'
-  subsection2_heading_accent: '[NEEDS TRANSLATION]'
-  subsection2_heading_line2: '[NEEDS TRANSLATION]'
-  subsection2_lead: '[NEEDS TRANSLATION]'
-  arrow_img_alt: '[NEEDS TRANSLATION]'
-  causes_eyebrow: '[NEEDS TRANSLATION]'
-  causes_heading_accent: '[NEEDS TRANSLATION]'
-  causes_heading_part2: '[NEEDS TRANSLATION]'
+  eyebrow: "01 / 思春期早発のケア"
+  heading_line1: "思春期が早く始まると、"
+  heading_accent: "成長板の進み方"
+  heading_line2: " も確認が必要です"
+  lead: "思春期早発症とは、女の子で8歳、男の子で9歳より前に二次性徴が現れることをいいます。思春期が速いと成長板の変化も速まりうるため、現在の状態を確認することが大切です。"
+  chart_panel:
+    - ctitle: ""
+      csrc: ""
+      cunit: ""
+      img_alt: "韓国の思春期早発症患者は5年で約1.7倍に増加（2019年10.9万人 → 2023年18.7万人）"
+  subsection1_eyebrow: "思春期早発と身長"
+  subsection1_heading_accent: "思春期早発が"
+  subsection1_heading_part2: " 身長の伸びに与える影響"
+  subsection1_lead: "性ホルモンが早く分泌されると、一時的に身長が速く伸びるように見えることがあります。しかしその後、成長板の変化が速まり、最終的な成人身長に影響することがあります。"
+  height_img_alt: "思春期早発と成長スピードの関係"
+  subsection2_heading_line1: "思春期早発のケアでは"
+  subsection2_heading_accent: "思春期のペースと成長スピード"
+  subsection2_heading_line2: " を合わせて見ます"
+  subsection2_lead: "思春期早発症の治療は性ホルモンだけの問題ではなく、成長スピード・成長板の状態・睡眠・栄養・体重を合わせて見直す必要があります。"
+  arrow_img_alt: "思春期早発のケアと成長ペースの管理"
+  causes_eyebrow: "なぜこんなに早く？"
+  causes_heading_accent: "思春期早発の原因"
+  causes_heading_part2: " を一緒に確認"
   causes:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "基礎疾患"
+      cap_line1: "脳・卵巣・精巣の"
+      cap_line2: "疾患"
+    - img_alt: "食事の要因"
+      cap_line1: "肉中心・加工・"
+      cap_line2: "高脂肪の食事"
+    - img_alt: "肥満の要因"
+      cap_line1: "性ホルモンの活動に"
+      cap_line2: "関わる肥満"
+    - img_alt: "内分泌かく乱物質"
+      cap_line1: "内分泌かく乱物質への"
+      cap_line2: "高い曝露"
+    - img_alt: "活動不足"
+      cap_line1: "身体活動の不足"
+      cap_line2: "（ゲーム・テレビ）"
+    - img_alt: "ストレスの要因"
+      cap_line1: "学業や生活の"
+      cap_line2: "強いストレス"
+  cta_label: "思春期が早く進みすぎていませんか？ &nbsp;専門家による1:1相談"
+
 proportion:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  ratio_img_alt: '[NEEDS TRANSLATION]'
-  subsection1_heading_line1: '[NEEDS TRANSLATION]'
-  subsection1_heading_accent: '[NEEDS TRANSLATION]'
-  subsection1_lead: '[NEEDS TRANSLATION]'
-  comparison_img_alt: '[NEEDS TRANSLATION]'
-  quote: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+  eyebrow: "03 / 体のバランスのケア"
+  heading_line1: "身長と同じくらい大切な、"
+  heading_accent: "整った体のバランス"
+  heading_line2: ""
+  lead: "身長だけでなく、体のバランス・姿勢・下半身の均整は、子どもの印象や自信を左右します。成長期には、身長とあわせてバランスを見ることが大切です。"
+  ratio_img_alt: "黄金比と理想的な体のバランスの目安"
+  subsection1_heading_line1: "思春期早発と"
+  subsection1_heading_accent: "体のバランスの変化"
+  subsection1_lead: "思春期がいつ始まり、どれだけ速く伸びるかが、上半身と下半身のバランスを形づくります。成長板の状態と思春期の段階を見直すことで、身長とあわせてバランスを管理できます。"
+  comparison_img_alt: "上半身と下半身のバランス比較"
+  quote: "思春期がいつ始まり、成長がどう進むかが、最終的な体のバランスを形づくることがあります。"
+  cta_label: "体のバランスが気になりますか？ &nbsp;専門家による1:1相談"
+
 bodywork:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  diag_subhead: '[NEEDS TRANSLATION]'
-  xray_img_alt: '[NEEDS TRANSLATION]'
-  diag_lead: '[NEEDS TRANSLATION]'
+  eyebrow: "04 / 姿勢・発達のケア"
+  heading_line1: "姿勢や体つきも"
+  heading_accent: "成長環境に影響します"
+  heading_line2: ""
+  lead: "悪い姿勢、筋肉や筋膜の緊張、背骨や骨盤のゆがみは、子どもの体のバランスを崩すことがあります。診断と運動ケアを通じて、体つきと発達の状態をあわせて見直します。"
+  diag_subhead: "診断 — 全身X線分析"
+  xray_img_alt: "全身X線による姿勢分析"
+  diag_lead: "成長期に現れうる側弯症・腰椎前弯・ストレートネック・O脚やX脚をスクリーニングし、お子さまに合ったケアの方向をご案内します。"
   problems:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_strong: '[NEEDS TRANSLATION]'
-      cap_suffix: '[NEEDS TRANSLATION]'
-  treat_subhead: '[NEEDS TRANSLATION]'
-  treat_lead: '[NEEDS TRANSLATION]'
-  equip_main_alt: '[NEEDS TRANSLATION]'
-  equip_row_alt: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "側弯症"
+      cap_strong: "側弯症"
+      cap_suffix: " チェック"
+    - img_alt: "腰椎前弯"
+      cap_strong: "腰椎前弯"
+      cap_suffix: " チェック"
+    - img_alt: "ストレートネック"
+      cap_strong: "ストレートネック"
+      cap_suffix: " チェック"
+    - img_alt: "O脚・X脚"
+      cap_strong: "O脚・X脚"
+      cap_suffix: " チェック"
+  treat_subhead: "治療 — 成長を促す運動 + 健やかな発達"
+  treat_lead: "院内のGYMでは、成長期の子ども向けに設計したトレーナーによる1:1運動を提供します。ストレッチ・姿勢矯正・筋膜リリースで、良い姿勢と体のバランスを支えます。"
+  equip_main_alt: "成長運動器具"
+  equip_row_alt: "成長運動プログラムの器具"
+  cta_label: "姿勢や発達が気になりますか？ &nbsp;専門家による1:1相談"
+
 late:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_line1: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  heading_line2: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
+  eyebrow: "05 / 思春期後半の成長ケア"
+  heading_line1: "思春期の後半でも、"
+  heading_accent: "残された成長の余地"
+  heading_line2: " は確認できます"
+  lead: "思春期の後半は成長スピードが落ちます。それでも、成長板の状態・ホルモンバランス・姿勢・睡眠・栄養によって、適切なケアの方向は変わりえます。"
   program_tags:
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-    - '[NEEDS TRANSLATION]'
-  speed_heading_part1: '[NEEDS TRANSLATION]'
-  speed_heading_accent: '[NEEDS TRANSLATION]'
-  speed_heading_part2: '[NEEDS TRANSLATION]'
-  speed_lead: '[NEEDS TRANSLATION]'
-  chart_img_alt: '[NEEDS TRANSLATION]'
-  table_header_age: '[NEEDS TRANSLATION]'
-  table_header_speed: '[NEEDS TRANSLATION]'
-  table_header_speed_unit: '[NEEDS TRANSLATION]'
+    - "思春期前プログラム"
+    - "思春期早発プログラム"
+    - "段階別思春期プログラム"
+    - "思春期後半プログラム"
+  speed_heading_part1: "年齢別の"
+  speed_heading_accent: "成長スピード"
+  speed_heading_part2: " の目安"
+  speed_lead: "各段階の一般的な成長スピードを知ることで、お子さまの現状に合ったケアの方向を判断しやすくなります。"
+  chart_panel:
+    - img_alt: "年齢別の成長スピードのグラフ"
+  table_header_age: "年齢"
+  table_header_speed: "年間の成長スピード"
+  table_header_speed_unit: "（cm/年）"
   table_rows:
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      sub_boy: '[NEEDS TRANSLATION]'
-      val_boy: '[NEEDS TRANSLATION]'
-      sub_girl: '[NEEDS TRANSLATION]'
-      val_girl: '[NEEDS TRANSLATION]'
-    - label: '[NEEDS TRANSLATION]'
-      value: '[NEEDS TRANSLATION]'
-  potential_heading_line1: '[NEEDS TRANSLATION]'
-  potential_heading_accent: '[NEEDS TRANSLATION]'
-  potential_lead: '[NEEDS TRANSLATION]'
+    - label: "思春期前"
+      value: "5〜6 cm"
+    - label: "思春期前半"
+      sub_boy: "男の子"
+      val_boy: "7〜12 cm"
+      sub_girl: "女の子"
+      val_girl: "6〜11 cm"
+    - label: "思春期後半"
+      value: "それまでのペースより遅い"
+  potential_heading_line1: "成長の余地 —"
+  potential_heading_accent: "まず現状の確認から"
+  potential_lead: "お子さまの現在の発達段階に合わせた成長プログラムを行います。"
   cards:
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-    - img_alt: '[NEEDS TRANSLATION]'
-      cap_line1: '[NEEDS TRANSLATION]'
-      cap_line2: '[NEEDS TRANSLATION]'
-  cta_label: '[NEEDS TRANSLATION]'
+    - img_alt: "思春期ペースのモニタリング"
+      cap_line1: "思春期ペースの"
+      cap_line2: "モニタリング"
+    - img_alt: "背骨・骨盤・下半身のバランス"
+      cap_line1: "背骨・骨盤・"
+      cap_line2: "下半身のバランス"
+    - img_alt: "運動・栄養・睡眠のケア"
+      cap_line1: "運動・栄養・"
+      cap_line2: "睡眠"
+    - img_alt: "ホルモンバランスの成長ケア"
+      cap_line1: "ホルモンバランスの"
+      cap_line2: "成長ケア"
+  cta_label: "思春期後半、本当にもう遅い？ &nbsp;専門家による1:1相談"
+
+realcases:
+  eyebrow: "実際の成長ストーリー"
+  heading_line1: "実際の治療事例 ·"
+  heading_accent: "記録が裏づけます"
+  lead: "187 で治療した子どもたちの実際の成長記録です。お子さまに最も近い事例を選んでください。"
+  lead_mobile: "お子さまに最も近い事例を選んでください"
+  cards:
+    - case: 3
+      emoji: "👦"
+      color: "#10a572"
+      color2: "#0b8a5e"
+      bg: "#e7f8f1"
+      tag: "思春期早発 · 体重"
+      stat_from_label: "初回予測"
+      stat_from: "162.9"
+      stat_to: "185.8"
+      unit: "cm"
+      stat_to_label: "最終予測身長"
+      desc: "骨年齢が4歳先行 — 現在177.4cm"
+    - case: 4
+      emoji: "📏"
+      color: "#10a572"
+      color2: "#0b8a5e"
+      bg: "#e7f8f1"
+      tag: "両親が低身長"
+      stat_from_label: "初回予測"
+      stat_from: "171.2"
+      stat_to: "182.2"
+      unit: "cm"
+      stat_to_label: "最終予測身長"
+      desc: "遺伝上は約170cm — すでに父より高い"
+    - case: 6
+      emoji: "👧"
+      color: "#ec4d8b"
+      color2: "#d6336c"
+      bg: "#fdeef4"
+      tag: "女の子 · 思春期早発"
+      stat_from_label: "初回予測"
+      stat_from: "153.8"
+      stat_to: "165.3"
+      unit: "cm"
+      stat_to_label: "最終予測身長"
+      desc: "米国から治療のため韓国へ渡ったきょうだい"
+    - case: 7
+      emoji: "✈️"
+      color: "#10a572"
+      color2: "#0b8a5e"
+      bg: "#e7f8f1"
+      tag: "成長が遅い"
+      stat_from_label: "初回予測"
+      stat_from: "167"
+      stat_to: "183.6"
+      unit: "cm"
+      stat_to_label: "最終予測身長"
+      desc: "長期休みごとに日本から通院 — 現在175.6cm"
+  line_text: "さらに多くの治療事例は1:1相談でご覧いただけます"
+  back_label: "事例一覧"
+
 process:
-  eyebrow: '[NEEDS TRANSLATION]'
-  heading_accent: '[NEEDS TRANSLATION]'
-  lead: '[NEEDS TRANSLATION]'
-  pill: '[NEEDS TRANSLATION]'
-  grid_img_alt: '[NEEDS TRANSLATION]'
+  eyebrow: "ケアの流れ"
+  heading_accent: "ケアの流れ"
+  lead: "子どもの成長のケアは、お子さま・ご家族・医療チームがともに歩む道のりです。初回相談から治療後のフォローまで、成長の状態を確認し続けます。"
+  pill: "私たちのケアの流れは次のとおりです"
+  steps:
+    - num: "01"
+      badge: ""
+      icon_alt: "健康問診"
+      title: "健康問診"
+      desc: ""
+    - num: "02"
+      badge: ""
+      icon_alt: "身長・体重・体組成の分析"
+      title: "身長・体重・体組成の分析"
+      desc: ""
+    - num: "03"
+      badge: ""
+      icon_alt: "骨年齢と全身姿勢のX線"
+      title: "骨年齢・全身姿勢X線"
+      desc: ""
+    - num: "04"
+      badge: "追加検査"
+      icon_alt: "血液・尿検査"
+      title: "血液・尿検査（必須）"
+      desc: "重金属 · 毛髪ミネラル · 思春期早発（任意）"
+    - num: "05"
+      badge: "処方"
+      icon_alt: "個別ケア"
+      title: "ホルモンバランス・栄養・運動・姿勢の個別ケア"
+      desc: ""
+    - num: "06"
+      badge: "毎月の来院"
+      icon_alt: "毎月のフォロー"
+      title: "身長・体重・体組成のチェック"
+      desc: "ホルモン · 個別運動 · 姿勢矯正 · 栄養"
+    - num: "07"
+      badge: ""
+      icon_alt: "定期検診"
+      title: "6か月ごとの定期検診と成長治療の見直し"
+      desc: ""
+
 director:
-  quote_line1: '[NEEDS TRANSLATION]'
-  quote_strong: '[NEEDS TRANSLATION]'
-  quote_line2: '[NEEDS TRANSLATION]'
-  quote_line3: '[NEEDS TRANSLATION]'
-  body: '[NEEDS TRANSLATION]'
-  portrait_alt: '[NEEDS TRANSLATION]'
+  quote_line1: "延世セボムは"
+  quote_strong: "健やかでバランスのとれた成長"
+  quote_line2: ""
+  quote_line3: "をご家族とともに準備します"
+  body: "成長ケアの経験をもとに、お子さまの身長・体つき・ホルモンバランス・生活習慣を合わせて見ます。適切な栄養・睡眠・バランスのとれた成長ケアを通じて、お子さまの健やかな未来を準備します。"
+  portrait_alt: "延世セボム医院 チェ・ヨンヒョン院長"
+
 cta_global:
-  header_consult: '[NEEDS TRANSLATION]'
-  bottom_nav_consult: '[NEEDS TRANSLATION]'
-  inline_cta_arrow: '[NEEDS TRANSLATION]'
+  header_consult: "相談"
+  bottom_nav_consult: "無料チェック"
+  inline_cta_arrow: "→"
+  check_cta: "お子さまは今どのくらい？ 無料で身長を予測"
+  hormone_consult: "相談が必要ですか？ 1:1チャットを始める"
+  bottom_heading: "原因から始める総合ケア — 今日から始めましょう"
+  bottom_sub: "まずはお子さまの予測身長を確認 — 無料"
+  bottom_measure_label: "無料で身長を予測"
+  clinic_more: "クリニックについて"
+  bottom_label: "1:1チャットを始める"
+
+clinic:
+  page_title: "クリニック | 187 Growth Clinic"
+  brand:
+    logo_alt: "延世セボム医院"
+    tag: "ホルモンクリニック"
+    body: "<strong>延世セボム医院</strong>はホルモン治療のクリニックです。<strong class='b187'>187growup</strong>はその小児成長ブランドで、延世セボムのホルモン治療の知見を子どもの身長の伸びに活かしています。"
+  doctor:
+    intro_label: "院長のご紹介"
+    h1_sr: "チェ・ヨンヒョン院長について"
+    portrait_alt: "チェ・ヨンヒョン院長"
+    name: "チェ・ヨンヒョン"
+    name_suffix: ""
+    title: "院長"
+    quote_line1: "お子さまの身長の伸びを、ホルモンの全体像から見ます。"
+    quote_line2: "15年の臨床経験をもとに、ご家族に寄り添います。"
+    profile:
+      - "小児成長ケア15年 · 統合ホルモンの専門家"
+      - "延世大学校 医科大学／大学院 医学研究科"
+      - "現 延世セボム医院 院長"
+      - "ホルモン治療の専門（成長 · 甲状腺 · 性ホルモン）"
+      - "NABBA / WFF メディカルアドバイザー"
+  intro:
+    h2: "187 Growth Clinic — 延世セボム"
+    stat_cases_num: "3,000+"
+    stat_cases_label: "成長治療の実績"
+    stat_success_num: "97%+"
+    stat_success_label: "成功率"
+    p1: "子どもの身長の伸びは、成長ホルモンだけで決まるものではありません。甲状腺・性ホルモン・栄養・睡眠・ストレスがいずれも関わるため、<strong>ホルモンの全体像から見る視点</strong>が欠かせません。"
+    p2: "<strong class='b187'>187 Growth Clinic</strong>は、精密な骨年齢評価から総合的なホルモン検査、生活習慣の指導まで、一人ひとりに合わせたケアを行います。海外のご家族は、韓国に来なくてもビデオ相談を受けられます。"
+  video:
+    h3: "クリニックについて"
+    iframe_title: "延世セボム医院のご紹介"
+  facility:
+    h3: "施設案内"
+    aria_prev: "前へ"
+    aria_next: "次へ"
+    aria_dot_prefix: "写真"
+    items:
+      - "2F 待合室"
+      - "2F 診察室"
+      - "2F 外観"
+      - "3F 運動センター"
+      - "3F トレーニングエリア"
+      - "3F GYM"
+  contact:
+    label: "相談・ご予約"
+    phone: "+82-10-6693-2838"
+    addr: "韓国ソウル特別市 江南区 島山大路328 フィソンビル2F"
+  remote_consult:
+    - title: "韓国外からのご相談"
+      intro: "始めるためにソウルへ来る必要はありません。まずはお子さまの成長の情報を韓国の専門家に共有し、渡航する価値のあるプランが見えてからお越しください。"
+      step1_label: "メッセージを送る"
+      step1_desc: "WhatsApp・LINE・KakaoTalk で、お子さまの年齢・現在の身長・ご両親の身長をお送りください。"
+      step2_label: "可能なら現地で検査を"
+      step2_desc: "骨年齢のための手のX線と血液検査をお近くのクリニックで受け、結果をお送りください。"
+      step3_label: "院長とのビデオ相談"
+      step3_desc: "ご予約制です。検査結果と、それがお子さまの成長に何を意味するかをご説明します。"
+      step4_label: "治療開始のためソウルへ"
+      step4_desc: "検査と治療プランは、クリニックで対面のうえ確定します。"
+      office_label: "クリニック（ソウル）"
+      office_addr: "韓国ソウル特別市 江南区 島山大路328 フィソンビル2F"
+      footnote: "オンライン相談は一般的なご案内です。診断と治療は対面の診察のうえ確定します。"
+
+cases:
+  page_title: "治療事例 | 187 Growth Clinic"
+  iframe_title: "治療事例"
+
+calculator:
+  page_title: "無料身長計算機 — お子さまの成人身長を予測 | 187 Growth Clinic"
+  meta_description: "無料の身長計算機・成人身長予測ツール。お子さまの年齢・性別・現在の身長を入力すると、各国の標準成長データから成人身長を約30秒で予測します。"
+  iframe_title: "無料身長計算機"
+  h1: "無料身長計算機・成人身長予測ツール"
+  intro: "無料の身長計算機で、お子さまの成人身長を約30秒で予測します。年齢・性別・現在の身長を入力すると、各国の標準成長データから成人身長を推定します。より正確な評価には、クリニックでの骨年齢X線と血液検査が必要です。"
+  how_title: "身長計算機のしくみ"
+  how:
+    - "お子さまの生年月日・性別・現在の身長を入力します。"
+    - "計算機が現在の身長を成長標準のパーセンタイルに対応させます。"
+    - "そのパーセンタイルを成人身長の推定値に投影します。"
+  faq_title: "身長計算機 — よくある質問"
+  related_title: "予測身長を理解する — 関連記事"
+  faq:
+    - q: "この身長予測はどのくらい正確ですか？"
+      a: "集団の成長データからの統計的な推定値です。正確な予測には骨年齢X線と医師の判断が必要で、これはクリニックで行います。"
+    - q: "身長計算機は無料ですか？"
+      a: "はい。計算機は完全無料で、登録も不要です。"
+    - q: "どの成長標準を使いますか？"
+      a: "各国の標準成長データ（韓国・米国／CDC・中国・タイ・インドネシア）を使い、国籍で選べます。"
+
+consult:
+  page_title: "1:1相談 | 187 Growth Clinic"
+  h1: "1:1相談"
+  lead: "普段お使いのアプリからお気軽にご連絡ください。"
+  remote:
+    h2: "韓国外にお住まいでも、ご相談いただけます。"
+    body: "始めるためにソウルへ来る必要はありません。お子さまの成長の情報をお送りいただければ、韓国の成長専門医が直接一緒に確認します。"
+    points:
+      - "お子さまの年齢・現在の身長・ご両親の身長をお送りください"
+      - "現地での骨年齢X線や血液検査の結果があれば共有してください"
+      - "院長とのビデオ相談はご予約制で手配できます"
+      - "検査と治療プランは、ソウルのクリニックにご来院のうえ確定します"
+    more: []
+  channels:
+    h2: "チャネルを選ぶ"
+    sub: "どのチャネルでも大丈夫です。まもなくご返信します。"
+    note: "オンライン相談は一般的なご案内です。診断と治療は対面の診察のうえ確定します。"
+
+author:
+  page_title: "チェ・ヨンヒョン院長について — 187 Growth Clinic（延世セボム）"
+  meta_description: "187 Growth Clinic 院長 チェ・ヨンヒョン。小児成長とホルモンケアに15年以上、子どもの身長の伸びに関する著書あり — 学歴・経歴・メディア・著書。"
+  kicker: "187 GROWUP"
+  name: "チェ・ヨンヒョン院長"
+  name_suffix: ""
+  title: "院長 · ホルモン・小児成長の専門"
+  years: "15年以上"
+  portrait_alt: "チェ・ヨンヒョン院長"
+  quote: "子どもの身長を、ホルモンの全体像から見ます。"
+  intro_h2: "プロフィール"
+  intro: "チェ・ヨンヒョン院長は延世大学校 医科大学および大学院 医学研究科を卒業し、江南セブランス病院でインターン・レジデントを修了しました。15年以上にわたり小児成長とホルモンケアに注力し、<strong>成長ホルモン・甲状腺・性ホルモンを統合的に見る視点</strong>で一人ひとりの成長を管理しています。187 Growth Clinic（延世セボム）の院長であり、子どもの身長の伸びに関する著書があります。"
+  focus_h2: "専門分野"
+  focus:
+    - "小児成長ケア — 精密な骨年齢評価 · 成長ホルモン"
+    - "統合ホルモンケア — 成長ホルモン · 甲状腺 · 性ホルモン"
+    - "15年以上の診療 · 3,000件以上の成長治療実績"
+  career_h2: "学歴・経歴"
+  career:
+    - "延世大学校 医科大学"
+    - "延世大学校 大学院 医学研究科"
+    - "江南セブランス病院 インターン・レジデント"
+    - "大韓医師協会 学術研究賞（2008年）"
+    - "延世セボム医院 院長 · 韓国本院を開設（2010年）"
+    - "バンコク（タイ）分院を開設（2023年）"
+    - "元 SSGランダース・ネクセンヒーローズ（KBO野球）チームドクター"
+  book_h2: "著書"
+  book_title: "うちの子の身長成長バイブル"
+  book_desc: "子どもがどう伸びるか、家庭で親にできることを綴ったチェ院長の著書（韓国語）。"
+  book_link_label: "本を見る →"
+  book_link: "https://search.shopping.naver.com/book/catalog/57313068716"
+  media_h2: "メディア · コラム · 講演"
+  media:
+    - "テレビ：SBS・MBN・Channel A など韓国主要局、Sebasi の講演に出演"
+    - "コラム：中央日報・Vogue・InStyle ほか"
+    - "講演：ハナ銀行 江南PB · Collab Summit Korea · 淑明女子大学校"
+  cta_h2: "チェ院長に相談する"
+  cta_sub: "お子さまの成長についてのご質問は、いつでもご連絡ください。"
+  cta_label: "1:1チャット相談"
+  disclaimer: "本ページは院長のご紹介です。診断と治療は対面の診察のうえ確定します。"
+
+shell:
+  logo_alt: "187 Growth Clinic"
+  aria:
+    home: "ホーム"
+    kakao: "WhatsApp 1:1相談"
+    lang: "言語を選択"
+    consult: "1:1相談"
+    menu: "メインメニュー"
+    close: "閉じる"
+  header:
+    kakao_label: "WhatsApp 1:1"
+    consult_label: "1:1相談"
+  nav:
+    programs: "プログラム"
+    clinic: "クリニック"
+    cases: "治療事例"
+    calc: "無料チェック"
+    consult: "1:1相談"
+  consult:
+    title: "1:1相談"
+    desc: "お好きなメッセンジャーをお選びください。"
+  calc:
+    badge: "成長チェック · 無料"
+    title: "予測成人身長"
+    subtitle_line1: "成長板が閉じる前の、ゴールデンタイムのチェック。"
+    subtitle_line2: "お子さまの予測成人身長を30秒で。"
+    field_gender: "性別"
+    gender_male: "👦 男の子"
+    gender_female: "👧 女の子"
+    gender_male_short: "男の子"
+    gender_female_short: "女の子"
+    field_birth: "生年月日"
+    field_height: "現在の身長（cm）"
+    field_weight: "体重（kg）"
+    submit: "予測身長を計算"
+    result_label: "予測成人身長"
+    percentile_top: "上位"
+    note_label: "ご注意："
+    note_body: "WHO/KDCA の標準成長曲線に基づく統計的な推定値です。実際の成長は栄養・睡眠・運動など環境要因により変わります。"
+    kakao_cta: "💬 WhatsAppで1:1相談を受ける"
+    reset: "もう一度測る"
+    interpret_high: "✅ 同年代の平均を上回って伸びる見込みです — 今のペースを保ちましょう。"
+    interpret_mid: "🔍 同年代の平均あたりです。生活習慣のケアで結果をさらに伸ばせます。"
+    interpret_low: "⚠️ 同年代より少し低くなる可能性があります。成長板が閉じる前のゴールデンタイムのチェックをおすすめします。"
+    interpret_critical: "🔎 同年代よりかなり低くなる可能性があります。原因を早く見つけるため、詳しい骨年齢・ホルモン検査をおすすめします。"
+  chart:
+    now_prefix: "現在"
+    age_suffix: "歳"

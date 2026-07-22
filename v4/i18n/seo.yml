@@ -109,3 +109,35 @@ ar:
       a: "البلوغ الذي يسبق الأقران بأكثر من سنة قد يُغلق صفائح النمو مبكرًا ويؤدي إلى طول نهائي أقصر عند البلوغ."
     - q: "هل تتوفّر استشارة عن بُعد؟"
       a: "تتوفّر الاستشارة الأولى عبر WhatsApp. أما التقييم المفصّل والعلاج فيتطلبان زيارة شخصية."
+
+ja:
+  title: "187 Growth Clinic | お子さまの成人身長を無料予測"
+  description: "思春期・睡眠・体重・姿勢まで見る統合的な成長ケア。延世セボム 187 Growth Clinic で成人身長の無料予測 + WhatsApp による1:1相談。"
+  og_image: "/og/og-en.jpg"
+  faq:
+    - q: "何歳から成長の評価を受けられますか？"
+      a: "3歳から受けられます。同年代より明らかに背が低い、または成長ペースが遅いお子さまには早めの評価をおすすめします。"
+    - q: "成長ホルモン治療はどの子にも効きますか？"
+      a: "成長板がまだ開いていて、ホルモン分泌が不十分な場合に最も効果的です。まず評価で適応を確認します。"
+    - q: "治療費はどのくらいですか？"
+      a: "評価と治療の内容により異なります。1:1相談で個別にご案内します。"
+    - q: "思春期早発症はなぜ管理が必要ですか？"
+      a: "同年代より1年以上早い思春期は成長板を早く閉じ、最終的な成人身長が低くなることがあります。"
+    - q: "遠隔での相談はできますか？"
+      a: "初回のご相談は WhatsApp で承ります。詳しい評価と治療はご来院が必要です。"
+
+es:
+  title: "187 Growth Clinic | Predicción gratuita de la estatura adulta de su hijo/a"
+  description: "Cuidado integral del crecimiento que abarca pubertad, sueño, peso y postura. Predicción gratuita de la estatura adulta + consulta 1:1 por WhatsApp en la Clínica Yonsei Saebom — 187 Growth Clinic."
+  og_image: "/og/og-en.jpg"
+  faq:
+    - q: "¿A partir de qué edad puede un niño hacerse una evaluación de crecimiento?"
+      a: "Desde los 3 años. Se recomienda una evaluación temprana en niños notablemente más bajos que sus compañeros o con un ritmo de crecimiento lento."
+    - q: "¿El tratamiento con hormona de crecimiento funciona en todos los niños?"
+      a: "Es más eficaz cuando las placas de crecimiento siguen abiertas y la secreción hormonal es insuficiente. Confirmamos la idoneidad con una evaluación previa."
+    - q: "¿Cuánto cuesta el tratamiento?"
+      a: "Depende del tipo de evaluación y tratamiento. Damos una orientación individual en una consulta 1:1."
+    - q: "¿Por qué hay que manejar la pubertad precoz?"
+      a: "Una pubertad más de un año adelantada respecto a los compañeros puede cerrar antes las placas de crecimiento y llevar a una estatura adulta final más baja."
+    - q: "¿Hay consulta a distancia?"
+      a: "La primera consulta está disponible por WhatsApp. La evaluación detallada y el tratamiento requieren una visita presencial."
