@@ -541,7 +541,6 @@ function card(r, i) {
   return `<article class="card" data-key="${esc(key)}" data-g="${r.gender}" data-tags="${esc(r.tags.map((t) => t.split('(')[0]).join('|'))}" data-name="${esc(r.name)}" data-chart="${esc(r.chart ?? '')}" data-excluded="${esc([...(excludedByChart.get(String(r.chart)) || [])].join(','))}">
   <header style="--cc:${cc};--ccbg:${ccBg}">
     <button type="button" class="card-fold" title="접기/펴기">▾</button>
-    <label class="pick"><input type="checkbox"> 채택</label>
     <button type="button" class="pub-toggle${publishedCharts.has(String(r.chart)) ? ' on' : ''}" data-chart="${esc(r.chart ?? '')}">${publishedCharts.has(String(r.chart)) ? '🟢 환자공개 ON' : '⚪ 환자공개'}</button>
     <button type="button" class="card-del" title="목록에서 삭제(숨김) — 진료기록은 그대로">🗑</button>
     <div class="rank">#${i + 1}</div>
@@ -725,6 +724,17 @@ const html = `<!DOCTYPE html>
   .side-item.dragging { opacity:.4; }
   .side-item.drop-over { box-shadow:inset 0 -2px 0 #6b46c1; }
   .si-grip { color:#bbb; cursor:grab; font-size:11px; }
+  .side-filter { display:flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:#0b8a5e;
+                 background:#e9f8f1; border:1px solid #bfe6d5; border-radius:8px; padding:5px 8px; margin-bottom:8px; cursor:pointer; }
+  .side-filter input { accent-color:#0b8a5e; cursor:pointer; }
+  .si-pub { accent-color:#0b8a5e; cursor:pointer; flex:0 0 auto; }
+  /* 성별 색 — 남=파랑 / 여=분홍 (카드 헤더 색과 동일 계열) */
+  .side-item[data-g="남"] { border-left:3px solid #93b4f5; }
+  .side-item[data-g="여"] { border-left:3px solid #f5a3c0; }
+  .side-item[data-g="남"] .si-name { color:#2563EB; }
+  .side-item[data-g="여"] .si-name { color:#d6336c; }
+  .side-item.pub { background:#e9f8f1; }
+  .side-item.pub .si-chart { color:#0b8a5e; font-weight:800; }
   .si-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .si-chart { font-size:10px; color:#aaa; }
   .side-hint { font-size:10.5px; color:#aaa; margin-top:10px; line-height:1.5; }
@@ -766,16 +776,18 @@ const html = `<!DOCTYPE html>
     <span>환자 <b id="sideCount">${list.length}</b>명</span>
     <button id="sideAll" class="side-all on">전체 보기</button>
   </div>
-  <ul class="side-list" id="sideList">${list.map((r) => `<li class="side-item" draggable="true" data-chart="${esc(r.chart ?? '')}">
+  <label class="side-filter"><input type="checkbox" id="onlyPub"> 🟢 공개한 환자만 <b id="pubCount">0</b></label>
+  <ul class="side-list" id="sideList">${list.map((r) => `<li class="side-item${publishedCharts.has(String(r.chart)) ? ' pub' : ''}" draggable="true" data-chart="${esc(r.chart ?? '')}" data-g="${r.gender}">
     <span class="si-grip">⠿</span>
+    <input type="checkbox" class="si-pub" title="환자공개" ${publishedCharts.has(String(r.chart)) ? 'checked' : ''}>
     <span class="si-name">${r.gender === '여' ? '👧' : '👦'} ${esc(r.name)}</span>
     <span class="si-chart">${esc(r.chart ?? '')}</span>
   </li>`).join('')}</ul>
-  <div class="side-hint">드래그로 순서 변경 · 클릭하면 그 환자만 표시</div>
+  <div class="side-hint">체크 = 환자공개 · 드래그로 순서 변경 · 이름 클릭하면 그 환자만</div>
 </aside>
 <div class="wrap">
   <h1>치료사례 후보 ${list.length}명 — 상세 프로필</h1>
-  <p class="sub">생성 2026-06-12 · 점수순 · 카드의 <b style="color:#10a572">채택</b> 체크 → 하단 "선택 차트번호 복사" · 체크는 브라우저에 자동 저장</p>
+  <p class="sub">좌측 사이드바에서 <b style="color:#0b8a5e">환자공개</b> 체크(= 환자용 페이지 노출 승인, DB 저장) · 드래그로 순서 변경 · 이름 클릭 시 그 환자만</p>
   <div class="note"><b>읽는 법</b> : <b>환자 이름은 전부 가명</b>입니다 — 식별은 차트번호로 해주세요. 헤드라인·스토리 포인트는 데이터 기반 자동 초안입니다(최종 카피 아님).
   그래프 — <b>좌우 2개</b>: [성장 곡선] 백분위 곡선+실측 다이아+예측 투영 / [예측키 추세] 회차별 예측키 라인+또래 백분위. 뼈나이 "격차"=뼈나이−실제나이(<b style="color:#d6336c">+빨강=조숙</b>, <b style="color:#0b8a5e">−초록=여유</b>). 문진·내원사유는 원본 발췌라 표현 그대로입니다.</div>
 
@@ -789,10 +801,9 @@ const html = `<!DOCTYPE html>
       <option>알러지검사</option><option>유전키 작음</option><option>성장지연</option>
     </select>
     <input type="search" id="q" placeholder="이름·차트번호 검색">
-    <label class="chip" style="display:inline-flex;align-items:center;gap:5px"><input type="checkbox" id="onlySel" style="accent-color:#4A2D6B">선택만</label>
     <div class="selbar">
-      <span class="selcount" id="selCount">선택 0명</span>
-      <button class="copybtn" id="copySel">선택 차트번호 복사</button>
+      <span class="selcount" id="selCount">공개 0명</span>
+      <button class="copybtn" id="copySel">공개 차트번호 복사</button>
     </div>
   </div>
 
@@ -802,11 +813,8 @@ const html = `<!DOCTYPE html>
 <div class="toast" id="toast"></div>
 <script src="case-charts.js?v=${ccVer}"></script>
 <script>
-const store = {
-  get() { try { return JSON.parse(localStorage.getItem('caseCandidates2026') || '[]'); } catch { return []; } },
-  set(v) { try { localStorage.setItem('caseCandidates2026', JSON.stringify(v)); } catch {} },
-};
-const saved = new Set(store.get());
+// 선택 = "환자공개(published)" 하나로 통일(옛 localStorage '채택' 제거) — DB 가 단일 소스.
+const pub = new Set([...document.querySelectorAll('.pub-toggle.on')].map(b => b.dataset.chart).filter(Boolean));
 let genderF = 'all', tagF = '', q = '', onlySel = false, pickedChart = '';
 const cards = [...document.querySelectorAll('.card')];
 function apply() {
@@ -815,33 +823,60 @@ function apply() {
     const okG = genderF === 'all' || c.dataset.g === genderF;
     const okT = !tagF || c.dataset.tags.split('|').includes(tagF);
     const okQ = !q || c.dataset.name.includes(q) || c.dataset.chart.includes(q);
-    const okS = !onlySel || saved.has(c.dataset.key);
+    const okS = !onlySel || pub.has(c.dataset.chart);
     c.style.display = okP && okG && okT && okQ && okS ? '' : 'none';
   });
-  document.getElementById('selCount').textContent = '선택 ' + saved.size + '명';
-}
-cards.forEach(c => {
-  const cb = c.querySelector('.pick input');
-  if (saved.has(c.dataset.key)) { cb.checked = true; c.classList.add('checked'); }
-  cb.addEventListener('change', () => {
-    if (cb.checked) saved.add(c.dataset.key); else saved.delete(c.dataset.key);
-    c.classList.toggle('checked', cb.checked);
-    store.set([...saved]); apply();
+  // 좌측 리스트도 같은 "공개만" 기준으로 필터
+  document.querySelectorAll('#sideList .side-item').forEach(li => {
+    li.style.display = (!onlySel || pub.has(li.dataset.chart)) ? '' : 'none';
   });
-});
+  document.getElementById('selCount').textContent = '공개 ' + pub.size + '명';
+  const pc = document.getElementById('pubCount'); if (pc) pc.textContent = pub.size;
+}
+// 환자공개 토글 — 카드 버튼 / 사이드바 체크박스 공용. DB 저장 후 양쪽 UI 동기화.
+async function setPublished(chart, want) {
+  if (!chart) return;
+  const btn = document.querySelector('.pub-toggle[data-chart="' + chart + '"]');
+  const li = document.querySelector('#sideList .side-item[data-chart="' + chart + '"]');
+  const cb = li ? li.querySelector('.si-pub') : null;
+  const card = cards.find(c => c.dataset.chart === chart);
+  try {
+    const r = await fetch('http://localhost:4000/api/treatment-cases/publish', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
+      body: JSON.stringify({ chart, published: want }),
+    });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    syncPublished(chart, want);
+  } catch (err) {
+    alert('환자공개 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인');
+    if (cb) cb.checked = !want; // 롤백
+    if (btn) btn.classList.toggle('on', !want);
+    if (card) { /* no-op */ }
+  }
+}
+function syncPublished(chart, want) {
+  if (want) pub.add(chart); else pub.delete(chart);
+  const btn = document.querySelector('.pub-toggle[data-chart="' + chart + '"]');
+  if (btn) { btn.classList.toggle('on', want); btn.textContent = want ? '🟢 환자공개 ON' : '⚪ 환자공개'; }
+  const li = document.querySelector('#sideList .side-item[data-chart="' + chart + '"]');
+  if (li) { li.classList.toggle('pub', want); const cb = li.querySelector('.si-pub'); if (cb) cb.checked = want; }
+  const card = cards.find(c => c.dataset.chart === chart);
+  if (card) card.classList.toggle('checked', want);
+  apply();
+}
 document.querySelectorAll('.chip[data-g]').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.chip[data-g]').forEach(x => x.classList.remove('on'));
   b.classList.add('on'); genderF = b.dataset.g; apply();
 }));
 document.getElementById('tagFilter').addEventListener('change', e => { tagF = e.target.value; apply(); });
 document.getElementById('q').addEventListener('input', e => { q = e.target.value.trim(); apply(); });
-document.getElementById('onlySel').addEventListener('change', e => { onlySel = e.target.checked; apply(); });
+document.getElementById('onlyPub').addEventListener('change', e => { onlySel = e.target.checked; apply(); });
 document.getElementById('copySel').addEventListener('click', () => {
-  const v = [...saved].join(', ');
+  const v = [...pub].join(', ');
   const show = msg => { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2200); };
-  if (!v) return show('선택된 후보가 없습니다');
+  if (!v) return show('환자공개로 체크된 케이스가 없습니다');
   (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(
-    () => show('차트번호 ' + saved.size + '건 복사됨: ' + v),
+    () => show('공개 차트번호 ' + pub.size + '건 복사됨: ' + v),
     () => show('복사 실패 — 수동으로: ' + v));
 });
 apply();
@@ -986,26 +1021,22 @@ document.querySelectorAll('.card').forEach(card => {
   });
 });
 
-// ── 환자용 공개 토글(원장 승인) → treatment_cases.published (로컬 ai-server) ──
-const PUBLISH_API = 'http://localhost:4000/api/treatment-cases/publish';
+// ── 환자공개 토글: 카드 버튼 + 사이드바 체크박스 (둘 다 setPublished 로) ──
 document.querySelectorAll('.pub-toggle').forEach(btn => {
   if (!btn.dataset.chart) return;
   btn.addEventListener('click', async () => {
-    const want = !btn.classList.contains('on');
     btn.disabled = true;
-    try {
-      const r = await fetch(PUBLISH_API, {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-pin': '8054' },
-        body: JSON.stringify({ chart: btn.dataset.chart, published: want }),
-      });
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      btn.classList.toggle('on', want);
-      btn.textContent = want ? '🟢 환자공개 ON' : '⚪ 환자공개';
-    } catch (err) {
-      alert('공개 토글 실패: ' + err.message + ' — ai-server(:4000) 실행 확인');
-    } finally { btn.disabled = false; }
+    await setPublished(btn.dataset.chart, !btn.classList.contains('on'));
+    btn.disabled = false;
   });
 });
+document.querySelectorAll('#sideList .si-pub').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const li = cb.closest('.side-item');
+    if (li) setPublished(li.dataset.chart, cb.checked);
+  });
+});
+apply(); // 공개 카운트 초기화
 
 // ── 부모 키 수정(override) → treatment_cases.overrides (로컬 ai-server). children 은 안 건드림 ──
 const OVERRIDE_API = 'http://localhost:4000/api/treatment-cases/override';
@@ -1113,6 +1144,7 @@ function setPicked(chart) {
 }
 sideAllBtn.addEventListener('click', () => setPicked(''));
 sideList.addEventListener('click', e => {
+  if (e.target.classList.contains('si-pub')) return; // 공개 체크박스는 필터 아님
   const li = e.target.closest('.side-item'); if (!li) return;
   setPicked(li.dataset.chart === pickedChart ? '' : li.dataset.chart); // 같은 환자 다시 클릭 = 전체
 });
@@ -1218,7 +1250,7 @@ cards.forEach(card => {
         const bx = tr.querySelector('.ba-x'); if (bx) bx.textContent = '↩';
       }
     });
-    if (e.published) { const pb = card.querySelector('.pub-toggle'); if (pb) { pb.classList.add('on'); pb.textContent = '🟢 환자공개 ON'; } }
+    syncPublished(String(e.chart_number), !!e.published); // 카드 버튼 + 사이드바 체크 + 공개 카운트
     const fa = parseFloat((card.querySelector('.pk-fa') || {}).value), mo = parseFloat((card.querySelector('.pk-mo') || {}).value), mphv = card.querySelector('.pk-mphv');
     if (mphv && fa > 0 && mo > 0) mphv.textContent = 'MPH ' + ((fa + mo) / 2 + (gender === 'male' ? 6.5 : -6.5)).toFixed(1);
     recalcKpi(card);
