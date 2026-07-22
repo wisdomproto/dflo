@@ -25,6 +25,7 @@ const CONSULT_ITEMS = [
   { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
   { to: '/admin/referral', icon: '📝', label: '소견서 작성', end: false },
   { to: '/cases', icon: '🌱', label: '치료사례 (환자용)', end: false, external: true },
+  { to: '/187-vs-standard.html', icon: '📊', label: '187 vs. Standard', end: false, external: true },
   { to: '/admin/consulting', icon: '💬', label: '상담 매뉴얼', end: false },
 ];
 
@@ -96,7 +97,7 @@ export default function AdminLayout() {
             collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
           }`}
           onClick={() => setSidebarOpen(false)}
-          title={collapsed ? item.label : '환자에게 보여주는 치료사례 페이지 (비밀번호 8054)'}
+          title={item.label}
         >
           <span className="text-lg">{item.icon}</span>
           {!collapsed && <span>{item.label}</span>}
