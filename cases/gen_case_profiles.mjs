@@ -678,7 +678,7 @@ const html = `<!DOCTYPE html>
   .pub-toggle.on { background:#e6f7ee; border-color:#7bd6a7; color:#0b8a5e; }
   .pub-toggle:disabled { opacity:.5; }
   .k-parent { display:flex; align-items:center; gap:3px; flex-wrap:wrap; }
-  .pk-fa, .pk-mo { width:42px; font-size:13px; font-weight:800; padding:2px 4px; border:1px solid #d9d3ea; border-radius:5px; text-align:center; }
+  .pk-fa, .pk-mo { width:50px; font-size:12.5px; font-weight:800; padding:2px 4px; border:1px solid #d9d3ea; border-radius:5px; text-align:center; }
   .pk-sep { color:#aaa; }
   .pk-save { font-size:10.5px; font-weight:800; padding:2px 7px; border-radius:6px; cursor:pointer; border:1px solid #cbb9ee; background:#fff; color:#6b46c1; }
   .pk-save:disabled { opacity:.5; }
