@@ -195,11 +195,23 @@ const PLAIN_TRANSLATE_NAMES: Record<string, string> = {
   ja: '일본어', id: '인도네시아어', ms: '말레이어', ar: '아랍어',
 };
 
-export function buildPlainTranslatePrompt(r: { text: string; targetLang: string }): string {
+// style: 'community'(기본, 커뮤니티 글/댓글) | 'formal'(병원 상담 매뉴얼 등 격식 문서)
+// 커뮤니티 문구는 구어체를 지시하므로 매뉴얼 문장에 쓰면 톤이 어긋난다.
+// formal 은 존댓말 + 남성 의사 화자([[feedback_i18n_speaker_register]]) + 목록/줄바꿈 보존.
+export function buildPlainTranslatePrompt(r: {
+  text: string;
+  targetLang: string;
+  style?: 'community' | 'formal';
+}): string {
   const lang = PLAIN_TRANSLATE_NAMES[r.targetLang] || r.targetLang;
+  const styleLine = r.style === 'formal'
+    ? `- 병원 상담 매뉴얼의 질문/답변입니다. 정중한 존댓말과 의료 전문 톤을 유지하세요.
+- 화자는 남성 의사입니다. 성별이 드러나는 언어는 남성 화자·격식체로 옮기세요(태국어 ครับ/ผม).
+- 줄바꿈·목록 기호(①②·• - [ ] 등)와 문단 구조는 원문 그대로 유지하세요.`
+    : '- 온라인 커뮤니티의 글/댓글 번역입니다. 구어체 뉘앙스와 어감을 살리되 의미를 정확히 전달하세요.';
   return `다음 텍스트를 ${lang}로 번역하세요.
 - 원문 언어는 자동으로 감지하세요.
-- 온라인 커뮤니티의 글/댓글 번역입니다. 구어체 뉘앙스와 어감을 살리되 의미를 정확히 전달하세요.
+${styleLine}
 - 의료 관련 표현은 정확하게 옮기세요.
 - **번역문만** 출력하세요. 따옴표·설명·머리말·코드펜스·원문 병기 없이 순수 번역 결과만.
 
