@@ -99,7 +99,7 @@ scripts/
 | `recipes` | id, title, image_url, is_published, order_index | Recipes |
 | `growth_guides` | id, title, image_url, content, is_published, order_index | Guides |
 | `growth_cases` | id, chart_number, patient_name, gender, is_published | Website treatment cases |
-| `consulting_qa` | id(=1 singleton), categories(jsonb), updated_at | 해외 환자 상담 매뉴얼 Q&A. `/consulting.html` 편집기가 읽고 씀 (migration 029). categories 는 `{version, markets:{kr,en,th,vn}}` 객체 — 시장별 매뉴얼 + 질문/답변 `{ko,loc}` 이중언어. 레거시 배열은 로드 시 자동 마이그레이션(전 시장 복사) |
+| `consulting_qa` | id(=1 singleton), categories(jsonb), updated_at | 상담 매뉴얼 Q&A. `/consulting.html` 편집기가 읽고 씀 (migration 029). categories 는 `{version, markets:{kr,en,th,vn}}` 객체 — 시장별 매뉴얼 + 질문/답변 `{ko,loc}` 이중언어. 레거시 배열은 로드 시 자동 마이그레이션(전 시장 복사). **`kr` = 일반(국내) 환자용**(단일언어), th/en/vn = 해외 환자용(한글↔현지어) |
 
 ## Storage Buckets
 - `content-images` (public, 5MB) — guides/recipes/cases + lab attachments
@@ -212,7 +212,7 @@ scripts/
 | `/diagnosis` | IntakeDiagnosisPage (AI 진단 intake) |
 | `/intake` · `/intake/:lang` | 환자 셀프 설문(공개 **7스텝** 마법사). **(2026-07-19 구조)** 위저드 본체 = 공유 컴포넌트 `components/IntakeWizard.tsx`(lang prop). **`/intake` = `GlobalIntakePage`** — 진입 시 **언어 선택 팝업**(en 맨 위·7언어) → 선택 언어로 위저드, 우상단 `🌐 언어 변경`. **`/intake/:lang` = `PublicIntakePage`**(어드민 공유용 직링크, 위저드에 위임) — 없는/잘못된 코드는 **en 폴백(default=영어)**. 언어 = ko/th/vi/en/**zh-hans/zh-hant/ja**(2026-07-19 간체·번체·일본어 추가 — `IntakeLang`+`INTAKE_LABELS`+`LANG_DEFAULT_COUNTRY`(CN/TW/JP)+`AdminIntakePage.SHARE_LANGS`, 전 문항 번역. `lang` 컬럼 CHECK 없어 마이그레이션 X. ⚠️중/일 원어민 감수 대기). 어드민 검토는 `/admin/intake`. **(2026-07-17 설문 통일)** 구글 폼 초진 설문지·`/diagnosis` 와 문항 세트 동일화 — 출생 정보(임신 주수·출생 몸무게·특이사항, StepBasic)·최근 1년 성장(StepGrowth)·**생활 습관 스텝 신설**(StepLifestyle — 취침/기상·운동 빈도·우유·식사 규칙성)·사춘기 상세 성별 분기(StepMedical — 남: 변성기·수염/체모, 여: 초경·유방 발달)·복용 약/영양제·추가 메모(StepCauses). 전부 `intake_survey` JSONB optional 필드(마이그레이션 X, 구접수 하위호환). 유입 경로에 `ai`(ChatGPT 등 AI) 옵션 4언어 추가. 셀렉트는 코드값 저장 + `intakeLabels.optLabelKo` 로 어드민 한국어 표시. **(2026-07-22 제출 오류 수정)** 생년월일이 년/월/일 자유 숫자 입력이라 **불가능한 날짜**(2월31일·13월·30일달의 31일·오타)를 넣으면 DB insert 가 Postgres `22008 date/time field value out of range` 로 죽고 화면엔 이유 없는 ⚠ 만 떴다(필수라 입력은 했지만 값이 불가능 → "선택 몇 개 안 넣어서"로 오인). ★DB 실삽입 테스트로 확진: 7언어 전부·null 선택필드 전부 정상, **불가능 날짜만 실패**. 수정 = `IntakeWizard.isRealDate`(Date 왕복 검증, 윤년 2/29 정확) 로 StepBasic "다음" 에서 걸러 **생년월일 필드에 즉시 오류**(`invalidBirth` 7언어) + 제출 실패 메시지도 밋밋한 ⚠ → `submitError`(7언어) 문장으로 |
 | `/banner-admin` | AdminWebsitePage (PIN 보호) |
-| `/consulting.html` | 해외 환자 상담 매뉴얼 Q&A 편집기 (정적 HTML, noindex). **시장 4탭(🇰🇷한글/🇺🇸영어/🇹🇭태국어/🇻🇳베트남어)** + 비한국 탭은 **한글↔현지어 토글**. 카테고리/질문/답변 + 질문별 공개토글, Supabase `consulting_qa` 싱글톤에 저장, supabase-js CDN 직접 연동. **🌐 현지어 번역 버튼**(ai-server `/api/marketing/translate`, dev-only) 로 한글→현지어 일괄 번역. admin 사이드바 "상담 매뉴얼"(`/admin/consulting`)이 iframe 으로 임베드 |
+| `/consulting.html` | 상담 매뉴얼 Q&A 편집기 (정적 HTML, noindex). **시장 4탭(🇹🇭태국어/🇰🇷일반/🇺🇸영어/🇻🇳베트남어)** + 비한국 탭은 **한글↔현지어 토글**. 카테고리/질문/답변 + 질문별 공개토글, Supabase `consulting_qa` 싱글톤에 저장, supabase-js CDN 직접 연동. **🌐 현지어 번역 버튼**(ai-server `/api/marketing/translate`, dev-only) 로 한글→현지어 일괄 번역. admin 사이드바 "상담 매뉴얼"(`/admin/consulting`)이 iframe 으로 임베드. **(2026-07-22) `kr` = 일반(국내) 환자 매뉴얼 작성** — th(태국) 판을 베이스로 국내 기준 재작성(6카테고리 29문항). 상세 [[consulting_manual]] |
 
 ## Legacy Route Redirects
 router.tsx has `<Navigate>` entries for the pre-restructure paths so old bookmarks and banner `cta_target` values in R2 keep working:
