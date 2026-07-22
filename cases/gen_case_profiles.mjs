@@ -245,14 +245,16 @@ for (const c of children) {
     const age = c.birth_date ? +yearsBetween(c.birth_date, m.measured_date).toFixed(1) : null;
     return { ...m, age, gap: age != null ? +(m.bone_age - age).toFixed(1) : null, followup: followupSet.has(m.measured_date) };
   });
-  const baTreat = baRows.filter((b) => !b.followup); // 치료 window = 팔로우업 뺀 회차
-  const firstBA = baTreat[0] || baRows[0], lastBA = baTreat[baTreat.length - 1] || baRows[baRows.length - 1];
+  // 초진/최종(예상키·실제키·나이)은 팔로우업 포함 첫/마지막 회차. 팔로우업은 "치료기간 산정"에서만 제외.
+  const firstBA = baRows[0], lastBA = baRows[baRows.length - 1];
+  const baTreat = baRows.filter((b) => !b.followup);
+  const tFirst = baTreat[0] || firstBA, tLast = baTreat[baTreat.length - 1] || lastBA;
 
   // 치료 window = 남긴 뼈나이 회차. 예상키(PAH)는 BA 유도값이라 초진/최종 예상키 = 첫/마지막 BA 회차.
   // 키·나이도 BA window 기준(BA 회차에 값 없으면 측정 폴백). BA 2회 미만이면 측정 span 폴백.
   const vpah = (p) => (p > 0 && p < 230 ? p : null);
-  const months = (firstBA && lastBA && firstBA !== lastBA)
-    ? Math.round(yearsBetween(firstBA.measured_date, lastBA.measured_date) * 12) : gateMonths;
+  const months = (tFirst && tLast && tFirst !== tLast) // 치료기간 = 팔로우업 뺀 첫~마지막 BA
+    ? Math.round(yearsBetween(tFirst.measured_date, tLast.measured_date) * 12) : gateMonths;
   const firstH = (firstBA && firstBA.height > 0) ? firstBA : mm.find((m) => m.height > 0);
   const lastH = (lastBA && lastBA.height > 0) ? lastBA : [...mm].reverse().find((m) => m.height > 0);
   const ageAtFirst = firstBA?.age ?? (c.birth_date && mm[0] ? +yearsBetween(c.birth_date, mm[0].measured_date).toFixed(1) : null);
@@ -818,7 +820,8 @@ function cardData(card) {
   const measurements = base.measurements
     .filter(m => !ex.has(m.measured_date))
     .map(m => ({ ...m, bone_age: bam[m.measured_date] != null ? bam[m.measured_date] : m.bone_age, followup: fu.has(m.measured_date) }));
-  return { ...base, measurements };
+  const dh = card.querySelector('.dh-in'), dv = dh ? parseFloat(dh.value) : NaN; // 희망키 입력값이 우선(즉시 반영)
+  return { ...base, desired: dv > 0 ? dv : base.desired, measurements };
 }
 function renderGrowth(card) {
   if (card._g || !CC) return;
@@ -890,9 +893,10 @@ document.querySelectorAll('.card').forEach(card => {
   const msg = card.querySelector('.ba-msg');
   const setHtml = (sel, html) => { const el = card.querySelector(sel); if (el) el.innerHTML = html; };
   const recompute = () => {
-    const kept = rows.filter(tr => !tr.classList.contains('ba-removed') && !tr.classList.contains('ba-followup'));
-    const dts = kept.map(tr => tr.dataset.date).filter(Boolean).sort();
-    const pahs = kept.map(tr => +tr.dataset.pah).filter(v => v > 0);
+    const kept = rows.filter(tr => !tr.classList.contains('ba-removed'));
+    const dts = kept.filter(tr => !tr.classList.contains('ba-followup')) // 치료기간만 팔로우업 제외
+      .map(tr => tr.dataset.date).filter(Boolean).sort();
+    const pahs = kept.map(tr => +tr.dataset.pah).filter(v => v > 0);     // 예상키·실제키는 팔로우업 포함
     const hs = kept.map(tr => +tr.dataset.h).filter(v => v > 0);
     if (dts.length >= 2) { const d = card.querySelector('.k-dur'); if (d) d.textContent = durTxt(Math.round(yrs(dts[0], dts[dts.length - 1]) * 12)); }
     if (pahs.length >= 2) setHtml('.k-pah', pahs[0] + '→' + pahs[pahs.length - 1] + '<i>+' + (pahs[pahs.length - 1] - pahs[0]).toFixed(1) + 'cm</i>');
@@ -981,9 +985,10 @@ async function saveOverride(chart, patch) {
 }
 // KPI(치료기간·초진/최종 실제키·예상키) 를 남긴 뼈나이 회차 기준으로 재계산 — 뼈나이 수정 시 즉시 반영.
 function recalcKpi(card) {
-  const rows = [...card.querySelectorAll('tr[data-date]')].filter(tr => tr.querySelector('.ba-in') && !tr.classList.contains('ba-removed') && !tr.classList.contains('ba-followup'));
-  const dts = rows.map(tr => tr.dataset.date).filter(Boolean).sort();
-  const pahs = rows.map(tr => +tr.dataset.pah).filter(v => v > 0);
+  const rows = [...card.querySelectorAll('tr[data-date]')].filter(tr => tr.querySelector('.ba-in') && !tr.classList.contains('ba-removed'));
+  const treat = rows.filter(tr => !tr.classList.contains('ba-followup'));
+  const dts = treat.map(tr => tr.dataset.date).filter(Boolean).sort();  // 치료기간만 팔로우업 제외
+  const pahs = rows.map(tr => +tr.dataset.pah).filter(v => v > 0);      // 최종 예상키·실제키는 팔로우업 포함
   const hs = rows.map(tr => +tr.dataset.h).filter(v => v > 0);
   const set = (sel, html) => { const el = card.querySelector(sel); if (el) el.innerHTML = html; };
   if (dts.length >= 2) { const d = card.querySelector('.k-dur'); if (d) d.textContent = durTxt(Math.round(yrs(dts[0], dts[dts.length - 1]) * 12)); }
@@ -1031,6 +1036,7 @@ document.querySelectorAll('.card').forEach(card => {
   if (dh && dhb) dhb.addEventListener('click', async () => {
     const v = parseFloat(dh.value);
     dhb.disabled = true;
+    destroyCard(card); renderGrowth(card); renderTrend(card); // 희망키 가로선 즉시 반영
     try { await saveOverride(chart, { desired: v > 0 ? v : null }); dhb.textContent = '✓'; setTimeout(() => { dhb.textContent = '저장'; }, 1200); }
     catch (err) { alert('희망키 저장 실패: ' + err.message + ' — ai-server(:4000) 실행 확인'); }
     finally { dhb.disabled = false; }

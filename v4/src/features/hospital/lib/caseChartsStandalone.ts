@@ -92,11 +92,11 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
     pointBorderColor: '#ffffff', pointBorderWidth: 1.5, showLine: pts.length > 1, tension: 0, order: 0,
   };
 
-  // 마지막 "치료" 회차(팔로우업 제외) → 예측 성인키(18세)까지 점선 투영 + 예측 성인키 가로선 + 희망키 가로선.
-  const treatMs = baMs.filter((m) => !m.followup);
+  // 마지막 회차(팔로우업 포함) → 예측 성인키(18세)까지 점선 투영 + 최종 예상키 가로선 + 희망키 가로선.
+  // 팔로우업은 "치료기간 산정"에서만 빠지고, 최종 예상키는 가장 마지막 회차 기준.
   const guideDs: object[] = [];
   let pah = 0;
-  const lastBa = treatMs[treatMs.length - 1];
+  const lastBa = baMs[baMs.length - 1];
   if (lastBa && lastBa.bone_age != null) {
     pah = Number(heightAtSamePercentile(lastBa.height, lastBa.bone_age as number, 18, d.gender, nat).toFixed(1));
     const proj = buildProjection(ageOf(lastBa, d.birth_date).decimal, lastBa.height, lastBa.bone_age as number, d.gender, nat);
