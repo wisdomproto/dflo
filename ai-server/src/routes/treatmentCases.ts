@@ -17,9 +17,21 @@ export const treatmentCasesRouter = Router();
 treatmentCasesRouter.get('/', async (req, res) => {
   const pin = (req.query.pin as string) || (req.headers['x-showcase-pin'] as string) || '';
   if (String(pin) !== SHOWCASE_PIN) return res.status(401).json({ error: 'unauthorized' });
-  const { data, error } = await sb.from('treatment_cases').select('snapshot').eq('published', true);
-  if (error) return res.status(500).json({ error: error.message });
-  res.json({ cases: (data ?? []).map((r) => r.snapshot).filter(Boolean) });
+  // 073(sort_order/hidden) 미적용 환경에서도 죽지 않게 축소 select 로 폴백.
+  let rows: { snapshot: unknown }[] | null = null;
+  const full = await sb
+    .from('treatment_cases')
+    .select('snapshot, sort_order')
+    .eq('published', true)
+    .eq('hidden', false)
+    .order('sort_order', { ascending: true, nullsFirst: false });
+  if (!full.error) rows = full.data;
+  else {
+    const base = await sb.from('treatment_cases').select('snapshot').eq('published', true);
+    if (base.error) return res.status(500).json({ error: base.error.message });
+    rows = base.data;
+  }
+  res.json({ cases: (rows ?? []).map((r) => r.snapshot).filter(Boolean) });
 });
 
 // 편집 상태 전체 조회 — admin/cases 가 새로고침 시 DB 편집을 반영(hydrate)하는 용도. x-admin-pin.

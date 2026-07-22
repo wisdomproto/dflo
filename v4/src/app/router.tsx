@@ -48,6 +48,7 @@ const GlobalIntakePage = lazy(() => import('@/features/intake/pages/GlobalIntake
 const AdminWebsitePage = lazy(() => import('@/features/website/pages/AdminWebsitePage'));
 const AdminAnalyticsPage = lazy(() => import('@/features/website/pages/AdminAnalyticsPage'));
 const CasesEmbedPage = lazy(() => import('@/features/website/pages/CasesEmbedPage'));
+const TreatmentCasesPage = lazy(() => import('@/features/website/cases/TreatmentCasesPage'));
 const CalcEmbedPage = lazy(() => import('@/features/website/pages/CalcEmbedPage'));
 const GrowthGuidePage = lazy(() => import('@/features/guide/GrowthGuidePage'));
 const GrowthGuideDetailPage = lazy(() => import('@/features/guide/GrowthGuideDetailPage'));
@@ -458,6 +459,16 @@ export const router = createBrowserRouter([
   { path: '/test/:lang/', element: <TestLangRedirect /> },
   { path: '/test/:lang/blog', element: <TestLangBlogRedirect /> },
   { path: '/test/:lang/blog/', element: <TestLangBlogRedirect /> },
+
+  // /cases — 설문 완료 환자에게 PIN 과 함께 안내하는 치료사례 페이지(비공개·noindex).
+  {
+    path: '/cases',
+    element: (
+      <Suspense fallback={<SuspenseFallback />}>
+        <TreatmentCasesPage />
+      </Suspense>
+    ),
+  },
 
   // /cases-embed — used as iframe target by /test/cases.html
   // /banner-admin 에서 만든 cases 슬라이드만 SectionCarousel 로 렌더한다.

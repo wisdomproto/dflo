@@ -277,3 +277,7 @@ function predictPah(height: number, boneAge: number, gender: 'male' | 'female'):
 }
 
 (window as unknown as { CaseCharts: unknown }).CaseCharts = { renderGrowth, renderTrend, predictPah };
+
+// 환자용 React 페이지(/cases)도 같은 렌더러를 쓴다 — 정적 HTML 과 차트 단일 소스.
+export { renderGrowth, renderTrend, predictPah };
+export type { CaseData, CaseMeasurement };
