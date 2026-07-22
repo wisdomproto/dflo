@@ -22,6 +22,15 @@ treatmentCasesRouter.get('/', async (req, res) => {
   res.json({ cases: (data ?? []).map((r) => r.snapshot).filter(Boolean) });
 });
 
+// 편집 상태 전체 조회 — admin/cases 가 새로고침 시 DB 편집을 반영(hydrate)하는 용도. x-admin-pin.
+treatmentCasesRouter.get('/edits', async (req, res) => {
+  const pin = (req.query.pin as string) || (req.headers['x-admin-pin'] as string) || '';
+  if (String(pin) !== ADMIN_PIN) return res.status(401).json({ error: 'unauthorized' });
+  const { data, error } = await sb.from('treatment_cases').select('chart_number, excluded_dates, overrides, published');
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ edits: data ?? [] });
+});
+
 // 데이터 보정(부모 키 등) — overrides jsonb 에 read-merge-write. children(진료기록)은 안 건드림.
 //   body: { chart, overrides: { father?, mother? } }  — null/빈값은 해당 키 삭제(원본으로 복귀).
 treatmentCasesRouter.post('/override', async (req, res) => {

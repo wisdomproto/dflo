@@ -31,6 +31,7 @@ interface CaseMeasurement {
   ageDecimal?: number; // 비식별: 만나이(소수)
   caY?: number;        // 비식별: 만나이 년
   caM?: number;        // 비식별: 만나이 개월
+  followup?: boolean;  // 팔로우업 회차 — 차트엔 표시(구분)하되 예측 투영·추세엔 미반영
 }
 interface CaseData {
   gender: 'male' | 'female';
@@ -83,16 +84,19 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
   const ms = sortedHeights(d);
   const baMs = ms.filter((m) => m.bone_age != null);
   const pts = baMs.map((m) => ({ x: ageOf(m, d.birth_date).decimal, y: m.height }));
+  const ptBg = baMs.map((m) => (m.followup ? COLORS.desired : '#f97316')); // 팔로우업=보라 / 치료=주황
   const patientDs = {
     label: 'patient', data: pts, borderColor: COLORS.patient, backgroundColor: '#f97316',
+    pointBackgroundColor: ptBg,
     borderWidth: 2, pointStyle: 'rectRot' as const, pointRadius: 7, pointHoverRadius: 9,
     pointBorderColor: '#ffffff', pointBorderWidth: 1.5, showLine: pts.length > 1, tension: 0, order: 0,
   };
 
-  // 마지막 BA 회차 → 예측 성인키(18세)까지 점선 투영 + 예측 성인키 가로선 + 희망키 가로선.
+  // 마지막 "치료" 회차(팔로우업 제외) → 예측 성인키(18세)까지 점선 투영 + 예측 성인키 가로선 + 희망키 가로선.
+  const treatMs = baMs.filter((m) => !m.followup);
   const guideDs: object[] = [];
   let pah = 0;
-  const lastBa = baMs[baMs.length - 1];
+  const lastBa = treatMs[treatMs.length - 1];
   if (lastBa && lastBa.bone_age != null) {
     pah = Number(heightAtSamePercentile(lastBa.height, lastBa.bone_age as number, 18, d.gender, nat).toFixed(1));
     const proj = buildProjection(ageOf(lastBa, d.birth_date).decimal, lastBa.height, lastBa.bone_age as number, d.gender, nat);
@@ -121,7 +125,7 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
       const ctx = chart.ctx; ctx.save(); ctx.font = '700 11px sans-serif'; ctx.textBaseline = 'bottom';
       if (pah > 0) {
         ctx.fillStyle = COLORS.pah; ctx.textAlign = 'right';
-        ctx.fillText(`예상키 ${pah}cm`, chart.scales.x.getPixelForValue(X_MAX) - 3, chart.scales.y.getPixelForValue(pah) - 3);
+        ctx.fillText(`최종 예상키 ${pah}cm`, chart.scales.x.getPixelForValue(X_MAX) - 3, chart.scales.y.getPixelForValue(pah) - 3);
       }
       if (desired > 0) {
         ctx.fillStyle = COLORS.desired; ctx.textAlign = 'left';
@@ -188,7 +192,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
       const pah = Number(heightAtSamePercentile(m.height, ba, 18, d.gender, nat).toFixed(1));
       const pct = calculateHeightPercentileLMS(m.height, ba, d.gender, nat);
       // 비식별 모드(measured_date 없음)면 날짜 칸은 비운다.
-      return { date: m.measured_date ? m.measured_date.slice(0, 10) : '', ca: age.decimal, caY: age.years, caM: age.months, ba, pah, pct };
+      return { date: m.measured_date ? m.measured_date.slice(0, 10) : '', ca: age.decimal, caY: age.years, caM: age.months, ba, pah, pct, followup: !!m.followup };
     });
   if (rows.length === 0) {
     gridEl.innerHTML = '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:13px">뼈나이가 측정된 회차가 없어 예측키 추세를 표시할 수 없습니다.</div>';
@@ -227,6 +231,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
         {
           label: '예측키', data: rows.map((r) => r.pah),
           borderColor: COLORS.pah, backgroundColor: COLORS.pah,
+          pointBackgroundColor: rows.map((r) => (r.followup ? COLORS.desired : COLORS.pah)), // 팔로우업=보라
           tension: 0.3, borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 6,
         },
         ...(desired > 0 ? [{
@@ -256,7 +261,8 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
   gridEl.style.cssText = `display:grid;grid-template-columns:repeat(${rows.length},minmax(0,1fr));text-align:center;border-top:1px solid #f1f5f9;padding-top:6px;padding-left:${Y_AXIS_W}px;padding-right:${PAD_R}px`;
   gridEl.innerHTML = rows.map((r) => {
     const delta = r.ba - r.ca, good = delta <= 0, baYM = splitBoneAgeYM(r.ba);
-    return `<div style="line-height:1.35">
+    return `<div style="line-height:1.35${r.followup ? ';background:#faf5ff;border-radius:6px' : ''}">
+      ${r.followup ? '<div style="font-size:9px;font-weight:800;color:#9333ea">추적</div>' : ''}
       ${r.date ? `<div style="font-size:10px;font-weight:700;color:#334155">${fmtDate(r.date)}</div>` : ''}
       <div style="font-size:10px;color:#94a3b8">만 ${r.caY}세 ${r.caM}개월</div>
       <div style="font-size:10px;color:#f97316">뼈 ${baYM.y}세 ${baYM.m}개월</div>

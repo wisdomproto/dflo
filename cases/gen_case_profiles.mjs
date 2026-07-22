@@ -491,7 +491,7 @@ function card(r, i) {
     birth_date: r.birthDate,
     nationality: 'KR',
     desired: parseFloat(String(r.desired)) > 0 ? parseFloat(String(r.desired)) : null,
-    measurements: r.mm.filter((m) => m.h > 0 && !r.followups.includes(m.date)).map((m) => ({ measured_date: m.date, height: m.h, bone_age: m.ba ?? null })),
+    measurements: r.mm.filter((m) => m.h > 0).map((m) => ({ measured_date: m.date, height: m.h, bone_age: m.ba ?? null, followup: r.followups.includes(m.date) })),
   };
   const cc = isF ? '#d6336c' : '#2563EB';
   const ccBg = isF ? '#fdeef4' : '#eef3ff';
@@ -791,9 +791,14 @@ apply();
 // ── 차트 (환자 진료 모듈 재사용) — 58×2개라 뷰포트 진입 시 지연 렌더 ──
 const CC = window.CaseCharts;
 // 세션 내 편집(✕ 삭제·뼈나이 수정)을 차트에도 즉시 반영 — 표 DOM 이 단일 소스, 매 렌더마다 반영(캐시 X).
-function excludedSet(card) {
+function excludedSet(card) { // ✕ 삭제만 차트에서 제외(팔로우업은 표시)
   const s = new Set();
-  card.querySelectorAll('tr.ba-removed[data-date], tr.ba-followup[data-date]').forEach(tr => s.add(tr.dataset.date));
+  card.querySelectorAll('tr.ba-removed[data-date]').forEach(tr => s.add(tr.dataset.date));
+  return s;
+}
+function followupDomSet(card) {
+  const s = new Set();
+  card.querySelectorAll('tr.ba-followup[data-date]').forEach(tr => s.add(tr.dataset.date));
   return s;
 }
 function boneAgeMap(card) {
@@ -809,10 +814,10 @@ function cardData(card) {
   let base = null;
   try { base = el ? JSON.parse(el.textContent) : null; } catch { base = null; }
   if (!base || !Array.isArray(base.measurements)) return base;
-  const ex = excludedSet(card), bam = boneAgeMap(card);
+  const ex = excludedSet(card), fu = followupDomSet(card), bam = boneAgeMap(card);
   const measurements = base.measurements
     .filter(m => !ex.has(m.measured_date))
-    .map(m => (bam[m.measured_date] != null ? { ...m, bone_age: bam[m.measured_date] } : m));
+    .map(m => ({ ...m, bone_age: bam[m.measured_date] != null ? bam[m.measured_date] : m.bone_age, followup: fu.has(m.measured_date) }));
   return { ...base, measurements };
 }
 function renderGrowth(card) {
@@ -1031,6 +1036,57 @@ document.querySelectorAll('.card').forEach(card => {
     finally { dhb.disabled = false; }
   });
 });
+
+// ── 로드 시 DB 편집 상태 복원(hydrate) ──
+// 이 카드 HTML 은 "마지막 gen 실행" 스냅샷이라, 그 뒤 편집(추적·뼈나이·부모키·희망키·공개·삭제)은
+// DB 에만 있다. 새로고침해도 보이도록 로드 시 현재 편집을 읽어 DOM 에 입힌다(gen 재실행 불필요).
+// ai-server 없으면(프로덕션 등) 조용히 스킵 → 구운 상태 그대로.
+(async () => {
+  let edits = null;
+  try {
+    const r = await fetch('http://localhost:4000/api/treatment-cases/edits?pin=8054');
+    if (r.ok) edits = (await r.json()).edits;
+  } catch (e) { /* ai-server 없음 → 스킵 */ }
+  if (!Array.isArray(edits)) return;
+  const CC2 = window.CaseCharts;
+  edits.forEach(e => {
+    const card = document.querySelector('.card[data-chart="' + e.chart_number + '"]');
+    if (!card) return;
+    const ov = e.overrides || {};
+    const gender = card.dataset.g === '남' ? 'male' : 'female';
+    if (ov.father) { const f = card.querySelector('.pk-fa'); if (f) f.value = ov.father; }
+    if (ov.mother) { const m = card.querySelector('.pk-mo'); if (m) m.value = ov.mother; }
+    if (ov.desired) { const dh = card.querySelector('.dh-in'); if (dh) dh.value = ov.desired; }
+    const baOv = ov.boneAges || {};
+    const fus = new Set((ov.followups || []).map(String));
+    const exd = new Set((Array.isArray(e.excluded_dates) ? e.excluded_dates : []).map(String));
+    card.querySelectorAll('tr[data-date]').forEach(tr => {
+      const date = tr.dataset.date, inp = tr.querySelector('.ba-in');
+      if (inp && baOv[date] != null) { // 뼈나이 보정 → 격차·예상키 재계산
+        inp.value = baOv[date];
+        const v = parseFloat(baOv[date]), age = parseFloat(tr.dataset.age), h = parseFloat(tr.dataset.h);
+        const gc = tr.querySelector('.gapcell');
+        if (gc && v > 0 && age > 0) { const g = +(v - age).toFixed(1); gc.textContent = (g >= 0 ? '+' : '') + g; gc.className = 'num gapcell ' + (g >= 1 ? 'bad' : g <= -1 ? 'good2' : ''); }
+        if (v > 0 && h > 0 && CC2 && CC2.predictPah) { const p = CC2.predictPah(h, v, gender); tr.dataset.pah = p; const pc = tr.querySelector('td.pah'); if (pc) pc.textContent = p; }
+      }
+      if (fus.has(date)) { // 팔로우업
+        tr.classList.add('ba-followup');
+        const cb = tr.querySelector('.fu-cb'); if (cb) cb.checked = true;
+        const dc = tr.querySelector('td');
+        if (dc && !dc.querySelector('.fu-badge')) dc.insertAdjacentHTML('beforeend', ' <span class="fu-badge">팔로우업</span>');
+      }
+      if (exd.has(date)) { // 삭제(아직 안 구워진 것만 표에 남아 있음)
+        tr.classList.add('ba-removed');
+        const bx = tr.querySelector('.ba-x'); if (bx) bx.textContent = '↩';
+      }
+    });
+    if (e.published) { const pb = card.querySelector('.pub-toggle'); if (pb) { pb.classList.add('on'); pb.textContent = '🟢 환자공개 ON'; } }
+    const fa = parseFloat((card.querySelector('.pk-fa') || {}).value), mo = parseFloat((card.querySelector('.pk-mo') || {}).value), mphv = card.querySelector('.pk-mphv');
+    if (mphv && fa > 0 && mo > 0) mphv.textContent = 'MPH ' + ((fa + mo) / 2 + (gender === 'male' ? 6.5 : -6.5)).toFixed(1);
+    recalcKpi(card);
+    if (card._g || card._t) { destroyCard(card); renderGrowth(card); renderTrend(card); }
+  });
+})();
 </script>
 </body>
 </html>`;
@@ -1073,9 +1129,9 @@ function extChartData(r) {
   return {
     gender: r.gender === '여' ? 'female' : 'male',
     desired: parseFloat(String(r.desired)) > 0 ? parseFloat(String(r.desired)) : null,
-    measurements: r.mm.filter((m) => m.h > 0 && !r.followups.includes(m.date)).map((m) => {
+    measurements: r.mm.filter((m) => m.h > 0).map((m) => {
       const a = r.birthDate ? ageYM(r.birthDate, m.date) : { years: 0, months: 0, decimal: m.age ?? 0 };
-      return { ageDecimal: a.decimal, caY: a.years, caM: a.months, height: m.h, bone_age: m.ba ?? null };
+      return { ageDecimal: a.decimal, caY: a.years, caM: a.months, height: m.h, bone_age: m.ba ?? null, followup: r.followups.includes(m.date) };
     }),
   };
 }
