@@ -39,7 +39,23 @@ interface CaseData {
   nationality?: Nationality;
   desired?: number | null; // 희망키(cm) — 가로선
   measurements: CaseMeasurement[];
+  labels?: Partial<ChartLabels>; // 화면 문구(환자용 영어 페이지 등). 미지정이면 한국어 기본값.
 }
+interface ChartLabels {
+  pahLine: string; // "최종 예상키"
+  desiredLine: string; // "희망키"
+  tooltip: (h: number, age: number) => string;
+  trendY: string; // 예측키 추세 y축 제목
+  noBoneAge: string;
+}
+const KO_LABELS: ChartLabels = {
+  pahLine: '최종 예상키',
+  desiredLine: '희망키',
+  tooltip: (h, age) => `실측 ${h}cm @ 만 ${age.toFixed(1)}세`,
+  trendY: '예측키 (cm)',
+  noBoneAge: '뼈나이가 측정된 회차가 없어 예측키 추세를 표시할 수 없습니다.',
+};
+const labelsOf = (d: CaseData): ChartLabels => ({ ...KO_LABELS, ...(d.labels ?? {}) });
 
 // 측정 → 만나이. 비식별 데이터면 미리 넣은 ageDecimal/caY/caM 사용, 아니면 날짜로 계산.
 function ageOf(m: CaseMeasurement, birth?: string): { decimal: number; years: number; months: number } {
@@ -80,6 +96,7 @@ function buildProjection(
 // ── 성장 곡선 (KDCA 백분위 + BA 측정점 + 마지막 BA 시점 예측 투영 점선) ──
 function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
   const nat: Nationality = d.nationality ?? 'KR';
+  const L = labelsOf(d);
   // 배경 백분위 곡선은 제거(사용자 요청) — 환자 궤적 + 예측키 투영/가로선 + 희망키 가로선만.
   const ms = sortedHeights(d);
   const baMs = ms.filter((m) => m.bone_age != null);
@@ -125,11 +142,11 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
       const ctx = chart.ctx; ctx.save(); ctx.font = '700 11px sans-serif'; ctx.textBaseline = 'bottom';
       if (pah > 0) {
         ctx.fillStyle = COLORS.pah; ctx.textAlign = 'right';
-        ctx.fillText(`최종 예상키 ${pah}cm`, chart.scales.x.getPixelForValue(X_MAX) - 3, chart.scales.y.getPixelForValue(pah) - 3);
+        ctx.fillText(`${L.pahLine} ${pah}cm`, chart.scales.x.getPixelForValue(X_MAX) - 3, chart.scales.y.getPixelForValue(pah) - 3);
       }
       if (desired > 0) {
         ctx.fillStyle = COLORS.desired; ctx.textAlign = 'left';
-        ctx.fillText(`희망키 ${desired}cm`, chart.scales.x.getPixelForValue(X_MIN) + 3, chart.scales.y.getPixelForValue(desired) - 3);
+        ctx.fillText(`${L.desiredLine} ${desired}cm`, chart.scales.x.getPixelForValue(X_MIN) + 3, chart.scales.y.getPixelForValue(desired) - 3);
       }
       ctx.restore();
     },
@@ -148,7 +165,7 @@ function renderGrowth(canvas: HTMLCanvasElement, d: CaseData): void {
           callbacks: {
             label: (ctx) => {
               if (ctx.parsed.y == null) return '';
-              return `실측 ${ctx.parsed.y}cm @ 만 ${Number(ctx.parsed.x).toFixed(1)}세`;
+              return L.tooltip(ctx.parsed.y as number, Number(ctx.parsed.x));
             },
           },
         },
@@ -183,6 +200,7 @@ function fmtDeltaYM(dec: number): string {
 // ── 예측키 추세 (PredictedHeightTrend 와 동일 — 예측키 라인 + 백분위 라벨 + 하단 그리드) ──
 function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData): void {
   const nat: Nationality = d.nationality ?? 'KR';
+  const L = labelsOf(d);
   const Y_AXIS_W = 46, PAD_R = 12;
   const rows = sortedHeights(d)
     .filter((m) => m.bone_age != null)
@@ -195,7 +213,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
       return { date: m.measured_date ? m.measured_date.slice(0, 10) : '', ca: age.decimal, caY: age.years, caM: age.months, ba, pah, pct, followup: !!m.followup };
     });
   if (rows.length === 0) {
-    gridEl.innerHTML = '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:13px">뼈나이가 측정된 회차가 없어 예측키 추세를 표시할 수 없습니다.</div>';
+    gridEl.innerHTML = '<div style="padding:24px;text-align:center;color:#94a3b8;font-size:13px">' + L.noBoneAge + '</div>';
     return;
   }
 
@@ -217,7 +235,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
       }
       if (desired > 0) { // 희망키 가로선 라벨
         ctx.fillStyle = COLORS.desired; ctx.textAlign = 'right';
-        ctx.fillText(`희망키 ${desired}cm`, chart.chartArea.right - 2, chart.scales.y.getPixelForValue(desired) - 3);
+        ctx.fillText(`${L.desiredLine} ${desired}cm`, chart.chartArea.right - 2, chart.scales.y.getPixelForValue(desired) - 3);
       }
       ctx.restore();
     },
@@ -248,7 +266,7 @@ function renderTrend(canvas: HTMLCanvasElement, gridEl: HTMLElement, d: CaseData
       scales: {
         x: { offset: true, grid: { display: false }, ticks: { display: false } },
         y: {
-          title: { display: true, text: '예측키 (cm)', font: { size: 12 } },
+          title: { display: true, text: L.trendY, font: { size: 12 } },
           ticks: { font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.04)' },
           afterFit: (axis) => { (axis as { width: number }).width = Y_AXIS_W; },
         },

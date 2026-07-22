@@ -1,20 +1,31 @@
 // 환자용 치료사례 페이지 (/cases) — 설문을 마친 환자에게 PIN 과 함께 안내하는 비공개 페이지.
 // 데이터는 원장이 '환자공개' 승인한 케이스의 비식별 스냅샷만(treatment_cases, ai-server 경유). noindex.
+// 기본 언어 = 영어(해외 문의 유입이 주 타깃), 상단에서 한국어로 전환.
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchTreatmentCases, PinError, type TreatmentCase } from './treatmentCaseService';
 import { CaseCard } from './CaseCard';
+import { CASE_LANGS, TEXT, tagText, type CaseLang } from './casesText';
 
 const PIN_KEY = 'casePin';
+const LANG_KEY = 'caseLang';
 
 export default function TreatmentCasesPage() {
+  const [lang, setLang] = useState<CaseLang>(() => (localStorage.getItem(LANG_KEY) === 'ko' ? 'ko' : 'en'));
   const [pin, setPin] = useState('');
   const [cases, setCases] = useState<TreatmentCase[] | null>(null);
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
-  const [tag, setTag] = useState('전체');
+  const [tag, setTag] = useState<string | null>(null); // null = 전체
+  const t = TEXT[lang];
+
+  const pickLang = (l: CaseLang) => {
+    setLang(l);
+    localStorage.setItem(LANG_KEY, l);
+  };
 
   useEffect(() => {
-    document.title = '치료 사례 · 187 성장클리닉';
+    document.documentElement.lang = lang;
+    document.title = t.docTitle;
     const meta = document.createElement('meta');
     meta.name = 'robots';
     meta.content = 'noindex';
@@ -22,49 +33,82 @@ export default function TreatmentCasesPage() {
     return () => {
       document.head.removeChild(meta);
     };
-  }, []);
+  }, [lang, t]);
 
-  const load = useCallback(async (value: string, fromStorage = false) => {
-    setLoading(true);
-    setErr('');
-    try {
-      setCases(await fetchTreatmentCases(value));
-      sessionStorage.setItem(PIN_KEY, value);
-    } catch (e) {
-      sessionStorage.removeItem(PIN_KEY);
-      if (e instanceof PinError) setErr(fromStorage ? '' : '비밀번호가 올바르지 않습니다');
-      else setErr(e instanceof Error ? e.message : '불러오지 못했습니다');
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const load = useCallback(
+    async (value: string, fromStorage = false) => {
+      setLoading(true);
+      setErr('');
+      try {
+        setCases(await fetchTreatmentCases(value));
+        sessionStorage.setItem(PIN_KEY, value);
+      } catch (e) {
+        sessionStorage.removeItem(PIN_KEY);
+        if (e instanceof PinError) setErr(fromStorage ? '' : t.gateWrong);
+        else setErr(e instanceof Error ? e.message : t.gateFail);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [t],
+  );
 
   useEffect(() => {
     const saved = sessionStorage.getItem(PIN_KEY);
     if (saved) void load(saved, true);
-  }, [load]);
+    // 최초 1회만 — 언어 전환으로 다시 부르지 않는다(데이터는 언어 무관).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
-    (cases ?? []).forEach((c) => c.tags.forEach((t) => counts.set(t, (counts.get(t) ?? 0) + 1)));
+    (cases ?? []).forEach((c) => c.tags.forEach((x) => counts.set(x, (counts.get(x) ?? 0) + 1)));
     return [...counts.entries()].sort((a, b) => b[1] - a[1]);
   }, [cases]);
 
-  const shown = useMemo(
-    () => (cases ?? []).filter((c) => tag === '전체' || c.tags.includes(tag)),
-    [cases, tag],
+  const shown = useMemo(() => (cases ?? []).filter((c) => !tag || c.tags.includes(tag)), [cases, tag]);
+
+  const langSwitch = (
+    <div className="flex gap-1 rounded-full bg-white/20 p-0.5">
+      {CASE_LANGS.map((l) => (
+        <button
+          key={l.id}
+          type="button"
+          onClick={() => pickLang(l.id)}
+          className={`rounded-full px-2.5 py-1 text-[11.5px] font-bold transition ${
+            lang === l.id ? 'bg-white text-slate-900' : 'text-white/80'
+          }`}
+        >
+          {l.label}
+        </button>
+      ))}
+    </div>
   );
 
   if (!cases) {
     return (
-      <div className="flex min-h-dvh items-center justify-center bg-slate-50 px-5">
+      <div className="flex min-h-dvh items-center justify-center bg-slate-100 px-5">
         <div className="w-full max-w-[340px] rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <div className="mb-3 flex justify-center gap-1 rounded-full bg-slate-100 p-0.5">
+            {CASE_LANGS.map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                onClick={() => pickLang(l.id)}
+                className={`flex-1 rounded-full px-2.5 py-1 text-[11.5px] font-bold transition ${
+                  lang === l.id ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'
+                }`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
           <div className="text-[22px]">🔒</div>
-          <h1 className="mt-2 text-[17px] font-extrabold text-slate-900">치료 사례 보기</h1>
+          <h1 className="mt-2 text-[17px] font-extrabold text-slate-900">{t.gateTitle}</h1>
           <p className="mt-1 text-[12.5px] leading-relaxed text-slate-500">
-            실제 환자분들의 치료 기록입니다.
+            {t.gateDesc[0]}
             <br />
-            안내받으신 비밀번호를 입력해 주세요.
+            {t.gateDesc[1]}
           </p>
           <input
             type="password"
@@ -72,7 +116,7 @@ export default function TreatmentCasesPage() {
             value={pin}
             onChange={(e) => setPin(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && void load(pin.trim())}
-            placeholder="비밀번호"
+            placeholder={t.gatePlaceholder}
             className="mt-4 w-full rounded-xl border border-slate-300 px-3 py-2.5 text-center text-[15px] tracking-widest outline-none focus:border-indigo-400"
           />
           {err && <p className="mt-2 text-[12px] font-semibold text-rose-500">{err}</p>}
@@ -82,7 +126,7 @@ export default function TreatmentCasesPage() {
             onClick={() => void load(pin.trim())}
             className="mt-3 w-full rounded-xl bg-gradient-to-r from-[#667eea] to-[#764ba2] py-2.5 text-[14px] font-bold text-white disabled:opacity-40"
           >
-            {loading ? '확인 중…' : '입력'}
+            {loading ? t.gateChecking : t.gateSubmit}
           </button>
         </div>
       </div>
@@ -93,40 +137,45 @@ export default function TreatmentCasesPage() {
     <div className="min-h-dvh bg-slate-100">
       <header className="bg-gradient-to-r from-[#667eea] to-[#764ba2] px-5 py-7 text-white">
         <div className="mx-auto max-w-[680px]">
-          <div className="text-[11px] font-bold tracking-[0.18em] opacity-80">187 GROWUP</div>
-          <h1 className="mt-1 text-[22px] font-extrabold leading-snug">우리 아이와 비슷한 아이들의 치료 기록</h1>
-          <p className="mt-2 text-[13px] leading-relaxed opacity-90">
-            실제 진료 데이터를 기반으로 한 {cases.length}명의 치료 경과입니다. 이름은 가명이며, 개인을 알아볼 수 있는 정보는
-            모두 제외했습니다.
-          </p>
+          <div className="flex items-center justify-between gap-3">
+            <div className="text-[11px] font-bold tracking-[0.18em] opacity-80">{t.kicker}</div>
+            {langSwitch}
+          </div>
+          <h1 className="mt-2 text-[22px] font-extrabold leading-snug">{t.heroTitle}</h1>
+          <p className="mt-2 text-[13px] leading-relaxed opacity-90">{t.heroDesc(cases.length)}</p>
         </div>
       </header>
 
       <div className="sticky top-0 z-10 border-b border-slate-200 bg-slate-100/95 backdrop-blur">
         <div className="mx-auto flex max-w-[680px] gap-1.5 overflow-x-auto px-4 py-3">
-          {[['전체', cases.length] as const, ...tags].map(([t, n]) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setTag(t)}
-              className={`shrink-0 rounded-full px-3 py-1.5 text-[12.5px] font-bold transition ${
-                tag === t ? 'bg-slate-900 text-white' : 'border border-slate-200 bg-white text-slate-600'
-              }`}
-            >
-              {t} {n}
-            </button>
-          ))}
+          {[[null, t.all, cases.length] as const, ...tags.map(([x, n]) => [x, tagText(x, lang), n] as const)].map(
+            ([id, label, n]) => (
+              <button
+                key={id ?? '__all'}
+                type="button"
+                onClick={() => setTag(id)}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-[12.5px] font-bold transition ${
+                  tag === id ? 'bg-slate-900 text-white' : 'border border-slate-200 bg-white text-slate-600'
+                }`}
+              >
+                {label} {n}
+              </button>
+            ),
+          )}
         </div>
       </div>
 
       <main className="mx-auto max-w-[680px] space-y-6 px-4 py-5">
         {shown.map((c, i) => (
-          <CaseCard key={`${c.name}-${i}`} c={c} />
+          <CaseCard key={`${c.name}-${i}`} c={c} lang={lang} />
         ))}
         <p className="px-1 pt-4 text-[11px] leading-relaxed text-slate-400">
-          · 치료 경과는 개인의 성장 단계·생활 습관·검사 결과에 따라 다르게 나타날 수 있으며, 특정 결과를 보장하지 않습니다.
-          <br />· 예상 성인키는 뼈나이와 국가 표준 성장 데이터를 근거로 계산한 참고 수치입니다.
-          <br />· 본 자료는 상담을 받으신 분께만 제공되는 참고 자료로, 외부 공유를 삼가 주세요.
+          {t.disclaimer.map((line) => (
+            <span key={line}>
+              {line}
+              <br />
+            </span>
+          ))}
         </p>
       </main>
     </div>

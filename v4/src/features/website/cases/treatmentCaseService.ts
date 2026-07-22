@@ -8,6 +8,8 @@ const BASE = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://l
 export interface TreatmentCaseStory {
   title: string;
   story: string;
+  title_en?: string; // 영어판(cases/case_stories.json 에서 같이 실림). 없으면 한국어 폴백.
+  story_en?: string;
 }
 
 export interface TreatmentCase {

@@ -20,9 +20,11 @@ const NAV_ITEMS = [
 const MARKETING_ITEM = { to: '/marketing', icon: '📣', label: '마케팅', end: false };
 
 // 상담 직원용 그룹 (설문 접수 + 상담 매뉴얼).
+// external: 관리자 셸 밖 페이지 → 새 탭(환자에게 보여주는 화면이라 상담 중 따로 띄운다).
 const CONSULT_ITEMS = [
   { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
   { to: '/admin/referral', icon: '📝', label: '소견서 작성', end: false },
+  { to: '/cases', icon: '🌱', label: '치료사례 (환자용)', end: false, external: true },
   { to: '/admin/consulting', icon: '💬', label: '상담 매뉴얼', end: false },
 ];
 
@@ -81,8 +83,26 @@ export default function AdminLayout() {
     navigate('/admin/login');
   };
 
-  const renderNavLink = (item: { to: string; icon: string; label: string; end: boolean }) => {
+  const renderNavLink = (item: { to: string; icon: string; label: string; end: boolean; external?: boolean }) => {
     const badge = item.to === '/admin/intake' && intakePending > 0 ? intakePending : 0;
+    if (item.external) {
+      return (
+        <a
+          key={item.to}
+          href={item.to}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`relative flex items-center gap-3 rounded-lg text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 ${
+            collapsed ? 'justify-center px-2 py-2' : 'px-4 py-2.5'
+          }`}
+          onClick={() => setSidebarOpen(false)}
+          title={collapsed ? item.label : '환자에게 보여주는 치료사례 페이지 (비밀번호 8054)'}
+        >
+          <span className="text-lg">{item.icon}</span>
+          {!collapsed && <span>{item.label}</span>}
+        </a>
+      );
+    }
     return (
       <NavLink
         key={item.to}

@@ -10,7 +10,7 @@ export const caseStoryRouter = Router();
 const STORIES_PATH = join(dirname(fileURLToPath(import.meta.url)), '..', '..', '..', 'cases', 'case_stories.json');
 const PIN = process.env.WEBSITE_ADMIN_PIN || '8054';
 
-type Story = { title: string; story: string };
+type Story = { title: string; story: string; title_en?: string; story_en?: string };
 function load(): Record<string, Story> {
   try { if (existsSync(STORIES_PATH)) return JSON.parse(readFileSync(STORIES_PATH, 'utf8')); } catch { /* ignore */ }
   return {};
@@ -28,7 +28,8 @@ caseStoryRouter.post('/', (req, res) => {
   const { chart, title, story } = (req.body ?? {}) as { chart?: string; title?: string; story?: string };
   if (!chart) return res.status(400).json({ error: 'chart required' });
   const obj = load();
-  obj[String(chart)] = { title: String(title ?? ''), story: String(story ?? '') };
+  // 한국어만 덮어쓴다 — 영어 번역(title_en/story_en)은 그대로 보존.
+  obj[String(chart)] = { ...(obj[String(chart)] ?? {}), title: String(title ?? ''), story: String(story ?? '') };
   try {
     writeFileSync(STORIES_PATH, JSON.stringify(obj, null, 2), 'utf8');
     res.json({ ok: true });
