@@ -114,7 +114,10 @@ export default function IntakeSubmissionDetail({
       dob: sub.birth_date ?? '',
       gender: sub.gender ?? 'male',
       address: sub.address?.trim() ?? '',
-      lang: sub.lang,
+      // 소견서는 아직 es 템플릿이 없어 지원 언어만 그대로, 그 외(es 등)는 영어로.
+      lang: (['en', 'ko', 'th', 'vi', 'zh-hans', 'zh-hant', 'ja'].includes(sub.lang)
+        ? sub.lang
+        : 'en') as ReferralPrefill['lang'],
     };
     navigate('/admin/referral', { state: prefill });
   };

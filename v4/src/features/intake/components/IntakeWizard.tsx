@@ -74,19 +74,34 @@ const STEPS: ((p: StepProps) => ReactElement)[] = [
 ];
 const TOTAL = STEPS.length;
 
+/** 실제 존재하는 달력 날짜인지 검사 — 2월 31일·13월 등 불가능한 조합을 걸러
+ *  DB insert 시 "date/time field value out of range" (Postgres 22008) 로 죽는 걸 막는다. */
+function isRealDate(yy: string, mm: string, dd: string): boolean {
+  const y = Number(yy);
+  const m = Number(mm);
+  const d = Number(dd);
+  if (![y, m, d].every(Number.isInteger)) return false;
+  if (y < 1900 || y > 2100 || m < 1 || m > 12 || d < 1 || d > 31) return false;
+  const dt = new Date(y, m - 1, d);
+  return dt.getFullYear() === y && dt.getMonth() === m - 1 && dt.getDate() === d;
+}
+
 function validateStep(
   step: number,
   state: IntakeFormState,
-  required: string,
+  L: { required: string; invalidBirth: string },
 ): Record<string, string> {
   if (step !== 0) return {};
   const e: Record<string, string> = {};
-  if (!state.name.trim()) e.name = required;
-  if (!state.gender) e.gender = required;
-  if (!state.birthYear.trim() || !state.birthMonth.trim() || !state.birthDay.trim())
-    e.birth = required;
-  if (!state.country) e.country = required;
-  if (!state.phone.trim()) e.phone = required;
+  if (!state.name.trim()) e.name = L.required;
+  if (!state.gender) e.gender = L.required;
+  if (!state.birthYear.trim() || !state.birthMonth.trim() || !state.birthDay.trim()) {
+    e.birth = L.required;
+  } else if (!isRealDate(state.birthYear, state.birthMonth, state.birthDay)) {
+    e.birth = L.invalidBirth;
+  }
+  if (!state.country) e.country = L.required;
+  if (!state.phone.trim()) e.phone = L.required;
   return e;
 }
 
@@ -107,7 +122,7 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
   const isLast = step === TOTAL - 1;
 
   const next = () => {
-    const e = validateStep(step, state, L.required);
+    const e = validateStep(step, state, L);
     if (Object.keys(e).length > 0) {
       setErrors(e);
       return;
@@ -173,13 +188,13 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
 
         {/* Submit error */}
         {submitError && (
-          <div className="mt-4 flex items-center justify-between rounded-xl border border-rose-200 bg-rose-50 px-4 py-3">
-            <span className="text-sm font-medium text-rose-600">⚠</span>
+          <div className="mt-4 flex items-center justify-between gap-3 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3">
+            <span className="text-sm font-medium text-rose-600">⚠ {L.submitError}</span>
             <button
               type="button"
               onClick={submit}
               disabled={submitting}
-              className="rounded-lg bg-rose-500 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+              className="shrink-0 rounded-lg bg-rose-500 px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
             >
               {L.retry}
             </button>

@@ -13,6 +13,7 @@ const LANGS: { lang: IntakeLang; flag: string; label: string }[] = [
   { lang: 'zh-hans', flag: '🇨🇳', label: '简体中文' },
   { lang: 'zh-hant', flag: '🇹🇼', label: '繁體中文' },
   { lang: 'ja', flag: '🇯🇵', label: '日本語' },
+  { lang: 'es', flag: '🇪🇸', label: 'Español' },
 ];
 
 export default function GlobalIntakePage() {
