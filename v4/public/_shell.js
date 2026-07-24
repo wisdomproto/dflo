@@ -52,7 +52,7 @@ window.addEventListener('message', function (e) {
   var d = e && e.data;
   if (!d || (d.type !== 'calc_open' && d.type !== 'height_calc_complete')) return;
   var i18n = window.__I18N__ || {};
-  var allowed = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'];
+  var allowed = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar', 'ja', 'es'];
   var loc = allowed.indexOf(d.locale) >= 0 ? d.locale : (i18n.locale || 'unknown');
   if (typeof gtag !== 'undefined') {
     gtag('event', d.type, {
@@ -147,14 +147,16 @@ const __LANGS = [
   { code: 'en', label: 'English', short: 'EN' },
   { code: 'zh-hans', label: '简体中文', short: '简' },
   { code: 'zh-hant', label: '繁體中文', short: '繁' },
+  { code: 'ja', label: '日本語', short: '日' },
   { code: 'th', label: 'ไทย', short: 'TH' },
   { code: 'vi', label: 'Tiếng Việt', short: 'VI' },
+  { code: 'es', label: 'Español', short: 'ES' },
   { code: 'ar', label: 'العربية', short: 'ع' },
 ];
 // 현재 언어는 경로에서 먼저 읽는다 — blog-index 처럼 __I18N__ 이 없는 페이지도
 // /{lang}/ 아래 있어서 폴백 'ko' 로 잘못 잡히는 걸 막는다.
 // 교대는 긴 것을 먼저 — zh-hant/zh-hans 는 접두 함정은 없지만 습관을 지킨다.
-const __PATH_LANG_RE = /^\/(zh-hant|zh-hans|ko|th|vi|en|ar)(\/.*)?$/;
+const __PATH_LANG_RE = /^\/(zh-hant|zh-hans|ko|th|vi|en|ar|ja|es)(\/.*)?$/;
 const __CUR_LANG = (function () {
   const m = window.location.pathname.match(__PATH_LANG_RE);
   return (m && m[1]) || __I18N_LOCALE;
