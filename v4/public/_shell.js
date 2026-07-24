@@ -161,12 +161,19 @@ const __CUR_LANG = (function () {
   const m = window.location.pathname.match(__PATH_LANG_RE);
   return (m && m[1]) || __I18N_LOCALE;
 })();
-// 같은 페이지의 다른 언어 URL. index/clinic/cases/calculator 는 파일명이 전 언어 공통이라
+// consult.html 은 상담 채널이 2개 이상인 언어에만 빌드된다(build-i18n SUBPAGES 의 langs 술어 =
+// messenger.yml consult_channels). ko 는 카카오 직행이라 이 페이지가 없다 → 아래 목록의 언어로
+// 전환할 때는 홈으로 보낸다. 안 그러면 /en/consult.html 에서 한국어를 고르면 /ko/consult.html =
+// 404(정적 파일이 없어 SPA 셸이 잡아 React Router 404)로 떨어진다.
+const __NO_CONSULT_LANGS = ['ko'];
+
+// 같은 페이지의 다른 언어 URL. index/clinic/cases/calculator/author 는 파일명이 전 언어 공통이라
 // 프리픽스만 갈아끼우면 되고, 블로그 글은 slug 가 언어마다 달라(1:1 대응 없음) 해당 언어 블로그 목록으로 보낸다.
 function __langHref(code) {
   const m = window.location.pathname.match(__PATH_LANG_RE);
   let rest = (m && m[2]) || '/';
   if (/^\/blog\/.+/.test(rest) && !/^\/blog\/index\.html$/.test(rest)) rest = '/blog/';
+  if (/^\/consult\.html$/.test(rest) && __NO_CONSULT_LANGS.indexOf(code) >= 0) rest = '/';
   return `/${code}${rest}${window.location.search}${window.location.hash}`;
 }
 const __CUR_LANG_SHORT = escAttr((__LANGS.find((l) => l.code === __CUR_LANG) || __LANGS[0]).short);
