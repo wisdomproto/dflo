@@ -612,12 +612,13 @@ body { background: var(--shell-page-bg) !important; }
 }
 .t-resv-done-btn:active { transform: scale(0.97); }
 
-/* 중국어(zh-hant/zh-hans)는 단어 사이 공백이 없어, 전역 word-break:keep-all(한국어 단어 보호용)이
+/* CJK(zh-hant/zh-hans/ja)는 단어 사이 공백이 없어, 전역 word-break:keep-all(한국어 단어 보호용)이
    텍스트를 통째로 안 깨지는 한 덩어리로 만든다 → grid/flex 의 1fr(=minmax(auto,1fr)) 열이 텍스트
    폭만큼 벌어져 레이아웃이 붕괴한다(예: 소아비만 risk-grid 의 원이 크기 제각각·세로로 엇갈림).
-   중국어만 normal 로 되돌려 글자 사이에서 정상 줄바꿈되게 한다. 명시도 (0,1,1) 로 인라인 body{keep-all}
-   (0,0,1)을 이긴다. 한국어/영어/베트남어는 공백이 있어 keep-all 로도 정상, 태국어는 line-break 사전 처리라 무관. */
-html[lang="zh-hant"] *, html[lang="zh-hans"] * { word-break: normal; }
+   글자 사이에서 정상 줄바꿈되게 normal 로 되돌린다. 명시도 (0,1,1) 로 인라인 body{keep-all}
+   (0,0,1)을 이긴다. 한국어/영어/베트남어/스페인어는 공백이 있어 keep-all 로도 정상, 태국어는 line-break 사전 처리라 무관.
+   ★일본어 추가(2026-07-23) — ja 로케일 신설 때 이 목록을 빠뜨려 중국어에서 고쳤던 증상이 그대로 재발했다. */
+html[lang="zh-hant"] *, html[lang="zh-hans"] *, html[lang="ja"] * { word-break: normal; }
 
 /* ===== RTL (아랍어 ar) — build-i18n 이 <html dir="rtl"> 을 baked 한다 =====
    dir=rtl 이 텍스트 방향·flex 주축·기본 text-align(start) 를 자동 미러링하므로,
