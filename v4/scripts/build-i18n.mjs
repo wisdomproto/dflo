@@ -253,7 +253,33 @@ async function main() {
     consultLangs: ACTIVE_LANGS.filter(consultSub.langs),
   });
   writeFile(join(ROOT, 'public/sitemap.xml'), sitemap);
+
+  await bakeCasesData();
+
   console.log(`[i18n] done — ${ACTIVE_LANGS.length} locale(s)`);
+}
+
+// 치료사례 뷰어 데이터를 빌드 때 R2 에서 한 번 읽어 정적 스냅샷(`public/cases-data.json`)으로 굽는다.
+// 경량 엔트리(cases-embed)가 런타임 R2 왕복·캐시우회 없이 이걸 읽는다(우리 도메인 = Cloudflare 엣지 캐시).
+// 치료사례는 거의 안 바뀌므로 안전. R2 URL 없거나 fetch 실패하면 스냅샷을 안 쓰고 넘어간다 → 뷰어가 R2 로 폴백.
+async function bakeCasesData() {
+  const base = (process.env.VITE_R2_PUBLIC_URL || '').replace(/\/$/, '');
+  if (!base) { console.warn('  [cases] VITE_R2_PUBLIC_URL 없음 — 스냅샷 skip (런타임 R2 폴백)'); return; }
+  try {
+    const res = await fetch(`${base}/website.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const all = await res.json();
+    // cases 슬라이드를 포함한 섹션만 남긴다(뷰어가 쓰는 것만 = 페이로드 최소화). 공개 데이터라 유출 우려 없음.
+    const rows = (Array.isArray(all) ? all : []).filter(
+      (s) => Array.isArray(s.slides) && s.slides.some((sl) => sl && sl.template === 'cases'),
+    );
+    if (rows.length === 0) { console.warn('  [cases] R2 에 cases 섹션 없음 — 스냅샷 skip'); return; }
+    writeFile(join(ROOT, 'public/cases-data.json'), JSON.stringify(rows));
+    const n = rows.reduce((a, s) => a + s.slides.filter((sl) => sl.template === 'cases').length, 0);
+    console.log(`  [cases] snapshot baked — ${n} case slide(s) → public/cases-data.json`);
+  } catch (e) {
+    console.warn(`  [cases] R2 fetch 실패 — 스냅샷 skip (런타임 R2 폴백): ${e.message}`);
+  }
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

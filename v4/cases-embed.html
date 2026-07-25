@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="google" content="notranslate" />
+    <title>치료 사례</title>
+    <!-- 경량 치료사례 뷰어 엔트리: SectionCarousel 만 마운트(SPA·Supabase·router·admin 미부팅).
+         공개 cases.html iframe 이 /cases-embed.html 을 로드. 데이터는 빌드 때 구운 /cases-data.json. -->
+  </head>
+  <body style="margin:0;background:#fff">
+    <div id="cases-root"></div>
+    <script type="module" src="/src/cases-embed-main.tsx"></script>
+  </body>
+</html>

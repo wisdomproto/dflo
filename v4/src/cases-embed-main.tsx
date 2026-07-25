@@ -1,18 +1,14 @@
-// CasesEmbedPage — /banner-admin 의 "키 성장 관리 사례" 섹션을 그대로 보여주는 standalone 페이지.
-// /test/cases.html 가 iframe 으로 임베드해서 cases-only 뷰로 노출.
-// 사용자가 어드민에서 cases 슬라이드를 만들면 자동 반영.
-//
-// 다국어: 부모 페이지 (`/test/{lang}/cases.html`) 가 iframe src 에 `?lang={lang}` 을
-// 붙여서 들어오므로 useSearchParams 로 받아 SectionCarousel 에 전달.
-// 환자 이름은 뷰어 언어로 음역(casesLabels.transliterateName), 메모·카테고리는 CASES_I18N 번역.
-
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { fetchCasesSectionsStatic } from '../services/websiteSectionService';
-import { selectCaseSlides } from '../lib/selectCaseSlides';
-import { SectionCarousel } from '../components/SectionCarousel';
-import { isCasesLang, type CasesLang } from '../components/casesLabels';
-import type { Slide } from '../types/websiteSection';
+// cases-embed-main — 경량 독립 엔트리. 공개 `cases.html` iframe 이 `/cases-embed.html` 로 로드.
+// SPA(App/router/Supabase/admin)를 타지 않고 SectionCarousel 만 마운트해 부팅 번들을 최소화한다.
+// (계산기 calc-main.tsx 와 동일 플레이북. 옛 /cases-embed React 라우트는 하위호환으로 유지.)
+import { StrictMode, useEffect, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { fetchCasesSectionsStatic } from '@/features/website/services/websiteSectionService';
+import { selectCaseSlides } from '@/features/website/lib/selectCaseSlides';
+import { SectionCarousel } from '@/features/website/components/SectionCarousel';
+import { isCasesLang, type CasesLang } from '@/features/website/components/casesLabels';
+import type { Slide } from '@/features/website/types/websiteSection';
 
 const PAGE_TITLES: Record<CasesLang, string> = {
   ko: '치료 사례',
@@ -23,7 +19,6 @@ const PAGE_TITLES: Record<CasesLang, string> = {
   'zh-hans': '治疗案例',
   ar: 'حالات العلاج',
 };
-
 const EMPTY_STATES: Record<CasesLang, { loading: string; empty: string }> = {
   ko: { loading: '사례 불러오는 중…', empty: '등록된 치료 사례가 없습니다.' },
   en: { loading: 'Loading cases…', empty: 'No treatment cases yet.' },
@@ -34,24 +29,23 @@ const EMPTY_STATES: Record<CasesLang, { loading: string; empty: string }> = {
   ar: { loading: 'جارٍ تحميل الحالات…', empty: 'لا توجد حالات علاج بعد.' },
 };
 
-export default function CasesEmbedPage() {
-  const [searchParams] = useSearchParams();
-  const langParam = searchParams.get('lang');
-  const lang: CasesLang = isCasesLang(langParam) ? langParam : 'ko';
-  // 치료사례 메뉴 딥링크 — ?case=N (cases 슬라이드 중 N번째, 1-base)
-  const caseParam = parseInt(searchParams.get('case') ?? '', 10);
-  // ?only=3,4,6,7 — 메뉴에 노출한 케이스만 남김(인트로 배너·나머지 케이스 제외).
-  // 나머지 사례는 메신저(LINE/카톡) 게이트 뒤 — 뷰어에서 스와이프로 못 보게.
-  const onlyParam = searchParams.get('only') ?? '';
+const params = new URLSearchParams(window.location.search);
+const langParam = params.get('lang');
+const lang: CasesLang = isCasesLang(langParam) ? langParam : 'ko';
+const caseParam = parseInt(params.get('case') ?? '', 10);
+const onlyParam = params.get('only') ?? '';
+
+document.documentElement.lang = lang;
+document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+document.title = PAGE_TITLES[lang];
+
+function CasesEmbedApp() {
   const [slides, setSlides] = useState<Slide[]>([]);
   const [showNav, setShowNav] = useState(true);
   const [initialIndex, setInitialIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.title = PAGE_TITLES[lang];
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     fetchCasesSectionsStatic()
       .then((sections) => {
         const sel = selectCaseSlides(sections, { caseParam, onlyParam });
@@ -61,7 +55,7 @@ export default function CasesEmbedPage() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [lang, caseParam, onlyParam]);
+  }, []);
 
   if (loading) {
     return (
@@ -77,10 +71,15 @@ export default function CasesEmbedPage() {
       </div>
     );
   }
-
   return (
     <div className="w-full max-w-[460px] md:max-w-[720px] mx-auto bg-white h-screen overflow-hidden flex flex-col">
       <SectionCarousel slides={slides} showNav={showNav} initialIndex={initialIndex} lang={lang} embed />
     </div>
   );
 }
+
+createRoot(document.getElementById('cases-root')!).render(
+  <StrictMode>
+    <CasesEmbedApp />
+  </StrictMode>,
+);

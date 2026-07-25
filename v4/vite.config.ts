@@ -36,7 +36,8 @@ const cacheHeaders = (): Plugin => ({
       const path = (req.url ?? '').split('?')[0];
       if (IMMUTABLE_EXT.test(path)) {
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-      } else if (CODE_EXT.test(path)) {
+      } else if (CODE_EXT.test(path) || path === '/cases-data.json') {
+        // 치료사례 스냅샷은 거의 안 바뀜 → 엣지·브라우저 1일 캐시(변경 시 Cloudflare purge). CODE 와 동일.
         res.setHeader('Cache-Control', 'public, max-age=86400, must-revalidate');
       }
       next();
@@ -96,6 +97,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         calc: path.resolve(__dirname, 'calc.html'),
+        'cases-embed': path.resolve(__dirname, 'cases-embed.html'),
       },
     },
   },

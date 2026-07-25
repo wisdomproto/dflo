@@ -69,6 +69,26 @@ async function fetchSectionsFromKey(key: SectionStorageKey): Promise<WebsiteSect
 }
 
 /**
+ * 치료사례 뷰어 전용 — 빌드 때 구워둔 정적 스냅샷(`/cases-data.json`)을 먼저 읽는다.
+ * 치료사례는 거의 안 바뀌므로(사용자 확인) 런타임 R2 왕복·캐시우회(`?t=`)를 없애고
+ * 우리 도메인 정적 파일(Cloudflare 엣지 캐시)에서 받는다. 스냅샷이 없으면(dev 등) R2 로 폴백.
+ */
+export async function fetchCasesSectionsStatic(): Promise<WebsiteSection[]> {
+  try {
+    const res = await fetch('/cases-data.json', { cache: 'force-cache' });
+    if (res.ok) {
+      const data: unknown = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        return data.map((row: WebsiteSection) => ({ ...row, slides: migrateSlides(row.slides) }));
+      }
+    }
+  } catch {
+    /* 스냅샷 없음 → R2 폴백 */
+  }
+  return fetchSections('website.json');
+}
+
+/**
  * Fetch sections JSON from R2.
  * - If `key` is missing in R2 and `fallbackKey` is provided, try fallback.
  * - If both fail, return DEFAULT_SECTIONS so UI never breaks.
