@@ -406,6 +406,15 @@
   }
   .video-section .frame iframe,
   .video-section .frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+  .video-play {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: transparent; border: 0; padding: 0; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* ★[hidden] 짝 규칙 — 위에서 display 를 안 잡았지만 명시해 둔다.
+     재생 시작 후에도 이 버튼이 남으면 네이티브 컨트롤을 통째로 가로챈다. */
+  .video-play[hidden] { display: none; }
+  .video-play:focus-visible { outline: 3px solid var(--brand); outline-offset: -3px; }
   .video-note { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
 
   .facility { padding: 32px 0 32px; border-bottom: 1px solid var(--hairline); }
@@ -764,6 +773,10 @@
       <div class="frame">
         <video src="{{src}}" poster="{{poster}}" controls preload="none" playsinline
                title="{{title}}"></video>
+        <!-- 포스터 가운데 재생 버튼은 그림이라 눌러도 반응이 없다 → 프레임 전체를 덮는 투명
+             버튼으로 아무 데나 눌러도 재생. 재생이 시작되면 스스로 숨어 네이티브 컨트롤에
+             자리를 내준다(안 그러면 일시정지 버튼을 우리가 가로챈다). -->
+        <button type="button" class="video-play" data-video-play aria-label="{{title}}"></button>
       </div>
       {{/each}}
       {{#each clinic.video.youtube}}
@@ -899,6 +912,21 @@
   };
 </script>
 <script src="/_shell.js"></script>
+<script>
+// 소개 영상 — 프레임 아무 데나 누르면 재생.
+(function () {
+  document.querySelectorAll('[data-video-play]').forEach(function (btn) {
+    var v = btn.parentElement.querySelector('video');
+    if (!v) return;
+    btn.addEventListener('click', function () {
+      btn.hidden = true;              // 이후 조작은 네이티브 컨트롤에 맡긴다
+      var p = v.play();
+      // 자동재생 정책 등으로 거부되면 버튼을 되살려 다시 누를 수 있게 한다.
+      if (p && p.catch) p.catch(function () { btn.hidden = false; });
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
