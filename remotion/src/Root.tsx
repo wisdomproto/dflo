@@ -56,10 +56,13 @@ import { BowLegsKO, BOWLEGS_KO_DURATION } from "./shorts/오다리키";
 import { ScoliosisKO, SCOLIOSIS_KO_DURATION } from "./shorts/checkchu";
 import { Thumb } from "./shorts/_thumbs/Thumb";
 import { MainClipTH, MAINCLIP_DURATION } from "./mainclip/MainClipTH";
+import { MainClipEN, MAINCLIP_EN_DURATION } from "./mainclip/MainClipEN";
 import { OneCmTH, ONECM_TH_DURATION } from "./shorts/1cm/OneCmTH";
 import { PresenterGeneric, calcPresenterMetadata } from "./shorts/_shared/PresenterGeneric";
 import { CalcDemoTH, CALC_DEMO_TH_DURATION } from "./ads/CalcDemoTH";
 import { CalcDemoKR, CALC_DEMO_KR_DURATION } from "./ads/CalcDemoKR";
+import { CalcDemoEN, CALC_DEMO_EN_DURATION } from "./ads/CalcDemoEN";
+import { GoldenTimeKR, GOLDEN_KR_DURATION } from "./shorts/goldentime/GoldenTimeKR";
 import { CaseStoryReel, CASE_STORY_DURATION } from "./casestory/CaseStoryReel";
 import { ShortRepurpose, repurposeDuration, repurposeMetadata } from "./repurpose/ShortRepurpose";
 import { PurpleRepurpose, purpleMetadata } from "./repurpose/PurpleRepurpose";
@@ -270,11 +273,14 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="scoliosis-ko" component={ScoliosisKO} durationInFrames={SCOLIOSIS_KO_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="thumb" component={Thumb} durationInFrames={1} fps={30} width={1080} height={1920} defaultProps={{ n: 1, lang: "ko" }} />
       <Composition id="MainClipTH" component={MainClipTH} durationInFrames={MAINCLIP_DURATION} fps={30} width={1920} height={1080} />
+      <Composition id="MainClipEN" component={MainClipEN} durationInFrames={MAINCLIP_EN_DURATION} fps={30} width={1920} height={1080} />
       <Composition id="onecm-th" component={OneCmTH} durationInFrames={ONECM_TH_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="calc-demo-th" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "th" as const }} />
       <Composition id="calc-demo-vi" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "vi" as const }} />
       <Composition id="calc-demo-en" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "en" as const }} />
       <Composition id="calc-demo-ko" component={CalcDemoKR} durationInFrames={CALC_DEMO_KR_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="calc-demo-kr-en" component={CalcDemoEN} durationInFrames={CALC_DEMO_EN_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="goldentime-ko" component={GoldenTimeKR} durationInFrames={GOLDEN_KR_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="case-story-siyun" component={CaseStoryReel} durationInFrames={CASE_STORY_DURATION} fps={30} width={1080} height={1920} />
       <Composition
         id="PresenterGeneric"

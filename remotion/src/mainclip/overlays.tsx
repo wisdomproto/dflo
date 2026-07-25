@@ -10,7 +10,7 @@ import {
   spring,
   useVideoConfig,
 } from "remotion";
-import { NOTO_SANS_THAI } from "../lib/fonts";
+import { NOTO_SANS_THAI, INTER } from "../lib/fonts";
 
 // ---- shared timing helpers --------------------------------------------------
 function useEnter(durIn = 7) {
@@ -532,6 +532,59 @@ export const ClosingCTA: React.FC = () => {
       >
         <div style={{ background: "#06C755", color: "#fff", fontSize: 40, fontWeight: 800, padding: "18px 42px", borderRadius: 999, boxShadow: "0 8px 22px rgba(6,199,85,0.35)" }}>
           LINE&nbsp;&nbsp;@894qhqtu
+        </div>
+      </div>
+      <div style={{ fontSize: 40, fontWeight: 800, color: "#1f2a1c", marginTop: 34, letterSpacing: 0.5 }}>
+        dr187growup.com
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// 영어판 엔딩 카드 — ClosingCTA(태국어)의 영어 버전.
+// 한국어 원본 아웃트로("네이버에 187 성장클리닉 검색")는 영어권에 무의미하므로 통째로 대체한다.
+// 대표 채널은 시장별로 다르다: 태국=LINE, 영어권=WhatsApp(messenger.yml 과 동일 라우팅).
+export const ClosingCTAEn: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const fadeIn = interpolate(frame, [0, 15], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const logoS = spring({ frame, fps, config: { damping: 14, mass: 0.6 } });
+  const ctaS = spring({ frame: frame - 14, fps, config: { damping: 15, mass: 0.7 } });
+  return (
+    <AbsoluteFill
+      style={{
+        background: "radial-gradient(circle at 50% 40%, #ffffff 0%, #f2f6f1 62%, #e6efe5 100%)",
+        opacity: fadeIn,
+        fontFamily: INTER,
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
+      <Img
+        src={staticFile("images/logo_187growup.png")}
+        style={{ width: 360, height: "auto", transform: `scale(${0.78 + 0.22 * logoS})`, marginBottom: 46 }}
+      />
+      <div style={{ fontSize: 74, fontWeight: 900, color: "#1f2a1c", lineHeight: 1.18, letterSpacing: 0.3 }}>
+        Check your child&rsquo;s growth
+        <br />
+        <span style={{ color: "#22b14c" }}>free today</span>
+      </div>
+      <div style={{ fontSize: 31, fontWeight: 600, color: "#5a6553", marginTop: 24 }}>
+        Integrated growth care at Yonsei Saebom Clinic
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: 26,
+          alignItems: "center",
+          marginTop: 64,
+          transform: `translateY(${(1 - ctaS) * 28}px)`,
+          opacity: interpolate(ctaS, [0, 1], [0, 1]),
+        }}
+      >
+        <div style={{ background: "#25D366", color: "#fff", fontSize: 38, fontWeight: 800, padding: "18px 42px", borderRadius: 999, boxShadow: "0 8px 22px rgba(37,211,102,0.35)" }}>
+          WhatsApp&nbsp;&nbsp;+82&nbsp;10&nbsp;6693&nbsp;2838
         </div>
       </div>
       <div style={{ fontSize: 40, fontWeight: 800, color: "#1f2a1c", marginTop: 34, letterSpacing: 0.5 }}>

@@ -29,3 +29,6 @@ scripts/_tmp-*.txt
 # 치료사례 스토리 릴스 일러스트(AI-gen, 매트3D 재생성 예정)·TTS/믹스 — 재생성 가능, CaseStoryReel.tsx 코드는 tracked
 /public/casestory/
 /public/audio/casestory/
+
+# mainclip TTS/워프 오디오 (대용량, 재생성 가능)
+/public/audio/mainclip/
