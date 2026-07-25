@@ -47,7 +47,9 @@
     overflow: visible;
   }
 
-  .full-img { width: 100%; }
+  /* ★height:auto 는 width/height 속성과 반드시 짝 — 없으면 속성 높이(710px 등)가
+     그대로 적용돼 이미지가 세로로 늘어난다. 속성은 비율 예약용으로만 쓰이게 한다. */
+  .full-img { width: 100%; height: auto; }
 
   .accent { color: var(--accent); font-weight: 800; }
 
