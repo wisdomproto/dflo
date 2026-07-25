@@ -54,8 +54,40 @@
   }
   .cs-remote .cs-more:hover { text-decoration: underline; }
 
+  /* ===== 설문 오버레이 =====
+     상담 페이지를 떠나지 않고 설문(React /intake)을 그 자리에서 띄운다.
+     기하는 예약 시트(.t-resv)와 동일 — 상단 헤더(52px) 아래, 하단 네비 바 위. */
+  .cs-sv {
+    position: fixed; left: 0; right: 0;
+    top: 52px; bottom: calc(60px + env(safe-area-inset-bottom));
+    z-index: 120; background: #fff; display: flex; flex-direction: column;
+  }
+  /* ★[hidden] 짝 규칙 필수 — display:flex(author)가 UA 의 [hidden]{display:none} 을
+     이겨서, 닫힌 오버레이가 페이지 전체를 덮어 클릭이 먹통이 된다. */
+  .cs-sv[hidden] { display: none; }
+  @media (min-width: 768px) { .cs-sv { bottom: 66px; } }
+  .cs-sv-bar {
+    display: flex; justify-content: flex-end; align-items: center;
+    height: 46px; padding: 0 10px; flex-shrink: 0;
+    border-bottom: 1px solid var(--shell-hairline); background: #fff;
+  }
+  .cs-sv-close {
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--shell-hairline); background: #fff;
+    border-radius: 50%; color: var(--shell-ink); cursor: pointer;
+  }
+  .cs-sv-close:hover { background: var(--shell-soft); }
+  .cs-sv iframe { flex: 1; min-height: 0; width: 100%; border: 0; }
+
   /* ===== 채널 ===== */
   .cs-channels { padding: 26px 24px 30px; }
+  .cs-done {
+    display: flex; gap: 9px; align-items: flex-start;
+    margin-bottom: 16px; padding: 13px 15px; border-radius: 12px;
+    background: #eefaf1; border: 1px solid #b7e4c5;
+    font-size: 13.5px; line-height: 1.6; color: #1d6b3a; font-weight: 700;
+  }
+  .cs-done[hidden] { display: none; }
   .cs-channels h2 {
     font-size: 17px; font-weight: 900; color: var(--shell-ink);
     letter-spacing: -0.03em; margin-bottom: 4px;
@@ -110,6 +142,7 @@
   </section>
 
   <section class="cs-channels">
+    <p class="cs-done" id="csDone" hidden><span>✅</span><span>{{consult.survey_done}}</span></p>
     <h2>{{consult.channels.h2}}</h2>
     <p class="cs-sub">{{consult.channels.sub}}</p>
     <div class="cs-list">
@@ -131,6 +164,16 @@
   </section>
 
 </div>
+
+<!-- 설문 오버레이 — iframe src 는 클릭할 때 채운다(그전엔 아무것도 로드하지 않음). -->
+<div class="cs-sv" id="csSurvey" role="dialog" aria-modal="true" hidden>
+  <div class="cs-sv-bar">
+    <button type="button" class="cs-sv-close" data-cs-close aria-label="close">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <iframe title="{{consult.h1}}"></iframe>
+</div>
 </div><!-- /.t-page -->
 
 <script>
@@ -146,5 +189,37 @@
   };
 </script>
 <script src="/_shell.js"></script>
+<script>
+// 설문 CTA → 페이지를 떠나지 않고 오버레이로. 완료하면 iframe 이 부모에게 알리고,
+// 오버레이를 닫아 메신저 채널 목록으로 돌려보낸다.
+(function () {
+  var link = document.querySelector('.cs-survey');
+  var ov = document.getElementById('csSurvey');
+  if (!link || !ov) return;                      // ko 처럼 설문 CTA 없는 언어
+  var frame = ov.querySelector('iframe');
+  var done = document.getElementById('csDone');
+
+  function close() { ov.hidden = true; document.body.style.overflow = ''; }
+
+  link.addEventListener('click', function (e) {
+    // 새 탭/다른 버튼 클릭은 원래 링크 동작에 맡긴다.
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    if (!frame.getAttribute('src')) frame.setAttribute('src', link.getAttribute('href'));
+    ov.hidden = false;
+    document.body.style.overflow = 'hidden';
+  });
+  ov.querySelector('[data-cs-close]').addEventListener('click', close);
+
+  window.addEventListener('message', function (ev) {
+    if (ev.origin !== location.origin) return;
+    if (!ev.data || ev.data.type !== 'intake_done') return;
+    close();
+    if (done) done.hidden = false;
+    var ch = document.querySelector('.cs-channels');
+    if (ch) ch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
 </body>
 </html>

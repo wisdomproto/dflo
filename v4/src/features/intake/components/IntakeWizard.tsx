@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from 'react';
+import { useEffect, useState, type ReactElement } from 'react';
 import type { IntakeFormState, IntakeLang } from '../types';
 import { getLabels, LANG_DEFAULT_COUNTRY } from '../intakeLabels';
 import { submitIntake } from '../publicIntakeService';
@@ -121,6 +121,14 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
   const [submitError, setSubmitError] = useState(false);
 
   const isLast = step === TOTAL - 1;
+
+  // 상담 페이지(/{lang}/consult.html)가 이 위저드를 iframe 으로 띄운다.
+  // 제출이 끝나면 부모가 오버레이를 닫고 메신저 채널로 돌려보낼 수 있게 알린다.
+  useEffect(() => {
+    if (done && window.parent !== window) {
+      window.parent.postMessage({ type: 'intake_done' }, window.location.origin);
+    }
+  }, [done]);
 
   const next = () => {
     const e = validateStep(step, state, L);
