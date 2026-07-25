@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
-import { buildHead, buildBlogPostHead, buildBlogIndexHead, ACTIVE_LANGS, RTL_LANGS } from './lib/seo.mjs';
+import { buildHead, buildBlogPostHead, buildBlogIndexHead, buildSeo, ACTIVE_LANGS, RTL_LANGS } from './lib/seo.mjs';
 import { authorPageJsonLd } from './lib/jsonld.mjs';
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
@@ -203,6 +203,13 @@ async function main() {
     // 하단 네비 '블로그' 노출 여부 — 글이 0편인 언어(ja/es)에 링크하면 우리 호스팅 특성상
     // 200 + 한국어 SPA 셸(soft-404)이 된다. 실제로 빌드되는 언어에만 메뉴를 띄운다.
     locale.has_blog = blogLangs.includes(lang) ? 'true' : 'false';
+
+    // FAQ — seo.yml 이 단일 소스다. 같은 데이터가 화면(메인 하단 아코디언)과 FAQPage JSON-LD
+    // 양쪽으로 나간다. 구글은 구조화 데이터의 FAQ 가 페이지에 실제로 보일 것을 요구하므로
+    // 스키마만 내보내고 화면엔 없는 상태를 만들면 안 된다.
+    const seoEntry = buildSeo(lang);
+    locale.faq = seoEntry.faq || [];
+    locale.faq_title = seoEntry.faq_title || '';
 
     // Home — 이미지 지연 로딩 후처리까지 거쳐 최종 산출 (첫 이미지=로고만 eager)
     locale.seo_head = buildHead(lang, { path: '/' });
