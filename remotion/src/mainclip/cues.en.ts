@@ -149,60 +149,6 @@ export const CUES: Cue[] = [
     ],
   },
 
-  // ===== CUT 4 : 1:09–1:41 (Q2 — exercise & physiotherapy) =====
-  {
-    kind: "qcard", from: 69.5, to: 72.0, color: "#ffffff",
-    lines: [
-      { t: "Why manage" },
-      { t: "exercise and", strong: true },
-      { t: "physiotherapy together?", strong: true },
-    ],
-  },
-  // Right-side floor directory has baked Korean → cover with opaque banners.
-  { kind: "callout", from: 69.4, to: 72.1, top: "Growth & posture exercise", bottom: "Swelling & inflammation care", xPct: 72.0, yPct: 27.0, topSize: 27, bottomSize: 27, banner: true, bannerW: 890, bannerH: 245, bannerBg: "#3a322a", bannerTextColor: "#d8b66a" },
-  { kind: "callout", from: 69.4, to: 72.1, top: "Hormone specialty centre", bottom: "Reception desk", xPct: 68.0, yPct: 74.0, topSize: 27, bottomSize: 27, banner: true, bannerW: 750, bannerH: 260, bannerBg: "#3a322a", bannerTextColor: "#d8b66a" },
-  { kind: "qbar", from: 72.0, to: 101.0, text: "Why manage exercise and physiotherapy together?" },
-  {
-    kind: "subtitle", from: 72.0, to: 76.0, tone: "white",
-    lines: [[{ t: "Posture", em: true }, { t: " matters a great deal for a growing child." }]],
-  },
-  {
-    kind: "subtitle", from: 76.0, to: 79.0, tone: "white",
-    lines: [[{ t: "Exercise and physiotherapy play different roles." }]],
-  },
-  // Two separate baked circles (physio / exercise).
-  { kind: "label", from: 76.2, to: 79.0, text: "Physio", xPct: 18, yPct: 58, fontSize: 40, color: "#27304d" },
-  { kind: "label", from: 76.4, to: 79.0, text: "Exercise", xPct: 81, yPct: 58, fontSize: 40, color: "#27304d" },
-  {
-    kind: "subtitle", from: 79.0, to: 87.0, tone: "white",
-    lines: [
-      [{ t: "Physiotherapy", em: true }, { t: " corrects the bones and ligaments," }],
-      [{ t: "so the body can hold the right posture." }],
-    ],
-  },
-  {
-    kind: "subtitle", from: 87.0, to: 90.0, tone: "white",
-    lines: [[{ t: "But even once posture is corrected," }]],
-  },
-  {
-    kind: "subtitle", from: 90.0, to: 95.0, tone: "white",
-    lines: [
-      [{ t: "muscle", em: true }, { t: " has to be built through exercise" }],
-      [{ t: "to keep that posture." }],
-    ],
-  },
-  {
-    kind: "subtitle", from: 95.0, to: 101.0, tone: "white",
-    lines: [
-      [{ t: "Our clinic uses both physiotherapy and exercise" }],
-      [{ t: "to support a child's growth." }],
-    ],
-  },
-  // Venn diagram (physio ∩ exercise) — circles are baked; add labels + title.
-  { kind: "label", from: 96.3, to: 99.3, text: "The right posture", xPct: 25, yPct: 28, fontSize: 44, color: "#27304d" },
-  { kind: "label", from: 96.6, to: 99.3, text: "Physio", xPct: 19, yPct: 57, fontSize: 40, color: "#27304d" },
-  { kind: "label", from: 96.8, to: 99.3, text: "Exercise", xPct: 33, yPct: 57, fontSize: 40, color: "#27304d" },
-
   // ===== CUT 5 : 1:41–2:20 (Q3 — the right time to treat) =====
   {
     kind: "qcard", from: 101.0, to: 104.0,

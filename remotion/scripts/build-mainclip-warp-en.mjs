@@ -35,8 +35,8 @@ const PLAN = [
   { type: "skip", s: 49.7, e: 51.5 },              // 한국어 홍보카드 제거
   { type: "keep", s: 51.5, e: 54 },                // Q1 카드
   { type: "warp", g: "g03", s: 54, e: 69 },        // CUT3
-  { type: "keep", s: 69, e: 72 },                  // Q2
-  { type: "warp", g: "g04", s: 72, e: 101 },       // CUT4
+  // Q2(운동·물리치료)는 해외판에서 제외 — 병원 핵심 차별점이 아니라 곁가지로 읽힌다(사용자 결정 2026-07-25).
+  { type: "skip", s: 69, e: 101 },                 // Q2 카드 + CUT4 전체 컷
   { type: "keep", s: 101, e: 104 },                // Q3
   { type: "warp", g: "g05", s: 104, e: 140 },      // CUT5
   { type: "keep", s: 140, e: 143 },                // Q4

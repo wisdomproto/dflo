@@ -3,45 +3,209 @@
   "fps": 30,
   "total": 245.33,
   "lines": [
-    { "id": "n01", "from": 8.2, "to": 11.0, "text": "Here at Yonsei Saebom Clinic," },
-    { "id": "n02", "from": 11.0, "to": 15.0, "text": "we look after hormones, puberty, exercise, posture and sleep," },
-    { "id": "n03", "from": 15.0, "to": 18.3, "text": "to support healthy growth in children." },
-    { "id": "n04", "from": 18.3, "to": 26.0, "text": "On the first visit, we take a detailed history — the child's age, height, and family background." },
-    { "id": "n05", "from": 26.0, "to": 30.0, "text": "We check BMI, which helps predict early puberty." },
-    { "id": "n06", "from": 30.0, "to": 37.0, "text": "A full-body X-ray shows bone age and how far the growth plates have closed." },
-    { "id": "n07", "from": 37.0, "to": 43.0, "text": "Finally, blood tests and a puberty assessment check overall health." },
-    { "id": "n08", "from": 43.0, "to": 50.8, "text": "From these results, we predict adult height and design a treatment plan for that child." },
-    { "id": "n09", "from": 54.0, "to": 56.2, "text": "What makes us different?" },
-    { "id": "n10", "from": 56.2, "to": 62.0, "text": "We manage not just hormones, but nutrition, sleep, exercise and puberty." },
-    { "id": "n11", "from": 62.0, "to": 69.0, "text": "Caring for every factor that growth depends on, together — that is what sets us apart." },
-    { "id": "n12", "from": 72.0, "to": 76.0, "text": "Posture matters a great deal for a growing child." },
-    { "id": "n13", "from": 76.0, "to": 79.0, "text": "Exercise and physiotherapy do different jobs." },
-    { "id": "n14", "from": 79.0, "to": 87.0, "text": "Physiotherapy corrects problems in the bones and ligaments, so the body can hold the right posture." },
-    { "id": "n15", "from": 87.0, "to": 90.0, "text": "But even once posture is corrected," },
-    { "id": "n16", "from": 90.0, "to": 95.0, "text": "muscle has to be built through exercise to keep that posture." },
-    { "id": "n17", "from": 95.0, "to": 101.0, "text": "Our clinic uses both physiotherapy and exercise to support a child's growth." },
-    { "id": "n18", "from": 104.0, "to": 110.0, "text": "The right time to treat differs a little from child to child." },
-    { "id": "n19", "from": 110.0, "to": 114.0, "text": "For girls, plan treatment a little earlier than boys." },
-    { "id": "n20", "from": 114.0, "to": 119.0, "text": "For girls, that is generally between ages eight and thirteen." },
-    { "id": "n21", "from": 119.0, "to": 125.0, "text": "For boys, roughly between ages nine and fifteen." },
-    { "id": "n22", "from": 125.0, "to": 128.0, "text": "But not for every child." },
-    { "id": "n23", "from": 128.0, "to": 131.5, "text": "If early puberty is suspected," },
-    { "id": "n24", "from": 131.5, "to": 137.0, "text": "or if another condition may be affecting growth," },
-    { "id": "n25", "from": 137.0, "to": 140.0, "text": "treatment should begin somewhat earlier." },
-    { "id": "n26", "from": 143.0, "to": 149.0, "text": "And if that window has passed, there is no need to worry too much." },
-    { "id": "n27", "from": 149.0, "to": 152.0, "text": "It depends how much growth plate is left," },
-    { "id": "n28", "from": 152.0, "to": 157.0, "text": "and how many centimetres you hope for. We can still plan treatment." },
-    { "id": "n29", "from": 157.0, "to": 164.0, "text": "Don't worry — see a doctor near you and find out what is still possible." },
-    { "id": "n30", "from": 167.0, "to": 174.0, "text": "When puberty begins, it affects growth in two main ways." },
-    { "id": "n31", "from": 174.0, "to": 179.0, "text": "Early on, growth speeds up steadily." },
-    { "id": "n32", "from": 179.0, "to": 183.0, "text": "Then after about one to two years," },
-    { "id": "n33", "from": 183.0, "to": 190.0, "text": "the growth plates close, and growth slows down." },
-    { "id": "n34", "from": 191.0, "to": 198.0, "text": "There is a window in your child's growth that matters most." },
-    { "id": "n35", "from": 198.0, "to": 208.0, "text": "If you are worried about your child's height, don't leave it too late." },
-    { "id": "n36", "from": 209.0, "to": 216.0, "text": "Checking and caring early helps a child grow to their full potential." },
-    { "id": "n37", "from": 217.0, "to": 224.0, "text": "At Yonsei Saebom Clinic, we follow your child's growth closely," },
-    { "id": "n38", "from": 225.0, "to": 232.0, "text": "with a treatment plan built for them, from detailed testing." },
-    { "id": "n39", "from": 232.0, "to": 238.0, "text": "Talk to us today, for your child's growth ahead." },
-    { "id": "n40", "from": 239.0, "to": 244.5, "text": "Visit dr187growup.com for a free height prediction." }
+    {
+      "id": "n01",
+      "from": 8.2,
+      "to": 11.0,
+      "text": "Here at Yonsei Saebom Clinic,"
+    },
+    {
+      "id": "n02",
+      "from": 11.0,
+      "to": 15.0,
+      "text": "we look after hormones, puberty, exercise, posture and sleep,"
+    },
+    {
+      "id": "n03",
+      "from": 15.0,
+      "to": 18.3,
+      "text": "to support healthy growth in children."
+    },
+    {
+      "id": "n04",
+      "from": 18.3,
+      "to": 26.0,
+      "text": "On the first visit, we take a detailed history — the child's age, height, and family background."
+    },
+    {
+      "id": "n05",
+      "from": 26.0,
+      "to": 30.0,
+      "text": "We check BMI, which helps predict early puberty."
+    },
+    {
+      "id": "n06",
+      "from": 30.0,
+      "to": 37.0,
+      "text": "A full-body X-ray shows bone age and how far the growth plates have closed."
+    },
+    {
+      "id": "n07",
+      "from": 37.0,
+      "to": 43.0,
+      "text": "Finally, blood tests and a puberty assessment check overall health."
+    },
+    {
+      "id": "n08",
+      "from": 43.0,
+      "to": 50.8,
+      "text": "From these results, we predict adult height and design a treatment plan for that child."
+    },
+    {
+      "id": "n09",
+      "from": 54.0,
+      "to": 56.2,
+      "text": "What makes us different?"
+    },
+    {
+      "id": "n10",
+      "from": 56.2,
+      "to": 62.0,
+      "text": "We manage not just hormones, but nutrition, sleep, exercise and puberty."
+    },
+    {
+      "id": "n11",
+      "from": 62.0,
+      "to": 69.0,
+      "text": "Caring for every factor that growth depends on, together — that is what sets us apart."
+    },
+    {
+      "id": "n18",
+      "from": 104.0,
+      "to": 110.0,
+      "text": "The right time to treat differs a little from child to child."
+    },
+    {
+      "id": "n19",
+      "from": 110.0,
+      "to": 114.0,
+      "text": "For girls, plan treatment a little earlier than boys."
+    },
+    {
+      "id": "n20",
+      "from": 114.0,
+      "to": 119.0,
+      "text": "For girls, that is generally between ages eight and thirteen."
+    },
+    {
+      "id": "n21",
+      "from": 119.0,
+      "to": 125.0,
+      "text": "For boys, roughly between ages nine and fifteen."
+    },
+    {
+      "id": "n22",
+      "from": 125.0,
+      "to": 128.0,
+      "text": "But not for every child."
+    },
+    {
+      "id": "n23",
+      "from": 128.0,
+      "to": 131.5,
+      "text": "If early puberty is suspected,"
+    },
+    {
+      "id": "n24",
+      "from": 131.5,
+      "to": 137.0,
+      "text": "or if another condition may be affecting growth,"
+    },
+    {
+      "id": "n25",
+      "from": 137.0,
+      "to": 140.0,
+      "text": "treatment should begin somewhat earlier."
+    },
+    {
+      "id": "n26",
+      "from": 143.0,
+      "to": 149.0,
+      "text": "And if that window has passed, there is no need to worry too much."
+    },
+    {
+      "id": "n27",
+      "from": 149.0,
+      "to": 152.0,
+      "text": "It depends how much growth plate is left,"
+    },
+    {
+      "id": "n28",
+      "from": 152.0,
+      "to": 157.0,
+      "text": "and how many centimetres you hope for. We can still plan treatment."
+    },
+    {
+      "id": "n29",
+      "from": 157.0,
+      "to": 164.0,
+      "text": "Don't worry — see a doctor near you and find out what is still possible."
+    },
+    {
+      "id": "n30",
+      "from": 167.0,
+      "to": 174.0,
+      "text": "When puberty begins, it affects growth in two main ways."
+    },
+    {
+      "id": "n31",
+      "from": 174.0,
+      "to": 179.0,
+      "text": "Early on, growth speeds up steadily."
+    },
+    {
+      "id": "n32",
+      "from": 179.0,
+      "to": 183.0,
+      "text": "Then after about one to two years,"
+    },
+    {
+      "id": "n33",
+      "from": 183.0,
+      "to": 190.0,
+      "text": "the growth plates close, and growth slows down."
+    },
+    {
+      "id": "n34",
+      "from": 191.0,
+      "to": 198.0,
+      "text": "There is a window in your child's growth that matters most."
+    },
+    {
+      "id": "n35",
+      "from": 198.0,
+      "to": 208.0,
+      "text": "If you are worried about your child's height, don't leave it too late."
+    },
+    {
+      "id": "n36",
+      "from": 209.0,
+      "to": 216.0,
+      "text": "Checking and caring early helps a child grow to their full potential."
+    },
+    {
+      "id": "n37",
+      "from": 217.0,
+      "to": 224.0,
+      "text": "At Yonsei Saebom Clinic, we follow your child's growth closely,"
+    },
+    {
+      "id": "n38",
+      "from": 225.0,
+      "to": 232.0,
+      "text": "with a treatment plan built for them, from detailed testing."
+    },
+    {
+      "id": "n39",
+      "from": 232.0,
+      "to": 238.0,
+      "text": "Talk to us today, for your child's growth ahead."
+    },
+    {
+      "id": "n40",
+      "from": 239.0,
+      "to": 244.5,
+      "text": "Visit dr187growup.com for a free height prediction."
+    }
   ]
 }

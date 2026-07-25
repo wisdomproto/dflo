@@ -1,6 +1,6 @@
 {
   "fps": 30,
-  "newTotal": 241.677,
+  "newTotal": 208.786,
   "segments": [
     {
       "type": "keep",
@@ -185,98 +185,12 @@
       "newEnd": 71.204
     },
     {
-      "type": "keep",
+      "type": "skip",
       "s": 69,
-      "e": 72,
-      "origDur": 3,
-      "newDur": 3,
-      "speed": 1,
-      "newStart": 71.204,
-      "newEnd": 74.204
-    },
-    {
-      "type": "warp",
-      "line": "n12",
-      "s": 72,
-      "e": 76,
-      "forceDur": 4,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n12.wav",
-      "audioDur": 3.490958,
-      "origDur": 4,
-      "newDur": 4,
-      "speed": 1,
-      "newStart": 74.204,
-      "newEnd": 78.204
-    },
-    {
-      "type": "warp",
-      "line": "n13",
-      "s": 76,
-      "e": 79,
-      "forceDur": 3.891,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n13.wav",
-      "audioDur": 3.770958,
-      "origDur": 3,
-      "newDur": 3.891,
-      "speed": 0.771,
-      "newStart": 78.204,
-      "newEnd": 82.095
-    },
-    {
-      "type": "warp",
-      "line": "n14",
-      "s": 79,
-      "e": 87,
-      "forceDur": 8,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n14.wav",
-      "audioDur": 6.770958,
-      "origDur": 8,
-      "newDur": 8,
-      "speed": 1,
-      "newStart": 82.095,
-      "newEnd": 90.095
-    },
-    {
-      "type": "warp",
-      "line": "n15",
-      "s": 87,
-      "e": 90,
-      "forceDur": 3,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n15.wav",
-      "audioDur": 2.490958,
-      "origDur": 3,
-      "newDur": 3,
-      "speed": 1,
-      "newStart": 90.095,
-      "newEnd": 93.095
-    },
-    {
-      "type": "warp",
-      "line": "n16",
-      "s": 90,
-      "e": 95,
-      "forceDur": 5,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n16.wav",
-      "audioDur": 4.170958,
-      "origDur": 5,
-      "newDur": 5,
-      "speed": 1,
-      "newStart": 93.095,
-      "newEnd": 98.095
-    },
-    {
-      "type": "warp",
-      "line": "n17",
-      "s": 95,
       "e": 101,
-      "forceDur": 6,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n17.wav",
-      "audioDur": 5.330958,
-      "origDur": 6,
-      "newDur": 6,
-      "speed": 1,
-      "newStart": 98.095,
-      "newEnd": 104.095
+      "origDur": 32,
+      "newDur": 0,
+      "speed": 0
     },
     {
       "type": "keep",
@@ -285,8 +199,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 104.095,
-      "newEnd": 107.095
+      "newStart": 71.204,
+      "newEnd": 74.204
     },
     {
       "type": "warp",
@@ -299,8 +213,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 107.095,
-      "newEnd": 113.095
+      "newStart": 74.204,
+      "newEnd": 80.204
     },
     {
       "type": "warp",
@@ -313,8 +227,8 @@
       "origDur": 4,
       "newDur": 4.531,
       "speed": 0.8828,
-      "newStart": 113.095,
-      "newEnd": 117.626
+      "newStart": 80.204,
+      "newEnd": 84.735
     },
     {
       "type": "warp",
@@ -327,8 +241,8 @@
       "origDur": 5,
       "newDur": 5,
       "speed": 1,
-      "newStart": 117.626,
-      "newEnd": 122.626
+      "newStart": 84.735,
+      "newEnd": 89.735
     },
     {
       "type": "warp",
@@ -341,8 +255,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 122.626,
-      "newEnd": 128.626
+      "newStart": 89.735,
+      "newEnd": 95.735
     },
     {
       "type": "warp",
@@ -355,8 +269,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 128.626,
-      "newEnd": 131.626
+      "newStart": 95.735,
+      "newEnd": 98.735
     },
     {
       "type": "warp",
@@ -369,8 +283,8 @@
       "origDur": 3.5,
       "newDur": 3.5,
       "speed": 1,
-      "newStart": 131.626,
-      "newEnd": 135.126
+      "newStart": 98.735,
+      "newEnd": 102.235
     },
     {
       "type": "warp",
@@ -383,8 +297,8 @@
       "origDur": 5.5,
       "newDur": 5.5,
       "speed": 1,
-      "newStart": 135.126,
-      "newEnd": 140.626
+      "newStart": 102.235,
+      "newEnd": 107.735
     },
     {
       "type": "warp",
@@ -397,8 +311,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 140.626,
-      "newEnd": 143.626
+      "newStart": 107.735,
+      "newEnd": 110.735
     },
     {
       "type": "keep",
@@ -407,8 +321,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 143.626,
-      "newEnd": 146.626
+      "newStart": 110.735,
+      "newEnd": 113.735
     },
     {
       "type": "warp",
@@ -421,8 +335,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 146.626,
-      "newEnd": 152.626
+      "newStart": 113.735,
+      "newEnd": 119.735
     },
     {
       "type": "warp",
@@ -435,8 +349,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 152.626,
-      "newEnd": 155.626
+      "newStart": 119.735,
+      "newEnd": 122.735
     },
     {
       "type": "warp",
@@ -449,8 +363,8 @@
       "origDur": 5,
       "newDur": 5.051,
       "speed": 0.9899,
-      "newStart": 155.626,
-      "newEnd": 160.677
+      "newStart": 122.735,
+      "newEnd": 127.786
     },
     {
       "type": "warp",
@@ -463,8 +377,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 160.677,
-      "newEnd": 167.677
+      "newStart": 127.786,
+      "newEnd": 134.786
     },
     {
       "type": "keep",
@@ -473,8 +387,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 167.677,
-      "newEnd": 170.677
+      "newStart": 134.786,
+      "newEnd": 137.786
     },
     {
       "type": "warp",
@@ -487,8 +401,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 170.677,
-      "newEnd": 177.677
+      "newStart": 137.786,
+      "newEnd": 144.786
     },
     {
       "type": "warp",
@@ -501,8 +415,8 @@
       "origDur": 5,
       "newDur": 5,
       "speed": 1,
-      "newStart": 177.677,
-      "newEnd": 182.677
+      "newStart": 144.786,
+      "newEnd": 149.786
     },
     {
       "type": "warp",
@@ -515,8 +429,8 @@
       "origDur": 4,
       "newDur": 4,
       "speed": 1,
-      "newStart": 182.677,
-      "newEnd": 186.677
+      "newStart": 149.786,
+      "newEnd": 153.786
     },
     {
       "type": "warp",
@@ -529,8 +443,8 @@
       "origDur": 8,
       "newDur": 8,
       "speed": 1,
-      "newStart": 186.677,
-      "newEnd": 194.677
+      "newStart": 153.786,
+      "newEnd": 161.786
     },
     {
       "type": "warp",
@@ -543,8 +457,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 194.677,
-      "newEnd": 201.677
+      "newStart": 161.786,
+      "newEnd": 168.786
     },
     {
       "type": "warp",
@@ -557,8 +471,8 @@
       "origDur": 11,
       "newDur": 11,
       "speed": 1,
-      "newStart": 201.677,
-      "newEnd": 212.677
+      "newStart": 168.786,
+      "newEnd": 179.786
     },
     {
       "type": "warp",
@@ -571,8 +485,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 212.677,
-      "newEnd": 219.677
+      "newStart": 179.786,
+      "newEnd": 186.786
     },
     {
       "type": "keep",
@@ -581,8 +495,8 @@
       "origDur": 1,
       "newDur": 1,
       "speed": 1,
-      "newStart": 219.677,
-      "newEnd": 220.677
+      "newStart": 186.786,
+      "newEnd": 187.786
     },
     {
       "type": "warp",
@@ -595,8 +509,8 @@
       "origDur": 8,
       "newDur": 8,
       "speed": 1,
-      "newStart": 220.677,
-      "newEnd": 228.677
+      "newStart": 187.786,
+      "newEnd": 195.786
     },
     {
       "type": "warp",
@@ -609,8 +523,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 228.677,
-      "newEnd": 235.677
+      "newStart": 195.786,
+      "newEnd": 202.786
     },
     {
       "type": "warp",
@@ -623,8 +537,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 235.677,
-      "newEnd": 241.677
+      "newStart": 202.786,
+      "newEnd": 208.786
     }
   ]
 }
