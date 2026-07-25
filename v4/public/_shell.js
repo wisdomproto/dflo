@@ -349,8 +349,10 @@ ${__HAS_RESV ? `
   mount.innerHTML = SHELL_HTML;
   while (mount.firstChild) document.body.appendChild(mount.firstChild);
 
-  // Mark active nav by data-page attribute on <body>
-  const currentPage = document.body.dataset.page || 'programs';
+  // Mark active nav by data-page attribute on <body>.
+  // 블로그는 목록/글이 data-page="blog-index"/"blog-post" 라 nav 의 data-nav="blog" 와 안 맞는다 → blog 로 정규화.
+  const rawPage = document.body.dataset.page || 'programs';
+  const currentPage = /^blog/.test(rawPage) ? 'blog' : rawPage;
   document.querySelectorAll('.t-bottom-nav a').forEach(a => {
     if (a.dataset.nav === currentPage) a.classList.add('active');
   });
