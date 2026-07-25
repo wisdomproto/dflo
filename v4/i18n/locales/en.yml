@@ -539,12 +539,14 @@ consult:
   lead: "Message us on whichever app you already use."
   remote:
     h2: "Living outside Korea? You can still consult us."
-    body: "You don't need to fly to Seoul to get started. Send us your child's growth details and our Korean growth specialist will review them with you directly."
+    body: "You don't need to fly to Seoul to get started. Fill in the survey below and our Korean growth specialist will review your child's growth with you."
     points:
-      - "Send your child's age, current height, and both parents' heights"
+      - "Fill in the growth survey — it takes about 5 minutes"
       - "If you already have local bone-age X-ray or blood test results, share them"
-      - "A video consultation with the director can be arranged by appointment"
-      - "Examination and the treatment plan are confirmed when you visit the clinic in Seoul"
+      - "Message us on any channel below once the survey is done — we'll arrange a remote consultation"
+    survey:
+      - href: "/intake/en"
+        label: "Fill in the growth survey →"
     more: []
   channels:
     h2: "Choose a channel"

@@ -43,6 +43,11 @@
     content: ''; position: absolute; left: 2px; top: 8px;
     width: 7px; height: 7px; border-radius: 50%; background: var(--shell-brand);
   }
+  .cs-remote .cs-survey {
+    display: block; margin-top: 16px; padding: 14px 20px; text-align: center;
+    background: var(--shell-brand); color: #fff; border-radius: 12px;
+    font-size: 15px; font-weight: 800; text-decoration: none;
+  }
   .cs-remote .cs-more {
     display: inline-block; margin-top: 16px; font-size: 13.5px; font-weight: 800;
     color: var(--shell-brand); text-decoration: none;
@@ -93,6 +98,10 @@
       <li>{{.}}</li>
       {{/each}}
     </ul>
+    <!-- 설문 CTA — 원격 상담의 1단계. survey 는 0 또는 1개(more 와 같은 배열 분기 패턴). -->
+    {{#each consult.remote.survey}}
+    <a class="cs-survey" href="{{href}}" data-source="consult_survey">{{label}}</a>
+    {{/each}}
     <!-- more = 0 또는 1개. 미니 렌더러엔 {{#if}} 가 없어 배열 길이로 분기하고,
          each 안에서는 바깥 스코프를 못 보므로 href 도 항목에 함께 둔다(th 만 사용). -->
     {{#each consult.remote.more}}

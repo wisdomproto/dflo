@@ -538,12 +538,14 @@ consult:
   lead: "Escríbanos por la app que ya usa."
   remote:
     h2: "¿Vive fuera de Corea? También puede consultarnos."
-    body: "No necesita viajar a Seúl para empezar. Envíenos los datos de crecimiento de su hijo/a y nuestro especialista coreano en crecimiento los revisará con usted directamente."
+    body: "No necesita viajar a Seúl para empezar. Complete el cuestionario y nuestro especialista coreano en crecimiento lo revisará con usted."
     points:
-      - "Envíe la edad, la estatura actual de su hijo/a y la estatura de ambos padres"
-      - "Si ya tiene resultados locales de edad ósea o análisis de sangre, compártalos"
-      - "Se puede concertar una consulta por video con el director, con cita previa"
-      - "El examen y el plan de tratamiento se confirman cuando visita la clínica en Seúl"
+      - "Complete el cuestionario de crecimiento: unos 5 minutos"
+      - "Si ya tiene una radiografía de edad ósea o análisis de sangre locales, compártalos"
+      - "Escríbanos por cualquier canal cuando termine y le agendamos una consulta remota"
+    survey:
+      - href: "/intake/es"
+        label: "Completar el cuestionario →"
     more: []
   channels:
     h2: "Elija un canal"
