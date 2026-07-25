@@ -62,6 +62,7 @@ import { PresenterGeneric, calcPresenterMetadata } from "./shorts/_shared/Presen
 import { CalcDemoTH, CALC_DEMO_TH_DURATION } from "./ads/CalcDemoTH";
 import { CalcDemoKR, CALC_DEMO_KR_DURATION } from "./ads/CalcDemoKR";
 import { CalcDemoEN, CALC_DEMO_EN_DURATION } from "./ads/CalcDemoEN";
+import { ThAdEN, THAD_EN_DURATION, THAD_EN_FPS } from "./ads/ThAdEN";
 import { GoldenTimeKR, GOLDEN_KR_DURATION } from "./shorts/goldentime/GoldenTimeKR";
 import { CaseStoryReel, CASE_STORY_DURATION } from "./casestory/CaseStoryReel";
 import { ShortRepurpose, repurposeDuration, repurposeMetadata } from "./repurpose/ShortRepurpose";
@@ -279,6 +280,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="calc-demo-vi" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "vi" as const }} />
       <Composition id="calc-demo-en" component={CalcDemoTH} durationInFrames={CALC_DEMO_TH_DURATION} fps={30} width={1080} height={1920} defaultProps={{ lang: "en" as const }} />
       <Composition id="calc-demo-ko" component={CalcDemoKR} durationInFrames={CALC_DEMO_KR_DURATION} fps={30} width={1080} height={1920} />
+      <Composition id="thad-en" component={ThAdEN} durationInFrames={THAD_EN_DURATION} fps={THAD_EN_FPS} width={1920} height={1080} />
       <Composition id="calc-demo-kr-en" component={CalcDemoEN} durationInFrames={CALC_DEMO_EN_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="goldentime-ko" component={GoldenTimeKR} durationInFrames={GOLDEN_KR_DURATION} fps={30} width={1080} height={1920} />
       <Composition id="case-story-siyun" component={CaseStoryReel} durationInFrames={CASE_STORY_DURATION} fps={30} width={1080} height={1920} />
