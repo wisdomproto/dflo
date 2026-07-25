@@ -110,7 +110,7 @@ export const MainClipEN: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       {/* 영어 나레이션 기준 워프 영상 + 영어 더빙. 큐는 warpTime(en)으로 재타이밍. */}
       <OffthreadVideo src={staticFile("mainclip/warped-clean-en.mp4")} muted />
-      <Audio src={staticFile("audio/mainclip/en-narration-warped.wav")} />
+      <Audio src={staticFile("audio/mainclip/en-mix-warped.wav")} />
 
       <Sequence from={sec(warpTime(WATERMARK_FROM))}>
         <Watermark />
