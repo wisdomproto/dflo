@@ -24,7 +24,9 @@ const CLINIC_ADDRESS = {
   addressCountry: 'KR',
 };
 const CLINIC_SAME_AS = ['https://www.yssaebomq.com/'];
-const DIRECTOR_NAME = 'Chae Young-hyun';
+// 로마자 표기는 화면 텍스트와 반드시 같아야 한다 — 구글·AI 가 같은 인물로 묶는 키다.
+// (옛 'Chae Young-hyun' 은 여기 한 곳뿐인 오타였고 화면 62곳은 전부 'Yong-hyun'.)
+const DIRECTOR_NAME = 'Chae Yong-hyun';
 const DIRECTOR_NAME_KO = '채용현';
 
 let seoCache = null;

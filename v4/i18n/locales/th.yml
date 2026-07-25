@@ -467,7 +467,7 @@ clinic:
     h3: "วิดีโอแนะนำคลินิก"
     iframe_title: "แนะนำ Yonsei Saebom Clinic"
     note:
-      - "ถ่ายทำที่คลินิกของเราในกรุงโซล เสียงภาษาเกาหลี — เปิดคำบรรยายบน YouTube เป็นภาษาของคุณได้ครับ"
+      - "ถ่ายทำที่คลินิกของเราในกรุงโซล บรรยายภาษาอังกฤษ · ประมาณ 3 นาทีครับ"
     file:
       - src: "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/videos/mainclip-en-720p.mp4"
         poster: "/images/clinic-video-poster.jpg"
