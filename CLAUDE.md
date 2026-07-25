@@ -277,7 +277,10 @@ GEMINI_API_KEY, API_KEY, PORT=3001
 ```
 
 ## Deployment
-- **Railway**: `dflo-production.up.railway.app` (root dir: `v4`)
+- **Railway**: `dflo-production.up.railway.app` (root dir: `v4`) — 서버는 **도쿄 단일 리전**(`x-railway-edge: hnd1`)
+- **Cloudflare 앞단 프록시 (2026-07-25)**: `dr187growup.com` DNS 를 후이즈(whois.co.kr) → **Cloudflare(무료)** 네임서버로 이전(`kristina/sonny.ns.cloudflare.com`). apex·www CNAME(→ Railway `xr5zd4jj`/`zhvo50p2`) **Proxied(주황)**, SSL 모드 **Full (strict)**. Railway·코드 무변경(Cloudflare 는 Railway 앞에 낀 캐시 층). 전 세계 엣지에서 정적 자산 서빙 → 도쿄 왕복 제거(검증: 정적 자산 `cf-cache-status: HIT`, LAX 엣지 응답). ★MX 없음(이 도메인 이메일 미사용) → 네임서버 이전 시 사라진 MX 무시. ★콘텐츠 배포 후 안 바뀌면 Cloudflare **Caching → Purge Everything**. Full(strict)라 Railway cert 깨지면 502 가능(평소 무관). 상세 [[cloudflare_cdn_setup]]
+- **정적 자산 캐시 헤더 (2026-07-25, `vite.config.ts cacheHeaders` preview 미들웨어)**: `vite preview` 기본이 전부 `no-cache` 라 재방문·페이지이동마다 자산 재검증(도쿄 왕복). 확장자별 부여 — 이미지/폰트(webp·jpg·png·woff2…) `max-age=31536000 immutable` · CSS/JS·`/cases-data.json` `max-age=86400 must-revalidate` · **HTML·sitemap·robots 는 no-cache 유지**(콘텐츠·리다이렉트 즉시 반영). Cloudflare 가 이 헤더를 존중해 엣지 캐시. `seoRedirects` 와 같은 preview 미들웨어 방식(Railway serving).
+- **치료사례 뷰어 경량화 (2026-07-25)**: 공개 `cases.html` iframe 이 옛날엔 `/cases-embed`(**풀 SPA**: main·**supabase**·router·admin 부팅)를 로드 + R2 `website.json` 를 `?t=` 캐시우회로 매번 fetch. 데이터 불변이라 → **경량 Vite 엔트리** `cases-embed.html`+`src/cases-embed-main.tsx`(SectionCarousel 만 마운트, calc.html 플레이북 — supabase 0, ~181KB gzip incl Chart.js) + **빌드 때 R2 cases 섹션을 `public/cases-data.json` 로 굽기**(`build-i18n bakeCasesData`, gitignore, 뷰어가 이 동일오리진 파일 읽고 R2 미접근 · R2 URL 없거나 fetch 실패 시 skip→런타임 R2 폴백). 슬라이드 선택 로직 순수함수 `selectCaseSlides()`(경량 엔트리 + 레거시 `/cases-embed` 라우트 공유, 단위테스트). ⚠️어드민 편집분은 **다음 배포 때** 스냅샷 갱신(빌드 시점 R2 읽음).
 
 ## Current Progress
 
