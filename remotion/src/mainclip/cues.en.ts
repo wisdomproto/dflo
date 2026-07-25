@@ -115,43 +115,9 @@ export const CUES: Cue[] = [
     ],
   },
 
-  // ===== CUT 3 : 0:51–1:09 (Q1 — what makes us different) =====
-  {
-    kind: "qcard", from: 51.6, to: 54.0,
-    lines: [
-      { t: "What makes" },
-      { t: "Yonsei Saebom Clinic", strong: true },
-      { t: "different?", strong: true },
-    ],
-  },
-  { kind: "qbar", from: 54.0, to: 69.0, text: "What makes Yonsei Saebom Clinic different?" },
-  {
-    kind: "subtitle", from: 54.0, to: 56.2, tone: "white",
-    lines: [[{ t: "What makes us different?" }]],
-  },
-  {
-    kind: "subtitle", from: 56.2, to: 62.0, tone: "white",
-    lines: [
-      [{ t: "We don't manage " }, { t: "hormones", em: true }, { t: " alone." }],
-      [{ t: "We also manage nutrition, sleep, exercise and puberty." }],
-    ],
-  },
-  // 4 labels on the baked 2x2 image grid.
-  { kind: "label", from: 58.3, to: 62.6, text: "Nutrition", xPct: 56.5, yPct: 29.6, fontSize: 40, color: "#ffffff", outline: "#E79A2B", width: 300 },
-  { kind: "label", from: 58.9, to: 62.6, text: "Sleep", xPct: 79.2, yPct: 29.6, fontSize: 40, color: "#ffffff", outline: "#E79A2B", width: 300 },
-  { kind: "label", from: 59.5, to: 62.6, text: "Posture", xPct: 56.5, yPct: 61.6, fontSize: 40, color: "#ffffff", outline: "#E79A2B", width: 300 },
-  { kind: "label", from: 60.1, to: 62.6, text: "Puberty", xPct: 79.2, yPct: 61.6, fontSize: 40, color: "#ffffff", outline: "#E79A2B", width: 300 },
-  {
-    kind: "subtitle", from: 62.0, to: 69.0, tone: "white",
-    lines: [
-      [{ t: "Caring for every factor growth depends on, together" }],
-      [{ t: "— that is " }, { t: "what sets us apart", em: true }, { t: "." }],
-    ],
-  },
-
   // ===== CUT 5 : 1:41–2:20 (Q3 — the right time to treat) =====
   {
-    kind: "qcard", from: 101.0, to: 104.0,
+    kind: "qcard", from: 102.0, to: 104.0,
     lines: [
       { t: "When is the best time" },
       { t: "to start growth", strong: true },

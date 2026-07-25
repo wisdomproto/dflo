@@ -1,6 +1,6 @@
 {
   "fps": 30,
-  "newTotal": 208.786,
+  "newTotal": 188.995,
   "segments": [
     {
       "type": "keep",
@@ -127,80 +127,20 @@
     {
       "type": "skip",
       "s": 49.7,
-      "e": 51.5,
-      "origDur": 1.8,
+      "e": 102,
+      "origDur": 52.3,
       "newDur": 0,
       "speed": 0
     },
     {
       "type": "keep",
-      "s": 51.5,
-      "e": 54,
-      "origDur": 2.5,
-      "newDur": 2.5,
+      "s": 102,
+      "e": 104,
+      "origDur": 2,
+      "newDur": 2,
       "speed": 1,
       "newStart": 52.413,
-      "newEnd": 54.913
-    },
-    {
-      "type": "warp",
-      "line": "n09",
-      "s": 54,
-      "e": 56.2,
-      "forceDur": 2.2,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n09.wav",
-      "audioDur": 2.010958,
-      "origDur": 2.2,
-      "newDur": 2.2,
-      "speed": 1,
-      "newStart": 54.913,
-      "newEnd": 57.113
-    },
-    {
-      "type": "warp",
-      "line": "n10",
-      "s": 56.2,
-      "e": 62,
-      "forceDur": 7.091,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n10.wav",
-      "audioDur": 6.970958,
-      "origDur": 5.8,
-      "newDur": 7.091,
-      "speed": 0.8179,
-      "newStart": 57.113,
-      "newEnd": 64.204
-    },
-    {
-      "type": "warp",
-      "line": "n11",
-      "s": 62,
-      "e": 69,
-      "forceDur": 7,
-      "audioFile": "C:\\projects\\dflo_0.1\\remotion\\public\\audio\\mainclip\\en\\raw\\n11.wav",
-      "audioDur": 6.250958,
-      "origDur": 7,
-      "newDur": 7,
-      "speed": 1,
-      "newStart": 64.204,
-      "newEnd": 71.204
-    },
-    {
-      "type": "skip",
-      "s": 69,
-      "e": 101,
-      "origDur": 32,
-      "newDur": 0,
-      "speed": 0
-    },
-    {
-      "type": "keep",
-      "s": 101,
-      "e": 104,
-      "origDur": 3,
-      "newDur": 3,
-      "speed": 1,
-      "newStart": 71.204,
-      "newEnd": 74.204
+      "newEnd": 54.413
     },
     {
       "type": "warp",
@@ -213,8 +153,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 74.204,
-      "newEnd": 80.204
+      "newStart": 54.413,
+      "newEnd": 60.413
     },
     {
       "type": "warp",
@@ -227,8 +167,8 @@
       "origDur": 4,
       "newDur": 4.531,
       "speed": 0.8828,
-      "newStart": 80.204,
-      "newEnd": 84.735
+      "newStart": 60.413,
+      "newEnd": 64.944
     },
     {
       "type": "warp",
@@ -241,8 +181,8 @@
       "origDur": 5,
       "newDur": 5,
       "speed": 1,
-      "newStart": 84.735,
-      "newEnd": 89.735
+      "newStart": 64.944,
+      "newEnd": 69.944
     },
     {
       "type": "warp",
@@ -255,8 +195,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 89.735,
-      "newEnd": 95.735
+      "newStart": 69.944,
+      "newEnd": 75.944
     },
     {
       "type": "warp",
@@ -269,8 +209,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 95.735,
-      "newEnd": 98.735
+      "newStart": 75.944,
+      "newEnd": 78.944
     },
     {
       "type": "warp",
@@ -283,8 +223,8 @@
       "origDur": 3.5,
       "newDur": 3.5,
       "speed": 1,
-      "newStart": 98.735,
-      "newEnd": 102.235
+      "newStart": 78.944,
+      "newEnd": 82.444
     },
     {
       "type": "warp",
@@ -297,8 +237,8 @@
       "origDur": 5.5,
       "newDur": 5.5,
       "speed": 1,
-      "newStart": 102.235,
-      "newEnd": 107.735
+      "newStart": 82.444,
+      "newEnd": 87.944
     },
     {
       "type": "warp",
@@ -311,8 +251,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 107.735,
-      "newEnd": 110.735
+      "newStart": 87.944,
+      "newEnd": 90.944
     },
     {
       "type": "keep",
@@ -321,8 +261,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 110.735,
-      "newEnd": 113.735
+      "newStart": 90.944,
+      "newEnd": 93.944
     },
     {
       "type": "warp",
@@ -335,8 +275,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 113.735,
-      "newEnd": 119.735
+      "newStart": 93.944,
+      "newEnd": 99.944
     },
     {
       "type": "warp",
@@ -349,8 +289,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 119.735,
-      "newEnd": 122.735
+      "newStart": 99.944,
+      "newEnd": 102.944
     },
     {
       "type": "warp",
@@ -363,8 +303,8 @@
       "origDur": 5,
       "newDur": 5.051,
       "speed": 0.9899,
-      "newStart": 122.735,
-      "newEnd": 127.786
+      "newStart": 102.944,
+      "newEnd": 107.995
     },
     {
       "type": "warp",
@@ -377,8 +317,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 127.786,
-      "newEnd": 134.786
+      "newStart": 107.995,
+      "newEnd": 114.995
     },
     {
       "type": "keep",
@@ -387,8 +327,8 @@
       "origDur": 3,
       "newDur": 3,
       "speed": 1,
-      "newStart": 134.786,
-      "newEnd": 137.786
+      "newStart": 114.995,
+      "newEnd": 117.995
     },
     {
       "type": "warp",
@@ -401,8 +341,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 137.786,
-      "newEnd": 144.786
+      "newStart": 117.995,
+      "newEnd": 124.995
     },
     {
       "type": "warp",
@@ -415,8 +355,8 @@
       "origDur": 5,
       "newDur": 5,
       "speed": 1,
-      "newStart": 144.786,
-      "newEnd": 149.786
+      "newStart": 124.995,
+      "newEnd": 129.995
     },
     {
       "type": "warp",
@@ -429,8 +369,8 @@
       "origDur": 4,
       "newDur": 4,
       "speed": 1,
-      "newStart": 149.786,
-      "newEnd": 153.786
+      "newStart": 129.995,
+      "newEnd": 133.995
     },
     {
       "type": "warp",
@@ -443,8 +383,8 @@
       "origDur": 8,
       "newDur": 8,
       "speed": 1,
-      "newStart": 153.786,
-      "newEnd": 161.786
+      "newStart": 133.995,
+      "newEnd": 141.995
     },
     {
       "type": "warp",
@@ -457,8 +397,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 161.786,
-      "newEnd": 168.786
+      "newStart": 141.995,
+      "newEnd": 148.995
     },
     {
       "type": "warp",
@@ -471,8 +411,8 @@
       "origDur": 11,
       "newDur": 11,
       "speed": 1,
-      "newStart": 168.786,
-      "newEnd": 179.786
+      "newStart": 148.995,
+      "newEnd": 159.995
     },
     {
       "type": "warp",
@@ -485,8 +425,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 179.786,
-      "newEnd": 186.786
+      "newStart": 159.995,
+      "newEnd": 166.995
     },
     {
       "type": "keep",
@@ -495,8 +435,8 @@
       "origDur": 1,
       "newDur": 1,
       "speed": 1,
-      "newStart": 186.786,
-      "newEnd": 187.786
+      "newStart": 166.995,
+      "newEnd": 167.995
     },
     {
       "type": "warp",
@@ -509,8 +449,8 @@
       "origDur": 8,
       "newDur": 8,
       "speed": 1,
-      "newStart": 187.786,
-      "newEnd": 195.786
+      "newStart": 167.995,
+      "newEnd": 175.995
     },
     {
       "type": "warp",
@@ -523,8 +463,8 @@
       "origDur": 7,
       "newDur": 7,
       "speed": 1,
-      "newStart": 195.786,
-      "newEnd": 202.786
+      "newStart": 175.995,
+      "newEnd": 182.995
     },
     {
       "type": "warp",
@@ -537,8 +477,8 @@
       "origDur": 6,
       "newDur": 6,
       "speed": 1,
-      "newStart": 202.786,
-      "newEnd": 208.786
+      "newStart": 182.995,
+      "newEnd": 188.995
     }
   ]
 }
