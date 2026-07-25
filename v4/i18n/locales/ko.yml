@@ -579,7 +579,7 @@ shell:
     clinic: "병원 소개"
     cases: "치료 사례"
     blog: "블로그"
-    calc: "예상키 측정"
+    calc: "예상키 계산기"
     consult: "1:1 상담"
   consult:
     title: "1:1 상담"

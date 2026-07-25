@@ -608,7 +608,7 @@ shell:
     clinic: "Clínica"
     cases: "Casos"
     blog: "Blog"
-    calc: "Evaluación gratis"
+    calc: "Calculadora de estatura"
     consult: "Consulta 1:1"
   consult:
     title: "Consulta 1:1"

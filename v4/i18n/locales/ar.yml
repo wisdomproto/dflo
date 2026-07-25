@@ -613,7 +613,7 @@ shell:
     clinic: "العيادة"
     cases: "الحالات"
     blog: "المدونة"
-    calc: "فحص مجاني"
+    calc: "حاسبة الطول"
     consult: "استشارة فردية"
   consult:
     title: "استشارة فردية"

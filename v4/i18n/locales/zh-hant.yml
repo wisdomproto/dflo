@@ -610,7 +610,7 @@ shell:
     clinic: "診所"
     cases: "案例"
     blog: "部落格"
-    calc: "免費檢查"
+    calc: "身高計算機"
     consult: "1 對 1 諮詢"
   consult:
     title: "1 對 1 諮詢"

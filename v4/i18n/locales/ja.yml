@@ -608,7 +608,7 @@ shell:
     clinic: "クリニック"
     cases: "治療事例"
     blog: "ブログ"
-    calc: "無料チェック"
+    calc: "身長計算機"
     consult: "1:1相談"
   consult:
     title: "1:1相談"

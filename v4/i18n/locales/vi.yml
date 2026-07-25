@@ -610,7 +610,7 @@ shell:
     clinic: "Phòng khám"
     cases: "Ca điều trị"
     blog: "Bài viết"
-    calc: "Đo miễn phí"
+    calc: "Tính chiều cao"
     consult: "Tư vấn 1:1"
   consult:
     title: "Tư vấn 1:1"

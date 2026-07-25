@@ -607,7 +607,7 @@ shell:
     clinic: "คลินิก"
     cases: "เคสรักษา"
     blog: "บทความ"
-    calc: "วัดส่วนสูง"
+    calc: "คำนวณส่วนสูง"
     consult: "ปรึกษา 1:1"
   consult:
     title: "ปรึกษา 1:1"
