@@ -618,7 +618,7 @@ shell:
     clinic: "Clinic"
     cases: "Cases"
     blog: "Blog"
-    calc: "Height calculator"
+    calc: "Height Calc"
     consult: "1:1 Consulting"
   consult:
     title: "1:1 Consulting"
