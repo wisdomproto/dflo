@@ -99,18 +99,33 @@
   .intro p { font-size: 16px; color: var(--muted); line-height: 1.82; }
   .intro strong, .lead strong { color: var(--ink); font-weight: 800; }
 
-  /* compare image (ko only) sits full-width right under INTRO.
-     A tinted mat wraps the image so the white top-right (187 logo) reads
-     as an intentional panel instead of floating on the page background. */
-  .compare-card {
-    margin-top: 6px;
-    background: var(--brand-soft);
-    border: 1px solid var(--hairline);
-    border-radius: 18px;
-    padding: 12px;
-    box-shadow: 0 8px 28px rgba(36, 81, 196, 0.12);
+  /* ===== 통합 성장 관리 6축 (네이티브 <details>, name 공유로 하나만 열림 — JS 없음) ===== */
+  .care-axes {
+    display: flex; flex-direction: column; gap: 12px;
+    max-width: 520px; margin: 8px auto 12px; padding: 0 4px;
   }
-  .compare-card .compare-img { display: block; border-radius: 10px; }
+  .care-axis {
+    background: var(--brand-soft); border: 1px solid rgba(36,81,196,0.16);
+    border-radius: 16px; overflow: hidden;
+  }
+  .care-axis summary {
+    display: flex; align-items: center; gap: 14px;
+    padding: 17px 22px; cursor: pointer; list-style: none;
+    font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.4;
+  }
+  .care-axis summary::-webkit-details-marker { display: none; }
+  .care-name { flex: 1; }
+  .care-ico { flex: none; width: 24px; height: 24px; color: var(--brand); }
+  .care-caret {
+    flex: none; width: 17px; height: 17px; color: var(--brand);
+    transition: transform 0.18s ease;
+  }
+  .care-axis[open] .care-caret { transform: rotate(180deg); }
+  .care-body {
+    font-size: 14px; color: var(--body); line-height: 1.8;
+    margin: 0 22px 20px; padding-top: 14px;
+    border-top: 1px dashed rgba(36,81,196,0.22);
+  }
 
   section[id] { position: relative; padding-top: 64px; }
   section[id]::before {
@@ -161,65 +176,10 @@
     .sec-head h3 { font-size: 20px; }
   }
 
-  .subhead {
-    margin: 34px 24px 18px;
-    padding-left: 12px;
-    border-left: 3px solid var(--accent);
-    font-size: 16px; font-weight: 800; color: var(--ink);
-    letter-spacing: -0.4px;
-  }
-
   /* ================= SECTION COLORS ================= */
-  #hormone    { --accent: #2451c4; }
-  #obesity    { --accent: #1f8f8d; }
-  #precocious { --accent: #9f3f7f; }
-  #proportion { --accent: #a97432; }
-  #bodywork   { --accent: #b95324; }
-  #late       { --accent: #5f4aa0; }
-  #process    { --accent: #2451c4; }
-
-  /* ================= CASE NAV - STICKY ================= */
-  .case-nav {
-    position: -webkit-sticky;
-    position: sticky;
-    /* fixed 헤더(t-header, 52px) 아래에 멈추도록 보정 */
-    top: 52px;
-    z-index: 30;
-    width: 100%;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-    transition: box-shadow 0.2s ease;
-  }
-  .case-nav.is-stuck { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-
-  .case-nav .scroll {
-    display: flex; gap: 8px; overflow-x: auto;
-    padding: 10px 16px;
-    scroll-snap-type: x mandatory;
-    -ms-overflow-style: none; scrollbar-width: none;
-  }
-  .case-nav .scroll::-webkit-scrollbar { display: none; }
-
-  .case-nav a {
-    flex: none; display: inline-flex;
-    align-items: center; justify-content: center;
-    padding: 8px 15px; border-radius: 999px;
-    border: 1px solid var(--hairline); background: #fff;
-    color: var(--muted);
-    font-size: 13.5px; font-weight: 700; line-height: 1;
-    text-decoration: none; white-space: nowrap;
-    scroll-snap-align: center;
-    transition: all 0.16s ease;
-  }
-  .case-nav a.active {
-    background: var(--brand);
-    border-color: var(--brand);
-    color: #fff;
-    box-shadow: 0 3px 8px rgba(36,81,196,0.18);
-  }
+  #hormone { --accent: #2451c4; }
+  #clinic  { --accent: #6B3FA0; }
+  #process { --accent: #2451c4; }
 
   /* ================= CHECK LIST ================= */
   .need-list {
@@ -242,173 +202,6 @@
     font-weight: 700; line-height: 1.45;
     word-break: keep-all;
   }
-
-  /* ================= CARD COMMON ================= */
-  .solution-img, .equipment-block, .chart-block {
-    padding: 0 16px;
-  }
-
-  .features-3, .life-list {
-    display: flex; flex-direction: column; gap: 12px; padding: 8px 20px 0;
-  }
-  .feature-3, .life-card {
-    display: flex; background: #fff;
-    border: 1px solid var(--hairline);
-    border-radius: 8px; overflow: hidden;
-  }
-  .feature-3 .photo, .life-card .photo {
-    flex: 0 0 38%; aspect-ratio: 4/3; background: var(--soft);
-  }
-  .feature-3 img, .life-card img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .feature-3 .body, .life-card .body {
-    flex: 1; padding: 15px 16px;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .feature-3 .num, .life-card .num {
-    font-size: 13px; font-weight: 800; color: var(--accent);
-    margin-bottom: 4px; letter-spacing: 0.3px;
-  }
-  .feature-3 h4, .life-card h4 {
-    font-size: 16px; font-weight: 800; color: var(--ink);
-    margin-bottom: 4px; letter-spacing: -0.3px;
-  }
-  .feature-3 p, .life-card .desc {
-    font-size: 13.5px; color: var(--body); line-height: 1.6;
-  }
-
-  /* ================= PANELS / GRIDS ================= */
-  .panel-bordered, .bmi-panel {
-    border: 1px solid var(--hairline);
-    border-radius: 6px;
-    margin: 0 20px 16px;
-    overflow: hidden;
-    background: #fff;
-  }
-  .panel-bordered { padding: 24px 14px 14px; text-align: center; }
-  .panel-bordered .ctitle {
-    font-size: 16px; font-weight: 800; color: var(--ink);
-    margin-bottom: 4px; letter-spacing: -0.3px;
-  }
-  .panel-bordered .csrc { font-size: 12.5px; color: var(--muted); margin-bottom: 4px; }
-  .panel-bordered .cunit {
-    font-size: 12.5px; color: var(--muted);
-    text-align: right; margin-bottom: 6px;
-  }
-
-  .arrow-illust { padding: 0 20px 16px; }
-  .arrow-illust img,
-  .equipment-block img,
-  .compare-block img { border-radius: 6px; }
-  .equipment-block img { margin-bottom: 8px; }
-
-  .cause-grid-2, .problem-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 24px 12px; padding: 0 20px;
-  }
-  .cause-grid-3 {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 24px 14px; padding: 0 20px;
-  }
-  @media (min-width: 560px) {
-    .cause-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  }
-  .cause-grid-2 .item, .cause-grid-3 .item, .problem-grid .item { text-align: center; }
-
-  .cause-grid-2 .photo {
-    width: 100%; aspect-ratio: 1/1; overflow: hidden;
-    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
-  }
-  .cause-grid-3 .photo {
-    width: 100%; aspect-ratio: 4/5; overflow: hidden;
-    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
-  }
-  .problem-grid .photo {
-    width: 100%; aspect-ratio: 4/3; overflow: hidden;
-    border-radius: 6px; background: var(--soft); margin-bottom: 10px;
-  }
-  .cause-grid-2 img, .cause-grid-3 img, .problem-grid img {
-    width: 100%; height: 100%; object-fit: cover;
-  }
-  .cause-grid-2 h4 {
-    font-size: 14px; font-weight: 800; color: var(--ink);
-    margin-bottom: 4px; letter-spacing: -0.3px;
-  }
-  .cause-grid-2 .desc, .cause-grid-3 .cap {
-    font-size: 13px; color: var(--body); line-height: 1.55;
-    word-break: keep-all; text-wrap: balance;
-  }
-
-  .risk-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 20px 12px; padding: 0 20px;
-  }
-  @media (min-width: 480px) {
-    .risk-grid { grid-template-columns: repeat(4, 1fr); }
-  }
-  .risk-grid .item { text-align: center; }
-  .risk-grid .photo {
-    width: 100%; aspect-ratio: 1/1; overflow: hidden;
-    border-radius: 50%; background: var(--soft); margin-bottom: 10px;
-  }
-  .risk-grid img { width: 100%; height: 100%; object-fit: cover; }
-  .risk-grid h4 {
-    font-size: 14px; font-weight: 800; color: var(--ink);
-    margin-bottom: 3px; letter-spacing: -0.2px;
-  }
-  .risk-grid .desc { font-size: 13px; color: var(--body); line-height: 1.55; }
-
-  /* ================= PROPORTION / LATE ================= */
-  .compare-block { padding: 32px 20px 0; }
-  .compare-quote {
-    margin: 16px 20px 0; padding: 18px 20px;
-    background: var(--soft); border-radius: 8px;
-    text-align: center;
-  }
-  .compare-quote q {
-    display: block; quotes: none;
-    font-size: 14px; font-style: italic;
-    color: var(--ink); font-weight: 500; line-height: 1.7;
-  }
-  .compare-quote q::before { content: '"'; }
-  .compare-quote q::after { content: '"'; }
-
-  .problem-grid .cap {
-    font-size: 14px; color: var(--ink);
-    font-weight: 700; letter-spacing: -0.2px;
-  }
-  .problem-grid .strong { font-weight: 800; }
-
-  .program-tags {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 8px; padding: 8px 24px 0;
-  }
-  .program-tags .tag {
-    background: var(--soft); text-align: center;
-    padding: 14px 8px; font-size: 13.5px; font-weight: 700;
-    color: var(--ink); border-radius: 6px; letter-spacing: -0.2px;
-  }
-
-  .chart-block { padding-top: 24px; }
-  .table-block { padding: 0 24px; }
-  table.speed { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-  table.speed th, table.speed td {
-    border: 1px solid var(--hairline); padding: 10px 6px; text-align: center;
-  }
-  table.speed th { background: #fafafa; font-weight: 800; color: var(--ink); }
-
-  .feat-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 16px 8px; padding: 32px 16px 0;
-  }
-  .feat-grid .item { text-align: center; }
-  .feat-grid .photo {
-    width: 100%; aspect-ratio: 4/5; overflow: hidden;
-    border-radius: 6px; background: var(--soft); margin-bottom: 8px;
-  }
-  .feat-grid img { width: 100%; height: 100%; object-fit: cover; }
-  .feat-grid .cap { font-size: 13px; color: var(--body); line-height: 1.45; }
 
   /* ================= PROCESS / DIRECTOR / CTA ================= */
   .process { padding: 64px 0 36px; text-align: center; }
@@ -453,23 +246,6 @@
   }
   .pdesc:empty { display: none; }
 
-  .director {
-    padding: 36px 24px 58px;
-    display: grid; grid-template-columns: 1fr auto;
-    gap: 16px; align-items: end;
-  }
-  .director .quote h3 {
-    font-size: 19px; font-weight: 600; color: var(--ink);
-    line-height: 1.55; margin-bottom: 18px; letter-spacing: -0.6px;
-  }
-  .director .quote h3 .strong { font-weight: 800; }
-  .director .quote p { font-size: 13.5px; color: var(--body); line-height: 1.82; }
-  .director .portrait { width: 130px; align-self: end; }
-  @media (min-width: 640px) {
-    .director .quote h3 { font-size: 21px; }
-    .director .portrait { width: 160px; }
-  }
-
   .cta-bottom {
     background: var(--soft); text-align: center;
     padding: 44px 24px 58px;
@@ -494,31 +270,149 @@
     background: #4A2D6B; color: #fff;
   }
 
-  /* ===== Inline luxury CTA at the end of each case section ===== */
-  .case-cta-inline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: #4A2D6B;
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.03em;
-    padding: 17px 22px;
-    border-radius: 2px;
-    text-decoration: none;
-    margin: 40px 0 12px;
-    transition: background 0.2s ease, transform 0.15s ease;
-    line-height: 1.45;
+  /* ================= CLINIC (병원 소개 — clinic.html 흡수) ================= */
+  .brand-band {
     text-align: center;
+    padding: 38px 24px 30px;
+    background: linear-gradient(180deg, #faf7f2 0%, #ffffff 100%);
+    border-bottom: 1px solid #efe7da;
   }
-  .case-cta-inline:hover { background: #2E1A48; }
-  .case-cta-inline:active { transform: scale(0.99); }
-  .case-cta-inline .arrow {
-    font-size: 16px;
-    flex-shrink: 0;
-    font-weight: 400;
+  .brand-band .brand-lockup {
+    display: flex; align-items: center; justify-content: center;
+    gap: 14px; margin: 0 auto 16px;
+  }
+  .brand-band .brand-lockup img { width: auto; display: block; flex: none; }
+  .brand-band .brand-lockup a { display: flex; flex: none; text-decoration: none; }
+  .brand-band .brand-lockup .lk-saebom { height: 46px; }
+  .brand-band .brand-lockup .lk-187 { height: 30px; }
+  .brand-band .brand-lockup .lk-divider { flex: none; width: 1px; height: 34px; background: #ddd2bf; }
+  .brand-band .brand-body {
+    font-size: 13.5px; color: #5a5a5a; line-height: 1.78;
+    max-width: 540px; margin: 0 auto;
+  }
+  .brand-band .brand-body strong { color: #2a2a2a; font-weight: 800; }
+  .b187 { color: #6B3FA0; }
+
+  .doctor-card {
+    padding: 32px 24px 24px; text-align: center;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .doctor-card img.portrait {
+    width: 140px; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 14px; margin: 0 auto 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+  .doctor-card .name { font-size: 22px; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; }
+  /* margin-inline-start: RTL(아랍어)에서 이름과 직함이 붙어버리지 않게 논리 속성 사용 */
+  .doctor-card .name .title { font-size: 14px; font-weight: 600; color: #777; margin-inline-start: 6px; }
+  .doctor-card .quote {
+    font-size: 14px; color: #6B3FA0; font-weight: 500;
+    margin-top: 10px; font-style: italic; line-height: 1.55;
+  }
+  .doctor-card .profile {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+    margin-top: 20px; text-align: left; background: var(--soft);
+    padding: 16px 18px; border-radius: 12px;
+  }
+  .doctor-card .profile li {
+    list-style: none; font-size: 12.5px; color: #555;
+    padding-left: 14px; position: relative; line-height: 1.55;
+  }
+  .doctor-card .profile li::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 5px; height: 5px; border-radius: 50%; background: #6B3FA0;
+  }
+
+  .clinic-intro { padding: 32px 24px; border-bottom: 1px solid var(--hairline); }
+  .clinic-intro p { font-size: 14px; color: #555; line-height: 1.75; }
+  .clinic-intro p + p { margin-top: 12px; }
+  .clinic-intro .intro-stats { display: flex; gap: 12px; margin: 0 0 18px; }
+  .clinic-intro .intro-stats .stat {
+    flex: 1; text-align: center; padding: 16px 10px; border-radius: 14px;
+    background: linear-gradient(135deg, #667eea, #764ba2); color: #fff;
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.25);
+  }
+  .clinic-intro .intro-stats .stat-num { font-size: 27px; font-weight: 900; letter-spacing: -0.5px; line-height: 1.1; }
+  .clinic-intro .intro-stats .stat-label { font-size: 12px; font-weight: 600; opacity: 0.92; margin-top: 5px; }
+
+  /* 원격 진료 안내 — locale 의 clinic.remote_consult 배열이 비어있지 않은 경우(해외)만 렌더 */
+  .remote-consult { padding: 32px 24px; border-bottom: 1px solid var(--hairline); background: #faf7fd; }
+  .remote-consult h3 { font-size: 18px; font-weight: 900; color: #4A2D6B; letter-spacing: -0.4px; margin-bottom: 6px; }
+  .remote-consult .rc-intro { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 22px; }
+  .remote-consult ol { list-style: none; counter-reset: rc; }
+  .remote-consult li { position: relative; padding-left: 44px; padding-bottom: 20px; }
+  .remote-consult li:last-child { padding-bottom: 0; }
+  .remote-consult li::before {
+    content: counter(rc); counter-increment: rc;
+    position: absolute; left: 0; top: 0;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: #6B3FA0; color: #fff;
+    font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .remote-consult li:not(:last-child)::after {
+    content: ''; position: absolute; left: 14px; top: 34px; bottom: 2px;
+    width: 2px; background: #e0d3f0;
+  }
+  .remote-consult .rc-label { font-size: 14.5px; font-weight: 800; color: #222; }
+  .remote-consult .rc-desc { font-size: 13px; color: #666; margin-top: 3px; line-height: 1.6; }
+  .remote-consult .rc-office {
+    margin-top: 22px; background: #fff; border: 1px solid #e8ddf4;
+    border-radius: 12px; padding: 14px 16px;
+  }
+  .remote-consult .rc-office .o-label { font-size: 12px; font-weight: 700; color: #6B3FA0; }
+  .remote-consult .rc-office .o-addr { font-size: 13px; color: #555; margin-top: 4px; line-height: 1.5; }
+  .remote-consult .rc-foot { font-size: 12.5px; color: #777; margin-top: 14px; line-height: 1.65; }
+
+  .video-section { padding: 32px 24px; border-bottom: 1px solid var(--hairline); }
+  .video-section h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin-bottom: 14px; }
+  .video-section .frame {
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    border-radius: 12px; overflow: hidden; background: #000;
+  }
+  .video-section .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-note { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
+
+  .facility { padding: 32px 0 32px; border-bottom: 1px solid var(--hairline); }
+  .facility h3 { font-size: 17px; font-weight: 800; color: var(--ink); margin: 0 24px 14px; }
+  .facility-strip {
+    display: flex; gap: 12px; overflow-x: auto; padding: 0 24px 10px;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .facility-strip::-webkit-scrollbar { display: none; }
+  .facility-strip figure {
+    flex: 0 0 78%; max-width: 340px; margin: 0;
+    scroll-snap-align: center;
+  }
+  .facility-strip img {
+    width: 100%; height: auto; border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+  }
+  .facility-strip figcaption {
+    font-size: 12.5px; font-weight: 700; color: var(--muted);
+    margin-top: 8px; text-align: center;
+  }
+
+  .contact-card {
+    margin: 24px; background: #f3edfa; border-radius: 14px;
+    padding: 22px 20px; text-align: center;
+  }
+  .contact-card .label { font-size: 12px; color: #6B3FA0; font-weight: 700; letter-spacing: 0.5px; }
+  .contact-card .phone {
+    display: block; font-size: 28px; font-weight: 900; color: #6B3FA0;
+    margin-top: 4px; text-decoration: none; letter-spacing: -0.5px;
+  }
+  .contact-card .addr { font-size: 12px; color: #777; margin-top: 8px; line-height: 1.5; }
+
+  @media (min-width: 640px) {
+    .doctor-card { padding: 48px 24px 32px; }
+    .doctor-card img.portrait { width: 180px; }
+    .doctor-card .name { font-size: 26px; }
+    .clinic-intro .intro-stats .stat-num { font-size: 32px; }
+    .clinic-intro .intro-stats .stat-label { font-size: 13px; }
+    .video-section h3, .facility h3 { font-size: 19px; }
+    .facility-strip figure { flex-basis: 46%; }
   }
 
   /* ================= PC 적응형 — 가독성 (중앙 카드 + 타이포 확대) =================
@@ -539,34 +433,48 @@
     .sec-eyebrow::after { width: 48px; height: 3.5px; margin-top: 14px; }
     .sec-head h3 { font-size: 22px; }
     .sec-head .lead { font-size: 16.5px; }
-    .subhead { font-size: 17.5px; }
     .need-list { max-width: 560px; margin: 0 auto; }
     .need-item { padding: 14px 20px; gap: 18px; }
     .need-ico { flex-basis: 60px; width: 60px; height: 60px; }
     .need-txt { font-size: 18px; }
-    .feature-3 h4, .life-card h4 { font-size: 17px; }
-    .feature-3 p, .life-card .desc { font-size: 14.5px; }
-    .feature-3 .num, .life-card .num { font-size: 13.5px; }
-    .cause-grid-2 h4 { font-size: 16px; }
-    .cause-grid-2 .desc, .cause-grid-3 .cap { font-size: 14px; }
-    .risk-grid h4 { font-size: 16px; }
-    .risk-grid .desc { font-size: 14px; }
-    .problem-grid .cap { font-size: 15.5px; }
-    .program-tags .tag { font-size: 16px; }
-    table.speed { font-size: 16px; }
-    table.speed th, table.speed td { padding: 12px 8px; }
-    .feat-grid .cap { font-size: 14px; }
-    .panel-bordered .ctitle { font-size: 18px; }
-    .compare-quote q { font-size: 16px; }
-    .director .quote h3 { font-size: 24px; }
-    .director .quote p { font-size: 14.5px; }
-    .director .portrait { width: 170px; }
+    .brand-band { padding: 52px 32px 40px; }
+    .brand-band .brand-lockup { gap: 22px; }
+    .brand-band .brand-lockup .lk-saebom { height: 58px; }
+    .brand-band .brand-lockup .lk-187 { height: 38px; }
+    .brand-band .brand-lockup .lk-divider { height: 42px; }
+    .brand-band .brand-body { font-size: 15.5px; }
+    .doctor-card { padding: 56px 32px 36px; }
+    .doctor-card img.portrait { width: 200px; }
+    .doctor-card .name { font-size: 30px; }
+    .doctor-card .name .title { font-size: 15px; }
+    .doctor-card .quote { font-size: 16px; }
+    .doctor-card .profile li { font-size: 14.5px; }
+    .video-note { font-size: 13px; }
+    .clinic-intro { padding: 40px 32px; }
+    .clinic-intro p { font-size: 16.5px; }
+    .video-section { padding: 40px 32px; }
+    .video-section h3, .facility h3 { font-size: 22px; }
+    .facility { padding: 40px 0; }
+    .facility h3 { margin: 0 32px 14px; }
+    .facility-strip { padding: 0 32px 12px; }
+    .facility-strip figcaption { font-size: 14px; }
+    .remote-consult { padding: 40px 32px; }
+    .remote-consult h3 { font-size: 24px; }
+    .remote-consult .rc-intro { font-size: 16px; }
+    .remote-consult .rc-label { font-size: 16px; }
+    .remote-consult .rc-desc { font-size: 14.5px; }
+    .remote-consult .rc-office .o-addr { font-size: 14px; }
+    .remote-consult .rc-foot { font-size: 13.5px; }
+    .contact-card { margin: 32px; padding: 28px 24px; }
+    .contact-card .label { font-size: 13px; }
+    .contact-card .phone { font-size: 34px; }
+    .contact-card .addr { font-size: 14px; }
+    .care-axis summary { font-size: 16.5px; padding: 19px 26px; }
+    .care-body { font-size: 15.5px; margin: 0 26px 22px; }
+    .care-ico { width: 26px; height: 26px; }
     .cta-bottom h4 { font-size: 26px; }
     .cta-bottom p { font-size: 16.5px; }
     .cta-bottom a { font-size: 17px; padding: 16px 40px; }
-    .case-cta-inline { font-size: 16px; padding: 19px 26px; }
-    .case-nav .scroll { padding: 12px 16px; }
-    .case-nav a { font-size: 16px; padding: 10px 20px; }
   }
   /* ===== TREATMENT CASES (home, social proof right after differentiation) ===== */
   .home-cases { padding: 6px 20px 10px; }
@@ -609,25 +517,6 @@
     </p>
   </section>
 
-  <!-- ================= TRUST TEASER (lobby: 원장 + 실적 + 측정 버튼, 첫 화면 신뢰·행동) ================= -->
-  <section class="home-trust">
-    <div class="ht-panel">
-      <div class="ht-top">
-        <img class="ht-photo" src="/programs/images/growth-hormone-balance/director.jpg" alt="{{clinic.doctor.portrait_alt}}">
-        <div class="ht-info">
-          <span class="ht-eyebrow">{{clinic.doctor.intro_label}}</span>
-          <span class="ht-name">{{clinic.doctor.name}}<span class="suf">{{clinic.doctor.name_suffix}}</span></span>
-          <span class="ht-cred">{{clinic.doctor.profile.0}}</span>
-          <a class="ht-link" href="/{{meta.lang}}/clinic.html">{{shell.nav.clinic}} →</a>
-        </div>
-      </div>
-      <div class="ht-stats">
-        <div><strong>{{clinic.intro.stat_cases_num}}</strong>{{clinic.intro.stat_cases_label}}</div>
-        <div><strong>{{clinic.intro.stat_success_num}}</strong>{{clinic.intro.stat_success_label}}</div>
-      </div>
-      <a class="ht-cta" href="/{{meta.lang}}/clinic.html">{{cta_global.clinic_more}} <span class="arr">→</span></a>
-    </div>
-  </section>
 
   <!-- hero image — visual payoff right after the hope message -->
   <img class="full-img" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
@@ -677,14 +566,57 @@
       </p>
     </div>
 
-    <!-- COMPARE (1-vs-6 image) — the single integrated-care visual.
-         Replaces the old 6-icon solution-diagram + "3가지 핵심 관리" cards (both redundant: the
-         1-vs-6 right half already lists the 6 areas; 사춘기/체중 have dedicated case sections below). -->
-    {{#each compare}}
-    <div class="compare-card">
-      <img class="full-img compare-img" src="/programs/images/growth-hormone-balance/compare-1vs6.webp" alt="{{img_alt}}">
+    <!-- 통합 성장 관리 6축 — 옛 compare-1vs6.webp(베이크 이미지) 대체. 인라인 SVG 아이콘. -->
+    <div class="care-axes">
+      <details class="care-axis" name="care">
+        <summary>
+          <svg class="care-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4l2.5-7 4 14 2.5-7H22"/></svg>
+          <span class="care-name">{{compare.axes.0}}</span>
+          <svg class="care-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="care-body">{{compare.bodies.0}}</p>
+      </details>
+      <details class="care-axis" name="care">
+        <summary>
+          <svg class="care-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/><path d="M12 11v5"/><path d="M9.5 13.5h5"/></svg>
+          <span class="care-name">{{compare.axes.1}}</span>
+          <svg class="care-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="care-body">{{compare.bodies.1}}</p>
+      </details>
+      <details class="care-axis" name="care">
+        <summary>
+          <svg class="care-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a7.5 7.5 0 1010.5 10.5z"/><path d="M16.5 4.2l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z"/></svg>
+          <span class="care-name">{{compare.axes.2}}</span>
+          <svg class="care-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="care-body">{{compare.bodies.2}}</p>
+      </details>
+      <details class="care-axis" name="care">
+        <summary>
+          <svg class="care-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8.5c1.6-2 4-2.2 5.4-.8 1.7 1.7 1.2 5.2-1 8-1.3 1.7-2.8 3-4.4 3s-3.1-1.3-4.4-3c-2.2-2.8-2.7-6.3-1-8 1.4-1.4 3.8-1.2 5.4.8z"/><path d="M12 8.5V5"/><path d="M12 5c1.6 0 2.6-1 2.8-2.4-1.5-.2-2.6.6-2.8 2.4z"/></svg>
+          <span class="care-name">{{compare.axes.3}}</span>
+          <svg class="care-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="care-body">{{compare.bodies.3}}</p>
+      </details>
+      <details class="care-axis" name="care">
+        <summary>
+          <svg class="care-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6M7 7v10M17 7v10M20 9v6"/><path d="M7 12h10"/></svg>
+          <span class="care-name">{{compare.axes.4}}</span>
+          <svg class="care-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="care-body">{{compare.bodies.4}}</p>
+      </details>
+      <details class="care-axis" name="care">
+        <summary>
+          <svg class="care-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M9 5.5h6M9 9h6M9 12.5h6M9 16h6M9 19.5h6"/></svg>
+          <span class="care-name">{{compare.axes.5}}</span>
+          <svg class="care-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="care-body">{{compare.bodies.5}}</p>
+      </details>
     </div>
-    {{/each}}
 
   </section>
 
@@ -715,313 +647,131 @@
     <a class="home-cases-all" href="cases.html">{{shell.nav.cases}} &rarr;</a>
   </section>
 
-  <!-- ================= CASE INTRO ================= -->
-  <section class="intro">
-    <h2>{{intro2.heading_line1}}<br><span class="accent">{{intro2.heading_accent}}</span></h2>
-    <p>
-      {{intro2.body}}
-    </p>
-  </section>
-
-  <!-- ================= CASE NAV (sticky) ================= -->
-  <nav class="case-nav" id="caseNav" aria-label="{{casenav.aria_label}}">
-    <div class="scroll">
-      {{#each casenav.links}}
-      <a href="{{href}}">{{label}}</a>
-      {{/each}}
-    </div>
-  </nav>
-
-  <!-- ================= PRECOCIOUS ================= -->
-  <section id="precocious">
-    <h2 class="sec-eyebrow">{{precocious.eyebrow}}</h2>
+  <!-- ================= CLINIC (병원 소개 — clinic.html 흡수, 2026-07-24) ================= -->
+  <section id="clinic">
     <div class="sec-head">
-      <h3>
-        {{precocious.heading_line1}}<br>
-        <span class="accent">{{precocious.heading_accent}}</span>{{precocious.heading_line2}}
-      </h3>
-      <p class="lead">
-        {{precocious.lead}}
-      </p>
+      <h2 class="sec-eyebrow">{{clinic.intro.h2}}</h2>
     </div>
 
-    {{#each precocious.chart_panel}}
-    <div class="panel-bordered">
-      <div class="ctitle">{{ctitle}}</div>
-      <div class="csrc">{{csrc}}</div>
-      <div class="cunit">{{cunit}}</div>
-      <img src="/programs/images/precocious-puberty/chart.jpg" alt="{{img_alt}}">
-    </div>
-    {{/each}}
-
-    <div class="sec-head spaced">
-      <div class="sec-eyebrow">{{precocious.subsection1_eyebrow}}</div>
-      <h3><span class="accent">{{precocious.subsection1_heading_accent}}</span>{{precocious.subsection1_heading_part2}}</h3>
-      <p class="lead">
-        {{precocious.subsection1_lead}}
-      </p>
-    </div>
-
-    <img class="full-img" src="/programs/images/precocious-puberty/height-boy.jpg" alt="{{precocious.height_img_alt}}">
-
-    <div class="sec-head spaced">
-      <h3>
-        {{precocious.subsection2_heading_line1}}<br>
-        <span class="accent">{{precocious.subsection2_heading_accent}}</span>{{precocious.subsection2_heading_line2}}
-      </h3>
-      <p class="lead">
-        {{precocious.subsection2_lead}}
-      </p>
-    </div>
-
-    <div class="arrow-illust">
-      <img src="/programs/images/precocious-puberty/arrow-illust.jpg" alt="{{precocious.arrow_img_alt}}">
-    </div>
-
-    <div class="sec-head spaced">
-      <div class="sec-eyebrow">{{precocious.causes_eyebrow}}</div>
-      <h3><span class="accent">{{precocious.causes_heading_accent}}</span>{{precocious.causes_heading_part2}}</h3>
-    </div>
-
-    <div class="cause-grid-3">
-      {{#each precocious.causes}}
-      <div class="item">
-        <div class="photo"><img src="/programs/images/precocious-puberty/cause-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <div class="cap">{{cap_line1}}<br>{{cap_line2}}</div>
+    <!-- Parent brand: 연세새봄의원(hormone specialty) operates 187 성장클리닉/187growup -->
+    <div class="brand-band">
+      <div class="brand-lockup">
+        <a href="https://www.yssaebom.com/" target="_blank" rel="noopener" aria-label="{{clinic.brand.logo_alt}}"><img class="lk-saebom" src="/images/saebom-logo.png" alt="{{clinic.brand.logo_alt}}"></a>
+        <span class="lk-divider" aria-hidden="true"></span>
+        <img class="lk-187" src="/images/logo-187-inline.png" alt="{{hero.logo_alt}}">
       </div>
-      {{/each}}
-    </div>
-  </section>
-
-  <!-- ================= OBESITY ================= -->
-  <section id="obesity">
-    <h2 class="sec-eyebrow">{{obesity.eyebrow}}</h2>
-    <div class="sec-head">
-      <h3>
-        {{obesity.heading_line1}}<br>
-        <span class="accent">{{obesity.heading_accent}}</span>{{obesity.heading_line3}}
-      </h3>
-      <p class="lead">
-        {{obesity.lead}}
-      </p>
+      <p class="brand-body">{{clinic.brand.body}}</p>
     </div>
 
-    {{#each obesity.bmi_panel}}
-    <div class="bmi-panel">
-      <img src="/programs/images/obesity-growth/body-bmi.jpg" alt="{{img_alt}}">
-    </div>
-    {{/each}}
-
-    <div class="sec-head spaced">
-      <div class="sec-eyebrow">{{obesity.subsection1_eyebrow}}</div>
-      <h3>{{obesity.subsection1_heading_line1}}<br><span class="accent">{{obesity.subsection1_heading_accent}}</span></h3>
-      <p class="lead">
-        {{obesity.subsection1_lead}}
-      </p>
+    <!-- Doctor -->
+    <div class="doctor-card">
+      <img class="portrait" src="/images/doctor.jpg" alt="{{clinic.doctor.portrait_alt}}">
+      <div class="name">{{clinic.doctor.name}}<span class="title">{{clinic.doctor.title}}</span></div>
+      <p class="quote">"{{clinic.doctor.quote_line1}}<br>{{clinic.doctor.quote_line2}}"</p>
+      <ul class="profile">
+        {{#each clinic.doctor.profile}}
+        <li>{{.}}</li>
+        {{/each}}
+      </ul>
     </div>
 
-    <img class="full-img" src="/programs/images/obesity-growth/waffle-photo.jpg" alt="{{obesity.waffle_img_alt}}">
 
-    <div class="sec-head spaced">
-      <h3>{{obesity.subsection2_heading_line1}}<br><span class="accent">{{obesity.subsection2_heading_accent}}</span></h3>
-      <p class="lead">
-        {{obesity.subsection2_lead}}
-      </p>
-    </div>
 
-    <img class="full-img" src="/programs/images/obesity-growth/fat-cell.jpg" alt="{{obesity.fatcell_img_alt}}">
-
-    <div class="sec-head spaced">
-      <div class="sec-eyebrow">{{obesity.risks_eyebrow}}</div>
-      <h3>{{obesity.risks_heading_part1}}<span class="accent">{{obesity.risks_heading_accent}}</span></h3>
-    </div>
-
-    <div class="risk-grid">
-      {{#each obesity.risks}}
-      <div class="item">
-        <div class="photo"><img src="/programs/images/obesity-growth/risk-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <h4>{{title}}</h4>
-        <div class="desc">{{desc}}</div>
-      </div>
-      {{/each}}
-    </div>
-
-    <div class="sec-head large">
-      <div class="sec-eyebrow">{{obesity.causes_eyebrow}}</div>
-      <h3><span class="accent">{{obesity.causes_heading_accent}}</span>{{obesity.causes_heading_part2}}</h3>
-    </div>
-
-    <div class="cause-grid-2">
-      {{#each obesity.causes}}
-      <div class="item">
-        <div class="photo"><img src="/programs/images/obesity-growth/cause-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <h4>{{title}}</h4>
-        <div class="desc">{{desc}}</div>
-      </div>
-      {{/each}}
-    </div>
-
-    <div class="sec-head large">
-      <h3>{{obesity.lifestyle_heading_line1}}<br><span class="accent">{{obesity.lifestyle_heading_accent}}</span></h3>
-      <p class="lead">
-        {{obesity.lifestyle_lead}}
-      </p>
-    </div>
-
-    <div class="life-list">
-      {{#each obesity.lifestyle_cards}}
-      <div class="life-card">
-        <div class="photo"><img src="/programs/images/obesity-growth/life-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <div class="body">
-          <div class="num">{{num}}</div>
-          <h4>{{title}}</h4>
-          <div class="desc">{{desc}}</div>
+    <!-- Clinic introduction -->
+    <div class="clinic-intro">
+      <div class="intro-stats">
+        <div class="stat">
+          <div class="stat-num">{{clinic.intro.stat_cases_num}}</div>
+          <div class="stat-label">{{clinic.intro.stat_cases_label}}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{{clinic.intro.stat_success_num}}</div>
+          <div class="stat-label">{{clinic.intro.stat_success_label}}</div>
         </div>
       </div>
-      {{/each}}
-    </div>
-  </section>
-
-  <!-- ================= PROPORTION ================= -->
-  <section id="proportion">
-    <h2 class="sec-eyebrow">{{proportion.eyebrow}}</h2>
-    <div class="sec-head">
-      <h3>
-        {{proportion.heading_line1}}<br>
-        <span class="accent">{{proportion.heading_accent}}</span>{{proportion.heading_line2}}
-      </h3>
-      <p class="lead">
-        {{proportion.lead}}
-      </p>
+      <p>{{clinic.intro.p1}}</p>
+      <p>{{clinic.intro.p2}}</p>
     </div>
 
-    <div class="proportion-img">
-      <img src="/programs/images/body-proportion/ratio.jpg" alt="{{proportion.ratio_img_alt}}">
-    </div>
-
-    <div class="sec-head spaced">
-      <h3>{{proportion.subsection1_heading_line1}}<br><span class="accent">{{proportion.subsection1_heading_accent}}</span></h3>
-      <p class="lead">
-        {{proportion.subsection1_lead}}
-      </p>
-    </div>
-
-    <div class="compare-block">
-      <img src="/programs/images/body-proportion/comparison.jpg" alt="{{proportion.comparison_img_alt}}">
-    </div>
-
-    <p class="compare-quote">
-      <q>{{proportion.quote}}</q>
-    </p>
-  </section>
-
-  <!-- ================= BODYWORK ================= -->
-  <section id="bodywork">
-    <h2 class="sec-eyebrow">{{bodywork.eyebrow}}</h2>
-    <div class="sec-head">
-      <h3>
-        {{bodywork.heading_line1}}<br>
-        <span class="accent">{{bodywork.heading_accent}}</span>{{bodywork.heading_line2}}
-      </h3>
-      <p class="lead">
-        {{bodywork.lead}}
-      </p>
-    </div>
-
-    <div class="subhead">{{bodywork.diag_subhead}}</div>
-
-    <img class="full-img" src="/programs/images/feet-care/back.jpg" alt="{{bodywork.xray_img_alt}}">
-
-    <div class="sec-head spaced">
-      <p class="lead">
-        {{bodywork.diag_lead}}
-      </p>
-    </div>
-
-    <div class="problem-grid">
-      {{#each bodywork.problems}}
-      <div class="item">
-        <div class="photo"><img src="/programs/images/feet-care/problem-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <div class="cap"><span class="strong">{{cap_strong}}</span>{{cap_suffix}}</div>
+    <!-- Remote consultation guide — renders only when locale provides non-empty clinic.remote_consult (th/vi/en 등 해외) -->
+    {{#each clinic.remote_consult}}
+    <div class="remote-consult">
+      <h3>{{title}}</h3>
+      <p class="rc-intro">{{intro}}</p>
+      <ol>
+        <li><div class="rc-label">{{step1_label}}</div><div class="rc-desc">{{step1_desc}}</div></li>
+        <li><div class="rc-label">{{step2_label}}</div><div class="rc-desc">{{step2_desc}}</div></li>
+        <li><div class="rc-label">{{step3_label}}</div><div class="rc-desc">{{step3_desc}}</div></li>
+        <li><div class="rc-label">{{step4_label}}</div><div class="rc-desc">{{step4_desc}}</div></li>
+      </ol>
+      <div class="rc-office">
+        <div class="o-label">{{office_label}}</div>
+        <div class="o-addr">{{office_addr}}</div>
       </div>
-      {{/each}}
-    </div>
-
-    <div class="subhead" style="margin-top: 56px;">{{bodywork.treat_subhead}}</div>
-
-    <div class="sec-head spaced">
-      <p class="lead">
-        {{bodywork.treat_lead}}
-      </p>
-    </div>
-
-    <div class="equipment-block">
-      <img src="/programs/images/posture-exercise/equipment-main.jpg" alt="{{bodywork.equip_main_alt}}">
-      <img src="/programs/images/posture-exercise/equipment-row.jpg" alt="{{bodywork.equip_row_alt}}">
-    </div>
-  </section>
-
-  <!-- ================= LATE ================= -->
-  <section id="late">
-    <h2 class="sec-eyebrow">{{late.eyebrow}}</h2>
-    <div class="sec-head">
-      <h3>
-        {{late.heading_line1}}<br>
-        <span class="accent">{{late.heading_accent}}</span>{{late.heading_line2}}
-      </h3>
-      <p class="lead">
-        {{late.lead}}
-      </p>
-    </div>
-
-    <div class="program-tags">
-      {{#each late.program_tags}}
-      <div class="tag">{{.}}</div>
-      {{/each}}
-    </div>
-
-    <div class="sec-head spaced">
-      <h3>{{late.speed_heading_part1}}<span class="accent">{{late.speed_heading_accent}}</span>{{late.speed_heading_part2}}</h3>
-      <p class="lead">
-        {{late.speed_lead}}
-      </p>
-    </div>
-
-    {{#each late.chart_panel}}
-    <div class="chart-block">
-      <img src="/programs/images/late-growth/growth-chart.jpg" alt="{{img_alt}}">
+      <p class="rc-foot">{{footnote}}</p>
     </div>
     {{/each}}
 
-    <div class="table-block">
-      <table class="speed">
-        <thead>
-          <tr>
-            <th>{{late.table_header_age}}</th>
-            <th colspan="2">{{late.table_header_speed}} <span style="color:#888;font-size: 12.5px;">{{late.table_header_speed_unit}}</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td colspan="2">{{late.table_rows.0.label}}</td><td>{{late.table_rows.0.value}}</td></tr>
-          <tr><td rowspan="2">{{late.table_rows.1.label}}</td><td>{{late.table_rows.1.sub_boy}}</td><td>{{late.table_rows.1.val_boy}}</td></tr>
-          <tr><td>{{late.table_rows.1.sub_girl}}</td><td>{{late.table_rows.1.val_girl}}</td></tr>
-          <tr><td colspan="2">{{late.table_rows.2.label}}</td><td>{{late.table_rows.2.value}}</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="sec-head large">
-      <h3>{{late.potential_heading_line1}}<br><span class="accent">{{late.potential_heading_accent}}</span></h3>
-      <p class="lead">{{late.potential_lead}}</p>
-    </div>
-
-    <div class="feat-grid">
-      {{#each late.cards}}
-      <div class="item">
-        <div class="photo"><img src="/programs/images/late-growth/card-{{@index1}}.jpg" alt="{{img_alt}}"></div>
-        <div class="cap">{{cap_line1}}<br>{{cap_line2}}</div>
+    <!-- YouTube -->
+    <div class="video-section">
+      <h3>{{clinic.video.h3}}</h3>
+      <div class="frame">
+        <iframe
+          src="https://www.youtube.com/embed/WkBRUFXOGPo"
+          title="{{clinic.video.iframe_title}}"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
+      {{#each clinic.video.note}}
+      <p class="video-note">{{.}}</p>
       {{/each}}
+    </div>
+
+    <!-- Facility — 가로 스와이프 스트립(scroll-snap, JS 없음). 사진 출처: 병원 실사 + 187 리플렛 -->
+    <div class="facility">
+      <h3>{{clinic.facility.h3}}</h3>
+      <div class="facility-strip">
+        <figure>
+          <img src="/images/facility-7.jpg" alt="{{clinic.facility.items.0}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.0}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-2.jpg" alt="{{clinic.facility.items.1}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.1}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-8.jpg" alt="{{clinic.facility.items.2}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.2}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-3.jpg" alt="{{clinic.facility.items.3}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.3}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-9.jpg" alt="{{clinic.facility.items.4}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.4}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-5.jpg" alt="{{clinic.facility.items.5}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.5}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-4.jpg" alt="{{clinic.facility.items.6}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.6}}</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/facility-1.jpg" alt="{{clinic.facility.items.7}}" loading="lazy" width="1200" height="900">
+          <figcaption>{{clinic.facility.items.7}}</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <div class="label">{{clinic.contact.label}}</div>
+      <a class="phone" href="tel:{{clinic.contact.phone}}">{{clinic.contact.phone}}</a>
+      <div class="addr">{{clinic.contact.addr}}</div>
     </div>
   </section>
 
@@ -1050,24 +800,6 @@
     </div>
   </section>
 
-  <!-- ================= DIRECTOR ================= -->
-  <section class="director">
-    <div class="quote">
-      <h3>
-        {{director.quote_line1}}<br>
-        <span class="strong">{{director.quote_strong}}</span>{{director.quote_line2}}<br>
-        {{director.quote_line3}}
-      </h3>
-      <p>
-        {{director.body}}
-      </p>
-    </div>
-
-    <div class="portrait">
-      <img src="/programs/images/growth-hormone-balance/director.jpg" alt="{{director.portrait_alt}}">
-    </div>
-  </section>
-
   <!-- ================= CTA BOTTOM ================= -->
   <section class="cta-bottom">
     <h4>{{cta_global.bottom_heading}}</h4>
@@ -1079,58 +811,6 @@
 </div>
 </div><!-- /.t-page -->
 
-<script>
-  (function() {
-    const nav = document.getElementById('caseNav');
-    if (!nav) return;
-
-    const links = nav.querySelectorAll('a[href^="#"]');
-    const sections = Array.from(links)
-      .map(link => document.getElementById(link.getAttribute('href').slice(1)))
-      .filter(Boolean);
-
-    // sticky sentinel: detect when nav becomes stuck
-    const sentinel = document.createElement('div');
-    sentinel.style.cssText = 'height:1px;width:1px;';
-    nav.parentNode.insertBefore(sentinel, nav);
-
-    new IntersectionObserver(([entry]) => {
-      nav.classList.toggle('is-stuck', !entry.isIntersecting);
-    }, { threshold: 1 }).observe(sentinel);
-
-    const scroller = nav.querySelector('.scroll');
-
-    function setActive(id) {
-      links.forEach(link => {
-        const isActive = link.getAttribute('href') === '#' + id;
-        link.classList.toggle('active', isActive);
-        if (isActive) link.setAttribute('aria-current', 'true');
-        else link.removeAttribute('aria-current');
-      });
-      const active = nav.querySelector('a.active');
-      if (active && scroller) {
-        const target = active.offsetLeft - (scroller.clientWidth - active.offsetWidth) / 2;
-        scroller.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
-      }
-    }
-
-    const sectionObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
-    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
-
-    sections.forEach(section => sectionObserver.observe(section));
-
-    links.forEach(link => {
-      link.addEventListener('click', function() {
-        setActive(this.getAttribute('href').slice(1));
-      });
-    });
-
-    if (sections[0]) setActive(sections[0].id);
-  })();
-</script>
 
 <script>
   window.__I18N__ = {
@@ -1139,6 +819,7 @@
     messenger: {{messenger_json}},
     consultChannels: {{consult_json}},
     page_type: "home",
+    hasBlog: {{has_blog}},
     aiServer: "{{ai_server}}",
     shell: {{shell_json}}
   };

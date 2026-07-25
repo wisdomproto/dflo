@@ -43,9 +43,19 @@ const seoRedirects = (): Plugin => ({
       // `/{lang}` (트레일링 슬래시 없음) → `/{lang}/` 301.
       // 슬래시 없는 주소는 정적 다국어 페이지가 아니라 한국어 SPA 셸로 떨어져, 공유/광고 미리보기(OG)·
       // SEO 가 한글로 노출된다. 슬래시를 붙여 정적 페이지로 보낸다. 쿼리(fbclid·utm) 보존.
-      if (/^\/(zh-hant|zh-hans|ko|th|vi|en|ar)$/.test(pathname)) {
+      if (/^\/(zh-hant|zh-hans|ko|th|vi|en|ar|ja|es)$/.test(pathname)) {
         res.statusCode = 301;
         res.setHeader('Location', query ? `${pathname}/?${query}` : `${pathname}/`);
+        res.end();
+        return;
+      }
+      // `/{lang}/clinic.html` → 메인 병원 소개 섹션 301 (2026-07-24 페이지 병합).
+      // 구글 검색광고 랜딩·블로그 유입·옛 북마크가 죽지 않도록 URL 은 살려 둔다.
+      const clinicHit = pathname.match(/^\/(zh-hant|zh-hans|ko|th|vi|en|ar|ja|es)\/clinic\.html$/);
+      if (clinicHit) {
+        res.statusCode = 301;
+        const to = `/${clinicHit[1]}/index.html#clinic`;
+        res.setHeader('Location', query ? `/${clinicHit[1]}/index.html?${query}#clinic` : to);
         res.end();
         return;
       }

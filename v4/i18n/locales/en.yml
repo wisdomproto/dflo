@@ -21,7 +21,20 @@ intro:
     and supports them with personalized care.
 
 compare:
-  - img_alt: "Comparison of growth-hormone-only therapy versus 187 Growth Clinic's integrated growth care"
+  axes:
+    - "Growth hormone balance"
+    - "Sex hormone & thyroid care"
+    - "Sleep management"
+    - "Weight & nutrition"
+    - "Height-stimulating exercise"
+    - "Posture & skeletal care"
+  bodies:
+    - "Growth hormone is not released evenly through the day. <strong>60&ndash;70% of a night's output</strong> comes during the deepest stage of sleep (slow-wave sleep), concentrated in the first one to two hours after falling asleep. So we look not only at hormone levels but at whether the conditions for releasing that hormone are actually in place."
+    - "Sex hormones make a child grow &mdash; and at the same time they <strong>close the growth plates</strong>. When puberty starts early, the plates can close two to three years sooner than in peers, shortening the total time left to grow. And if something else is behind the slow growth, such as an underactive thyroid, that cause is addressed first."
+    - "<strong>How deeply a child sleeps</strong> matters more than what time they lie down. A child who goes to bed early but wakes often, or sleeps lightly, still misses much of that release. We work on keeping screens away for one to two hours before bed and settling into a dark, quiet room at a consistent hour."
+    - "<strong>Both</strong> excess weight and being underweight are warning signs for growth. Excess body fat can flip the puberty switch early through leptin and other signals, pushing bone age ahead of calendar age. The aim is not simply eating less, but holding a healthy weight while filling in protein, calcium, vitamin D and zinc."
+    - "<strong>Up-and-down movement</strong> &mdash; jump rope, basketball, volleyball &mdash; stimulates the growth plates most effectively. Three to five times a week, 30 to 60 minutes, at an intensity that leaves a child slightly out of breath. Training that is too hard for the child can set growth back through injury and stress, so intensity is adjusted alongside everything else."
+    - "A rounded back and forward head posture compress the spine and can make a child look <strong>1&ndash;2 cm, sometimes 3&ndash;5 cm shorter</strong> than they are. Good posture spreads load evenly across the growth plates and supports the circulation that carries nutrients and growth hormone to them. We correct posture with stretching and core strengthening."
 
 medal:
   panel_alt: "Designated clinic for modeling agencies and athletic-model growth program"
@@ -455,22 +468,26 @@ clinic:
     stat_success_num: "97%+"
     stat_success_label: "Success rate"
     p1: "Pediatric height growth isn't decided by growth hormone alone. Because thyroid, sex hormones, nutrition, sleep, and stress all play a role, an <strong>integrated hormonal perspective</strong> is essential."
-    p2: "<strong class='b187'>187 Growth Clinic</strong>delivers personalized care for every child — from precision bone-age assessment to comprehensive hormone testing and lifestyle coaching. Families overseas can also receive video consultations without traveling to Korea."
+    p2: "<strong class='b187'>187 Growth Clinic</strong> delivers personalized care for every child — from precision bone-age assessment to comprehensive hormone testing and lifestyle coaching. Families overseas can also receive video consultations without traveling to Korea."
   video:
     h3: "About our clinic"
     iframe_title: "Yonsei Saebom Clinic introduction"
+    note:
+      - "Filmed at our clinic in Seoul. Korean audio — turn on YouTube subtitles for your language."
   facility:
     h3: "Facilities"
     aria_prev: "Previous"
     aria_next: "Next"
     aria_dot_prefix: "Photo"
     items:
-      - "2F Waiting room"
-      - "2F Consultation room"
-      - "2F Exterior"
-      - "3F Exercise center"
-      - "3F Training area"
-      - "3F GYM"
+      - "Waiting lounge (2F)"
+      - "Reception desk (2F)"
+      - "Consultation-room corridor"
+      - "IV treatment room (2F)"
+      - "Exercise studio (3F)"
+      - "Growth exercise zone"
+      - "PhysioLab — physiotherapy & exercise (3F)"
+      - "Clinic entrance"
   contact:
     label: "Consultation & Booking"
     phone: "+82-10-6693-2838"
@@ -592,6 +609,7 @@ shell:
     programs: "Programs"
     clinic: "Clinic"
     cases: "Cases"
+    blog: "Blog"
     calc: "Free check"
     consult: "1:1 Consulting"
   consult:

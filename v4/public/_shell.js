@@ -95,18 +95,17 @@ function tEsc(path, fallback) {
 const __I18N_LOCALE = (window.__I18N__ && window.__I18N__.locale) || 'ko';
 const __NAV_BASE = `/${__I18N_LOCALE}`;
 const __HOME_HREF = `${__NAV_BASE}/index.html`;
-const __CLINIC_HREF = `${__NAV_BASE}/clinic.html`;
 const __CASES_HREF = `${__NAV_BASE}/cases.html`;
+const __BLOG_HREF = `${__NAV_BASE}/blog/`;
+// 글이 0편인 언어(ja/es)는 /{lang}/blog/ 가 없어 soft-404 → build-i18n 이 넣어준 플래그로 게이트.
+const __HAS_BLOG = !!(window.__I18N__ && window.__I18N__.hasBlog);
 const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
 const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.png' : '/images/logo.jpg';
 // 예약(콜백) 기능은 한글 페이지 전용. __I18N__ 이 있고 locale 이 ko 일 때만(blog-index 처럼
 // __I18N__ 없는 페이지는 폴백 ko 로 잡히지 않도록 명시적으로 __I18N__ 존재를 확인).
 const __IS_KO = !!(window.__I18N__ && window.__I18N__.locale === 'ko');
-// 블로그(목록·글)는 읽기 화면이라 하단 네비 바를 띄우지 않는다. 상담·홈 동선은 상단 헤더가 담당.
-// page_type 우선, body[data-page]("blog-index"/"blog-post") 폴백 — __I18N__ 없이도 판정되게.
-const __IS_BLOG = /^blog/.test((window.__I18N__ && window.__I18N__.page_type) || document.body.dataset.page || '');
-// 예약 폼의 유일한 진입점이 하단 바 '예약하기' 라 블로그(바 없음)에선 열 방법이 없다 → 마크업도 싣지 않는다.
-const __HAS_RESV = __IS_KO && !__IS_BLOG;
+// 예약 폼 진입점은 하단 바 '예약하기'. 블로그에도 바가 생겨(2026-07-25) 전 ko 페이지에서 연다.
+const __HAS_RESV = __IS_KO;
 // 예약 접수를 보낼 ai-server. build-i18n 이 window.__I18N__.aiServer 로 주입(로컬 폴백 :4000).
 const __AI_SERVER__ = ((window.__I18N__ && window.__I18N__.aiServer) || 'http://localhost:4000').replace(/\/$/, '');
 // Messenger CTA — injected per-locale by build-i18n. Falls back to Kakao defaults
@@ -217,7 +216,7 @@ const SHELL_HTML = `
     </div>
   </header>
 
-${__IS_BLOG ? '' : `
+${`
   <nav class="t-bottom-nav${__IS_FULL_NAV ? ' t-bottom-nav--full' : ''}" aria-label="${tEsc('aria.menu', '메인 메뉴')}">
     <a href="${__HOME_HREF}" data-nav="programs">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -227,14 +226,6 @@ ${__IS_BLOG ? '' : `
       </svg>
       <span>${tEsc('nav.programs', '성장 프로그램')}</span>
     </a>
-    <a href="${__CLINIC_HREF}" data-nav="clinic">
-      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M3 21h18" />
-        <path d="M5 21V8l7-5 7 5v13" />
-        <path d="M12 12v6" /><path d="M9 15h6" />
-      </svg>
-      <span>${tEsc('nav.clinic', '병원 소개')}</span>
-    </a>
     <a href="${__CASES_HREF}" data-nav="cases">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="1.5" />
@@ -242,6 +233,13 @@ ${__IS_BLOG ? '' : `
       </svg>
       <span>${tEsc('nav.cases', '치료 사례')}</span>
     </a>
+    ${__HAS_BLOG ? `<a href="${__BLOG_HREF}" data-nav="blog">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 5.5A1.5 1.5 0 015.5 4H15l5 5v9.5a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 18.5z"/>
+        <path d="M14.5 4v5.5H20"/><path d="M8 13h7"/><path d="M8 16.5h5"/>
+      </svg>
+      <span>${tEsc('nav.blog', '블로그')}</span>
+    </a>` : ''}
     <a href="${__CALC_HREF}" data-nav="calc" class="t-nav-highlight">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4l16 16" /><path d="M4 4v16h16" /><path d="M9 14l3-3 3 3" /><path d="M12 11V4" />

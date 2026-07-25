@@ -144,7 +144,6 @@ async function main() {
     loadCachedPosts(CACHE_DIR, l).length > 0 || (publishedByLang[l]?.length ?? 0) > 0);
 
   const homeTemplate = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
-  const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
   const casesTemplate = readFileSync(join(ROOT, 'i18n/template/cases.html'), 'utf8');
   const calculatorTemplate = readFileSync(join(ROOT, 'i18n/template/calculator.html'), 'utf8');
   const consultTemplate = readFileSync(join(ROOT, 'i18n/template/consult.html'), 'utf8');
@@ -156,7 +155,6 @@ async function main() {
   // from the locale yml so Google snippets and the browser tab read correctly.
   // consult 는 상담 채널이 여러 개인 언어(th/vi/en)만 — ko 는 카톡 직행 + 예약 폼 동선이라 페이지가 없다.
   const SUBPAGES = [
-    { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title' },
     { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
     { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title', descPath: 'calculator.meta_description' },
     { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',
@@ -201,6 +199,10 @@ async function main() {
       out = swapToWebp(out, join(ROOT, 'public')); // jpg/png → webp(존재 시) — 모바일 LCP/전송량 개선
       return out;
     };
+
+    // 하단 네비 '블로그' 노출 여부 — 글이 0편인 언어(ja/es)에 링크하면 우리 호스팅 특성상
+    // 200 + 한국어 SPA 셸(soft-404)이 된다. 실제로 빌드되는 언어에만 메뉴를 띄운다.
+    locale.has_blog = blogLangs.includes(lang) ? 'true' : 'false';
 
     // Home — 이미지 지연 로딩 후처리까지 거쳐 최종 산출 (첫 이미지=로고만 eager)
     locale.seo_head = buildHead(lang, { path: '/' });

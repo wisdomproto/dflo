@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="/_shell.css">
 <style>
   /* 하단 여백은 옛 하단 네비 바(58px + 띄움) 자리였음 — 블로그는 바를 안 그리므로 축소 */
-  .blog-wrap { max-width: 1120px; margin: 0 auto; padding: 92px 20px 40px; }
-  @media (max-width: 640px) { .blog-wrap { padding: 76px 16px 32px; } }
+  .blog-wrap { max-width: 1120px; margin: 0 auto; padding: 92px 20px calc(88px + env(safe-area-inset-bottom)); }
+  @media (max-width: 640px) { .blog-wrap { padding: 76px 16px calc(76px + env(safe-area-inset-bottom)); } }
 
   /* ===== Hero ===== */
   .blog-hero { text-align: center; margin-bottom: 46px; }
@@ -89,6 +89,7 @@
     messenger: {{messenger_json}},
     consultChannels: {{consult_json}},
     page_type: "blog_index",
+    hasBlog: {{has_blog}},
     aiServer: "{{ai_server}}",
     shell: {{shell_json}}
   };

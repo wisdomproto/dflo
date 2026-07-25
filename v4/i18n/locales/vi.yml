@@ -21,7 +21,20 @@ intro:
     rồi đồng hành bằng chăm sóc cá nhân hóa.
 
 compare:
-  - img_alt: "So sánh điều trị chỉ bằng hormone tăng trưởng với chăm sóc tăng trưởng toàn diện của 187 Growth Clinic"
+  axes:
+    - "Cân bằng hormone tăng trưởng"
+    - "Hormone sinh dục & tuyến giáp"
+    - "Quản lý giấc ngủ"
+    - "Cân nặng & dinh dưỡng"
+    - "Vận động kích thích chiều cao"
+    - "Tư thế & phát triển xương"
+  bodies:
+    - "Hormone tăng trưởng không tiết ra đều trong ngày. <strong>60–70% lượng tiết ra trong đêm</strong> diễn ra ở giai đoạn ngủ sâu nhất (giấc ngủ sóng chậm), tập trung trong 1–2 giờ đầu sau khi ngủ. Vì vậy chúng tôi không chỉ xem chỉ số hormone mà còn xem điều kiện để hormone thực sự được tiết ra."
+    - "Hormone sinh dục giúp trẻ cao lên, đồng thời cũng <strong>làm đóng sụn tăng trưởng</strong>. Khi dậy thì sớm, sụn tăng trưởng có thể đóng sớm hơn bạn cùng lứa 2–3 năm, rút ngắn tổng thời gian còn lại để cao. Nếu có nguyên nhân khác, chẳng hạn suy giáp, chúng tôi xử lý nguyên nhân đó trước."
+    - "<strong>Ngủ sâu đến đâu</strong> quan trọng hơn mấy giờ đi ngủ. Trẻ đi ngủ sớm nhưng hay thức giấc hoặc ngủ nông vẫn bỏ lỡ phần lớn lượng hormone tiết ra. Chúng tôi cùng gia đình tránh màn hình 1–2 giờ trước khi ngủ và duy trì giờ ngủ cố định trong phòng tối, yên tĩnh."
+    - "Thừa cân và thiếu cân <strong>đều</strong> là dấu hiệu cảnh báo với tăng trưởng. Mỡ thừa có thể bật công tắc dậy thì sớm qua leptin và các tín hiệu khác, khiến tuổi xương vượt tuổi thật. Mục tiêu không phải ăn ít đi, mà giữ cân nặng hợp lý trong khi bổ sung đủ đạm, canxi, vitamin D và kẽm."
+    - "<strong>Các động tác bật nhảy</strong> — nhảy dây, bóng rổ, bóng chuyền — kích thích sụn tăng trưởng hiệu quả nhất. Tuần 3–5 lần, mỗi lần 30–60 phút, ở cường độ khiến trẻ hơi thở gấp. Tuy nhiên tập quá sức có thể gây chấn thương và căng thẳng, cản trở tăng trưởng, nên cường độ được điều chỉnh theo từng trẻ."
+    - "Lưng gù và tư thế đầu đưa ra trước chèn ép cột sống, khiến trẻ trông thấp hơn thực tế <strong>1–2 cm, có khi 3–5 cm</strong>. Tư thế đúng phân bố đều lực lên sụn tăng trưởng và hỗ trợ tuần hoàn đưa dưỡng chất cùng hormone tăng trưởng đến nơi. Chúng tôi điều chỉnh tư thế bằng giãn cơ và tăng sức mạnh cơ lõi."
 
 medal:
   panel_alt: "Phòng khám được công ty người mẫu chỉ định, chương trình chuyên cho vận động viên và người mẫu"
@@ -455,22 +468,26 @@ clinic:
     stat_success_num: "97%+"
     stat_success_label: "Tỷ lệ thành công"
     p1: "Sự tăng trưởng chiều cao của trẻ không chỉ phụ thuộc vào hormone tăng trưởng. Tuyến giáp, hormone giới tính, dinh dưỡng, giấc ngủ và căng thẳng đều có vai trò, vì vậy <strong>góc nhìn hormone tích hợp</strong> là cần thiết."
-    p2: "<strong class='b187'>187 Growth Clinic</strong>chăm sóc cá nhân hóa cho từng trẻ — từ đánh giá tuổi xương chính xác, xét nghiệm hormone toàn diện đến tư vấn lối sống. Gia đình ở nước ngoài có thể nhận tư vấn qua video mà không cần đến Hàn Quốc."
+    p2: "<strong class='b187'>187 Growth Clinic</strong> chăm sóc cá nhân hóa cho từng trẻ — từ đánh giá tuổi xương chính xác, xét nghiệm hormone toàn diện đến tư vấn lối sống. Gia đình ở nước ngoài có thể nhận tư vấn qua video mà không cần đến Hàn Quốc."
   video:
     h3: "Video giới thiệu phòng khám"
     iframe_title: "Giới thiệu Phòng khám Yonsei Saebom"
+    note:
+      - "Quay tại phòng khám của chúng tôi ở Seoul. Âm thanh tiếng Hàn — bật phụ đề YouTube theo ngôn ngữ của bạn."
   facility:
     h3: "Cơ sở vật chất"
     aria_prev: "Trước"
     aria_next: "Sau"
     aria_dot_prefix: "Ảnh"
     items:
-      - "Phòng chờ tầng 2"
-      - "Phòng khám tầng 2"
-      - "Mặt ngoài tầng 2"
-      - "Trung tâm thể chất tầng 3"
-      - "Khu tập tầng 3"
-      - "GYM tầng 3"
+      - "Sảnh chờ (Tầng 2)"
+      - "Quầy tiếp đón (Tầng 2)"
+      - "Hành lang phòng khám"
+      - "Phòng truyền dịch (Tầng 2)"
+      - "Phòng tập thể dục (Tầng 3)"
+      - "Khu vận động tăng trưởng"
+      - "PhysioLab — vật lý trị liệu & vận động (Tầng 3)"
+      - "Lối vào phòng khám"
   contact:
     label: "Tư vấn & Đặt lịch"
     phone: "+82-10-6693-2838"
@@ -592,6 +609,7 @@ shell:
     programs: "Chương trình"
     clinic: "Phòng khám"
     cases: "Ca điều trị"
+    blog: "Bài viết"
     calc: "Đo miễn phí"
     consult: "Tư vấn 1:1"
   consult:

@@ -21,7 +21,20 @@ intro:
     y lo acompaña con un cuidado personalizado.
 
 compare:
-  - img_alt: "Comparación entre la terapia solo con hormona de crecimiento y el cuidado integral de 187 Growth Clinic"
+  axes:
+    - "Equilibrio de la hormona de crecimiento"
+    - "Hormonas sexuales y tiroides"
+    - "Manejo del sueño"
+    - "Peso y nutrición"
+    - "Ejercicio que estimula la estatura"
+    - "Postura y desarrollo óseo"
+  bodies:
+    - "La hormona de crecimiento no se libera de forma uniforme durante el día. El <strong>60–70&nbsp;% de lo que se secreta en una noche</strong> ocurre en la fase de sueño más profundo (sueño de ondas lentas), sobre todo en las primeras una o dos horas tras dormirse. Por eso no miramos solo los niveles hormonales, sino si se dan las condiciones para que esa hormona se libere."
+    - "Las hormonas sexuales hacen crecer al niño y, al mismo tiempo, <strong>cierran los cartílagos de crecimiento</strong>. Si la pubertad empieza pronto, pueden cerrarse dos o tres años antes que en otros niños, acortando el tiempo disponible para crecer. Y si hay otra causa detrás, como un hipotiroidismo, esa causa se aborda primero."
+    - "<strong>Lo profundo del sueño</strong> importa más que la hora de acostarse. Un niño que se acuesta pronto pero se despierta a menudo o duerme ligero pierde buena parte de esa liberación. Trabajamos en apartar las pantallas una o dos horas antes y dormir a una hora fija en una habitación oscura y silenciosa."
+    - "Tanto el exceso de peso como el bajo peso son señales de alarma para el crecimiento. El exceso de grasa corporal puede activar antes el interruptor de la pubertad a través de la leptina y otras señales, adelantando la edad ósea. El objetivo no es comer menos, sino mantener un peso adecuado cubriendo proteínas, calcio, vitamina D y zinc."
+    - "El <strong>movimiento de salto</strong> —comba, baloncesto, voleibol— estimula los cartílagos de crecimiento con más eficacia. De tres a cinco veces por semana, de 30 a 60 minutos, a una intensidad que deje al niño algo sin aliento. Un entrenamiento demasiado exigente puede frenar el crecimiento por lesión y estrés, así que la intensidad se ajusta."
+    - "La espalda encorvada y la cabeza adelantada comprimen la columna y pueden hacer que un niño parezca <strong>1–2 cm, a veces 3–5 cm más bajo</strong> de lo que es. Una buena postura reparte la carga sobre los cartílagos de crecimiento y favorece la circulación que les lleva nutrientes y hormona de crecimiento. La corregimos con estiramientos y trabajo de core."
 
 medal:
   panel_alt: "Clínica designada para agencias de modelos y programas de crecimiento de modelos deportivos"
@@ -459,6 +472,8 @@ clinic:
   video:
     h3: "Sobre nuestra clínica"
     iframe_title: "Presentación de la Clínica Yonsei Saebom"
+    note:
+      - "Grabado en nuestra clínica de Seúl. Audio en coreano: active los subtítulos de YouTube en su idioma."
   facility:
     h3: "Instalaciones"
     aria_prev: "Anterior"
@@ -466,11 +481,13 @@ clinic:
     aria_dot_prefix: "Foto"
     items:
       - "Sala de espera (2.º piso)"
-      - "Consultorio (2.º piso)"
-      - "Exterior (2.º piso)"
-      - "Centro de ejercicio (3.er piso)"
-      - "Área de entrenamiento (3.er piso)"
-      - "GYM (3.er piso)"
+      - "Recepción (2.º piso)"
+      - "Pasillo de consultorios"
+      - "Sala de tratamiento intravenoso (2.º piso)"
+      - "Estudio de ejercicio (3.er piso)"
+      - "Zona de ejercicio para el crecimiento"
+      - "PhysioLab: fisioterapia y ejercicio (3.er piso)"
+      - "Entrada de la clínica"
   contact:
     label: "Consultas y citas"
     phone: "+82-10-6693-2838"
@@ -590,6 +607,7 @@ shell:
     programs: "Programas"
     clinic: "Clínica"
     cases: "Casos"
+    blog: "Blog"
     calc: "Evaluación gratis"
     consult: "Consulta 1:1"
   consult:
