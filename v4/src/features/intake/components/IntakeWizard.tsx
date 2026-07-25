@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactElement } from 'react';
-import type { IntakeFormState, IntakeLang } from '../types';
+import { INTAKE_RTL_LANGS, type IntakeFormState, type IntakeLang } from '../types';
 import { getLabels, LANG_DEFAULT_COUNTRY } from '../intakeLabels';
 import { submitIntake } from '../publicIntakeService';
 import type { IntakeSurvey } from '@/shared/types';
@@ -121,6 +121,7 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
   const [submitError, setSubmitError] = useState(false);
 
   const isLast = step === TOTAL - 1;
+  const dir = INTAKE_RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
 
   // 상담 페이지(/{lang}/consult.html)가 이 위저드를 iframe 으로 띄운다.
   // 제출이 끝나면 부모가 오버레이를 닫고 메신저 채널로 돌려보낼 수 있게 알린다.
@@ -161,7 +162,7 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
   if (done) {
     return (
       <div
-        dir="ltr"
+        dir={dir}
         className="flex min-h-screen items-center justify-center bg-slate-50 px-4"
       >
         <div className="w-full max-w-xl rounded-2xl bg-white p-8 text-center shadow-sm">
@@ -176,7 +177,7 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
   const ActiveStep = STEPS[step];
 
   return (
-    <div dir="ltr" className="min-h-screen bg-slate-50 px-4 py-6">
+    <div dir={dir} className="min-h-screen bg-slate-50 px-4 py-6">
       <div className="mx-auto max-w-xl">
         {/* Header */}
         <header className="mb-5">
@@ -226,7 +227,7 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
             type="button"
             onClick={isLast ? submit : next}
             disabled={submitting}
-            className="ml-auto flex-1 rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:opacity-60 sm:flex-none"
+            className="ms-auto flex-1 rounded-xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:opacity-60 sm:flex-none"
           >
             {isLast ? (submitting ? L.submitting : L.submit) : L.next}
           </button>

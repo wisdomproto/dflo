@@ -24,7 +24,7 @@ function FieldShell({
     <label className="flex flex-col gap-1.5">
       <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
         {label}
-        {required && <span className="ml-0.5 text-rose-500">*</span>}
+        {required && <span className="ms-0.5 text-rose-500">*</span>}
       </span>
       {children}
       {error && <span className="text-xs font-medium text-rose-500">{error}</span>}
@@ -206,7 +206,7 @@ export function SearchSelectField({
       <div ref={boxRef} className="relative">
         <button
           type="button"
-          className={`${INPUT_CLASS} flex items-center justify-between text-left`}
+          className={`${INPUT_CLASS} flex items-center justify-between text-start`}
           onClick={() => setOpen((o) => !o)}
           aria-haspopup="listbox"
           aria-expanded={open}
@@ -214,7 +214,7 @@ export function SearchSelectField({
           <span className={selected ? '' : 'text-slate-400'}>
             {selected ? selected.label : (placeholder ?? '—')}
           </span>
-          <span className={`ml-2 shrink-0 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}>▾</span>
+          <span className={`ms-2 shrink-0 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}>▾</span>
         </button>
 
         {open && (
@@ -242,7 +242,7 @@ export function SearchSelectField({
                     type="button"
                     role="option"
                     aria-selected={o.value === value}
-                    className={`block w-full px-4 py-2.5 text-left text-base ${
+                    className={`block w-full px-4 py-2.5 text-start text-base ${
                       i === active ? 'bg-indigo-50' : ''
                     } ${o.value === value ? 'font-semibold text-indigo-700' : 'text-slate-800'}`}
                     onMouseEnter={() => setActive(i)}

@@ -38,7 +38,7 @@ export function StepBasic({ lang, state, set, L, errors }: StepProps) {
       <div className="flex flex-col gap-1.5">
         <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           {L.gender}
-          <span className="ml-0.5 text-rose-500">*</span>
+          <span className="ms-0.5 text-rose-500">*</span>
         </span>
         <div className="flex gap-3">
           {(

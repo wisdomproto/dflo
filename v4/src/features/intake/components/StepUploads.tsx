@@ -110,7 +110,7 @@ function UploadBlock({
               key={`${f.name}-${i}`}
               className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700"
             >
-              <span className="truncate pr-2">{f.name}</span>
+              <span className="truncate pe-2">{f.name}</span>
               <button
                 type="button"
                 onClick={() => onRemove(i)}

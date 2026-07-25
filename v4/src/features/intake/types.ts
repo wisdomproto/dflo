@@ -1,7 +1,9 @@
 import type { IntakeSurvey } from '@/shared/types';
 
-export type IntakeLang = 'ko' | 'th' | 'vi' | 'en' | 'zh-hans' | 'zh-hant' | 'ja' | 'es';
-export const INTAKE_LANGS: IntakeLang[] = ['ko', 'th', 'vi', 'en', 'zh-hans', 'zh-hant', 'ja', 'es'];
+export type IntakeLang = 'ko' | 'th' | 'vi' | 'en' | 'zh-hans' | 'zh-hant' | 'ja' | 'es' | 'ar';
+export const INTAKE_LANGS: IntakeLang[] = ['ko', 'th', 'vi', 'en', 'zh-hans', 'zh-hant', 'ja', 'es', 'ar'];
+/** RTL 언어 — 위저드가 `dir` 을 여기서 정한다(정적 사이트의 RTL_LANGS 와 같은 역할). */
+export const INTAKE_RTL_LANGS: IntakeLang[] = ['ar'];
 
 export interface UploadMeta {
   kind: 'xray' | 'lab';

@@ -33,6 +33,12 @@ body {
   margin: 0;
 }
 
+/* 아랍어 설문(/intake/ar) — 위저드가 자기 래퍼에 dir=rtl 을 건다(html 이 아니라서
+   _shell.css 의 html[dir=rtl] 규칙은 안 걸린다). 위 스택엔 아랍 글리프가 없다. */
+[dir='rtl'] {
+  font-family: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, 'Tajawal', sans-serif;
+}
+
 .safe-top {
   padding-top: env(safe-area-inset-top);
 }

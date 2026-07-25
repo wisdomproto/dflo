@@ -43,8 +43,8 @@ export function StepGrowth({ state, set, L }: StepProps) {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-slate-50 text-slate-500">
-              <th className="px-4 py-2 text-left font-semibold">{L.ageCol}</th>
-              <th className="px-4 py-2 text-left font-semibold">{L.heightCol}</th>
+              <th className="px-4 py-2 text-start font-semibold">{L.ageCol}</th>
+              <th className="px-4 py-2 text-start font-semibold">{L.heightCol}</th>
             </tr>
           </thead>
           <tbody>

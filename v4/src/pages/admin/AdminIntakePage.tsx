@@ -31,6 +31,7 @@ const SHARE_LANGS: { lang: IntakeLang; flag: string; label: string }[] = [
   { lang: 'zh-hant', flag: '🇹🇼', label: '繁體中文' },
   { lang: 'ja', flag: '🇯🇵', label: '日本語' },
   { lang: 'es', flag: '🇪🇸', label: 'Español' },
+  { lang: 'ar', flag: '🇸🇦', label: 'العربية' },
 ];
 
 function ShareLinkBar() {
