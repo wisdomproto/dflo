@@ -476,7 +476,7 @@ clinic:
       - "Filmed at our clinic in Seoul. English narration · 3 min."
     file:
       - src: "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/videos/mainclip-en-720p.mp4"
-        poster: "/images/clinic-video-poster.jpg"
+        poster: "/images/clinic-video-poster-en.webp"
         title: "Yonsei Saebom Clinic introduction"
     youtube: []
   facility:
