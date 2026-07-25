@@ -474,6 +474,11 @@ clinic:
     iframe_title: "延世セボム医院のご紹介"
     note:
       - "ソウルの当院で撮影しました。音声は韓国語です — YouTube の字幕を各言語に切り替えてご覧ください。"
+    file:
+      - src: "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/videos/mainclip-en-720p.mp4"
+        poster: "/images/clinic-video-poster.jpg"
+        title: "延世セボム医院のご紹介"
+    youtube: []
   facility:
     h3: "施設案内"
     aria_prev: "前へ"

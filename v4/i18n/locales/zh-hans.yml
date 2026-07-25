@@ -474,6 +474,11 @@ clinic:
     iframe_title: "延世Saebom 诊所介绍"
     note:
       - "摄于首尔本院。音频为韩语 — 可在 YouTube 开启您所需语言的字幕。"
+    file:
+      - src: "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/videos/mainclip-en-720p.mp4"
+        poster: "/images/clinic-video-poster.jpg"
+        title: "延世Saebom 诊所介绍"
+    youtube: []
   facility:
     h3: "院内设施"
     aria_prev: "上一张"

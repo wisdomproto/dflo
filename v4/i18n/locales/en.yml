@@ -474,6 +474,11 @@ clinic:
     iframe_title: "Yonsei Saebom Clinic introduction"
     note:
       - "Filmed at our clinic in Seoul. Korean audio — turn on YouTube subtitles for your language."
+    file:
+      - src: "https://pub-9ac9872f3a73404195b96791c96941a3.r2.dev/videos/mainclip-en-720p.mp4"
+        poster: "/images/clinic-video-poster.jpg"
+        title: "Yonsei Saebom Clinic introduction"
+    youtube: []
   facility:
     h3: "Facilities"
     aria_prev: "Previous"

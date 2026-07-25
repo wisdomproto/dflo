@@ -473,6 +473,10 @@ clinic:
     h3: "병원 소개 영상"
     iframe_title: "연세새봄의원 소개"
     note: []
+    youtube:
+      - id: "WkBRUFXOGPo"
+        title: "연세새봄의원 소개"
+    file: []
   facility:
     h3: "시설 소개"
     aria_prev: "이전"

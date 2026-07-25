@@ -370,7 +370,8 @@
     position: relative; width: 100%; padding-bottom: 56.25%;
     border-radius: 12px; overflow: hidden; background: #000;
   }
-  .video-section .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-section .frame iframe,
+  .video-section .frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
   .video-note { font-size: 12px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
 
   .facility { padding: 32px 0 32px; border-bottom: 1px solid var(--hairline); }
@@ -712,17 +713,28 @@
     </div>
     {{/each}}
 
-    <!-- YouTube -->
+    <!-- 병원 소개 영상.
+         ko = 한국어 원본 YouTube 임베드(그대로 유지).
+         비한국어 = 영어 더빙·자막본을 R2 에서 직접 스트리밍(`clinic.video.file` 배열 = 0 또는 1개).
+         미니 렌더러에 조건 분기(if)가 없어 배열 길이로 분기한다(consult 의 more/survey 와 같은 패턴). -->
     <div class="video-section">
       <h3>{{clinic.video.h3}}</h3>
+      {{#each clinic.video.file}}
+      <div class="frame">
+        <video src="{{src}}" poster="{{poster}}" controls preload="none" playsinline
+               title="{{title}}"></video>
+      </div>
+      {{/each}}
+      {{#each clinic.video.youtube}}
       <div class="frame">
         <iframe
-          src="https://www.youtube.com/embed/WkBRUFXOGPo"
-          title="{{clinic.video.iframe_title}}"
+          src="https://www.youtube.com/embed/{{id}}"
+          title="{{title}}"
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </div>
+      {{/each}}
       {{#each clinic.video.note}}
       <p class="video-note">{{.}}</p>
       {{/each}}
