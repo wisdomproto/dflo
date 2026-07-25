@@ -22,6 +22,28 @@ const reelAlias = process.env.REEL_STUBS === '1'
 //   (x-default hreflang 도 ko 라서 일관). 쿼리스트링(fbclid·utm)은 보존.
 // - apex `dr187growup.com` → `www` 301 — canonical/hreflang/sitemap 이 전부 www 기준.
 //   apex 도메인이 Railway 에 다시 연결되는 즉시 효력이 생긴다.
+// 정적 자산 캐시 헤더 (Railway = `vite preview`, 기본값이 전부 no-cache 라 재방문·페이지 이동마다
+// 자산을 다시 받는다. 서버가 도쿄 단일 리전이라 원거리 사용자에겐 이 왕복이 누적). 파일 확장자로 분류:
+// - 불변 자산(이미지·webp·폰트): 1년 immutable (콘텐츠 바뀌면 파일명이 바뀌는 정적본이라 안전)
+// - CSS/JS(_shell.*): 하루 + must-revalidate (자주 안 바뀌지만 파일명이 고정이라 무한캐시는 위험)
+// - HTML/sitemap/robots: no-cache 유지 (콘텐츠·redirect 갱신이 즉시 반영돼야 함)
+const IMMUTABLE_EXT = /\.(webp|avif|jpg|jpeg|png|gif|svg|ico|woff2?|ttf|otf|mp4|webm)$/i;
+const CODE_EXT = /\.(css|js|mjs)$/i;
+const cacheHeaders = (): Plugin => ({
+  name: 'cache-headers',
+  configurePreviewServer(server) {
+    server.middlewares.use((req, res, next) => {
+      const path = (req.url ?? '').split('?')[0];
+      if (IMMUTABLE_EXT.test(path)) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      } else if (CODE_EXT.test(path)) {
+        res.setHeader('Cache-Control', 'public, max-age=86400, must-revalidate');
+      }
+      next();
+    });
+  },
+});
+
 const seoRedirects = (): Plugin => ({
   name: 'seo-redirects',
   configurePreviewServer(server) {
@@ -65,7 +87,7 @@ const seoRedirects = (): Plugin => ({
 });
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), seoRedirects()],
+  plugins: [react(), tailwindcss(), cacheHeaders(), seoRedirects()],
   // 멀티 엔트리: SPA(index.html) + 경량 calc 페이지(calc.html).
   // calc.html 은 HeightCalculator 폼만 마운트(calc-main.tsx) → Supabase/router/admin 부팅 번들 미포함.
   // iframe(calculator.html)·팝업(_shell.js)이 /calc.html 을 로드. /calc-embed React 라우트는 하위호환으로 유지.
