@@ -47,6 +47,7 @@ function initialState(lang: IntakeLang): IntakeFormState {
     birthMonth: '',
     birthDay: '',
     country: LANG_DEFAULT_COUNTRY[lang],
+    growth_ref: LANG_DEFAULT_COUNTRY[lang],
     father_height: '',
     mother_height: '',
     desired_height: '',
@@ -183,7 +184,7 @@ export default function IntakeWizard({ lang }: { lang: IntakeLang }) {
 
         {/* Active step */}
         <div className="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
-          <ActiveStep state={state} set={set} L={L} errors={errors} />
+          <ActiveStep lang={lang} state={state} set={set} L={L} errors={errors} />
         </div>
 
         {/* Submit error */}

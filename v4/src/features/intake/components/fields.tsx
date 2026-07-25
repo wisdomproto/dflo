@@ -3,6 +3,7 @@
 // (rounded border, focus ring, small uppercase label) but with larger
 // patient-facing touch targets.
 
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 
 const INPUT_CLASS =
@@ -132,6 +133,130 @@ export function SelectField({
           </option>
         ))}
       </select>
+    </FieldShell>
+  );
+}
+
+/**
+ * 검색 가능한 셀렉트 — 국가처럼 항목이 200개쯤 되는 필드용.
+ * 네이티브 <select> 는 모바일에서 200개를 훑어야 해서 사실상 못 찾는다.
+ * 타이핑하면 걸러지고, 위/아래·엔터·Esc 로도 조작된다.
+ */
+export function SearchSelectField({
+  label,
+  value,
+  onChange,
+  options,
+  required,
+  error,
+  placeholder,
+  searchPlaceholder,
+  emptyText,
+  hint,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: { value: string; label: string }[];
+  required?: boolean;
+  error?: string;
+  placeholder?: string;
+  searchPlaceholder?: string;
+  emptyText?: string;
+  hint?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState('');
+  const [active, setActive] = useState(0);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const selected = options.find((o) => o.value === value);
+  const filtered = useMemo(() => {
+    const s = q.trim().toLowerCase();
+    if (!s) return options;
+    // 라벨 앞부분 일치를 먼저 — "in" 이면 India 가 Argentina 보다 위로.
+    const starts = options.filter((o) => o.label.toLowerCase().startsWith(s));
+    const has = options.filter(
+      (o) => !o.label.toLowerCase().startsWith(s) &&
+        (o.label.toLowerCase().includes(s) || o.value.toLowerCase() === s),
+    );
+    return [...starts, ...has];
+  }, [options, q]);
+
+  // 바깥 클릭 닫기
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (boxRef.current && !boxRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [open]);
+
+  useEffect(() => {
+    if (open) inputRef.current?.focus();
+    else { setQ(''); setActive(0); }
+  }, [open]);
+
+  const pick = (v: string) => { onChange(v); setOpen(false); };
+
+  return (
+    <FieldShell label={label} required={required} error={error}>
+      <div ref={boxRef} className="relative">
+        <button
+          type="button"
+          className={`${INPUT_CLASS} flex items-center justify-between text-left`}
+          onClick={() => setOpen((o) => !o)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+        >
+          <span className={selected ? '' : 'text-slate-400'}>
+            {selected ? selected.label : (placeholder ?? '—')}
+          </span>
+          <span className={`ml-2 shrink-0 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}>▾</span>
+        </button>
+
+        {open && (
+          <div className="absolute z-30 mt-1 w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg">
+            <input
+              ref={inputRef}
+              className="w-full border-b border-slate-200 px-4 py-2.5 text-base outline-none"
+              value={q}
+              placeholder={searchPlaceholder ?? '🔍'}
+              onChange={(e) => { setQ(e.target.value); setActive(0); }}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowDown') { e.preventDefault(); setActive((i) => Math.min(i + 1, filtered.length - 1)); }
+                else if (e.key === 'ArrowUp') { e.preventDefault(); setActive((i) => Math.max(i - 1, 0)); }
+                else if (e.key === 'Enter') { e.preventDefault(); if (filtered[active]) pick(filtered[active].value); }
+                else if (e.key === 'Escape') { e.preventDefault(); setOpen(false); }
+              }}
+            />
+            <ul className="max-h-64 overflow-y-auto py-1" role="listbox">
+              {filtered.length === 0 && (
+                <li className="px-4 py-3 text-sm text-slate-400">{emptyText ?? '—'}</li>
+              )}
+              {filtered.map((o, i) => (
+                <li key={o.value}>
+                  <button
+                    type="button"
+                    role="option"
+                    aria-selected={o.value === value}
+                    className={`block w-full px-4 py-2.5 text-left text-base ${
+                      i === active ? 'bg-indigo-50' : ''
+                    } ${o.value === value ? 'font-semibold text-indigo-700' : 'text-slate-800'}`}
+                    onMouseEnter={() => setActive(i)}
+                    onClick={() => pick(o.value)}
+                  >
+                    {o.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      {hint && <p className="mt-1.5 text-xs text-slate-500">{hint}</p>}
     </FieldShell>
   );
 }

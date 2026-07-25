@@ -48,7 +48,8 @@ export interface IntakeFormState {
   birthYear: string;
   birthMonth: string;
   birthDay: string;
-  country: string;
+  country: string;      // 거주국 — 광고 지역 데이터
+  growth_ref: string;   // 성장 기준 국가 — 예측키 계산용(보통 country 와 같음)
   father_height: string;
   mother_height: string;
   desired_height: string;

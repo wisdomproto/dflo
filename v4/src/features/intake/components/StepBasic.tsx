@@ -1,16 +1,22 @@
-import type { IntakeFormState } from '../types';
+import type { IntakeFormState, IntakeLang } from '../types';
 import type { IntakeLabelSet } from '../intakeLabels';
-import { COUNTRIES } from '@/shared/data/countries';
-import { TextField, NumberField, SelectField, Date3Field } from './fields';
+import { getCountries } from '@/shared/data/countries';
+import { TextField, NumberField, SearchSelectField, Date3Field } from './fields';
 
 export interface StepProps {
+  lang: IntakeLang;
   state: IntakeFormState;
   set: (patch: Partial<IntakeFormState>) => void;
   L: IntakeLabelSet;
   errors: Record<string, string>;
 }
 
-export function StepBasic({ state, set, L, errors }: StepProps) {
+export function StepBasic({ lang, state, set, L, errors }: StepProps) {
+  // 국가명은 화면 언어로(Intl.DisplayNames). 목록이 199개라 검색 셀렉트로 고른다.
+  const countryOptions = getCountries(lang).map((c) => ({
+    value: c.code,
+    label: `${c.flag} ${c.label}`,
+  }));
   return (
     <div className="flex flex-col gap-5">
       <h2 className="text-lg font-bold text-slate-800">{L.s1Title}</h2>
@@ -79,13 +85,27 @@ export function StepBasic({ state, set, L, errors }: StepProps) {
         error={errors.birth}
       />
 
-      <SelectField
+      {/* 거주국 = 광고 지역 데이터. 성장 기준 = 예측키 계산용(부모에겐 'CDC/WHO' 대신 나라로 묻는다).
+          둘은 보통 같으므로 거주국을 고르면 성장 기준을 같은 나라로 맞춰준다(다르면 직접 변경). */}
+      <SearchSelectField
         label={L.country}
         value={state.country}
-        onChange={(v) => set({ country: v })}
-        options={COUNTRIES.map((c) => ({ value: c.code, label: `${c.flag} ${c.ko}` }))}
+        onChange={(v) => set({ country: v, growth_ref: v })}
+        options={countryOptions}
+        searchPlaceholder={L.countrySearch}
+        emptyText={L.countryEmpty}
         required
         error={errors.country}
+      />
+
+      <SearchSelectField
+        label={L.growthRef}
+        value={state.growth_ref || state.country}
+        onChange={(v) => set({ growth_ref: v })}
+        options={countryOptions}
+        searchPlaceholder={L.countrySearch}
+        emptyText={L.countryEmpty}
+        hint={L.growthRefHint}
       />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

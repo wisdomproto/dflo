@@ -1,4 +1,5 @@
 import { supabase } from '@/shared/lib/supabase';
+import { growthStandardOf } from '@/shared/data/countries';
 import { logger } from '@/shared/lib/logger';
 import type { IntakeFormState, IntakeLang, UploadMeta } from './types';
 
@@ -80,7 +81,14 @@ export async function submitIntake(lang: IntakeLang, s: IntakeFormState): Promis
     phone: s.phone || null,
     email: s.email || null,
     address: s.address || null,
-    intake_survey: { ...s.survey, updated_at: new Date().toISOString() },
+    intake_survey: {
+      ...s.survey,
+      // 거주국(country)과 별개로 예측키 계산에 쓸 기준. 부모는 나라만 고르고
+      // growth_standard 는 growthStandardOf 가 KR/TH/CN/US/ID/WHO 로 옮긴다.
+      growth_ref_country: s.growth_ref || s.country || null,
+      growth_standard: growthStandardOf(s.growth_ref || s.country),
+      updated_at: new Date().toISOString(),
+    },
     uploads,
   };
   const { error } = await supabase.from('intake_submissions').insert(payload);
