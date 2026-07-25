@@ -92,7 +92,10 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 ### CTA 라우팅 + GA4
 모든 메신저 버튼은 `messenger.yml`만 참조 (URL/라벨/색상). `_shell.js`의 `trackConsultClick`이 `data-source` 가진 모든 `<a>` 클릭 시 GA4 `consult_click` 이벤트 발사 (channel/locale/source/page_type 디멘션). **(2026-07-11) 메인(index) 섹션 사이 인라인 CTA 7개 전부 제거** — 예상키측정(check) + hormone_consult + 5개 케이스 상담(`case-cta-inline` × precocious/obesity/proportion/bodywork/late, `data-source="case_{section}"`)이 섹션마다 반복돼 "정신없다" 피드백 → 삭제(콘텐츠 흐름 정리). `.case-cta-inline` CSS 정의만 dead 로 잔존(롤백 용이). 전 언어 공통(템플릿 편집). **유지**: 신뢰 티저 '병원 소개 →', 페이지 하단 종결 CTA(`cta-bottom` 측정+상담 `data-source=cta_bottom`), 하단 네비 바(측정·예약). 측정·상담 진입은 이 셋으로 커버. GA4 는 case_* 인라인 소스가 빠지고 `cta_bottom`·네비바만 잡힘.
 
-### 1:1 상담 페이지 `/{lang}/consult.html` (2026-07-17, th/vi/en 전용 — 옛 팝업 시트 대체)
+### 1:1 상담 페이지 `/{lang}/consult.html` (2026-07-17 신설 — 옛 팝업 시트 대체)
+
+> **(2026-07-25 현재)** 대상 = **ko 를 뺀 8개 로케일 전부**(th/vi/en/ja/es/zh-hant/zh-hans/ar — `consult_channels.length>1` 인 언어. 아래 원문의 "th/vi/en 전용"은 신설 당시 기준). ko 는 카톡 직행 + 예약 폼이라 여전히 페이지 없음. `clinic.html` 참조는 전부 **`/{lang}/index.html#clinic`** 으로 이동(§홈페이지 병합).
+> - **설문 CTA + 오버레이**(2026-07-25): 원격 안내 하단에 `설문 작성` 버튼(`.cs-survey` → `/intake/{lang}`). 클릭하면 **페이지를 떠나지 않고 오버레이 iframe** 으로 뜬다(`#csSurvey`, 기하는 예약 시트와 동일 = 헤더 52px 아래 ~ 하단 네비 위 → **바가 계속 보인다**). ★**iframe `src` 는 클릭 시점에 주입** — 안 누르면 요청 0건이라 초기 로딩 무영향. 제출이 끝나면 `IntakeWizard` 가 `postMessage({type:'intake_done'}, origin)` → 부모가 오버레이를 닫고 `consult.survey_done` 배너를 띄운 뒤 채널 목록으로 스크롤. 부모는 `ev.origin !== location.origin` 이면 무시. 🚨`.cs-sv[hidden]{display:none}` 짝 규칙 필수(안 넣으면 옛 상담 시트 P0 재발 — 닫힌 오버레이가 전 페이지를 덮는다).
 **팝업 시트 → 실제 페이지**로 전환(사용자 요청). 헤더 pill·하단 바 '1:1 상담' 이 `data-consult-open`(버튼) → **`<a href="/{lang}/consult.html">`**. 페이지 = 히어로 + **원격 상담 안내** + **채널 3개**(messenger.yml `consult_channels` 순서 그대로, `data-source="consult_page"`). 시트 마크업·JS·CSS(`.t-consult*`)·`consult_open` 이벤트는 전부 제거 — 페이지라 **page_view 가 자동으로 잡혀** 별도 열람 이벤트가 불필요.
 - **원격 안내 카피**(사용자 확인): **th** = 방콕 사무소 기반이라 4단계 요약 + `clinic.html` 전체 절차로 링크(`consult.remote.more`, 중복 콘텐츠 회피). **vi/en** = 방콕 같은 현지 인프라가 없어 **온라인 상담 중심**("서울에 오지 않아도 시작 가능 / 현지 뼈나이·혈액 결과 보내면 원장이 분석 / 화상 상담 예약 가능 / **검사·치료 계획은 내원 시 확정**") + 하단 면책 문구. 의료광고법상 안전 범위(단정·보장 없음)이나 **원장 감수 권장**.
 - **ko 는 페이지 없음** — 카톡 직행 + 예약 폼 동선 유지(`consult_channels` 미정의 → `__HAS_CONSULT_PAGE=false` → 기존 마크업).
@@ -107,7 +110,16 @@ CONTENTFLOW_PROJECT_ID=       # 연세새봄의원 project UUID
 - 🚨 **fixed 오버레이엔 `[hidden] { display: none }` 짝 규칙 필수**(옛 상담 시트 P0 로 학습). `.t-consult{display:flex}`(author) 가 브라우저 기본 `[hidden]{display:none}`(UA) 를 **cascade origin 으로 이겨서**, 닫힌 시트가 `inset:0`·z-index 80 으로 **th/vi/en 전 페이지를 투명하게 덮음** → 사이트 클릭 먹통 + 하단 바 자리에 겹친 카카오 링크가 눌림("1:1 Consulting 누르면 카톡"). `.t-resv[hidden]` 은 같은 이유로 원래 있었는데 시트 추가 때 빠뜨린 것. 시트는 이제 페이지로 대체됐지만 **규칙은 유효**(예약 시트 등).
   - ★검증 교훈: **`el.click()`(JS 디스패치)은 히트테스트를 건너뛰어 이 버그를 통과시킨다.** 오버레이·z-index 작업은 **`document.elementFromPoint(x,y)`** 로 "그 좌표를 누르면 실제로 뭐가 눌리나" 를 확인할 것.
 
-### 하단 네비 = 5칸 (모바일 엣지투엣지 / 데스크톱 카드폭) (2026-07-17)
+### 메인 FAQ (2026-07-25) — 화면 + JSON-LD 단일 소스
+`seo.yml` 의 로케일별 FAQ 는 **FAQPage JSON-LD 로만** 나가고 화면엔 없었다. 구글은 FAQ 구조화 데이터가 **페이지에 실제로 보일 것**을 요구하므로 정책 위반이자 번역까지 끝난 콘텐츠 낭비였다. → `build-i18n` 이 `buildSeo(lang)` 에서 `faq`·`faq_title` 을 템플릿 컨텍스트로 넘기고, `index.html` 이 **`#process` 와 종결 CTA 사이**에 렌더(`.home-faq`, `<details>` 아코디언·JS 0줄). **6축과 달리 `name` 미공유** — FAQ 는 여러 개를 펼쳐 비교해 읽는다.
+- **6문항**(9언어): 치료 가능 연령 / 성장판 닫혔으면? / 사춘기·저신장·비만 포괄 / **타 병원 검사 결과 지참**(해외 핵심) / **내원 빈도·치료 기간**(해외 핵심) / 부작용. 질문 주제는 **직원용 상담 매뉴얼(`consulting_qa` 29문항)에서 고르되 답변은 공개용으로 새로 작성** — 매뉴얼 자체는 내부용이라 **손대지 않는다**.
+- **뺀 것**: 가격 5문항 전부(★옛 seo.yml FAQ 에 `치료 비용은 얼마나 드나요?` 가 있어 그동안 구글로 나가고 있었다) · "몇 cm 자라나요"(효과 보장) · 루프린 등 전문의약품명 · 비교광고(의료법 56조).
+- ★**"치료 기간 평균 3년 미만"은 DB 실측 후 기재** — `treatment_cases` 62명 평균 27.8개월, 공개 30명 33.8개월(둘 다 36 미만). 중앙값(28/35)·최대(48)와 다르니 **"3년 미만"을 단정으로 쓰려면 평균 기준임을 유지**할 것.
+- 계산기 페이지의 별도 FAQ 3문항(`calculator.faq`)은 "height calculator" 키워드용이라 **그대로 유지**(별개).
+
+### 하단 네비 (모바일 엣지투엣지 / 데스크톱 카드폭) (2026-07-17, 2026-07-25 격자 수정)
+
+> 🐛 **(2026-07-25) 칸 수를 CSS 에 박아두면 안 된다.** `_shell.js` 가 언어별로 항목을 빼는데(블로그 0편인 **ja/es 는 4칸**, 나머지 5칸) CSS 는 `repeat(5, 1fr)` 로 고정돼 있어 **ja/es 하단 바 오른쪽에 75px 빈 칸**이 남아 있었다. → **`grid-auto-flow: column` + `grid-auto-columns: minmax(0,1fr)`** 로 교체(항목 수를 격자가 따라감). ★**`1fr` = `minmax(auto,1fr)`** 이라 긴 라벨이 **자기 칸만 부풀린다** — es `Calculadora de estatura` 가 114px 를 먹고 이웃은 65px 로 쪼그라들어 있었다(`minmax(0,1fr)` 이 정답). 그 대신 긴 라벨은 칸을 넘치므로 **탭 라벨은 짧게**: en `Height calculator`→**`Height Calc`**, es `Calculadora de estatura`→**`Calculadora`**(SEO 키워드는 계산기 페이지 title·H1·meta 가 담당, 탭은 아님). 검증 = 9언어 × 4탭/5탭 × 320~1280px 에서 칸폭편차 0·빈공간 0·겹침 0(최장 vi 도 320px 에서 8px 여유).
 `__IS_FULL_NAV = __IS_KO || __HAS_CONSULT_PAGE` → 지금은 전 언어가 5칸(ko=예약 / th·vi·en=상담)이라 **`--full`** 로 통일. 460px 플로팅 pill 에 5칸은 칸당 ~70px 라 "공간 부족"(사용자 지적) → **모바일 엣지투엣지**(375px 기준 칸당 75px·높이 60·라벨 10.5px + `white-space:nowrap`[「1:1 Consulting」이 2줄로 접히면 바 높이 초과]). 임시 `--bottom-nav--5`(pill 유지 + 5칸)는 `--full` 과 중복이라 폐기.
 - ★**데스크톱(≥768)은 `max-width:680px` + 중앙정렬 + 상단만 라운드**(`16px 16px 0 0`) — 옛 `--full` 은 데스크톱에서도 `max-width:none`(ko 전용 시절 결정)이라 th/vi/en 에 확대 적용하자 **콘텐츠는 680 카드인데 바만 화면 전체를 가로질러 따로 놀았다**(사용자 지적). 이제 `.t-header`(680)와 좌우가 정확히 일치. 라벨은 데스크톱 13px(`.t-bottom-nav a` 768 미디어 규칙이 뒤에 와서 승리, 칸당 136px 여유).
 - 🐛 **같이 고친 기존 버그**: `.t-resv { bottom: 66px }`(데스크톱) 가 **base `.t-resv`(bottom `calc(60px + safe-area)`) 보다 앞에** 있어 같은 명시도에서 덮여 **한 번도 적용된 적 없었음** → 예약 시트가 데스크톱 하단 바를 6px 덮고 있었다. base 뒤로 이동. **CSS 미디어 오버라이드는 base 규칙 뒤에 둘 것**(이 파일은 명시도가 아니라 순서로 이긴다).
