@@ -14,10 +14,18 @@
   .post-author:hover { text-decoration: underline; }
   .post-body { padding: 28px 0; font-size: 16px; line-height: 1.85; color: var(--shell-body); }
   .post-body img { max-width: 100%; height: auto; display: block; margin: 24px 0; border-radius: 8px; }
-  .post-cta { margin: 40px 0; padding: 24px; background: var(--shell-page-bg); text-align: center; border-radius: 12px; }
-  .post-cta a {
-    display: inline-flex; padding: 14px 28px; background: {{messenger.color_bg}}; color: {{messenger.color_fg}};
-    text-decoration: none; font-weight: 700; border-radius: 2px;
+  /* 글 끝 전환 CTA — 차가운 블로그 독자에게 저마찰 진입(무료 측정)을 1차로, 상담을 2차로.
+     측정 결과 화면이 다시 상담을 유도하므로 측정→상담 퍼널이 자연 연결된다. */
+  .post-cta { margin: 40px 0; padding: 28px 24px; background: var(--shell-page-bg); text-align: center; border-radius: 12px; }
+  .post-cta .cta-lead { font-size: 16px; font-weight: 800; color: var(--shell-ink); margin-bottom: 16px; letter-spacing: -0.3px; }
+  .post-cta-actions { display: flex; flex-direction: column; gap: 10px; max-width: 340px; margin: 0 auto; }
+  .post-cta-measure {
+    display: block; padding: 15px 24px; background: var(--shell-brand); color: #fff;
+    text-decoration: none; font-weight: 800; border-radius: 12px; font-size: 15.5px;
+  }
+  .post-cta-consult {
+    display: block; padding: 13px 24px; background: {{messenger.color_bg}}; color: {{messenger.color_fg}};
+    text-decoration: none; font-weight: 700; border-radius: 12px; font-size: 14.5px;
   }
   .post-references { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--shell-hairline); }
   .post-references-title { font-size: 18px; font-weight: 800; color: var(--shell-ink); margin-bottom: 10px; }
@@ -37,10 +45,13 @@
   </article>
   {{post.references_html}}
   <div class="post-cta">
-    <a href="{{messenger.url}}" target="_blank" rel="noopener"
-       data-source="blog_post" data-channel="{{messenger.channel}}">
-      {{messenger.label}}
-    </a>
+    <p class="cta-lead">{{cta_global.bottom_sub}}</p>
+    <div class="post-cta-actions">
+      <a class="post-cta-measure" href="/{{meta.lang}}/calculator.html"
+         data-source="blog_post_measure">{{cta_global.bottom_measure_label}}</a>
+      <a class="post-cta-consult" href="{{messenger.url}}" target="_blank" rel="noopener"
+         data-source="blog_post" data-channel="{{messenger.channel}}">{{cta_global.bottom_label}}</a>
+    </div>
   </div>
 </div>
 <script>
