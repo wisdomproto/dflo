@@ -185,7 +185,9 @@ body { background: var(--shell-page-bg) !important; }
   cursor: pointer;
   padding: 8px 4px;
   text-decoration: none;
-  color: var(--shell-muted);
+  /* --shell-muted(#8a8580)는 흰 바 위에서 3.65:1 로 AA(4.5:1) 미달인데, 이 바는 화면에
+     항상 떠 있는 유일한 컨트롤이라 여기만 진하게 잡는다(#6b6560 = 5.74:1). */
+  color: #6b6560;
   text-align: center;
   font-family: inherit;
   font-size: 11px;

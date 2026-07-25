@@ -37,10 +37,10 @@
   .cs-remote p { font-size: 14px; line-height: 1.75; }
   .cs-remote ul { list-style: none; margin-top: 14px; display: grid; gap: 9px; }
   .cs-remote li {
-    position: relative; padding-left: 22px; font-size: 13.5px; line-height: 1.65; color: var(--shell-body);
+    position: relative; padding-inline-start: 22px; font-size: 13.5px; line-height: 1.65; color: var(--shell-body);
   }
   .cs-remote li::before {
-    content: ''; position: absolute; left: 2px; top: 8px;
+    content: ''; position: absolute; inset-inline-start: 2px; top: 8px;
     width: 7px; height: 7px; border-radius: 50%; background: var(--shell-brand);
   }
   .cs-remote .cs-survey {
@@ -166,7 +166,7 @@
 </div>
 
 <!-- 설문 오버레이 — iframe src 는 클릭할 때 채운다(그전엔 아무것도 로드하지 않음). -->
-<div class="cs-sv" id="csSurvey" role="dialog" aria-modal="true" hidden>
+<div class="cs-sv" id="csSurvey" role="dialog" aria-modal="true" aria-label="{{consult.h1}}" hidden>
   <div class="cs-sv-bar">
     <button type="button" class="cs-sv-close" data-cs-close aria-label="close">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -210,6 +210,10 @@
     document.body.style.overflow = 'hidden';
   });
   ov.querySelector('[data-cs-close]').addEventListener('click', close);
+  // 예약 시트와 같은 규칙 — 열린 오버레이는 Esc 로 닫힌다.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !ov.hidden) close();
+  });
 
   window.addEventListener('message', function (ev) {
     if (ev.origin !== location.origin) return;

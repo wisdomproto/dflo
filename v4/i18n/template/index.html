@@ -248,7 +248,7 @@
   /* 7-step process — one row per step (icon + text), replaces the baked grid image */
   .process-steps {
     max-width: 560px; margin: 28px auto 0; padding: 0 20px;
-    display: flex; flex-direction: column; gap: 12px; text-align: left;
+    display: flex; flex-direction: column; gap: 12px; text-align: start;
   }
   .pstep {
     display: flex; align-items: center; gap: 16px;
@@ -343,15 +343,15 @@
   }
   .doctor-card .profile {
     display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
-    margin-top: 20px; text-align: left; background: var(--soft);
+    margin-top: 20px; text-align: start; background: var(--soft);
     padding: 16px 18px; border-radius: 12px;
   }
   .doctor-card .profile li {
     list-style: none; font-size: 12.5px; color: #555;
-    padding-left: 14px; position: relative; line-height: 1.55;
+    padding-inline-start: 14px; position: relative; line-height: 1.55;
   }
   .doctor-card .profile li::before {
-    content: ''; position: absolute; left: 0; top: 8px;
+    content: ''; position: absolute; inset-inline-start: 0; top: 8px;
     width: 5px; height: 5px; border-radius: 50%; background: #6B3FA0;
   }
 
@@ -372,18 +372,18 @@
   .remote-consult h3 { font-size: 18px; font-weight: 900; color: #4A2D6B; letter-spacing: -0.4px; margin-bottom: 6px; }
   .remote-consult .rc-intro { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 22px; }
   .remote-consult ol { list-style: none; counter-reset: rc; }
-  .remote-consult li { position: relative; padding-left: 44px; padding-bottom: 20px; }
+  .remote-consult li { position: relative; padding-inline-start: 44px; padding-bottom: 20px; }
   .remote-consult li:last-child { padding-bottom: 0; }
   .remote-consult li::before {
     content: counter(rc); counter-increment: rc;
-    position: absolute; left: 0; top: 0;
+    position: absolute; inset-inline-start: 0; top: 0;
     width: 30px; height: 30px; border-radius: 50%;
     background: #6B3FA0; color: #fff;
     font-size: 14px; font-weight: 800;
     display: flex; align-items: center; justify-content: center;
   }
   .remote-consult li:not(:last-child)::after {
-    content: ''; position: absolute; left: 14px; top: 34px; bottom: 2px;
+    content: ''; position: absolute; inset-inline-start: 14px; top: 34px; bottom: 2px;
     width: 2px; background: #e0d3f0;
   }
   .remote-consult .rc-label { font-size: 14.5px; font-weight: 800; color: #222; }
@@ -418,8 +418,12 @@
     flex: 0 0 78%; max-width: 340px; margin: 0;
     scroll-snap-align: center;
   }
+  /* 원본 비율이 섞여 있다(facility-1~6 = 800×517, 7~9 = 1200×900). 파일마다 width/height 를
+     박으면 캡션 baseline 이 어긋나므로 비율을 CSS 로 고정하고 cover 로 채운다.
+     ★lazy 슬라이드가 로드될 때 높이가 안 변한다 = 스와이프 중 점프 없음. */
   .facility-strip img {
-    width: 100%; height: auto; border-radius: 12px;
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 12px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.10);
   }
   .facility-strip figcaption {
@@ -522,7 +526,10 @@
   .home-cases .rc-num { font-size: 29px; font-weight: 900; letter-spacing: -1.2px; line-height: 1.18; }
   .home-cases .rc-num .u { font-size: 15px; font-weight: 800; letter-spacing: -0.3px; }
   .home-cases .rc-num-from { color: #3a3a44; }
-  .home-cases .rc-num-to { color: var(--cc); }
+  /* 섹션에서 제일 중요한 숫자인데 --cc 로는 카드 배경 대비 2.87:1 이라 햇빛 아래서 안 읽힌다.
+     카드가 이미 들고 있는 진한 짝(--cc2)을 쓰면 3.97:1(29px 볼드 = large text 기준 3:1 충족).
+     --cc 는 링·태그용으로 그대로 둔다. */
+  .home-cases .rc-num-to { color: var(--cc2, var(--cc)); }
   .home-cases .rc-hr { width: 76%; height: 1px; background: rgba(0,0,0,0.07); margin: 3px 0; }
   .home-cases-all { display: block; text-align: center; max-width: 560px; margin: 14px auto 0; padding: 13px; border-radius: 12px; background: #f3effa; color: #5b3da8; font-weight: 800; font-size: 14.5px; text-decoration: none; }
   .home-cases-all:hover { background: #ebe4f7; }
@@ -552,7 +559,7 @@
 
 
   <!-- hero image — visual payoff right after the hope message -->
-  <img class="full-img" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
+  <img class="full-img" width="1180" height="710" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
 
   <!-- ================= CHECK ================= -->
   <div class="sec-head entry">
@@ -576,7 +583,7 @@
   </div>
 
   <div class="golden">
-    <img class="full-img" src="/programs/images/growth-hormone-balance/golden-time.jpg" alt="{{golden.img_alt}}">
+    <img class="full-img" width="1774" height="887" src="/programs/images/growth-hormone-balance/golden-time.jpg" alt="{{golden.img_alt}}">
   </div>
 
   <div class="sec-head spaced">
@@ -777,35 +784,35 @@
       <h3>{{clinic.facility.h3}}</h3>
       <div class="facility-strip">
         <figure>
-          <img src="/images/facility-7.jpg" alt="{{clinic.facility.items.0}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-7.jpg" alt="{{clinic.facility.items.0}}" loading="lazy">
           <figcaption>{{clinic.facility.items.0}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-2.jpg" alt="{{clinic.facility.items.1}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-2.jpg" alt="{{clinic.facility.items.1}}" loading="lazy">
           <figcaption>{{clinic.facility.items.1}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-8.jpg" alt="{{clinic.facility.items.2}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-8.jpg" alt="{{clinic.facility.items.2}}" loading="lazy">
           <figcaption>{{clinic.facility.items.2}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-3.jpg" alt="{{clinic.facility.items.3}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-3.jpg" alt="{{clinic.facility.items.3}}" loading="lazy">
           <figcaption>{{clinic.facility.items.3}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-9.jpg" alt="{{clinic.facility.items.4}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-9.jpg" alt="{{clinic.facility.items.4}}" loading="lazy">
           <figcaption>{{clinic.facility.items.4}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-5.jpg" alt="{{clinic.facility.items.5}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-5.jpg" alt="{{clinic.facility.items.5}}" loading="lazy">
           <figcaption>{{clinic.facility.items.5}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-4.jpg" alt="{{clinic.facility.items.6}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-4.jpg" alt="{{clinic.facility.items.6}}" loading="lazy">
           <figcaption>{{clinic.facility.items.6}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-1.jpg" alt="{{clinic.facility.items.7}}" loading="lazy" width="1200" height="900">
+          <img src="/images/facility-1.jpg" alt="{{clinic.facility.items.7}}" loading="lazy">
           <figcaption>{{clinic.facility.items.7}}</figcaption>
         </figure>
       </div>
