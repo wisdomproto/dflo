@@ -35,7 +35,7 @@ test('buildBlogReferencesHtml: 빈 배열이면 빈 문자열(inert)', () => {
 test('buildBlogReferencesHtml: 제목·저널·PubMed·DOI 링크', () => {
   const refs = [{ title: 'Sleep & growth', journal: 'Pediatrics', year: 2020, url: 'https://pubmed/1', doi: '10.1/x' }];
   const html = buildBlogReferencesHtml(refs, 'ko');
-  assert.match(html, /참고문헌/);
+  assert.match(html, /References/);
   assert.match(html, /Sleep &amp; growth/);
   assert.match(html, /href="https:\/\/pubmed\/1"/);
   assert.match(html, /href="https:\/\/doi\.org\/10\.1\/x"/);

@@ -11,10 +11,7 @@ function formatDate(iso, lang) {
   return fmt.format(d);
 }
 
-const REF_HEADINGS = {
-  ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง',
-  vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献', 'zh-hant': '參考文獻', 'zh-hans': '参考文献', ar: 'المراجع',
-};
+// 참고문헌 헤딩은 전 로케일 영어 "References"(인용 항목이 영어라 헤딩만 현지어면 뒤죽박죽, 사용자 지정).
 
 // 저자(원장) byline — E-E-A-T/GEO 권위 신호. 화면 노출 + author 스키마와 짝.
 // 키 = locale.meta.lang (zh-hant/zh-hans/ar). 이름 표기는 각 로케일 director.name 관례를 따름
@@ -41,7 +38,7 @@ function escapeHtml(s) {
 // 아티클 단위 참고문헌 → <section> HTML. 빈 배열·undefined 면 '' (캐시 렌더 경로에서 inert).
 export function renderReferencesHtml(references, lang) {
   if (!Array.isArray(references) || references.length === 0) return '';
-  const heading = REF_HEADINGS[lang] || REF_HEADINGS.en;
+  const heading = 'References';
   const items = references.map((r) => {
     const cite = [escapeHtml(r.title), [escapeHtml(r.journal), r.year ? escapeHtml(r.year) : ''].filter(Boolean).join('. ')]
       .filter(Boolean).join(' ');

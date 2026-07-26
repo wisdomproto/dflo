@@ -6,10 +6,8 @@ import type { BlogSeoArticle, BlogReference } from '../types';
 const FAQ_HEADING: Record<string, string> = {
   ko: '자주 묻는 질문', en: 'FAQ', th: 'คำถามที่พบบ่อย', vi: 'Câu hỏi thường gặp', ch: '常見問題', cn: '常见问题', ar: 'الأسئلة الشائعة',
 };
-// 발행 blog.mjs renderReferencesHtml 의 REF_HEADINGS 와 동일(6언어).
-const REF_HEADING: Record<string, string> = {
-  ko: '참고문헌', en: 'References', th: 'เอกสารอ้างอิง', vi: 'Tài liệu tham khảo', ch: '參考文獻', cn: '参考文献', ar: 'المراجع',
-};
+// 참고문헌 헤딩은 전 로케일 영어 "References" — 인용 항목(제목·저널)이 어차피 영어라
+// 헤딩만 현지어면 뒤죽박죽이라 통일(사용자 지정). blog.mjs renderReferencesHtml 과 동일.
 
 // 정적 빌드 blog.mjs 와 동일한 이스케이프(작은따옴표 포함) — 미리보기·발행·정적 렌더 마크업 일치.
 export function esc(s: string): string {
@@ -36,9 +34,9 @@ export function buildBlogBodyHtml(a: BlogSeoArticle, lang: string): string {
   return (sections || '<p class="post-empty">아직 본문이 없습니다.</p>') + faq;
 }
 
-export function buildBlogReferencesHtml(references: BlogReference[], lang: string): string {
+export function buildBlogReferencesHtml(references: BlogReference[], _lang: string): string {
   if (!Array.isArray(references) || references.length === 0) return '';
-  const heading = REF_HEADING[lang] ?? REF_HEADING.en;
+  const heading = 'References';
   const items = references
     .map((r) => {
       const cite = [esc(r.title), [esc(r.journal), r.year ? esc(String(r.year)) : ''].filter(Boolean).join('. ')]
