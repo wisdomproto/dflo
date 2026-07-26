@@ -38,18 +38,28 @@ export async function saveConnection(bundle: MetaBundle, expiresAt: string | nul
   if (error) throw new Error(error.message);
 }
 
-export async function getBundle(): Promise<MetaBundle | null> {
+// 실패 원인을 구분해 돌려준다. 셋(조회 실패·연결 없음·복호화 실패)을 다 null 로 뭉개면
+// 전부 "Meta 연결이 없습니다" 로 보고돼 진단이 막힌다 — ★getEncKey() 가 try 안이라
+// META_TOKEN_ENC_KEY 누락도 '연결 없음' 으로 둔갑한다(인스턴스마다 env 가 다르면 발행이 간헐 실패).
+export async function getBundleResult(): Promise<{ bundle: MetaBundle | null; reason?: string }> {
   const { data, error } = await sb
     .from('marketing_meta_connection')
     .select('enc_payload')
     .order('updated_at', { ascending: false })
     .limit(1);
-  if (error || !data || data.length === 0) return null;
+  if (error) return { bundle: null, reason: `연결 조회 실패: ${error.message}` };
+  if (!data || data.length === 0) return { bundle: null, reason: '저장된 연결 없음(재연결 필요)' };
   try {
-    return JSON.parse(decrypt(data[0].enc_payload as string, getEncKey())) as MetaBundle;
-  } catch {
-    return null;
+    return { bundle: JSON.parse(decrypt(data[0].enc_payload as string, getEncKey())) as MetaBundle };
+  } catch (e) {
+    return { bundle: null, reason: `토큰 복호화 실패(META_TOKEN_ENC_KEY 확인): ${e instanceof Error ? e.message : ''}` };
   }
+}
+
+export async function getBundle(): Promise<MetaBundle | null> {
+  const { bundle, reason } = await getBundleResult();
+  if (!bundle) console.error('[meta] 연결 사용 불가 —', reason);
+  return bundle;
 }
 
 export async function getConnectionPublic(): Promise<{

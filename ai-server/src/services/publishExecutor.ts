@@ -7,7 +7,7 @@ import {
   publishFacebookReel, publishInstagramReel, publishThreadsVideo,
   fetchPermalink, deletePost,
 } from './metaPublish.js';
-import { getBundle, findPageToken } from './metaConnectionStore.js';
+import { getBundleResult, findPageToken } from './metaConnectionStore.js';
 
 const sb = createClient(
   process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
@@ -125,8 +125,10 @@ export async function publishQueueItem(queueId: string): Promise<ExecResult> {
     platform,
   );
   if (!targetId) return fail(queueId, 'meta', '채널에 Meta 타겟 id가 없습니다. 연결/매핑 필요.');
-  const bundle = await getBundle();
-  if (!bundle) return fail(queueId, 'meta', 'Meta 연결이 없습니다.');
+  // 원인을 error_message 에 그대로 남긴다 — "연결 없음" 으로 뭉개면 재연결이 필요한 건지
+  // 인스턴스 env 문제인지 구분이 안 돼 발행 실패를 며칠씩 놓친다.
+  const { bundle, reason } = await getBundleResult();
+  if (!bundle) return fail(queueId, 'meta', `Meta 연결 사용 불가 — ${reason}`);
   const token = findPageToken(bundle, targetId);
   if (!token) return fail(queueId, 'meta', '해당 타겟의 토큰을 찾을 수 없습니다(재연결 필요).');
 
@@ -168,8 +170,8 @@ export async function deleteChannelPost(queueId: string): Promise<ExecResult> {
     platform,
   );
   if (!targetId) return { ok: false, kind: 'meta', error: '채널에 Meta 타겟 id가 없습니다.' };
-  const bundle = await getBundle();
-  if (!bundle) return { ok: false, kind: 'meta', error: 'Meta 연결이 없습니다.' };
+  const { bundle, reason } = await getBundleResult();
+  if (!bundle) return { ok: false, kind: 'meta', error: `Meta 연결 사용 불가 — ${reason}` };
   const token = findPageToken(bundle, targetId);
   if (!token) return { ok: false, kind: 'meta', error: '해당 타겟의 토큰을 찾을 수 없습니다(재연결 필요).' };
   try {
