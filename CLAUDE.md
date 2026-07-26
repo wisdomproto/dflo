@@ -231,6 +231,15 @@ en 동급 홈페이지 + 설문 + 계산기. 블로그는 다음 단계(합의).
 - ✅ **apex TLS 해결 (2026-06-22)**: 진짜 원인은 DNS 아닌 **Railway 도메인 한도 초과** — www 만 등록·apex 는 한도 밖이라 커스텀 cert 미발급 → Railway 기본 `*.up.railway.app` 와일드카드 폴백 → SNI 불일치(`SEC_E_WRONG_PRINCIPAL`) → 페북 인앱 webview 경고. (DNS CNAME/TXT 는 처음부터 정상, "옛 타겟 `xr5zd4jj`" 추정은 오진). 해결 = 플랜 업글(한도↑) + Railway Networking 에서 **apex 만 remove→re-add**(한도로 멈춘 검증 강제 재시작, www 는 그대로). cert `CN=dr187growup.com` 발급 + `curl -L apex/th/`→`www/th/` 200 검증. 페북 광고(www 떼고 apex 로 엶) 첫화면 도달 회복. ★교훈: TLS 도메인 불일치는 DNS 보다 `openssl s_client … \| x509 -subject` 로 **받는 cert 의 CN 부터** 확인. 상세 memory [[seo_audit_hardening]]·[[ad_traffic_diagnosis]]
 - ⚠️ **남은 사용자 액션**: ① GSC 등록+sitemap 제출(현재 구글 사실상 미색인 — 브랜드 검색은 SNS+`yssaebomq.com`(Wix 구사이트)이 점유, 도메인 이원화 전략 결정 필요) ② Railway 에 `CONTENTFLOW_API_URL/PROJECT_ID`(블로그 빌드) ③ 콘텐츠: cases 512자/calculator 18자(iframe 라 구글엔 빈 페이지) 텍스트 보강. ✅ **블로그 240편(60토픽×4언어) 전량 발행 완료(2026-07-11)** → 이제 **GSC sitemap 제출**이 남은 최대 색인 레버
 
+### 구글 검색 유입 판독 규칙 (2026-07-26 실측)
+`/marketing/site-analysis` 🔍 구글 검색 유입 패널을 읽을 때 **반드시 알아야 하는 GSC 특성 3가지**. 상세 [[search_console_queries]].
+- ★**검색어의 94%를 구글이 가린다**. 30일 `77클릭/8,054노출` 인데 **검색어 행 200개 합이 5클릭/385노출**. 희소 검색어(=적은 사용자가 친 긴 문장)를 **검색어 차원에서만** 빼고 총계·국가·페이지에는 넣는다(우리 버그 아님, GSC 화면도 동일). → **페이지 차원이 검색어 대용**.
+- ⚠️**GSC 는 1~3일 지연** — 최근 2~3일이 `0` 으로 보인다. 모르고 최근 구간을 비교하면 **"노출 급락"으로 오독한다**(실제로 한 번 오독함). 일자별로 먼저 찍어 어디까지 집계됐는지 확인할 것.
+- ⚠️GSC 는 **검색결과에 뜬 URL 만** 기록 — 들어온 뒤 사이트 내 이동은 안 본다(그건 GA4).
+- 🐛**totals 를 행 합으로 계산하면 안 된다**(`d91c197` 수정): country 행 합을 쓰고 있었는데 언어 탭은 `page contains /{lang}/` 필터를 걸어 국가 분해가 트래픽을 다 못 덮는다 — **en 30일 4클릭 vs 실제 40클릭(10배)**. 전체 탭에선 우연히 일치해 오래 안 드러났다. → **차원 없는 요청**(`rowLimit:1`)으로 구글이 계산한 총계를 받는다.
+- 💡**전환은 상황형 롱테일에서 나온다**: `/en/clinic.html` **CTR 12.7%**(134노출→17클릭) vs 블로그 `bone-age` **0.3%**(1,381노출→4클릭). 노출은 블로그가 10배인데 클릭은 클리닉이 4배, 그 주 설문 10건이 전부 여기서. 가시 검색어로 설명되는 건 2클릭뿐 = 나머지는 가려진 롱테일. **정보성 롱테일은 노출만, 상황형은 환자를 만든다**(블로그 540편은 전자에 몰려 있음).
+- **en 홈 title 교체**(`987eff6`): `Free Adult-Height Prediction` → `Child Height Treatment in Seoul, Korea`. `calculator.html` 이 이미 계산기 키워드를 갖고 있어 **자기잠식**이었고, 정작 `growth clinic korea`(5.5위)·`height growth clinic`(5.9위) 에 답하는 페이지가 없었다. ⏳1~2주 뒤 그 두 검색어 평균순위로 효과 확인. ★비용 관련 콘텐츠는 넣지 않는다(사용자 방침).
+
 ### GEO (AI 검색) 최적화 + 광고 채널 진단 (2026-07-19)
 **계기**: 메타 광고 ~100만원 → 상담 0 (GA4 7일 실측: meta/광고 78%·한국 87% = **한국 브로드 살포에 돈이 감**). 반면 **구글 오가닉(영어) 10유저 + ChatGPT 영국 1건**으로 **3일 상담 6건** — 수요는 **영어권 해외 + 능동 검색 의도**에 있었다. 처방: ① 구글 검색광고(영어, 미/호/영/싱, 랜딩=`clinic.html`, 오가닉 1등 키워드는 제외) ② 메타는 한국 브로드 중단·환자 Lookalike ③ **GEO 투자**(ChatGPT 인용 경로 실재 확인됨).
 - **llms.txt 신설** (`v4/public/llms.txt`, tracked=robots.txt 옆·정적 서빙): 클리닉 핵심 사실 + 주요 페이지 + **7개 언어 블로그 인덱스(Language versions)** + 영어 블로그 36편 테마별. ★**전 URL 실재 검증 필수** — 이 호스팅은 없는 경로도 **200+한국어 SPA 셸**(soft-404)이라 `curl`+`<html lang>` 로 죽은 링크 판별(내가 추정한 8개 slug 가 죽어 실제 slug 로 교체). AI 크롤러 대비. robots.txt 는 이미 전 크롤러 허용.
