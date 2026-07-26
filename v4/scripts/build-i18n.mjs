@@ -5,7 +5,7 @@ import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
 import { buildHead, buildBlogPostHead, buildBlogIndexHead, buildSeo, ACTIVE_LANGS, RTL_LANGS } from './lib/seo.mjs';
-import { authorPageJsonLd } from './lib/jsonld.mjs';
+import { authorPageJsonLd, faqPageJsonLd, medicalClinicJsonLd, physicianJsonLd } from './lib/jsonld.mjs';
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
@@ -156,7 +156,7 @@ async function main() {
   // from the locale yml so Google snippets and the browser tab read correctly.
   // consult 는 상담 채널이 여러 개인 언어(th/vi/en)만 — ko 는 카톡 직행 + 예약 폼 동선이라 페이지가 없다.
   const SUBPAGES = [
-    { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title' },
+    { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title', faqSchema: true },
     { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
     { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title', descPath: 'calculator.meta_description' },
     { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',
@@ -214,7 +214,8 @@ async function main() {
     locale.faq_title = seoEntry.faq_title || '';
 
     // Home — 이미지 지연 로딩 후처리까지 거쳐 최종 산출 (첫 이미지=로고만 eager)
-    locale.seo_head = buildHead(lang, { path: '/' });
+    // FAQ 는 병원 소개로 옮겼다 → 홈은 clinic/physician 만(FAQPage 는 보이는 페이지에 붙어야 한다).
+    locale.seo_head = buildHead(lang, { path: '/', jsonLd: [medicalClinicJsonLd(lang), physicianJsonLd(lang)] });
     writeFile(join(ROOT, 'public', lang, 'index.html'), lazifyImages(localizeProgramImg(render(homeTemplate, locale))));
 
     // Subpages — re-bind seo_head per page so canonical/hreflang/title are correct
@@ -237,7 +238,8 @@ async function main() {
         ? Object.fromEntries(ACTIVE_LANGS.filter(sub.langs).map((l) => [l, `/${sub.file}`]))
         : undefined;
       // 저자 페이지만 전용 Person(Physician) JSON-LD, 나머지 서브페이지는 홈 기본 스키마와 경쟁 안 하게 skip
-      const jsonLd = sub.authorSchema ? [authorPageJsonLd(lang)] : undefined;
+      const jsonLd = sub.authorSchema ? [authorPageJsonLd(lang)]
+        : sub.faqSchema ? [faqPageJsonLd(lang)] : undefined;
       locale.seo_head = buildHead(lang, { path: `/${sub.file}`, title, description, skipJsonLd: !jsonLd, jsonLd, altPaths });
       writeFile(join(ROOT, 'public', lang, sub.file), lazifyImages(localizeProgramImg(render(sub.template, locale))));
     }

@@ -743,27 +743,6 @@
     </div>
   </section>
 
-  <!-- ================= FAQ =================
-       진료 절차를 다 읽고 남는 마지막 의문을 종결 CTA 직전에 해소한다.
-       데이터는 seo.yml 단일 소스 — 같은 내용이 FAQPage JSON-LD 로도 나간다.
-       6축 아코디언과 같은 <details> 패턴이라 JS 0줄, 기본 접힘. -->
-  <section class="home-faq">
-    <div class="sec-head">
-      <h2>{{faq_title}}</h2>
-    </div>
-    <div class="faq-list">
-      {{#each faq}}
-      <details class="faq-item">
-        <summary>
-          <span class="faq-q">{{q}}</span>
-          <svg class="faq-caret" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </summary>
-        <p class="faq-a">{{a}}</p>
-      </details>
-      {{/each}}
-    </div>
-  </section>
-
   <!-- ================= BLOG LINK (하단 바에서 빠진 블로그의 유일한 사이트 내 진입점) ================= -->
   <section class="home-blog">
     <a class="hb-link" href="/{{meta.lang}}/blog/">{{shell.nav.blog}} <span class="arr">→</span></a>
