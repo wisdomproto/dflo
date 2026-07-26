@@ -3,7 +3,7 @@
 //   node scripts/make-thad-en.mjs --mix     # BGM(보컬 제거) + 나레이션 믹스
 // 원본: Downloads/태국 광고영상_{태국어 나레이션|자막X한국어 나레이션} ver.mp4 (28.72s, 1920x1080 안에 세로 608x1080)
 // 원본 나레이션은 2줄뿐(0.0~1.8, 22.1~27.1)이라 가운데 20초가 비어 있어 그 구간에 줄을 더 넣는다.
-import { writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
+import { writeFileSync, readFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -91,6 +91,8 @@ if (process.argv.includes("--tts")) {
     } else {
       console.log(`${d.toFixed(2)}s / 슬롯 ${l.slot}s OK`);
     }
+    // 어떤 문장으로 구운 wav 인지 남긴다 — --mix 가 이걸로 대사 변경을 잡는다.
+    writeFileSync(join(AUDIO, `${l.id}.txt`), l.text, "utf8");
     await new Promise((r) => setTimeout(r, 300));
   }
   console.log("\n출력:", AUDIO);
@@ -103,6 +105,17 @@ if (process.argv.includes("--mix")) {
   const BGM = join(ROOT, "out", "_work", "thad-en", "bgm.wav");
   const OUT = join(ROOT, "out", "_work", "thad-en", "mix.wav");
   const TOTAL = 28.72, MINGAP = 0.18;
+
+  // ★대사를 고치고 --tts 없이 --mix 만 돌리면 자막(LINES 에서 새로 씀)과 음성(옛 wav)이 갈린다.
+  //   실제로 n4 가 자막은 "More reviews…" 인데 소리는 옛 "Bone age…" 로 나갔다(발행까지 됨).
+  const stale = LINES.filter((l) => {
+    const t = join(AUDIO, `${l.id}.txt`);
+    return !existsSync(t) || readFileSync(t, "utf8") !== l.text;
+  });
+  if (stale.length) {
+    console.error(`대사가 바뀐 줄: ${stale.map((l) => l.id).join(", ")} — 먼저 --tts 로 음성을 다시 구울 것.`);
+    process.exit(1);
+  }
 
   let t = 0;
   const placed = LINES.map((l) => {
