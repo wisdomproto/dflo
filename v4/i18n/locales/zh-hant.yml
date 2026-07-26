@@ -441,8 +441,7 @@ cta_global:
   bottom_label: "開始 1 對 1 對話"
 
 clinic:
-  page_title: "韓國首爾生長診所 | 187growup"
-  meta_description: "位於韓國首爾的兒童身高生長診所。以骨齡檢查確認剩餘成長空間，並整合荷爾蒙、睡眠、營養、運動與姿勢管理；海外家庭可線上諮詢。"
+  page_title: "診所 | 187 生長診所"
   brand:
     logo_alt: "延世Saebom 醫療診所"
     tag: "荷爾蒙診所"

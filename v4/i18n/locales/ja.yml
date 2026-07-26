@@ -441,8 +441,7 @@ cta_global:
   bottom_label: "1:1チャットを始める"
 
 clinic:
-  page_title: "韓国・ソウルの成長クリニック | 187growup"
-  meta_description: "韓国ソウルの子ども身長クリニック。骨年齢検査で残りの成長を確認し、ホルモン・睡眠・栄養・運動・姿勢を一緒に管理します。海外のご家族はオンライン相談も可能です。"
+  page_title: "クリニック | 187 Growth Clinic"
   brand:
     logo_alt: "延世セボム医院"
     tag: "ホルモンクリニック"
