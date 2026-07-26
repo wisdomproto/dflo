@@ -59,16 +59,22 @@
     <div class="eyebrow"><span class="no">04</span><span class="label">{{ch04.label}}</span></div>
     <h2 class="t t--sm">{{ch04.title}}</h2>
     <!-- 미니 렌더러는 each 를 중첩하지 못한다(정규식이 안쪽 닫는 태그에서 끊긴다) → 층을 펼쳐 쓴다. -->
-    <div class="floor">
-      <div class="head"><span class="tag">{{ch04.f2.tag}}</span><span class="name">{{ch04.f2.name}}</span></div>
-      <p class="note">{{ch04.f2.desc}}</p>
-      <div class="strip">{{#each ch04.f2.photos}}<img src="/images/{{.}}" alt="" loading="lazy">{{/each}}</div>
-    </div>
-    <div class="floor">
-      <div class="head"><span class="tag">{{ch04.f3.tag}}</span><span class="name">{{ch04.f3.name}}</span></div>
-      <p class="note">{{ch04.f3.desc}}</p>
-      <div class="strip">{{#each ch04.f3.photos}}<img src="/images/{{.}}" alt="" loading="lazy">{{/each}}</div>
-    </div>
+    <figure class="floor">
+      <img src="/images/{{ch04.f2.photo}}" alt="{{ch04.f2.name}}" loading="lazy">
+      <figcaption>
+        <span class="tag">{{ch04.f2.tag}}</span>
+        <span class="name">{{ch04.f2.name}}</span>
+        <span class="desc">{{ch04.f2.desc}}</span>
+      </figcaption>
+    </figure>
+    <figure class="floor">
+      <img src="/images/{{ch04.f3.photo}}" alt="{{ch04.f3.name}}" loading="lazy">
+      <figcaption>
+        <span class="tag">{{ch04.f3.tag}}</span>
+        <span class="name">{{ch04.f3.name}}</span>
+        <span class="desc">{{ch04.f3.desc}}</span>
+      </figcaption>
+    </figure>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">04</span></div>
   </section>
 
@@ -136,24 +142,118 @@
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">09</span></div>
   </section>
 
-  <!-- 10 치료 사례 -->
+  <!-- 10-1 치료 사례 -->
   <section class="sheet">
-    <div class="eyebrow"><span class="no">10</span><span class="label">{{ch10.label}}</span></div>
+    <div class="eyebrow"><span class="no">10-1</span><span class="label">{{ch10.label}}</span></div>
     <h2 class="t t--sm">{{ch10.title}}</h2>
-    <div class="cards">
-      {{#each ch10.cases}}
-      <div class="case">
-        <span class="tag">{{tag}}</span>
-        <div class="fig">
-          <span class="from">{{from}}</span><span class="arrow">→</span>
-          <span class="to">{{to}}</span><span class="unit">{{unit}}</span>
-        </div>
-        <span class="d">{{d}}</span>
-      </div>
-      {{/each}}
+    <p class="lead">{{ch10.intro}}</p>
+    <div class="case-head">
+      <span class="tag">{{ch10.c1.tag}}</span>
+      <span class="who">{{ch10.c1.who}}</span>
+    </div>
+    <div class="case-top">
+    <div class="rows">
+      {{#each ch10.c1.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    </div>
+    {{ch10.c1.chart}}
+    </div>
+    <table class="mtable">
+      <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
+      <tbody>{{#each ch10.c1.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
+    </table>
+    <div class="quote">
+      <div class="src">{{ch10.note_label}}</div>
+      <div class="q note-body">{{ch10.c1.note}}</div>
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-1</span></div>
+  </section>
+
+  <!-- 10-2 치료 사례 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">10-2</span><span class="label">{{ch10.label}}</span></div>
+    <div class="case-head">
+      <span class="tag">{{ch10.c2.tag}}</span>
+      <span class="who">{{ch10.c2.who}}</span>
+    </div>
+    <div class="case-top">
+    <div class="rows">
+      {{#each ch10.c2.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    </div>
+    {{ch10.c2.chart}}
+    </div>
+    <table class="mtable">
+      <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
+      <tbody>{{#each ch10.c2.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
+    </table>
+    <div class="quote">
+      <div class="src">{{ch10.note_label}}</div>
+      <div class="q note-body">{{ch10.c2.note}}</div>
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-2</span></div>
+  </section>
+
+  <!-- 10-3 치료 사례 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">10-3</span><span class="label">{{ch10.label}}</span></div>
+    <div class="case-head">
+      <span class="tag">{{ch10.c3.tag}}</span>
+      <span class="who">{{ch10.c3.who}}</span>
+    </div>
+    <div class="case-top">
+    <div class="rows">
+      {{#each ch10.c3.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    </div>
+    {{ch10.c3.chart}}
+    </div>
+    <table class="mtable">
+      <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
+      <tbody>{{#each ch10.c3.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
+    </table>
+    <div class="quote">
+      <div class="src">{{ch10.note_label}}</div>
+      <div class="q note-body">{{ch10.c3.note}}</div>
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-3</span></div>
+  </section>
+
+  <!-- 10-4 치료 사례 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">10-4</span><span class="label">{{ch10.label}}</span></div>
+    <div class="case-head">
+      <span class="tag">{{ch10.c4.tag}}</span>
+      <span class="who">{{ch10.c4.who}}</span>
+    </div>
+    <div class="case-top">
+    <div class="rows">
+      {{#each ch10.c4.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    </div>
+    {{ch10.c4.chart}}
+    </div>
+    <table class="mtable">
+      <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
+      <tbody>{{#each ch10.c4.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
+    </table>
+    <div class="quote">
+      <div class="src">{{ch10.note_label}}</div>
+      <div class="q note-body">{{ch10.c4.note}}</div>
     </div>
     <p class="note">{{ch10.disclaimer}}</p>
-    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10</span></div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-4</span></div>
+  </section>
+
+  <!-- 10b 함께한 아역배우 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">10-5</span><span class="label">{{ch10b.label}}</span></div>
+    <h2 class="t t--sm">{{ch10b.title}}</h2>
+    <div class="faces">
+      {{#each ch10b.people}}
+      <figure class="face"><img src="/images/leaflet/celeb-{{@index1}}.jpg" alt="{{n}}" loading="lazy">
+        <figcaption><span class="n">{{n}}</span><span class="r">{{r}}</span></figcaption>
+      </figure>
+      {{/each}}
+    </div>
+    <p class="lead">{{ch10b.note}}</p>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-5</span></div>
   </section>
 
   <!-- 11 부작용과 안전 -->

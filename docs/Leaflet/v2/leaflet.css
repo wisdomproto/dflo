@@ -114,16 +114,47 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
 .quote .q { font-size: 16px; font-weight: 600; line-height: 1.6; color: var(--ac-deep); word-break: keep-all; }
 .quote .src { font-size: 12px; color: var(--muted); }
 
-/* ── 시설 — 화면은 가로 스와이프, 인쇄는 격자 ──────────── */
-.floor { display: flex; flex-direction: column; gap: 10px; }
-.floor .head { display: flex; align-items: center; gap: 10px; }
-.floor .tag { background: var(--ac); color: #fff; font: 600 12px/1 var(--mono); padding: 6px 9px; }
-.floor .name { font-size: 16px; font-weight: 600; }
-.strip { display: flex; align-items: flex-start; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-.strip::-webkit-scrollbar { display: none; }
-.strip img { flex: 0 0 78%; scroll-snap-align: start; width: 78%; height: auto;
-  aspect-ratio: 4/3; object-fit: cover; border: 1px solid #ddd6cc; }
+/* ── 시설 — 사진 한 장 위에 층 라벨을 얹는다 ─────────── */
+.floor { position: relative; margin: 0; }
+.floor img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
+.floor figcaption { position: absolute; inset-inline: 0; bottom: 0; display: flex; flex-wrap: wrap;
+  align-items: baseline; gap: 4px 10px; padding: 34px 14px 12px; color: #fff;
+  background: linear-gradient(to top, rgba(20,12,32,.86) 35%, rgba(20,12,32,0)); }
+.floor .tag { background: var(--ac); font: 600 12px/1 var(--mono); padding: 5px 8px; }
+.floor .name { font-size: 17px; font-weight: 700; }
+.floor .desc { flex: 1 0 100%; font-size: 13px; color: #e6dcf2; }
+
+/* ── 사례 그래프(빌드 시 굽는 인라인 SVG) ──────────────── */
+.case-top { display: flex; flex-direction: column; gap: 16px; }
+.chart { margin: 0; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart .g { stroke: var(--hair); stroke-width: 1; }
+.chart .ln { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.chart .ln.h { stroke: var(--ink); }
+.chart .ln.p { stroke: var(--ac); stroke-dasharray: 5 4; }
+.chart circle.h { fill: var(--ink); }
+.chart circle.p { fill: var(--ac); }
+.chart .ax { font: 11px var(--mono); fill: var(--muted); }
+.chart .v { font: 700 12px var(--mono); }
+.chart .v.h { fill: var(--ink); }
+.chart .v.p { fill: var(--ac); }
+.chart figcaption { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 6px; font-size: 12px; color: var(--muted); }
+.chart .lg { display: flex; align-items: center; gap: 6px; }
+.chart .lg::before { content: ""; width: 16px; height: 0; border-top: 2px solid; }
+.chart .lg.h { color: var(--ink); }
+.chart .lg.p::before { border-top-style: dashed; }
+.chart .lg.p { color: var(--ac); }
+.chart .unit { margin-inline-start: auto; }
+
+/* ── 아역배우 — 이름을 사진 위에 ──────────────────────── */
+.faces { display: flex; flex-direction: column; gap: 12px; }
+.face { position: relative; margin: 0; }
+.face img { display: block; width: 100%; height: auto; }
+.face figcaption { position: absolute; inset-inline: 0; bottom: 0; display: flex; align-items: baseline;
+  gap: 10px; padding: 30px 14px 11px; color: #fff;
+  background: linear-gradient(to top, rgba(20,12,32,.86) 35%, rgba(20,12,32,0)); }
+.face .n { font-size: 17px; font-weight: 700; }
+.face .r { font-size: 12px; color: #d8ccea; letter-spacing: .06em; }
 
 /* ── 절차(세로 타임라인) ───────────────────────────────── */
 .steps { display: flex; flex-direction: column; gap: 22px;
@@ -181,7 +212,7 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
   .doc { max-width: none; padding: 0; }
 
   .sheet {
-    width: 210mm; min-height: 297mm; padding: 18mm;
+    width: 210mm; min-height: 285mm; padding: 18mm;   /* 297mm 정확히 두면 반올림에 밀려 푸터가 다음 장으로 넘어간다 */
     font-size: 11pt; border: 0;
     break-after: page; break-inside: avoid;
   }
@@ -189,12 +220,46 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
   .sheet:last-child { break-after: auto; }
 
   /* 화면에서 옆으로 넘기던 사진을 인쇄에서는 펼쳐 보여준다 */
-  .strip { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; }
-  .strip img { flex: none; width: 100%; }
 
   /* 접힌 Q&A 는 인쇄에서 전부 펼친다 */
   .qa .a { display: block !important; }
 
   /* 색이 빠지면 짙은 시트가 흰 글씨만 남는다 */
   .sheet--deep { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ── 사례 페이지 ──────────────────────────────────────── */
+.case-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.case-head .tag { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--ac);
+  background: var(--ac-soft); padding: 6px 11px; }
+.case-head .who { font-size: 13px; color: var(--muted); }
+
+/* 측정 회차표 — 회차마다 키·뼈나이·그 시점 예상키. 뼈나이 격차의 이동이 이 표의 핵심이라 전 회차를 싣는다. */
+.mtable { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.mtable th { text-align: end; font-weight: 600; color: var(--muted); padding: 7px 5px;
+  border-bottom: 1px solid var(--hair); white-space: nowrap; }
+.mtable th:first-child, .mtable td:first-child { text-align: start; }
+.mtable td { text-align: end; padding: 7px 5px; border-bottom: 1px solid var(--hair);
+  font-family: var(--mono); color: var(--muted); white-space: nowrap; }
+.mtable td.em { color: var(--ink); font-weight: 600; }
+.mtable tr:last-child td { border-bottom: 0; background: var(--ac-soft); }
+
+.quote .note-body { font-size: 14px; font-weight: 400; line-height: 1.8; color: var(--ink-soft); }
+
+/* 사례 페이지는 표+노트가 길어 A4 를 넘기기 쉽다 — 인쇄에서만 간격을 조인다. */
+@media print {
+  .sheet { gap: 10px; padding: 13mm 15mm; }
+  .mtable { font-size: 10pt; }
+  .mtable th, .mtable td { padding: 4px 4px; }
+  .quote { padding: 13px; }
+  .quote .note-body { font-size: 10pt; line-height: 1.55; }
+  /* 인쇄에서는 사진·그래프가 A4 를 넘겨 장이 둘로 쪼개진다 — 높이를 묶는다. */
+  /* A4 에서는 스탯과 그래프를 나란히 — 세로로 쌓으면 사례 한 건이 한 장을 넘는다. */
+  .case-top { flex-direction: row; align-items: flex-start; gap: 8mm; }
+  .case-top > * { flex: 1 1 0; min-width: 0; }
+  .chart svg { width: 100%; height: auto; }
+  .sheet .lead { font-size: 10.5pt; line-height: 1.6; }
+  .floor img { height: 74mm; object-fit: cover; }
+  .faces { gap: 8px; }
+  .face { max-width: 122mm; margin-inline: auto; width: 100%; }
 }
