@@ -165,6 +165,9 @@ ContentFlow 새 엔드포인트 `/api/blog/by-project/[projectId]/posts?lang={la
 **블로그 = 이 i18n 정적 빌드 단일 소스** (2026-06-05 정리). 과거 ko+th 전용 React-SPA 블로그(`src/pages/Blog/{BlogList,BlogPost}` + `usePosts` 클라 fetch + `scripts/build-blog.mjs` 프리렌더러)는 폐기. 그 라우트가 i18n 정적 빌드와 충돌했었음 — `router.tsx` flatMap 의 `/th/blog` HardRedirect 가 명시적 `/th/blog` React 라우트를 가려(같은 path → 배열 먼저 등록된 쪽이 매칭) 인덱스는 정적·글은 React 로 갈리던 버그. 수정: 옛 `/blog`·`/th/blog` React 라우트 제거, ko `/blog`·`/blog/:slug` 는 정적 `/ko/blog/…index.html` 로 리다이렉트(옛 유입 링크 보존, `BlogPostRedirect`), th 는 flatMap `/{lang}/blog` HardRedirect 로 정적 페이지 일원화. `package.json` build 체인에서 `build:blog` 제거(이게 `vite build` 뒤 실행돼 th 정적 글을 SPA 셸로 덮어쓰던 잠복 회귀도 함께 제거).
 
 ### 홈페이지 병합 — clinic.html 흡수 + 콘텐츠 정리 (2026-07-25, 전 9언어)
+
+> 🔄 **(2026-07-26) clinic.html 은 되살렸다.** GSC 실측에서 **상업 검색어 클러스터**(`growth clinic korea`·`korean growth clinic`·`height growth clinic`, 5~10위)가 전부 `/en/clinic.html` 에 떨어지고 있었고, 그 페이지가 첫 주 17클릭 → 설문 10건으로 **유일하게 전환된 입구**였다. 홈에 흡수하니 그 의도를 "주제가 다른 긴 페이지" 가 받게 됐다. → **clinic.html 9언어 복원 · 301 해제 · 하단 바 `블로그` 자리에 `병원 소개` 복귀**(병합 전과 같은 5칸) · 홈 `#clinic` 섹션(144줄)은 **원장 티저**로 축소. 아래 본문 중 **clinic 삭제·301·하단바 블로그 항목은 무효**, 나머지(6축 아코디언·시설 스와이프·celeb 삭제·유형별 5섹션 삭제)는 그대로 유효. 상세 [[clinic_page_restore]]
+
 `clinic.html` 을 삭제하고 병원 소개를 **메인(index.html) 하단 섹션**으로 흡수. 유형별 5섹션(성조숙증/비만/체형/자세/늦은성장 = 옛 메인의 27%)·케이스 인트로·스티키 케이스 네비·director 섹션 제거로 페이지를 슬림화하고, 그 자리에 브랜드밴드→원장카드→실적+소개→해외 원격안내→유튜브→시설→연락처를 이식(clinic 템플릿 통째 이식). 흐름 = `사례(증거) → 누가(병원) → 어떻게(절차) → 행동(CTA)`. **URL 은 삭제 안 함** — `vite.config.ts seoRedirects` 가 `/{lang}/clinic.html` → `/{lang}/index.html#clinic` **301**(쿼리 보존, 광고 랜딩·author 스키마·구글 색인 무회귀). 같은 정규식에 **`ja|es` 추가**(슬래시 없는 `/ja`·`/es` 가 한국어 SPA 셸로 낙하하던 잠복 버그 동반 수정). `jsonld` Physician url 2곳 `clinic.html`→`/{lang}/#clinic`, `sitemap SUBPAGE_FILES` 에서 clinic 제거, `_shell.js` 하단 네비 '병원 소개' 항목 삭제(→ 4탭+상담/예약), `th.yml` clinic 링크 `#clinic`. 테스트 `blog-hreflang`·`sitemap` 갱신.
 - **시설 = 가로 스와이프 스트립**(2026-07-25): 옛 버튼식 1장 캐러셀(JS) → **CSS scroll-snap 스트립**(JS 0줄, 다음 사진 살짝 보여 스와이프 유도). **187 리플렛(`docs/Leaflet/dist/shared/img/`)에서 3장 크롭**해 `public/images/facility-7/8/9.{jpg,webp}`(라운지·복도·운동 스튜디오) 추가, 총 8장·라벨 9언어. 데스크톱 2장씩(`flex-basis 46%`). RTL 자동.
 - **통합 성장 관리 6축 = HTML + 저서 RAG 요약**(2026-07-25): 옛 `compare-1vs6.webp`(972×1619 베이크 이미지, 모바일서 글자 뭉개짐·언어별 7파일) → **인라인 SVG 아이콘 + `<details>` 아코디언**(기본 접힘, `name="care"` 공유로 하나만 열림 = JS 0줄). 각 축(성장호르몬/성호르몬·갑상선/수면/체중·영양/운동/자세) 요약은 **원장 저서(`knowledge_documents` RAG) 검색 결과의 수치·기전만** 사용(60~70% 서파수면·성장판 2~3년 조기폐쇄·렙틴·주3~5회·자세 1~5cm 등), 9언어 직접 작성(`compare.axes`+`compare.bodies`). ⚠️신규 의료 카피라 **원장/언어 감수 대기**. ★한때 접근 비교(vs 성장호르몬 단독요법 + ISS GH 문헌 4편 PubMed 검증)까지 넣었다가 **사용자 요청으로 비교 제거**(의료법 56조 비교광고 회피 겸) → 우리 통합관리만. 검증한 레퍼런스는 git 이력에 잔존(Deodati BMJ 2011 c7157 등).
@@ -239,6 +242,22 @@ en 동급 홈페이지 + 설문 + 계산기. 블로그는 다음 단계(합의).
 - 🐛**totals 를 행 합으로 계산하면 안 된다**(`d91c197` 수정): country 행 합을 쓰고 있었는데 언어 탭은 `page contains /{lang}/` 필터를 걸어 국가 분해가 트래픽을 다 못 덮는다 — **en 30일 4클릭 vs 실제 40클릭(10배)**. 전체 탭에선 우연히 일치해 오래 안 드러났다. → **차원 없는 요청**(`rowLimit:1`)으로 구글이 계산한 총계를 받는다.
 - 💡**전환은 상황형 롱테일에서 나온다**: `/en/clinic.html` **CTR 12.7%**(134노출→17클릭) vs 블로그 `bone-age` **0.3%**(1,381노출→4클릭). 노출은 블로그가 10배인데 클릭은 클리닉이 4배, 그 주 설문 10건이 전부 여기서. 가시 검색어로 설명되는 건 2클릭뿐 = 나머지는 가려진 롱테일. **정보성 롱테일은 노출만, 상황형은 환자를 만든다**(블로그 540편은 전자에 몰려 있음).
 - **en 홈 title 교체**(`987eff6`): `Free Adult-Height Prediction` → `Child Height Treatment in Seoul, Korea`. `calculator.html` 이 이미 계산기 키워드를 갖고 있어 **자기잠식**이었고, 정작 `growth clinic korea`(5.5위)·`height growth clinic`(5.9위) 에 답하는 페이지가 없었다. ⏳1~2주 뒤 그 두 검색어 평균순위로 효과 확인. ★비용 관련 콘텐츠는 넣지 않는다(사용자 방침).
+
+### 상업 검색어 클러스터 + 페이지별 제목 분할 (2026-07-26)
+"7/17~21 상담 문의가 몰렸다가 뚝 끊겼다" 를 추적해 나온 결론. **오가닉은 줄지 않았다**(노출 28→1,388/일 성장 중). 바뀐 건 **의도의 구성**이었다.
+- **환자를 만든 건 상업 클러스터**: `growth clinic korea`(5.5위)·`korean growth clinic`(9.7)·`korea growth clinic`·`height growth clinic`(6.1)·`growth clinic bangkok`. 전부 **`/en/clinic.html`** 에 떨어졌고 그 주 **134노출→17클릭(CTR 12.7%)→설문 10건**. 같은 기간 블로그 `bone-age` 는 **1,381노출→4클릭(0.3%)**. 노출은 블로그가 10배, 클릭은 클리닉이 4배.
+- ★**클릭의 82%는 구글이 가린 검색어**(17 중 14). 호주 문의자가 직접 말한 `growth clinics in South Korea` 는 우리 목록에 **없는 표현**이다 → 가려진 건 같은 의도의 **더 긴 문장**들. 그래서 문장을 하나씩 겨냥할 수 없고 **그 계열 전체에 가장 잘 답하는 페이지**를 만드는 게 유일한 수단.
+- ⚠️**브랜드 검색이 새고 있다**: `yonsei saebom`·`yonsei saebom clinic`·`yonsei saebom medical clinic` **11노출 클릭 0**(4~6위). 위에 구사이트(Wix)·SNS 가 있다. 병원에 마케팅 팀이 둘이라 조율 불가 → 페이지로 이기는 수밖에.
+- **제목 3분할**(9언어): 세 페이지가 같은 의도를 겨루고 있었다(홈이 계산기의 약속을 걸고, 그다음엔 클리닉의 약속을 걸었다).
+```
+calculator.html  계산기 키워드            (불변)
+clinic.html      그 시장의 "한국 성장 클리닉"  ko 만 '강남 성장클리닉'(국내는 '한국' 을 안 붙인다)
+index.html       브랜드 2개(187 + 모병원)   ← 어느 쪽 약속도 걸지 않는다
+```
+  모병원 표기는 **각 언어에 이미 있던 것**을 그대로 사용(延世セボム医院·延世Saebom 醫療診所·Clínica Médica Yonsei Saebom). clinic 에 `meta_description` 9언어 신설(뼈나이·통합관리·화상상담, **비용 없음** = 사용자 방침).
+- **FAQ 6문항을 홈 → clinic 으로 이동**(FAQPage 스키마 동반 — 구글은 마크업이 **그 페이지에 실제로 보일 것**을 요구). 병원을 검토하는 사람이 마지막에 남기는 의문이라 답이 있어야 할 페이지에 모은다.
+- ⏳**효과 판정**: 1~2주 뒤 그 두 검색어의 평균 순위 + **어느 페이지로 잡히는지**(GSC 는 페이지별로 알려준다).
+- ⏳**다음 수**: 구글 검색광고 소액 — 클릭보다 **검색어 보고서로 가려진 문장을 사보는 것**이 목적(구문/완전일치, 정보성 제외, 랜딩=clinic.html).
 
 ### GEO (AI 검색) 최적화 + 광고 채널 진단 (2026-07-19)
 **계기**: 메타 광고 ~100만원 → 상담 0 (GA4 7일 실측: meta/광고 78%·한국 87% = **한국 브로드 살포에 돈이 감**). 반면 **구글 오가닉(영어) 10유저 + ChatGPT 영국 1건**으로 **3일 상담 6건** — 수요는 **영어권 해외 + 능동 검색 의도**에 있었다. 처방: ① 구글 검색광고(영어, 미/호/영/싱, 랜딩=`clinic.html`, 오가닉 1등 키워드는 제외) ② 메타는 한국 브로드 중단·환자 Lookalike ③ **GEO 투자**(ChatGPT 인용 경로 실재 확인됨).

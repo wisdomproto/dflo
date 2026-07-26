@@ -94,6 +94,13 @@ RAILWAY_DEPLOY_HOOK_URL=...  # 블로그 자동 발행 후 정적 재빌드 트�
 - 페이지 프로필 세팅: `scripts/set-fb-about.mjs`(**멀티페이지** about/description/**website**, 태국어·한국어) + `scripts/set-fb-photos.mjs`(FB 프로필사진 `/{page}/picture` OK). **★커버 사진은 Graph API 거부(`cover_photo` 필드 안 받음)·IG 프로필(bio/사진)도 API 불가 → 둘 다 앱 수동.**
 
 ## 예약 발행 스케줄러
+
+🚨 **로컬 dev 서버가 운영 발행 큐를 가로채고 있었다** (2026-07-26 발견·차단). `scheduler.ts` 는 `SCHEDULER_ENABLED=false` 가 아니면 **어디서 뜨든** 매분 같은 `marketing_publish_queue` 를 긁는다. 개발 PC 에서 `npm run dev` 를 켜두면 **프로덕션과 같은 큐를 두고 경쟁**하고, 먼저 집는 쪽이 발행한다. 로컬엔 `META_TOKEN_ENC_KEY` 가 없어 로컬이 집은 행은 전부 실패했다.
+- 그래서 **같은 연결인데 FB 는 되고 IG 는 안 되는** 그림이 나왔다(두 서버가 행을 나눠 집음). 영어 IG 가 8일 중 5일 실패한 것도, 재시도 7번 끝에 붙은 것도 전부 이 뽑기였다. 실패는 15분 뒤 재시도로 큐에 다시 오르고 또 갈린다 → **메타에서 경고 메시지**까지 왔다.
+- 원인이 드러난 계기는 `700eb42` 로 갈라놓은 에러 문구다(`토큰 복호화 실패(META_TOKEN_ENC_KEY 확인)` — 예전 "Meta 연결이 없습니다" 였으면 또 못 찾았다).
+- **로컬 `.env` 에 `SCHEDULER_ENABLED=false`** 를 넣어 차단. ★개발 서버는 운영 계정에 발행하면 안 된다 — 새 머신에서 ai-server 를 띄울 때 반드시 확인할 것.
+
+
 - `services/scheduler.ts`: node-cron 매분 → `selectDue`(순수) → `status='scheduled' AND scheduled_at<=now` 항목을 claim(scheduled→publishing) → `publishExecutor.publishQueueItem` 발행. 배치에 website 발행 1건이라도 있으면 `deployHook.triggerDeploy` 1회. 시작 시 stale `publishing`→`scheduled` 회수. `SCHEDULER_ENABLED=false`면 비활성.
 - `services/publishExecutor.ts`: 수동·자동 공용 발행기. ig/fb/threads→Graph, website→`blog_published` published 전환. 라우트 `POST /api/marketing/publish/run { queueId }`(수동 즉시 발행)·스케줄러 공용.
 - 블로그는 콘텐츠 편집기에서 `blog_published` **draft**로만 큐잉 → 발행(즉시/예약) 시 executor가 published 전환 + deploy hook.
