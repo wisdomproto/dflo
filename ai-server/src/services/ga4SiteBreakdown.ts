@@ -1,18 +1,23 @@
 // 언어(경로)/페이지 분류 + GA4 site-breakdown 집계 (googleapis 무관, 순수 → 단위 테스트 대상).
-// 언어 = 경로 prefix(/ko /th /vi /en). 요약 지표(사용자/세션/참여시간)는 landingPage(세션 진입 페이지)
+// 언어 = 경로 prefix(아래 SITE_LANGS). 요약 지표(사용자/세션/참여시간)는 landingPage(세션 진입 페이지)
 // 기준으로 언어에 귀속(한 세션은 1 랜딩이라 중복 없음), 페이지뷰·이벤트는 pagePath 기준.
-// 'all' = ko+th+vi+en 합산. 유입 '지역'(geo)은 GA4 country/city = 방문자의 실제 지리적 위치(언어 경로와 별개).
+// 'all' = 전 언어 합산. 유입 '지역'(geo)은 GA4 country/city = 방문자의 실제 지리적 위치(언어 경로와 별개).
 
 // 사이트 언어(경로 prefix) 단일 소스. ★유니온·분류기·집계 루프가 전부 여기서 파생된다 —
 //   예전엔 다섯 군데에 같은 목록이 흩어져 있어 한 곳만 빠뜨려도 그 언어 지표가 **에러 없이**
 //   0·빈 배열이 됐다(평범한 배열이라 TS 가 못 잡는다). 언어 추가 = 이 배열에만 추가.
 export const SITE_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar', 'ja', 'es'] as const;
 export type Country = (typeof SITE_LANGS)[number] | 'other';
-export type PageBucket = 'main' | 'clinic' | 'cases' | 'calculator' | 'reservation' | 'other';
+// 'clinic' 은 2026-07-25 홈 병합으로 사라졌다(/{lang}/clinic.html → /{lang}/index.html#clinic 301).
+// 리다이렉트 후 gtag 는 도착지에서 돌아 앞으로 영원히 0 이라 버킷에서 빼고, 그 자리를 blog 가 쓴다
+// (블로그는 언어당 63편인데 그동안 통째로 'other' 에 묻혀 있었다).
+export type PageBucket = 'main' | 'blog' | 'cases' | 'calculator' | 'reservation' | 'other';
 export type CountryKey = 'all' | (typeof SITE_LANGS)[number];
 
 const LANG_KEYS: CountryKey[] = ['all', ...SITE_LANGS];
 const MAIN_RE = new RegExp(`^/(${SITE_LANGS.join('|')})/?(index\\.html)?$`);
+// /{lang}/blog/ 목록·글 + 레거시 /blog(/ko/blog 로 301 되기 전 유입).
+const BLOG_RE = new RegExp(`^/((${SITE_LANGS.join('|')})/)?blog(/|$)`);
 
 /** 언어별 대표 상담 채널(messenger.yml 과 같은 값). Record 라 언어를 늘리면 TS 가 누락을 잡는다. */
 const MESSENGER: Record<CountryKey, 'kakao' | 'line' | 'whatsapp' | 'mixed'> = {
@@ -41,7 +46,7 @@ export function classifyCountry(path: string): Country {
 
 export function classifyPage(pagePath: string): PageBucket {
   if (/\/calculator\.html|\/calc-embed/.test(pagePath)) return 'calculator';
-  if (/\/clinic\.html/.test(pagePath)) return 'clinic';
+  if (BLOG_RE.test(pagePath)) return 'blog';
   if (/\/cases\.html/.test(pagePath)) return 'cases';
   if (/\/reservation/.test(pagePath)) return 'reservation'; // 예약 폼 가상 page_view (/reservation)
   // ★명시 열거 — /^\/[a-z-]{2,7}\/?$/ 류로 넓히면 /report·/blog·/guide 가 main 으로 오분류된다.
@@ -69,7 +74,7 @@ export interface GeoCity { label: string; sessions: number; users: number }
 export interface GeoCountry { label: string; sessions: number; users: number; pct: number; cities: GeoCity[] }
 export interface DailyPoint { date: string; users: number; sessions: number; views: number }
 export interface PageViews {
-  main: number; clinic: number; cases: number; calculator: number; reservation: number; other: number; total: number;
+  main: number; blog: number; cases: number; calculator: number; reservation: number; other: number; total: number;
 }
 export interface CountryStats {
   summary: Summary;
@@ -140,7 +145,7 @@ function blankStats(channel: 'kakao' | 'line' | 'whatsapp' | 'mixed'): CountrySt
   return {
     summary: blankSummary(),
     prevSummary: blankSummary(),
-    pageViews: { main: 0, clinic: 0, cases: 0, calculator: 0, reservation: 0, other: 0, total: 0 },
+    pageViews: { main: 0, blog: 0, cases: 0, calculator: 0, reservation: 0, other: 0, total: 0 },
     events: { calcOpen: 0, heightCalc: 0, messenger: 0 },
     calcCompletionRate: 0,
     messengerChannel: channel,

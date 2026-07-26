@@ -27,7 +27,7 @@ const COUNTRY_TABS: { code: CountryKey; label: string; flag: string }[] = [
 
 const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
   { key: 'main', label: '메인 페이지' },
-  { key: 'clinic', label: '병원 소개' },
+  { key: 'blog', label: '블로그' },
   { key: 'cases', label: '치료 사례' },
   { key: 'calculator', label: '예상키 측정(페이지)' },
   { key: 'reservation', label: '예약 페이지' },

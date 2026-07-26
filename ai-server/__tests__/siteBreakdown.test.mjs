@@ -26,11 +26,13 @@ test('classifyCountry: 경로 prefix 로 국가', () => {
 test('classifyPage: 경로 → 4분류', () => {
   assert.equal(classifyPage('/th/calculator.html'), 'calculator');
   assert.equal(classifyPage('/calc-embed'), 'calculator');
-  assert.equal(classifyPage('/ko/clinic.html'), 'clinic');
+  assert.equal(classifyPage('/ko/blog/'), 'blog');
+  assert.equal(classifyPage('/ja/blog/some-slug/'), 'blog');
+  assert.equal(classifyPage('/blog/legacy/'), 'blog'); // 레거시 /blog
+  assert.equal(classifyPage('/ko/clinic.html'), 'other'); // 홈 병합으로 사라진 페이지
   assert.equal(classifyPage('/ko/cases.html'), 'cases');
   assert.equal(classifyPage('/ko/'), 'main');
   assert.equal(classifyPage('/ko/index.html'), 'main');
-  assert.equal(classifyPage('/ko/blog/foo/'), 'other');
 });
 
 // vi/en 은 2026-06-30 부터 자기 버킷 (옛 'other' 제외 폐기) → all 합산에도 들어간다.
@@ -46,7 +48,7 @@ const INPUT = {
   ],
   pv: [
     { pagePath: '/ko/index.html', views: 200 },
-    { pagePath: '/ko/clinic.html', views: 50 },
+    { pagePath: '/ko/blog/growth-plate/', views: 50 },
     { pagePath: '/th/calculator.html', views: 80 },
     { pagePath: '/vi/index.html', views: 60 },
     { pagePath: '/en/index.html', views: 30 },
@@ -90,7 +92,7 @@ test('aggregateSiteBreakdown: ko 요약/페이지/이벤트/채널/디바이스/
   assert.equal(ko.prevSummary.returningUsers, 30); // 80-50
   // 페이지별 (pagePath 기준)
   assert.equal(ko.pageViews.main, 200);
-  assert.equal(ko.pageViews.clinic, 50);
+  assert.equal(ko.pageViews.blog, 50);
   assert.equal(ko.pageViews.total, 250);
   // 이벤트 + 전환율
   assert.equal(ko.events.messenger, 10);
@@ -341,7 +343,7 @@ test('ja/es: 경로 분류 + 버킷 집계 + all 합산', () => {
   assert.equal(classifyCountry('/es/calculator.html'), 'es');
   assert.equal(classifyPage('/ja/'), 'main');
   assert.equal(classifyPage('/es/index.html'), 'main');
-  assert.equal(classifyPage('/ja/blog/x/'), 'other');
+  assert.equal(classifyPage('/ja/blog/x/'), 'blog');
 
   const r = aggregateSiteBreakdown(inputWith({
     landing: [
