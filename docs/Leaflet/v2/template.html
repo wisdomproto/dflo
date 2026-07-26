@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}" dir="{{meta.dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{meta.title}}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="../leaflet.css">
+</head>
+<body>
+<div class="doc">
+
+  <!-- 01 표지 -->
+  <section class="sheet sheet--deep">
+    <div class="eyebrow"><span class="no">01</span><span class="label">{{ch01.label}}</span></div>
+    <img class="logo" src="/images/logo_en_wh.png" alt="187growup">
+    <div class="cover-mark">187</div>
+    <div class="cover-title">{{ch01.title}}</div>
+    <div class="rule"></div>
+    <p class="lead">{{ch01.lead}}</p>
+    <div class="cover-foot"><span>{{brand.clinic_line}}</span><span>{{meta.year}}</span></div>
+  </section>
+
+  <!-- 02 병원 개요 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">02</span><span class="label">{{ch02.label}}</span></div>
+    <h2 class="t">{{ch02.title}}</h2>
+    <p class="lead">{{ch02.body}}</p>
+    <div class="rows">
+      {{#each ch02.facts}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    </div>
+    <div class="callout">{{ch02.callout}}</div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">02</span></div>
+  </section>
+
+  <!-- 03 원장 소개 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">03</span><span class="label">{{ch03.label}}</span></div>
+    <div class="doctor">
+      <img src="/images/doctor_rmbg.png" alt="{{ch03.portrait_alt}}">
+      <div>
+        <div class="name">{{ch03.name}}</div>
+        <div class="role">{{ch03.role}}</div>
+      </div>
+    </div>
+    <div class="rows">
+      {{#each ch03.facts}}<div class="axis"><span class="n">{{k}}</span><span class="d">{{v}}</span></div>{{/each}}
+    </div>
+    <div class="quote">
+      <div class="q">{{ch03.quote}}</div>
+      <div class="src">{{ch03.quote_src}}</div>
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">03</span></div>
+  </section>
+
+  <!-- 04 병원 시설 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">04</span><span class="label">{{ch04.label}}</span></div>
+    <h2 class="t t--sm">{{ch04.title}}</h2>
+    <!-- 미니 렌더러는 each 를 중첩하지 못한다(정규식이 안쪽 닫는 태그에서 끊긴다) → 층을 펼쳐 쓴다. -->
+    <div class="floor">
+      <div class="head"><span class="tag">{{ch04.f2.tag}}</span><span class="name">{{ch04.f2.name}}</span></div>
+      <p class="note">{{ch04.f2.desc}}</p>
+      <div class="strip">{{#each ch04.f2.photos}}<img src="/images/{{.}}" alt="" loading="lazy">{{/each}}</div>
+    </div>
+    <div class="floor">
+      <div class="head"><span class="tag">{{ch04.f3.tag}}</span><span class="name">{{ch04.f3.name}}</span></div>
+      <p class="note">{{ch04.f3.desc}}</p>
+      <div class="strip">{{#each ch04.f3.photos}}<img src="/images/{{.}}" alt="" loading="lazy">{{/each}}</div>
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">04</span></div>
+  </section>
+
+  <!-- 05 우리가 하는 것 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">05</span><span class="label">{{ch05.label}}</span></div>
+    <h2 class="t">{{ch05.title}}</h2>
+    <p class="lead">{{ch05.lead}}</p>
+    <div class="rows">
+      {{#each ch05.axes}}<div class="axis"><span class="n">{{k}}</span><span class="d">{{v}}</span></div>{{/each}}
+    </div>
+    <div class="stats">
+      {{#each ch05.stats}}<div><span class="n">{{n}}</span><span class="l">{{l}}</span></div>{{/each}}
+    </div>
+    <p class="note">{{ch05.footnote}}</p>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">05</span></div>
+  </section>
+
+  <!-- 06 어떤 아이에게 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">06</span><span class="label">{{ch06.label}}</span></div>
+    <h2 class="t">{{ch06.title}}</h2>
+    <div class="cards">
+      {{#each ch06.signs}}<div class="card"><span class="big">{{big}}</span><span class="d">{{d}}</span></div>{{/each}}
+    </div>
+    <div class="callout">{{ch06.callout}}</div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">06</span></div>
+  </section>
+
+  <!-- 07 해외에서 시작하는 법 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">07</span><span class="label">{{ch07.label}}</span></div>
+    <h2 class="t">{{ch07.title}}</h2>
+    <div class="steps">
+      {{#each ch07.steps}}
+      <div class="step"><span class="dot">{{@index1}}</span><span class="h">{{h}}</span><span class="d">{{d}}</span></div>
+      {{/each}}
+    </div>
+    <div class="callout callout--strong">{{ch07.callout}}</div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">07</span></div>
+  </section>
+
+  <!-- 08 한국에 오면 -->
+  <section class="sheet sheet--deep">
+    <div class="eyebrow"><span class="no">08</span><span class="label">{{ch08.label}}</span></div>
+    <h2 class="t">{{ch08.title}}</h2>
+    <p class="lead">{{ch08.lead}}</p>
+    <div class="rows">
+      {{#each ch08.order}}<div class="axis"><span class="n">{{n}}</span><span class="d">{{d}}</span></div>{{/each}}
+    </div>
+    <div class="callout">{{ch08.callout}}</div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">08</span></div>
+  </section>
+
+  <!-- 09 시작한 뒤 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">09</span><span class="label">{{ch09.label}}</span></div>
+    <h2 class="t">{{ch09.title}}</h2>
+    <div class="cards">
+      {{#each ch09.items}}
+      <div class="card"><span class="big" style="font-size:15px">{{when}}</span><span class="d"><strong>{{h}}</strong> — {{d}}</span></div>
+      {{/each}}
+    </div>
+    <div class="callout">{{ch09.callout}}</div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">09</span></div>
+  </section>
+
+  <!-- 10 치료 사례 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">10</span><span class="label">{{ch10.label}}</span></div>
+    <h2 class="t t--sm">{{ch10.title}}</h2>
+    <div class="cards">
+      {{#each ch10.cases}}
+      <div class="case">
+        <span class="tag">{{tag}}</span>
+        <div class="fig">
+          <span class="from">{{from}}</span><span class="arrow">→</span>
+          <span class="to">{{to}}</span><span class="unit">{{unit}}</span>
+        </div>
+        <span class="d">{{d}}</span>
+      </div>
+      {{/each}}
+    </div>
+    <p class="note">{{ch10.disclaimer}}</p>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">10</span></div>
+  </section>
+
+  <!-- 11 부작용과 안전 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">11</span><span class="label">{{ch11.label}}</span></div>
+    <h2 class="t">{{ch11.title}}</h2>
+    <div class="rows">
+      {{#each ch11.items}}
+      <div><div style="font-size:16px;font-weight:600">{{h}}</div><div class="axis" style="grid-template-columns:1fr;margin-top:6px"><span class="d">{{d}}</span></div></div>
+      {{/each}}
+    </div>
+    <div class="card"><span class="d">{{ch11.closing}}</span></div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">11</span></div>
+  </section>
+
+  <!-- 12 자주 묻는 질문 -->
+  <section class="sheet">
+    <div class="eyebrow"><span class="no">12</span><span class="label">{{ch12.label}}</span></div>
+    <h2 class="t t--sm">{{ch12.title}}</h2>
+    <div class="rows">
+      {{#each ch12.qa}}
+      <details class="qa"><summary>{{q}}</summary><p class="a">{{a}}</p></details>
+      {{/each}}
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><span class="pg">12</span></div>
+  </section>
+
+  <!-- 13 다음 단계 · 연락처 -->
+  <section class="sheet sheet--deep contact">
+    <div class="eyebrow"><span class="no">13</span><span class="label">{{ch13.label}}</span></div>
+    <h2 class="t">{{ch13.title}}</h2>
+    <div class="rows">
+      {{#each ch13.ask}}<div class="axis"><span class="n">{{@index1}}</span><span class="d">{{.}}</span></div>{{/each}}
+    </div>
+    <div class="rows">
+      {{#each ch13.contact}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    </div>
+    <div class="foot"><span>{{brand.footer}}</span><img class="logo" src="/images/logo_en_wh.png" alt="187growup"></div>
+  </section>
+
+</div>
+</body>
+</html>
