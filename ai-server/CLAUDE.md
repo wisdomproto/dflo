@@ -10,6 +10,14 @@ Express server providing AI analysis endpoints via Google Gemini 2.5 Flash.
 - **PII 보호**: `reservations` 는 anon 정책 없음(RLS on) → anon 키로 접근 불가, service_role 전용. 예측키/설문 로그(anon SELECT)와 다른 선택.
 - env: `RESERVATION_EMAIL_TO`·`SMTP_HOST/PORT/USER/PASS/FROM`(nodemailer, 465=secure) · `TELEGRAM_BOT_TOKEN`·`TELEGRAM_CHAT_ID`(콤마 다중). 미설정 채널은 조용히 스킵.
 
+## 셀프 설문 접수 알림 (2026-07-26)
+`/intake/{lang}` 설문(`intake_submissions`, admin/intake 에서 검토)이 들어오면 **텔레그램 알림**. 예약(`reservationNotify`)과 **같은 봇·채팅**을 쓴다 — 송신은 공용 `services/notify.ts sendTelegram(text)` 로 뺐다(예약은 이메일+텔레그램, 설문은 텔레그램만).
+- **설문 insert 는 여전히 클라(anon)** — 파일 업로드(스토리지)가 섞여 있어 서버로 옮기면 기존 동작을 전부 다시 검증해야 한다. 대신 클라는 `POST /api/intake/notify { token }` 으로 **토큰만** 넘기고, 서버가 **service_role 로 그 행을 다시 읽어** 본문을 만든다 → 알림 내용이 요청자 입력이 아니라 DB 실제 값이라 **위조 불가**.
+- 가드 3종: IP당 분당 10회 rate limit · **같은 토큰 1회만**(메모리 Set — 재시도·새로고침) · **`created_at` 10분 이내만**(옛 토큰 긁어 알림 되쏘기 차단). 어느 경우든 `{ok:true}` 로 조용히 끝낸다(접수는 이미 성공했으므로 알림 실패를 사용자에게 떠넘기지 않는다).
+- 클라는 fire-and-forget + `keepalive: true`(완료 화면 전환으로 언마운트돼도 요청이 살아남게).
+- 본문 = `intakeNotify.summarizeIntake`(순수, 단위 테스트) — 이름(한글 없으면 영문)·성별·만나이·언어/국가·현재키·부모키·희망키·연락처·첨부(엑스레이/검사지)·접수시각 + `/admin/intake` 링크. 값이 없으면 그 줄을 통째로 뺀다.
+- env 는 예약과 동일(`TELEGRAM_BOT_TOKEN`·`TELEGRAM_CHAT_ID`), 미설정이면 조용히 스킵.
+
 ## Commands
 ```bash
 npm run dev   # Dev server (port 3001)

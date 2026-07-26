@@ -1,7 +1,8 @@
 import { supabase } from '@/shared/lib/supabase';
-import { growthStandardOf } from '@/shared/data/countries';
 import { logger } from '@/shared/lib/logger';
 import type { IntakeFormState, IntakeLang, UploadMeta } from './types';
+
+const AI_SERVER = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
 
 function randomToken(): string {
   return crypto.randomUUID().replace(/-/g, '').slice(0, 24);
@@ -81,14 +82,7 @@ export async function submitIntake(lang: IntakeLang, s: IntakeFormState): Promis
     phone: s.phone || null,
     email: s.email || null,
     address: s.address || null,
-    intake_survey: {
-      ...s.survey,
-      // 거주국(country)과 별개로 예측키 계산에 쓸 기준. 부모는 나라만 고르고
-      // growth_standard 는 growthStandardOf 가 KR/TH/CN/US/ID/WHO 로 옮긴다.
-      growth_ref_country: s.growth_ref || s.country || null,
-      growth_standard: growthStandardOf(s.growth_ref || s.country),
-      updated_at: new Date().toISOString(),
-    },
+    intake_survey: { ...s.survey, updated_at: new Date().toISOString() },
     uploads,
   };
   const { error } = await supabase.from('intake_submissions').insert(payload);
@@ -96,4 +90,16 @@ export async function submitIntake(lang: IntakeLang, s: IntakeFormState): Promis
     logger.error('intake submit failed', error);
     throw new Error('submit_failed');
   }
+  notifySubmission(token);
+}
+
+/** 병원 텔레그램 알림 트리거. 토큰만 넘기고 본문은 서버가 DB 에서 다시 읽는다(위조 방지).
+ *  fire-and-forget — 알림이 안 가도 접수는 이미 끝났으므로 사용자에게 실패를 보이지 않는다. */
+function notifySubmission(token: string): void {
+  void fetch(`${AI_SERVER}/api/intake/notify`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token }),
+    keepalive: true, // 완료 화면으로 넘어가며 언마운트돼도 요청이 살아남게
+  }).catch(() => {});
 }

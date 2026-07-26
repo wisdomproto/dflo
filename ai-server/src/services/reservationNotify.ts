@@ -7,8 +7,9 @@
 //   SMTP_HOST / SMTP_PORT        SMTP 서버 (예: smtp.gmail.com / 465)
 //   SMTP_USER / SMTP_PASS        SMTP 계정 (Gmail 은 앱 비밀번호)
 //   SMTP_FROM                    발신 표기 (기본: SMTP_USER)
-//   TELEGRAM_BOT_TOKEN           봇 토큰
-//   TELEGRAM_CHAT_ID             수신 채팅/그룹 id (콤마로 여러 곳)
+//   TELEGRAM_BOT_TOKEN           봇 토큰        ┐ 송신은 notify.ts 공용
+//   TELEGRAM_CHAT_ID             수신 채팅/그룹 id ┘ (콤마로 여러 곳)
+import { sendTelegram } from './notify.js';
 
 export interface ReservationRow {
   id: string;
@@ -86,23 +87,7 @@ async function notifyEmail(row: ReservationRow): Promise<void> {
 }
 
 async function notifyTelegram(row: ReservationRow): Promise<void> {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatIds = (process.env.TELEGRAM_CHAT_ID || '')
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
-  if (!token || chatIds.length === 0) return; // 미설정 → 조용히 스킵
-
-  const { text } = summarize(row);
-  await Promise.all(
-    chatIds.map((chat_id) =>
-      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id, text, disable_web_page_preview: true }),
-      }),
-    ),
-  );
+  await sendTelegram(summarize(row).text); // 송신은 notify.ts 공용(설문 알림과 같은 봇·채팅)
 }
 
 // 팬아웃 — 각 채널 독립 실패, 어느 것도 접수를 깨지 않음.

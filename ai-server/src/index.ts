@@ -20,6 +20,7 @@ import { caseStoryRouter } from './routes/caseStory.js';
 import { caseRoundsRouter } from './routes/caseRounds.js';
 import { treatmentCasesRouter } from './routes/treatmentCases.js';
 import { reservationRouter } from './routes/reservation.js';
+import { intakeRouter } from './routes/intake.js';
 import { startScheduler } from './services/scheduler.js';
 
 const app = express();
@@ -99,6 +100,9 @@ app.use('/api/case-rounds', caseRoundsRouter);
 app.use('/api/treatment-cases', treatmentCasesRouter);
 // 예약(콜백) 접수(공개) + 조회/삭제(x-admin-pin 게이트). PII라 service_role 전용 접근.
 app.use('/api/reservations', reservationRouter);
+
+// 셀프 설문 접수 알림(공개) — 설문 자체는 클라가 anon 으로 insert, 여기선 token 으로 읽어 텔레그램만.
+app.use('/api/intake', intakeRouter);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
