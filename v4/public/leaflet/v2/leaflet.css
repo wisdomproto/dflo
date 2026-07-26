@@ -1,29 +1,36 @@
 /* 187 성장클리닉 리플렛 v2 — 화면(폰 우선) + 인쇄(A4) 한 벌.
  *
- * 시안(claude design)의 인라인 스타일을 클래스로 옮긴 것. 시안은 검토용이라
- * 화면에서도 375×760 고정 시트를 벽처럼 늘어놨지만, 실물은 폰에서 **흐르는**
- * 문서라야 한다(고정 높이 = 옛 리플렛이 읽히지 않던 이유). 그래서 화면에서는
- * .sheet 가 폭을 채우고 높이는 내용만큼 늘어나고, 인쇄에서만 A4 로 고정된다.
+ * 편집 원칙 — 이 문서는 표가 아니라 지면이다.
+ *   · 크기 대비를 크게 준다. 숫자는 세리프로 크게, 라벨은 작게 자간을 벌려.
+ *   · 회색 줄무늬 표를 쓰지 않는다. 구분은 머리카락 선 하나로 족하다.
+ *   · 장마다 리듬을 바꾼다. 같은 짜임이 열일곱 번 반복되면 아무것도 안 읽힌다.
+ *   · 숫자만 세리프(Instrument Serif)를 쓴다 — 아홉 개 언어 어디서나 안전하다.
+ *
+ * 화면에서는 .sheet 가 폭을 채우고 높이는 내용만큼 늘어난다(고정 높이 = 옛
+ * 리플렛이 읽히지 않던 이유). 인쇄에서만 A4 로 고정된다.
  *
  * 다국어: 고정 폭·고정 높이 텍스트 상자를 만들지 않는다. 번역이 30~50% 길어져도
  * 흐르기만 하면 되므로 폰트 자동 축소(옛 파이프라인의 auto-fit)가 필요 없다.
  */
 
 :root {
-  --ink: #1a1714;
-  --ink-soft: #3c3733;
-  --muted: #6b6560;
-  --faint: #9b948c;
-  --hair: #e3ded6;
-  --paper: #fafaf8;
-  --stage: #efece7;
+  --ink: #17130f;
+  --ink-soft: #3b3530;
+  --muted: #665f58;
+  --faint: #7d766e;
+  --hair: #ddd7cd;
+  --hair-soft: #ebe6dd;
+  --paper: #fbfaf7;
+  --stage: #e8e3da;
   --ac: #4A2D6B;          /* 187 시그니처 보라 */
   --ac-deep: #2E1A48;
-  --ac-soft: #f3edfa;
-  --on-deep: #fafaf8;     /* 짙은 시트 위 본문 */
-  --on-deep-dim: #cdbfe2;
-  --on-deep-faint: #9d86bd;
+  --ac-soft: #f2edf8;
+  --warm: #a4642c;        /* 사진의 목재·크림 톤을 받는 따뜻한 강조 */
+  --on-deep: #fbfaf7;
+  --on-deep-dim: #d4c7e6;
+  --on-deep-faint: #a48fc4;
   --on-deep-hair: #46335f;
+  --display: "Instrument Serif", "Iowan Old Style", "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -38,7 +45,6 @@ body {
   line-height: 1.7;
 }
 
-/* 태국어는 성조부호 때문에 행간이 더 필요하고, 아랍어는 RTL. */
 html[lang="th"] body { line-height: 1.95; }
 html[dir="rtl"] body { font-family: "Noto Sans Arabic", "Geeza Pro", Pretendard, sans-serif; }
 
@@ -47,85 +53,157 @@ html[dir="rtl"] body { font-family: "Noto Sans Arabic", "Geeza Pro", Pretendard,
 /* ── 시트 ─────────────────────────────────────────────── */
 .sheet {
   background: var(--paper);
-  padding: 30px 22px 26px;
+  padding: 34px 24px 26px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 .sheet + .sheet { border-top: 8px solid var(--stage); }
 .sheet--deep { background: var(--ac-deep); color: var(--on-deep); }
 
-.eyebrow { display: flex; align-items: baseline; gap: 10px; }
-.eyebrow .no { font: 600 12px/1 var(--mono); letter-spacing: .1em; color: var(--ac); }
-.eyebrow .label { font-size: 12px; letter-spacing: .16em; color: var(--muted); }
-.sheet--deep .eyebrow .no { color: #b79fd6; }
+/* 장 번호 — 선이 지면 끝까지 간다. 이 한 줄이 페이지의 기준선이다. */
+.eyebrow { display: flex; align-items: center; gap: 12px; padding-bottom: 11px;
+  border-bottom: 1px solid var(--hair); }
+.eyebrow .no { font: 400 20px/1 var(--display); color: var(--warm); }
+.eyebrow .label { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--faint); }
+.sheet--deep .eyebrow { border-bottom-color: var(--on-deep-hair); }
+.sheet--deep .eyebrow .no { color: #c9a882; }
 .sheet--deep .eyebrow .label { color: var(--on-deep-faint); }
 
-/* 제목·본문 — word-break:keep-all 로 CJK 단어 중간 줄바꿈 금지 */
-h2.t { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.3; letter-spacing: -.02em; word-break: keep-all; }
-h2.t--sm { font-size: 24px; }
-p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); word-break: keep-all; }
+/* 제목·본문 — keep-all 로 CJK 단어 중간 줄바꿈 금지 */
+h2.t { margin: 0; font-size: 30px; font-weight: 700; line-height: 1.28; letter-spacing: -.028em; word-break: keep-all; }
+h2.t--sm { font-size: 26px; }
+p.lead { margin: 0; font-size: 15.5px; line-height: 1.82; color: var(--ink-soft); word-break: keep-all; }
 .sheet--deep p.lead { color: var(--on-deep-dim); }
 .note { margin: 0; font-size: 12px; line-height: 1.7; color: var(--faint); word-break: keep-all; }
 
 /* ── 표지 ─────────────────────────────────────────────── */
-.cover-mark { font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: -.03em; }
-.cover-title { font-size: 26px; font-weight: 700; line-height: 1.3; letter-spacing: -.02em; word-break: keep-all; }
-.rule { width: 44px; height: 2px; background: #b79fd6; }
-.cover-foot { display: flex; justify-content: space-between; align-items: flex-end;
-  font-size: 12px; color: var(--on-deep-faint); border-top: 1px solid var(--on-deep-hair); padding-top: 14px; }
+/* 표지 — 위에 마스트헤드, 아래에 제목. 사이는 사진이 지킨다. */
+.sheet.cover { gap: 0; padding: 0; position: relative; overflow: hidden;
+  display: grid; grid-template-rows: auto 1fr auto; min-height: 660px; }
+.cover .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  object-position: center 30%; }
+.cover .veil { position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--ac-deep) 20%, rgba(46,26,72,.82) 44%,
+    rgba(46,26,72,.18) 72%, rgba(46,26,72,.55)); }
+.cover .mast { position: relative; padding: 24px; }
+.cover .inner { position: relative; grid-row: 3; padding: 0 24px 26px; display: flex; flex-direction: column; gap: 15px; }
+.cover .logo { height: 25px; }
+.cover-mark { font: 400 96px/.82 var(--display); letter-spacing: -.02em; color: #fff; }
+.cover-title { font-size: 25px; font-weight: 700; line-height: 1.34; letter-spacing: -.025em; word-break: keep-all; }
+.rule { width: 40px; height: 1px; background: #c9a882; }
+.cover-foot { display: flex; justify-content: space-between; align-items: flex-end; font-size: 11.5px;
+  letter-spacing: .04em; color: var(--on-deep-faint); border-top: 1px solid var(--on-deep-hair); padding-top: 14px; }
 
-/* ── 정의 목록(라벨 : 값) ──────────────────────────────── */
-.rows { display: flex; flex-direction: column; gap: 1px; background: var(--hair);
-  border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
-.rows > * { background: var(--paper); padding: 14px 0; }
-.sheet--deep .rows { background: var(--on-deep-hair); border-color: var(--on-deep-hair); }
-.sheet--deep .rows > * { background: var(--ac-deep); }
+/* ── 정의 목록 — 줄무늬 표가 아니라 조판 ───────────────── */
+.rows { display: flex; flex-direction: column; }
+.rows > * { padding: 13px 0; border-bottom: 1px solid var(--hair-soft); }
+.rows > *:last-child { border-bottom: 0; }
+.sheet--deep .rows > * { border-bottom-color: var(--on-deep-hair); }
 
-.kv { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.kv .k { font-size: 13px; color: var(--muted); }
-.kv .v { font-size: 16px; font-weight: 600; }
+.kv { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+.kv .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); flex: none; }
+.kv .v { font-size: 19px; font-weight: 600; letter-spacing: -.01em; text-align: end; word-break: keep-all; }
 .sheet--deep .kv .k { color: var(--on-deep-faint); }
 
-/* 라벨 + 설명 (다축 관리 · 방문 순서) */
-.axis { display: grid; grid-template-columns: 5.4em 1fr; gap: 14px; align-items: baseline; }
-.axis .n { font-size: 15px; font-weight: 700; color: var(--ac); }
-.axis .d { font-size: 14px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all; }
-.sheet--deep .axis .n { color: #b79fd6; font: 600 13px var(--mono); }
-.sheet--deep .axis .d { color: var(--on-deep); font-weight: 600; }
+/* 축·순서 — 번호는 세리프로 크게, 이름과 설명은 왼쪽에 쌓는다 */
+.axis { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; align-items: baseline; }
+.axis .n { font-size: 17px; font-weight: 700; color: var(--ac); grid-row: span 2; align-self: center;
+  min-width: 4.6em; word-break: keep-all; }
+.axis .d { font-size: 14.5px; line-height: 1.72; color: var(--ink-soft); word-break: keep-all; }
+.sheet--deep .axis .n { color: #c9a882; font: 400 26px/1 var(--display); min-width: 1.8em; }
+.sheet--deep .axis .d { color: var(--on-deep); font-size: 16px; font-weight: 600; }
 
-/* ── 카드 ─────────────────────────────────────────────── */
-.card { border: 1px solid var(--hair); padding: 17px 18px; display: flex; flex-direction: column; gap: 8px; }
-.cards { display: flex; flex-direction: column; gap: 12px; }
-.card .big { font-size: 21px; font-weight: 700; color: var(--ac); letter-spacing: -.02em; }
-.card .d { font-size: 14px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all; }
+/* ── 카드 — 테두리 대신 큰 숫자와 선 ───────────────────── */
+.cards { display: flex; flex-direction: column; }
+.card { border: 0; border-bottom: 1px solid var(--hair-soft); padding: 15px 0;
+  display: flex; flex-direction: column; gap: 5px; }
+.cards .card:last-child { border-bottom: 0; }
+.card .big { font: 400 34px/1.08 var(--display); color: var(--ac-deep); letter-spacing: -.01em; }
+.card .big--sm { font-size: 23px; color: var(--warm); }
+.card .d { font-size: 14.5px; line-height: 1.72; color: var(--ink-soft); word-break: keep-all; }
 
-.callout { background: var(--ac-soft); border-inline-start: 3px solid var(--ac); padding: 15px 17px;
-  font-size: 14px; line-height: 1.75; color: var(--ink-soft); word-break: keep-all; }
+.callout { background: var(--ac-soft); border-inline-start: 2px solid var(--ac); padding: 15px 17px;
+  font-size: 14px; line-height: 1.78; color: var(--ink-soft); word-break: keep-all; }
 .callout--strong { color: var(--ac-deep); font-weight: 600; }
-.sheet--deep .callout { background: transparent; border: 1px solid #6f5a90; color: var(--on-deep-dim); }
+.sheet--deep .callout { background: transparent; border-inline-start-color: #c9a882;
+  color: var(--on-deep-dim); }
 
 /* ── 원장 ─────────────────────────────────────────────── */
-.doctor { display: flex; gap: 16px; align-items: flex-end; }
-.doctor img { width: 44%; max-width: 180px; height: auto; align-self: center; }
-.doctor .name { font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
-.doctor .role { font-size: 13px; color: var(--muted); line-height: 1.6; word-break: keep-all; }
-.quote { background: var(--ac-soft); padding: 18px; display: flex; flex-direction: column; gap: 10px; }
-.quote .q { font-size: 16px; font-weight: 600; line-height: 1.6; color: var(--ac-deep); word-break: keep-all; }
-.quote .src { font-size: 12px; color: var(--muted); }
+.doctor { display: grid; grid-template-columns: 128px 1fr; gap: 18px; align-items: end; }
+.doctor img { width: 100%; height: auto; }
+.doctor .name { font-size: 30px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+.doctor .role { margin-top: 8px; font-size: 12.5px; color: var(--muted); line-height: 1.65; word-break: keep-all; }
+.quote { padding: 4px 0 0; display: flex; flex-direction: column; gap: 10px;
+  border-top: 1px solid var(--hair); padding-top: 20px; }
+.quote .q { font-size: 20px; font-weight: 400; line-height: 1.58; color: var(--ac-deep);
+  letter-spacing: -.02em; word-break: keep-all; }
+.quote .src { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
 
-/* ── 시설 — 사진 한 장 위에 층 라벨을 얹는다 ─────────── */
-.floor { position: relative; margin: 0; }
+/* ── 시설 — 사진이 지면을 가로지른다 ───────────────────── */
+.floors { display: flex; flex-direction: column; gap: 22px; }
+.floor { display: flex; flex-direction: column; }
+.floor .shot { position: relative; }
 .floor img { display: block; width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; }
-.floor figcaption { position: absolute; inset-inline: 0; bottom: 0; display: flex; flex-wrap: wrap;
-  align-items: baseline; gap: 4px 10px; padding: 34px 14px 12px; color: #fff;
-  background: linear-gradient(to top, rgba(20,12,32,.86) 35%, rgba(20,12,32,0)); }
-.floor .tag { background: var(--ac); font: 600 12px/1 var(--mono); padding: 5px 8px; }
-.floor .name { font-size: 17px; font-weight: 700; }
-.floor .desc { flex: 1 0 100%; font-size: 13px; color: #e6dcf2; }
+.floor .head { display: flex; align-items: baseline; gap: 10px; margin-top: 11px; }
+.floor .tag { font: 400 22px/1 var(--display); color: var(--warm); }
+.floor .name { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
+.floor .note { margin-top: 3px; }
 
-/* ── 사례 그래프(빌드 시 굽는 인라인 SVG) ──────────────── */
-.case-top { display: flex; flex-direction: column; gap: 16px; }
+/* ── 절차(세로 타임라인) ───────────────────────────────── */
+.steps { display: flex; flex-direction: column; gap: 24px;
+  border-inline-start: 1px solid var(--hair); margin-inline-start: 12px; padding-inline-start: 26px; }
+.step { position: relative; display: flex; flex-direction: column; gap: 5px; }
+.step .dot { position: absolute; inset-inline-start: -38px; top: -4px; width: 24px; height: 24px;
+  background: var(--paper); color: var(--warm); font: 400 22px/24px var(--display); text-align: center; }
+.step .h { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+.step .d { font-size: 14.5px; line-height: 1.78; color: var(--ink-soft); word-break: keep-all; }
+
+/* ── 숫자 ─────────────────────────────────────────────── */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); padding: 20px 0; }
+.stats > div { display: flex; flex-direction: column; gap: 2px; }
+.stats .n { font: 400 40px/1 var(--display); color: var(--ac-deep); letter-spacing: -.01em; }
+.stats .l { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+
+/* ── 치료 사례 ────────────────────────────────────────── */
+.case-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.case-head .tag { font-size: 17px; font-weight: 700; letter-spacing: -.02em; color: var(--ac); }
+.case-head .who { font-size: 12px; letter-spacing: .06em; color: var(--faint); }
+
+/* 주인공 숫자 — 이 장에서 가장 큰 것 */
+.hero { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 12px;
+  border-top: 1px solid var(--hair); padding-top: 16px; }
+.hero .l { flex: 1 0 100%; font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: 2px; }
+.hero .a { font: 400 34px/1 var(--display); color: var(--faint); }
+.hero .ar { font: 400 26px/1 var(--display); color: var(--warm); }
+.hero .b { font: 400 54px/1 var(--display); color: var(--ac-deep); letter-spacing: -.02em; }
+.hero .u { font-size: 13px; color: var(--faint); }
+
+.case-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 18px; }
+.case-stats .k { font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--faint); }
+.case-stats .v { font-size: 15px; font-weight: 600; letter-spacing: -.01em; word-break: keep-all; }
+
+.case .d { font-size: 14px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all; }
+
+/* 측정 표 — 머리카락 선만. 숫자는 자릿수가 맞아야 읽힌다. */
+.mtable { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.mtable th { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
+  font-weight: 400; text-align: end; padding: 0 0 8px; border-bottom: 1px solid var(--hair); }
+.mtable th:first-child { text-align: start; }
+.mtable td { font-size: 13px; text-align: end; padding: 8px 0; border-bottom: 1px solid var(--hair-soft); color: var(--muted); }
+.mtable td:first-child { text-align: start; }
+.mtable td.em { color: var(--ink); font-weight: 600; }
+.mtable tr:last-child td { border-bottom: 0; }
+
+/* 원장 노트 — 인용이지 상자가 아니다 */
+.note-block { border-top: 1px solid var(--hair); padding-top: 18px; display: flex; flex-direction: column; gap: 9px; }
+.note-block .src { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--warm); }
+.note-block .body { font-size: 14.5px; line-height: 1.82; color: var(--ink-soft); word-break: keep-all; }
+
+
+/* ── 성장 곡선 — 플롯만 SVG, 글자는 HTML (홈페이지에서 배운 규칙) ──── */
 .chart { margin: 0; }
 .chart svg { display: block; width: 100%; height: auto; }
 .chart .g { stroke: var(--hair); stroke-width: 1; }
@@ -145,73 +223,56 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
 .chart .lg.p::before { border-top-style: dashed; }
 .chart .lg.p { color: var(--ac); }
 .chart .unit { margin-inline-start: auto; }
+.chart .ax { fill: var(--faint); font-size: 10px; letter-spacing: .04em; }
+.chart .v { font-weight: 700; font-size: 12px; }
+.chart figcaption { color: var(--faint); font-size: 11px; letter-spacing: .04em; }
 
-/* ── 아역배우 — 사진은 작게(원본이 256색이라 키우면 뭉갠다), 이름·작품을 크게 ── */
-.faces { display: flex; flex-direction: column; gap: 2px; }
-.face { margin: 0; display: grid; grid-template-columns: 64px 1fr; gap: 14px;
-  align-items: center; padding: 11px 0; border-bottom: 1px solid var(--hair); }
+/* ── 아역배우 — 사진은 작게(원본이 256색이라 키우면 뭉갠다), 이름을 크게 ── */
+.faces { display: flex; flex-direction: column; }
+.face { margin: 0; display: grid; grid-template-columns: 60px 1fr; gap: 16px;
+  align-items: center; padding: 13px 0; border-bottom: 1px solid var(--hair-soft); }
 .face:last-child { border-bottom: 0; }
-.face img { display: block; width: 64px; height: 82px; object-fit: cover; object-position: center 22%; }
-.face figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 9px; }
-.face .n { font-size: 19px; font-weight: 700; letter-spacing: -.01em; }
-.face .r { font-size: 12px; color: var(--ac); background: var(--ac-soft); padding: 3px 7px; }
-.face .w { flex: 1 0 100%; font-size: 14px; line-height: 1.6; color: var(--ink-soft); word-break: keep-all; }
+.face img { display: block; width: 60px; height: 78px; object-fit: cover; object-position: center 22%; }
+.face figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.face .n { font-size: 20px; font-weight: 700; letter-spacing: -.03em; }
+.face .r { font-size: 11px; letter-spacing: .1em; color: var(--faint); }
+.face .w { flex: 1 0 100%; font-size: 13.5px; line-height: 1.6; color: var(--muted); word-break: keep-all; }
 
 /* ── 진료 순서 사진 ────────────────────────────────────── */
-.shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
 .shots figure { margin: 0; }
 .shots img { display: block; width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; }
-.shots figcaption { margin-top: 5px; font-size: 11px; color: var(--muted); text-align: center; }
+.shots figcaption { margin-top: 6px; font-size: 10px; letter-spacing: .08em; color: var(--faint); text-align: center; }
 .sheet--deep .shots figcaption { color: var(--on-deep-faint); }
 
-/* ── 절차(세로 타임라인) ───────────────────────────────── */
-.steps { display: flex; flex-direction: column; gap: 22px;
-  border-inline-start: 1px dashed #c9bcdd; margin-inline-start: 14px; padding-inline-start: 26px; }
-.step { position: relative; display: flex; flex-direction: column; gap: 6px; }
-.step .dot { position: absolute; inset-inline-start: -40px; top: 0; width: 28px; height: 28px;
-  border-radius: 50%; background: var(--ac); color: #fff; font: 600 12px/28px var(--mono); text-align: center; }
-.step .h { font-size: 17px; font-weight: 700; }
-.step .d { font-size: 14px; line-height: 1.75; color: var(--ink-soft); word-break: keep-all; }
-
-/* ── 숫자 ─────────────────────────────────────────────── */
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
-.stats > div { background: var(--ac-soft); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
-.stats .n { font-size: 23px; font-weight: 700; color: var(--ac-deep); letter-spacing: -.02em; }
-.stats .l { font-size: 12px; color: var(--muted); }
-
-/* ── 치료 사례 ────────────────────────────────────────── */
-.case { border: 1px solid var(--hair); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
-.case .tag { font-size: 12px; letter-spacing: .06em; color: var(--ac); background: var(--ac-soft);
-  padding: 5px 9px; align-self: flex-start; }
-.case .fig { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.case .from { font: 400 17px var(--mono); color: var(--faint); }
-.case .arrow { color: #c9bcdd; }
-.case .to { font: 600 26px var(--mono); color: var(--ac-deep); letter-spacing: -.02em; }
-.case .unit { font-size: 12px; color: var(--faint); }
-.case .d { font-size: 14px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all; }
-
-/* ── Q&A — 화면은 접힘, 인쇄는 펼침 ───────────────────── */
-.qa { border: 0; padding: 15px 0; }
-.qa > summary { list-style: none; cursor: pointer; font-size: 15px; font-weight: 700;
-  line-height: 1.6; color: var(--ac-deep); word-break: keep-all; display: flex; gap: 10px; align-items: flex-start; }
-.qa > summary::-webkit-details-marker { display: none; }
-.qa > summary::after { content: "＋"; margin-inline-start: auto; color: var(--ac); font-weight: 400; }
-.qa[open] > summary::after { content: "－"; }
-.qa .a { margin: 8px 0 0; font-size: 14px; line-height: 1.75; color: var(--ink-soft); word-break: keep-all; }
+/* ── Q&A — 화면은 접힘, 인쇄는 펼침.
+   <details> 를 쓰면 Chrome 이 ::details-content 를 content-visibility:hidden 으로
+   감춰서 인쇄에서 답이 통째로 사라진다(자식에 display 를 줘도 안 열린다).
+   체크박스 + label 이면 답이 늘 DOM 에 있고 CSS 만으로 인쇄에서 편다. */
+.qa { border-bottom: 1px solid var(--hair-soft); }
+.qa:last-of-type { border-bottom: 0; }
+.qa > label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer;
+  font-size: 15.5px; font-weight: 600; line-height: 1.6; padding: 16px 0;
+  color: var(--ac-deep); word-break: keep-all; }
+.qa > label::after { content: "＋"; margin-inline-start: auto; color: var(--warm); font-weight: 400; }
+.qa > input:checked ~ label::after { content: "－"; }
+.qa .a { display: none; margin: -4px 0 16px; font-size: 14px; line-height: 1.8;
+  color: var(--ink-soft); word-break: keep-all; }
+.qa > input:checked ~ .a { display: block; }
 
 /* ── 연락처 ───────────────────────────────────────────── */
-.contact .kv .v { font: 500 15px var(--mono); }
-.qr { display: flex; gap: 14px; align-items: center; }
-.qr img { width: 74px; height: 74px; }
+.contact .kv .v { font-size: 20px; font-weight: 500; letter-spacing: 0; }
+.contact a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--on-deep-hair); }
 
 .foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end;
-  font-size: 12px; color: var(--faint); border-top: 1px solid var(--hair); padding-top: 12px; }
-.foot .pg { font-family: var(--mono); }
+  font-size: 10.5px; letter-spacing: .06em; color: var(--faint); border-top: 1px solid var(--hair-soft);
+  padding-top: 13px; }
+.foot .pg { font-family: var(--display); font-size: 15px; }
 .sheet--deep .foot { color: var(--on-deep-faint); border-top-color: var(--on-deep-hair); }
 
 /* ★세로 flex(.sheet)의 자식 이미지는 align-self:stretch 로 폭이 늘어난다.
    width:auto 는 stretch 에 지는 값이라 로고가 시트 폭까지 퍼지고 높이만 30px 로 눌렸다. */
-.logo { height: 30px; width: auto; align-self: flex-start; }
+.logo { height: 28px; width: auto; align-self: flex-start; }
 
 /* ── 인쇄: A4 낱장 ────────────────────────────────────── */
 @media print {
@@ -220,53 +281,61 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
   .doc { max-width: none; padding: 0; }
 
   .sheet {
-    width: 210mm; min-height: 285mm; padding: 18mm;   /* 297mm 정확히 두면 반올림에 밀려 푸터가 다음 장으로 넘어간다 */
+    width: 210mm; min-height: 297mm; padding: 17mm;
     font-size: 11pt; border: 0;
     break-after: page; break-inside: avoid;
   }
   .sheet + .sheet { border-top: 0; }
   .sheet:last-child { break-after: auto; }
+  .sheet.cover { min-height: 297mm; padding: 0; }
+  .cover .inner { padding: 0 17mm 17mm; }
 
-  /* 화면에서 옆으로 넘기던 사진을 인쇄에서는 펼쳐 보여준다 */
 
-  /* 접힌 Q&A 는 인쇄에서 전부 펼친다 */
-  .qa .a { display: block !important; }
+  /* 화면 기준 타이포는 A4 에 그대로 얹으면 넘친다 — 인쇄에서만 한 단계 줄인다. */
+  .sheet { gap: 14px; padding: 14mm; }
+  h2.t { font-size: 25px; }
+  h2.t--sm { font-size: 22px; }
+  p.lead { font-size: 13.5px; line-height: 1.75; }
+  .rows > * { padding: 10px 0; }
+  .kv .v { font-size: 16px; }
+  .card { padding: 11px 0; }
+  .card .big { font-size: 27px; }
+  .card .big--sm { font-size: 20px; }
+  .card .d, .axis .d, .step .d { font-size: 13px; line-height: 1.65; }
+  .steps { gap: 17px; }
+  .step .h { font-size: 15px; }
+  .stats { padding: 15px 0; }
+  .stats .n { font-size: 33px; }
+  .hero .b { font-size: 44px; }
+  .hero .a { font-size: 28px; }
+  .case-stats { gap: 11px 18px; }
+  .quote .q { font-size: 17px; }
+  .note-block .body { font-size: 13px; line-height: 1.7; }
+  .mtable td { font-size: 12px; padding: 6px 0; }
+  .callout { font-size: 12.5px; padding: 12px 14px; }
+  .qa > label { font-size: 13.5px; padding: 10px 0; }
+  .qa .a { font-size: 12.5px; margin-bottom: 10px; }
+  .face { padding: 9px 0; }
+  .face .n { font-size: 17px; }
+  .face .w { font-size: 12px; }
 
-  /* 색이 빠지면 짙은 시트가 흰 글씨만 남는다 */
-  .sheet--deep { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-}
+  /* A4 한 장을 넘던 것들 — 사진과 그래프의 높이를 잡아 준다. */
+  .floor img { aspect-ratio: 2/1; }
+  .floors { gap: 16px; }
+  .chart svg { max-height: 52mm; }
+  /* 10-1 만 장 제목과 안내문을 더 이고 있어 한 장을 넘겼다 */
+  .case-first .chart svg { max-height: 34mm; }
+  .case-first p.lead { font-size: 12px; }
+  .case-first .mtable td { padding: 5px 0; }
+  .chart figcaption { margin-top: 4px; }
+  .mtable th { padding-bottom: 6px; }
 
-/* ── 사례 페이지 ──────────────────────────────────────── */
-.case-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.case-head .tag { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--ac);
-  background: var(--ac-soft); padding: 6px 11px; }
-.case-head .who { font-size: 13px; color: var(--muted); }
 
-/* 측정 회차표 — 회차마다 키·뼈나이·그 시점 예상키. 뼈나이 격차의 이동이 이 표의 핵심이라 전 회차를 싣는다. */
-.mtable { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-.mtable th { text-align: end; font-weight: 600; color: var(--muted); padding: 7px 5px;
-  border-bottom: 1px solid var(--hair); white-space: nowrap; }
-.mtable th:first-child, .mtable td:first-child { text-align: start; }
-.mtable td { text-align: end; padding: 7px 5px; border-bottom: 1px solid var(--hair);
-  font-family: var(--mono); color: var(--muted); white-space: nowrap; }
-.mtable td.em { color: var(--ink); font-weight: 600; }
-.mtable tr:last-child td { border-bottom: 0; background: var(--ac-soft); }
-
-.quote .note-body { font-size: 14px; font-weight: 400; line-height: 1.8; color: var(--ink-soft); }
-
-/* 사례 페이지는 표+노트가 길어 A4 를 넘기기 쉽다 — 인쇄에서만 간격을 조인다. */
-@media print {
-  .sheet { gap: 10px; padding: 13mm 15mm; }
-  .mtable { font-size: 10pt; }
-  .mtable th, .mtable td { padding: 4px 4px; }
-  .quote { padding: 13px; }
-  .quote .note-body { font-size: 10pt; line-height: 1.55; }
-  /* 인쇄에서는 사진·그래프가 A4 를 넘겨 장이 둘로 쪼개진다 — 높이를 묶는다. */
-  /* A4 에서는 스탯과 그래프를 나란히 — 세로로 쌓으면 사례 한 건이 한 장을 넘는다. */
-  .case-top { flex-direction: row; align-items: flex-start; gap: 8mm; }
-  .case-top > * { flex: 1 1 0; min-width: 0; }
-  .chart svg { width: 100%; height: auto; }
-  .sheet .lead { font-size: 10.5pt; line-height: 1.6; }
-  .floor img { height: 74mm; object-fit: cover; }
   .faces { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; }
+  .celeb { max-height: 140mm; width: auto; }
+
+  .qa .a { display: block !important; }
+  .qa > label::after { content: ""; }
+
+  .sheet--deep, .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }

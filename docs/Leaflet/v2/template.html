@@ -6,20 +6,25 @@
 <meta name="robots" content="noindex, nofollow">
 <title>{{meta.title}}</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="stylesheet" href="../leaflet.css">
 </head>
 <body>
 <div class="doc">
 
   <!-- 01 표지 -->
-  <section class="sheet sheet--deep">
-    <div class="eyebrow"><span class="no">01</span><span class="label">{{ch01.label}}</span></div>
-    <img class="logo" src="/images/logo_en_wh.png" alt="187growup">
-    <div class="cover-mark">187</div>
-    <div class="cover-title">{{ch01.title}}</div>
-    <div class="rule"></div>
-    <p class="lead">{{ch01.lead}}</p>
-    <div class="cover-foot"><span>{{brand.clinic_line}}</span><span>{{meta.year}}</span></div>
+  <section class="sheet sheet--deep cover">
+    <img class="shot" src="/images/leaflet/measure.jpg" alt="">
+    <span class="veil"></span>
+    <div class="mast"><img class="logo" src="/images/logo_en_wh.png" alt="187growup"></div>
+    <div class="inner">
+      <div class="cover-mark">187</div>
+      <div class="rule"></div>
+      <div class="cover-title">{{ch01.title}}</div>
+      <p class="lead">{{ch01.lead}}</p>
+      <div class="cover-foot"><span>{{brand.clinic_line}}</span><span>{{meta.year}}</span></div>
+    </div>
   </section>
 
   <!-- 02 병원 개요 -->
@@ -138,7 +143,7 @@
     <h2 class="t">{{ch09.title}}</h2>
     <div class="cards">
       {{#each ch09.items}}
-      <div class="card"><span class="big" style="font-size:15px">{{when}}</span><span class="d"><strong>{{h}}</strong> — {{d}}</span></div>
+      <div class="card"><span class="big big--sm">{{when}}</span><span class="d"><strong>{{h}}</strong> — {{d}}</span></div>
       {{/each}}
     </div>
     <div class="callout">{{ch09.callout}}</div>
@@ -146,7 +151,7 @@
   </section>
 
   <!-- 10-1 치료 사례 -->
-  <section class="sheet">
+  <section class="sheet case-first">
     <div class="eyebrow"><span class="no">10-1</span><span class="label">{{ch10.label}}</span></div>
     <h2 class="t t--sm">{{ch10.title}}</h2>
     <p class="lead">{{ch10.intro}}</p>
@@ -154,19 +159,22 @@
       <span class="tag">{{ch10.c1.tag}}</span>
       <span class="who">{{ch10.c1.who}}</span>
     </div>
-    <div class="case-top">
-    <div class="rows">
-      {{#each ch10.c1.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    <div class="hero">
+      <span class="l">{{ch10.c1.hero.k}}</span>
+      <span class="a">{{ch10.c1.hero.a}}</span><span class="ar">→</span>
+      <span class="b">{{ch10.c1.hero.b}}</span><span class="u">{{ch10.c1.hero.u}}</span>
+    </div>
+    <div class="case-stats">
+      {{#each ch10.c1.stats}}<div><div class="k">{{k}}</div><div class="v">{{v}}</div></div>{{/each}}
     </div>
     {{ch10.c1.chart}}
-    </div>
     <table class="mtable">
       <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
       <tbody>{{#each ch10.c1.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
     </table>
-    <div class="quote">
+    <div class="note-block">
       <div class="src">{{ch10.note_label}}</div>
-      <div class="q note-body">{{ch10.c1.note}}</div>
+      <div class="body">{{ch10.c1.note}}</div>
     </div>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-1</span></div>
   </section>
@@ -178,19 +186,22 @@
       <span class="tag">{{ch10.c2.tag}}</span>
       <span class="who">{{ch10.c2.who}}</span>
     </div>
-    <div class="case-top">
-    <div class="rows">
-      {{#each ch10.c2.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    <div class="hero">
+      <span class="l">{{ch10.c2.hero.k}}</span>
+      <span class="a">{{ch10.c2.hero.a}}</span><span class="ar">→</span>
+      <span class="b">{{ch10.c2.hero.b}}</span><span class="u">{{ch10.c2.hero.u}}</span>
+    </div>
+    <div class="case-stats">
+      {{#each ch10.c2.stats}}<div><div class="k">{{k}}</div><div class="v">{{v}}</div></div>{{/each}}
     </div>
     {{ch10.c2.chart}}
-    </div>
     <table class="mtable">
       <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
       <tbody>{{#each ch10.c2.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
     </table>
-    <div class="quote">
+    <div class="note-block">
       <div class="src">{{ch10.note_label}}</div>
-      <div class="q note-body">{{ch10.c2.note}}</div>
+      <div class="body">{{ch10.c2.note}}</div>
     </div>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-2</span></div>
   </section>
@@ -202,19 +213,22 @@
       <span class="tag">{{ch10.c3.tag}}</span>
       <span class="who">{{ch10.c3.who}}</span>
     </div>
-    <div class="case-top">
-    <div class="rows">
-      {{#each ch10.c3.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    <div class="hero">
+      <span class="l">{{ch10.c3.hero.k}}</span>
+      <span class="a">{{ch10.c3.hero.a}}</span><span class="ar">→</span>
+      <span class="b">{{ch10.c3.hero.b}}</span><span class="u">{{ch10.c3.hero.u}}</span>
+    </div>
+    <div class="case-stats">
+      {{#each ch10.c3.stats}}<div><div class="k">{{k}}</div><div class="v">{{v}}</div></div>{{/each}}
     </div>
     {{ch10.c3.chart}}
-    </div>
     <table class="mtable">
       <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
       <tbody>{{#each ch10.c3.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
     </table>
-    <div class="quote">
+    <div class="note-block">
       <div class="src">{{ch10.note_label}}</div>
-      <div class="q note-body">{{ch10.c3.note}}</div>
+      <div class="body">{{ch10.c3.note}}</div>
     </div>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-3</span></div>
   </section>
@@ -226,19 +240,22 @@
       <span class="tag">{{ch10.c4.tag}}</span>
       <span class="who">{{ch10.c4.who}}</span>
     </div>
-    <div class="case-top">
-    <div class="rows">
-      {{#each ch10.c4.stats}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+    <div class="hero">
+      <span class="l">{{ch10.c4.hero.k}}</span>
+      <span class="a">{{ch10.c4.hero.a}}</span><span class="ar">→</span>
+      <span class="b">{{ch10.c4.hero.b}}</span><span class="u">{{ch10.c4.hero.u}}</span>
+    </div>
+    <div class="case-stats">
+      {{#each ch10.c4.stats}}<div><div class="k">{{k}}</div><div class="v">{{v}}</div></div>{{/each}}
     </div>
     {{ch10.c4.chart}}
-    </div>
     <table class="mtable">
       <thead><tr><th>{{ch10.th.d}}</th><th>{{ch10.th.a}}</th><th>{{ch10.th.h}}</th><th>{{ch10.th.ba}}</th><th>{{ch10.th.p}}</th></tr></thead>
       <tbody>{{#each ch10.c4.rows}}<tr><td>{{d}}</td><td>{{a}}</td><td class="em">{{h}}</td><td>{{ba}}</td><td class="em">{{p}}</td></tr>{{/each}}</tbody>
     </table>
-    <div class="quote">
+    <div class="note-block">
       <div class="src">{{ch10.note_label}}</div>
-      <div class="q note-body">{{ch10.c4.note}}</div>
+      <div class="body">{{ch10.c4.note}}</div>
     </div>
     <p class="note">{{ch10.disclaimer}}</p>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">10-4</span></div>
@@ -279,7 +296,7 @@
     <h2 class="t t--sm">{{ch12.title}}</h2>
     <div class="rows">
       {{#each ch12.qa}}
-      <details class="qa"><summary>{{q}}</summary><p class="a">{{a}}</p></details>
+      <div class="qa"><input type="checkbox" id="q{{@index1}}" hidden><label for="q{{@index1}}">{{q}}</label><p class="a">{{a}}</p></div>
       {{/each}}
     </div>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">12</span></div>
@@ -293,7 +310,7 @@
       {{#each ch13.ask}}<div class="axis"><span class="n">{{@index1}}</span><span class="d">{{.}}</span></div>{{/each}}
     </div>
     <div class="rows">
-      {{#each ch13.contact}}<div class="kv"><span class="k">{{k}}</span><span class="v">{{v}}</span></div>{{/each}}
+      {{#each ch13.contact}}<div class="kv"><span class="k">{{k}}</span><span class="v"><a href="{{href}}">{{v}}</a></span></div>{{/each}}
     </div>
     <div class="foot"><span>{{brand.footer}}</span><img class="logo" src="/images/logo_en_wh.png" alt="187growup"></div>
   </section>
