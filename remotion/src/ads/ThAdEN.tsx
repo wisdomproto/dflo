@@ -44,6 +44,27 @@ const Block: React.FC<{ len: number; children: React.ReactNode }> = ({ len, chil
   return <AbsoluteFill style={{ opacity: fade(f, len) }}>{children}</AbsoluteFill>;
 };
 
+// 헤드라인은 로고 바로 아래 고정 헤더로 올린다 — 원본 위치(y 744~930)는 세로 환산 1322~1652 라
+// 광고에서 IG/FB 하단 UI 에 먹힌다(안전 하한 ≈ 844). 자막이 그 자리를 물려받는다.
+// ★상단 전체 스크림은 못 쓴다 — 로고가 씬마다 검정/흰색으로 baked 돼 있어 어둡게 깔면 검정 로고가 묻힌다.
+//   로고 아래에만 판을 깔면 흰 후기 카드·셀럽 사진 그리드 위에서도 흰 헤드라인이 읽힌다.
+const HEADER_TOP = 116;
+const Header: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div style={{
+    position: "absolute", top: HEADER_TOP, left: COL_LEFT + 18, width: COL_W - 36,
+    boxSizing: "border-box", padding: "13px 18px", borderRadius: 20, textAlign: "center",
+    background: "linear-gradient(180deg, rgba(24,10,32,.66), rgba(24,10,32,.42))",
+  }}>{children}</div>
+);
+const HeadLine: React.FC<{ children: React.ReactNode; color?: string; size?: number }> = ({
+  children, color = WHITE, size = 42,
+}) => (
+  <div style={{
+    fontFamily: PRETENDARD, fontWeight: 800, fontSize: size, color, lineHeight: 1.18,
+    letterSpacing: "-0.015em", textShadow: "0 3px 14px rgba(0,0,0,.55)",
+  }}>{children}</div>
+);
+
 // 원본에서 떼어낸 원+아이콘. 아이 쪽에서 튀어나와 제자리에 앉는다(원본 동작 재현).
 const R = 73;
 const ORIGIN = { x: 959, y: 585 };   // 아이 몸통 — 여기서 퍼져 나간다
@@ -83,6 +104,11 @@ const IconBubble: React.FC<{
 
 // 나레이션 자막 — 시각/문구를 손으로 적지 않고 믹스 산출(thadEnNarration.json)을 그대로 쓴다.
 // TTS 길이는 실행마다 달라지므로 이렇게 해야 소리와 절대 어긋나지 않는다.
+//
+// 헤드라인이 비운 자리(하단 y≈844 = 세로 1500 = IG/FB 안전 하한)로 올린다.
+// ★n6 만 예외 — 그 구간엔 다섯 번째(운동) 아이콘 원이 y 766~912 에 앉아 자막이 원을 관통한다.
+//   원 위쪽(하단 앵커 750)으로 올려 피한다.
+const SUB_BOTTOM: Record<string, number> = { n6: 1080 - 750 };
 const NarrationSubs: React.FC = () => (
   <>
     {NARRATION.map((n) => {
@@ -90,11 +116,16 @@ const NarrationSubs: React.FC = () => (
       const len = Math.max(1, Math.round((n.end - n.at) * THAD_EN_FPS));
       return (
         <Sequence key={n.id} from={from} durationInFrames={len}>
+          {/* 판을 깐다 — 새 자리는 배경이 밝은 씬이 있다(원장 크림색 재킷·흰 후기 카드).
+              옛 자리는 하단이 어두워 그림자만으로 됐지만 여기선 흰 글씨가 묻힌다. 헤더와 같은 톤. */}
           <div style={{
-            position: "absolute", left: COL_LEFT + 16, width: COL_W - 32, bottom: 24,
+            position: "absolute", left: COL_LEFT + 18, width: COL_W - 36,
+            bottom: SUB_BOTTOM[n.id] ?? 1080 - 844,
+            boxSizing: "border-box", padding: "11px 16px", borderRadius: 18,
+            background: "linear-gradient(180deg, rgba(24,10,32,.58), rgba(24,10,32,.66))",
             textAlign: "center", fontFamily: PRETENDARD, fontWeight: 700, fontSize: 27,
             color: "#fff", lineHeight: 1.3, letterSpacing: "-0.01em",
-            textShadow: "0 2px 10px rgba(0,0,0,.9), 0 0 22px rgba(0,0,0,.8)",
+            textShadow: "0 2px 10px rgba(0,0,0,.55)",
           }}>{n.text}</div>
         </Sequence>
       );
@@ -114,15 +145,11 @@ export const ThAdEN: React.FC = () => (
       <IconBubble name="posture"   cx={1118} cy={595} label="Posture"   settleAt={s(3.07)} />
       <IconBubble name="exercise"  cx={959}  cy={839} label="Exercise"  settleAt={s(4.10)} dark />
       {/* 원본엔 이 장면에 자막이 없어 "따로따로가 아니라 함께 본다"는 메시지가 전달되지 않았다.
-          마지막 아이콘이 앉은 뒤 한 줄 띄운다(아이콘 등장과 겹치지 않게). */}
-      {/* 세 번째 아이콘이 앉을 즈음부터 장면 끝까지 — 0.6초만 스쳐 지나가던 걸 늘렸다.
           "다른 곳은 하나만 본다"는 전제를 모르는 첫 시청자도 알아듣게 우리가 하는 것만 명시한다
-          (비교 표현은 의료광고법 56조). */}
-      <Sequence from={s(1.9)}>
-        <Block len={s(23.35) - s(18.4) - s(1.9)}>
-          <Line top={930} size={32} color={PINK}>{"Integrated growth care"}</Line>
-        </Block>
-      </Sequence>
+          (비교 표현은 의료광고법 56조). 헤더로 올라와 아이콘과 안 겹치므로 장면 시작부터 띄운다. */}
+      <Block len={s(23.35) - s(18.4)}>
+        <Header><HeadLine size={38} color={PINK}>{"Integrated growth care"}</HeadLine></Header>
+      </Block>
     </Sequence>
 
     {/* 1) 훅 */}
@@ -135,31 +162,37 @@ export const ThAdEN: React.FC = () => (
     {/* 2) 클리닉 소개 */}
     <Sequence from={s(3.5)} durationInFrames={s(5.9) - s(3.5)}>
       <Block len={s(5.9) - s(3.5)}>
-        <Line top={744} size={42} color={PINK} align="left">{"Growth specialist clinic"}</Line>
-        <Line top={876} size={42} align="left">{"in Gangnam, South Korea"}</Line>
+        <Header>
+          <HeadLine size={40} color={PINK}>{"Growth specialist clinic"}</HeadLine>
+          <HeadLine size={40}>{"in Gangnam, South Korea"}</HeadLine>
+        </Header>
       </Block>
     </Sequence>
 
     {/* 3) 후기 (한국어 후기 스크린샷은 그대로) */}
     <Sequence from={s(6.0)} durationInFrames={s(10.8) - s(6.0)}>
       <Block len={s(10.8) - s(6.0)}>
-        <Line top={846} size={44}>{"What parents are saying"}</Line>
+        <Header><HeadLine size={42}>{"What parents are saying"}</HeadLine></Header>
       </Block>
     </Sequence>
 
     {/* 4) 아시아 선두 */}
     <Sequence from={s(13.5)} durationInFrames={s(18.2) - s(13.5)}>
       <Block len={s(18.2) - s(13.5)}>
-        <Line top={798} size={42} color={PINK}>{"Asia's leading"}</Line>
-        <Line top={854} size={48}>{"growth clinic"}</Line>
+        <Header>
+          <HeadLine size={38} color={PINK}>{"Asia's leading"}</HeadLine>
+          <HeadLine size={46}>{"growth clinic"}</HeadLine>
+        </Header>
       </Block>
     </Sequence>
 
     {/* 6) 셀럽 */}
     <Sequence from={s(23.5)} durationInFrames={s(26.2) - s(23.5)}>
       <Block len={s(26.2) - s(23.5)}>
-        <Line top={842} size={40} color={PINK}>{"Celebrities who visited"}</Line>
-        <Line top={898} size={50}>{"187growup"}</Line>
+        <Header>
+          <HeadLine size={36} color={PINK}>{"Celebrities who visited"}</HeadLine>
+          <HeadLine size={46}>{"187growup"}</HeadLine>
+        </Header>
       </Block>
     </Sequence>
 

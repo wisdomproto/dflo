@@ -42,7 +42,8 @@ try { await fetch(`${AI_BASE}/api/r2/upload`, { method: "POST" }); }
 catch { console.error(`⚠️ ai-server 미응답(${AI_BASE}) — cd ai-server && npm run dev`); process.exit(1); }
 
 // 커버: 아이콘 5개가 다 떠 있는 22.8초 프레임(광고 핵심 메시지가 한 장에 담긴다)
-if (!existsSync(cover)) execFileSync("ffmpeg", ["-v", "error", "-ss", "22.8", "-i", mp4, "-frames:v", "1", "-y", cover]);
+// ★캐시하지 않는다 — 영상만 다시 렌더했을 때 옛 레이아웃 커버가 조용히 딸려 올라간다(실제로 겪음).
+execFileSync("ffmpeg", ["-v", "error", "-ss", "22.8", "-i", mp4, "-frames:v", "1", "-y", cover]);
 
 console.log("R2 업로드 중…");
 const videoUrl = await uploadR2(mp4, "marketing/reels");
