@@ -21,6 +21,8 @@ const COUNTRY_TABS: { code: CountryKey; label: string; flag: string }[] = [
   { code: 'zh-hant', label: '번체', flag: '🇹🇼' },
   { code: 'zh-hans', label: '간체', flag: '🀄' },
   { code: 'ar', label: '아랍어', flag: '🇸🇦' },
+  { code: 'ja', label: '일본어', flag: '🇯🇵' },
+  { code: 'es', label: '스페인어', flag: '🇪🇸' },
 ];
 
 const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [

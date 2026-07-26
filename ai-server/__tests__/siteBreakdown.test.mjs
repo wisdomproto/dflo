@@ -332,3 +332,36 @@ test('aggregateSiteBreakdown: 중국어 버킷이 채워진다 (ko 에 합산되
   // all = 언어 넘어 합산 (users 40+20=60)
   assert.equal(r.byCountry.all.summary.users, 60);
 });
+
+// 언어 추가(ja/es)가 분류기부터 집계 버킷까지 실제로 이어지는지 — 이 파일은 SITE_LANGS 파생 리팩터
+// 이후로 목록이 한 곳뿐이지만, 파생이 끊기면 그 언어만 조용히 0 이 되므로 값으로 확인한다.
+test('ja/es: 경로 분류 + 버킷 집계 + all 합산', () => {
+  assert.equal(classifyCountry('/ja/'), 'ja');
+  assert.equal(classifyCountry('/ja'), 'ja');
+  assert.equal(classifyCountry('/es/calculator.html'), 'es');
+  assert.equal(classifyPage('/ja/'), 'main');
+  assert.equal(classifyPage('/es/index.html'), 'main');
+  assert.equal(classifyPage('/ja/blog/x/'), 'other');
+
+  const r = aggregateSiteBreakdown(inputWith({
+    landing: [
+      { landingPage: '/ja/', users: 7, newUsers: 5, sessions: 9, pageViews: 12, engagementSec: 300 },
+      { landingPage: '/es/calculator.html', users: 3, newUsers: 3, sessions: 4, pageViews: 5, engagementSec: 100 },
+    ],
+    pv: [{ pagePath: '/ja/', views: 12 }],
+    events: [{ pagePath: '/ja/', eventName: 'consult_click', count: 2 }],
+    channels: [{ landingPage: '/ja/', channel: 'Organic Search', sessions: 9 }],
+    devices: [{ landingPage: '/es/calculator.html', device: 'mobile', sessions: 4 }],
+    geo: [{ landingPage: '/ja/', country: 'Japan', city: 'Tokyo', sessions: 9, users: 7 }],
+    daily: [{ date: '20260726', landingPage: '/es/calculator.html', users: 3, sessions: 4, views: 5 }],
+  }));
+  assert.equal(r.byCountry.ja.summary.users, 7);
+  assert.equal(r.byCountry.ja.pageViews.main, 12);
+  assert.equal(r.byCountry.ja.events.messenger, 2);
+  assert.equal(r.byCountry.ja.channels[0]?.label, 'Organic Search');
+  assert.equal(r.byCountry.ja.geo[0]?.label, 'Japan');
+  assert.equal(r.byCountry.es.devices[0]?.label, 'mobile');
+  assert.equal(r.byCountry.es.daily.length, 1);
+  assert.equal(r.byCountry.ja.messengerChannel, 'whatsapp');
+  assert.equal(r.byCountry.all.summary.users, 10);
+});

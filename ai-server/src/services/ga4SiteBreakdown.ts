@@ -3,21 +3,38 @@
 // 기준으로 언어에 귀속(한 세션은 1 랜딩이라 중복 없음), 페이지뷰·이벤트는 pagePath 기준.
 // 'all' = ko+th+vi+en 합산. 유입 '지역'(geo)은 GA4 country/city = 방문자의 실제 지리적 위치(언어 경로와 별개).
 
-export type Country = 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar' | 'other';
+// 사이트 언어(경로 prefix) 단일 소스. ★유니온·분류기·집계 루프가 전부 여기서 파생된다 —
+//   예전엔 다섯 군데에 같은 목록이 흩어져 있어 한 곳만 빠뜨려도 그 언어 지표가 **에러 없이**
+//   0·빈 배열이 됐다(평범한 배열이라 TS 가 못 잡는다). 언어 추가 = 이 배열에만 추가.
+export const SITE_LANGS = ['ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar', 'ja', 'es'] as const;
+export type Country = (typeof SITE_LANGS)[number] | 'other';
 export type PageBucket = 'main' | 'clinic' | 'cases' | 'calculator' | 'reservation' | 'other';
-export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
+export type CountryKey = 'all' | (typeof SITE_LANGS)[number];
 
-// ★평범한 배열이라 Country/CountryKey 유니온을 넓혀도 자동으로 강제되지 않는다 — 여기에 안 넣으면
-//   finalize 루프가 중국어 버킷을 건너뛰어 지표가 조용히 0/빈 배열이 된다(에러 없음).
-const LANG_KEYS: CountryKey[] = ['all', 'ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'];
+const LANG_KEYS: CountryKey[] = ['all', ...SITE_LANGS];
+const MAIN_RE = new RegExp(`^/(${SITE_LANGS.join('|')})/?(index\\.html)?$`);
+
+/** 언어별 대표 상담 채널(messenger.yml 과 같은 값). Record 라 언어를 늘리면 TS 가 누락을 잡는다. */
+const MESSENGER: Record<CountryKey, 'kakao' | 'line' | 'whatsapp' | 'mixed'> = {
+  all: 'mixed', ko: 'kakao', th: 'line', vi: 'kakao',
+  en: 'whatsapp',        // en 은 2026-07-03 카카오 → WhatsApp 전환
+  'zh-hant': 'whatsapp', // 대만·화교
+  'zh-hans': 'whatsapp',
+  ar: 'whatsapp',        // MENA
+  ja: 'whatsapp',
+  es: 'whatsapp',
+};
+
+/** 언어 버킷 초기화 — 누산기를 리터럴로 적으면 언어 추가 때마다 네 군데를 고쳐야 한다. */
+function blankByLang<T>(make: (k: CountryKey) => T): Record<CountryKey, T> {
+  return Object.fromEntries(LANG_KEYS.map((k) => [k, make(k)])) as Record<CountryKey, T>;
+}
 
 export function classifyCountry(path: string): Country {
-  if (path.startsWith('/th/') || path === '/th') return 'th';
-  if (path.startsWith('/vi/') || path === '/vi') return 'vi';
-  if (path.startsWith('/en/') || path === '/en') return 'en';
-  if (path.startsWith('/zh-hant/') || path === '/zh-hant') return 'zh-hant';
-  if (path.startsWith('/zh-hans/') || path === '/zh-hans') return 'zh-hans';
-  if (path.startsWith('/ar/') || path === '/ar') return 'ar';
+  for (const lang of SITE_LANGS) {
+    if (lang === 'ko') continue; // ko 는 폴백(아래)
+    if (path.startsWith(`/${lang}/`) || path === `/${lang}`) return lang;
+  }
   // /ko/*, 루트 '/', 그 외(/calc-embed 등) → ko (루트는 ko 리다이렉트)
   return 'ko';
 }
@@ -28,20 +45,13 @@ export function classifyPage(pagePath: string): PageBucket {
   if (/\/cases\.html/.test(pagePath)) return 'cases';
   if (/\/reservation/.test(pagePath)) return 'reservation'; // 예약 폼 가상 page_view (/reservation)
   // ★명시 열거 — /^\/[a-z-]{2,7}\/?$/ 류로 넓히면 /report·/blog·/guide 가 main 으로 오분류된다.
-  if (pagePath === '/' || /^\/(ko|th|vi|en|zh-hant|zh-hans|ar)\/?(index\.html)?$/.test(pagePath)) return 'main';
+  if (pagePath === '/' || MAIN_RE.test(pagePath)) return 'main';
   return 'other';
 }
 
 // 언어 → 누적 대상 키. 각 언어는 자기 + all.
 function countryKeys(c: Country): CountryKey[] {
-  if (c === 'ko') return ['ko', 'all'];
-  if (c === 'th') return ['th', 'all'];
-  if (c === 'vi') return ['vi', 'all'];
-  if (c === 'en') return ['en', 'all'];
-  if (c === 'zh-hant') return ['zh-hant', 'all'];
-  if (c === 'zh-hans') return ['zh-hans', 'all'];
-  if (c === 'ar') return ['ar', 'all'];
-  return [];
+  return c === 'other' ? [] : [c, 'all'];
 }
 
 export interface Summary {
@@ -185,17 +195,7 @@ function rollupCampaigns(rows: CampaignRow[]): CampaignStats[] {
 }
 
 export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
-  const stats: Record<CountryKey, CountryStats> = {
-    all: blankStats('mixed'),
-    ko: blankStats('kakao'),
-    th: blankStats('line'),
-    vi: blankStats('kakao'),
-    en: blankStats('whatsapp'),          // en 은 2026-07-03 WhatsApp 전환(여기 kakao 는 방치된 드리프트)
-    'zh-hant': blankStats('whatsapp'),   // 대만·화교 = WhatsApp
-    'zh-hans': blankStats('whatsapp'),
-    ar: blankStats('whatsapp'),          // MENA = WhatsApp
-
-  };
+  const stats = blankByLang<CountryStats>((k) => blankStats(MESSENGER[k]));
 
   // 1) 요약 (landingPage 기준) — current + previous
   const addLanding = (rows: LandingRow[], field: 'summary' | 'prevSummary') => {
@@ -232,7 +232,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   }
 
   // 4) 채널 / 디바이스 (landingPage 기준)
-  const blankRows = (): Record<CountryKey, { label: string; sessions: number }[]> => ({ all: [], ko: [], th: [], vi: [], en: [], 'zh-hant': [], 'zh-hans': [], ar: [] });
+  const blankRows = () => blankByLang<{ label: string; sessions: number }[]>(() => []);
   const chanByKey = blankRows();
   for (const r of input.channels) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) chanByKey[k].push({ label: r.channel || '(other)', sessions: r.sessions });
@@ -244,7 +244,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
 
   // 5) 유입 지역 (landingPage → 언어 귀속, GA4 country + city = 실제 지리적 위치)
   type GeoAcc = { sessions: number; users: number; cities: Map<string, GeoCity> };
-  const geoByKey: Record<CountryKey, Map<string, GeoAcc>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map(), 'zh-hant': new Map(), 'zh-hans': new Map(), ar: new Map() };
+  const geoByKey = blankByLang<Map<string, GeoAcc>>(() => new Map());
   for (const r of input.geo) {
     const country = r.country || '(미상)';
     const city = r.city || '(미상)';
@@ -262,7 +262,7 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   }
 
   // 6) 일자별 (landingPage 기준, date 합산)
-  const dailyByKey: Record<CountryKey, Map<string, DailyPoint>> = { all: new Map(), ko: new Map(), th: new Map(), vi: new Map(), en: new Map(), 'zh-hant': new Map(), 'zh-hans': new Map(), ar: new Map() };
+  const dailyByKey = blankByLang<Map<string, DailyPoint>>(() => new Map());
   for (const r of input.daily) {
     for (const k of countryKeys(classifyCountry(r.landingPage))) {
       const m = dailyByKey[k];

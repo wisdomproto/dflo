@@ -4,10 +4,11 @@
 import { Router } from 'express';
 import { fetchOverview, fetchChannels, fetchSiteBreakdown, fetchSiteBreakdownRanges } from '../services/ga4.js';
 import { fetchSearchConsole, type SearchLang } from '../services/searchConsole.js';
+import { SITE_LANGS } from '../services/ga4SiteBreakdown.js';
 
 export const analyticsRouter = Router();
 
-const LANGS: SearchLang[] = ['all', 'ko', 'th', 'vi', 'en', 'zh-hant', 'zh-hans', 'ar'];
+const LANGS: SearchLang[] = ['all', ...SITE_LANGS];
 
 /** days 전 ~ 오늘의 절대 날짜. GSC 는 GA4 와 달리 'NdaysAgo' 상대표기를 안 받는다. */
 function daysAgoRange(days: number): { startDate: string; endDate: string } {

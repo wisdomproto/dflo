@@ -12,6 +12,7 @@
 
 import { google, type searchconsole_v1 } from 'googleapis';
 import { OAuth2Client } from 'google-auth-library';
+import { SITE_LANGS } from './ga4SiteBreakdown.js';
 
 const SITE_URL = process.env.GSC_SITE_URL || 'https://www.dr187growup.com/';
 const CLIENT_ID = process.env.GA4_OAUTH_CLIENT_ID;
@@ -38,7 +39,8 @@ function init(): { client: searchconsole_v1.Searchconsole | null; error: string 
   return { client, error: null };
 }
 
-export type SearchLang = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar';
+// 언어 목록은 사이트 분석과 같은 단일 소스에서 가져온다(따로 적으면 한쪽만 늘어난다).
+export type SearchLang = 'all' | (typeof SITE_LANGS)[number];
 
 export interface SearchRow {
   label: string;
