@@ -11,7 +11,7 @@
     "dev": "vite",
     "sync:reel-vendor": "node scripts/sync-reel-vendor.mjs",
     "prebuild": "node scripts/sync-reel-vendor.mjs",
-    "build": "tsc -b && npm run build:i18n && vite build",
+    "build": "tsc -b && npm run build:i18n && npm run build:leaflet && vite build",
     "build:i18n": "node scripts/build-i18n.mjs",
     "build:leaflet": "node scripts/build-leaflet.mjs",
     "extract:marketing": "node scripts/extract-marketing-data.mjs",
