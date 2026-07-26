@@ -146,17 +146,16 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
 .chart .lg.p { color: var(--ac); }
 .chart .unit { margin-inline-start: auto; }
 
-/* ── 아역배우 — 이름은 사진 위, 대표작은 아래 ──────────── */
-.faces { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; }
-.face { margin: 0; display: flex; flex-direction: column; gap: 6px; }
-.face .ph { position: relative; }
-.face img { display: block; width: 100%; height: auto; }
-.face .cap { position: absolute; inset-inline: 0; bottom: 0; display: flex; align-items: baseline;
-  gap: 8px; padding: 26px 10px 9px; color: #fff;
-  background: linear-gradient(to top, rgba(20,12,32,.88) 38%, rgba(20,12,32,0)); }
-.face .n { font-size: 15px; font-weight: 700; }
-.face .r { font-size: 11px; color: #d8ccea; letter-spacing: .05em; }
-.face figcaption { font-size: 12px; line-height: 1.6; color: var(--muted); word-break: keep-all; }
+/* ── 아역배우 — 사진은 작게(원본이 256색이라 키우면 뭉갠다), 이름·작품을 크게 ── */
+.faces { display: flex; flex-direction: column; gap: 2px; }
+.face { margin: 0; display: grid; grid-template-columns: 64px 1fr; gap: 14px;
+  align-items: center; padding: 11px 0; border-bottom: 1px solid var(--hair); }
+.face:last-child { border-bottom: 0; }
+.face img { display: block; width: 64px; height: 82px; object-fit: cover; object-position: center 22%; }
+.face figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 3px 9px; }
+.face .n { font-size: 19px; font-weight: 700; letter-spacing: -.01em; }
+.face .r { font-size: 12px; color: var(--ac); background: var(--ac-soft); padding: 3px 7px; }
+.face .w { flex: 1 0 100%; font-size: 14px; line-height: 1.6; color: var(--ink-soft); word-break: keep-all; }
 
 /* ── 진료 순서 사진 ────────────────────────────────────── */
 .shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
@@ -269,5 +268,5 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
   .chart svg { width: 100%; height: auto; }
   .sheet .lead { font-size: 10.5pt; line-height: 1.6; }
   .floor img { height: 74mm; object-fit: cover; }
-  .faces { grid-template-columns: repeat(3, 1fr); gap: 10px 8px; }
+  .faces { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; }
 }
