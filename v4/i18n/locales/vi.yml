@@ -441,7 +441,8 @@ cta_global:
   bottom_label: "Tư vấn 1:1 ngay"
 
 clinic:
-  page_title: "Phòng khám | 187 Growth Clinic"
+  page_title: "Phòng khám tăng chiều cao tại Hàn Quốc | 187growup"
+  meta_description: "Phòng khám chiều cao trẻ em tại Seoul, Hàn Quốc. Kiểm tra tuổi xương, chăm sóc tăng trưởng toàn diện và tư vấn trực tuyến cho gia đình ở nước ngoài."
   brand:
     logo_alt: "Yonsei Saebom Medical Clinic"
     tag: "Phòng khám hormone"

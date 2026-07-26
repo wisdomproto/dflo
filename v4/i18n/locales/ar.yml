@@ -444,7 +444,8 @@ cta_global:
   bottom_label: "ابدأ محادثة فردية"
 
 clinic:
-  page_title: "العيادة | 187 Growth Clinic"
+  page_title: "عيادة نمو الأطفال في سيول، كوريا | 187growup"
+  meta_description: "عيادة لنمو طول الأطفال في سيول بكوريا. تقييم عمر العظام ورعاية متكاملة للنمو، مع استشارة عبر الإنترنت للعائلات خارج كوريا."
   brand:
     logo_alt: "Yonsei Saebom Medical Clinic"
     tag: "عيادة الهرمونات"

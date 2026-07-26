@@ -441,7 +441,8 @@ cta_global:
   bottom_label: "开始 1 对 1 对话"
 
 clinic:
-  page_title: "诊所 | 187 生长诊所"
+  page_title: "韩国首尔生长诊所 | 187growup"
+  meta_description: "位于韩国首尔的儿童身高生长诊所。以骨龄检查确认剩余成长空间，并整合激素、睡眠、营养、运动与姿势管理；海外家庭可线上咨询。"
   brand:
     logo_alt: "延世Saebom 医疗诊所"
     tag: "激素诊所"

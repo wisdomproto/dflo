@@ -441,7 +441,8 @@ cta_global:
   bottom_label: "1:1 상담받기"
 
 clinic:
-  page_title: "병원 소개 | 187 성장클리닉"
+  page_title: "강남 성장클리닉 | 187 성장클리닉 · 연세새봄의원"
+  meta_description: "서울 강남의 187 성장클리닉. 뼈나이로 남은 성장을 확인하고 호르몬·수면·영양·운동·자세를 함께 관리합니다."
   brand:
     logo_alt: "연세새봄의원"
     tag: "호르몬 클리닉"

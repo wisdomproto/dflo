@@ -441,7 +441,8 @@ cta_global:
   bottom_label: "Iniciar un chat 1:1"
 
 clinic:
-  page_title: "Clínica | 187 Growth Clinic"
+  page_title: "Clínica de crecimiento en Seúl, Corea | 187growup"
+  meta_description: "Clínica de crecimiento infantil en Seúl, Corea. Evaluación de la edad ósea, cuidado integral del crecimiento y consulta en línea para familias en el extranjero."
   brand:
     logo_alt: "Clínica Médica Yonsei Saebom"
     tag: "Clínica de hormonas"

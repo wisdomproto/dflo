@@ -1,5 +1,5 @@
 ko:
-  title: "187 성장클리닉 | 우리 아이 예상키 무료 측정"
+  title: "187 성장클리닉 (연세새봄의원) | 우리 아이 키 성장 관리"
   description: "사춘기·수면·체중·자세까지 통합 분석. 연세새봄 187 성장클리닉의 다각도 성장 관리. 예상키 무료 측정 + 1:1 카카오톡 상담."
   og_image: "/og/og-ko.jpg"
   faq_title: "자주 묻는 질문"
@@ -18,7 +18,7 @@ ko:
       a: "모든 의학적 처치에는 이상 반응 가능성이 있습니다. 그래서 치료 전 혈액 검사로 호르몬·간·신장·갑상선 상태를 확인하고, 치료 중에도 정기적으로 재검사하며 조정합니다. 검사 결과상 적합하지 않다고 판단되면 권해 드리지 않습니다."
 
 th:
-  title: "187 Growth Clinic | คาดการณ์ส่วนสูงผู้ใหญ่ของลูกฟรี"
+  title: "187 Growth Clinic (Yonsei Saebom) | ดูแลการเติบโตของลูก"
   description: "ดูแลการเจริญเติบโตแบบครบวงจรครอบคลุมวัยรุ่น การนอน น้ำหนัก และท่าทาง คลินิก Yonsei Saebom 187 Growth คาดการณ์ส่วนสูงผู้ใหญ่ฟรี + ปรึกษาผ่าน LINE"
   og_image: "/og/og-th.jpg"
   faq_title: "คำถามที่พบบ่อย"
@@ -37,7 +37,7 @@ th:
       a: "การรักษาทางการแพทย์ทุกชนิดมีโอกาสเกิดอาการไม่พึงประสงค์ได้ครับ เราจึงตรวจเลือดดูฮอร์โมน ตับ ไต และไทรอยด์ก่อนเริ่ม และตรวจซ้ำเป็นระยะระหว่างการรักษาเพื่อปรับแผน หากผลตรวจบ่งชี้ว่าไม่เหมาะสม เราจะไม่แนะนำให้รักษา"
 
 vi:
-  title: "187 Growth Clinic | Dự đoán chiều cao trưởng thành"
+  title: "187 Growth Clinic (Yonsei Saebom) | Chăm sóc tăng trưởng chiều cao"
   description: "Chăm sóc tăng trưởng tích hợp: dậy thì, giấc ngủ, cân nặng, tư thế. Dự đoán chiều cao miễn phí + tư vấn KakaoTalk 1:1 tại Yonsei Saebom 187 Growth Clinic."
   og_image: "/og/og-vi.jpg"
   faq_title: "Câu hỏi thường gặp"
@@ -75,7 +75,7 @@ en:
       a: "Any medical treatment carries the possibility of adverse reactions. That is why we check hormone, liver, kidney and thyroid status with blood tests before starting, and retest regularly during treatment to adjust the plan. If the results indicate treatment is not appropriate, we do not recommend it."
 
 zh-hant:
-  title: "187 生長診所 | 兒童成人身高免費預測"
+  title: "187 生長診所（延世Saebom 醫療診所）| 兒童身高成長管理"
   description: "整合式生長照護，涵蓋青春期、睡眠、體重與姿勢。延世Saebom 187 生長診所——免費預測成人身高＋WhatsApp 1 對 1 諮詢。"
   og_image: "/og/og-zh-hant.jpg"
   faq_title: "常見問題"
@@ -94,7 +94,7 @@ zh-hant:
       a: "任何醫療處置都有可能出現不良反應。因此我們會在治療前以血液檢查確認荷爾蒙、肝、腎與甲狀腺狀態，療程中也定期複檢並調整。若檢查結果顯示不適合，我們不會建議治療。"
 
 zh-hans:
-  title: "187 生长诊所 | 儿童成人身高免费预测"
+  title: "187 生长诊所（延世Saebom 医疗诊所）| 儿童身高成长管理"
   description: "整合式生长护理，涵盖青春期、睡眠、体重与姿势。延世Saebom 187 生长诊所——免费预测成人身高＋WhatsApp 1 对 1 咨询。"
   og_image: "/og/og-zh-hans.jpg"
   faq_title: "常见问题"
@@ -113,7 +113,7 @@ zh-hans:
       a: "任何医疗处置都有可能出现不良反应。因此我们会在治疗前以血液检查确认荷尔蒙、肝、肾与甲状腺状态，疗程中也定期复检并调整。若检查结果显示不适合，我们不会建议治疗。"
 
 ar:
-  title: "187 Growth Clinic | توقّع مجاني لطول الطفل عند البلوغ"
+  title: "187 Growth Clinic (Yonsei Saebom) | رعاية نمو الطفل"
   description: "رعاية نمو متكاملة تشمل البلوغ والنوم والوزن والقوام. توقّع مجاني للطول عند البلوغ + استشارة فردية عبر WhatsApp في عيادة Yonsei Saebom — 187 Growth Clinic."
   og_image: "/og/og-ar.jpg"
   faq_title: "الأسئلة الشائعة"
@@ -132,7 +132,7 @@ ar:
       a: "أي إجراء طبي ينطوي على احتمال حدوث آثار غير مرغوبة. لذلك نفحص قبل البدء حالة الهرمونات والكبد والكلى والغدة الدرقية بتحاليل الدم، ونعيد الفحص دوريًا أثناء العلاج لتعديل الخطة. وإذا أشارت النتائج إلى أن العلاج غير مناسب فإننا لا ننصح به."
 
 ja:
-  title: "187 Growth Clinic | お子さまの成人身長を無料予測"
+  title: "187 Growth Clinic（延世セボム医院）| 子どもの身長成長ケア"
   description: "思春期・睡眠・体重・姿勢まで見る統合的な成長ケア。延世セボム 187 Growth Clinic で成人身長の無料予測 + WhatsApp による1:1相談。"
   og_image: "/og/og-en.jpg"
   faq_title: "よくあるご質問"
@@ -151,7 +151,7 @@ ja:
       a: "医療行為には有害事象の可能性が伴います。そのため治療前に血液検査でホルモン・肝臓・腎臓・甲状腺の状態を確認し、治療中も定期的に再検査して調整します。検査結果から適さないと判断される場合は、治療をお勧めしません。"
 
 es:
-  title: "187 Growth Clinic | Predicción gratuita de la estatura adulta de su hijo/a"
+  title: "187 Growth Clinic (Yonsei Saebom) | Cuidado del crecimiento infantil"
   description: "Cuidado integral del crecimiento que abarca pubertad, sueño, peso y postura. Predicción gratuita de la estatura adulta + consulta 1:1 por WhatsApp en la Clínica Yonsei Saebom — 187 Growth Clinic."
   og_image: "/og/og-en.jpg"
   faq_title: "Preguntas frecuentes"
