@@ -38,7 +38,7 @@
   <section class="sheet">
     <div class="eyebrow"><span class="no">03</span><span class="label">{{ch03.label}}</span></div>
     <div class="doctor">
-      <img src="/images/doctor_rmbg.png" alt="{{ch03.portrait_alt}}">
+      <img src="/images/leaflet/doctor.jpg" alt="{{ch03.portrait_alt}}">
       <div>
         <div class="name">{{ch03.name}}</div>
         <div class="role">{{ch03.role}}</div>
@@ -60,7 +60,7 @@
     <h2 class="t t--sm">{{ch04.title}}</h2>
     <!-- 미니 렌더러는 each 를 중첩하지 못한다(정규식이 안쪽 닫는 태그에서 끊긴다) → 층을 펼쳐 쓴다. -->
     <figure class="floor">
-      <img src="/images/{{ch04.f2.photo}}" alt="{{ch04.f2.name}}" loading="lazy">
+      <img src="/images/{{ch04.f2.photo}}" alt="{{ch04.f2.name}}" style="object-position:{{ch04.f2.pos}}" loading="lazy">
       <figcaption>
         <span class="tag">{{ch04.f2.tag}}</span>
         <span class="name">{{ch04.f2.name}}</span>
@@ -68,7 +68,7 @@
       </figcaption>
     </figure>
     <figure class="floor">
-      <img src="/images/{{ch04.f3.photo}}" alt="{{ch04.f3.name}}" loading="lazy">
+      <img src="/images/{{ch04.f3.photo}}" alt="{{ch04.f3.name}}" style="object-position:{{ch04.f3.pos}}" loading="lazy">
       <figcaption>
         <span class="tag">{{ch04.f3.tag}}</span>
         <span class="name">{{ch04.f3.name}}</span>
@@ -124,6 +124,9 @@
     <p class="lead">{{ch08.lead}}</p>
     <div class="rows">
       {{#each ch08.order}}<div class="axis"><span class="n">{{n}}</span><span class="d">{{d}}</span></div>{{/each}}
+    </div>
+    <div class="shots">
+      {{#each ch08.photos}}<figure><img src="/images/leaflet/{{f}}" alt="{{c}}" loading="lazy"><figcaption>{{c}}</figcaption></figure>{{/each}}
     </div>
     <div class="callout">{{ch08.callout}}</div>
     <div class="foot"><span>{{brand.footer}}</span><span class="pg">08</span></div>
@@ -247,8 +250,10 @@
     <h2 class="t t--sm">{{ch10b.title}}</h2>
     <div class="faces">
       {{#each ch10b.people}}
-      <figure class="face"><img src="/images/leaflet/celeb-{{@index1}}.jpg" alt="{{n}}" loading="lazy">
-        <figcaption><span class="n">{{n}}</span><span class="r">{{r}}</span></figcaption>
+      <figure class="face">
+        <div class="ph"><img src="/images/leaflet/celeb-{{@index1}}.jpg" alt="{{n}}" loading="lazy">
+          <span class="cap"><span class="n">{{n}}</span><span class="r">{{r}}</span></span></div>
+        <figcaption>{{w}}</figcaption>
       </figure>
       {{/each}}
     </div>

@@ -146,15 +146,24 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
 .chart .lg.p { color: var(--ac); }
 .chart .unit { margin-inline-start: auto; }
 
-/* ── 아역배우 — 이름을 사진 위에 ──────────────────────── */
-.faces { display: flex; flex-direction: column; gap: 12px; }
-.face { position: relative; margin: 0; }
+/* ── 아역배우 — 이름은 사진 위, 대표작은 아래 ──────────── */
+.faces { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; }
+.face { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.face .ph { position: relative; }
 .face img { display: block; width: 100%; height: auto; }
-.face figcaption { position: absolute; inset-inline: 0; bottom: 0; display: flex; align-items: baseline;
-  gap: 10px; padding: 30px 14px 11px; color: #fff;
-  background: linear-gradient(to top, rgba(20,12,32,.86) 35%, rgba(20,12,32,0)); }
-.face .n { font-size: 17px; font-weight: 700; }
-.face .r { font-size: 12px; color: #d8ccea; letter-spacing: .06em; }
+.face .cap { position: absolute; inset-inline: 0; bottom: 0; display: flex; align-items: baseline;
+  gap: 8px; padding: 26px 10px 9px; color: #fff;
+  background: linear-gradient(to top, rgba(20,12,32,.88) 38%, rgba(20,12,32,0)); }
+.face .n { font-size: 15px; font-weight: 700; }
+.face .r { font-size: 11px; color: #d8ccea; letter-spacing: .05em; }
+.face figcaption { font-size: 12px; line-height: 1.6; color: var(--muted); word-break: keep-all; }
+
+/* ── 진료 순서 사진 ────────────────────────────────────── */
+.shots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.shots figure { margin: 0; }
+.shots img { display: block; width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; }
+.shots figcaption { margin-top: 5px; font-size: 11px; color: var(--muted); text-align: center; }
+.sheet--deep .shots figcaption { color: var(--on-deep-faint); }
 
 /* ── 절차(세로 타임라인) ───────────────────────────────── */
 .steps { display: flex; flex-direction: column; gap: 22px;
@@ -260,6 +269,5 @@ p.lead { margin: 0; font-size: 15px; line-height: 1.8; color: var(--ink-soft); w
   .chart svg { width: 100%; height: auto; }
   .sheet .lead { font-size: 10.5pt; line-height: 1.6; }
   .floor img { height: 74mm; object-fit: cover; }
-  .faces { gap: 8px; }
-  .face { max-width: 122mm; margin-inline: auto; width: 100%; }
+  .faces { grid-template-columns: repeat(3, 1fr); gap: 10px 8px; }
 }
