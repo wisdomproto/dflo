@@ -40,14 +40,25 @@ export async function saveConnection(bundle: MetaBundle, expiresAt: string | nul
 
 // 실패 원인을 구분해 돌려준다. 셋(조회 실패·연결 없음·복호화 실패)을 다 null 로 뭉개면
 // 전부 "Meta 연결이 없습니다" 로 보고돼 진단이 막힌다 — ★getEncKey() 가 try 안이라
-// META_TOKEN_ENC_KEY 누락도 '연결 없음' 으로 둔갑한다(인스턴스마다 env 가 다르면 발행이 간헐 실패).
+// META_TOKEN_ENC_KEY 누락도 '연결 없음' 으로 둔갑한다.
+//
+// 조회는 짧게 재시도한다: 이 한 번의 읽기가 실패하면 발행 전체가 15/60/180분 뒤로 밀리는데,
+// 실제로 ko/th/en·IG/FB 를 가리지 않고 간헐 실패했고(영어 IG 는 재시도 3번을 다 태우고 최종 failed)
+// 서버는 replica 1개라 인스턴스 차이가 아니다 = 읽기 자체가 가끔 튄다(ai-server 는 암스테르담).
 export async function getBundleResult(): Promise<{ bundle: MetaBundle | null; reason?: string }> {
-  const { data, error } = await sb
-    .from('marketing_meta_connection')
-    .select('enc_payload')
-    .order('updated_at', { ascending: false })
-    .limit(1);
-  if (error) return { bundle: null, reason: `연결 조회 실패: ${error.message}` };
+  let data: Array<{ enc_payload: string }> | null = null;
+  let lastErr = '';
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 400 * attempt));
+    const res = await sb
+      .from('marketing_meta_connection')
+      .select('enc_payload')
+      .order('updated_at', { ascending: false })
+      .limit(1);
+    if (!res.error) { data = res.data as Array<{ enc_payload: string }> | null; break; }
+    lastErr = res.error.message;
+  }
+  if (lastErr && !data) return { bundle: null, reason: `연결 조회 실패(3회 재시도): ${lastErr}` };
   if (!data || data.length === 0) return { bundle: null, reason: '저장된 연결 없음(재연결 필요)' };
   try {
     return { bundle: JSON.parse(decrypt(data[0].enc_payload as string, getEncKey())) as MetaBundle };
