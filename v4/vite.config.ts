@@ -72,16 +72,6 @@ const seoRedirects = (): Plugin => ({
         res.end();
         return;
       }
-      // `/{lang}/clinic.html` → 메인 병원 소개 섹션 301 (2026-07-24 페이지 병합).
-      // 구글 검색광고 랜딩·블로그 유입·옛 북마크가 죽지 않도록 URL 은 살려 둔다.
-      const clinicHit = pathname.match(/^\/(zh-hant|zh-hans|ko|th|vi|en|ar|ja|es)\/clinic\.html$/);
-      if (clinicHit) {
-        res.statusCode = 301;
-        const to = `/${clinicHit[1]}/index.html#clinic`;
-        res.setHeader('Location', query ? `/${clinicHit[1]}/index.html?${query}#clinic` : to);
-        res.end();
-        return;
-      }
       next();
     });
   },

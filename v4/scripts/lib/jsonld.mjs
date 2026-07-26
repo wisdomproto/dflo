@@ -64,7 +64,7 @@ export function physicianJsonLd(lang) {
     alternateName: DIRECTOR_NAME_KO,
     knowsAbout: ['Child growth', 'Hormone therapy', 'Growth hormone', 'Pediatric growth assessment'],
     image: `${ORIGIN}/images/doctor.jpg`,
-    url: `${ORIGIN}${PATH_PREFIX}/${lang}/#clinic`,
+    url: `${ORIGIN}${PATH_PREFIX}/${lang}/clinic.html`,
     jobTitle: 'Director',
     worksFor: {
       '@type': 'MedicalClinic',
@@ -131,13 +131,13 @@ export function blogPostingJsonLd({ post, lang }) {
     url: `${ORIGIN}${PATH_PREFIX}/${lang}/blog/${post.slug}/`,
     // 저자 = 원장(호르몬·소아 성장 진료 전문, 15년+). E-E-A-T/GEO 권위 신호 — "누가 썼나"의 근거.
     // ★소아청소년과 '전문의'로 단정하지 않는다(보드 자격 미확인). physicianJsonLd 와 같은
-    // 이름·병원 소개 앵커(/{lang}/#clinic) url 로 엔티티 연결 + knowsAbout 로 전문 주제만 신호.
+    // 이름·clinic.html url 로 엔티티 연결 + knowsAbout 로 전문 주제만 신호.
     author: {
       '@type': 'Person',
       name: DIRECTOR_NAME,
       jobTitle: 'Physician',
       knowsAbout: ['Child growth', 'Hormone therapy'],
-      url: `${ORIGIN}${PATH_PREFIX}/${lang}/#clinic`,
+      url: `${ORIGIN}${PATH_PREFIX}/${lang}/clinic.html`,
     },
     reviewedBy: {
       '@type': 'Person',

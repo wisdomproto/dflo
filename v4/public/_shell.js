@@ -96,9 +96,7 @@ const __I18N_LOCALE = (window.__I18N__ && window.__I18N__.locale) || 'ko';
 const __NAV_BASE = `/${__I18N_LOCALE}`;
 const __HOME_HREF = `${__NAV_BASE}/index.html`;
 const __CASES_HREF = `${__NAV_BASE}/cases.html`;
-const __BLOG_HREF = `${__NAV_BASE}/blog/`;
-// 글이 0편인 언어(ja/es)는 /{lang}/blog/ 가 없어 soft-404 → build-i18n 이 넣어준 플래그로 게이트.
-const __HAS_BLOG = !!(window.__I18N__ && window.__I18N__.hasBlog);
+const __CLINIC_HREF = `${__NAV_BASE}/clinic.html`;
 const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
 const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.png' : '/images/logo.jpg';
 // 예약(콜백) 기능은 한글 페이지 전용. __I18N__ 이 있고 locale 이 ko 일 때만(blog-index 처럼
@@ -233,13 +231,14 @@ ${`
       </svg>
       <span>${tEsc('nav.cases', '치료 사례')}</span>
     </a>
-    ${__HAS_BLOG ? `<a href="${__BLOG_HREF}" data-nav="blog">
+    <a href="${__CLINIC_HREF}" data-nav="clinic">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M4 5.5A1.5 1.5 0 015.5 4H15l5 5v9.5a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 18.5z"/>
-        <path d="M14.5 4v5.5H20"/><path d="M8 13h7"/><path d="M8 16.5h5"/>
+        <path d="M3 21h18" />
+        <path d="M5 21V8l7-5 7 5v13" />
+        <path d="M12 12v6" /><path d="M9 15h6" />
       </svg>
-      <span>${tEsc('nav.blog', '블로그')}</span>
-    </a>` : ''}
+      <span>${tEsc('nav.clinic', '병원 소개')}</span>
+    </a>
     <a href="${__CALC_HREF}" data-nav="calc" class="t-nav-highlight">
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 4l16 16" /><path d="M4 4v16h16" /><path d="M9 14l3-3 3 3" /><path d="M12 11V4" />
@@ -350,9 +349,7 @@ ${__HAS_RESV ? `
   while (mount.firstChild) document.body.appendChild(mount.firstChild);
 
   // Mark active nav by data-page attribute on <body>.
-  // 블로그는 목록/글이 data-page="blog-index"/"blog-post" 라 nav 의 data-nav="blog" 와 안 맞는다 → blog 로 정규화.
-  const rawPage = document.body.dataset.page || 'programs';
-  const currentPage = /^blog/.test(rawPage) ? 'blog' : rawPage;
+  const currentPage = document.body.dataset.page || 'programs';
   document.querySelectorAll('.t-bottom-nav a').forEach(a => {
     if (a.dataset.nav === currentPage) a.classList.add('active');
   });

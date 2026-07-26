@@ -144,6 +144,7 @@ async function main() {
     loadCachedPosts(CACHE_DIR, l).length > 0 || (publishedByLang[l]?.length ?? 0) > 0);
 
   const homeTemplate = readFileSync(join(ROOT, 'i18n/template/index.html'), 'utf8');
+  const clinicTemplate = readFileSync(join(ROOT, 'i18n/template/clinic.html'), 'utf8');
   const casesTemplate = readFileSync(join(ROOT, 'i18n/template/cases.html'), 'utf8');
   const calculatorTemplate = readFileSync(join(ROOT, 'i18n/template/calculator.html'), 'utf8');
   const consultTemplate = readFileSync(join(ROOT, 'i18n/template/consult.html'), 'utf8');
@@ -155,6 +156,7 @@ async function main() {
   // from the locale yml so Google snippets and the browser tab read correctly.
   // consult 는 상담 채널이 여러 개인 언어(th/vi/en)만 — ko 는 카톡 직행 + 예약 폼 동선이라 페이지가 없다.
   const SUBPAGES = [
+    { name: 'clinic',     file: 'clinic.html',     template: clinicTemplate,     titlePath: 'clinic.page_title' },
     { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
     { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title', descPath: 'calculator.meta_description' },
     { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',

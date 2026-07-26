@@ -572,6 +572,26 @@
   <!-- hero image — visual payoff right after the hope message -->
   <img class="full-img" width="1180" height="710" src="/programs/images/growth-hormone-balance/hero.jpg" alt="{{hero.hero_img_alt}}">
 
+  <!-- ================= TRUST TEASER (원장 + 실적 → 병원 소개 페이지로) ================= -->
+  <section class="home-trust">
+    <div class="ht-panel">
+      <div class="ht-top">
+        <img class="ht-photo" src="/programs/images/growth-hormone-balance/director.jpg" alt="{{clinic.doctor.portrait_alt}}">
+        <div class="ht-info">
+          <span class="ht-eyebrow">{{clinic.doctor.intro_label}}</span>
+          <span class="ht-name">{{clinic.doctor.name}}<span class="suf">{{clinic.doctor.name_suffix}}</span></span>
+          <span class="ht-cred">{{clinic.doctor.profile.0}}</span>
+          <a class="ht-link" href="/{{meta.lang}}/clinic.html">{{shell.nav.clinic}} →</a>
+        </div>
+      </div>
+      <div class="ht-stats">
+        <div><strong>{{clinic.intro.stat_cases_num}}</strong>{{clinic.intro.stat_cases_label}}</div>
+        <div><strong>{{clinic.intro.stat_success_num}}</strong>{{clinic.intro.stat_success_label}}</div>
+      </div>
+      <a class="ht-cta" href="/{{meta.lang}}/clinic.html">{{cta_global.clinic_more}} <span class="arr">→</span></a>
+    </div>
+  </section>
+
   <!-- ================= CHECK ================= -->
   <div class="sec-head entry">
     <h2 class="sec-eyebrow">{{check.eyebrow}}</h2>
@@ -698,149 +718,6 @@
     <a class="home-cases-all" href="cases.html">{{shell.nav.cases}} &rarr;</a>
   </section>
 
-  <!-- ================= CLINIC (병원 소개 — clinic.html 흡수, 2026-07-24) ================= -->
-  <section id="clinic">
-    <div class="sec-head">
-      <h2 class="sec-eyebrow">{{clinic.intro.h2}}</h2>
-    </div>
-
-    <!-- Parent brand: 연세새봄의원(hormone specialty) operates 187 성장클리닉/187growup -->
-    <div class="brand-band">
-      <div class="brand-lockup">
-        <a href="https://www.yssaebom.com/" target="_blank" rel="noopener" aria-label="{{clinic.brand.logo_alt}}"><img class="lk-saebom" src="/images/saebom-logo.png" alt="{{clinic.brand.logo_alt}}"></a>
-        <span class="lk-divider" aria-hidden="true"></span>
-        <img class="lk-187" src="/images/logo-187-inline.png" alt="{{hero.logo_alt}}">
-      </div>
-      <p class="brand-body">{{clinic.brand.body}}</p>
-    </div>
-
-    <!-- Doctor -->
-    <div class="doctor-card">
-      <img class="portrait" src="/images/doctor.jpg" alt="{{clinic.doctor.portrait_alt}}">
-      <div class="name">{{clinic.doctor.name}}<span class="title">{{clinic.doctor.title}}</span></div>
-      <p class="quote">"{{clinic.doctor.quote_line1}}<br>{{clinic.doctor.quote_line2}}"</p>
-      <ul class="profile">
-        {{#each clinic.doctor.profile}}
-        <li>{{.}}</li>
-        {{/each}}
-      </ul>
-    </div>
-
-
-
-    <!-- Clinic introduction -->
-    <div class="clinic-intro">
-      <div class="intro-stats">
-        <div class="stat">
-          <div class="stat-num">{{clinic.intro.stat_cases_num}}</div>
-          <div class="stat-label">{{clinic.intro.stat_cases_label}}</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">{{clinic.intro.stat_success_num}}</div>
-          <div class="stat-label">{{clinic.intro.stat_success_label}}</div>
-        </div>
-      </div>
-      <p>{{clinic.intro.p1}}</p>
-      <p>{{clinic.intro.p2}}</p>
-    </div>
-
-    <!-- Remote consultation guide — renders only when locale provides non-empty clinic.remote_consult (th/vi/en 등 해외) -->
-    {{#each clinic.remote_consult}}
-    <div class="remote-consult">
-      <h3>{{title}}</h3>
-      <p class="rc-intro">{{intro}}</p>
-      <ol>
-        <li><div class="rc-label">{{step1_label}}</div><div class="rc-desc">{{step1_desc}}</div></li>
-        <li><div class="rc-label">{{step2_label}}</div><div class="rc-desc">{{step2_desc}}</div></li>
-        <li><div class="rc-label">{{step3_label}}</div><div class="rc-desc">{{step3_desc}}</div></li>
-        <li><div class="rc-label">{{step4_label}}</div><div class="rc-desc">{{step4_desc}}</div></li>
-      </ol>
-      <div class="rc-office">
-        <div class="o-label">{{office_label}}</div>
-        <div class="o-addr">{{office_addr}}</div>
-      </div>
-      <p class="rc-foot">{{footnote}}</p>
-    </div>
-    {{/each}}
-
-    <!-- 병원 소개 영상.
-         ko = 한국어 원본 YouTube 임베드(그대로 유지).
-         비한국어 = 영어 더빙·자막본을 R2 에서 직접 스트리밍(`clinic.video.file` 배열 = 0 또는 1개).
-         미니 렌더러에 조건 분기(if)가 없어 배열 길이로 분기한다(consult 의 more/survey 와 같은 패턴). -->
-    <div class="video-section">
-      <h3>{{clinic.video.h3}}</h3>
-      {{#each clinic.video.file}}
-      <div class="frame">
-        <video src="{{src}}" poster="{{poster}}" controls preload="none" playsinline
-               title="{{title}}"></video>
-        <!-- 포스터 가운데 재생 버튼은 그림이라 눌러도 반응이 없다 → 프레임 전체를 덮는 투명
-             버튼으로 아무 데나 눌러도 재생. 재생이 시작되면 스스로 숨어 네이티브 컨트롤에
-             자리를 내준다(안 그러면 일시정지 버튼을 우리가 가로챈다). -->
-        <button type="button" class="video-play" data-video-play aria-label="{{title}}"></button>
-      </div>
-      {{/each}}
-      {{#each clinic.video.youtube}}
-      <div class="frame">
-        <iframe
-          src="https://www.youtube.com/embed/{{id}}"
-          title="{{title}}"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-      </div>
-      {{/each}}
-      {{#each clinic.video.note}}
-      <p class="video-note">{{.}}</p>
-      {{/each}}
-    </div>
-
-    <!-- Facility — 가로 스와이프 스트립(scroll-snap, JS 없음). 사진 출처: 병원 실사 + 187 리플렛 -->
-    <div class="facility">
-      <h3>{{clinic.facility.h3}}</h3>
-      <div class="facility-strip">
-        <figure>
-          <img src="/images/facility-7.jpg" alt="{{clinic.facility.items.0}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.0}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-2.jpg" alt="{{clinic.facility.items.1}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.1}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-8.jpg" alt="{{clinic.facility.items.2}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.2}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-3.jpg" alt="{{clinic.facility.items.3}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.3}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-9.jpg" alt="{{clinic.facility.items.4}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.4}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-5.jpg" alt="{{clinic.facility.items.5}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.5}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-4.jpg" alt="{{clinic.facility.items.6}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.6}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-1.jpg" alt="{{clinic.facility.items.7}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.7}}</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <!-- Contact -->
-    <div class="contact-card">
-      <div class="label">{{clinic.contact.label}}</div>
-      <a class="phone" href="tel:{{clinic.contact.phone}}">{{clinic.contact.phone}}</a>
-      <div class="addr">{{clinic.contact.addr}}</div>
-    </div>
-  </section>
-
   <!-- ================= PROCESS ================= -->
   <section id="process" class="process">
     <div class="sec-head">
@@ -885,6 +762,11 @@
       </details>
       {{/each}}
     </div>
+  </section>
+
+  <!-- ================= BLOG LINK (하단 바에서 빠진 블로그의 유일한 사이트 내 진입점) ================= -->
+  <section class="home-blog">
+    <a class="hb-link" href="/{{meta.lang}}/blog/">{{shell.nav.blog}} <span class="arr">→</span></a>
   </section>
 
   <!-- ================= CTA BOTTOM ================= -->

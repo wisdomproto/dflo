@@ -15,7 +15,7 @@ function urlEntry(loc, allPaths) {
 
 // Static subpages built for every active lang (build-i18n.mjs SUBPAGES). They have unique
 // indexable content (clinic = remote-consult, calculator = tool) so they belong in the sitemap.
-const SUBPAGE_FILES = ['cases.html', 'calculator.html', 'author.html'];
+const SUBPAGE_FILES = ['clinic.html', 'cases.html', 'calculator.html', 'author.html'];
 
 // consult.html 은 상담 채널이 여러 개인 언어(th/vi/en)에만 존재 — ko 는 빌드되지 않으므로
 // 등재하면 sitemap 이 없는 URL 을 가리킨다. 실제 빌드 대상은 build-i18n 이 넘겨준다.

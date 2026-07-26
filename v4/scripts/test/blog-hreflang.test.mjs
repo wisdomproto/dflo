@@ -23,9 +23,9 @@ test('buildHreflangPaths — ko 가 있으면 x-default 는 ko 경로', () => {
 });
 
 test('buildHreflang — 전 언어 공통 경로(홈·서브페이지)는 그대로', () => {
-  const html = buildHreflang('/cases.html');
+  const html = buildHreflang('/clinic.html');
   for (const lang of ['ko', 'th', 'vi', 'en']) {
-    assert.match(html, new RegExp(`hreflang="${lang}" href="[^"]*/${lang}/cases\\.html"`));
+    assert.match(html, new RegExp(`hreflang="${lang}" href="[^"]*/${lang}/clinic\\.html"`));
   }
   assert.match(html, /hreflang="x-default"/);
 });
@@ -95,9 +95,9 @@ test('buildHead — 언어 한정 페이지는 altPaths 로 그 언어만 hrefla
 });
 
 test('buildHead — altPaths 없으면 전 언어(기존 페이지 무회귀)', () => {
-  const head = buildHead('en', { path: '/cases.html', skipJsonLd: true });
+  const head = buildHead('en', { path: '/clinic.html', skipJsonLd: true });
   for (const lang of ['ko', 'th', 'vi', 'en']) {
-    assert.match(head, new RegExp(`hreflang="${lang}" href="[^"]*/${lang}/cases\\.html"`));
+    assert.match(head, new RegExp(`hreflang="${lang}" href="[^"]*/${lang}/clinic\\.html"`));
   }
 });
 
