@@ -41,9 +41,11 @@ if (DRY) { console.log("--dry: 업로드/등록 안 함."); process.exit(0); }
 try { await fetch(`${AI_BASE}/api/r2/upload`, { method: "POST" }); }
 catch { console.error(`⚠️ ai-server 미응답(${AI_BASE}) — cd ai-server && npm run dev`); process.exit(1); }
 
-// 커버: 아이콘 5개가 다 떠 있는 22.8초 프레임(광고 핵심 메시지가 한 장에 담긴다)
+// 커버 = 첫 장면(훅) 2.2초. 피드에서 보이는 첫 장이 영상의 첫 장과 같아야 이어서 읽힌다.
+// 2.2초를 고른 이유: 헤드라인이 다 떠 있고, 나레이션 자막(~1.95s)이 빠져 화면이 깨끗하며,
+// 엄마 표정이 걱정하는 카피와 맞는다(3초대는 둘 다 웃고 있어 문구와 어긋난다).
 // ★캐시하지 않는다 — 영상만 다시 렌더했을 때 옛 레이아웃 커버가 조용히 딸려 올라간다(실제로 겪음).
-execFileSync("ffmpeg", ["-v", "error", "-ss", "22.8", "-i", mp4, "-frames:v", "1", "-y", cover]);
+execFileSync("ffmpeg", ["-v", "error", "-ss", "2.2", "-i", mp4, "-frames:v", "1", "-y", cover]);
 
 console.log("R2 업로드 중…");
 const videoUrl = await uploadR2(mp4, "marketing/reels");
