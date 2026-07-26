@@ -11,7 +11,7 @@ export type Country = (typeof SITE_LANGS)[number] | 'other';
 // 'clinic' 은 2026-07-25 홈 병합으로 사라졌다(/{lang}/clinic.html → /{lang}/index.html#clinic 301).
 // 리다이렉트 후 gtag 는 도착지에서 돌아 앞으로 영원히 0 이라 버킷에서 빼고, 그 자리를 blog 가 쓴다
 // (블로그는 언어당 63편인데 그동안 통째로 'other' 에 묻혀 있었다).
-export type PageBucket = 'main' | 'blog' | 'cases' | 'calculator' | 'reservation' | 'other';
+export type PageBucket = 'main' | 'blog' | 'cases' | 'calculator' | 'consult' | 'reservation' | 'other';
 export type CountryKey = 'all' | (typeof SITE_LANGS)[number];
 
 const LANG_KEYS: CountryKey[] = ['all', ...SITE_LANGS];
@@ -48,6 +48,7 @@ export function classifyPage(pagePath: string): PageBucket {
   if (/\/calculator\.html|\/calc-embed/.test(pagePath)) return 'calculator';
   if (BLOG_RE.test(pagePath)) return 'blog';
   if (/\/cases\.html/.test(pagePath)) return 'cases';
+  if (/\/consult\.html/.test(pagePath)) return 'consult'; // ko 를 뺀 8개 로케일의 1:1 상담 페이지
   if (/\/reservation/.test(pagePath)) return 'reservation'; // 예약 폼 가상 page_view (/reservation)
   // ★명시 열거 — /^\/[a-z-]{2,7}\/?$/ 류로 넓히면 /report·/blog·/guide 가 main 으로 오분류된다.
   if (pagePath === '/' || MAIN_RE.test(pagePath)) return 'main';
@@ -74,7 +75,7 @@ export interface GeoCity { label: string; sessions: number; users: number }
 export interface GeoCountry { label: string; sessions: number; users: number; pct: number; cities: GeoCity[] }
 export interface DailyPoint { date: string; users: number; sessions: number; views: number }
 export interface PageViews {
-  main: number; blog: number; cases: number; calculator: number; reservation: number; other: number; total: number;
+  main: number; blog: number; cases: number; calculator: number; consult: number; reservation: number; other: number; total: number;
 }
 export interface CountryStats {
   summary: Summary;
@@ -145,7 +146,7 @@ function blankStats(channel: 'kakao' | 'line' | 'whatsapp' | 'mixed'): CountrySt
   return {
     summary: blankSummary(),
     prevSummary: blankSummary(),
-    pageViews: { main: 0, blog: 0, cases: 0, calculator: 0, reservation: 0, other: 0, total: 0 },
+    pageViews: { main: 0, blog: 0, cases: 0, calculator: 0, consult: 0, reservation: 0, other: 0, total: 0 },
     events: { calcOpen: 0, heightCalc: 0, messenger: 0 },
     calcCompletionRate: 0,
     messengerChannel: channel,

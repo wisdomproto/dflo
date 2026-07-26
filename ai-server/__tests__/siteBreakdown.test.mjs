@@ -31,6 +31,7 @@ test('classifyPage: 경로 → 4분류', () => {
   assert.equal(classifyPage('/blog/legacy/'), 'blog'); // 레거시 /blog
   assert.equal(classifyPage('/ko/clinic.html'), 'other'); // 홈 병합으로 사라진 페이지
   assert.equal(classifyPage('/ko/cases.html'), 'cases');
+  assert.equal(classifyPage('/th/consult.html'), 'consult');
   assert.equal(classifyPage('/ko/'), 'main');
   assert.equal(classifyPage('/ko/index.html'), 'main');
 });

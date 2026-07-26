@@ -30,6 +30,7 @@ const PAGE_CARDS: { key: keyof CountryStats['pageViews']; label: string }[] = [
   { key: 'blog', label: '블로그' },
   { key: 'cases', label: '치료 사례' },
   { key: 'calculator', label: '예상키 측정(페이지)' },
+  { key: 'consult', label: '1:1 상담' },
   { key: 'reservation', label: '예약 페이지' },
 ];
 
