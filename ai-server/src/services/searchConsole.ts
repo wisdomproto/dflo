@@ -127,7 +127,9 @@ export async function fetchSearchConsole(
 ): Promise<SearchConsoleData> {
   const base = { startDate, endDate, dimensionFilterGroups: langFilter(lang) };
 
-  const [qRows, cRows, pRows] = await Promise.all([
+  const [tRows, qRows, cRows, pRows] = await Promise.all([
+    // 차원 없는 요청 = GSC 가 직접 계산한 총계. 어떤 행 합보다 이게 정본이다.
+    query({ ...base, rowLimit: 1 }),
     query({ ...base, dimensions: ['query'], rowLimit: queryLimit }),
     query({ ...base, dimensions: ['country'], rowLimit: limit }),
     query({ ...base, dimensions: ['page'], rowLimit: limit }),
@@ -137,9 +139,11 @@ export async function fetchSearchConsole(
   return {
     range: { startDate, endDate },
     siteUrl: SITE_URL,
-    // 총계는 country 행 합(국가 분해는 전 트래픽을 빠짐없이 덮는다).
-    // query 행 합은 **총계가 아니다** — GSC 가 익명성 보호로 희소 검색어를 누락하기 때문.
-    totals: sumTotals(mapRows(cRows)),
+    // ★행 합을 총계로 쓰면 안 된다. 언어 탭(page 필터)에서 country 행 합이 실제의 1/10 로
+    //   나오는 걸 확인했다(en 7/17~23: country 합 3클릭 vs page 합 32클릭). 전체 탭에선
+    //   우연히 맞아 오래 안 드러났다. query 행 합은 애초에 총계가 아니다 — GSC 가 익명성
+    //   보호로 희소 검색어를 통째로 뺀다.
+    totals: sumTotals(mapRows(tRows)),
     queries,
     countries: mapRows(cRows, (k) => countryLabel(k[0] ?? '')),
     pages: mapRows(pRows),
