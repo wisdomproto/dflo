@@ -21,14 +21,14 @@ mkdirSync(WORK, { recursive: true });
 
 // at = 시작 시각(초), slot = 다음 줄까지 쓸 수 있는 여유(초). 화면 전환 기준.
 export const LINES = [
-  { id: "n1", at: 0.30, slot: 3.0, text: "Worried about your child's height?" },
-  { id: "n2", at: 3.60, slot: 2.5, text: "A growth clinic in Gangnam, South Korea." },
-  { id: "n3", at: 6.20, slot: 4.6, text: "Parents tell us what changed once growth was properly tracked." },
-  { id: "n4", at: 11.20, slot: 3.4, text: "More reviews than we can fit here, from parents across Asia." },
-  { id: "n5", at: 14.90, slot: 3.1, text: "Fifteen years of child growth and hormone care." },
-  { id: "n6", at: 18.95, slot: 4.1, text: "Medical, sleep, nutrition, posture, exercise, managed together." },
+  { id: "n1", at: 0.30, slot: 3.0, text: "Worried about your child's height?", zh: "担心孩子的身高吗？" },
+  { id: "n2", at: 3.60, slot: 2.5, text: "A growth clinic in Gangnam, South Korea.", zh: "韩国江南的儿童成长诊所。" },
+  { id: "n3", at: 6.20, slot: 4.6, text: "Parents tell us what changed once growth was properly tracked.", zh: "系统管理成长之后，家长们看到了变化。" },
+  { id: "n4", at: 11.20, slot: 3.4, text: "More reviews than we can fit here, from parents across Asia.", zh: "亚洲各地家长的评价，多到这里放不下。" },
+  { id: "n5", at: 14.90, slot: 3.1, text: "Fifteen years of child growth and hormone care.", zh: "十五年儿童成长与激素诊疗经验。" },
+  { id: "n6", at: 18.95, slot: 4.1, text: "Medical, sleep, nutrition, posture, exercise, managed together.", zh: "医疗、睡眠、营养、体态、运动，一同管理。" },
   // 원본 2번째 줄 — "아시아 최고"는 유지, "태국에서"만 제외(사용자 지시).
-  { id: "n7", at: 23.20, slot: 5.3, text: "Now you can receive Asia's best growth treatment." },
+  { id: "n7", at: 23.20, slot: 5.3, text: "Now you can receive Asia's best growth treatment.", zh: "现在，您也能获得亚洲顶尖的成长治疗。" },
 ];
 
 function pcmToWav(pcm, rate) {
@@ -149,7 +149,7 @@ if (process.argv.includes("--mix")) {
   // ★자막은 여기서 계산된 실제 배치를 그대로 써야 한다. 컴포넌트에 시각을 손으로 적으면
   //   TTS 길이가 바뀔 때마다 소리와 자막이 어긋난다.
   writeFileSync(join(ROOT, "src", "ads", "thadEnNarration.json"),
-    JSON.stringify(placed.map((p) => ({ id: p.id, at: +p.at.toFixed(2), end: +(p.at + p.d).toFixed(2), text: p.text })), null, 1));
+    JSON.stringify(placed.map((p) => ({ id: p.id, at: +p.at.toFixed(2), end: +(p.at + p.d).toFixed(2), text: p.text, zh: p.zh })), null, 1));
 
   console.log("\n믹스 →", OUT);
   placed.forEach((p) => console.log(`  ${p.id}  ${p.at.toFixed(2)} ~ ${(p.at + p.d).toFixed(2)}  ${p.text}`));

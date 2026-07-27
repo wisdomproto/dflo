@@ -3,42 +3,49 @@
   "id": "n1",
   "at": 0.3,
   "end": 1.95,
-  "text": "Worried about your child's height?"
+  "text": "Worried about your child's height?",
+  "zh": "担心孩子的身高吗？"
  },
  {
   "id": "n2",
   "at": 3.6,
   "end": 6.11,
-  "text": "A growth clinic in Gangnam, South Korea."
+  "text": "A growth clinic in Gangnam, South Korea.",
+  "zh": "韩国江南的儿童成长诊所。"
  },
  {
   "id": "n3",
   "at": 6.29,
   "end": 10,
-  "text": "Parents tell us what changed once growth was properly tracked."
+  "text": "Parents tell us what changed once growth was properly tracked.",
+  "zh": "系统管理成长之后，家长们看到了变化。"
  },
  {
   "id": "n4",
   "at": 11.2,
   "end": 14.62,
-  "text": "More reviews than we can fit here, from parents across Asia."
+  "text": "More reviews than we can fit here, from parents across Asia.",
+  "zh": "亚洲各地家长的评价，多到这里放不下。"
  },
  {
   "id": "n5",
   "at": 14.9,
   "end": 17.81,
-  "text": "Fifteen years of child growth and hormone care."
+  "text": "Fifteen years of child growth and hormone care.",
+  "zh": "十五年儿童成长与激素诊疗经验。"
  },
  {
   "id": "n6",
   "at": 18.95,
   "end": 23.99,
-  "text": "Medical, sleep, nutrition, posture, exercise, managed together."
+  "text": "Medical, sleep, nutrition, posture, exercise, managed together.",
+  "zh": "医疗、睡眠、营养、体态、运动，一同管理。"
  },
  {
   "id": "n7",
   "at": 24.17,
   "end": 27.57,
-  "text": "Now you can receive Asia's best growth treatment."
+  "text": "Now you can receive Asia's best growth treatment.",
+  "zh": "现在，您也能获得亚洲顶尖的成长治疗。"
  }
 ]

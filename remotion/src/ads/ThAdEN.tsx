@@ -8,7 +8,7 @@
 // 좌표는 1920x1080 기준. 세로 608x1080 콘텐츠가 x656~1263 에 레터박스돼 있어
 // 모든 텍스트는 그 폭 안에 가둔다(넘치면 잘린다).
 import { AbsoluteFill, Img, OffthreadVideo, Sequence, staticFile, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { ensureFonts, PRETENDARD } from "../lib/fonts";
+import { ensureFonts, PRETENDARD, NOTO_SANS_SC } from "../lib/fonts";
 import NARRATION from "./thadEnNarration.json";
 
 ensureFonts();
@@ -126,7 +126,15 @@ const NarrationSubs: React.FC = () => (
             textAlign: "center", fontFamily: PRETENDARD, fontWeight: 700, fontSize: 27,
             color: "#fff", lineHeight: 1.3, letterSpacing: "-0.01em",
             textShadow: "0 2px 10px rgba(0,0,0,.55)",
-          }}>{n.text}</div>
+          }}>
+            {n.text}
+            {/* 간체 중국어를 영어 밑에 얹는다. 판이 위로 자라므로 하단 앵커(844)는 그대로 —
+                아래로 늘리면 IG/FB 하단 UI 에 먹힌다. */}
+            <div style={{
+              marginTop: 6, fontFamily: NOTO_SANS_SC, fontWeight: 500, fontSize: 23,
+              color: "rgba(255,255,255,.9)", lineHeight: 1.35, letterSpacing: 0,
+            }}>{n.zh}</div>
+          </div>
         </Sequence>
       );
     })}
