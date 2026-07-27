@@ -41,6 +41,7 @@ body { background: var(--shell-page-bg) !important; }
   margin: 0 auto;
 }
 .t-header .logo-wrap {
+  flex: none;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -238,9 +239,21 @@ body { background: var(--shell-page-bg) !important; }
 
 /* ============= HEADER KAKAO PILL ============= */
 .t-header-actions {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 8px;
+}
+/* 블로그 헤더 — 상담 pill 자리에 클리닉 표기. 검색으로 들어온 사람이 처음 보는 줄이다. */
+.t-header-tag {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--shell-brand);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 .t-header-kakao {
   display: inline-flex;

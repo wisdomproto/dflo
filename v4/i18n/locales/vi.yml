@@ -602,6 +602,7 @@ author:
   disclaimer: "Trang này là thông tin giới thiệu về giám đốc; chẩn đoán và điều trị được xác nhận khi khám trực tiếp."
 
 shell:
+  tagline: "Phòng khám tăng chiều cao"
   logo_alt: "187 Growth Clinic"
   aria:
     home: "Trang chủ"

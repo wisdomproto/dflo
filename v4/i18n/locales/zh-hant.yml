@@ -602,6 +602,7 @@ author:
   disclaimer: "本頁為院長介紹資訊；診斷與治療需經門診確認。"
 
 shell:
+  tagline: "兒童長高診所"
   logo_alt: "187 生長診所"
   aria:
     home: "首頁"

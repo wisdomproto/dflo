@@ -600,6 +600,7 @@ author:
   disclaimer: "Esta página es información introductoria sobre el director; el diagnóstico y el tratamiento se confirman en una visita presencial."
 
 shell:
+  tagline: "Clínica de Crecimiento"
   logo_alt: "187 Growth Clinic"
   aria:
     home: "Inicio"

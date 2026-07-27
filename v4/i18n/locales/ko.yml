@@ -567,6 +567,7 @@ author:
   disclaimer: "본 페이지는 원장 소개 정보이며, 진단·치료 여부는 진료를 통해 확정됩니다."
 
 shell:
+  tagline: "성장클리닉"
   logo_alt: "187 성장클리닉"
   aria:
     home: "홈으로"

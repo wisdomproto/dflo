@@ -600,6 +600,7 @@ author:
   disclaimer: "本ページは院長のご紹介です。診断と治療は対面の診察のうえ確定します。"
 
 shell:
+  tagline: "成長クリニック"
   logo_alt: "187 Growth Clinic"
   aria:
     home: "ホーム"

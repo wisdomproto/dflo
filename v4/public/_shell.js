@@ -99,6 +99,9 @@ const __CASES_HREF = `${__NAV_BASE}/cases.html`;
 const __BLOG_HREF = `${__NAV_BASE}/blog/`;
 // 글이 0편인 언어(ja/es)는 /{lang}/blog/ 가 없어 soft-404 → build-i18n 이 넣어준 플래그로 게이트.
 const __HAS_BLOG = !!(window.__I18N__ && window.__I18N__.hasBlog);
+// 블로그는 검색으로 글 하나만 보고 나가는 화면이라, 헤더가 상담 버튼보다 신원을 말해야 한다.
+// 상담은 하단 바에 같은 항목이 있으니 여기선 중복이다.
+const __IS_BLOG = !!(window.__I18N__ && /^blog/.test(window.__I18N__.page_type || ''));
 const __CALC_HREF = `${__NAV_BASE}/calculator.html`;
 const __LOGO_SRC = (__I18N_LOCALE && __I18N_LOCALE !== 'ko') ? '/images/logo_en.png' : '/images/logo.jpg';
 // 예약(콜백) 기능은 한글 페이지 전용. __I18N__ 이 있고 locale 이 ko 일 때만(blog-index 처럼
@@ -190,6 +193,8 @@ const SHELL_HTML = `
       <img class="logo" src="${__LOGO_SRC}" alt="${tEsc('logo_alt', '187 성장클리닉')}">
     </a>
     <div class="t-header-actions">
+      ${__IS_BLOG ? `
+      <span class="t-header-tag">${tEsc('tagline', '성장클리닉')}</span>` : `
       ${__HAS_CONSULT_PAGE ? `
       <a class="t-header-kakao" href="${__CONSULT_HREF}" aria-label="${tEsc('aria.consult', '1:1 상담')}" style="background:${__M_BG};color:${__M_FG}">` : `
       <a class="t-header-kakao" data-channel="${__M_CH}" data-source="header_cta" href="${__M_URL}" target="_blank" rel="noopener" aria-label="${tEsc('aria.kakao', '카카오톡 1:1 상담')}" style="background:${__M_BG};color:${__M_FG}">`}
@@ -197,7 +202,7 @@ const SHELL_HTML = `
           <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
         </svg>
         <span>${__HAS_CONSULT_PAGE ? tEsc('header.consult_label', '1:1 상담') : tEsc('header.kakao_label', '1:1 카톡 상담')}</span>
-      </a>
+      </a>`}
       <div class="t-lang" data-lang-switch translate="no">
         <button type="button" class="t-lang-btn" aria-label="${tEsc('aria.lang', '언어 선택')}" aria-haspopup="true" aria-expanded="false" data-lang-toggle>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

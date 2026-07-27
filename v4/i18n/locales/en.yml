@@ -602,6 +602,7 @@ author:
   disclaimer: "This page is introductory information about the director; diagnosis and treatment are confirmed at an in-person visit."
 
 shell:
+  tagline: "Height Growth Clinic"
   logo_alt: "187 Growth Clinic"
   aria:
     home: "Home"

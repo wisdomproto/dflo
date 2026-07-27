@@ -602,6 +602,7 @@ author:
   disclaimer: "本页为院长介绍信息；诊断与治疗需经门诊确认。"
 
 shell:
+  tagline: "儿童长高诊所"
   logo_alt: "187 生长诊所"
   aria:
     home: "首页"
