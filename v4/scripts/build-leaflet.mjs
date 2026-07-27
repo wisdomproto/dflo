@@ -6,7 +6,7 @@
 // (옛 리플렛은 절대좌표 + auto-fit 이라 번역이 길면 폰트를 줄여 넘겼다 — 그 구조를 버린 것이 이 빌드다.)
 //
 // 사용: cd v4 && npm run build:leaflet
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
@@ -49,6 +49,14 @@ ${age(0)}${age(pts.length - 1)}
 </svg>
 <figcaption><span class="lg h">${legend.h}</span><span class="lg p">${legend.p}</span><span class="unit">${legend.unit}</span></figcaption>
 </figure>`;
+}
+
+// Railway 는 v4/ 만 빌드 컨텍스트로 올린다 — docs/ 가 이미지에 없다.
+// 산출물(public/leaflet/v2)은 커밋돼 있으므로 그걸 그대로 서빙하면 된다.
+// (sync-reel-vendor.mjs 가 ../remotion 에 대해 쓰는 것과 같은 처리)
+if (!existsSync(join(SRC, 'template.html'))) {
+  console.log('[leaflet v2] docs/Leaflet/v2 없음 — 커밋된 산출물 사용 (Railway 빌드 컨텍스트).');
+  process.exit(0);
 }
 
 const template = readFileSync(join(SRC, 'template.html'), 'utf8');
