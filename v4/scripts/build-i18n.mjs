@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
@@ -33,7 +34,19 @@ function loadLocale(lang) {
   return yaml.load(readFileSync(join(ROOT, 'i18n/locales', `${lang}.yml`), 'utf8'));
 }
 
+// 셸 자산은 파일명이 안 변하는데 Cloudflare 가 하루를 캐시한다(vite.config.ts cacheHeaders).
+// 그래서 _shell.js 를 고쳐도 배포 후 최대 24시간은 옛 헤더·네비가 나갔다(퍼지해야 풀림).
+// 내용 해시를 쿼리로 붙이면 배포마다 URL 이 달라져 캐시가 스스로 비켜난다.
+const SHELL_V = createHash('sha1')
+  .update(readFileSync(join(ROOT, 'public/_shell.js')))
+  .update(readFileSync(join(ROOT, 'public/_shell.css')))
+  .digest('hex')
+  .slice(0, 8);
+
 function writeFile(path, contents) {
+  contents = contents
+    .replaceAll('"/_shell.js"', `"/_shell.js?v=${SHELL_V}"`)
+    .replaceAll('"/_shell.css"', `"/_shell.css?v=${SHELL_V}"`);
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, contents);
   console.log(`  wrote ${path}`);
