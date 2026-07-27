@@ -239,14 +239,21 @@ body { background: var(--shell-page-bg) !important; }
 
 /* ============= HEADER KAKAO PILL ============= */
 .t-header-actions {
+  flex: 1;
   min-width: 0;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 8px;
 }
 /* 블로그 헤더 — 상담 pill 자리에 클리닉 표기. 검색으로 들어온 사람이 처음 보는 줄이다. */
 .t-header-tag {
-  font-size: 12.5px;
+  /* 로고와 언어 버튼 사이 남은 폭을 다 차지하고 그 안에서 가운데.
+     오른쪽 8px 는 actions 의 gap 이라, 왼쪽에도 같은 값을 줘야 글자가 진짜 가운데 온다. */
+  margin-inline-start: 8px;
+  flex: 1;
+  text-align: center;
+  font-size: 12px;   /* 12.5px 면 베트남어가 3px 모자라 잘린다 */
   font-weight: 600;
   color: var(--shell-brand);
   letter-spacing: -0.2px;
