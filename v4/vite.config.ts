@@ -29,11 +29,17 @@ const reelAlias = process.env.REEL_STUBS === '1'
 // - HTML/sitemap/robots: no-cache 유지 (콘텐츠·redirect 갱신이 즉시 반영돼야 함)
 const IMMUTABLE_EXT = /\.(webp|avif|jpg|jpeg|png|gif|svg|ico|woff2?|ttf|otf|mp4|webm)$/i;
 const CODE_EXT = /\.(css|js|mjs)$/i;
+// 검색에 절대 나오면 안 되는 경로. /cases 는 React 라 noindex 를 JS 가 나중에 붙이는데,
+// 구글이 렌더링을 미루면 그 사이 초기 HTML 만 보고 색인할 수 있다. 헤더는 JS 와 무관하게 먹는다.
+// (환자 데이터는 ai-server 가 x-showcase-pin 으로 막고 있어 유출은 없다 — 이건 노출 방지용)
+const NOINDEX_PATHS = /^\/(cases|187-vs-standard\.html|leaflet\/|marketing\/|intake-review\/)/;
+
 const cacheHeaders = (): Plugin => ({
   name: 'cache-headers',
   configurePreviewServer(server) {
     server.middlewares.use((req, res, next) => {
       const path = (req.url ?? '').split('?')[0];
+      if (NOINDEX_PATHS.test(path)) res.setHeader('X-Robots-Tag', 'noindex, nofollow');
       if (IMMUTABLE_EXT.test(path)) {
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
       } else if (CODE_EXT.test(path) || path === '/cases-data.json') {

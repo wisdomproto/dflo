@@ -6,6 +6,21 @@
 <meta name="robots" content="noindex, nofollow">
 <title>187 Growth Clinic vs. Standard Therapy</title>
 <style>
+  /* ── 게이트 — 이 문서는 내부 관찰 데이터로 표준 치료와 우열을 비교한다.
+       공개되면 의료광고 심의 대상이고 의료법 56조(비교광고) 쟁점이 있어 상담 자리에서만 쓴다.
+       ★클라이언트 게이트라 소스 보기로는 읽힌다 — 검색 노출과 우연한 접근을 막는 수준이다.
+       (옛 리플렛 공유 페이지 view.html 과 같은 방식) */
+  #vsGate { position: fixed; inset: 0; z-index: 999; background: #0f2444;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    font-family: system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; color: #fff; }
+  #vsGate.hide { display: none; }
+  #vsGate p { margin: 0; font-size: 14px; opacity: .75; }
+  #vsGate input { width: 200px; padding: 12px 14px; border: 0; border-radius: 10px;
+    font-size: 17px; text-align: center; letter-spacing: .2em; }
+  #vsGate button { padding: 11px 26px; border: 0; border-radius: 10px; cursor: pointer;
+    background: #fff; color: #0f2444; font-size: 15px; font-weight: 700; }
+  #vsErr { min-height: 18px; font-size: 13px; color: #ffb4b4; }
+
   /* 차트는 SVG(선·면)+HTML(글자) 조합 — 글자를 SVG 안에 넣으면 모바일에서 같이 축소돼 안 읽힌다.
      플롯 영역만 viewBox 0..100 정규좌표로 늘리고(stroke 는 non-scaling), 점·라벨은 %로 얹는다. */
   :root {
@@ -143,6 +158,13 @@
 </style>
 </head>
 <body>
+<div id="vsGate">
+  <p>상담용 자료입니다. 비밀번호를 입력해 주세요.</p>
+  <input id="vsPin" type="password" inputmode="numeric" autocomplete="off" aria-label="비밀번호">
+  <button id="vsGo" type="button">열기</button>
+  <div id="vsErr" role="alert"></div>
+</div>
+
 <div class="wrap">
   <h1>187 Growth Clinic vs.<br>Standard Therapy</h1>
   <div class="rule"></div>
@@ -351,5 +373,22 @@
     </p>
   </footer>
 </div>
+<script>
+(function () {
+  var PIN = "8054", KEY = "vs187", g = document.getElementById("vsGate"),
+      i = document.getElementById("vsPin"), e = document.getElementById("vsErr");
+  function pass() { g.classList.add("hide"); }
+  function tryPin() {
+    if (i.value === PIN) { try { sessionStorage.setItem(KEY, "1"); } catch (x) {} pass(); }
+    else { e.textContent = "비밀번호가 올바르지 않습니다."; i.value = ""; i.focus(); }
+  }
+  document.getElementById("vsGo").onclick = tryPin;
+  i.addEventListener("keydown", function (ev) { if (ev.key === "Enter") tryPin(); });
+  try {
+    var q = new URLSearchParams(location.search).get("pin");
+    if (q === PIN || sessionStorage.getItem(KEY) === "1") pass(); else i.focus();
+  } catch (x) { i.focus(); }
+})();
+</script>
 </body>
 </html>
