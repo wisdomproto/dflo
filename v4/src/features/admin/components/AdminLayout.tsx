@@ -25,7 +25,7 @@ const CONSULT_ITEMS = [
   { to: '/admin/intake', icon: '📥', label: '설문 접수', end: false },
   { to: '/admin/referral', icon: '📝', label: '소견서 작성', end: false },
   { to: '/cases', icon: '🌱', label: '치료사례 (환자용)', end: false, external: true },
-  { to: '/187-vs-standard.html?pin=8054', icon: '📊', label: '187 vs. Standard', end: false, external: true },
+  { to: '/187-vs-standard.html', icon: '📊', label: '187 vs. Standard', end: false, external: true },
   { to: '/admin/consulting', icon: '💬', label: '상담 매뉴얼', end: false },
 ];
 
