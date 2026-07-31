@@ -125,25 +125,27 @@ const POSTS = [
   },
 
   {
-    title: '[EN] 성장호르몬 하나가 아니라 다섯 축 — 통합 관리란',
+    title: '[EN] 성장호르몬이 유일한 방법인가 — 키를 정하는 다섯 가지',
     category: '성장과학',
-    keywords: ['integrated growth care', 'growth hormone alone', 'child growth treatment', 'multi axis growth', 'korean growth clinic approach'],
+    keywords: ['is growth hormone the only option', 'does growth hormone work for short children', 'growth hormone for height', 'what affects child height', 'why is my child not growing'],
     en: {
-      seoTitle: 'More Than Growth Hormone: The Five Axes of Child Growth Care',
-      slug: 'beyond-growth-hormone-five-axes-child-growth',
-      h1: 'Growth Is Not One Lever — The Five Axes We Look At Together',
+      seoTitle: 'Is Growth Hormone the Only Way to Help a Child Grow Taller?',
+      slug: 'is-growth-hormone-the-only-option-child-height',
+      h1: 'Is Growth Hormone the Only Option? What Else Affects a Child’s Height',
       metaDescription:
-        'Growth hormone is one factor among several. Hormones, inflammation, sleep, nutrition and movement each hold a child back in different ways — and each is checked before anything is prescribed.',
-      primaryKeyword: 'integrated growth care',
-      secondaryKeywords: ['growth hormone alone', 'child growth treatment approach', 'sleep and growth hormone', 'inflammation and child growth'],
+        'Growth hormone is what most parents ask about first. It is one of five things that decide how a child grows — alongside puberty timing, sleep, inflammation and absorption. What to check before deciding.',
+      primaryKeyword: 'is growth hormone the only option',
+      secondaryKeywords: ['does growth hormone work for short children', 'growth hormone for height', 'what affects child height', 'sleep and growth hormone', 'why is my child not growing'],
       sections: [
         {
-          heading: 'Why “Just Get the Injection” Is the Wrong Question',
+          heading: 'The Question Most Parents Start With',
           html:
-            '<p>Most parents arrive having already decided the question is whether to start growth hormone. It is a reasonable place to start and an incomplete one.</p>' +
+            '<p>Most parents who look into their child’s height arrive at the same question first: <strong>is growth hormone the only option</strong>, and does it work?</p>' +
+            '<p>It is a fair question, and the short answer is that growth hormone is one of the things that decides how a child grows, not the only one. Whether it is right for a particular child depends on what is actually limiting that child — and that is knowable before deciding.</p>' +
             '<p>Children stop growing for different reasons. One child sleeps four hours because of a blocked nose. Another eats well and absorbs badly. A third is entering puberty early, and every month of delay costs more than any single treatment would add.</p>' +
             '<p>Prescribing the same thing to all three treats the one factor they may not share.</p>' +
-            '<p>This is not an argument against hormone treatment. It is an argument for finding out first. The same prescription can be exactly right for one child and beside the point for another, and the difference is visible in the test results rather than in the height.</p>',
+            '<p>This is not an argument against hormone treatment — for some children it is exactly right. It is an argument for finding out first. The same prescription can be the answer for one child and beside the point for another, and the difference shows up in test results rather than in height.</p>' +
+            '<p>The rest of this article covers the five things worth checking, starting with the hormones themselves.</p>',
           imagePrompt: IMG + 'A single lever on the left versus five smaller dials arranged in a circle on the right, with a thin divider between them.',
           imageUrl: '',
         },
