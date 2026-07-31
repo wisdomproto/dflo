@@ -8,6 +8,7 @@ import {
   type CountryKey,
   type NamedCount,
   type GeoCountry,
+  type BlogPost,
 } from '../services/marketingAnalyticsService';
 import { SiteTrendChart } from './SiteTrendChart';
 
@@ -104,6 +105,48 @@ function BreakdownBars({ items, labels }: { items: NamedCount[]; labels?: Record
         </li>
       ))}
     </ul>
+  );
+}
+
+// 블로그 글별 조회수 — 버킷 합계는 「블로그가 잘 읽힌다」까지만 말해 준다.
+// 어느 글이 읽히는지 알아야 다음 글을 뭘 쓸지 정해진다.
+function BlogPostRanking({ items }: { items: BlogPost[] }) {
+  const [expanded, setExpanded] = useState(false);
+  if (!items.length) return <p className="text-xs text-gray-400">이 기간에 조회된 글이 없습니다.</p>;
+  const max = items[0].views || 1;
+  const shown = expanded ? items : items.slice(0, 10);
+  return (
+    <div>
+      <ol className="space-y-1">
+        {shown.map((b, i) => (
+          <li key={b.slug} className="flex items-center gap-2 text-xs">
+            <span className="w-5 shrink-0 text-right font-mono text-[11px] text-gray-400">{i + 1}</span>
+            <a
+              href={b.path}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="min-w-0 flex-1 truncate text-gray-700 hover:text-purple-700 hover:underline"
+              title={b.path}
+            >
+              {b.slug.replace(/-/g, ' ')}
+            </a>
+            <span className="h-1.5 w-16 shrink-0 overflow-hidden rounded bg-gray-100">
+              <span className="block h-full rounded bg-purple-400" style={{ width: `${(b.views / max) * 100}%` }} />
+            </span>
+            <span className="w-12 shrink-0 text-right font-semibold text-gray-800">{b.views.toLocaleString()}</span>
+          </li>
+        ))}
+      </ol>
+      {items.length > 10 && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-1.5 text-[11px] text-purple-600 hover:underline"
+        >
+          {expanded ? '접기' : `더 보기 (${items.length - 10}편)`}
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -314,6 +357,17 @@ export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: 
                 <h4 className="mb-2 text-xs font-semibold text-gray-500">디바이스</h4>
                 <BreakdownBars items={s.devices} labels={DEVICE_LABELS} />
               </div>
+            </div>
+
+            {/* 블로그 글별 — 어느 글이 실제로 읽히는지 */}
+            <div>
+              <h4 className="mb-2 text-xs font-semibold text-gray-500">
+                블로그 글별 조회수 <span className="font-normal text-gray-400">— 상위 30편</span>
+              </h4>
+              <BlogPostRanking key={country} items={s.blogPosts} />
+              <p className="mt-1.5 text-[11px] text-gray-400">
+                제목을 누르면 실제 글이 열립니다. 목록 페이지(<code>/blog/</code>)는 글이 아니라 제외했고, 위 「블로그」 카드 합계에는 포함돼 있습니다.
+              </p>
             </div>
 
             {/* 유입 지역 — 방문자의 실제 지리적 위치 (언어 탭과 별개) */}

@@ -44,6 +44,12 @@ export function classifyCountry(path: string): Country {
   return 'ko';
 }
 
+// `/en/blog/how-much-sleep.../` → `how-much-sleep...`. 목록 페이지(`/en/blog/`)는 글이 아니라 빈 문자열.
+export function blogSlug(pagePath: string): string {
+  const m = /^[/](?:[a-z-]+[/])?blog[/]([^/?#]+)/.exec(pagePath);
+  return m ? m[1] : '';
+}
+
 export function classifyPage(pagePath: string): PageBucket {
   if (/\/calculator\.html|\/calc-embed/.test(pagePath)) return 'calculator';
   if (BLOG_RE.test(pagePath)) return 'blog';
@@ -77,6 +83,9 @@ export interface DailyPoint { date: string; users: number; sessions: number; vie
 export interface PageViews {
   main: number; blog: number; cases: number; calculator: number; consult: number; reservation: number; other: number; total: number;
 }
+// 블로그 글별 조회수 — 버킷 합계만으로는 어느 글이 읽히는지 알 수 없다.
+// slug 는 언어마다 다르므로(같은 토픽도 ko/en 이 다른 slug) 경로를 그대로 들고 간다.
+export interface BlogPost { slug: string; path: string; views: number }
 export interface CountryStats {
   summary: Summary;
   prevSummary: Summary; // 직전 동일 기간 (증감 계산용)
@@ -88,6 +97,7 @@ export interface CountryStats {
   channels: NamedCount[];
   devices: NamedCount[];
   geo: GeoCountry[]; // 유입 지역 (나라 → 도시, sessions 내림차순)
+  blogPosts: BlogPost[]; // 글별 조회수 내림차순 (상위 30편)
   daily: DailyPoint[];
 }
 // 캠페인(utm_campaign) 비교 — 크로스 언어(전 사이트 공통), 광고 성과 비교용.
@@ -147,6 +157,7 @@ function blankStats(channel: 'kakao' | 'line' | 'whatsapp' | 'mixed'): CountrySt
     summary: blankSummary(),
     prevSummary: blankSummary(),
     pageViews: { main: 0, blog: 0, cases: 0, calculator: 0, consult: 0, reservation: 0, other: 0, total: 0 },
+    blogPosts: [],
     events: { calcOpen: 0, heightCalc: 0, messenger: 0 },
     calcCompletionRate: 0,
     messengerChannel: channel,
@@ -219,12 +230,24 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
   addLanding(input.landing, 'summary');
   addLanding(input.landingPrev, 'prevSummary');
 
+  // 2) 페이지뷰 (pagePath 기준). 블로그는 버킷 합계와 별개로 글별로도 모은다 —
+  //    어느 글이 실제로 읽히는지는 합계가 답해 주지 않는다.
+  const blogAcc: Record<string, Map<string, BlogPost>> = {};
+  for (const k of Object.keys(stats)) blogAcc[k] = new Map();
   // 2) 페이지뷰 (pagePath 기준)
   for (const r of input.pv) {
     const bucket = classifyPage(r.pagePath);
     for (const k of countryKeys(classifyCountry(r.pagePath))) {
       stats[k].pageViews[bucket] += r.views;
       stats[k].pageViews.total += r.views;
+      if (bucket === 'blog') {
+        const slug = blogSlug(r.pagePath);
+        if (slug) {
+          const hit = blogAcc[k].get(slug);
+          if (hit) hit.views += r.views;
+          else blogAcc[k].set(slug, { slug, path: r.pagePath, views: r.views });
+        }
+      }
     }
   }
 
@@ -307,6 +330,11 @@ export function aggregateSiteBreakdown(input: BreakdownInput): SiteBreakdown {
 
   // 7) 캠페인(utm_campaign) — 크로스 언어, 국가별 아님(TOP-LEVEL)
   const campaigns = rollupCampaigns(input.campaigns);
+
+  // 글별 조회수는 상위 30편만 — 언어당 63편 × 10 버킷을 전부 보내면 응답이 커진다.
+  for (const k of Object.keys(stats) as CountryKey[]) {
+    stats[k].blogPosts = [...blogAcc[k].values()].sort((a, b) => b.views - a.views).slice(0, 30);
+  }
 
   return { byCountry: stats, campaigns };
 }

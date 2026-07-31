@@ -18,6 +18,7 @@ export interface DailyPoint { date: string; users: number; sessions: number; vie
 export interface PageViews {
   main: number; blog: number; cases: number; calculator: number; consult: number; reservation: number; other: number; total: number;
 }
+export interface BlogPost { slug: string; path: string; views: number }
 export interface CountryStats {
   summary: Summary;
   prevSummary: Summary;
@@ -29,6 +30,7 @@ export interface CountryStats {
   channels: NamedCount[];
   devices: NamedCount[];
   geo: GeoCountry[];
+  blogPosts: BlogPost[]; // 글별 조회수 내림차순 (상위 30편)
   daily: DailyPoint[];
 }
 export type CountryKey = 'all' | 'ko' | 'th' | 'vi' | 'en' | 'zh-hant' | 'zh-hans' | 'ar' | 'ja' | 'es';

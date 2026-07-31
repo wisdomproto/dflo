@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { classifyCountry, classifyPage, aggregateSiteBreakdown } from '../dist/services/ga4SiteBreakdown.js';
+import { classifyCountry, classifyPage, blogSlug, aggregateSiteBreakdown } from '../dist/services/ga4SiteBreakdown.js';
 
 test('classifyCountry: 경로 prefix 로 국가', () => {
   assert.equal(classifyCountry('/th/clinic.html'), 'th');
@@ -367,4 +367,51 @@ test('ja/es: 경로 분류 + 버킷 집계 + all 합산', () => {
   assert.equal(r.byCountry.es.daily.length, 1);
   assert.equal(r.byCountry.ja.messengerChannel, 'whatsapp');
   assert.equal(r.byCountry.all.summary.users, 10);
+});
+
+// ── 블로그 글별 조회수 — 버킷 합계(pageViews.blog)만으로는 어느 글이 읽히는지 알 수 없다. ──
+const BLOG_INPUT = inputWith({
+  pv: [
+    // 같은 글이 여러 행으로 와도 한 글로 합산된다 (40+15=55)
+    { pagePath: '/en/blog/bone-age-x-ray-height-prediction-guide/', views: 40 },
+    { pagePath: '/en/blog/bone-age-x-ray-height-prediction-guide/', views: 15 },
+    { pagePath: '/en/blog/how-much-sleep-kids-need-grow-taller/', views: 90 },
+    { pagePath: '/en/blog/', views: 33 },                 // 목록 페이지는 글이 아니다
+    { pagePath: '/en/index.html', views: 500 },           // 블로그가 아니다
+    { pagePath: '/ko/blog/bone-age-test-method-xray-growth-plate/', views: 70 },
+  ],
+});
+
+test('블로그 글별 조회수 — 같은 글 합산·조회수 내림차순·언어 귀속', () => {
+  const en = aggregateSiteBreakdown(BLOG_INPUT).byCountry.en;
+  assert.deepEqual(
+    en.blogPosts.map((b) => [b.slug, b.views]),
+    [
+      ['how-much-sleep-kids-need-grow-taller', 90],
+      ['bone-age-x-ray-height-prediction-guide', 55],
+    ],
+  );
+  // ko 글은 en 버킷에 섞이지 않는다
+  const ko = aggregateSiteBreakdown(BLOG_INPUT).byCountry.ko;
+  assert.deepEqual(ko.blogPosts.map((b) => b.views), [70]);
+});
+
+test('블로그 목록 페이지는 글로 세지 않는다 — 다만 버킷 합계에는 들어간다', () => {
+  const en = aggregateSiteBreakdown(BLOG_INPUT).byCountry.en;
+  assert.equal(en.blogPosts.some((b) => b.slug === ''), false);
+  assert.equal(en.pageViews.blog, 40 + 15 + 90 + 33); // 목록 33 포함
+  assert.equal(en.blogPosts.reduce((n, b) => n + b.views, 0), 145); // 글 합계는 목록 제외
+});
+
+test('all 버킷은 언어를 넘어 같은 글 목록을 다 들고 있다', () => {
+  const all = aggregateSiteBreakdown(BLOG_INPUT).byCountry.all;
+  assert.equal(all.blogPosts.length, 3);
+  assert.equal(all.blogPosts[0].views, 90);
+});
+
+test('blogSlug — 목록·비블로그 경로는 빈 문자열', () => {
+  assert.equal(blogSlug('/en/blog/how-much-sleep-kids-need-grow-taller/'), 'how-much-sleep-kids-need-grow-taller');
+  assert.equal(blogSlug('/blog/legacy-post/'), 'legacy-post');   // 언어 프리픽스가 없어도 잡는다
+  assert.equal(blogSlug('/en/blog/'), '');
+  assert.equal(blogSlug('/en/index.html'), '');
 });

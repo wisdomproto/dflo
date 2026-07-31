@@ -389,7 +389,8 @@ export async function fetchSiteBreakdownRanges(
   const [landResp, landPrevResp, pvResp, evResp, chResp, dvResp, geoResp, dailyResp, campSessResp, campEvResp] = await Promise.all([
     runReport({ dateRanges: [cur], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
     runReport({ dateRanges: [prev], dimensions: landingDims, metrics: landingMetrics, limit: '1000' }),
-    runReport({ dateRanges: [cur], dimensions: [{ name: 'pagePath' }], metrics: [{ name: 'screenPageViews' }], limit: '1000' }),
+    // ★조회수 내림차순으로 받는다 — 9언어 × 63편 + 쿼리스트링 변형이면 1000행이 빠듯하고, 정렬이 없으면 잘릴 때 인기 글이 빠질 수 있다.
+    runReport({ dateRanges: [cur], dimensions: [{ name: 'pagePath' }], metrics: [{ name: 'screenPageViews' }], orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }], limit: '1000' }),
     runReport({
       dateRanges: [cur],
       dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
