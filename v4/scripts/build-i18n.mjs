@@ -82,6 +82,9 @@ const CALC_RELATED_EN = [
   'mid-parental-height-formula-accuracy',
   'child-height-percentile-explained-growth-chart',
   'low-predicted-height-how-reliable-is-it',
+  // 예상키를 재 본 사람이 다음에 궁금해하는 것 — 「그래서 어디서 뭘 하나」.
+  // 영어에만 있는 글이라 다른 언어는 클러스터가 비어 자동으로 건너뛴다.
+  'growth-clinic-korea-from-abroad',
 ];
 function relatedBlogLinks(lang, blogAlts, titleByLangSlug) {
   const enMap = blogAlts.en || {};

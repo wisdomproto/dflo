@@ -102,7 +102,8 @@ const POSTS = [
             '<p><strong>Around 10cm below peers.</strong> Noticeably shorter than the average for the same age.</p>' +
             '<p><strong>Early puberty.</strong> Secondary sexual characteristics appearing earlier than classmates, which can mean bone age is running ahead.</p>' +
             '<p>What all three share is that the adjustable period lasts only until the growth plates close. Whether any of them applies to your child is decided by testing, not by looking.</p>' +
-            '<p>Growth depends on the individual child, and this article is general information rather than a diagnosis.</p>',
+            '<p>Growth depends on the individual child, and this article is general information rather than a diagnosis.</p>' +
+            '<p>If you would like the short version of the process, or to ask something specific, it is on the <a href="/en/consult.html">consultation page</a>.</p>',
           imagePrompt: IMG + 'Three simple cards side by side: a downward growth arrow, two children of different heights compared, and a clock with an early alarm. Clean and non-alarming.',
           imageUrl: '',
         },
@@ -307,8 +308,8 @@ const POSTS = [
 const existing = await (await rest('marketing_articles?kind=eq.regular&select=id,title,sort_order&order=sort_order.desc&limit=1')).json();
 let next = (existing[0]?.sort_order ?? 900) + 1;
 
-const all = await (await rest('marketing_articles?kind=eq.regular&select=id,title')).json();
-const byTitle = Object.fromEntries(all.map((a) => [a.title, a.id]));
+const all = await (await rest('marketing_articles?kind=eq.regular&select=id,title,blog')).json();
+const byTitle = Object.fromEntries(all.map((a) => [a.title, a]));
 
 for (const p of POSTS) {
   const found = byTitle[p.title];
@@ -327,11 +328,16 @@ for (const p of POSTS) {
     continue;
   }
   if (found) {
-    await rest(`marketing_articles?id=eq.${found}`, {
+    // 🚨이미 올려 둔 섹션 이미지를 덮어쓰지 않는다 — 이 스크립트의 imageUrl 은 늘 ''
+    // 이라서, 그대로 PATCH 하면 손으로 붙인 18장이 조용히 지워진다(실제로 한 번 날렸다).
+    const keep = found.blog?.en?.sections ?? [];
+    const en = { ...p.en, sections: p.en.sections.map((s, i) => ({ ...s, imageUrl: s.imageUrl || keep[i]?.imageUrl || '' })) };
+    await rest(`marketing_articles?id=eq.${found.id}`, {
       method: 'PATCH', headers: { Prefer: 'return=minimal' },
-      body: JSON.stringify({ category: p.category, keywords: p.keywords, blog: { en: p.en } }),
+      body: JSON.stringify({ category: p.category, keywords: p.keywords, blog: { en } }),
     });
-    console.log(`갱신 — ${p.en.seoTitle}`);
+    const kept = en.sections.filter((s) => s.imageUrl).length;
+    console.log(`갱신 — ${p.en.seoTitle} (이미지 ${kept}/${en.sections.length} 유지)`);
   } else {
     await rest('marketing_articles', {
       method: 'POST', headers: { Prefer: 'return=minimal' },

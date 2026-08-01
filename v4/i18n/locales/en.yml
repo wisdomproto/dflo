@@ -553,7 +553,9 @@ consult:
     survey:
       - href: "/intake/en"
         label: "Fill in the growth survey →"
-    more: []
+    more:
+      - label: "Read the full process →"
+        href: "/en/blog/growth-clinic-korea-from-abroad/"
   channels:
     h2: "Choose a channel"
     sub: "Any channel works — we'll get back to you shortly."
