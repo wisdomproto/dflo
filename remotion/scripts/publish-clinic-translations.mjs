@@ -11,6 +11,9 @@ import { rest } from './lib/reelDb.mjs';
 
 // ko 제외 — 이 6편은 「해외에서 한국 클리닉 찾기」 각도라 국내 독자에겐 안 맞는다.
 const LANGS = ['th', 'vi', 'ja', 'es', 'zh-hant', 'zh-hans', 'ar'];
+// 마케팅 콘텐츠(marketing_articles.blog)는 중국어를 ch/cn 으로 부른다 — 사이트(blog_published)의
+// zh-hant/zh-hans 와 별개 체계다. 나머지 언어는 양쪽이 같은 코드.
+const MARKETING_KEY = { 'zh-hant': 'ch', 'zh-hans': 'cn' };
 const DRY = process.argv.includes('--dry');
 const arg = process.argv[2];
 const targets = arg === 'all' ? LANGS : [arg];
@@ -72,9 +75,13 @@ for (const lang of targets) {
       continue;
     }
 
+    // 🚨 a.blog 를 갱신해 가며 쓴다 — arts 는 루프 밖에서 한 번만 읽으므로,
+    // 매번 원본 위에 자기 언어만 얹으면 마지막 언어를 뺀 전부가 덮여 사라진다(실제로 겪음).
+    // ★마케팅 UI 는 중국어를 ch/cn 으로 부른다(blog_published 는 zh-hant/zh-hans). 셀렉터와 맞춘다.
+    a.blog = { ...(a.blog ?? {}), [MARKETING_KEY[lang] ?? lang]: post };
     await rest(`marketing_articles?id=eq.${a.id}`, {
       method: 'PATCH', headers: { Prefer: 'return=minimal' },
-      body: JSON.stringify({ blog: { ...(a.blog ?? {}), [lang]: post } }),
+      body: JSON.stringify({ blog: a.blog }),
     });
 
     const found = await (await rest(`blog_published?language=eq.${lang}&slug=eq.${encodeURIComponent(post.slug)}&select=id`)).json();
