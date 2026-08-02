@@ -1,7 +1,7 @@
 // src/features/marketing/components/SiteAnalysisPage.tsx
 // 사이트 분석: GA4 트래픽 전용. 국가 탭(전체/한국/태국) + 기간 선택(지난 N일) 또는 특정 하루(일별).
 // (SEO / 온페이지 감사는 /marketing/seo-audit 로 분리됨)
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { CountrySiteBreakdownPanel } from './CountrySiteBreakdownPanel';
 import { CampaignBreakdownPanel } from './CampaignBreakdownPanel';
 import { ConsultSourcePanel } from './ConsultSourcePanel';
@@ -16,6 +16,20 @@ function shiftStr(s: string, delta: number): string {
   const d = new Date(`${s}T00:00:00`);
   d.setDate(d.getDate() + delta);
   return fmtDate(d);
+}
+
+// 접기/펴기 섹션 — 기본 접힘. 접힌 동안 자식 미렌더(패널 fetch 안 함). 래퍼는 토글 줄만(패널 자체 카드 유지 → 카드 중복 없음).
+function CollapsibleSection({ label, children }: { label: string; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button type="button" onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm font-bold text-gray-700 hover:bg-gray-100">
+        <span className="text-gray-400">{open ? '▾' : '▸'}</span>{label}
+      </button>
+      {open && <div className="mt-2">{children}</div>}
+    </div>
+  );
 }
 
 export function SiteAnalysisPage() {
@@ -77,14 +91,20 @@ export function SiteAnalysisPage() {
         </div>
       </div>
 
-      <div className="min-h-0 flex-1 space-y-6 overflow-y-auto p-6">
-        {/* 캠페인은 언어 탭과 무관한 크로스 언어 지표(광고 단위)라 국가 탭 위에 독립 배치 */}
-        <CampaignBreakdownPanel days={days} date={date} />
-        {/* 메신저 클릭 출처 × 랜딩 — 실제 전환자가 어디서 왔나 (전환 퍼널 대체) */}
-        <ConsultSourcePanel days={days} />
-        {/* 검색어는 GA4 가 아니라 GSC 소스라 자체 언어 탭을 가진 독립 패널 */}
-        <SearchQueryPanel days={days} date={date} />
-        <CountrySiteBreakdownPanel days={days} date={date} />
+      <div className="min-h-0 flex-1 space-y-2 overflow-y-auto p-6">
+        {/* 각 섹션 기본 접힘 — 펼칠 때만 로드 */}
+        <CollapsibleSection label="🎯 캠페인 비교">
+          <CampaignBreakdownPanel days={days} date={date} />
+        </CollapsibleSection>
+        <CollapsibleSection label="💬 메신저 클릭 출처">
+          <ConsultSourcePanel days={days} />
+        </CollapsibleSection>
+        <CollapsibleSection label="🔍 구글 검색 유입 (GSC)">
+          <SearchQueryPanel days={days} date={date} />
+        </CollapsibleSection>
+        <CollapsibleSection label="🌐 국가별 상세">
+          <CountrySiteBreakdownPanel days={days} date={date} />
+        </CollapsibleSection>
       </div>
     </div>
   );
