@@ -83,6 +83,39 @@ async function tryRunReport(
   }
 }
 
+export interface ConsultSourceRow { sourceMedium: string; landing: string; count: number }
+export interface ConsultSourcesResult {
+  daily: { date: string; count: number }[];
+  rows: ConsultSourceRow[];
+}
+
+// 메신저 클릭(consult_click) 출처 × 랜딩페이지 — 사이트분석 "메신저 클릭 출처" 패널용.
+// ★live 이벤트는 consult_click (구 kakao_consult_click 아님 — 통일됨). GA4 표준 디멘션.
+export async function fetchConsultSources(days: number): Promise<ConsultSourcesResult> {
+  const EV = { filter: { fieldName: 'eventName', stringFilter: { value: 'consult_click', matchType: 'EXACT' as const } } };
+  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: 'today' }];
+  const dailyResp = await runReport({
+    dateRanges, dimensions: [{ name: 'date' }], metrics: [{ name: 'eventCount' }],
+    dimensionFilter: EV, orderBys: [{ dimension: { dimensionName: 'date' } }],
+  });
+  const daily = (dailyResp.rows ?? []).map((r) => ({
+    date: r.dimensionValues?.[0]?.value ?? '',
+    count: Number(r.metricValues?.[0]?.value ?? 0),
+  }));
+  const bdResp = await runReport({
+    dateRanges,
+    dimensions: [{ name: 'sessionSourceMedium' }, { name: 'landingPagePlusQueryString' }],
+    metrics: [{ name: 'eventCount' }], dimensionFilter: EV,
+    orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }], limit: '300',
+  });
+  const rows = (bdResp.rows ?? []).map((r) => ({
+    sourceMedium: r.dimensionValues?.[0]?.value ?? '',
+    landing: r.dimensionValues?.[1]?.value ?? '',
+    count: Number(r.metricValues?.[0]?.value ?? 0),
+  }));
+  return { daily, rows };
+}
+
 export async function fetchOverview(p: OverviewParams): Promise<AnalyticsOverview> {
   const dateRanges = [{ startDate: p.startDate, endDate: p.endDate }];
 

@@ -303,49 +303,11 @@ export function CountrySiteBreakdownPanel({ days, date }: { days: number; date: 
               </div>
             </div>
 
-            {/* 전환 퍼널 — 단계별 드롭오프(어디서 이탈?) */}
-            <div>
-              <h4 className="mb-2 text-xs font-semibold text-gray-500">전환 퍼널 — 어디서 이탈하나</h4>
-              {(() => {
-                const stages = [
-                  { label: '계산기 페이지 방문', value: s.pageViews.calculator },
-                  { label: '예측키 패널 열람', value: s.events.calcOpen },
-                  { label: '측정 완료', value: s.events.heightCalc },
-                  { label: `${messengerLabel} 클릭`, value: s.events.messenger },
-                ];
-                const max = Math.max(1, ...stages.map((x) => x.value));
-                return (
-                  <div className="space-y-0.5">
-                    {stages.map((st, i) => {
-                      const prev = i > 0 ? stages[i - 1].value : null;
-                      const drop = prev && prev > 0 ? Math.max(0, (1 - st.value / prev) * 100) : null;
-                      const keep = prev && prev > 0 ? (st.value / prev) * 100 : null;
-                      return (
-                        <div key={st.label}>
-                          {i > 0 && (
-                            <div className="py-0.5 pl-24 text-[10px] text-rose-500">
-                              ↓ {drop !== null ? `${drop.toFixed(1)}% 이탈` : '—'}
-                              {keep !== null && <span className="text-gray-400"> (유지 {keep.toFixed(0)}%)</span>}
-                            </div>
-                          )}
-                          <div className="flex items-center gap-2">
-                            <div className="w-24 shrink-0 text-xs text-gray-500">{st.label}</div>
-                            <div className="h-6 flex-1 overflow-hidden rounded bg-gray-100">
-                              <div className="h-full rounded bg-[#667eea]" style={{ width: `${(st.value / max) * 100}%` }} />
-                            </div>
-                            <div className="w-14 text-right text-sm font-bold tabular-nums text-[#4A2D6B]">{st.value.toLocaleString()}</div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })()}
-              <p className="mt-2 text-[11px] text-gray-400">
-                치료사례 페이지 열람 {s.pageViews.cases.toLocaleString()}회 · 전체 전환율 {s.conversionRate.toFixed(2)}%({messengerLabel} 클릭 / 총 PV)
-                <br />광고는 계산기 페이지(/calculator.html)로 직행 → 방문 시 예측키 패널이 자동 표시돼 <b>계산기 방문 ≈ 열람</b>(홈 자동팝업은 2026-07-01 종료). 큰 이탈은 보통 <b>열람→측정 완료</b> 구간.
-              </p>
-            </div>
+            {/* 전환 퍼널 제거(2026-08-02) → 상단 "메신저 클릭 출처" 패널(ConsultSourcePanel)로 대체.
+                치료사례 열람·전체 전환율 요약만 유지. */}
+            <p className="text-[11px] text-gray-400">
+              치료사례 페이지 열람 {s.pageViews.cases.toLocaleString()}회 · 전체 전환율 {s.conversionRate.toFixed(2)}%({messengerLabel} 클릭 / 총 PV)
+            </p>
 
             {/* 유입 채널 + 디바이스 */}
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

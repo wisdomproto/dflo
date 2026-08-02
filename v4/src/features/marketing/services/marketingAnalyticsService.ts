@@ -77,6 +77,20 @@ export interface SearchConsoleData {
   pages: SearchRow[];
 }
 
+// ── 메신저 클릭(consult_click) 출처 × 랜딩페이지 ──
+// 키워드는 GA4 에 없다("not provided") → 그건 위 SearchConsole(GSC) 패널에서. 여긴 출처+랜딩만.
+export interface ConsultSourceRow { sourceMedium: string; landing: string; count: number }
+export interface ConsultSources {
+  daily: { date: string; count: number }[];
+  rows: ConsultSourceRow[];
+}
+export async function fetchConsultSources(days: number): Promise<ConsultSources> {
+  const res = await fetch(`${BASE}/api/analytics/consult-sources?days=${days}`);
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok || !body.success) throw new Error(body.error || `메신저 출처 분석 실패: ${res.status}`);
+  return body.data as ConsultSources;
+}
+
 export async function fetchSearchConsole(
   arg: number | { date: string },
   lang: CountryKey = 'all',

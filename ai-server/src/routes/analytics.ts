@@ -2,7 +2,7 @@
 // /api/analytics/overview?days=N → 지난 N일 요약 (page_view, kakao_consult_click 등)
 
 import { Router } from 'express';
-import { fetchOverview, fetchChannels, fetchSiteBreakdown, fetchSiteBreakdownRanges } from '../services/ga4.js';
+import { fetchOverview, fetchChannels, fetchSiteBreakdown, fetchSiteBreakdownRanges, fetchConsultSources } from '../services/ga4.js';
 import { fetchSearchConsole, type SearchLang } from '../services/searchConsole.js';
 import { SITE_LANGS } from '../services/ga4SiteBreakdown.js';
 
@@ -82,6 +82,20 @@ analyticsRouter.get('/site-breakdown', async (req, res) => {
   } catch (e) {
     const msg = (e as Error).message;
     console.error('[analytics] /site-breakdown failed:', msg);
+    res.status(500).json({ success: false, error: msg });
+  }
+});
+
+// /api/analytics/consult-sources?days=N → 메신저 클릭(consult_click) 출처 × 랜딩페이지
+analyticsRouter.get('/consult-sources', async (req, res) => {
+  const daysRaw = Number(req.query.days ?? 14);
+  const days = Number.isFinite(daysRaw) ? Math.min(365, Math.max(1, Math.round(daysRaw))) : 14;
+  try {
+    const data = await fetchConsultSources(days);
+    res.json({ success: true, days, data });
+  } catch (e) {
+    const msg = (e as Error).message;
+    console.error('[analytics] /consult-sources failed:', msg);
     res.status(500).json({ success: false, error: msg });
   }
 });
