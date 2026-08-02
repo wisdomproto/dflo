@@ -3,7 +3,8 @@ import type { MarketingArticle } from '../../types';
 
 const ACCENT = '#4A2D6B';
 
-// 1차 활성 언어 (import 스코프 ko/th + 향후 vi/en)
+// 사이트가 서비스하는 9개 로케일. ★중국어만 코드가 사이트와 다르다 —
+// 여기(마케팅 콘텐츠)는 ch/cn, 사이트(blog_published·정적 빌드)는 zh-hant/zh-hans.
 const LANGS: { code: string; label: string; flag: string }[] = [
   { code: 'ko', label: 'KO', flag: '🇰🇷' },
   { code: 'th', label: 'TH', flag: '🇹🇭' },
@@ -11,6 +12,9 @@ const LANGS: { code: string; label: string; flag: string }[] = [
   { code: 'en', label: 'EN', flag: '🇺🇸' },
   { code: 'ch', label: '繁中', flag: '🇹🇼' },
   { code: 'cn', label: '简中', flag: '🇨🇳' },
+  { code: 'ja', label: 'JA', flag: '🇯🇵' },
+  { code: 'es', label: 'ES', flag: '🇪🇸' },
+  { code: 'ar', label: 'AR', flag: '🇸🇦' },
 ];
 
 interface Props {

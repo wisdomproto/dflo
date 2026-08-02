@@ -29,8 +29,10 @@ function buildHtmlBody(en) {
   return (sections || '<p class="post-empty">아직 본문이 없습니다.</p>') + faq;
 }
 
-const arts = await (await rest('marketing_articles?kind=eq.regular&sort_order=gte.903&sort_order=lte.905&select=id,sort_order,blog&order=sort_order')).json();
-if (arts.length !== 3) { console.error(`정규 글이 3편이 아니다: ${arts.length}편`); process.exit(1); }
+// 범위 지정: node scripts/publish-en-clinic-posts.mjs 906-908 (기본 903-905)
+const [from, to] = (process.argv.find((a) => /^\d+-\d+$/.test(a)) ?? '903-905').split('-');
+const arts = await (await rest(`marketing_articles?kind=eq.regular&sort_order=gte.${from}&sort_order=lte.${to}&select=id,sort_order,blog&order=sort_order`)).json();
+if (!arts.length) { console.error(`#${from}~${to} 정규 글 없음`); process.exit(1); }
 
 for (const a of arts) {
   const en = a.blog?.en;
