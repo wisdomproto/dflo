@@ -27,6 +27,7 @@ function emptySurvey(): IntakeSurvey {
     short_stature_causes: [],
     short_stature_other: '',
     acquisition_channel: null,
+    acquisition_keyword: null,
     updated_at: '',
   };
 }
@@ -233,6 +234,8 @@ export default function IntakeSubmissionEditForm({ sub, onCancel, onSaved }: Pro
 
       <Section title="가족·관심">
         <Field label="유입 경로"><Select value={s.acquisition_channel ?? ''} onChange={(v) => setSv({ acquisition_channel: v || null })} opts={L.acquisitionChannelOpts} /></Field>
+        {/* 상담 중에 들은 검색어를 직원이 채워 넣을 수 있게 — 설문에 안 적은 사람이 대부분이다 */}
+        <Field label="검색어"><input className={inputCls} value={s.acquisition_keyword ?? ''} onChange={(e) => setSv({ acquisition_keyword: e.target.value || null })} /></Field>
         <Field label="과거 클리닉 상담"><Select value={boolToStr(s.past_clinic_consult)} onChange={(v) => setSv({ past_clinic_consult: strToBool(v) })} opts={YESNO} placeholder="미응답" /></Field>
         <Field label="부모 관심"><Select value={boolToStr(s.parents_interested)} onChange={(v) => setSv({ parents_interested: strToBool(v) })} opts={YESNO} placeholder="미응답" /></Field>
         <Field label="체육 특기생"><Select value={boolToStr(s.sports_athlete)} onChange={(v) => setSv({ sports_athlete: strToBool(v) })} opts={YESNO} placeholder="미응답" /></Field>

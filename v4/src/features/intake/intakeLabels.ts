@@ -112,6 +112,9 @@ export interface IntakeLabelSet {
   // step3 acquisition channel
   acquisitionChannel: string;
   acquisitionChannelOpts: { value: string; label: string }[];
+  /** 검색으로 온 사람에게만 묻는다 (google/naver/ai) */
+  acquisitionKeyword: string;
+  acquisitionKeywordHint: string;
   // step6 uploads
   xrayUpload: string;
   labUpload: string;
@@ -190,6 +193,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'ChatGPT 등 AI' },
       { value: 'other', label: '기타' },
     ],
+    acquisitionKeyword: "어떤 검색어로 찾으셨나요?",
+    acquisitionKeywordHint: "기억나는 대로 적어 주세요. 저희를 찾기 어려웠던 표현을 아는 데 큰 도움이 됩니다.",
     sLifeTitle: '생활 습관',
     sleepTime: '취침 시간',
     wakeTime: '기상 시간',
@@ -333,6 +338,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'AI (เช่น ChatGPT)' },
       { value: 'other', label: 'อื่นๆ' },
     ],
+    acquisitionKeyword: "คุณค้นหาด้วยคำว่าอะไรครับ?",
+    acquisitionKeywordHint: "พิมพ์เท่าที่จำได้ครับ ช่วยให้เรารู้ว่าคำไหนหาเราเจอยาก",
     sLifeTitle: 'พฤติกรรมการใช้ชีวิต',
     sleepTime: 'เวลาเข้านอน',
     wakeTime: 'เวลาตื่นนอน',
@@ -476,6 +483,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'AI (ChatGPT, v.v.)' },
       { value: 'other', label: 'Khác' },
     ],
+    acquisitionKeyword: "Bạn đã tìm bằng từ khóa nào?",
+    acquisitionKeywordHint: "Ghi lại theo trí nhớ của bạn. Điều này giúp chúng tôi biết từ khóa nào khó tìm thấy chúng tôi.",
     sLifeTitle: 'Thói quen sinh hoạt',
     sleepTime: 'Giờ đi ngủ',
     wakeTime: 'Giờ thức dậy',
@@ -619,6 +628,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'AI (ChatGPT, etc.)' },
       { value: 'other', label: 'Other' },
     ],
+    acquisitionKeyword: "What did you search for?",
+    acquisitionKeywordHint: "Whatever you remember is fine. It tells us which wording makes us hard to find.",
     sLifeTitle: 'Lifestyle',
     sleepTime: 'Bedtime',
     wakeTime: 'Wake-up time',
@@ -762,6 +773,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'AI（如 ChatGPT）' },
       { value: 'other', label: '其他' },
     ],
+    acquisitionKeyword: "您是用什么关键词搜索的？",
+    acquisitionKeywordHint: "写下您记得的内容即可。这能帮助我们了解哪些说法不容易找到我们。",
     sLifeTitle: '生活习惯',
     sleepTime: '就寝时间',
     wakeTime: '起床时间',
@@ -905,6 +918,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'AI（如 ChatGPT）' },
       { value: 'other', label: '其他' },
     ],
+    acquisitionKeyword: "您是用什麼關鍵字搜尋的？",
+    acquisitionKeywordHint: "寫下您記得的內容即可。這能幫助我們了解哪些說法不容易找到我們。",
     sLifeTitle: '生活習慣',
     sleepTime: '就寢時間',
     wakeTime: '起床時間',
@@ -1048,6 +1063,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'AI（ChatGPT など）' },
       { value: 'other', label: 'その他' },
     ],
+    acquisitionKeyword: "どのような言葉で検索されましたか？",
+    acquisitionKeywordHint: "覚えている範囲で結構です。どの言葉では当院が見つけにくいのかを知る手がかりになります。",
     sLifeTitle: '生活習慣',
     sleepTime: '就寝時刻',
     wakeTime: '起床時刻',
@@ -1191,6 +1208,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'IA (ChatGPT, etc.)' },
       { value: 'other', label: 'Otro' },
     ],
+    acquisitionKeyword: "¿Qué buscó exactamente?",
+    acquisitionKeywordHint: "Lo que recuerde está bien. Nos ayuda a saber con qué términos resultamos difíciles de encontrar.",
     sLifeTitle: 'Hábitos de vida',
     sleepTime: 'Hora de acostarse',
     wakeTime: 'Hora de levantarse',
@@ -1335,6 +1354,8 @@ export const INTAKE_LABELS: Record<IntakeLang, IntakeLabelSet> = {
       { value: 'ai', label: 'الذكاء الاصطناعي (ChatGPT وغيره)' },
       { value: 'other', label: 'أخرى' },
     ],
+    acquisitionKeyword: "ما الكلمات التي بحثت بها؟",
+    acquisitionKeywordHint: "اكتب ما تتذكره. هذا يساعدنا على معرفة العبارات التي يصعب أن نظهر بها.",
     sLifeTitle: 'نمط الحياة',
     sleepTime: 'موعد النوم',
     wakeTime: 'موعد الاستيقاظ',

@@ -17,6 +17,17 @@ export function StepFamily({ state, set, L }: StepProps) {
         options={L.acquisitionChannelOpts}
       />
 
+      {/* 검색으로 온 사람에게만. 구글은 검색어의 90%+ 를 가리므로 환자에게 직접 묻는 게
+          우리가 실제 검색 문장을 얻는 유일한 경로다. */}
+      {['google', 'naver', 'ai'].includes(s.acquisition_channel ?? '') && (
+        <TextField
+          label={L.acquisitionKeyword}
+          value={s.acquisition_keyword ?? ''}
+          onChange={(v) => setSurvey({ acquisition_keyword: v || null })}
+          hint={L.acquisitionKeywordHint}
+        />
+      )}
+
       <YesNoField
         label={L.pastConsult}
         value={s.past_clinic_consult}

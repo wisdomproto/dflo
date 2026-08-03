@@ -13,11 +13,13 @@ function FieldShell({
   label,
   required,
   error,
+  hint,
   children,
 }: {
   label: string;
   required?: boolean;
   error?: string;
+  hint?: string;
   children: ReactNode;
 }) {
   return (
@@ -27,6 +29,7 @@ function FieldShell({
         {required && <span className="ms-0.5 text-rose-500">*</span>}
       </span>
       {children}
+      {hint && <span className="text-xs text-slate-500">{hint}</span>}
       {error && <span className="text-xs font-medium text-rose-500">{error}</span>}
     </label>
   );
@@ -40,6 +43,7 @@ export function TextField({
   error,
   placeholder,
   multiline,
+  hint,
   type = 'text',
 }: {
   label: string;
@@ -49,10 +53,11 @@ export function TextField({
   error?: string;
   placeholder?: string;
   multiline?: boolean;
+  hint?: string;
   type?: string;
 }) {
   return (
-    <FieldShell label={label} required={required} error={error}>
+    <FieldShell label={label} required={required} error={error} hint={hint}>
       {multiline ? (
         <textarea
           className={INPUT_CLASS + ' min-h-[96px] resize-y'}

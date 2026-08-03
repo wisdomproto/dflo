@@ -190,6 +190,16 @@ export default function IntakeSubmissionDetail({
         />
         <Row label="생년월일" value={str(sub.birth_date)} />
         <Row label="국가" value={countryLabel(sub.country)} />
+        {/* 성장 기준 국가 — 예측키·뼈나이를 어느 나라 아이들과 비교했는지. 거주국과 다를 수 있다
+            (해외 거주 한국인 등). 괄호 안은 실제로 쓰인 성장 표준. */}
+        <Row
+          label="성장 기준"
+          value={
+            survey?.growth_ref_country
+              ? `${countryLabel(survey.growth_ref_country)}${survey.growth_standard ? ` (${survey.growth_standard})` : ''}`
+              : '—'
+          }
+        />
         <Row label="현재 키" value={str(sub.current_height)} />
         <Row label="현재 몸무게" value={str(sub.current_weight)} />
         <Row label="아버지 키" value={str(sub.father_height)} />
@@ -271,6 +281,13 @@ export default function IntakeSubmissionDetail({
               : '-'
           }
         />
+        {/* 검색어 — 구글이 검색어의 90%+ 를 가리므로 환자가 직접 적어준 이 문장이 원본이다 */}
+        {survey?.acquisition_keyword && (
+          <Row
+            label="검색어"
+            value={<span className="font-medium text-violet-700">{survey.acquisition_keyword}</span>}
+          />
+        )}
         <Row label="과거 클리닉 상담" value={yesNo(survey?.past_clinic_consult)} />
         <Row label="부모 관심" value={yesNo(survey?.parents_interested)} />
         <Row label="체육 특기생" value={yesNo(survey?.sports_athlete)} />

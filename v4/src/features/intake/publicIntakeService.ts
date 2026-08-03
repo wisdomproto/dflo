@@ -1,5 +1,6 @@
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
+import { growthStandardOf } from '@/shared/data/countries';
 import type { IntakeFormState, IntakeLang, UploadMeta } from './types';
 
 const AI_SERVER = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
@@ -82,7 +83,14 @@ export async function submitIntake(lang: IntakeLang, s: IntakeFormState): Promis
     phone: s.phone || null,
     email: s.email || null,
     address: s.address || null,
-    intake_survey: { ...s.survey, updated_at: new Date().toISOString() },
+    // 성장 기준 국가는 JSONB 안에 둔다(컬럼 추가 없이). 고른 나라와 그 나라가 뜻하는
+    // 성장 표준을 함께 굳혀 저장한다 — 매핑 규칙이 나중에 바뀌어도 접수 당시 기준이 남는다.
+    intake_survey: {
+      ...s.survey,
+      growth_ref_country: s.growth_ref || s.country || null,
+      growth_standard: growthStandardOf(s.growth_ref || s.country),
+      updated_at: new Date().toISOString(),
+    },
     uploads,
   };
   const { error } = await supabase.from('intake_submissions').insert(payload);

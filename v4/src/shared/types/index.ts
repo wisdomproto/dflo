@@ -111,6 +111,12 @@ export interface IntakeSurvey {
   short_stature_other: string;
   /** 유입 경로 */
   acquisition_channel: string | null;
+  /** 검색해서 온 경우 실제로 친 검색어. GSC 가 검색어의 90%+ 를 가려 이게 유일한 원본이다. */
+  acquisition_keyword?: string | null;
+  /** 성장 기준 국가(ISO) — 부모가 고른 나라 그대로 */
+  growth_ref_country?: string | null;
+  /** 위 나라가 뜻하는 성장 표준. 접수 시점 매핑을 굳혀 둔다(규칙이 바뀌어도 소급 왜곡 없음) */
+  growth_standard?: 'KR' | 'TH' | 'CN' | 'US' | 'ID' | 'WHO' | null;
   /** 출생: 임신 주수 (주) */
   gestational_weeks?: string;
   /** 출생: 몸무게 (kg) */
