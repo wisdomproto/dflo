@@ -190,16 +190,9 @@ export default function IntakeSubmissionDetail({
         />
         <Row label="생년월일" value={str(sub.birth_date)} />
         <Row label="국가" value={countryLabel(sub.country)} />
-        {/* 성장 기준 국가 — 예측키·뼈나이를 어느 나라 아이들과 비교했는지. 거주국과 다를 수 있다
-            (해외 거주 한국인 등). 괄호 안은 실제로 쓰인 성장 표준. */}
-        <Row
-          label="성장 기준"
-          value={
-            survey?.growth_ref_country
-              ? `${countryLabel(survey.growth_ref_country)}${survey.growth_standard ? ` (${survey.growth_standard})` : ''}`
-              : '—'
-          }
-        />
+        {/* 성장 기준 국가 — 예측키·뼈나이를 어느 나라 아이들과 비교했는지.
+            거주국과 다를 수 있다(해외 거주 한국인 등). */}
+        <Row label="성장 기준" value={countryLabel(survey?.growth_ref_country)} />
         <Row label="현재 키" value={str(sub.current_height)} />
         <Row label="현재 몸무게" value={str(sub.current_weight)} />
         <Row label="아버지 키" value={str(sub.father_height)} />

@@ -130,6 +130,12 @@ export function getCountries(lang: string): LocalizedCountry[] {
  * 거주국 → 예측키 계산에 쓸 성장 표준.
  * 부모에게 'CDC'·'WHO' 같은 내부 용어를 보이지 않고 나라만 고르게 한 뒤 여기서 옮긴다.
  * 자국 표준이 없는 나라는 WHO(국제 기준)로 떨어진다.
+ *
+ * ★이 매핑은 계속 늘어난다 — 자국 LMS 를 확보할 때마다 WHO 폴백에서 빠져나온다.
+ *   새 표준 추가 시 고칠 곳 세 군데:
+ *     1. growthStandard.ts  LMS 테이블 + GrowthStandard 유니온
+ *     2. 여기               해당 국가 코드 분기
+ *     3. HeightCalculator   NATIONALITIES(계산기 국적 선택) + calcLabels 의 nat* 라벨
  */
 export function growthStandardOf(code?: string | null): 'KR' | 'TH' | 'CN' | 'US' | 'ID' | 'WHO' {
   if (!code) return 'WHO';

@@ -22,11 +22,11 @@ test('CDC 채택국은 US 표준을 공유한다', () => {
   }
 });
 
-test('자국 도표가 없는 나라는 WHO 로 떨어진다', () => {
-  // 이 나라들을 임의로 이웃 표준에 붙이면 예측이 왜곡된다 — WHO 가 맞는 기본값
-  for (const c of ['VN', 'JP', 'MY', 'SA', 'ES', 'BR', 'IN']) {
-    assert.equal(growthStandardOf(c), 'WHO', `${c} → WHO`);
-  }
+test('매핑에 없는 코드는 WHO 로 떨어진다', () => {
+  // ★특정 나라를 WHO 로 못박지 않는다 — 자국 LMS 를 확보할 때마다 매핑은 늘어나고,
+  //   그때 이 테스트가 발목을 잡으면 안 된다. 폴백 동작 자체만 고정한다.
+  assert.equal(growthStandardOf('ZZ'), 'WHO');
+  assert.equal(growthStandardOf('QQ'), 'WHO');
 });
 
 test('빈 값도 WHO (설문 미응답·구접수)', () => {
