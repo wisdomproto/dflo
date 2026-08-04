@@ -1,6 +1,7 @@
 import { supabase } from '@/shared/lib/supabase';
 import { logger } from '@/shared/lib/logger';
-import type { IntakeSubmission } from '@/features/intake/types';
+import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
+import { uploadOne } from '@/features/intake/publicIntakeService';
 import { createPatient } from './adminService';
 import { getOrCreateIntakeVisit } from '@/features/hospital/services/visitService';
 import { upsertMeasurementField } from '@/features/hospital/services/hospitalMeasurementService';
@@ -175,4 +176,22 @@ export async function reopenSubmission(id: string): Promise<void> {
     logger.error('reopen failed', error);
     throw new Error('대기로 되돌리지 못했습니다.');
   }
+}
+
+/**
+ * 어드민이 접수 후 첨부를 추가한다(환자가 나중에 이메일·채팅으로 보낸 X-ray·피검사).
+ * 공개 설문은 슬롯을 0,1,2… 로 쓰므로 여기선 `a{타임스탬프}` 를 써서 절대 겹치지 않게 한다
+ * (스토리지가 upsert:false 라 경로가 겹치면 업로드가 통째로 실패한다).
+ * 업로드에 실패하면 그 파일만 건너뛰지 않고 던진다 — 일부만 붙은 채로 저장되면 더 헷갈린다.
+ */
+export async function adminUploadFiles(
+  token: string,
+  kind: 'xray' | 'lab',
+  files: File[],
+): Promise<UploadMeta[]> {
+  const stamp = Date.now();
+  const out: UploadMeta[] = [];
+  let i = 0;
+  for (const f of files) out.push(await uploadOne(token, kind, f, `a${stamp}-${i++}`));
+  return out;
 }

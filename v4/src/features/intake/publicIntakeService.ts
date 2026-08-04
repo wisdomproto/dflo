@@ -23,13 +23,17 @@ export function validateFile(f: File): string | null {
   return null;
 }
 
-async function uploadOne(
+/**
+ * 파일 한 개를 intake-uploads 에 올린다. `slot` 이 파일명을 정하므로 호출부가 충돌을 책임진다 —
+ * 공개 설문은 0,1,2… / 어드민 추가 업로드는 접수 후라 겹치지 않는 키를 쓴다(`adminUploadFile`).
+ */
+export async function uploadOne(
   token: string,
   kind: 'xray' | 'lab',
   file: File,
-  idx: number,
+  slot: string | number,
 ): Promise<UploadMeta> {
-  const path = `${token}/${kind}-${idx}.${ext(file.name)}`;
+  const path = `${token}/${kind}-${slot}.${ext(file.name)}`;
   const { error } = await supabase.storage.from('intake-uploads').upload(path, file, {
     contentType: file.type || undefined,
     upsert: false,

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { updateSubmission } from '@/features/admin/services/intakeSubmissionService';
+import { updateSubmission, adminUploadFiles } from '@/features/admin/services/intakeSubmissionService';
 import { INTAKE_LABELS } from '@/features/intake/intakeLabels';
-import type { IntakeSubmission } from '@/features/intake/types';
+import { validateFile } from '@/features/intake/publicIntakeService';
+import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
 import type {
   IntakeSurvey,
   ShortStatureCause,
@@ -118,6 +119,23 @@ export default function IntakeSubmissionEditForm({ sub, onCancel, onSaved }: Pro
   const [s, setS] = useState<IntakeSurvey>({ ...emptySurvey(), ...(sub.intake_survey ?? {}) });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // 고른 파일은 저장 전까지 메모리에만 둔다 — 취소하면 스토리지에 아무것도 안 남는다.
+  const [newFiles, setNewFiles] = useState<{ xray: File[]; lab: File[] }>({ xray: [], lab: [] });
+  const [fileError, setFileError] = useState<string | null>(null);
+
+  const addFiles = (kind: 'xray' | 'lab', list: FileList | null) => {
+    if (!list) return;
+    const ok: File[] = [];
+    const bad: string[] = [];
+    // 공개 설문과 같은 검증(확장자·용량)을 쓴다. 규칙이 갈리면 환자는 되는데 직원은 안 되는 일이 생긴다.
+    Array.from(list).forEach((f) => {
+      const err = validateFile(f);
+      if (err) bad.push(`${f.name} — ${err === 'too_large' ? '용량 초과' : '지원하지 않는 형식'}`);
+      else ok.push(f);
+    });
+    setFileError(bad.length ? bad.join(', ') : null);
+    if (ok.length) setNewFiles((n) => ({ ...n, [kind]: [...n[kind], ...ok] }));
+  };
 
   const setCol = (patch: Partial<typeof c>) => setC((p) => ({ ...p, ...patch }));
   const setSv = (patch: Partial<IntakeSurvey>) => setS((p) => ({ ...p, ...patch }));
@@ -148,7 +166,17 @@ export default function IntakeSubmissionEditForm({ sub, onCancel, onSaved }: Pro
     setSaving(true);
     setError(null);
     try {
+      // 파일 먼저. 여기서 실패하면 설문 저장도 안 한다 — 반쯤 반영된 상태가 제일 나쁘다.
+      let uploads: UploadMeta[] | undefined;
+      if (newFiles.xray.length || newFiles.lab.length) {
+        const added = [
+          ...(await adminUploadFiles(sub.token, 'xray', newFiles.xray)),
+          ...(await adminUploadFiles(sub.token, 'lab', newFiles.lab)),
+        ];
+        uploads = [...sub.uploads, ...added];
+      }
       const patch: Partial<IntakeSubmission> = {
+        ...(uploads ? { uploads } : {}),
         name: c.name,
         name_en: c.name_en,
         gender: c.gender || undefined,
@@ -284,6 +312,43 @@ export default function IntakeSubmissionEditForm({ sub, onCancel, onSaved }: Pro
         </div>
         <Field label="기타"><input className={inputCls} value={s.short_stature_other} onChange={(e) => setSv({ short_stature_other: e.target.value })} /></Field>
         <Field label="추가 메모"><textarea className={inputCls} rows={2} value={s.additional_notes ?? ''} onChange={(e) => setSv({ additional_notes: e.target.value })} /></Field>
+      </Section>
+
+      {/* 첨부 — 환자가 접수 뒤에 이메일·채팅으로 보내온 X-ray·피검사를 직원이 붙인다.
+          업로드는 [저장] 을 눌러야 실행된다(취소하면 스토리지에 쓰레기가 안 남는다). */}
+      <Section title="첨부 파일">
+        <p className="col-span-2 text-xs text-slate-500">
+          기존 {sub.uploads.length}개
+          {newFiles.xray.length + newFiles.lab.length > 0 &&
+            ` · 추가 예정 ${newFiles.xray.length + newFiles.lab.length}개`}
+        </p>
+        {(['xray', 'lab'] as const).map((kind) => (
+          <div key={kind} className="col-span-2 flex flex-col gap-1.5">
+            <span className="text-xs font-semibold text-slate-500">
+              {kind === 'xray' ? 'X-ray' : '피검사'}
+            </span>
+            <input
+              type="file"
+              multiple
+              accept=".jpg,.jpeg,.png,.webp,.pdf,.heic"
+              onChange={(e) => addFiles(kind, e.target.files)}
+              className="text-xs text-slate-600 file:mr-2 file:rounded file:border-0 file:bg-slate-100 file:px-2.5 file:py-1.5 file:text-xs file:font-semibold file:text-slate-700"
+            />
+            {newFiles[kind].map((f, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs text-slate-600">
+                <span className="truncate">{f.name}</span>
+                <button
+                  type="button"
+                  onClick={() => setNewFiles((n) => ({ ...n, [kind]: n[kind].filter((_, j) => j !== i) }))}
+                  className="ms-auto shrink-0 text-rose-500 hover:underline"
+                >
+                  빼기
+                </button>
+              </div>
+            ))}
+          </div>
+        ))}
+        {fileError && <p className="col-span-2 text-xs text-red-600">{fileError}</p>}
       </Section>
 
       {error && <p className="text-xs text-red-600">{error}</p>}
