@@ -65,17 +65,25 @@ test('Chinese locales drop Kakao — 2 channels, WhatsApp then LINE', () => {
   }
 });
 
-// 아랍어(MENA)는 WhatsApp 지배 채널 → 대표 WhatsApp. 카카오/라인 무의미하나
-// 상담 페이지 생성(채널>1) 위해 LINE 을 보조로 둔다(zh 선례). 되돌려 카카오 넣지 말 것.
-test('Arabic leads with WhatsApp — 2 channels, no Kakao', () => {
+// 아랍어(MENA)는 WhatsApp 단독 — 카카오도 라인도 무의미하다(2026-08-02 사용자 결정).
+// ★회선도 아랍어 전용이라 공용 &whatsapp 앵커와 번호가 달라야 한다. 앵커로 되돌리면
+//   en·ja·es 가 쓰는 번호로 조용히 바뀐다.
+test('Arabic leads with WhatsApp — its own line, no LINE/Kakao', () => {
   const cta = getMessengerCTA('ar');
   assert.equal(cta.channel, 'whatsapp');
-  assert.match(cta.url, /wa\.me\//);
   const chans = cta.consult_channels;
   assert.ok(Array.isArray(chans), 'ar should have consult_channels');
-  assert.equal(chans.length, 2, 'ar channel count');
-  assert.deepEqual(chans.map((c) => c.channel), ['whatsapp', 'line']);
-  assert.ok(!chans.some((c) => c.channel === 'kakao'), 'ar 에 카카오가 되돌아왔다');
+  assert.deepEqual(chans.map((c) => c.channel), ['whatsapp']);
+  // 아랍어 전용 번호 — 공용 회선(821066932838)이면 실패해야 한다
+  assert.match(cta.url, /wa\.me\/821048385163/);
+  assert.match(chans[0].url, /wa\.me\/821048385163/);
+});
+
+// 다른 언어는 공용 회선 그대로 — ar 을 고치다 앵커를 건드리면 여기서 걸린다.
+test('other locales keep the shared WhatsApp line', () => {
+  for (const lang of ['en', 'ja', 'es']) {
+    assert.match(getMessengerCTA(lang).url, /wa\.me\/821066932838/, `${lang} 회선`);
+  }
 });
 
 test('th/vi/en expose all 3 channels with the market lead first', () => {

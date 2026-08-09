@@ -66,13 +66,20 @@ zh-hans:
   consult_channels: [*whatsapp, *line]
 ar:
   channel: whatsapp
-  url: "https://wa.me/821066932838?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A8%D8%B4%D8%A3%D9%86%20%D9%86%D9%85%D9%88%20%D8%B7%D9%81%D9%84%D9%8A."
+  # ★아랍어만 별도 회선 — 공용 &whatsapp 앵커(821066932838)를 쓰지 않는다.
+  #   여기 앵커를 바꾸면 en·ja·es 까지 같이 바뀌므로 URL 을 ar 안에서 따로 정의한다.
+  url: &ar_wa "https://wa.me/821048385163?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D9%88%D8%AF%D9%91%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A8%D8%B4%D8%A3%D9%86%20%D9%86%D9%85%D9%88%20%D8%B7%D9%81%D9%84%D9%8A."
   label: "استشارة عبر واتساب"
   color_bg: "#25D366"
   color_fg: "#FFFFFF"
-  # MENA 는 WhatsApp 이 지배 채널 → 대표 WhatsApp. 카카오는 무의미해 제외(zh 선례).
-  # 상담 페이지는 채널>1 이라 LINE 을 보조로(추후 Viber/Telegram 앵커 추가 시 교체 여지).
-  consult_channels: [*whatsapp, *line]
+  # MENA 는 WhatsApp 이 지배 채널. 카카오는 무의미해 제외(zh 선례), LINE 도 제외(사용자 결정).
+  # 채널이 하나뿐이지만 상담 페이지는 유지한다 — 원격 진료 안내와 설문 진입점이 거기 있다.
+  consult_channels:
+    - channel: whatsapp
+      url: *ar_wa
+      label: "WhatsApp"
+      color_bg: "#25D366"
+      color_fg: "#FFFFFF"
 ja:
   channel: whatsapp
   url: "https://wa.me/821066932838?text=%E3%81%93%E3%82%93%E3%81%AB%E3%81%A1%E3%81%AF%E3%80%81%E5%AD%90%E3%81%A9%E3%82%82%E3%81%AE%E6%88%90%E9%95%B7%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E7%9B%B8%E8%AB%87%E3%81%97%E3%81%9F%E3%81%84%E3%81%A7%E3%81%99%E3%80%82"

@@ -174,7 +174,9 @@ async function main() {
     { name: 'cases',      file: 'cases.html',      template: casesTemplate,      titlePath: 'cases.page_title' },
     { name: 'calculator', file: 'calculator.html', template: calculatorTemplate, titlePath: 'calculator.page_title', descPath: 'calculator.meta_description' },
     { name: 'consult',    file: 'consult.html',    template: consultTemplate,    titlePath: 'consult.page_title',
-      langs: (l) => (getMessengerCTA(l).consult_channels?.length ?? 0) > 1 },
+      // 채널이 1개여도 페이지를 낸다 — 채널 목록만이 아니라 원격 진료 안내와 설문 진입점이 여기 있다.
+      // (ko·id 는 consult_channels 자체가 없어 0 → 여전히 카톡/WhatsApp 직행.)
+      langs: (l) => (getMessengerCTA(l).consult_channels?.length ?? 0) >= 1 },
     // 저자(원장) 소개 — GEO/E-E-A-T 권위 페이지. 전 7언어(author: 블록 전부 존재). byline 이 이 페이지로 링크.
     { name: 'author',     file: 'author.html',     template: authorTemplate,     titlePath: 'author.page_title', descPath: 'author.meta_description',
       authorSchema: true },
