@@ -11,14 +11,14 @@
   .gt-wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 64px; }
   .gt-hero { padding: 40px 0 28px; border-bottom: 1px solid var(--shell-hairline); }
   .gt-kicker { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase;
-    color: #667eea; background: var(--shell-page-bg); padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+    color: #5a3da6; background: var(--shell-brand-soft); padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
   .gt-h1 { font-size: 30px; line-height: 1.25; font-weight: 900; color: var(--shell-ink); letter-spacing: -0.5px; }
   .gt-sub { margin-top: 14px; font-size: 16px; line-height: 1.7; color: var(--shell-body); }
   .gt-cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-  .gt-btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 22px; border-radius: 8px;
+  .gt-btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border-radius: 14px;
     font-weight: 800; font-size: 15px; text-decoration: none; }
-  .gt-btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; }
-  .gt-btn-ghost { background: {{messenger.color_bg}}; color: {{messenger.color_fg}}; }
+  .gt-btn-primary { background: #5a3da6; color: #fff; box-shadow: 0 8px 22px rgba(90,61,166,.28); }
+  .gt-btn-ghost { background: #fff; color: #5a3da6; border: 1.5px solid #d9cdf0; }
   .gt-sec { padding: 32px 0; border-bottom: 1px solid var(--shell-hairline); }
   .gt-h2 { font-size: 21px; font-weight: 850; color: var(--shell-ink); letter-spacing: -0.3px; margin-bottom: 12px; }
   .gt-p { font-size: 16px; line-height: 1.8; color: var(--shell-body); margin-bottom: 12px; }
@@ -30,7 +30,7 @@
   .gt-steps { counter-reset: step; display: grid; gap: 10px; margin-top: 8px; }
   .gt-step { position: relative; padding: 14px 16px 14px 52px; background: var(--shell-page-bg); border-radius: 10px; }
   .gt-step::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 14px;
-    width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff;
+    width: 26px; height: 26px; border-radius: 50%; background: #5a3da6; color: #fff;
     font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
   .gt-step .lt { display: block; font-weight: 800; color: var(--shell-ink); margin-bottom: 2px; }
   .gt-step .ld { font-size: 14.5px; line-height: 1.6; color: var(--shell-muted); }
@@ -48,7 +48,7 @@
   .gt-related a { display: block; padding: 12px 14px; background: var(--shell-page-bg); border-radius: 8px;
     color: var(--shell-ink); text-decoration: none; font-weight: 600; font-size: 15px; }
   .gt-related a:hover { text-decoration: underline; }
-  .gt-cta { text-align: center; padding: 28px 20px; background: var(--shell-page-bg); border-radius: 14px; margin-top: 32px; }
+  .gt-cta { text-align: center; padding: 28px 20px; background: var(--shell-brand-soft); border-radius: 14px; margin-top: 32px; }
   .gt-cta h2 { font-size: 20px; font-weight: 850; color: var(--shell-ink); margin-bottom: 8px; }
   .gt-cta p { font-size: 15px; color: var(--shell-body); margin-bottom: 16px; }
   .gt-disc { margin-top: 22px; font-size: 12.5px; line-height: 1.6; color: var(--shell-muted); }
@@ -109,7 +109,7 @@
           <p class="dp">{{ghtx.trust_body}}</p>
         </div>
       </div>
-      <p class="gt-p" style="margin-top:14px">{{ghtx.cases_body}} <a href="/{{meta.lang}}/cases.html" style="color:#667eea;font-weight:700;text-decoration:underline">{{ghtx.cases_link}}</a></p>
+      <p class="gt-p" style="margin-top:14px">{{ghtx.cases_body}} <a href="/{{meta.lang}}/cases.html" style="color:#5a3da6;font-weight:700;text-decoration:underline">{{ghtx.cases_link}}</a></p>
     </section>
 
     <section class="gt-sec">
@@ -133,7 +133,7 @@
     <div class="gt-cta">
       <h2>{{ghtx.cta_title}}</h2>
       <p>{{ghtx.cta_body}}</p>
-      <a class="gt-btn gt-btn-ghost" href="{{messenger.url}}" target="_blank" rel="noopener" data-source="ghtx_bottom" data-channel="{{messenger.channel}}">{{ghtx.cta_consult}}</a>
+      <a class="gt-btn gt-btn-primary" href="{{messenger.url}}" target="_blank" rel="noopener" data-source="ghtx_bottom" data-channel="{{messenger.channel}}">{{ghtx.cta_consult}}</a>
     </div>
 
     <p class="gt-disc">{{ghtx.disclaimer}}</p>
