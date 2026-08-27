@@ -19,7 +19,7 @@ const SUBPAGE_FILES = ['cases.html', 'calculator.html', 'author.html'];
 
 // consult.html 은 상담 채널이 여러 개인 언어(th/vi/en)에만 존재 — ko 는 빌드되지 않으므로
 // 등재하면 sitemap 이 없는 URL 을 가리킨다. 실제 빌드 대상은 build-i18n 이 넘겨준다.
-export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {}, consultLangs = [] }) {
+export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {}, consultLangs = [], ghtreatmentLangs = [] }) {
   const entries = [];
   const homePaths = Object.fromEntries(activeLangs.map((l) => [l, '/']));
   for (const lang of activeLangs) {
@@ -37,6 +37,14 @@ export function buildSitemap({ activeLangs, blogSlugs = {}, blogAlts = {}, consu
     const consultPaths = Object.fromEntries(consultLangs.map((l) => [l, '/consult.html']));
     for (const lang of consultLangs) {
       entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/consult.html`, consultPaths));
+    }
+  }
+
+  // growth-hormone-treatment.html 은 en 전용(ghtx: 블록이 en.yml 에만) — 그 언어만 등재.
+  if (ghtreatmentLangs.length) {
+    const paths = Object.fromEntries(ghtreatmentLangs.map((l) => [l, '/growth-hormone-treatment.html']));
+    for (const lang of ghtreatmentLangs) {
+      entries.push(urlEntry(`${ORIGIN}${PATH_PREFIX}/${lang}/growth-hormone-treatment.html`, paths));
     }
   }
 

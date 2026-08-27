@@ -213,6 +213,7 @@ async function main() {
   const calculatorTemplate = readFileSync(join(ROOT, 'i18n/template/calculator.html'), 'utf8');
   const consultTemplate = readFileSync(join(ROOT, 'i18n/template/consult.html'), 'utf8');
   const authorTemplate = readFileSync(join(ROOT, 'i18n/template/author.html'), 'utf8');
+  const ghtxTemplate = readFileSync(join(ROOT, 'i18n/template/growth-hormone-treatment.html'), 'utf8');
   const postTemplate = readFileSync(join(ROOT, 'i18n/template/blog-post.html'), 'utf8');
   const indexTemplate = readFileSync(join(ROOT, 'i18n/template/blog-index.html'), 'utf8');
 
@@ -229,6 +230,10 @@ async function main() {
     // 저자(원장) 소개 — GEO/E-E-A-T 권위 페이지. 전 7언어(author: 블록 전부 존재). byline 이 이 페이지로 링크.
     { name: 'author',     file: 'author.html',     template: authorTemplate,     titlePath: 'author.page_title', descPath: 'author.meta_description',
       authorSchema: true },
+    // 성장호르몬 치료 서비스 랜딩(영어 전용) — 상업 검색어 "growth hormone treatment" 겨냥.
+    // ghtx: 블록이 en.yml 에만 있으므로 en 한정(다른 언어면 missing key 로 죽는다).
+    { name: 'ghtreatment', file: 'growth-hormone-treatment.html', template: ghtxTemplate,
+      titlePath: 'ghtx.page_title', descPath: 'ghtx.meta_description', langs: (l) => l === 'en' },
   ];
 
   for (const lang of ACTIVE_LANGS) {
@@ -322,9 +327,11 @@ async function main() {
   }
 
   const consultSub = SUBPAGES.find((s) => s.name === 'consult');
+  const ghtxSub = SUBPAGES.find((s) => s.name === 'ghtreatment');
   const sitemap = buildSitemap({
     activeLangs: ACTIVE_LANGS, blogSlugs, blogAlts,
     consultLangs: ACTIVE_LANGS.filter(consultSub.langs),
+    ghtreatmentLangs: ACTIVE_LANGS.filter(ghtxSub.langs),
   });
   writeFile(join(ROOT, 'public/sitemap.xml'), sitemap);
 

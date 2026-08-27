@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="{{meta.lang}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{{seo_head}}
+<link rel="stylesheet" href="/_shell.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--shell-body); }
+  .gt-wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 64px; }
+  .gt-hero { padding: 40px 0 28px; border-bottom: 1px solid var(--shell-hairline); }
+  .gt-kicker { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase;
+    color: #667eea; background: var(--shell-page-bg); padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+  .gt-h1 { font-size: 30px; line-height: 1.25; font-weight: 900; color: var(--shell-ink); letter-spacing: -0.5px; }
+  .gt-sub { margin-top: 14px; font-size: 16px; line-height: 1.7; color: var(--shell-body); }
+  .gt-cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .gt-btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 22px; border-radius: 8px;
+    font-weight: 800; font-size: 15px; text-decoration: none; }
+  .gt-btn-primary { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; }
+  .gt-btn-ghost { background: {{messenger.color_bg}}; color: {{messenger.color_fg}}; }
+  .gt-sec { padding: 32px 0; border-bottom: 1px solid var(--shell-hairline); }
+  .gt-h2 { font-size: 21px; font-weight: 850; color: var(--shell-ink); letter-spacing: -0.3px; margin-bottom: 12px; }
+  .gt-p { font-size: 16px; line-height: 1.8; color: var(--shell-body); margin-bottom: 12px; }
+  .gt-p strong { color: var(--shell-ink); }
+  .gt-list { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 10px; }
+  .gt-list li { padding: 14px 16px; background: var(--shell-page-bg); border-radius: 10px; }
+  .gt-list .lt { display: block; font-weight: 800; color: var(--shell-ink); margin-bottom: 3px; }
+  .gt-list .ld { font-size: 14.5px; line-height: 1.6; color: var(--shell-muted); }
+  .gt-steps { counter-reset: step; display: grid; gap: 10px; margin-top: 8px; }
+  .gt-step { position: relative; padding: 14px 16px 14px 52px; background: var(--shell-page-bg); border-radius: 10px; }
+  .gt-step::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 14px;
+    width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff;
+    font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .gt-step .lt { display: block; font-weight: 800; color: var(--shell-ink); margin-bottom: 2px; }
+  .gt-step .ld { font-size: 14.5px; line-height: 1.6; color: var(--shell-muted); }
+  .gt-doctor { display: flex; gap: 16px; align-items: center; padding: 16px; background: var(--shell-page-bg); border-radius: 12px; }
+  .gt-doctor img { width: 84px; height: 84px; border-radius: 12px; object-fit: cover; object-position: center 12%; flex: none; }
+  .gt-doctor .dn { font-weight: 900; font-size: 18px; color: var(--shell-ink); }
+  .gt-doctor .dn span { font-size: 13px; font-weight: 700; color: var(--shell-muted); margin-left: 6px; }
+  .gt-doctor .dp { margin-top: 6px; font-size: 14px; line-height: 1.6; color: var(--shell-muted); }
+  .gt-faq { display: grid; gap: 10px; margin-top: 8px; }
+  .gt-faq details { background: var(--shell-page-bg); border-radius: 10px; padding: 14px 16px; }
+  .gt-faq summary { font-weight: 800; color: var(--shell-ink); cursor: pointer; list-style: none; font-size: 15.5px; }
+  .gt-faq summary::-webkit-details-marker { display: none; }
+  .gt-faq .fa { margin-top: 10px; font-size: 14.5px; line-height: 1.7; color: var(--shell-body); }
+  .gt-related { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 8px; }
+  .gt-related a { display: block; padding: 12px 14px; background: var(--shell-page-bg); border-radius: 8px;
+    color: var(--shell-ink); text-decoration: none; font-weight: 600; font-size: 15px; }
+  .gt-related a:hover { text-decoration: underline; }
+  .gt-cta { text-align: center; padding: 28px 20px; background: var(--shell-page-bg); border-radius: 14px; margin-top: 32px; }
+  .gt-cta h2 { font-size: 20px; font-weight: 850; color: var(--shell-ink); margin-bottom: 8px; }
+  .gt-cta p { font-size: 15px; color: var(--shell-body); margin-bottom: 16px; }
+  .gt-disc { margin-top: 22px; font-size: 12.5px; line-height: 1.6; color: var(--shell-muted); }
+  @media (min-width: 640px) { .gt-h1 { font-size: 38px; } }
+</style>
+</head>
+<body data-page="ghtreatment">
+<div class="t-page">
+  <div class="gt-wrap">
+
+    <header class="gt-hero">
+      <span class="gt-kicker">{{ghtx.kicker}}</span>
+      <h1 class="gt-h1">{{ghtx.h1}}</h1>
+      <p class="gt-sub">{{ghtx.hero_sub}}</p>
+      <div class="gt-cta-row">
+        <a class="gt-btn gt-btn-primary" href="/{{meta.lang}}/calculator.html" data-source="ghtx_hero_calc">{{ghtx.cta_calc}}</a>
+        <a class="gt-btn gt-btn-ghost" href="{{messenger.url}}" target="_blank" rel="noopener" data-source="ghtx_hero" data-channel="{{messenger.channel}}">{{ghtx.cta_consult}}</a>
+      </div>
+    </header>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.what_title}}</h2>
+      {{#each ghtx.what_body}}<p class="gt-p">{{.}}</p>{{/each}}
+    </section>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.who_title}}</h2>
+      <p class="gt-p">{{ghtx.who_intro}}</p>
+      <ul class="gt-list">
+        {{#each ghtx.who_list}}
+        <li><span class="lt">{{t}}</span><span class="ld">{{d}}</span></li>
+        {{/each}}
+      </ul>
+      <p class="gt-p" style="margin-top:14px">{{ghtx.who_note}}</p>
+    </section>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.process_title}}</h2>
+      <p class="gt-p">{{ghtx.process_intro}}</p>
+      <div class="gt-steps">
+        {{#each ghtx.process_steps}}
+        <div class="gt-step"><span class="lt">{{t}}</span><span class="ld">{{d}}</span></div>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.safety_title}}</h2>
+      {{#each ghtx.safety_body}}<p class="gt-p">{{.}}</p>{{/each}}
+    </section>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.trust_title}}</h2>
+      <div class="gt-doctor">
+        <img src="/images/doctor.jpg" alt="{{clinic.doctor.portrait_alt}}" loading="lazy">
+        <div>
+          <div class="dn">{{clinic.doctor.name}}<span>{{clinic.doctor.title}}</span></div>
+          <p class="dp">{{ghtx.trust_body}}</p>
+        </div>
+      </div>
+      <p class="gt-p" style="margin-top:14px">{{ghtx.cases_body}} <a href="/{{meta.lang}}/cases.html" style="color:#667eea;font-weight:700;text-decoration:underline">{{ghtx.cases_link}}</a></p>
+    </section>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.faq_title}}</h2>
+      <div class="gt-faq">
+        {{#each ghtx.faq}}
+        <details><summary>{{q}}</summary><div class="fa">{{a}}</div></details>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="gt-sec">
+      <h2 class="gt-h2">{{ghtx.related_title}}</h2>
+      <ul class="gt-related">
+        {{#each ghtx.related}}
+        <li><a href="{{href}}">{{title}}</a></li>
+        {{/each}}
+      </ul>
+    </section>
+
+    <div class="gt-cta">
+      <h2>{{ghtx.cta_title}}</h2>
+      <p>{{ghtx.cta_body}}</p>
+      <a class="gt-btn gt-btn-ghost" href="{{messenger.url}}" target="_blank" rel="noopener" data-source="ghtx_bottom" data-channel="{{messenger.channel}}">{{ghtx.cta_consult}}</a>
+    </div>
+
+    <p class="gt-disc">{{ghtx.disclaimer}}</p>
+
+  </div>
+</div>
+<script>
+  window.__I18N__ = { locale: "{{meta.lang}}", channel: "{{messenger.channel}}", messenger: {{messenger_json}}, consultChannels: {{consult_json}}, page_type: "ghtreatment", aiServer: "{{ai_server}}", shell: {{shell_json}} };
+</script>
+<script src="/_shell.js"></script>
+</body>
+</html>
