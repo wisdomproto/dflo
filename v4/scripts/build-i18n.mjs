@@ -86,19 +86,64 @@ const CALC_RELATED_EN = [
   // 영어에만 있는 글이라 다른 언어는 클러스터가 비어 자동으로 건너뛴다.
   'growth-clinic-korea-from-abroad',
 ];
-function relatedBlogLinks(lang, blogAlts, titleByLangSlug) {
+// en slug 목록 → 현재 언어의 {href,title} (그 글이 그 언어에 실제로 존재할 때만).
+// 언어별 slug 는 blogAlts(article_id 클러스터)로 해석 — 하드코딩하면 어긋난다.
+function resolveRelatedLinks(enSlugs, lang, blogAlts, titleByLangSlug, limit = 6) {
   const enMap = blogAlts.en || {};
   const out = [];
-  for (const enSlug of CALC_RELATED_EN) {
+  for (const enSlug of enSlugs) {
     const cluster = enMap[enSlug];        // { ko:'…', en:'…', th:'…', … } — 그 토픽이 있는 언어만
     const slug = cluster?.[lang];
     const title = slug && titleByLangSlug[lang]?.[slug];
     if (slug && title) out.push({ href: `/${lang}/blog/${slug}/`, title });
+    if (out.length >= limit) break;
   }
   return out;
 }
+const relatedBlogLinks = (lang, blogAlts, titleByLangSlug) =>
+  resolveRelatedLinks(CALC_RELATED_EN, lang, blogAlts, titleByLangSlug);
 
-async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs }) {
+// 토픽 클러스터 — 같은 주제 글끼리 본문 하단에서 상호 링크. 내부링크로 클러스터 권위 신호를
+// 모아 경쟁 키워드(예: growth hormone treatment) 랭킹을 끌어올린다. en slug 로 정의(언어별
+// slug 는 자동 해석). 새 클러스터/글은 이 배열에만 추가하면 전 언어 반영.
+const BLOG_CLUSTERS = [
+  { name: 'growth-hormone', slugs: [
+    'growth-hormone-child-height',
+    'growth-hormone-deficiency-children',
+    'growth-hormone-treatment-for-children',
+    'growth-hormone-therapy-side-effects-children',
+    'growth-hormone-in-korea-who-gets-it',
+    'growth-clinic-korea-from-abroad',
+    'is-growth-hormone-the-only-option-child-height',
+    'is-14-too-late-growth-hormone-bone-age',
+    'growth-hormone-release-during-sleep-10pm-myth',
+  ] },
+];
+const CLUSTER_SIBLINGS = {};
+for (const c of BLOG_CLUSTERS) for (const s of c.slugs) CLUSTER_SIBLINGS[s] = c.slugs.filter((x) => x !== s);
+
+const RELATED_HEADING = {
+  ko: '함께 보면 좋은 글', en: 'Related articles', th: 'บทความที่เกี่ยวข้อง',
+  vi: 'Bài viết liên quan', 'zh-hant': '相關文章', 'zh-hans': '相关文章',
+  ar: 'مقالات ذات صلة', ja: '関連記事', es: 'Artículos relacionados',
+};
+const escHtml = (s) => String(s ?? '')
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+// 한 글의 관련글 <nav> HTML — 같은 클러스터의 다른 글들(현재 언어에 존재하는 것만).
+function relatedNavHtml({ post, lang, enSlugByArticle, blogAlts, titleByLangSlug }) {
+  const enSlug = enSlugByArticle[post.article_id];
+  const siblings = enSlug && CLUSTER_SIBLINGS[enSlug];
+  if (!siblings) return '';
+  const links = resolveRelatedLinks(siblings, lang, blogAlts, titleByLangSlug, 6);
+  if (!links.length) return '';
+  const heading = RELATED_HEADING[lang] || RELATED_HEADING.en;
+  const items = links.map((r) => `<li><a href="${escHtml(r.href)}">${escHtml(r.title)}</a></li>`).join('');
+  return `<nav class="post-related"><h2 class="post-related-title">${escHtml(heading)}</h2><ul class="post-related-list">${items}</ul></nav>`;
+}
+
+async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs, enSlugByArticle, titleByLangSlug }) {
   // RTL 언어(아랍어)는 블로그 템플릿의 <html> 에도 dir="rtl" 을 baked — 메인 페이지 루프와 동일.
   // (블로그는 별도 렌더 경로라 이 처리를 빠뜨리면 /ar/blog/ 만 LTR 로 나온다.)
   const rtlize = (html) =>
@@ -114,6 +159,7 @@ async function buildBlog({ lang, locale, messenger, postTemplate, indexTemplate,
   writeFile(join(ROOT, 'public', lang, 'blog/index.html'), rtlize(lazifyImages(indexHtml)));
 
   for (const post of posts) {
+    post.related_html = relatedNavHtml({ post, lang, enSlugByArticle, blogAlts, titleByLangSlug });
     const html = renderPost({
       post, template: postTemplate, locale, messenger,
       seoHead: buildBlogPostHead({ post, lang, altSlugs: blogAlts?.[lang]?.[post.slug] }),
@@ -153,6 +199,9 @@ async function main() {
     for (const p of posts) m[p.slug] = p.title;
     blogTitleByLangSlug[lang] = m;
   }
+  // 관련글 클러스터용: article_id → en slug (클러스터는 en slug 로 정의됨).
+  const enSlugByArticle = {};
+  for (const p of publishedByLang.en || []) if (p.article_id) enSlugByArticle[p.article_id] = p.slug;
 
   // 블로그 인덱스가 실제로 빌드되는 언어(글 1편 이상). 블로그 인덱스 hreflang 클러스터는
   // 이 집합으로만 만든다 — 글 0인 언어(중국어 등)를 넣으면 /{lang}/blog/ 가 없어 soft-404.
@@ -267,7 +316,7 @@ async function main() {
     const posts = [...bySlug.values()];
     blogSlugs[lang] = posts.map((p) => p.slug);
     if (posts.length > 0) {
-      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs });
+      const n = await buildBlog({ lang, locale, messenger, postTemplate, indexTemplate, posts, blogAlts, blogLangs, enSlugByArticle, titleByLangSlug: blogTitleByLangSlug });
       console.log(`  [blog] ${n} posts rendered for ${lang} (cached ${cached.length} + published ${published.length})`);
     }
   }

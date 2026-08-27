@@ -50,6 +50,12 @@
   .post-references-title { font-size: 18px; font-weight: 800; color: var(--shell-ink); margin-bottom: 10px; }
   .post-references-list { font-size: 13px; line-height: 1.7; color: var(--shell-muted); padding-left: 20px; }
   .post-references-list a { color: var(--shell-ink); text-decoration: underline; }
+  .post-related { margin: 32px 0 0; padding-top: 20px; border-top: 1px solid var(--shell-hairline); }
+  .post-related-title { font-size: 18px; font-weight: 800; color: var(--shell-ink); margin-bottom: 12px; }
+  .post-related-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .post-related-list a { display: block; padding: 12px 14px; background: var(--shell-page-bg); border-radius: 8px;
+    color: var(--shell-ink); text-decoration: none; font-weight: 600; font-size: 15px; line-height: 1.4; }
+  .post-related-list a:hover { text-decoration: underline; }
   @media (min-width: 640px) { .post-title { font-size: 36px; } }
 </style>
 </head>
@@ -63,6 +69,7 @@
     {{post.body_html}}
   </article>
   {{post.references_html}}
+  {{post.related_html}}
   <aside class="post-clinic">
     <div class="pc-head">
       <img class="pc-face" src="/images/doctor.jpg" alt="{{clinic.doctor.portrait_alt}}" loading="lazy">
