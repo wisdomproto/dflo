@@ -9,6 +9,18 @@ import {
   suggestChartNumber,
 } from '@/features/admin/services/intakeSubmissionService';
 import type { ReferralPrefill } from '@/features/admin/referral/referralDoc';
+import {
+  INTAKE_DOC_CSS,
+  buildIntakeHtml,
+  intakeDocTitle,
+  intakeSubjectName,
+} from '@/features/admin/intake/intakeDoc';
+import { buildZip, sanitizeFileName, uniqueName } from '@/shared/utils/zip';
+import type { ZipEntry } from '@/shared/utils/zip';
+import {
+  buildAttachmentPagesHtml,
+  waitForImages,
+} from '@/features/admin/intake/intakeAttachments';
 import type { IntakeSubmission, UploadMeta } from '@/features/intake/types';
 import { ACQUISITION_KO, INTAKE_LABELS, optLabelKo } from '@/features/intake/intakeLabels';
 import IntakeSubmissionEditForm from './IntakeSubmissionEditForm';
@@ -90,6 +102,8 @@ export default function IntakeSubmissionDetail({
   const [reopening, setReopening] = useState(false);
   const [reopenError, setReopenError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
+  const [printing, setPrinting] = useState(false);
+  const [zipping, setZipping] = useState(false);
 
   // 반려된 제출을 다시 대기로. 되돌리기 쉬운 저위험 액션이라 별도 확인 모달 없이 바로 처리.
   const reopen = async () => {
@@ -117,6 +131,91 @@ export default function IntakeSubmissionDetail({
       lang: sub.lang,
     };
     navigate('/admin/referral', { state: prefill });
+  };
+
+  // 서명 URL 은 마운트 effect 가 채우지만 상세를 열자마자 누를 수 있다 → 빠진 것만 즉석 발급.
+  const signedUrlsFor = async (list: UploadMeta[]): Promise<Record<string, string>> => {
+    const signed = { ...urls };
+    const missing = list.filter((u) => !signed[u.path]).map((u) => u.path);
+    if (missing.length) {
+      const { data } = await supabase.storage.from('intake-uploads').createSignedUrls(missing, 600);
+      for (const d of data ?? []) if (d.path && d.signedUrl) signed[d.path] = d.signedUrl;
+    }
+    return signed;
+  };
+
+  // 첨부 원본(X-ray 이미지 + 피검사 PDF)을 ZIP 한 덩어리로. 원본 바이트 그대로라 화질 손실 없음.
+  const downloadAttachments = async () => {
+    if (zipping || !sub.uploads.length) return;
+    setZipping(true);
+    try {
+      const signed = await signedUrlsFor(sub.uploads);
+      const used = new Set<string>();
+      const entries: ZipEntry[] = [];
+      const failed: string[] = [];
+      for (const u of sub.uploads) {
+        try {
+          const res = await fetch(signed[u.path] ?? '');
+          if (!res.ok) throw new Error(String(res.status));
+          entries.push({
+            name: uniqueName(sanitizeFileName(u.filename), used),
+            data: new Uint8Array(await res.arrayBuffer()),
+          });
+        } catch {
+          failed.push(u.filename);
+        }
+      }
+      if (!entries.length) throw new Error('첨부를 하나도 내려받지 못했습니다.');
+      const url = URL.createObjectURL(new Blob([buildZip(entries)], { type: 'application/zip' }));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${sanitizeFileName(intakeSubjectName(sub))} 첨부.zip`;
+      a.click();
+      // 클릭 직후 동기 revoke 하면 다운로드가 취소되는 브라우저가 있다 → 한 템포 뒤에.
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      if (failed.length) alert(`받지 못한 첨부 ${failed.length}건: ${failed.join(', ')}`);
+    } catch (e) {
+      alert(e instanceof Error ? e.message : 'ZIP 다운로드에 실패했습니다.');
+    } finally {
+      setZipping(false);
+    }
+  };
+
+  // 설문 + 피검사를 한 문서로 새 창에 써서 window.print() → "PDF로 저장". (X-ray 는 위 ZIP 담당)
+  // ★창은 클릭 즉시 연다 — 첨부 렌더를 await 한 뒤 열면 사용자 제스처가 끊겨 팝업 차단에 걸린다.
+  const printIntake = async () => {
+    if (printing) return;
+    const w = window.open('', '_blank', 'width=840,height=1040');
+    if (!w) {
+      alert('팝업이 차단되었습니다. 팝업을 허용해 주세요.');
+      return;
+    }
+    const shell = (body: string) =>
+      `<!doctype html><html lang="ko"><head><meta charset="utf-8">` +
+      `<title>${intakeDocTitle(sub)}</title>` +
+      `<style>${INTAKE_DOC_CSS}</style></head><body>${body}</body></html>`;
+    w.document.write(shell('<p style="padding:24px;color:#666">문진·첨부를 불러오는 중…</p>'));
+    w.document.close();
+    setPrinting(true);
+    try {
+      // 인쇄에 싣는 건 피검사만 — X-ray 는 원본 화질로 봐야 하는 자료라
+      // (한 건에 18장씩 오기도 한다) 지면에 넣지 않고 ZIP 으로 내보낸다.
+      // 첨부 "목록" 표엔 X-ray 도 그대로 보인다.
+      const printable = sub.uploads.filter((u) => u.kind === 'lab');
+      const signed = await signedUrlsFor(printable);
+      const attach = printable.length ? await buildAttachmentPagesHtml(printable, signed) : '';
+      w.document.open();
+      w.document.write(shell(buildIntakeHtml(sub, attach)));
+      w.document.close();
+      await waitForImages(w.document); // 안 기다리면 첨부가 빈 페이지로 찍힌다
+      w.focus();
+      w.print();
+    } catch (e) {
+      w.close();
+      alert(e instanceof Error ? e.message : 'PDF 출력에 실패했습니다.');
+    } finally {
+      setPrinting(false);
+    }
   };
 
   // Load signed URLs for each upload.
@@ -155,8 +254,26 @@ export default function IntakeSubmissionDetail({
 
   return (
     <div className="space-y-3">
-      {/* 수정 버튼 */}
-      <div className="flex justify-end">
+      {/* 상단 액션 */}
+      <div className="flex justify-end gap-2">
+        <button
+          type="button"
+          onClick={printIntake}
+          disabled={printing}
+          className="rounded-lg border border-violet-300 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-700 hover:bg-violet-100 disabled:opacity-50"
+        >
+          {printing ? '⏳ 준비 중…' : '🖨 PDF 출력'}
+        </button>
+        {sub.uploads.length > 0 && (
+          <button
+            type="button"
+            onClick={downloadAttachments}
+            disabled={zipping}
+            className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+          >
+            {zipping ? '⏳ 받는 중…' : `📦 첨부 ZIP (${sub.uploads.length})`}
+          </button>
+        )}
         <button
           type="button"
           onClick={() => setEditing(true)}
