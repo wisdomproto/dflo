@@ -176,6 +176,23 @@ scripts/
 ## 소견서 작성 (referral note, `/admin/referral`)
 해외 환자가 현지 병원에서 X-ray·피검사를 받을 때 지참하는 의뢰서 생성기. admin 사이드바 "설문 접수" 밑 📝 소견서 작성(`CONSULT_ITEMS`). 환자 정보(이름·생년월일·성별·주소) 수동 입력 + X-ray/피검사 선택(둘 다 가능) + 언어 선택 → 실시간 미리보기 + 🖨 인쇄/PDF(별도 창 `window.print`). **언어 7종**(en 기본/ko/th/vi/zh-hans/zh-hant/ja) — **서술문만 현지어, 검사 항목명·서명자 블록은 영어 유지**(현지 검사실 국제 표준). 성별 따라 성호르몬 항목 자동(남 Testosterone/여 Estradiol), 오늘 날짜 자동, 둘 다 선택 시 2장(페이지 분리·1./2. 번호). 하단 서명 = `public/images/referral-signature.png`(원장 실서명 투명 PNG, tracked). 파일: `features/admin/referral/referralTemplates.ts`(7언어 문자열+영어 검사 리스트+SIGNATORY) · `referralDoc.ts`(순수 HTML/CSS 빌더 `buildReferralHtml`+`REFERRAL_DOC_CSS`, 입력 escape) · `pages/admin/AdminReferralPage.tsx`. ⚠️ **비영어 서술문은 초안 — 원장/전문 감수 권장**(검사명 영어라 의료 핵심은 언어 무관). **(2026-07-21) 설문 접수함 연동**: `/admin/intake` 각 제출 상세(`IntakeSubmissionDetail`)에 `📝 소견서 작성` 버튼 — 클릭 시 그 환자 이름·생년월일·성별·주소를 소견서 폼에 자동 채워 이동(react-router `navigate(state)` + `ReferralPrefill`(referralDoc.ts), `AdminReferralPage` 가 `location.state` 로 프리필 + `location.key` 변경 시 재프리필해 다른 환자로 재진입 시 stale 방지). 이름은 현지 병원이 읽을 전체명 `name` 우선(비면 `name_en` 폴백), 언어는 설문 언어 `sub.lang` 기본값(INTAKE_LANGS≡ReferralLang라 1:1). 수동 재입력 제거.
 
+## 설문 PDF 출력 · 첨부 ZIP (`/admin/intake` 상세 우상단)
+설문 1건을 **인쇄용 A4 HTML 로 새 창에 띄워 `window.print()`** → 브라우저 "PDF로 저장". 소견서와 같은 패턴(순수 빌더 + 새 창 인쇄)이라 서버·라이브러리 추가 없음. `features/admin/intake/intakeDoc.ts` = `buildIntakeHtml(sub)` + `INTAKE_DOC_CSS` + `intakeDocTitle`(창 제목 = 저장 시 기본 파일명). 라벨은 **`intakeLabels.ko` 재사용**(스태프용 한국어), 값은 환자 제출 원문 그대로. 섹션 = 기본/출생 · 최근 성장(나이×키 표) · 가족·관심도·유입 · 생활 습관 · 의료·발달(**성별 분기** — 남 변성기·체모 / 여 초경·유방) · 키가 작은 원인 · 첨부 **목록** · 내부 메모.
+- **버튼 2개 = 인쇄물 / 원본**. ★왜 하나로 안 합치나: **브라우저 인쇄 결과물은 JS 가 가져올 수 없다** → 문진 PDF 를 ZIP 에 넣으려면 문진을 JS 로 직접 그려야 하고(html2canvas+pdf-lib), 그러면 문진이 **이미지 PDF** 가 돼 글자 검색·복사가 죽는다. 그래서 인쇄는 인쇄대로 두고 원본은 ZIP 으로 뺀다(2026-10-20 사용자 결정).
+  - **`🖨 PDF 출력`** = 문진 + **피검사만**(`uploads.filter(kind === 'lab')`). X-ray 는 원본 화질로 봐야 하는 자료고 한 건에 18장씩 오기도 해서 지면에 안 싣는다 — 첨부 **목록 표엔 X-ray 도 그대로** 나온다.
+  - **`📦 첨부 ZIP (N)`** = **첨부 전부(X-ray 이미지 + 피검사 PDF) 원본 바이트 그대로**. 무압축(store) ZIP 을 직접 만든다 — `shared/utils/zip.ts`(`buildZip`/`crc32`/`uniqueName`/`sanitizeFileName`, 라이브러리 0개). PNG·JPEG·PDF 는 이미 압축돼 있어 deflate 해도 안 줄어드니 **포맷만 쓰면 끝**. 파일명은 **UTF-8 플래그(bit 11)** 를 세워 한글·태국어 이름이 안 깨진다. 같은 이름은 `name (2).ext`. 깨진 첨부는 건너뛰고 끝에 몇 건인지 알린다.
+  - 🚨`a.click()` 직후 **동기 `revokeObjectURL` 은 다운로드를 취소**시킬 수 있다 → 1초 뒤에.
+- **피검사 첨부는 문진 뒤에 한 문서로 붙는다** — `intakeAttachments.ts buildAttachmentPagesHtml`. PDF 는 **pdf.js 로 페이지마다 캔버스 렌더 → JPEG(150dpi·q0.82) `<img>`**, 이미지 첨부는 서명 URL 그대로(base64 로 부풀릴 이유 없음). 한 장당 한 페이지(`page-break-before`). 참고 2페이지 피검사 1건 ≈ 270KB·0.5초.
+  - ★**래스터인 이유**: 브라우저 인쇄는 `<embed>`/`<iframe>` 안의 PDF 를 안 찍는다. 클라에서 한 문서로 합치려면 이미지화가 유일. 벡터 병합이 필요하면 서버에서 pdf-lib 등으로.
+  - 🚨**`page.render({ intent: 'print' })` 필수** — 기본(display) 렌더는 `requestAnimationFrame` 으로 도는데 **탭이 백그라운드면 rAF 가 멈춰 render 가 에러 없이 영원히 매달린다**(출력 눌러놓고 다른 탭 보면 그대로 멈춤). 실측으로 잡았다(프레임이 안 도는 환경에서 render HANG → `intent:'print'` 로 즉시 통과).
+  - 🚨**워커는 `import('pdfjs-dist/build/pdf.worker.min.mjs?url')`** — `new URL('pdfjs-dist/...', import.meta.url)` 은 Vite 가 **못 푼다**(상대경로만 처리). pdf.js 는 **지연 import**(어드민 번들에 안 실림, 별도 453KB 청크).
+  - 창은 **클릭 즉시** 열고("불러오는 중…") 렌더 후 다시 쓴다 — await 뒤에 `window.open` 하면 사용자 제스처가 끊겨 팝업 차단. 쓰고 나서 `waitForImages` 로 디코드 대기(안 하면 빈 페이지가 찍힌다). 서명 URL 이 아직 없으면 `createSignedUrls` 로 즉석 발급. 깨진 첨부는 그 자리만 안내 줄로 넘어간다(문진 인쇄 자체는 나간다).
+- ⚠️ **내부 메모(`admin_note`)가 포함**된다. 환자·외부 전달용이면 출력 전 확인할 것.
+- 태국어 등 **원문 값이 한글 폰트에 없어** `Leelawadee UI`/`Noto Sans Thai` 를 폰트 스택에 포함(Malgun Gothic 뒤).
+- ★`intakeDoc.ts` 의 **런타임 import 는 상대경로** — `scripts/test/intake-doc.test.mjs`(node --test + tsx)가 `@/` 별칭을 못 푼다. `import type` 은 컴파일 시 지워져서 별칭이어도 무방.
+- **테스트**: `intake-doc.test.mjs` 7케이스(만나이 경계·escape·성별 분기·첨부 유무·메모 유무·설문 null·첨부 슬롯 위치, 뮤테이션 2종 검증) + `zip.test.mjs` 6케이스(CRC32 표준 벡터·헤더/EOCD 구조·UTF-8 파일명·빈 zip·1980 이전 날짜·중복 이름).
+- **실측 검증 기록**(2026-10-20): zip 산출물을 **Python `zipfile`**(testzip 무손상·바이트 해시 일치·한글/태국어 이름 보존)과 **Windows `Expand-Archive`**(압축 해제 후 파일명 정상)로 교차 확인. pdf.js 렌더·서명 URL **크로스오리진 fetch**(localhost → supabase, 184,617 B 일치)·Blob 다운로드는 dev 서버 + 실제 브라우저에서 확인.
+
 ## Admin Access
 - **App admin**: `admin@187growth.com` / `admin187!` (routes: `/admin/*`)
 - **Cases parent**: `cases@187growth.com` / `cases187!` (7 treatment case children)
