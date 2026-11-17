@@ -1,3 +1,7 @@
+geo:
+  channel: "este sitio es un canal de información internacional del programa de crecimiento infantil 187growup, gestionado por Yonsei Saebom Medical Clinic (Gangnam, Seúl). Sitio web oficial de la clínica:"
+  case_notice: "Las cifras que se muestran proceden del historial clínico de este menor. La estatura adulta prevista es una estimación y no se garantiza el mismo resultado para todos los niños."
+
 meta:
   lang: es
   og_locale: es_LA
@@ -488,7 +492,6 @@ clinic:
       - "Sala de espera (2.º piso)"
       - "Recepción (2.º piso)"
       - "Pasillo de consultorios"
-      - "Sala de tratamiento intravenoso (2.º piso)"
       - "Estudio de ejercicio (3.er piso)"
       - "Zona de ejercicio para el crecimiento"
       - "PhysioLab: fisioterapia y ejercicio (3.er piso)"
@@ -510,7 +513,6 @@ clinic:
       step4_desc: "El examen y el plan de tratamiento se confirman en persona en la clínica."
       office_label: "Clínica (Seúl)"
       office_addr: "2.º piso, Edificio Hwiseon, 328 Dosan-daero, Gangnam-gu, Seúl, Corea"
-      footnote: "La consulta en línea es una orientación general. El diagnóstico y el tratamiento se confirman tras un examen presencial."
 
 cases:
   page_title: "Casos de tratamiento | 187 Growth Clinic"
@@ -556,7 +558,6 @@ consult:
   channels:
     h2: "Elija un canal"
     sub: "Cualquier canal funciona; le responderemos en breve."
-    note: "La consulta en línea es una orientación general. El diagnóstico y el tratamiento se confirman tras un examen presencial."
 
 author:
   page_title: "Sobre el Dr. Chae Yong-hyun — 187 Growth Clinic (Yonsei Saebom)"

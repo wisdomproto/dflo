@@ -5,6 +5,8 @@
 // 우연히 동작할 뿐이라 누가 top-level 코드를 하나만 추가해도 TDZ 로 깨진다.
 
 export const ORIGIN = 'https://www.dr187growup.com';
+export const OFFICIAL_CLINIC_URL = 'https://www.yssaebomq.com/';
+export const CLINIC_SLOGAN = '187growup powered by Yonsei Saebom Medical Clinic';
 export const PATH_PREFIX = process.env.SITE_PATH_PREFIX ?? '';  // promoted to root in Phase 6 (override with /test for staging)
 // Languages we actually BUILD pages for. hreflang/sitemap must only point at these —
 // emitting ja/id (planned but not yet built) creates 404 hreflang targets that

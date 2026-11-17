@@ -695,6 +695,7 @@
       </a>
       {{/each}}
     </div>
+    <p class="case-results-note">{{geo.case_notice}}</p>
     <a class="home-cases-all" href="cases.html">{{shell.nav.cases}} &rarr;</a>
   </section>
 
@@ -741,7 +742,7 @@
         </div>
       </div>
       <p>{{clinic.intro.p1}}</p>
-      <p>{{clinic.intro.p2}}</p>
+      <p>{{clinic.intro.p2}} {{remote_notice}}</p>
     </div>
 
     <!-- Remote consultation guide — renders only when locale provides non-empty clinic.remote_consult (th/vi/en 등 해외) -->
@@ -759,7 +760,7 @@
         <div class="o-label">{{office_label}}</div>
         <div class="o-addr">{{office_addr}}</div>
       </div>
-      <p class="rc-foot">{{footnote}}</p>
+      <p class="rc-foot">{{remote_notice}}</p>
     </div>
     {{/each}}
 
@@ -811,24 +812,20 @@
           <figcaption>{{clinic.facility.items.2}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-3.jpg" alt="{{clinic.facility.items.3}}" loading="lazy">
+          <img src="/images/facility-9.jpg" alt="{{clinic.facility.items.3}}" loading="lazy">
           <figcaption>{{clinic.facility.items.3}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-9.jpg" alt="{{clinic.facility.items.4}}" loading="lazy">
+          <img src="/images/facility-5.jpg" alt="{{clinic.facility.items.4}}" loading="lazy">
           <figcaption>{{clinic.facility.items.4}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-5.jpg" alt="{{clinic.facility.items.5}}" loading="lazy">
+          <img src="/images/facility-4.jpg" alt="{{clinic.facility.items.5}}" loading="lazy">
           <figcaption>{{clinic.facility.items.5}}</figcaption>
         </figure>
         <figure>
-          <img src="/images/facility-4.jpg" alt="{{clinic.facility.items.6}}" loading="lazy">
+          <img src="/images/facility-1.jpg" alt="{{clinic.facility.items.6}}" loading="lazy">
           <figcaption>{{clinic.facility.items.6}}</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/facility-1.jpg" alt="{{clinic.facility.items.7}}" loading="lazy">
-          <figcaption>{{clinic.facility.items.7}}</figcaption>
         </figure>
       </div>
     </div>
@@ -895,6 +892,9 @@
     <a href="{{messenger.url}}" target="_blank" rel="noopener" data-source="cta_bottom" data-channel="{{messenger.channel}}">{{cta_global.bottom_label}}</a>
   </section>
 
+  <footer class="clinic-attribution">
+    <p><bdi lang="en">{{clinic_slogan}}</bdi> — {{geo.channel}} <a href="{{official_clinic_url}}"><bdi>https://www.yssaebomq.com</bdi></a></p>
+  </footer>
 </div>
 </div><!-- /.t-page -->
 

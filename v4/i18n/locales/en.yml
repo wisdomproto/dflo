@@ -1,3 +1,7 @@
+geo:
+  channel: "this site is an international information channel for the 187growup child growth program run by Yonsei Saebom Medical Clinic (Gangnam, Seoul). Official clinic website:"
+  case_notice: "The figures shown are from this child's own records; predicted adult height is an estimate, and the same outcome is not guaranteed for every child."
+
 meta:
   lang: en
   og_locale: en_US
@@ -488,7 +492,6 @@ clinic:
       - "Waiting lounge (2F)"
       - "Reception desk (2F)"
       - "Consultation-room corridor"
-      - "IV treatment room (2F)"
       - "Exercise studio (3F)"
       - "Growth exercise zone"
       - "PhysioLab — physiotherapy & exercise (3F)"
@@ -511,7 +514,6 @@ clinic:
       step4_desc: "The examination and the treatment plan are confirmed in person at the clinic."
       office_label: "Clinic (Seoul)"
       office_addr: "2F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
-      footnote: "Online consultation is for general guidance. Diagnosis and treatment are confirmed after an in-person examination."
 
 cases:
   page_title: "Treatment Cases | 187 Growth Clinic"
@@ -559,7 +561,6 @@ consult:
   channels:
     h2: "Choose a channel"
     sub: "Any channel works — we'll get back to you shortly."
-    note: "Online consultation is for general guidance. Diagnosis and treatment are confirmed after an in-person examination."
 
 # 저자(원장) 소개 — GEO/E-E-A-T. 자격 단정 금지(Physician, 호르몬·성장 15년+).
 author:

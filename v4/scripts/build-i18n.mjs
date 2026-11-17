@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { copyFileSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -6,7 +6,8 @@ import yaml from 'js-yaml';
 import { render } from './lib/render.mjs';
 import { getMessengerCTA } from './lib/messenger.mjs';
 import { buildHead, buildBlogPostHead, buildBlogIndexHead, buildSeo, ACTIVE_LANGS, RTL_LANGS } from './lib/seo.mjs';
-import { authorPageJsonLd } from './lib/jsonld.mjs';
+import { authorPageJsonLd, faqEntries } from './lib/jsonld.mjs';
+import { CLINIC_SLOGAN, OFFICIAL_CLINIC_URL } from './lib/constants.mjs';
 import { buildSitemap } from './lib/sitemap.mjs';
 import { fetchAllLangs } from './lib/fetch-contentflow-posts.mjs';
 import { loadCachedPosts, renderPost, renderIndex } from './lib/blog.mjs';
@@ -280,8 +281,15 @@ async function main() {
     // 양쪽으로 나간다. 구글은 구조화 데이터의 FAQ 가 페이지에 실제로 보일 것을 요구하므로
     // 스키마만 내보내고 화면엔 없는 상태를 만들면 안 된다.
     const seoEntry = buildSeo(lang);
-    locale.faq = seoEntry.faq || [];
+    locale.faq = faqEntries(lang);
     locale.faq_title = seoEntry.faq_title || '';
+    locale.clinic_slogan = CLINIC_SLOGAN;
+    locale.official_clinic_url = OFFICIAL_CLINIC_URL;
+    locale.remote_notice = seoEntry.remote_notice;
+    locale.clinic.remote_consult = locale.clinic.remote_consult.map((guide) => ({
+      ...guide,
+      remote_notice: locale.remote_notice,
+    }));
 
     // Home — 이미지 지연 로딩 후처리까지 거쳐 최종 산출 (첫 이미지=로고만 eager)
     locale.seo_head = buildHead(lang, { path: '/' });
@@ -334,6 +342,7 @@ async function main() {
     ghtreatmentLangs: ACTIVE_LANGS.filter(ghtxSub.langs),
   });
   writeFile(join(ROOT, 'public/sitemap.xml'), sitemap);
+  copyFileSync(join(ROOT, 'public/llms.txt'), join(ROOT, 'public/llms-full.txt'));
 
   await bakeCasesData();
 

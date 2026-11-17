@@ -1,3 +1,7 @@
+geo:
+  channel: "trang web này là kênh thông tin quốc tế của chương trình tăng trưởng trẻ em 187growup do Yonsei Saebom Medical Clinic (Gangnam, Seoul) vận hành. Trang web chính thức của phòng khám:"
+  case_notice: "Các số liệu được trình bày lấy từ hồ sơ khám chữa bệnh của chính trẻ trong ca này. Chiều cao dự đoán khi trưởng thành là một ước tính và không bảo đảm mọi trẻ đều đạt kết quả như nhau."
+
 meta:
   lang: vi
   og_locale: vi_VN
@@ -488,7 +492,6 @@ clinic:
       - "Sảnh chờ (Tầng 2)"
       - "Quầy tiếp đón (Tầng 2)"
       - "Hành lang phòng khám"
-      - "Phòng truyền dịch (Tầng 2)"
       - "Phòng tập thể dục (Tầng 3)"
       - "Khu vận động tăng trưởng"
       - "PhysioLab — vật lý trị liệu & vận động (Tầng 3)"
@@ -511,7 +514,6 @@ clinic:
       step4_desc: "Việc thăm khám và kế hoạch điều trị được xác nhận trực tiếp tại phòng khám."
       office_label: "Phòng khám (Seoul)"
       office_addr: "Tầng 2, Tòa Hwiseon, 328 Dosan-daero, Gangnam-gu, Seoul, Hàn Quốc"
-      footnote: "Tư vấn trực tuyến chỉ mang tính tham khảo. Chẩn đoán và điều trị được xác nhận sau khi thăm khám thực tế."
 
 cases:
   page_title: "Ca điều trị | 187 Growth Clinic"
@@ -557,7 +559,6 @@ consult:
   channels:
     h2: "Chọn kênh"
     sub: "Nhắn qua kênh nào cũng được, chúng tôi sẽ phản hồi sớm."
-    note: "Tư vấn trực tuyến chỉ mang tính tham khảo. Chẩn đoán và điều trị được xác nhận sau khi thăm khám thực tế."
 
 # 저자(원장) 소개 — GEO/E-E-A-T. 격식체 tôi. 자격 단정 금지.
 author:

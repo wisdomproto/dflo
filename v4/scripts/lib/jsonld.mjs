@@ -7,12 +7,12 @@ import yaml from 'js-yaml';
 //  같은 페이지의 canonical/hreflang 과 다른 URL 을 주장하게 된다).
 // ★seo.mjs 가 아니라 constants.mjs 에서 가져오는 이유: seo.mjs 는 이 파일을 import 하므로
 //  여기서 seo.mjs 를 되짚으면 순환 참조가 된다.
-import { ORIGIN, PATH_PREFIX } from './constants.mjs';
+import { CLINIC_SLOGAN, OFFICIAL_CLINIC_URL, ORIGIN, PATH_PREFIX } from './constants.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
-const CLINIC_NAME = '연세새봄의원 187 성장클리닉';
+const CLINIC_NAME = '187growup — 187 Growth Clinic';
 const CLINIC_PHONE = '+82-10-6693-2838'; // 해외 페이지 — 국제 발신 가능한 휴대폰(1599 는 국제 착신 불가)
 const CLINIC_PHONE_KR = '1599-0741';     // 한국어 페이지 대표번호(전국대표번호)
 const CLINIC_ADDRESS = {
@@ -23,7 +23,12 @@ const CLINIC_ADDRESS = {
   postalCode: '06039',
   addressCountry: 'KR',
 };
-const CLINIC_SAME_AS = ['https://www.yssaebomq.com/'];
+const CLINIC_SAME_AS = [
+  OFFICIAL_CLINIC_URL,
+  'https://www.yssaebom.com/',
+  'https://www.youtube.com/@187growup',
+];
+const GROWTH_TOPICS = ['Child growth', 'Bone age', 'Puberty'];
 // 로마자 표기는 화면 텍스트와 반드시 같아야 한다 — 구글·AI 가 같은 인물로 묶는 키다.
 // (옛 'Chae Young-hyun' 은 여기 한 곳뿐인 오타였고 화면 62곳은 전부 'Yong-hyun'.)
 const DIRECTOR_NAME = 'Chae Yong-hyun';
@@ -42,10 +47,17 @@ export function medicalClinicJsonLd(lang) {
     '@context': 'https://schema.org',
     '@type': 'MedicalClinic',
     name: CLINIC_NAME,
+    alternateName: ['187성장클리닉', '187 Growth Clinic', '187growup'],
+    slogan: CLINIC_SLOGAN,
+    parentOrganization: {
+      '@type': 'MedicalOrganization',
+      name: 'Yonsei Saebom Medical Clinic',
+      alternateName: ['연세새봄의원', 'Yonsei Saebom Clinic'],
+      url: OFFICIAL_CLINIC_URL,
+    },
     url: `${ORIGIN}${PATH_PREFIX}/${lang}/`,
     logo: `${ORIGIN}/images/logo.jpg`,
     image: `${ORIGIN}${PATH_PREFIX}/og/og-${lang}.jpg`,
-    medicalSpecialty: 'Pediatrics',
     telephone: lang === 'ko' ? CLINIC_PHONE_KR : CLINIC_PHONE,
     address: CLINIC_ADDRESS,
     areaServed,
@@ -62,7 +74,7 @@ export function physicianJsonLd(lang) {
     '@type': 'Physician',
     name: DIRECTOR_NAME,
     alternateName: DIRECTOR_NAME_KO,
-    knowsAbout: ['Child growth', 'Hormone therapy', 'Growth hormone', 'Pediatric growth assessment'],
+    knowsAbout: GROWTH_TOPICS,
     image: `${ORIGIN}/images/doctor.jpg`,
     url: `${ORIGIN}${PATH_PREFIX}/${lang}/#clinic`,
     jobTitle: 'Director',
@@ -87,7 +99,7 @@ export function authorPageJsonLd(lang) {
     jobTitle: 'Director',
     image: `${ORIGIN}/images/doctor.jpg`,
     url: `${ORIGIN}${PATH_PREFIX}/${lang}/author.html`,
-    knowsAbout: ['Child growth', 'Growth hormone therapy', 'Hormone therapy', 'Bone age assessment', 'Pediatric growth prediction'],
+    knowsAbout: GROWTH_TOPICS,
     alumniOf: { '@type': 'CollegeOrUniversity', name: 'Yonsei University College of Medicine' },
     worksFor: {
       '@type': 'MedicalClinic',
@@ -102,13 +114,19 @@ export function authorPageJsonLd(lang) {
   };
 }
 
-export function faqPageJsonLd(lang) {
+export function faqEntries(lang) {
   const seo = loadSeo()[lang];
-  const faq = (seo && Array.isArray(seo.faq)) ? seo.faq : [];
+  return (seo?.faq ?? []).map(({ q, a, remote }) => ({
+    q,
+    a: remote ? `${a} ${seo.remote_notice}` : a,
+  }));
+}
+
+export function faqPageJsonLd(lang) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faq.map((item) => ({
+    mainEntity: faqEntries(lang).map((item) => ({
       '@type': 'Question',
       name: item.q,
       acceptedAnswer: {

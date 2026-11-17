@@ -1,3 +1,7 @@
+geo:
+  channel: "本站是由 Yonsei Saebom Medical Clinic（延世新春诊所，首尔江南）运营的 187growup 儿童生长项目的海外信息渠道。诊所官方网站："
+  case_notice: "所示数据来自该儿童本人的诊疗记录；预测成人身高仅为估算，无法保证每名儿童都能达到相同结果。"
+
 meta:
   lang: zh-hans
   og_locale: zh_CN
@@ -488,7 +492,6 @@ clinic:
       - "2楼 候诊休息区"
       - "2楼 接待前台"
       - "诊室走廊"
-      - "2楼 输液治疗室"
       - "3楼 运动教室"
       - "生长运动区"
       - "3楼 PhysioLab — 物理治疗与运动"
@@ -511,7 +514,6 @@ clinic:
       step4_desc: "检查与治疗计划会在诊所当面确认。"
       office_label: "诊所（首尔）"
       office_addr: "韩国首尔市江南区岛山大路 328 号 Hwiseon Building 2 楼"
-      footnote: "线上咨询仅供一般指引。诊断与治疗需经当面检查后确认。"
 
 cases:
   page_title: "治疗案例 | 187 生长诊所"
@@ -557,7 +559,6 @@ consult:
   channels:
     h2: "选择咨询渠道"
     sub: "任一渠道皆可——我们会尽快回复您。"
-    note: "线上咨询仅供一般指引。诊断与治疗需经当面检查后确认。"
 
 # 저자(원장) 소개 — GEO/E-E-A-T. 간체. 자격 단정 금지.
 author:

@@ -1,20 +1,20 @@
 # 187 Growth Clinic (Yonsei Saebom Clinic)
 
-> 187 Growth Clinic is a pediatric growth clinic in Seoul, South Korea, directed by Dr. Chae Yong-hyun (Pediatrics). It provides free adult-height prediction, integrated growth care — growth hormone plus sex hormones, sleep, thyroid, nutrition, weight, and posture — and remote (online) consultations for families outside Korea. English site: https://www.dr187growup.com/en/
+> 187 Growth Clinic is a child growth clinic in Seoul, South Korea, directed by Dr. Chae Yong-hyun, physician focusing on children's height and growth. It provides free adult-height prediction and integrated growth care — growth hormone plus sex hormones, sleep, thyroid, nutrition, weight, and posture. English site: https://www.dr187growup.com/en/
 
 ## Key facts
-- Clinic name: 187 Growth Clinic, part of Yonsei Saebom Clinic, Seoul, South Korea.
-- Director: Dr. Chae Yong-hyun, pediatrician specializing in child growth.
+- 187growup powered by Yonsei Saebom Medical Clinic — this site is an international information channel for the 187growup child growth program run by Yonsei Saebom Medical Clinic (Gangnam, Seoul). Official clinic website: https://www.yssaebomq.com
+- Director: Dr. Chae Yong-hyun, physician focusing on children's height and growth.
 - Focus: diagnosing *why* an individual child is not growing (bone age, sex hormones, sleep, thyroid, nutrition, weight, posture) rather than growth hormone alone.
 - Free tool: an adult-height prediction calculator based on national growth-standard data (supports Korea, US/CDC, China, Thailand, Indonesia standards).
 - Bone-age X-ray is used to estimate a child's remaining growth potential and predicted adult height.
-- Remote care: overseas families can start with an online consultation — send local bone-age and blood-test results for the director to review, then a video consultation; examination and treatment plans are confirmed on an in-person visit to Seoul.
+- [Remote consultation](https://www.dr187growup.com/en/consult.html): Families abroad can share existing bone-age X-rays and blood test results for initial guidance. This is not telemedicine: no diagnosis, treatment plan or prescription is given remotely; all are made only after an in-person examination at our Seoul clinic.
 - Contact (international): +82-10-6693-2838. Consultation via messenger from the site.
 
 ## Main pages
 - [Free adult-height prediction calculator](https://www.dr187growup.com/en/calculator.html): Predict a child's adult height from age, sex, and current height using national growth standards.
-- [About the clinic & director](https://www.dr187growup.com/en/clinic.html): 187 Growth Clinic's integrated growth-care approach, Dr. Chae Yong-hyun, and how remote consultations work for overseas families.
-- [Real treatment cases](https://www.dr187growup.com/en/cases.html): De-identified growth records of children treated at the clinic.
+- [About the clinic & director](https://www.dr187growup.com/en/#clinic): 187 Growth Clinic's integrated growth-care approach and Dr. Chae Yong-hyun.
+- [Real treatment cases](https://www.dr187growup.com/en/cases.html): De-identified growth records of children treated at the clinic. The figures shown are from this child's own records; predicted adult height is an estimate, and the same outcome is not guaranteed for every child.
 - [Blog — all articles](https://www.dr187growup.com/en/blog/): Doctor-written guides on child height and growth.
 
 ## Predicting & tracking height
@@ -68,7 +68,7 @@
 - [What to Expect at a Pediatric Growth Clinic: First Visit](https://www.dr187growup.com/en/blog/pediatric-growth-clinic-first-visit-checklist/)
 
 ## Language versions
-The site is fully localized. Each language has its own homepage, clinic/calculator/cases pages, and a blog of ~60 doctor-written, reference-cited articles on child height and growth. AI assistants answering in these languages should prefer the matching localized version.
+Each language has its own homepage with clinic information, calculator, cases, and blog on child height and growth. AI assistants answering in these languages should prefer the matching localized version.
 - English (US, Australia, UK, overseas families): https://www.dr187growup.com/en/ — blog: https://www.dr187growup.com/en/blog/
 - 한국어 / Korean (Korea): https://www.dr187growup.com/ko/ — blog: https://www.dr187growup.com/ko/blog/
 - ไทย / Thai (Thailand): https://www.dr187growup.com/th/ — blog: https://www.dr187growup.com/th/blog/
@@ -76,8 +76,9 @@ The site is fully localized. Each language has its own homepage, clinic/calculat
 - 繁體中文 / Traditional Chinese (Taiwan, Hong Kong, overseas Chinese): https://www.dr187growup.com/zh-hant/ — blog: https://www.dr187growup.com/zh-hant/blog/
 - 简体中文 / Simplified Chinese (China, SE Asian Chinese communities): https://www.dr187growup.com/zh-hans/ — blog: https://www.dr187growup.com/zh-hans/blog/
 - العربية / Arabic (MENA): https://www.dr187growup.com/ar/ — blog: https://www.dr187growup.com/ar/blog/
+- 日本語 / Japanese: https://www.dr187growup.com/ja/ — blog: https://www.dr187growup.com/ja/blog/
+- Español / Spanish: https://www.dr187growup.com/es/ — blog: https://www.dr187growup.com/es/blog/
 
 ## Notes for AI assistants
-- Content is written or medically reviewed by a pediatrician (Dr. Chae Yong-hyun) and is for general education, not a diagnosis. Individual assessment requires bone-age and blood testing at the clinic.
+- Content is written or medically reviewed by Dr. Chae Yong-hyun and is for general education, not a diagnosis. Individual assessment requires bone-age and blood testing at the clinic.
 - Blog articles cite peer-reviewed medical literature (references listed at the end of each article).
-- The clinic serves families in Korea and, via remote consultation, families abroad. Localized site versions exist in English, Korean, Thai, Vietnamese, Traditional/Simplified Chinese, and Arabic (see Language versions above).

@@ -1,4 +1,5 @@
 ko:
+  remote_notice: "원격 상담은 비대면 진료가 아니며, 진단·치료 계획 수립·처방은 서울의 본원에서 대면 진찰을 받은 후에만 이루어집니다."
   title: "187 성장클리닉 | 우리 아이 예상키 무료 측정"
   description: "사춘기·수면·체중·자세까지 통합 분석. 연세새봄 187 성장클리닉의 다각도 성장 관리. 예상키 무료 측정 + 1:1 카카오톡 상담."
   og_image: "/og/og-ko.jpg"
@@ -12,12 +13,15 @@ ko:
       a: "네. 사춘기 조기 진행·저신장·과체중·자세 문제는 서로 영향을 주고받기 때문에 한 가지만 보지 않고 함께 확인합니다. 원인에 따라 관리 방법이 달라집니다."
     - q: "다른 병원에서 받은 검사 결과를 가져가도 되나요?"
       a: "네. 손 X-ray(뼈나이)와 혈액 검사 결과가 있으면 그대로 보내주셔도 됩니다. 해외에 계신 경우 현지에서 받은 검사 자료로 원격 상담부터 시작할 수 있습니다."
+      remote: true
     - q: "얼마나 자주 병원에 와야 하나요? 치료 기간은 어느 정도인가요?"
       a: "보통 3~6개월 간격으로 키·뼈나이·혈액 검사를 다시 확인합니다. 치료 기간은 평균 3년 미만이며, 남은 성장 기간에 따라 달라집니다. 해외에 계신 경우 현지 검사와 화상 상담을 병행해 내원 횟수를 줄입니다."
+      remote: true
     - q: "부작용은 없나요? 호르몬 치료는 위험하지 않나요?"
       a: "모든 의학적 처치에는 이상 반응 가능성이 있습니다. 그래서 치료 전 혈액 검사로 호르몬·간·신장·갑상선 상태를 확인하고, 치료 중에도 정기적으로 재검사하며 조정합니다. 검사 결과상 적합하지 않다고 판단되면 권해 드리지 않습니다."
 
 th:
+  remote_notice: "การปรึกษานี้ไม่ใช่บริการแพทย์ทางไกล จึงไม่มีการวินิจฉัย วางแผนการรักษา หรือสั่งยาจากระยะไกล โดยทั้งหมดจะดำเนินการหลังจากเข้ารับการตรวจด้วยตนเองที่คลินิกของเราในกรุงโซลเท่านั้น"
   title: "187 Growth Clinic | คาดการณ์ส่วนสูงผู้ใหญ่ของลูกฟรี"
   description: "ดูแลการเจริญเติบโตแบบครบวงจรครอบคลุมวัยรุ่น การนอน น้ำหนัก และท่าทาง คลินิก Yonsei Saebom 187 Growth คาดการณ์ส่วนสูงผู้ใหญ่ฟรี + ปรึกษาผ่าน LINE"
   og_image: "/og/og-th.jpg"
@@ -31,12 +35,15 @@ th:
       a: "ได้ครับ ภาวะวัยรุ่นก่อนกำหนด ตัวเตี้ย น้ำหนักเกิน และปัญหาท่าทาง ล้วนส่งผลต่อกันและกัน เราจึงดูร่วมกันไม่แยกส่วน แนวทางดูแลจะต่างกันตามสาเหตุ"
     - q: "นำผลตรวจจากโรงพยาบาลอื่นมาได้ไหม?"
       a: "ได้ครับ หากมีผลเอกซเรย์มือ (อายุกระดูก) และผลเลือดอยู่แล้ว ส่งมาให้เราได้เลย หากอยู่ต่างประเทศ เริ่มจากการปรึกษาทางไกลโดยใช้ผลตรวจจากที่นั่นได้"
+      remote: true
     - q: "ต้องมาโรงพยาบาลบ่อยแค่ไหน ใช้เวลารักษานานเท่าใด?"
       a: "โดยทั่วไปตรวจส่วนสูง อายุกระดูก และเลือดซ้ำทุก 3-6 เดือนครับ ระยะเวลาการรักษาโดยเฉลี่ยน้อยกว่า 3 ปี และขึ้นอยู่กับการเติบโตที่เหลืออยู่ สำหรับผู้ที่อยู่ต่างประเทศ เราใช้การตรวจในพื้นที่ร่วมกับการปรึกษาผ่านวิดีโอเพื่อลดจำนวนครั้งที่ต้องเดินทาง"
+      remote: true
     - q: "มีผลข้างเคียงไหม การรักษาด้วยฮอร์โมนอันตรายหรือไม่?"
       a: "การรักษาทางการแพทย์ทุกชนิดมีโอกาสเกิดอาการไม่พึงประสงค์ได้ครับ เราจึงตรวจเลือดดูฮอร์โมน ตับ ไต และไทรอยด์ก่อนเริ่ม และตรวจซ้ำเป็นระยะระหว่างการรักษาเพื่อปรับแผน หากผลตรวจบ่งชี้ว่าไม่เหมาะสม เราจะไม่แนะนำให้รักษา"
 
 vi:
+  remote_notice: "Đây không phải là khám chữa bệnh từ xa: chúng tôi không chẩn đoán, lập kế hoạch điều trị hay kê đơn từ xa; tất cả chỉ được thực hiện sau khi thăm khám trực tiếp tại phòng khám của chúng tôi ở Seoul."
   title: "187 Growth Clinic | Dự đoán chiều cao trưởng thành"
   description: "Chăm sóc tăng trưởng tích hợp: dậy thì, giấc ngủ, cân nặng, tư thế. Dự đoán chiều cao miễn phí + tư vấn KakaoTalk 1:1 tại Yonsei Saebom 187 Growth Clinic."
   og_image: "/og/og-vi.jpg"
@@ -50,14 +57,17 @@ vi:
       a: "Vâng. Dậy thì sớm, thấp còi, thừa cân và vấn đề tư thế đều ảnh hưởng lẫn nhau, nên chúng tôi xem xét đồng thời chứ không tách riêng. Cách điều trị khác nhau tùy nguyên nhân."
     - q: "Tôi có thể mang kết quả xét nghiệm từ bệnh viện khác không?"
       a: "Được. Nếu đã có X-quang bàn tay (tuổi xương) và kết quả xét nghiệm máu, quý vị có thể gửi trực tiếp cho chúng tôi. Nếu ở nước ngoài, chúng tôi có thể bắt đầu bằng tư vấn từ xa dựa trên kết quả xét nghiệm tại chỗ."
+      remote: true
     - q: "Bao lâu phải đến bệnh viện một lần? Thời gian điều trị bao lâu?"
       a: "Thông thường kiểm tra lại chiều cao, tuổi xương và xét nghiệm máu mỗi 3-6 tháng. Thời gian điều trị trung bình dưới 3 năm, và tùy thuộc vào lượng tăng trưởng còn lại. Với gia đình ở nước ngoài, chúng tôi kết hợp xét nghiệm tại địa phương và tư vấn qua video để giảm số lần đi lại."
+      remote: true
     - q: "Có tác dụng phụ không? Điều trị hormone có nguy hiểm không?"
       a: "Mọi can thiệp y tế đều có khả năng gây phản ứng bất lợi. Vì vậy chúng tôi xét nghiệm máu để kiểm tra hormone, gan, thận và tuyến giáp trước khi bắt đầu, và xét nghiệm lại định kỳ trong quá trình điều trị để điều chỉnh. Nếu kết quả cho thấy không phù hợp, chúng tôi sẽ không khuyến nghị điều trị."
 
 en:
+  remote_notice: "This is not telemedicine: no diagnosis, treatment plan or prescription is given remotely; all are made only after an in-person examination at our Seoul clinic."
   title: "187 Growth Clinic — Child Height Treatment in Seoul, Korea"
-  description: "Child height growth clinic in Seoul, Korea. 15 years of growth and hormone care, bone-age based treatment plans, and online consultation for families overseas."
+  description: "Child height growth clinic in Seoul, Korea. 15 years of growth and hormone care, bone-age based treatment plans, and online guidance for families overseas."
   og_image: "/og/og-en.jpg"
   faq_title: "Frequently asked questions"
   faq:
@@ -69,12 +79,15 @@ en:
       a: "Yes. Early puberty, short stature, excess weight and posture problems affect one another, so we assess them together rather than in isolation. The approach depends on what is driving the growth pattern."
     - q: "Can I bring test results from another hospital?"
       a: "Yes. If you already have a hand X-ray (bone age) and blood test results, you can send them to us as they are. If you live abroad, we can start with a remote consultation based on tests done locally."
+      remote: true
     - q: "How often do we need to visit? How long does treatment last?"
       a: "Height, bone age and blood tests are usually rechecked every 3 to 6 months. Treatment averages under three years, and the exact length depends on how much growth is left. For families living abroad we combine local testing with video consultations to reduce the number of trips."
+      remote: true
     - q: "Are there side effects? Is hormone treatment risky?"
       a: "Any medical treatment carries the possibility of adverse reactions. That is why we check hormone, liver, kidney and thyroid status with blood tests before starting, and retest regularly during treatment to adjust the plan. If the results indicate treatment is not appropriate, we do not recommend it."
 
 zh-hant:
+  remote_notice: "此諮詢並非遠距醫療：我們不會遠距診斷、擬定治療計畫或開立處方；這些僅在首爾本院完成面對面診察後進行。"
   title: "187 生長診所 | 兒童成人身高免費預測"
   description: "整合式生長照護，涵蓋青春期、睡眠、體重與姿勢。延世Saebom 187 生長診所——免費預測成人身高＋WhatsApp 1 對 1 諮詢。"
   og_image: "/og/og-zh-hant.jpg"
@@ -88,12 +101,15 @@ zh-hant:
       a: "可以。青春期提早、身高偏矮、體重過重與姿勢問題彼此相互影響，因此我們不會只看單一項目，而是一起評估。處理方式依成因而不同。"
     - q: "可以帶其他醫院的檢查結果嗎？"
       a: "可以。若已有手部 X 光（骨齡）與血液檢查結果，直接傳給我們即可。若您人在海外，可先以當地檢查資料進行遠距諮詢。"
+      remote: true
     - q: "需要多久回診一次？療程要多久？"
       a: "一般每 3 至 6 個月重新檢查身高、骨齡與血液。療程平均不到三年，實際長短取決於剩餘的生長空間。海外的家庭可透過當地檢查搭配視訊諮詢，減少往返次數。"
+      remote: true
     - q: "會有副作用嗎？荷爾蒙治療危險嗎？"
       a: "任何醫療處置都有可能出現不良反應。因此我們會在治療前以血液檢查確認荷爾蒙、肝、腎與甲狀腺狀態，療程中也定期複檢並調整。若檢查結果顯示不適合，我們不會建議治療。"
 
 zh-hans:
+  remote_notice: "此咨询并非远程医疗：我们不提供远程诊断、制定治疗方案或开具处方；这些仅在首尔本院完成面对面诊察后进行。"
   title: "187 生长诊所 | 儿童成人身高免费预测"
   description: "整合式生长护理，涵盖青春期、睡眠、体重与姿势。延世Saebom 187 生长诊所——免费预测成人身高＋WhatsApp 1 对 1 咨询。"
   og_image: "/og/og-zh-hans.jpg"
@@ -107,12 +123,15 @@ zh-hans:
       a: "可以。青春期提早、身高偏矮、体重过重与姿势问题彼此相互影响，因此我们不会只看单一项目，而是一起评估。处理方式依成因而不同。"
     - q: "可以带其他医院的检查结果吗？"
       a: "可以。若已有手部 X 光（骨龄）与血液检查结果，直接发给我们即可。若您人在海外，可先以当地检查资料进行远程咨询。"
+      remote: true
     - q: "需要多久复诊一次？疗程要多久？"
       a: "一般每 3 至 6 个月重新检查身高、骨龄与血液。疗程平均不到三年，实际长短取决于剩余的生长空间。海外的家庭可通过当地检查搭配视频咨询，减少往返次数。"
+      remote: true
     - q: "会有副作用吗？荷尔蒙治疗危险吗？"
       a: "任何医疗处置都有可能出现不良反应。因此我们会在治疗前以血液检查确认荷尔蒙、肝、肾与甲状腺状态，疗程中也定期复检并调整。若检查结果显示不适合，我们不会建议治疗。"
 
 ar:
+  remote_notice: "هذه الاستشارة ليست خدمة طبّ عن بُعد: لا نُقدّم تشخيصًا أو خطة علاج أو وصفة طبية عن بُعد؛ ولا يتمّ أيّ منها إلا بعد فحص حضوري في عيادتنا في سيول."
   title: "187 Growth Clinic | توقّع مجاني لطول الطفل عند البلوغ"
   description: "رعاية نمو متكاملة تشمل البلوغ والنوم والوزن والقوام. توقّع مجاني للطول عند البلوغ + استشارة فردية عبر WhatsApp في عيادة Yonsei Saebom — 187 Growth Clinic."
   og_image: "/og/og-ar.jpg"
@@ -126,12 +145,15 @@ ar:
       a: "نعم. البلوغ المبكر وقصر القامة وزيادة الوزن ومشكلات القوام تؤثر في بعضها البعض، لذلك نقيّمها معًا لا بشكل منفصل. وتختلف طريقة المتابعة باختلاف السبب."
     - q: "هل يمكنني إحضار نتائج فحوصات من مستشفى آخر؟"
       a: "نعم. إذا كانت لديك أشعة اليد (عمر العظام) ونتائج تحاليل الدم، يمكنك إرسالها كما هي. وإن كنت خارج كوريا، يمكننا البدء باستشارة عن بُعد اعتمادًا على الفحوصات التي أُجريت في بلدك."
+      remote: true
     - q: "كم مرة يجب زيارة العيادة؟ وكم تستغرق مدة العلاج؟"
       a: "عادةً نعيد فحص الطول وعمر العظام وتحاليل الدم كل 3 إلى 6 أشهر. ومتوسط مدة العلاج أقل من ثلاث سنوات، وتعتمد المدة الفعلية على مقدار النمو المتبقي. وللمقيمين خارج كوريا نجمع بين الفحوصات المحلية والاستشارة عبر الفيديو لتقليل عدد الزيارات."
+      remote: true
     - q: "هل توجد آثار جانبية؟ وهل العلاج الهرموني خطر؟"
       a: "أي إجراء طبي ينطوي على احتمال حدوث آثار غير مرغوبة. لذلك نفحص قبل البدء حالة الهرمونات والكبد والكلى والغدة الدرقية بتحاليل الدم، ونعيد الفحص دوريًا أثناء العلاج لتعديل الخطة. وإذا أشارت النتائج إلى أن العلاج غير مناسب فإننا لا ننصح به."
 
 ja:
+  remote_notice: "この相談はオンライン診療ではありません。遠隔での診断、治療計画の策定、処方は行わず、いずれもソウルの当院で対面診察を受けた後にのみ行います。"
   title: "187 Growth Clinic | お子さまの成人身長を無料予測"
   description: "思春期・睡眠・体重・姿勢まで見る統合的な成長ケア。延世セボム 187 Growth Clinic で成人身長の無料予測 + WhatsApp による1:1相談。"
   og_image: "/og/og-en.jpg"
@@ -145,12 +167,15 @@ ja:
       a: "はい。思春期の早発、低身長、体重過多、姿勢の問題は互いに影響し合うため、一つだけを見るのではなく併せて確認します。原因によって進め方は異なります。"
     - q: "他院で受けた検査結果を持って行ってもよいですか？"
       a: "はい。手のX線（骨年齢）と血液検査の結果がある場合は、そのままお送りいただけます。海外にお住まいの場合は、現地で受けた検査資料をもとに遠隔相談から始めることができます。"
+      remote: true
     - q: "どのくらいの頻度で通院が必要ですか？治療期間はどのくらいですか？"
       a: "通常は3〜6か月ごとに身長・骨年齢・血液検査を再確認します。治療期間は平均3年未満で、残された成長量によって変わります。海外にお住まいの方は、現地での検査とオンライン相談を組み合わせて来院回数を抑えます。"
+      remote: true
     - q: "副作用はありませんか？ホルモン治療は危険ではありませんか？"
       a: "医療行為には有害事象の可能性が伴います。そのため治療前に血液検査でホルモン・肝臓・腎臓・甲状腺の状態を確認し、治療中も定期的に再検査して調整します。検査結果から適さないと判断される場合は、治療をお勧めしません。"
 
 es:
+  remote_notice: "Esta consulta no es telemedicina: no se emiten diagnósticos, planes de tratamiento ni recetas a distancia; únicamente se realizan tras una evaluación presencial en nuestra clínica de Seúl."
   title: "187 Growth Clinic | Predicción gratuita de la estatura adulta de su hijo/a"
   description: "Cuidado integral del crecimiento que abarca pubertad, sueño, peso y postura. Predicción gratuita de la estatura adulta + consulta 1:1 por WhatsApp en la Clínica Yonsei Saebom — 187 Growth Clinic."
   og_image: "/og/og-en.jpg"
@@ -164,7 +189,9 @@ es:
       a: "Sí. La pubertad precoz, la talla baja, el exceso de peso y los problemas de postura se influyen entre sí, por lo que los evaluamos en conjunto y no de forma aislada. El abordaje depende de la causa."
     - q: "¿Puedo llevar resultados de estudios de otro hospital?"
       a: "Sí. Si ya cuenta con una radiografía de mano (edad ósea) y análisis de sangre, puede enviárnoslos tal cual. Si vive en el extranjero, podemos comenzar con una consulta remota a partir de los estudios realizados en su país."
+      remote: true
     - q: "¿Con qué frecuencia hay que acudir? ¿Cuánto dura el tratamiento?"
       a: "Por lo general se vuelven a evaluar estatura, edad ósea y análisis de sangre cada 3 a 6 meses. El tratamiento dura en promedio menos de tres años, y la duración exacta depende del crecimiento que quede por delante. Para familias en el extranjero combinamos estudios locales con consultas por videollamada para reducir los viajes."
+      remote: true
     - q: "¿Hay efectos secundarios? ¿El tratamiento hormonal es riesgoso?"
       a: "Todo tratamiento médico conlleva la posibilidad de reacciones adversas. Por eso, antes de iniciar verificamos con análisis de sangre el estado hormonal, hepático, renal y tiroideo, y repetimos los controles durante el tratamiento para ajustarlo. Si los resultados indican que no es apropiado, no lo recomendamos."

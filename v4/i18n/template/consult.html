@@ -130,6 +130,7 @@
       <li>{{.}}</li>
       {{/each}}
     </ul>
+    <p class="cs-note">{{remote_notice}}</p>
     <!-- 설문 CTA — 원격 상담의 1단계. survey 는 0 또는 1개(more 와 같은 배열 분기 패턴). -->
     {{#each consult.remote.survey}}
     <a class="cs-survey" href="{{href}}" data-source="consult_survey">{{label}}</a>
@@ -160,9 +161,12 @@
       </a>
       {{/each}}
     </div>
-    <p class="cs-note">{{consult.channels.note}}</p>
+    <p class="cs-note">{{remote_notice}}</p>
   </section>
 
+  <footer class="clinic-attribution">
+    <p><bdi lang="en">{{clinic_slogan}}</bdi> — {{geo.channel}} <a href="{{official_clinic_url}}"><bdi>https://www.yssaebomq.com</bdi></a></p>
+  </footer>
 </div>
 
 <!-- 설문 오버레이 — iframe src 는 클릭할 때 채운다(그전엔 아무것도 로드하지 않음). -->

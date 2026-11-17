@@ -37,6 +37,7 @@ dist-ssr
 /public/ja/
 /public/es/
 /public/sitemap.xml
+/public/llms-full.txt
 /public/cases-data.json
 /i18n/blog-cache/
 
