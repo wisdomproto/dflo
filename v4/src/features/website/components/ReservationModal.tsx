@@ -5,7 +5,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { createPortal } from 'react-dom';
 
 const AI = import.meta.env.VITE_AI_SERVER_URL?.replace(/\/$/, '') || 'http://localhost:4000';
-const CALL_TEL = '1599-0741';
+const CALL_TEL = '02-3395-0999';
 
 const TERM_SERVICE =
   '본 예약 신청은 연세새봄의원(187 성장클리닉)의 상담 예약을 위한 것입니다. 남겨주신 정보는 예약 상담 연락 목적으로만 사용되며, 진료·처방을 보장하거나 특정 치료 효과를 약속하지 않습니다. 신청자는 언제든 연락 거부 및 정보 삭제를 요청할 수 있습니다.';

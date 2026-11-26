@@ -285,6 +285,7 @@ async function main() {
     locale.faq_title = seoEntry.faq_title || '';
     locale.clinic_slogan = CLINIC_SLOGAN;
     locale.official_clinic_url = OFFICIAL_CLINIC_URL;
+    locale.clinic.contact.office_phones ??= [];
     locale.remote_notice = seoEntry.remote_notice;
     locale.clinic.remote_consult = locale.clinic.remote_consult.map((guide) => ({
       ...guide,

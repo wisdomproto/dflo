@@ -834,6 +834,10 @@
     <div class="contact-card">
       <div class="label">{{clinic.contact.label}}</div>
       <a class="phone" href="tel:{{clinic.contact.phone}}">{{clinic.contact.phone}}</a>
+      {{#each clinic.contact.office_phones}}
+      <div class="label">{{label}}</div>
+      <a class="phone" href="tel:{{number}}">{{number}}</a>
+      {{/each}}
       <div class="addr">{{clinic.contact.addr}}</div>
     </div>
   </section>

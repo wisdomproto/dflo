@@ -37,7 +37,7 @@ export function Closing({ name, desiredHeight }: { name: string; desiredHeight?:
           📞 번호 남기고 예약하기
         </button>
         <div className="tel">
-          📞 <a href="tel:1599-0741">1599-0741</a>
+          📞 <a href="tel:02-3395-0999">02-3395-0999</a>
         </div>
       </div>
 

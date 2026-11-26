@@ -13,8 +13,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..', '..');
 
 const CLINIC_NAME = '187growup — 187 Growth Clinic';
-const CLINIC_PHONE = '+82-10-6693-2838'; // 해외 페이지 — 국제 발신 가능한 휴대폰(1599 는 국제 착신 불가)
-const CLINIC_PHONE_KR = '1599-0741';     // 한국어 페이지 대표번호(전국대표번호)
+const CLINIC_PHONE = '+82-10-6693-2838';
+const CLINIC_PHONE_KR = '02-3395-0999';
+const CLINIC_PHONE_INTERNATIONAL = '+82-2-3395-0999';
 const CLINIC_ADDRESS = {
   '@type': 'PostalAddress',
   streetAddress: '2F, Hwiseon Building, 328 Dosan-daero',
@@ -58,7 +59,11 @@ export function medicalClinicJsonLd(lang) {
     url: `${ORIGIN}${PATH_PREFIX}/${lang}/`,
     logo: `${ORIGIN}/images/logo.jpg`,
     image: `${ORIGIN}${PATH_PREFIX}/og/og-${lang}.jpg`,
-    telephone: lang === 'ko' ? CLINIC_PHONE_KR : CLINIC_PHONE,
+    telephone: lang === 'ko'
+      ? CLINIC_PHONE_KR
+      : ['en', 'th'].includes(lang)
+        ? [CLINIC_PHONE, CLINIC_PHONE_INTERNATIONAL]
+        : CLINIC_PHONE,
     address: CLINIC_ADDRESS,
     areaServed,
     sameAs: CLINIC_SAME_AS,

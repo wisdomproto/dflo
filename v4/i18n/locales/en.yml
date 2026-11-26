@@ -499,6 +499,9 @@ clinic:
   contact:
     label: "Consultation & Booking"
     phone: "+82-10-6693-2838"
+    office_phones:
+      - label: "Yonsei Saebom Medical Clinic"
+        number: "+82-2-3395-0999"
     addr: "2F Hwiseon Building, 328 Dosan-daero, Gangnam-gu, Seoul, Korea"
   # 원격 상담 안내 — vi/en 은 방콕 같은 현지 사무소가 없어 온라인 상담 중심(사무소 박스는 서울 클리닉 주소).
   remote_consult:

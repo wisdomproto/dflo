@@ -9,7 +9,7 @@
 - Free tool: an adult-height prediction calculator based on national growth-standard data (supports Korea, US/CDC, China, Thailand, Indonesia standards).
 - Bone-age X-ray is used to estimate a child's remaining growth potential and predicted adult height.
 - [Remote consultation](https://www.dr187growup.com/en/consult.html): Families abroad can share existing bone-age X-rays and blood test results for initial guidance. This is not telemedicine: no diagnosis, treatment plan or prescription is given remotely; all are made only after an in-person examination at our Seoul clinic.
-- Contact (international): +82-10-6693-2838. Consultation via messenger from the site.
+- Contact (international): +82-10-6693-2838. Consultation via messenger from the site or through the main clinic: Yonsei Saebom Medical Clinic · +82-2-3395-0999 · https://www.yssaebomq.com/.
 
 ## Main pages
 - [Free adult-height prediction calculator](https://www.dr187growup.com/en/calculator.html): Predict a child's adult height from age, sex, and current height using national growth standards.
